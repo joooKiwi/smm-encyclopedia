@@ -1,28 +1,28 @@
-import resource from '../../resources/compiled/Mystery Mushroom (SMM).json';
+import resource from '../../resources/compiled/Mystery Mushroom (SMM).json'
 
-import type {EveryPossibleName_Version_SMM}                                                                                                                                                                                      from '../_util/loader/HeaderTypesForConvertorDefinition';
-import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader';
-import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom';
-import type {MysteryMushroomTemplate, PokemonGeneration}                                                                                                                                                                         from './MysteryMushroom.template';
-import type {PossibleConditionToUnlockIt}                                                                                                                                                                                        from './properties/UnlockProperty';
-import type {PossibleEnglishName as PossibleGameReference}                                                                                                                                                                       from '../gameReference/GameReferences.types';
-import type {PossibleGamesReceived as GameInStarMode, PossibleValuesReceived as PossibleSpecialMusicInStarMode}                                                                                                                  from './properties/sound/SpecialMusicInStarMode';
-import type {PossibleGamesReceived as GameOnSoundEffectOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypesReceived as TypeOfSoundEffectOnDeath, PossibleValuesReceived as PossibleSoundEffectOnDeath}       from './properties/sound/SoundEffectOnDeath';
-import type {PossibleGamesReceived as GameOnSoundEffectOnGoalPole, PossibleTranslationKeys as TranslationKeyOnGoalPole, PossibleTypesReceived as TypeOfMusicOnGoalPole, PossibleValuesReceived as PossibleSoundEffectOnGoalPole} from './properties/sound/SoundEffectOnGoalPole';
-import type {PossibleGamesReceived as GameOnSoundEffectOnGroundAfterJump, PossibleValuesReceived as PossibleSoundEffectOnGroundAfterJump}                                                                                        from './properties/sound/SoundEffectOnGroundAfterJump';
-import type {PossibleGamesReceived as GameOnSoundEffectOnJump, PossibleValuesReceived as PossibleSoundEffectOnJump}                                                                                                              from './properties/sound/SoundEffectOnJump';
-import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from './properties/sound/SoundEffectOnTaunt';
-import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from './properties/sound/SoundEffectWhenCollected';
-import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}                                                                                                                                                            from './properties/sound/SoundEffectOnMovement';
-import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from './properties/sound/SoundEffectOnTurnAfterRun';
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                     from '../../lang/Loader.types';
-import type {SoundPropertyTemplate}                                                                                                                                                                                              from './properties/sound/SoundProperty.template';
-import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from './MysteryMushrooms.types';
+import type {EveryPossibleName_Version_SMM}                                                                                                                                                                                      from '../_util/loader/HeaderTypesForConvertorDefinition'
+import type {Loader}                                                                                                                                                                                                             from '../../util/loader/Loader'
+import type {MysteryMushroom}                                                                                                                                                                                                    from './MysteryMushroom'
+import type {MysteryMushroomTemplate, PokemonGeneration}                                                                                                                                                                         from './MysteryMushroom.template'
+import type {PossibleConditionToUnlockIt}                                                                                                                                                                                        from './properties/UnlockProperty'
+import type {PossibleEnglishName as PossibleGameReference}                                                                                                                                                                       from '../gameReference/GameReferences.types'
+import type {PossibleGamesReceived as GameInStarMode, PossibleValuesReceived as PossibleSpecialMusicInStarMode}                                                                                                                  from './properties/sound/SpecialMusicInStarMode'
+import type {PossibleGamesReceived as GameOnSoundEffectOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypesReceived as TypeOfSoundEffectOnDeath, PossibleValuesReceived as PossibleSoundEffectOnDeath}       from './properties/sound/SoundEffectOnDeath'
+import type {PossibleGamesReceived as GameOnSoundEffectOnGoalPole, PossibleTranslationKeys as TranslationKeyOnGoalPole, PossibleTypesReceived as TypeOfMusicOnGoalPole, PossibleValuesReceived as PossibleSoundEffectOnGoalPole} from './properties/sound/SoundEffectOnGoalPole'
+import type {PossibleGamesReceived as GameOnSoundEffectOnGroundAfterJump, PossibleValuesReceived as PossibleSoundEffectOnGroundAfterJump}                                                                                        from './properties/sound/SoundEffectOnGroundAfterJump'
+import type {PossibleGamesReceived as GameOnSoundEffectOnJump, PossibleValuesReceived as PossibleSoundEffectOnJump}                                                                                                              from './properties/sound/SoundEffectOnJump'
+import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from './properties/sound/SoundEffectOnTaunt'
+import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from './properties/sound/SoundEffectWhenCollected'
+import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}                                                                                                                                                            from './properties/sound/SoundEffectOnMovement'
+import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from './properties/sound/SoundEffectOnTurnAfterRun'
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                     from '../../lang/Loader.types'
+import type {SoundPropertyTemplate}                                                                                                                                                                                              from './properties/sound/SoundProperty.template'
+import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from './MysteryMushrooms.types'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
-import {MysteryMushroomBuilder}  from './MysteryMushroom.builder';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {MysteryMushroomBuilder}  from './MysteryMushroom.builder'
 
 //region -------------------- CSV array related types --------------------
 
@@ -106,12 +106,12 @@ type ExclusivePropertiesArray = [
     haveASoundEffectOnDeath_game: GameOnSoundEffectOnDeath,
     haveASoundEffectOnDeath_smallDefinition: TranslationKeyOnDeath,
     haveASoundEffectOnDeath: PossibleSoundEffectOnDeath,
-];
+]
 
 type PropertiesArray = [
     ...ExclusivePropertiesArray,
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- Exclusive properties --------------------
 
@@ -126,22 +126,22 @@ export class MysteryMushroomLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: MysteryMushroomLoader;
+    static #instance?: MysteryMushroomLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleUniqueEnglishName, MysteryMushroom>;
+    #map?: Map<PossibleUniqueEnglishName, MysteryMushroom>
 
     public load(): ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom> {
         if (this.#map == null) {
-            const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>();
+            const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -185,17 +185,17 @@ export class MysteryMushroomLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleUniqueEnglishName_mysteryMushroom, 'english', 'americanEnglish',)
 
                 .onAfterFinalObjectCreated((finalContent, convertedContent,) => references.set(convertedContent[Headers.uniqueName], finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "mystery mushroom" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "mystery mushroom" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "mystery mushroom" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "mystery mushroom" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -204,11 +204,11 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<MysteryMushroomTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): MysteryMushroomTemplate {
@@ -224,7 +224,7 @@ class TemplateBuilder
             uniqueName: this._getContent(this._headersIndexMap.uniqueName),
             gameReference: this._getContent(this._headersIndexMap.reference),
             name: this._createNameTemplate(),
-        };
+        }
     }
 
     #createSoundTemplate(): SoundPropertyTemplate {
@@ -271,7 +271,7 @@ class TemplateBuilder
                     game: this._getContent(this._headersIndexMap.haveASpecialMusicInStarMode_game),
                 },
             },
-        };
+        }
     }
 
 }

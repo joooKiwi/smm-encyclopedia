@@ -1,4 +1,4 @@
-import type {PossibleLanguageValue} from '../ClassWithOnlyProjectLanguages';
+import type {PossibleLanguageValue} from '../ClassWithOnlyProjectLanguages'
 
 /**
  * @template
@@ -64,8 +64,8 @@ export interface NameTemplate<HEBREW extends PossibleLanguageValue<string> = nul
  * @template
  */
 export interface NameTemplateWithOptionalLanguages
-    extends NameTemplate<PossibleLanguageValue<string>,PossibleLanguageValue<string>,PossibleLanguageValue<string>,PossibleLanguageValue<string>> {
+    extends NameTemplate<PossibleLanguageValue<string>, PossibleLanguageValue<string>, PossibleLanguageValue<string>, PossibleLanguageValue<string>> {
 
 }
 
-export type PossibleNameTemplate = | NameTemplate | NameTemplateWithOptionalLanguages;
+export type PossibleNameTemplate = | NameTemplate | NameTemplateWithOptionalLanguages

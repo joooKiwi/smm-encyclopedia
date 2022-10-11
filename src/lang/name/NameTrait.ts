@@ -1,4 +1,4 @@
-import type {Name} from './Name';
+import type {Name} from './Name'
 
 /**
  * <p>
@@ -11,7 +11,7 @@ import type {Name} from './Name';
  *  with a reference to the method {@link NameTrait.nameContainer nameContainer(): Name}.
  * </p>
  */
-export interface NameTrait<T,>
+export interface NameTrait<T, >
     extends Name<T> {
 
     get nameContainer(): Name<T>

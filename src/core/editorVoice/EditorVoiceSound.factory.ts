@@ -1,8 +1,9 @@
-import type {EditorVoiceSound, PossibleSoundReceivedOnFactory} from './EditorVoiceSound';
+import type {EditorVoiceSound, PossibleSoundReceivedOnFactory} from './EditorVoiceSound'
 
-import {EditorVoiceSoundRegionalContainer} from './EditorVoiceSound.regional.container';
-import {EditorVoiceSoundSingleContainer}   from './EditorVoiceSound.single.container';
-import {EmptyEditorVoiceSound}             from './EmptyEditorVoiceSound';
+import {EditorVoiceSoundFileContainer as SoundFile} from './file/EditorVoiceSoundFile.container'
+import {EditorVoiceSoundRegionalContainer}          from './EditorVoiceSound.regional.container'
+import {EditorVoiceSoundSingleContainer}            from './EditorVoiceSound.single.container'
+import {EmptyEditorVoiceSound}                      from './EmptyEditorVoiceSound'
 
 /**
  * @factory
@@ -10,7 +11,7 @@ import {EmptyEditorVoiceSound}             from './EmptyEditorVoiceSound';
 export class EditorVoiceSoundFactory {
 
     private constructor() {
-        throw new TypeError('This class cannot be instantiated.');
+        throw new TypeError('This class cannot be instantiated.')
     }
 
     /**
@@ -23,8 +24,8 @@ export class EditorVoiceSoundFactory {
         return sound == null
             ? EmptyEditorVoiceSound.get
             : sound instanceof Array
-                ? new EditorVoiceSoundRegionalContainer(sound[0].fileName, sound[1].fileName,)
-                : new EditorVoiceSoundSingleContainer(sound.fileName);
+                ? new EditorVoiceSoundRegionalContainer(new SoundFile(sound[0].fileName), new SoundFile(sound[1].fileName),)
+                : new EditorVoiceSoundSingleContainer(new SoundFile(sound.fileName),)
     }
 
 }

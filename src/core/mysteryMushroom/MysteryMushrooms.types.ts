@@ -1,10 +1,11 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {MysteryMushrooms as RealEnum}                                                                                                                                                                                                                 from './MysteryMushrooms';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
+import type {MysteryMushrooms as RealEnum}                                                                                                                                                                                                                 from './MysteryMushrooms'
+import type {MysteryMushroomSoundFile}                                                                                                                                                                                                                     from './file/MysteryMushroomSoundFile'
 
 
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | EnglishNameOnFile | PossibleUniqueEnglishName;
-export type PossibleValue = | RealEnum | number | string | null | undefined;
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
+export type PossibleStringValue = | Names | PossibleFileName | PossibleUniqueEnglishName
+export type PossibleValue = | RealEnum | number | string | null | undefined
 
 enum Enum {
     MYSTERY_MUSHROOM,
@@ -155,16 +156,16 @@ enum Enum {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Enum[Names];
+export type Ordinals = typeof Enum[Names]
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Enum;
+export type Names = keyof typeof Enum
 
 //region -------------------- File name --------------------
 
-export type EnglishNameOnFile =
+export type PossibleFileName =
     | 'Arwing' | 'Ashley'
     | 'Blackey' | WithLeftVariant<'Block'> | `Boss0${`${| 0 | 1 | 2 | 3 | 4}${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | `5${| 0 | 1}`}` | WithLeftVariant<`Boss04${| 5 | 6}`>
     | 'Charizard' | 'ChibiRobo'
@@ -179,22 +180,22 @@ export type EnglishNameOnFile =
     | 'Ness' | 'Nikki'
     | 'Orima'
     | 'PackMan' | 'Palutena' | 'Peach' | 'Peppy' | 'Pikachu' | 'Pikmin' | 'Pit' | 'Pudding'
-    | 'ResetSan' | 'Robin' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| '' | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | 'SplaIka'
+    | 'ResetSan' | 'Robin' | 'Robot' | WithJapaneseVariant<'Robot'> | 'Rosalina' | 'Samus' | 'Sheik' | 'Shellcreeper' | 'Shulk' | 'Shunk' | 'SideStepper' | `Sizue${| '' | 'Winter'}` | 'Slippy' | 'Sonic' | WithUnderwaterVariant<`Spla${| 'Boy' | 'Girl'}`> | WithOnlyUnderwaterVariant<`Spla${| 'Aori' | 'Hotaru'}`> | `Spla${| '' | 't'}Ika`
     | 'Takumi' | 'Tanuki' | 'ThunLink' | 'Tincle' | 'Totakeke' | 'Trampoline' | 'TsubuMame'
     | 'Waluigi' | 'Wario' | 'Wiibo' | `WoolYoshi${| 'Aqua' | 'Big' | 'Green' | 'Pink'}`
     | 'Yoshi'
-    | 'Zelda' | 'ZeroSams';
+    | 'Zelda' | 'ZeroSams'
 
-type WithOnlyUnderwaterVariant<T extends string, > = `${T} W`;
-type WithUnderwaterVariant<T extends string, > = `${T}${| '' | ' W'}`;
-type WithLeftVariant<T extends string, > = `${T}${| '' | ' L'}`;
-type WithJapaneseVariant<T extends string, > = `${T} ${| 'JP' | 'USEU'}`;
+type WithOnlyUnderwaterVariant<T extends string, > = `${T} W`
+type WithUnderwaterVariant<T extends string, > = `${T}${| '' | ' W'}`
+type WithLeftVariant<T extends string, > = `${T}${| '' | ' L'}`
+type WithJapaneseVariant<T extends string, > = `${T} ${| 'JP' | 'USEU'}`
 
 
 //endregion -------------------- File name --------------------
 //region -------------------- English name --------------------
 
-export type PossibleUniqueEnglishName = | PossibleEnglishName | 'Mario (MB)';
+export type PossibleUniqueEnglishName = | PossibleEnglishName | 'Mario (MB)'
 export type PossibleEnglishName =
     | 'Mystery Mushroom'
 
@@ -334,28 +335,33 @@ export type PossibleEnglishName =
     | 'Kitty White' | 'Melody'
     | 'Shaun the Sheep'
 
-    | 'Arino KACHO' | 'SUPER MARIO KUN' | 'Necky' | 'GLA' | 'BABYMETAL';
+    | 'Arino KACHO' | 'SUPER MARIO KUN' | 'Necky' | 'GLA' | 'BABYMETAL'
 
 //endregion -------------------- English name --------------------
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
 
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
 
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
 
 
-export type PossibleImageSourceForFile<T, > = | readonly [] | readonly [T,] | readonly [T, T,];
-export type PossibleSoundSourceForFile<T, > = T extends readonly string[] ? (| readonly [] | T) : T extends string ? (| T | null) : never;
+export type PossibleImageSourceForFile<T, > = | readonly [] | readonly [T,] | readonly [T, T,]
+export type PossibleSoundSourceForFile<T, > =
+    T extends readonly MysteryMushroomSoundFile[]
+        ? (| readonly [] | T)
+        : T extends MysteryMushroomSoundFile
+            ? (| T | null)
+            : never
 
 export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<E>['MYSTERY_MUSHROOM'],
@@ -502,6 +508,6 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<E>['NECKY'],
     SimpleEnum<E>['GLA'],
     SimpleEnum<E>['BABYMETAL'],
-];
+]
 
 //endregion -------------------- Array types --------------------

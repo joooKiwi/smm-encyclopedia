@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Mii Costume category (SMM2).json';
+import resource from '../../resources/compiled/Mii Costume category (SMM2).json'
 
-import type {Loader}                                                         from '../../util/loader/Loader';
-import type {MiiCostumeCategory}                                             from './MiiCostumeCategory';
-import type {MiiCostumeCategoryTemplate}                                     from './MiiCostumeCategory.template';
-import type {PossibleEnglishName}                                            from './MiiCostumeCategories.types';
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../lang/Loader.types';
+import type {Loader}                                                         from '../../util/loader/Loader'
+import type {MiiCostumeCategory}                                             from './MiiCostumeCategory'
+import type {MiiCostumeCategoryTemplate}                                     from './MiiCostumeCategory.template'
+import type {PossibleEnglishName}                                            from './MiiCostumeCategories.types'
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../lang/Loader.types'
 
-import {AbstractTemplateBuilder}   from '../_template/AbstractTemplate.builder';
-import {CSVLoader}                 from '../../util/loader/CSVLoader';
-import {HeaderTypesForConvertor}   from '../_util/loader/HeaderTypesForConvertor';
-import {MiiCostumeCategoryBuilder} from './MiiCostumeCategory.builder';
+import {AbstractTemplateBuilder}   from '../_template/AbstractTemplate.builder'
+import {CSVLoader}                 from '../../util/loader/CSVLoader'
+import {HeaderTypesForConvertor}   from '../_util/loader/HeaderTypesForConvertor'
+import {MiiCostumeCategoryBuilder} from './MiiCostumeCategory.builder'
 
 //region -------------------- CSV array related types --------------------
 
@@ -37,7 +37,7 @@ enum Headers {
 
 type PropertiesArray = [
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- Exclusive properties --------------------
 
@@ -52,22 +52,22 @@ export class MiiCostumeCategoryLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: MiiCostumeCategoryLoader;
+    static #instance?: MiiCostumeCategoryLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, MiiCostumeCategory>;
+    #map?: Map<PossibleEnglishName, MiiCostumeCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, MiiCostumeCategory> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, MiiCostumeCategory>();
+            const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -78,17 +78,17 @@ export class MiiCostumeCategoryLoader
 
                 .onAfterFinalObjectCreated(finalContent =>
                     references.set(finalContent.americanEnglish as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "Mii costume" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "Mii costume" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "Mii costume" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "Mii costume" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -97,17 +97,17 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<MiiCostumeCategoryTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): MiiCostumeCategoryTemplate {
         return {
             name: this._createNameTemplate(),
-        };
+        }
     }
 
 }

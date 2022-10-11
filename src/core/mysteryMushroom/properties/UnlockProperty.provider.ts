@@ -1,8 +1,8 @@
-import type {PossibleConditionToUnlockIt, UnlockProperty} from './UnlockProperty';
-import type {ProviderWithoutKey}                          from '../../../util/provider/ProviderWithoutKey';
+import type {PossibleConditionToUnlockIt, UnlockProperty} from './UnlockProperty'
+import type {ProviderWithoutKey}                          from '../../../util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}        from '../../../util/provider/AbstractProvider';
-import {UnlockPropertyContainer} from './UnlockProperty.container';
+import {AbstractProvider}        from '../../../util/provider/AbstractProvider'
+import {UnlockPropertyContainer} from './UnlockProperty.container'
 
 /**
  * @singleton
@@ -13,14 +13,14 @@ export class UnlockPropertyProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: UnlockPropertyProvider;
+    static #instance?: UnlockPropertyProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -28,7 +28,7 @@ export class UnlockPropertyProvider
     public get(...argumentsReceived: ArgumentsReceived): UnlockProperty {
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(reference => reference.set(argumentsReceived, new UnlockPropertyContainer(...argumentsReceived,),))
-            .get(argumentsReceived);
+            .get(argumentsReceived)
     }
 
 }
@@ -36,4 +36,4 @@ export class UnlockPropertyProvider
 type ArgumentsReceived = readonly [
     conditionToUnlockIt: PossibleConditionToUnlockIt,
     canBeUnlockedByAnAmiibo: boolean,
-];
+]

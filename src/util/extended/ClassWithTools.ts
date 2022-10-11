@@ -1,4 +1,4 @@
-import type {ConditionalIntermediate} from './tools/ConditionalIntermediate';
+import type {ConditionalIntermediate} from './tools/ConditionalIntermediate'
 
 export interface ClassWithTools {
 

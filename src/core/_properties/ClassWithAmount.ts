@@ -4,4 +4,4 @@ export interface ClassWithAmount<AMOUNT extends PossibleAmount = PossibleAmount,
 
 }
 
-export type PossibleAmount = | number | null;
+export type PossibleAmount = | number | null

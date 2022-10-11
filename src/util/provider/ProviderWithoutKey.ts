@@ -1,4 +1,4 @@
-import type {PossibleArgumentsReceived, Provider} from './Provider';
+import type {PossibleArgumentsReceived, Provider} from './Provider'
 
 /**
  * A class "factory" that will get (or create) an instance

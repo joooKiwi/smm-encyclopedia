@@ -1,8 +1,8 @@
-import type {MiiCostumeCategory}                                      from './MiiCostumeCategory';
-import type {ClassWithNullObjectPattern, EmptyMiiCostumeCategoryName} from '../../util/ClassWithNullObjectPattern';
+import type {MiiCostumeCategory}                                      from './MiiCostumeCategory'
+import type {ClassWithNullObjectPattern, EmptyMiiCostumeCategoryName} from '../../util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
-import {EmptyStringName}      from '../../lang/name/EmptyStringName';
+import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {EmptyStringName}      from '../../lang/name/EmptyStringName'
 
 export class EmptyMiiCostumeCategory
     extends ClassContainingAName<string>
@@ -10,20 +10,20 @@ export class EmptyMiiCostumeCategory
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyMiiCostumeCategory;
+    static #instance?: EmptyMiiCostumeCategory
 
     private constructor() {
-        super(EmptyStringName.get,);
+        super(EmptyStringName.get,)
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
     public override toString(): EmptyMiiCostumeCategoryName {
-        return 'Empty Mii costume category';
+        return 'Empty Mii costume category'
     }
 
 }

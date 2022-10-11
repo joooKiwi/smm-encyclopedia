@@ -1,25 +1,25 @@
-import type {DefaultValueIfNotFound} from './ClassThatCanGetItems';
-import type {EntrySet}               from './EntrySet';
-import type {ExtendedMap}            from './ExtendedMap';
-import type {ExtendedSet}            from './ExtendedSet';
-import type {VariableReturnValue}    from './ClassThatCanSearchItems';
+import type {DefaultValueIfNotFound} from './ClassThatCanGetItems'
+import type {EntrySet}               from './EntrySet'
+import type {ExtendedMap}            from './ExtendedMap'
+import type {ExtendedSet}            from './ExtendedSet'
+import type {VariableReturnValue}    from './ClassThatCanSearchItems'
 
-import {ConditionalIntermediate} from './tools/ConditionalIntermediate';
-import {isArrayEquals}           from '../utilitiesMethods';
-import {EntrySetContainer}       from './EntrySet.container';
-import {ExtendedSetContainer}    from './ExtendedSet.container';
+import {ConditionalIntermediate} from './tools/ConditionalIntermediate'
+import {isArrayEquals}           from '../utilitiesMethods'
+import {EntrySetContainer}       from './EntrySet.container'
+import {ExtendedSetContainer}    from './ExtendedSet.container'
 
 export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     implements ExtendedMap<K, V, LENGTH> {
 
     //region -------------------- Fields --------------------
 
-    public static DEFAULT_SEPARATOR = ',';
-    public static readonly DEFAULT_VALUE_IF_NOT_FOUND: DefaultValueIfNotFound = null;
-    public static readonly EMPTY: ExtendedMap<any, never, 0> = new ExtendedMapContainer<any, never, 0>();
+    public static DEFAULT_SEPARATOR = ','
+    public static readonly DEFAULT_VALUE_IF_NOT_FOUND: DefaultValueIfNotFound = null
+    public static readonly EMPTY: ExtendedMap<any, never, 0> = new ExtendedMapContainer<any, never, 0>()
 
-    readonly #map: Map<K, EntrySet<K, V>>;
-    public defaultSeparator = ExtendedMapContainer.DEFAULT_SEPARATOR;
+    readonly #map: Map<K, EntrySet<K, V>>
+    public defaultSeparator = ExtendedMapContainer.DEFAULT_SEPARATOR
 
     //endregion -------------------- Fields --------------------
 
@@ -29,11 +29,11 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
             : new Map([...iterable].map((arrayOrEntrySet,) =>
                 arrayOrEntrySet instanceof Array
                     ? [arrayOrEntrySet[0], new EntrySetContainer(arrayOrEntrySet[0], arrayOrEntrySet[1],),]
-                    : [arrayOrEntrySet.key, new EntrySetContainer(arrayOrEntrySet),]));
+                    : [arrayOrEntrySet.key, new EntrySetContainer(arrayOrEntrySet),]))
     }
 
     protected get _map(): Map<K, EntrySet<K, V>> {
-        return this.#map;
+        return this.#map
     }
 
     //region -------------------- Length methods --------------------
@@ -42,14 +42,14 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.size
      */
     public get size(): this['length'] {
-        return this.length;
+        return this.length
     }
 
     /**
      * @see Map.size
      */
     public get length(): LENGTH {
-        return this._map.size as LENGTH;
+        return this._map.size as LENGTH
     }
 
     //endregion -------------------- Length methods --------------------
@@ -62,8 +62,8 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.set
      */
     public set(key: K, value: V,): this {
-        this._map.set(key, new EntrySetContainer(key, value,));
-        return this;
+        this._map.set(key, new EntrySetContainer(key, value,))
+        return this
     }
 
     /**
@@ -72,8 +72,8 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @param values
      */
     #add(...values: readonly (readonly [K, V,])[]): this {
-        values.forEach(([key, value,]) => this.set(key, value,));
-        return this;
+        values.forEach(([key, value,]) => this.set(key, value,))
+        return this
     }
 
     /**
@@ -82,10 +82,10 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.set
      */
     public add(...values: readonly (readonly [K, V,])[]): this {
-        return this.#add(...values);
+        return this.#add(...values)
     }
 
-    public push = this.add;
+    public push = this.add
 
     //region -------------------- & Get --------------------
 
@@ -93,11 +93,11 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     public addAndGet<V2 extends (readonly [K, V,])[] = (readonly [K, V,])[], >(...values: V2): V2
     public addAndGet<V2 extends readonly (readonly [K, V,])[] = readonly (readonly [K, V,])[], >(...values: V2): V2
     public addAndGet(...values: (readonly [K, V,])[]) {
-        this.add(...values);
-        return values.length === 1 ? values[0] : values;
+        this.add(...values)
+        return values.length === 1 ? values[0] : values
     }
 
-    public pushAndGet = this.addAndGet;
+    public pushAndGet = this.addAndGet
 
     //endregion -------------------- & Get --------------------
 
@@ -105,11 +105,11 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     //region -------------------- Removal methods --------------------
 
     #delete(...keys: readonly K[]): boolean {
-        let everyValuesHasBeenDeleted = this.has(...keys);
+        let everyValuesHasBeenDeleted = this.has(...keys)
 
-        keys.forEach(value => everyValuesHasBeenDeleted = this._map.delete(value));
+        keys.forEach(value => everyValuesHasBeenDeleted = this._map.delete(value))
 
-        return everyValuesHasBeenDeleted;
+        return everyValuesHasBeenDeleted
     }
 
     /**
@@ -118,37 +118,37 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.delete
      */
     public delete(...values: K[]): boolean {
-        return this.#delete(...values);
+        return this.#delete(...values)
     }
 
-    public drop = this.delete;
+    public drop = this.delete
 
-    public remove = this.delete;
+    public remove = this.delete
 
 
     /**
      * @see Map.clear
      */
     public clear(): this {
-        this._map.clear();
-        return this;
+        this._map.clear()
+        return this
     }
 
     //endregion -------------------- Removal methods --------------------
     //region -------------------- Loop methods --------------------
 
     public if(callback: (map: this,) => boolean,): ConditionalIntermediate<this> {
-        return new ConditionalIntermediate(this, () => callback(this,));
+        return new ConditionalIntermediate(this, () => callback(this,))
     }
 
     #has(value: any,): boolean {
         if (value instanceof Array) {
             for (const internalValue of this)
                 if (internalValue instanceof Array && isArrayEquals(internalValue, value,))
-                    return true;
-            return false;
+                    return true
+            return false
         }
-        return this._map.has(value as never);
+        return this._map.has(value as never)
     }
 
     /**
@@ -161,23 +161,23 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     public has(...values: readonly any[]): boolean {
         for (const value of values)
             if (!this.#has(value))
-                return false;
-        return true;
+                return false
+        return true
     }
 
-    public includes = this.has;
+    public includes = this.has
 
 
     public get(key: K,): V
     public get(key: any,): | V | DefaultValueIfNotFound
     public get(key: any) {
-        return this.find(internalKey => internalKey === key);
+        return this.find(internalKey => internalKey === key)
     }
 
     public getKey(value: V,): K
     public getKey(value: any,): K | DefaultValueIfNotFound
     public getKey(value: any,) {
-        return this.findKey((internalKey, internalValue,) => internalValue === value);
+        return this.findKey((internalKey, internalValue,) => internalValue === value)
     }
 
     /**
@@ -209,11 +209,11 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     public find(callback: (key: K, value: V,) => boolean, callbackIfNotFound?: () => V,) {
         for (const [key, value,] of this)
             if (callback(key, value,))
-                return value;
+                return value
 
         return callbackIfNotFound == null
             ? ExtendedMapContainer.DEFAULT_VALUE_IF_NOT_FOUND
-            : callbackIfNotFound();
+            : callbackIfNotFound()
     }
 
     /**
@@ -245,11 +245,11 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     public findKey(callback: (key: K, value: V,) => boolean, callbackIfNotFound?: () => K,) {
         for (const [key, value,] of this)
             if (callback(key, value,))
-                return key;
+                return key
 
         return callbackIfNotFound == null
             ? ExtendedMapContainer.DEFAULT_VALUE_IF_NOT_FOUND
-            : callbackIfNotFound();
+            : callbackIfNotFound()
     }
 
     /**
@@ -258,8 +258,8 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.forEach
      */
     public forEach(callback: (key: K, value: V,) => void,): this {
-        this._map.forEach(({key, value,},) => callback(key, value,));
-        return this;
+        this._map.forEach(({key, value,},) => callback(key, value,))
+        return this
     }
 
     /**
@@ -268,9 +268,9 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Array.map
      */
     public map<V2, >(callback: (key: K, value: V,) => V2,): ExtendedMap<K, V2, LENGTH> {
-        const newArray = [] as [K, V2][];
-        this.forEach((key, value,) => newArray.push([key, callback(key, value,),]));
-        return new ExtendedMapContainer<K, V2, number>(newArray) as unknown as ExtendedMap<K, V2, LENGTH>;
+        const newArray = [] as [K, V2][]
+        this.forEach((key, value,) => newArray.push([key, callback(key, value,),]))
+        return new ExtendedMapContainer<K, V2, number>(newArray) as unknown as ExtendedMap<K, V2, LENGTH>
     }
 
     //endregion -------------------- Loop methods --------------------
@@ -280,21 +280,21 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.entries
      */
     public get entries(): IterableIterator<readonly [K, V,]> {
-        return [...this._map.entries()].map(([, entry,]) => entry.toArray()).values();
+        return [...this._map.entries()].map(([, entry,]) => entry.toArray()).values()
     }
 
     /**
      * @see Map.keys
      */
     public get keys(): IterableIterator<K> {
-        return this._map.keys();
+        return this._map.keys()
     }
 
     /**
      * @see Map.values
      */
     public get values(): IterableIterator<V> {
-        return [...this._map.values()].map(entry => entry.value).values();
+        return [...this._map.values()].map(entry => entry.value).values()
     }
 
 
@@ -304,31 +304,31 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Array.join
      */
     public join(separator: string = this.defaultSeparator,): string {
-        return this.toArray().join(separator);
+        return this.toArray().join(separator)
     }
 
     //region -------------------- Convertor methods --------------------
 
     public toArray(): EntrySet<K, V>[] {
-        return [...this._map.values()];
+        return [...this._map.values()]
     }
 
 
     public toSet(): Set<EntrySet<K, V>> {
-        return new Set(this._map.values());
+        return new Set(this._map.values())
     }
 
     public toExtendedSet(): ExtendedSet<EntrySet<K, V>, LENGTH> {
-        return new ExtendedSetContainer(this._map.values()) as unknown as ExtendedSet<EntrySet<K, V>, LENGTH>;
+        return new ExtendedSetContainer(this._map.values()) as unknown as ExtendedSet<EntrySet<K, V>, LENGTH>
     }
 
 
     public toMap(): Map<K, V> {
-        return new Map(this.map((key, value,) => value));
+        return new Map(this.map((key, value,) => value))
     }
 
     public toExtendedMap(): ExtendedMap<K, V, LENGTH> {
-        return new ExtendedMapContainer(this) as unknown as ExtendedMap<K, V, LENGTH>;
+        return new ExtendedMapContainer(this) as unknown as ExtendedMap<K, V, LENGTH>
     }
 
     //endregion -------------------- Convertor methods --------------------
@@ -337,25 +337,25 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
      * @see Map.toString
      */
     public toString(): string {
-        return this._map.toString();
+        return this._map.toString()
     }
 
     /**
      * @see Map.toLocalString
      */
     public toLocalString(): string {
-        return this._map.toLocaleString();
+        return this._map.toLocaleString()
     }
 
     //endregion -------------------- Conversion methods --------------------
     //region -------------------- Javascript only methods --------------------
 
     public [Symbol.iterator](): Iterator<readonly [K, V,]> {
-        return [...this._map.values()].map(entry => entry.toArray())[Symbol.iterator]();
+        return [...this._map.values()].map(entry => entry.toArray())[Symbol.iterator]()
     }
 
     public [Symbol.toStringTag](): string {
-        return this._map[Symbol.toStringTag];
+        return this._map[Symbol.toStringTag]
     }
 
     //endregion -------------------- Javascript only methods --------------------

@@ -1,4 +1,4 @@
-import type {SingleHeaderContent} from '../../tools/table/SimpleHeader';
+import type {SingleHeaderContent} from '../../tools/table/SimpleHeader'
 
 export interface AppOptionWithTable {
 

@@ -1,9 +1,9 @@
-import type {EveryLanguages} from '../EveryLanguages';
-import type {Games}          from '../../core/game/Games';
+import type {EveryLanguages} from '../EveryLanguages'
+import type {Games}          from '../../core/game/Games'
 
-export type AllGameReceived = 'all';
-export type NotSMM2GameReceived = 'notSMM2';
-export type PossibleGameReceived = | Games | NotSMM2GameReceived | AllGameReceived;
+export type AllGameReceived = 'all'
+export type NotSMM2GameReceived = 'notSMM2'
+export type PossibleGameReceived = | Games | NotSMM2GameReceived | AllGameReceived
 
 /**
  * The possible way to tell if the {@link Name} will be a complete one based
@@ -14,4 +14,4 @@ export type PossibleGameReceived = | Games | NotSMM2GameReceived | AllGameReceiv
  * and the {@link EveryLanguages.GREEK greek}
  * are all not received in the callback.
  */
-export type IsACompleteNameCallback = (language: EveryLanguages,) => boolean;
+export type IsACompleteNameCallback = (language: EveryLanguages,) => boolean

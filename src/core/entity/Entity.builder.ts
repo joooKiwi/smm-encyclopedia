@@ -1,53 +1,60 @@
-import type {Builder}                                                                         from '../../util/builder/Builder';
-import type {CanMakeASoundOutOfAMusicBlock}                                                   from './properties/instrument/loader.types';
-import type {Entity, PossibleOtherEntities}                                                   from './Entity';
-import type {EntityCategory}                                                                  from '../entityCategory/EntityCategory';
-import type {EntityLink}                                                                      from './loader.types';
-import type {EntityTemplate}                                                                  from './Entity.template';
-import type {GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType} from './properties/limit/Loader.types';
-import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                       from './properties/instrument/InstrumentProperty';
-import type {InstrumentPropertyTemplate}                                                      from './properties/instrument/InstrumentProperty.template';
-import type {Instrument}                                                                      from '../instrument/Instrument';
-import type {LimitProperty}                                                                   from './properties/limit/LimitProperty';
-import type {LimitPropertyTemplate}                                                           from './properties/limit/LimitProperty.template';
-import type {Name}                                                                            from '../../lang/name/Name';
-import type {NotApplicableProperty, UnknownProperty}                                          from '../_properties/PropertyWithEverything';
-import type {ObjectHolder}                                                                    from '../../util/holder/ObjectHolder';
-import type {PossibleComment}                                                                 from '../_properties/ClassWithComment';
-import type {PossibleEnglishName}                                                             from './Entities.types';
-import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                          from '../entityLimit/EntityLimits.types';
-import type {PossibleGameReceived as OriginalPossibleGameReceived}                            from '../../lang/name/Name.builder.types';
-import type {PossibleInstrument}                                                              from '../instrument/loader.types';
-import type {PropertyThatCanBeUnknownWithComment}                                             from '../_properties/PropertyThatCanBeUnknownWithComment';
+import type {Builder}                                                                         from '../../util/builder/Builder'
+import type {CanMakeASoundOutOfAMusicBlock}                                                   from './properties/instrument/loader.types'
+import type {Entity, PossibleOtherEntities}                                                   from './Entity'
+import type {EntityCategory}                                                                  from '../entityCategory/EntityCategory'
+import type {EntityLink}                                                                      from './loader.types'
+import type {EntityTemplate}                                                                  from './Entity.template'
+import type {GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType} from './properties/limit/Loader.types'
+import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                       from './properties/instrument/InstrumentProperty'
+import type {InstrumentPropertyTemplate}                                                      from './properties/instrument/InstrumentProperty.template'
+import type {Instrument}                                                                      from '../instrument/Instrument'
+import type {LimitProperty}                                                                   from './properties/limit/LimitProperty'
+import type {LimitPropertyTemplate}                                                           from './properties/limit/LimitProperty.template'
+import type {Name}                                                                            from '../../lang/name/Name'
+import type {NotApplicableProperty, UnknownProperty}                                          from '../_properties/PropertyWithEverything'
+import type {ObjectHolder}                                                                    from '../../util/holder/ObjectHolder'
+import type {PossibleComment}                                                                 from '../_properties/ClassWithComment'
+import type {PossibleEnglishName}                                                             from './Entities.types'
+import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                          from '../entityLimit/EntityLimits.types'
+import type {PossibleGameReceived as OriginalPossibleGameReceived}                            from '../../lang/name/Name.builder.types'
+import type {PossibleInstrument}                                                              from '../instrument/loader.types'
+import type {PropertyThatCanBeUnknownWithComment}                                             from '../_properties/PropertyThatCanBeUnknownWithComment'
 
-import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container';
-import {EmptyEntity}                                    from './EmptyEntity';
-import {EmptyEntityCategory}                            from '../entityCategory/EmptyEntityCategory';
-import {EmptyInstrumentProperty}                        from './properties/instrument/EmptyInstrumentProperty';
-import {Entities}                                       from './Entities';
-import {EntityCategories}                               from '../entityCategory/EntityCategories';
-import {EntityContainer}                                from './Entity.container';
-import {EntityLimits}                                   from '../entityLimit/EntityLimits';
-import {EntityReferencesContainer}                      from './properties/EntityReferences.container';
-import {ExclusiveSM3DWEntityContainer}                  from './ExclusiveSM3DWEntity.container';
-import {ExclusiveSMM1EntityContainer}                   from './ExclusiveSMM1Entity.container';
-import {ExclusiveSMM2EntityContainer}                   from './ExclusiveSMM2Entity.container';
-import {GamePropertyProvider}                           from './properties/game/GameProperty.provider';
-import {Games}                                          from '../game/Games';
-import {GameStructureProvider}                          from '../game/GameStructure.provider';
-import {GameStylePropertyProvider}                      from './properties/gameStyle/GameStyleProperty.provider';
-import {InstrumentPropertyProvider}                     from './properties/instrument/InstrumentProperty.provider';
-import {Instruments}                                    from '../instrument/Instruments';
-import {LimitPropertyProvider}                          from './properties/limit/LimitProperty.provider';
-import {ObjectHolders}                                  from '../../util/holder/objectHolders';
-import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container';
-import {PropertyContainer}                              from '../_properties/Property.container';
-import {PropertyContainer as PropertyInstanceContainer} from './properties/Property.container';
-import {PropertyProvider}                               from '../_properties/PropertyProvider';
-import {PropertyThatCanBeUnknownWithCommentContainer}   from '../_properties/PropertyThatCanBeUnknownWithComment.container';
-import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder';
-import {ThemePropertyProvider}                          from './properties/theme/ThemeProperty.provider';
-import {TimePropertyProvider}                           from './properties/time/TimeProperty.provider';
+import {DelayedObjectHolderContainer}                   from '../../util/holder/DelayedObjectHolder.container'
+import {EmptyEntity}                                    from './EmptyEntity'
+import {EmptyEntityCategory}                            from '../entityCategory/EmptyEntityCategory'
+import {EmptyInstrumentProperty}                        from './properties/instrument/EmptyInstrumentProperty'
+import {Entities}                                       from './Entities'
+import {EntityCategories}                               from '../entityCategory/EntityCategories'
+import {EntityContainer}                                from './Entity.container'
+import {EntityLimits}                                   from '../entityLimit/EntityLimits'
+import {EntityReferencesContainer}                      from './properties/EntityReferences.container'
+import {ExclusiveSM3DWEntityContainer}                  from './ExclusiveSM3DWEntity.container'
+import {ExclusiveSMM1EntityContainer}                   from './ExclusiveSMM1Entity.container'
+import {ExclusiveSMM2EntityContainer}                   from './ExclusiveSMM2Entity.container'
+import {GamePropertyProvider}                           from './properties/game/GameProperty.provider'
+import {Games}                                          from '../game/Games'
+import {GameStructureProvider}                          from '../game/GameStructure.provider'
+import {GameStylePropertyProvider}                      from './properties/gameStyle/GameStyleProperty.provider'
+import {InstrumentPropertyProvider}                     from './properties/instrument/InstrumentProperty.provider'
+import {Instruments}                                    from '../instrument/Instruments'
+import {LimitPropertyProvider}                          from './properties/limit/LimitProperty.provider'
+import {ObjectHolders}                                  from '../../util/holder/objectHolders'
+import {ObjectHolderContainer}                          from '../../util/holder/ObjectHolder.container'
+import {PropertyContainer}                              from '../_properties/Property.container'
+import {PropertyContainer as PropertyInstanceContainer} from './properties/Property.container'
+import {PropertyProvider}                               from '../_properties/PropertyProvider'
+import {PropertyThatCanBeUnknownWithCommentContainer}   from '../_properties/PropertyThatCanBeUnknownWithComment.container'
+import {TemplateWithNameBuilder}                        from '../_template/TemplateWithName.builder'
+import {ThemePropertyProvider}                          from './properties/theme/ThemeProperty.provider'
+import {TimePropertyProvider}                           from './properties/time/TimeProperty.provider'
+
+//region -------------------- Import from deconstruction --------------------
+
+const {SUPER_MARIO_MAKER_1, SUPER_MARIO_MAKER_2,} = Games
+const {UNKNOWN_CONTAINER, NOT_APPLICABLE_CONTAINER,} = PropertyContainer
+
+//region -------------------- Import from deconstruction --------------------
 
 /**
  * Create an {@link Entity} from a {@link EntityTemplate template} received.
@@ -63,15 +70,15 @@ export class EntityBuilder
 
     //region -------------------- Fields --------------------
 
-    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get];
-    static readonly #EMPTY_INSTRUMENT_OBJECT_HOLDER: ObjectHolder<InstrumentProperty> = new ObjectHolderContainer(() => EmptyInstrumentProperty.get);
+    static readonly #EMPTY_ENTITY_CALLBACK: () => readonly [Entity] = () => [EmptyEntity.get]
+    static readonly #EMPTY_INSTRUMENT_OBJECT_HOLDER: ObjectHolder<InstrumentProperty> = new ObjectHolderContainer(() => EmptyInstrumentProperty.get)
 
-    readonly #selfCallback = () => [this.build()] as const;
+    readonly #selfCallback = () => [this.build()] as const
 
     //endregion -------------------- Fields --------------------
 
     public constructor(template: EntityTemplate,) {
-        super(template, (template,) => EntityBuilder.#getGames(template,), false,);
+        super(template, (template,) => EntityBuilder.#getGames(template,), false,)
     }
 
     /**
@@ -88,14 +95,14 @@ export class EntityBuilder
                 ? 'all'
                 : 'notSMM2'
             : isInSMM1 && !isInSMM2
-                ? Games.SUPER_MARIO_MAKER_1
-                : Games.SUPER_MARIO_MAKER_2;
+                ? SUPER_MARIO_MAKER_1
+                : SUPER_MARIO_MAKER_2
     }
 
     //region -------------------- Build helper methods --------------------
 
     protected /*static*/ override get _static() {
-        return EntityBuilder;
+        return EntityBuilder
     }
 
     //region -------------------- Entity category helper methods --------------------
@@ -106,7 +113,7 @@ export class EntityBuilder
      */
     #getEntityCategory(): EntityCategory {
         return EntityCategories.getValue(this.template.categoryInTheEditor)?.reference
-            ?? EmptyEntityCategory.get;
+            ?? EmptyEntityCategory.get
     }
 
     //endregion -------------------- Entity category helper methods --------------------
@@ -115,17 +122,17 @@ export class EntityBuilder
     static #whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
     static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
     static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
-        return EntityLimits.getValue(entityLimit);
+        return EntityLimits.getValue(entityLimit)
     }
 
     static #getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
     static #getPropertyWhereEntityLimit<COMMENT extends PossibleComment, >(entityLimit: | PossibleEnglishName_EntityLimit | null, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
     static #getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?', comment: PossibleComment = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
-        if (entityLimit === '?')
-            return PropertyContainer.UNKNOWN_CONTAINER;
-        if (entityLimit == null)
-            return PropertyContainer.NOT_APPLICABLE_CONTAINER;
-        return new PropertyThatCanBeUnknownWithCommentContainer(this.#whereEntityLimit(entityLimit), false, comment,);
+        return entityLimit === '?'
+            ? UNKNOWN_CONTAINER
+            : entityLimit == null
+                ? NOT_APPLICABLE_CONTAINER
+                : new PropertyThatCanBeUnknownWithCommentContainer(this.#whereEntityLimit(entityLimit), false, comment,)
     }
 
     /**
@@ -142,7 +149,7 @@ export class EntityBuilder
                 isInPJL: projectileLimit,
                 otherLimit: {value: otherLimit, comment: otherLimitComment,},
             },
-        } = limitTemplate;
+        } = limitTemplate
 
         return LimitPropertyProvider.get.get([[editorLimit_SMM1And3DS, editorLimit_SMM2,], [generalLimit, superGlobalGeneralLimit,], powerUpLimit, projectileLimit, [otherLimit, otherLimitComment,],],
             GameStructureProvider.get.get(this.#whereEntityLimit(editorLimit_SMM1And3DS), this.#getPropertyWhereEntityLimit(editorLimit_SMM2),),
@@ -153,7 +160,7 @@ export class EntityBuilder
             PropertyProvider.newBooleanContainer(powerUpLimit, true, false,),
             PropertyProvider.newBooleanContainer<ProjectileEntityLimitType, true, false, true>(projectileLimit, true, false,),
             this.#getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
-        );
+        )
     }
 
     //region -------------------- Property helper methods (instrument) --------------------
@@ -180,12 +187,12 @@ export class EntityBuilder
      */
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): | readonly [Instrument,] | readonly [Instrument, Instrument,]
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): readonly Instrument[] {
-        const singleInstrument = Instruments.getValue(instrument);
+        const singleInstrument = Instruments.getValue(instrument)
         if (singleInstrument != null)
-            return [singleInstrument.reference];
+            return [singleInstrument.reference]
 
         return Instruments.values.filter(enumerable => instrument.includes(enumerable.englishName))!
-            .map(enumerable => enumerable.reference);
+            .map(enumerable => enumerable.reference)
     }
 
     /**
@@ -196,9 +203,9 @@ export class EntityBuilder
      * @returns {@link NotApplicableProperty N/A} or [boolean & {@link PossibleCanMakeASoundOutOfAMusicBlock_Comment nullable comment}]
      */
     static #getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,): CanMakeASoundOutOfAMusicBlockProperty {
-        if (canMakeASoundOutOfAMusicBlock == null)
-            return PropertyContainer.NOT_APPLICABLE_CONTAINER;
-        return PropertyProvider.newBooleanContainer<CanMakeASoundOutOfAMusicBlock, true, false, true>(canMakeASoundOutOfAMusicBlock, true, false,);
+        return canMakeASoundOutOfAMusicBlock == null
+            ? NOT_APPLICABLE_CONTAINER
+            : PropertyProvider.newBooleanContainer<CanMakeASoundOutOfAMusicBlock, true, false, true>(canMakeASoundOutOfAMusicBlock, true, false,)
     }
 
     /**
@@ -210,13 +217,12 @@ export class EntityBuilder
      * @see EmptyInstrumentProperty
      */
     static #getInstrumentPropertyHolder({instrument, canMakeASoundOutOfAMusicBlock,}: InstrumentPropertyTemplate,): ObjectHolder<InstrumentProperty> {
-        if (instrument == null)
-            return this.#EMPTY_INSTRUMENT_OBJECT_HOLDER;
-
-        return new DelayedObjectHolderContainer(() => InstrumentPropertyProvider.get.get([instrument, canMakeASoundOutOfAMusicBlock,],
-            new DelayedObjectHolderContainer(() => this.#whereInstrument(instrument)),
-            this.#getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock,),
-        ));
+        return instrument == null
+            ? this.#EMPTY_INSTRUMENT_OBJECT_HOLDER
+            : new DelayedObjectHolderContainer(() => InstrumentPropertyProvider.get.get([instrument, canMakeASoundOutOfAMusicBlock,],
+                new DelayedObjectHolderContainer(() => this.#whereInstrument(instrument)),
+                this.#getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock,),
+            ))
     }
 
     //endregion -------------------- Property helper methods (instrument) --------------------
@@ -226,7 +232,7 @@ export class EntityBuilder
      * with the games, game style, theme, time & limit.
      */
     #createProperty() {
-        const {isIn: {game, style: gameStyle, theme, time,}, limits, sound,} = this.template.properties;
+        const {isIn: {game, style: gameStyle, theme, time,}, limits, sound,} = this.template.properties
 
         return new PropertyInstanceContainer(
             new ObjectHolderContainer(GamePropertyProvider.get.get(game['1'], game['3DS'], game['2'],)),
@@ -235,7 +241,7 @@ export class EntityBuilder
             new DelayedObjectHolderContainer(() => TimePropertyProvider.get.get(time.day, time.night,)),
             new DelayedObjectHolderContainer(() => EntityBuilder.#getLimitPropertyFields(limits)),
             EntityBuilder.#getInstrumentPropertyHolder(sound),
-        );
+        )
     }
 
     //endregion -------------------- Property helper methods --------------------
@@ -247,44 +253,44 @@ export class EntityBuilder
      * but it can also get every reference from the {@link EntityTemplate template}.
      */
     #createReferences() {
-        const reference = this.template.properties.reference;
+        const reference = this.template.properties.reference
 
         //region -------------------- Single reference --------------------
 
-        const inSuperMarioBros = this.#createOtherEntityReferences(reference.style.superMarioBros);
-        const inSuperMarioBros3 = this.#createOtherEntityReferences(reference.style.superMarioBros3);
-        const inSuperMarioWorld = this.#createOtherEntityReferences(reference.style.superMarioWorld);
-        const inNewSuperMarioBros = this.#createOtherEntityReferences(reference.style.newSuperMarioBrosU);
-        const inSuperMario3DWorld = this.#createOtherEntityReferences(reference.style.superMario3DWorld);
+        const inSuperMarioBros = this.#createOtherEntityReferences(reference.style.superMarioBros)
+        const inSuperMarioBros3 = this.#createOtherEntityReferences(reference.style.superMarioBros3)
+        const inSuperMarioWorld = this.#createOtherEntityReferences(reference.style.superMarioWorld)
+        const inNewSuperMarioBros = this.#createOtherEntityReferences(reference.style.newSuperMarioBrosU)
+        const inSuperMario3DWorld = this.#createOtherEntityReferences(reference.style.superMario3DWorld)
 
-        const inGroundTheme = this.#createOtherEntityReferences(reference.theme.ground);
-        const inUndergroundTheme = this.#createOtherEntityReferences(reference.theme.underground);
-        const inUnderwaterTheme = this.#createOtherEntityReferences(reference.theme.underwater);
-        const inDesertTheme = this.#createOtherEntityReferences(reference.theme.desert);
-        const inSnowTheme = this.#createOtherEntityReferences(reference.theme.snow);
-        const inSkyTheme = this.#createOtherEntityReferences(reference.theme.sky);
-        const inForestTheme = this.#createOtherEntityReferences(reference.theme.forest);
-        const inGhostHouseTheme = this.#createOtherEntityReferences(reference.theme.ghostHouse);
-        const inAirshipTheme = this.#createOtherEntityReferences(reference.theme.airship);
-        const inCastleTheme = this.#createOtherEntityReferences(reference.theme.castle);
+        const inGroundTheme = this.#createOtherEntityReferences(reference.theme.ground)
+        const inUndergroundTheme = this.#createOtherEntityReferences(reference.theme.underground)
+        const inUnderwaterTheme = this.#createOtherEntityReferences(reference.theme.underwater)
+        const inDesertTheme = this.#createOtherEntityReferences(reference.theme.desert)
+        const inSnowTheme = this.#createOtherEntityReferences(reference.theme.snow)
+        const inSkyTheme = this.#createOtherEntityReferences(reference.theme.sky)
+        const inForestTheme = this.#createOtherEntityReferences(reference.theme.forest)
+        const inGhostHouseTheme = this.#createOtherEntityReferences(reference.theme.ghostHouse)
+        const inAirshipTheme = this.#createOtherEntityReferences(reference.theme.airship)
+        const inCastleTheme = this.#createOtherEntityReferences(reference.theme.castle)
 
-        const inDayTheme = this.#createOtherEntityReferences(reference.time.day);
-        const inNightTheme = this.#createOtherEntityReferences(reference.time.night);
+        const inDayTheme = this.#createOtherEntityReferences(reference.time.day)
+        const inNightTheme = this.#createOtherEntityReferences(reference.time.night)
 
         //endregion -------------------- Single reference --------------------
         //region -------------------- Group reference --------------------
 
-        let everyGameStyleReferences: ObjectHolder<readonly Entity[]>;
-        let everyThemeReferences: ObjectHolder<readonly Entity[]>;
-        let everyTimeReferences: ObjectHolder<readonly Entity[]>;
-        let everyReferences: ObjectHolder<readonly Entity[]>;
+        let everyGameStyleReferences: ObjectHolder<readonly Entity[]>
+        let everyThemeReferences: ObjectHolder<readonly Entity[]>
+        let everyTimeReferences: ObjectHolder<readonly Entity[]>
+        let everyReferences: ObjectHolder<readonly Entity[]>
         if (reference.group.all === null)
-            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = ObjectHolders.EMPTY_ARRAY;
+            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = ObjectHolders.EMPTY_ARRAY
         else {
-            everyGameStyleReferences = this.#createGroupReference(reference.group.gameStyle);
-            everyThemeReferences = this.#createGroupReference(reference.group.theme);
-            everyTimeReferences = this.#createGroupReference(reference.group.time);
-            everyReferences = this.#createGroupReference(reference.group.all);
+            everyGameStyleReferences = this.#createGroupReference(reference.group.gameStyle)
+            everyThemeReferences = this.#createGroupReference(reference.group.theme)
+            everyTimeReferences = this.#createGroupReference(reference.group.time)
+            everyReferences = this.#createGroupReference(reference.group.all)
         }
 
         //endregion -------------------- Group reference --------------------
@@ -294,13 +300,13 @@ export class EntityBuilder
             inGroundTheme, inUndergroundTheme, inUnderwaterTheme, inDesertTheme, inSnowTheme, inSkyTheme, inForestTheme, inGhostHouseTheme, inAirshipTheme, inCastleTheme,
             inDayTheme, inNightTheme,
             everyGameStyleReferences, everyThemeReferences, everyTimeReferences, everyReferences,
-        );
+        )
     }
 
     #createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
-            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference));
+            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference))
     }
 
     /**
@@ -316,7 +322,7 @@ export class EntityBuilder
                 : link === 'this'
                     ? this.#selfCallback
                     : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities
-        );
+        )
     }
 
     //endregion -------------------- Entity references helper methods --------------------
@@ -324,9 +330,9 @@ export class EntityBuilder
     //endregion -------------------- Build helper methods --------------------
 
     public override _build(name: Name<string>,) {
-        const isInProperty = this.#createProperty();
-        const isInSMM1 = isInProperty.isInSuperMarioMaker1;
-        const isInSMM2 = isInProperty.isInSuperMarioMaker2;
+        const isInProperty = this.#createProperty()
+        const isInSMM1 = isInProperty.isInSuperMarioMaker1
+        const isInSMM2 = isInProperty.isInSuperMarioMaker2
 
 
         return isInSMM1 && !isInSMM2
@@ -335,7 +341,7 @@ export class EntityBuilder
                 ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
                     ? new ExclusiveSM3DWEntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
                     : new ExclusiveSMM2EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
-                : new EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),);
+                : new EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
     }
 
 }

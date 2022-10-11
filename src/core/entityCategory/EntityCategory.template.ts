@@ -1,5 +1,5 @@
-import type {EntityTemplate} from '../entity/Entity.template';
-import type {NameTemplate}   from '../../lang/name/Name.template';
+import type {EntityTemplate} from '../entity/Entity.template'
+import type {NameTemplate}   from '../../lang/name/Name.template'
 
 /**
  * @template

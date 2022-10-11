@@ -1,9 +1,9 @@
-import type {GameProperty}       from './GameProperty';
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey';
+import type {GameProperty}       from './GameProperty'
+import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}      from '../../../../util/provider/AbstractProvider';
-import {GamePropertyContainer} from './GameProperty.container';
-import {GameStructureProvider} from '../../../game/GameStructure.provider';
+import {AbstractProvider}      from '../../../../util/provider/AbstractProvider'
+import {GamePropertyContainer} from './GameProperty.container'
+import {GameStructureProvider} from '../../../game/GameStructure.provider'
 
 /**
  * @singleton
@@ -14,26 +14,26 @@ export class GamePropertyProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: GamePropertyProvider;
+    static #instance?: GamePropertyProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
     /** Get (or create) a property where it is in only {@link Games.SUPER_MARIO_MAKER_2}. */
     public get smm2Only() {
-        return this.get(false, true,);
+        return this.get(false, true,)
     }
 
     /** Get (or create) a property where is it in every {@link Games}. */
     public get all() {
-        return this.get(true, true,);
+        return this.get(true, true,)
     }
 
 
@@ -54,14 +54,14 @@ export class GamePropertyProvider
     public get<SMM1 extends boolean = boolean, SMM3DS extends boolean = boolean, SMM2 extends boolean = boolean, >(isInSuperMarioMaker1: SMM1, isInSuperMarioMakerFor3DS: SMM3DS, isInSuperMarioMaker2: SMM2,): GameProperty<SMM1, SMM3DS, SMM2>
     public get(...argumentsReceived: | ArgumentsReceived | ArgumentsReceived_Simplified): GameProperty {
         if (argumentsReceived.length === 2)
-            return this.get(argumentsReceived[0], argumentsReceived[0], argumentsReceived[1],);
+            return this.get(argumentsReceived[0], argumentsReceived[0], argumentsReceived[1],)
 
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new GamePropertyContainer(GameStructureProvider.get.get(...argumentsReceived),),))
-            .get(argumentsReceived);
+            .get(argumentsReceived)
     }
 
 }
 
-type ArgumentsReceived = readonly [isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,];
-type ArgumentsReceived_Simplified = readonly [isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,];
+type ArgumentsReceived = readonly [isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,]
+type ArgumentsReceived_Simplified = readonly [isInSuperMarioMaker1: boolean, isInSuperMarioMaker2: boolean,]

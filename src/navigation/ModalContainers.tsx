@@ -1,28 +1,28 @@
-import {useEffect} from 'react';
+import {useEffect} from 'react'
 
-import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from './ModalContainers.types';
-import type {ReactProperties}                                    from '../util/react/ReactProperties';
+import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from './ModalContainers.types'
+import type {ReactProperties}                                    from '../util/react/ReactProperties'
 
-import ContentTranslationComponent from '../lang/components/ContentTranslationComponent';
-import DisplayViewBody             from './DisplayView.body';
-import LanguageChangerBody         from './LanguageChanger.body';
-import ModalBody                   from '../bootstrap/modal/element/ModalBody';
-import ModalContainer              from '../bootstrap/modal/element/ModalContainer';
-import ModalFooter                 from '../bootstrap/modal/element/ModalFooter';
-import ModalHeader                 from '../bootstrap/modal/element/ModalHeader';
-import {ModalInstance}             from '../bootstrap/modal/ModalInstance';
-import SearchBody                  from './Search.body';
+import ContentTranslationComponent from '../lang/components/ContentTranslationComponent'
+import DisplayViewBody             from './DisplayView.body'
+import LanguageChangerBody         from './LanguageChanger.body'
+import ModalBody                   from '../bootstrap/modal/element/ModalBody'
+import ModalContainer              from '../bootstrap/modal/element/ModalContainer'
+import ModalFooter                 from '../bootstrap/modal/element/ModalFooter'
+import ModalHeader                 from '../bootstrap/modal/element/ModalHeader'
+import {ModalInstance}             from '../bootstrap/modal/ModalInstance'
+import SearchBody                  from './Search.body'
 
 interface ModalContainersProperties
     extends ReactProperties {
 
-    languageChanger: ModalPropertiesWithDiv;
+    languageChanger: ModalPropertiesWithDiv
 
-    parameter: ModalPropertiesWithContent;
+    parameter: ModalPropertiesWithContent
 
-    displayView: ModalPropertiesWithDiv;
+    displayView: ModalPropertiesWithDiv
 
-    search: ModalPropertiesWithDiv;
+    search: ModalPropertiesWithDiv
 
 }
 
@@ -37,11 +37,11 @@ export default function ModalContainers({
                                             search: {id: searchId, divId: searchDivId,},
                                         }: ModalContainersProperties,) {
     useEffect(() => {
-        new ModalInstance(languageId,);
-        new ModalInstance(parameterId,);
-        new ModalInstance(displayViewId,);
-        new ModalInstance(searchId,);
-    });
+        new ModalInstance(languageId,)
+        new ModalInstance(parameterId,)
+        new ModalInstance(displayViewId,)
+        new ModalInstance(searchId,)
+    })
 
     return <aside key="modal container" id="modal-container">
         <ContentTranslationComponent>{translation =>
@@ -78,5 +78,5 @@ export default function ModalContainers({
 
             </>
         }</ContentTranslationComponent>
-    </aside>;
+    </aside>
 }

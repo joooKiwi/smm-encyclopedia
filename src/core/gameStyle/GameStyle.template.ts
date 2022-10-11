@@ -1,7 +1,7 @@
-import type {PossibleAcronym}                                                    from './GameStyles.types';
-import type {PossibleIsAvailableFromTheStart}                                    from '../availableFromTheStart/loader.types';
-import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types';
-import type {SimpleGameFrom1And2Template}                                        from '../game/SimpleGame.template';
+import type {PossibleAcronym}                                                    from './GameStyles.types'
+import type {PossibleIsAvailableFromTheStart}                                    from '../availableFromTheStart/loader.types'
+import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types'
+import type {SimpleGameFrom1And2Template}                                        from '../game/SimpleGame.template'
 
 /**
  * @template

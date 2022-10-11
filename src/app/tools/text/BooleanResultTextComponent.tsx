@@ -1,9 +1,9 @@
-import type {BooleanResultTextProperties, TextColor} from './properties/BooleanResultTextProperties';
+import type {BooleanResultTextProperties, TextColor} from './properties/BooleanResultTextProperties'
 
-import BooleanTextComponent from './BooleanTextComponent';
+import BooleanTextComponent from './BooleanTextComponent'
 
-const TRUE_DEFAULT_COLOR: TextColor = 'text-success';
-const FALSE_DEFAULT_COLOR: TextColor = 'text-danger';
+const TRUE_DEFAULT_COLOR: TextColor = 'text-success'
+const FALSE_DEFAULT_COLOR: TextColor = 'text-danger'
 
 /**
  * Create a coloration based on the boolean value.
@@ -13,8 +13,8 @@ const FALSE_DEFAULT_COLOR: TextColor = 'text-danger';
  * @reactComponent
  */
 export default function BooleanResultTextComponent({boolean, classes, true: _true, false: _false, ...otherProperties}: BooleanResultTextProperties,) {
-    const [trueValue, trueColor,] = typeof _true == 'string' ? [_true, TRUE_DEFAULT_COLOR] : _true;
-    const [falseValue, falseColor,] = typeof _false == 'string' ? [_false, FALSE_DEFAULT_COLOR] : _false;
+    const [trueValue, trueColor,] = typeof _true == 'string' ? [_true, TRUE_DEFAULT_COLOR] : _true
+    const [falseValue, falseColor,] = typeof _false == 'string' ? [_false, FALSE_DEFAULT_COLOR] : _false
 
-    return <BooleanTextComponent classes={[...(classes ?? []), (boolean ? trueColor : falseColor)]} boolean={boolean} true={trueValue} false={falseValue} {...otherProperties}/>;
+    return <BooleanTextComponent classes={[...(classes ?? []), (boolean ? trueColor : falseColor)]} boolean={boolean} true={trueValue} false={falseValue} {...otherProperties}/>
 }

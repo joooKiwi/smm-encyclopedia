@@ -30,5 +30,5 @@ export interface ClassThatCanGetItemsOrIndexes<I extends number, V, >
 
 }
 
-export type DefaultValueIfNotFound = null;
-export type DefaultIndexIfNotFound = -1;
+export type DefaultValueIfNotFound = null
+export type DefaultIndexIfNotFound = -1

@@ -1,12 +1,12 @@
-import type {EditorVoices as RealEnum}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './EditorVoices';
-import type {Entities}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../entity/Entities';
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum}                                                                                                                                                                                                                                                                                          from '../../util/enum/Enum.types';
-import type {PossibleEnglishName as PossibleEnglishName_Entity, PossibleEnglishName_BanzaiBill, PossibleEnglishName_BeachKoopa, PossibleEnglishName_BigMushroom, PossibleEnglishName_Block, PossibleEnglishName_BulletBill, PossibleEnglishName_BuzzyBeetleAndShell, PossibleEnglishName_DryBones, PossibleEnglishName_Goals, PossibleEnglishName_HardBlock, PossibleEnglishName_KoopaShell, PossibleEnglishName_KoopaTroopa, PossibleEnglishName_Shoe, PossibleEnglishName_SpikeTop, PossibleEnglishName_SpinyAndShell, PossibleEnglishName_Yoshi} from '../entity/Entities.types';
+import type {EditorVoices as RealEnum}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from './EditorVoices'
+import type {Entities}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../entity/Entities'
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum}                                                                                                                                                                                                                                                                                          from '../../util/enum/Enum.types'
+import type {PossibleEnglishName as PossibleEnglishName_Entity, PossibleEnglishName_BanzaiBill, PossibleEnglishName_BeachKoopa, PossibleEnglishName_BigMushroom, PossibleEnglishName_Block, PossibleEnglishName_BulletBill, PossibleEnglishName_BuzzyBeetleAndShell, PossibleEnglishName_DryBones, PossibleEnglishName_Goals, PossibleEnglishName_HardBlock, PossibleEnglishName_KoopaShell, PossibleEnglishName_KoopaTroopa, PossibleEnglishName_Shoe, PossibleEnglishName_SpikeTop, PossibleEnglishName_SpinyAndShell, PossibleEnglishName_Yoshi} from '../entity/Entities.types'
 
 
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | PossibleEnglishName;
-export type PossibleValue = | RealEnum | Entities | number | string | null | undefined;
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
+export type PossibleStringValue = | Names | PossibleEnglishName
+export type PossibleValue = | RealEnum | Entities | number | string | null | undefined
 
 enum Enum {
 
@@ -198,12 +198,12 @@ enum Enum {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Enum[Names];
+export type Ordinals = typeof Enum[Names]
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Enum;
+export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
 
@@ -228,24 +228,24 @@ export type PossibleEnglishName_OnlyEntity =
         | PossibleEnglishName_BulletBill | Extract<PossibleEnglishName_BanzaiBill, 'Cat Banzai Bill'>
         | 'Empty Block' | 'Chain Chomp\'s Stump' | 'Angry Sun'
         | PossibleEnglishName_Goals | 'Phanto' | 'Stone' | 'Parachute' | 'Bubble'
-        | PossibleEnglishName_Projectile | PossibleEnglishName_Object>;
+        | PossibleEnglishName_Projectile | PossibleEnglishName_Object>
 export type PossibleEnglishName = | PossibleEnglishName_OnlyEntity
                                   | PossibleEnglishName_Character
-                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| 1 | 2})` | 'Sun';
+                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| 1 | 2})` | 'Sun'
 
 //endregion -------------------- English name --------------------
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
 
-export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number = number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals = Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
+export type EnumByNumber<O extends number = number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
 
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
@@ -411,6 +411,6 @@ export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
     EnumByName<'WARP_DOOR', E>, EnumByName<'P_WARP_DOOR', E>, EnumByName<'KEY_DOOR', E>,
     EnumByName<'WARP_BOX', E>, EnumByName<'WARP_BOX_WITH_KEY', E>,
     EnumByName<'WING', E>,
-];
+]
 
 //endregion -------------------- Array types --------------------

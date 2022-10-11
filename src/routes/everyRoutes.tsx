@@ -1,28 +1,28 @@
-import {lazy} from 'react';
+import {lazy} from 'react'
 
-import {SimpleRouteContainer} from './SimpleRoute.container';
+import {SimpleRouteContainer} from './SimpleRoute.container'
 
 //region -------------------- Dynamic imports --------------------
 
-const AboutApp =                  lazy(() => import('../app/AboutApp'));
-const PredefinedMessageApp =      lazy(() => import('../app/PredefinedMessageApp'));
-const CourseTagApp =              lazy(() => import('../app/CourseTagApp'));
-const EntityApp =                 lazy(() => import('../app/EntityApp'));
-const EntityCategoryApp =         lazy(() => import('../app/EntityCategoryApp'));
-const EntityGroupApp =            lazy(() => import('../app/EntityGroupApp'));
-const GameStyleApp =              lazy(() => import('../app/GameStyleApp'));
-const GameReferenceApp =          lazy(() => import('../app/GameReferenceApp'));
-const EntityLimitApp =            lazy(() => import('../app/EntityLimitApp'));
-const InstrumentApp =             lazy(() => import('../app/InstrumentApp'));
-const MiiCostumeApp =             lazy(() => import('../app/MiiCostumeApp'));
-const MiiCostumeCategoryApp =     lazy(() => import('../app/MiiCostumeCategoryApp'));
-const MysteryMushroomApp =        lazy(() => import('../app/MysteryMushroomApp'));
-const PowerUpAndRidePriorityApp = lazy(() => import('../app/PowerUpAndRidePriorityApp'));
-const SoundEffectCategoryApp =    lazy(() => import('../app/SoundEffectCategoryApp'));
-const SoundEffectApp =            lazy(() => import('../app/SoundEffectApp'));
-const ThemeApp =                  lazy(() => import('../app/ThemeApp'));
-const HomeApp =                   lazy(() => import('../app/HomeApp'));
-const SourcesApp =                lazy(() => import('../app/SourcesApp'));
+const AboutApp =                  lazy(() => import('../app/AboutApp'))
+const PredefinedMessageApp =      lazy(() => import('../app/PredefinedMessageApp'))
+const CourseTagApp =              lazy(() => import('../app/CourseTagApp'))
+const EntityApp =                 lazy(() => import('../app/EntityApp'))
+const EntityCategoryApp =         lazy(() => import('../app/EntityCategoryApp'))
+const EntityGroupApp =            lazy(() => import('../app/EntityGroupApp'))
+const GameStyleApp =              lazy(() => import('../app/GameStyleApp'))
+const GameReferenceApp =          lazy(() => import('../app/GameReferenceApp'))
+const EntityLimitApp =            lazy(() => import('../app/EntityLimitApp'))
+const InstrumentApp =             lazy(() => import('../app/InstrumentApp'))
+const MiiCostumeApp =             lazy(() => import('../app/MiiCostumeApp'))
+const MiiCostumeCategoryApp =     lazy(() => import('../app/MiiCostumeCategoryApp'))
+const MysteryMushroomApp =        lazy(() => import('../app/MysteryMushroomApp'))
+const PowerUpAndRidePriorityApp = lazy(() => import('../app/PowerUpAndRidePriorityApp'))
+const SoundEffectCategoryApp =    lazy(() => import('../app/SoundEffectCategoryApp'))
+const SoundEffectApp =            lazy(() => import('../app/SoundEffectApp'))
+const ThemeApp =                  lazy(() => import('../app/ThemeApp'))
+const HomeApp =                   lazy(() => import('../app/HomeApp'))
+const SourcesApp =                lazy(() => import('../app/SourcesApp'))
 
 //endregion -------------------- Dynamic imports --------------------
 //region -------------------- Applications parameter --------------------
@@ -32,7 +32,7 @@ const COURSE_TAG_PARAMETERS = [
     ['official',     'official',      'official',],
     ['unofficial',   'unofficial',    'unofficial',],
     ['makerCentral', 'maker-central', 'makerCentral',],
-] as const;
+] as const
 
 //endregion -------------------- Applications parameter --------------------
 
@@ -65,4 +65,4 @@ export const everySimpleRoutes = [
     ...COURSE_TAG_PARAMETERS.map(([name, routePath,type,]) =>
         SimpleRouteContainer.newInstance(`${name}CourseTags`,          `/${routePath}/course-tag`,      () => <CourseTagApp type={type}/>    )),
     SimpleRouteContainer.newInstance(    'everyInstruments',           '/every/instrument',             () => <InstrumentApp/>,              ),
-] as const;
+] as const

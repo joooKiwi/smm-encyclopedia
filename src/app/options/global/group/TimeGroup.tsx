@@ -1,6 +1,6 @@
-import {AbstractGroupWithSingleImage} from './AbstractGroupWithSingleImage';
+import {AbstractGroupWithSingleImage} from './AbstractGroupWithSingleImage'
 
-import type {Times} from '../../../../core/time/Times';
+import type {Times} from '../../../../core/time/Times'
 
 /**
  * @reactComponent

@@ -1,5 +1,5 @@
-import type {ExtendedSet} from './ExtendedSet';
-import type {ExtendedMap} from './ExtendedMap';
+import type {ExtendedSet} from './ExtendedSet'
+import type {ExtendedMap} from './ExtendedMap'
 
 export interface ClassThatCanBeConvertible<V1, K, V2> {
 

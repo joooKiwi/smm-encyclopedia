@@ -1,6 +1,6 @@
-import {AbstractGroupWithSingleImage} from './AbstractGroupWithSingleImage';
+import {AbstractGroupWithSingleImage} from './AbstractGroupWithSingleImage'
 
-import type {GameStyles} from '../../../../core/gameStyle/GameStyles';
+import type {GameStyles} from '../../../../core/gameStyle/GameStyles'
 
 /**
  * @reactComponent

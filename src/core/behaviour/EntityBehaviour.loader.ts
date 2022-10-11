@@ -1,16 +1,16 @@
-import resource from '../../resources/compiled/Entity behaviour.json';
+import resource from '../../resources/compiled/Entity behaviour.json'
 
-import type {EntityBehaviour}                          from './EntityBehaviour';
-import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template';
-import type {Loader}                                   from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
-import type {PossibleEnglishName as EntityName}        from '../entity/Entities.types';
-import type {PossibleGroupName}                        from '../entityTypes';
+import type {EntityBehaviour}                          from './EntityBehaviour'
+import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template'
+import type {Loader}                                   from '../../util/loader/Loader'
+import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
+import type {PossibleEnglishName as EntityName}        from '../entity/Entities.types'
+import type {PossibleGroupName}                        from '../entityTypes'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityBehaviourBuilder}  from './EntityBehaviour.builder';
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {EntityBehaviourBuilder}  from './EntityBehaviour.builder'
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
 
 //region -------------------- CSV array related types --------------------
 
@@ -38,7 +38,7 @@ type PropertiesArray = [
 
     link_group: | PossibleGroupName | null,
     link_entity: | EntityName | null,
-];
+]
 
 //endregion -------------------- Properties --------------------
 
@@ -53,22 +53,22 @@ export class EntityBehaviourLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EntityBehaviourLoader;
+    static #instance?: EntityBehaviourLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleTranslationKeys, EntityBehaviour>;
+    #map?: Map<PossibleTranslationKeys, EntityBehaviour>
 
     public load(): ReadonlyMap<PossibleTranslationKeys, EntityBehaviour> {
         if (this.#map == null) {
-            const references = new Map<PossibleTranslationKeys, EntityBehaviour>();
+            const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -84,17 +84,17 @@ export class EntityBehaviourLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_entity, 'link_entity',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.translationKey, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "game style" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "game style" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "game style" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "game style" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -103,11 +103,11 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<EntityBehaviourTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public build(): EntityBehaviourTemplate {
@@ -122,7 +122,7 @@ class TemplateBuilder
                 group: this._getContent(this._headersIndexMap.link_group),
                 entity: this._getContent(this._headersIndexMap.link_entity),
             },
-        };
+        }
     }
 
 }

@@ -1,36 +1,36 @@
-import type {Builder}                          from '../../util/builder/Builder';
-import type {Name}                             from '../../lang/name/Name';
-import type {SoundEffect}                      from './SoundEffect';
-import type {SoundEffectTemplate}              from './SoundEffect.template';
-import type {ObjectHolder}                     from '../../util/holder/ObjectHolder';
-import type {PlayerSoundEffectTriggerTemplate} from './property/PlayerSoundEffectTrigger.template';
+import type {Builder}                          from '../../util/builder/Builder'
+import type {Name}                             from '../../lang/name/Name'
+import type {SoundEffect}                      from './SoundEffect'
+import type {SoundEffectTemplate}              from './SoundEffect.template'
+import type {ObjectHolder}                     from '../../util/holder/ObjectHolder'
+import type {PlayerSoundEffectTriggerTemplate} from './property/PlayerSoundEffectTrigger.template'
 
-import {EmptySoundEffectCategory}     from '../soundEffectCategory/EmptySoundEffectCategory';
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container';
-import {GamePropertyProvider}         from '../entity/properties/game/GameProperty.provider';
-import {Games}                        from '../game/Games';
-import {PlayerSoundEffectTriggers}    from './property/PlayerSoundEffectTriggers';
-import {SoundEffectContainer}         from './SoundEffect.container';
-import {SoundEffectPropertyContainer} from './property/SoundEffectProperty.container';
-import {SoundEffectCategories}        from '../soundEffectCategory/SoundEffectCategories';
-import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder';
+import {EmptySoundEffectCategory}     from '../soundEffectCategory/EmptySoundEffectCategory'
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
+import {GamePropertyProvider}         from '../entity/properties/game/GameProperty.provider'
+import {Games}                        from '../game/Games'
+import {PlayerSoundEffectTriggers}    from './property/PlayerSoundEffectTriggers'
+import {SoundEffectContainer}         from './SoundEffect.container'
+import {SoundEffectPropertyContainer} from './property/SoundEffectProperty.container'
+import {SoundEffectCategories}        from '../soundEffectCategory/SoundEffectCategories'
+import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder'
 
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
 
     public constructor(templateBuilder: Builder<SoundEffectTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,);
+        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
     }
 
     //region -------------------- Build helper methods --------------------
 
     protected /*static*/ override get _static() {
-        return SoundEffectBuilder;
+        return SoundEffectBuilder
     }
 
     #createCategory() {
         return SoundEffectCategories.getValue(this.template.properties.category)?.reference
-            ?? EmptySoundEffectCategory.get;
+            ?? EmptySoundEffectCategory.get
     }
 
     static #getTrigger({movement, interaction, environment,}: PlayerSoundEffectTriggerTemplate,): ObjectHolder<PlayerSoundEffectTriggers> {
@@ -38,18 +38,18 @@ export class SoundEffectBuilder
             movement.jumpAfterLanding, movement.turnAroundAfterBeingAtFullSpeed, movement.crouch, movement.after3SecondsRepeatedly,
             interaction.collectPowerUp, interaction.getIntoAnEntity,
             environment.spawn, environment.damage, environment.lostALife,
-        ));
+        ))
     }
 
     #createProperty() {
         const isInPropertiesTemplate = this.template.properties.isIn,
-            gameTemplate = isInPropertiesTemplate.game;
+            gameTemplate = isInPropertiesTemplate.game
 
         return new SoundEffectPropertyContainer(
             GamePropertyProvider.get.get(gameTemplate['1And3DS'], gameTemplate['2'],),
 
             SoundEffectBuilder.#getTrigger(isInPropertiesTemplate.trigger.player),
-        );
+        )
     }
 
     //endregion -------------------- Build helper methods --------------------
@@ -59,7 +59,7 @@ export class SoundEffectBuilder
             name,
             this.#createCategory(),
             this.#createProperty(),
-        );
+        )
     }
 
 }

@@ -1,25 +1,25 @@
-import type {DefaultResources, KeyPrefix, TFuncKey, TFuncReturn, TFunction} from 'react-i18next';
+import type {DefaultResources, KeyPrefix, TFuncKey, TFuncReturn, TFunction} from 'react-i18next'
 
-import type {Translation}                                             from '../containers/Translation';
-import type {ReactElementOrString, SimpleReactPropertiesWithChildren} from '../../util/react/ReactProperties';
+import type {Translation}                                             from '../containers/Translation'
+import type {ReactElementOrString, SimpleReactPropertiesWithChildren} from '../../util/react/ReactProperties'
 
-export type TranslationReturnType = | string | JSX.Element;
-export type ContentCallback = AnyTranslationCallback<ContentNamespace>;
-export type GameContentCallback = AnyTranslationCallback<GameContentNamespace>;
-export type EntityContentCallback = AnyTranslationCallback<EntityContentNamespace>;
-export type LanguageCallback = AnyTranslationCallback<LanguageNamespace>;
-export type AnyTranslationCallback<N extends Namespace, > = (translation: TranslationMethod<N>,) => TranslationReturnType;
+export type TranslationReturnType = | string | JSX.Element
+export type ContentCallback = AnyTranslationCallback<ContentNamespace>
+export type GameContentCallback = AnyTranslationCallback<GameContentNamespace>
+export type EntityContentCallback = AnyTranslationCallback<EntityContentNamespace>
+export type LanguageCallback = AnyTranslationCallback<LanguageNamespace>
+export type AnyTranslationCallback<N extends Namespace, > = (translation: TranslationMethod<N>,) => TranslationReturnType
 
-export type ContentNamespace = 'content';
-export type GameContentNamespace = 'gameContent';
-export type EntityContentNamespace = 'entityContent';
-export type LanguageNamespace = 'language';
-export type Namespace = keyof DefaultResources;
+export type ContentNamespace = 'content'
+export type GameContentNamespace = 'gameContent'
+export type EntityContentNamespace = 'entityContent'
+export type LanguageNamespace = 'language'
+export type Namespace = keyof DefaultResources
 
 /**
  * A simple translation method based on the {@link Namespace namespace} used.
  */
-export type TranslationMethod<N extends Namespace, > = TFunction<N>;
+export type TranslationMethod<N extends Namespace, > = TFunction<N>
 
 /**
  * A simple translation return value based on a {@link Namespace namespace}.
@@ -27,13 +27,13 @@ export type TranslationMethod<N extends Namespace, > = TFunction<N>;
  * @see TranslationMethod
  * @see SingleTranslationKey
  */
-export type TranslationReturnValue<N extends Namespace, > = TFuncReturn<N, SingleTranslationKey<N>, string, KeyPrefix<N>, DefaultResources[N]>;
+export type TranslationReturnValue<N extends Namespace, > = TFuncReturn<N, SingleTranslationKey<N>, string, KeyPrefix<N>, DefaultResources[N]>
 
 /**
  * A single translation key used for a translation
  * on a specific {@link Namespace}.
  */
-export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends infer S ? S : never;
+export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends infer S ? S : never
 
 /**
  * A replacement map to replace the selected key
@@ -41,7 +41,7 @@ export type SingleTranslationKey<N extends Namespace, > = TFuncKey<N> extends in
  *
  * @note This has nothing with the React translation utilities.
  */
-export type TranslationReplaceKeysMap<T extends ReactElementOrString = ReactElementOrString, > = { [key: string]: T };
+export type TranslationReplaceKeysMap<T extends ReactElementOrString = ReactElementOrString, > = { [key: string]: T }
 
 //region -------------------- Simple property --------------------
 
@@ -97,5 +97,5 @@ export interface TranslationPropertyWithProperty<N extends Namespace, > {
 
 //endregion -------------------- Regular property --------------------
 
-export type PossibleAnyTranslationPropertyReceived<N extends Namespace, > = | AnyTranslationPropertyByChildren<N> | SimpleAnyTranslationProperty<N> | AnyTranslationPropertyWithProperty<N>;
-export type PossibleTranslationPropertyReceived<N extends Namespace, > = | TranslationPropertyByChildren<N> | SimpleTranslationProperty<N> | TranslationPropertyWithProperty<N>;
+export type PossibleAnyTranslationPropertyReceived<N extends Namespace, > = | AnyTranslationPropertyByChildren<N> | SimpleAnyTranslationProperty<N> | AnyTranslationPropertyWithProperty<N>
+export type PossibleTranslationPropertyReceived<N extends Namespace, > = | TranslationPropertyByChildren<N> | SimpleTranslationProperty<N> | TranslationPropertyWithProperty<N>

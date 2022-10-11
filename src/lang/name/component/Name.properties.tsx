@@ -1,11 +1,11 @@
-import type {Dispatch, SetStateAction} from 'react';
+import type {Dispatch, SetStateAction} from 'react'
 
-import type {HTMLSpanProperties}            from '../../../util/react/html/HTMLSpanProperties';
-import type {Name}                          from '../Name';
-import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties';
-import type {ReactState}                    from '../../../util/react/ReactState';
+import type {HTMLSpanProperties}            from '../../../util/react/html/HTMLSpanProperties'
+import type {Name}                          from '../Name'
+import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties'
+import type {ReactState}                    from '../../../util/react/ReactState'
 
-export type PopoverOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right';
+export type PopoverOrientation = | 'auto' | 'top' | 'bottom' | 'left' | 'right'
 
 export interface NameProperties
     extends ReactProperties, Omit<HTMLSpanProperties, | 'key' | 'id' | 'name'> {

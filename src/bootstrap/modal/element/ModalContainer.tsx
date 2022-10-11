@@ -1,8 +1,8 @@
-import type {HTMLDivProperties}                                                  from '../../../util/react/html/HTMLDivProperties';
-import type {ReactElement, ReactProperties, ReactPropertiesWithOptionalChildren} from '../../../util/react/ReactProperties';
-import {EMPTY_OBJECT, EMPTY_STRING}                                              from '../../../util/emptyVariables';
+import type {HTMLDivProperties}                                                  from '../../../util/react/html/HTMLDivProperties'
+import type {ReactElement, ReactProperties, ReactPropertiesWithOptionalChildren} from '../../../util/react/ReactProperties'
+import {EMPTY_OBJECT, EMPTY_STRING}                                              from '../../../util/emptyVariables'
 
-export type PossibleModalSize = | 'sm' | 'md' | 'lg' | 'xl';
+export type PossibleModalSize = | 'sm' | 'md' | 'lg' | 'xl'
 
 interface ModalContainerProperties
     extends ReactProperties, Omit<HTMLDivProperties, 'key'> {
@@ -19,8 +19,8 @@ interface ModalContainerProperties
 
 }
 
-const DEFAULT_VERTICALLY_CENTERED = false;
-const DEFAULT_SIZE: PossibleModalSize = 'md';
+const DEFAULT_VERTICALLY_CENTERED = false
+const DEFAULT_SIZE: PossibleModalSize = 'md'
 
 /**
  *
@@ -35,5 +35,5 @@ export default function ModalContainer({id, className=EMPTY_STRING, title, child
         <div {...otherModalDialogProperties} key={`${id} - modal dialog`} className={`modal-dialog ${verticallyCentered ? 'modal-dialog-centered' : ''} ${modalSize !== DEFAULT_SIZE ? `modal-${modalSize}` : ''} ${modalDialogClassName}`}>
             <div {...otherModalContentProperties} className={`modal-content ${modalContentClassName}`}>{children}</div>
         </div>
-    </div>;
+    </div>
 }

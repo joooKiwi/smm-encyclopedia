@@ -1,8 +1,8 @@
-import type {GameReference}   from './GameReference';
-import type {Name}            from '../../lang/name/Name';
-import type {PossibleAcronym} from './GameReferences.types';
+import type {GameReference}   from './GameReference'
+import type {Name}            from '../../lang/name/Name'
+import type {PossibleAcronym} from './GameReferences.types'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
+import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
 
 export class GameReferenceContainer
     extends ClassContainingAName<string>
@@ -10,19 +10,19 @@ export class GameReferenceContainer
 
     //region -------------------- Fields --------------------
 
-    readonly #acronym;
+    readonly #acronym
 
     //endregion -------------------- Fields --------------------
 
     public constructor(acronym: PossibleAcronym, name: Name<string>,) {
-        super(name,);
-        this.#acronym = acronym;
+        super(name,)
+        this.#acronym = acronym
     }
 
     //region -------------------- Getter methods --------------------
 
     public get acronym() {
-        return this.#acronym;
+        return this.#acronym
     }
 
     //endregion -------------------- Getter methods --------------------

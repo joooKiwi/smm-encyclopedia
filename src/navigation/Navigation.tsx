@@ -1,12 +1,12 @@
-import './Navigation.scss';
+import './Navigation.scss'
 
-import type {ReactProperties}                         from '../util/react/ReactProperties';
-import type {ModalProperties, ModalPropertiesWithDiv} from './ModalContainers.types';
+import type {ReactProperties}                         from '../util/react/ReactProperties'
+import type {ModalProperties, ModalPropertiesWithDiv} from './ModalContainers.types'
 
-import DisplayViewButton from './button/DisplayView.button';
-import HomeButton        from './button/Home.button';
-import ParameterButton   from './button/Parameter.button';
-import SearchButton      from './button/Search.button';
+import DisplayViewButton from './button/DisplayView.button'
+import HomeButton        from './button/Home.button'
+import ParameterButton   from './button/Parameter.button'
+import SearchButton      from './button/Search.button'
 
 export interface NavigationProperties
     extends ReactProperties {
@@ -31,5 +31,5 @@ export default function Navigation({parameter, displayView, search,}: Navigation
             <SearchButton {...search}/>
             <ParameterButton {...parameter}/>
         </div>
-    </nav>;
+    </nav>
 }

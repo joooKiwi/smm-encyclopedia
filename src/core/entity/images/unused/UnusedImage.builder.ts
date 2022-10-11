@@ -1,27 +1,27 @@
-import {Builder}     from '../../../../util/builder/Builder';
-import {UnusedImage} from './UnusedImage';
+import {Builder}     from '../../../../util/builder/Builder'
+import {UnusedImage} from './UnusedImage'
 
 export abstract class UnusedImageBuilder<T extends UnusedImage, N extends string, >
     implements Builder<T> {
 
     //region -------------------- Fields --------------------
 
-    readonly #simpleImageName: N;
+    readonly #simpleImageName: N
 
     //endregion -------------------- Fields --------------------
 
     protected constructor(name: N,) {
-        this.#simpleImageName = name;
+        this.#simpleImageName = name
     }
 
     //region -------------------- Getter & setter methods --------------------
 
     public get simpleImageName(): N {
-        return this.#simpleImageName;
+        return this.#simpleImageName
     }
 
     //endregion -------------------- Getter & setter methods --------------------
 
-    public abstract build(): T;
+    public abstract build(): T
 
 }

@@ -1,5 +1,5 @@
-import type {BooleanResultTextProperties} from './BooleanResultTextProperties';
-import type {ReactProperties}             from '../../../../util/react/ReactProperties';
+import type {BooleanResultTextProperties} from './BooleanResultTextProperties'
+import type {ReactProperties}             from '../../../../util/react/ReactProperties'
 
 /**
  * A simple boolean value property

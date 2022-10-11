@@ -1,4 +1,4 @@
-import type {EditorVoiceSound} from './EditorVoiceSound';
+import type {EditorVoiceSound} from './EditorVoiceSound'
 
 export interface ClassWithEditorVoiceSound {
 

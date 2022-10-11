@@ -1,5 +1,5 @@
-import type {CanMakeASoundOutOfAMusicBlock} from './loader.types';
-import type {PossibleInstrument}            from '../../../instrument/loader.types';
+import type {CanMakeASoundOutOfAMusicBlock} from './loader.types'
+import type {PossibleInstrument}            from '../../../instrument/loader.types'
 
 /**
  * @template

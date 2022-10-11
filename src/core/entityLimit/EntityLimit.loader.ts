@@ -1,18 +1,18 @@
-import resource from '../../resources/compiled/Entity limit.json';
+import resource from '../../resources/compiled/Entity limit.json'
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template';
-import type {EntityLimit}                                                                                                                                                                         from './EntityLimit';
-import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from '../../lang/Loader.types';
-import type {Loader}                                                                                                                                                                              from '../../util/loader/Loader';
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from './EntityLimits.types';
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from '../entity/Entities.types';
-import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from './EntityLimitTypes.types';
-import type {PossibleGroupName}                                                                                                                                                                   from '../entityTypes';
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template'
+import type {EntityLimit}                                                                                                                                                                         from './EntityLimit'
+import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from '../../lang/Loader.types'
+import type {Loader}                                                                                                                                                                              from '../../util/loader/Loader'
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from './EntityLimits.types'
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from '../entity/Entities.types'
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from './EntityLimitTypes.types'
+import type {PossibleGroupName}                                                                                                                                                                   from '../entityTypes'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityLimitBuilder}      from './EntityLimit.builder';
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {EntityLimitBuilder}      from './EntityLimit.builder'
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
 
 //region -------------------- CSV array related types --------------------
 
@@ -59,19 +59,19 @@ type ExclusivePropertyArray = [
     link_group: | PossibleGroupName | null,
     link_entity: | PossibleEnglishName_Entity | null,
 
-];
+]
 type PropertiesArray = [
     ...ExclusivePropertyArray,
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- Properties --------------------
 
 //endregion -------------------- CSV array related types --------------------
 //region -------------------- Private types --------------------
 
-type PossibleNullableAlternativeAcronym = | PossibleAlternativeAcronym | null;
-type PossibleNullableAcronym = | PossibleAcronym | null;
+type PossibleNullableAlternativeAcronym = | PossibleAlternativeAcronym | null
+type PossibleNullableAcronym = | PossibleAcronym | null
 
 //endregion -------------------- Private types --------------------
 
@@ -85,26 +85,26 @@ export class EntityLimitLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EntityLimitLoader;
+    static #instance?: EntityLimitLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, EntityLimit>;
+    #map?: Map<PossibleEnglishName, EntityLimit>
 
     public load(): ReadonlyMap<PossibleEnglishName, EntityLimit> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, EntityLimit>();
+            const references = new Map<PossibleEnglishName, EntityLimit>()
 
             //region -------------------- Builder initialisation --------------------
 
-            EntityLimitBuilder.references = references;
+            EntityLimitBuilder.references = references
 
             //endregion -------------------- Builder initialisation --------------------
             //region -------------------- CSV Loader --------------------
@@ -122,17 +122,17 @@ export class EntityLimitLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "entity limit" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "entity limit" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "entity limit" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "entity limit" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -140,27 +140,27 @@ export class EntityLimitLoader
 class TemplateBuilder
     extends AbstractTemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, PropertiesArray, typeof Headers> {
 
-    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,};
+    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,}
     static readonly #EMPTY_REFERENCES = {
         regular: null,
         alternative: null,
-    };
+    }
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): | EntityLimitTemplate | AlternativeLimitTemplate {
-        const type = this._getContent(this._headersIndexMap.type);
-        const acronym = this._getContent(this._headersIndexMap.acronym);
+        const type = this._getContent(this._headersIndexMap.type)
+        const acronym = this._getContent(this._headersIndexMap.acronym)
 
         return type == null
             ? this.#createAlternativeLimitTemplate(acronym as PossibleNullableAlternativeAcronym,)
-            : this.#createLimitTemplate(type, acronym as PossibleNullableAcronym,);
+            : this.#createLimitTemplate(type, acronym as PossibleNullableAcronym,)
     }
 
     #createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: PossibleNullableAcronym,): EntityLimitTemplate {
@@ -179,7 +179,7 @@ class TemplateBuilder
 
             name: this._createNameTemplate(),
 
-        };
+        }
     }
 
     #createAlternativeLimitTemplate(acronym: PossibleNullableAlternativeAcronym,): AlternativeLimitTemplate {
@@ -194,13 +194,13 @@ class TemplateBuilder
 
             name: this._createNameTemplate(),
 
-        };
+        }
     }
 
 
     #createLimitAmountTemplate(): LimitAmountTemplate {
-        const limit_SMM1 = this._getContent(this._headersIndexMap.limit_SMM1And3DS);
-        const limit_SMM2 = this._getContent(this._headersIndexMap.limit_SMM2);
+        const limit_SMM1 = this._getContent(this._headersIndexMap.limit_SMM1And3DS)
+        const limit_SMM2 = this._getContent(this._headersIndexMap.limit_SMM2)
 
         return limit_SMM1 == null && limit_SMM2 == null
             ? TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE
@@ -208,7 +208,7 @@ class TemplateBuilder
                 '1And3DS': limit_SMM1,
                 2: limit_SMM2,
                 comment: this._getContent(this._headersIndexMap.limit_comment),
-            };
+            }
     }
 
 }

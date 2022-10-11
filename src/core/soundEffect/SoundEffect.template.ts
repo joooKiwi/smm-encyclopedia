@@ -1,7 +1,7 @@
-import type {PlayerSoundEffectTriggerTemplate}                              from './property/PlayerSoundEffectTrigger.template';
-import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types';
-import type {SimpleGameFrom1And2Template}                                   from '../game/SimpleGame.template';
-import type {TemplateWithNameTemplate}                                      from '../_template/TemplateWithName.template';
+import type {PlayerSoundEffectTriggerTemplate}                              from './property/PlayerSoundEffectTrigger.template'
+import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types'
+import type {SimpleGameFrom1And2Template}                                   from '../game/SimpleGame.template'
+import type {TemplateWithNameTemplate}                                      from '../_template/TemplateWithName.template'
 
 export interface SoundEffectTemplate
     extends TemplateWithNameTemplate {
@@ -22,4 +22,4 @@ export interface SoundEffectTemplate
 
 }
 
-export type PossibleSoundEffectCategoryType = | PossibleSoundEffectCategoryEnglishName | null;
+export type PossibleSoundEffectCategoryType = | PossibleSoundEffectCategoryEnglishName | null

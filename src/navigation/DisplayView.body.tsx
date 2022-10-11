@@ -1,12 +1,12 @@
-import './DisplayView.scss';
+import './DisplayView.scss'
 
-import type {ModalPropertiesWithDiv} from './ModalContainers.types';
-import type {ReactProperties}        from '../util/react/ReactProperties';
+import type {ModalPropertiesWithDiv} from './ModalContainers.types'
+import type {ReactProperties}        from '../util/react/ReactProperties'
 
-import DisplayViewRouteButton          from './DisplayView.routeButton';
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {GlobalAppOption}               from '../app/options/global/GlobalAppOption';
+import DisplayViewRouteButton          from './DisplayView.routeButton'
+import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
+import {GlobalAppOption}               from '../app/options/global/GlobalAppOption'
 
 interface DisplayViewBodyProperties
     extends ReactProperties, ModalPropertiesWithDiv {
@@ -18,9 +18,9 @@ interface DisplayViewBodyProperties
  * @reactComponent
  */
 export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,) {
-    // const isSMM1Selected = GlobalAppOption.SMM1.get;
-    // const isSMM3DSSelected = GlobalAppOption.SMM3DS.get;
-    const isSMM2Selected = GlobalAppOption.SMM2.get;
+    // const isSMM1Selected = GlobalAppOption.SMM1.get
+    // const isSMM3DSSelected = GlobalAppOption.SMM3DS.get
+    const isSMM2Selected = GlobalAppOption.SMM2.get
 
     return <GameContentTranslationComponent>{translation =>
         <div id="display-modal-body-container" className="container">
@@ -129,5 +129,5 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 </div> : EMPTY_REACT_ELEMENT}
             </div>
         </div>
-    }</GameContentTranslationComponent>;
+    }</GameContentTranslationComponent>
 }

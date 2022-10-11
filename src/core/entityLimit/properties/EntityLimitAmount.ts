@@ -1,6 +1,6 @@
-import type {NotApplicableProperty, UnknownProperty}                                                              from '../../_properties/PropertyWithEverything';
-import type {NumberPropertyThatCanBeUnknown}                                                                      from '../../_properties/PropertyThatCanBeUnknown';
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from '../EntityLimit.template';
+import type {NotApplicableProperty, UnknownProperty}                                                              from '../../_properties/PropertyWithEverything'
+import type {NumberPropertyThatCanBeUnknown}                                                                      from '../../_properties/PropertyThatCanBeUnknown'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from '../EntityLimit.template'
 
 export interface EntityLimitAmount {
 

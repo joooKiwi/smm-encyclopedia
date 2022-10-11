@@ -1,28 +1,29 @@
-import type {EditorVoiceSound, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular} from './EditorVoiceSound';
+import type {EditorVoiceSound, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular} from './EditorVoiceSound'
+import type {EditorVoiceSoundFile}                                                                                                                                  from './file/EditorVoiceSoundFile'
 
-export class EditorVoiceSoundRegionalContainer
-    implements EditorVoiceSound<PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European> {
+export class EditorVoiceSoundRegionalContainer<REGULAR_NAME extends PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular, EUROPEAN_NAME extends PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European, >
+    implements EditorVoiceSound<EditorVoiceSoundFile<REGULAR_NAME>, EditorVoiceSoundFile<EUROPEAN_NAME>> {
 
     //region -------------------- Fields --------------------
 
-    readonly #regularFileName;
-    readonly #europeanFileName;
+    readonly #regularFileName
+    readonly #europeanFileName
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(regularFileName: PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular, europeanFileName: PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European,) {
-        this.#regularFileName = regularFileName;
-        this.#europeanFileName = europeanFileName;
+    public constructor(regularFileName: EditorVoiceSoundFile<REGULAR_NAME>, europeanFileName: EditorVoiceSoundFile<EUROPEAN_NAME>,) {
+        this.#regularFileName = regularFileName
+        this.#europeanFileName = europeanFileName
     }
 
     //region -------------------- Getter methods --------------------
 
-    public get fileName(): PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular {
-        return this.#regularFileName;
+    public get file(): EditorVoiceSoundFile<REGULAR_NAME> {
+        return this.#regularFileName
     }
 
-    public get europeanFileName(): PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European {
-        return this.#europeanFileName;
+    public get europeanFile(): EditorVoiceSoundFile<EUROPEAN_NAME> {
+        return this.#europeanFileName
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -1,15 +1,15 @@
-import type {UnusedImages}                   from './UnusedImage';
-import type {PossibleImageReceivedOnFactory} from './UnusedImage.types';
+import type {UnusedImages}                   from './UnusedImage'
+import type {PossibleImageReceivedOnFactory} from './UnusedImage.types'
 
-import {EmptyUnusedImage_BigMushroom} from './EmptyUnusedImage_BigMushroom';
-import {EmptyUnusedImage_Regular}     from './EmptyUnusedImage_Regular';
+import {EmptyUnusedImage_BigMushroom} from './EmptyUnusedImage_BigMushroom'
+import {EmptyUnusedImage_Regular}     from './EmptyUnusedImage_Regular'
 
 export class UnusedImageFactory {
 
-    public static readonly EMPTY_UNUSED_IMAGES = [EmptyUnusedImage_Regular.get, EmptyUnusedImage_BigMushroom.get,] as const;
+    public static readonly EMPTY_UNUSED_IMAGES = [EmptyUnusedImage_Regular.get, EmptyUnusedImage_BigMushroom.get,] as const
 
     private constructor() {
-        throw new TypeError('This class cannot be instantiated.');
+        throw new TypeError('This class cannot be instantiated.')
     }
 
     /**
@@ -26,7 +26,7 @@ export class UnusedImageFactory {
                 : [
                     builder_or_image[0]?.build() ?? EmptyUnusedImage_Regular.get,
                     builder_or_image[1].build() ?? EmptyUnusedImage_BigMushroom.get,
-                ];
+                ]
 
     }
 

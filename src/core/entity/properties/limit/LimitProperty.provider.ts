@@ -1,10 +1,10 @@
-import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}             from './Loader.types';
-import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from './LimitProperty';
-import type {GameStructure}                                                                                                                                                                                                from '../../../game/GameStructure';
-import type {ProviderWithKey}                                                                                                                                                                                              from '../../../../util/provider/ProviderWithKey';
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}             from './Loader.types'
+import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from './LimitProperty'
+import type {GameStructure}                                                                                                                                                                                                from '../../../game/GameStructure'
+import type {ProviderWithKey}                                                                                                                                                                                              from '../../../../util/provider/ProviderWithKey'
 
-import {AbstractProvider}       from '../../../../util/provider/AbstractProvider';
-import {LimitPropertyContainer} from './LimitProperty.container';
+import {AbstractProvider}       from '../../../../util/provider/AbstractProvider'
+import {LimitPropertyContainer} from './LimitProperty.container'
 
 /**
  * @singleton
@@ -15,14 +15,14 @@ export class LimitPropertyProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: LimitPropertyProvider;
+    static #instance?: LimitPropertyProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -30,7 +30,7 @@ export class LimitPropertyProvider
     public get(key: Key, ...argumentsReceived: ArgumentsReceived): LimitProperty {
         return this.everyContainers.if(map => map.has(key))
             .isNotMet(map => map.set(key, new LimitPropertyContainer(...argumentsReceived),))
-            .get(key);
+            .get(key)
     }
 
 }
@@ -48,4 +48,4 @@ type ArgumentsReceived = readonly [
     powerUpLimit: PossibleIsInPowerUpLimit,
     projectileLimit: PossibleIsInProjectileLimit,
     otherLimit: PossibleOtherLimit,
-];
+]

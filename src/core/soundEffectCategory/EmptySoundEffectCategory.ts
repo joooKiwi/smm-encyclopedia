@@ -1,8 +1,8 @@
-import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from '../../util/ClassWithNullObjectPattern';
-import type {SoundEffectCategory}                                      from './SoundEffectCategory';
+import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from '../../util/ClassWithNullObjectPattern'
+import type {SoundEffectCategory}                                      from './SoundEffectCategory'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName';
-import {EmptyStringName}      from '../../lang/name/EmptyStringName';
+import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {EmptyStringName}      from '../../lang/name/EmptyStringName'
 
 /**
  * @singleton
@@ -13,20 +13,20 @@ export class EmptySoundEffectCategory
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptySoundEffectCategory;
+    static #instance?: EmptySoundEffectCategory
 
     private constructor() {
-        super(EmptyStringName.get,);
+        super(EmptyStringName.get,)
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
     public override toString(): EmptySoundEffectCategoryName {
-        return 'Empty sound effect category';
+        return 'Empty sound effect category'
     }
 
 }

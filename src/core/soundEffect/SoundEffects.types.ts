@@ -1,12 +1,12 @@
-import type {BasePath}                                                                                                                                                                                                                                     from '../../variables';
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {PossibleEnglishName_SoundEffect}                                                                                                                                                                                                              from '../gameReference/GameReferences.types';
-import type {SoundEffects as RealEnum}                                                                                                                                                                                                                     from './SoundEffects';
+import type {BasePath}                                                                                                                                                                                                                                     from '../../variables'
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
+import type {PossibleEnglishName_SoundEffect}                                                                                                                                                                                                              from '../gameReference/GameReferences.types'
+import type {SoundEffects as RealEnum}                                                                                                                                                                                                                     from './SoundEffects'
 
 
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | PossibleEnglishName;
-export type PossibleValue = | RealEnum | number | string | null | undefined;
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
+export type PossibleStringValue = | Names | PossibleEnglishName
+export type PossibleValue = | RealEnum | number | string | null | undefined
 
 enum Enum {
 
@@ -34,17 +34,17 @@ enum Enum {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Enum[Names];
+export type Ordinals = typeof Enum[Names]
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Enum;
+export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
 
-export type PossibleEnglishName = | PossibleEnglishName_SMM1 | PossibleEnglishName_SMM2;
-export type PossibleEnglishName_Games = PossibleEnglishName_SoundEffect;
+export type PossibleEnglishName = | PossibleEnglishName_SMM1 | PossibleEnglishName_SMM2
+export type PossibleEnglishName_Games = PossibleEnglishName_SoundEffect
 export type PossibleEnglishName_SMM1AndSMM2 =
     | 'Shock' | 'Scream' | 'Laughter' | 'Cheer' | 'Baby'
     | 'Applause'
@@ -58,12 +58,12 @@ export type PossibleEnglishName_SMM1AndSMM2 =
 
     | 'Heartbeat' | 'Silence'
 
-    | 'Bonus Music' | 'Boss Music';
+    | 'Bonus Music' | 'Boss Music'
 export type PossibleEnglishName_SMM1 =
     | PossibleEnglishName_SMM1AndSMM2
     | 'Bird\'s Chirping' | 'Distortion' | 'Telephone'
 
-    | `${| 'Festive' | 'Rave'} Music` | `${| 'Bird\'s Tweeting' | 'Chicken\'s Clucking'} Noise`;
+    | `${| 'Festive' | 'Rave'} Music` | `${| 'Bird\'s Tweeting' | 'Chicken\'s Clucking'} Noise`
 export type PossibleEnglishName_SMM2 =
     | PossibleEnglishName_SMM1AndSMM2
     | 'Guffaw' | 'Booo!' | 'Party Popper'
@@ -79,18 +79,18 @@ export type PossibleEnglishName_SMM2 =
     | 'Peaceful' | 'Horror'
 
     | 'Final Boss'
-    | PossibleEnglishName_Games;
+    | PossibleEnglishName_Games
 
 //endregion -------------------- English name --------------------
 //region -------------------- Image path (SMM1) --------------------
 
-export type PossibleImagePath_SMM1 = `/${BasePath}/sound effect/Edit_Lyt_P_SE${SoundEffectImageNumber_SMM1}.tiff`;
-export type SoundEffectImageNumber_SMM1 = `${`0${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | 10 | 11 | 12 | 13 | 14}_0${| 0 | 1}`;
+export type PossibleImagePath_SMM1 = `/${BasePath}/sound effect/Edit_Lyt_P_SE${SoundEffectImageNumber_SMM1}.tiff`
+export type SoundEffectImageNumber_SMM1 = `${`0${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | 10 | 11 | 12 | 13 | 14}_0${| 0 | 1}`
 
 //endregion -------------------- Image path (SMM1) --------------------
 //region -------------------- Image path (SMM2) --------------------
 
-export type PossibleImagePath_SMM2 = `/${BasePath}/sound effect/Lyt_E_P_SE_${SoundEffectImageName_SMM2}.tiff`;
+export type PossibleImagePath_SMM2 = `/${BasePath}/sound effect/Lyt_E_P_SE_${SoundEffectImageName_SMM2}.tiff`
 export type SoundEffectImageName_SMM2 =
     | 'Shock' | 'Scream'
     | `${| '' | 'Loud'}Laughter` | 'Boo'
@@ -115,21 +115,21 @@ export type SoundEffectImageName_SMM2 =
     | 'Heartbeat' | 'Silence'
 
     | 'Bonus' | `${| '' | 'Last'}Boss`
-    | `Mario0${| 0 | 1 | 2 | 3}`;
+    | `Mario0${| 0 | 1 | 2 | 3}`
 
 //endregion -------------------- Image path (SMM2) --------------------
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>;
+export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>
 
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
 
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
@@ -155,13 +155,13 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['BONUS_MUSIC'], SimpleEnum<T>['BOSS_MUSIC'], SimpleEnum<T>['FINAL_BOSS_MUSIC'],
     SimpleEnum<T>['SUPER_MARIO_KART_MUSIC'], SimpleEnum<T>['SUPER_MARIO_64_MUSIC'], SimpleEnum<T>['SUPER_MARIO_SUNSHINE_MUSIC'], SimpleEnum<T>['SUPER_MARIO_GALAXY_MUSIC'],
 
-];
+]
 export type EnumArray_Games<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['SUPER_MARIO_KART_MUSIC'],
     SimpleEnum<T>['SUPER_MARIO_64_MUSIC'],
     SimpleEnum<T>['SUPER_MARIO_SUNSHINE_MUSIC'],
     SimpleEnum<T>['SUPER_MARIO_GALAXY_MUSIC'],
-];
+]
 
 export type EnumArray_EnglishName = readonly [
     'Shock', 'Scream', 'Laughter', 'Guffaw', 'Booo!',
@@ -183,6 +183,6 @@ export type EnumArray_EnglishName = readonly [
 
     'Bonus Music', 'Boss Music', 'Final Boss',
     'Super Mario Kart', 'Super Mario 64', 'Super Mario Sunshine', 'Super Mario Galaxy',
-];
+]
 
 //endregion -------------------- Array types --------------------

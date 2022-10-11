@@ -1,13 +1,13 @@
-import './YesOrNoResultTextComponent.scss';
+import './YesOrNoResultTextComponent.scss'
 
-import type {TextColor}             from './properties/BooleanResultTextProperties';
-import type {YesOrNoTextProperties} from './properties/YesOrNoTextProperties';
+import type {TextColor}             from './properties/BooleanResultTextProperties'
+import type {YesOrNoTextProperties} from './properties/YesOrNoTextProperties'
 
-import BooleanResultTextComponent  from './BooleanResultTextComponent';
-import ContentTranslationComponent from '../../../lang/components/ContentTranslationComponent';
+import BooleanResultTextComponent  from './BooleanResultTextComponent'
+import ContentTranslationComponent from '../../../lang/components/ContentTranslationComponent'
 
-const YES_COLOR: TextColor = 'text-yes';
-const NO_COLOR: TextColor = 'text-no';
+const YES_COLOR: TextColor = 'text-yes'
+const NO_COLOR: TextColor = 'text-no'
 
 /**
  * Return a new {@link BooleanResultTextComponent} with a value based on the translation "Yes" or "No".
@@ -21,5 +21,5 @@ export default function YesOrNoResultTextComponent(properties: YesOrNoTextProper
             true={[translation('Yes'), YES_COLOR,]}
             false={[translation('No'), NO_COLOR,]}
             {...properties}
-        />}</ContentTranslationComponent>;
+        />}</ContentTranslationComponent>
 }

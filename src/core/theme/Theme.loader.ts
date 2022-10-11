@@ -1,17 +1,17 @@
-import resource from '../../resources/compiled/Theme.json';
+import resource from '../../resources/compiled/Theme.json'
 
-import type {CourseAndWorldTheme}                            from './CourseAndWorldTheme';
-import type {PossibleEnglishName}                            from './Themes.types';
-import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types';
-import type {PropertiesArray as LanguagesPropertyArray}      from '../../lang/Loader.types';
-import type {PossibleEffectInNightTheme, ThemeTemplate}      from './Theme.template';
-import type {PossibleIsAvailableFromTheStart}                from '../availableFromTheStart/loader.types';
-import type {Loader}                                         from '../../util/loader/Loader';
+import type {CourseAndWorldTheme}                            from './CourseAndWorldTheme'
+import type {PossibleEnglishName}                            from './Themes.types'
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types'
+import type {PropertiesArray as LanguagesPropertyArray}      from '../../lang/Loader.types'
+import type {PossibleEffectInNightTheme, ThemeTemplate}      from './Theme.template'
+import type {PossibleIsAvailableFromTheStart}                from '../availableFromTheStart/loader.types'
+import type {Loader}                                         from '../../util/loader/Loader'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor';
-import {ThemeBuilder}            from './Theme.builder';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {ThemeBuilder}            from './Theme.builder'
 
 //region -------------------- CSV array related types --------------------
 
@@ -54,17 +54,17 @@ enum Headers {
 type ExclusivePropertiesArray1 = [
     isInCourseTheme: boolean,
     isInWorldTheme: boolean,
-];
+]
 type ExclusivePropertiesArray2 = [
     isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart,
     effectInNightTheme: PossibleEffectInNightTheme,
-];
+]
 type PropertiesArray = [
     ...ExclusivePropertiesArray1,
     ...GamesPropertyArray,
     ...ExclusivePropertiesArray2,
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- Properties --------------------
 
@@ -80,22 +80,22 @@ export class ThemeLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: ThemeLoader;
+    static #instance?: ThemeLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, CourseAndWorldTheme>;
+    #map?: Map<PossibleEnglishName, CourseAndWorldTheme>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, CourseAndWorldTheme>();
+            const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -110,17 +110,17 @@ export class ThemeLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- theme has been loaded --------------------');// temporary console.log
+            console.log('-------------------- theme has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- theme has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -129,11 +129,11 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<ThemeTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): ThemeTemplate {
@@ -150,7 +150,7 @@ class TemplateBuilder
             },
             effect: this._getContent(this._headersIndexMap.effectInNightTheme),
             name: this._createNameTemplate(),
-        };
+        }
     }
 
 }

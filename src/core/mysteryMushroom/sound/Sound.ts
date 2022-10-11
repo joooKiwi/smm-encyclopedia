@@ -1,7 +1,7 @@
-import type {BasePath}          from '../../../variables';
-import type {EnglishNameOnFile} from '../MysteryMushrooms.types';
+import type {PossibleFileName}         from '../MysteryMushrooms.types'
+import type {MysteryMushroomSoundFile} from '../file/MysteryMushroomSoundFile'
 
-export interface Sound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > {
+export interface Sound<FILE extends PossibleFileName = PossibleFileName, > {
 
     get powerUpCollectedSound(): PowerUpCollectedSound<FILE>
 
@@ -20,16 +20,6 @@ export interface Sound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > {
 }
 
 
-/** The base path for a sound */
-export type Path<FILE extends EnglishNameOnFile = EnglishNameOnFile, > = `/${BasePath}/sound/mystery mushroom/${FILE}`;
-
-/**
- * The sound file path relative to the {@link Path sound path}
- *
- * @see Path
- */
-export type SingleSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, SOUND_FILE extends PossibleSounds = PossibleSounds, > = `${Path<FILE>}/${SOUND_FILE}`;
-
 //region -------------------- Specific sound files --------------------
 
 export type PossibleSounds = | PowerUpCollectedSoundFile
@@ -38,47 +28,47 @@ export type PossibleSounds = | PowerUpCollectedSoundFile
                              | OnGroundAfterJumpSoundFile
                              | TurningSoundFile
                              | GoalPoleSoundFile
-                             | LostALifeSoundFile;
+                             | LostALifeSoundFile
 
-export type PowerUpCollectedSoundFile = `powerup.wav`;
+export type PowerUpCollectedSoundFile = `powerup`
 
-export type TauntSoundFile = 'appeal.wav';
+export type TauntSoundFile = 'appeal'
 
-export type JumpSoundNumber = | '' | 2;
-export type JumpSoundFile<N extends JumpSoundNumber = JumpSoundNumber, > = `jump${N}.wav`;
+type JumpSoundNumber = | '' | 2
+export type JumpSoundFile<N extends JumpSoundNumber = JumpSoundNumber, > = `jump${N}`
 
-export type TurningSoundFile = 'slip.wav';
+export type TurningSoundFile = 'slip'
 
-export type OnGroundAfterJumpSoundFile = 'ground.wav';
+export type OnGroundAfterJumpSoundFile = 'ground'
 
-export type GoalPoleSoundFile = 'goal.wav';
+export type GoalPoleSoundFile = 'goal'
 
-export type LostALifeSoundFile = 'down.wav';
+export type LostALifeSoundFile = 'down'
 
 //endregion -------------------- Specific sound files --------------------
 //region -------------------- Possible sounds (array) --------------------
 
-export type PowerUpCollectedSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
-    SingleSound<FILE, PowerUpCollectedSoundFile>;
+export type PowerUpCollectedSound<FILE extends PossibleFileName = PossibleFileName, > =
+    MysteryMushroomSoundFile<FILE, PowerUpCollectedSoundFile>
 
-export type TauntSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
-    SingleSound<FILE, TauntSoundFile>;
+export type TauntSound<FILE extends PossibleFileName = PossibleFileName, > =
+    MysteryMushroomSoundFile<FILE, TauntSoundFile>
 
-export type JumpSounds<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
+export type JumpSounds<FILE extends PossibleFileName = PossibleFileName, > =
     | readonly []
-    | readonly [SingleSound<FILE, JumpSoundFile<''>>,]
-    | readonly [SingleSound<FILE, JumpSoundFile<''>>, SingleSound<FILE, JumpSoundFile<2>>,];
+    | readonly [MysteryMushroomSoundFile<FILE, JumpSoundFile<''>>,]
+    | readonly [MysteryMushroomSoundFile<FILE, JumpSoundFile<''>>, MysteryMushroomSoundFile<FILE, JumpSoundFile<2>>,]
 
-export type OnGroundAfterJumpSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
-    SingleSound<FILE, OnGroundAfterJumpSoundFile>;
+export type OnGroundAfterJumpSound<FILE extends PossibleFileName = PossibleFileName, > =
+    MysteryMushroomSoundFile<FILE, OnGroundAfterJumpSoundFile>
 
-export type TurningSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
-    SingleSound<FILE, TurningSoundFile>;
+export type TurningSound<FILE extends PossibleFileName = PossibleFileName, > =
+    MysteryMushroomSoundFile<FILE, TurningSoundFile>
 
-export type GoalPoleSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
-    SingleSound<FILE, GoalPoleSoundFile>;
+export type GoalPoleSound<FILE extends PossibleFileName = PossibleFileName, > =
+    MysteryMushroomSoundFile<FILE, GoalPoleSoundFile>
 
-export type LostALifeSound<FILE extends EnglishNameOnFile = EnglishNameOnFile, > =
-    SingleSound<FILE, LostALifeSoundFile>;
+export type LostALifeSound<FILE extends PossibleFileName = PossibleFileName, > =
+    MysteryMushroomSoundFile<FILE, LostALifeSoundFile>
 
 //endregion -------------------- Possible sounds (array) --------------------

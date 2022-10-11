@@ -9,38 +9,38 @@ export class GlobalThemeOption {
     /**
      * A global theme on the {@link Times.DAY day time} & the {@link Times.NIGHT night time}.
      */
-    public static readonly ALL = new GlobalThemeOption(true, true,);
+    public static readonly ALL =   new GlobalThemeOption(true, true,)
     /**
      * A global theme on only the {@link Times.DAY day time}.
      */
-    public static readonly DAY = new GlobalThemeOption(true, false,);
+    public static readonly DAY =   new GlobalThemeOption(true, false,)
     /**
      * A global theme on only the {@link Times.NIGHT night time}.
      */
-    public static readonly NIGHT = new GlobalThemeOption(false, true,);
+    public static readonly NIGHT = new GlobalThemeOption(false, true,)
     /**
      * A global theme on no {@link Times time}.
      */
-    public static readonly NONE = new GlobalThemeOption(false, false,);
+    public static readonly NONE =  new GlobalThemeOption(false, false,)
 
-    readonly #dayValue;
-    readonly #nightValue;
+    readonly #dayValue
+    readonly #nightValue
 
     //endregion -------------------- Fields --------------------
 
     private constructor(dayValue: boolean, nightValue: boolean,) {
-        this.#dayValue = dayValue;
-        this.#nightValue = nightValue;
+        this.#dayValue = dayValue
+        this.#nightValue = nightValue
     }
 
     //region -------------------- Getter methods --------------------
 
     public get dayValue(): boolean {
-        return this.#dayValue;
+        return this.#dayValue
     }
 
     public get nightValue(): boolean {
-        return this.#nightValue;
+        return this.#nightValue
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -72,19 +72,19 @@ export class GlobalThemeOption {
                     : GlobalThemeOption.NIGHT
                 : this.dayValue
                     ? GlobalThemeOption.DAY
-                    : GlobalThemeOption.NONE;
+                    : GlobalThemeOption.NONE
     }
 
     public get reverseNightValue(): GlobalThemeOption {
-        return this.onNight();
+        return this.onNight()
     }
 
     public get addNight(): GlobalThemeOption {
-        return this.onNight(true);
+        return this.onNight(true)
     }
 
     public get removeNight(): GlobalThemeOption {
-        return this.onNight(false);
+        return this.onNight(false)
     }
 
 
@@ -114,19 +114,19 @@ export class GlobalThemeOption {
                     : GlobalThemeOption.DAY
                 : this.nightValue
                     ? GlobalThemeOption.NIGHT
-                    : GlobalThemeOption.NONE;
+                    : GlobalThemeOption.NONE
     }
 
     public get reverseDayValue(): GlobalThemeOption {
-        return this.onDay();
+        return this.onDay()
     }
 
     public get addDay(): GlobalThemeOption {
-        return this.onDay(true);
+        return this.onDay(true)
     }
 
     public get removeDay(): GlobalThemeOption {
-        return this.onDay(false);
+        return this.onDay(false)
     }
 
 
@@ -136,7 +136,7 @@ export class GlobalThemeOption {
      * @param isAllOrNone all = true, none = false,
      */
     public set(isAllOrNone: boolean,): GlobalThemeOption {
-        return isAllOrNone ? GlobalThemeOption.ALL : GlobalThemeOption.NONE;
+        return isAllOrNone ? GlobalThemeOption.ALL : GlobalThemeOption.NONE
     }
 
     //region -------------------- Method --------------------

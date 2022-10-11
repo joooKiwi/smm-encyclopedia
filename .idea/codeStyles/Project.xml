@@ -3,7 +3,7 @@
     <option name="RIGHT_MARGIN" value="200" />
     <option name="SOFT_MARGINS" value="100,150,200" />
     <TypeScriptCodeStyleSettings version="0">
-      <option name="FORCE_SEMICOLON_STYLE" value="true" />
+      <option name="USE_SEMICOLON_AFTER_STATEMENT" value="false" />
       <option name="USE_PUBLIC_MODIFIER" value="true" />
       <option name="PREFER_AS_TYPE_CAST" value="true" />
       <option name="USE_DOUBLE_QUOTES" value="false" />

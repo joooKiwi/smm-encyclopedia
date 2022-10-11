@@ -1,6 +1,6 @@
-import type {GameStyles} from '../../gameStyle/GameStyles';
-import type {Image}      from './Image';
-import type {Themes}     from '../../theme/Themes';
+import type {GameStyles} from '../../gameStyle/GameStyles'
+import type {Image}      from './Image'
+import type {Themes}     from '../../theme/Themes'
 
 export interface ImageWithThemesAndGameStyles
     extends Image {

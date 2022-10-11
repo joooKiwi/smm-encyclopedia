@@ -1,4 +1,4 @@
-import type {PossibleFileName} from '../EditorVoiceSound';
+import type {PossibleFileName} from '../EditorVoiceSound'
 
 export interface EditorVoiceSoundHolder<T extends PossibleFileName, > {
 

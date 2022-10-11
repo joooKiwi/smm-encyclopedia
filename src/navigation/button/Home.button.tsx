@@ -1,12 +1,12 @@
-import {Link} from 'react-router-dom';
+import {Link} from 'react-router-dom'
 
-import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent';
-import {route}                     from '../../routes/route';
-import Tooltip                     from '../../bootstrap/tooltip/Tooltip';
-import {TooltipInstance}           from '../../bootstrap/tooltip/TooltipInstance';
+import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent'
+import {route}                     from '../../routes/route'
+import Tooltip                     from '../../bootstrap/tooltip/Tooltip'
+import {TooltipInstance}           from '../../bootstrap/tooltip/TooltipInstance'
 
 
-const HOME_ID = 'home-link';
+const HOME_ID = 'home-link'
 
 /**
  * @reactComponent
@@ -17,5 +17,5 @@ export default function HomeButton() {
             <Link key="navigation button" id={HOME_ID} className="btn btn-lg bi-house" to={route('home')}
                   onClick={() => TooltipInstance.getInstance(HOME_ID).instance.hide()}/>
         </Tooltip>
-    }</ContentTranslationComponent>;
+    }</ContentTranslationComponent>
 }

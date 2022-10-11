@@ -4,4 +4,4 @@ export interface ClassWithComment<COMMENT extends PossibleComment = PossibleComm
 
 }
 
-export type PossibleComment = | string | null;
+export type PossibleComment = | string | null

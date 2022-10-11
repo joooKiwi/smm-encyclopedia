@@ -1,11 +1,11 @@
-import {PureComponent} from 'react';
+import {PureComponent} from 'react'
 
-import type {GlobalAppOption}                                                                                   from '../GlobalAppOption';
-import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from './Group.types';
-import type {ReactComponent}                                                                                    from '../../../../util/react/ReactComponent';
-import type {ReactElement}                                                                                      from '../../../../util/react/ReactProperties';
+import type {GlobalAppOption}                                                                                   from '../GlobalAppOption'
+import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from './Group.types'
+import type {ReactComponent}                                                                                    from '../../../../util/react/ReactComponent'
+import type {ReactElement}                                                                                      from '../../../../util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables';
+import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables'
 
 /**
  * @reactComponent
@@ -16,21 +16,21 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
 
     //region -------------------- Fields --------------------
 
-    static readonly #IS_NOT_DISABLED = [false, false,] as const;
+    static readonly #IS_NOT_DISABLED = [false, false,] as const
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
     public get id(): PossibleId {
-        return this.props.id;
+        return this.props.id
     }
 
     public get isHidden(): boolean {
-        return this.props.isHidden ?? false;
+        return this.props.isHidden ?? false
     }
 
     public get elements(): readonly SingleElement<T, U>[] {
-        return this.props.elements;
+        return this.props.elements
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -49,7 +49,7 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
                             option,
                             isDisabled == null ? AbstractGroup.#IS_NOT_DISABLED : typeof isDisabled == 'boolean' ? [isDisabled, false,] : isDisabled,
                             onClickCallback,))
-            }</div>;
+            }</div>
     }
 
 }

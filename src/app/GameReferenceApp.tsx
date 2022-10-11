@@ -1,17 +1,17 @@
-import './GameReferenceApp.scss';
+import './GameReferenceApp.scss'
 
-import {Fragment}                       from 'react';
-import type {PossibleEnglishName_Games} from '../core/soundEffect/SoundEffects.types';
-import type {ReactElement}              from '../util/react/ReactProperties';
+import {Fragment}                       from 'react'
+import type {PossibleEnglishName_Games} from '../core/soundEffect/SoundEffects.types'
+import type {ReactElement}              from '../util/react/ReactProperties'
 
-import AbstractApp                     from './AbstractApp';
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables';
-import {GameReferences}                from '../core/gameReference/GameReferences';
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../core/game/Games';
-import {GameStyles}                    from '../core/gameStyle/GameStyles';
-import NameComponent                   from '../lang/name/component/Name.component';
-import {SoundEffects}                  from '../core/soundEffect/SoundEffects';
+import AbstractApp                     from './AbstractApp'
+import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
+import {GameReferences}                from '../core/gameReference/GameReferences'
+import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
+import {Games}                         from '../core/game/Games'
+import {GameStyles}                    from '../core/gameStyle/GameStyles'
+import NameComponent                   from '../lang/name/component/Name.component'
+import {SoundEffects}                  from '../core/soundEffect/SoundEffects'
 
 /**
  * @reactComponent
@@ -39,9 +39,9 @@ export default class GameReferenceApp
         GameReferences.BALLOON_FIGHT, GameReferences.SHIN_ONIGASHIMA, GameReferences.FAMICOM_DETECTIVE_CLUB_PART_II,
         GameReferences.PUSHMO, GameReferences.CLU_CLU_LAND, GameReferences.VOLLEYBALL,
         GameReferences.ICE_CLIMBER, GameReferences.SHAUN_THE_SHEEP,
-    ] as const;
+    ] as const
 
-    static #otherGameReferences?: readonly GameReferences[];
+    static #otherGameReferences?: readonly GameReferences[]
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter & initialisation methods --------------------
@@ -52,10 +52,10 @@ export default class GameReferenceApp
                 ...Games.values.map(game => game.englishName),
                 ...GameStyles.values.map(game => game.englishName),
                 ...SoundEffects.soundEffect_games.map(game => game.englishName) as PossibleEnglishName_Games[],
-            ];
-            this.#otherGameReferences = GameReferences.values.filter(enumerable => !alreadyIncludedNames.includes(enumerable.englishName as never));
+            ]
+            this.#otherGameReferences = GameReferences.values.filter(enumerable => !alreadyIncludedNames.includes(enumerable.englishName as never))
         }
-        return this.#otherGameReferences;
+        return this.#otherGameReferences
     }
 
     //endregion -------------------- Getter & initialisation methods --------------------
@@ -80,7 +80,7 @@ export default class GameReferenceApp
                         {returnOfLine?.includes(gameReference) ? <div className="col-12 name-container return-of-line-name-container"/> : EMPTY_REACT_ELEMENT}
                     </Fragment>)
             }</div>
-        </div>;
+        </div>
     }
 
     //endregion -------------------- Methods --------------------
@@ -94,12 +94,12 @@ export default class GameReferenceApp
             {this._getContainer('gameStyle', 'Game styles', GameStyles.values,)}
             {this._getContainer('soundEffect', 'Sound effects', SoundEffects.soundEffect_games,)}
             {this._getContainer('otherGameReferences', 'Other game references', GameReferenceApp.__otherGameReferences, GameReferenceApp.RETURN_OF_LINES,)}
-        </div>;
+        </div>
     }
 
 }
 
 type PossibleGameReference = (Games | GameStyles | SoundEffects | GameReferences)
-                             & { renderSingleComponent?: ReactElement };
+                             & { renderSingleComponent?: ReactElement }
 //@FIXME this variable should be replaced with SingleTranslationKey<'gameContent'> if possible
-type PossibleTitle = 'Games' | 'Game styles' | 'Sound effects' | 'Other game references';
+type PossibleTitle = 'Games' | 'Game styles' | 'Sound effects' | 'Other game references'

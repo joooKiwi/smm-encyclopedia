@@ -1,5 +1,5 @@
-import {OfficialNotificationHolder}                                from './OfficialNotificationHolder';
-import {ClassWithNullObjectPattern, EmptyOfficialNotificationName} from '../../../util/ClassWithNullObjectPattern';
+import {OfficialNotificationHolder}                                from './OfficialNotificationHolder'
+import {ClassWithNullObjectPattern, EmptyOfficialNotificationName} from '../../../util/ClassWithNullObjectPattern'
 
 /**
  * @singleton
@@ -9,26 +9,26 @@ export class EmptyOfficialNotificationHolder
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyOfficialNotificationHolder;
+    static #instance?: EmptyOfficialNotificationHolder
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
 
     //endregion -------------------- Singleton usage --------------------
     //region -------------------- Getter methods --------------------
 
-    public readonly officialNotification = null;
-    public readonly amount = null;
+    public readonly officialNotification = null
+    public readonly amount = null
 
     //endregion -------------------- Getter methods --------------------
 
     public toString(): EmptyOfficialNotificationName {
-        return 'Empty official notification';
+        return 'Empty official notification'
     }
 
 }

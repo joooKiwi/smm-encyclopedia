@@ -1,8 +1,8 @@
-import type {GameStructure}      from './GameStructure';
-import type {ProviderWithoutKey} from '../../util/provider/ProviderWithoutKey';
+import type {GameStructure}      from './GameStructure'
+import type {ProviderWithoutKey} from '../../util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}       from '../../util/provider/AbstractProvider';
-import {GameStructureContainer} from './GameStructure.container';
+import {AbstractProvider}       from '../../util/provider/AbstractProvider'
+import {GameStructureContainer} from './GameStructure.container'
 
 /**
  * @singleton
@@ -13,14 +13,14 @@ export class GameStructureProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: GameStructureProvider;
+    static #instance?: GameStructureProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -42,11 +42,11 @@ export class GameStructureProvider
     public get<SMM1, SMM3DS, SMM2, >(superMarioMaker1: SMM1, superMarioMakerFor3DS: SMM3DS, superMarioMaker2: SMM2,): GameStructure<SMM1, SMM3DS, SMM2>
     public get(...argumentsReceived: | ArgumentsReceived | ArgumentsReceived_Simplified) {
         if (argumentsReceived.length === 2)
-            return this.get(argumentsReceived[0], argumentsReceived[0], argumentsReceived[1],);
+            return this.get(argumentsReceived[0], argumentsReceived[0], argumentsReceived[1],)
 
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new GameStructureContainer(...argumentsReceived,)))
-            .get(argumentsReceived);
+            .get(argumentsReceived)
     }
 
 }
@@ -55,8 +55,8 @@ type ArgumentsReceived<SMM1 = any, SMM3DS = any, SMM2 = any, > = readonly [
     smm1: SMM1,
     smm3ds: SMM3DS,
     smm2: SMM2,
-];
+]
 type ArgumentsReceived_Simplified<SMM1AND3DS = any, SMM2 = any, > = readonly [
     smm1And3DS: SMM1AND3DS,
     smm2: SMM2,
-];
+]

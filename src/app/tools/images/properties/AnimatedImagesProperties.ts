@@ -1,9 +1,9 @@
-import type {HTMLDivProperties} from '../../../../util/react/html/HTMLDivProperties';
-import type {ImageProperties}   from './ImageProperties';
-import type {ReactProperties}   from '../../../../util/react/ReactProperties';
+import type {HTMLDivProperties} from '../../../../util/react/html/HTMLDivProperties'
+import type {ImageProperties}   from './ImageProperties'
+import type {ReactProperties}   from '../../../../util/react/ReactProperties'
 
 export interface AnimatedImagesProperties
-    extends ReactProperties, Omit<HTMLDivProperties, 'key' | 'id'> {
+    extends ReactProperties, Omit<HTMLDivProperties, | 'key' | 'id'> {
 
     partialId: string
 

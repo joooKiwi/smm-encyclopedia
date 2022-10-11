@@ -1,5 +1,5 @@
-import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType, RenderedObjectLimitType} from './Loader.types';
-import type {SimpleGameFrom1And2Template}                                                                                                                                                                                                                from '../../../game/SimpleGame.template';
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType, RenderedObjectLimitType} from './Loader.types'
+import type {SimpleGameFrom1And2Template}                                                                                                                                                                                                                from '../../../game/SimpleGame.template'
 
 /**
  * @template

@@ -1,7 +1,7 @@
-import type {Builder}             from '../../../../util/builder/Builder';
-import type {EditorImage}         from './EditorImage';
-import type {PossibleEnglishName} from '../../Entities.types';
-import type {PossibleGameName}    from '../../../theme/Themes.types';
+import type {Builder}             from '../../../../util/builder/Builder'
+import type {EditorImage}         from './EditorImage'
+import type {PossibleEnglishName} from '../../Entities.types'
+import type {PossibleGameName}    from '../../../theme/Themes.types'
 
 interface ImageNameMap {
 
@@ -419,52 +419,52 @@ interface ImageNameMap {
     'Toad': NoImages
     'Caged Toadette': NoImages
 
-    'Bubble': NoImages,
+    'Bubble': NoImages
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
 }
 
-export type PossibleRailExtended = `Rail${| 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}`;
-export type PossibleConveyor = `${| 'Belt' | 'Slope'}Conveyor`;
-type ImageThatIsAGround<NAME extends SimpleImageName, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship'>>>,];
-type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName, NUMBER extends | 0 | 1 = 0, > = [NAME, Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>,];
-type ImageThatHasOnly1Reference<NAME extends SimpleImageName, > = [NAME, Name_0<NAME>,];
-type ImageThatIsPowerUp<NAME extends SimpleImageName, > = [NAME, PowerUp<NAME>,];
-type NoImages = readonly [null, null,];
+export type PossibleRailExtended = `Rail${| 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}`
+export type PossibleConveyor = `${| 'Belt' | 'Slope'}Conveyor`
+type ImageThatIsAGround<NAME extends SimpleImageName, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship'>>>,]
+type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName, NUMBER extends | 0 | 1 = 0, > = [NAME, Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>,]
+type ImageThatHasOnly1Reference<NAME extends SimpleImageName, > = [NAME, Name_0<NAME>,]
+type ImageThatIsPowerUp<NAME extends SimpleImageName, > = [NAME, PowerUp<NAME>,]
+type NoImages = readonly [null, null,]
 
-type PowerUp<NAME extends | SimpleImageName | string, > = `${NAME}${| '' | VariantEditorImage_PowerUp}`;
-type Name<NAME extends | SimpleImageName | string, NUMBER extends VariantEditorImage_Number, > = `${NAME}_0${NUMBER}`;
-type Name_0<NAME extends | SimpleImageName | string, > = Name<NAME, 0>;
-type Name_0_1<NAME extends | SimpleImageName | string, > = Name<NAME, | 0 | 1>;
-type Name_0_1_2<NAME extends | SimpleImageName | string, > = Name<NAME, | 0 | 1 | 2>;
-type Style<NAME extends | SimpleImageName | string, STYLE extends VariantEditorImage_GameStyle = VariantEditorImage_GameStyle, > = | NAME | `${NAME}_${STYLE}`;
+type PowerUp<NAME extends | SimpleImageName | string, > = `${NAME}${| '' | VariantEditorImage_PowerUp}`
+type Name<NAME extends | SimpleImageName | string, NUMBER extends VariantEditorImage_Number, > = `${NAME}_0${NUMBER}`
+type Name_0<NAME extends | SimpleImageName | string, > = Name<NAME, 0>
+type Name_0_1<NAME extends | SimpleImageName | string, > = Name<NAME, | 0 | 1>
+type Name_0_1_2<NAME extends | SimpleImageName | string, > = Name<NAME, | 0 | 1 | 2>
+type Style<NAME extends | SimpleImageName | string, STYLE extends VariantEditorImage_GameStyle = VariantEditorImage_GameStyle, > = | NAME | `${NAME}_${STYLE}`
 
 
-export type SimpleImageName = ImageNameMap[PossibleEnglishName][0];
-export type SimpleImageName_GroundOrSlope = ImageNameMap['Ground' | 'Gentle Slope' | 'Steep Slope'][0];
+export type SimpleImageName = ImageNameMap[PossibleEnglishName][0]
+export type SimpleImageName_GroundOrSlope = ImageNameMap['Ground' | 'Gentle Slope' | 'Steep Slope'][0]
 
-export type ImageName = ImageNameMap[PossibleEnglishName][1];
+export type ImageName = ImageNameMap[PossibleEnglishName][1]
 
-export type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`;
-type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>;
-type VariantEditorImage_Number = | 0 | 1 | 2 | 3;
-export type VariantEditorImage_PowerUp = 'Uni';
+export type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`
+type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>
+type VariantEditorImage_Number = | 0 | 1 | 2 | 3
+export type VariantEditorImage_PowerUp = 'Uni'
 export type VariantEditorImage =
     VariantEditorImage_Number
     | VariantEditorImage_PowerUp
-    | VariantEditorImage_GameStyle;
+    | VariantEditorImage_GameStyle
 
 export type EditorImageName = | readonly []
                               | readonly [ImageName,]
                               | readonly [ImageName, ImageName,]
                               | readonly [ImageName, ImageName, ImageName, ImageName,]
-                              | readonly [ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName,];
+                              | readonly [ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName,]
 
 /**
  * Describe the maximum amount of images possible in any possible Editor image in an {@link Entities}.
  */
-export type PossibleAmountOfImages = | 1 | 2 | 3 | 4;
-export type ImageNumber = | 0 | 1 | 2 | 3;
+export type PossibleAmountOfImages = | 1 | 2 | 3 | 4
+export type ImageNumber = | 0 | 1 | 2 | 3
 
-export type PossibleImageReceivedOnFactory = | Builder<EditorImage> | SimpleImageName | null;
+export type PossibleImageReceivedOnFactory = | Builder<EditorImage> | SimpleImageName | null

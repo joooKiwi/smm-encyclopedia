@@ -1,6 +1,6 @@
-import type {EntityContentNamespace, PossibleTranslationPropertyReceived} from './TranslationProperty';
+import type {EntityContentNamespace, PossibleTranslationPropertyReceived} from './TranslationProperty'
 
-import AnyTranslationComponent from './AnyTranslationComponent';
+import AnyTranslationComponent from './AnyTranslationComponent'
 
 /**
  *
@@ -9,5 +9,5 @@ import AnyTranslationComponent from './AnyTranslationComponent';
  */
 export default function EntityTranslationComponent(properties: PossibleTranslationPropertyReceived<EntityContentNamespace>,) {
     // @ts-ignore
-    return <AnyTranslationComponent namespace="entityContent"  {...properties}/>;
+    return <AnyTranslationComponent namespace="entityContent"  {...properties}/>
 }

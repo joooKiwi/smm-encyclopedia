@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Sound effect category.json';
+import resource from '../../resources/compiled/Sound effect category.json'
 
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {Loader}                                    from '../../util/loader/Loader';
-import type {PossibleEnglishName}                       from './SoundEffectCategories.types';
-import type {SoundEffectCategory}                       from './SoundEffectCategory';
-import type {SoundEffectCategoryTemplate}               from './SoundEffectCategory.template';
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
+import type {Loader}                                    from '../../util/loader/Loader'
+import type {PossibleEnglishName}                       from './SoundEffectCategories.types'
+import type {SoundEffectCategory}                       from './SoundEffectCategory'
+import type {SoundEffectCategoryTemplate}               from './SoundEffectCategory.template'
 
-import {AbstractTemplateBuilder}    from '../_template/AbstractTemplate.builder';
-import {CSVLoader}                  from '../../util/loader/CSVLoader';
-import {SoundEffectCategoryBuilder} from './SoundEffectCategory.builder';
-import {HeaderTypesForConvertor}    from '../_util/loader/HeaderTypesForConvertor';
+import {AbstractTemplateBuilder}    from '../_template/AbstractTemplate.builder'
+import {CSVLoader}                  from '../../util/loader/CSVLoader'
+import {SoundEffectCategoryBuilder} from './SoundEffectCategory.builder'
+import {HeaderTypesForConvertor}    from '../_util/loader/HeaderTypesForConvertor'
 
 //region -------------------- CSV array related types --------------------
 
@@ -38,7 +38,7 @@ enum Headers {
 
 type PropertiesArray = [
     ...LanguagesPropertyArray,
-];
+]
 
 //endregion -------------------- Properties --------------------
 
@@ -53,22 +53,22 @@ export class SoundEffectCategoryLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: SoundEffectCategoryLoader;
+    static #instance?: SoundEffectCategoryLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, SoundEffectCategory>;
+    #map?: Map<PossibleEnglishName, SoundEffectCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, SoundEffectCategory> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, SoundEffectCategory>();
+            const references = new Map<PossibleEnglishName, SoundEffectCategory>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -78,17 +78,17 @@ export class SoundEffectCategoryLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_soundEffectCategory, 'english',)
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "sound effect category" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "sound effect category" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "sound effect category" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "sound effect category" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -97,17 +97,17 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<SoundEffectCategoryTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content,)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): SoundEffectCategoryTemplate {
         return {
             name: this._createNameTemplate(),
-        };
+        }
     }
 
 }

@@ -1,9 +1,9 @@
-import './Arrow.scss';
+import './Arrow.scss'
 
-import type {ReactProperties}          from '../../../util/react/ReactProperties';
-import type {PossibleNonNullableValue} from './Arrows.types';
+import type {ReactProperties}          from '../../../util/react/ReactProperties'
+import type {PossibleNonNullableValue} from './Arrows.types'
 
-import {Arrows} from './Arrows';
+import {Arrows} from './Arrows'
 
 interface SingleArrowProperties
     extends ReactProperties {
@@ -16,5 +16,5 @@ interface SingleArrowProperties
  * @reactComponent
  */
 export default function Arrow({value,}: SingleArrowProperties,) {
-    return Arrows.getValue(value).createArrow();
+    return Arrows.getValue(value).createArrow()
 }

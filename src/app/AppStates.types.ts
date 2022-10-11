@@ -1,5 +1,5 @@
-import type {ReactState}   from '../util/react/ReactState';
-import type {ViewDisplays} from './withInterpreter/ViewDisplays';
+import type {ReactState}   from '../util/react/ReactState'
+import type {ViewDisplays} from './withInterpreter/ViewDisplays'
 
 export interface AppStates
     extends ReactState {

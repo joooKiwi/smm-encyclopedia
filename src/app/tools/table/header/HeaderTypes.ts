@@ -1,7 +1,7 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossiblePlacement, PossibleStringValue, PossibleValue} from './HeaderTypes.types';
-import type {StaticReference}                                                                                                                                                                                        from '../../../../util/enum/Enum.types';
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossiblePlacement, PossibleStringValue, PossibleValue} from './HeaderTypes.types'
+import type {StaticReference}                                                                                                                                                                                        from '../../../../util/enum/Enum.types'
 
-import {Enum} from '../../../../util/enum/Enum';
+import {Enum} from '../../../../util/enum/Enum'
 
 export abstract class HeaderTypes
     extends Enum<Ordinals, Names> {
@@ -10,65 +10,65 @@ export abstract class HeaderTypes
 
     public static readonly HEAD = new class HeaderTypes_Head extends HeaderTypes {
 
-        public override getLayout(layout: readonly string[][]): readonly string[][] {
-            return layout;
+        public override getLayout(layout: readonly string[][],) {
+            return layout
         }
 
-    }('head', 'top',);
+    }('head', 'top',)
     public static readonly FOOT = new class HeaderTypes_Foot extends HeaderTypes {
 
-        public override getLayout(layout: readonly string[][]): readonly string[][] {
-            return [...layout].reverse();
+        public override getLayout(layout: readonly string[][],) {
+            return [...layout].reverse()
         }
 
-    }('foot', 'bottom',);
+    }('foot', 'bottom',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: HeaderTypes;
+    static [index: number]: HeaderTypes
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    readonly #name;
-    readonly #placement;
+    readonly #name
+    readonly #placement
 
     //endregion -------------------- Fields --------------------
 
     private constructor(name: PossibleName, placement: PossiblePlacement,) {
-        super();
-        this.#name = name;
-        this.#placement = placement;
+        super()
+        this.#name = name
+        this.#placement = placement
     }
 
     //region -------------------- Getter methods --------------------
 
     public get simpleName(): PossibleName {
-        return this.#name;
+        return this.#name
     }
 
     public get placement(): PossiblePlacement {
-        return this.#placement;
+        return this.#placement
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract getLayout(layout: readonly string[][],): readonly string[][];
+    public abstract getLayout(layout: readonly string[][],): readonly string[][]
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<HeaderTypes> {
-        return HeaderTypes;
+        return HeaderTypes
     }
 
     //region -------------------- Enum value methods --------------------
 
     public static override _getValueByString(value: string,) {
         return this.values.find(enumerable => enumerable.simpleName === value)
-            ?? null;
+            ?? null
     }
 
     public static getValue(nullValue: | null | undefined,): null
@@ -81,17 +81,17 @@ export abstract class HeaderTypes
     public static getValue(value: PossibleNonNullableValue,): HeaderTypes
     public static getValue(value: PossibleValue,): | HeaderTypes | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

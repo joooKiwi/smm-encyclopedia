@@ -1,9 +1,9 @@
-import './Github.button.scss';
+import './Github.button.scss'
 
-import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent';
-import Tooltip                     from '../../bootstrap/tooltip/Tooltip';
+import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent'
+import Tooltip                     from '../../bootstrap/tooltip/Tooltip'
 
-const ID = 'github-button';
+const ID = 'github-button'
 export default function GithubButton() {
     return <ContentTranslationComponent>{translation =>
         <Tooltip option={{title: translation('Go to the GitHub repository'), placement: 'top',}} elementId={ID}>
@@ -11,5 +11,5 @@ export default function GithubButton() {
                 <span>{translation('GitHub repository')}</span>
             </a>
         </Tooltip>
-    }</ContentTranslationComponent>;
+    }</ContentTranslationComponent>
 }

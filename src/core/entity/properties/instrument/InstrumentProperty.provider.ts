@@ -1,12 +1,12 @@
-import type {CanMakeASoundOutOfAMusicBlock}                             from './loader.types';
-import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from './InstrumentProperty';
-import type {Instrument}                                                from '../../../instrument/Instrument';
-import type {ObjectHolder}                                              from '../../../../util/holder/ObjectHolder';
-import type {PossibleInstrument}                                        from '../../../instrument/loader.types';
-import type {ProviderWithKey}                                           from '../../../../util/provider/ProviderWithKey';
+import type {CanMakeASoundOutOfAMusicBlock}                             from './loader.types'
+import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from './InstrumentProperty'
+import type {Instrument}                                                from '../../../instrument/Instrument'
+import type {ObjectHolder}                                              from '../../../../util/holder/ObjectHolder'
+import type {PossibleInstrument}                                        from '../../../instrument/loader.types'
+import type {ProviderWithKey}                                           from '../../../../util/provider/ProviderWithKey'
 
-import {AbstractProvider}            from '../../../../util/provider/AbstractProvider';
-import {InstrumentPropertyContainer} from './InstrumentProperty.container';
+import {AbstractProvider}            from '../../../../util/provider/AbstractProvider'
+import {InstrumentPropertyContainer} from './InstrumentProperty.container'
 
 /**
  * @singleton
@@ -17,14 +17,14 @@ export class InstrumentPropertyProvider
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: InstrumentPropertyProvider;
+    static #instance?: InstrumentPropertyProvider
 
     private constructor() {
-        super();
+        super()
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
@@ -32,7 +32,7 @@ export class InstrumentPropertyProvider
     public get(key: Key, ...argumentsReceived: ArgumentsReceived): InstrumentProperty {
         return this.everyContainers.if(map => map.has(key))
             .isNotMet(map => map.set(key, new InstrumentPropertyContainer(...argumentsReceived),))
-            .get(key);
+            .get(key)
     }
 
 }
@@ -40,8 +40,8 @@ export class InstrumentPropertyProvider
 type Key = readonly [
     name: PossibleInstrument,
     canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,
-];
+]
 type ArgumentsReceived = readonly [
     intruments: ObjectHolder<readonly Instrument[]>,
     canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlockProperty,
-];
+]

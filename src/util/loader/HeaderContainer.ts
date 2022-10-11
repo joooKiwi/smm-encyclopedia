@@ -1,29 +1,29 @@
-import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderReceived, SimpleHeaderTypeOrConvertor} from './CSVLoader.types';
-import {PredefinedConverter}                                                                                                                                from './converter/PredefinedConverter';
-import {GenericStringToAnyConverter}                                                                                                                        from './converter/GenericStringToAnyConverter';
-import {CSVLoader}                                                                                                                                          from './CSVLoader';
+import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderReceived, SimpleHeaderTypeOrConvertor} from './CSVLoader.types'
+import {PredefinedConverter}                                                                                                                                from './converter/PredefinedConverter'
+import {GenericStringToAnyConverter}                                                                                                                        from './converter/GenericStringToAnyConverter'
+import {CSVLoader}                                                                                                                                          from './CSVLoader'
 
 export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayOfHeaders, > {
 
-    readonly #header: SimpleHeader<H>;
-    readonly #otherHeaders: A;
+    readonly #header: SimpleHeader<H>
+    readonly #otherHeaders: A
 
-    readonly #originalValues: Set<SimpleHeaderTypeOrConvertor>;
-    readonly #headerTypeOrConvertorSet: Set<(| PredefinedConverter | SimpleHeader<A[number]> | number | boolean | string | ConversionCallbackToConverter)>;
-    readonly #predefinedConvertors: Set<PredefinedConverter>;
-    readonly #followingHeaders: Set<SimpleHeader<A[number]>>;
-    readonly #singleValuesToValidate: Set<| number | boolean | string>;
-    readonly #convertorCallbacks: Set<ConversionCallbackToConverter>;
+    readonly #originalValues: Set<SimpleHeaderTypeOrConvertor>
+    readonly #headerTypeOrConvertorSet: Set<(| PredefinedConverter | SimpleHeader<A[number]> | number | boolean | string | ConversionCallbackToConverter)>
+    readonly #predefinedConvertors: Set<PredefinedConverter>
+    readonly #followingHeaders: Set<SimpleHeader<A[number]>>
+    readonly #singleValuesToValidate: Set<| number | boolean | string>
+    readonly #convertorCallbacks: Set<ConversionCallbackToConverter>
 
     public constructor(header: SimpleHeaderReceived<H>, otherHeaders: A,) {
-        this.#header = header.toLowerCase() as SimpleHeader<H>;
-        this.#otherHeaders = otherHeaders;
-        this.#originalValues = new Set();
-        this.#headerTypeOrConvertorSet = new Set();
-        this.#predefinedConvertors = new Set();
-        this.#followingHeaders = new Set();
-        this.#singleValuesToValidate = new Set();
-        this.#convertorCallbacks = new Set();
+        this.#header = header.toLowerCase() as SimpleHeader<H>
+        this.#otherHeaders = otherHeaders
+        this.#originalValues = new Set()
+        this.#headerTypeOrConvertorSet = new Set()
+        this.#predefinedConvertors = new Set()
+        this.#followingHeaders = new Set()
+        this.#singleValuesToValidate = new Set()
+        this.#convertorCallbacks = new Set()
     }
 
     //region -------------------- Getter methods --------------------
@@ -32,14 +32,14 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
      * The header computed for this instance.
      */
     public get header(): SimpleHeader<H> {
-        return this.#header;
+        return this.#header
     }
 
     /**
      * Every headers used as a comparison on the {@link followingHeaders following headers method}.
      */
     public get otherHeaders(): A {
-        return this.#otherHeaders;
+        return this.#otherHeaders
     }
 
 
@@ -47,7 +47,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
      * The values received in order of addition by {@link addHeaderTypeOrConvertor}.
      */
     public get originalValues(): ReadonlySet<SimpleHeaderTypeOrConvertor> {
-        return this.#originalValues;
+        return this.#originalValues
     }
 
     /**
@@ -61,7 +61,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
      * @see _addConvertorCallbacks
      */
     public get headerTypeOrConvertorSet(): ReadonlySet<| PredefinedConverter | SimpleHeader<A[number]> | number | boolean | string | ConversionCallbackToConverter> {
-        return this.#headerTypeOrConvertorSet;
+        return this.#headerTypeOrConvertorSet
     }
 
 
@@ -71,7 +71,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
      *  @see PredefinedConverter
      */
     public get predefinedConvertors(): ReadonlySet<PredefinedConverter> {
-        return this.#predefinedConvertors;
+        return this.#predefinedConvertors
     }
 
     /**
@@ -79,21 +79,21 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
      * or a reference (while doing validations)
      */
     public get followingHeaders(): ReadonlySet<SimpleHeader<A[number]>> {
-        return this.#followingHeaders;
+        return this.#followingHeaders
     }
 
     /**
      * The single values to be used while doing validations.
      */
     public get singleValuesToValidate(): ReadonlySet<| boolean | number | string> {
-        return this.#singleValuesToValidate;
+        return this.#singleValuesToValidate
     }
 
     /**
      * A custom callback used to do some conversions.
      */
     public get convertorCallbacks(): ReadonlySet<ConversionCallbackToConverter> {
-        return this.#convertorCallbacks;
+        return this.#convertorCallbacks
     }
 
     /**
@@ -105,7 +105,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
      * @see convertorCallbacks
      */
     public get amountOfValidator(): this['headerTypeOrConvertorSet']['size'] {
-        return this.headerTypeOrConvertorSet.size;
+        return this.headerTypeOrConvertorSet.size
     }
 
 
@@ -113,51 +113,51 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
     //region -------------------- Addition methods --------------------
 
     protected _addPredefinedConvertor(originalValue: string, predefinedConvertor: PredefinedConverter,): this {
-        this.#originalValues.add(originalValue);
-        this.#headerTypeOrConvertorSet.add(predefinedConvertor);
-        this.#predefinedConvertors.add(predefinedConvertor);
+        this.#originalValues.add(originalValue)
+        this.#headerTypeOrConvertorSet.add(predefinedConvertor)
+        this.#predefinedConvertors.add(predefinedConvertor)
         return this.predefinedConvertors.has(PredefinedConverter.STRING) || this.predefinedConvertors.has(PredefinedConverter.NULLABLE_STRING) || this.predefinedConvertors.has(PredefinedConverter.EMPTYABLE_STRING)
             ? this._reorderPredefinedConvertorIfContainStringConvertor()
-            : this;
+            : this
     }
 
     protected _reorderPredefinedConvertorIfContainStringConvertor(): this {
         if (this.predefinedConvertors.size === 1)
-            return this;
+            return this
 
-        const temporaryPredefinedConvertors = Array.from(this.predefinedConvertors);
-        const predefinedStringConvertor = temporaryPredefinedConvertors.find(predefinedConvertor => predefinedConvertor === PredefinedConverter.STRING || predefinedConvertor === PredefinedConverter.NULLABLE_STRING || predefinedConvertor === PredefinedConverter.EMPTYABLE_STRING);
+        const temporaryPredefinedConvertors = Array.from(this.predefinedConvertors)
+        const predefinedStringConvertor = temporaryPredefinedConvertors.find(predefinedConvertor => predefinedConvertor === PredefinedConverter.STRING || predefinedConvertor === PredefinedConverter.NULLABLE_STRING || predefinedConvertor === PredefinedConverter.EMPTYABLE_STRING)
         if (predefinedStringConvertor == null)
-            return this;
-        const predefinedStringConvertorIndex = temporaryPredefinedConvertors.findIndex(predefinedConvertor => predefinedConvertor === predefinedStringConvertor);
+            return this
+        const predefinedStringConvertorIndex = temporaryPredefinedConvertors.findIndex(predefinedConvertor => predefinedConvertor === predefinedStringConvertor)
         if (predefinedStringConvertorIndex === this.predefinedConvertors.size - 1)
-            return this;
+            return this
 
-        this.#predefinedConvertors.delete(predefinedStringConvertor);
-        this.#predefinedConvertors.add(predefinedStringConvertor);
+        this.#predefinedConvertors.delete(predefinedStringConvertor)
+        this.#predefinedConvertors.add(predefinedStringConvertor)
 
-        return this;
+        return this
     }
 
     protected _addFollowingHeader(originalValue: string, header: SimpleHeader<A[number]>,): this {
-        this.#originalValues.add(originalValue);
-        this.#headerTypeOrConvertorSet.add(header);
-        this.#followingHeaders.add(header);
-        return this;
+        this.#originalValues.add(originalValue)
+        this.#headerTypeOrConvertorSet.add(header)
+        this.#followingHeaders.add(header)
+        return this
     }
 
     protected _addSingleValueToValidate(value: | string | number | boolean,): this {
-        this.#originalValues.add(value);
-        this.#headerTypeOrConvertorSet.add(value);
-        this.#singleValuesToValidate.add(value);
-        return this;
+        this.#originalValues.add(value)
+        this.#headerTypeOrConvertorSet.add(value)
+        this.#singleValuesToValidate.add(value)
+        return this
     }
 
     protected _addConvertorCallbacks(convertorCallback: ConversionCallbackToConverter,): this {
-        this.#originalValues.add(convertorCallback);
-        this.#headerTypeOrConvertorSet.add(convertorCallback);
-        this.#convertorCallbacks.add(convertorCallback);
-        return this;
+        this.#originalValues.add(convertorCallback)
+        this.#headerTypeOrConvertorSet.add(convertorCallback)
+        this.#convertorCallbacks.add(convertorCallback)
+        return this
     }
 
     //endregion -------------------- Addition methods --------------------
@@ -165,47 +165,47 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
     public addHeaderTypeOrConvertor(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeOrConvertor,): this {
         switch (typeof headerTypeOrConvertor) {
             case 'string':
-                const predefinedConvertor = PredefinedConverter.getValue(headerTypeOrConvertor);
+                const predefinedConvertor = PredefinedConverter.getValue(headerTypeOrConvertor)
                 if (predefinedConvertor == null) {
                     if (this.otherHeaders.includes(headerTypeOrConvertor))
-                        this._addFollowingHeader(headerTypeOrConvertor, headerTypeOrConvertor.toLowerCase() as SimpleHeader<A[number]>);
+                        this._addFollowingHeader(headerTypeOrConvertor, headerTypeOrConvertor.toLowerCase() as SimpleHeader<A[number]>)
                     else
-                        this._addSingleValueToValidate(headerTypeOrConvertor,);
+                        this._addSingleValueToValidate(headerTypeOrConvertor,)
                 } else
-                    this._addPredefinedConvertor(headerTypeOrConvertor, predefinedConvertor);
-                break;
+                    this._addPredefinedConvertor(headerTypeOrConvertor, predefinedConvertor)
+                break
             case 'boolean':
             case 'number':
-                this._addSingleValueToValidate(headerTypeOrConvertor,);
-                break;
+                this._addSingleValueToValidate(headerTypeOrConvertor,)
+                break
             case 'object':
-                headerTypeOrConvertor.forEach(headerTypeOrConvertor => this.addHeaderTypeOrConvertor(headerTypeOrConvertor));
-                break;
+                headerTypeOrConvertor.forEach(headerTypeOrConvertor => this.addHeaderTypeOrConvertor(headerTypeOrConvertor))
+                break
             default:
-                this._addConvertorCallbacks(headerTypeOrConvertor,);
-                break;
+                this._addConvertorCallbacks(headerTypeOrConvertor,)
+                break
         }
-        return this;
+        return this
     }
 
     public createConversionCallbacks(): readonly ConversionCallbackToConverter[] {
-        return Array.from(this.headerTypeOrConvertorSet).map(headerTypeOrConvertor => this._createSingleConversionCallback(headerTypeOrConvertor));
+        return Array.from(this.headerTypeOrConvertorSet).map(headerTypeOrConvertor => this._createSingleConversionCallback(headerTypeOrConvertor))
     }
 
     protected _createSingleConversionCallback(headerTypeOrConvertor: | PredefinedConverter | SimpleHeader<A[number]> | number | boolean | string | ConversionCallbackToConverter,): ConversionCallbackToConverter {
         switch (typeof headerTypeOrConvertor) {
             case 'string':
                 // if(this.followingHeaders.includes(predefinedConvertorOrHeaderOrValueOrConversionCallback))
-                //     //TODO create header following callback;
-                return value => PredefinedConverter.SINGLE_STRING.newConvertor(value, headerTypeOrConvertor,);
+                //     //TODO create header following callback
+                return value => PredefinedConverter.SINGLE_STRING.newConvertor(value, headerTypeOrConvertor,)
             case 'boolean':
-                return value => PredefinedConverter.SINGLE_BOOLEAN.newConvertor(value, headerTypeOrConvertor,);
+                return value => PredefinedConverter.SINGLE_BOOLEAN.newConvertor(value, headerTypeOrConvertor,)
             case 'number':
-                return value => PredefinedConverter.SINGLE_NUMBER.newConvertor(value, headerTypeOrConvertor,);
+                return value => PredefinedConverter.SINGLE_NUMBER.newConvertor(value, headerTypeOrConvertor,)
         }
         if (headerTypeOrConvertor instanceof PredefinedConverter)
-            return value => headerTypeOrConvertor.newConvertor(value, null,);
-        return value => new GenericStringToAnyConverter(value, CSVLoader.CUSTOM_CALLBACK_NAME, CSVLoader.TRUE_CALLBACK, headerTypeOrConvertor,);
+            return value => headerTypeOrConvertor.newConvertor(value, null,)
+        return value => new GenericStringToAnyConverter(value, CSVLoader.CUSTOM_CALLBACK_NAME, CSVLoader.TRUE_CALLBACK, headerTypeOrConvertor,)
     }
 
 }

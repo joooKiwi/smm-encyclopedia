@@ -1,10 +1,10 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types';
-import type {OfficialNotifications as RealEnum}                                                                                                                                                                                                            from './OfficialNotifications';
+import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
+import type {OfficialNotifications as RealEnum}                                                                                                                                                                                                            from './OfficialNotifications'
 
 
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue;
-export type PossibleStringValue = | Names | PossibleEnglishName | PossibleEnglishNameWithEveryAmount;
-export type PossibleValue = | RealEnum | string | number | null | undefined;
+export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
+export type PossibleStringValue = | Names | PossibleEnglishName | PossibleEnglishNameWithEveryAmount
+export type PossibleValue = | RealEnum | string | number | null | undefined
 
 enum Enum {
 
@@ -68,7 +68,7 @@ enum Enum {
 
 //region -------------------- Number types --------------------
 
-export type Ordinals = typeof Enum[Names];
+export type Ordinals = typeof Enum[Names]
 
 export type PossibleAmount =
     | PossibleAmount_ReceiveXPlay | PossibleAmount_X1stClear
@@ -77,24 +77,24 @@ export type PossibleAmount =
     | PossibleAmount_ClearCourseInCoop | PossibleAmount_EarnMakerPoint
     | PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert
     | PossibleAmount_XStampInNinjiSpeedrun | PossibleAmount_ClearXSuperWorld
-    ;
-export type PossibleAmount_ReceiveXPlay = | 100 | 500 | 1000 | 2000 | 5000;
-export type PossibleAmount_X1stClear = | 1 | 10 | 100;
-export type PossibleAmount_ClearXCourse = | 1 | 10 | 100 | 500 | 1000 | 3000 | 5000 | 10000;
-export type PossibleAmount_PlayXCourse = | 10 | 100 | 500 | 1000 | 3000;
-export type PossibleAmount_HoldXWorldRecord = | 10 | 100 | 500;
-export type PossibleAmount_WinXMatchInVS = | 1 | 2 | 5 | 10;
-export type PossibleAmount_ClearCourseInCoop = | 1 | 10 | 100;
-export type PossibleAmount_EarnMakerPoint = | 2000 | 5000 | 7000;
-export type PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal = | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | 300 | 500 | 1000;
-export type PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert = | 10 | 100;
-export type PossibleAmount_XStampInNinjiSpeedrun = | 1 | 4 | 7 | 10 | 11 | 14 | 17 | 20;
-export type PossibleAmount_ClearXSuperWorld = | 1 | 2 | 3 | 4 | 5 | 10;
+    
+export type PossibleAmount_ReceiveXPlay = | 100 | 500 | 1000 | 2000 | 5000
+export type PossibleAmount_X1stClear = | 1 | 10 | 100
+export type PossibleAmount_ClearXCourse = | 1 | 10 | 100 | 500 | 1000 | 3000 | 5000 | 10000
+export type PossibleAmount_PlayXCourse = | 10 | 100 | 500 | 1000 | 3000
+export type PossibleAmount_HoldXWorldRecord = | 10 | 100 | 500
+export type PossibleAmount_WinXMatchInVS = | 1 | 2 | 5 | 10
+export type PossibleAmount_ClearCourseInCoop = | 1 | 10 | 100
+export type PossibleAmount_EarnMakerPoint = | 2000 | 5000 | 7000
+export type PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal = | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | 300 | 500 | 1000
+export type PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert = | 10 | 100
+export type PossibleAmount_XStampInNinjiSpeedrun = | 1 | 4 | 7 | 10 | 11 | 14 | 17 | 20
+export type PossibleAmount_ClearXSuperWorld = | 1 | 2 | 3 | 4 | 5 | 10
 
 //endregion -------------------- Number types --------------------
 //region -------------------- String types --------------------
 
-export type Names = keyof typeof Enum;
+export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
 
@@ -107,7 +107,7 @@ export type PossibleEnglishNameWithEveryAmount =
     | PossibleEnglishName_ClearCourseInCoop<PossibleAmount_ClearCourseInCoop> | PossibleEnglishName_EarnMakerPoint<PossibleAmount_EarnMakerPoint>
     | PossibleEnglishName_HighScoreInEndlessMarioEasy<PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal> | PossibleEnglishName_HighScoreInEndlessMarioNormal<PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal>
     | PossibleEnglishName_HighScoreInEndlessMarioExpert<PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert> | PossibleEnglishName_HighScoreInEndlessMarioSuperExpert<PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert>
-    | PossibleEnglishName_StampInNinjiSpeedrun<PossibleAmount_XStampInNinjiSpeedrun> | PossibleEnglishName_ClearSuperWorld<PossibleAmount_ClearXSuperWorld>;
+    | PossibleEnglishName_StampInNinjiSpeedrun<PossibleAmount_XStampInNinjiSpeedrun> | PossibleEnglishName_ClearSuperWorld<PossibleAmount_ClearXSuperWorld>
 export type PossibleEnglishNameWithAmount<T extends | 1 | '#' = | 1 | '#'> =
     | PossibleEnglishName_ReceivePlay<Exclude<T, 1>> | PossibleEnglishName_1stClear<T>
     | PossibleEnglishName_ClearCourse<T> | PossibleEnglishName_PlayCourse
@@ -115,27 +115,27 @@ export type PossibleEnglishNameWithAmount<T extends | 1 | '#' = | 1 | '#'> =
     | PossibleEnglishName_ClearCourseInCoop<T> | PossibleEnglishName_EarnMakerPoint<Exclude<T, 1>>
     | PossibleEnglishName_HighScoreInEndlessMarioEasy<Exclude<T, 1>> | PossibleEnglishName_HighScoreInEndlessMarioNormal<Exclude<T, 1>>
     | PossibleEnglishName_HighScoreInEndlessMarioExpert<Exclude<T, 1>> | PossibleEnglishName_HighScoreInEndlessMarioSuperExpert<Exclude<T, 1>>
-    | PossibleEnglishName_StampInNinjiSpeedrun<T> | PossibleEnglishName_ClearSuperWorld<T>;
+    | PossibleEnglishName_StampInNinjiSpeedrun<T> | PossibleEnglishName_ClearSuperWorld<T>
 
-export type PossibleEnglishName_ReceivePlay<T extends | PossibleAmount_ReceiveXPlay | '#' = '#', > = `Receive ${T} play`;
-export type PossibleEnglishName_1stClear<T extends | PossibleAmount_X1stClear | '#' = | '#' | 1, > = `${T} of 1st clear to finish a course`;
-export type PossibleEnglishName_ClearCourse<T extends | PossibleAmount_ClearXCourse | '#' = | '#' | 1, > = `Clear ${T} course`;
-export type PossibleEnglishName_PlayCourse<T extends | PossibleAmount_PlayXCourse | '#' = '#', > = `Play ${T} course`;
-export type PossibleEnglishName_HoldWorldRecord<T extends | PossibleAmount_HoldXWorldRecord | '#' = '#', > = `Hold ${T} world record`;
-export type PossibleEnglishName_WinMatchInVS<T extends | PossibleAmount_WinXMatchInVS | '#' = | '#' | 1, > = `Win ${T} match in Multiplayer VS`;
-export type PossibleEnglishName_ClearCourseInCoop<T extends | PossibleAmount_ClearCourseInCoop | '#' = | '#' | 1, > = `Clear ${T} course in Multiplayer Co-op`;
-export type PossibleEnglishName_EarnMakerPoint<T extends | PossibleAmount_EarnMakerPoint | '#' = '#', > = `Earn ${T} Maker Point`;
-export type PossibleEnglishName_HighScoreInEndlessMarioEasy<T extends | PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal | '#' = '#', > = `High score of ${T} in Endless Challenge (easy)`;
-export type PossibleEnglishName_HighScoreInEndlessMarioNormal<T extends | PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal | '#' = '#', > = `High score of ${T} in Endless Challenge (normal)`;
-export type PossibleEnglishName_HighScoreInEndlessMarioExpert<T extends | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | '#' = '#', > = `High score of ${T} in Endless Challenge (expert)`;
-export type PossibleEnglishName_HighScoreInEndlessMarioSuperExpert<T extends | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | '#' = '#', > = `High score of ${T} in Endless Challenge (super expert)`;
-export type PossibleEnglishName_StampInNinjiSpeedrun<T extends | PossibleAmount_XStampInNinjiSpeedrun | '#' = | '#' | 1, > = `Collect ${T} stamp in the Ninji Speedruns`;
-export type PossibleEnglishName_ClearSuperWorld<T extends | PossibleAmount_ClearXSuperWorld | '#' = | '#' | 1, > = `Clear ${T} Super World`;
+export type PossibleEnglishName_ReceivePlay<T extends | PossibleAmount_ReceiveXPlay | '#' = '#', > = `Receive ${T} play`
+export type PossibleEnglishName_1stClear<T extends | PossibleAmount_X1stClear | '#' = | '#' | 1, > = `${T} of 1st clear to finish a course`
+export type PossibleEnglishName_ClearCourse<T extends | PossibleAmount_ClearXCourse | '#' = | '#' | 1, > = `Clear ${T} course`
+export type PossibleEnglishName_PlayCourse<T extends | PossibleAmount_PlayXCourse | '#' = '#', > = `Play ${T} course`
+export type PossibleEnglishName_HoldWorldRecord<T extends | PossibleAmount_HoldXWorldRecord | '#' = '#', > = `Hold ${T} world record`
+export type PossibleEnglishName_WinMatchInVS<T extends | PossibleAmount_WinXMatchInVS | '#' = | '#' | 1, > = `Win ${T} match in Multiplayer VS`
+export type PossibleEnglishName_ClearCourseInCoop<T extends | PossibleAmount_ClearCourseInCoop | '#' = | '#' | 1, > = `Clear ${T} course in Multiplayer Co-op`
+export type PossibleEnglishName_EarnMakerPoint<T extends | PossibleAmount_EarnMakerPoint | '#' = '#', > = `Earn ${T} Maker Point`
+export type PossibleEnglishName_HighScoreInEndlessMarioEasy<T extends | PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal | '#' = '#', > = `High score of ${T} in Endless Challenge (easy)`
+export type PossibleEnglishName_HighScoreInEndlessMarioNormal<T extends | PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal | '#' = '#', > = `High score of ${T} in Endless Challenge (normal)`
+export type PossibleEnglishName_HighScoreInEndlessMarioExpert<T extends | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | '#' = '#', > = `High score of ${T} in Endless Challenge (expert)`
+export type PossibleEnglishName_HighScoreInEndlessMarioSuperExpert<T extends | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert | '#' = '#', > = `High score of ${T} in Endless Challenge (super expert)`
+export type PossibleEnglishName_StampInNinjiSpeedrun<T extends | PossibleAmount_XStampInNinjiSpeedrun | '#' = | '#' | 1, > = `Collect ${T} stamp in the Ninji Speedruns`
+export type PossibleEnglishName_ClearSuperWorld<T extends | PossibleAmount_ClearXSuperWorld | '#' = | '#' | 1, > = `Clear ${T} Super World`
 
 //endregion -------------------- English name (with amount) --------------------
 
 export type PossibleEnglishNameWithOnlyAmount =
-    | Exclude<PossibleEnglishName, PossibleEnglishNameWithAmount> | PossibleEnglishNameWithEveryAmount;
+    | Exclude<PossibleEnglishName, PossibleEnglishNameWithAmount> | PossibleEnglishNameWithEveryAmount
 export type PossibleEnglishName =
     | `Finish all jobs${| '' | ` (${| 'Undodog' | 'Yamamura' | 'Partrick' | 'Soundfrog' | 'Mr. Eraser'})`}`
     | 'Hit Middle ? Block near Purple Toad'
@@ -168,12 +168,12 @@ export type PossibleEnglishName =
 
 
     | PossibleEnglishName_StampInNinjiSpeedrun
-    | 'Upload a Super World' | PossibleEnglishName_ClearSuperWorld;
+    | 'Upload a Super World' | PossibleEnglishName_ClearSuperWorld
 
 //endregion -------------------- English name --------------------
 //region -------------------- Translation key --------------------
 
-type TranslationPartThatCanContainMultiple<T extends string, > = | `${T} - 1` | T;
+type TranslationPartThatCanContainMultiple<T extends string, > = | `${T} - 1` | T
 export type PossibleTranslationKey =
     | `finish ${| `all ${| 'job' | '3 job (character)'}` | 'X job (Peach)' | 'rebuilding castle'}` | 'hit ? Block near Purple Toad'
     | `course.${| `receive ${| 'like' | 'comment' | 'feedback (a lot)' | 'play'}`
@@ -189,23 +189,23 @@ export type PossibleTranslationKey =
     | 'rank'
     | 'medal' | 'place'
     | 'stamp'
-    | `super world.${| 'upload' | TranslationPartThatCanContainMultiple<'clear'>}`;
+    | `super world.${| 'upload' | TranslationPartThatCanContainMultiple<'clear'>}`
 
-export type PossibleAdditionalTranslationKey = `position.${| 'place' | 'job'}.${1 | 2 | 3}`;
+export type PossibleAdditionalTranslationKey = `position.${| 'place' | 'job'}.${1 | 2 | 3}`
 
 //endregion -------------------- Translation key --------------------
 
 //endregion -------------------- String types --------------------
 //region -------------------- Instance types --------------------
 
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>;
+export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
 
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>;
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>;
+export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
+export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
 
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>;
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>;
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>;
+export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
+export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
+export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
 
 //endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
@@ -269,6 +269,6 @@ export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
     SimpleEnum<T>['UPLOAD_A_SUPER_WORLD'],
     SimpleEnum<T>['CLEAR_1_SUPER_WORLD'], SimpleEnum<T>['CLEAR_X_SUPER_WORLD'],
 
-];
+]
 
 //endregion -------------------- Array types --------------------

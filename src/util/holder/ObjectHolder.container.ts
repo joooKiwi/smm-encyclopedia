@@ -1,12 +1,12 @@
-import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder';
+import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder'
 
 export class ObjectHolderContainer<T>
     implements ObjectHolder<T> {
 
-    readonly #value;
+    readonly #value
 
     public constructor(value: PossibleValueOnObjectHolder<T>,) {
-        this.#value = ObjectHolderContainer.#retrieveValue(value,);
+        this.#value = ObjectHolderContainer.#retrieveValue(value,)
     }
 
     static #retrieveValue<T, >(value: PossibleValueOnObjectHolder<T>,): T {
@@ -16,11 +16,11 @@ export class ObjectHolderContainer<T>
                 ? value()
                 : typeof value == 'object' && 'get' in value
                     ? this.#retrieveValue(value.get,)
-                    : value;
+                    : value
     }
 
     public get get(): T {
-        return this.#value;
+        return this.#value
     }
 
 }

@@ -1,63 +1,63 @@
-import {EntityBehaviour}                          from './EntityBehaviour';
-import {EntityBehaviourLink}                      from './properties/EntityBehaviourLink';
-import {EntityBehaviourIsInOnly}                  from './properties/EntityBehaviourIsInOnly';
-import {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types';
+import {EntityBehaviour}                          from './EntityBehaviour'
+import {EntityBehaviourLink}                      from './properties/EntityBehaviourLink'
+import {EntityBehaviourIsInOnly}                  from './properties/EntityBehaviourIsInOnly'
+import {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
 
 export class EntityBehaviourContainer
     implements EntityBehaviour {
 
     //region -------------------- Fields --------------------
 
-    readonly #acronym;
-    readonly #translationKey;
-    readonly #isInOnlyContainer;
-    readonly #linkContainer;
+    readonly #acronym
+    readonly #translationKey
+    readonly #isInOnlyContainer
+    readonly #linkContainer
 
     //endregion -------------------- Fields --------------------
 
     public constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKeys, isInOnly: EntityBehaviourIsInOnly, link: EntityBehaviourLink,) {
-        this.#acronym = acronym;
-        this.#translationKey = translationKey;
-        this.#isInOnlyContainer = isInOnly;
-        this.#linkContainer = link;
+        this.#acronym = acronym
+        this.#translationKey = translationKey
+        this.#isInOnlyContainer = isInOnly
+        this.#linkContainer = link
     }
 
 
     public get acronym(): PossibleAcronym {
-        return this.#acronym;
+        return this.#acronym
     }
 
     public get translationKey(): PossibleTranslationKeys {
-        return this.#translationKey;
+        return this.#translationKey
     }
 
     //region -------------------- Is in only --------------------
 
     public get isInOnlyContainer() {
-        return this.#isInOnlyContainer;
+        return this.#isInOnlyContainer
     }
 
     public get isOnlineOnly() {
-        return this.isInOnlyContainer.isOnlineOnly;
+        return this.isInOnlyContainer.isOnlineOnly
     }
 
     public get isMultiplayerOnly() {
-        return this.isInOnlyContainer.isMultiplayerOnly;
+        return this.isInOnlyContainer.isMultiplayerOnly
     }
 
     //endregion -------------------- Is in only --------------------
     //region -------------------- Links --------------------
 
     public get linkContainer() {
-        return this.#linkContainer;
+        return this.#linkContainer
     }
 
     public get groupLink() {
-        return this.linkContainer.groupLink;
+        return this.linkContainer.groupLink
     }
 
     public get entityLink() {
-        return this.linkContainer.entityLink;
+        return this.linkContainer.entityLink
     }
 
     //endregion -------------------- Links --------------------

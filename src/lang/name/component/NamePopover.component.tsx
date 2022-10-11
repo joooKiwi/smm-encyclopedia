@@ -1,15 +1,15 @@
-import {Popover}                                       from 'bootstrap';
-import {Component, type Dispatch, type SetStateAction} from 'react';
+import {Popover}                                       from 'bootstrap'
+import {Component, type Dispatch, type SetStateAction} from 'react'
 
-import type {Name}                                                                         from '../Name';
-import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from './Name.properties';
-import type {ReactComponent} from '../../../util/react/ReactComponent';
-import type {ReactElement}   from '../../../util/react/ReactProperties';
+import type {Name}                                                                         from '../Name'
+import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from './Name.properties'
+import type {ReactComponent} from '../../../util/react/ReactComponent'
+import type {ReactElement}   from '../../../util/react/ReactProperties'
 
-import ContentTranslationComponent from '../../components/ContentTranslationComponent';
-import {ProjectLanguages}          from '../../ProjectLanguages';
-import TextComponent               from '../../../app/tools/text/TextComponent';
-import TextPopover                 from '../../../bootstrap/popover/TextPopover';
+import ContentTranslationComponent from '../../components/ContentTranslationComponent'
+import {ProjectLanguages}          from '../../ProjectLanguages'
+import TextComponent               from '../../../app/tools/text/TextComponent'
+import TextPopover                 from '../../../bootstrap/popover/TextPopover'
 
 /**
  * @reactComponent
@@ -18,44 +18,44 @@ export default class NamePopoverComponent
     extends Component<NamePopoverProperties, NamePopoverStates>
     implements ReactComponent {
 
-    readonly #currentLanguageTextContent;
+    readonly #currentLanguageTextContent
 
     constructor(props: NamePopoverProperties,) {
-        super(props,);
-        this.#currentLanguageTextContent = ProjectLanguages.currentLanguage.get<string>(this.otherProperties.name);
+        super(props,)
+        this.#currentLanguageTextContent = ProjectLanguages.currentLanguage.get<string>(this.otherProperties.name)
         this.state = {
             element: <TextComponent key={`${this.id} - temporary`} content={this.#currentLanguageTextContent}/>,
-        };
+        }
     }
 
     public get id(): string {
-        return this.props.id;
+        return this.props.id
     }
 
     public get listId(): string {
-        return this.props.listId;
+        return this.props.listId
     }
 
     public get setDoesDisplayPopover(): Dispatch<SetStateAction<boolean>> {
-        return this.props.setDoesDisplayPopover;
+        return this.props.setDoesDisplayPopover
     }
 
     public get otherProperties(): Omit<NameProperties, 'id'> {
-        return this.props.otherProperties;
+        return this.props.otherProperties
     }
 
     public get name(): Name<string> {
-        return this.otherProperties.name;
+        return this.otherProperties.name
     }
 
     public get popoverOrientation(): | PopoverOrientation | undefined {
-        return this.otherProperties.popoverOrientation;
+        return this.otherProperties.popoverOrientation
     }
 
 
     public override componentDidMount(): void {
-        const id = this.id;
-        const setDoesDisplayPopover = this.setDoesDisplayPopover;
+        const id = this.id
+        const setDoesDisplayPopover = this.setDoesDisplayPopover
 
         this.setState({
             element: <ContentTranslationComponent key={`${id} - span popover (translation)`}>{translation =>
@@ -64,11 +64,11 @@ export default class NamePopoverComponent
                     {this.#currentLanguageTextContent}
                 </TextPopover>
             }</ContentTranslationComponent>,
-        });
+        })
     }
 
     public override render(): ReactElement {
-        return this.state.element;
+        return this.state.element
     }
 
 }
@@ -86,9 +86,9 @@ function createOption(elementId: string, popoverOrientation: | PopoverOrientatio
         content: document.getElementById(elementId)!,
         html: true,
         trigger: 'hover focus',
-    };
+    }
     if (popoverOrientation != null)
-        option.placement = popoverOrientation;
+        option.placement = popoverOrientation
 
-    return option;
+    return option
 }

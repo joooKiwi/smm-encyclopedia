@@ -1,5 +1,5 @@
-import type {HTMLIProperties} from '../../../../util/react/html/HTMLIProperties';
-import type {ReactProperties} from '../../../../util/react/ReactProperties';
+import type {HTMLIProperties} from '../../../../util/react/html/HTMLIProperties'
+import type {ReactProperties} from '../../../../util/react/ReactProperties'
 
 export interface ImageFromVariableProperties
     extends ReactProperties, HTMLIProperties {
@@ -25,4 +25,4 @@ export type PossibleVariableImage =
     | 'yoshi'
     | `${| 'dry-bones' | 'buzzy' | 'spiny'}-shell`
     | 'lakitu-cloud' | 'clown-car'
-    | 'swinging-claw';
+    | 'swinging-claw'

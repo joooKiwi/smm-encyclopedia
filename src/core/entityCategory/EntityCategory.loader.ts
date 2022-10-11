@@ -1,14 +1,14 @@
-import resource from '../../resources/compiled/Entity category.json';
+import resource from '../../resources/compiled/Entity category.json'
 
-import type {EntityCategory}                            from './EntityCategory';
-import type {EntityCategoryTemplate}                    from './EntityCategory.template';
-import type {Loader}                                    from '../../util/loader/Loader';
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types';
-import type {PossibleEnglishName}                       from './EntityCategories.types';
+import type {EntityCategory}                            from './EntityCategory'
+import type {EntityCategoryTemplate}                    from './EntityCategory.template'
+import type {Loader}                                    from '../../util/loader/Loader'
+import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
+import type {PossibleEnglishName}                       from './EntityCategories.types'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder';
-import {CSVLoader}               from '../../util/loader/CSVLoader';
-import {EntityCategoryBuilder}   from './EntityCategory.builder';
+import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
+import {CSVLoader}               from '../../util/loader/CSVLoader'
+import {EntityCategoryBuilder}   from './EntityCategory.builder'
 
 //region -------------------- CSV array related types --------------------
 
@@ -35,8 +35,8 @@ enum Headers {
 //region -------------------- Properties --------------------
 
 type PropertiesArray = [
-    ...LanguagesPropertyArray
-];
+    ...LanguagesPropertyArray,
+]
 
 //endregion -------------------- Properties --------------------
 
@@ -54,22 +54,22 @@ export class EntityCategoryLoader
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EntityCategoryLoader;
+    static #instance?: EntityCategoryLoader
 
     private constructor() {
     }
 
     public static get get() {
-        return this.#instance ??= new this();
+        return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
 
-    #map?: Map<PossibleEnglishName, EntityCategory>;
+    #map?: Map<PossibleEnglishName, EntityCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, EntityCategory> {
         if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, EntityCategory>();
+            const references = new Map<PossibleEnglishName, EntityCategory>()
 
             //region -------------------- CSV Loader --------------------
 
@@ -77,17 +77,17 @@ export class EntityCategoryLoader
                 .setDefaultConversion('emptyable string')
 
                 .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load();
+                .load()
 
             //endregion -------------------- CSV Loader --------------------
 
-            console.log('-------------------- "entity category" has been loaded --------------------');// temporary console.log
-            console.log(references);// temporary console.log
-            console.log('-------------------- "entity category" has been loaded --------------------');// temporary console.log
+            console.log('-------------------- "entity category" has been loaded --------------------')// temporary console.log
+            console.log(references)// temporary console.log
+            console.log('-------------------- "entity category" has been loaded --------------------')// temporary console.log
 
-            this.#map = references;
+            this.#map = references
         }
-        return this.#map;
+        return this.#map
     }
 
 }
@@ -96,18 +96,18 @@ class TemplateBuilder
     extends AbstractTemplateBuilder<EntityCategoryTemplate, PropertiesArray, typeof Headers> {
 
     public constructor(content: PropertiesArray,) {
-        super(content);
+        super(content)
     }
 
     protected override get _headersIndexMap() {
-        return Headers;
+        return Headers
     }
 
     public override build(): EntityCategoryTemplate {
         return {
             entities: null,
             name: this._createNameTemplate(),
-        };
+        }
     }
 
 }

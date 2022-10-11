@@ -1,10 +1,10 @@
-import type {Entity, PossibleOtherEntities} from '../Entity';
-import type {GameStyleReferences}           from './gameStyle/GameStyleReferences';
-import type {GameStyles}                    from '../../gameStyle/GameStyles';
-import type {ThemeReferences}               from './theme/ThemeReferences';
-import type {Themes}                        from '../../theme/Themes';
-import type {TimeReferences}                from './time/TimeReferences';
-import type {Times}                         from '../../time/Times';
+import type {Entity, PossibleOtherEntities} from '../Entity'
+import type {GameStyleReferences}           from './gameStyle/GameStyleReferences'
+import type {GameStyles}                    from '../../gameStyle/GameStyles'
+import type {ThemeReferences}               from './theme/ThemeReferences'
+import type {Themes}                        from '../../theme/Themes'
+import type {TimeReferences}                from './time/TimeReferences'
+import type {Times}                         from '../../time/Times'
 
 export interface EntityReferences
     extends GameStyleReferences, ThemeReferences, TimeReferences {

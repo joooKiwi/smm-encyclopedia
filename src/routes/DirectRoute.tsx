@@ -1,9 +1,9 @@
-import {Fragment} from 'react';
+import {Fragment} from 'react'
 
-import type {EveryPossibleRouteInstance} from './everyRoutes.types';
-import type {ReactProperties}            from '../util/react/ReactProperties';
+import type {EveryPossibleRouteInstance} from './everyRoutes.types'
+import type {ReactProperties}            from '../util/react/ReactProperties'
 
-import {ProjectLanguages} from '../lang/ProjectLanguages';
+import {ProjectLanguages} from '../lang/ProjectLanguages'
 
 interface DirectRoutesProperties
     extends ReactProperties {
@@ -20,7 +20,7 @@ interface DirectRoutesProperties
  * @reactComponent
  */
 export default function DirectRoute({language, route,}: DirectRoutesProperties,) {
-    ProjectLanguages.setCurrentLanguage(language);
+    ProjectLanguages.setCurrentLanguage(language)
 
-    return <Fragment key={route.name}>{route.renderCallback()}</Fragment>;
+    return <Fragment key={route.name}>{route.renderCallback()}</Fragment>
 }

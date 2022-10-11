@@ -1,5 +1,5 @@
-import type {ReactNode}  from 'react';
-import type {ReactState} from './ReactState';
+import type {ReactNode}  from 'react'
+import type {ReactState} from './ReactState'
 
 /**
  * A simplified react component class with a render method.
@@ -22,9 +22,11 @@ export interface ReactComponentWithState<S extends ReactState, > {
      * @see Component.setState
      * @see https://reactjs.org/docs/react-component.html#setstate
      */
-    setState<K extends keyof S>(
-        state_or_stateCallback: ((previousState: Readonly<S>, properties: Readonly<{}>) => (Pick<S, K> | S | null)) | (Pick<S, K> | S | null),
-        callback?: () => void
+    setState<K extends keyof S, >(
+        state_or_stateCallback: ((previousState: Readonly<S>, properties: Readonly<{}>,) => PossibleState<K, S>) | PossibleState<K, S>,
+        callback?: () => void,
     ): void
 
 }
+
+export type PossibleState<K extends keyof S, S extends ReactState, > = | Pick<S, K> | S | null

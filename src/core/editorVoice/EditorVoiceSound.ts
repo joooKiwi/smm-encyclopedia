@@ -1,11 +1,11 @@
-import type {BasePath}               from '../../variables';
-import type {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder';
+import type {EditorVoiceSoundFile}   from './file/EditorVoiceSoundFile'
+import type {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder'
 
-export interface EditorVoiceSound<T extends | PossibleFileName | null = | PossibleFileName | null, U extends | PossibleFileName | null = | PossibleFileName | null, > {
+export interface EditorVoiceSound<T extends | EditorVoiceSoundFile<PossibleFileName> | null = | EditorVoiceSoundFile<PossibleFileName> | null, U extends | EditorVoiceSoundFile<PossibleFileName> | null = | EditorVoiceSoundFile<PossibleFileName> | null, > {
 
-    get fileName(): T;
+    get file(): T
 
-    get europeanFileName(): U;
+    get europeanFile(): U
 
 }
 
@@ -77,7 +77,7 @@ export type PossibleStartingName_WithVoiceBefore =
     | 'powblock'
     | 'pswitch'
     | `${| `${| '' | 'p'}warp` | 'key'}door`
-    | 'wings';
+    | 'wings'
 
 //endregion -------------------- Starting name (voice before) --------------------
 //region -------------------- Starting name (singing part before) --------------------
@@ -159,33 +159,32 @@ export type PossibleStartingName_WithSingingPartBefore =
     | `${| '' | 'cursed'}key`
     | 'Hop-Chops'
     | 'redPOWBlock'
-    | `WarpBox${| '' | '_withkey'}`;
+    | `WarpBox${| '' | '_withkey'}`
 
 //endregion -------------------- Starting name (singing part before) --------------------
 
-type PossibleStartingName_Magikoopa = readonly ['magikoopa', 'kameck_EU',];
-type PossibleStartingName_Skewer = readonly ['skewer', 'spikepiller',];
-export type PossibleStartingName_WithEuropeanAlternative = | PossibleStartingName_Magikoopa | PossibleStartingName_Skewer;
-export type PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative = Exclude<PossibleStartingName_WithVoiceBefore, | PossibleStartingName_WithEuropeanAlternative[number]>;
+type PossibleStartingName_Magikoopa = readonly ['magikoopa', 'kameck_EU',]
+type PossibleStartingName_Skewer = readonly ['skewer', 'spikepiller',]
+export type PossibleStartingName_WithEuropeanAlternative = | PossibleStartingName_Magikoopa | PossibleStartingName_Skewer
+export type PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative = Exclude<PossibleStartingName_WithVoiceBefore, | PossibleStartingName_WithEuropeanAlternative[number]>
 
-type ItemWithPlayer_Mario<START extends string, ITEM extends string, > = `${START}${| ITEM | 'mario'}`;
-type ItemWithPlayer<START extends string, ITEM extends string = never, > = `${START}${| ITEM | 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`;
-type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, > = `${START}${| ITEM | 'Luigi' | 'Toad' | 'Toadette'}`;
-
+type ItemWithPlayer_Mario<START extends string, ITEM extends string, > = `${START}${| ITEM | 'mario'}`
+type ItemWithPlayer<START extends string, ITEM extends string = never, > = `${START}${| ITEM | 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`
+type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, > = `${START}${| ITEM | 'Luigi' | 'Toad' | 'Toadette'}`
 
 //endregion -------------------- Starting name --------------------
 
 export type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, >
-    = | `/${BasePath}/editor voice/voice_${T}.wav`;
-export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[0]>;
-export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[1]>;
+    = | `voice_${T}`
+export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[0]>
+export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[1]>
 export type PossibleFileName_WithSingingPartBefore<T extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
-    = | `/${BasePath}/editor voice/se_ui_singingparts_${T}.wav`;
+    = | `se_ui_singingparts_${T}`
 export type PossibleFileName<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, U extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
-    = | PossibleFileName_WithVoiceBefore<T> | PossibleFileName_WithSingingPartBefore<U>;
+    = | PossibleFileName_WithVoiceBefore<T> | PossibleFileName_WithSingingPartBefore<U>
 
 
 export type PossibleSoundReceivedOnFactory = | EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative, never>>
                                              | EditorVoiceSoundHolder<PossibleFileName<never>>
                                              | readonly [EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[0], never>>, EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[1], never>>,]
-                                             | null;
+                                             | null

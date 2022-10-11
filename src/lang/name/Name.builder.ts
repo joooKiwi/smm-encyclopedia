@@ -1,12 +1,12 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language';
-import type {Builder}                                                                                                       from '../../util/builder/Builder';
-import type {EnumArray as GameArray}                                                                                        from '../../core/game/Games.types';
-import type {Games}                                                                                                         from '../../core/game/Games';
-import type {IsACompleteNameCallback}                                                                                       from './Name.builder.types';
-import type {Name}                                                                                                               from './Name';
-import type {PossibleLanguageValue}                                                                                         from '../ClassWithOnlyProjectLanguages';
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language'
+import type {Builder}                                                                                                       from '../../util/builder/Builder'
+import type {EnumArray as GameArray}                                                                                        from '../../core/game/Games.types'
+import type {Games}                                                                                                         from '../../core/game/Games'
+import type {IsACompleteNameCallback}                                                                                       from './Name.builder.types'
+import type {Name}                                                                                                          from './Name'
+import type {PossibleLanguageValue}                                                                                         from '../ClassWithOnlyProjectLanguages'
 
-export interface NameBuilder<T, TEMPLATE,>
+export interface NameBuilder<T, TEMPLATE, >
     extends Builder<Name<T>> {
 
     //region -------------------- English getter & setter methods --------------------

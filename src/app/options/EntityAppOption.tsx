@@ -1,38 +1,38 @@
-import {Fragment, lazy} from 'react';
+import {Fragment, lazy} from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent';
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable';
-import type {Entities}                                                                                                                                                              from '../../core/entity/Entities';
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types';
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader';
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties';
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types';
+import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
+import type {Entities}                                                                                                                                                              from '../../core/entity/Entities'
+import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types'
+import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
+import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
+import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component';
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component';
-import {CommonOptions}                 from './CommonOptions';
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent';
-import {Enum}                          from '../../util/enum/Enum';
-import {EntityCategories}              from '../../core/entityCategory/EntityCategories';
-import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes';
-import {EmptyAppOption}                from './component/EmptyAppOption';
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent';
-import {Games}                         from '../../core/game/Games';
-import {GameStyles}                    from '../../core/gameStyle/GameStyles';
-import {Themes}                        from '../../core/theme/Themes';
-import {Times}                         from '../../core/time/Times';
+import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
+import {CommonOptions}                 from './CommonOptions'
+import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
+import {Enum}                          from '../../util/enum/Enum'
+import {EntityCategories}              from '../../core/entityCategory/EntityCategories'
+import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes'
+import {EmptyAppOption}                from './component/EmptyAppOption'
+import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
+import {Games}                         from '../../core/game/Games'
+import {GameStyles}                    from '../../core/gameStyle/GameStyles'
+import {Themes}                        from '../../core/theme/Themes'
+import {Times}                         from '../../core/time/Times'
 
 //region -------------------- dynamic imports --------------------
 
-const CourseThemeComponent =        lazy(() => import('../../core/theme/CourseTheme.component'));
-const EditorVoiceSoundComponent =   lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'));
-const Image =                       lazy(() => import( '../tools/images/Image'));
-const InstrumentPropertyComponent = lazy(() => import( '../../core/entity/properties/instrument/InstrumentProperty.component'));
-const GameComponent =               lazy(() => import('../../core/game/Game.component'));
-const GameStyleComponent =          lazy(() => import('../../core/gameStyle/GameStyle.component'));
-const LimitComponent =              lazy(() => import('../../core/entityLimit/Limit.component'));
-const TimeComponent =               lazy(() => import('../../core/time/Time.component'));
-const TextComponent =               lazy(() => import( '../tools/text/TextComponent'));
+const CourseThemeComponent =        lazy(() => import('../../core/theme/CourseTheme.component'))
+const EditorVoiceSoundComponent =   lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'))
+const Image =                       lazy(() => import( '../tools/images/Image'))
+const InstrumentPropertyComponent = lazy(() => import( '../../core/entity/properties/instrument/InstrumentProperty.component'))
+const GameComponent =               lazy(() => import('../../core/game/Game.component'))
+const GameStyleComponent =          lazy(() => import('../../core/gameStyle/GameStyle.component'))
+const LimitComponent =              lazy(() => import('../../core/entityLimit/Limit.component'))
+const TimeComponent =               lazy(() => import('../../core/time/Time.component'))
+const TextComponent =               lazy(() => import( '../tools/text/TextComponent'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -59,13 +59,13 @@ export abstract class EntityAppOption
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    {englishName, englishNameInHtml, uniqueImage,} = enumeration;
+                    {englishName, englishNameInHtml, uniqueImage,} = enumeration
 
                 return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`unique image (${englishName})`}>{
                     uniqueImage.get(gameStyle).map(image =>
                         <Image id={`${englishNameInHtml}-image`} className="entity-image" source={image}  fallbackName={`${englishName} (${gameStyle.acronym})`}/>)
-                }</Fragment>);
-            };
+                }</Fragment>)
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
@@ -73,26 +73,26 @@ export abstract class EntityAppOption
                 key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
                 subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
                     ({key: `image-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
-            };
+            }
         }
 
-    }();
+    }()
     /**
      * Display an animation or not.
      *
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {}();
-    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {}();
-    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {}();
-    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {}();
+    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {}()
+    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {}()
+    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {}()
+    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {}()
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
 
                 return <div className="nameAndEditorVoiceSound-container container">
                     {CommonOptions.get.getNameContent(enumeration)}
@@ -100,115 +100,115 @@ export abstract class EntityAppOption
                         <InstrumentPropertyComponent value={enumeration}/>
                     </div>
                     <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
-                </div>;
-            };
+                </div>
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return CommonOptions.get.nameHeader;
+            return CommonOptions.get.nameHeader
         }
 
-    }();
+    }()
 
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
-                return <GameComponent reference={entity} name={entity} displayAllAsText/>;
-            };
+                return <GameComponent reference={entity} name={entity} displayAllAsText/>
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return CommonOptions.get.gameHeader;
+            return CommonOptions.get.gameHeader
         }
 
-    }();
-    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {}();
+    }()
+    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {}()
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
-                return <GameStyleComponent reference={entity} name={entity} displayAllAsText/>;
-            };
+                return <GameStyleComponent reference={entity} name={entity} displayAllAsText/>
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,};
+            return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,}
         }
 
-    }();
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {}();
+    }()
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {}()
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
-                return <CourseThemeComponent reference={entity} name={entity} displayAllAsText/>;
-            };
+                return <CourseThemeComponent reference={entity} name={entity} displayAllAsText/>
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,};
+            return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,}
         }
 
-    }();
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {}();
+    }()
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {}()
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference;
+                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
-                return <TimeComponent reference={entity} name={entity} displayAllAsText/>;
-            };
+                return <TimeComponent reference={entity} name={entity} displayAllAsText/>
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,};
+            return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,}
         }
 
-    }();
-    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {}();
+    }()
+    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {}()
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    categoryName = enumeration.reference.categoryNameContainer;
+                    categoryName = enumeration.reference.categoryNameContainer
 
-                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValue(categoryName.english)!.imagePath,);
-            };
+                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValue(categoryName.english)!.imagePath,)
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return CommonOptions.get.categoryHeader;
+            return CommonOptions.get.categoryHeader
         }
 
-    }();
+    }()
     /**
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {}();
+    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {}()
 
     public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
         protected override _createContentOption(): PossibleOptionWithContent {
             return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION();
-                const entity = enumeration.reference;
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
+                const entity = enumeration.reference
 
-                const editorLimit_SMM1And3DS = entity.editorLimit_smm1And3ds;
-                const editorLimit_SMM2 = entity.editorLimit_smm2;
+                const editorLimit_SMM1And3DS = entity.editorLimit_smm1And3ds
+                const editorLimit_SMM2 = entity.editorLimit_smm2
 
                 return [
                     editorLimit_SMM1And3DS == null
@@ -218,8 +218,8 @@ export abstract class EntityAppOption
                         ? <TextComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} content={editorLimit_SMM2} isUnknown={entity.isUnknown_editorLimit_smm2}/>
                         : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2} displayAcronymIfApplicable/>,
                     <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()} displayAcronymIfApplicable/>,
-                ];
-            };
+                ]
+            }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
@@ -239,16 +239,16 @@ export abstract class EntityAppOption
                         tooltip: {namespace: 'gameContent', translationKey: 'Limit while playing',},
                     },
                 ],
-            };
+            }
         }
 
-    }();
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {}();
+    }()
+    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {}()
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: EntityAppOption;
+    static [index: number]: EntityAppOption
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -258,38 +258,38 @@ export abstract class EntityAppOption
      *
      * @note It should only be set by {@link EntityApp} and get by {@link EntityAppOption}.
      */
-    public static CALLBACK_TO_GET_ENUMERATION: () => Entities;
+    public static CALLBACK_TO_GET_ENUMERATION: () => Entities
 
-    static #gameStyles?: readonly GameStyles[];
-    static #gameStyles_unusedImages?: readonly [GameStyles,] | readonly [];
-    static #times?: readonly Times[];
-    static #themes?: readonly Themes[];
+    static #gameStyles?: readonly GameStyles[]
+    static #gameStyles_unusedImages?: readonly [GameStyles,] | readonly []
+    static #times?: readonly Times[]
+    static #themes?: readonly Themes[]
 
-    #appOptionWithContent?: AppOptionWithContent;
-    #appOptionWithTable?: AppOptionWithTable;
+    #appOptionWithContent?: AppOptionWithContent
+    #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
 
     private constructor() {
-        super();
+        super()
     }
 
     //region -------------------- Getter methods --------------------
 
     protected static get _gameStyles() {
-        return this.#gameStyles ??= GameStyles.values;
+        return this.#gameStyles ??= GameStyles.values
     }
 
     protected static get _gameStyles_unusedImages() {
-        return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS,];
+        return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS,]
     }
 
     protected static get times() {
-        return this.#times ??= Times.values;
+        return this.#times ??= Times.values
     }
 
     protected static get themes() {
-        return this.#themes ??= Themes.courseThemes;
+        return this.#themes ??= Themes.courseThemes
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -298,40 +298,40 @@ export abstract class EntityAppOption
     //region -------------------- App option - content --------------------
 
     protected _createContentOption(): PossibleOptionWithContent {
-        return null;
+        return null
     }
 
     private get __appOptionWithContent(): AppOptionWithContent {
         if (this.#appOptionWithContent == null) {
-            const content = this._createContentOption();
+            const content = this._createContentOption()
             this.#appOptionWithContent = content == null
                 ? EmptyAppOption.get
-                : new AppOptionWithContentComponent(content,);
+                : new AppOptionWithContentComponent(content,)
         }
-        return this.#appOptionWithContent;
+        return this.#appOptionWithContent
     }
 
     public get renderContent(): readonly ReactElement[] {
-        return this.__appOptionWithContent.renderContent;
+        return this.__appOptionWithContent.renderContent
     }
 
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
     protected _createTableHeaderOption(): PossibleOptionWithTable {
-        return null;
+        return null
     }
 
     private get __appOptionWithTable(): AppOptionWithTable {
         if (this.#appOptionWithTable == null) {
-            const content = this._createTableHeaderOption();
-            this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,);
+            const content = this._createTableHeaderOption()
+            this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,)
         }
-        return this.#appOptionWithTable;
+        return this.#appOptionWithTable
     }
 
     public get renderTableHeader(): | SingleHeaderContent | null {
-        return this.__appOptionWithTable.renderTableHeader;
+        return this.__appOptionWithTable.renderTableHeader
     }
 
     //endregion -------------------- App option - table --------------------
@@ -340,7 +340,7 @@ export abstract class EntityAppOption
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): StaticReference<EntityAppOption> {
-        return EntityAppOption;
+        return EntityAppOption
     }
 
     //region -------------------- Enum value methods --------------------
@@ -355,22 +355,22 @@ export abstract class EntityAppOption
     public static getValue(value: PossibleNonNullableValue,): EntityAppOption
     public static getValue(value: PossibleValue,): | EntityAppOption | null
     public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn(this, value,);
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): EnumArray {
-        return Enum.getValuesOn(this);
+        return Enum.getValuesOn(this)
     }
 
     //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]();
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------
 
 }
 
-type PossibleOptionWithContent = | (() => PossibleRenderReactElement) | null;
-type PossibleOptionWithTable = | SingleHeaderContent | null;
+type PossibleOptionWithContent = | (() => PossibleRenderReactElement) | null
+type PossibleOptionWithTable = | SingleHeaderContent | null
