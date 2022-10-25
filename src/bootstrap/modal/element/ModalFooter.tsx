@@ -4,7 +4,7 @@ import type {ReactProperties}      from '../../../util/react/ReactProperties'
 import type {HTMLButtonProperties} from '../../../util/react/html/HTMLButtonProperties'
 import type {HTMLDivProperties}    from '../../../util/react/html/HTMLDivProperties'
 
-import ContentTranslationComponent  from '../../../lang/components/ContentTranslationComponent'
+import {contentTranslation}         from '../../../lang/components/translationMethods'
 import {EMPTY_OBJECT, EMPTY_STRING} from '../../../util/emptyVariables'
 import {EMPTY_REACT_ELEMENT}        from '../../../util/emptyReactVariables'
 
@@ -54,7 +54,5 @@ function createCancelButton(properties: ModalCancelButtonProperties = EMPTY_OBJE
     if (children != null)
         return <button {...otherProperties} type="button" className={`btn btn-danger ${className}`} data-bs-dismiss="modal">{children}</button>
 
-    return <ContentTranslationComponent>{translation =>
-        <button {...otherProperties} type="button" className={`btn btn-danger ${className}`} data-bs-dismiss="modal">{translation('Cancel')}</button>
-    }</ContentTranslationComponent>
+    return <button {...otherProperties} type="button" className={`btn btn-danger ${className}`} data-bs-dismiss="modal">{contentTranslation('Cancel')}</button>
 }

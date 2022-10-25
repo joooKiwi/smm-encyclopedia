@@ -1,3 +1,4 @@
+@use "sass:math";
 @import '../../../mixin';
 
 $last-possible-amount-of-frames: 10;
@@ -68,7 +69,7 @@ $last-possible-amount-of-frames: 10;
 @for $amount-of-frames from 2 to  ($last-possible-amount-of-frames + 1) {
 
   @keyframes animation-from-#{$amount-of-frames}-images {
-    $single-frame-percentage: 100% / $amount-of-frames;
+    $single-frame-percentage: math.div(100%, $amount-of-frames,);
     from {
       @include list-of-background-size($amount-of-frames, 1,);
     }

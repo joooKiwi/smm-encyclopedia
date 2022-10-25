@@ -26,6 +26,7 @@ export default function AnyTranslationComponent<N extends Namespace, >(propertie
 function AnyTranslationComponentByChildren<N extends Namespace, >({children, namespace,}: AnyTranslationPropertyByChildren<N>,) {
     const {t: translation,} = useTranslation(namespace)
 
+    // @ts-ignore
     return <>{children(translation)}</>
 }
 

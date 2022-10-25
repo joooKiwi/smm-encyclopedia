@@ -24,9 +24,10 @@ export class TranslationUtility {
         throw new EvalError(`This class "${TranslationUtility}" cannot be created.`)
     }
 
-    public static testTranslation<N extends Namespace, T extends TranslationReturnValue<N> = TranslationReturnValue<N>, >(value: T,): T & string {
-        assert(typeof value == 'string', `The translation key ${value} cannot receive a translation that contain a sub value.`,)
-        return value
+    // @ts-ignore
+    public static testTranslation<N extends Namespace, R extends TranslationReturnValue<N> = TranslationReturnValue<N>, >(returnedValue: R,): string {
+        assert(typeof returnedValue == 'string', `The translation key ${returnedValue} cannot receive a translation that contain a sub value.`,)
+        return returnedValue
     }
 
     public static replaceAndInterpretTranslation<N extends Namespace, >(translation: TranslationMethod<N>, value: SingleTranslationKey<N>, keyMap: TranslationReplaceKeysMap,): ReactElement {

@@ -7,7 +7,7 @@ import type {ReactElement}              from '../util/react/ReactProperties'
 import AbstractApp                     from './AbstractApp'
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
 import {GameReferences}                from '../core/gameReference/GameReferences'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
+import {gameContentTranslation}        from '../lang/components/translationMethods'
 import {Games}                         from '../core/game/Games'
 import {GameStyles}                    from '../core/gameStyle/GameStyles'
 import NameComponent                   from '../lang/name/component/Name.component'
@@ -65,9 +65,7 @@ export default class GameReferenceApp
     protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly GameReferences[], returnOfLine: readonly GameReferences[],): ReactElement
     protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly PossibleGameReference[], returnOfLine?: readonly GameReferences[],) {
         return <div key={`names container - ${groupId}`} id={`${groupId}-names-container`} className="names-container">
-            <GameContentTranslationComponent>{translation =>
-                <h2 key={`names title - ${groupId}`} id={`${groupId}-names-title`} className="col-12 names-title">{translation(title)}</h2>
-            }</GameContentTranslationComponent>
+            <h2 key={`names title - ${groupId}`} id={`${groupId}-names-title`} className="col-12 names-title">{gameContentTranslation(title)}</h2>
             <div key={`name (container) - ${groupId}`} id={`${groupId}-name-container`} className="container-fluid name-container">{
                 enumReferences.map(gameReference => [gameReference, GameReferences.getValue(gameReference.englishName)!,] as const).map(([enumReference, gameReference,]) =>
                     <Fragment key={`single name container - ${gameReference.englishName}`}>
@@ -87,9 +85,7 @@ export default class GameReferenceApp
 
     protected override _mainContent() {
         return <div className="container-fluid main-container">
-            <GameContentTranslationComponent>{translation =>
-                <h2 id="main-names-title" className="col-12 names-title">{translation('Game references')}</h2>
-            }</GameContentTranslationComponent>
+            <h2 id="main-names-title" className="col-12 names-title">{gameContentTranslation('Game references')}</h2>
             {this._getContainer('game', 'Games', Games.values,)}
             {this._getContainer('gameStyle', 'Game styles', GameStyles.values,)}
             {this._getContainer('soundEffect', 'Sound effects', SoundEffects.soundEffect_games,)}

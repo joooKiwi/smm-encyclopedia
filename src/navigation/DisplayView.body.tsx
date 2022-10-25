@@ -6,6 +6,7 @@ import type {ReactProperties}        from '../util/react/ReactProperties'
 import DisplayViewRouteButton          from './DisplayView.routeButton'
 import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
 import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
+import {gameContentTranslation}        from '../lang/components/translationMethods'
 import {GlobalAppOption}               from '../app/options/global/GlobalAppOption'
 
 interface DisplayViewBodyProperties
@@ -54,7 +55,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 </div>
             </div>
             <div id="display-game-container" className="container">
-                <h3 className="text-center text-decoration-underline pb-2">{translation('Game')}</h3>
+                <h3 className="text-center text-decoration-underline pb-2">{gameContentTranslation('Game')}</h3>
                 <div key="button group container (game)" id="game-buttonGroup-container" className="btn-group col-12" role="group">
                     <DisplayViewRouteButton routeName="everyGameReferences" value={translation('Game reference')}
                                             tooltipValue={translation('Display every game references')}

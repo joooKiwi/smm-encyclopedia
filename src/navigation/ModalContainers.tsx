@@ -4,6 +4,7 @@ import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from './ModalCo
 import type {ReactProperties}                                    from '../util/react/ReactProperties'
 
 import ContentTranslationComponent from '../lang/components/ContentTranslationComponent'
+import {contentTranslation}        from '../lang/components/translationMethods'
 import DisplayViewBody             from './DisplayView.body'
 import LanguageChangerBody         from './LanguageChanger.body'
 import ModalBody                   from '../bootstrap/modal/element/ModalBody'
@@ -57,7 +58,7 @@ export default function ModalContainers({
                 <ModalContainer key="modal - parameter (container)" id={parameterId} verticallyCentered modalSize="xl">
                     <ModalHeader key="modal - parameter (header)" modalTitle={translation('Options')}/>
                     <ModalBody key="modal - parameter (body)">{parameterContent}</ModalBody>
-                    <ModalFooter key="modal - parameter (footer)" successButton={({children: translation('Confirm'),})}/>
+                    <ModalFooter key="modal - parameter (footer)" successButton={({children: contentTranslation('Confirm'),})}/>
                 </ModalContainer>
 
                 <ModalContainer key="modal - display view (container)" id={displayViewId} verticallyCentered modalSize="lg">
@@ -73,7 +74,7 @@ export default function ModalContainers({
                     <ModalBody key="modal - search (body)">
                         <SearchBody id={searchId} divId={searchDivId}/>
                     </ModalBody>
-                    <ModalFooter key="modal - search (footer)" successButton={({children: translation('Search')})}/>
+                    <ModalFooter key="modal - search (footer)" successButton={({children: contentTranslation('Search')})}/>
                 </ModalContainer>
 
             </>

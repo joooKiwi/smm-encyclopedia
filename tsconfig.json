@@ -15,6 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
+    "strictPropertyInitialization": true,
 
     "module": "esnext",
     "moduleResolution": "node",
