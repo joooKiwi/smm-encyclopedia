@@ -193,7 +193,7 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     }
 
     public set onBeforeStop(value: | OnBeforeStopSoundPlayerCallback<this> | null | undefined,) {
-        this.#onBeforeStop = value
+        this.#onBeforeStop = value ?? null
     }
 
     public setOnBeforeStop(value: | OnBeforeStopSoundPlayerCallback<this> | null | undefined,): this {
