@@ -787,11 +787,11 @@ export abstract class EveryLanguages
     }
 
     public static set currentLanguage(value: | EveryLanguages | string | number,) {
-        this.setCurrentLanguage(value)
+        this.setCurrentLanguage(value,)
     }
 
     public static setCurrentLanguage(value: | EveryLanguages | string | number,): typeof EveryLanguages {
-        let selectedLanguage = this.getValue(value)
+        let selectedLanguage = this.getValue(value,)
         if (selectedLanguage == null || selectedLanguage.isCurrentLanguage)
             return this
 
@@ -811,7 +811,7 @@ export abstract class EveryLanguages
     //region -------------------- Enum default methods --------------------
 
     public static get default(): EveryLanguages {
-        return Enum.getNonNullDefaultOn(EveryLanguages)
+        return Enum.getNonNullDefaultOn(this,)
     }
 
     public static set default(value: EveryLanguages | string | number,) {
@@ -819,7 +819,7 @@ export abstract class EveryLanguages
     }
 
     public static setDefault(value: | EveryLanguages | string | number,): typeof EveryLanguages {
-        return Enum.setNonNullDefaultOn(EveryLanguages, value,)
+        return Enum.setNonNullDefaultOn(this, value,)
     }
 
     //endregion -------------------- Enum default methods --------------------

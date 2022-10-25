@@ -134,11 +134,11 @@ export abstract class Validators
     //region -------------------- Enum default methods --------------------
 
     public static get default(): Validators {
-        return Enum.getNonNullDefaultOn(this)
+        return Enum.getNonNullDefaultOn(this,)
     }
 
     public static set default(value: | Validators | string,) {
-        this.setDefault(value)
+        this.setDefault(value,)
     }
 
     public static setDefault(value: | Validators | string,): typeof Validators {
