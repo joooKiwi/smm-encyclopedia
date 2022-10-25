@@ -5,11 +5,11 @@ import type {AppProperties}                                        from './AppPr
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import Image                           from './tools/images/Image'
-import {SoundEffectCategories}         from '../core/soundEffectCategory/SoundEffectCategories'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import Image                    from './tools/images/Image'
+import {SoundEffectCategories}  from '../core/soundEffectCategory/SoundEffectCategories'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -31,7 +31,7 @@ export default class SoundEffectCategoryApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every sound effect categories"/>
+        return gameContentTranslation('Every sound effect categories')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {

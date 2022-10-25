@@ -7,10 +7,9 @@ import type {ReactElement}                                                      
 import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types'
 import type {TranslationReplaceKeysMap}                                                                                                                                                                     from '../../../lang/components/TranslationProperty'
 
-import {assert}                        from '../../../util/utilitiesMethods'
-import {Enum}                          from '../../../util/enum/Enum'
-import GameContentTranslationComponent from '../../../lang/components/GameContentTranslationComponent'
-import {TranslationUtility}            from '../../../lang/components/TranslationUtility'
+import {assert}                 from '../../../util/utilitiesMethods'
+import {Enum}                   from '../../../util/enum/Enum'
+import {gameContentTranslation} from '../../../lang/components/translationMethods'
 
 //region -------------------- dynamic imports --------------------
 
@@ -293,10 +292,8 @@ export class PlayerSoundEffectTriggers
     public createNewComponent(key: string,): ReactElement {
         const keyMap: TranslationReplaceKeysMap = {}
 
-        return <GameContentTranslationComponent>{translation =>
-            <TextComponent classes={['playerSoundEffectTrigger-container']}
-                           content={TranslationUtility.replaceAndInterpretTranslation(translation, `soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
-        }</GameContentTranslationComponent>
+        return <TextComponent classes={['playerSoundEffectTrigger-container']}
+                           content={gameContentTranslation(`soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
     //endregion -------------------- Component methods --------------------

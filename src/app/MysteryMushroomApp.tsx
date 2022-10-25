@@ -6,13 +6,13 @@ import type {MysteryMushroomAppStates}                             from './AppSt
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {MysteryMushroomAppOption}      from './options/MysteryMushroomAppOption'
-import {MysteryMushrooms}              from '../core/mysteryMushroom/MysteryMushrooms'
-import {SingleHeaderContent}           from './tools/table/SimpleHeader'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}         from './withInterpreter/AbstractTableApp'
+import {EMPTY_REACT_ELEMENT}      from '../util/emptyReactVariables'
+import {gameContentTranslation}   from '../lang/components/translationMethods'
+import {MysteryMushroomAppOption} from './options/MysteryMushroomAppOption'
+import {MysteryMushrooms}         from '../core/mysteryMushroom/MysteryMushrooms'
+import {SingleHeaderContent}      from './tools/table/SimpleHeader'
+import {ViewDisplays}             from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -34,7 +34,7 @@ export default class MysteryMushroomApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent>{translation => translation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'})}</GameContentTranslationComponent>
+        return gameContentTranslation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'},)//TODO add Mystery Mushroom (plural)
     }
 
     protected override _createUniqueNameOnSimpleList(enumerable: MysteryMushrooms,): string {
@@ -112,7 +112,7 @@ export default class MysteryMushroomApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent>{translation => translation('Every Mystery Mushrooms', {pluralName: 'Mystery Mushrooms'})}</GameContentTranslationComponent>,
+                    caption: gameContentTranslation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'},),//TODO add Mystery Mushroom (plural)
                 }
             }
 

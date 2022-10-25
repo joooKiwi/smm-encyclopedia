@@ -5,11 +5,10 @@ import type {AppProperties}                from './AppProperties.types'
 import type {PossibleDimensionOnList}      from './interpreter/DimensionOnList'
 import type {ReactElementOrString}         from '../util/react/ReactProperties'
 
-import {AbstractSimpleListApp}         from './withInterpreter/AbstractSimpleListApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {PredefinedMessages}            from '../core/predefinedMessage/PredefinedMessages'
-import {TranslationUtility}            from '../lang/components/TranslationUtility'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractSimpleListApp}  from './withInterpreter/AbstractSimpleListApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {PredefinedMessages}     from '../core/predefinedMessage/PredefinedMessages'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 export default class PredefinedMessageApp
     extends AbstractSimpleListApp<AppInterpreterWithSimpleList<PredefinedMessages>> {
@@ -28,13 +27,9 @@ export default class PredefinedMessageApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
-            translation,
-            'Every predefined messages', {
-                predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
-            },
-        )}</>
-        }</GameContentTranslationComponent>
+        return gameContentTranslation('Every predefined messages', {
+            predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
+        },)
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithSimpleList<PredefinedMessages> {

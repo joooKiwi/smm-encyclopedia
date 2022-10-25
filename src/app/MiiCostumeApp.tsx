@@ -7,13 +7,12 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './inter
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import Image                           from './tools/images/Image'
-import {MiiCostumes}                   from '../core/miiCostume/MiiCostumes'
-import {MiiCostumeAppOption}           from './options/MiiCostumeAppOption'
-import {TranslationUtility}            from '../lang/components/TranslationUtility'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import Image                    from './tools/images/Image'
+import {MiiCostumes}            from '../core/miiCostume/MiiCostumes'
+import {MiiCostumeAppOption}    from './options/MiiCostumeAppOption'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 export default class MiiCostumeApp
     extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, AppProperties, MiiCostumeAppStates> {
@@ -32,9 +31,9 @@ export default class MiiCostumeApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costumes', {
+        return gameContentTranslation('Every Mii costumes', {
             pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
-        })}</GameContentTranslationComponent>
+        },)
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
@@ -87,9 +86,9 @@ export default class MiiCostumeApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costumes', {
+                    caption: gameContentTranslation('Every Mii costumes', {
                         pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
-                    })}</GameContentTranslationComponent>,
+                    },),
                 }
             }
 

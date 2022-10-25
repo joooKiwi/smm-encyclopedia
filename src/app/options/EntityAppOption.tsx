@@ -8,19 +8,18 @@ import type {SingleHeaderContent}                                               
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {Enum}                          from '../../util/enum/Enum'
-import {EntityCategories}              from '../../core/entityCategory/EntityCategories'
-import {EntityLimitTypes}              from '../../core/entityLimit/EntityLimitTypes'
-import {EmptyAppOption}                from './component/EmptyAppOption'
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
-import {Games}                         from '../../core/game/Games'
-import {GameStyles}                    from '../../core/gameStyle/GameStyles'
-import {Themes}                        from '../../core/theme/Themes'
-import {Times}                         from '../../core/time/Times'
+import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
+import {CommonOptions}                              from './CommonOptions'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {Enum}                                       from '../../util/enum/Enum'
+import {EntityCategories}                           from '../../core/entityCategory/EntityCategories'
+import {EntityLimitTypes}                           from '../../core/entityLimit/EntityLimitTypes'
+import {EmptyAppOption}                             from './component/EmptyAppOption'
+import {Games}                                      from '../../core/game/Games'
+import {GameStyles}                                 from '../../core/gameStyle/GameStyles'
+import {Themes}                                     from '../../core/theme/Themes'
+import {Times}                                      from '../../core/time/Times'
 
 //region -------------------- dynamic imports --------------------
 
@@ -70,7 +69,7 @@ export abstract class EntityAppOption
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {
-                key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
+                key: 'image', element: contentTranslation('Image'),
                 subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
                     ({key: `image-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
             }
@@ -138,7 +137,7 @@ export abstract class EntityAppOption
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'gameStyle', element: <GameContentTranslationComponent translationKey="Game style"/>,}
+            return {key: 'gameStyle', element: gameContentTranslation('Game style'),}
         }
 
     }()
@@ -155,7 +154,7 @@ export abstract class EntityAppOption
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'courseTheme', element: <GameContentTranslationComponent translationKey="Course theme"/>,}
+            return {key: 'courseTheme', element: gameContentTranslation('Course theme'),}
         }
 
     }()
@@ -172,7 +171,7 @@ export abstract class EntityAppOption
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'time', element: <GameContentTranslationComponent translationKey="Time"/>,}
+            return {key: 'time', element: gameContentTranslation('Time'),}
         }
 
     }()
@@ -224,19 +223,19 @@ export abstract class EntityAppOption
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {
-                key: 'limit', element: <GameContentTranslationComponent translationKey="Limit"/>,
+                key: 'limit', element: gameContentTranslation('Limit'),
                 subHeaders: [
                     {
-                        key: 'limit-editor', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.EDITOR.englishCommonText}/>,
-                        tooltip: {namespace: 'gameContent', translationKey: 'Limit in the editor',},
+                        key: 'limit-editor', element: gameContentTranslation(EntityLimitTypes.EDITOR.englishCommonText),
+                        tooltip: gameContentTranslation('Limit in the editor'),
                         subHeaders: [
                             {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                             {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
                         ],
                     },
                     {
-                        key: 'limit-whilePlaying', element: <GameContentTranslationComponent translationKey={EntityLimitTypes.WHILE_PLAYING.englishCommonText}/>,
-                        tooltip: {namespace: 'gameContent', translationKey: 'Limit while playing',},
+                        key: 'limit-whilePlaying', element: gameContentTranslation(EntityLimitTypes.WHILE_PLAYING.englishCommonText),
+                        tooltip: gameContentTranslation('Limit while playing'),
                     },
                 ],
             }

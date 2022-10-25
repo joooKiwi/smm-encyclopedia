@@ -8,13 +8,13 @@ import type {Themes}                                                            
 import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Enum}                          from '../../util/enum/Enum'
-import {Times}                         from '../../core/time/Times'
+import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
+import {CommonOptions}                              from './CommonOptions'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
+import {Enum}                                       from '../../util/enum/Enum'
+import {Times}                                      from '../../core/time/Times'
 
 //region -------------------- dynamic imports --------------------
 
@@ -43,7 +43,7 @@ export abstract class ThemeAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
+                key: 'image', element: contentTranslation('Image'),
                 subHeaders: [
                     {key: 'image-empty', element: EMPTY_REACT_ELEMENT,},
                     {key: 'image-endless-mario', element: <>--Endless Mario--</>},
@@ -78,11 +78,7 @@ export abstract class ThemeAppOption
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'effect', element: <Image source={Times.NIGHT.imagePath} fallbackName={`effect - ${Times.NIGHT.englishName}`}/>,
-                tooltip: {
-                    namespace: 'gameContent', translationKey: 'Effect (night)',
-                    replace: {night: '--night effect name--',},//TODO add translation for the night effect name
-                    // replace: {night: translation(Times.NIGHT.englishName).toLowerCase(),},
-                },
+                tooltip: gameContentTranslation('Effect (night)', {night: '--night effect name--',},)//TODO add translation for the night effect name
             }
         }
 

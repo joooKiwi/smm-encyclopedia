@@ -8,14 +8,13 @@ import type {ReactElement}                                                      
 import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types'
 import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../lang/components/TranslationProperty'
 
-import {BASE_PATH}                     from '../../variables'
-import {DelayedObjectHolderContainer}  from '../../util/holder/DelayedObjectHolder.container'
-import {EMPTY_ARRAY, EMPTY_STRING}     from '../../util/emptyVariables'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Enum}                          from '../../util/enum/Enum'
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
-import {StringContainer}               from '../../util/StringContainer'
-import {TranslationUtility}            from '../../lang/components/TranslationUtility'
+import {BASE_PATH}                    from '../../variables'
+import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
+import {EMPTY_ARRAY, EMPTY_STRING}    from '../../util/emptyVariables'
+import {EMPTY_REACT_ELEMENT}          from '../../util/emptyReactVariables'
+import {Enum}                         from '../../util/enum/Enum'
+import {gameContentTranslation}       from '../../lang/components/translationMethods'
+import {StringContainer}              from '../../util/StringContainer'
 
 //region -------------------- dynamic imports --------------------
 
@@ -661,13 +660,11 @@ export class OfficialNotifications
 
 
     protected _addPosition(position: | 1 | 2 | 3, type: | 'job' | 'place', key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.position = <GameContentTranslationComponent key={`${key} - position (${type})`}>{translation => {
-            const upperText = translation(`Official notification.position.${type}.${position}`,)
-            return <Fragment key={`${key} - position`}>
-                {position}
-                {upperText === EMPTY_STRING ? EMPTY_REACT_ELEMENT : <sup>{upperText}</sup>}
-            </Fragment>
-        }}</GameContentTranslationComponent>
+        const upperText = gameContentTranslation(`Official notification.position.${type}.${position}`)
+        keyMap.position = <Fragment key={`${key} - position (${type})`}>
+            {position}
+            {upperText === EMPTY_STRING ? EMPTY_REACT_ELEMENT : <sup>{upperText}</sup>}
+        </Fragment>
         return keyMap
     }
 
@@ -678,9 +675,7 @@ export class OfficialNotifications
         if (amount != null)
             keyMap.amount = <Fragment key={`${key} - amount`}>{amount}</Fragment>
 
-        return <GameContentTranslationComponent>{translation =>
-            <TextComponent content={TranslationUtility.replaceAndInterpretTranslation(translation, `Official notification.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
-        }</GameContentTranslationComponent>
+        return <TextComponent content={gameContentTranslation(`Official notification.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
     //endregion -------------------- Methods --------------------

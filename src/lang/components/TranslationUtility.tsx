@@ -1,7 +1,7 @@
 import type {TOptions} from 'i18next'
 
-import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty'
-import type {ReactElement, ReactElementOrString}                                                                    from '../../util/react/ReactProperties'
+import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap} from './TranslationProperty'
+import type {ReactElement, ReactElementOrString}                                            from '../../util/react/ReactProperties'
 
 import {assert}         from '../../util/utilitiesMethods'
 import {isInProduction} from '../../variables'
@@ -24,19 +24,28 @@ export class TranslationUtility {
         throw new EvalError(`This class "${TranslationUtility}" cannot be created.`)
     }
 
-    // @ts-ignore
-    public static testTranslation<N extends Namespace, R extends TranslationReturnValue<N> = TranslationReturnValue<N>, >(returnedValue: R,): string {
-        assert(typeof returnedValue == 'string', `The translation key ${returnedValue} cannot receive a translation that contain a sub value.`,)
-        return returnedValue
+    public static testTranslation<T, >(value: T,): T & string {
+        assert(typeof value == 'string', `The translation key ${value} cannot receive a translation that contain a sub value.`,)
+        return value
     }
 
+    /**
+     *
+     * @param translation
+     * @param value
+     * @param keyMap
+     * @deprecated Use {@link translateFromAny}
+     */
     public static replaceAndInterpretTranslation<N extends Namespace, >(translation: TranslationMethod<N>, value: SingleTranslationKey<N>, keyMap: TranslationReplaceKeysMap,): ReactElement {
         //FIXME remove the error (if possible) "Type 'string' is not assignable to type '"entityContent"'"
         // @ts-ignore
         return this.replaceInTranslation(this.testTranslation(translation(value, this.OPTION_TO_RETURN_OBJECT,)), keyMap,)
     }
 
-    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,) {
+    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<string>,): string
+    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): ReactElement
+    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString
+    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString {
         let argumentsFound: string[] = []
         for (const replaceKey of value.matchAll(this.STARTING_REGEX)) {
             const startingIndex = replaceKey.index!
@@ -45,33 +54,38 @@ export class TranslationUtility {
         }
 
         const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX).filter(splitValue => !argumentsFound.includes(splitValue))
-        let finalArguments: ReactElementOrString[] = []
-        for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++)
-            this.#addArgumentToArray(finalArguments, splitArguments[j], keyMap[argumentsFound[i]])
-        return <>{finalArguments}</>
+        let finalArguments: ReactElementOrString[] = [],
+            containsOnlyString = true
+        for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++) {
+            const replacementArgument = keyMap[argumentsFound[i]]
+            this.#addArgumentToArray(finalArguments, splitArguments[j], replacementArgument,)
+            if (containsOnlyString && replacementArgument != null && typeof replacementArgument != 'string')
+                containsOnlyString = false
+        }
+        return containsOnlyString ? finalArguments.join('') : <>{finalArguments}</>
     }
 
     /**
      * Adds the arguments in the array provided in the first argument.
      *
-     * The first argument is always added.
-     * But, if the second argument is null, it will not be added.
+     * The split argument is always added.
+     * But, the replacement argument can be null (& is not added).
      *
      * @param finalArguments the final array of arguments without any null values
-     * @param firstElement the first element
-     * @param secondElement the second element
+     * @param splitArgument the the split argument
+     * @param replacementArgument the replacement argument
      */
-    static #addArgumentToArray(finalArguments: ReactElementOrString[], firstElement: ReactElementOrString, secondElement: | ReactElementOrString | undefined,): void {
-        finalArguments.push(firstElement)
-        if (secondElement == null)
+    static #addArgumentToArray(finalArguments: ReactElementOrString[], splitArgument: string, replacementArgument: | ReactElementOrString | undefined,): void {
+        finalArguments.push(splitArgument)
+        if (replacementArgument == null)
             return
-        finalArguments.push(secondElement)
+        finalArguments.push(replacementArgument)
 
         if (isInProduction)
             return
 
-        if (typeof secondElement != 'string' && secondElement?.key == null)
-            console.warn(`The react element ${secondElement.type} doesn't contain a key.`)
+        if (typeof replacementArgument != 'string' && replacementArgument?.key == null)
+            console.warn(`The react element ${replacementArgument.type} doesn't contain a key.`)
     }
 
 }

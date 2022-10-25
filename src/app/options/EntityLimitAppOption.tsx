@@ -6,15 +6,14 @@ import type {ReactElement}                                                      
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Enum}                          from '../../util/enum/Enum'
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
-import {Games}                         from '../../core/game/Games'
-import NameComponent                   from '../../lang/name/component/Name.component'
-import TextComponent                   from '.././tools/text/TextComponent'
+import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
+import {Enum}                                       from '../../util/enum/Enum'
+import {Games}                                      from '../../core/game/Games'
+import NameComponent                                from '../../lang/name/component/Name.component'
+import TextComponent                                from '.././tools/text/TextComponent'
 
 export abstract class EntityLimitAppOption
     extends Enum<Ordinals, Names> {
@@ -34,7 +33,7 @@ export abstract class EntityLimitAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'acronym', element: <ContentTranslationComponent translationKey="Acronym(s)"/>,}
+            return {key: 'acronym', element: contentTranslation('Acronym(s)'),}
         }
 
     }()
@@ -49,10 +48,10 @@ export abstract class EntityLimitAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'names', element: <ContentTranslationComponent translationKey="Name"/>,
+                key: 'names', element: contentTranslation('Name'),
                 subHeaders: [
                     {key: 'name', element: EMPTY_REACT_ELEMENT,},
-                    {key: 'alternativeName', element: <ContentTranslationComponent translationKey="Alternative name"/>,},
+                    {key: 'alternativeName', element: contentTranslation('Alternative name'),},
                 ],
             }
         }
@@ -69,7 +68,7 @@ export abstract class EntityLimitAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'limit', element: <ContentTranslationComponent translationKey="Limit"/>, subHeaders: [
+                key: 'limit', element: contentTranslation('Limit'), subHeaders: [
                     {key: 'limit-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                     {key: 'limit-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
                 ],
@@ -80,11 +79,11 @@ export abstract class EntityLimitAppOption
     public static readonly TYPE = new class EntityLimitAppOption_Type extends EntityLimitAppOption {
 
         protected override _createContentOption({reference: {type,},}: EntityLimits,): PossibleRenderReactElement {
-            return <GameContentTranslationComponent>{translation => <TextComponent content={translation(type.englishCommonText)}/>}</GameContentTranslationComponent>
+            return <TextComponent content={gameContentTranslation(type.englishCommonText)}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'type', element: <ContentTranslationComponent translationKey="Type"/>,}
+            return {key: 'type', element: contentTranslation('Type'),}
         }
 
     }()

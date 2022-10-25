@@ -13,7 +13,7 @@ import {AbstractAppOption}             from './AbstractAppOption'
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
 import {CommonOptions}                 from './CommonOptions'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
+import {contentTranslation}            from '../../lang/components/translationMethods'
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
 import {EmptyAppOption}                from './component/EmptyAppOption'
 import {Enum}                          from '../../util/enum/Enum'
@@ -45,7 +45,7 @@ export abstract class MiiCostumeAppOption
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,}
+            return {key: 'image', element: contentTranslation('Image'),}
         }
 
     }(true,)
@@ -78,7 +78,7 @@ export abstract class MiiCostumeAppOption
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
             //TODO add new translation to the header value.
-            return {key: 'officialNotification', element: <>--Official notification--</>,}
+            return {key: 'officialNotification', element: '--Official notification--',}
         }
 
     }(true,)

@@ -7,11 +7,11 @@ import type {ReactElement, ReactElementOrString}                   from '../util
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
 import type {SoundEffectAppStates}                                 from './AppStates.types'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {SoundEffects}                  from '../core/soundEffect/SoundEffects'
-import {SoundEffectAppOption}          from './options/SoundEffectAppOption'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {SoundEffects}           from '../core/soundEffect/SoundEffects'
+import {SoundEffectAppOption}   from './options/SoundEffectAppOption'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -33,7 +33,7 @@ export default class SoundEffectApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every sound effects"/>
+        return gameContentTranslation('Every sound effects')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -84,7 +84,7 @@ export default class SoundEffectApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every sound effects"/>,
+                    caption: gameContentTranslation('Every sound effects'),
                 }
             }
 

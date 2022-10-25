@@ -6,10 +6,10 @@ import type {EveryPossibleRouteNames}                                           
 import type {StaticReference}                                                                                                                                                                              from '../../util/enum/Enum.types'
 import type {ReactElement, ReactElementOrString}                                                                                                                                                           from '../../util/react/ReactProperties'
 
-import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent'
-import {CourseTags}                from '../../core/courseTag/CourseTags'
-import {Enum}                      from '../../util/enum/Enum'
-import {route}                     from '../../routes/route'
+import {contentTranslation} from '../../lang/components/translationMethods'
+import {CourseTags}         from '../../core/courseTag/CourseTags'
+import {Enum}               from '../../util/enum/Enum'
+import {route}              from '../../routes/route'
 
 export abstract class CourseTagTypes
     extends Enum<Ordinals, Names> {
@@ -153,21 +153,21 @@ export abstract class CourseTagTypes
     protected abstract _createAllLinkButtonProperties(): LinkProperties
 
     public createAllLinkButton(): ReactElement {
-        return this.#createLinkButton('all', this._createAllLinkButtonProperties(), <ContentTranslationComponent translationKey="All"/>,)
+        return this.#createLinkButton('all', this._createAllLinkButtonProperties(), contentTranslation('All'),)
     }
 
 
     protected abstract _createOfficialLinkButtonProperties(): LinkProperties
 
     public createOfficialLinkButton(): ReactElement {
-        return this.#createLinkButton('official', this._createOfficialLinkButtonProperties(), <ContentTranslationComponent translationKey="Official.Yes"/>,)
+        return this.#createLinkButton('official', this._createOfficialLinkButtonProperties(), contentTranslation('Official.Yes'),)
     }
 
 
     protected abstract _createUnofficialLinkButtonProperties(): LinkProperties
 
     public createUnofficialLinkButton(): ReactElement {
-        return this.#createLinkButton('unofficial', this._createUnofficialLinkButtonProperties(), <ContentTranslationComponent translationKey="Official.No"/>,)
+        return this.#createLinkButton('unofficial', this._createUnofficialLinkButtonProperties(), contentTranslation('Official.No'),)
     }
 
 

@@ -5,11 +5,11 @@ import type {AppProperties}                                        from './AppPr
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp'
-import {EntityCategories}              from '../core/entityCategory/EntityCategories'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import Image                           from './tools/images/Image'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
+import {EntityCategories}       from '../core/entityCategory/EntityCategories'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import Image                    from './tools/images/Image'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -31,7 +31,7 @@ export default class EntityCategoryApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every entity categories"/>
+        return gameContentTranslation('Every entity categories')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {

@@ -7,11 +7,11 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './inter
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {GameStyleAppOption}            from './options/GameStyleAppOption'
-import {GameStyles}                    from '../core/gameStyle/GameStyles'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {GameStyleAppOption}     from './options/GameStyleAppOption'
+import {GameStyles}             from '../core/gameStyle/GameStyles'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -33,7 +33,7 @@ export default class GameStyleApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every game styles"/>
+        return gameContentTranslation('Every game styles')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
@@ -83,7 +83,7 @@ export default class GameStyleApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every game styles"/>,
+                    caption: gameContentTranslation('Every game styles'),
                 }
             }
 

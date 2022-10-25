@@ -2,9 +2,9 @@ import './LanguageChanger.button.scss'
 
 import type {PossibleContent}          from './AbstractNavigationButton.types'
 import type {PossibleTooltipPlacement} from '../../bootstrap/Bootstrap.types'
-import type {TranslationMethod}        from '../../lang/components/TranslationProperty'
 
 import {AbstractNavigationButton} from './AbstractNavigationButton'
+import {contentTranslation}       from '../../lang/components/translationMethods'
 
 /**
  * @reactComponent
@@ -31,8 +31,8 @@ export default class LanguageChangerButton
         return 'bi-translate'
     }
 
-    protected override _getContent(translation: TranslationMethod<'content'>,): PossibleContent {
-        return translation('Change the language')
+    protected override _getContent(): PossibleContent {
+        return contentTranslation('Change the language')
     }
 
 }

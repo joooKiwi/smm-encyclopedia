@@ -7,14 +7,14 @@ import type {ReactElement, ReactElementOrString}                   from '../util
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
 import type {ThemeAppStates}                                       from './AppStates.types'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import Image                           from './tools/images/Image'
-import {ThemeAppOption}                from './options/ThemeAppOption'
-import {Themes}                        from '../core/theme/Themes'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
-import {CommonOptions}                 from './options/CommonOptions'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import Image                    from './tools/images/Image'
+import {ThemeAppOption}         from './options/ThemeAppOption'
+import {Themes}                 from '../core/theme/Themes'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {CommonOptions}          from './options/CommonOptions'
 
 /**
  * @reactComponent
@@ -36,7 +36,7 @@ export default class ThemeApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every themes"/>
+        return gameContentTranslation('Every themes')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Themes, ThemeAppOption> {
@@ -94,7 +94,7 @@ export default class ThemeApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every themes"/>,
+                    caption: gameContentTranslation('Every themes')
                 }
             }
 

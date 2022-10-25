@@ -2,8 +2,8 @@ import type {CourseTheme}     from '../theme/CourseTheme'
 import type {GameStyle}       from '../gameStyle/GameStyle'
 import type {ReactProperties} from '../../util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
+import {EMPTY_REACT_ELEMENT}    from '../../util/emptyReactVariables'
+import {gameContentTranslation} from '../../lang/components/translationMethods'
 
 interface NightEffectComponentProperties_GameStyle
     extends ReactProperties {
@@ -32,7 +32,7 @@ export default function NightEffectComponent(properties: | NightEffectComponentP
 function createGameStyleComponent({gameStyle: {nightDesertWindTranslationKey: translationKey,},}: NightEffectComponentProperties_GameStyle,) {
     if (translationKey == null)
         return EMPTY_REACT_ELEMENT
-    return <GameContentTranslationComponent translationKey={`nightEffect.nightDesertWindEffect.${translationKey}`}/>
+    return <>{gameContentTranslation(`nightEffect.nightDesertWindEffect.${translationKey}`)}</>
 }
 
 function createThemeComponent({theme: {effect,},}: NightEffectComponentProperties_Theme,) {

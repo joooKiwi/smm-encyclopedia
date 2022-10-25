@@ -5,11 +5,10 @@ import type {AppProperties}                                        from './AppPr
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {MiiCostumeCategories}          from '../core/miiCostumeCategory/MiiCostumeCategories'
-import {TranslationUtility}            from '../lang/components/TranslationUtility'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {MiiCostumeCategories}   from '../core/miiCostumeCategory/MiiCostumeCategories'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 const Image = lazy(() => import('./tools/images/Image'))
 
@@ -33,9 +32,9 @@ export default class EveryEntityCategoriesApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costume categories', {
+        return gameContentTranslation('Every Mii costume categories', {
             MiiCostume: <span key="miiCostume-singularName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costume reference
-        })}</GameContentTranslationComponent>
+        },)
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {

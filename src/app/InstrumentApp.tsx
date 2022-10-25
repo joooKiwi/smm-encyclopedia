@@ -6,10 +6,10 @@ import type {InstrumentAppStates}                                  from './AppSt
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {Instruments}                   from '../core/instrument/Instruments'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {Instruments}            from '../core/instrument/Instruments'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 //region -------------------- dynamic imports --------------------
 
@@ -34,7 +34,7 @@ export default class InstrumentApp
     }
 
     protected _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every instruments"/>
+        return gameContentTranslation('Every instruments')
     }
 
     protected _createAppOptionInterpreter(): AppInterpreterWithCardList<Instruments> {

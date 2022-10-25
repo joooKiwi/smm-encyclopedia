@@ -6,12 +6,12 @@ import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleS
 import type {EveryPossibleRouteNames}                                                                                                                                                                    from '../../routes/everyRoutes.types'
 import type {ReactElement}                                                                                                                                                                               from '../../util/react/ReactProperties'
 import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types'
-import type {TranslationMethod, TranslationReplaceKeysMap}                                                                                                                                               from '../../lang/components/TranslationProperty'
+import type {TranslationReplaceKeysMap}                                                                                                                                                                  from '../../lang/components/TranslationProperty'
 
 import {EMPTY_OBJECT}                  from '../../util/emptyVariables'
 import {Enum}                          from '../../util/enum/Enum'
 import {Entities}                      from '../entity/Entities'
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
+import {gameContentTranslation}        from '../../lang/components/translationMethods'
 import {ProjectLanguages}              from '../../lang/ProjectLanguages'
 import {route}                         from '../../routes/route'
 import {StringContainer}               from '../../util/StringContainer'
@@ -25,7 +25,7 @@ export class NightEffects
 
     public static readonly SPECIAL_EFFECT_ON_ENTITIES = new class NightEffects_SpecialEffectOnEntities extends NightEffects {
 
-        protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+        protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the link to be only for the entities with special effects on ground night
             return {
                 entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
@@ -36,7 +36,7 @@ export class NightEffects
     public static readonly SCREEN_UPSIDE_DOWN =         new NightEffects('Screen upside down',)
     public static readonly DARK =                       new class NightEffects_Dark extends NightEffects {
 
-        protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+        protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the entities to be only for the entities with dark light
             return {
                 entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
@@ -47,10 +47,10 @@ export class NightEffects
     }('Dark',)
     public static readonly WIND =                       new class NightEffects_Wind extends NightEffects {
 
-        protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+        protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
-                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{translation('Game style').toLowerCase()}</Link>,
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{gameContentTranslation('Game style').toLowerCase()}</Link>,
             }
         }
 
@@ -58,7 +58,7 @@ export class NightEffects
     public static readonly SLIPPERY =                   new NightEffects('Slippery',)
     public static readonly LOW_GRAVITY =                new class NightEffects_LowGravity extends NightEffects {
 
-        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+        protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
                 entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
@@ -68,7 +68,7 @@ export class NightEffects
     }('Low gravity',)
     public static readonly POISON_LIQUID =              new class NightEffects_PoisonLiquid extends NightEffects {
 
-        protected override _createReplaceComponent(translation:TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+        protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             return {
                 water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.WATER.reference)!.toLowerCase()}</span>,
                 poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.POISON.reference)!.toLowerCase()}</span>,
@@ -78,7 +78,7 @@ export class NightEffects
     }('Poison liquid',)
     public static readonly ENTITIES_IN_WATER =          new class NightEffects_EntitiesInWater extends NightEffects {
 
-        protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+        protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the link to be only for the entities with the underwater behaviour on the sky night theme
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
@@ -89,7 +89,7 @@ export class NightEffects
     }('Entities in water',)
     public static readonly CHARACTERS_IN_WATER =        new class NightEffects_CharactersInWater extends NightEffects {
 
-        protected override _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+        protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
                 players: NightEffects._createPlayersLink(this),
@@ -142,14 +142,12 @@ export class NightEffects
         return <span key={`${instance.englishName} (players)`} className="text-decoration-underline">--players--</span>
     }
 
-    protected _createReplaceComponent(translation: TranslationMethod<'gameContent'>,): TranslationReplaceKeysMap {
+    protected _createReplaceComponent(): TranslationReplaceKeysMap {
         return EMPTY_OBJECT
     }
 
     public get createNewComponent(): ReactElement {
-        return <GameContentTranslationComponent>{translation =>
-            <GameContentTranslationComponent translationKey={`nightEffect.${this.englishName}`} replace={this._createReplaceComponent(translation)}/>
-        }</GameContentTranslationComponent>
+        return gameContentTranslation(`nightEffect.${this.englishName}`, this._createReplaceComponent(),)
     }
 
 

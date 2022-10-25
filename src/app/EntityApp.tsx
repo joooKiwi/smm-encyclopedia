@@ -10,12 +10,12 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './inter
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
-import {Entities}                      from '../core/entity/Entities'
-import {EntityAppOption}               from './options/EntityAppOption'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
+import {Entities}               from '../core/entity/Entities'
+import {EntityAppOption}        from './options/EntityAppOption'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 //region -------------------- dynamic imports --------------------
 
@@ -43,7 +43,7 @@ export default class EntityApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every entities"/>
+        return gameContentTranslation('Every entities')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
@@ -101,7 +101,7 @@ export default class EntityApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every entities"/>,
+                    caption: gameContentTranslation('Every entities'),
                 }
             }
 

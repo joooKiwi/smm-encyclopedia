@@ -7,12 +7,12 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './inter
 import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
 import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import {EntityLimitAppOption}          from './options/EntityLimitAppOption'
-import {EntityLimits}                  from '../core/entityLimit/EntityLimits'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import TextComponent                   from './tools/text/TextComponent'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {EntityLimitAppOption}   from './options/EntityLimitAppOption'
+import {EntityLimits}           from '../core/entityLimit/EntityLimits'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import TextComponent            from './tools/text/TextComponent'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -34,7 +34,7 @@ export default class EntityLimitApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every entity limits"/>
+        return gameContentTranslation('Every entity limits')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
@@ -90,7 +90,7 @@ export default class EntityLimitApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every entity limits"/>,
+                    caption: gameContentTranslation('Every entity limits'),
                 }
             }
 

@@ -3,13 +3,13 @@ import {Component, type Dispatch, type SetStateAction} from 'react'
 
 import type {Name}                                                                         from '../Name'
 import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from './Name.properties'
-import type {ReactComponent} from '../../../util/react/ReactComponent'
-import type {ReactElement}   from '../../../util/react/ReactProperties'
+import type {ReactComponent}                                                               from '../../../util/react/ReactComponent'
+import type {ReactElement}                                                                 from '../../../util/react/ReactProperties'
 
-import ContentTranslationComponent from '../../components/ContentTranslationComponent'
-import {ProjectLanguages}          from '../../ProjectLanguages'
-import TextComponent               from '../../../app/tools/text/TextComponent'
-import TextPopover                 from '../../../bootstrap/popover/TextPopover'
+import {contentTranslation} from '../../components/translationMethods'
+import {ProjectLanguages}   from '../../ProjectLanguages'
+import TextComponent        from '../../../app/tools/text/TextComponent'
+import TextPopover          from '../../../bootstrap/popover/TextPopover'
 
 /**
  * @reactComponent
@@ -58,12 +58,10 @@ export default class NamePopoverComponent
         const setDoesDisplayPopover = this.setDoesDisplayPopover
 
         this.setState({
-            element: <ContentTranslationComponent key={`${id} - span popover (translation)`}>{translation =>
-                <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, translation('In other languages'),)}
-                             {...this.otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
-                    {this.#currentLanguageTextContent}
-                </TextPopover>
-            }</ContentTranslationComponent>,
+            element: <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, contentTranslation('In other languages'),)}
+                                  {...this.otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
+                {this.#currentLanguageTextContent}
+            </TextPopover>,
         })
     }
 

@@ -8,14 +8,14 @@ import type {ReactElement}                                                      
 import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
 import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {Enum}                          from '../../util/enum/Enum'
-import {ProjectLanguages}              from '../../lang/ProjectLanguages'
-import {Themes}                        from '../../core/theme/Themes'
-import {Times}                         from '../../core/time/Times'
+import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
+import {CommonOptions}                              from './CommonOptions'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {Enum}                                       from '../../util/enum/Enum'
+import {ProjectLanguages}                           from '../../lang/ProjectLanguages'
+import {Themes}                                     from '../../core/theme/Themes'
+import {Times}                                      from '../../core/time/Times'
 
 //region -------------------- dynamic imports --------------------
 
@@ -37,7 +37,7 @@ export abstract class GameStyleAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,}
+            return {key: 'image', element: contentTranslation('Image'),}
         }
 
     }()
@@ -77,13 +77,10 @@ export abstract class GameStyleAppOption
             return {
                 key: 'nightDesertWind',
                 element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
-                tooltip: {
-                    namespace: 'gameContent', translationKey: 'Wind effect (night desert)',
-                    replace: {
-                        night: '--night--',//TODO add night reference
-                        desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
-                    },
-                },
+                tooltip: gameContentTranslation('Wind effect (night desert)', {
+                    night: '--night--',//TODO add night reference
+                    desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
+                },),
             }
         }
 
