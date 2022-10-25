@@ -137,7 +137,7 @@ export interface ExtendedList<T, LENGTH extends number = number, >
 
     toString(): string
 
-    toLocalString(): string
+    toLocaleString(): string
 
     //endregion -------------------- Conversion methods --------------------
     //region -------------------- Javascript only methods --------------------

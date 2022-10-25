@@ -343,7 +343,7 @@ export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     /**
      * @see Map.toLocalString
      */
-    public toLocalString(): string {
+    public toLocaleString(): string {
         return this._map.toLocaleString()
     }
 

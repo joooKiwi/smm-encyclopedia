@@ -219,7 +219,7 @@ export interface ExtendedSet<T, LENGTH extends number = number, >
     /**
      * @see Array.toLocalString
      */
-    toLocalString(): string
+    toLocaleString(): string
 
     //endregion -------------------- Conversion methods --------------------
     //region -------------------- Javascript only methods --------------------

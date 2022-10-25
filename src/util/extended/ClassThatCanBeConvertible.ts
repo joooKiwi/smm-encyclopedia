@@ -18,6 +18,6 @@ export interface ClassThatCanBeConvertible<V1, K, V2> {
 
     toString(): string
 
-    toLocalString(): string
+    toLocaleString(): string
 
 }

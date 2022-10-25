@@ -360,7 +360,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
     /**
      * @see Array.toLocalString
      */
-    public toLocalString(): string {
+    public toLocaleString(): string {
         return this.#array.toLocaleString()
     }
 
