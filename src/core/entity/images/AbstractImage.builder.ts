@@ -109,7 +109,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
     }
 
     public setNotSMB(): this {
-        return this.setGameStyle(SUPER_MARIO_BROS,)
+        return this.setNotGameStyle(SUPER_MARIO_BROS,)
     }
 
     public setOnlySMB3(): this {
