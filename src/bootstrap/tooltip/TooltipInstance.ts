@@ -10,15 +10,15 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
 
     public static DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
     /** @see Popover.Events.show */
-    public static readonly SHOW_EVENT = Tooltip.Event.SHOW as Tooltip.Events.show
+    public static readonly SHOW_EVENT = `show${Tooltip.EVENT_KEY}` as Tooltip.Events.show
     /** @see Popover.Events.shown */
-    public static readonly SHOWN_EVENT = Tooltip.Event.SHOWN as Tooltip.Events.shown
+    public static readonly SHOWN_EVENT = `shown${Tooltip.EVENT_KEY}` as Tooltip.Events.shown
     /** @see Popover.Events.hide */
-    public static readonly HIDE_EVENT = Tooltip.Event.HIDE as Tooltip.Events.hide
+    public static readonly HIDE_EVENT = `hide${Tooltip.EVENT_KEY}` as Tooltip.Events.hide
     /** @see Popover.Events.hidden */
-    public static readonly HIDDEN_EVENT = Tooltip.Event.HIDDEN as Tooltip.Events.hidden
+    public static readonly HIDDEN_EVENT = `hidden${Tooltip.EVENT_KEY}` as Tooltip.Events.hidden
     /** @see Popover.Events.inserted */
-    public static readonly INSERTED_EVENT = Tooltip.Event.INSERTED as Tooltip.Events.inserted
+    public static readonly INSERTED_EVENT = `inserted${Tooltip.EVENT_KEY}` as Tooltip.Events.inserted
 
     public constructor(element: | ID | ELEMENT, options: Partial<Tooltip.Options> = TooltipInstance.DEFAULT_OPTIONS, callbacks: TooltipEventsReceived = null,) {
         super(TooltipInstance, element, options,)

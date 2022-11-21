@@ -10,15 +10,15 @@ export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
 
     public static DEFAULT_OPTIONS: Partial<Popover.Options> = {}
     /** @see Popover.Events.show */
-    public static readonly SHOW_EVENT = Popover.Event.SHOW as Popover.Events.show
+    public static readonly SHOW_EVENT = `show${Popover.EVENT_KEY}` as Popover.Events.show
     /** @see Popover.Events.shown */
-    public static readonly SHOWN_EVENT = Popover.Event.SHOWN as Popover.Events.shown
+    public static readonly SHOWN_EVENT = `shown${Popover.EVENT_KEY}` as Popover.Events.shown
     /** @see Popover.Events.hide */
-    public static readonly HIDE_EVENT = Popover.Event.HIDE as Popover.Events.hide
+    public static readonly HIDE_EVENT = `hide${Popover.EVENT_KEY}` as Popover.Events.hide
     /** @see Popover.Events.hidden */
-    public static readonly HIDDEN_EVENT = Popover.Event.HIDDEN as Popover.Events.hidden
+    public static readonly HIDDEN_EVENT = `hidden${Popover.EVENT_KEY}` as Popover.Events.hidden
     /** @see Popover.Events.inserted */
-    public static readonly INSERTED_EVENT = Popover.Event.INSERTED as Popover.Events.inserted
+    public static readonly INSERTED_EVENT = `inserted${Popover.EVENT_KEY}` as Popover.Events.inserted
 
     public constructor(element: | ID | ELEMENT, options: Partial<Popover.Options> = PopoverInstance.DEFAULT_OPTIONS, callbacks: PopoverEventsReceived = null,) {
         super(PopoverInstance, element, options,)

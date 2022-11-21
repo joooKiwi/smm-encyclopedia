@@ -11,13 +11,13 @@ export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID ext
 
     public static DEFAULT_OPTIONS: Partial<ComponentOptions> = {}
     /** @see Offcanvas.Events.show */
-    public static readonly SHOW_EVENT = 'show.bs.offcanvas' as Offcanvas.Events.show
+    public static readonly SHOW_EVENT = `show${Offcanvas.EVENT_KEY}` as Offcanvas.Events.show
     /** @see Offcanvas.Events.shown */
-    public static readonly SHOWN_EVENT = 'shown.bs.offcanvas' as Offcanvas.Events.shown
+    public static readonly SHOWN_EVENT = `shown${Offcanvas.EVENT_KEY}` as Offcanvas.Events.shown
     /** @see Offcanvas.Events.hide */
-    public static readonly HIDE_EVENT = 'hide.bs.offcanvas' as Offcanvas.Events.hide
+    public static readonly HIDE_EVENT = `hide${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hide
     /** @see Offcanvas.Events.hidden */
-    public static readonly HIDDEN_EVENT = 'hidden.bs.offcanvas' as Offcanvas.Events.hidden
+    public static readonly HIDDEN_EVENT = `hidden${Offcanvas.EVENT_KEY}` as Offcanvas.Events.hidden
 
     public constructor(element: | ID | ELEMENT, callbacks: OffcanvasEventsReceived = null,) {
         super(OffcanvasInstance, element, OffcanvasInstance.DEFAULT_OPTIONS,)
