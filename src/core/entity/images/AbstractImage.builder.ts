@@ -17,7 +17,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
 
     //region -------------------- Fields --------------------
 
-    static readonly #GAME_STYLE_ARRAY = GameStyles.values
+    static readonly #GAME_STYLE_ARRAY = GameStyles.values.toArray()
 
     readonly #simpleImageName
     readonly #imageNumber

@@ -2,6 +2,7 @@ import type {AppInterpreterWithCardList}   from '../interpreter/AppInterpreterWi
 import type {AppProperties}                from '../AppProperties.types'
 import type {AppWithVariableDisplayStates} from '../AppStates.types'
 import type {ReactElement}                 from '../../util/react/ReactProperties'
+import type {ValueByApp}                   from '../interpreter/AppInterpreter'
 
 import {AbstractSimpleListApp} from './AbstractSimpleListApp'
 import {ListDimensionCreator}  from './ListDimension.creator'
@@ -23,8 +24,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
         return AbstractCardListApp.#APP_OPTION_INTERPRETER
     }
 
-    protected _createUniqueNameOnCardList(enumerable: ReturnType<APP['iterable']['next']>['value'],): string {
-        //TODO find a better way to use the enumerable type than the complicated name
+    protected _createUniqueNameOnCardList(enumerable: ValueByApp<APP>,): string {
         return enumerable.englishName
     }
 

@@ -1,11 +1,5 @@
-import type {BasePath}                                                                                                                                                                                                                                     from '../../variables'
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
-import type {MiiCostumes as RealEnum}                                                                                                                                                                                                                      from './MiiCostumes'
-
-
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleEnglishName | PossibleImageName
-export type PossibleValue = | RealEnum | string | number | null | undefined
+import type {BasePath}    from '../../variables'
+import type {MiiCostumes} from './MiiCostumes'
 
 enum Enum {
 
@@ -113,13 +107,7 @@ enum Enum {
 
 }
 
-//region -------------------- Number types --------------------
-
 export type Ordinals = typeof Enum[Names]
-
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
 export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
@@ -219,131 +207,10 @@ export type PossibleImageName =
               | `Shirt_${| 'Default' | 'Border' | 'Gesso' | 'Hanabi' | 'Keshigom'
                          | 'Killer' | 'Kinoko' | 'Nintendo' | 'Warai'}`
               | `Skin${| '3W' | 'M1' | 'M3' | 'MW' | 'MU'}`}`
-    
+
 
 export type PossibleImagePath = `/${BasePath}/Mii costume/${PossibleImageName}.tiff`
 
 //endregion -------------------- Image name --------------------
 
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
-
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
-
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
-
-//endregion -------------------- Instance types --------------------
-//region -------------------- Array types --------------------
-
-export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['NONE'],
-    SimpleEnum<T>['NINTENDO_SHIRT'], SimpleEnum<T>['NINTENDO_UNIFORM'],
-    SimpleEnum<T>['BLACK_SHORT_SHORTS'],
-    SimpleEnum<T>['DENIM_JEAN'], SimpleEnum<T>['DENIM_SKIRT'],
-
-
-    SimpleEnum<T>['MARIO_CAP'], SimpleEnum<T>['MARIO_OUTFIT'],
-    SimpleEnum<T>['MARIO_SWIM_TRUNKS'],
-    SimpleEnum<T>['FROG_MARIO_RAINCOAT'],
-    SimpleEnum<T>['ONE_UP_HOODIE'],
-    SimpleEnum<T>['PROPELLER_MARIO_HELMET'], SimpleEnum<T>['PROPELLER_MARIO_CLOTHES'],
-    SimpleEnum<T>['SUPER_ACORN_HAT'],
-    SimpleEnum<T>['CAT_MARIO_HEADGEAR'], SimpleEnum<T>['CAT_MARIO_SUIT'],
-    SimpleEnum<T>['SUPERBALL_MARIO_HAT'], SimpleEnum<T>['SUPERBALL_MARIO_SUIT'],
-    SimpleEnum<T>['BUILDER_HARD_HAT'], SimpleEnum<T>['BUILDER_MARIO_OUTFIT'],
-    SimpleEnum<T>['DOCTOR_HEADGEAR'], SimpleEnum<T>['DOCTOR_COAT'],
-
-    SimpleEnum<T>['LUIGI_CAP'], SimpleEnum<T>['LUIGI_OUTFIT'],
-
-    SimpleEnum<T>['PRINCESS_PEACH_WIG'], SimpleEnum<T>['PRINCESS_PEACH_DRESS'],
-    SimpleEnum<T>['PRINCESS_PEACH_TENNIS_OUTFIT'],
-
-    SimpleEnum<T>['ROSALINA_WIG'], SimpleEnum<T>['ROSALINA_DRESS'],
-
-    SimpleEnum<T>['TOAD_CAP'], SimpleEnum<T>['TOAD_OUTFIT'],
-
-    SimpleEnum<T>['YOSHI_HAT'], SimpleEnum<T>['YOSHI_SUIT'],
-
-    SimpleEnum<T>['BOWSER_HEADPIECE'], SimpleEnum<T>['BOWSER_SUIT'],
-    SimpleEnum<T>['BOWSER_JR_HEADPIECE'], SimpleEnum<T>['SLOBBERY_SHIRT'], SimpleEnum<T>['HOVER_CLOWN'],
-    SimpleEnum<T>['KOOPALING_HAWAIIAN_SHIRT'],
-    SimpleEnum<T>['MAGIKOOPA_HAT'], SimpleEnum<T>['MAGIKOOPA_ROBES'],
-
-    SimpleEnum<T>['CHEEP_CHEEP_HAT'],
-    SimpleEnum<T>['FACEPLANT'],
-    SimpleEnum<T>['SHY_CAP'],
-    SimpleEnum<T>['ROCKY_WRENCH_MANHOLE_LID'],
-    SimpleEnum<T>['POKEY_HAT'], SimpleEnum<T>['SNOW_POKEY_HAT'],
-    SimpleEnum<T>['FIREWORKS_SHIRT'],
-    SimpleEnum<T>['BANZAI_BILL_SHIRT'],
-    SimpleEnum<T>['STAREDOWN_SHIRT'], SimpleEnum<T>['PARENT_AND_CHILD_SKIRT'],
-    SimpleEnum<T>['CHOMP_DOG_SHIRT'],
-    SimpleEnum<T>['FISH_BONE_SHIRT'],
-    SimpleEnum<T>['ANGRY_SUN_SHIRT'],
-    SimpleEnum<T>['HOT_HOT_SHIRT'],
-    SimpleEnum<T>['RUNNING_SHIRT'],
-    SimpleEnum<T>['PHANTO_HOODIE'],
-    SimpleEnum<T>['SKULL_SKIRT'],
-    SimpleEnum<T>['BURNER_SKIRT'],
-    SimpleEnum<T>['WIND_UP_SHOE'],
-    SimpleEnum<T>['STINGBY_SKIRT'],
-    SimpleEnum<T>['THWOMP_SUIT'],
-    SimpleEnum<T>['GOOGOO_ONESIE'],
-    SimpleEnum<T>['KOOPA_TROOPA_SUIT'],
-
-
-    SimpleEnum<T>['MUSHROOM_HAIRCLIP'],
-    SimpleEnum<T>['SUPER_MUSHROOM_SHIRT'],
-    SimpleEnum<T>['SUPER_STAR_BARRETTE'], SimpleEnum<T>['SUPER_STAR_FLARES'],
-    SimpleEnum<T>['PIPE_HAT'], SimpleEnum<T>['PIPE_SKIRT'],
-    SimpleEnum<T>['PLATFORM_SKIRT'],
-    SimpleEnum<T>['DOORDUROYS'],
-    SimpleEnum<T>['ANTSY_CORDUROYS'],
-    SimpleEnum<T>['CLOUDWALKER'],
-    SimpleEnum<T>['BOUNCY_SKIRT'],
-    SimpleEnum<T>['SHORT_OF_DOOM'],
-    SimpleEnum<T>['DASH_BLOCK_HOODIE'],
-    SimpleEnum<T>['BIG_SPENDER_SHORTS'],
-    SimpleEnum<T>['QUESTION_MARK_BLOCK_HOODIE'],
-    SimpleEnum<T>['BLOCKSTRIPE_SHIRT'],
-
-    SimpleEnum<T>['FRIED_CHICKEN_HEADGEAR'], SimpleEnum<T>['FRIED_CHICKEN_HOODIE'],
-    SimpleEnum<T>['EDAMAME_BARRETTE'],
-    SimpleEnum<T>['EDAMAME_CAMISOLE'],
-    SimpleEnum<T>['I_LIKE_YOU_CAMISOLE'],
-    SimpleEnum<T>['WHITE_TANKTOP'],
-    SimpleEnum<T>['LAUGHING_SHIRT'],
-    SimpleEnum<T>['MIDNIGHT_DRESS'],
-
-    SimpleEnum<T>['ROYAL_CROWN'], SimpleEnum<T>['ROYAL_ATTIRE'],
-    SimpleEnum<T>['FANCY_TOP_HAT'], SimpleEnum<T>['FANCY_TUXEDO'],
-    SimpleEnum<T>['MATRIMONY_DRESS'],
-    SimpleEnum<T>['SUPERB_SUIT'],
-
-    SimpleEnum<T>['ROBOT_CAP'], SimpleEnum<T>['ROBOT_SUIT'],
-    SimpleEnum<T>['FROG_CAP'],
-    SimpleEnum<T>['REFRESHING_SHIRT'],
-    SimpleEnum<T>['PARTRICK_SHIRT'],
-    SimpleEnum<T>['YAMAMURA_SHIRT'],
-    SimpleEnum<T>['RESET_DRESS'],
-
-    SimpleEnum<T>['NINJI_CAP'], SimpleEnum<T>['NINJI_SHIRT'], SimpleEnum<T>['NINJI_SLACKS'], SimpleEnum<T>['NINJI_GARB'],
-    SimpleEnum<T>['CHEETAH_HEADGEAR'], SimpleEnum<T>['CHEETAH_TANKTOP'], SimpleEnum<T>['CHEETAH_RUNNERS'], SimpleEnum<T>['CHEETAH_SUIT'],
-
-    SimpleEnum<T>['FIRE_MARIO_SHIRT'],
-    SimpleEnum<T>['RACOON_MARIO_SHIRT'],
-    SimpleEnum<T>['CAPE_MARIO_SHIRT'],
-    SimpleEnum<T>['FLYING_SQUIRREL_MARIO_SHIRT'],
-    SimpleEnum<T>['CAT_MARIO_SHIRT'],
-
-    SimpleEnum<T>['WORLD_WEAR'],
-]
-
-//endregion -------------------- Array types --------------------
-
-
+export type MiiCostumesByName<T extends string, > = T extends (| PossibleEnglishName | PossibleImageName) ? MiiCostumes : never

@@ -1,14 +1,14 @@
-import type {BackgroundMusic}                                                                                                                                                       from './backgroundMusic/BackgroundMusic'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Music.types'
-import type {ObjectHolder}                                                                                                                                                          from '../../util/holder/ObjectHolder'
-import type {SingleSoundEffectMusic}                                                                                                                                                from './soundEffect/SingleSoundEffectMusic'
-import type {SoundEffectMusicWithDifferentEditor}                                                                                                                                   from './soundEffect/SoundEffectMusicWithDifferentEditor'
-import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect}                                                                                                              from './backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {BackgroundMusic}                                          from './backgroundMusic/BackgroundMusic'
+import type {Names, Ordinals}                                          from './Musics.types'
+import type {ObjectHolder}                                             from '../../util/holder/ObjectHolder'
+import type {SingleSoundEffectMusic}                                   from './soundEffect/SingleSoundEffectMusic'
+import type {SoundEffectMusicWithDifferentEditor}                      from './soundEffect/SoundEffectMusicWithDifferentEditor'
+import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from './backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect'
 
 import {BackgroundMusicContainer}                                          from './backgroundMusic/BackgroundMusic.container'
-import {Enum}                                                              from '../../util/enum/Enum'
-import {Enumerable}                                                        from '../../util/enum/Enumerable'
 import {FramePerMillisecond as Time}                                       from '../../util/sound/time/FramePerMillisecond'
 import {Import}                                                            from '../../util/DynamicImporter'
 import {NonChangeableSoundEffectBackgroundMusicContainer}                  from './backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container'
@@ -457,40 +457,34 @@ export class Musics
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    public static getValueByReference(value: | Musics | Themes | SoundEffects | null | undefined,): Musics {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = value instanceof Import.Themes
+            ? this.values.find(it => it.themeReference === value)
+            : this.values.find(it => it.soundEffectReference === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this reference "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Musics> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Musics
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByEnumerable(value: Enumerable,) {
-        return value instanceof Import.Themes
-            ? this.values.find(enumerable => enumerable.themeReference === value) ?? null
-            : value instanceof Import.SoundEffects ? this.values.find(enumerable => enumerable.soundEffectReference === value) ?? null
-                : null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Musics = Musics, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Musics
-    public static getValue(value: PossibleValue,): | Musics | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Musics>,): Musics {
         return Enum.getValueOn<Musics>(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Musics> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

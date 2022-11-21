@@ -1,12 +1,13 @@
-import type {BasicPredefinedConversion, EnumArray, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, PredefinedConversion} from './PredefinedConverter.types'
-import type {Converter}                                                                                                                                 from './Converter'
-import type {ConversionCallbackToAny, ValidationCallback}                                                                                               from '../CSVLoader.types'
-import type {StaticReference}                                                                                                                           from '../../enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {BasicPredefinedConversion, Names, Ordinals, PredefinedConversion} from './PredefinedConverter.types'
+import type {Converter}                                                        from './Converter'
+import type {ConversionCallbackToAny, ValidationCallback}                      from '../CSVLoader.types'
 
 import {assert}                           from '../../utilitiesMethods'
 import {ConverterPatterns}                from './ConverterPatterns'
 import {ConverterUtil}                    from './ConverterUtil'
-import {Enum}                             from '../../enum/Enum'
 import {StringToBooleanConverter}         from './StringToBooleanConverter'
 import {StringToEmptyableStringConverter} from './StringToEmptyableStringConverter'
 import {StringToNullableBooleanConverter} from './StringToNullableBooleanConverter'
@@ -232,12 +233,12 @@ export abstract class PredefinedConverter
         super()
         this.#simpleName = simpleName
         this.#simpleNameAsNonNullable = (simpleNameAsNonNullable ?? simpleName) as BasicPredefinedConversion
-        if (simpleNameAsNonNullable === undefined) {
+        if (simpleNameAsNonNullable == null) {
             this.#parentCallback = () => this
             this.#callbackToCreateNewValidationAsNonNullable = validatingValue => this.newValidation(validatingValue)
             this.#callbackToCreateNewConversionAsNonNullable = () => value => this.newConversion(value)
         } else {
-            this.#parentCallback = () => PredefinedConverter.getValue(this.simpleName)
+            this.#parentCallback = () => PredefinedConverter.getValueByName(this.simpleName)
             this.#callbackToCreateNewValidationAsNonNullable = validatingValue => this.parent.newValidation(validatingValue)
             this.#callbackToCreateNewConversionAsNonNullable = () => value => this.parent.newConversion(value)
         }
@@ -274,37 +275,42 @@ export abstract class PredefinedConverter
         return this.#callbackToCreateNewConversionAsNonNullable()(value)
     }
 
+
+    public static hasValueByName(value: string,): value is PredefinedConversion
+    public static hasValueByName(value: string,): boolean {
+        return this.#findValueByName(value) != null
+    }
+
+    // public static getValueByName<T extends string, >(value: | PredefinedConverter | T | null | undefined,): PredefinedConverterByName<T>
+    public static getValueByName(value: | PredefinedConverter | string | null | undefined,): PredefinedConverter {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.#findValueByName(value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
+    static #findValueByName(value: string,): | PredefinedConverter | null {
+        return this.values.find(it => it.simpleName === value.toLowerCase())
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<PredefinedConverter> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return PredefinedConverter
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.simpleName === value.toLowerCase())
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number = number, >(ordinal: O,): NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof PredefinedConverter[N]
-    public static getValue(name: PossibleStringValue,): PredefinedConverter
-    public static getValue(name: string,): | PredefinedConverter | null
-    public static getValue(value: PossibleNonNullableValue,): PredefinedConverter
-    public static getValue(value: PossibleValue,): | PredefinedConverter | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<PredefinedConverter>,): PredefinedConverter {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<PredefinedConverter> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

@@ -24,7 +24,7 @@ export class SpecialMusicInStarModeContainer
 
     private constructor([value, game,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,)
-        this.#game = GameReferences.getValue(game)
+        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
     //region -------------------- Getter methods --------------------

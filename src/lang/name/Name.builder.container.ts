@@ -1,5 +1,4 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language'
-import type {EnumArray as GameArray}                                                                                        from '../../core/game/Games.types'
 import type {IsACompleteNameCallback, PossibleGameReceived}                                                                 from './Name.builder.types'
 import type {Name}                                                                                                          from './Name'
 import type {NameBuilder}                                                                                                   from './Name.builder'
@@ -73,13 +72,16 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     public constructor(template: TEMPLATE, game: PossibleGameReceived, isACompleteName: boolean,) {
         this.#template = template
         if (game === 'all') {
-            this.#game = Games.values
+            this.#game = Games.values.toArray() as readonly [Games, Games, Games,]
             this.#isACompleteName = () => isACompleteName
         } else if (game === 'notSMM2') {
             this.#game = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
             this.#isACompleteName = () => isACompleteName
         } else {
-            const _game = this.#game = game
+            if (game instanceof Games && !isInProduction)
+                console.warn('The usage of Games in the NameBuilderContainer is deprecated, the usage of "1" "" or "3DS" should be used instead')
+            const _game = game instanceof Games ? game : Games.getValueByValue(game)
+            this.#game = [_game,] as const
             this.#isACompleteName = language => NameBuilderContainer.#IS_A_COMPLETE_NAME_BASED_ON_GAME(_game, language,) && isACompleteName
         }
     }
@@ -271,7 +273,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#template
     }
 
-    public get game(): | Games | readonly [Games, Games,] | GameArray {
+    public get game(): | readonly [Games,] | readonly [Games, Games,] | readonly [Games, Games, Games,] {
         return this.#game
     }
 

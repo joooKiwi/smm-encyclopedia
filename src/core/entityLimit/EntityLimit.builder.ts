@@ -59,7 +59,7 @@ export class EntityLimitBuilder
      * @param template
      */
     #getEntityLimitTypeBy(template: AlternativeLimitTemplate,): ObjectHolder<EntityLimitTypes> {
-        return new DelayedObjectHolderContainer(() => Import.EntityLimits.getValue(template.name.english.simple!)!.reference.type)
+        return new DelayedObjectHolderContainer(() => Import.EntityLimits.getValueByNameOrAcronym(template.name.english.simple).reference.type)
     }
 
     #getAlternativeEntityLimitBy(limit: | PossibleAlternativeEnglishName | null,): ObjectHolder<AlternativeEntityLimit> {
@@ -74,7 +74,7 @@ export class EntityLimitBuilder
      * @param name
      */
     #getTypeBy(name: PossibleEnglishName_EntityLimitType,): ObjectHolder<EntityLimitTypes> {
-        return new DelayedObjectHolderContainer(() => EntityLimitTypes.getValue(name))
+        return new DelayedObjectHolderContainer(() => EntityLimitTypes.getValueByName(name))
     }
 
     //region -------------------- Limit amount helper methods --------------------

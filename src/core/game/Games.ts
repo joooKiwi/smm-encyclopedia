@@ -1,15 +1,16 @@
+import {Enum}            from '@joookiwi/enumerable'
+
 import type {ClassWithAcronym}                                                                                                                                                                                                                                    from '../ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                                                                                                                                  from '../ClassWithImagePath'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleValue, PossibleStringValue, PossibleValue} from './Games.types'
-import type {GameProperty}                                                                                                                                                                                                                                        from '../entity/properties/game/GameProperty'
+import type {ClassWithImagePath}                                                                                          from '../ClassWithImagePath'
+import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleSimpleValue} from './Games.types'
+import type {GameProperty}                                                                                                from '../entity/properties/game/GameProperty'
 import type {PropertyGetter}                                                                                                                                                                                                                                      from '../PropertyGetter'
-import type {StaticReference}                                                                                                                                                                                                                                     from '../../util/enum/Enum.types'
 
-import {BASE_PATH}       from '../../variables'
-import {Enum}            from '../../util/enum/Enum'
-import GameComponent     from './Game.component'
-import {StringContainer} from '../../util/StringContainer'
+import {BASE_PATH}             from '../../variables'
+import GameComponent           from './Game.component'
+import {StringContainer}                                                    from '../../util/StringContainer'
+import {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
 export abstract class Games
     extends Enum<Ordinals, Names>
@@ -96,40 +97,35 @@ export abstract class Games
         return GameComponent.renderSingleComponent(this)
     }
 
+
+    // public static getValueByValue<T extends string, >(value: | Games | T | null | undefined,): GamesByValue<T>
+    public static getValueByValue(value: | Games | string | null | undefined,): Games {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(enumerable => enumerable.englishName === value
+            || enumerable.acronym === value
+            || enumerable.simpleValue === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Games> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Games
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.acronym === value
-                || enumerable.simpleValue === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Games = Games, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Games
-    public static getValue(value: PossibleValue,): | Games | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Games>,): Games {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Games> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

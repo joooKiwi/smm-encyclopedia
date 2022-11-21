@@ -74,7 +74,7 @@ export class UniqueImageBuilder
     }
 
     protected get _gameStyles(): readonly GameStyles[] {
-        return this.#gameStyles ?? GameStyles.values
+        return this.#gameStyles ?? GameStyles.values.toArray()
     }
 
 
@@ -253,7 +253,7 @@ export class UniqueImageBuilder
 
     #createEditorImageMap(image: EditorImage,): ReadonlyMap<GameStyles, readonly string[]> {
         const themes = this.__themes,
-            times = Times.values
+            times = Times.values.toArray()
 
         return new Map(this._gameStyles.map(gameStyle =>
             [

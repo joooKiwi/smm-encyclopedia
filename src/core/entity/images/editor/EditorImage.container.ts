@@ -16,7 +16,7 @@ export class EditorImageContainer
     //region -------------------- Getter methods --------------------
 
     protected override get _createEveryGameStyles(): readonly GameStyles[] {
-        return GameStyles.values
+        return GameStyles.values.toArray()
     }
 
     protected override get _createEveryThemes(): readonly Themes[] {
@@ -24,7 +24,7 @@ export class EditorImageContainer
     }
 
     protected override get _createEveryTimes(): readonly Times[] {
-        return Times.values
+        return Times.values.toArray()
     }
 
     //endregion -------------------- Getter methods --------------------

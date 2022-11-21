@@ -1,21 +1,22 @@
-import {Fragment} from 'react'
-import {Link}     from 'react-router-dom'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Fragment}                                                                from 'react'
+import {Link}                                                                    from 'react-router-dom'
 
-import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './NightEffects.types'
-import type {EveryPossibleRouteNames}                                                                                                                                                                    from '../../routes/everyRoutes.types'
-import type {ReactElement}                                                                                                                                                                               from '../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types'
-import type {TranslationReplaceKeysMap}                                                                                                                                                                  from '../../lang/components/TranslationProperty'
+import type {ClassWithEnglishName}                 from '../ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName} from './NightEffects.types'
+import type {EveryPossibleRouteNames}              from '../../routes/everyRoutes.types'
+import type {ReactElement}                         from '../../util/react/ReactProperties'
+import type {TranslationReplaceKeysMap}            from '../../lang/components/TranslationProperty'
 
-import {EMPTY_OBJECT}                  from '../../util/emptyVariables'
-import {Enum}                          from '../../util/enum/Enum'
-import {Entities}                      from '../entity/Entities'
-import {gameContentTranslation}        from '../../lang/components/translationMethods'
-import {ProjectLanguages}              from '../../lang/ProjectLanguages'
-import {route}                         from '../../routes/route'
-import {StringContainer}               from '../../util/StringContainer'
-import {Themes}                        from '../theme/Themes'
+import {EMPTY_OBJECT}           from '../../util/emptyVariables'
+import {Entities}               from '../entity/Entities'
+import {gameContentTranslation} from '../../lang/components/translationMethods'
+import {getValueByEnglishName}  from '../../util/utilitiesMethods'
+import {ProjectLanguages}       from '../../lang/ProjectLanguages'
+import {route}                  from '../../routes/route'
+import {StringContainer}        from '../../util/StringContainer'
+import {Themes}                 from '../theme/Themes'
 
 export class NightEffects
     extends Enum<Ordinals, Names>
@@ -152,41 +153,28 @@ export class NightEffects
 
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(limit => limit.englishName)
+        return this.values.map(it => it.englishName).toArray()
+    }
+
+    // public static getValueByName<T extends string, >(value: | NightEffects | T | null | undefined,): NightEffectsByName<T>
+    public static getValueByName(value: | NightEffects | string | null | undefined,): NightEffects {
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<NightEffects> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return NightEffects
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends NightEffects = NightEffects, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): NightEffects
-    public static getValue(value: PossibleValue,): | NightEffects | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<NightEffects>,): NightEffects {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<NightEffects> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

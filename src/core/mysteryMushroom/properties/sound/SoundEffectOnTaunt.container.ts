@@ -24,7 +24,7 @@ export class SoundEffectOnTauntContainer
 
     private constructor([value, game]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer(value, true, false,)
-        this.#game = GameReferences.getValue(game)
+        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
     //region -------------------- Getter methods --------------------

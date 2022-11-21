@@ -83,10 +83,11 @@ export class ThemeBuilder
      */
     static #getWhereEntityIs(name: PossibleEnglishName,): ObjectHolder<readonly Entity[]> {
         return new DelayedObjectHolderContainer(() => {
-            const theme = Themes.getValue(name)
+            const theme = Themes.getValueByName(name)
 
             return Entities.values.map(({reference,}) => reference)
                 .filter(reference => theme.get(reference))
+                .toArray()
         })
     }
 
@@ -96,7 +97,7 @@ export class ThemeBuilder
      * @param name the night effect
      */
     static #getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): ObjectHolder<NightEffects> {
-        return new DelayedObjectHolderContainer(() => NightEffects.getValue(name))
+        return new DelayedObjectHolderContainer(() => NightEffects.getValueByName(name))
     }
 
     //endregion -------------------- Course theme builder helper methods --------------------

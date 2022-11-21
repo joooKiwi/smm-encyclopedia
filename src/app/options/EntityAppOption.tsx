@@ -1,18 +1,18 @@
-import {Fragment, lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Fragment, lazy}                                                          from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
-import type {Entities}                                                                                                                                                              from '../../core/entity/Entities'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityAppOption.types'
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
+import type {Entities}                                         from '../../core/entity/Entities'
+import type {Names, Ordinals}                                  from './EntityAppOption.types'
+import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
+import type {ReactElement}                                     from '../../util/react/ReactProperties'
 
 import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
 import {CommonOptions}                              from './CommonOptions'
 import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
-import {Enum}                                       from '../../util/enum/Enum'
 import {EntityCategories}                           from '../../core/entityCategory/EntityCategories'
 import {EntityLimitTypes}                           from '../../core/entityLimit/EntityLimitTypes'
 import {EmptyAppOption}                             from './component/EmptyAppOption'
@@ -184,7 +184,7 @@ export abstract class EntityAppOption
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryNameContainer
 
-                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValue(categoryName.english)!.imagePath,)
+                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValueByName(categoryName.english).imagePath,)
             }
         }
 
@@ -276,7 +276,7 @@ export abstract class EntityAppOption
     //region -------------------- Getter methods --------------------
 
     protected static get _gameStyles() {
-        return this.#gameStyles ??= GameStyles.values
+        return this.#gameStyles ??= GameStyles.values.toArray()
     }
 
     protected static get _gameStyles_unusedImages() {
@@ -284,7 +284,7 @@ export abstract class EntityAppOption
     }
 
     protected static get times() {
-        return this.#times ??= Times.values
+        return this.#times ??= Times.values.toArray()
     }
 
     protected static get themes() {
@@ -338,30 +338,17 @@ export abstract class EntityAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EntityAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return EntityAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends EntityAppOption = EntityAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EntityAppOption
-    public static getValue(value: PossibleValue,): | EntityAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<EntityAppOption>,): EntityAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<EntityAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

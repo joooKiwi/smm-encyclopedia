@@ -1,14 +1,16 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                  from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                                                                                                                                    from '../ClassWithImagePath'
-import type {ClassWithReference}                                                                                                                                                                                                                                    from '../ClassWithReference'
-import type {EntityCategory}                                                                                                                                                                                                                                        from './EntityCategory'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityCategories.types'
-import type {StaticReference}                                                                                                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {BASE_PATH}       from '../../variables'
-import {Enum}            from '../../util/enum/Enum'
-import {Import}          from '../../util/DynamicImporter'
-import {StringContainer} from '../../util/StringContainer'
+import type {ClassWithEnglishName}                                                                            from '../ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                              from '../ClassWithImagePath'
+import type {ClassWithReference}                                                                              from '../ClassWithReference'
+import type {EntityCategory}                                                                                  from './EntityCategory'
+import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './EntityCategories.types'
+
+import {BASE_PATH}             from '../../variables'
+import {getValueByEnglishName} from '../../util/utilitiesMethods'
+import {Import}                from '../../util/DynamicImporter'
+import {StringContainer}       from '../../util/StringContainer'
 
 /**
  * @recursiveReference {@link EntityCategoryLoader}
@@ -85,41 +87,27 @@ export class EntityCategories
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(enumeration => enumeration.englishName)
+        return this.values.map(it => it.englishName).toArray()
+    }
+
+    public static getValueByName(value: | EntityCategories | string | null | undefined,): EntityCategories {
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EntityCategories> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return EntityCategories
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends EntityCategories = EntityCategories, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EntityCategories
-    public static getValue(value: PossibleValue,): | EntityCategories | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<EntityCategories>,): EntityCategories {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<EntityCategories> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

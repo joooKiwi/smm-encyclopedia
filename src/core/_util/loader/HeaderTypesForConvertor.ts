@@ -261,7 +261,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //region -------------------- Official notification --------------------
 
     public get everyPossibleNameWithAmount_officialNotification(): EveryPossibleNameWithAmount_OfficialNotification {
-        return this.#everyPossibleNameWithAmount_officialNotification ??= Import.OfficialNotifications.values.map(enumerable => [enumerable.englishName, enumerable.additionalEnglishName]).flat(2)
+        return this.#everyPossibleNameWithAmount_officialNotification ??= Import.OfficialNotifications.values.map(it => [it.englishName, it.additionalEnglishName,]).toArray().flat(2)
     }
 
     //endregion -------------------- Official notification --------------------

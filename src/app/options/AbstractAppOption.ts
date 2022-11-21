@@ -1,6 +1,7 @@
+import {Enum} from '@joookiwi/enumerable'
+
 import type {ReactState} from '../../util/react/ReactState'
 
-import {Enum}           from '../../util/enum/Enum'
 import {isInProduction} from '../../variables'
 
 /**@deprecated*/

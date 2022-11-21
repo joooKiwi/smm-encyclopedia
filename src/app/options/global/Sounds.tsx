@@ -1,13 +1,13 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Sounds.types'
-import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties'
-import type {SimpleSoundProperties}                                                                                                                                                 from '../../../util/sound/component/property/SimpleSoundProperties'
-import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types'
+import type {ClassWithValue}        from './ClassWithValue'
+import type {Names, Ordinals}       from './Sounds.types'
+import type {ReactElement}          from '../../../util/react/ReactProperties'
+import type {SimpleSoundProperties} from '../../../util/sound/component/property/SimpleSoundProperties'
 
 import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
-import {Enum}                from '../../../util/enum/Enum'
 
 //region -------------------- dynamic imports --------------------
 
@@ -74,38 +74,33 @@ export abstract class Sounds
 
     public abstract renderComponent(properties: SimpleSoundProperties,): ReactElement
 
+
+    // public static getValueByValue<T, >(value: T,): SoundsByValue<T>
+    public static getValueByValue(value: | Sounds | boolean | null | undefined,): Sounds {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.value === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Sounds> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Sounds
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByBoolean(value: boolean,) {
-        return this.values.find(enumerable => enumerable.value === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Sounds = Sounds, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Sounds
-    public static getValue(value: PossibleValue,): | Sounds | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Sounds>,): Sounds {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Sounds> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

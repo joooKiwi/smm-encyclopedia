@@ -1,7 +1,8 @@
 import './GroupOf2PowerUpPriority.scss'
 
+import type {PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+
 import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties'
-import type {PossibleNonNullableValue}      from '../../tools/arrow/Arrows.types'
 
 import Arrow             from '../../tools/arrow/Arrow'
 import {Arrows}          from '../../tools/arrow/Arrows'
@@ -14,7 +15,7 @@ interface GroupOf2PowerUpPriorityProperties
 
     children: readonly [ReactElement, ReactElement,]
 
-    arrow: PossibleNonNullableValue
+    arrow: PossibleValueByEnumerable<Arrows>
 
 }
 

@@ -1,12 +1,13 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                             from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                                                                                                               from '../ClassWithImagePath'
-import type {ClassWithReference}                                                                                                                                                                                                               from '../ClassWithReference'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumes.types'
-import type {MiiCostume}                                                                                                                                                                                                                       from './MiiCostume'
-import type {StaticReference}                                                                                                                                                                                                                  from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {ClassWithEnglishName}                                                       from '../ClassWithEnglishName'
+import type {ClassWithImagePath}                                                         from '../ClassWithImagePath'
+import type {ClassWithReference}                                                         from '../ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImagePath} from './MiiCostumes.types'
+import type {MiiCostume}                                                                 from './MiiCostume'
 
 import {BASE_PATH}       from '../../variables'
-import {Enum}            from '../../util/enum/Enum'
 import {Import}          from '../../util/DynamicImporter'
 import {StringContainer} from '../../util/StringContainer'
 
@@ -212,39 +213,34 @@ export class MiiCostumes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    // public static getValueByName<T extends string, >(value: | MiiCostumes | T | null | undefined,): MiiCostumesByName<T>
+    public static getValueByName(value: | MiiCostumes | string | null | undefined,): MiiCostumes {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null name.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(enumerable => enumerable.englishName === value
+            || enumerable.imageName === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<MiiCostumes> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return MiiCostumes
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.imageName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends MiiCostumes = MiiCostumes, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): MiiCostumes
-    public static getValue(value: PossibleValue,): | MiiCostumes | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<MiiCostumes>,):MiiCostumes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<MiiCostumes> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

@@ -27,7 +27,9 @@ export class SoundEffectOnDeathContainer
     private constructor([value, type, game, smallDefinition,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,)
         this.#type = type
-        this.#game = GameReferences.getValue(game)
+        this.#game = game == null || game === '???' || game.startsWith('Pokémon gen') ? null : GameReferences.getValueByNameOrAcronym(game)
+        //FIXME try not to receive ??? as the value for the game
+        //FIXME try not to receive "Pokémon gen 1" as the value for the game
         this.#smallDefinition = smallDefinition
     }
 

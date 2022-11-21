@@ -1,14 +1,14 @@
-import {Fragment, lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Fragment, lazy}                                                          from 'react'
 
-import type {ClassWithTranslationKey}                                                                                                                                                                       from '../../../lang/ClassWithTranslationKey'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKey, PossibleValue} from './PlayerSoundEffectTriggers.types'
-import type {PlayerSoundEffectTriggerProperty}                                                                                                                                                              from './PlayerSoundEffectTriggerProperty'
-import type {ReactElement}                                                                                                                                                                                  from '../../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types'
-import type {TranslationReplaceKeysMap}                                                                                                                                                                     from '../../../lang/components/TranslationProperty'
+import type {ClassWithTranslationKey}                 from '../../../lang/ClassWithTranslationKey'
+import type {Names, Ordinals, PossibleTranslationKey} from './PlayerSoundEffectTriggers.types'
+import type {PlayerSoundEffectTriggerProperty}        from './PlayerSoundEffectTriggerProperty'
+import type {ReactElement}                            from '../../../util/react/ReactProperties'
+import type {TranslationReplaceKeysMap}               from '../../../lang/components/TranslationProperty'
 
 import {assert}                 from '../../../util/utilitiesMethods'
-import {Enum}                   from '../../../util/enum/Enum'
 import {gameContentTranslation} from '../../../lang/components/translationMethods'
 
 //region -------------------- dynamic imports --------------------
@@ -339,38 +339,33 @@ export class PlayerSoundEffectTriggers
         assert(false, 'There is no player sound effect trigger usable with no possible property.',)
     }
 
+
+    // public static getValueByTranslation<T extends string, >(value: | PlayerSoundEffectTriggers | T | null | undefined,): PlayerSoundEffectTriggersByTranslation<T>
+    public static getValueByTranslation(value: | PlayerSoundEffectTriggers | string | null | undefined,): PlayerSoundEffectTriggers {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(enumerable => enumerable.translationKey === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<PlayerSoundEffectTriggers> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return PlayerSoundEffectTriggers
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.translationKey === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends PlayerSoundEffectTriggers = PlayerSoundEffectTriggers, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): PlayerSoundEffectTriggers
-    public static getValue(value: PossibleValue,): | PlayerSoundEffectTriggers | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<PlayerSoundEffectTriggers>,): PlayerSoundEffectTriggers {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<PlayerSoundEffectTriggers> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

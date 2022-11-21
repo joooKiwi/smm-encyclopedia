@@ -1,10 +1,4 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
-import type {OfficialNotifications as RealEnum}                                                                                                                                                                                                            from './OfficialNotifications'
-
-
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleEnglishName | PossibleEnglishNameWithEveryAmount
-export type PossibleValue = | RealEnum | string | number | null | undefined
+import type {OfficialNotifications} from './OfficialNotifications'
 
 enum Enum {
 
@@ -66,9 +60,10 @@ enum Enum {
 
 }
 
-//region -------------------- Number types --------------------
-
 export type Ordinals = typeof Enum[Names]
+export type Names = keyof typeof Enum
+
+//region -------------------- Amount --------------------
 
 export type PossibleAmount =
     | PossibleAmount_ReceiveXPlay | PossibleAmount_X1stClear
@@ -77,7 +72,7 @@ export type PossibleAmount =
     | PossibleAmount_ClearCourseInCoop | PossibleAmount_EarnMakerPoint
     | PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal | PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert
     | PossibleAmount_XStampInNinjiSpeedrun | PossibleAmount_ClearXSuperWorld
-    
+
 export type PossibleAmount_ReceiveXPlay = | 100 | 500 | 1000 | 2000 | 5000
 export type PossibleAmount_X1stClear = | 1 | 10 | 100
 export type PossibleAmount_ClearXCourse = | 1 | 10 | 100 | 500 | 1000 | 3000 | 5000 | 10000
@@ -91,11 +86,7 @@ export type PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert = | 10 
 export type PossibleAmount_XStampInNinjiSpeedrun = | 1 | 4 | 7 | 10 | 11 | 14 | 17 | 20
 export type PossibleAmount_ClearXSuperWorld = | 1 | 2 | 3 | 4 | 5 | 10
 
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
-export type Names = keyof typeof Enum
-
+//endregion -------------------- Amount --------------------
 //region -------------------- English name --------------------
 
 //region -------------------- English name (with amount) --------------------
@@ -195,80 +186,4 @@ export type PossibleAdditionalTranslationKey = `position.${| 'place' | 'job'}.${
 
 //endregion -------------------- Translation key --------------------
 
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
-
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
-
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
-
-//endregion -------------------- Instance types --------------------
-//region -------------------- Array types --------------------
-
-export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-
-    SimpleEnum<T>['FINISH_ALL_JOBS'],
-    SimpleEnum<T>['FINISH_ALL_JOBS_UNDODOG'],
-    SimpleEnum<T>['FINISH_ALL_JOBS_YAMAMURA'],
-    SimpleEnum<T>['FINISH_ALL_JOBS_PARTRICK'],
-    SimpleEnum<T>['FINISH_ALL_JOBS_SOUNDFROG'],
-    SimpleEnum<T>['FINISH_ALL_JOBS_MR_ERASER'],
-    SimpleEnum<T>['FINISH_1ST_JOB_PEACH'],
-    SimpleEnum<T>['FINISH_2ND_JOB_PEACH'],
-    SimpleEnum<T>['FINISH_3RD_JOB_PEACH'],
-    SimpleEnum<T>['HIT_MIDDLE_QUESTION_BLOCK_NEAR_PURPLE_TOAD'],
-    SimpleEnum<T>['FINISH_REBUILDING_THE_CASTLE'],
-
-
-    SimpleEnum<T>['RECEIVE_A_LIKE'],
-    SimpleEnum<T>['RECEIVE_A_COMMENT'],
-    SimpleEnum<T>['RECEIVE_A_LOT_OF_FEEDBACK_1'], SimpleEnum<T>['RECEIVE_A_LOT_OF_FEEDBACK_2'],
-    SimpleEnum<T>['RECEIVE_X_PLAY'],
-
-    SimpleEnum<T>['LIKE_A_COURSE'],
-    SimpleEnum<T>['POST_A_COMMENT'],
-    SimpleEnum<T>['UPLOAD_A_COURSE'],
-
-    SimpleEnum<T>['_1_OF_1ST_CLEAR_TO_FINISH_A_COURSE'], SimpleEnum<T>['X_OF_1ST_CLEAR_TO_FINISH_A_COURSE'],
-    SimpleEnum<T>['CLEAR_1_COURSE'], SimpleEnum<T>['CLEAR_X_COURSE'],
-
-    SimpleEnum<T>['PLAY_X_COURSE'],
-
-    SimpleEnum<T>['SET_1_WORLD_RECORD'], SimpleEnum<T>['HOLD_X_WORLD_RECORD'],
-
-
-    SimpleEnum<T>['WIN_1_MATCH_IN_MULTIPLAYER_VS'], SimpleEnum<T>['WIN_X_MATCH_IN_MULTIPLAYER_VS'],
-    SimpleEnum<T>['WIN_CONSECUTIVE_MATCH_IN_MULTIPLAYER_VS'],
-
-    SimpleEnum<T>['RANK_C_IN_MULTIPLAYER_VS'],
-    SimpleEnum<T>['RANK_B_IN_MULTIPLAYER_VS'],
-    SimpleEnum<T>['RANK_A_IN_MULTIPLAYER_VS'],
-    SimpleEnum<T>['RANK_S_IN_MULTIPLAYER_VS'],
-    SimpleEnum<T>['RANK_S_PLUS_IN_MULTIPLAYER_VS'],
-
-    SimpleEnum<T>['CLEAR_1_COURSE_IN_MULTIPLAYER_COOP'],
-    SimpleEnum<T>['CLEAR_X_COURSE_IN_MULTIPLAYER_COOP'],
-
-    SimpleEnum<T>['X_MAKER_POINT_EARN'],
-
-    SimpleEnum<T>['HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EASY'],
-    SimpleEnum<T>['HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_NORMAL'],
-    SimpleEnum<T>['HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EXPERT'],
-    SimpleEnum<T>['HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_SUPER_EXPERT'],
-
-    SimpleEnum<T>['GOLD_MEDAL_ON_THE_LEADERBOARD'], SimpleEnum<T>['SILVER_MEDAL_ON_THE_LEADERBOARD'], SimpleEnum<T>['BRONZE_MEDAL_ON_THE_LEADERBOARD'],
-    SimpleEnum<T>['FIRST_PLACE_ON_THE_LEADERBOARD'], SimpleEnum<T>['SECOND_PLACE_ON_THE_LEADERBOARD'], SimpleEnum<T>['THIRD_PLACE_ON_THE_LEADERBOARD'],
-
-    SimpleEnum<T>['COLLECT_1_STAMP_IN_THE_NINJI_SPEEDRUNS'], SimpleEnum<T>['COLLECT_X_STAMP_IN_THE_NINJI_SPEEDRUNS'],
-
-    SimpleEnum<T>['UPLOAD_A_SUPER_WORLD'],
-    SimpleEnum<T>['CLEAR_1_SUPER_WORLD'], SimpleEnum<T>['CLEAR_X_SUPER_WORLD'],
-
-]
-
-//endregion -------------------- Array types --------------------
+export type OfficialNotificationsByEnglishName<T extends string, > = T extends (| PossibleEnglishName | PossibleEnglishNameWithEveryAmount) ? OfficialNotifications : never

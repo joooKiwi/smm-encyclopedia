@@ -112,8 +112,10 @@ export class EntityBuilder
      * or return an {@link EmptyEntityCategory empty category}.
      */
     #getEntityCategory(): EntityCategory {
-        return EntityCategories.getValue(this.template.categoryInTheEditor)?.reference
-            ?? EmptyEntityCategory.get
+        const category = this.template.categoryInTheEditor
+        return category == null
+            ? EmptyEntityCategory.get
+            : EntityCategories.getValueByName(category).reference
     }
 
     //endregion -------------------- Entity category helper methods --------------------
@@ -122,7 +124,7 @@ export class EntityBuilder
     static #whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
     static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
     static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
-        return EntityLimits.getValue(entityLimit)
+        return entityLimit == null ? null : EntityLimits.getValueByNameOrAcronym(entityLimit)
     }
 
     static #getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
@@ -187,12 +189,13 @@ export class EntityBuilder
      */
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): | readonly [Instrument,] | readonly [Instrument, Instrument,]
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): readonly Instrument[] {
-        const singleInstrument = Instruments.getValue(instrument)
+        const singleInstrument = Instruments.getValueByName(instrument)
         if (singleInstrument != null)
-            return [singleInstrument.reference]
+            return [singleInstrument.reference,]
 
-        return Instruments.values.filter(enumerable => instrument.includes(enumerable.englishName))!
-            .map(enumerable => enumerable.reference)
+        return Instruments.values.filter(it => instrument.includes(it.englishName))
+            .map(it => it.reference)
+            .toArray()
     }
 
     /**
@@ -306,7 +309,7 @@ export class EntityBuilder
     #createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
-            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference))
+            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValueByName(reference.name.english.simple ?? reference.name.english.american).reference))
     }
 
     /**
@@ -321,7 +324,7 @@ export class EntityBuilder
                 ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
                 : link === 'this'
                     ? this.#selfCallback
-                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities
+                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValueByName(splitLink).reference) as unknown as PossibleOtherEntities
         )
     }
 

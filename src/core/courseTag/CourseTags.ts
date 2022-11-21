@@ -1,12 +1,14 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                      from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                                                                                        from '../ClassWithReference'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleOfficialEnglishName, PossibleStringValue, PossibleValue, UnofficialCourseTags} from './CourseTags.types'
-import type {CourseTag}                                                                                                                                                                                                                                                                                 from './CourseTag'
-import type {StaticReference}                                                                                                                                                                                                                                                                           from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}            from '../../util/enum/Enum'
-import {Import}          from '../../util/DynamicImporter'
-import {StringContainer} from '../../util/StringContainer'
+import type {ClassWithEnglishName}                                                                                                                from '../ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                  from '../ClassWithReference'
+import type {MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName, UnofficialCourseTags} from './CourseTags.types'
+import type {CourseTag}                                                                                                                           from './CourseTag'
+
+import {getValueByEnglishName} from '../../util/utilitiesMethods'
+import {Import}                from '../../util/DynamicImporter'
+import {StringContainer}       from '../../util/StringContainer'
 
 /**
  * @recursiveReference {@link CourseTagLoader}
@@ -120,45 +122,31 @@ export class CourseTags
     }
 
     public static get unofficialCourseTags(): UnofficialCourseTags {
-        return this.#unofficialCourseTags ??= this.values.filter(enumerable => !this.officialCourseTags.includes(enumerable)) as unknown as UnofficialCourseTags
+        return this.#unofficialCourseTags ??= this.values.filter(it => !this.officialCourseTags.includes(it)).toArray() as UnofficialCourseTags
     }
 
     public static get makerCentralCourseTags(): MakerCentralCourseTags {
-        return this.#makerCentralCourseTags ??= this.values.filter(enumerable => enumerable.reference.makerCentralName != null) as unknown as MakerCentralCourseTags
+        return this.#makerCentralCourseTags ??= this.values.filter(it => it.reference.makerCentralName != null).toArray() as MakerCentralCourseTags
+    }
+
+    public static getValueByName(value: | CourseTags | string | null | undefined,) {
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<CourseTags> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return CourseTags
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends CourseTags = CourseTags, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): CourseTags
-    public static getValue(value: PossibleValue,): | CourseTags | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<CourseTags>,): CourseTags {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<CourseTags> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

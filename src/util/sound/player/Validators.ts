@@ -1,8 +1,10 @@
-import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, IsSourceFoundCallback, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Validators.types'
-import type {ClassWithEnglishName}                                                                                                                                                                                      from '../../../core/ClassWithEnglishName'
-import type {StaticReference}                                                                                                                                                                                           from '../../enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                               from '@joookiwi/enumerable'
 
-import {Enum} from '../../enum/Enum'
+import type {EnglishName, IsSourceFoundCallback, Names, Ordinals} from './Validators.types'
+import type {ClassWithEnglishName}                                from '../../../core/ClassWithEnglishName'
+
+import {getValueByEnglishName} from '../../utilitiesMethods'
 
 export abstract class Validators
     extends Enum<Ordinals, Names>
@@ -75,12 +77,11 @@ export abstract class Validators
 
     }('on create only',)
 
-    protected static readonly _DEFAULT = Validators.ON_PLAY_ONLY
-
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
     static [index: number]: Validators
+    protected static readonly _DEFAULT = Validators.ON_PLAY_ONLY
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -101,7 +102,7 @@ export abstract class Validators
     }
 
     public get englishNameInHtml(): EnglishName {
-        return this.englishName
+        return this.englishName//TODO replace with a proper html name or remove this method entirely
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -124,53 +125,38 @@ export abstract class Validators
         return null
     }
 
+
+    // public static getValueByName<T, >(value: T,): ValidatorsByName<T>
+    public static getValueByName(value: | Validators | string | null | undefined,): Validators {
+        return getValueByEnglishName(value, this,)
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Validators> {
+    protected override get _static(): EnumerableConstructorWithDefault<Ordinals, Names> {
         return Validators
     }
 
-    //region -------------------- Enum default methods --------------------
-
     public static get default(): Validators {
-        return Enum.getNonNullDefaultOn(this,)
+        return Enum.getDefaultOn(this,)
     }
 
-    public static set default(value: | Validators | string,) {
+    public static set default(value: PossibleValueByEnumerable<Validators>,) {
         this.setDefault(value,)
     }
 
-    public static setDefault(value: | Validators | string,): typeof Validators {
-        return Enum.setNonNullDefaultOn(this, value,)
+    public static setDefault(value: PossibleValueByEnumerable<Validators>,): typeof Validators {
+        return Enum.setDefaultOn(this, value,)
     }
 
-    //endregion -------------------- Enum default methods --------------------
-    //region -------------------- Enum value methods --------------------
-
-    public static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(value: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: S,): EnumByPossibleString<S>
-    public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
-    public static getValue<I extends Validators, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Validators
-    public static getValue(value: PossibleValue,): | Validators | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Validators>,): Validators {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Validators> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

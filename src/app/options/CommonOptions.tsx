@@ -1,9 +1,9 @@
-import {lazy} from 'react'
+import type {Enum} from '@joookiwi/enumerable/dist/types'
+import {lazy}      from 'react'
 
 import type {ClassInAnySuperMarioMakerGame}             from '../../core/game/ClassInAnySuperMarioMakerGame'
 import type {ClassWithEnglishName}                      from '../../core/ClassWithEnglishName'
 import type {ClassWithReference}                        from '../../core/ClassWithReference'
-import type {Enum}                                      from '../../util/enum/Enum'
 import type {Name}                                      from '../../lang/name/Name'
 import type {NameTrait}                                 from '../../lang/name/NameTrait'
 import type {NameTraitFromACategory}                    from '../../lang/name/NameTraitFromACategory'
@@ -112,7 +112,7 @@ export class CommonOptions {
 
     /**
      * Get a {@link HTMLDivElement} containing each images (if true)
-     * of the {@link Games} contained in the {@link Enumerable} {@link ClassWithReference reference}.
+     * of the {@link Games} contained in the {@link Enum} {@link ClassWithReference reference}.
      *
      * @param enumeration The enumerable to retrieve the {@link Games} properties & {@link ClassWithEnglishName english name}.
      */

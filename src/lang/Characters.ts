@@ -1,9 +1,7 @@
-import type {
-    Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, EnumArray, EnumArray_Braces, EnumArray_Brackets, EnumArray_Number, EnumArray_Parentheses, EnumArray_Points, EnumArray_RomainAlphabet, EnumArray_Slashes, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Letters_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleBraces_Array, PossibleBrackets_Array, PossibleLowercaseRomainAlphabet_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNonNullableValue, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoints_Array, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSlashes_Array, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleStringValue, PossibleUppercaseRomainAlphabet_Array, PossibleValue, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean, VariableValueByBoolean
-}                             from './Characters.types'
-import type {StaticReference} from '../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum} from '../util/enum/Enum'
+import type {Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, Braces, Brackets, Numbers, Parentheses, Points, RomainAlphabet, Slashes, Letters_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleBraces_Array, PossibleBrackets_Array, PossibleLowercaseRomainAlphabet_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoints_Array, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSlashes_Array, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleUppercaseRomainAlphabet_Array, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean, VariableValueByBoolean} from './Characters.types'
 
 export class Characters
     extends Enum<Ordinals, Names> {
@@ -76,32 +74,32 @@ export class Characters
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    static readonly #POINTS: EnumArray_Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,]
+    static readonly #POINTS: Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,]
     static #POINTS_STRING?: Points_Array
     static #POINTS_SPACE_EVEN?: Points_SpaceEven_Array
     static #POINTS_SPACE_UNEVEN?: Points_SpaceUneven_Array
 
-    static readonly #PARENTHESES: EnumArray_Parentheses = [this.STARTING_PARENTHESIS, this.ENDING_PARENTHESIS,]
+    static readonly #PARENTHESES: Parentheses = [this.STARTING_PARENTHESIS, this.ENDING_PARENTHESIS,]
     static #PARENTHESES_STRING?: Parentheses_Array
     static #PARENTHESES_SPACE_EVEN?: Parentheses_SpaceEven_Array
     static #PARENTHESES_SPACE_UNEVEN?: Parentheses_SpaceUneven_Array
 
-    static readonly #BRACKETS: EnumArray_Brackets = [this.STARTING_BRACKET, this.ENDING_BRACKET,]
+    static readonly #BRACKETS: Brackets = [this.STARTING_BRACKET, this.ENDING_BRACKET,]
     static #BRACKETS_STRING?: Brackets_Array
     static #BRACKETS_SPACE_EVEN?: Brackets_SpaceEven_Array
     static #BRACKETS_SPACE_UNEVEN?: Brackets_SpaceUneven_Array
 
-    static readonly #BRACES: EnumArray_Braces = [this.STARTING_BRACE, this.ENDING_BRACE,]
+    static readonly #BRACES: Braces = [this.STARTING_BRACE, this.ENDING_BRACE,]
     static #BRACES_STRING?: Braces_Array
     static #BRACES_SPACE_EVEN?: Braces_SpaceEven_Array
     static #BRACES_SPACE_UNEVEN?: Braces_SpaceUneven_Array
 
-    static readonly #SLASHES: EnumArray_Slashes = [this.SLASH, this.VERTICAL_SLASH,]
+    static readonly #SLASHES: Slashes = [this.SLASH, this.VERTICAL_SLASH,]
     static #SLASHES_STRING?: Slashes_Array
     static #SLASHES_SPACE_EVEN?: Slashes_SpaceEven_Array
     static #SLASHES_SPACE_UNEVEN?: Slashes_SpaceUneven_Array
 
-    static readonly #LETTERS: EnumArray_RomainAlphabet = [
+    static readonly #LETTERS: RomainAlphabet = [
         this.LETTER_A, this.LETTER_B, this.LETTER_C, this.LETTER_D, this.LETTER_E,
         this.LETTER_F, this.LETTER_G, this.LETTER_H, this.LETTER_I, this.LETTER_J,
         this.LETTER_K, this.LETTER_L, this.LETTER_M, this.LETTER_N, this.LETTER_O,
@@ -119,7 +117,7 @@ export class Characters
     static #UPPERCASE_LETTERS_SPACE_EVEN?: UppercaseRomainAlphabet_SpaceEven_Array
     static #UPPERCASE_LETTERS_SPACE_UNEVEN?: UppercaseRomainAlphabet_SpaceUneven_Array
 
-    static readonly #NUMBERS: EnumArray_Number = [
+    static readonly #NUMBERS: Numbers = [
         this.NUMBER_0, this.NUMBER_1, this.NUMBER_2, this.NUMBER_3, this.NUMBER_4,
         this.NUMBER_5, this.NUMBER_6, this.NUMBER_7, this.NUMBER_8, this.NUMBER_9,
     ]
@@ -161,21 +159,21 @@ export class Characters
 
     //region -------------------- Specific characters --------------------
 
-    static #getBothEvenAndUnevenCharacters<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
-        return enumArray.map(enumerable => [enumerable.spaceUnevenCharacters[index], enumerable.spaceEvenCharacters[index],]).flat() as unknown as A
+    static #getBothEvenAndUnevenCharacters<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
+        return array.map(it => [it.spaceUnevenCharacters[index], it.spaceEvenCharacters[index],]).flat() as unknown as A
     }
 
-    static #getOnlyUnevenCharacter<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
-        return enumArray.map(enumerable => enumerable.spaceUnevenCharacters[index]) as unknown as A
+    static #getOnlyUnevenCharacter<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
+        return array.map(it => it.spaceUnevenCharacters[index]) as unknown as A
     }
 
-    static #getOnlyEvenCharacter<A extends readonly string[], >(enumArray: readonly Characters[], index: | 0 | 1,): A {
-        return enumArray.map(enumerable => enumerable.spaceEvenCharacters[index]).flat() as unknown as A
+    static #getOnlyEvenCharacter<A extends readonly string[], >(array: readonly Characters[], index: | 0 | 1,): A {
+        return array.map(it => it.spaceEvenCharacters[index]).flat() as unknown as A
     }
 
     //region -------------------- Specific characters (points) --------------------
 
-    public static get points_enum(): EnumArray_Points {
+    public static get points_enum(): Points {
         return this.#POINTS
     }
 
@@ -193,7 +191,7 @@ export class Characters
     //endregion -------------------- Specific characters (points) --------------------
     //region -------------------- Specific characters (parentheses) --------------------
 
-    public static get parentheses_enum(): EnumArray_Parentheses {
+    public static get parentheses_enum(): Parentheses {
         return this.#PARENTHESES
     }
 
@@ -211,7 +209,7 @@ export class Characters
     //endregion -------------------- Specific characters (parentheses) --------------------
     //region -------------------- Specific characters (brackets) --------------------
 
-    public static get brackets_enum(): EnumArray_Brackets {
+    public static get brackets_enum(): Brackets {
         return this.#BRACKETS
     }
 
@@ -229,7 +227,7 @@ export class Characters
     //endregion -------------------- Specific characters (brackets) --------------------
     //region -------------------- Specific characters (braces) --------------------
 
-    public static get braces_enum(): EnumArray_Braces {
+    public static get braces_enum(): Braces {
         return this.#BRACES
     }
 
@@ -247,7 +245,7 @@ export class Characters
     //endregion -------------------- Specific characters (braces) --------------------
     //region -------------------- Specific characters (slashes) --------------------
 
-    public static get slashes_enum(): EnumArray_Slashes {
+    public static get slashes_enum(): Slashes {
         return this.#SLASHES
     }
 
@@ -265,7 +263,7 @@ export class Characters
     //endregion -------------------- Specific characters (slashes) --------------------
     //region -------------------- Specific characters (letters) --------------------
 
-    public static get letters_enum(): EnumArray_RomainAlphabet {
+    public static get letters_enum(): RomainAlphabet {
         return this.#LETTERS
     }
 
@@ -306,7 +304,7 @@ export class Characters
     //endregion -------------------- Specific characters (letters) --------------------
     //region -------------------- Specific characters (numbers) --------------------
 
-    public static get numbers_enum(): EnumArray_Number {
+    public static get numbers_enum(): Numbers {
         return this.#NUMBERS
     }
 
@@ -336,9 +334,7 @@ export class Characters
     public static getCharacter<B extends boolean, C extends PossibleSingleCharacter, >(isSpaceEven: B, value: C,): VariableCharacterByCharacter<B, C>
     public static getCharacter<B extends boolean, C extends string, >(isSpaceEven: B, value: C,): VariableCharacterByString<B, C>
     public static getCharacter(isSpaceEven: boolean, value: string,) {
-        const enumValue = this.getValue(value)
-        if (enumValue == null)
-            return null
+        const enumValue = this.getValueByCharacter(value)
         const isUppercase = value === value.toUpperCase()
         const isLowercase = value === value.toLowerCase()
         if (!isUppercase && !isLowercase)//. ? ! , - & / | ( ) [ ] { } [0 to 9]
@@ -392,39 +388,34 @@ export class Characters
 
     //endregion -------------------- Transformation methods --------------------
 
+    // public static getValueByCharacter<T extends string, >(value: T,): Characters
+    public static getValueByCharacter(value: |Characters|string|null|undefined,): Characters {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(enumerable =>
+                enumerable.spaceEvenCharacters.includes(value as never)
+                || enumerable.spaceUnevenCharacters.includes(value as never))
+        if(valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by ths value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Characters> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Characters
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.spaceEvenCharacters.includes(value as never)
-                || enumerable.spaceUnevenCharacters.includes(value as never))
-            ?? null
-    }
-
-    public static getValue(value: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<PS extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: PS,): EnumByPossibleString<PS>
-    public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
-    public static getValue<I extends Characters, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Characters
-    public static getValue(value: PossibleValue,): | Characters | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Characters>,): Characters {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Characters> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

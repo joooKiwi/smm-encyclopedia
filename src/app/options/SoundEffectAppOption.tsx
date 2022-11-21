@@ -1,17 +1,17 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectAppOption.types'
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
+import type {Names, Ordinals}                                  from './SoundEffectAppOption.types'
+import type {ReactElement}                                     from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
 import {CommonOptions}                 from './CommonOptions'
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Enum}                          from '../../util/enum/Enum'
 import {Games}                         from '../../core/game/Games'
 import {SoundEffects}                  from '../../core/soundEffect/SoundEffects'
 import {SoundEffectCategories}         from '../../core/soundEffectCategory/SoundEffectCategories'
@@ -59,7 +59,7 @@ export abstract class SoundEffectAppOption
         protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
             const {reference,} = enumeration
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValue(reference.categoryEnglish)!.imagePath,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imagePath,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -180,30 +180,17 @@ export abstract class SoundEffectAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<SoundEffectAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return SoundEffectAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends SoundEffectAppOption = SoundEffectAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): SoundEffectAppOption
-    public static getValue(value: PossibleValue,): | SoundEffectAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<SoundEffectAppOption>,): SoundEffectAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<SoundEffectAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

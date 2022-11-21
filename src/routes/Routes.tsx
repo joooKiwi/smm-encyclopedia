@@ -45,5 +45,5 @@ function getRoutesToProjectRoute_InEveryLanguage() {
         <Route key={`direct route - ${route.name}(${language.projectAcronym})`} path={`/${language.projectAcronym}${route.path}`} element={
             <DirectRoute language={language} route={route}/>
         }/>
-    )).flat()
+    )).toArray().flat()
 }

@@ -1,20 +1,22 @@
-import type {ClassWithAcronym}                                                                                                                                                                                                                                                                            from '../ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                        from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                                                                                                                                                                          from '../ClassWithImagePath'
-import type {ClassWithReference}                                                                                                                                                                                                                                                                          from '../ClassWithReference'
-import type {EnumArray, EnumArray_SMM1, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleImagePath, PossibleNonNullableValue, PossibleShortImagePath, PossibleStringValue, PossibleValue} from './GameStyles.types'
-import type {GameStyle}                                                                                                                                                                                                                                                                                   from './GameStyle'
-import type {GameStyleProperty}                                                                                                                                                                                                                                                                           from '../entity/properties/gameStyle/GameStyleProperty'
-import type {GameStyleReferences}                                                                                                                                                                                                                                                                         from '../entity/properties/gameStyle/GameStyleReferences'
-import type {PossibleOtherEntities}                                                                                                                                                                                                                                                                       from '../entity/Entity'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                     from '../PropertyGetter'
-import type {StaticReference}                                                                                                                                                                                                                                                                             from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {BASE_PATH}        from '../../variables'
-import {Enum}             from '../../util/enum/Enum'
-import GameStyleComponent from './GameStyle.component'
-import {Import}           from '../../util/DynamicImporter'
-import {StringContainer}  from '../../util/StringContainer'
+import type {ClassWithAcronym}                                                                                                                        from '../ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                                    from '../ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                                                                      from '../ClassWithImagePath'
+import type {ClassWithReference}                                                                                                                      from '../ClassWithReference'
+import type {GameStylesInSMM1, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleImagePath, PossibleShortImagePath} from './GameStyles.types'
+import type {GameStyle}                                                                                                                               from './GameStyle'
+import type {GameStyleProperty}                                                                                                                       from '../entity/properties/gameStyle/GameStyleProperty'
+import type {GameStyleReferences}                                                                                                                     from '../entity/properties/gameStyle/GameStyleReferences'
+import type {PossibleOtherEntities}                                                                                                                   from '../entity/Entity'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                 from '../PropertyGetter'
+
+import {BASE_PATH}             from '../../variables'
+import GameStyleComponent      from './GameStyle.component'
+import {getValueByEnglishName} from '../../util/utilitiesMethods'
+import {Import}                from '../../util/DynamicImporter'
+import {StringContainer}       from '../../util/StringContainer'
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
@@ -96,7 +98,7 @@ export abstract class GameStyles
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameStyle>
-    static #GAME_STYLES_SMM1?: EnumArray_SMM1
+    static #GAME_STYLES_SMM1?: GameStylesInSMM1
 
     #reference?: GameStyle
     readonly #acronym
@@ -175,45 +177,33 @@ export abstract class GameStyles
 
 
     public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(limit => limit.acronym)
+        return this.values.map(limit => limit.acronym).toArray()
     }
 
-    public static get gameStyles_smm1(): EnumArray_SMM1 {
+    public static get gameStyles_smm1(): GameStylesInSMM1 {
         return this.#GAME_STYLES_SMM1 ??= [this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U,]
+    }
+
+
+    // public static getValueByName<T extends string, >(value: | GameStyles | T | null | undefined,): GameStylesByName<T>
+    public static getValueByName(value: | GameStyles | string | null | undefined,): GameStyles {
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<GameStyles> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return GameStyles
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends GameStyles = GameStyles, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): GameStyles
-    public static getValue(value: PossibleValue,): | GameStyles | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<GameStyles>,): GameStyles {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<GameStyles> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

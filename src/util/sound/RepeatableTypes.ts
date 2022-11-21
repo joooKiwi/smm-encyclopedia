@@ -1,7 +1,7 @@
-import type {StaticReference}                                                                                                                                                                               from '../enum/Enum.types'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleRepeatableName, PossibleStringValue, PossibleValue} from './RepeatableTypes.types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import {Enum} from '../enum/Enum'
+import type {Names, Ordinals, PossibleRepeatableName} from './RepeatableTypes.types'
 
 /**
  * @todo Add more types (within a range instead of just loop a single value)
@@ -11,12 +11,9 @@ export abstract class RepeatableTypes
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly NONE =            new class RepeatableTypes_None extends RepeatableTypes {
-    }(false, 'non repeatable',)
-    public static readonly AT_THE_END =      new class RepeatableTypes_AtTheEnd extends RepeatableTypes {
-    }(true, 'repeatable (at the end)',)
-    public static readonly DURING_THE_PLAY = new class RepeatableTypes_DuringThePlay extends RepeatableTypes {
-    }(false, 'repeatable (during the play)',)
+    public static readonly NONE =            new class RepeatableTypes_None extends RepeatableTypes {}(false, 'non repeatable',)
+    public static readonly AT_THE_END =      new class RepeatableTypes_AtTheEnd extends RepeatableTypes {}(true, 'repeatable (at the end)',)
+    public static readonly DURING_THE_PLAY = new class RepeatableTypes_DuringThePlay extends RepeatableTypes {}(false, 'repeatable (during the play)',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -55,38 +52,33 @@ export abstract class RepeatableTypes
         return element
     }
 
+
+    // public static getValueByName<T, >(value: T,): RepeatableTypesByName<T>
+    public static getValueByName(value: | RepeatableTypes | string | null | undefined,): RepeatableTypes {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.simpleName === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<RepeatableTypes> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return RepeatableTypes
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.simpleName === value) ?? null
-    }
-
-
-    public static getValue(value: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: S,): EnumByPossibleString<S>
-    public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
-    public static getValue<I extends RepeatableTypes, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): RepeatableTypes
-    public static getValue(value: PossibleValue,): | RepeatableTypes | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<RepeatableTypes>,): RepeatableTypes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<RepeatableTypes> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

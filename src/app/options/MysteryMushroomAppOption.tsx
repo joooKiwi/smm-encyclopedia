@@ -1,20 +1,20 @@
-import {Fragment, lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Fragment, lazy}                                                          from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                                                   from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                                                 from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleMysteryMushroomType, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MysteryMushroomAppOption.types'
-import type {MysteryMushroom}               from '../../core/mysteryMushroom/MysteryMushroom'
-import type {MysteryMushroomSoundFile}      from '../../core/mysteryMushroom/file/MysteryMushroomSoundFile'
-import type {NotApplicable}                 from '../../core/_properties/Property'
-import type {PossibleImageSourceForFile, PossibleSoundSourceForFile}                                                                                                                                             from '../../core/mysteryMushroom/MysteryMushrooms.types'
-import type {ReactElement}                                                                                                                                                                                       from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                                                from '../tools/table/SimpleHeader'
-import type {StaticReference}                                                                                                                                                                                    from '../../util/enum/Enum.types'
+import type {AppOptionWithContent, PossibleRenderReactElement}       from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                                     from './component/AppOptionWithTable'
+import type {MysteryMushroom}                                        from '../../core/mysteryMushroom/MysteryMushroom'
+import type {MysteryMushroomSoundFile}                               from '../../core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {Names, Ordinals, PossibleMysteryMushroomType}           from './MysteryMushroomAppOption.types'
+import type {NotApplicable}                                          from '../../core/_properties/Property'
+import type {PossibleImageSourceForFile, PossibleSoundSourceForFile} from '../../core/mysteryMushroom/MysteryMushrooms.types'
+import type {ReactElement}                                           from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                                    from '../tools/table/SimpleHeader'
 
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
 import {CommonOptions}                 from './CommonOptions'
-import {Enum}                          from '../../util/enum/Enum'
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
 import {MysteryMushrooms}              from '../../core/mysteryMushroom/MysteryMushrooms'
 import TextComponent                   from '../tools/text/TextComponent'
@@ -502,30 +502,17 @@ export abstract class MysteryMushroomAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<MysteryMushroomAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return MysteryMushroomAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends MysteryMushroomAppOption = MysteryMushroomAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): MysteryMushroomAppOption
-    public static getValue(value: PossibleValue,): | MysteryMushroomAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<MysteryMushroomAppOption>,): MysteryMushroomAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<MysteryMushroomAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

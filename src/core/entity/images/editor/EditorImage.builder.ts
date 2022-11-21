@@ -196,7 +196,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         const _notGameStyles = notGameStyles.map(gameStyle => GameStyles.getValue(gameStyle))
 
         return this._clearGameStyle()
-            ._add(Times.values, _gameStyles.filter(gameStyle => !_notGameStyles.includes(gameStyle)), [],)
+            ._add(Times.values.toArray(), _gameStyles.filter(gameStyle => !_notGameStyles.includes(gameStyle)), [],)
     }
 
     //endregion -------------------- Game Style --------------------
@@ -371,7 +371,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
     protected _getAmountBasedOnValue(time: null, gameStyle: GameStyles, theme: null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[]
     protected _getAmountBasedOnValue(time: | Times | null, gameStyle: GameStyles, theme: | Themes | null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[] {
         if (time == null || theme == null) {
-            const timeIterator = Times.values.values()
+            const timeIterator = Times[Symbol.iterator]()
             let nextTime = timeIterator.next()
             while (!nextTime.done) {
                 const amount = this._overrideImages.get(nextTime.value)?.get(gameStyle)?.get(GROUND)

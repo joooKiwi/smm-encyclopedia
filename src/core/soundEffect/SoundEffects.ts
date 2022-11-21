@@ -1,22 +1,23 @@
-import type {Builder}                                                                                                                                                                                                                                                                                                                 from '../../util/builder/Builder'
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                    from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                                      from '../ClassWithReference'
-import type {EnumArray, EnumArray_EnglishName, EnumArray_Games, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffects.types'
-import type {MusicSoundFile}                                                                                                                                                                                                                                                                                                          from '../music/file/MusicSoundFile'
-import type {PossibleSMM1ImagePath, PossibleSMM2ImagePath, SoundEffectImage}                                                                                                                                                                                                                                                          from './image/SoundEffectImage'
-import type {PossibleSoundEffectMusicEditorName}                                                                                                                                                                                                                                                                                      from '../music/soundEffect/SoundEffectMusic'
-import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                                                                                                                                                                                                               from './sound/SMM2SoundEffectSound'
-import type {SMM1ExclusiveSoundEffectSound}                                                                                                                                                                                                                                                                                           from './sound/SMM1ExclusiveSoundEffectSound'
-import type {SMM1StandaloneSoundEffectSound}                                                                                                                                                                                                                                                                                          from './sound/SMM1StandaloneSoundEffectSound'
-import type {SMM1SoundEffectSoundFile}                                                                                                                                                                                                                                                                                                from './file/SMM1SoundEffectSoundFile'
-import type {SMM2SoundEffectSoundFile}                                                                                                                                                                                                                                                                                                from './file/SMM2SoundEffectSoundFile'
-import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                                                                                                                                                                                                             from './sound/types'
-import type {SoundEffect}                                                                                                                                                                                                                                                                                                             from './SoundEffect'
-import type {SoundEffectSoundFile}                                                                                                                                                                                                                                                                                                    from './file/SoundEffectSoundFile'
-import type {StaticReference}                                                                                                                                                                                                                                                                                                         from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {Builder}                                                                                                                                                   from '../../util/builder/Builder'
+import type {ClassWithEnglishName}                                                                                                                                      from '../ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                        from '../ClassWithReference'
+import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, SoundEffectGames} from './SoundEffects.types'
+import type {MusicSoundFile}                                                                                                                                            from '../music/file/MusicSoundFile'
+import type {PossibleSMM1ImagePath, PossibleSMM2ImagePath, SoundEffectImage}                                                                                            from './image/SoundEffectImage'
+import type {PossibleSoundEffectMusicEditorName}                                                                                                                        from '../music/soundEffect/SoundEffectMusic'
+import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                                                 from './sound/SMM2SoundEffectSound'
+import type {SMM1ExclusiveSoundEffectSound}                                                                                                                             from './sound/SMM1ExclusiveSoundEffectSound'
+import type {SMM1StandaloneSoundEffectSound}                                                                                                                            from './sound/SMM1StandaloneSoundEffectSound'
+import type {SMM1SoundEffectSoundFile}                                                                                                                                  from './file/SMM1SoundEffectSoundFile'
+import type {SMM2SoundEffectSoundFile}                                                                                                                                  from './file/SMM2SoundEffectSoundFile'
+import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                                               from './sound/types'
+import type {SoundEffect}                                                                                                                                               from './SoundEffect'
+import type {SoundEffectSoundFile}                                                                                                                                      from './file/SoundEffectSoundFile'
 
 import {EmptySMMSoundEffectSound}                   from './sound/EmptySMMSoundEffectSound'
-import {Enum}                                       from '../../util/enum/Enum'
 import {Import}                                     from '../../util/DynamicImporter'
 import type {Musics}                                from '../music/Musics'
 import {SMM1SoundEffectImage}                       from './image/SMM1SoundEffectImage'
@@ -28,6 +29,7 @@ import {SMM1ExclusiveSoundEffectSoundBuilder}       from './sound/SMM1ExclusiveS
 import {SMM1StandaloneSoundEffectSoundBuilder}      from './sound/SMM1StandaloneSoundEffectSound.builder'
 import {SMM2SoundEffectSoundFromSoundEffectBuilder} from './sound/SMM2SoundEffectSoundFromSoundEffect.builder'
 import {StringContainer}                            from '../../util/StringContainer'
+import {getValueByEnglishName}                      from '../../util/utilitiesMethods'
 
 /**
  * @todo move the images in a delayed method instead of in the constructor.
@@ -664,7 +666,7 @@ export abstract class SoundEffects
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffect>
-    static #soundEffect_games?: EnumArray_Games
+    static #soundEffect_games?: SoundEffectGames
 
     #reference?: SoundEffect
     readonly #englishName
@@ -830,7 +832,7 @@ export abstract class SoundEffects
 
     //endregion -------------------- Getter methods (sound) --------------------
 
-    public static get soundEffect_games(): EnumArray_Games {
+    public static get soundEffect_games(): SoundEffectGames {
         return this.#soundEffect_games ??= [this.SUPER_MARIO_KART_MUSIC, this.SUPER_MARIO_64_MUSIC, this.SUPER_MARIO_SUNSHINE_MUSIC, this.SUPER_MARIO_GALAXY_MUSIC,]
     }
 
@@ -841,42 +843,30 @@ export abstract class SoundEffects
         return SoundEffectComponent.render(this)
     }
 
-    public static get everyEnglishNames(): EnumArray_EnglishName {
-        return this.values.map(soundEffect => soundEffect.englishName) as unknown as EnumArray_EnglishName
+    public static get everyEnglishNames(): EnglishNames {
+        return this.values.map(it => it.englishName).toArray() as EnglishNames
+    }
+
+
+    // public static getValueByName<T extends string, >(value: | SoundEffects | T | null | undefined,): SoundEffectsByName<T>
+    public static getValueByName(value: | SoundEffects | string | null | undefined,): SoundEffects {
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<SoundEffects> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return SoundEffects
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends SoundEffects = SoundEffects, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): SoundEffects
-    public static getValue(value: PossibleValue,): | SoundEffects | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<SoundEffects>,): SoundEffects {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<SoundEffects> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

@@ -87,7 +87,7 @@ export class MysteryMushroomBuilder
             case 'Pokémon gen 6':
                 return [POKEMON_X, POKEMON_Y,]
             default:
-                return [GameReferences.getValue(reference),]
+                return [GameReferences.getValueByNameOrAcronym(reference),]
         }
     }
 

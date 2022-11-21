@@ -1,14 +1,14 @@
-import {Link} from 'react-router-dom'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Link}                                                                    from 'react-router-dom'
 
-import type {BootstrapColor}                                                                                                                                                                               from '../../bootstrap/Bootstrap.types'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleCourseTagType, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './CourseTagType.types'
-import type {EveryPossibleRouteNames}                                                                                                                                                                      from '../../routes/everyRoutes.types'
-import type {StaticReference}                                                                                                                                                                              from '../../util/enum/Enum.types'
-import type {ReactElement, ReactElementOrString}                                                                                                                                                           from '../../util/react/ReactProperties'
+import type {BootstrapColor}                         from '../../bootstrap/Bootstrap.types'
+import type {Names, Ordinals, PossibleCourseTagType} from './CourseTagType.types'
+import type {EveryPossibleRouteNames}                from '../../routes/everyRoutes.types'
+import type {ReactElement, ReactElementOrString}     from '../../util/react/ReactProperties'
 
 import {contentTranslation} from '../../lang/components/translationMethods'
 import {CourseTags}         from '../../core/courseTag/CourseTags'
-import {Enum}               from '../../util/enum/Enum'
 import {route}              from '../../routes/route'
 
 export abstract class CourseTagTypes
@@ -189,38 +189,32 @@ export abstract class CourseTagTypes
 
     //endregion -------------------- Link button methods --------------------
 
+    // public static getValueByType<T,>(value: T,): CourseTagTypesByType<T>
+    public static getValueByType(value: | CourseTagTypes | string | null | undefined,): CourseTagTypes {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.type === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<CourseTagTypes> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return CourseTagTypes
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.type === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends CourseTagTypes = CourseTagTypes, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): CourseTagTypes
-    public static getValue(value: PossibleValue,): | CourseTagTypes | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<CourseTagTypes>,): CourseTagTypes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<CourseTagTypes> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

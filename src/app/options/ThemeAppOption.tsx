@@ -1,19 +1,19 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ThemeAppOption.types'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
-import type {Themes}                                                                                                                                                                from '../../core/theme/Themes'
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
+import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
+import type {Names, Ordinals}                                  from './ThemeAppOption.types'
+import type {Themes}                                           from '../../core/theme/Themes'
+import type {ReactElement}                                     from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 
 import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
 import {CommonOptions}                              from './CommonOptions'
 import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
 import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
-import {Enum}                                       from '../../util/enum/Enum'
 import {Times}                                      from '../../core/time/Times'
 
 //region -------------------- dynamic imports --------------------
@@ -142,30 +142,17 @@ export abstract class ThemeAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<ThemeAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return ThemeAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends ThemeAppOption = ThemeAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): ThemeAppOption
-    public static getValue(value: PossibleValue,): | ThemeAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<ThemeAppOption>,): ThemeAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<ThemeAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

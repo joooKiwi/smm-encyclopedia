@@ -1,11 +1,10 @@
-import type {DayNumber}                                       from './types'
-import type {EnumArray, Names, Ordinals, PossibleStringValue} from '../ProjectLanguages.types'
-import type {Enumerable}                                      from '../../util/enum/Enumerable'
-import type {EveryLanguages}                                  from '../EveryLanguages'
-import type {PossibleNonNullableValue, PossibleValue}         from './DateDayLanguages.types'
-import type {StaticReference}                                 from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                               from '@joookiwi/enumerable'
 
-import {Enum}             from '../../util/enum/Enum'
+import type {DayNumber}       from './types'
+import type {EveryLanguages}  from '../EveryLanguages'
+import type {Names, Ordinals} from '../ProjectLanguages.types'
+
 import {ProjectLanguages} from '../ProjectLanguages'
 
 export abstract class DateDayLanguages
@@ -136,14 +135,11 @@ export abstract class DateDayLanguages
 
     }            (ProjectLanguages.KOREAN,             )
 
-    protected static override readonly _DEFAULT = this.getValue(ProjectLanguages._DEFAULT)
-
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
     static [index: number]: DateDayLanguages
-
-    protected static override readonly _PARENT: StaticReference<ProjectLanguages> = ProjectLanguages
+    protected static override readonly _DEFAULT = this.getValueByLanguage(ProjectLanguages._DEFAULT)
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -173,48 +169,37 @@ export abstract class DateDayLanguages
         return this.getValue(ProjectLanguages.currentLanguage)
     }
 
+    // public static override getValueByLanguage<T,>(value: T,): DateDayLanguagesByLanguage<T>
+    public static override getValueByLanguage(value: | DateDayLanguages | ProjectLanguages | EveryLanguages | string | null | undefined,): DateDayLanguages {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof DateDayLanguages)
+            return value
+        const languageFound = super.getValueByLanguage(value),
+            valueFound = this.values.find(it => it.reference === languageFound)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<DateDayLanguages> {
+    protected override get _static(): EnumerableConstructorWithDefault<Ordinals, Names> {
         return DateDayLanguages
     }
 
-    //region -------------------- Enum default methods --------------------
-
     public static override get default(): DateDayLanguages {
-        return this.getValue(ProjectLanguages.default)!
+        return this.getValueByLanguage(ProjectLanguages.default)
     }
 
-    //endregion -------------------- Enum default methods --------------------
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByEnumerable(value: Enumerable,) {
-        return value instanceof ProjectLanguages
-            ? this.values.find(enumerable => enumerable.reference === value) ?? null
-            : null
-    }
-
-    public static override getValue(nullValue: | null | undefined,): null
-    public static override getValue<O extends Ordinals, >(ordinal: O,): EnumArray<DateDayLanguages>[O]
-    public static override getValue<O extends number, >(ordinal: O,): | NonNullable<EnumArray<DateDayLanguages>[O]> | null
-    public static override getValue<N extends Names, >(name: N,): typeof DateDayLanguages[N]
-    public static override getValue(nameOrAcronym: PossibleStringValue,): DateDayLanguages
-    public static override getValue(nameOrAcronym: string,): | DateDayLanguages | null
-    public static override getValue<I extends DateDayLanguages, >(instance: I,): I
-    public static override getValue(instance: ProjectLanguages,): DateDayLanguages
-    public static override getValue(instance: | EveryLanguages | ProjectLanguages,): | DateDayLanguages | null
-    public static override getValue(value: PossibleNonNullableValue,): DateDayLanguages
-    public static override getValue(value: PossibleValue,): | DateDayLanguages | null
-    public static override getValue(value: PossibleValue,) {
+    public static override getValue(value: PossibleValueByEnumerable<| ProjectLanguages | DateDayLanguages>,) {
         return Enum.getValueOn<DateDayLanguages>(this, value,)
     }
 
-    public static override get values(): EnumArray<DateDayLanguages> {
+    public static override get values(): CollectionHolder<DateDayLanguages> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static override [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

@@ -1,18 +1,18 @@
-import {Fragment, lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Fragment, lazy}                                                          from 'react'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../ClassWithEnglishName'
-import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../../lang/ClassWithTranslationKey'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKey, PossibleValue} from './OfficialNotifications.types'
-import type {ObjectHolder}                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/holder/ObjectHolder'
-import type {ReactElement}                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types'
-import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                                                                                                                                                                                    from '../../lang/components/TranslationProperty'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from '../ClassWithEnglishName'
+import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                from '../../lang/ClassWithTranslationKey'
+import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from './OfficialNotifications.types'
+import type {ObjectHolder}                                                                                                                                                                                                                                                                                           from '../../util/holder/ObjectHolder'
+import type {ReactElement}                                                                                                                                                                                                                                                                                           from '../../util/react/ReactProperties'
+import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                              from '../../lang/components/TranslationProperty'
 
 import {BASE_PATH}                    from '../../variables'
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
 import {EMPTY_ARRAY, EMPTY_STRING}    from '../../util/emptyVariables'
 import {EMPTY_REACT_ELEMENT}          from '../../util/emptyReactVariables'
-import {Enum}                         from '../../util/enum/Enum'
 import {gameContentTranslation}       from '../../lang/components/translationMethods'
 import {StringContainer}              from '../../util/StringContainer'
 
@@ -678,39 +678,34 @@ export class OfficialNotifications
         return <TextComponent content={gameContentTranslation(`Official notification.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
+
+    // public static getValueByName<T extends string, >(value: | OfficialNotifications | T | null | undefined,): OfficialNotificationsByEnglishName<T>
+    public static getValueByName(value: | OfficialNotifications | string | null | undefined,): OfficialNotifications {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.englishName === value
+            || it.additionalEnglishName.includes(value as never))
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<OfficialNotifications> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return OfficialNotifications
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.additionalEnglishName.includes(value as never))
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends OfficialNotifications = OfficialNotifications, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): OfficialNotifications
-    public static getValue(value: PossibleValue,): | OfficialNotifications | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<OfficialNotifications>,): OfficialNotifications {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<OfficialNotifications> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

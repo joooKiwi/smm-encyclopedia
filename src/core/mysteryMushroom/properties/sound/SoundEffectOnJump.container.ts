@@ -26,7 +26,7 @@ export class SoundEffectOnJumpContainer
 
     private constructor([value, game,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, true, true>(value, true, true,)
-        this.#game = GameReferences.getValue(game)
+        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
     //region -------------------- Getter methods --------------------

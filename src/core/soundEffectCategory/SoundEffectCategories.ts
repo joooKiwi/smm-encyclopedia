@@ -1,14 +1,16 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                         from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                                                                                                                                                           from '../ClassWithImagePath'
-import type {ClassWithReference}                                                                                                                                                                                                                                                           from '../ClassWithReference'
-import type {EnumArray, EnumArray_EnglishName, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectCategories.types'
-import type {SoundEffectCategory}                                                                                                                                                                                                                                                          from './SoundEffectCategory'
-import type {StaticReference}                                                                                                                                                                                                                                                              from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {BASE_PATH}       from '../../variables'
-import {Enum}            from '../../util/enum/Enum'
-import {Import}          from '../../util/DynamicImporter'
-import {StringContainer} from '../../util/StringContainer'
+import type {ClassWithEnglishName}                                                                                          from '../ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                                            from '../ClassWithImagePath'
+import type {ClassWithReference}                                                                                            from '../ClassWithReference'
+import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './SoundEffectCategories.types'
+import type {SoundEffectCategory}                                                                                           from './SoundEffectCategory'
+
+import {BASE_PATH}             from '../../variables'
+import {getValueByEnglishName} from '../../util/utilitiesMethods'
+import {Import}                from '../../util/DynamicImporter'
+import {StringContainer}       from '../../util/StringContainer'
 
 /**
  * @recursiveReference {@link SoundEffectCategoryLoader}
@@ -84,42 +86,29 @@ export class SoundEffectCategories
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyEnglishNames(): EnumArray_EnglishName {
-        return this.values.map(soundEffectCategory => soundEffectCategory.englishName) as unknown as EnumArray_EnglishName
+    public static get everyEnglishNames(): EnglishNames {
+        return this.values.map(soundEffectCategory => soundEffectCategory.englishName).toArray() as EnglishNames
+    }
+
+    // public static getValueByName<T extends string, >(value: | SoundEffectCategories | T | null | undefined,): SoundEffectCategoriesByName<T>
+    public static getValueByName(value: | SoundEffectCategories | string | null | undefined,): SoundEffectCategories {
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<SoundEffectCategories> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return SoundEffectCategories
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends SoundEffectCategories = SoundEffectCategories, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): SoundEffectCategories
-    public static getValue(value: PossibleValue,): | SoundEffectCategories | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<SoundEffectCategories>,): SoundEffectCategories {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<SoundEffectCategories> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

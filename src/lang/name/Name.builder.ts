@@ -1,6 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language'
 import type {Builder}                                                                                                       from '../../util/builder/Builder'
-import type {EnumArray as GameArray}                                                                                        from '../../core/game/Games.types'
 import type {Games}                                                                                                         from '../../core/game/Games'
 import type {IsACompleteNameCallback}                                                                                       from './Name.builder.types'
 import type {Name}                                                                                                          from './Name'
@@ -117,7 +116,7 @@ export interface NameBuilder<T, TEMPLATE, >
 
     get template(): TEMPLATE
 
-    get game(): | Games | readonly [Games, Games,] | GameArray
+    get game(): | readonly [Games,] | readonly [Games, Games,] | readonly [Games, Games, Games,]
 
     get isACompleteName(): IsACompleteNameCallback
 

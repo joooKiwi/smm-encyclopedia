@@ -33,7 +33,7 @@ export default class CourseTagApp
     //region -------------------- Getter methods --------------------
 
     public get type(): CourseTagTypes {
-        return this.#type ??= CourseTagTypes.getValue(this.props.type)
+        return this.#type ??= CourseTagTypes.getValueByType(this.props.type)
     }
 
     //endregion -------------------- Getter methods --------------------

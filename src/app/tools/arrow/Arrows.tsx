@@ -1,10 +1,11 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleContainer, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Arrows.types'
-import type {ReactElement}                                                                                                                                                                             from '../../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                                          from '../../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}                from '../../../util/enum/Enum'
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import type {Names, Ordinals, PossibleContainer} from './Arrows.types'
+import type {ReactElement}                       from '../../../util/react/ReactProperties'
+
 import {ArrowDirections}     from './ArrowDirections'
+import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
 
 const {VERTICAL, HORIZONTAL} = ArrowDirections
 
@@ -172,30 +173,17 @@ export abstract class Arrows
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Arrows> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Arrows
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(value: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: S,): EnumByPossibleString<S>
-    public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
-    public static getValue<I extends Arrows, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Arrows
-    public static getValue(value: PossibleValue,): | Arrows | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Arrows>,): Arrows {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Arrows> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

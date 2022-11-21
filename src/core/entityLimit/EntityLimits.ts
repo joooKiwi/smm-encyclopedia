@@ -1,12 +1,13 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                from '../ClassWithEnglishName'
-import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                                                                                                                                                                            from '../ClassWithAcronym'
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                  from '../ClassWithReference'
-import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../entity/Entity'
-import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                                                                                                                                                          from './EntityLimit'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleNonNullableValue, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying, PossibleStringValue, PossibleValue} from './EntityLimits.types'
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                     from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}             from '../../util/enum/Enum'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                          from '../ClassWithEnglishName'
+import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                      from '../ClassWithAcronym'
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                            from '../ClassWithReference'
+import type {Entity}                                                                                                                                                                                                                                                                                                        from '../entity/Entity'
+import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                    from './EntityLimit'
+import type {Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} from './EntityLimits.types'
+
 import {EmptyEntity}      from '../entity/EmptyEntity'
 import type {Entities}    from '../entity/Entities'
 import {EntityLimitTypes} from './EntityLimitTypes'
@@ -417,59 +418,52 @@ export class EntityLimits
     //region -------------------- Methods --------------------
 
     public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(limit => limit.acronym).filter(acronym => acronym != null) as PossibleAcronym[]
+        return this.values.map(it => it.acronym).filterNonNull().toArray()
     }
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(limit => limit.englishName)
+        return this.values.map(it => it.englishName).toArray()
     }
 
     public static get everyAlternativeAcronyms(): readonly PossibleAlternativeAcronym[] {
-        return this.values.map(limit => limit.alternativeAcronym).filter(alternativeAcronym => alternativeAcronym != null) as PossibleAlternativeAcronym[]
+        return this.values.map(it => it.alternativeAcronym).filterNonNull().toArray()
     }
 
     public static get everyAlternativeEnglishNames(): readonly PossibleAlternativeEnglishName[] {
-        return this.values.map(limit => limit.alternativeEnglishName).filter(alternativeEnglishName => alternativeEnglishName != null) as PossibleAlternativeEnglishName[]
+        return this.values.map(it => it.alternativeEnglishName).filterNonNull().toArray()
+    }
+
+    public static getValueByNameOrAcronym(value: | EntityLimits | string | null | undefined,): EntityLimits {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.englishName === value
+            || it.englishName.substring(0, it.englishName.length - this.#LIMIT_LENGTH) === value
+            || it.englishName.substring(0, it.englishName.length - this.#LIMIT_IN_EDITOR_LENGTH) === value
+            || it.englishName.substring(0, it.englishName.length - this.#LIMIT_WHILE_PLAYING_LENGTH) === value
+            || it.alternativeEnglishName === value
+            || it.acronym === value
+            || it.alternativeAcronym === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EntityLimits> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return EntityLimits
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.englishName.substring(0, enumerable.englishName.length - this.#LIMIT_LENGTH) === value
-                || enumerable.englishName.substring(0, enumerable.englishName.length - this.#LIMIT_IN_EDITOR_LENGTH) === value
-                || enumerable.englishName.substring(0, enumerable.englishName.length - this.#LIMIT_WHILE_PLAYING_LENGTH) === value
-                || enumerable.alternativeEnglishName === value
-                || enumerable.acronym === value
-                || enumerable.alternativeAcronym === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends EntityLimits = EntityLimits, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EntityLimits
-    public static getValue(value: PossibleValue,): | EntityLimits | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<EntityLimits>,): EntityLimits {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<EntityLimits> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

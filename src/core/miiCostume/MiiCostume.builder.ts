@@ -36,11 +36,11 @@ export class MiiCostumeBuilder
     static #createVersion({version,}: MiiCostumeTemplate,): ObjectHolder<Versions | null> {
         return version == null
             ? ObjectHolders.NULL
-            : new DelayedObjectHolderContainer(() => Versions.getValue(version))
+            : new DelayedObjectHolderContainer(() => Versions.getValueByName(version))
     }
 
     static #createCategory({category,}: MiiCostumeTemplate,): ObjectHolder<MiiCostumeCategory> {
-        return new DelayedObjectHolderContainer(() => MiiCostumeCategories.getValue(category).reference)
+        return new DelayedObjectHolderContainer(() => MiiCostumeCategories.getValueByName(category).reference)
     }
 
     //endregion -------------------- Build helper methods --------------------
