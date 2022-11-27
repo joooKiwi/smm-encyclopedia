@@ -62,7 +62,7 @@
   "dependencies": {
     "@joookiwi/enumerable": "^1.2.0",
     "assert": "^2.0.0",
-    "bootstrap": "^5.2.2",
+    "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.2",
     "i18next": "^22.0.6",
     "react": "^18.2.0",
