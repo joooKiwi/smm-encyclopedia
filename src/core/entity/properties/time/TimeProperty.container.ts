@@ -13,7 +13,7 @@ export class TimePropertyContainer<DAY extends boolean = boolean, NIGHT extends 
 
     #map?: ReadonlyMap<Times, boolean>
     readonly #isInDayTheme
-    readonly #isInNightTheme
+    readonly #isInNightTheme: NIGHT//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

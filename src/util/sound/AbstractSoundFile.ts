@@ -16,7 +16,7 @@ export abstract class AbstractSoundFile<PATH extends string = string, NAME exten
     #fullName?: FullName<PATH, NAME, EXTENSION>
     readonly #extension
 
-    readonly #repeatableTime
+    readonly #repeatableTime: REPEATABLE_TIME//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

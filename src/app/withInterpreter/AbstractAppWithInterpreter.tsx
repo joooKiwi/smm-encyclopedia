@@ -1,6 +1,7 @@
 import './AbstractAppWithInterpreter.scss'
 
 import type {AppInterpreter}                     from '../interpreter/AppInterpreter'
+import type {AppProperties}                      from '../AppProperties.types'
 import type {AppWithVariableDisplayStates}       from '../AppStates.types'
 import type {ReactElement, ReactElementOrString} from '../../util/react/ReactProperties'
 
@@ -9,7 +10,7 @@ import {ViewDisplays} from './ViewDisplays'
 import {assert}       from '../../util/utilitiesMethods'
 
 export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
-    T = {}, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
     extends AbstractApp<T, S> {
 
     //region -------------------- Fields --------------------

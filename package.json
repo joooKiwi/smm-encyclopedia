@@ -36,9 +36,7 @@
     "videoGame",
     "wiki", "encyclopedia"
   ],
-  "bugs": {
-    "url": "https://github.com/joooKiwi/smm-encyclopedia/issues"
-  },
+
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -85,6 +83,6 @@
     "gh-pages": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "papaparse": "^5.3.2",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.3"
   }
 }

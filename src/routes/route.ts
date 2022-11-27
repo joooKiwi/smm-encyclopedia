@@ -8,7 +8,7 @@ import {ProjectLanguages}  from '../lang/ProjectLanguages'
 export function route(partialPath: EveryPossibleRoutePartialPaths, language?: ProjectLanguages,): EveryPossibleRoutes
 export function route(name: EveryPossibleRouteNames, language?: ProjectLanguages,): EveryPossibleRoutes
 export function route(partialPath_or_name: | EveryPossibleRoutePartialPaths | EveryPossibleRouteNames, language?: ProjectLanguages,): EveryPossibleRoutes
-export function route({pathname: pathName,}: Location, languageToReplace?: ProjectLanguages,): EveryPossibleRoutes
+export function route({pathname,}: Location, languageToReplace?: ProjectLanguages,): EveryPossibleRoutes
 /**
  * <p>
  *  Retrieve the route from a {@link EveryPossibleRoutePartialPaths partial path (EveryPossibleRoutePartialPaths)}

@@ -14,10 +14,10 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
     readonly #isInGroundTheme
     readonly #isInUndergroundTheme
     readonly #isInUnderwaterTheme
-    readonly #isInDesertTheme
-    readonly #isInSnowTheme
-    readonly #isInSkyTheme
-    readonly #isInForestTheme
+    readonly #isInDesertTheme: DESERT//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #isInSnowTheme: SNOW//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #isInSkyTheme: SKY//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #isInForestTheme: FOREST//FIXME this type is only there to help typescript (it's not the standard)
     readonly #isInGhostHouseTheme
     readonly #isInAirshipTheme
     readonly #isInCastleTheme

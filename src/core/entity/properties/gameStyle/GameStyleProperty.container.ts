@@ -16,7 +16,7 @@ export class GameStylePropertyContainer<SMB extends boolean = boolean, SMB3 exte
     readonly #isInSuperMarioBros3Style
     readonly #isInSuperMarioWorldStyle
     readonly #isInNewSuperMarioBrosUStyle
-    readonly #isInSuperMario3DWorldStyle
+    readonly #isInSuperMario3DWorldStyle: SM3DW//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

@@ -105,7 +105,7 @@ export class NameContainer<T, >
      * The options languages on the {@link NameContainer},
      * but as the type used by the private static fields.
      */
-    protected static get _optionalLanguages() {
+    protected static get _optionalLanguages(): OptionalLanguagesArray {
         return this.#OPTIONAL_LANGUAGES
     }
 
@@ -354,3 +354,4 @@ export class NameContainer<T, >
 }
 
 type OptionalLanguages = typeof NameContainer['optionalLanguages'][number]
+type OptionalLanguagesArray = readonly [typeof EveryLanguages['HEBREW'], typeof EveryLanguages['POLISH'], typeof EveryLanguages['UKRAINIAN'], typeof EveryLanguages['GREEK'],]
