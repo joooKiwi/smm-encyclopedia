@@ -70,7 +70,7 @@ export abstract class GameStyleAppOption
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
         protected override _createContentOption({reference,}: GameStyles,): PossibleRenderReactElement {
-                return <NightEffectComponent gameStyle={reference}/>
+            return <NightEffectComponent gameStyle={reference}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {

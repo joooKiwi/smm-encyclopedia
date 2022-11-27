@@ -345,7 +345,7 @@ export class Characters
     }
 
     /**
-     * An equivalence {@link Object object map} of every characters used in the {@link Characters} enum.
+     * An equivalence {@link Object object map} of every character used in the {@link Characters} enum.
      */
     public static get equivalenceMapObject(): CharactersEquivalencesMap {
         if (this.#SPACE_EVEN_OBJECT_MAP == null) {

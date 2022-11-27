@@ -63,7 +63,7 @@ export abstract class Images
 
     //region -------------------- Getter methods --------------------
 
-    public get value() {
+    public get value(): boolean {
         return this.#value
     }
 

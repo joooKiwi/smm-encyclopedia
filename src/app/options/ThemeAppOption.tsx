@@ -56,12 +56,12 @@ export abstract class ThemeAppOption
 
         protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
             return <div className="nameWithContent-container">
-                    <div className="col-10">
-                        {CommonOptions.get.getGameContent(enumeration)}
-                        {CommonOptions.get.getNameContent(enumeration)}
-                    </div>
-                    <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
+                <div className="col-10">
+                    {CommonOptions.get.getGameContent(enumeration)}
+                    {CommonOptions.get.getNameContent(enumeration)}
                 </div>
+                <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
+            </div>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {

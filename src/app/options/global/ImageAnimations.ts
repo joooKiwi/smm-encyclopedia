@@ -42,7 +42,7 @@ export class ImageAnimations
 
     //region -------------------- Getter methods --------------------
 
-    public get value() {
+    public get value(): PossibleImageAnimation {
         return this.#value
     }
 

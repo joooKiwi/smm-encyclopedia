@@ -50,11 +50,11 @@ export abstract class MysteryMushroomAppOption
             const {uniqueEnglishName, englishNameInHtml, reference,} = enumeration
 
             return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{
-                    reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
-                        <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
-                        {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
-                    </Fragment>)
-                }</div>
+                reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
+                    <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
+                    {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
+                </Fragment>)
+            }</div>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {

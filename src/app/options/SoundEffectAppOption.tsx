@@ -33,9 +33,9 @@ export abstract class SoundEffectAppOption
 
         protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
             return [
-                    SoundEffectAppOption.renderSMM1And3DSImage(enumeration),
-                    SoundEffectAppOption.renderSMM2Image(enumeration),
-                ]
+                SoundEffectAppOption.renderSMM1And3DSImage(enumeration),
+                SoundEffectAppOption.renderSMM2Image(enumeration),
+            ]
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -91,8 +91,8 @@ export abstract class SoundEffectAppOption
                         ? EMPTY_REACT_ELEMENT
                         : <div key={`${englishName} (sound effect sounds - SMM1&3DS)`} className="soundEffect-sounds-smm1-container">
                             {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                                    <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
-                                </div>)}
+                                <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
+                            </div>)}
                         </div>}
                     {isSMM2Empty
                         ? EMPTY_REACT_ELEMENT

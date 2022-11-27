@@ -1067,7 +1067,7 @@ export class Entities
         }
 
         protected override get _createEditorImage() {
-            return new EditorImageBuilder('Nokonoko',1,).setAllGameStyles()
+            return new EditorImageBuilder('Nokonoko', 1,).setAllGameStyles()
         }
 
         protected override get _createClearConditionImage(): PossibleClearConditionImage {
@@ -1078,7 +1078,7 @@ export class Entities
     public static readonly RED_KOOPA_TROOPA =                              new class Entities_RedKoopaTroopa extends Entities {
 
         protected override get _createEditorImage() {
-            return new EditorImageBuilder('Nokonoko',2,).setAllGameStyles()
+            return new EditorImageBuilder('Nokonoko', 2,).setAllGameStyles()
         }
 
     }('Red Koopa Troopa',)

@@ -62,7 +62,7 @@ export abstract class EntityAppOption
 
                 return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`unique image (${englishName})`}>{
                     uniqueImage.get(gameStyle).map(image =>
-                        <Image id={`${englishNameInHtml}-image`} className="entity-image" source={image}  fallbackName={`${englishName} (${gameStyle.acronym})`}/>)
+                        <Image id={`${englishNameInHtml}-image`} className="entity-image" source={image} fallbackName={`${englishName} (${gameStyle.acronym})`}/>)
                 }</Fragment>)
             }
         }

@@ -60,7 +60,7 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference, englishName, }: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference, englishName,}: EntityLimits,): PossibleRenderReactElement {
             return [
                 <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
                 <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
