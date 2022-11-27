@@ -58,7 +58,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
                       id={`${key}-table`}
                       content={this.#tableContent(optionInterpreter)}
                       headers={[
-                          {key: 'originalOrder', element: <>#</>,},
+                          {key: 'originalOrder', element: '#',},
                           ...(optionInterpreter.tableOptions
                               .map(tableHeader => optionInterpreter.createTableHeader(tableHeader))
                               .filter(header => header != null) as SingleHeaderContent[])

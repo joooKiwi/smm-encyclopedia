@@ -74,7 +74,7 @@ export abstract class SoundEffectAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'player behaviour', element: <>--Player behaviour--</>/*<GameContentTranslationComponent translationKey="Player behaviour"/>*/,}
+            return {key: 'player behaviour', element: '--Player behaviour--',}//TODO add Player behaviour
         }
 
     }()
@@ -105,7 +105,7 @@ export abstract class SoundEffectAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'sounds', element: <>--Sounds--</>,}
+            return {key: 'sounds', element: '--Sounds--',}//TODO add sounds
         }
 
     }()

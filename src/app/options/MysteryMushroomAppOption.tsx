@@ -40,7 +40,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,}
+            return {key: 'conditionToUnlockIt', element: '--Condition to unlock it--',}//TODO add condition to unlock it
         }
 
     }(null,)
@@ -83,7 +83,7 @@ export abstract class MysteryMushroomAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'imagesAndSounds', element: <>--Images & sounds--</>,
+                key: 'imagesAndSounds', element: '--Images & sounds--',//TODO add images & sound
                 subHeaders: MysteryMushroomAppOption._imagesAndSounds.map(enumerable => enumerable.renderTableHeader!)
             }
         }
@@ -100,7 +100,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'powerUpCollectedSound', element: <>--Power-up collected (sound)--</>,}
+            return {key: 'powerUpCollectedSound', element: '--Power-up collected (sound)--',}//TODO add power-up collected & sound
         }
 
     }('power-up collected',)
@@ -115,7 +115,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'waitingImage', element: <>--Waiting (image)--</>,}
+            return {key: 'waitingImage', element: '--Waiting (image)--',}//TODO add waiting & image
         }
 
     }('waiting',)
@@ -137,7 +137,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'tauntImageAndSound', element: <>--Taunt (image & sound)--</>,}
+            return {key: 'tauntImageAndSound', element: '--Taunt (image & sound)--',}//TODO add taunt, image & sound
         }
 
     }('taunt',)
@@ -167,7 +167,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'walkImages', element: <>--Walk (image)--</>,}
+            return {key: 'walkImages', element: '--Walk (image)--',}//TODO add walk & image
         }
 
     }('walk',)
@@ -182,7 +182,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'runningImages', element: <>--Running (images)--</>,}
+            return {key: 'runningImages', element: '--Running (images)--',}//TODO add running & image
         }
 
     }('running',)
@@ -197,7 +197,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'swimmingImages', element: <>--Swimming (images)--</>,}
+            return {key: 'swimmingImages', element: '--Swimming (images)--',}//TODO add swimming & image
         }
 
     }('swimming',)
@@ -222,7 +222,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'jumpingImagesAndSounds', element: <>--Jumping (images & sounds)--</>,}
+            return {key: 'jumpingImagesAndSounds', element: '--Jumping (images & sounds)--',}//TODO add jumping, image & sound
         }
 
     }('jump',)
@@ -237,7 +237,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'fallingAfterJumpImage', element: <>--Falling after jump (images)--</>,}
+            return {key: 'fallingAfterJumpImage', element: '--Falling after jump (images)--',}//TODO add falling after jump & image
         }
 
     }('falling after jump',)
@@ -252,7 +252,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'groundAfterJumpImage', element: <>--Ground after jump (sound)--</>,}
+            return {key: 'groundAfterJumpImage', element: '--Ground after jump (sound)--',}//TODO add ground after jump & sound
         }
 
     }('ground after jump',)
@@ -274,7 +274,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'turningImageAndSound', element: <>-Turning (image & sound)--</>,}
+            return {key: 'turningImageAndSound', element: '--Turning (image & sound)--',}//TODO add turning, image & sound
         }
 
     }('turning',)
@@ -289,7 +289,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'climbingImages', element: <>-Climbing (images)--</>,}
+            return {key: 'climbingImages', element: '--Climbing (images)--',}//TODO add climbing & image
         }
 
     }('climbing',)
@@ -311,7 +311,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'goalPoleImagesAndSound', element: <>-Goal pole (images & sound)--</>,}
+            return {key: 'goalPoleImagesAndSound', element: <>--Goal pole (images & sound)--</>,}
         }
 
     }('goal pole',)
@@ -326,7 +326,7 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'lostALifeSound', element: <>-Lost a life (sound)--</>,}
+            return {key: 'lostALifeSound', element: '--Lost a life (sound)--',}//TODO add lost a life & sound
         }
 
     }('lost a life',)

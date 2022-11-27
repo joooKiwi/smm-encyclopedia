@@ -46,7 +46,7 @@ export abstract class ThemeAppOption
                 key: 'image', element: contentTranslation('Image'),
                 subHeaders: [
                     {key: 'image-empty', element: EMPTY_REACT_ELEMENT,},
-                    {key: 'image-endless-mario', element: <>--Endless Mario--</>},
+                    {key: 'image-endless-mario', element: '--Endless Mario--',},//TODO add Endless Mario
                 ],
             }
         }
