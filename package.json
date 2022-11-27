@@ -3,6 +3,14 @@
   "version": "0.9.0-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joooKiwi/smm-encyclopedia.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joooKiwi/smm-encyclopedia/issues"
+  },
+
   "scripts": {
     "csv-to-json": "node ./src/scripts/CSVToJson",
     "copy-images-for-css": "node ./src/scripts/CopyImagesForCSS",
@@ -20,17 +28,13 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -m \"Version 0.9 (beta)\" -d build"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/joooKiwi/smm-encyclopedia.git"
-  },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
     "SuperMarioMaker", "SuperMarioMaker1", "SuperMarioMaker3DS", "SuperMarioMakerForNintendo3DS", "SuperMarioMaker2",
     "SuperMarioBros", "SuperMarioBros2", "TheLegendOfZelda","SuperMarioBros3", "SuperMarioWorld", "NewSuperMarioBrosU", "SuperMario3DWorld",
 
     "Mario", "Luigi", "Toad", "Toadette", "Yoshi", "Peach", "Bowser", "Koopaling", "Link",
-    "Goomba", "KoopaTroopa", "Lakitu", "Magikoopa", "Kamek",
+    "Goomba", "KoopaTroopa", "Lakitu", "Magikoopa", "Kamek", "Ninji",
     "entity", "entityLimit", "power-up", "powerUp", "soundEffect", "MysteryMushroom", "MiiCostume",
     "Nintendo", "WiiU", "3DS", "Switch",
     "videoGame",
