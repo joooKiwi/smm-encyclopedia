@@ -1,5 +1,6 @@
 import type {Entity}       from '../entity/Entity'
 import type {NightEffects} from '../nightEffect/NightEffects'
+import type {NullOr}       from '../../util/types'
 import type {Theme}        from './Theme'
 
 export interface CourseTheme
@@ -7,6 +8,6 @@ export interface CourseTheme
 
     get entities(): readonly Entity[]
 
-    get effect(): | NightEffects | null
+    get effect(): NullOr<NightEffects>
 
 }

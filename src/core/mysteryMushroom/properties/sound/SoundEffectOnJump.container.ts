@@ -1,5 +1,6 @@
-import type {ExtendedMap}                                                                                                     from '../../../../util/extended/ExtendedMap'
-import type {PossibleAmount, PossibleGames, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnJump} from './SoundEffectOnJump'
+import type {ExtendedMap}                                                                                      from '../../../../util/extended/ExtendedMap'
+import type {NullOr}                                                                                           from '../../../../util/types'
+import type {PossibleAmount, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnJump} from './SoundEffectOnJump'
 
 import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
 import {GameReferences}       from '../../../gameReference/GameReferences'
@@ -43,7 +44,7 @@ export class SoundEffectOnJumpContainer
         return this.#property.amount
     }
 
-    public get gameReference(): PossibleGames {
+    public get gameReference(): NullOr<GameReferences> {
         return this.#game
     }
 

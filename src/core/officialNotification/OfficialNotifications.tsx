@@ -5,6 +5,7 @@ import {Fragment, lazy}                                                         
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from '../ClassWithEnglishName'
 import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                from '../../lang/ClassWithTranslationKey'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from './OfficialNotifications.types'
+import type {Nullable, NullableNumber, NullOr}                                                                                                                                                                                                                                                                       from '../../util/types'
 import type {ObjectHolder}                                                                                                                                                                                                                                                                                           from '../../util/holder/ObjectHolder'
 import type {ReactElement}                                                                                                                                                                                                                                                                                           from '../../util/react/ReactProperties'
 import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                              from '../../lang/components/TranslationProperty'
@@ -521,11 +522,11 @@ export class OfficialNotifications
         return this.#translationKey
     }
 
-    protected get _createAdditionalTranslationKey(): | PossibleAdditionalTranslationKey | null {
+    protected get _createAdditionalTranslationKey(): NullOr<PossibleAdditionalTranslationKey> {
         return null
     }
 
-    public get additionalTranslationKey(): | PossibleAdditionalTranslationKey | null {
+    public get additionalTranslationKey(): NullOr<PossibleAdditionalTranslationKey> {
         return this.#additionalTranslationKeyHolder.get
     }
 
@@ -670,7 +671,7 @@ export class OfficialNotifications
 
     //endregion -------------------- Add argument to "key map" --------------------
 
-    public createSimpleTranslationComponent(key: string, amount: | number | null,): ReactElement {
+    public createSimpleTranslationComponent(key: string, amount: NullableNumber,): ReactElement {
         const keyMap: TranslationReplaceKeysMap = {}
         if (amount != null)
             keyMap.amount = <Fragment key={`${key} - amount`}>{amount}</Fragment>
@@ -679,8 +680,8 @@ export class OfficialNotifications
     }
 
 
-    // public static getValueByName<T extends string, >(value: | OfficialNotifications | T | null | undefined,): OfficialNotificationsByEnglishName<T>
-    public static getValueByName(value: | OfficialNotifications | string | null | undefined,): OfficialNotifications {
+    // public static getValueByName<T extends string, >(value: Nullable<| OfficialNotifications | T>,): OfficialNotificationsByEnglishName<T>
+    public static getValueByName(value: Nullable<| OfficialNotifications | string>,): OfficialNotifications {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

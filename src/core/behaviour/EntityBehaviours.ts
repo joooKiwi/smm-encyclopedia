@@ -4,8 +4,9 @@ import {Enum}                                                                   
 import type {ClassWithAcronym}                                          from '../ClassWithAcronym'
 import type {ClassWithReference}                                        from '../ClassWithReference'
 import type {ClassWithTranslationKey}                                   from '../../lang/ClassWithTranslationKey'
-import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
 import type {EntityBehaviour}                                           from './EntityBehaviour'
+import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
+import type {Nullable}                                                  from '../../util/types'
 
 import {Import} from '../../util/DynamicImporter'
 
@@ -93,7 +94,7 @@ export class EntityBehaviours
     }
 
 
-    public static getValueByAcronymOrTranslationKey(value: | EntityBehaviours | string | null | undefined,): EntityBehaviours {
+    public static getValueByAcronymOrTranslationKey(value: Nullable<| EntityBehaviours | string>,): EntityBehaviours {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value`)
         if (value instanceof this)

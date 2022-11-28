@@ -1,8 +1,9 @@
 import type {DefaultDefaultDimension, DefaultDimensionOnCardList, DefaultExtraExtraLargeDimension, DefaultExtraLargeDimension, DefaultLargeDimension, DefaultMediumDimension, DefaultSmallDimension, PossibleDimension} from './ListDimension.creator.types'
+import type {DimensionOnList}                                                                                                                                                                                           from '../interpreter/DimensionOnList'
+import type {NullOr}                                                                                                                                                                                                    from '../../util/types'
 import type {ObjectHolder}                                                                                                                                                                                              from '../../util/holder/ObjectHolder'
 
 import {ObjectHolderContainer} from '../../util/holder/ObjectHolder.container'
-import {DimensionOnList}       from '../interpreter/DimensionOnList'
 
 export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDimension,
     SMALL extends PossibleDimension = PossibleDimension,
@@ -32,7 +33,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(dimension: | Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>> | null,) {
+    public constructor(dimension: NullOr<Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>>>,) {
         this.#dimension = dimension
         this.#smallHolder = new ObjectHolderContainer(() => {
             const value = this.dimensionOrDefault.small
@@ -59,7 +60,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
     //region -------------------- Getter methods --------------------
 
     /** The dimension to interpret */
-    public get dimension(): | Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE>> | null {
+    public get dimension(): NullOr<Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE>>> {
         return this.#dimension
     }
 

@@ -1,4 +1,6 @@
-import type {PossibleSMM1ImagePath, PossibleSMM1ImagePathReceived, PossibleSMM2ImagePath, PossibleSMM2ImagePathReceived, SoundEffectImage} from './SoundEffectImage'
+import type {NullOr}                                                                 from '../../../util/types'
+import type {PossibleImagePath_SMM2, SoundEffectImageName_SMM2}                      from '../SoundEffects.types'
+import type {PossibleSMM1ImagePath, PossibleSMM1ImagePathReceived, SoundEffectImage} from './SoundEffectImage'
 
 import {BASE_PATH} from '../../../variables'
 
@@ -8,11 +10,11 @@ export class AbstractSoundEffectImage
     //region -------------------- Fields --------------------
 
     readonly #SMM1ImagePath: PossibleSMM1ImagePath
-    readonly #SMM2ImagePath: PossibleSMM2ImagePath
+    readonly #SMM2ImagePath: NullOr<PossibleImagePath_SMM2>
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(simpleSMM1Images: PossibleSMM1ImagePathReceived, simpleSMM2Image: PossibleSMM2ImagePathReceived,) {
+    protected constructor(simpleSMM1Images: PossibleSMM1ImagePathReceived, simpleSMM2Image: NullOr<SoundEffectImageName_SMM2>,) {
         this.#SMM1ImagePath = simpleSMM1Images == null ? null : typeof simpleSMM1Images == 'string'
             ? [`/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${simpleSMM1Images}.tiff`]
             : [`/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${simpleSMM1Images[0]}.tiff`, `/${BASE_PATH}/sound effect/Edit_Lyt_P_SE${simpleSMM1Images[1]}.tiff`,]
@@ -25,7 +27,7 @@ export class AbstractSoundEffectImage
         return this.#SMM1ImagePath
     }
 
-    public get SMM2ImagePath(): PossibleSMM2ImagePath {
+    public get SMM2ImagePath(): NullOr<PossibleImagePath_SMM2> {
         return this.#SMM2ImagePath
     }
 

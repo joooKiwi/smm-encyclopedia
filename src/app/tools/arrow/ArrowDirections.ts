@@ -2,6 +2,7 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName} from './ArrowDirections.types'
+import type {Nullable}                      from '../../../util/types'
 
 /**
  * The arrow direction.<br/>
@@ -45,7 +46,7 @@ export class ArrowDirections
     //region -------------------- Methods --------------------
 
     // public static getValueByValue<T,>(value: T,): ArrowDirectionsByValue<T>
-    public static getValueByValue(value: | ArrowDirections | string | null | undefined,): ArrowDirections {
+    public static getValueByValue(value: Nullable<| ArrowDirections | string>,): ArrowDirections {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

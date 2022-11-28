@@ -4,9 +4,10 @@ import {Enum}                                                                   
 import type {ClassWithEnglishName}                                                                                                                                                           from '../ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                             from '../ClassWithReference'
 import type {ClimbingImages, PressingDownImage, FallingAfterJumpImage, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImage, TurningImage, WaitingImage, WalkImages} from './image/Image'
-import type {PossibleFileName, Names, Ordinals, PossibleEnglishName, PossibleImageSourceForFile, PossibleSoundSourceForFile, PossibleUniqueEnglishName}                                      from './MysteryMushrooms.types'
 import type {GoalPoleSound, JumpSounds, LostALifeSound, OnGroundAfterJumpSound, PowerUpCollectedSound, Sound, TauntSound, TurningSound}                                                      from './sound/Sound'
+import type {Nullable}                                                                                                                                                                       from '../../util/types'
 import type {MysteryMushroom}                                                                                                                                                                from './MysteryMushroom'
+import type {PossibleFileName, Names, Ordinals, PossibleEnglishName, PossibleImageSourceForFile, PossibleSoundSourceForFile, PossibleUniqueEnglishName}                                      from './MysteryMushrooms.types'
 import type {SoundProperty}                                                                                                                                                                  from './properties/sound/SoundProperty'
 
 import {DualFileNameContainer as DualFile}     from './file/name/DualFileName.container'
@@ -550,7 +551,7 @@ export class MysteryMushrooms
     }
 
     // public static getValueByName<T extends string, >(value: T,): MysteryMushroomsByName<T>
-    public static getValueByName(value: |MysteryMushrooms| string | null | undefined,): MysteryMushrooms {
+    public static getValueByName(value: Nullable<| MysteryMushrooms | string>,): MysteryMushrooms {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

@@ -1,9 +1,10 @@
-import type {NumberProperty, PossibleNumber} from '../Property'
-import type {PossibleValueOnObjectHolder}    from '../../../util/holder/ObjectHolder'
+import type {NullOrNumber}                from '../../../util/types'
+import type {NumberProperty}              from '../Property'
+import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
 
 import {PropertyContainer} from '../Property.container'
 
-export class NumberPropertyContainer<N extends PossibleNumber = PossibleNumber, >
+export class NumberPropertyContainer<N extends NullOrNumber = NullOrNumber, >
     extends PropertyContainer<N>
     implements NumberProperty<N> {
 

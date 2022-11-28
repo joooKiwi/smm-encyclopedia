@@ -5,6 +5,7 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithImagePath}                                                                                            from '../ClassWithImagePath'
 import type {ClassWithReference}                                                                                            from '../ClassWithReference'
 import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './SoundEffectCategories.types'
+import type {Nullable}                                                                                                      from '../../util/types'
 import type {SoundEffectCategory}                                                                                           from './SoundEffectCategory'
 
 import {BASE_PATH}             from '../../variables'
@@ -90,8 +91,8 @@ export class SoundEffectCategories
         return this.values.map(soundEffectCategory => soundEffectCategory.englishName).toArray() as EnglishNames
     }
 
-    // public static getValueByName<T extends string, >(value: | SoundEffectCategories | T | null | undefined,): SoundEffectCategoriesByName<T>
-    public static getValueByName(value: | SoundEffectCategories | string | null | undefined,): SoundEffectCategories {
+    // public static getValueByName<T extends string, >(value: Nullable<| SoundEffectCategories | T>,): SoundEffectCategoriesByName<T>
+    public static getValueByName(value: Nullable<| SoundEffectCategories | string>,): SoundEffectCategories {
         return getValueByEnglishName(value, this,)
     }
 

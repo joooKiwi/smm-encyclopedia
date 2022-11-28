@@ -3,8 +3,9 @@ import {Enum}                                                                   
 
 import type {ClassWithEnglishName}                                                                                                                from '../ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                  from '../ClassWithReference'
-import type {MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName, UnofficialCourseTags} from './CourseTags.types'
 import type {CourseTag}                                                                                                                           from './CourseTag'
+import type {MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName, UnofficialCourseTags} from './CourseTags.types'
+import type {Nullable}                                                                                                                            from '../../util/types'
 
 import {getValueByEnglishName} from '../../util/utilitiesMethods'
 import {Import}                from '../../util/DynamicImporter'
@@ -129,7 +130,7 @@ export class CourseTags
         return this.#makerCentralCourseTags ??= this.values.filter(it => it.reference.makerCentralName != null).toArray() as MakerCentralCourseTags
     }
 
-    public static getValueByName(value: | CourseTags | string | null | undefined,) {
+    public static getValueByName(value: Nullable<| CourseTags | string>,) {
         return getValueByEnglishName(value, this,)
     }
 

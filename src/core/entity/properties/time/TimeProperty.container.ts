@@ -1,4 +1,5 @@
-import type {TimeProperty} from './TimeProperty'
+import type {NullOrBoolean} from '../../../../util/types'
+import type {TimeProperty}  from './TimeProperty'
 
 import {Import}     from '../../../../util/DynamicImporter'
 import type {Times} from '../../../time/Times'
@@ -6,7 +7,7 @@ import type {Times} from '../../../time/Times'
 /**
  * @classWithDynamicImport {@link Times}
  */
-export class TimePropertyContainer<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >
+export class TimePropertyContainer<DAY extends boolean = boolean, NIGHT extends NullOrBoolean = NullOrBoolean, >
     implements TimeProperty<DAY, NIGHT> {
 
     //region -------------------- Fields --------------------

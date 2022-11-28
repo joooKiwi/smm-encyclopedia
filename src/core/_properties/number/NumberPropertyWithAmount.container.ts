@@ -1,11 +1,10 @@
+import type {NullOrNumber}                from '../../../util/types'
 import type {NumberPropertyWithAmount}    from '../PropertyWithAmount'
-import type {PossibleAmount}              from '../ClassWithAmount'
-import type {PossibleNumber}              from '../Property'
 import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
 
 import {PropertyWithAmountContainer} from '../PropertyWithAmount.container'
 
-export class NumberPropertyWithAmountContainer<N extends PossibleNumber = PossibleNumber, AMOUNT extends PossibleAmount = PossibleAmount, >
+export class NumberPropertyWithAmountContainer<N extends NullOrNumber = NullOrNumber, AMOUNT extends NullOrNumber = NullOrNumber, >
     extends PropertyWithAmountContainer<N, AMOUNT>
     implements NumberPropertyWithAmount<N, AMOUNT> {
 

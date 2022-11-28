@@ -2,6 +2,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Entity}                 
 import type {EnglishNames as EnglishNames_EntityLimitType}                                                                                                                                                                                                               from '../../entityLimit/EntityLimitTypes.types'
 import type {EnglishNames as EnglishNames_SoundEffectCategory}                                                                                                                                                                                                           from '../../soundEffectCategory/SoundEffectCategories.types'
 import type {EnglishNames as EnglishNames_SoundEffect}                                                                                                                                                                                                                   from '../../soundEffect/SoundEffects.types'
+import type {NullOr}                                                                                                                                                                                                                                                     from '../../../util/types'
 import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                                             from '../../mysteryMushroom/MysteryMushrooms.types'
 import type {PokemonGeneration}                                                                                                                                                                                                                                          from '../../mysteryMushroom/MysteryMushroom.template'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from '../../behaviour/EntityBehaviours.types'
@@ -207,9 +208,9 @@ export type EveryPossibleName_MiiCostumeCategory = readonly PossibleEnglishName_
 export type EveryPossibleUniqueEnglishName_MysteryMushroom = readonly UniqueEnglishName_MysteryMushroom[]
 export type EveryConditionToUnlockIt_MysteryMushroom = readonly PossibleConditionToUnlockIt_MysteryMushroom[]
 
-export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, | null | UnknownReference> | UnknownReference)[]
+export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
 
-export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | UnknownReference> | UnknownReference)[]
+export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
 
 //endregion -------------------- Mystery Mushroom --------------------
 //region -------------------- Official notification --------------------

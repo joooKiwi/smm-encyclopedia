@@ -5,6 +5,7 @@ import type {AppOptionWithContent, PossibleRenderReactElement} from './component
 import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
 import type {EntityLimits}                                     from '../../core/entityLimit/EntityLimits'
 import type {Names, Ordinals}                                  from './EntityLimitAppOption.types'
+import type {NullOr}                                           from '../../util/types'
 import type {ReactElement}                                     from '../../util/react/ReactProperties'
 import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 
@@ -138,7 +139,7 @@ export abstract class EntityLimitAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 

@@ -2,6 +2,7 @@ import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 
 import type {AppInterpreterWithCardList} from './AppInterpreterWithCardList'
 import type {Content}                    from './AppInterpreter'
+import type {NullOr}                     from '../../util/types'
 import type {SingleHeaderContent}        from '../tools/table/SimpleHeader'
 import type {TableProperties}            from '../tools/table/Table.types'
 import type {ReactElement}               from '../../util/react/ReactProperties'
@@ -46,7 +47,7 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
      *
      * @param option the application option
      */
-    createTableHeader(option: OPTION,): | SingleHeaderContent | null
+    createTableHeader(option: OPTION,): NullOr<SingleHeaderContent>
 
 }
 

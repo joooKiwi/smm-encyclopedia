@@ -1,11 +1,10 @@
-import type {PossibleAmount}                           from '../ClassWithAmount'
-import type {PossibleString}                           from '../Property'
+import type {NullOrNumber, NullOrString}               from '../../../util/types'
 import type {PossibleValueOnObjectHolder}              from '../../../util/holder/ObjectHolder'
 import type {StringPropertyThatCanBeUnknownWithAmount} from '../PropertyThatCanBeUnknownWithAmount'
 
 import {PropertyThatCanBeUnknownWithAmountContainer} from '../PropertyThatCanBeUnknownWithAmount.container'
 
-export class StringPropertyThatCanBeUnknownWithAmountContainer<S extends PossibleString = PossibleString, IS_UNKNOWN extends boolean = boolean, AMOUNT extends PossibleAmount = PossibleAmount, >
+export class StringPropertyThatCanBeUnknownWithAmountContainer<S extends NullOrString = NullOrString, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, >
     extends PropertyThatCanBeUnknownWithAmountContainer<S, IS_UNKNOWN, AMOUNT>
     implements StringPropertyThatCanBeUnknownWithAmount<S, IS_UNKNOWN, AMOUNT> {
 

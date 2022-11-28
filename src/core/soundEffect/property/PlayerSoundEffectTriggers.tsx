@@ -4,6 +4,7 @@ import {Fragment, lazy}                                                         
 
 import type {ClassWithTranslationKey}                 from '../../../lang/ClassWithTranslationKey'
 import type {Names, Ordinals, PossibleTranslationKey} from './PlayerSoundEffectTriggers.types'
+import type {Nullable}                                from '../../../util/types'
 import type {PlayerSoundEffectTriggerProperty}        from './PlayerSoundEffectTriggerProperty'
 import type {ReactElement}                            from '../../../util/react/ReactProperties'
 import type {TranslationReplaceKeysMap}               from '../../../lang/components/TranslationProperty'
@@ -340,8 +341,8 @@ export class PlayerSoundEffectTriggers
     }
 
 
-    // public static getValueByTranslation<T extends string, >(value: | PlayerSoundEffectTriggers | T | null | undefined,): PlayerSoundEffectTriggersByTranslation<T>
-    public static getValueByTranslation(value: | PlayerSoundEffectTriggers | string | null | undefined,): PlayerSoundEffectTriggers {
+    // public static getValueByTranslation<T extends string, >(value: Nullable<| PlayerSoundEffectTriggers | T>,): PlayerSoundEffectTriggersByTranslation<T>
+    public static getValueByTranslation(value: Nullable<| PlayerSoundEffectTriggers | string>,): PlayerSoundEffectTriggers {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

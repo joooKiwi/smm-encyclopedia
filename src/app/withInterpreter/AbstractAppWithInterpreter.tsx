@@ -3,6 +3,7 @@ import './AbstractAppWithInterpreter.scss'
 import type {AppInterpreter}                     from '../interpreter/AppInterpreter'
 import type {AppProperties}                      from '../AppProperties.types'
 import type {AppWithVariableDisplayStates}       from '../AppStates.types'
+import type {NullOr}                             from '../../util/types'
 import type {ReactElement, ReactElementOrString} from '../../util/react/ReactProperties'
 
 import AbstractApp    from '../AbstractApp'
@@ -82,7 +83,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
 
     protected abstract _createTitleContent(): ReactElementOrString
 
-    protected _createAsideContent(): | ReactElementOrString | null {
+    protected _createAsideContent(): NullOr<ReactElementOrString> {
         return null
     }
 

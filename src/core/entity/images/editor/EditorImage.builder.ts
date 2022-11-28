@@ -3,6 +3,7 @@ import type {EditorImage}                                                       
 import type {ExtendedList}                                                                     from '../../../../util/extended/ExtendedList'
 import type {GameStyles as OriginalGameStyles}                                                 from '../../../gameStyle/GameStyles'
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName, VariantEditorImage_PowerUp} from './EditorImage.types'
+import type {Nullable, NullOr}                                                                 from '../../../../util/types'
 
 import {AbstractImageBuilder} from '../AbstractImage.builder'
 import {EditorImageContainer} from './EditorImage.container'
@@ -261,7 +262,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
         return this.#overrideMap ?? EMPTY_MAP
     }
 
-    #setOverrideImages(imageNumber: PossibleAmountOfImages, time: | Times | null, gameStyle: OriginalGameStyles, theme: | Themes | null,): this {
+    #setOverrideImages(imageNumber: PossibleAmountOfImages, time: Nullable<Times>, gameStyle: OriginalGameStyles, theme: Nullable<Themes>,): this {
         if (!(gameStyle instanceof GameStyles))
             return this.#setOverrideImages(imageNumber, time, GameStyles.getValue(gameStyle), theme,)
 
@@ -311,7 +312,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @param time the time or every time if <b>null</b> is received
      * @param imageNumber the image number
      */
-    public setImage(gameStyle: OriginalGameStyles, theme: | Themes | null, time: | Times | null, imageNumber: PossibleAmountOfImages,): this {
+    public setImage(gameStyle: OriginalGameStyles, theme: Nullable<Themes>, time: Nullable<Times>, imageNumber: PossibleAmountOfImages,): this {
         return this.#setOverrideImages(imageNumber, time, gameStyle, theme,)
     }
 
@@ -369,7 +370,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
      * @protected
      */
     protected _getAmountBasedOnValue(time: null, gameStyle: GameStyles, theme: null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[]
-    protected _getAmountBasedOnValue(time: | Times | null, gameStyle: GameStyles, theme: | Themes | null, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[] {
+    protected _getAmountBasedOnValue(time: Nullable<Times>, gameStyle: GameStyles, theme: Nullable<Themes>, amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[] {
         if (time == null || theme == null) {
             const timeIterator = Times[Symbol.iterator]()
             let nextTime = timeIterator.next()
@@ -486,7 +487,7 @@ export class EditorImageBuilder<NAME extends Exclude<SimpleImageName, null> = Ex
 
 //region -------------------- Types --------------------
 
-type PossibleType = | PossibleAmountOfImages | null
-type PossibleDefaultType = | 'ground' | 'power-up' | 'snow' | PossibleAmountOfImages | null
+type PossibleType = NullOr<PossibleAmountOfImages>
+type PossibleDefaultType = NullOr<| 'ground' | 'power-up' | 'snow' | PossibleAmountOfImages>
 
 //endregion -------------------- Types --------------------

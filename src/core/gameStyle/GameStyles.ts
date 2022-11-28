@@ -9,6 +9,7 @@ import type {GameStylesInSMM1, Names, Ordinals, PossibleAcronym, PossibleEnglish
 import type {GameStyle}                                                                                                                               from './GameStyle'
 import type {GameStyleProperty}                                                                                                                       from '../entity/properties/gameStyle/GameStyleProperty'
 import type {GameStyleReferences}                                                                                                                     from '../entity/properties/gameStyle/GameStyleReferences'
+import type {Nullable}                                                                                                                                from '../../util/types'
 import type {PossibleOtherEntities}                                                                                                                   from '../entity/Entity'
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                 from '../PropertyGetter'
 
@@ -185,8 +186,8 @@ export abstract class GameStyles
     }
 
 
-    // public static getValueByName<T extends string, >(value: | GameStyles | T | null | undefined,): GameStylesByName<T>
-    public static getValueByName(value: | GameStyles | string | null | undefined,): GameStyles {
+    // public static getValueByName<T extends string, >(value: Nullable<| GameStyles | T>,): GameStylesByName<T>
+    public static getValueByName(value: Nullable<| GameStyles | string>,): GameStyles {
         return getValueByEnglishName(value, this,)
     }
 

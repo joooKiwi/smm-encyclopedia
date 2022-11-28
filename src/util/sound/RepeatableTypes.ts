@@ -2,6 +2,7 @@ import {Enum}                                                                   
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
 import type {Names, Ordinals, PossibleRepeatableName} from './RepeatableTypes.types'
+import type {Nullable}                                from '../types'
 
 /**
  * @todo Add more types (within a range instead of just loop a single value)
@@ -54,7 +55,7 @@ export abstract class RepeatableTypes
 
 
     // public static getValueByName<T, >(value: T,): RepeatableTypesByName<T>
-    public static getValueByName(value: | RepeatableTypes | string | null | undefined,): RepeatableTypes {
+    public static getValueByName(value: Nullable<| RepeatableTypes | string>,): RepeatableTypes {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

@@ -5,8 +5,10 @@ import type {Builder}                                                           
 import type {ClassWithEnglishName}                                                                                                                                      from '../ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                        from '../ClassWithReference'
 import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleEnglishName_SMM1, PossibleEnglishName_SMM1AndSMM2, PossibleEnglishName_SMM2, SoundEffectGames} from './SoundEffects.types'
-import type {MusicSoundFile}                                                                                                                                            from '../music/file/MusicSoundFile'
-import type {PossibleSMM1ImagePath, PossibleSMM2ImagePath, SoundEffectImage}                                                                                            from './image/SoundEffectImage'
+import type {MusicSoundFile}         from '../music/file/MusicSoundFile'
+import type {Nullable, NullOr}       from '../../util/types'
+import type {PossibleImagePath_SMM2} from './SoundEffects.types'
+import type {PossibleSMM1ImagePath, SoundEffectImage}                                                                                                                   from './image/SoundEffectImage'
 import type {PossibleSoundEffectMusicEditorName}                                                                                                                        from '../music/soundEffect/SoundEffectMusic'
 import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                                                 from './sound/SMM2SoundEffectSound'
 import type {SMM1ExclusiveSoundEffectSound}                                                                                                                             from './sound/SMM1ExclusiveSoundEffectSound'
@@ -727,7 +729,7 @@ export abstract class SoundEffects
         return this.images.SMM1ImagePath
     }
 
-    public get SMM2ImagePath(): PossibleSMM2ImagePath {
+    public get SMM2ImagePath(): NullOr<PossibleImagePath_SMM2> {
         return this.images.SMM2ImagePath
     }
 
@@ -748,11 +750,11 @@ export abstract class SoundEffects
                 .smm1(2)
     }
 
-    protected _createExclusiveSMM1Sounds(): | Builder<SMM1ExclusiveSoundEffectSound> | null {
+    protected _createExclusiveSMM1Sounds(): NullOr<Builder<SMM1ExclusiveSoundEffectSound>> {
         return null
     }
 
-    protected _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): | Builder<SMM1StandaloneSoundEffectSound> | null {
+    protected _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): NullOr<Builder<SMM1StandaloneSoundEffectSound>> {
         return null
     }
 
@@ -788,7 +790,7 @@ export abstract class SoundEffects
     }
 
     /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} when placed in the editor */
-    public get editorSound_smm1(): | SoundEffectSoundFile | null {
+    public get editorSound_smm1(): NullOr<SoundEffectSoundFile> {
         return this.soundsContainer_standaloneSMM1.editorSound
     }
 
@@ -797,7 +799,7 @@ export abstract class SoundEffects
         return this.#SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY ??= ['Otoasobi_DJ00', 'Otoasobi_DJ01', 'Otoasobi_DJ02', 'Otoasobi_DJ03', 'Otoasobi_DJ04', 'Otoasobi_DJ05',]
     }
 
-    protected _createSMM2Sounds(): | Builder<SMM2SoundEffectSound> | Musics | null {
+    protected _createSMM2Sounds(): NullOr<|Builder<SMM2SoundEffectSound> | Musics> {
         return null
     }
 
@@ -816,7 +818,7 @@ export abstract class SoundEffects
     }
 
     /** The "sound effect" sound for a {@link Games.SUPER_MARIO_MAKER_2 SMM2} when placed in the editor */
-    public get editorSound_smm2(): | SMM2SoundEffectSoundFile | PossibleSoundEffectMusicEditorName | null {
+    public get editorSound_smm2(): NullOr<| SMM2SoundEffectSoundFile | PossibleSoundEffectMusicEditorName> {
         return this.soundsContainer_smm2.editorSound
     }
 
@@ -848,8 +850,8 @@ export abstract class SoundEffects
     }
 
 
-    // public static getValueByName<T extends string, >(value: | SoundEffects | T | null | undefined,): SoundEffectsByName<T>
-    public static getValueByName(value: | SoundEffects | string | null | undefined,): SoundEffects {
+    // public static getValueByName<T extends string, >(value: Nullable<| SoundEffects | T>,): SoundEffectsByName<T>
+    public static getValueByName(value: Nullable<| SoundEffects | string>,): SoundEffects {
         return getValueByEnglishName(value, this,)
     }
 

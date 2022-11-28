@@ -4,8 +4,9 @@ import {Fragment} from 'react'
 
 import type {AppInterpreterWithCardList,}                          from './interpreter/AppInterpreterWithCardList'
 import type {CourseTagAppProperties}                               from './AppProperties.types'
+import type {NullOr}                                               from '../util/types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
 import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
 import {CourseTags}             from '../core/courseTag/CourseTags'
@@ -50,7 +51,7 @@ export default class CourseTagApp
         },)
     }
 
-    protected override _createAsideContent(): | ReactElementOrString | null {
+    protected override _createAsideContent(): NullOr<ReactElementOrString> {
         const type = this.type
 
         return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">

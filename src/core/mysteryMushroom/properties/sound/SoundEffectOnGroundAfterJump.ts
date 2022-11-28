@@ -1,14 +1,14 @@
 import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference'
 import type {GameReferences}          from '../../../gameReference/GameReferences'
 import type {NotApplicable, Property} from '../../../_properties/Property'
+import type {NullOr}                  from '../../../../util/types'
 
 export interface SoundEffectOnGroundAfterJump
-    extends Property<PossibleValues>, ClassWithGameReference<PossibleGames> {
+    extends Property<PossibleValues>, ClassWithGameReference<NullOr<GameReferences>> {
 
 }
 
-export type PossibleGamesReceived = | string | null
-export type PossibleValuesReceived = | boolean | null
+export type PossibleGamesReceived = NullOr<string>
+export type PossibleValuesReceived = NullOr<boolean>
 
-export type PossibleGames = | GameReferences | null
-export type PossibleValues = | boolean | NotApplicable
+/**@deprecated Create a new boolean or N/A*/export type PossibleValues = | boolean | NotApplicable

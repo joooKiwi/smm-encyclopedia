@@ -1,7 +1,9 @@
+import type {NullOr} from '../../types'
+
 import {AbstractStringConverter} from './AbstractStringConverter'
 
 export abstract class AbstractEmptyableStringConverter<T, >
-    extends AbstractStringConverter<T | null> {
+    extends AbstractStringConverter<NullOr<T>> {
 
     protected constructor(originalValue: string,) {
         super(originalValue,)

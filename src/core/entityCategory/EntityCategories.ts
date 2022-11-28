@@ -6,6 +6,7 @@ import type {ClassWithImagePath}                                                
 import type {ClassWithReference}                                                                              from '../ClassWithReference'
 import type {EntityCategory}                                                                                  from './EntityCategory'
 import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './EntityCategories.types'
+import type {Nullable}                                                                                        from '../../util/types'
 
 import {BASE_PATH}             from '../../variables'
 import {getValueByEnglishName} from '../../util/utilitiesMethods'
@@ -90,7 +91,7 @@ export class EntityCategories
         return this.values.map(it => it.englishName).toArray()
     }
 
-    public static getValueByName(value: | EntityCategories | string | null | undefined,): EntityCategories {
+    public static getValueByName(value: Nullable<| EntityCategories | string>,): EntityCategories {
         return getValueByEnglishName(value, this,)
     }
 

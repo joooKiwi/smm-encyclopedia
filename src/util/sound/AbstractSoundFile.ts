@@ -1,10 +1,11 @@
+import type {NullOr}                                           from '../types'
 import type {FullName, FullPath, PossibleExtension, SoundFile} from './SoundFile'
 import type {RepeatableTypes}                                  from './RepeatableTypes'
 import type {Time}                                             from './time/Time'
 
 import {BASE_PATH} from '../../variables'
 
-export abstract class AbstractSoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, REPEATABLE_TIME extends | Time | null = | Time | null, >
+export abstract class AbstractSoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
     implements SoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {
 
     //region -------------------- Fields --------------------

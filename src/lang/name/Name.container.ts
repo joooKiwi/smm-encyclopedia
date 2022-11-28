@@ -1,9 +1,9 @@
-import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, Language, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language'
-import type {EmptyableOptionalLanguage}                                                                                                                                                               from './containers/EmptyableOptionalLanguage'
-import type {EmptyableLanguage}                                                                                                                                                                       from './containers/EmptyableLanguage'
-import type {Name}                                                                                                                                                                                    from './Name'
-import type {OptionalLanguage}                                                                                                                                                                        from './containers/OptionalLanguage'
-import type {PossibleLanguageValue}                                                                                                                                                                   from '../ClassWithOnlyProjectLanguages'
+import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from './containers/Language'
+import type {EmptyableOptionalLanguage}                                                                                                                         from './containers/EmptyableOptionalLanguage'
+import type {EmptyableLanguage}                                                                                                                                 from './containers/EmptyableLanguage'
+import type {Name}                                                                                                                                              from './Name'
+import type {Nullable, NullOr}                                                                                                                                  from '../../util/types'
+import type {OptionalLanguage}                                                                                                                                  from './containers/OptionalLanguage'
 
 import {assert}                    from '../../util/utilitiesMethods'
 import {EmptyLanguageContainer}    from './containers/EmptyLanguageContainer'
@@ -48,19 +48,19 @@ export class NameContainer<T, >
 
     public constructor(english: AmericanOrEuropeanOriginal<T>,
                        french: CanadianOrEuropeanOriginal<T>,
-                       german: PossibleLanguageValue<T>,
-                       spanish: PossibleAmericanOrEuropeanValue<T>,
-                       italian: PossibleLanguageValue<T>,
-                       dutch: PossibleLanguageValue<T>,
-                       portuguese: PossibleAmericanOrEuropeanValue<T>,
-                       russian: PossibleLanguageValue<T>,
-                       japanese: PossibleLanguageValue<T>,
-                       chinese: PossibleChineseValue<T>,
-                       korean: PossibleLanguageValue<T>,
-                       hebrew: PossibleLanguageValue<T>,
-                       polish: PossibleLanguageValue<T>,
-                       ukrainian: PossibleLanguageValue<T>,
-                       greek: PossibleLanguageValue<T>,) {
+                       german: NullOr<T>,
+                       spanish: NullOr<AmericanOrEuropeanOriginal<T>>,
+                       italian: NullOr<T>,
+                       dutch: NullOr<T>,
+                       portuguese: NullOr<AmericanOrEuropeanOriginal<T>>,
+                       russian: NullOr<T>,
+                       japanese: NullOr<T>,
+                       chinese: NullOr<ChineseOriginal<T>>,
+                       korean: NullOr<T>,
+                       hebrew: NullOr<T>,
+                       polish: NullOr<T>,
+                       ukrainian: NullOr<T>,
+                       greek: NullOr<T>,) {
         const originalLanguages: EveryLanguages[] = []
 
         this.#englishContainer = NameContainer.#newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(ENGLISH, originalLanguages, english,)
@@ -153,99 +153,99 @@ export class NameContainer<T, >
     //endregion -------------------- French properties --------------------
     //region -------------------- German properties --------------------
 
-    public get german(): PossibleLanguageValue<T> {
+    public get german(): NullOr<T> {
         return this.#germanContainer.original
     }
 
     //endregion -------------------- German properties --------------------
     //region -------------------- Spanish properties --------------------
 
-    public get originalSpanish(): PossibleAmericanOrEuropeanValue<T> {
+    public get originalSpanish(): NullOr<AmericanOrEuropeanOriginal<T>> {
         return this.#spanishContainer.original
     }
 
-    public get spanish(): PossibleLanguageValue<T> {
+    public get spanish(): NullOr<T> {
         return this.#spanishContainer.get()
     }
 
-    public get americanSpanish(): PossibleLanguageValue<T> {
+    public get americanSpanish(): NullOr<T> {
         return this.#spanishContainer.get(0)
     }
 
-    public get europeanSpanish(): PossibleLanguageValue<T> {
+    public get europeanSpanish(): NullOr<T> {
         return this.#spanishContainer.get(1)
     }
 
     //endregion -------------------- Spanish properties --------------------
     //region -------------------- Italian properties --------------------
 
-    public get italian(): PossibleLanguageValue<T> {
+    public get italian(): NullOr<T> {
         return this.#italianContainer.original
     }
 
     //endregion -------------------- Italian properties --------------------
     //region -------------------- Dutch properties --------------------
 
-    public get dutch(): PossibleLanguageValue<T> {
+    public get dutch(): NullOr<T> {
         return this.#dutchContainer.original
     }
 
     //endregion -------------------- Dutch properties --------------------
     //region -------------------- Portuguese properties --------------------
 
-    public get originalPortuguese(): PossibleAmericanOrEuropeanValue<T> {
+    public get originalPortuguese(): NullOr<AmericanOrEuropeanOriginal<T>> {
         return this.#portugueseContainer.original
     }
 
-    public get portuguese(): PossibleLanguageValue<T> {
+    public get portuguese(): NullOr<T> {
         return this.#portugueseContainer.get()
     }
 
-    public get americanPortuguese(): PossibleLanguageValue<T> {
+    public get americanPortuguese(): NullOr<T> {
         return this.#portugueseContainer.get(0)
     }
 
-    public get europeanPortuguese(): PossibleLanguageValue<T> {
+    public get europeanPortuguese(): NullOr<T> {
         return this.#portugueseContainer.get(1)
     }
 
     //endregion -------------------- Portuguese properties --------------------
     //region -------------------- Russian properties --------------------
 
-    public get russian(): PossibleLanguageValue<T> {
+    public get russian(): NullOr<T> {
         return this.#russianContainer.original
     }
 
     //endregion -------------------- Russian properties --------------------
     //region -------------------- Japanese properties --------------------
 
-    public get japanese(): PossibleLanguageValue<T> {
+    public get japanese(): NullOr<T> {
         return this.#japaneseContainer.original
     }
 
     //endregion -------------------- Japanese properties --------------------
     //region -------------------- Chinese properties --------------------
 
-    public get originalChinese(): PossibleChineseValue<T> {
+    public get originalChinese(): NullOr<ChineseOriginal<T>> {
         return this.#chineseContainer.original
     }
 
-    public get chinese(): PossibleLanguageValue<T> {
+    public get chinese(): NullOr<T> {
         return this.#chineseContainer.get()
     }
 
-    public get traditionalChinese(): PossibleLanguageValue<T> {
+    public get traditionalChinese(): NullOr<T> {
         return this.#chineseContainer.get(1)
     }
 
-    public get simplifiedChinese(): PossibleLanguageValue<T> {
+    public get simplifiedChinese(): NullOr<T> {
         return this.#chineseContainer.get(0)
     }
 
     //endregion -------------------- Chinese properties --------------------
     //region -------------------- Korean properties --------------------
 
-    public get korean(): PossibleLanguageValue<T> {
+    public get korean(): NullOr<T> {
         return this.#koreanContainer.original
     }
 
@@ -256,7 +256,7 @@ export class NameContainer<T, >
         return this.#hebrewContainer.isUsed
     }
 
-    public get hebrew(): PossibleLanguageValue<T> {
+    public get hebrew(): NullOr<T> {
         return this.#hebrewContainer.original
     }
 
@@ -267,7 +267,7 @@ export class NameContainer<T, >
         return this.#polishContainer.isUsed
     }
 
-    public get polish(): PossibleLanguageValue<T> {
+    public get polish(): NullOr<T> {
         return this.#polishContainer.original
     }
 
@@ -278,7 +278,7 @@ export class NameContainer<T, >
         return this.#ukrainianContainer.isUsed
     }
 
-    public get ukrainian(): PossibleLanguageValue<T> {
+    public get ukrainian(): NullOr<T> {
         return this.#ukrainianContainer.original
     }
 
@@ -289,7 +289,7 @@ export class NameContainer<T, >
         return this.#greekContainer.isUsed
     }
 
-    public get greek(): PossibleLanguageValue<T> {
+    public get greek(): NullOr<T> {
         return this.#greekContainer.original
     }
 
@@ -310,14 +310,14 @@ export class NameContainer<T, >
     //endregion -------------------- Convertor methods --------------------
 
     static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): EmptyableOptionalLanguage<T, S, never>
-    static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | null,): OptionalLanguage<T, S, never>
+    static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: Nullable<S>,): OptionalLanguage<T, S, never>
     static #newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableLanguage<T, S, never>
-    static #newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | null,): Language<T, S, never>
+    static #newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<S>,): Language<T, S, never>
     static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<T, S, A>
-    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): EmptyableOptionalLanguage<T, S, A>
-    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A | null,): Language<T, S, A>
+    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: Nullable<| S | A>,): EmptyableOptionalLanguage<T, S, A>
+    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<| S | A>,): Language<T, S, A>
     static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<T, S, A>
-    static #newLanguageContainer<T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | T | readonly T[] | null,) {
+    static #newLanguageContainer<T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<| T | readonly T[]>,) {
         if (value == null) {
             assert(!language.isACompleteLanguage, `The language "${language.englishName}" cannot be null if it is a complete language.`,)
             return EmptyLanguageContainer.get

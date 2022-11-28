@@ -1,7 +1,9 @@
+import type {NullOr} from '../../types'
+
 import {GenericStringToAnyConverter} from './GenericStringToAnyConverter'
 
 export class GenericStringToAnyNullableConverter<T, >
-    extends GenericStringToAnyConverter<| T | null> {
+    extends GenericStringToAnyConverter<NullOr<T>> {
 
     //region -------------------- Methods --------------------
 

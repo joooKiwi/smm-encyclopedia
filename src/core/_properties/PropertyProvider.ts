@@ -1,8 +1,8 @@
-import type {PossibleComment}                                                                                                                                                                                                                                          from './ClassWithComment'
-import type {NumberProperty, PossibleBooleanValuesByInferredProperty, PossibleInferredBooleanProperty, PossibleInferredNumberProperty, PossibleInferredStringProperty, PossibleNumberValuesByInferredProperty, PossibleStringValuesByInferredProperty, StringProperty} from './Property'
 import type {BooleanPropertyWithAmountAndComment}                                                                                                                                                                                                                      from './PropertyWithAmountAndComment'
 import type {BooleanPropertyWithAmount}                                                                                                                                                                                                                                from './PropertyWithAmount'
 import type {BooleanPropertyWithComment, NumberPropertyWithComment}                                                                                                                                                                                                    from './PropertyWithComment'
+import type {Nullable, NullableString, NullOrNumber, NullOrString}                                                                                                                                                                                                     from '../../util/types'
+import type {NumberProperty, PossibleBooleanValuesByInferredProperty, PossibleInferredBooleanProperty, PossibleInferredNumberProperty, PossibleInferredStringProperty, PossibleNumberValuesByInferredProperty, PossibleStringValuesByInferredProperty, StringProperty} from './Property'
 
 import {BooleanPropertyWithAmountAndCommentContainer} from './boolean/BooleanPropertyWithAmountAndComment.container'
 import {BooleanPropertyWithAmountContainer}           from './boolean/BooleanPropertyWithAmount.container'
@@ -33,25 +33,25 @@ export class PropertyProvider {
     }
 
     public static newNumberContainer<T extends PossibleNumberValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
-    public static newNumberContainer<T extends | number | null, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
-    public static newNumberContainer(value: PossibleNumberValuesByInferredProperty, canBeNotApplicable: boolean, comment?: PossibleComment,) {
+    public static newNumberContainer<T extends NullOrNumber, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
+    public static newNumberContainer(value: PossibleNumberValuesByInferredProperty, canBeNotApplicable: boolean, comment?: NullOrString,) {
         return this.#newContainer('number', value, canBeNotApplicable, false, comment,)
     }
 
     public static newStringContainer<T extends PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
-    public static newStringContainer<T extends PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
-    public static newStringContainer(value: PossibleStringValuesByInferredProperty, canBeNotApplicable: boolean, comment?: PossibleComment,) {
+    public static newStringContainer<T extends PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
+    public static newStringContainer(value: PossibleStringValuesByInferredProperty, canBeNotApplicable: boolean, comment?: NullOrString,) {
         return this.#newContainer('string', value, canBeNotApplicable, false, comment,)
     }
 
     public static newBooleanContainer<T extends PossibleBooleanValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, HAVE_A_COMMENT, null>
     // @ts-ignore
-    public static newBooleanContainer<T extends | boolean | number | null, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT, comment: COMMENT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, true, COMMENT>
-    public static newBooleanContainer(value: PossibleBooleanValuesByInferredProperty, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment?: PossibleComment,) {
+    public static newBooleanContainer<T extends NullOr<| boolean | number>, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT, comment: COMMENT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, true, COMMENT>
+    public static newBooleanContainer(value: PossibleBooleanValuesByInferredProperty, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment?: NullOrString,) {
         return this.#newContainer('boolean', value, canBeNotApplicable, doesHaveAnAmount, comment,)
     }
 
-    static #newContainer(type: | 'string' | 'boolean' | 'number', value: boolean | string | number | null, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment: | string | null = null,) {
+    static #newContainer(type: | 'string' | 'boolean' | 'number', value: Nullable<| boolean | string | number>, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment: NullableString = null,) {
         if (value == null)
             return canBeNotApplicable ? PropertyContainer.NOT_APPLICABLE_CONTAINER : PropertyContainer.NULL_CONTAINER
         if (value === PropertyContainer.UNKNOWN) {
@@ -113,7 +113,7 @@ export class PropertyProvider {
 }
 
 type BooleanPropertyFromString<S extends string = string, > = BooleanPropertyWithComment<true, S>
-type BooleanPropertyFromNumber<N extends number = number, COMMENT extends PossibleComment = null, > = COMMENT extends null ? BooleanPropertyWithAmount<true, N> : BooleanPropertyWithAmountAndComment<true, N, COMMENT>
-type StringPropertyFromString<S extends string = string, COMMENT extends PossibleComment = null, > = COMMENT extends null ? StringProperty<S> : StringPropertyWithCommentContainer<S, COMMENT>
-type NumberPropertyFromNumber<COMMENT extends PossibleComment = null, > = COMMENT extends null ? NumberProperty : NumberPropertyWithComment<null, COMMENT>
+type BooleanPropertyFromNumber<N extends number = number, COMMENT extends NullOrString = null, > = COMMENT extends null ? BooleanPropertyWithAmount<true, N> : BooleanPropertyWithAmountAndComment<true, N, COMMENT>
+type StringPropertyFromString<S extends string = string, COMMENT extends NullOrString = null, > = COMMENT extends null ? StringProperty<S> : StringPropertyWithCommentContainer<S, COMMENT>
+type NumberPropertyFromNumber<COMMENT extends NullOrString = null, > = COMMENT extends null ? NumberProperty : NumberPropertyWithComment<null, COMMENT>
 type NumberPropertyFromString<S extends string = string, > = NumberPropertyWithComment<null, S>

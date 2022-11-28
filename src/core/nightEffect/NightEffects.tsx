@@ -6,6 +6,7 @@ import {Link}                                                                   
 import type {ClassWithEnglishName}                 from '../ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from './NightEffects.types'
 import type {EveryPossibleRouteNames}              from '../../routes/everyRoutes.types'
+import type {Nullable}                             from '../../util/types'
 import type {ReactElement}                         from '../../util/react/ReactProperties'
 import type {TranslationReplaceKeysMap}            from '../../lang/components/TranslationProperty'
 
@@ -156,8 +157,8 @@ export class NightEffects
         return this.values.map(it => it.englishName).toArray()
     }
 
-    // public static getValueByName<T extends string, >(value: | NightEffects | T | null | undefined,): NightEffectsByName<T>
-    public static getValueByName(value: | NightEffects | string | null | undefined,): NightEffects {
+    // public static getValueByName<T extends string, >(value: Nullable| NightEffects | T>,): NightEffectsByName<T>
+    public static getValueByName(value: Nullable<| NightEffects | string>,): NightEffects {
         return getValueByEnglishName(value, this,)
     }
 

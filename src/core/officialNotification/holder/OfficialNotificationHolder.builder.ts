@@ -1,4 +1,5 @@
 import type {Builder}                           from '../../../util/builder/Builder'
+import type {NullOr}                            from '../../../util/types'
 import type {OfficialNotificationHolder}        from './OfficialNotificationHolder'
 import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
 
@@ -20,7 +21,7 @@ export class OfficialNotificationHolderBuilder
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: | PossibleEnglishNameWithOnlyAmount | null,) {
+    public constructor(name: NullOr<PossibleEnglishNameWithOnlyAmount>,) {
         this.#name = name
     }
 

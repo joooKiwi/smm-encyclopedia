@@ -2,6 +2,7 @@ import type {Builder}                               from '../../util/builder/Bui
 import type {MysteryMushroomTemplate}               from './MysteryMushroom.template'
 import type {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom'
 import type {Name}                                  from '../../lang/name/Name'
+import type {NullOrString}                          from '../../util/types'
 
 import {GameReferences}                   from '../gameReference/GameReferences'
 import {Games}                            from '../game/Games'
@@ -37,7 +38,7 @@ export class MysteryMushroomBuilder
         return MysteryMushroomBuilder
     }
 
-    protected override _uniqueName(template: MysteryMushroomTemplate,): string | null {
+    protected override _uniqueName(template: MysteryMushroomTemplate,): NullOrString {
         return template.uniqueName
     }
 

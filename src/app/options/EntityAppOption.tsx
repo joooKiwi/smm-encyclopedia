@@ -6,6 +6,7 @@ import type {AppOptionWithContent, PossibleRenderReactElement} from './component
 import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
 import type {Entities}                                         from '../../core/entity/Entities'
 import type {Names, Ordinals}                                  from './EntityAppOption.types'
+import type {NullOr}                                           from '../../util/types'
 import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 import type {ReactElement}                                     from '../../util/react/ReactProperties'
 
@@ -329,7 +330,7 @@ export abstract class EntityAppOption
         return this.#appOptionWithTable
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 
@@ -358,5 +359,5 @@ export abstract class EntityAppOption
 
 }
 
-type PossibleOptionWithContent = | (() => PossibleRenderReactElement) | null
-type PossibleOptionWithTable = | SingleHeaderContent | null
+type PossibleOptionWithContent = NullOr<() => PossibleRenderReactElement>
+type PossibleOptionWithTable = NullOr<SingleHeaderContent>

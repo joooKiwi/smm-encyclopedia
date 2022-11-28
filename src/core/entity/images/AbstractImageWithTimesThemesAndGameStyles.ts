@@ -1,3 +1,5 @@
+import type {Nullable} from '../../../util/types'
+
 import {EMPTY_ARRAY}                       from '../../../util/emptyVariables'
 import {ImageWithTimesThemesAndGameStyles} from './ImageWithTimesThemesAndGameStyles'
 import {GameStyles}                        from '../../gameStyle/GameStyles'
@@ -110,7 +112,7 @@ export abstract class AbstractImageWithTimesThemesAndGameStyles
     protected _getByGameStyle(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly string[]
     protected _getByGameStyle(expectEmpty: boolean, gameStyle: GameStyles, theme: null, time: Times,): readonly string[]
     protected _getByGameStyle(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes, time: Times,): readonly string[]
-    protected _getByGameStyle(expectEmpty: boolean, gameStyle: GameStyles, theme?: | Themes | null, time?: Times,): readonly string[] {
+    protected _getByGameStyle(expectEmpty: boolean, gameStyle: GameStyles, theme?: Nullable<Themes>, time?: Times,): readonly string[] {
         if (theme == null)
             return this._everyThemes.map(theme => this._getByGameStyle(expectEmpty, gameStyle, theme,)).flat()
         if (time == null)

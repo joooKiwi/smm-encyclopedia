@@ -1,5 +1,6 @@
 import type {Builder}             from '../../../../util/builder/Builder'
 import type {ClearConditionImage} from './ClearConditionImage'
+import type {NullOr}              from '../../../../util/types'
 import type {PossibleEnglishName} from '../../Entities.types'
 
 interface ImageNameMap {
@@ -434,4 +435,4 @@ export type ImageName = ImageNameMap[PossibleEnglishName][1]
 export type PossibleAmountOfImages = | 1 | 2 | 3
 export type ImageNumber = | 0 | 1 | 2
 
-export type PossibleImageReceivedOnFactory = | Builder<ClearConditionImage> | SimpleImageName | null
+export type PossibleImageReceivedOnFactory = NullOr<| Builder<ClearConditionImage> | SimpleImageName>

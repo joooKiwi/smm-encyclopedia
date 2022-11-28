@@ -1,12 +1,11 @@
 import type {DEFAULT_AMOUNT, DEFAULT_COMMENT, DEFAULT_IS_UNKNOWN}                                                       from './Property'
 import type {FalseProperty, NotApplicableProperty, NullProperty, PropertyWithEverything, TrueProperty, UnknownProperty} from './PropertyWithEverything'
+import type {NullOrNumber, NullOrString}                                                                                from '../../util/types'
 import type {ObjectHolder, PossibleValueOnObjectHolder}                                                                 from '../../util/holder/ObjectHolder'
-import type {PossibleAmount}                                                                                            from './ClassWithAmount'
-import type {PossibleComment}                                                                                           from './ClassWithComment'
 
 import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
 
-export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOWN, AMOUNT extends PossibleAmount = DEFAULT_AMOUNT, COMMENT extends PossibleComment = DEFAULT_COMMENT, >
+export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOWN, AMOUNT extends NullOrNumber = DEFAULT_AMOUNT, COMMENT extends NullOrString = DEFAULT_COMMENT, >
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
 
     //region -------------------- Constants --------------------

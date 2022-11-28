@@ -4,6 +4,7 @@ import {lazy}                                                                   
 
 import type {ClassWithValue}  from './ClassWithValue'
 import type {Names, Ordinals} from './Texts.types'
+import type {Nullable}        from '../../../util/types'
 import type {ReactElement}    from '../../../util/react/ReactProperties'
 
 import {EMPTY_REACT_ELEMENT}                 from '../../../util/emptyReactVariables'
@@ -127,7 +128,7 @@ export abstract class Texts
 
 
     // public static getValueByValue<T, >(value: T,): TextsByValue<T>
-    public static getValueByValue(value: | Texts | boolean | null | undefined,): Texts {
+    public static getValueByValue(value: Nullable<| Texts | boolean>,): Texts {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if(value instanceof this)

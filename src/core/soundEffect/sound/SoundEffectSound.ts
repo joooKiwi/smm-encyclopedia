@@ -1,3 +1,4 @@
+import type {NullOr}               from '../../../util/types'
 import type {SoundEffectSoundFile} from '../file/SoundEffectSoundFile'
 
 export interface SoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[],
@@ -15,5 +16,5 @@ export interface SoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[]
 
 }
 
-export type PossibleEditorValue<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[], > = | SOUNDS[number] | null
+export type PossibleEditorValue<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[], > = NullOr<SOUNDS[number]>
 export type PossibleValueOnLinkOrSMB2Value<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[], > = | readonly [] | readonly [SOUNDS[number],] | readonly [SOUNDS[number], SOUNDS[number],]

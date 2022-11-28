@@ -1,4 +1,5 @@
 import type {GameStyleProperty}  from './GameStyleProperty'
+import type {NullOrBoolean}      from '../../../../util/types'
 import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
 
 import {AbstractProvider}           from '../../../../util/provider/AbstractProvider'
@@ -34,7 +35,7 @@ export class GameStylePropertyProvider
      * @param isInNewSuperMarioBrosUStyle Is in the {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU style}
      * @param isInSuperMario3DWorldStyle Is in the {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW style}
      */
-    public get<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends | boolean | null = | boolean | null, >(isInSuperMarioBrosStyle: SMB, isInSuperMarioBros3Style: SMB3, isInSuperMarioWorldStyle: SMW, isInNewSuperMarioBrosUStyle: NSMBU, isInSuperMario3DWorldStyle: SM3DW,): GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>
+    public get<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends NullOrBoolean = NullOrBoolean, >(isInSuperMarioBrosStyle: SMB, isInSuperMarioBros3Style: SMB3, isInSuperMarioWorldStyle: SMW, isInNewSuperMarioBrosUStyle: NSMBU, isInSuperMario3DWorldStyle: SM3DW,): GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>
     public get(...argumentsReceived: ArgumentsReceived): GameStyleProperty {
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new GameStylePropertyContainer(...argumentsReceived,),))
@@ -48,5 +49,5 @@ type ArgumentsReceived = readonly [
     isInSuperMarioBros3Style: boolean,
     isInSuperMarioWorldStyle: boolean,
     isInNewSuperMarioBrosUStyle: boolean,
-    isInSuperMario3DWorldStyle: | boolean | null,
+    isInSuperMario3DWorldStyle: NullOrBoolean,
 ]

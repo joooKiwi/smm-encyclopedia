@@ -2,6 +2,7 @@ import type {BasicEnumerableConstructor, CollectionHolder, Enumerable} from '@jo
 import {AssertionError}                                                from 'assert'
 
 import type {ClassWithEnglishName} from '../core/ClassWithEnglishName'
+import type {Nullable}             from './types'
 
 import {isInProduction} from '../variables'
 
@@ -41,7 +42,7 @@ export function assert(condition: boolean, message: string,): asserts condition 
         throw new AssertionError({message: message,})
 }
 
-export function getValueByEnglishName<T extends EnumerableWithEnglishName, >(value: | T | string | null | undefined, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
+export function getValueByEnglishName<T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
     if (value == null)
         throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null value`)
     if (value instanceof enumerableConstructor)

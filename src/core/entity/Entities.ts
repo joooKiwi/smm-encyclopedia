@@ -8,8 +8,9 @@ import type {ClearConditionImage}                                               
 import type {EditorImage}                                                                          from './images/editor/EditorImage'
 import type {EditorVoiceSound}                                                                     from '../editorVoice/EditorVoiceSound'
 import type {Entity}                                                                               from './Entity'
-import type {Names, Ordinals, PossibleEnglishName}                                                 from './Entities.types'
 import type {InGameImage}                                                                          from './images/inGame/InGameImage'
+import type {Names, Ordinals, PossibleEnglishName}                                                 from './Entities.types'
+import type {Nullable}                                                                             from '../../util/types'
 import type {PossibleImageReceivedOnFactory as PossibleClearConditionImage}                        from './images/clearCondition/ClearConditionImage.types'
 import type {PossibleImageReceivedOnFactory as PossibleEditorImage, SimpleImageName_GroundOrSlope} from './images/editor/EditorImage.types'
 import type {PossibleImageReceivedOnFactory as PossibleUnusedImage}                                from './images/unused/UnusedImage.types'
@@ -2975,11 +2976,11 @@ export class Entities
         return this.values.map(it => it.englishName).toArray()
     }
 
-    public static getValueByName(value: | Entities | string | null | undefined,): Entities {
+    public static getValueByName(value: Nullable<| Entities | string>,): Entities {
         return getValueByEnglishName(value, this,)
     }
 
-    public static hasValueByName(value: | Entities | string | null | undefined,) {
+    public static hasValueByName(value: Nullable<| Entities | string>,) {
         return value != null && (value instanceof Entities || this.everyEnglishNames.includes(value as never))
     }
 

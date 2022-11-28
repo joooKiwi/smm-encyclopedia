@@ -2,6 +2,7 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from './Versions.types'
+import type {Nullable, NullOr}                                                                         from '../../util/types'
 
 import {Games}      from '../game/Games'
 import {GameStyles} from '../gameStyle/GameStyles'
@@ -63,9 +64,9 @@ export class Versions
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null,)
-    private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null, gameStyle: typeof GameStyles['SUPER_MARIO_3D_WORLD'],)
-    private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null, gameStyle?: typeof GameStyles['SUPER_MARIO_3D_WORLD'],) {
+    private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>,)
+    private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle: GameStyles_SM3DW,)
+    private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle?: GameStyles_SM3DW,) {
         super()
         this.#name = name
         this.#game = Games.getValueByValue(game === 1 ? 'SMM' : `SMM${game}` as const)
@@ -83,7 +84,7 @@ export class Versions
         return this.#game
     }
 
-    public get gameStyle(): | typeof GameStyles['SUPER_MARIO_3D_WORLD'] | null {
+    public get gameStyle(): NullOr<GameStyles_SM3DW> {
         return this.#gameStyle
     }
 
@@ -107,8 +108,8 @@ export class Versions
     }
 
 
-    // public static getValueByName<T extends string, >(value: | Versions | T | null | undefined,): VersionsByName<T>
-    public static getValueByName(value: | Versions | string | null | undefined,): Versions {
+    // public static getValueByName<T extends string, >(value: Nullable<| Versions | string>,): VersionsByName<T>
+    public static getValueByName(value: Nullable<| Versions | string>,): Versions {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)
@@ -141,3 +142,6 @@ export class Versions
     //endregion -------------------- Enum methods --------------------
 
 }
+
+type PossibleGame = | 1 | '3DS' | 2
+type GameStyles_SM3DW = typeof GameStyles['SUPER_MARIO_3D_WORLD']

@@ -1,12 +1,14 @@
-import type {PossibleAmount as AmountOfSoundEffectOnJump, PossibleGames as GameOnSoundEffectOnJump, PossibleValues as PossibleSoundEffectOnJump, SoundEffectOnJump}                                                                                                                              from './SoundEffectOnJump'
-import type {PossibleGames as GameInStarMode, PossibleTranslationKeys as TranslationKeyInStarMode, PossibleValues as SoundEffectInStarMode, SpecialMusicInStarMode}                                                                                                                              from './SpecialMusicInStarMode'
-import type {PossibleGames as GameOnSoundEffectOnDeath, PossibleSimpleTranslationKeys as SimpleTranslationKeyOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypes as TypeOfSoundEffectOnDeath, PossibleValues as PossibleSoundEffectOnDeath, SoundEffectOnDeath}             from './SoundEffectOnDeath'
-import type {PossibleGames as GameOnSoundEffectOnGoalPole, PossibleSimpleTranslationKeys as SimpleTranslationKeyOnGoalPole, PossibleTranslationKeys as TranslationKeyOnGoalPole, PossibleTypes as TypeOfMusicOnGoalPole, PossibleValues as PossibleSoundEffectOnGoalPole, SoundEffectOnGoalPole} from './SoundEffectOnGoalPole'
-import type {PossibleGames as GameOnSoundEffectOnGroundAfterJump, PossibleValues as PossibleSoundEffectOnGroundAfterJump, SoundEffectOnGroundAfterJump}                                                                                                                                          from './SoundEffectOnGroundAfterJump'
-import type {PossibleGames as GameOnSoundEffectWhenCollected, PossibleValues as PossibleSoundEffectWhenCollected, SoundEffectWhenCollected}                                                                                                                                                      from './SoundEffectWhenCollected'
-import type {PossibleTranslationKeys as TranslationKeyOnSoundEffectOnMovement, PossibleValues as PossibleSoundEffectedOnMovement, SoundEffectOnMovement}                                                                                                                                         from './SoundEffectOnMovement'
-import type {PossibleValues as PossibleSoundEffectOnTaunt, SoundEffectOnTaunt}                                                                                                                                                                                                                   from './SoundEffectOnTaunt'
-import type {PossibleValues as PossibleSoundEffectOnTurnAfterRun, SoundEffectOnTurnAfterRun}                                                                                                                                                                                                     from './SoundEffectOnTurnAfterRun'
+import type {GameReferences}                                                                                                                                                                                                                       from '../../../gameReference/GameReferences'
+import type {NullOr}                                                                                                                                                                                                                               from '../../../../util/types'
+import type {PossibleAmount as AmountOfSoundEffectOnJump, PossibleValues as PossibleSoundEffectOnJump, SoundEffectOnJump}                                                                                                                          from './SoundEffectOnJump'
+import type {PossibleTranslationKeys as TranslationKeyInStarMode, PossibleValues as SoundEffectInStarMode, SpecialMusicInStarMode}                                                                                                                 from './SpecialMusicInStarMode'
+import type {PossibleSimpleTranslationKeys as SimpleTranslationKeyOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypes as TypeOfSoundEffectOnDeath, PossibleValues as PossibleSoundEffectOnDeath, SoundEffectOnDeath}          from './SoundEffectOnDeath'
+import type {PossibleSimpleTranslationKeys as SimpleTranslationKeyOnGoalPole, PossibleTranslationKeys as TranslationKeyOnGoalPole, PossibleTypes as TypeOfMusicOnGoalPole, PossibleValues as PossibleSoundEffectOnGoalPole, SoundEffectOnGoalPole} from './SoundEffectOnGoalPole'
+import type {PossibleValues as PossibleSoundEffectOnGroundAfterJump, SoundEffectOnGroundAfterJump}                                                                                                                                                 from './SoundEffectOnGroundAfterJump'
+import type {PossibleValues as PossibleSoundEffectWhenCollected, SoundEffectWhenCollected}                                                                                                                                                         from './SoundEffectWhenCollected'
+import type {PossibleTranslationKeys as TranslationKeyOnSoundEffectOnMovement, PossibleValues as PossibleSoundEffectedOnMovement, SoundEffectOnMovement}                                                                                           from './SoundEffectOnMovement'
+import type {PossibleValues as PossibleSoundEffectOnTaunt, SoundEffectOnTaunt}                                                                                                                                                                     from './SoundEffectOnTaunt'
+import type {PossibleValues as PossibleSoundEffectOnTurnAfterRun, SoundEffectOnTurnAfterRun}                                                                                                                                                       from './SoundEffectOnTurnAfterRun'
 
 export interface SoundProperty {
 
@@ -16,7 +18,7 @@ export interface SoundProperty {
 
     get haveASoundEffectWhenCollected(): PossibleSoundEffectWhenCollected
 
-    get gameOnSoundEffectWhenCollected(): GameOnSoundEffectWhenCollected
+    get gameOnSoundEffectWhenCollected(): NullOr<GameReferences>
 
     //endregion -------------------- When collected --------------------
     //region -------------------- Taunt --------------------
@@ -45,7 +47,7 @@ export interface SoundProperty {
 
     get haveMultipleImagesOnJump(): boolean
 
-    get gameOnSoundEffectOnJump(): GameOnSoundEffectOnJump
+    get gameOnSoundEffectOnJump(): NullOr<GameReferences>
 
     //endregion -------------------- Jump --------------------
     //region -------------------- Ground after jump --------------------
@@ -54,7 +56,7 @@ export interface SoundProperty {
 
     get haveASoundEffectOnGroundAfterJump(): PossibleSoundEffectOnGroundAfterJump
 
-    get gameOnSoundEffectOnGroundAfterJump(): GameOnSoundEffectOnGroundAfterJump
+    get gameOnSoundEffectOnGroundAfterJump(): NullOr<GameReferences>
 
     //endregion -------------------- Ground after jump --------------------
     //region -------------------- Turn after run --------------------
@@ -70,7 +72,7 @@ export interface SoundProperty {
 
     get haveASpecialMusicInStarMode(): SoundEffectInStarMode
 
-    get gameOnSpecialMusicInStarMode(): GameInStarMode
+    get gameOnSpecialMusicInStarMode(): NullOr<GameReferences>
 
     get translationKeyOnSpecialMusicInStarMode(): TranslationKeyInStarMode
 
@@ -81,7 +83,7 @@ export interface SoundProperty {
 
     get haveASoundEffectOnGoalPole(): PossibleSoundEffectOnGoalPole
 
-    get gameOnSoundEffectOnGoalPole(): GameOnSoundEffectOnGoalPole
+    get gameOnSoundEffectOnGoalPole(): NullOr<GameReferences>
 
     get translationKeyOnSoundEffectOnGoalPole(): TranslationKeyOnGoalPole
 
@@ -96,7 +98,7 @@ export interface SoundProperty {
 
     get haveASoundEffectOnDeath(): PossibleSoundEffectOnDeath
 
-    get gameOnSoundEffectOnDeath(): GameOnSoundEffectOnDeath
+    get gameOnSoundEffectOnDeath(): NullOr<GameReferences>
 
     get translationKeyOnSoundEffectOnDeath(): TranslationKeyOnDeath
 

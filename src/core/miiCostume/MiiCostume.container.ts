@@ -1,6 +1,7 @@
 import type {MiiCostume}                                from './MiiCostume'
 import type {MiiCostumeCategory}                        from '../miiCostumeCategory/MiiCostumeCategory'
 import type {Name}                                      from '../../lang/name/Name'
+import type {NullOr}                                    from '../../util/types'
 import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
 import type {OfficialNotificationHolder}                from '../officialNotification/holder/OfficialNotificationHolder'
 import type {Versions}                                  from '../version/Versions'
@@ -18,7 +19,7 @@ export class MiiCostumeContainer
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: PossibleValueOnObjectHolder<Name<string>>, officialNotification: ObjectHolder<OfficialNotificationHolder>, version: ObjectHolder<| Versions | null>, category: PossibleValueOnObjectHolder<MiiCostumeCategory>,) {
+    public constructor(name: PossibleValueOnObjectHolder<Name<string>>, officialNotification: ObjectHolder<OfficialNotificationHolder>, version: ObjectHolder<NullOr<Versions>>, category: PossibleValueOnObjectHolder<MiiCostumeCategory>,) {
         super(name, category,)
         this.#officialNotificationHolder = officialNotification
         this.#version = version

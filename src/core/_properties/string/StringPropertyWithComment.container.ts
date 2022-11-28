@@ -1,11 +1,10 @@
-import type {PossibleComment}             from '../ClassWithComment'
-import type {PossibleString}              from '../Property'
+import type {NullOrString}                from '../../../util/types'
 import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
 import type {StringPropertyWithComment}   from '../PropertyWithComment'
 
 import {PropertyWithCommentContainer} from '../PropertyWithComment.container'
 
-export class StringPropertyWithCommentContainer<S extends PossibleString = PossibleString, COMMENT extends PossibleComment = PossibleComment, >
+export class StringPropertyWithCommentContainer<S extends NullOrString = NullOrString, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithCommentContainer<S, COMMENT>
     implements StringPropertyWithComment<S, COMMENT> {
 

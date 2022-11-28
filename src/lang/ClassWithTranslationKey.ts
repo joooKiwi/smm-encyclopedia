@@ -1,4 +1,6 @@
-export interface ClassWithTranslationKey<TRANSLATION_KEY extends | string | null = string, > {
+import type {NullOrString} from '../util/types'
+
+export interface ClassWithTranslationKey<TRANSLATION_KEY extends NullOrString = string, > {
 
     get translationKey(): TRANSLATION_KEY
 

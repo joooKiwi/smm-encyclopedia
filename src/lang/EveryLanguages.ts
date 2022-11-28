@@ -4,19 +4,19 @@ import {Enum}                                                                   
 import i18n                                                                                 from 'i18next'
 
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages'
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleCanadianOrEuropeanValue, PossibleChineseValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from './name/containers/Language'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './name/containers/Language'
 import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName, PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './EveryLanguages.types'
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './LanguageEnumerable'
+import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from '../util/types'
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from './ProjectLanguages.types'
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types'
-import type {PossibleLanguageValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './ClassWithOnlyProjectLanguages'
 
 import {Characters}   from './Characters'
 import {EMPTY_STRING} from '../util/emptyVariables'
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
-    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, | PossibleDifferentWord | null> {
+    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, NullOr<PossibleDifferentWord>> {
 
     //region -------------------- Enum instances --------------------
 
@@ -490,7 +490,7 @@ export abstract class EveryLanguages
     static #CURRENT_LANGUAGE: EveryLanguages
     public static readonly UNKNOWN_STRING = '???'
     public static readonly SPACE_STRING = ' '
-    public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: | Dispatch<SetStateAction<PossibleInternationalAcronym_Project>> | null = null
+    public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: NullOr<Dispatch<SetStateAction<PossibleInternationalAcronym_Project>>> = null
     protected static readonly _SPACE_EVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, true, false,]
     protected static readonly _SPACE_EVEN_LANGUAGE_WITHOUT_SPACE: SpaceParameterReceived = [false, true,]
     protected static readonly _SPACE_UNEVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, false,]
@@ -504,8 +504,8 @@ export abstract class EveryLanguages
     readonly #internationalAcronym: PossibleInternationalAcronym
     readonly #englishName: PossibleEnglishName
     readonly #originalName: PossibleOriginalName
-    readonly #differentWords: | PossibleDifferentWord | null
-    readonly #parent: | EveryLanguages | null
+    readonly #differentWords: NullOr<PossibleDifferentWord>
+    readonly #parent: NullOr<EveryLanguages>
     #children?: PossibleChildrenLanguages
 
     #space?: PossibleSpaceCharacter
@@ -527,7 +527,7 @@ export abstract class EveryLanguages
     private constructor(isACompleteLanguage: boolean, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym_Project, internationalAcronym: PossibleInternationalAcronym_Project, englishName: PossibleEnglishName_Project, originalName: PossibleOriginalName_Project, differenceWords: PossibleDifferentWord, parent: EveryLanguages,)
-    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: | PossibleDifferentWord | null = null, parent: | EveryLanguages | null = null,) {
+    private constructor(isACompleteLanguage: boolean, projectAcronym: PossibleAcronym, internationalAcronym: PossibleInternationalAcronym, englishName: PossibleEnglishName, originalName: PossibleOriginalName, differenceWords: NullOr<PossibleDifferentWord> = null, parent: NullOr<EveryLanguages> = null,) {
         super()
         this.#isACompleteLanguage = isACompleteLanguage
         this.#projectAcronym = projectAcronym
@@ -595,11 +595,11 @@ export abstract class EveryLanguages
         return this.#originalName
     }
 
-    public get differentWords(): | PossibleDifferentWord | null {
+    public get differentWords(): NullOr<PossibleDifferentWord> {
         return this.#differentWords
     }
 
-    public get parent(): | EveryLanguages | null {
+    public get parent(): NullOr<EveryLanguages> {
         return this.#parent
     }
 
@@ -742,16 +742,16 @@ export abstract class EveryLanguages
     //region -------------------- Methods --------------------
 
     protected abstract _get<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): T
-    protected abstract _get<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): PossibleLanguageValue<T>
-    protected abstract _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T>
+    protected abstract _get<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<T>
+    protected abstract _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): NullOr<T>
 
     public get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
         return this._get(classWithEveryLanguages) ?? EveryLanguages.AMERICAN_ENGLISH.get(classWithEveryLanguages)
     }
 
     public original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
-    public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T>
-    public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T> {
+    public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
+    public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
         return this.parent?.original<T>(classWithEveryLanguages) ?? this.get(classWithEveryLanguages)
     }
 
@@ -803,7 +803,7 @@ export abstract class EveryLanguages
     }
 
     // public static getValueByLanguage<T, >(value: T,): EveryLanguagesByLanguage<T>
-    public static getValueByLanguage(value: | EveryLanguages | string | null | undefined,): EveryLanguages {
+    public static getValueByLanguage(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof EveryLanguages && value._static === EveryLanguages)

@@ -5,6 +5,7 @@ import type {ClassWithAcronym}                                      from '../Cla
 import type {ClassWithEnglishName}                                  from '../ClassWithEnglishName'
 import type {ClassWithReference}                                    from '../ClassWithReference'
 import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from './GameReferences.types'
+import type {Nullable}                                              from '../../util/types'
 import type {GameReference}                                         from './GameReference'
 
 import {Import}          from '../../util/DynamicImporter'
@@ -234,8 +235,8 @@ export class GameReferences
         return this.values.map(it => it.englishName).toArray()
     }
 
-    // public static getValueByNameOrAcronym<T extends string, >(value: | GameReferences | T | null | undefined,): GameReferencesByNameOrAcronym<T>
-    public static getValueByNameOrAcronym(value: | GameReferences | string | null | undefined,): GameReferences {
+    // public static getValueByNameOrAcronym<T extends string, >(value: Nullable<| GameReferences | T>,): GameReferencesByNameOrAcronym<T>
+    public static getValueByNameOrAcronym(value: Nullable<| GameReferences | string>,): GameReferences {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

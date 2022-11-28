@@ -1,11 +1,10 @@
-import type {PossibleAmount}              from './ClassWithAmount'
-import type {PossibleComment}             from './ClassWithComment'
+import type {NullOrNumber, NullOrString}  from '../../util/types'
 import type {PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
 import type {PropertyWithEverything}      from './PropertyWithEverything'
 
 import {PropertyContainer} from './Property.container'
 
-export class PropertyWithEverythingContainer<T, IS_UNKNOWN extends boolean = boolean, AMOUNT extends PossibleAmount = PossibleAmount, COMMENT extends PossibleComment = PossibleComment, >
+export class PropertyWithEverythingContainer<T, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyContainer<T, IS_UNKNOWN, AMOUNT, COMMENT>
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
 

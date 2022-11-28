@@ -1,7 +1,9 @@
+import type {NullOrString} from '../../types'
+
 import {AbstractEmptyableStringConverter} from './AbstractEmptyableStringConverter'
 
 export class StringToEmptyableStringConverter
-    extends AbstractEmptyableStringConverter<| string | null> {
+    extends AbstractEmptyableStringConverter<NullOrString> {
 
     public constructor(originalValue: string,) {
         super(originalValue)

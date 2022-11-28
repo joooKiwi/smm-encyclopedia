@@ -4,6 +4,7 @@ import {lazy}                                                                   
 
 import type {ClassWithValue}        from './ClassWithValue'
 import type {Names, Ordinals}       from './Sounds.types'
+import type {Nullable}              from '../../../util/types'
 import type {ReactElement}          from '../../../util/react/ReactProperties'
 import type {SimpleSoundProperties} from '../../../util/sound/component/property/SimpleSoundProperties'
 
@@ -76,7 +77,7 @@ export abstract class Sounds
 
 
     // public static getValueByValue<T, >(value: T,): SoundsByValue<T>
-    public static getValueByValue(value: | Sounds | boolean | null | undefined,): Sounds {
+    public static getValueByValue(value: Nullable<| Sounds | boolean>,): Sounds {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

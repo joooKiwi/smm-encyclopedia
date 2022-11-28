@@ -2,6 +2,7 @@ import type {Builder}             from '../../../../util/builder/Builder'
 import type {ClearConditionImage} from '../clearCondition/ClearConditionImage'
 import type {EditorImage}         from '../editor/EditorImage'
 import type {InGameImage}         from '../inGame/InGameImage'
+import type {Nullable, NullOr}    from '../../../../util/types'
 import type {UniqueImage}         from './UniqueImage'
 
 import {assert}                     from '../../../../util/utilitiesMethods'
@@ -30,7 +31,7 @@ export class UniqueImageBuilder
     #clearConditionImage?: ClearConditionImage
     #whilePlayingImage?: InGameImage
 
-    #referenceType?: | ReferenceType | null
+    #referenceType?: NullOr<ReferenceType>
 
     #gameStyles?: GameStyles[]
     #themes?: Map<GameStyles, readonly Themes[]>
@@ -39,28 +40,28 @@ export class UniqueImageBuilder
 
     //region -------------------- Getter methods --------------------
 
-    private get __editorImage(): | EditorImage | null {
+    private get __editorImage(): NullOr<EditorImage> {
         return this.#editorImage ?? null
     }
 
-    private get __clearConditionImage(): | ClearConditionImage | null {
+    private get __clearConditionImage(): NullOr<ClearConditionImage> {
         return this.#clearConditionImage ?? null
     }
 
-    private get __whilePlayingImage(): | InGameImage | null {
+    private get __whilePlayingImage(): NullOr<InGameImage> {
         return this.#whilePlayingImage ?? null
     }
 
 
-    public get referenceType(): | ReferenceType | null {
+    public get referenceType(): NullOr<ReferenceType> {
         return this.__referenceType
     }
 
-    private get __referenceType(): | ReferenceType | null {
+    private get __referenceType(): NullOr<ReferenceType> {
         return this.#referenceType ?? null
     }
 
-    private set __referenceType(value: | ReferenceType | null | undefined,) {
+    private set __referenceType(value: Nullable<ReferenceType>,) {
         this.#referenceType = value ?? null
     }
 
@@ -278,7 +279,7 @@ export class UniqueImageBuilder
         )
     }
 
-    #createMap(editorImage: | EditorImage | null, clearConditionImage: | ClearConditionImage | null, whilePlayingImage: | InGameImage | null,): ReadonlyMap<GameStyles, readonly string[]> {
+    #createMap(editorImage: Nullable<EditorImage>, clearConditionImage: Nullable<ClearConditionImage>, whilePlayingImage: Nullable<InGameImage>,): ReadonlyMap<GameStyles, readonly string[]> {
         const type = this.__referenceType
 
         if (type === 'editor' || (editorImage != null && clearConditionImage == null && whilePlayingImage == null)) {

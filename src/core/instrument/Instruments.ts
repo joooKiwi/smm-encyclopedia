@@ -3,6 +3,7 @@ import {Enum}                                                                   
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                     from '../ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from './Instruments.types'
+import type {Nullable}                                                                                                                                                                                                                                 from '../../util/types'
 import type {InstrumentSoundFile}                                                                                                                                                                                                                      from './file/InstrumentSoundFile'
 import type {Instrument}                                                                                                                                                                                                                               from './Instrument'
 
@@ -173,7 +174,7 @@ export class Instruments
         return this.values.map(it => it.englishName).toArray()
     }
 
-    public static getValueByName(value: | Instruments | string | null | undefined,): Instruments {
+    public static getValueByName(value: Nullable<| Instruments | string>,): Instruments {
         return getValueByEnglishName(value, this,)
     }
 

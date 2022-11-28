@@ -1,4 +1,5 @@
 import type {HTMLSpanProperties}            from '../../../../util/react/html/HTMLSpanProperties'
+import type {Nullable}                      from '../../../../util/types'
 import type {ReactElement, ReactProperties} from '../../../../util/react/ReactProperties'
 
 export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
@@ -8,7 +9,7 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
      * The content used for the {@link TextComponent}
      * @see PossibleTextContent
      */
-    content: | T | null | undefined
+    content: Nullable<T>
 
     /**
      * Tell whenever the value is unknown or not.
@@ -16,12 +17,10 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
      * @note It will add a "?" after the content as a CSS attribute (--is-unknown)
      * @see DEFAULT_IS_UNKNOWN
      */
-    isUnknown?: boolean | null | undefined
+    isUnknown?: Nullable<boolean>
 
-    /**
-     * The classes used for the text component.
-     */
-    classes?: | string[] | null | undefined
+    /** The classes used for the text component*/
+    classes?: Nullable<string[]>
 
 }
 

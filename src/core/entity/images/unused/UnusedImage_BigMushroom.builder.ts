@@ -1,4 +1,5 @@
 import type {ImageName_BigMushroom_Unused_SMM1} from './UnusedImage'
+import type {NullOr}                            from '../../../../util/types'
 import type {UnusedImage_BigMushroom}           from './UnusedImage_BigMushroom'
 
 import {GameStyles}                       from '../GameStyles'
@@ -58,7 +59,7 @@ export class UnusedImage_BigMushroomBuilder
 
 }
 
-export type ImageIdentifier = | 'anger' | 'blink' | 'weep' | 'damage' | 'kutsu' | 'swim' | 'walk' | 'out' | 'wait' | 'fire' | 'senkan_houdai_ball'
-export type ImageNumber = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
-export type AmountOfImages = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
-type PossibleImageNumber = | readonly ImageNumber[] | null
+type ImageIdentifier = | 'anger' | 'blink' | 'weep' | 'damage' | 'kutsu' | 'swim' | 'walk' | 'out' | 'wait' | 'fire' | 'senkan_houdai_ball'
+type ImageNumber = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
+type AmountOfImages = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+type PossibleImageNumber = NullOr<readonly ImageNumber[]>

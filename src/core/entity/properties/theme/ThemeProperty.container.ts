@@ -1,3 +1,4 @@
+import type {NullOrBoolean} from '../../../../util/types'
 import type {ThemeProperty} from './ThemeProperty'
 
 import {Themes} from '../../../theme/Themes'
@@ -5,7 +6,7 @@ import {Themes} from '../../../theme/Themes'
 /**
  * @classWithDynamicImport {@link Themes}
  */
-export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends | boolean | null = | boolean | null, SNOW extends | boolean | null = | boolean | null, SKY extends | boolean | null = | boolean | null, FOREST extends | boolean | null = | boolean | null, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >
+export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends NullOrBoolean = NullOrBoolean, SNOW extends NullOrBoolean = NullOrBoolean, SKY extends NullOrBoolean = NullOrBoolean, FOREST extends NullOrBoolean = NullOrBoolean, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >
     implements ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE> {
 
     //region -------------------- Fields --------------------

@@ -1,7 +1,7 @@
-export interface ClassWithAmount<AMOUNT extends PossibleAmount = PossibleAmount, > {
+import type {NullOrNumber} from '../../util/types'
+
+export interface ClassWithAmount<AMOUNT extends NullOrNumber = NullOrNumber, > {
 
     get amount(): AMOUNT
 
 }
-
-export type PossibleAmount = | number | null

@@ -2,9 +2,10 @@ import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGame
 import type {ClassWithTranslationKey} from '../../../../lang/ClassWithTranslationKey'
 import type {GameReferences}          from '../../../gameReference/GameReferences'
 import type {NotApplicable, Property} from '../../../_properties/Property'
+import type {NullOr}                  from '../../../../util/types'
 
 export interface SoundEffectOnDeath
-    extends Property<PossibleValues>, ClassWithGameReference<PossibleGames>, ClassWithTranslationKey<PossibleTranslationKeys> {
+    extends Property<PossibleValues>, ClassWithGameReference<NullOr<GameReferences>>, ClassWithTranslationKey<PossibleTranslationKeys> {
 
     get simpleTranslationKey(): PossibleSimpleTranslationKeys
 
@@ -12,19 +13,18 @@ export interface SoundEffectOnDeath
 
 }
 
-export type PossibleGamesReceived = | string | null
-export type PossibleValuesReceived = | boolean | NonNullable<PossibleSimpleTranslationKeys> | null
+export type PossibleGamesReceived = NullOr<string>
+export type PossibleValuesReceived = NullOr<| boolean | NonNullable<PossibleSimpleTranslationKeys>>
 export type PossibleTypesReceived = PossibleTypes
 
-export type PossibleGames = | GameReferences | null
-export type PossibleValues = | boolean | NotApplicable
-export type PossibleSimpleTranslationKeys = | `+ "${| 'Oh no' | 'Nooo' | 'Woah' | 'Yaha'}!"` | null
-export type PossibleTranslationKeys = | 'Game over' | 'Defeated' | 'Error sound'
-                                      | 'Boss defeated' | 'Dog laughing'
-                                      | `Lost ${| 'a life' | 'an Arwing'}` | 'Falling offscreen'
-                                      | `Eliminated from the ${| 'race' | 'course'}` | 'Player has fainted'
-                                      | `${| 'Minigame' | 'Round'} lost`
-                                      | 'Timed event failed' | 'Ran out of energy' | 'Practice Catcher result jingle'
-                                      | 'Bowser\'s death' | 'Mario saying "Mama mia"' | 'Zelda\'s Lullaby' | 'Link caught by Moblins' | 'K.K. howling' | 'Pikmin death'
-                                      | '???' | null
-export type PossibleTypes = | 'Marimba' | 'Techno' | null
+/**@deprecated Create a new boolean or N/A*/export type PossibleValues = | boolean | NotApplicable
+export type PossibleSimpleTranslationKeys = NullOr<`+ "${| 'Oh no' | 'Nooo' | 'Woah' | 'Yaha'}!"`>
+export type PossibleTranslationKeys = NullOr<| 'Game over' | 'Defeated' | 'Error sound'
+                                             | 'Boss defeated' | 'Dog laughing'
+                                             | `Lost ${| 'a life' | 'an Arwing'}` | 'Falling offscreen'
+                                             | `Eliminated from the ${| 'race' | 'course'}` | 'Player has fainted'
+                                             | `${| 'Minigame' | 'Round'} lost`
+                                             | 'Timed event failed' | 'Ran out of energy' | 'Practice Catcher result jingle'
+                                             | 'Bowser\'s death' | 'Mario saying "Mama mia"' | 'Zelda\'s Lullaby' | 'Link caught by Moblins' | 'K.K. howling' | 'Pikmin death'
+                                             | '???'>
+export type PossibleTypes = NullOr<| 'Marimba' | 'Techno'>

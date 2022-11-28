@@ -1,6 +1,7 @@
 import type {MiiCostumeCategory}         from '../miiCostumeCategory/MiiCostumeCategory'
 import type {NameTrait}                  from '../../lang/name/NameTrait'
 import type {NameTraitFromACategory}     from '../../lang/name/NameTraitFromACategory'
+import type {NullOr, NullOrNumber}       from '../../util/types'
 import type {OfficialNotificationHolder} from '../officialNotification/holder/OfficialNotificationHolder'
 import type {OfficialNotifications}      from '../officialNotification/OfficialNotifications'
 import type {Versions}                   from '../version/Versions'
@@ -12,12 +13,12 @@ export interface MiiCostume
 
     get officialNotificationContainer(): OfficialNotificationHolder
 
-    get officialNotification(): | OfficialNotifications | null
+    get officialNotification(): NullOr<OfficialNotifications>
 
-    get officialNotificationAmount(): | number | null
+    get officialNotificationAmount(): NullOrNumber
 
     //endregion -------------------- Official notification --------------------
 
-    get version(): | Versions | null
+    get version(): NullOr<Versions>
 
 }

@@ -1,3 +1,5 @@
+import type {Nullable} from '../../types'
+
 import {SoundStates}  from '../player/SoundStates'
 import {HistoryState} from './HistoryState'
 
@@ -33,14 +35,14 @@ export class SoundStateHistory {
         return this.#current
     }
 
-    public set current(value: | HistoryState | null | undefined,) {
+    public set current(value: Nullable<HistoryState>,) {
         if (value == null)
             return
         this.setLast(this.current)
             ._history.push(this.#current = value)
     }
 
-    public setCurrent(value: | HistoryState | null | undefined,): this {
+    public setCurrent(value: Nullable<HistoryState>,): this {
         this.current = value
         return this
     }
@@ -52,13 +54,13 @@ export class SoundStateHistory {
         return this.#last
     }
 
-    protected set last(value: | HistoryState | null | undefined,) {
+    protected set last(value: Nullable<HistoryState>,) {
         if (value == null)
             throw new TypeError('The last state could not be set to a null value.')
         this.#last = value
     }
 
-    protected setLast(value: | HistoryState | null | undefined,): this {
+    protected setLast(value: Nullable<HistoryState>,): this {
         this.last = value
         return this
     }

@@ -7,6 +7,7 @@ import type {AppOptionWithTable}                                     from './com
 import type {MysteryMushroom}                                        from '../../core/mysteryMushroom/MysteryMushroom'
 import type {MysteryMushroomSoundFile}                               from '../../core/mysteryMushroom/file/MysteryMushroomSoundFile'
 import type {Names, Ordinals, PossibleMysteryMushroomType}           from './MysteryMushroomAppOption.types'
+import type {NullOr}                                                 from '../../util/types'
 import type {NotApplicable}                                          from '../../core/_properties/Property'
 import type {PossibleImageSourceForFile, PossibleSoundSourceForFile} from '../../core/mysteryMushroom/MysteryMushrooms.types'
 import type {ReactElement}                                           from '../../util/react/ReactProperties'
@@ -493,7 +494,7 @@ export abstract class MysteryMushroomAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 

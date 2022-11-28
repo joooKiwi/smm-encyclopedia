@@ -4,6 +4,7 @@ import {Enum}                                                                   
 import type {BasicPredefinedConversion, Names, Ordinals, PredefinedConversion} from './PredefinedConverter.types'
 import type {Converter}                                                        from './Converter'
 import type {ConversionCallbackToAny, ValidationCallback}                      from '../CSVLoader.types'
+import type {Nullable, NullOr}                                                 from '../../types'
 
 import {assert}                           from '../../utilitiesMethods'
 import {ConverterPatterns}                from './ConverterPatterns'
@@ -281,8 +282,8 @@ export abstract class PredefinedConverter
         return this.#findValueByName(value) != null
     }
 
-    // public static getValueByName<T extends string, >(value: | PredefinedConverter | T | null | undefined,): PredefinedConverterByName<T>
-    public static getValueByName(value: | PredefinedConverter | string | null | undefined,): PredefinedConverter {
+    // public static getValueByName<T extends string, >(value: Nullable<| PredefinedConverter | T>,): PredefinedConverterByName<T>
+    public static getValueByName(value: Nullable<| PredefinedConverter | string>,): PredefinedConverter {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)
@@ -293,7 +294,7 @@ export abstract class PredefinedConverter
         return valueFound
     }
 
-    static #findValueByName(value: string,): | PredefinedConverter | null {
+    static #findValueByName(value: string,): NullOr<PredefinedConverter> {
         return this.values.find(it => it.simpleName === value.toLowerCase())
     }
 

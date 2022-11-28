@@ -5,6 +5,7 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithImagePath}                                                                              from '../ClassWithImagePath'
 import type {ClassWithReference}                                                                              from '../ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './MiiCostumeCategories.types'
+import type {Nullable}                                                                                        from '../../util/types'
 import type {MiiCostumeCategory}                                                                              from './MiiCostumeCategory'
 
 import {BASE_PATH}       from '../../variables'
@@ -89,8 +90,8 @@ export class MiiCostumeCategories
         return this.values.map(it => it.englishName).toArray()
     }
 
-    // public static getValueByName<T extends string, >(value: | MiiCostumeCategories | T | null | undefined,): MiiCostumeCategoriesByName<T>
-    public static getValueByName(value: | MiiCostumeCategories | string | null | undefined,): MiiCostumeCategories {
+    // public static getValueByName<T extends string, >(value: Nullable<| MiiCostumeCategories | T>,): MiiCostumeCategoriesByName<T>
+    public static getValueByName(value: Nullable<| MiiCostumeCategories | string>,): MiiCostumeCategories {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

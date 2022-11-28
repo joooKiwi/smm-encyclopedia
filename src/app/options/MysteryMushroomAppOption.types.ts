@@ -1,3 +1,5 @@
+import type {NullOr} from '../../util/types'
+
 enum Enum {
 
     CONDITION_TO_UNLOCK_IT,
@@ -25,16 +27,15 @@ export type Names = keyof typeof Enum
 
 
 export type PossibleMysteryMushroomType =
-    | 'power-up collected'
-    | 'waiting'
-    | 'taunt'
-    | 'pressing ↓'
-    | 'walk'
-    | 'running'
-    | 'swimming'
-    | `${| '' | `${| 'falling' | 'ground'} after `}jump`
-    | 'turning'
-    | 'climbing'
-    | 'goal pole'
-    | 'lost a life'
-    | null
+    NullOr<| 'power-up collected'
+           | 'waiting'
+           | 'taunt'
+           | 'pressing ↓'
+           | 'walk'
+           | 'running'
+           | 'swimming'
+           | `${| '' | `${| 'falling' | 'ground'} after `}jump`
+           | 'turning'
+           | 'climbing'
+           | 'goal pole'
+           | 'lost a life'>

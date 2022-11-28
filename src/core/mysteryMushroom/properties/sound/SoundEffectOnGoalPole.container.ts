@@ -1,5 +1,6 @@
-import type {ExtendedMap}                                                                                                                                                                                       from '../../../../util/extended/ExtendedMap'
-import type {PossibleGames, PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnGoalPole} from './SoundEffectOnGoalPole'
+import type {ExtendedMap}                                                                                                                                                                        from '../../../../util/extended/ExtendedMap'
+import type {NullOr}                                                                                                                                                                             from '../../../../util/types'
+import type {PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnGoalPole} from './SoundEffectOnGoalPole'
 
 import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
 import {GameReferences}       from '../../../gameReference/GameReferences'
@@ -43,7 +44,7 @@ export class SoundEffectOnGoalPoleContainer
         return this.#type
     }
 
-    public get gameReference(): PossibleGames {
+    public get gameReference(): NullOr<GameReferences> {
         return this.#game
     }
 

@@ -1,6 +1,7 @@
 import type {HeaderHolder}        from './HeaderHolder'
-import type {SingleHeaderContent} from '../SimpleHeader'
+import type {Nullable, NullOr}    from '../../../../util/types'
 import type {ReactElement}        from '../../../../util/react/ReactProperties'
+import type {SingleHeaderContent} from '../SimpleHeader'
 
 import {assert}              from '../../../../util/utilitiesMethods'
 import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables'
@@ -16,7 +17,7 @@ export class HeaderHolderContainer
 
     readonly #tableIdentifier: string
     readonly #header
-    #parent: | HeaderHolder | null
+    #parent: NullOr<HeaderHolder>
     #subHeaders?: readonly HeaderHolder[]
     #subLevel?: number
     #width?: number
@@ -69,19 +70,19 @@ export class HeaderHolderContainer
 
     //region -------------------- Other headers --------------------
 
-    public get parent(): | HeaderHolder | null {
+    public get parent(): NullOr<HeaderHolder> {
         return this.#parent
     }
 
-    public set parent(value: | HeaderHolder | null,) {
+    public set parent(value: Nullable<HeaderHolder>,) {
         this.setParent(value)
     }
 
     public setParent(value: null,): never
     public setParent(value: HeaderHolder,): this
     // @ts-ignore
-    private setParent(value: | HeaderHolder | null,): | this | never
-    public setParent(value: | HeaderHolder | null,): | this | never {
+    private setParent(value: Nullable<HeaderHolder>,): | this | never
+    public setParent(value: Nullable<HeaderHolder>,): | this | never {
         assert(value != null, 'The value to set the parent cannot be null.',)
         this.#parent = value
         return this

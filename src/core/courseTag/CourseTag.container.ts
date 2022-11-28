@@ -1,5 +1,6 @@
 import type {CourseTag}                from './CourseTag'
 import type {Name}                     from '../../lang/name/Name'
+import type {NullOr}                   from '../../util/types'
 import type {ObjectHolder}             from '../../util/holder/ObjectHolder'
 import type {PossibleMakerCentralName} from './CourseTags.types'
 import type {Versions}                 from '../version/Versions'
@@ -18,7 +19,7 @@ export class CourseTagContainer
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: Name<string>, isAnOfficialTag: boolean, makerCentralName: ObjectHolder<| PossibleMakerCentralName | null>, firstAppearance: ObjectHolder<| Versions | null>,) {
+    public constructor(name: Name<string>, isAnOfficialTag: boolean, makerCentralName: ObjectHolder<NullOr<PossibleMakerCentralName>>, firstAppearance: ObjectHolder<NullOr<Versions>>,) {
         super(name)
         this.#isAnOfficialTag = isAnOfficialTag
         this.#makerCentralNameHolder = makerCentralName
@@ -31,11 +32,11 @@ export class CourseTagContainer
         return this.#isAnOfficialTag
     }
 
-    public get makerCentralName(): | PossibleMakerCentralName | null {
+    public get makerCentralName(): NullOr<PossibleMakerCentralName> {
         return this.#makerCentralNameHolder.get
     }
 
-    public get firstAppearance(): | Versions | null {
+    public get firstAppearance(): NullOr<Versions> {
         return this.#firstAppearanceHolder.get
     }
 

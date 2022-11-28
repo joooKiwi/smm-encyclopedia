@@ -3,6 +3,7 @@ import {Enum}                                                                   
 
 import type {ClassWithValue}                          from './ClassWithValue'
 import type {Names, Ordinals, PossibleImageAnimation} from './ImageAnimations.types'
+import type {Nullable}                                from '../../../util/types'
 
 /**
  * The possible image animation as either
@@ -50,7 +51,7 @@ export class ImageAnimations
     //region -------------------- Methods --------------------
 
     // public static getValueByValue<T, >(value: T,): ImageAnimationByValue<T>
-    public static getValueByValue(value: | ImageAnimations | boolean | string | null | undefined,): ImageAnimations {
+    public static getValueByValue(value: Nullable<| ImageAnimations | boolean | string>,): ImageAnimations {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if(value instanceof this)

@@ -1,3 +1,5 @@
+import type {NullOr} from '../util/types'
+
 export interface ClassWithAcronym<ACRONYM extends string, >
     extends ClassWithNullableAcronym<ACRONYM> {
 
@@ -7,6 +9,6 @@ export interface ClassWithAcronym<ACRONYM extends string, >
 
 export interface ClassWithNullableAcronym<ACRONYM extends string, > {
 
-    get acronym(): | ACRONYM | null
+    get acronym(): NullOr<ACRONYM>
 
 }

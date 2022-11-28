@@ -7,6 +7,7 @@ import type {AppOptionWithTable}                               from './component
 import type {MiiCostumeAppStates}                              from '../AppStates.types'
 import type {MiiCostumes}                                      from '../../core/miiCostume/MiiCostumes'
 import type {Names, Ordinals}                                  from './MiiCostumeAppOption.types'
+import type {NullOr}                                           from '../../util/types'
 import type {ReactElement}                                     from '../../util/react/ReactProperties'
 import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 
@@ -139,7 +140,7 @@ export abstract class MiiCostumeAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected _createContentOption(): PossibleOptionWithContent {
+    protected _createContentOption(): NullOr<() => PossibleRenderReactElement> {
         return null
     }
 
@@ -160,7 +161,7 @@ export abstract class MiiCostumeAppOption
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected _createTableHeaderOption(): PossibleOptionWithTable {
+    protected _createTableHeaderOption(): NullOr<SingleHeaderContent> {
         return null
     }
 
@@ -172,7 +173,7 @@ export abstract class MiiCostumeAppOption
         return this.#appOptionWithTable
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 
@@ -199,6 +200,3 @@ export abstract class MiiCostumeAppOption
 
     //endregion -------------------- Enum methods --------------------
 }
-
-type PossibleOptionWithContent = | (() => PossibleRenderReactElement) | null
-type PossibleOptionWithTable = | SingleHeaderContent | null

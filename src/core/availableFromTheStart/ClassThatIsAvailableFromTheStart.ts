@@ -1,3 +1,5 @@
+import type {NullOrBoolean} from '../../util/types'
+
 export interface ClassThatIsAvailableFromTheStart<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM3DS extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM2 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > {
 
     get isAvailableFromTheStartInSMM1(): SMM1
@@ -16,4 +18,4 @@ export interface ClassThatIsAvailableFromTheStart<SMM1 extends PossibleIsAvailab
 export type InferredClassThatIsAvailableFromTheStartBySMM1<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, > =
     SMM1 extends null ? ClassThatIsAvailableFromTheStart<SMM1, null, true>
         : ClassThatIsAvailableFromTheStart<SMM1, true, true>
-export type PossibleIsAvailableFromTheStart = | boolean | null
+export type PossibleIsAvailableFromTheStart = NullOrBoolean

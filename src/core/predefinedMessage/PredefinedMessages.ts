@@ -4,6 +4,7 @@ import {Enum}                                                                   
 import type {ClassWithEnglishName}                 from '../ClassWithEnglishName'
 import type {ClassWithReference}                   from '../ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName} from './PredefinedMessages.types'
+import type {Nullable}                             from '../../util/types'
 import type {PredefinedMessage}                    from './PredefinedMessage'
 
 import {getValueByEnglishName} from '../../util/utilitiesMethods'
@@ -94,8 +95,8 @@ export class PredefinedMessages
     }
 
 
-    // public static getValueByName<T extends string, >(value: | PredefinedMessages | T | null | undefined,): PredefinedMessagesByName<T>
-    public static getValueByName(value: | PredefinedMessages | string | null | undefined,): PredefinedMessages {
+    // public static getValueByName<T extends string, >(value: Nullable<| PredefinedMessages | T>,): PredefinedMessagesByName<T>
+    public static getValueByName(value: Nullable<| PredefinedMessages | string>,): PredefinedMessages {
         return getValueByEnglishName(value, this,)
     }
 

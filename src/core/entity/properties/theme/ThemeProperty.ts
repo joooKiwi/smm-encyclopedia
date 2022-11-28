@@ -1,12 +1,13 @@
-import type {Themes} from '../../../theme/Themes'
+import type {NullOrBoolean} from '../../../../util/types'
+import type {Themes}        from '../../../theme/Themes'
 
 export interface ThemeProperty<GROUND extends boolean = boolean,
     UNDERGROUND extends boolean = boolean,
     UNDERWATER extends boolean = boolean,
-    DESERT extends | boolean | null = | boolean | null,
-    SNOW extends | boolean | null = | boolean | null,
-    SKY extends | boolean | null = | boolean | null,
-    FOREST extends | boolean | null = | boolean | null,
+    DESERT extends NullOrBoolean = NullOrBoolean,
+    SNOW extends NullOrBoolean = NullOrBoolean,
+    SKY extends NullOrBoolean = NullOrBoolean,
+    FOREST extends NullOrBoolean = NullOrBoolean,
     GHOST_HOUSE extends boolean = boolean,
     AIRSHIP extends boolean = boolean,
     CASTLE extends boolean = boolean, > {
@@ -33,7 +34,7 @@ export interface ThemeProperty<GROUND extends boolean = boolean,
 
     /**
      * Return a {@link Map} based on the enum {@link Themes}
-     * with every values stored inside this instance ({@link ThemeProperty})
+     * with every value stored inside this instance ({@link ThemeProperty})
      * as a boolean only.
      */
     toCourseThemeMap(): ReadonlyMap<Themes, boolean>

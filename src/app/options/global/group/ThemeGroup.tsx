@@ -3,6 +3,7 @@ import {Times}       from '../../../../core/time/Times'
 
 import type {GlobalThemeOption} from '../GlobalThemeOption'
 import type {GlobalAppOption}   from '../GlobalAppOption'
+import type {NullOr}            from '../../../../util/types'
 import type {OnClickCallback}   from './Group.types'
 import type {ReactElement}      from '../../../../util/react/ReactProperties'
 import type {Themes}            from '../../../../core/theme/Themes'
@@ -13,7 +14,7 @@ import type {Themes}            from '../../../../core/theme/Themes'
 export default class ThemeGroup
     extends AbstractGroup<Themes, GlobalThemeOption> {
 
-    protected override _renderElement(element: Themes, option: GlobalAppOption<GlobalThemeOption>, [hasSMM2Selected, isDisabledNight,]: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement {
+    protected override _renderElement(element: Themes, option: GlobalAppOption<GlobalThemeOption>, [hasSMM2Selected, isDisabledNight,]: readonly [boolean, boolean,], onClickCallback: NullOr<OnClickCallback>,): ReactElement {
         return <div key={`option container (${element.englishName})`} id={`${element.englishNameInHtml}-option-container`} className="btn-group-vertical" role="group">{
             hasSMM2Selected
                 ? ThemeGroup.#renderElementWithDayAndNight(element, option, isDisabledNight,)

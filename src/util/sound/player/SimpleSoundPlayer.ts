@@ -1,4 +1,5 @@
 import type {OnAfterPauseSoundPlayerCallback, OnAfterPlayingSoundPlayerCallback, OnAfterPlaySoundPlayerCallback, OnAfterStateChangedSoundPlayerCallback, OnAfterStopSoundPlayerCallback, OnBeforePauseSoundPlayerCallback, OnBeforePlaySoundPlayerCallback, OnBeforeStateChangedSoundPlayerCallback, OnBeforeStopSoundPlayerCallback, OnEndSoundPlayerCallback} from './types'
+import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                  from '../../types'
 import type {SoundFile}                                                                                                                                                                                                                                                                                                                                         from '../SoundFile'
 
 import {AbstractSoundPlayer} from './AbstractSoundPlayer'
@@ -24,16 +25,16 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
 
     #audio?: HTMLAudioElement
     #isDurationValid?: boolean
-    #onBeforePlay?: | OnBeforePlaySoundPlayerCallback<this> | null
-    #onAfterPlay?: | OnAfterPlaySoundPlayerCallback<this> | null
-    #onPlaying?: | OnAfterPlayingSoundPlayerCallback<this> | null
-    #onBeforePause?: | OnBeforePauseSoundPlayerCallback<this> | null
-    #onAfterPause?: | OnAfterPauseSoundPlayerCallback<this> | null
-    #onBeforeStop?: | OnBeforeStopSoundPlayerCallback<this> | null
-    #onAfterStop?: | OnAfterStopSoundPlayerCallback<this> | null
-    #onEnd?: | OnEndSoundPlayerCallback<this> | null
-    #onBeforeStateChanged?: | OnBeforeStateChangedSoundPlayerCallback<this> | null
-    #onAfterStateChanged?: | OnAfterStateChangedSoundPlayerCallback<this> | null
+    #onBeforePlay?: NullOr<OnBeforePlaySoundPlayerCallback<this>>
+    #onAfterPlay?: NullOr<OnAfterPlaySoundPlayerCallback<this>>
+    #onPlaying?: NullOr<OnAfterPlayingSoundPlayerCallback<this>>
+    #onBeforePause?: NullOr<OnBeforePauseSoundPlayerCallback<this>>
+    #onAfterPause?: NullOr<OnAfterPauseSoundPlayerCallback<this>>
+    #onBeforeStop?: NullOr<OnBeforeStopSoundPlayerCallback<this>>
+    #onAfterStop?: NullOr<OnAfterStopSoundPlayerCallback<this>>
+    #onEnd?: NullOr<OnEndSoundPlayerCallback<this>>
+    #onBeforeStateChanged?: NullOr<OnBeforeStateChangedSoundPlayerCallback<this>>
+    #onAfterStateChanged?: NullOr<OnAfterStateChangedSoundPlayerCallback<this>>
 
     //endregion -------------------- Fields --------------------
 
@@ -118,141 +119,141 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
 
     //region -------------------- Getter & setter methods (audio event) --------------------
 
-    public get onBeforePlay(): | OnBeforePlaySoundPlayerCallback<this> | null {
+    public get onBeforePlay(): NullOr<OnBeforePlaySoundPlayerCallback<this>> {
         return this.#onBeforePlay ?? null
     }
 
-    public set onBeforePlay(value: | OnBeforePlaySoundPlayerCallback<this> | null | undefined,) {
+    public set onBeforePlay(value: Nullable<OnBeforePlaySoundPlayerCallback<this>>,) {
         this.#onBeforePlay = value ?? null
     }
 
-    public setOnBeforePlay(value: | OnBeforePlaySoundPlayerCallback<this> | null | undefined,): this {
+    public setOnBeforePlay(value: Nullable<OnBeforePlaySoundPlayerCallback<this>>,): this {
         this.onBeforePlay = value
         return this
     }
 
 
-    public get onAfterPlay(): | OnAfterPlaySoundPlayerCallback<this> | null {
+    public get onAfterPlay(): NullOr<OnAfterPlaySoundPlayerCallback<this>> {
         return this.#onAfterPlay ?? null
     }
 
-    public set onAfterPlay(value: | OnAfterPlaySoundPlayerCallback<this> | null | undefined,) {
+    public set onAfterPlay(value: Nullable<OnAfterPlaySoundPlayerCallback<this>>,) {
         this.#onAfterPlay = value ?? null
     }
 
-    public setOnAfterPlay(value: | OnAfterPlaySoundPlayerCallback<this> | null | undefined,): this {
+    public setOnAfterPlay(value: Nullable<OnAfterPlaySoundPlayerCallback<this>>,): this {
         this.onAfterPlay = value
         return this
     }
 
 
-    public get onPlaying(): | OnAfterPlayingSoundPlayerCallback<this> | null {
+    public get onPlaying(): NullOr<OnAfterPlayingSoundPlayerCallback<this>> {
         return this.#onPlaying ?? null
     }
 
-    public set onPlaying(value: | OnAfterPlayingSoundPlayerCallback<this> | null | undefined,) {
+    public set onPlaying(value: Nullable<OnAfterPlayingSoundPlayerCallback<this>>,) {
         this.#onPlaying = value ?? null
     }
 
-    public setOnPlaying(value: | OnAfterPlayingSoundPlayerCallback<this> | null | undefined,) {
+    public setOnPlaying(value: Nullable<OnAfterPlayingSoundPlayerCallback<this>>,) {
         this.onPlaying = value
         return this
     }
 
 
-    public get onBeforePause(): | OnBeforePauseSoundPlayerCallback<this> | null {
+    public get onBeforePause(): NullOr<OnBeforePauseSoundPlayerCallback<this>> {
         return this.#onBeforePause ?? null
     }
 
-    public set onBeforePause(value: | OnBeforePauseSoundPlayerCallback<this> | null | undefined,) {
+    public set onBeforePause(value: Nullable<OnBeforePauseSoundPlayerCallback<this>>,) {
         this.#onBeforePause = value ?? null
     }
 
-    public setOnBeforePause(value: | OnBeforePauseSoundPlayerCallback<this> | null | undefined,): this {
+    public setOnBeforePause(value: Nullable<OnBeforePauseSoundPlayerCallback<this>>,): this {
         this.onBeforePause = value
         return this
     }
 
 
-    public get onAfterPause(): | OnAfterPauseSoundPlayerCallback<this> | null {
+    public get onAfterPause(): NullOr<OnAfterPauseSoundPlayerCallback<this>> {
         return this.#onAfterPause ?? null
     }
 
-    public set onAfterPause(value: | OnAfterPauseSoundPlayerCallback<this> | null | undefined,) {
+    public set onAfterPause(value: Nullable<OnAfterPauseSoundPlayerCallback<this>>,) {
         this.#onAfterPause = value ?? null
     }
 
-    public setOnAfterPause(value: | OnAfterPauseSoundPlayerCallback<this> | null | undefined,): this {
+    public setOnAfterPause(value: Nullable<OnAfterPauseSoundPlayerCallback<this>>,): this {
         this.onAfterPause = value
         return this
     }
 
 
-    public get onBeforeStop(): | OnBeforeStopSoundPlayerCallback<this> | null {
+    public get onBeforeStop(): NullOr<OnBeforeStopSoundPlayerCallback<this>> {
         return this.#onBeforeStop ?? null
     }
 
-    public set onBeforeStop(value: | OnBeforeStopSoundPlayerCallback<this> | null | undefined,) {
+    public set onBeforeStop(value: Nullable<OnBeforeStopSoundPlayerCallback<this>>,) {
         this.#onBeforeStop = value ?? null
     }
 
-    public setOnBeforeStop(value: | OnBeforeStopSoundPlayerCallback<this> | null | undefined,): this {
+    public setOnBeforeStop(value: Nullable<OnBeforeStopSoundPlayerCallback<this>>,): this {
         this.onBeforeStop = value
         return this
     }
 
 
-    public get onAfterStop(): OnAfterStopSoundPlayerCallback<this> | null {
+    public get onAfterStop(): NullOr<OnAfterStopSoundPlayerCallback<this>> {
         return this.#onAfterStop ?? null
     }
 
-    public set onAfterStop(value: OnAfterStopSoundPlayerCallback<this> | null | undefined,) {
+    public set onAfterStop(value: Nullable<OnAfterStopSoundPlayerCallback<this>>,) {
         this.#onAfterStop = value ?? null
     }
 
-    public setOnAfterStop(value: OnAfterStopSoundPlayerCallback<this> | null | undefined,): this {
+    public setOnAfterStop(value: Nullable<OnAfterStopSoundPlayerCallback<this>>,): this {
         this.onAfterStop = value
         return this
     }
 
 
-    public get onEnd(): | OnEndSoundPlayerCallback<this> | null {
+    public get onEnd(): NullOr<OnEndSoundPlayerCallback<this>> {
         return this.#onEnd ?? null
     }
 
-    public set onEnd(value: | OnEndSoundPlayerCallback<this> | null | undefined,) {
+    public set onEnd(value: Nullable<OnEndSoundPlayerCallback<this>>,) {
         this.#onEnd = value ?? null
     }
 
-    public setOnEnd(value: | OnEndSoundPlayerCallback<this> | null | undefined,): this {
+    public setOnEnd(value: Nullable<OnEndSoundPlayerCallback<this>>,): this {
         this.onEnd = value
         return this
     }
 
 
-    public get onBeforeStateChanged(): | OnBeforeStateChangedSoundPlayerCallback<this> | null {
+    public get onBeforeStateChanged(): NullOr<OnBeforeStateChangedSoundPlayerCallback<this>> {
         return this.#onBeforeStateChanged ?? null
     }
 
-    public set onBeforeStateChanged(value: | OnBeforeStateChangedSoundPlayerCallback<this> | null | undefined,) {
+    public set onBeforeStateChanged(value: Nullable<OnBeforeStateChangedSoundPlayerCallback<this>>,) {
         this.#onBeforeStateChanged = value ?? null
     }
 
-    public setOnBeforeStateChanged(value: | OnBeforeStateChangedSoundPlayerCallback<this> | null | undefined,): this {
+    public setOnBeforeStateChanged(value: Nullable<OnBeforeStateChangedSoundPlayerCallback<this>>,): this {
         this.onBeforeStateChanged = value
         return this
     }
 
 
-    public get onAfterStateChanged(): | OnAfterStateChangedSoundPlayerCallback<this> | null {
+    public get onAfterStateChanged(): NullOr<OnAfterStateChangedSoundPlayerCallback<this>> {
         return this.#onAfterStateChanged ?? null
     }
 
-    public set onAfterStateChanged(value: | OnAfterStateChangedSoundPlayerCallback<this> | null | undefined,) {
+    public set onAfterStateChanged(value: Nullable<OnAfterStateChangedSoundPlayerCallback<this>>,) {
         this.#onAfterStateChanged = value ?? null
     }
 
-    public setOnAfterStateChanged(value: | OnAfterStateChangedSoundPlayerCallback<this> | null | undefined,): this {
+    public setOnAfterStateChanged(value: Nullable<OnAfterStateChangedSoundPlayerCallback<this>>,): this {
         this.onAfterStateChanged = value
         return this
     }

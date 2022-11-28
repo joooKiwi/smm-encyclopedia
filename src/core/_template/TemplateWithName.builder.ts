@@ -1,5 +1,6 @@
 import type {Builder}                                              from '../../util/builder/Builder'
 import type {Name}                                                 from '../../lang/name/Name'
+import type {NullOrString}                                         from '../../util/types'
 import type {ObjectHolder}                                         from '../../util/holder/ObjectHolder'
 import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../lang/name/Name.builder.types'
 import type {PossibleGameReceived}                                 from './TemplateWithName.builder.types'
@@ -42,7 +43,7 @@ export abstract class TemplateWithNameBuilder<T extends TemplateWithNameTemplate
 
     protected /*static*/ abstract get _static(): object
 
-    protected /*static*/ _uniqueName(template: T,): | string | null {
+    protected /*static*/ _uniqueName(template: T,): NullOrString {
         return null
     }
 

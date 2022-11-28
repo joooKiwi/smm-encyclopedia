@@ -3,6 +3,7 @@ import {Enum}                                                                   
 
 import type {EnglishName, IsSourceFoundCallback, Names, Ordinals} from './Validators.types'
 import type {ClassWithEnglishName}                                from '../../../core/ClassWithEnglishName'
+import type {Nullable, NullOrBoolean}                             from '../../types'
 
 import {getValueByEnglishName} from '../../utilitiesMethods'
 
@@ -121,13 +122,13 @@ export abstract class Validators
      *
      * @param callback the callback to execute
      */
-    public onPlay(callback: IsSourceFoundCallback,): | boolean | null {
+    public onPlay(callback: IsSourceFoundCallback,): NullOrBoolean {
         return null
     }
 
 
     // public static getValueByName<T, >(value: T,): ValidatorsByName<T>
-    public static getValueByName(value: | Validators | string | null | undefined,): Validators {
+    public static getValueByName(value: Nullable<| Validators | string>,): Validators {
         return getValueByEnglishName(value, this,)
     }
 

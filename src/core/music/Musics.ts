@@ -3,6 +3,7 @@ import {Enum}                                                                   
 
 import type {BackgroundMusic}                                          from './backgroundMusic/BackgroundMusic'
 import type {Names, Ordinals}                                          from './Musics.types'
+import type {Nullable, NullOr}                                         from '../../util/types'
 import type {ObjectHolder}                                             from '../../util/holder/ObjectHolder'
 import type {SingleSoundEffectMusic}                                   from './soundEffect/SingleSoundEffectMusic'
 import type {SoundEffectMusicWithDifferentEditor}                      from './soundEffect/SoundEffectMusicWithDifferentEditor'
@@ -386,10 +387,10 @@ export class Musics
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
 
-    #gameStyleHolder?: ObjectHolder<| Themes | null>
-    #soundEffectHolder?: ObjectHolder<| SoundEffects | null>
+    #gameStyleHolder?: ObjectHolder<NullOr<Themes>>
+    #soundEffectHolder?: ObjectHolder<NullOr<SoundEffects>>
 
-    #music?: ObjectHolder<| PossibleMusic | null>
+    #music?: ObjectHolder<NullOr<PossibleMusic>>
 
     //endregion -------------------- Fields --------------------
 
@@ -401,11 +402,11 @@ export class Musics
 
     //region -------------------- Other reference methods --------------------
 
-    protected _createThemeReference(): | Themes | null {
+    protected _createThemeReference(): NullOr<Themes> {
         return null
     }
 
-    private get __themeReference(): ObjectHolder<| Themes | null> {
+    private get __themeReference(): ObjectHolder<NullOr<Themes>> {
         if (this.#gameStyleHolder == null) {
             const value = this._createThemeReference()
             this.#gameStyleHolder = value == null ? ObjectHolders.NULL : new ObjectHolderContainer<Themes>(value)
@@ -413,16 +414,16 @@ export class Musics
         return this.#gameStyleHolder
     }
 
-    public get themeReference(): | Themes | null {
+    public get themeReference(): NullOr<Themes> {
         return this.__themeReference.get
     }
 
 
-    protected _createSoundEffectReference(): | SoundEffects | null {
+    protected _createSoundEffectReference(): NullOr<SoundEffects> {
         return null
     }
 
-    private get __soundEffectReference(): ObjectHolder<| SoundEffects | null> {
+    private get __soundEffectReference(): ObjectHolder<NullOr<SoundEffects>> {
         if (this.#soundEffectHolder == null) {
             const value = this._createSoundEffectReference()
             this.#soundEffectHolder = value == null ? ObjectHolders.NULL : new ObjectHolderContainer(value)
@@ -430,18 +431,18 @@ export class Musics
         return this.#soundEffectHolder
     }
 
-    public get soundEffectReference(): | SoundEffects | null {
+    public get soundEffectReference(): NullOr<SoundEffects> {
         return this.__soundEffectReference.get
     }
 
     //endregion -------------------- Other reference methods --------------------
     //region -------------------- Music methods --------------------
 
-    protected _createMusic(): | PossibleMusic | null {
+    protected _createMusic(): NullOr<PossibleMusic> {
         return null
     }
 
-    private get __music(): ObjectHolder<| PossibleMusic | null> {
+    private get __music(): ObjectHolder<NullOr<PossibleMusic>> {
         if (this.#music == null) {
             const value = this._createMusic()
             this.#music = value == null ? ObjectHolders.NULL : new ObjectHolderContainer(value)
@@ -449,7 +450,7 @@ export class Musics
         return this.#music
     }
 
-    public get music(): | PossibleMusic | null {
+    public get music(): NullOr<PossibleMusic> {
         return this.__music.get
     }
 
@@ -458,7 +459,7 @@ export class Musics
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static getValueByReference(value: | Musics | Themes | SoundEffects | null | undefined,): Musics {
+    public static getValueByReference(value: Nullable<| Musics | Themes | SoundEffects>,): Musics {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

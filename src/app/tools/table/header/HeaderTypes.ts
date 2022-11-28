@@ -2,6 +2,7 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossiblePlacement} from './HeaderTypes.types'
+import type {Nullable}                                         from '../../../../util/types'
 
 export abstract class HeaderTypes
     extends Enum<Ordinals, Names> {
@@ -58,7 +59,7 @@ export abstract class HeaderTypes
     public abstract getLayout(layout: readonly string[][],): readonly string[][]
 
 
-    public static getValueByName(value: | HeaderTypes | string | null | undefined,): HeaderTypes {
+    public static getValueByName(value: Nullable<| HeaderTypes | string>,): HeaderTypes {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

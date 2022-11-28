@@ -4,6 +4,7 @@ import {Enum}                                                                   
 import type {DayNumber}       from './types'
 import type {EveryLanguages}  from '../EveryLanguages'
 import type {Names, Ordinals} from '../ProjectLanguages.types'
+import type {Nullable}        from '../../util/types'
 
 import {ProjectLanguages} from '../ProjectLanguages'
 
@@ -170,7 +171,7 @@ export abstract class DateDayLanguages
     }
 
     // public static override getValueByLanguage<T,>(value: T,): DateDayLanguagesByLanguage<T>
-    public static override getValueByLanguage(value: | DateDayLanguages | ProjectLanguages | EveryLanguages | string | null | undefined,): DateDayLanguages {
+    public static override getValueByLanguage(value: Nullable<| DateDayLanguages | ProjectLanguages | EveryLanguages | string>,): DateDayLanguages {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof DateDayLanguages)

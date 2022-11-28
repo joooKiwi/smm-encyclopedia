@@ -7,6 +7,7 @@ import type {ClassWithReference}                                                
 import type {Entity}                                                                                                                                                                                                                                                                                                        from '../entity/Entity'
 import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                    from './EntityLimit'
 import type {Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} from './EntityLimits.types'
+import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                              from '../../util/types'
 
 import {EmptyEntity}      from '../entity/EmptyEntity'
 import type {Entities}    from '../entity/Entities'
@@ -306,16 +307,16 @@ export class EntityLimits
     static readonly #LIMIT_IN_EDITOR_LENGTH = ` Limit (Editor)`.length
 
     #reference?: EntityLimitWithPossibleAlternativeEntityLimit
-    readonly #acronym: PossibleAcronym | null
+    readonly #acronym: NullOr<PossibleAcronym>
     readonly #englishName: StringContainer<PossibleEnglishName>
-    readonly #alternativeAcronym: PossibleAlternativeAcronym | null
-    readonly #alternativeEnglishName: StringContainer<PossibleAlternativeEnglishName> | null
+    readonly #alternativeAcronym: NullOr<PossibleAlternativeAcronym>
+    readonly #alternativeEnglishName: NullOr<StringContainer<PossibleAlternativeEnglishName>>
     #entityLink?: | readonly [Entity] | readonly [Entity, Entity,]
     #groupLink?: object
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(englishName: EnglishNameReceived, alternativeEnglishName: | AlternativeEnglishNameReceived | null = null,) {
+    private constructor(englishName: EnglishNameReceived, alternativeEnglishName: Nullable<AlternativeEnglishNameReceived> = null,) {
         super()
         if (typeof englishName == 'string') {
             this.#acronym = null
@@ -352,7 +353,7 @@ export class EntityLimits
     }
 
 
-    public get acronym(): | PossibleAcronym | null {
+    public get acronym(): NullOr<PossibleAcronym> {
         return this.#acronym
     }
 
@@ -364,11 +365,11 @@ export class EntityLimits
         return this.#englishName.getInHtml
     }
 
-    public get alternativeAcronym(): | PossibleAlternativeAcronym | null {
+    public get alternativeAcronym(): NullOr<PossibleAlternativeAcronym> {
         return this.#alternativeAcronym
     }
 
-    public get alternativeEnglishName(): | PossibleAlternativeEnglishName | null {
+    public get alternativeEnglishName(): NullOr<PossibleAlternativeEnglishName> {
         return this.#alternativeEnglishName?.get ?? null
     }
 
@@ -433,7 +434,7 @@ export class EntityLimits
         return this.values.map(it => it.alternativeEnglishName).filterNonNull().toArray()
     }
 
-    public static getValueByNameOrAcronym(value: | EntityLimits | string | null | undefined,): EntityLimits {
+    public static getValueByNameOrAcronym(value: Nullable<| EntityLimits | string>,): EntityLimits {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)
@@ -473,8 +474,8 @@ export class EntityLimits
 
 }
 
-type PossibleGroupLinkInitialisation = | object | null
-type PossibleEntityLinkInitialisation = | Entities | readonly [Entities, Entities,] | null
+type PossibleGroupLinkInitialisation = NullOr<object>
+type PossibleEntityLinkInitialisation = NullOr<| Entities | readonly [Entities, Entities,]>
 type EnglishNameReceived = | PossibleStartingEnglishName
                            | [englishName: PossibleAcronym, englishAcronym: PossibleStartingEnglishName,]
                            | [englishName: PossibleAcronymInBothEditorAndWhilePlaying, englishAcronym: PossibleStartingEnglishNameInBothEditorAndWhilePlaying, isWhilePlaying: boolean,]

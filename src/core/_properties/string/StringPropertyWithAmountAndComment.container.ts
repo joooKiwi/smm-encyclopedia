@@ -1,12 +1,10 @@
-import type {PossibleAmount}                     from '../ClassWithAmount'
-import type {PossibleComment}                    from '../ClassWithComment'
-import type {PossibleString}                     from '../Property'
+import type {NullOrNumber, NullOrString}         from '../../../util/types'
 import type {PossibleValueOnObjectHolder}        from '../../../util/holder/ObjectHolder'
 import type {StringPropertyWithAmountAndComment} from '../PropertyWithAmountAndComment'
 
 import {PropertyWithAmountAndCommentContainer} from '../PropertyWithAmountAndComment.container'
 
-export class StringPropertyWithAmountAndCommentContainer<S extends PossibleString = PossibleString, AMOUNT extends PossibleAmount = PossibleAmount, COMMENT extends PossibleComment = PossibleComment, >
+export class StringPropertyWithAmountAndCommentContainer<S extends NullOrString = NullOrString, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithAmountAndCommentContainer<S, AMOUNT, COMMENT>
     implements StringPropertyWithAmountAndComment<S, AMOUNT, COMMENT> {
 

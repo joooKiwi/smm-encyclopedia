@@ -7,6 +7,7 @@ import type {Names, Ordinals, PossibleEnglishName}                     from './E
 import type {EntityReferenceHolder, PossibleEntityReferences_Received} from './holder/EntityReferenceHolder'
 import type {EditorVoiceSound, PossibleSoundReceivedOnFactory}         from './EditorVoiceSound'
 import type {ObjectHolder}                                             from '../../util/holder/ObjectHolder'
+import type {Nullable, NullOr}                                         from '../../util/types'
 
 import {DelayedObjectHolderContainer}                from '../../util/holder/DelayedObjectHolder.container'
 import {EditorVoiceSoundFactory}                     from './EditorVoiceSound.factory'
@@ -539,7 +540,7 @@ export class EditorVoices
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static getValueByName(value: | EditorVoices | string | null | undefined,): EditorVoices {
+    public static getValueByName(value: Nullable<| EditorVoices | string>,): EditorVoices {
         return getValueByEnglishName(value, this,)
     }
 
@@ -557,7 +558,7 @@ export class EditorVoices
         return this.#findByEntity(value) != null
     }
 
-    static #findByEntity(value: Entities,): | EditorVoices | null {
+    static #findByEntity(value: Entities,): NullOr<EditorVoices> {
         return this.values.find(it => it.entityReferences.references.includes(value as never))
     }
 

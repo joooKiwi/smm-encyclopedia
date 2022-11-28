@@ -1,3 +1,4 @@
+import type {Nullable}                 from '../../util/types'
 import type {MysteryMushrooms}         from './MysteryMushrooms'
 import type {MysteryMushroomSoundFile} from './file/MysteryMushroomSoundFile'
 
@@ -333,7 +334,7 @@ export type PossibleSoundSourceForFile<T, > =
     T extends readonly MysteryMushroomSoundFile[]
         ? (| readonly [] | T)
         : T extends MysteryMushroomSoundFile
-            ? (| T | null)
+            ? Nullable<T>
             : never
 
 //endregion -------------------- Array types --------------------

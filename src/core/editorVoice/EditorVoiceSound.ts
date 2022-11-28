@@ -1,7 +1,8 @@
 import type {EditorVoiceSoundFile}   from './file/EditorVoiceSoundFile'
 import type {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder'
+import type {NullOr}                 from '../../util/types'
 
-export interface EditorVoiceSound<T extends | EditorVoiceSoundFile<PossibleFileName> | null = | EditorVoiceSoundFile<PossibleFileName> | null, U extends | EditorVoiceSoundFile<PossibleFileName> | null = | EditorVoiceSoundFile<PossibleFileName> | null, > {
+export interface EditorVoiceSound<T extends NullOr<EditorVoiceSoundFile<PossibleFileName>> = NullOr<EditorVoiceSoundFile<PossibleFileName>>, U extends NullOr<EditorVoiceSoundFile<PossibleFileName>> = NullOr<EditorVoiceSoundFile<PossibleFileName>>, > {
 
     get file(): T
 
@@ -184,7 +185,6 @@ export type PossibleFileName<T extends PossibleStartingName_WithVoiceBefore = Po
     = | PossibleFileName_WithVoiceBefore<T> | PossibleFileName_WithSingingPartBefore<U>
 
 
-export type PossibleSoundReceivedOnFactory = | EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative, never>>
-                                             | EditorVoiceSoundHolder<PossibleFileName<never>>
-                                             | readonly [EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[0], never>>, EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[1], never>>,]
-                                             | null
+export type PossibleSoundReceivedOnFactory = NullOr<| EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative, never>>
+                                                    | EditorVoiceSoundHolder<PossibleFileName<never>>
+                                                    | readonly [EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[0], never>>, EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[1], never>>,]>

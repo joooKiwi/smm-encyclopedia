@@ -1,54 +1,54 @@
-import type {PossibleLanguageValue} from '../ClassWithOnlyProjectLanguages'
+import type {NullOrString} from '../../util/types'
 
 /**
  * @template
  */
-export interface NameTemplate<HEBREW extends PossibleLanguageValue<string> = null,
-    POLISH extends PossibleLanguageValue<string> = null,
-    UKRAINIAN extends PossibleLanguageValue<string> = null,
-    GREEK extends PossibleLanguageValue<string> = null, > {
+export interface NameTemplate<HEBREW extends NullOrString = null,
+    POLISH extends NullOrString = null,
+    UKRAINIAN extends NullOrString = null,
+    GREEK extends NullOrString = null, > {
 
     english: {
-        simple: PossibleLanguageValue<string>
-        american: PossibleLanguageValue<string>
-        european: PossibleLanguageValue<string>
+        simple: NullOrString
+        american: NullOrString
+        european: NullOrString
     }
 
-    german: PossibleLanguageValue<string>
+    german: NullOrString
 
     french: {
-        simple: PossibleLanguageValue<string>
-        canadian: PossibleLanguageValue<string>
-        european: PossibleLanguageValue<string>
+        simple: NullOrString
+        canadian: NullOrString
+        european: NullOrString
     }
 
     spanish: {
-        simple: PossibleLanguageValue<string>
-        american: PossibleLanguageValue<string>
-        european: PossibleLanguageValue<string>
+        simple: NullOrString
+        american: NullOrString
+        european: NullOrString
     }
 
-    italian: PossibleLanguageValue<string>
+    italian: NullOrString
 
-    dutch: PossibleLanguageValue<string>
+    dutch: NullOrString
 
     portuguese: {
-        simple: PossibleLanguageValue<string>
-        american: PossibleLanguageValue<string>
-        european: PossibleLanguageValue<string>
+        simple: NullOrString
+        american: NullOrString
+        european: NullOrString
     }
 
-    russian: PossibleLanguageValue<string>
+    russian: NullOrString
 
     chinese: {
-        simple: PossibleLanguageValue<string>
-        traditional: PossibleLanguageValue<string>
-        simplified: PossibleLanguageValue<string>
+        simple: NullOrString
+        traditional: NullOrString
+        simplified: NullOrString
     }
 
-    japanese: PossibleLanguageValue<string>
+    japanese: NullOrString
 
-    korean: PossibleLanguageValue<string>
+    korean: NullOrString
 
     hebrew: HEBREW
 
@@ -64,7 +64,7 @@ export interface NameTemplate<HEBREW extends PossibleLanguageValue<string> = nul
  * @template
  */
 export interface NameTemplateWithOptionalLanguages
-    extends NameTemplate<PossibleLanguageValue<string>, PossibleLanguageValue<string>, PossibleLanguageValue<string>, PossibleLanguageValue<string>> {
+    extends NameTemplate<NullOrString, NullOrString, NullOrString, NullOrString> {
 
 }
 

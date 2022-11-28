@@ -1,9 +1,11 @@
-import type {EntityBehaviourLink, PossibleEntity, PossibleGroup} from './EntityBehaviourLink'
-import type {ObjectHolder}                                       from '../../../util/holder/ObjectHolder'
-import type {PossibleEnglishName as PossibleEntityName}          from '../../entity/Entities.types'
-import type {PossibleGroupName}                                  from '../../entityTypes'
-import type {ProviderForNullable}                                from '../../../util/provider/ProviderForNullable'
-import type {ProviderWithKey}                                    from '../../../util/provider/ProviderWithKey'
+import type {Entity}                                    from '../../entity/Entity'
+import type {EntityBehaviourLink, PossibleGroup}        from './EntityBehaviourLink'
+import type {NullOr}                                    from '../../../util/types'
+import type {ObjectHolder}                              from '../../../util/holder/ObjectHolder'
+import type {PossibleEnglishName as PossibleEntityName} from '../../entity/Entities.types'
+import type {PossibleGroupName}                         from '../../entityTypes'
+import type {ProviderForNullable}                       from '../../../util/provider/ProviderForNullable'
+import type {ProviderWithKey}                           from '../../../util/provider/ProviderWithKey'
 
 import {AbstractProvider}             from '../../../util/provider/AbstractProvider'
 import {EntityBehaviourLinkContainer} from './EntityBehaviourLink.container'
@@ -71,7 +73,7 @@ export class EntityBehaviourLinkProvider
      * @param key The nullable group & null entity names
      * @param argumentsReceived The nullable group & null entity
      */
-    public get(key: Key<| PossibleGroupName | null, null>, ...argumentsReceived: ArgumentsReceived<PossibleGroup, null>): EntityBehaviourLink<PossibleGroup, null>
+    public get(key: Key<NullOr<PossibleGroupName>, null>, ...argumentsReceived: ArgumentsReceived<PossibleGroup, null>): EntityBehaviourLink<PossibleGroup, null>
     /**
      * Get (or create) an {@link EntityBehaviourLink} with a nullable group & a nullable entity.
      *
@@ -87,11 +89,11 @@ export class EntityBehaviourLinkProvider
 
 }
 
-type Key<GROUP extends | PossibleGroupName | null = PossibleGroupName | null, ENTITY extends | PossibleEntityName | null = | PossibleEntityName | null, > = readonly [
+type Key<GROUP extends NullOr<PossibleGroupName> = NullOr<PossibleGroupName>, ENTITY extends NullOr<PossibleEntityName> = NullOr<PossibleEntityName>, > = readonly [
     groupLink: GROUP,
     entityLink: ENTITY,
 ]
-type ArgumentsReceived<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends PossibleEntity = PossibleEntity, > = readonly [
+type ArgumentsReceived<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends NullOr<Entity> = NullOr<Entity>, > = readonly [
     groupLink: ObjectHolder<GROUP>,
     entityLink: ObjectHolder<ENTITY>,
 ]

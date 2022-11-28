@@ -1,10 +1,11 @@
-import {PossibleGroupName}                 from '../../entityTypes'
-import {PossibleEnglishName as EntityName} from '../../entity/Entities.types'
+import type {NullOr}                            from '../../../util/types'
+import type {PossibleGroupName}                 from '../../entityTypes'
+import type {PossibleEnglishName as EntityName} from '../../entity/Entities.types'
 
 export interface EntityBehaviourLinkTemplate {
 
-    group: | PossibleGroupName | null
+    group: NullOr<PossibleGroupName>
 
-    entity: | EntityName | null
+    entity: NullOr<EntityName>
 
 }

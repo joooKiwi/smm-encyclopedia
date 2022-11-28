@@ -1,4 +1,5 @@
 import type {Language} from './Language'
+import type {NullOr}   from '../../../util/types'
 
 import {EMPTY_ARRAY} from '../../../util/emptyVariables'
 
@@ -31,7 +32,7 @@ export class LanguageContainer<T, S extends T = T, A extends readonly T[] = read
         return this.#original
     }
 
-    protected get _singleValue(): | S | null {
+    protected get _singleValue(): NullOr<S> {
         return this.#singleValue
     }
 

@@ -1,4 +1,5 @@
 import type {NotApplicableProperty, UnknownProperty}                                                              from '../../_properties/PropertyWithEverything'
+import type {NullOr}                                                                                              from '../../../util/types'
 import type {NumberPropertyThatCanBeUnknown}                                                                      from '../../_properties/PropertyThatCanBeUnknown'
 import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from '../EntityLimit.template'
 
@@ -6,7 +7,7 @@ export interface EntityLimitAmount {
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    get limitContainerInSMM1AndSMM3DS(): | NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount | null> | NotApplicableProperty | UnknownProperty
+    get limitContainerInSMM1AndSMM3DS(): | NumberPropertyThatCanBeUnknown<NullOr<PossibleLimitAmount_SMM1And3DS_Amount>> | NotApplicableProperty | UnknownProperty
 
     get limitAmountInSMM1AndSMM3DS(): this['limitContainerInSMM1AndSMM3DS']['value']
 
@@ -15,7 +16,7 @@ export interface EntityLimitAmount {
     //endregion -------------------- SMM1 & SMM3DS limit --------------------
     //region -------------------- SMM2 limit --------------------
 
-    get limitContainerInSMM2(): | NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount | null> | UnknownProperty
+    get limitContainerInSMM2(): | NumberPropertyThatCanBeUnknown<NullOr<PossibleLimitAmount_SMM2_Amount>> | UnknownProperty
 
     get limitAmountInSMM2(): this['limitContainerInSMM2']['value']
 

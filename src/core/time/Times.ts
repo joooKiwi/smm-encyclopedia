@@ -5,6 +5,7 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithImagePath}                                                               from '../ClassWithImagePath'
 import type {PossibleOtherEntities}                                                            from '../entity/Entity'
 import type {Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleSimpleImagePath} from './Times.types'
+import type {Nullable}                                                                         from '../../util/types'
 import type {PropertyGetter, PropertyReferenceGetter}                                          from '../PropertyGetter'
 import type {TimeProperty}                                                                     from '../entity/properties/time/TimeProperty'
 import type {TimeReferences}                                                                   from '../entity/properties/time/TimeReferences'
@@ -25,7 +26,7 @@ export abstract class Times
 
     public static readonly DAY =   new class Times_Day extends Times {
 
-        public override get(property: TimeProperty,): boolean {
+        public override get(property: TimeProperty,) {
             return property.isInDayTheme
         }
 
@@ -36,7 +37,7 @@ export abstract class Times
     }('Day', 'Sun',)
     public static readonly NIGHT = new class Times_Night extends Times {
 
-        public override get(property: TimeProperty,): boolean {
+        public override get(property: TimeProperty,) {
             return property.isInNightTheme === true
         }
 
@@ -92,8 +93,8 @@ export abstract class Times
     }
 
 
-    // public static getValueByName<T extends string, >(value: | Times | T | null | undefined,): TimesByName<T>
-    public static getValueByName(value: | Times | string | null | undefined,): Times {
+    // public static getValueByName<T extends string, >(value: Nullable<| Times | T>,) TimesByName<T>
+    public static getValueByName(value: Nullable<| Times | string>,): Times {
         return getValueByEnglishName(value, this,)
     }
 

@@ -1,116 +1,116 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language'
-import type {Builder}                                                                                                       from '../../util/builder/Builder'
-import type {Games}                                                                                                         from '../../core/game/Games'
-import type {IsACompleteNameCallback}                                                                                       from './Name.builder.types'
-import type {Name}                                                                                                          from './Name'
-import type {PossibleLanguageValue}                                                                                         from '../ClassWithOnlyProjectLanguages'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language'
+import type {Builder}                                                                 from '../../util/builder/Builder'
+import type {Games}                                                                   from '../../core/game/Games'
+import type {IsACompleteNameCallback}                                                 from './Name.builder.types'
+import type {Name}                                                                    from './Name'
+import type {Nullable, NullOr, UndefinedOr}                                           from '../../util/types'
 
 export interface NameBuilder<T, TEMPLATE, >
     extends Builder<Name<T>> {
 
     //region -------------------- English getter & setter methods --------------------
 
-    get english(): | AmericanOrEuropeanOriginal<T> | undefined
+    get english(): UndefinedOr<AmericanOrEuropeanOriginal<T>>
 
     setEnglish(value: AmericanOrEuropeanOriginal<T>,): this
 
     //endregion -------------------- English getter & setter methods --------------------
     //region -------------------- French getter & setter methods --------------------
 
-    get french(): | CanadianOrEuropeanOriginal<T> | undefined
+    get french(): UndefinedOr<CanadianOrEuropeanOriginal<T>>
 
     setFrench(value: CanadianOrEuropeanOriginal<T>,): this
 
     //endregion -------------------- French getter & setter methods --------------------
     //region -------------------- German getter & setter methods --------------------
 
-    get german(): | PossibleLanguageValue<T> | undefined
+    get german(): Nullable<T>
 
-    setGerman(value: PossibleLanguageValue<T>,): this
+    setGerman(value: NullOr<T>,): this
 
     //endregion -------------------- German getter & setter methods --------------------
     //region -------------------- Spanish getter & setter methods --------------------
 
-    get spanish(): | PossibleAmericanOrEuropeanValue<T> | undefined
+    get spanish(): Nullable<AmericanOrEuropeanOriginal<T>>
 
-    setSpanish(value: PossibleAmericanOrEuropeanValue<T>,): this
+    setSpanish(value: NullOr<AmericanOrEuropeanOriginal<T>>,): this
 
     //endregion -------------------- Spanish getter & setter methods --------------------
     //region -------------------- Italian getter & setter methods --------------------
 
-    get italian(): | PossibleLanguageValue<T> | undefined
+    get italian(): Nullable<T>
 
-    setItalian(value: PossibleLanguageValue<T>,): this
+    setItalian(value: NullOr<T>,): this
 
     //endregion -------------------- Italian getter & setter methods --------------------
     //region -------------------- Dutch getter & setter methods --------------------
 
-    get dutch(): | PossibleLanguageValue<T> | undefined
+    get dutch(): Nullable<T>
 
-    setDutch(value: PossibleLanguageValue<T>,): this
+    setDutch(value: NullOr<T>,): this
 
     //endregion -------------------- Dutch getter & setter methods --------------------
     //region -------------------- Portuguese getter & setter methods --------------------
 
-    get portuguese(): | PossibleAmericanOrEuropeanValue<T> | undefined
+    get portuguese(): Nullable<AmericanOrEuropeanOriginal<T>>
 
-    setPortuguese(value: PossibleAmericanOrEuropeanValue<T>,): this
+    setPortuguese(value: NullOr<AmericanOrEuropeanOriginal<T>>,): this
 
     //endregion -------------------- Portuguese getter & setter methods --------------------
     //region -------------------- Russian getter & setter methods --------------------
 
-    get russian(): | PossibleLanguageValue<T> | undefined
+    get russian(): Nullable<T>
 
-    setRussian(value: PossibleLanguageValue<T>,): this
+    setRussian(value: NullOr<T>,): this
 
     //endregion -------------------- Russian getter & setter methods --------------------
     //region -------------------- Japanese getter & setter methods --------------------
 
-    get japanese(): | PossibleLanguageValue<T> | undefined
+    get japanese(): Nullable<T>
 
-    setJapanese(value: PossibleLanguageValue<T>,): this
+    setJapanese(value: NullOr<T>,): this
 
     //endregion -------------------- Japanese getter & setter methods --------------------
     //region -------------------- Chinese getter & setter methods --------------------
 
-    get chinese(): | PossibleChineseValue<T> | undefined
+    get chinese(): Nullable<ChineseOriginal<T>>
 
-    setChinese(value: PossibleChineseValue<T>,): this
+    setChinese(value: NullOr<ChineseOriginal<T>>,): this
 
     //endregion -------------------- Chinese getter & setter methods --------------------
     //region -------------------- Korean getter & setter methods --------------------
 
-    get korean(): | PossibleLanguageValue<T> | undefined
+    get korean(): Nullable<T>
 
-    setKorean(value: PossibleLanguageValue<T>,): this
+    setKorean(value: NullOr<T>,): this
 
     //endregion -------------------- Korean getter & setter methods --------------------
     //region -------------------- Hebrew getter & setter methods --------------------
 
-    get hebrew(): | PossibleLanguageValue<T> | undefined
+    get hebrew(): Nullable<T>
 
-    setHebrew(value: PossibleLanguageValue<T>,): this
+    setHebrew(value: NullOr<T>,): this
 
     //endregion -------------------- Hebrew getter & setter methods --------------------
     //region -------------------- Polish getter & setter methods --------------------
 
-    get polish(): | PossibleLanguageValue<T> | undefined
+    get polish(): Nullable<T>
 
-    setPolish(value: PossibleLanguageValue<T>,): this
+    setPolish(value: NullOr<T>,): this
 
     //endregion -------------------- Polish getter & setter methods --------------------
     //region -------------------- Ukrainian getter & setter methods --------------------
 
-    get ukrainian(): | PossibleLanguageValue<T> | undefined
+    get ukrainian(): Nullable<T>
 
-    setUkrainian(value: PossibleLanguageValue<T>,): this
+    setUkrainian(value: NullOr<T>,): this
 
     //endregion -------------------- Ukrainian getter & setter methods --------------------
     //region -------------------- Greek getter & setter methods --------------------
 
-    get greek(): | PossibleLanguageValue<T> | undefined
+    get greek(): Nullable<T>
 
-    setGreek(value: PossibleLanguageValue<T>,): this
+    setGreek(value: NullOr<T>,): this
 
     //endregion -------------------- Greek getter & setter methods --------------------
 

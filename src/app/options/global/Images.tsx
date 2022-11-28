@@ -5,6 +5,7 @@ import {lazy}                                                                   
 import type {ClassWithValue}  from './ClassWithValue'
 import type {ImageProperties} from '../../tools/images/properties/ImageProperties'
 import type {Names, Ordinals} from './Images.types'
+import type {Nullable}        from '../../../util/types'
 import type {ReactElement}    from '../../../util/react/ReactProperties'
 
 import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
@@ -74,7 +75,7 @@ export abstract class Images
 
 
     // public static getValueByValue<T, >(value: T,): ImagesByValue<T>
-    public static getValueByValue(value: | Images | boolean | null | undefined,): Images {
+    public static getValueByValue(value: Nullable<| Images | boolean>,): Images {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)

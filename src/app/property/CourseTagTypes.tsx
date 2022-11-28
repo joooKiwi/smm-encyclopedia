@@ -3,8 +3,9 @@ import {Enum}                                                                   
 import {Link}                                                                    from 'react-router-dom'
 
 import type {BootstrapColor}                         from '../../bootstrap/Bootstrap.types'
-import type {Names, Ordinals, PossibleCourseTagType} from './CourseTagType.types'
 import type {EveryPossibleRouteNames}                from '../../routes/everyRoutes.types'
+import type {Names, Ordinals, PossibleCourseTagType} from './CourseTagType.types'
+import type {Nullable}                               from '../../util/types'
 import type {ReactElement, ReactElementOrString}     from '../../util/react/ReactProperties'
 
 import {contentTranslation} from '../../lang/components/translationMethods'
@@ -190,7 +191,7 @@ export abstract class CourseTagTypes
     //endregion -------------------- Link button methods --------------------
 
     // public static getValueByType<T,>(value: T,): CourseTagTypesByType<T>
-    public static getValueByType(value: | CourseTagTypes | string | null | undefined,): CourseTagTypes {
+    public static getValueByType(value: Nullable<| CourseTagTypes | string>,): CourseTagTypes {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)
@@ -226,6 +227,6 @@ export abstract class CourseTagTypes
 
 type PossibleRouteName = Extract<EveryPossibleRouteNames, `${| 'every' | Exclude<PossibleCourseTagType, 'every'> | `${'official' | 'unofficial'}${| 'And' | 'Excluding'}MakerCentral`}CourseTags`>
 type LinkProperties = readonly [
-    routeName: | PossibleRouteName | null,
+    routeName: Nullable<PossibleRouteName>,
     color: Extract<BootstrapColor, | 'success' | 'warning' | 'danger'>,
 ]

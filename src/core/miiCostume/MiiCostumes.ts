@@ -5,6 +5,7 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithImagePath}                                                         from '../ClassWithImagePath'
 import type {ClassWithReference}                                                         from '../ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImagePath} from './MiiCostumes.types'
+import type {Nullable}                                                                   from '../../util/types'
 import type {MiiCostume}                                                                 from './MiiCostume'
 
 import {BASE_PATH}       from '../../variables'
@@ -214,8 +215,8 @@ export class MiiCostumes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    // public static getValueByName<T extends string, >(value: | MiiCostumes | T | null | undefined,): MiiCostumesByName<T>
-    public static getValueByName(value: | MiiCostumes | string | null | undefined,): MiiCostumes {
+    // public static getValueByName<T extends string, >(value: Nullable<| MiiCostumes | T,): MiiCostumesByName<T>
+    public static getValueByName(value: Nullable<| MiiCostumes | string>,): MiiCostumes {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null name.`)
         if (value instanceof this)

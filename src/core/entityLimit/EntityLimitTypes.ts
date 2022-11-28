@@ -2,6 +2,7 @@ import {Enum}                                                                   
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
 import type {EnglishNames, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from './EntityLimitTypes.types'
+import type {Nullable}                                                                      from '../../util/types'
 
 export class EntityLimitTypes
     extends Enum<Ordinals, Names> {
@@ -47,8 +48,8 @@ export class EntityLimitTypes
         return this.values.map(type => type.englishName).toArray() as EnglishNames
     }
 
-    // public static getValueByName<T extends string, >(value: | EntityLimitTypes | T | null | undefined,): EntityLimitTypesByName<T>
-    public static getValueByName(value: | EntityLimitTypes | string | null | undefined,): EntityLimitTypes {
+    // public static getValueByName<T extends string, >(value: Nullable<| EntityLimitTypes | T>,): EntityLimitTypesByName<T>
+    public static getValueByName(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null name.`)
         if (value instanceof this)

@@ -1,11 +1,10 @@
 import type {BooleanPropertyThatCanBeUnknownWithAmount} from '../PropertyThatCanBeUnknownWithAmount'
-import type {PossibleAmount}                            from '../ClassWithAmount'
-import type {PossibleBoolean}                           from '../Property'
+import type {NullOrBoolean, NullOrNumber}               from '../../../util/types'
 import type {PossibleValueOnObjectHolder}               from '../../../util/holder/ObjectHolder'
 
 import {PropertyThatCanBeUnknownWithAmountContainer} from '../PropertyThatCanBeUnknownWithAmount.container'
 
-export class BooleanPropertyThatCanBeUnknownWithAmountContainer<B extends PossibleBoolean = PossibleBoolean, IS_UNKNOWN extends boolean = boolean, AMOUNT extends PossibleAmount = PossibleAmount, >
+export class BooleanPropertyThatCanBeUnknownWithAmountContainer<B extends NullOrBoolean = NullOrBoolean, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, >
     extends PropertyThatCanBeUnknownWithAmountContainer<B, IS_UNKNOWN, AMOUNT>
     implements BooleanPropertyThatCanBeUnknownWithAmount<B, IS_UNKNOWN, AMOUNT> {
 

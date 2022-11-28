@@ -5,6 +5,7 @@ import {lazy}                                                                   
 import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
 import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
 import type {Names, Ordinals}                                  from './GameStyleAppOption.types'
+import type {NullOr}                                           from '../../util/types'
 import type {GameStyles}                                       from '../../core/gameStyle/GameStyles'
 import type {ReactElement}                                     from '../../util/react/ReactProperties'
 import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
@@ -135,7 +136,7 @@ export abstract class GameStyleAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 

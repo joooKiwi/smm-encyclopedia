@@ -1,8 +1,9 @@
-import {Enum}                                                               from '@joookiwi/enumerable'
-import {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
 import type {EnglishName, Names, Ordinals} from './SoundStates.types'
 import type {ClassWithEnglishName}         from '../../../core/ClassWithEnglishName'
+import type {Nullable}                     from '../../types'
 import type {ReactElement}                 from '../../react/ReactProperties'
 import type {SoundSubElementsHolder}       from '../holder/SoundSubElementsHolder'
 
@@ -84,7 +85,7 @@ export abstract class SoundStates
 
 
     // public static getValueByName<T, >(value: T,): SoundStatesByName<T>
-    public static getValueByName(value: | SoundStates | string | null | undefined,): SoundStates {
+    public static getValueByName(value: Nullable<| SoundStates | string>,): SoundStates {
         return getValueByEnglishName(value, this,)
     }
 

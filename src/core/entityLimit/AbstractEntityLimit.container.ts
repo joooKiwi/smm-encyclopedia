@@ -2,12 +2,13 @@ import type {AlternativeEntityLimit, EntityLimit}         from './EntityLimit'
 import type {EntityLimitAmount}                           from './properties/EntityLimitAmount'
 import type {EntityLimitTypes}                            from './EntityLimitTypes'
 import type {Name}                                        from '../../lang/name/Name'
+import type {NullOr}                                      from '../../util/types'
 import type {ObjectHolder, PossibleValueOnObjectHolder}   from '../../util/holder/ObjectHolder'
 import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types'
 
 import {ClassContainingANameAndAnAlternative} from '../../lang/name/ClassContainingANameAndAnAlternative'
 
-export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcronym | PossibleAlternativeAcronym | null = PossibleAcronym | PossibleAlternativeAcronym | null,
+export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| PossibleAcronym | PossibleAlternativeAcronym> = NullOr<| PossibleAcronym | PossibleAlternativeAcronym>,
     TYPE extends EntityLimitTypes = EntityLimitTypes,
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
     extends ClassContainingANameAndAnAlternative<string, string, AlternativeEntityLimit>
@@ -21,7 +22,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends PossibleAcron
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(name: Name<string>, acronym: | PossibleAcronym | PossibleAlternativeAcronym | null, alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>, type: ObjectHolder<EntityLimitTypes>, limitAmount: ObjectHolder<EntityLimitAmount>,) {
+    protected constructor(name: Name<string>, acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>, alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>, type: ObjectHolder<EntityLimitTypes>, limitAmount: ObjectHolder<EntityLimitAmount>,) {
         super(name, alternative,)
         this.#acronym = acronym
         this.#typeHolder = type

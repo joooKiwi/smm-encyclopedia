@@ -4,8 +4,9 @@ import {Enum}                                                                   
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                   from '../ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                                                                                                     from '../ClassWithReference'
 import type {CourseAndWorldTheme}                                                                                                                                                                                                                                    from './CourseAndWorldTheme'
-import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, SmallImagePath} from './Themes.types'
 import type {CourseTheme}                                                                                                                                                                                                                                            from './CourseTheme'
+import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, SmallImagePath} from './Themes.types'
+import type {Nullable, NullableString, NullOr, NullOrBoolean}                                                                                                                                                                                                        from '../../util/types'
 import type {PossibleOtherEntities}                                                                                                                                                                                                                                  from '../entity/Entity'
 import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                from '../PropertyGetter'
 import type {ThemeProperty}                                                                                                                                                                                                                                          from '../entity/properties/theme/ThemeProperty'
@@ -177,7 +178,7 @@ export class Themes
     readonly #gameName: PossibleGameName
     #smallImagePath?: SmallImagePath
     #largeImagePath?: LargeImagePath
-    #endlessMarioImagePath?: | EndlessMarioImagePath | null
+    #endlessMarioImagePath?: NullOr<EndlessMarioImagePath>
 
     //endregion -------------------- Fields --------------------
 
@@ -238,14 +239,14 @@ export class Themes
         return this.#largeImagePath ??= `/${BASE_PATH}/theme/Lyt_E_Scene_${this.gameName}_00.tiff`
     }
 
-    public get endlessMarioImagePath(): | EndlessMarioImagePath | null {
+    public get endlessMarioImagePath(): NullOr<EndlessMarioImagePath> {
         return this.#endlessMarioImagePath ??= `/${BASE_PATH}/theme/WM_GameSkin_${this.gameName as PossibleGameName_CourseTheme}_00^l.tiff`
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    protected _get(property: ThemeProperty,): | boolean | null {
+    protected _get(property: ThemeProperty,): NullOrBoolean {
         return false
     }
 
@@ -258,13 +259,13 @@ export class Themes
     }
 
     public getGameName(name: null, isNightTheme: any,): ''
-    public getGameName<V extends string = string, >(name: | V | null, isNightTheme: false,): | '' | DayGameName<V>
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: false,): | '' | DayGameName<V>
     public getGameName<V extends string = string, >(name: V, isNightTheme: false,): | '' | DayGameName<V>
-    public getGameName<V extends string = string, >(name: | V | null, isNightTheme: true,): | '' | NightGameName<V>
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: true,): | '' | NightGameName<V>
     public getGameName<V extends string = string, >(name: V, isNightTheme: true,): | '' | NightGameName<V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: | V | null, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
+    public getGameName<B extends boolean = boolean, V extends string = string, >(name: Nullable<V>, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
     public getGameName<B extends boolean = boolean, V extends string = string, >(name: V, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
-    public getGameName(name: | string | null, isNightTheme: boolean,) {
+    public getGameName(name: NullableString, isNightTheme: boolean,) {
         if (name == null)
             return ''
         const text = this.gameName
@@ -321,8 +322,8 @@ export class Themes
         ]
     }
 
-    // public static getValueByName<T extends string, >(value: | Themes | T | null | undefined,): ThemesByName<T>
-    public static getValueByName(value: | Themes | string | null | undefined,): Themes {
+    // public static getValueByName<T extends string, >(value: Nullable<| Themes | T>,): ThemesByName<T>
+    public static getValueByName(value: Nullable<| Themes | string>,): Themes {
         return getValueByEnglishName(value, this,)
     }
 

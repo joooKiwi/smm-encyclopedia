@@ -1,6 +1,7 @@
 import i18next from 'i18next'
 
 import type {Namespace, SingleTranslationKey, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty'
+import type {Nullable}                                                                           from '../../util/types'
 import type {ReactElement, ReactElementOrString}                                                 from '../../util/react/ReactProperties'
 
 import {TranslationUtility} from './TranslationUtility'
@@ -9,7 +10,7 @@ import {TranslationUtility} from './TranslationUtility'
 export function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N> = SingleTranslationKey<N>, >(namespace: N, value: V,): TranslationReturnValue<N>
 export function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N> = SingleTranslationKey<N>, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace: REPLACE,): ReactElement
 export function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N> = SingleTranslationKey<N>, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace?: REPLACE,): | TranslationReturnValue<N> | ReactElement
-export function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N> = SingleTranslationKey<N>, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace: | REPLACE | null = null,): ReactElementOrString {
+export function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N> = SingleTranslationKey<N>, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace: Nullable<REPLACE> = null,): ReactElementOrString {
     if (replace == null)
         // @ts-ignore
         return i18next.t(value, {ns: namespace,},)

@@ -1,5 +1,6 @@
-import type {TimeProperty}       from './TimeProperty'
+import type {NullOrBoolean}      from '../../../../util/types'
 import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
+import type {TimeProperty}       from './TimeProperty'
 
 import {AbstractProvider}      from '../../../../util/provider/AbstractProvider'
 import {TimePropertyContainer} from './TimeProperty.container'
@@ -31,7 +32,7 @@ export class TimePropertyProvider
      * @param isInDayTime Is in the {@link Times.DAY day time}
      * @param isInNightTime Is in the {@link Times.NIGHT night time}
      */
-    public get<DAY extends boolean = boolean, NIGHT extends | boolean | null = | boolean | null, >(isInDayTime: DAY, isInNightTime: NIGHT,): TimeProperty<DAY, NIGHT>
+    public get<DAY extends boolean = boolean, NIGHT extends NullOrBoolean = NullOrBoolean, >(isInDayTime: DAY, isInNightTime: NIGHT,): TimeProperty<DAY, NIGHT>
     public get(...argumentsReceived: ArgumentsReceived): TimeProperty {
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new TimePropertyContainer(...argumentsReceived,),))
@@ -42,5 +43,5 @@ export class TimePropertyProvider
 
 type ArgumentsReceived = readonly [
     isInDayTheme: boolean,
-    isInNightTheme: | boolean | null,
+    isInNightTheme: NullOrBoolean,
 ]

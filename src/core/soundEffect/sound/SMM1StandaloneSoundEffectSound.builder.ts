@@ -1,4 +1,5 @@
 import type {Builder}                        from '../../../util/builder/Builder'
+import type {NullOr}                         from '../../../util/types'
 import type {SMM1StandaloneSoundEffectSound} from './SMM1StandaloneSoundEffectSound'
 import type {SMM1ExclusiveSoundEffectSound}  from './SMM1ExclusiveSoundEffectSound'
 import type {SMM2SoundEffectSound}           from './SMM2SoundEffectSound'
@@ -25,7 +26,7 @@ export class SMM1StandaloneSoundEffectSoundBuilder
 
     public constructor(smm1: SMM1ExclusiveSoundEffectSound,)
     public constructor(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,)
-    public constructor(smm1: SMM1ExclusiveSoundEffectSound, smm2: | SMM2SoundEffectSound | null = null,) {
+    public constructor(smm1: SMM1ExclusiveSoundEffectSound, smm2: NullOr<SMM2SoundEffectSound> = null,) {
         this.#smm1ExclusiveSounds = smm1
         this.#smm2ExclusiveSounds = smm2
     }
@@ -36,16 +37,16 @@ export class SMM1StandaloneSoundEffectSoundBuilder
         return this.#smm1ExclusiveSounds
     }
 
-    protected get _smm2ExclusiveSounds(): | SMM2SoundEffectSound | null {
+    protected get _smm2ExclusiveSounds(): NullOr<SMM2SoundEffectSound> {
         return this.#smm2ExclusiveSounds
     }
 
 
-    protected get _soundIndexes(): | readonly SingleSoundIndex[] | null {
+    protected get _soundIndexes(): NullOr<readonly SingleSoundIndex[]> {
         return this.#soundIndexes ?? null
     }
 
-    protected get _editorIndex(): | SingleSoundIndex | null {
+    protected get _editorIndex(): NullOr<SingleSoundIndex> {
         return this.#editorIndex ?? null
     }
 
