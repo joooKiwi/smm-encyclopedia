@@ -22,7 +22,7 @@ export default class PredefinedMessageApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'predefinedMessage'
     }
 
@@ -35,7 +35,7 @@ export default class PredefinedMessageApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithSimpleList<PredefinedMessages> {
         return new class implements AppInterpreterWithSimpleList<PredefinedMessages> {
 
-            public get iterable(): IterableIterator<PredefinedMessages> {
+            public get iterable() {
                 return PredefinedMessages[Symbol.iterator]()
             }
 

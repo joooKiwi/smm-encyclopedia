@@ -24,7 +24,7 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
@@ -39,12 +39,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['english']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return this.get(classWithEveryLanguages)
         }
 
         public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['english']
-        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.english
         }
 
@@ -61,12 +61,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanEnglish']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return this.get(classWithEveryLanguages)
         }
 
         public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanEnglish']
-        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.americanEnglish
         }
 
@@ -78,12 +78,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanEnglish']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return this.get(classWithEveryLanguages)
         }
 
         public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanEnglish']
-        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.europeanEnglish
         }
 
@@ -92,7 +92,7 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
@@ -107,17 +107,17 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['french']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return this.get(classWithEveryLanguages)
         }
 
         public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['french']
-        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.french
         }
 
         public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalFrench']
-        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): CanadianOrEuropeanOriginal<T> {
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.originalFrench
         }
 
@@ -129,12 +129,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['canadianFrench']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return this.get(classWithEveryLanguages)
         }
 
         public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['canadianFrench']
-        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.canadianFrench
         }
 
@@ -146,12 +146,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanFrench']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return this.get(classWithEveryLanguages)
         }
 
         public override get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanFrench']
-        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): T {
+        public override get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.europeanFrench
         }
 
@@ -160,14 +160,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['german']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.german
         }
 
@@ -176,7 +176,7 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
@@ -191,12 +191,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['spanish']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.spanish
         }
 
         public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalSpanish']
-        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleAmericanOrEuropeanValue<T> {
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.originalSpanish
         }
 
@@ -208,7 +208,7 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanSpanish']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.americanSpanish
         }
 
@@ -220,7 +220,7 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanSpanish']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.europeanSpanish
         }
 
@@ -229,14 +229,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['italian']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.italian
         }
 
@@ -245,14 +245,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['dutch']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.dutch
         }
 
@@ -261,7 +261,7 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
@@ -276,12 +276,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['portuguese']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.portuguese
         }
 
         public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalPortuguese']
-        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleAmericanOrEuropeanValue<T> {
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.originalPortuguese
         }
 
@@ -293,7 +293,7 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanPortuguese']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.americanPortuguese
         }
 
@@ -305,7 +305,7 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanPortuguese']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.europeanPortuguese
         }
 
@@ -314,14 +314,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['russian']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.russian
         }
 
@@ -330,14 +330,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['japanese']
-        protected override _get<T>(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T>(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.japanese
         }
 
@@ -346,7 +346,7 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_EVEN_LANGUAGE_WITHOUT_SPACE
         }
 
@@ -361,12 +361,12 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['chinese']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.chinese
         }
 
         public override original<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['originalChinese']
-        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleChineseValue<T> {
+        public override original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.originalChinese
         }
 
@@ -378,7 +378,7 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['traditionalChinese']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.traditionalChinese
         }
 
@@ -390,7 +390,7 @@ export abstract class EveryLanguages
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['simplifiedChinese']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.simplifiedChinese
         }
 
@@ -399,14 +399,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_EVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['korean']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.korean
         }
 
@@ -416,14 +416,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['hebrew']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.hebrew
         }
 
@@ -432,14 +432,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['polish']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.polish
         }
 
@@ -448,14 +448,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['ukrainian']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.ukrainian
         }
 
@@ -464,14 +464,14 @@ export abstract class EveryLanguages
 
         //region -------------------- Space getter methods --------------------
 
-        protected override get _spaceParameters(): SpaceParameterReceived {
+        protected override get _spaceParameters() {
             return EveryLanguages._SPACE_UNEVEN_LANGUAGE_WITH_SPACE
         }
 
         //endregion -------------------- Space getter methods --------------------
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['greek']
-        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): PossibleLanguageValue<T> {
+        protected override _get<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
             return classWithEveryLanguages.greek
         }
 

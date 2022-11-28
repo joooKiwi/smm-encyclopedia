@@ -48,14 +48,14 @@ export class OfficialNotifications
 
     public static readonly FINISH_ALL_JOBS =                                   new class OfficialNotifications_FinishAllJobs extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addStoryMode(key, this._addJobs(key, keyMap,),)
         }
 
     }('Finish all jobs', 'finish all job',)
     public static readonly FINISH_ALL_JOBS_UNDODOG =                           new class OfficialNotifications_FinishAllJobsUndodog extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Undodog', key,
                 this._addStoryMode(key,
                     this._addJobs(key, keyMap,),),)
@@ -64,7 +64,7 @@ export class OfficialNotifications
     }('Finish all jobs (Undodog)', translationKey_finishAllCharacterJob,)
     public static readonly FINISH_ALL_JOBS_YAMAMURA =                          new class OfficialNotifications_FinishAllJobsYamamura extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Yamamura', key,
                 this._addStoryMode(key,
                     this._addJobs(key, keyMap,),),)
@@ -73,7 +73,7 @@ export class OfficialNotifications
     }('Finish all jobs (Yamamura)', translationKey_finishAllCharacterJob,)
     public static readonly FINISH_ALL_JOBS_PARTRICK =                          new class OfficialNotifications_FinishAllJobsPartrick extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Partrick', key,
                 this._addStoryMode(key,
                     this._addJobs(key, keyMap,),),)
@@ -82,7 +82,7 @@ export class OfficialNotifications
     }('Finish all jobs (Partrick)', translationKey_finishAllCharacterJob,)
     public static readonly FINISH_ALL_JOBS_SOUNDFROG =                         new class OfficialNotifications_FinishAllJobsSoundfrog extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Soundfrog', key,
                 this._addStoryMode(key,
                     this._addJobs(key, keyMap,),),)
@@ -91,7 +91,7 @@ export class OfficialNotifications
     }('Finish all jobs (Soundfrog)', translationKey_finishAllCharacterJob,)
     public static readonly FINISH_ALL_JOBS_MR_ERASER =                         new class OfficialNotifications_FinishAllJobsMrEraser extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Mr. Eraser', key,
                 this._addStoryMode(key,
                     this._addJobs(key, keyMap,),),)
@@ -100,7 +100,7 @@ export class OfficialNotifications
     }('Finish all jobs (Mr. Eraser)', translationKey_finishAllCharacterJob,)
     public static readonly FINISH_1ST_JOB_PEACH =                              new class OfficialNotifications_Finish1stJobPeach extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Princess Peach', key,
                 this._addPosition(1, 'job', key,
                     this._addMissionTitle(null, key,
@@ -111,7 +111,7 @@ export class OfficialNotifications
     }('Finish 1st job (Peach)', translationKey_finishSelectedPeachJob,)
     public static readonly FINISH_2ND_JOB_PEACH =                              new class OfficialNotifications_Finish2ndJobPeach extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Princess Peach', key,
                 this._addPosition(2, 'job', key,
                     this._addMissionTitle(null, key,
@@ -122,7 +122,7 @@ export class OfficialNotifications
     }('Finish 2nd job (Peach)', translationKey_finishSelectedPeachJob,)
     public static readonly FINISH_3RD_JOB_PEACH =                              new class OfficialNotifications_Finish3rdJobPeach extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCharacterImage('Princess Peach', key,
                 this._addPosition(3, 'job', key,
                     this._addMissionTitle(null, key,
@@ -133,7 +133,7 @@ export class OfficialNotifications
     }('Finish 3rd job (Peach)', translationKey_finishSelectedPeachJob,)
     public static readonly HIT_MIDDLE_QUESTION_BLOCK_NEAR_PURPLE_TOAD =        new class OfficialNotifications_HitMiddleQuestionBlockNearPurpleToad extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.entityImage = <Image key={`${key} - entity image`} className="question-block-image" variable="question-block-sm3dw" isSquared/>
             return this._addCharacterImage('Purple Toad', key,
                 this._addStoryMode(key, keyMap,),)
@@ -142,7 +142,7 @@ export class OfficialNotifications
     }('Hit Middle ? Block near Purple Toad', 'hit ? Block near Purple Toad',)
     public static readonly FINISH_REBUILDING_THE_CASTLE =                      new class OfficialNotifications_FinishRebuildingTheCastle extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addStoryMode(key, keyMap,)
         }
 
@@ -151,7 +151,7 @@ export class OfficialNotifications
 
     public static readonly RECEIVE_A_LIKE =                                    new class OfficialNotifications_ReceiveALike extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addLikeImage(key, keyMap,)
         }
 
@@ -159,21 +159,21 @@ export class OfficialNotifications
     public static readonly RECEIVE_A_COMMENT =                                 new OfficialNotifications('Receive a comment', 'course.receive comment',)
     public static readonly RECEIVE_A_LOT_OF_FEEDBACK_1 =                       new class OfficialNotifications_ReceiveALotOfFeedback1 extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
     }('Receive a lot of feedback - 1', translationKey_receiveFeedback,)
     public static readonly RECEIVE_A_LOT_OF_FEEDBACK_2 =                       new class OfficialNotifications_ReceiveALotOfFeedback2 extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
     }('Receive a lot of feedback - 2', translationKey_receiveFeedback,)
     public static readonly RECEIVE_X_PLAY =                                    new class OfficialNotifications_ReceiveXPlay extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
@@ -181,7 +181,7 @@ export class OfficialNotifications
 
     public static readonly LIKE_A_COURSE =                                     new class OfficialNotifications_LikeACourse extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addLikeImage(key,
                 this._addCourse(key, keyMap,),)
         }
@@ -189,14 +189,14 @@ export class OfficialNotifications
     }('Like a course', 'course.like',)
     public static readonly POST_A_COMMENT =                                    new class OfficialNotifications_PostAComment extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
     }('Post a comment', 'course.comment',)
     public static readonly UPLOAD_A_COURSE =                                   new class OfficialNotifications_UploadACourse extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
@@ -204,14 +204,14 @@ export class OfficialNotifications
 
     public static readonly _1_OF_1ST_CLEAR_TO_FINISH_A_COURSE =                new class OfficialNotifications_1Of1stClearToFinishACourse extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
     }('1 of 1st clear to finish a course', 'course.1st to clear - 1', 1,)
     public static readonly X_OF_1ST_CLEAR_TO_FINISH_A_COURSE =                 new class OfficialNotifications_XOf1stClearToFinishACourse extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourses(key, keyMap,)
         }
 
@@ -219,14 +219,14 @@ export class OfficialNotifications
 
     public static readonly CLEAR_1_COURSE =                                    new class OfficialNotifications_Clear1Course extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key, keyMap,)
         }
 
     }('Clear 1 course', 'course.clear - 1', 1,)
     public static readonly CLEAR_X_COURSE =                                    new class OfficialNotifications_ClearXCourse extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourses(key, keyMap,)
         }
 
@@ -234,7 +234,7 @@ export class OfficialNotifications
 
     public static readonly PLAY_X_COURSE =                                     new class OfficialNotifications_PlayXCourse extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourses(key, keyMap,)
         }
 
@@ -242,14 +242,14 @@ export class OfficialNotifications
 
     public static readonly SET_1_WORLD_RECORD =                                new class OfficialNotifications_Set1WorldRecord extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addWorldRecord(key, keyMap,)
         }
 
     }('Set 1 world record', 'set world record',)
     public static readonly HOLD_X_WORLD_RECORD =                               new class OfficialNotifications_HoldXWorldRecord extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addWorldRecords(key, keyMap,)
         }
 
@@ -258,21 +258,21 @@ export class OfficialNotifications
 
     public static readonly WIN_1_MATCH_IN_MULTIPLAYER_VS =                     new class OfficialNotifications_Win1MatchInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key, keyMap,)
         }
 
     }('Win 1 match in Multiplayer VS', 'win match - 1', 1,)
     public static readonly WIN_X_MATCH_IN_MULTIPLAYER_VS =                     new class OfficialNotifications_WinXMatchInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key, keyMap,)
         }
 
     }('Win # match in Multiplayer VS', 'win match', 2, 5, 10,)
     public static readonly WIN_CONSECUTIVE_MATCH_IN_MULTIPLAYER_VS =           new class OfficialNotifications_WinConsecutiveMatchInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key, keyMap,)
         }
 
@@ -280,7 +280,7 @@ export class OfficialNotifications
 
     public static readonly RANK_C_IN_MULTIPLAYER_VS =                          new class OfficialNotifications_RankCInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key,
                 this._addRank('C', key, keyMap,),)
         }
@@ -288,7 +288,7 @@ export class OfficialNotifications
     }('Rank C in Multiplayer VS', translationKey_rank,)
     public static readonly RANK_B_IN_MULTIPLAYER_VS =                          new class OfficialNotifications_RankBInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key,
                 this._addRank('B', key, keyMap,),)
         }
@@ -296,7 +296,7 @@ export class OfficialNotifications
     }('Rank B in Multiplayer VS', translationKey_rank,)
     public static readonly RANK_A_IN_MULTIPLAYER_VS =                          new class OfficialNotifications_RankAInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key,
                 this._addRank('A', key, keyMap,),)
         }
@@ -304,7 +304,7 @@ export class OfficialNotifications
     }('Rank A in Multiplayer VS', translationKey_rank,)
     public static readonly RANK_S_IN_MULTIPLAYER_VS =                          new class OfficialNotifications_RankSInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key,
                 this._addRank('S', key, keyMap,),)
         }
@@ -312,7 +312,7 @@ export class OfficialNotifications
     }('Rank S in Multiplayer VS', translationKey_rank,)
     public static readonly RANK_S_PLUS_IN_MULTIPLAYER_VS =                     new class OfficialNotifications_RankSPlusInMultiplayerVS extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerVS(key,
                 this._addRank('S⁺', key, keyMap,),)
         }
@@ -321,7 +321,7 @@ export class OfficialNotifications
 
     public static readonly CLEAR_1_COURSE_IN_MULTIPLAYER_COOP =                new class OfficialNotifications_Clear1CourseInMultiplayerCoop extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerCoop(key,
                 this._addCourse(key, keyMap,),)
         }
@@ -329,7 +329,7 @@ export class OfficialNotifications
     }('Clear 1 course in Multiplayer Co-op', 'clear course multiplayer coop - 1', 1,)
     public static readonly CLEAR_X_COURSE_IN_MULTIPLAYER_COOP =                new class OfficialNotifications_ClearXCourseInMultiplayerCoop extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMultiplayerCoop(key,
                 this._addCourses(key, keyMap,),)
         }
@@ -338,7 +338,7 @@ export class OfficialNotifications
 
     public static readonly X_MAKER_POINT_EARN =                                new class OfficialNotifications_XMakerPointsEarn extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addMakerPoints(key, keyMap,)
         }
 
@@ -346,7 +346,7 @@ export class OfficialNotifications
 
     public static readonly HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EASY =         new class OfficialNotifications_HighScoreOfXInEndlessChallengeEasy extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key,
                 this._addEndlessChallenge(key,
                     this._addDifficulty('easy', key, keyMap,),),)
@@ -355,7 +355,7 @@ export class OfficialNotifications
     }('High score of # in Endless Challenge (easy)', translationKey_highScore, ...possibleAmountInEndlessMarioEasyOrNormal,)
     public static readonly HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_NORMAL =       new class OfficialNotifications_HighScoreOfXInEndlessChallengeNormal extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key,
                 this._addEndlessChallenge(key,
                     this._addDifficulty('normal', key, keyMap,),),)
@@ -364,7 +364,7 @@ export class OfficialNotifications
     }('High score of # in Endless Challenge (normal)', translationKey_highScore, ...possibleAmountInEndlessMarioEasyOrNormal,)
     public static readonly HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_EXPERT =       new class OfficialNotifications_HighScoreOfXInEndlessChallengeExpert extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key,
                 this._addEndlessChallenge(key,
                     this._addDifficulty('expert', key, keyMap,),),)
@@ -373,7 +373,7 @@ export class OfficialNotifications
     }('High score of # in Endless Challenge (expert)', translationKey_highScore, ...possibleAmountInEndlessMarioExpertOrSuperExpert,)
     public static readonly HIGH_SCORE_OF_X_IN_ENDLESS_CHALLENGE_SUPER_EXPERT = new class OfficialNotifications_HighScoreOfXInEndlessChallengeSuperExpert extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addCourse(key,
                 this._addEndlessChallenge(key,
                     this._addDifficulty('super expert', key, keyMap,),),)
@@ -383,7 +383,7 @@ export class OfficialNotifications
 
     public static readonly GOLD_MEDAL_ON_THE_LEADERBOARD =                     new class OfficialNotifications_GoldMedalOnTheLeaderboard extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.medalImage = <Image key={`${key} - gold medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_03^u.tiff`} fallbackName="Gold medal image"/>
             return this._addLeaderboard(key, keyMap,)
         }
@@ -391,7 +391,7 @@ export class OfficialNotifications
     }('Gold medal on the leaderboard', translationKey_medal,)
     public static readonly SILVER_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_SilverMedalOnTheLeaderboard extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.medalImage = <Image key={`${key} - silver medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_04^u.tiff`} fallbackName="Silver medal image"/>
             return this._addLeaderboard(key, keyMap,)
         }
@@ -399,7 +399,7 @@ export class OfficialNotifications
     }('Silver medal on the leaderboard', translationKey_medal,)
     public static readonly BRONZE_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_BronzeMedalOnTheLeaderboard extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.medalImage = <Image key={`${key} - bronze medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_05^u.tiff`} fallbackName="Bronze medal image"/>
             return this._addLeaderboard(key, keyMap,)
         }
@@ -407,7 +407,7 @@ export class OfficialNotifications
     }('Bronze medal on the leaderboard', translationKey_medal,)
     public static readonly FIRST_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_1stPlaceOnTheLeaderboard extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.medalImage = <Image key={`${key} - gold medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_00^u.tiff`} fallbackName="Gold medal image (position)"/>
             return super._addLeaderboard(key,
                 this._addPosition(1, 'place', key, keyMap,),)
@@ -416,7 +416,7 @@ export class OfficialNotifications
     }('1st place on the leaderboard', translationKey_place,)
     public static readonly SECOND_PLACE_ON_THE_LEADERBOARD =                   new class OfficialNotifications_2ndPlaceOnTheLeaderboard extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.medalImage = <Image key={`${key} - silver medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_01^u.tiff`} fallbackName="Silver medal image (position)"/>
             return super._addLeaderboard(key,
                 this._addPosition(2, 'place', key, keyMap,),)
@@ -425,7 +425,7 @@ export class OfficialNotifications
     }('2nd place on the leaderboard', translationKey_place,)
     public static readonly THIRD_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_3rdPlaceOnTheLeaderboard extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.medalImage = <Image key={`${key} - bronze medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_02^u.tiff`} fallbackName="Bronze medal image (position)"/>
             return super._addLeaderboard(key,
                 this._addPosition(3, 'place', key, keyMap,),)
@@ -435,7 +435,7 @@ export class OfficialNotifications
 
     public static readonly COLLECT_1_STAMP_IN_THE_NINJI_SPEEDRUNS =            new class OfficialNotifications_Collect1StampInTheNinjiSpeedruns extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addStampImage(key,
                 this._addNinjiSpeedruns(key, keyMap,),)
         }
@@ -443,7 +443,7 @@ export class OfficialNotifications
     }('Collect 1 stamp in the Ninji Speedruns', translationKey_stamp, 1,)
     public static readonly COLLECT_X_STAMP_IN_THE_NINJI_SPEEDRUNS =            new class OfficialNotifications_CollectXStampInTheNinjiSpeedruns extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addStampImage(key,
                 this._addNinjiSpeedruns(key, keyMap,),)
         }
@@ -452,21 +452,21 @@ export class OfficialNotifications
 
     public static readonly UPLOAD_A_SUPER_WORLD =                              new class OfficialNotifications_UploadASuperWorld extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addSuperWorld(key, keyMap,)
         }
 
     }('Upload a Super World', 'super world.upload',)
     public static readonly CLEAR_1_SUPER_WORLD =                               new class OfficialNotifications_Clear1SuperWorld extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addSuperWorld(key, keyMap,)
         }
 
     }('Clear 1 Super World', 'super world.clear - 1', 1,)
     public static readonly CLEAR_X_SUPER_WORLD =                               new class OfficialNotifications_ClearXSuperWorld extends OfficialNotifications {
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addSuperWorlds(key, keyMap,)
         }
 
@@ -484,7 +484,7 @@ export class OfficialNotifications
     readonly #additionalEnglishName: readonly PossibleEnglishNameWithEveryAmount[]
 
     readonly #translationKey
-    #additionalTranslationKeyHolder: ObjectHolder<| PossibleAdditionalTranslationKey | null>
+    #additionalTranslationKeyHolder: ObjectHolder<NullOr<PossibleAdditionalTranslationKey>>
 
     //endregion -------------------- Fields --------------------
 

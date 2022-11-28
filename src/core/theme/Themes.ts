@@ -36,7 +36,7 @@ export class Themes
 
     public static readonly GROUND =      new class Themes_Ground extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInGroundTheme
         }
 
@@ -47,7 +47,7 @@ export class Themes
     }('Ground', 'plain',)
     public static readonly UNDERGROUND = new class Themes_Underground extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInUndergroundTheme
         }
 
@@ -58,7 +58,7 @@ export class Themes
     }('Underground', 'underground',)
     public static readonly UNDERWATER =  new class Themes_Underwater extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInUnderwaterTheme
         }
 
@@ -69,7 +69,7 @@ export class Themes
     }('Underwater', 'water',)
     public static readonly DESERT =      new class Themes_Desert extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInDesertTheme
         }
 
@@ -80,7 +80,7 @@ export class Themes
     }('Desert', 'desert',)
     public static readonly SNOW =        new class Themes_Snow extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInSnowTheme
         }
 
@@ -91,7 +91,7 @@ export class Themes
     }('Snow', 'snow',)
     public static readonly SKY =         new class Themes_Sky extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInSkyTheme
         }
 
@@ -102,7 +102,7 @@ export class Themes
     }('Sky', 'athletic',)
     public static readonly FOREST =      new class Themes_Forest extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInForestTheme
         }
 
@@ -113,7 +113,7 @@ export class Themes
     }('Forest', 'woods',)
     public static readonly GHOST_HOUSE = new class Themes_GhostHouse extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInGhostHouseTheme
         }
 
@@ -124,7 +124,7 @@ export class Themes
     }('Ghost House', 'hauntedhouse',)
     public static readonly AIRSHIP =     new class Themes_Airship extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInAirshipTheme
         }
 
@@ -135,7 +135,7 @@ export class Themes
     }('Airship', 'airship',)
     public static readonly CASTLE =      new class Themes_Castle extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInCastleTheme
         }
 

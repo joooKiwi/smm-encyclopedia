@@ -4,14 +4,13 @@ import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './inter
 import type {AppProperties}                                        from './AppProperties.types'
 import type {MysteryMushroomAppStates}                             from './AppStates.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
 import {AbstractTableApp}         from './withInterpreter/AbstractTableApp'
 import {EMPTY_REACT_ELEMENT}      from '../util/emptyReactVariables'
 import {gameContentTranslation}   from '../lang/components/translationMethods'
 import {MysteryMushroomAppOption} from './options/MysteryMushroomAppOption'
 import {MysteryMushrooms}         from '../core/mysteryMushroom/MysteryMushrooms'
-import {SingleHeaderContent}      from './tools/table/SimpleHeader'
 import {ViewDisplays}             from './withInterpreter/ViewDisplays'
 
 /**
@@ -29,7 +28,7 @@ export default class MysteryMushroomApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'mysteryMushroom'
     }
 
@@ -48,7 +47,7 @@ export default class MysteryMushroomApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
         return new class implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
-            public get iterable(): IterableIterator<MysteryMushrooms> {
+            public get iterable() {
                 return MysteryMushrooms[Symbol.iterator]()
             }
 
@@ -71,7 +70,7 @@ export default class MysteryMushroomApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: MysteryMushrooms,): ReactElement {
+            public createCardListContent(enumerable: MysteryMushrooms,) {
                 const amountOfImages = enumerable.fileName.imageFileNames.length
                 const contains2Images = amountOfImages === 2
 
@@ -117,11 +116,11 @@ export default class MysteryMushroomApp
             }
 
 
-            public createTableContent(option: MysteryMushroomAppOption,): readonly ReactElement[] {
+            public createTableContent(option: MysteryMushroomAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: MysteryMushroomAppOption): | SingleHeaderContent | null {
+            public createTableHeader(option: MysteryMushroomAppOption) {
                 return option.renderTableHeader
             }
 

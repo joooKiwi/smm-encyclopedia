@@ -45,46 +45,46 @@ export abstract class Texts
 
     public static readonly YES = new class Texts_Yes extends Texts {
 
-        public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
+        public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,) {
             return <TextComponent {...properties}/>
         }
 
-        public override renderNameComponent(properties: _NameProperties,): ReactElement {
+        public override renderNameComponent(properties: _NameProperties,) {
             return <NameComponent {...properties}/>
         }
 
-        public override renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
+        public override renderYesNoComponent(properties: _YesOrNoTextProperties,) {
             return <YesOrNoResultTextComponent {...properties}/>
         }
 
-        public override renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
+        public override renderBooleanComponent(properties: _BooleanTextProperties,) {
             return <BooleanTextComponent {...properties}/>
         }
 
-        public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
+        public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,) {
             return <BooleanResultTextComponent {...properties}/>
         }
 
     }(true,)
     public static readonly NO =  new class Texts_No extends Texts {
 
-        public override renderTextComponent(): ReactElement {
+        public override renderTextComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderNameComponent(): ReactElement {
+        public override renderNameComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderYesNoComponent(): ReactElement {
+        public override renderYesNoComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderBooleanComponent(): ReactElement {
+        public override renderBooleanComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderBooleanResultComponent(): ReactElement {
+        public override renderBooleanResultComponent() {
             return EMPTY_REACT_ELEMENT
         }
 

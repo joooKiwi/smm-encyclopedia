@@ -32,14 +32,14 @@ export abstract class Images
 
     public static readonly YES = new class Images_Yes extends Images {
 
-        public override renderComponent(properties: _ImageProperties,): ReactElement {
+        public override renderComponent(properties: _ImageProperties,) {
             return <Image {...properties}/>
         }
 
     }(true,)
     public static readonly NO =  new class Images_No extends Images {
 
-        public override renderComponent(): ReactElement {
+        public override renderComponent() {
             return EMPTY_REACT_ELEMENT
         }
 

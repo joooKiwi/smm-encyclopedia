@@ -3,8 +3,7 @@ import './ThemeApp.scss'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 import type {ThemeAppStates}                                       from './AppStates.types'
 
 import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
@@ -31,7 +30,7 @@ export default class ThemeApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'theme'
     }
 
@@ -42,7 +41,7 @@ export default class ThemeApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Themes, ThemeAppOption> {
         return new class implements AppInterpreterWithTable<Themes, ThemeAppOption> {
 
-            public get iterable(): IterableIterator<Themes> {
+            public get iterable() {
                 return Themes[Symbol.iterator]()
             }
 
@@ -64,7 +63,7 @@ export default class ThemeApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: Themes,): ReactElement {
+            public createCardListContent(enumerable: Themes,) {
                 const {englishName, englishNameInHtml, endlessMarioImagePath,} = enumerable
 
                 return <div className="card-body" id={`theme-${englishNameInHtml}`}>
@@ -99,11 +98,11 @@ export default class ThemeApp
             }
 
 
-            public createTableContent(option: ThemeAppOption,): readonly ReactElement[] {
+            public createTableContent(option: ThemeAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: ThemeAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: ThemeAppOption,) {
                 return option.renderTableHeader
             }
 

@@ -27,7 +27,7 @@ export abstract class PredefinedConverter
 
     public static readonly NUMBER =           new class PredefinedConverter_Number extends PredefinedConverter {
 
-        public newConvertor(value: string,): Converter<string, number> {
+        public newConvertor(value: string,) {
             return new StringToNumberConverter(value)
         }
 
@@ -35,14 +35,14 @@ export abstract class PredefinedConverter
             return value => ConverterPatterns.NUMBER_PATTERN.test(value)
         }
 
-        public newConversion(value: string,): number {
+        public newConversion(value: string,) {
             return ConverterUtil.convertToNumber(value)
         }
 
     }('number',)
     public static readonly NULLABLE_NUMBER =  new class PredefinedConverter_NullableNumber extends PredefinedConverter {
 
-        public newConvertor(value: string,): Converter<string, | number | null> {
+        public newConvertor(value: string,) {
             return new StringToNullableNumberConverter(value)
         }
 
@@ -50,15 +50,15 @@ export abstract class PredefinedConverter
             return value => value === '' || ConverterPatterns.NUMBER_PATTERN.test(value)
         }
 
-        public newConversion(value: string,): | number | null {
+        public newConversion(value: string,) {
             return value === '' ? null : PredefinedConverter.NUMBER.newConversion(value)
         }
 
-    } ('nullable number', 'number',)
+    }('nullable number', 'number',)
 
     public static readonly BOOLEAN =          new class PredefinedConverter_Boolean extends PredefinedConverter {
 
-        public newConvertor(value: string,): Converter<string, boolean> {
+        public newConvertor(value: string,) {
             return new StringToBooleanConverter(value)
         }
 
@@ -66,14 +66,14 @@ export abstract class PredefinedConverter
             return value => ConverterPatterns.BOOLEAN_PATTERN.test(value)
         }
 
-        public newConversion(value: string,): boolean {
+        public newConversion(value: string,) {
             return ConverterUtil.convertToBoolean(value)
         }
 
     }('boolean',)
     public static readonly NULLABLE_BOOLEAN = new class PredefinedConverter_NullableBoolean extends PredefinedConverter {
 
-        public newConvertor(value: string,): Converter<string, | boolean | null> {
+        public newConvertor(value: string,) {
             return new StringToNullableBooleanConverter(value)
         }
 
@@ -81,7 +81,7 @@ export abstract class PredefinedConverter
             return value => value === '' || ConverterPatterns.BOOLEAN_PATTERN.test(value)
         }
 
-        public newConversion(value: string,): | boolean | null {
+        public newConversion(value: string,) {
             return value === '' ? null : PredefinedConverter.BOOLEAN.newConversion(value)
         }
 
@@ -89,22 +89,22 @@ export abstract class PredefinedConverter
 
     public static readonly STRING =           new class PredefinedConverter_String extends PredefinedConverter {
 
-        public newConvertor(value: string,): Converter<string, string> {
+        public newConvertor(value: string,) {
             return new StringToStringConverter(value)
         }
 
-        public newValidation(): ValidationCallback {
+        public newValidation() {
             return () => true
         }
 
-        public newConversion(value: string,): string {
+        public newConversion(value: string,) {
             return value
         }
 
     }('string',)
     public static readonly EMPTYABLE_STRING = new class PredefinedConverter_EmptyableString extends PredefinedConverter {
 
-        public newConvertor(value: string,): Converter<string, | string | null> {
+        public newConvertor(value: string,) {
             return new StringToEmptyableStringConverter(value)
         }
 
@@ -112,22 +112,22 @@ export abstract class PredefinedConverter
             return value => ConverterPatterns.EMPTYABLE_STRING_PATTERN.test(value)
         }
 
-        public newConversion(value: string,): | string | null {
+        public newConversion(value: string,) {
             return ConverterUtil.convertToEmptyableString(value)
         }
 
     }('emptyable string', 'string',)
     public static readonly NULLABLE_STRING =  new class PredefinedConverter_NullableString extends PredefinedConverter {
 
-        public newConvertor(value: string,): Converter<string, | string | null> {
+        public newConvertor(value: string,) {
             return new StringToNullableStringConverter(value)
         }
 
-        public newValidation(): (value: string,) => boolean {
+        public newValidation(): ValidationCallback {
             return value => ConverterPatterns.NULLABLE_STRING_PATTERN.test(value)
         }
 
-        public newConversion(value: string,): | string | null {
+        public newConversion(value: string,) {
             return ConverterUtil.convertToNullableString(value)
         }
 
@@ -138,7 +138,7 @@ export abstract class PredefinedConverter
         public newConvertor(value: string, validatingValue: number,): Converter<string, number>
         public newConvertor(value: string, validatingValue: any[],): never
         public newConvertor(value: string, validatingValue: any,): | Converter<string, number> | never
-        public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, number> | never {
+        public newConvertor(value: string, validatingValue: | any | any[],) {
             assert(typeof validatingValue == 'number', 'The validating value cannot be a different value than a number',)
             return new StringToSingleNumberConverter(value, validatingValue,)
         }
@@ -161,7 +161,7 @@ export abstract class PredefinedConverter
         public newConvertor(value: string, validatingValue: boolean,): Converter<string, string>
         public newConvertor(value: string, validatingValue: any[],): never
         public newConvertor(value: string, validatingValue: any,): | Converter<string, string> | never
-        public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, string> | never {
+        public newConvertor(value: string, validatingValue: | any | any[],) {
             assert(typeof validatingValue == 'string', 'The validating value cannot be a different value than a string',)
             return new StringToSingleStringConverter(value, validatingValue,)
         }
@@ -184,7 +184,7 @@ export abstract class PredefinedConverter
         public newConvertor(value: string, validatingValue: string,): Converter<string, boolean>
         public newConvertor(value: string, validatingValue: any[],): never
         public newConvertor(value: string, validatingValue: any,): | Converter<string, boolean> | never
-        public newConvertor(value: string, validatingValue: | any | any[],): | Converter<string, boolean> | never {
+        public newConvertor(value: string, validatingValue: | any | any[],) {
             assert(typeof validatingValue == 'boolean', 'The validating value cannot be a different value than a boolean',)
             return new StringToSingleBooleanConverter(value, validatingValue,)
         }

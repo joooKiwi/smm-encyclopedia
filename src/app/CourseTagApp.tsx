@@ -40,7 +40,7 @@ export default class CourseTagApp
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'courseTag'
     }
 
@@ -69,7 +69,7 @@ export default class CourseTagApp
 
         return new class implements AppInterpreterWithCardList<CourseTags> {
 
-            public get iterable(): IterableIterator<CourseTags> {
+            public get iterable() {
                 return $this.type.iterator
             }
 
@@ -86,7 +86,7 @@ export default class CourseTagApp
                 return 'list'
             }
 
-            public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,): ReactElement {
+            public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,) {
                 return courseTag.firstAppearance == null
                     ? EMPTY_REACT_ELEMENT
                     : <sub key={`${name} - first appearance`}>{courseTag.firstAppearance.simpleName}</sub>

@@ -28,43 +28,43 @@ export class PlayerSoundEffectTriggers
 
     public static readonly JUMP_AFTER_LANDING =                    new class PlayerSoundEffectTriggers_JumpAfterLanding extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenJumpingAfterLanding(): boolean {
+        public override get doesTriggerOnPlayerWhenJumpingAfterLanding() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('After land + jump',)
     public static readonly TURN_AROUND_AFTER_BEING_AT_FULL_SPEED = new class PlayerSoundEffectTriggers_TurnAroundAfterBeingAtFullSpeed extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): boolean {
+        public override get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Turn after full speed',)
     public static readonly ON_CROUCH =                             new class PlayerSoundEffectTriggers_OnCrouch extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenCrouching(): boolean {
+        public override get doesTriggerOnPlayerWhenCrouching() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Crouch',)
     public static readonly AFTER_3_SECONDS_OF_NON_MOVEMENT =       new class PlayerSoundEffectTriggers_After3SecondsOfNonMovement extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): boolean {
+        public override get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly() {
             return true
         }
 
@@ -72,12 +72,12 @@ export class PlayerSoundEffectTriggers
 
     public static readonly COLLECT_POWER_UP =                      new class PlayerSoundEffectTriggers_CollectPowerUp extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenCollectingAPowerUp(): boolean {
+        public override get doesTriggerOnPlayerWhenCollectingAPowerUp() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.mushroomImages = <i key={`${key} (mushroom images)`} className="mushroom-images-container">
                 <Image className="super-mushroom-image" variable="super-mushroom" isSquared/>
                 <>--Weird Mushroom--</>{/*<Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>,*/}
@@ -120,12 +120,12 @@ export class PlayerSoundEffectTriggers
     }('Power-up collected',)
     public static readonly GET_INTO_AN_ENTITY =                    new class PlayerSoundEffectTriggers_GetIntoAnEntity extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenGettingIntoAEntity(): boolean {
+        public override get doesTriggerOnPlayerWhenGettingIntoAEntity() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.clownCarImage = <Image key={`${key} (Clown Car image)`} className="clown-car-image" variable="clown-car" isSquared/>
             keyMap.lakituCloudImage = <Image key={`${key} (Lakitu's Cloud image)`} className="lakitu-cloud-image" variable="lakitu-cloud" isSquared/>
             keyMap.shoeImages = <i key={`${key} (Shoe images)`} className="shoe-images-container">
@@ -145,52 +145,52 @@ export class PlayerSoundEffectTriggers
 
     public static readonly AT_SPAWN =                              new class PlayerSoundEffectTriggers_AtSpawn extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerAtSpawn(): boolean {
+        public override get doesTriggerOnPlayerAtSpawn() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Spawn',)
     public static readonly TAKE_DAMAGE =                           new class PlayerSoundEffectTriggers_TakeDamage extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenTakingDamage(): boolean {
+        public override get doesTriggerOnPlayerWhenTakingDamage() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Take damage',)
     public static readonly LOSE_A_LIFE =                           new class PlayerSoundEffectTriggers_LoseALife extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenLosingALife(): boolean {
+        public override get doesTriggerOnPlayerWhenLosingALife() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Lose life',)
     public static readonly TAKE_DAMAGE_OR_LOSE_A_LIFE =            new class PlayerSoundEffectTriggers_TakeDamageOrLoseALife extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenTakingDamage(): boolean {
+        public override get doesTriggerOnPlayerWhenTakingDamage() {
             return true
         }
 
-        public override get doesTriggerOnPlayerWhenLosingALife(): boolean {
+        public override get doesTriggerOnPlayerWhenLosingALife() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
@@ -294,7 +294,7 @@ export class PlayerSoundEffectTriggers
         const keyMap: TranslationReplaceKeysMap = {}
 
         return <TextComponent classes={['playerSoundEffectTrigger-container']}
-                           content={gameContentTranslation(`soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
+                              content={gameContentTranslation(`soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
     //endregion -------------------- Component methods --------------------

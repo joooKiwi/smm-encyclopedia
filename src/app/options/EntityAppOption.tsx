@@ -56,7 +56,7 @@ export abstract class EntityAppOption
      */
     public static readonly IMAGES = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     {englishName, englishNameInHtml, uniqueImage,} = enumeration
@@ -104,7 +104,7 @@ export abstract class EntityAppOption
             }
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
@@ -112,7 +112,7 @@ export abstract class EntityAppOption
 
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
@@ -120,7 +120,7 @@ export abstract class EntityAppOption
             }
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.gameHeader
         }
 
@@ -129,7 +129,7 @@ export abstract class EntityAppOption
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
@@ -146,7 +146,7 @@ export abstract class EntityAppOption
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
@@ -163,7 +163,7 @@ export abstract class EntityAppOption
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
@@ -180,7 +180,7 @@ export abstract class EntityAppOption
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryNameContainer
@@ -189,7 +189,7 @@ export abstract class EntityAppOption
             }
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.categoryHeader
         }
 
@@ -202,7 +202,7 @@ export abstract class EntityAppOption
 
     public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
                 const entity = enumeration.reference
@@ -276,19 +276,19 @@ export abstract class EntityAppOption
 
     //region -------------------- Getter methods --------------------
 
-    protected static get _gameStyles() {
+    protected static get _gameStyles(): readonly GameStyles[] {
         return this.#gameStyles ??= GameStyles.values.toArray()
     }
 
-    protected static get _gameStyles_unusedImages() {
+    protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | readonly [] {
         return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS,]
     }
 
-    protected static get times() {
+    protected static get times(): readonly Times[] {
         return this.#times ??= Times.values.toArray()
     }
 
-    protected static get themes() {
+    protected static get themes(): readonly Themes[] {
         return this.#themes ??= Themes.courseThemes
     }
 

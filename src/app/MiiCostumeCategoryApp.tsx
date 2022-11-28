@@ -3,7 +3,7 @@ import {lazy} from 'react'
 import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
 import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
 import {gameContentTranslation} from '../lang/components/translationMethods'
@@ -27,7 +27,7 @@ export default class EveryEntityCategoriesApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'miiCostumeCategory'
     }
 
@@ -40,7 +40,7 @@ export default class EveryEntityCategoriesApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {
         return new class implements AppInterpreterWithCardList<MiiCostumeCategories> {
 
-            public get iterable(): IterableIterator<MiiCostumeCategories> {
+            public get iterable() {
                 return MiiCostumeCategories[Symbol.iterator]()
             }
 
@@ -62,7 +62,7 @@ export default class EveryEntityCategoriesApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: MiiCostumeCategories,): ReactElement {
+            public createCardListContent(enumerable: MiiCostumeCategories,) {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>
             }
 

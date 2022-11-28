@@ -3,7 +3,7 @@ import './EntityCategoryApp.scss'
 import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
 import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
 import {EntityCategories}       from '../core/entityCategory/EntityCategories'
@@ -26,7 +26,7 @@ export default class EntityCategoryApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'entityCategory'
     }
 
@@ -37,7 +37,7 @@ export default class EntityCategoryApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
         return new class implements AppInterpreterWithCardList<EntityCategories> {
 
-            public get iterable(): IterableIterator<EntityCategories> {
+            public get iterable() {
                 return EntityCategories[Symbol.iterator]()
             }
 
@@ -58,7 +58,7 @@ export default class EntityCategoryApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: EntityCategories,): ReactElement {
+            public createCardListContent(enumerable: EntityCategories,) {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>
             }
 

@@ -3,8 +3,7 @@ import './SoundEffectApp.scss'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 import type {SoundEffectAppStates}                                 from './AppStates.types'
 
 import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
@@ -28,7 +27,7 @@ export default class SoundEffectApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'soundEffect'
     }
 
@@ -39,7 +38,7 @@ export default class SoundEffectApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
         return new class implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
-            public get iterable(): IterableIterator<SoundEffects> {
+            public get iterable() {
                 return SoundEffects[Symbol.iterator]()
             }
 
@@ -56,7 +55,7 @@ export default class SoundEffectApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: SoundEffects,): ReactElement {
+            public createCardListContent(enumerable: SoundEffects,) {
                 return <div>
                     <div className="soundEffect-images-container">
                         {SoundEffectAppOption.renderSMM1And3DSImage(enumerable)}
@@ -88,11 +87,11 @@ export default class SoundEffectApp
                 }
             }
 
-            public createTableContent(option: SoundEffectAppOption,): readonly ReactElement[] {
+            public createTableContent(option: SoundEffectAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: SoundEffectAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: SoundEffectAppOption,) {
                 return option.renderTableHeader
             }
 

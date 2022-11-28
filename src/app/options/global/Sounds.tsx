@@ -34,14 +34,14 @@ export abstract class Sounds
 
     public static readonly YES = new class Sounds_Yes extends Sounds {
 
-        public override renderComponent(properties: SimpleSoundProperties,): ReactElement {
+        public override renderComponent(properties: SimpleSoundProperties,) {
             return <SimpleSoundComponent {...properties}/>
         }
 
     }(true,)
     public static readonly NO =  new class Sounds_No extends Sounds {
 
-        public override renderComponent(): ReactElement {
+        public override renderComponent() {
             return EMPTY_REACT_ELEMENT
         }
 

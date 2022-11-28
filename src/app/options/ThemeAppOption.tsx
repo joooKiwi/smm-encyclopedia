@@ -35,7 +35,7 @@ export abstract class ThemeAppOption
 
     public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
-        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: Themes,) {
             return [
                 enumeration.renderSingleComponent(false),
                 enumeration.endlessMarioImagePath != null ? <Image source={enumeration.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/> : EMPTY_REACT_ELEMENT,
@@ -55,7 +55,7 @@ export abstract class ThemeAppOption
     }()
     public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
-        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: Themes,) {
             return <div className="nameWithContent-container">
                 <div className="col-10">
                     {CommonOptions.get.getGameContent(enumeration)}
@@ -65,14 +65,14 @@ export abstract class ThemeAppOption
             </div>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
     }()
     public static readonly NIGHT_EFFECT =           new class ThemeAppOption_NightEffect extends ThemeAppOption {
 
-        protected override _createContentOption({reference: {courseTheme,},}: Themes,): PossibleRenderReactElement {
+        protected override _createContentOption({reference: {courseTheme,},}: Themes,) {
             return <NightEffectComponent theme={courseTheme}/>
         }
 

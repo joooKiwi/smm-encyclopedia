@@ -33,7 +33,7 @@ export abstract class GameStyleAppOption
 
     public static readonly IMAGE =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
-        protected override _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: GameStyles,) {
             return enumeration.renderSingleComponent
         }
 
@@ -44,18 +44,18 @@ export abstract class GameStyleAppOption
     }()
     public static readonly NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
-        protected override _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: GameStyles,) {
             return CommonOptions.get.getNameContent(enumeration)
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
     }()
     public static readonly GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
 
-        protected override _createContentOption({reference,}: GameStyles,): PossibleRenderReactElement {
+        protected override _createContentOption({reference,}: GameStyles,) {
             return [
                 <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker1}/>,
                 <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMakerFor3DS}/>,
@@ -63,14 +63,14 @@ export abstract class GameStyleAppOption
             ]
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.gameHeaderWithAllGames
         }
 
     }()
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
-        protected override _createContentOption({reference,}: GameStyles,): PossibleRenderReactElement {
+        protected override _createContentOption({reference,}: GameStyles,) {
             return <NightEffectComponent gameStyle={reference}/>
         }
 

@@ -37,7 +37,7 @@ export abstract class MiiCostumeAppOption
 
     public static readonly IMAGE =                 new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
 
@@ -45,25 +45,25 @@ export abstract class MiiCostumeAppOption
             }
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): NullOr<SingleHeaderContent> {
             return {key: 'image', element: contentTranslation('Image'),}
         }
 
     }(true,)
     public static readonly NAME =                  new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION())
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
     }(true,)
     public static readonly OFFICIAL_NOTIFICATION = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
                 const miiCostume = enumeration.reference
@@ -77,7 +77,7 @@ export abstract class MiiCostumeAppOption
             }
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption(): NullOr<SingleHeaderContent> {
             //TODO add new translation to the header value.
             return {key: 'officialNotification', element: '--Official notification--',}
         }
@@ -86,7 +86,7 @@ export abstract class MiiCostumeAppOption
 
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryContainer.nameContainer
@@ -98,7 +98,7 @@ export abstract class MiiCostumeAppOption
             }
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.categoryHeader
         }
 
@@ -107,8 +107,7 @@ export abstract class MiiCostumeAppOption
      * Tell whenever a {@link MiiCostumeAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT =      new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {
-    }(false,)
+    public static readonly CATEGORY_AS_TEXT =      new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {}(false,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------

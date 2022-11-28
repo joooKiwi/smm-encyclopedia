@@ -3,7 +3,7 @@ import './SoundEffectCategoryApp.scss'
 import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
 import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
 import {gameContentTranslation} from '../lang/components/translationMethods'
@@ -26,7 +26,7 @@ export default class SoundEffectCategoryApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'soundEffectCategory'
     }
 
@@ -37,7 +37,7 @@ export default class SoundEffectCategoryApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
         return new class implements AppInterpreterWithCardList<SoundEffectCategories> {
 
-            public get iterable(): IterableIterator<SoundEffectCategories> {
+            public get iterable() {
                 return SoundEffectCategories[Symbol.iterator]()
             }
 
@@ -58,7 +58,7 @@ export default class SoundEffectCategoryApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: SoundEffectCategories,): ReactElement {
+            public createCardListContent(enumerable: SoundEffectCategories,) {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>
             }
 

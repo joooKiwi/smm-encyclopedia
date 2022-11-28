@@ -4,8 +4,7 @@ import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './inter
 import type {AppProperties}                                        from './AppProperties.types'
 import type {GameStyleAppStates}                                   from './AppStates.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
 import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
 import {gameContentTranslation} from '../lang/components/translationMethods'
@@ -39,7 +38,7 @@ export default class GameStyleApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
         return new class implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
-            public get iterable(): IterableIterator<GameStyles> {
+            public get iterable() {
                 return GameStyles[Symbol.iterator]()
             }
 
@@ -60,7 +59,7 @@ export default class GameStyleApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: GameStyles,): ReactElement {
+            public createCardListContent(enumerable: GameStyles,) {
                 return <div className="card-body" id={`gameStyle-${enumerable.englishNameInHtml}`}>
                     {enumerable.renderSingleComponent}
                 </div>
@@ -88,11 +87,11 @@ export default class GameStyleApp
             }
 
 
-            public createTableContent(option: GameStyleAppOption,): readonly ReactElement[] {
+            public createTableContent(option: GameStyleAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: GameStyleAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: GameStyleAppOption,) {
                 return option.renderTableHeader
             }
 

@@ -32,45 +32,45 @@ export abstract class SoundEffectAppOption
 
     public static readonly GAME =             new class GameStyleAppOption_Game extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             return [
                 SoundEffectAppOption.renderSMM1And3DSImage(enumeration),
                 SoundEffectAppOption.renderSMM2Image(enumeration),
             ]
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.gameHeaderWithMainGames
         }
 
     }()
     public static readonly NAME =             new class GameStyleAppOption_Name extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             return CommonOptions.get.getNameContent(enumeration)
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
     }()
     public static readonly CATEGORY =         new class GameStyleAppOption_Category extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             const {reference,} = enumeration
 
             return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imagePath,)
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.categoryHeader
         }
 
     }()
     public static readonly PLAYER_BEHAVIOUR = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             return enumeration.reference.playerSoundEffectTriggerContainer.createNewComponent(enumeration.englishName,)
         }
 
@@ -81,7 +81,7 @@ export abstract class SoundEffectAppOption
     }()
     public static readonly SOUNDS = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
-        protected override _createContentOption({englishName, sounds_exclusiveSmm1, sounds_standaloneSmm1, sounds_smm2,}: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption({englishName, sounds_exclusiveSmm1, sounds_standaloneSmm1, sounds_smm2,}: SoundEffects,) {
             const isSMM1Empty = sounds_exclusiveSmm1.length === 0,
                 isSMM2Empty = sounds_smm2.length === 0
 

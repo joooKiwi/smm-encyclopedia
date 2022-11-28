@@ -4,8 +4,7 @@ import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './inter
 import type {AppProperties}                                        from './AppProperties.types'
 import type {MiiCostumeAppStates}                                  from './AppStates.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
 import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
 import {gameContentTranslation} from '../lang/components/translationMethods'
@@ -26,7 +25,7 @@ export default class MiiCostumeApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'miiCostume'
     }
 
@@ -39,7 +38,7 @@ export default class MiiCostumeApp
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
         return new class implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
-            public get iterable(): IterableIterator<MiiCostumes> {
+            public get iterable() {
                 return MiiCostumes[Symbol.iterator]()
             }
 
@@ -61,7 +60,7 @@ export default class MiiCostumeApp
                 return 'list'
             }
 
-            public createCardListContent({reference, englishName, imagePath,}: MiiCostumes,): ReactElement {
+            public createCardListContent({reference, englishName, imagePath,}: MiiCostumes,) {
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
                 return <div className={`${category}`}>
                     <Image source={imagePath} fallbackName={englishName}/>
@@ -93,11 +92,11 @@ export default class MiiCostumeApp
             }
 
 
-            public createTableContent(option: MiiCostumeAppOption,): readonly ReactElement[] {
+            public createTableContent(option: MiiCostumeAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: MiiCostumeAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: MiiCostumeAppOption,) {
                 return option.renderTableHeader
             }
 

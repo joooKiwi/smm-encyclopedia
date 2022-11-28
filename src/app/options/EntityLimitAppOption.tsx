@@ -24,7 +24,7 @@ export abstract class EntityLimitAppOption
 
     public static readonly ACRONYM = new class EntityLimitAppOption_Acronym extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: EntityLimits,) {
             const finalAcronym = alternativeAcronym == null
                 ? acronym == null
                     ? ''
@@ -41,7 +41,7 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly NAME = new class EntityLimitAppOption_Name extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference,}: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference,}: EntityLimits,) {
             return [
                 <NameComponent id="name" name={reference} popoverOrientation="bottom"/>,
                 <NameComponent id="alternativeName" name={reference.alternativeContainer} popoverOrientation="bottom"/>,
@@ -61,7 +61,7 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference, englishName,}: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference, englishName,}: EntityLimits,) {
             return [
                 <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
                 <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
@@ -80,7 +80,7 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly TYPE = new class EntityLimitAppOption_Type extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference: {type,},}: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference: {type,},}: EntityLimits,) {
             return <TextComponent content={gameContentTranslation(type.englishCommonText)}/>
         }
 
