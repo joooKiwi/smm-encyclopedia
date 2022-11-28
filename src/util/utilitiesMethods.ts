@@ -35,6 +35,15 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
     return true
 }
 
+/**
+ * Define if the value is an empty string or nullable (<b>null</b> / <b>undefined</b>)
+ *
+ * @param value The value to compare
+ */
+export function isNullableEmptyString(value: unknown,): value is Nullable<''> {
+    return value === '' || value == null
+}
+
 export function assert(condition: boolean, message: string,): asserts condition {
     if (isInProduction)
         return
