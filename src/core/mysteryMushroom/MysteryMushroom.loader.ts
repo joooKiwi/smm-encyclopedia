@@ -15,9 +15,9 @@ import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesRe
 import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from './properties/sound/SoundEffectWhenCollected'
 import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}                                                                                                                                                            from './properties/sound/SoundEffectOnMovement'
 import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from './properties/sound/SoundEffectOnTurnAfterRun'
+import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from './MysteryMushrooms.types'
 import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                     from '../../lang/Loader.types'
 import type {SoundPropertyTemplate}                                                                                                                                                                                              from './properties/sound/SoundProperty.template'
-import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from './MysteryMushrooms.types'
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
 import {CSVLoader}               from '../../util/loader/CSVLoader'

@@ -73,10 +73,10 @@ export interface LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM
 
     /**
      * Return a {@link Map} based on the enum {@link EntityLimits}
-     * with every values stored inside {@link LimitProperty this instance}
+     * with every value stored inside {@link LimitProperty this instance}
      * as a boolean.
      *
-     * @note It contain every values of the {@link EntityLimits}
+     * @note It contain every value of the {@link EntityLimits}
      */
     toLimitMap(): ReadonlyMap<EntityLimits, boolean>
 

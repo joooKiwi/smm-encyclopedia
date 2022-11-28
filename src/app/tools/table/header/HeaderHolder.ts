@@ -26,7 +26,7 @@ export interface HeaderHolder {
     //region -------------------- Sub level --------------------
 
     /**
-     * The sub-level of the header.
+     * The sub level of the header.
      *
      * @note It is always a positive number (with 0 as a possible value)
      */

@@ -15,12 +15,12 @@ export class InGameImageFactory {
      * Create the {@link InGameImage image}
      * based on the value received.
      *
-     * @param builder_or_image the builder or null
+     * @param builder the builder or null
      */
-    public static create(builder_or_image: PossibleImageReceivedOnFactory,): InGameImage {
-        return builder_or_image == null
+    public static create(builder: PossibleImageReceivedOnFactory,): InGameImage {
+        return builder == null
             ? this.EMPTY_IN_GAME_IMAGE
-            : builder_or_image.build()
+            : builder.build()
     }
 
 }

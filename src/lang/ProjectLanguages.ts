@@ -332,8 +332,8 @@ export class ProjectLanguages
 
     public static get currentLanguage(): ProjectLanguages {
         const currentLanguage = EveryLanguages.currentLanguage
-        if(currentLanguage == null)// @ts-ignore (This will be set later in the project
-                return undefined
+        if (currentLanguage == null)// @ts-ignore (This will be set later in the project
+            return undefined
         return this.getValueByLanguage(currentLanguage)
     }
 

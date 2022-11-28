@@ -45,7 +45,7 @@ const TextComponent =               lazy(() => import( '../tools/text/TextCompon
  * @todo merge all of the "category" into 1 type
  * @todo merge all of the "limit" into 1 type
  */
-export abstract class EntityAppOption
+export class EntityAppOption
     extends Enum<Ordinals, Names>
     implements AppOptionWithContent, AppOptionWithTable {
 
@@ -83,14 +83,14 @@ export abstract class EntityAppOption
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static readonly IMAGES_ON_EDITOR = new class EntityAppOption_ImagesOnEditor extends EntityAppOption {}()
-    public static readonly IMAGES_ON_CLEAR_CONDITION = new class EntityAppOption_ImagesOnClearCondition extends EntityAppOption {}()
-    public static readonly IMAGES_ON_WHILE_PLAYING = new class EntityAppOption_ImagesOnWhilePlaying extends EntityAppOption {}()
-    public static readonly IMAGES_ON_UNUSED = new class EntityAppOption_ImagesOnUnused extends EntityAppOption {}()
+    public static readonly IMAGES_ON_EDITOR = new EntityAppOption()
+    public static readonly IMAGES_ON_CLEAR_CONDITION = new EntityAppOption()
+    public static readonly IMAGES_ON_WHILE_PLAYING = new EntityAppOption()
+    public static readonly IMAGES_ON_UNUSED = new EntityAppOption()
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
-        protected override _createContentOption(): PossibleOptionWithContent {
+        protected override _createContentOption() {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
 
@@ -125,7 +125,7 @@ export abstract class EntityAppOption
         }
 
     }()
-    public static readonly WHEN_ALL_SELECTED_GAME = new class EntityAppOption_WhenAllSelectedGame extends EntityAppOption {}()
+    public static readonly WHEN_ALL_SELECTED_GAME = new EntityAppOption()
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
@@ -142,7 +142,7 @@ export abstract class EntityAppOption
         }
 
     }()
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new class EntityAppOption_WhenAllSelectedGameStyle extends EntityAppOption {}()
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new EntityAppOption()
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
@@ -159,7 +159,7 @@ export abstract class EntityAppOption
         }
 
     }()
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new class EntityAppOption_WhenAllSelectedCourseTheme extends EntityAppOption {}()
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new EntityAppOption()
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
@@ -176,7 +176,7 @@ export abstract class EntityAppOption
         }
 
     }()
-    public static readonly WHEN_ALL_SELECTED_TIME = new class EntityAppOption_WhenAllSelectedTime extends EntityAppOption {}()
+    public static readonly WHEN_ALL_SELECTED_TIME = new EntityAppOption()
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
@@ -198,7 +198,7 @@ export abstract class EntityAppOption
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT = new class EntityAppOption_CategoryAsText extends EntityAppOption {}()
+    public static readonly CATEGORY_AS_TEXT = new EntityAppOption()
 
     public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
 
@@ -243,7 +243,7 @@ export abstract class EntityAppOption
         }
 
     }()
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new class EntityAppOption_IfApplicableAcronymOnLimitAsText extends EntityAppOption {}()
+    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new EntityAppOption()
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------

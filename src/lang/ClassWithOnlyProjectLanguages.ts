@@ -2,7 +2,7 @@ import type {NullOr} from '../util/types'
 
 /**
  * <p>
- *     A class with every languages used in the project.
+ *     A class with every language used in the project.
  *     But, it does not contain every simple languages.
  * </p>
  *

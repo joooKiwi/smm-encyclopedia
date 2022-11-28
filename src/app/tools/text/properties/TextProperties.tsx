@@ -24,4 +24,4 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
 
 }
 
-export type PossibleTextContent = | ReactElement | string | 'N/A'| '???' | number | boolean
+export type PossibleTextContent = | ReactElement | string | 'N/A' | '???' | number | boolean
