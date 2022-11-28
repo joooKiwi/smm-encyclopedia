@@ -1,11 +1,13 @@
-import type {ClassWithAcronym}                                                                                                                                                                                            from '../ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                                                                                        from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                          from '../ClassWithReference'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameReferences.types'
-import type {GameReference}                                                                                                                                                                                               from './GameReference'
-import type {StaticReference}                                                                                                                                                                                             from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}            from '../../util/enum/Enum'
+import type {ClassWithAcronym}                                      from '../ClassWithAcronym'
+import type {ClassWithEnglishName}                                  from '../ClassWithEnglishName'
+import type {ClassWithReference}                                    from '../ClassWithReference'
+import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from './GameReferences.types'
+import type {Nullable}                                              from '../../util/types'
+import type {GameReference}                                         from './GameReference'
+
 import {Import}          from '../../util/DynamicImporter'
 import {StringContainer} from '../../util/StringContainer'
 
@@ -226,46 +228,40 @@ export class GameReferences
     //region -------------------- Methods --------------------
 
     public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(limit => limit.acronym)
+        return this.values.map(it => it.acronym).toArray()
     }
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(limit => limit.englishName)
+        return this.values.map(it => it.englishName).toArray()
+    }
+
+    // public static getValueByNameOrAcronym<T extends string, >(value: Nullable<| GameReferences | T>,): GameReferencesByNameOrAcronym<T>
+    public static getValueByNameOrAcronym(value: Nullable<| GameReferences | string>,): GameReferences {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(enumerable => enumerable.englishName === value
+            || enumerable.acronym === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<GameReferences> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return GameReferences
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.acronym === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends GameReferences = GameReferences, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): GameReferences
-    public static getValue(value: PossibleValue,): | GameReferences | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<GameReferences>,) {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<GameReferences> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

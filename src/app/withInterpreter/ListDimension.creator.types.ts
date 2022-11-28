@@ -1,5 +1,6 @@
-import type {PossibleBootstrapDimension} from '../../bootstrap/Bootstrap.types'
 import type {DimensionOnList}            from '../interpreter/DimensionOnList'
+import type {NullOr}                     from '../../util/types'
+import type {PossibleBootstrapDimension} from '../../bootstrap/Bootstrap.types'
 
 export type DefaultDefaultDimension = 12
 export type DefaultSmallDimension = 4
@@ -14,4 +15,4 @@ export type PossibleClassDimension<DEFAULT extends PossibleDimension = PossibleD
 
 type ClassDimension<T extends PossibleDimension = PossibleDimension, > = T extends null ? '' : `col${T} `
 
-export type PossibleDimension = | PossibleBootstrapDimension | 'auto' | null
+export type PossibleDimension = NullOr<| PossibleBootstrapDimension | 'auto'>

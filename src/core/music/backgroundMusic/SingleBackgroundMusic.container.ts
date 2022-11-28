@@ -13,11 +13,11 @@ export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_
 
     readonly #allHolder
 
-    readonly #smb
-    readonly #smb3
-    readonly #smw
-    readonly #nsmbu
-    readonly #sm3dw
+    readonly #smb: SMB_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #smb3: SMB3_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #smw: SMW_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #nsmbu: NSMBU_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #sm3dw: SM3DW_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

@@ -3,6 +3,7 @@ import resource from '../../resources/compiled/Course tag (SMM2).json'
 import type {CourseTag}                                              from './CourseTag'
 import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from './CourseTag.template'
 import type {Loader}                                                 from '../../util/loader/Loader'
+import type {NullOr}                                                 from '../../util/types'
 import type {PossibleEnglishName, PossibleMakerCentralName}          from './CourseTags.types'
 import type {PropertiesArray as LanguagesPropertyArray}              from '../../lang/Loader.types'
 
@@ -41,7 +42,7 @@ enum Headers {
 
 type ExclusivePropertiesArray = [
     isAnOfficialTag: boolean,
-    makerCentralName: | PossibleMakerCentralName | null,
+    makerCentralName: NullOr<PossibleMakerCentralName>,
     firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker,
 ]
 

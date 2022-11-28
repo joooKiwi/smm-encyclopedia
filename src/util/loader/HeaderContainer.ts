@@ -165,27 +165,20 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
     public addHeaderTypeOrConvertor(headerTypeOrConvertor: ArrayOrSimpleHeaderTypeOrConvertor,): this {
         switch (typeof headerTypeOrConvertor) {
             case 'string':
-                const predefinedConvertor = PredefinedConverter.getValue(headerTypeOrConvertor)
-                if (predefinedConvertor == null) {
-                    if (this.otherHeaders.includes(headerTypeOrConvertor))
-                        this._addFollowingHeader(headerTypeOrConvertor, headerTypeOrConvertor.toLowerCase() as SimpleHeader<A[number]>)
-                    else
-                        this._addSingleValueToValidate(headerTypeOrConvertor,)
-                } else
-                    this._addPredefinedConvertor(headerTypeOrConvertor, predefinedConvertor)
-                break
+                if (PredefinedConverter.hasValueByName(headerTypeOrConvertor))
+                    return this._addPredefinedConvertor(headerTypeOrConvertor, PredefinedConverter.getValueByName(headerTypeOrConvertor))
+                if (this.otherHeaders.includes(headerTypeOrConvertor as Lowercase<string>))//FIXME this type is only there to help typescript (it's not the standard)
+                    return this._addFollowingHeader(headerTypeOrConvertor, headerTypeOrConvertor.toLowerCase() as SimpleHeader<A[number]>)
+                return this._addSingleValueToValidate(headerTypeOrConvertor,)
             case 'boolean':
             case 'number':
-                this._addSingleValueToValidate(headerTypeOrConvertor,)
-                break
+                return this._addSingleValueToValidate(headerTypeOrConvertor,)
             case 'object':
                 headerTypeOrConvertor.forEach(headerTypeOrConvertor => this.addHeaderTypeOrConvertor(headerTypeOrConvertor))
-                break
+                return this
             default:
-                this._addConvertorCallbacks(headerTypeOrConvertor,)
-                break
+                return this._addConvertorCallbacks(headerTypeOrConvertor,)
         }
-        return this
     }
 
     public createConversionCallbacks(): readonly ConversionCallbackToConverter[] {

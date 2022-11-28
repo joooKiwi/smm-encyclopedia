@@ -1,3 +1,4 @@
+import type {NullableString}       from '../../util/types'
 import type {PossibleNameTemplate} from './Name.template'
 
 import {assert} from '../../util/utilitiesMethods'
@@ -20,7 +21,7 @@ export class NameCreator {
         return name
     }
 
-    static #testEnglishNameInSet(set: Set<string>, name: PossibleNameTemplate, uniqueName: | string | null,): string {
+    static #testEnglishNameInSet(set: Set<string>, name: PossibleNameTemplate, uniqueName: NullableString,): string {
         const englishReferenceName = uniqueName ?? name.english.simple ?? name.english.american
 
         assert(englishReferenceName != null, 'No english name can be null since they are used as a key for the references.',)
@@ -44,7 +45,7 @@ export class NameCreator {
      * @param instance instance to verify the name
      * @param uniqueName the unique name to set the name
      */
-    public static addEnglishReference(name: PossibleNameTemplate, instance: object, uniqueName: | string | null = null,): void {
+    public static addEnglishReference(name: PossibleNameTemplate, instance: object, uniqueName: NullableString = null,): void {
         const map = this.#INSTANCE_MAP
         if (!map.has(instance))
             map.set(instance, new Set())

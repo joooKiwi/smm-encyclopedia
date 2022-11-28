@@ -3,8 +3,9 @@ import type {BooleanPropertyWithComment, PropertyWithComment}                   
 import type {EntityLimits}                                                                                                                                from '../../../entityLimit/EntityLimits'
 import type {GameStructure}                                                                                                                               from '../../../game/GameStructure'
 import type {NotApplicableProperty, UnknownProperty}                                                                                                      from '../../../_properties/PropertyWithEverything'
+import type {NullOr}                                                                                                                                      from '../../../../util/types'
 import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment} from './Loader.types'
-import {PropertyThatCanBeUnknown}                                                                                                                         from '../../../_properties/PropertyThatCanBeUnknown'
+import type {PropertyThatCanBeUnknown}                                                                                                                    from '../../../_properties/PropertyThatCanBeUnknown'
 
 export interface LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM1And3DS = PossibleEditorLimit_SMM1And3DS,
     EDITOR_SMM2 extends PossibleEditorLimit_SMM2 = PossibleEditorLimit_SMM2,
@@ -72,10 +73,10 @@ export interface LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM
 
     /**
      * Return a {@link Map} based on the enum {@link EntityLimits}
-     * with every values stored inside {@link LimitProperty this instance}
+     * with every value stored inside {@link LimitProperty this instance}
      * as a boolean.
      *
-     * @note It contain every values of the {@link EntityLimits}
+     * @note It contain every value of the {@link EntityLimits}
      */
     toLimitMap(): ReadonlyMap<EntityLimits, boolean>
 
@@ -99,26 +100,26 @@ export interface LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM
 
 //region -------------------- Single entity limit --------------------
 
-export type PossibleEditorLimit_SMM1And3DS = | EntityLimits | null
+export type PossibleEditorLimit_SMM1And3DS = NullOr<EntityLimits>
 export type EditorLimit_SMM2 = PropertyThatCanBeUnknown<EntityLimits, false>
 export type PossibleEditorLimit_SMM2 = | EditorLimit_SMM2 | UnknownProperty | NotApplicableProperty
 
-export type GeneralLimitProperty<COMMENT extends | PossibleGeneralEntityLimitComment | null = | PossibleGeneralEntityLimitComment | null, >
+export type GeneralLimitProperty<COMMENT extends NullOr<PossibleGeneralEntityLimitComment> = NullOr<PossibleGeneralEntityLimitComment>, >
     = BooleanPropertyWithComment<boolean, COMMENT>
 export type PossibleIsInGeneralLimit = | GeneralLimitProperty | NotApplicableProperty
 
-export type GeneralGlobalLimitProperty<COMMENT extends | PossibleGeneralGlobalEntityLimitComment | null = | PossibleGeneralGlobalEntityLimitComment | null, >
+export type GeneralGlobalLimitProperty<COMMENT extends NullOr<PossibleGeneralGlobalEntityLimitComment> = NullOr<PossibleGeneralGlobalEntityLimitComment>, >
     = BooleanPropertyWithComment<boolean, COMMENT>
 export type PossibleIsInGeneralGlobalLimit = | GeneralGlobalLimitProperty | NotApplicableProperty
 
 export type PowerUpLimitProperty = BooleanProperty
 export type PossibleIsInPowerUpLimit = | PowerUpLimitProperty | NotApplicableProperty
 
-export type ProjectileLimitProperty<COMMENT extends | PossibleProjectileEntityLimitComment | null = | PossibleProjectileEntityLimitComment | null, >
+export type ProjectileLimitProperty<COMMENT extends NullOr<PossibleProjectileEntityLimitComment> = NullOr<PossibleProjectileEntityLimitComment>, >
     = BooleanPropertyWithComment<boolean, COMMENT>
 export type PossibleIsInProjectileLimit = | ProjectileLimitProperty | UnknownProperty | NotApplicableProperty
 
-export type OtherLimitProperty<COMMENT extends | PossibleOtherLimitComment | null = | PossibleOtherLimitComment | null, >
+export type OtherLimitProperty<COMMENT extends NullOr<PossibleOtherLimitComment> = NullOr<PossibleOtherLimitComment>, >
     = PropertyWithComment<EntityLimits, COMMENT>
 export type PossibleOtherLimit = | OtherLimitProperty | NotApplicableProperty
 

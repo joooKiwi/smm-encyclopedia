@@ -44,7 +44,7 @@ export interface ClassThatCanSearchItemsOrIndexes<I extends number, V, >
 
     findIndex<B extends boolean, U, >(callback: (value: V, key: I,) => B, callbackIfNotFound: () => U,): VariableReturnValue<B, I, U>
 
-    find<U extends I, V2, >(callback: (value: V, index: I,) => index is U, callbackIfNotFound: () => V2,): | U | V2
+    findIndex<U extends I, V2, >(callback: (value: V, index: I,) => index is U, callbackIfNotFound: () => V2,): | U | V2
 
 }
 

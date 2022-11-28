@@ -1,5 +1,6 @@
-import type {SingleHeaderContent} from '../SimpleHeader'
+import type {Nullable, NullOr}    from '../../../../util/types'
 import type {ReactElement}        from '../../../../util/react/ReactProperties'
+import type {SingleHeaderContent} from '../SimpleHeader'
 
 export interface HeaderHolder {
 
@@ -7,9 +8,9 @@ export interface HeaderHolder {
 
     //region -------------------- Other headers --------------------
 
-    get parent(): | HeaderHolder | null
+    get parent(): NullOr<HeaderHolder>
 
-    set parent(value: | HeaderHolder | null,)
+    set parent(value: Nullable<HeaderHolder>,)
 
     setParent(value: null,): never
 
@@ -25,7 +26,7 @@ export interface HeaderHolder {
     //region -------------------- Sub level --------------------
 
     /**
-     * The sub-level of the header.
+     * The sub level of the header.
      *
      * @note It is always a positive number (with 0 as a possible value)
      */

@@ -1,16 +1,18 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                            from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                                                                                              from '../ClassWithReference'
-import type {ClimbingImages, PressingDownImage, FallingAfterJumpImage, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImage, TurningImage, WaitingImage, WalkImages}                                                                                                                  from './image/Image'
-import type {PossibleFileName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageSourceForFile, PossibleNonNullableValue, PossibleSoundSourceForFile, PossibleStringValue, PossibleUniqueEnglishName, PossibleValue} from './MysteryMushrooms.types'
-import type {GoalPoleSound, JumpSounds, LostALifeSound, OnGroundAfterJumpSound, PowerUpCollectedSound, Sound, TauntSound, TurningSound}                                                                                                                                                                       from './sound/Sound'
-import type {MysteryMushroom}                                                                                                                                                                                                                                                                                 from './MysteryMushroom'
-import type {SoundProperty}                                                                                                                                                                                                                                                                                   from './properties/sound/SoundProperty'
-import type {StaticReference}                                                                                                                                                                                                                                                                                 from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {ClassWithEnglishName}                                                                                                                                                           from '../ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                             from '../ClassWithReference'
+import type {ClimbingImages, PressingDownImage, FallingAfterJumpImage, GoalPoleImages, Image, JumpImages, RunningImages, SwimmingImages, TauntImage, TurningImage, WaitingImage, WalkImages} from './image/Image'
+import type {GoalPoleSound, JumpSounds, LostALifeSound, OnGroundAfterJumpSound, PowerUpCollectedSound, Sound, TauntSound, TurningSound}                                                      from './sound/Sound'
+import type {Nullable}                                                                                                                                                                       from '../../util/types'
+import type {MysteryMushroom}                                                                                                                                                                from './MysteryMushroom'
+import type {PossibleFileName, Names, Ordinals, PossibleEnglishName, PossibleImageSourceForFile, PossibleSoundSourceForFile, PossibleUniqueEnglishName}                                      from './MysteryMushrooms.types'
+import type {SoundProperty}                                                                                                                                                                  from './properties/sound/SoundProperty'
 
 import {DualFileNameContainer as DualFile}     from './file/name/DualFileName.container'
 import {EMPTY_ARRAY}                           from '../../util/emptyVariables'
 import {EmptyFileName as EmptyFile}            from './file/name/EmptyFileName'
-import {Enum}                                  from '../../util/enum/Enum'
 import {FileName}                              from './file/name/FileName'
 import {ImageContainer}                        from './image/Image.container'
 import {Import}                                from '../../util/DynamicImporter'
@@ -545,47 +547,41 @@ export class MysteryMushrooms
     }
 
     public static get everyUniqueEnglishNames(): readonly PossibleUniqueEnglishName[] {
-        return this.values.map(enumeration => enumeration.uniqueEnglishName).flat()
+        return this.values.map(it => it.uniqueEnglishName).toArray()
+    }
+
+    // public static getValueByName<T extends string, >(value: T,): MysteryMushroomsByName<T>
+    public static getValueByName(value: Nullable<| MysteryMushrooms | string>,): MysteryMushrooms {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => {
+            const fileName = it.fileName
+            return it.englishName === value
+                || it.uniqueEnglishName === value
+                || fileName.imageFileNames.includes(value as never)
+                || fileName.soundFileName.includes(value as never)
+        })
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<MysteryMushrooms> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return MysteryMushrooms
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => {
-                const fileName = enumerable.fileName
-                return enumerable.englishName === value
-                    || enumerable.uniqueEnglishName === value
-                    || fileName.imageFileNames.includes(value as never)
-                    || fileName.soundFileName.includes(value as never)
-            })
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends MysteryMushrooms = MysteryMushrooms, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): MysteryMushrooms
-    public static getValue(value: PossibleValue,): | MysteryMushrooms | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<MysteryMushrooms>,): MysteryMushrooms {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<MysteryMushrooms> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

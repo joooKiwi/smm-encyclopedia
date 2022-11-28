@@ -1,11 +1,10 @@
-import type {PossibleComment}                           from '../ClassWithComment'
-import type {PossibleString}                            from '../Property'
+import type {NullOrString}                              from '../../../util/types'
 import type {PossibleValueOnObjectHolder}               from '../../../util/holder/ObjectHolder'
 import type {StringPropertyThatCanBeUnknownWithComment} from '../PropertyThatCanBeUnknownWithComment'
 
 import {PropertyThatCanBeUnknownWithCommentContainer} from '../PropertyThatCanBeUnknownWithComment.container'
 
-export class StringPropertyThatCanBeUnknownWithCommentContainer<S extends PossibleString = PossibleString, IS_UNKNOWN extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, >
+export class StringPropertyThatCanBeUnknownWithCommentContainer<S extends NullOrString = NullOrString, IS_UNKNOWN extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >
     extends PropertyThatCanBeUnknownWithCommentContainer<S, IS_UNKNOWN, COMMENT>
     implements StringPropertyThatCanBeUnknownWithComment<S, IS_UNKNOWN, COMMENT> {
 

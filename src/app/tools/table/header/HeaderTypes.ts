@@ -1,7 +1,8 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossiblePlacement, PossibleStringValue, PossibleValue} from './HeaderTypes.types'
-import type {StaticReference}                                                                                                                                                                                        from '../../../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum} from '../../../../util/enum/Enum'
+import type {Names, Ordinals, PossibleName, PossiblePlacement} from './HeaderTypes.types'
+import type {Nullable}                                         from '../../../../util/types'
 
 export abstract class HeaderTypes
     extends Enum<Ordinals, Names> {
@@ -57,38 +58,32 @@ export abstract class HeaderTypes
 
     public abstract getLayout(layout: readonly string[][],): readonly string[][]
 
+
+    public static getValueByName(value: Nullable<| HeaderTypes | string>,): HeaderTypes {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.simpleName === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<HeaderTypes> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return HeaderTypes
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.simpleName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrAcronym: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(nameOrAcronym: S,): EnumByString<S>
-    public static getValue<I extends HeaderTypes, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): HeaderTypes
-    public static getValue(value: PossibleValue,): | HeaderTypes | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<HeaderTypes>,): HeaderTypes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<HeaderTypes> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

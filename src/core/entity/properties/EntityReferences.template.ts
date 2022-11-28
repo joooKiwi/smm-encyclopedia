@@ -1,5 +1,6 @@
 import type {EntityLink}     from '../loader.types'
 import type {EntityTemplate} from '../Entity.template'
+import type {NullOr}         from '../../../util/types'
 
 /**
  * @template
@@ -7,36 +8,36 @@ import type {EntityTemplate} from '../Entity.template'
 export interface EntityReferencesTemplate {
 
     style: {
-        superMarioBros: | EntityLink | null
-        superMarioBros3: | EntityLink | null
-        superMarioWorld: | EntityLink | null
-        newSuperMarioBrosU: | EntityLink | null
-        superMario3DWorld: | EntityLink | null
+        superMarioBros: NullOr<EntityLink>
+        superMarioBros3: NullOr<EntityLink>
+        superMarioWorld: NullOr<EntityLink>
+        newSuperMarioBrosU: NullOr<EntityLink>
+        superMario3DWorld: NullOr<EntityLink>
     }
 
     theme: {
-        ground: | EntityLink | null
-        underground: | EntityLink | null
-        underwater: | EntityLink | null
-        desert: | EntityLink | null
-        snow: | EntityLink | null
-        sky: | EntityLink | null
-        forest: | EntityLink | null
-        ghostHouse: | EntityLink | null
-        airship: | EntityLink | null
-        castle: | EntityLink | null
+        ground: NullOr<EntityLink>
+        underground: NullOr<EntityLink>
+        underwater: NullOr<EntityLink>
+        desert: NullOr<EntityLink>
+        snow: NullOr<EntityLink>
+        sky: NullOr<EntityLink>
+        forest: NullOr<EntityLink>
+        ghostHouse: NullOr<EntityLink>
+        airship: NullOr<EntityLink>
+        castle: NullOr<EntityLink>
     }
 
     time: {
-        day: | EntityLink | null
-        night: | EntityLink | null
+        day: NullOr<EntityLink>
+        night: NullOr<EntityLink>
     }
 
     group: {
-        gameStyle: | Set<EntityTemplate> | null
-        theme: | Set<EntityTemplate> | null
-        time: | Set<EntityTemplate> | null
-        all: | Set<EntityTemplate> | null
+        gameStyle: NullOr<Set<EntityTemplate>>
+        theme: NullOr<Set<EntityTemplate>>
+        time: NullOr<Set<EntityTemplate>>
+        all: NullOr<Set<EntityTemplate>>
     }
 
 }

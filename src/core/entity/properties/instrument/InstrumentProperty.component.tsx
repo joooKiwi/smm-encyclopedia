@@ -3,9 +3,9 @@ import './InstrumentProperty.scss'
 import type {ReactProperties} from '../../../../util/react/ReactProperties'
 import type {Entities}        from '../../Entities'
 
-import {EMPTY_REACT_ELEMENT}           from '../../../../util/emptyReactVariables'
-import GameContentTranslationComponent from '../../../../lang/components/GameContentTranslationComponent'
-import Tooltip                         from '../../../../bootstrap/tooltip/Tooltip'
+import {EMPTY_REACT_ELEMENT}    from '../../../../util/emptyReactVariables'
+import {gameContentTranslation} from '../../../../lang/components/translationMethods'
+import Tooltip                  from '../../../../bootstrap/tooltip/Tooltip'
 
 interface InstrumentPropertyProperties
     extends ReactProperties {
@@ -25,9 +25,7 @@ export default function InstrumentPropertyComponent({value: {englishNameInHtml, 
 
     if (comment == null)
         return <i id={id} className="music-block"/>
-    return <GameContentTranslationComponent>{translation =>
-        <Tooltip option={{title: translation(`instrument.${comment}`),}} elementId={id}>
-            <i id={id} className="music-block-with-comment"/>
-        </Tooltip>
-    }</GameContentTranslationComponent>
+    return <Tooltip option={{title: gameContentTranslation(`instrument.${comment}`),}} elementId={id}>
+        <i id={id} className="music-block-with-comment"/>
+    </Tooltip>
 }

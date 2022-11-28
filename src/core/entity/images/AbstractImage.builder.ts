@@ -2,6 +2,7 @@ import type {Builder}                          from '../../../util/builder/Build
 import type {ExtendedList}                     from '../../../util/extended/ExtendedList'
 import type {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles'
 import type {Image}                            from './Image'
+import type {NullOr}                           from '../../../util/types'
 
 import {ExtendedSetContainer} from '../../../util/extended/ExtendedSet.container'
 import {GameStyles}           from './GameStyles'
@@ -17,7 +18,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
 
     //region -------------------- Fields --------------------
 
-    static readonly #GAME_STYLE_ARRAY = GameStyles.values
+    static readonly #GAME_STYLE_ARRAY = GameStyles.values.toArray()
 
     readonly #simpleImageName
     readonly #imageNumber
@@ -27,7 +28,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
     //endregion -------------------- Fields --------------------
 
     protected constructor(simpleImageName: NAME, imageNumber?: AMOUNT,)
-    protected constructor(simpleImageName: NAME, imageNumber: | AMOUNT | null = null,) {
+    protected constructor(simpleImageName: NAME, imageNumber: NullOr<AMOUNT> = null,) {
         this.#simpleImageName = simpleImageName
         this.#imageNumber = imageNumber
 
@@ -39,7 +40,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
         return this.#simpleImageName
     }
 
-    public get imageNumber(): | AMOUNT | null {
+    public get imageNumber(): NullOr<AMOUNT> {
         return this.#imageNumber
     }
 
@@ -109,7 +110,7 @@ export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT 
     }
 
     public setNotSMB(): this {
-        return this.setGameStyle(SUPER_MARIO_BROS,)
+        return this.setNotGameStyle(SUPER_MARIO_BROS,)
     }
 
     public setOnlySMB3(): this {

@@ -1,5 +1,6 @@
 import type {CSVLoader}                                            from './CSVLoader'
 import type {Converter}                                            from './converter/Converter'
+import type {NullOr}                                               from '../types'
 import type {PredefinedConversion, SinglePrimitiveValueConversion} from './converter/PredefinedConverter.types'
 
 export type ConversionCallbackToConverter = (value: string,) => Converter<string, any>
@@ -48,13 +49,13 @@ export type CustomValidationCallback = (value: string, conversionCallbacksToConv
 export type CustomConversionCallbackToAnyCallback = (value: string, conversionCallbacksToConverter: readonly ConversionCallbackToConverter[],) => any
 export type CustomConversionCallbackToAnyCallbackWithError = (value: string, mixedTypeOnConverter: string, conversionCallbacksToConverter: readonly ConversionCallbackToConverter[],) => any
 
-export type CallbackOnBeforeFinalObjectCreated<A extends any[] = any[], > = | ((convertedContent: A, originalContent: readonly string[],) => void) | null
-export type CallbackOnAfterFinalObjectCreated<A extends any[] = any[], T = any, > = | ((finalContent: T, convertedContent: A, originalContent: readonly string[],) => void) | null
+export type CallbackOnBeforeFinalObjectCreated<A extends any[] = any[], > = NullOr<(convertedContent: A, originalContent: readonly string[],) => void>
+export type CallbackOnAfterFinalObjectCreated<A extends any[] = any[], T = any, > = NullOr<(finalContent: T, convertedContent: A, originalContent: readonly string[],) => void>
 
-export type CallbackOnBeforeSingleContentConverted<H extends string = string, > = | ((originalValue: string, header: H,) => void) | null
-export type CallbackOnAfterSingleContentConverted<H extends string = string, A extends any[] = any[], > = | ((content: keyof A, originalValue: string, header: H,) => void) | null
+export type CallbackOnBeforeSingleContentConverted<H extends string = string, > = NullOr<(originalValue: string, header: H,) => void>
+export type CallbackOnAfterSingleContentConverted<H extends string = string, A extends any[] = any[], > = NullOr<(content: keyof A, originalValue: string, header: H,) => void>
 
-export type CallbackOnInitialisationStart = | ((originalContents: readonly string[][],) => void) | null
-export type CallbackOnInitialisationEnd<A extends any[] = any[], T = any, > = | ((finalContents: readonly T[], convertedContents: readonly A[], originalContents: readonly string[][],) => void) | null
+export type CallbackOnInitialisationStart = NullOr<(originalContents: readonly string[][],) => void>
+export type CallbackOnInitialisationEnd<A extends any[] = any[], T = any, > = NullOr<(finalContents: readonly T[], convertedContents: readonly A[], originalContents: readonly string[][],) => void>
 
 //endregion -------------------- Callback types --------------------

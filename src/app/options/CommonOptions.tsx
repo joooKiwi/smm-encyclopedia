@@ -1,9 +1,9 @@
-import {lazy} from 'react'
+import type {Enum} from '@joookiwi/enumerable/dist/types'
+import {lazy}      from 'react'
 
 import type {ClassInAnySuperMarioMakerGame}             from '../../core/game/ClassInAnySuperMarioMakerGame'
 import type {ClassWithEnglishName}                      from '../../core/ClassWithEnglishName'
 import type {ClassWithReference}                        from '../../core/ClassWithReference'
-import type {Enum}                                      from '../../util/enum/Enum'
 import type {Name}                                      from '../../lang/name/Name'
 import type {NameTrait}                                 from '../../lang/name/NameTrait'
 import type {NameTraitFromACategory}                    from '../../lang/name/NameTraitFromACategory'
@@ -11,12 +11,11 @@ import type {ReactElement}                              from '../../util/react/R
 import type {SingleHeaderContent, SingleHeadersContent} from '../tools/table/SimpleHeader'
 import type {Themes}                                    from '../../core/theme/Themes'
 
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {BASE_PATH}                     from '../../variables'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {EmptyStringName}               from '../../lang/name/EmptyStringName'
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
-import {Games}                         from '../../core/game/Games'
+import {BASE_PATH}                                  from '../../variables'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
+import {EmptyStringName}                            from '../../lang/name/EmptyStringName'
+import {Games}                                      from '../../core/game/Games'
 
 //region -------------------- dynamic imports --------------------
 
@@ -54,7 +53,7 @@ export class CommonOptions {
     //endregion -------------------- Fields --------------------
 
     public get nameHeader(): SingleHeaderContent {
-        return this.#nameHeader ??= {key: 'name', element: <ContentTranslationComponent translationKey="Name"/>,}
+        return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name'),}
     }
 
     public getNameContent(enumeration: EnumerationWithReference,): ReactElement {
@@ -63,7 +62,7 @@ export class CommonOptions {
 
 
     public get categoryHeader(): SingleHeaderContent {
-        return this.#categoryHeader ??= {key: 'category', element: <GameContentTranslationComponent translationKey="Category"/>,}
+        return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category'),}
     }
 
     public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | string | Name<string>,): ReactElement {
@@ -81,12 +80,12 @@ export class CommonOptions {
 
 
     public get gameHeader(): SingleHeaderContent {
-        return this.#gameHeader ??= {key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,}
+        return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('Game'),}
     }
 
     public getGameHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
         return {
-            key: 'game', element: <GameContentTranslationComponent translationKey="Game"/>,
+            key: 'game', element: gameContentTranslation('Game'),
             subHeaders: subHeaders,
         }
     }
@@ -113,7 +112,7 @@ export class CommonOptions {
 
     /**
      * Get a {@link HTMLDivElement} containing each images (if true)
-     * of the {@link Games} contained in the {@link Enumerable} {@link ClassWithReference reference}.
+     * of the {@link Games} contained in the {@link Enum} {@link ClassWithReference reference}.
      *
      * @param enumeration The enumerable to retrieve the {@link Games} properties & {@link ClassWithEnglishName english name}.
      */

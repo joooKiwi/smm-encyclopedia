@@ -1,17 +1,18 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundEffectAppOption.types'
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
+import type {Names, Ordinals}                                  from './SoundEffectAppOption.types'
+import type {NullOr}                                           from '../../util/types'
+import type {ReactElement}                                     from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
 import {CommonOptions}                 from './CommonOptions'
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Enum}                          from '../../util/enum/Enum'
 import {Games}                         from '../../core/game/Games'
 import {SoundEffects}                  from '../../core/soundEffect/SoundEffects'
 import {SoundEffectCategories}         from '../../core/soundEffectCategory/SoundEffectCategories'
@@ -31,56 +32,56 @@ export abstract class SoundEffectAppOption
 
     public static readonly GAME =             new class GameStyleAppOption_Game extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             return [
-                    SoundEffectAppOption.renderSMM1And3DSImage(enumeration),
-                    SoundEffectAppOption.renderSMM2Image(enumeration),
-                ]
+                SoundEffectAppOption.renderSMM1And3DSImage(enumeration),
+                SoundEffectAppOption.renderSMM2Image(enumeration),
+            ]
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.gameHeaderWithMainGames
         }
 
     }()
     public static readonly NAME =             new class GameStyleAppOption_Name extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             return CommonOptions.get.getNameContent(enumeration)
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
     }()
     public static readonly CATEGORY =         new class GameStyleAppOption_Category extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             const {reference,} = enumeration
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValue(reference.categoryEnglish)!.imagePath,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imagePath,)
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.categoryHeader
         }
 
     }()
     public static readonly PLAYER_BEHAVIOUR = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
-        protected override _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: SoundEffects,) {
             return enumeration.reference.playerSoundEffectTriggerContainer.createNewComponent(enumeration.englishName,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'player behaviour', element: <>--Player behaviour--</>/*<GameContentTranslationComponent translationKey="Player behaviour"/>*/,}
+            return {key: 'player behaviour', element: '--Player behaviour--',}//TODO add Player behaviour
         }
 
     }()
     public static readonly SOUNDS = new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
-        protected override _createContentOption({englishName, sounds_exclusiveSmm1, sounds_standaloneSmm1, sounds_smm2,}: SoundEffects,): PossibleRenderReactElement {
+        protected override _createContentOption({englishName, sounds_exclusiveSmm1, sounds_standaloneSmm1, sounds_smm2,}: SoundEffects,) {
             const isSMM1Empty = sounds_exclusiveSmm1.length === 0,
                 isSMM2Empty = sounds_smm2.length === 0
 
@@ -91,8 +92,8 @@ export abstract class SoundEffectAppOption
                         ? EMPTY_REACT_ELEMENT
                         : <div key={`${englishName} (sound effect sounds - SMM1&3DS)`} className="soundEffect-sounds-smm1-container">
                             {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                                    <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
-                                </div>)}
+                                <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
+                            </div>)}
                         </div>}
                     {isSMM2Empty
                         ? EMPTY_REACT_ELEMENT
@@ -105,7 +106,7 @@ export abstract class SoundEffectAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'sounds', element: <>--Sounds--</>,}
+            return {key: 'sounds', element: '--Sounds--',}//TODO add sounds
         }
 
     }()
@@ -171,7 +172,7 @@ export abstract class SoundEffectAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 
@@ -180,30 +181,17 @@ export abstract class SoundEffectAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<SoundEffectAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return SoundEffectAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends SoundEffectAppOption = SoundEffectAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): SoundEffectAppOption
-    public static getValue(value: PossibleValue,): | SoundEffectAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<SoundEffectAppOption>,): SoundEffectAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<SoundEffectAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

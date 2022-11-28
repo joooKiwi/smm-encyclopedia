@@ -2,6 +2,7 @@ import type BaseComponent      from 'bootstrap/js/dist/base-component'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
 import type {BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEvents} from './BootstrapWithBasicEventsInstance.types'
+import type {Nullable}                                                          from '../util/types'
 import type {StaticBootstrapInstance}                                           from './BootstrapInstance.types'
 
 import {BootstrapInstance} from './BootstapInstance'
@@ -14,7 +15,7 @@ export abstract class BootstrapWithBasicEventsInstance<STATIC_INSTANCE extends S
     }
 
 
-    public on(callbacks: Partial<BootstrapWithBasicEvents<this>> | null | undefined,): this {
+    public on(callbacks: Nullable<Partial<BootstrapWithBasicEvents<this>>>,): this {
         if (callbacks == null)
             return this
 

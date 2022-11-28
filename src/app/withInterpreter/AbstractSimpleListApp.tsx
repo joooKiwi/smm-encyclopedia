@@ -2,6 +2,7 @@ import type {AppProperties}                from '../AppProperties.types'
 import type {AppInterpreterWithSimpleList} from '../interpreter/AppInterpreterWithSimpleList'
 import type {AppWithVariableDisplayStates} from '../AppStates.types'
 import type {ReactElement}                 from '../../util/react/ReactProperties'
+import type {ValueByApp}                   from '../interpreter/AppInterpreter'
 
 import {AbstractAppWithInterpreter} from './AbstractAppWithInterpreter'
 import NameComponent                from '../../lang/name/component/Name.component'
@@ -23,8 +24,7 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
         return AbstractSimpleListApp.#APP_OPTION_INTERPRETER
     }
 
-    protected _createUniqueNameOnSimpleList(enumerable: ReturnType<APP['iterable']['next']>['value'],): string {
-        //TODO find a better way to use the enumerable type than the complicated name
+    protected _createUniqueNameOnSimpleList(enumerable: ValueByApp<APP>,): string {
         return enumerable.englishName
     }
 

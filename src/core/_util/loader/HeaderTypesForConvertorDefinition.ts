@@ -1,7 +1,8 @@
 import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from '../../entity/Entities.types'
-import type {EnumArray_EnglishName as EnumArray_EnglishName_EntityLimitType}                                                                                                                                                                                             from '../../entityLimit/EntityLimitTypes.types'
-import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffectCategory}                                                                                                                                                                                         from '../../soundEffectCategory/SoundEffectCategories.types'
-import type {EnumArray_EnglishName as EnumArray_EnglishName_SoundEffect}                                                                                                                                                                                                 from '../../soundEffect/SoundEffects.types'
+import type {EnglishNames as EnglishNames_EntityLimitType}                                                                                                                                                                                                               from '../../entityLimit/EntityLimitTypes.types'
+import type {EnglishNames as EnglishNames_SoundEffectCategory}                                                                                                                                                                                                           from '../../soundEffectCategory/SoundEffectCategories.types'
+import type {EnglishNames as EnglishNames_SoundEffect}                                                                                                                                                                                                                   from '../../soundEffect/SoundEffects.types'
+import type {NullOr}                                                                                                                                                                                                                                                     from '../../../util/types'
 import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                                             from '../../mysteryMushroom/MysteryMushrooms.types'
 import type {PokemonGeneration}                                                                                                                                                                                                                                          from '../../mysteryMushroom/MysteryMushroom.template'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from '../../behaviour/EntityBehaviours.types'
@@ -192,10 +193,10 @@ export type EveryPossibleNameOrUnknown_EntityLimit = readonly (| PossibleEnglish
 export type EveryEnglishName_EntityLimit = readonly PossibleEnglishName_EntityLimit[]
 export type EveryEnglishNameOrUnknown_EntityLimit = readonly (| PossibleEnglishName_EntityLimit | UnknownCharacter)[]
 
-export type EveryPossibleEnglishName_EntityLimitType = EnumArray_EnglishName_EntityLimitType
+export type EveryPossibleEnglishName_EntityLimitType = EnglishNames_EntityLimitType
 
-export type EveryPossibleEnglishName_SoundEffect = EnumArray_EnglishName_SoundEffect
-export type EveryPossibleEnglishName_SoundEffectCategory = EnumArray_EnglishName_SoundEffectCategory
+export type EveryPossibleEnglishName_SoundEffect = EnglishNames_SoundEffect
+export type EveryPossibleEnglishName_SoundEffectCategory = EnglishNames_SoundEffectCategory
 
 //region -------------------- Mii costume --------------------
 
@@ -207,9 +208,9 @@ export type EveryPossibleName_MiiCostumeCategory = readonly PossibleEnglishName_
 export type EveryPossibleUniqueEnglishName_MysteryMushroom = readonly UniqueEnglishName_MysteryMushroom[]
 export type EveryConditionToUnlockIt_MysteryMushroom = readonly PossibleConditionToUnlockIt_MysteryMushroom[]
 
-export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, | null | UnknownReference> | UnknownReference)[]
+export type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
 
-export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, | null | UnknownReference> | UnknownReference)[]
+export type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
 
 //endregion -------------------- Mystery Mushroom --------------------
 //region -------------------- Official notification --------------------

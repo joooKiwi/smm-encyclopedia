@@ -4,12 +4,12 @@ import type {AppInterpreterWithCardList}                           from './inter
 import type {AppProperties}                                        from './AppProperties.types'
 import type {InstrumentAppStates}                                  from './AppStates.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                   from '../util/react/ReactProperties'
 
-import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {Instruments}                   from '../core/instrument/Instruments'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {Instruments}            from '../core/instrument/Instruments'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 //region -------------------- dynamic imports --------------------
 
@@ -29,18 +29,18 @@ export default class InstrumentApp
 
     //region -------------------- Create methods --------------------
 
-    protected _createKey(): string {
+    protected _createKey() {
         return 'instrument'
     }
 
     protected _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every instruments"/>
+        return gameContentTranslation('Every instruments')
     }
 
     protected _createAppOptionInterpreter(): AppInterpreterWithCardList<Instruments> {
         return new class implements AppInterpreterWithCardList<Instruments> {
 
-            public get iterable(): IterableIterator<Instruments> {
+            public get iterable() {
                 return Instruments[Symbol.iterator]()
             }
 
@@ -57,7 +57,7 @@ export default class InstrumentApp
                 return 'list'
             }
 
-            public createCardListContent({sounds, name,}: Instruments,): ReactElement {
+            public createCardListContent({sounds, name,}: Instruments,) {
                 return <div className="instrument-sounds">{sounds.map((sound, index,) =>
                     <SimpleSoundComponent file={sound} title={`${name} (instrument #${index})`}/>
                 )}</div>

@@ -1,6 +1,7 @@
 import type {OptionalLanguage} from './OptionalLanguage'
 
-import {LanguageContainer} from './LanguageContainer'
+import {LanguageContainer}     from './LanguageContainer'
+import {isNullableEmptyString} from '../../../util/utilitiesMethods'
 
 /**
  * @provider
@@ -13,7 +14,7 @@ export class OptionalLanguageContainer<T, S extends T = T, A extends readonly T[
 
     public constructor(value: | S | A,) {
         super(value)
-        this.#isUsed = isEmptyStringOrUndefined(this.get()) && isEmptyStringOrUndefined(this.get(0)) && isEmptyStringOrUndefined(this.get(2))
+        this.#isUsed = !isNullableEmptyString(this.get()) && !isNullableEmptyString(this.get(0)) && !isNullableEmptyString(this.get(2))
     }
 
     public get isUsed() {
@@ -31,10 +32,4 @@ export namespace OptionalLanguageContainer {
         return new OptionalLanguageContainer<T, T, readonly T[]>(value)
     }
 
-}
-
-function isEmptyStringOrUndefined<T, >(value: | T | undefined | null,): boolean {
-    return typeof value == 'string'
-        ? value !== ''
-        : value != null
 }

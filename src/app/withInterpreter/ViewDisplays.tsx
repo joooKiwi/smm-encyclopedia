@@ -1,12 +1,13 @@
-import type {AbstractAppWithInterpreter}                                                                                                                                                            from './AbstractAppWithInterpreter'
-import type {AbstractCardListApp}                                                                                                                                                                   from './AbstractCardListApp'
-import type {AbstractSimpleListApp}                                                                                                                                                                 from './AbstractSimpleListApp'
-import type {AbstractTableApp}                                                                                                                                                                      from './AbstractTableApp'
-import type {StaticReference}                                                                                                                                                                       from '../../util/enum/Enum.types'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, HTMLType, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue, Type} from './ViewDisplays.types'
-import type {ReactElement}                                                                                                                                                                          from '../../util/react/ReactProperties'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}   from '../../util/enum/Enum'
+import type {AbstractAppWithInterpreter}      from './AbstractAppWithInterpreter'
+import type {AbstractCardListApp}             from './AbstractCardListApp'
+import type {AbstractSimpleListApp}           from './AbstractSimpleListApp'
+import type {AbstractTableApp}                from './AbstractTableApp'
+import type {HTMLType, Names, Ordinals, Type} from './ViewDisplays.types'
+import type {ReactElement}                    from '../../util/react/ReactProperties'
+
 import {assert} from '../../util/utilitiesMethods'
 
 export abstract class ViewDisplays
@@ -89,30 +90,17 @@ export abstract class ViewDisplays
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<ViewDisplays> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return ViewDisplays
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends ViewDisplays = ViewDisplays, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): ViewDisplays
-    public static getValue(value: PossibleValue,): | ViewDisplays | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<ViewDisplays>,): ViewDisplays {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<ViewDisplays> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

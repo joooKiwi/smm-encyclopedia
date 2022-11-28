@@ -1,8 +1,10 @@
+import type {NullOrBoolean} from '../../util/types'
+
 /**
  * @template
  */
 export interface SimpleTimeTemplate<DAY extends boolean = boolean,
-    NIGHT extends | boolean | null = | boolean | null, > {
+    NIGHT extends NullOrBoolean = NullOrBoolean, > {
 
     day: DAY
 

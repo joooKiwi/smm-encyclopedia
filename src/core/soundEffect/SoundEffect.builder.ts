@@ -29,8 +29,9 @@ export class SoundEffectBuilder
     }
 
     #createCategory() {
-        return SoundEffectCategories.getValue(this.template.properties.category)?.reference
-            ?? EmptySoundEffectCategory.get
+        const category = this.template.properties.category
+        return category == null ? EmptySoundEffectCategory.get
+            : SoundEffectCategories.getValueByName(category).reference
     }
 
     static #getTrigger({movement, interaction, environment,}: PlayerSoundEffectTriggerTemplate,): ObjectHolder<PlayerSoundEffectTriggers> {

@@ -1,3 +1,4 @@
+import type {NullOr}                                                        from '../../util/types'
 import type {PlayerSoundEffectTriggerTemplate}                              from './property/PlayerSoundEffectTrigger.template'
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types'
 import type {SimpleGameFrom1And2Template}                                   from '../game/SimpleGame.template'
@@ -16,10 +17,8 @@ export interface SoundEffectTemplate
             }
         }
 
-        category: PossibleSoundEffectCategoryType
+        category: NullOr<PossibleSoundEffectCategoryEnglishName>
 
     }
 
 }
-
-export type PossibleSoundEffectCategoryType = | PossibleSoundEffectCategoryEnglishName | null

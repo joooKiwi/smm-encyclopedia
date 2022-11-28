@@ -3,11 +3,11 @@ import {Link, useLocation} from 'react-router-dom'
 import type {LanguageChangerLinkProperties} from './LanguageChanger.link'
 import type {ReactElement, ReactProperties} from '../util/react/ReactProperties'
 
-import LanguageTranslationComponent from '../lang/components/LanguageTranslationComponent'
-import {ProjectLanguages}           from '../lang/ProjectLanguages'
-import {route}                      from '../routes/route'
-import {StringContainer}            from '../util/StringContainer'
-import Tooltip                      from '../bootstrap/tooltip/Tooltip'
+import {languageTranslation} from '../lang/components/translationMethods'
+import {ProjectLanguages}    from '../lang/ProjectLanguages'
+import {route}               from '../routes/route'
+import {StringContainer}     from '../util/StringContainer'
+import Tooltip               from '../bootstrap/tooltip/Tooltip'
 
 export interface SingleLanguageChangerLinkProperties
     extends ReactProperties, LanguageChangerLinkProperties {
@@ -57,10 +57,8 @@ export function LanguageChangerSingleLink({language, callbackToSetLanguage, type
 }
 
 function createTooltip(language: ProjectLanguages, id: string, element: ReactElement,) {
-    return <LanguageTranslationComponent>{translation =>
-        <Tooltip key={`single language changer link (tooltip - ${language.englishName})`}
-                 elementId={id} option={({title: translation(language.englishName), placement: 'top',})}>{
-            element
-        }</Tooltip>
-    }</LanguageTranslationComponent>
+    return <Tooltip key={`single language changer link (tooltip - ${language.englishName})`}
+                    elementId={id} option={({title: languageTranslation(language.englishName), placement: 'top',})}>{
+        element
+    }</Tooltip>
 }

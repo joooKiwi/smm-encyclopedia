@@ -1,16 +1,16 @@
-import {Fragment, lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Fragment, lazy}                                                          from 'react'
 
-import type {ClassWithTranslationKey}                                                                                                                                                                       from '../../../lang/ClassWithTranslationKey'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKey, PossibleValue} from './PlayerSoundEffectTriggers.types'
-import type {PlayerSoundEffectTriggerProperty}                                                                                                                                                              from './PlayerSoundEffectTriggerProperty'
-import type {ReactElement}                                                                                                                                                                                  from '../../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types'
-import type {TranslationReplaceKeysMap}                                                                                                                                                                     from '../../../lang/components/TranslationProperty'
+import type {ClassWithTranslationKey}                 from '../../../lang/ClassWithTranslationKey'
+import type {Names, Ordinals, PossibleTranslationKey} from './PlayerSoundEffectTriggers.types'
+import type {Nullable}                                from '../../../util/types'
+import type {PlayerSoundEffectTriggerProperty}        from './PlayerSoundEffectTriggerProperty'
+import type {ReactElement}                            from '../../../util/react/ReactProperties'
+import type {TranslationReplaceKeysMap}               from '../../../lang/components/TranslationProperty'
 
-import {assert}                        from '../../../util/utilitiesMethods'
-import {Enum}                          from '../../../util/enum/Enum'
-import GameContentTranslationComponent from '../../../lang/components/GameContentTranslationComponent'
-import {TranslationUtility}            from '../../../lang/components/TranslationUtility'
+import {assert}                 from '../../../util/utilitiesMethods'
+import {gameContentTranslation} from '../../../lang/components/translationMethods'
 
 //region -------------------- dynamic imports --------------------
 
@@ -28,43 +28,43 @@ export class PlayerSoundEffectTriggers
 
     public static readonly JUMP_AFTER_LANDING =                    new class PlayerSoundEffectTriggers_JumpAfterLanding extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenJumpingAfterLanding(): boolean {
+        public override get doesTriggerOnPlayerWhenJumpingAfterLanding() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('After land + jump',)
     public static readonly TURN_AROUND_AFTER_BEING_AT_FULL_SPEED = new class PlayerSoundEffectTriggers_TurnAroundAfterBeingAtFullSpeed extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): boolean {
+        public override get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Turn after full speed',)
     public static readonly ON_CROUCH =                             new class PlayerSoundEffectTriggers_OnCrouch extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenCrouching(): boolean {
+        public override get doesTriggerOnPlayerWhenCrouching() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Crouch',)
     public static readonly AFTER_3_SECONDS_OF_NON_MOVEMENT =       new class PlayerSoundEffectTriggers_After3SecondsOfNonMovement extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): boolean {
+        public override get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly() {
             return true
         }
 
@@ -72,12 +72,12 @@ export class PlayerSoundEffectTriggers
 
     public static readonly COLLECT_POWER_UP =                      new class PlayerSoundEffectTriggers_CollectPowerUp extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenCollectingAPowerUp(): boolean {
+        public override get doesTriggerOnPlayerWhenCollectingAPowerUp() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.mushroomImages = <i key={`${key} (mushroom images)`} className="mushroom-images-container">
                 <Image className="super-mushroom-image" variable="super-mushroom" isSquared/>
                 <>--Weird Mushroom--</>{/*<Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>,*/}
@@ -120,12 +120,12 @@ export class PlayerSoundEffectTriggers
     }('Power-up collected',)
     public static readonly GET_INTO_AN_ENTITY =                    new class PlayerSoundEffectTriggers_GetIntoAnEntity extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenGettingIntoAEntity(): boolean {
+        public override get doesTriggerOnPlayerWhenGettingIntoAEntity() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.clownCarImage = <Image key={`${key} (Clown Car image)`} className="clown-car-image" variable="clown-car" isSquared/>
             keyMap.lakituCloudImage = <Image key={`${key} (Lakitu's Cloud image)`} className="lakitu-cloud-image" variable="lakitu-cloud" isSquared/>
             keyMap.shoeImages = <i key={`${key} (Shoe images)`} className="shoe-images-container">
@@ -145,52 +145,52 @@ export class PlayerSoundEffectTriggers
 
     public static readonly AT_SPAWN =                              new class PlayerSoundEffectTriggers_AtSpawn extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerAtSpawn(): boolean {
+        public override get doesTriggerOnPlayerAtSpawn() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Spawn',)
     public static readonly TAKE_DAMAGE =                           new class PlayerSoundEffectTriggers_TakeDamage extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenTakingDamage(): boolean {
+        public override get doesTriggerOnPlayerWhenTakingDamage() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Take damage',)
     public static readonly LOSE_A_LIFE =                           new class PlayerSoundEffectTriggers_LoseALife extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenLosingALife(): boolean {
+        public override get doesTriggerOnPlayerWhenLosingALife() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
     }('Lose life',)
     public static readonly TAKE_DAMAGE_OR_LOSE_A_LIFE =            new class PlayerSoundEffectTriggers_TakeDamageOrLoseALife extends PlayerSoundEffectTriggers {
 
-        public override get doesTriggerOnPlayerWhenTakingDamage(): boolean {
+        public override get doesTriggerOnPlayerWhenTakingDamage() {
             return true
         }
 
-        public override get doesTriggerOnPlayerWhenLosingALife(): boolean {
+        public override get doesTriggerOnPlayerWhenLosingALife() {
             return true
         }
 
 
-        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
+        protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             return this._addPlayerLink(key, keyMap,)
         }
 
@@ -293,10 +293,8 @@ export class PlayerSoundEffectTriggers
     public createNewComponent(key: string,): ReactElement {
         const keyMap: TranslationReplaceKeysMap = {}
 
-        return <GameContentTranslationComponent>{translation =>
-            <TextComponent classes={['playerSoundEffectTrigger-container']}
-                           content={TranslationUtility.replaceAndInterpretTranslation(translation, `soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
-        }</GameContentTranslationComponent>
+        return <TextComponent classes={['playerSoundEffectTrigger-container']}
+                              content={gameContentTranslation(`soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
     //endregion -------------------- Component methods --------------------
@@ -342,38 +340,33 @@ export class PlayerSoundEffectTriggers
         assert(false, 'There is no player sound effect trigger usable with no possible property.',)
     }
 
+
+    // public static getValueByTranslation<T extends string, >(value: Nullable<| PlayerSoundEffectTriggers | T>,): PlayerSoundEffectTriggersByTranslation<T>
+    public static getValueByTranslation(value: Nullable<| PlayerSoundEffectTriggers | string>,): PlayerSoundEffectTriggers {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(enumerable => enumerable.translationKey === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<PlayerSoundEffectTriggers> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return PlayerSoundEffectTriggers
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.translationKey === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends PlayerSoundEffectTriggers = PlayerSoundEffectTriggers, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): PlayerSoundEffectTriggers
-    public static getValue(value: PossibleValue,): | PlayerSoundEffectTriggers | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<PlayerSoundEffectTriggers>,): PlayerSoundEffectTriggers {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<PlayerSoundEffectTriggers> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

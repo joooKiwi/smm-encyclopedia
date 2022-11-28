@@ -1,12 +1,14 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                  from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                                                                                                                                    from '../ClassWithImagePath'
-import type {ClassWithReference}                                                                                                                                                                                                                                    from '../ClassWithReference'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MiiCostumeCategories.types'
-import type {MiiCostumeCategory}                                                                                                                                                                                                                                    from './MiiCostumeCategory'
-import type {StaticReference}                                                                                                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {ClassWithEnglishName}                                                                            from '../ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                              from '../ClassWithImagePath'
+import type {ClassWithReference}                                                                              from '../ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './MiiCostumeCategories.types'
+import type {Nullable}                                                                                        from '../../util/types'
+import type {MiiCostumeCategory}                                                                              from './MiiCostumeCategory'
 
 import {BASE_PATH}       from '../../variables'
-import {Enum}            from '../../util/enum/Enum'
 import {Import}          from '../../util/DynamicImporter'
 import {StringContainer} from '../../util/StringContainer'
 
@@ -85,42 +87,36 @@ export class MiiCostumeCategories
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(soundEffectCategory => soundEffectCategory.englishName)
+        return this.values.map(it => it.englishName).toArray()
+    }
+
+    // public static getValueByName<T extends string, >(value: Nullable<| MiiCostumeCategories | T>,): MiiCostumeCategoriesByName<T>
+    public static getValueByName(value: Nullable<| MiiCostumeCategories | string>,): MiiCostumeCategories {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(enumerable => enumerable.englishName === value
+            || enumerable.imageName === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<MiiCostumeCategories> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return MiiCostumeCategories
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.imageName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends MiiCostumeCategories = MiiCostumeCategories, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): MiiCostumeCategories
-    public static getValue(value: PossibleValue,): | MiiCostumeCategories | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<MiiCostumeCategories>,): MiiCostumeCategories {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<MiiCostumeCategories> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

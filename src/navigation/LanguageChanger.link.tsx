@@ -36,7 +36,7 @@ export default function LanguageChangerLink({language, callbackToSetLanguage,}: 
 
         return <Fragment key={`${language.englishName} (input & label)`}>
             <input key={`${language.englishName} (input)`} id={`input-${englishNameAsId}`} className="btn-check" autoComplete="off" defaultChecked={language.isCurrentLanguage} type="radio"/>
-            <LanguageChangerSingleLink language={ProjectLanguages.getValue(language)!} callbackToSetLanguage={callbackToSetLanguage} type="label"/>
+            <LanguageChangerSingleLink language={ProjectLanguages.getValueByLanguage(language)!} callbackToSetLanguage={callbackToSetLanguage} type="label"/>
         </Fragment>
     })}</div>
 }

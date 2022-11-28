@@ -3,18 +3,17 @@ import './ThemeApp.scss'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 import type {ThemeAppStates}                                       from './AppStates.types'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import Image                           from './tools/images/Image'
-import {ThemeAppOption}                from './options/ThemeAppOption'
-import {Themes}                        from '../core/theme/Themes'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
-import {CommonOptions}                 from './options/CommonOptions'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import Image                    from './tools/images/Image'
+import {ThemeAppOption}         from './options/ThemeAppOption'
+import {Themes}                 from '../core/theme/Themes'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {CommonOptions}          from './options/CommonOptions'
 
 /**
  * @reactComponent
@@ -31,18 +30,18 @@ export default class ThemeApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'theme'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every themes"/>
+        return gameContentTranslation('Every themes')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Themes, ThemeAppOption> {
         return new class implements AppInterpreterWithTable<Themes, ThemeAppOption> {
 
-            public get iterable(): IterableIterator<Themes> {
+            public get iterable() {
                 return Themes[Symbol.iterator]()
             }
 
@@ -64,7 +63,7 @@ export default class ThemeApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: Themes,): ReactElement {
+            public createCardListContent(enumerable: Themes,) {
                 const {englishName, englishNameInHtml, endlessMarioImagePath,} = enumerable
 
                 return <div className="card-body" id={`theme-${englishNameInHtml}`}>
@@ -94,16 +93,16 @@ export default class ThemeApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every themes"/>,
+                    caption: gameContentTranslation('Every themes')
                 }
             }
 
 
-            public createTableContent(option: ThemeAppOption,): readonly ReactElement[] {
+            public createTableContent(option: ThemeAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: ThemeAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: ThemeAppOption,) {
                 return option.renderTableHeader
             }
 

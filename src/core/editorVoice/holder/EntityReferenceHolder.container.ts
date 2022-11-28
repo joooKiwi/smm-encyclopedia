@@ -21,8 +21,10 @@ export class EntityReferenceHolderContainer
     public constructor(references: PossibleEntityReferences_Received,) {
         this.#references = references.length === 1
             ? new DelayedObjectHolderContainer(() => {
-                const reference = Import.Entities.getValue(references[0])
-                return reference == null ? EMPTY_ARRAY : [reference]
+                const reference = references[0]
+                return Import.Entities.hasValueByName(reference)
+                    ? [Import.Entities.getValueByName(reference),]
+                    : EMPTY_ARRAY
             })
             : new ObjectHolderContainer(references)
     }

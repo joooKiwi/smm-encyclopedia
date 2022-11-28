@@ -1,10 +1,13 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                           from '../ClassWithEnglishName'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleNonNullableValue, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM, PossibleStringValue, PossibleValue} from './Instruments.types'
-import type {InstrumentSoundFile}                                                                                                                                                                                                                                                                                                                                                                            from './file/InstrumentSoundFile'
-import type {Instrument}                                                                                                                                                                                                                                                                                                                                                                                     from './Instrument'
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}                                      from '../../util/enum/Enum'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                     from '../ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from './Instruments.types'
+import type {Nullable}                                                                                                                                                                                                                                 from '../../util/types'
+import type {InstrumentSoundFile}                                                                                                                                                                                                                      from './file/InstrumentSoundFile'
+import type {Instrument}                                                                                                                                                                                                                               from './Instrument'
+
+import {getValueByEnglishName}                     from '../../util/utilitiesMethods'
 import {Import}                                    from '../../util/DynamicImporter'
 import {InstrumentSoundFileContainer as SoundFile} from './file/InstrumentSoundFile.container'
 import {StringContainer}                           from '../../util/StringContainer'
@@ -168,36 +171,27 @@ export class Instruments
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(enumerable => enumerable.englishName)
+        return this.values.map(it => it.englishName).toArray()
+    }
+
+    public static getValueByName(value: Nullable<| Instruments | string>,): Instruments {
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Instruments> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Instruments
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Instruments = Instruments, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Instruments
-    public static getValue(value: PossibleValue,): | Instruments | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Instruments>,) {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Instruments> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

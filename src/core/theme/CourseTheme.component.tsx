@@ -1,8 +1,8 @@
 import type {ThemeProperty} from '../entity/properties/theme/ThemeProperty'
 
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
-import {ThemeComponent}                from './Theme.component'
-import {Themes}                        from './Themes'
+import {gameContentTranslation} from '../../lang/components/translationMethods'
+import {ThemeComponent}         from './Theme.component'
+import {Themes}                 from './Themes'
 
 /**
  * @reactComponent
@@ -33,7 +33,7 @@ export default class CourseThemeComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <GameContentTranslationComponent children={translation => <span>{translation('Every themes')}</span>}/>
+        return <span>{gameContentTranslation('Every themes')}</span>
     }
 
     protected override _renderComponentForAllAsImages() {

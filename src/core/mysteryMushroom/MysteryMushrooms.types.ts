@@ -1,11 +1,6 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
-import type {MysteryMushrooms as RealEnum}                                                                                                                                                                                                                 from './MysteryMushrooms'
-import type {MysteryMushroomSoundFile}                                                                                                                                                                                                                     from './file/MysteryMushroomSoundFile'
-
-
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleFileName | PossibleUniqueEnglishName
-export type PossibleValue = | RealEnum | number | string | null | undefined
+import type {Nullable}                 from '../../util/types'
+import type {MysteryMushrooms}         from './MysteryMushrooms'
+import type {MysteryMushroomSoundFile} from './file/MysteryMushroomSoundFile'
 
 enum Enum {
     MYSTERY_MUSHROOM,
@@ -154,13 +149,7 @@ enum Enum {
     BABYMETAL,
 }
 
-//region -------------------- Number types --------------------
-
 export type Ordinals = typeof Enum[Names]
-
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
 export type Names = keyof typeof Enum
 
 //region -------------------- File name --------------------
@@ -338,176 +327,16 @@ export type PossibleEnglishName =
     | 'Arino KACHO' | 'SUPER MARIO KUN' | 'Necky' | 'GLA' | 'BABYMETAL'
 
 //endregion -------------------- English name --------------------
-
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
-
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
-
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
-
-//endregion -------------------- Instance types --------------------
 //region -------------------- Array types --------------------
-
 
 export type PossibleImageSourceForFile<T, > = | readonly [] | readonly [T,] | readonly [T, T,]
 export type PossibleSoundSourceForFile<T, > =
     T extends readonly MysteryMushroomSoundFile[]
         ? (| readonly [] | T)
         : T extends MysteryMushroomSoundFile
-            ? (| T | null)
+            ? Nullable<T>
             : never
 
-export type EnumArray<E extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<E>['MYSTERY_MUSHROOM'],
-
-    SimpleEnum<E>['YAMAMURA'], SimpleEnum<E>['MARY_O'], SimpleEnum<E>['UNDODOG'],
-
-    SimpleEnum<E>['MR_GAME_AND_WATCH'],
-
-    SimpleEnum<E>['PAC_MAN'],
-
-    SimpleEnum<E>['MARIO'],
-    SimpleEnum<E>['LUIGI'], SimpleEnum<E>['PROFESSOR_E_GADD'],
-    SimpleEnum<E>['PEACH'], SimpleEnum<E>['DAISY'], SimpleEnum<E>['ROSALINA'],
-    SimpleEnum<E>['TOAD'], SimpleEnum<E>['CAPTAIN_TOAD'], SimpleEnum<E>['TOADETTE'],
-    SimpleEnum<E>['YOSHI'], SimpleEnum<E>['BIRDO'],
-    SimpleEnum<E>['WARIO'], SimpleEnum<E>['ASHLEY'], SimpleEnum<E>['WALUIGI'],
-    SimpleEnum<E>['BOWSER'], SimpleEnum<E>['BOWSER_JR'], SimpleEnum<E>['GOOMBA'], SimpleEnum<E>['SHY_GUY'], SimpleEnum<E>['NABBIT'],
-    SimpleEnum<E>['BUILDER_MARIO'], SimpleEnum<E>['MARIO_SILVER'], SimpleEnum<E>['MARIO_GOLD'],
-    SimpleEnum<E>['DR_MARIO'],
-    SimpleEnum<E>['FROG_MARIO'], SimpleEnum<E>['STATUE_MARIO'], SimpleEnum<E>['MARIO_TRIO'],
-    SimpleEnum<E>['KART_MARIO'],
-    SimpleEnum<E>['CAT_MARIO'], SimpleEnum<E>['CAT_PEACH'],
-    SimpleEnum<E>['SKY_POP'],
-    SimpleEnum<E>['BABY_MARIO'],
-    SimpleEnum<E>['QUESTION_MARK_BLOCK'], SimpleEnum<E>['TRAMPOLINE'],
-    SimpleEnum<E>['MARIO_MB'], SimpleEnum<E>['SIDESTEPPER'], SimpleEnum<E>['SHELLCREEPER'], SimpleEnum<E>['FIGHTER_FLY'],
-
-    SimpleEnum<E>['GREEN_YARN_YOSHI'], SimpleEnum<E>['PINK_YARN_YOSHI'], SimpleEnum<E>['LIGHT_BLUE_YARN_YOSHI'], SimpleEnum<E>['MEGA_YARN_YOSHI'],
-
-    SimpleEnum<E>['DONKEY_KONG'], SimpleEnum<E>['DONKEY_KONG_JR'], SimpleEnum<E>['DIDDY_KONG'],
-
-    SimpleEnum<E>['LITTLE_MAC'],
-
-    SimpleEnum<E>['DUCK_HUNT'],
-
-    SimpleEnum<E>['BUBBLES'],
-
-    SimpleEnum<E>['BIKE'],
-
-    SimpleEnum<E>['BALLOON_FIGHTER'],
-
-    SimpleEnum<E>['POPO_AND_NANA'],
-
-    SimpleEnum<E>['FOREMAN_SPIKE'],
-
-    SimpleEnum<E>['LINK'], SimpleEnum<E>['ZELDA'], SimpleEnum<E>['SHEIK'],
-    SimpleEnum<E>['TOON_LINK'], SimpleEnum<E>['TETRA'],
-    SimpleEnum<E>['TINGLE'],
-    SimpleEnum<E>['GANONDORF'],
-    SimpleEnum<E>['WOLF_LINK'], SimpleEnum<E>['TOTEM_LINK'],
-
-    SimpleEnum<E>['SAMUS'], SimpleEnum<E>['ZERO_SUIT_SAMUS'],
-
-    SimpleEnum<E>['VOLLEYBALL_PLAYER'],
-
-    SimpleEnum<E>['PIT'], SimpleEnum<E>['PALUTENA'], SimpleEnum<E>['DARK_PIT'],
-
-    SimpleEnum<E>['DONBE'], SimpleEnum<E>['HIKARI'],
-
-    SimpleEnum<E>['MEGA_MAN'],
-
-    SimpleEnum<E>['AYUMI_TACHIBANA'],
-
-    SimpleEnum<E>['MARTH'], SimpleEnum<E>['IKE'], SimpleEnum<E>['LUCINA'], SimpleEnum<E>['ROBIN'],
-
-    SimpleEnum<E>['CAPTAIN_FALCON'],
-
-    SimpleEnum<E>['SONIC'],
-
-    SimpleEnum<E>['KIRBY'], SimpleEnum<E>['KING_DEDEDE'], SimpleEnum<E>['META_KNIGHT'],
-
-    SimpleEnum<E>['FOX_MCCLOUD'], SimpleEnum<E>['FALCO_LOMBARDI'], SimpleEnum<E>['SLIPPY_TOAD'], SimpleEnum<E>['PEPPY_HARE'],
-    SimpleEnum<E>['ARWING'],
-
-    SimpleEnum<E>['NESS'], SimpleEnum<E>['LUCAS'],
-    SimpleEnum<E>['MASTER_BELCH'], SimpleEnum<E>['MR_SATURN'],
-
-    SimpleEnum<E>['PIKACHU'],
-    SimpleEnum<E>['BULBASAUR'],
-    SimpleEnum<E>['CHARMANDER'], SimpleEnum<E>['CHARIZARD'],
-    SimpleEnum<E>['SQUIRTLE'],
-    SimpleEnum<E>['JIGGLYPUFF'],
-    SimpleEnum<E>['MEWTWO'],
-    SimpleEnum<E>['LUCARIO'],
-    SimpleEnum<E>['GRENINJA'],
-
-    SimpleEnum<E>['VILLAGER'],
-    SimpleEnum<E>['TOM_NOOK'],
-    SimpleEnum<E>['K_K_SLIDER'],
-    SimpleEnum<E>['RESETTI'],
-    SimpleEnum<E>['ROVER'],
-    SimpleEnum<E>['TIMMY_AND_TOMMY'],
-    SimpleEnum<E>['BLATHERS'],
-    SimpleEnum<E>['MABEL'],
-    SimpleEnum<E>['KAPP_N'],
-    SimpleEnum<E>['CELESTE'],
-    SimpleEnum<E>['KICKS'],
-    SimpleEnum<E>['ISABELLE_SUMMER_OUTFIT'], SimpleEnum<E>['ISABELLE_WINTER_OUTFIT'],
-    SimpleEnum<E>['DIGBY'],
-    SimpleEnum<E>['CYRUS'],
-    SimpleEnum<E>['REESE'],
-    SimpleEnum<E>['LOTTIE'],
-
-    SimpleEnum<E>['CAPTAIN_OLIMAR'], SimpleEnum<E>['PIKMIN'],
-
-    SimpleEnum<E>['CHIBI_ROBO'],
-
-    SimpleEnum<E>['WII_BALANCE_BOARD'], SimpleEnum<E>['WII_FIT_TRAINER'],
-
-    SimpleEnum<E>['SHULK'],
-
-    SimpleEnum<E>['FELYNE'],
-
-    SimpleEnum<E>['YU_AYASAKI'],
-
-    SimpleEnum<E>['DR_KAWASHIMA'],
-
-    SimpleEnum<E>['DR_LOBE'],
-
-    SimpleEnum<E>['BARBARA_THE_BAT'],
-
-    SimpleEnum<E>['STARFY'],
-
-    SimpleEnum<E>['MALLO'],
-
-    SimpleEnum<E>['NIKKI'],
-    SimpleEnum<E>['IRIS_ARCHWELL'],
-    SimpleEnum<E>['ARCADE_BUNNY'],
-
-    SimpleEnum<E>['CHITOGE_KIRISAKI'],
-
-    SimpleEnum<E>['INKLING_SQUID'], SimpleEnum<E>['INKLING_BOY'], SimpleEnum<E>['INKLING_GIRL'],
-    SimpleEnum<E>['CALLIE'], SimpleEnum<E>['MARIE'],
-
-    SimpleEnum<E>['ROB'],
-    SimpleEnum<E>['DISKUN'],
-    SimpleEnum<E>['MAHJONG_TILE'],
-
-    SimpleEnum<E>['KITTY_WHITE'], SimpleEnum<E>['MELODY'],
-    SimpleEnum<E>['SHAUN_THE_SHEEP'],
-
-    SimpleEnum<E>['ARINO_KACHO'],
-    SimpleEnum<E>['SUPER_MARIO_KUN'],
-    SimpleEnum<E>['NECKY'],
-    SimpleEnum<E>['GLA'],
-    SimpleEnum<E>['BABYMETAL'],
-]
-
 //endregion -------------------- Array types --------------------
+
+export type MysteryMushroomsByName<T extends string, > = T extends (| PossibleEnglishName | PossibleFileName) ? MysteryMushrooms : never

@@ -1,14 +1,15 @@
 import './Arrow.scss'
 
-import type {ReactProperties}          from '../../../util/react/ReactProperties'
-import type {PossibleNonNullableValue} from './Arrows.types'
+import type {PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+
+import type {ReactProperties} from '../../../util/react/ReactProperties'
 
 import {Arrows} from './Arrows'
 
 interface SingleArrowProperties
     extends ReactProperties {
 
-    value: PossibleNonNullableValue
+    value: PossibleValueByEnumerable<Arrows>
 
 }
 

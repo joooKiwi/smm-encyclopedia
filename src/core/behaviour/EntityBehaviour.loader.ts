@@ -3,6 +3,7 @@ import resource from '../../resources/compiled/Entity behaviour.json'
 import type {EntityBehaviour}                          from './EntityBehaviour'
 import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template'
 import type {Loader}                                   from '../../util/loader/Loader'
+import type {NullOr}                                   from '../../util/types'
 import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
 import type {PossibleEnglishName as EntityName}        from '../entity/Entities.types'
 import type {PossibleGroupName}                        from '../entityTypes'
@@ -36,8 +37,8 @@ type PropertiesArray = [
     isOnlineOnly: boolean,
     isMultiplayerOnly: boolean,
 
-    link_group: | PossibleGroupName | null,
-    link_entity: | EntityName | null,
+    link_group: NullOr<PossibleGroupName>,
+    link_entity: NullOr<EntityName>,
 ]
 
 //endregion -------------------- Properties --------------------

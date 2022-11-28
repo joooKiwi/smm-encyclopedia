@@ -1,6 +1,8 @@
+import type {NullOr} from '../util/types'
+
 /**
  * <p>
- *     A class with every languages used in the project.
+ *     A class with every language used in the project.
  *     But, it does not contain every simple languages.
  * </p>
  *
@@ -10,19 +12,19 @@
  * </p>
  */
 export interface ClassWithOnlyProjectLanguages<T,
-    GERMAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    AMERICAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    ITALIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    DUTCH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    AMERICAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    RUSSIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    JAPANESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    TRADITIONAL_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, SIMPLIFIED_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    KOREAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    HEBREW extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>,
-    POLISH extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>,
-    UKRAINIAN extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>,
-    GREEK extends | PossibleLanguageValue<T> = | PossibleLanguageValue<T>, > {
+    GERMAN extends NullOr<T> = NullOr<T>,
+    AMERICAN_SPANISH extends NullOr<T> = NullOr<T>, EUROPEAN_SPANISH extends NullOr<T> = NullOr<T>,
+    ITALIAN extends NullOr<T> = NullOr<T>,
+    DUTCH extends NullOr<T> = NullOr<T>,
+    AMERICAN_PORTUGUESE extends NullOr<T> = NullOr<T>, EUROPEAN_PORTUGUESE extends NullOr<T> = NullOr<T>,
+    RUSSIAN extends NullOr<T> = NullOr<T>,
+    JAPANESE extends NullOr<T> = NullOr<T>,
+    TRADITIONAL_CHINESE extends NullOr<T> = NullOr<T>, SIMPLIFIED_CHINESE extends NullOr<T> = NullOr<T>,
+    KOREAN extends NullOr<T> = NullOr<T>,
+    HEBREW extends NullOr<T> = NullOr<T>,
+    POLISH extends NullOr<T> = NullOr<T>,
+    UKRAINIAN extends NullOr<T> = NullOr<T>,
+    GREEK extends NullOr<T> = NullOr<T>, > {
 
     //region -------------------- English properties --------------------
 
@@ -119,8 +121,3 @@ export interface ClassWithOnlyProjectLanguages<T,
     //endregion -------------------- Greek properties --------------------
 
 }
-
-/**
- * The possible language value as either the generic type or null.
- */
-export type PossibleLanguageValue<T, > = | T | null

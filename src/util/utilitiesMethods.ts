@@ -1,4 +1,9 @@
-import {AssertionError} from 'assert'
+import type {BasicEnumerableConstructor, CollectionHolder, Enumerable} from '@joookiwi/enumerable/dist/types'
+import {AssertionError}                                                from 'assert'
+
+import type {ClassWithEnglishName} from '../core/ClassWithEnglishName'
+import type {Nullable}             from './types'
+
 import {isInProduction} from '../variables'
 
 /**
@@ -30,9 +35,31 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
     return true
 }
 
+/**
+ * Define if the value is an empty string or nullable (<b>null</b> / <b>undefined</b>)
+ *
+ * @param value The value to compare
+ */
+export function isNullableEmptyString(value: unknown,): value is Nullable<''> {
+    return value === '' || value == null
+}
+
 export function assert(condition: boolean, message: string,): asserts condition {
     if (isInProduction)
         return
     if (!condition)
         throw new AssertionError({message: message,})
 }
+
+export function getValueByEnglishName<T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
+    if (value == null)
+        throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null value`)
+    if (value instanceof enumerableConstructor)
+        return value as T
+    const valueFound = (enumerableConstructor.values as CollectionHolder<T>).find(it => it.englishName === value)
+    if (valueFound == null)
+        throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
+    return valueFound
+}
+
+type EnumerableWithEnglishName = & Enumerable & ClassWithEnglishName<string>

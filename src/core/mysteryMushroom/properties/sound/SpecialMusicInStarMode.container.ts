@@ -1,5 +1,6 @@
-import type {ExtendedMap}                                                                                                                   from '../../../../util/extended/ExtendedMap'
-import type {PossibleGames, PossibleGamesReceived, PossibleTranslationKeys, PossibleValues, PossibleValuesReceived, SpecialMusicInStarMode} from './SpecialMusicInStarMode'
+import type {ExtendedMap}                                                                                                    from '../../../../util/extended/ExtendedMap'
+import type {NullOr}                                                                                                         from '../../../../util/types'
+import type {PossibleGamesReceived, PossibleTranslationKeys, PossibleValues, PossibleValuesReceived, SpecialMusicInStarMode} from './SpecialMusicInStarMode'
 
 import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
 import {GameReferences}       from '../../../gameReference/GameReferences'
@@ -24,7 +25,7 @@ export class SpecialMusicInStarModeContainer
 
     private constructor([value, game,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,)
-        this.#game = GameReferences.getValue(game)
+        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
     //region -------------------- Getter methods --------------------
@@ -34,7 +35,7 @@ export class SpecialMusicInStarModeContainer
     }
 
 
-    public get gameReference(): PossibleGames {
+    public get gameReference(): NullOr<GameReferences> {
         return this.#game
     }
 

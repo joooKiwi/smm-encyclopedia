@@ -1,9 +1,10 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAppOptionValue, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GlobalAppOption.types'
-import type {GlobalAppState}                                                                                                                                                                                from '../../AppStates.types'
-import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {Names, Ordinals, PossibleAppOptionValue} from './GlobalAppOption.types'
+import type {GlobalAppState}                          from '../../AppStates.types'
 
 import {AbstractAppOption} from '../AbstractAppOption'
-import {Enum}              from '../../../util/enum/Enum'
 import {ImageAnimations}   from './ImageAnimations'
 import {Images}            from './Images'
 import {GlobalThemeOption} from './GlobalThemeOption'
@@ -67,30 +68,17 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<GlobalAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return GlobalAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends GlobalAppOption = GlobalAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): GlobalAppOption
-    public static getValue(value: PossibleValue,): | GlobalAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<GlobalAppOption>,): GlobalAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<GlobalAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

@@ -1,15 +1,16 @@
-import {Link} from 'react-router-dom'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Link}                                                                    from 'react-router-dom'
 
-import type {BootstrapColor}                                                                                                                                                                               from '../../bootstrap/Bootstrap.types'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleCourseTagType, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './CourseTagType.types'
-import type {EveryPossibleRouteNames}                                                                                                                                                                      from '../../routes/everyRoutes.types'
-import type {StaticReference}                                                                                                                                                                              from '../../util/enum/Enum.types'
-import type {ReactElement, ReactElementOrString}                                                                                                                                                           from '../../util/react/ReactProperties'
+import type {BootstrapColor}                         from '../../bootstrap/Bootstrap.types'
+import type {EveryPossibleRouteNames}                from '../../routes/everyRoutes.types'
+import type {Names, Ordinals, PossibleCourseTagType} from './CourseTagType.types'
+import type {Nullable}                               from '../../util/types'
+import type {ReactElement, ReactElementOrString}     from '../../util/react/ReactProperties'
 
-import ContentTranslationComponent from '../../lang/components/ContentTranslationComponent'
-import {CourseTags}                from '../../core/courseTag/CourseTags'
-import {Enum}                      from '../../util/enum/Enum'
-import {route}                     from '../../routes/route'
+import {contentTranslation} from '../../lang/components/translationMethods'
+import {CourseTags}         from '../../core/courseTag/CourseTags'
+import {route}              from '../../routes/route'
 
 export abstract class CourseTagTypes
     extends Enum<Ordinals, Names> {
@@ -153,21 +154,21 @@ export abstract class CourseTagTypes
     protected abstract _createAllLinkButtonProperties(): LinkProperties
 
     public createAllLinkButton(): ReactElement {
-        return this.#createLinkButton('all', this._createAllLinkButtonProperties(), <ContentTranslationComponent translationKey="All"/>,)
+        return this.#createLinkButton('all', this._createAllLinkButtonProperties(), contentTranslation('All'),)
     }
 
 
     protected abstract _createOfficialLinkButtonProperties(): LinkProperties
 
     public createOfficialLinkButton(): ReactElement {
-        return this.#createLinkButton('official', this._createOfficialLinkButtonProperties(), <ContentTranslationComponent translationKey="Official.Yes"/>,)
+        return this.#createLinkButton('official', this._createOfficialLinkButtonProperties(), contentTranslation('Official.Yes'),)
     }
 
 
     protected abstract _createUnofficialLinkButtonProperties(): LinkProperties
 
     public createUnofficialLinkButton(): ReactElement {
-        return this.#createLinkButton('unofficial', this._createUnofficialLinkButtonProperties(), <ContentTranslationComponent translationKey="Official.No"/>,)
+        return this.#createLinkButton('unofficial', this._createUnofficialLinkButtonProperties(), contentTranslation('Official.No'),)
     }
 
 
@@ -189,38 +190,32 @@ export abstract class CourseTagTypes
 
     //endregion -------------------- Link button methods --------------------
 
+    // public static getValueByType<T,>(value: T,): CourseTagTypesByType<T>
+    public static getValueByType(value: Nullable<| CourseTagTypes | string>,): CourseTagTypes {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.type === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<CourseTagTypes> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return CourseTagTypes
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.type === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends CourseTagTypes = CourseTagTypes, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): CourseTagTypes
-    public static getValue(value: PossibleValue,): | CourseTagTypes | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<CourseTagTypes>,): CourseTagTypes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<CourseTagTypes> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()
@@ -232,6 +227,6 @@ export abstract class CourseTagTypes
 
 type PossibleRouteName = Extract<EveryPossibleRouteNames, `${| 'every' | Exclude<PossibleCourseTagType, 'every'> | `${'official' | 'unofficial'}${| 'And' | 'Excluding'}MakerCentral`}CourseTags`>
 type LinkProperties = readonly [
-    routeName: | PossibleRouteName | null,
+    routeName: Nullable<PossibleRouteName>,
     color: Extract<BootstrapColor, | 'success' | 'warning' | 'danger'>,
 ]

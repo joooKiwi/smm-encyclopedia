@@ -1,15 +1,13 @@
-import type {PossibleImagePath_SMM1, PossibleImagePath_SMM2, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from '../SoundEffects.types'
+import type {NullOr}                                                                      from '../../../util/types'
+import type {PossibleImagePath_SMM1, PossibleImagePath_SMM2, SoundEffectImageNumber_SMM1} from '../SoundEffects.types'
 
 export interface SoundEffectImage {
 
     get SMM1ImagePath(): PossibleSMM1ImagePath
 
-    get SMM2ImagePath(): PossibleSMM2ImagePath
+    get SMM2ImagePath(): NullOr<PossibleImagePath_SMM2>
 
 }
 
-export type PossibleSMM1ImagePathReceived = | SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,] | null
-export type PossibleSMM1ImagePath = | readonly [PossibleImagePath_SMM1,] | readonly [PossibleImagePath_SMM1, PossibleImagePath_SMM1,] | null
-
-export type PossibleSMM2ImagePathReceived = SoundEffectImageName_SMM2 | null
-export type PossibleSMM2ImagePath = | PossibleImagePath_SMM2 | null
+export type PossibleSMM1ImagePathReceived = NullOr<| SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,]>
+export type PossibleSMM1ImagePath = NullOr<| readonly [PossibleImagePath_SMM1,] | readonly [PossibleImagePath_SMM1, PossibleImagePath_SMM1,]>

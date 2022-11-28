@@ -3,15 +3,14 @@ import './SoundEffectApp.scss'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 import type {SoundEffectAppStates}                                 from './AppStates.types'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {SoundEffects}                  from '../core/soundEffect/SoundEffects'
-import {SoundEffectAppOption}          from './options/SoundEffectAppOption'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {SoundEffects}           from '../core/soundEffect/SoundEffects'
+import {SoundEffectAppOption}   from './options/SoundEffectAppOption'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -28,18 +27,18 @@ export default class SoundEffectApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'soundEffect'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every sound effects"/>
+        return gameContentTranslation('Every sound effects')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
         return new class implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
-            public get iterable(): IterableIterator<SoundEffects> {
+            public get iterable() {
                 return SoundEffects[Symbol.iterator]()
             }
 
@@ -56,7 +55,7 @@ export default class SoundEffectApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: SoundEffects,): ReactElement {
+            public createCardListContent(enumerable: SoundEffects,) {
                 return <div>
                     <div className="soundEffect-images-container">
                         {SoundEffectAppOption.renderSMM1And3DSImage(enumerable)}
@@ -84,15 +83,15 @@ export default class SoundEffectApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every sound effects"/>,
+                    caption: gameContentTranslation('Every sound effects'),
                 }
             }
 
-            public createTableContent(option: SoundEffectAppOption,): readonly ReactElement[] {
+            public createTableContent(option: SoundEffectAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: SoundEffectAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: SoundEffectAppOption,) {
                 return option.renderTableHeader
             }
 

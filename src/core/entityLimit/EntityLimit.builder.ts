@@ -5,11 +5,12 @@ import type {EntityLimitAmount}                                                 
 import type {ObjectHolder}                                                                                                                                                                from '../../util/holder/ObjectHolder'
 import type {Name}                                                                                                                                                                        from '../../lang/name/Name'
 import type {NotApplicableProperty, UnknownProperty}                                                                                                                                      from '../_properties/PropertyWithEverything'
+import type {Nullable}                                                                                                                                                                    from '../../util/types'
 import type {PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                                                         from './EntityLimits.types'
 import type {PossibleEnglishName as PossibleEnglishName_EntityLimitType}                                                                                                                  from './EntityLimitTypes.types'
 
-import {AlternativeEntityLimitContainer}         from './AlternativeEntityLimitContainer'
-import {DelayedObjectHolderContainer}            from '../../util/holder/DelayedObjectHolder.container'
+import {AlternativeEntityLimitContainer} from './AlternativeEntityLimit.container'
+import {DelayedObjectHolderContainer}    from '../../util/holder/DelayedObjectHolder.container'
 import {EmptyEntityLimit}                        from './EmptyEntityLimit'
 import {EmptyEntityLimitAmount}                  from './properties/EmptyEntityLimitAmount'
 import {EntityLimitAmountContainer}              from './properties/EntityLimitAmount.container'
@@ -59,10 +60,10 @@ export class EntityLimitBuilder
      * @param template
      */
     #getEntityLimitTypeBy(template: AlternativeLimitTemplate,): ObjectHolder<EntityLimitTypes> {
-        return new DelayedObjectHolderContainer(() => Import.EntityLimits.getValue(template.name.english.simple!)!.reference.type)
+        return new DelayedObjectHolderContainer(() => Import.EntityLimits.getValueByNameOrAcronym(template.name.english.simple).reference.type)
     }
 
-    #getAlternativeEntityLimitBy(limit: | PossibleAlternativeEnglishName | null,): ObjectHolder<AlternativeEntityLimit> {
+    #getAlternativeEntityLimitBy(limit: Nullable<PossibleAlternativeEnglishName>,): ObjectHolder<AlternativeEntityLimit> {
         return limit == null
             ? EntityLimitBuilder.#EMPTY_ENTITY_LIMIT
             : new DelayedObjectHolderContainer(() => EntityLimitBuilder.references.get(limit) as AlternativeEntityLimit)
@@ -74,7 +75,7 @@ export class EntityLimitBuilder
      * @param name
      */
     #getTypeBy(name: PossibleEnglishName_EntityLimitType,): ObjectHolder<EntityLimitTypes> {
-        return new DelayedObjectHolderContainer(() => EntityLimitTypes.getValue(name))
+        return new DelayedObjectHolderContainer(() => EntityLimitTypes.getValueByName(name))
     }
 
     //region -------------------- Limit amount helper methods --------------------

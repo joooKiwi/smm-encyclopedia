@@ -4,16 +4,16 @@ import {Fragment} from 'react'
 
 import type {AppInterpreterWithCardList,}                          from './interpreter/AppInterpreterWithCardList'
 import type {CourseTagAppProperties}                               from './AppProperties.types'
+import type {NullOr}                                               from '../util/types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
-import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp'
-import {CourseTags}                    from '../core/courseTag/CourseTags'
-import {CourseTagTypes}                from './property/CourseTagTypes'
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {TranslationUtility}            from '../lang/components/TranslationUtility'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
+import {CourseTags}             from '../core/courseTag/CourseTags'
+import {CourseTagTypes}         from './property/CourseTagTypes'
+import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 export default class CourseTagApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties> {
@@ -34,28 +34,24 @@ export default class CourseTagApp
     //region -------------------- Getter methods --------------------
 
     public get type(): CourseTagTypes {
-        return this.#type ??= CourseTagTypes.getValue(this.props.type)
+        return this.#type ??= CourseTagTypes.getValueByType(this.props.type)
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'courseTag'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent>{translation => <>{TranslationUtility.replaceAndInterpretTranslation(
-            translation,
-            'Every course tags', {
-                course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
-                tags: <Fragment key="every course tag (plural lowercase tag)">--tags--</Fragment>,//TODO add tag reference
-            },
-        )}</>
-        }</GameContentTranslationComponent>
+        return gameContentTranslation('Every course tags', {
+            course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
+            tags: <Fragment key="every course tag (plural lowercase tag)">--tags--</Fragment>,//TODO add tag reference
+        },)
     }
 
-    protected override _createAsideContent(): | ReactElementOrString | null {
+    protected override _createAsideContent(): NullOr<ReactElementOrString> {
         const type = this.type
 
         return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
@@ -73,7 +69,7 @@ export default class CourseTagApp
 
         return new class implements AppInterpreterWithCardList<CourseTags> {
 
-            public get iterable(): IterableIterator<CourseTags> {
+            public get iterable() {
                 return $this.type.iterator
             }
 
@@ -90,7 +86,7 @@ export default class CourseTagApp
                 return 'list'
             }
 
-            public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,): ReactElement {
+            public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,) {
                 return courseTag.firstAppearance == null
                     ? EMPTY_REACT_ELEMENT
                     : <sub key={`${name} - first appearance`}>{courseTag.firstAppearance.simpleName}</sub>

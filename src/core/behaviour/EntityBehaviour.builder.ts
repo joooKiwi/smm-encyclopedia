@@ -37,7 +37,7 @@ export class EntityBehaviourBuilder
     }
 
     static #getEntityByName(name: PossibleEntityName,): Entity {
-        return Import.Entities.getValue(name).reference
+        return Import.Entities.getValueByName(name).reference
     }
 
     static #createLinks({group, entity,}: EntityBehaviourLinkTemplate,): EntityBehaviourLink {

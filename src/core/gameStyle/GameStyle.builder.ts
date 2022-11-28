@@ -40,7 +40,7 @@ export class GameStyleBuilder
     //region -------------------- Builder helper methods --------------------
 
     static #getNameBy(reference: PossibleAcronym,): () => Name<string> {
-        return () => Import.GameReferences.getValue(reference).reference.nameContainer
+        return () => Import.GameReferences.getValueByNameOrAcronym(reference).reference.nameContainer
     }
 
     static #getGameProperty({'1And3DS': isInSMM1And3DS,}: SimpleGameFrom1And2Template<boolean, boolean>,): ObjectHolder<GameProperty> {
@@ -64,6 +64,7 @@ export class GameStyleBuilder
 
             return Import.Entities.values.map(({reference,}) => reference)
                 .filter(reference => gameStyle.get(reference))
+                .toArray()
         })
     }
 

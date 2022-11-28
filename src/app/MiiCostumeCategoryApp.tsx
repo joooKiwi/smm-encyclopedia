@@ -3,13 +3,12 @@ import {lazy} from 'react'
 import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList'
 import type {AppProperties}                                        from './AppProperties.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
-import {AbstractCardListApp}           from './withInterpreter/AbstractCardListApp'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {MiiCostumeCategories}          from '../core/miiCostumeCategory/MiiCostumeCategories'
-import {TranslationUtility}            from '../lang/components/TranslationUtility'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {MiiCostumeCategories}   from '../core/miiCostumeCategory/MiiCostumeCategories'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 const Image = lazy(() => import('./tools/images/Image'))
 
@@ -28,20 +27,20 @@ export default class EveryEntityCategoriesApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'miiCostumeCategory'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent>{translation => TranslationUtility.replaceAndInterpretTranslation(translation, 'Every Mii costume categories', {
+        return gameContentTranslation('Every Mii costume categories', {
             MiiCostume: <span key="miiCostume-singularName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costume reference
-        })}</GameContentTranslationComponent>
+        },)
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {
         return new class implements AppInterpreterWithCardList<MiiCostumeCategories> {
 
-            public get iterable(): IterableIterator<MiiCostumeCategories> {
+            public get iterable() {
                 return MiiCostumeCategories[Symbol.iterator]()
             }
 
@@ -63,7 +62,7 @@ export default class EveryEntityCategoriesApp
                 return 'list'
             }
 
-            public createCardListContent(enumerable: MiiCostumeCategories,): ReactElement {
+            public createCardListContent(enumerable: MiiCostumeCategories,) {
                 return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>
             }
 

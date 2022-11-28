@@ -1,7 +1,8 @@
-import type {EnumArray, EnumArray_EnglishName, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityLimitTypes.types'
-import type {StaticReference}                                                                                                                                                                                                                              from '../../util/enum/Enum.types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import {Enum} from '../../util/enum/Enum'
+import type {EnglishNames, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from './EntityLimitTypes.types'
+import type {Nullable}                                                                      from '../../util/types'
 
 export class EntityLimitTypes
     extends Enum<Ordinals, Names> {
@@ -43,43 +44,37 @@ export class EntityLimitTypes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get everyEnglishNames(): EnumArray_EnglishName {
-        return this.values.map(type => type.englishName) as unknown as EnumArray_EnglishName
+    public static get everyEnglishNames(): EnglishNames {
+        return this.values.map(type => type.englishName).toArray() as EnglishNames
+    }
+
+    // public static getValueByName<T extends string, >(value: Nullable<| EntityLimitTypes | T>,): EntityLimitTypesByName<T>
+    public static getValueByName(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null name.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.englishName === value
+            || it.englishCommonText === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EntityLimitTypes> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return EntityLimitTypes
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.englishCommonText === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends EntityLimitTypes = EntityLimitTypes, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EntityLimitTypes
-    public static getValue(value: PossibleValue,): | EntityLimitTypes | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<EntityLimitTypes>,): EntityLimitTypes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<EntityLimitTypes> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

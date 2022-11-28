@@ -1,10 +1,11 @@
-import {NotApplicable, Property} from '../../../_properties/Property'
+import type {NotApplicable, Property} from '../../../_properties/Property'
+import type {NullOr}                  from '../../../../util/types'
 
 export interface SoundEffectOnTurnAfterRun
     extends Property<PossibleValues> {
 
 }
 
-export type PossibleValuesReceived = | boolean | null
+export type PossibleValuesReceived = NullOr<boolean>
 
-export type PossibleValues = | boolean | NotApplicable
+/**@deprecated Create a new boolean or N/A*/export type PossibleValues = | boolean | NotApplicable

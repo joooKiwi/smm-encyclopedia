@@ -1,5 +1,6 @@
-import type {ExtendedMap}                                                                                            from '../../../../util/extended/ExtendedMap'
-import type {PossibleGames, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectWhenCollected} from './SoundEffectWhenCollected'
+import type {ExtendedMap}                                                                             from '../../../../util/extended/ExtendedMap'
+import type {NullOr}                                                                                  from '../../../../util/types'
+import type {PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectWhenCollected} from './SoundEffectWhenCollected'
 
 import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
 import {GameReferences}       from '../../../gameReference/GameReferences'
@@ -24,7 +25,7 @@ export class SoundEffectWhenCollectedContainer
 
     private constructor([value, game,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer(value, true, false,)
-        this.#game = GameReferences.getValue(game)
+        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
     //region -------------------- Getter methods --------------------
@@ -33,7 +34,7 @@ export class SoundEffectWhenCollectedContainer
         return this.#property.value
     }
 
-    public get gameReference(): PossibleGames {
+    public get gameReference(): NullOr<GameReferences> {
         return this.#game
     }
 

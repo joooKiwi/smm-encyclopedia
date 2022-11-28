@@ -9,6 +9,7 @@ import type {Entity}                                                            
 import type {EntityLink}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from './loader.types'
 import type {DimensionTemplate, EntityTemplate, SimpleDimensionTemplate, SimpleDimensionTemplateDifferentInSM3DW}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './Entity.template'
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from '../../util/loader/Loader'
+import type {Nullable, NullableString, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from '../../util/types'
 import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../../lang/Loader.types'
 import type {PropertiesArrayFromAllGames as GamesPropertyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from '../game/Loader.types'
 import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from './properties/basic/BasicProperty'
@@ -211,7 +212,7 @@ type ExclusivePropertiesArray1 = [
 type ExclusivePropertiesArray2 = [
     //region -------------------- Basic properties --------------------
 
-    categoryInTheEditor: | PossibleEnglishName_Category | null,
+    categoryInTheEditor: NullOr<PossibleEnglishName_Category>,
 
     hasAMushroomVariant: PossibleHasAMushroomVariant,
     canBeInAParachute: PossibleCanBeInAParachute,
@@ -225,8 +226,8 @@ type ExclusivePropertiesArray2 = [
     isAffectedDirectlyByAnOnOrOffState: IsAffectedDirectlyByAnOnOrOffState,
 
     canBePutOnATrack: CanBePutOnATrack,
-    editorLimit_canBePutOnATrack: | PossibleEnglishName_Limit | null,
-    whilePlaying_canBePutOnATrack: | PossibleEnglishName_Limit | null,
+    editorLimit_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>,
+    whilePlaying_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>,
 
     canSpawnOutOfAPipe: CanSpawnOutOfAPipe,
 
@@ -332,25 +333,25 @@ type ExclusivePropertiesArray2 = [
     //endregion -------------------- Dimension properties --------------------
     //region -------------------- Reference on specific condition properties -------------------
 
-    inDayTheme: | EntityLink | null,
-    inNightTheme: | EntityLink | null,
+    inDayTheme: NullOr<EntityLink>,
+    inNightTheme: NullOr<EntityLink>,
 
-    inGroundTheme: | EntityLink | null,
-    inUndergroundTheme: | EntityLink | null,
-    inUnderwaterTheme: | EntityLink | null,
-    inDesertTheme: | EntityLink | null,
-    inSnowTheme: | EntityLink | null,
-    inSkyTheme: | EntityLink | null,
-    inForestTheme: | EntityLink | null,
-    inGhostHouseTheme: | EntityLink | null,
-    inAirshipTheme: | EntityLink | null,
-    inCastleTheme: | EntityLink | null,
+    inGroundTheme: NullOr<EntityLink>,
+    inUndergroundTheme: NullOr<EntityLink>,
+    inUnderwaterTheme: NullOr<EntityLink>,
+    inDesertTheme: NullOr<EntityLink>,
+    inSnowTheme: NullOr<EntityLink>,
+    inSkyTheme: NullOr<EntityLink>,
+    inForestTheme: NullOr<EntityLink>,
+    inGhostHouseTheme: NullOr<EntityLink>,
+    inAirshipTheme: NullOr<EntityLink>,
+    inCastleTheme: NullOr<EntityLink>,
 
-    inSMBGameStyle: | EntityLink | null,
-    inSMB3GameStyle: | EntityLink | null,
-    inSMWGameStyle: | EntityLink | null,
-    inNSMBUGameStyle: | EntityLink | null,
-    inSM3DWGameStyle: | EntityLink | null,
+    inSMBGameStyle: NullOr<EntityLink>,
+    inSMB3GameStyle: NullOr<EntityLink>,
+    inSMWGameStyle: NullOr<EntityLink>,
+    inNSMBUGameStyle: NullOr<EntityLink>,
+    inSM3DWGameStyle: NullOr<EntityLink>,
 
     //endregion -------------------- Reference on specific condition properties --------------------
     hasANameReferencedInMarioMaker: HasAReferenceInMarioMaker,
@@ -506,7 +507,7 @@ export class EntityLoader
 
                 .onAfterFinalObjectCreated(finalContent => {
                     const template = finalContent.build()
-                    const englishName = (template.name.english.simple ?? template.name.english.american) as | PossibleEnglishName | null
+                    const englishName = (template.name.english.simple ?? template.name.english.american) as NullOr<PossibleEnglishName>
                     assert(englishName != null, `The template english name should never be null since it is a key reference for the whole program.`,)
                     templateReferences.set(englishName, template,)
                     referencesToWatch.addSubReference(template)
@@ -785,24 +786,23 @@ class TemplateBuilder
         }
     }
 
-    static #convertLinkToOnlyBoolean(link: | EntityLink | null,) {
+    static #convertLinkToOnlyBoolean(link: Nullable<EntityLink>,) {
         return link != null && this.#convertLinkToBoolean(link)
     }
 
-    static #convertLinkToBoolean(link: EntityLink,): boolean {
+    static #convertLinkToBoolean(link: EntityLink,) {
         return link.includes(this.#LINK_AS_THIS)
     }
 
-    static #convertLinkToNullableBoolean(link: | EntityLink | null,): | boolean | null {
+    static #convertLinkToNullableBoolean(link: Nullable<EntityLink>,) {
         return link == null
             ? null
             : this.#convertLinkToBoolean(link)
     }
 
-    static #convertToBehaviourArray(behaviour: | string | null,): EveryPossibleLinkedBehaviourAcronymArray {
-        return behaviour == null
-            ? EMPTY_ARRAY
-            : behaviour.split(this.#SLASH_SEPARATOR) as | [string,] | [string, string,] | [string, string, string,] as EveryPossibleLinkedBehaviourAcronymArray
+    static #convertToBehaviourArray(behaviour: NullableString,): EveryPossibleLinkedBehaviourAcronymArray
+    static #convertToBehaviourArray(behaviour: NullableString,) {
+        return behaviour?.split(this.#SLASH_SEPARATOR) ?? EMPTY_ARRAY
     }
 
 

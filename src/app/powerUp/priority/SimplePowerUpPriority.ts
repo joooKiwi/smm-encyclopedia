@@ -1,5 +1,6 @@
 import type {ClassInAnySuperMarioMakerGame} from '../../../core/game/ClassInAnySuperMarioMakerGame'
 import type {ImagesCallback}                from './PowerUpPriority'
+import type {Nullable}                      from '../../../util/types'
 
 import {AbstractPowerUpPriority} from './AbstractPowerUpPriority'
 import {EmptyStringName}         from '../../../lang/name/EmptyStringName'
@@ -18,7 +19,7 @@ export class SimplePowerUpPriority
 
     //region -------------------- Fields --------------------
 
-    public constructor(imagesCallback: | ImagesCallback | null = null,) {
+    public constructor(imagesCallback: Nullable<ImagesCallback> = null,) {
         super(SimplePowerUpPriority.#EMPTY_NAME_CALLBACK, imagesCallback ?? AbstractPowerUpPriority._EMPTY_CALLBACK, SimplePowerUpPriority.#IS_IN_GAMES,)
     }
 

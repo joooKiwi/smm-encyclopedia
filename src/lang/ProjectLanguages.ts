@@ -1,15 +1,15 @@
-import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages'
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleCanadianOrEuropeanValue, PossibleChineseValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from './name/containers/Language'
-import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../core/game/ClassInAnySuperMarioMakerGame'
-import type {EnumArray, Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleNonNullableValue, PossibleOriginalName, PossibleStringValue, PossibleValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from './ProjectLanguages.types'
-import type {Enumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from '../util/enum/Enumerable'
-import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './LanguageEnumerable'
-import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types'
-import type {PossibleLanguageValue}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from './ClassWithOnlyProjectLanguages'
-import type {PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './EveryLanguages.types'
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from '../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                               from '@joookiwi/enumerable'
 
-import {Enum}           from '../util/enum/Enum'
+import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from './ClassWithEveryLanguages'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from './name/containers/Language'
+import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from '../core/game/ClassInAnySuperMarioMakerGame'
+import type {Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from './ProjectLanguages.types'
+import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from './LanguageEnumerable'
+import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from '../util/types'
+import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from './Characters.types'
+import type {PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from './EveryLanguages.types'
+
 import {EveryLanguages} from './EveryLanguages'
 
 /**
@@ -69,12 +69,11 @@ export class ProjectLanguages
     public static readonly SIMPLIFIED_CHINESE =  new ProjectLanguages(EveryLanguages.SIMPLIFIED_CHINESE,  false, false, true, )
     public static readonly KOREAN =              new ProjectLanguages(EveryLanguages.KOREAN,              false, false, true, )
 
-    protected static readonly _DEFAULT = this.getValue(EveryLanguages.default)!
-
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
     static [index: number]: ProjectLanguages
+    protected static readonly _DEFAULT = this.getValueByLanguage(EveryLanguages.default)
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -307,8 +306,8 @@ export class ProjectLanguages
     }
 
     public original<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): | T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>
-    public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T>
-    public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,): | PossibleLanguageValue<T> | PossibleAmericanOrEuropeanValue<T> | PossibleCanadianOrEuropeanValue<T> | PossibleChineseValue<T> {
+    public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
+    public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
         return this.language.original<T>(classWithEveryLanguages)
     }
 
@@ -332,78 +331,63 @@ export class ProjectLanguages
     //endregion -------------------- Transformation methods --------------------
 
     public static get currentLanguage(): ProjectLanguages {
-        return this.getValue(EveryLanguages.currentLanguage)!
+        const currentLanguage = EveryLanguages.currentLanguage
+        if (currentLanguage == null)// @ts-ignore (This will be set later in the project
+            return undefined
+        return this.getValueByLanguage(currentLanguage)
     }
 
-    public static set currentLanguage(value: | EveryLanguages | ProjectLanguages | string | number,) {
+    public static set currentLanguage(value: PossibleValueByEnumerable<EveryLanguages | ProjectLanguages>,) {
         this.setCurrentLanguage(value)
     }
 
-    public static setCurrentLanguage(value: | EveryLanguages | ProjectLanguages | string | number,): typeof ProjectLanguages {
-        if (value instanceof ProjectLanguages)
-            EveryLanguages.setCurrentLanguage(value.language)
-        else
-            EveryLanguages.setCurrentLanguage(value)
+    public static setCurrentLanguage(value: PossibleValueByEnumerable<EveryLanguages | ProjectLanguages>,): typeof ProjectLanguages {
+        EveryLanguages.setCurrentLanguage(value instanceof ProjectLanguages ? value.language : value)
         return this
+    }
+
+
+    // public static getValueByLanguage<T,>(value: T,): ProjectLanguagesByLanguage<T>
+    public static getValueByLanguage(value: Nullable<| ProjectLanguages | EveryLanguages | string>,): ProjectLanguages {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof ProjectLanguages && value._static === ProjectLanguages)
+            return value
+        if (typeof value == 'string')
+            return this.getValueByLanguage(EveryLanguages.getValueByLanguage(value))
+        const valueFound = this.values.find(it => it.language === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound;
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<ProjectLanguages> {
+    protected override get _static(): EnumerableConstructorWithDefault<Ordinals, Names> {
         return ProjectLanguages
     }
 
-    //region -------------------- Enum default methods --------------------
-
     public static get default(): ProjectLanguages {
-        return this.getValue(EveryLanguages.default)!
+        return this.getValueByLanguage(EveryLanguages.default)
     }
 
-    public static set default(value: | EveryLanguages | ProjectLanguages | string | number,) {
+    public static set default(value: PossibleValueByEnumerable<| EveryLanguages | ProjectLanguages>,) {
         this.setDefault(value)
     }
 
-    public static setDefault(value: | EveryLanguages | ProjectLanguages | string | number,): typeof ProjectLanguages {
-        if (value instanceof ProjectLanguages)
-            EveryLanguages.setDefault(value.language)
-        else
-            EveryLanguages.setDefault(value)
+    public static setDefault(value: PossibleValueByEnumerable<| EveryLanguages | ProjectLanguages>,): typeof ProjectLanguages {
+        EveryLanguages.setDefault(value instanceof ProjectLanguages ? value.language : value)
         return this
     }
 
-    //endregion -------------------- Enum default methods --------------------
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.getValue(EveryLanguages.getValue(value))
+    public static getValue(value: PossibleValueByEnumerable<ProjectLanguages>,): ProjectLanguages {
+        return Enum.getValueOn(this, value,)
     }
 
-    protected static override _getValueByEnumerable(value: Enumerable,) {
-        return value instanceof EveryLanguages
-            ? this.values.find(enumerable => enumerable.language === value) ?? null
-            : null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumArray[O]
-    public static getValue<O extends number, >(ordinal: O,): | NonNullable<EnumArray[O]> | null
-    public static getValue<N extends Names = Names, >(name: N,): typeof ProjectLanguages[N]
-    public static getValue(nameOrAcronym: PossibleStringValue,): ProjectLanguages
-    public static getValue(nameOrAcronym: string,): | ProjectLanguages | null
-    public static getValue<I extends ProjectLanguages, >(instance: I,): I
-    public static getValue(instance: EveryLanguages,): | ProjectLanguages | null
-    public static getValue(value: PossibleNonNullableValue,): ProjectLanguages
-    public static getValue(value: PossibleValue,): | ProjectLanguages | null
-    public static getValue(value: PossibleValue,) {
-        return Enum.getValueOn<ProjectLanguages>(this, value,)
-    }
-
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<ProjectLanguages> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

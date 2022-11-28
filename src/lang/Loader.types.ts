@@ -1,10 +1,12 @@
+import type {NullOr} from '../util/types'
+
 //region -------------------- Properties --------------------
 
 //region -------------------- Single property --------------------
 
 type NonNullableLanguage = string
 type NonNullableArrayLanguage = | [string, null, null,] | [null, string, string,]
-type NullableLanguage = | NonNullableLanguage | null
+type NullableLanguage = NullOr<NonNullableLanguage>
 type NullableArrayLanguage = | NonNullableArrayLanguage | [null, null, null,]
 
 //endregion -------------------- Single property --------------------

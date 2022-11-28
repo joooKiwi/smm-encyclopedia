@@ -1,4 +1,5 @@
 import type {MusicSoundFile}                                                                                                                                                                                                                                                   from '../file/MusicSoundFile'
+import type {NullOr}                                                                                                                                                                                                                                                           from '../../../util/types'
 import type {Possible_Music, PossibleLink_Music, PossibleNSMBU_Music, PossibleNSMBU_YoshiSound, PossibleOther_Music, PossibleSM3DW_Music, PossibleSM3DW_UnderwaterMusic, PossibleSMB2_Music, PossibleSMB3_Music, PossibleSMB_Music, PossibleSMW_Music, PossibleSMW_YoshiSound} from './types'
 
 /**
@@ -27,18 +28,18 @@ export interface SingleBackgroundMusic<SMB_MUSIC extends PossibleSMB_Music_Singl
 
 }
 
-export type PossibleSMB_Music_SingleContainer = | MusicSoundFile<| PossibleSMB_Music | PossibleLink_Music | PossibleSMB2_Music | PossibleOther_Music> | null
-export type PossibleSMB3_Music_SingleContainer = | MusicSoundFile<| PossibleSMB3_Music | PossibleOther_Music> | null
-export type PossibleSMW_Music_SingleContainer = | MusicSoundFile<| PossibleSMW_Music | PossibleSMW_YoshiSound | PossibleOther_Music> | null
-export type PossibleNSMBU_Music_SingleContainer = | MusicSoundFile<| PossibleNSMBU_Music | PossibleNSMBU_YoshiSound | PossibleOther_Music> | null
-export type PossibleSM3DW_Music_SingleContainer = | MusicSoundFile<| PossibleSM3DW_Music | PossibleSM3DW_UnderwaterMusic | PossibleOther_Music> | null
+export type PossibleSMB_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMB_Music | PossibleLink_Music | PossibleSMB2_Music | PossibleOther_Music>>
+export type PossibleSMB3_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMB3_Music | PossibleOther_Music>>
+export type PossibleSMW_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSMW_Music | PossibleSMW_YoshiSound | PossibleOther_Music>>
+export type PossibleNSMBU_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleNSMBU_Music | PossibleNSMBU_YoshiSound | PossibleOther_Music>>
+export type PossibleSM3DW_Music_SingleContainer = NullOr<MusicSoundFile<| PossibleSM3DW_Music | PossibleSM3DW_UnderwaterMusic | PossibleOther_Music>>
 
 type PossibleArray = readonly [
-        | MusicSoundFile<Possible_Music> | null,
-        | MusicSoundFile<Possible_Music> | null,
-        | MusicSoundFile<Possible_Music> | null,
-        | MusicSoundFile<Possible_Music> | null,
-        | MusicSoundFile<Possible_Music> | null,
+    NullOr<MusicSoundFile<Possible_Music>>,
+    NullOr<MusicSoundFile<Possible_Music>>,
+    NullOr<MusicSoundFile<Possible_Music>>,
+    NullOr<MusicSoundFile<Possible_Music>>,
+    NullOr<MusicSoundFile<Possible_Music>>,
 ]
 /**
  * The possible music array (with a variable size from 0 to 5)

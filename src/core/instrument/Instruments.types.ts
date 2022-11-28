@@ -1,11 +1,3 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
-import type {Instruments as RealEnum}                                                                                                                                                                                                                      from './Instruments'
-
-
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleFileName | PossibleEnglishName
-export type PossibleValue = | RealEnum | string | number | null | undefined
-
 enum Enum {
 
     SNARE_DRUM,//P-Switch
@@ -97,13 +89,7 @@ enum Enum {
 
 }
 
-//region -------------------- Number types --------------------
-
 export type Ordinals = typeof Enum[Names]
-
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
 export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
@@ -216,108 +202,3 @@ export type PossibleFileName_Array = | readonly [PossibleFileName_Single]
                                      | PossibleFileName_SpecificChordCM
 
 //endregion -------------------- Instrument file name --------------------
-
-
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
-
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
-
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
-
-//endregion -------------------- Instance types --------------------
-//region -------------------- Array types --------------------
-
-export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['SNARE_DRUM'],
-    SimpleEnum<T>['STEEL_DRUM'],
-    SimpleEnum<T>['BASS_DRUM'],
-    SimpleEnum<T>['TAIKO'],
-
-    SimpleEnum<T>['COWBELL'],
-    SimpleEnum<T>['GAMELAN'],
-    SimpleEnum<T>['CYMBAL'],
-    SimpleEnum<T>['HI_HAT'],
-    SimpleEnum<T>['TOM'],
-    SimpleEnum<T>['SYNTHETIC_TOM'],
-    SimpleEnum<T>['WOOD_BLOCK'],
-    SimpleEnum<T>['SLEIGH_BELL'],
-    SimpleEnum<T>['SYNTHETIC_BELL'],
-    SimpleEnum<T>['WIND_CHIMES'],
-    SimpleEnum<T>['GONG'],
-
-    SimpleEnum<T>['MOKUGYO'],
-    SimpleEnum<T>['KAZOO'],
-    SimpleEnum<T>['MUSIC_BOX'],
-
-    SimpleEnum<T>['MARIMBA'],
-    SimpleEnum<T>['VIBRAPHONE'],
-    SimpleEnum<T>['TIMPANI'],
-    SimpleEnum<T>['TIMPANI_ROLL'],
-    SimpleEnum<T>['TIMBALES'],
-    SimpleEnum<T>['TUBULAR_BELL'],
-    SimpleEnum<T>['ORGAN'],
-    SimpleEnum<T>['PIPE_ORGAN'],
-
-
-    SimpleEnum<T>['GUITAR_LONG'],
-    SimpleEnum<T>['ELECTRIC_GUITAR'],
-    SimpleEnum<T>['ACOUSTIC_GUITAR'],
-    SimpleEnum<T>['BASS'],
-    SimpleEnum<T>['ELECTRIC_BASS'],
-    SimpleEnum<T>['SYNTHETIC_BASS'],
-    SimpleEnum<T>['SUB_BASS'],
-    SimpleEnum<T>['BASS_GLISSANDO'],
-    SimpleEnum<T>['OUD'],
-    SimpleEnum<T>['SANTUR'],
-    SimpleEnum<T>['SHAMISEN'],
-
-
-    SimpleEnum<T>['PIANO_1'],
-    SimpleEnum<T>['PIANO_2'],
-    SimpleEnum<T>['PIANO_4TH_A'],
-    SimpleEnum<T>['REVERSE_PIANO'],
-    SimpleEnum<T>['HONKY_TONK_PIANO'],
-    SimpleEnum<T>['PIZZICATO_STRING'],
-    SimpleEnum<T>['STACCATO_STRING'],
-    SimpleEnum<T>['HARPSICHORD'],
-
-
-    SimpleEnum<T>['RECORDER'],
-    SimpleEnum<T>['SYNTHESIZER'],
-    SimpleEnum<T>['SYNTHESIZER_CHORD'],
-    SimpleEnum<T>['CHORD_CM'],
-
-    SimpleEnum<T>['FLUTE'],
-    SimpleEnum<T>['SAXOPHONE'],
-    SimpleEnum<T>['TROMBONE'],
-    SimpleEnum<T>['HORN'],
-    SimpleEnum<T>['SYNTHETIC_BRASS'],
-    SimpleEnum<T>['VIOLIN'],
-    SimpleEnum<T>['ACCORDION_BASS_SOUND'],
-    SimpleEnum<T>['ACCORDION_TREBLE_SOUND'],
-    SimpleEnum<T>['ZURNA'],
-    SimpleEnum<T>['BAGPIPE'],
-
-    SimpleEnum<T>['ORCHESTRA_HIT'],
-
-    SimpleEnum<T>['DOG_BARK'],
-    SimpleEnum<T>['CAT_MEOW'],
-    SimpleEnum<T>['CHICKEN'],
-    SimpleEnum<T>['AH'],
-    SimpleEnum<T>['OK'],
-    SimpleEnum<T>['HELLO'],
-    SimpleEnum<T>['YEAH'],
-
-    SimpleEnum<T>['SQUARE_WAVE'],
-    SimpleEnum<T>['SOUND_EFFECT_1'],
-    SimpleEnum<T>['NOISE'],
-    SimpleEnum<T>['BOMB'],
-]
-
-//endregion -------------------- Array types --------------------

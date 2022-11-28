@@ -1,7 +1,7 @@
 import type {GameProperty} from '../entity/properties/game/GameProperty'
 
 import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent'
-import GameContentTranslationComponent   from '../../lang/components/GameContentTranslationComponent'
+import {gameContentTranslation}          from '../../lang/components/translationMethods'
 import {Games}                           from './Games'
 import Image                             from '../../app/tools/images/Image'
 import {StringContainer}                 from '../../util/StringContainer'
@@ -35,7 +35,7 @@ export default class GameComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <GameContentTranslationComponent children={translation => <span>{translation('Every games')}</span>}/>
+        return <span>{gameContentTranslation('Every games')}</span>
     }
 
     protected override _renderComponentForAllAsImages() {

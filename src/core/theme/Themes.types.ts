@@ -1,11 +1,5 @@
-import type {BasePath}                                                                                                                                                                                                                                     from '../../variables'
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
-import type {Themes as RealEnum}                                                                                                                                                                                                                           from './Themes'
-
-
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleEnglishName
-export type PossibleValue = | RealEnum | number | string | null | undefined
+import type {BasePath} from '../../variables'
+import type {Themes}   from './Themes'
 
 enum Enum {
 
@@ -16,14 +10,10 @@ enum Enum {
 
 }
 
-//region -------------------- Number types --------------------
-
 export type Ordinals = typeof Enum[Names]
-
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
 export type Names = keyof typeof Enum
+
+//region -------------------- Name & image --------------------
 
 export type PossibleEnglishName_InBothCourseAndWorldTheme = | 'Ground' | 'Underground' | 'Desert' | 'Snow' | 'Sky' | 'Forest'
 export type PossibleEnglishName_CourseTheme = | PossibleEnglishName_InBothCourseAndWorldTheme | 'Underwater' | 'Ghost House' | 'Airship' | 'Castle'
@@ -44,37 +34,40 @@ export type DayOrNightGameName<B extends boolean = boolean, V extends string = s
     B extends false ? NightGameName<V>
         : | DayGameName<V> | NightGameName<V>
 
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>
-
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
-
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
-
-//endregion -------------------- Instance types --------------------
+//endregion -------------------- Name & image --------------------
 //region -------------------- Array types --------------------
 
-export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    ...EnumArray_OnlyCourseTheme<T>,
-
-    SimpleEnum<T>['VOLCANO'], SimpleEnum<T>['SPACE'],
+export type OnlyCourseThemes = readonly [
+    typeof Themes['GROUND'],
+    typeof Themes['UNDERGROUND'],
+    typeof Themes['UNDERWATER'],
+    typeof Themes['DESERT'],
+    typeof Themes['SNOW'],
+    typeof Themes['SKY'],
+    typeof Themes['FOREST'],
+    typeof Themes['GHOST_HOUSE'],
+    typeof Themes['AIRSHIP'],
+    typeof Themes['CASTLE'],
 ]
-export type EnumArray_OnlyCourseTheme<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['GROUND'], SimpleEnum<T>['UNDERGROUND'], SimpleEnum<T>['UNDERWATER'], SimpleEnum<T>['DESERT'], SimpleEnum<T>['SNOW'],
-    SimpleEnum<T>['SKY'], SimpleEnum<T>['FOREST'], SimpleEnum<T>['GHOST_HOUSE'], SimpleEnum<T>['AIRSHIP'], SimpleEnum<T>['CASTLE'],
+export type OnlyCourseThemesInSMM1 = readonly [
+    typeof Themes['GROUND'],
+    typeof Themes['UNDERGROUND'],
+    typeof Themes['UNDERWATER'],
+    typeof Themes['GHOST_HOUSE'],
+    typeof Themes['AIRSHIP'],
+    typeof Themes['CASTLE'],
 ]
-export type EnumArray_OnlyCourseTheme_SMM1<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['GROUND'], SimpleEnum<T>['UNDERGROUND'], SimpleEnum<T>['UNDERWATER'],
-    SimpleEnum<T>['GHOST_HOUSE'], SimpleEnum<T>['AIRSHIP'], SimpleEnum<T>['CASTLE'],
-]
-export type EnumArray_OnlyWorldTheme<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['GROUND'], SimpleEnum<T>['UNDERGROUND'], SimpleEnum<T>['DESERT'], SimpleEnum<T>['SNOW'],
-    SimpleEnum<T>['SKY'], SimpleEnum<T>['FOREST'], SimpleEnum<T>['VOLCANO'], SimpleEnum<T>['SPACE'],
+export type OnlyWorldThemes = readonly [
+    typeof Themes['GROUND'],
+    typeof Themes['UNDERGROUND'],
+    typeof Themes['DESERT'],
+    typeof Themes['SNOW'],
+    typeof Themes['SKY'],
+    typeof Themes['FOREST'],
+    typeof Themes['VOLCANO'],
+    typeof Themes['SPACE'],
 ]
 
 //endregion -------------------- Array types --------------------
+
+export type ThemesByName<T extends string, > = T extends PossibleEnglishName ? Themes : never

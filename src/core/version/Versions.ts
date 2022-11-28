@@ -1,7 +1,9 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Versions.types'
-import type {StaticReference}                                                                                                                                                                                                                                from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}       from '../../util/enum/Enum'
+import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from './Versions.types'
+import type {Nullable, NullOr}                                                                         from '../../util/types'
+
 import {Games}      from '../game/Games'
 import {GameStyles} from '../gameStyle/GameStyles'
 
@@ -46,6 +48,7 @@ export class Versions
     public static readonly SMM2_V3_0_0 =       new Versions('v3.0.0',       2,     new Date(2020, 4,  22,),)
     public static readonly SMM2_SM3DW_V3_0_0 = new Versions('SM3DW v3.0.0', 2,     new Date(2020, 4,  22,), SUPER_MARIO_3D_WORLD,)
     public static readonly SMM2_V3_0_1 =       new Versions('v3.0.1',       2,     new Date(2020, 7,  15,),)
+    public static readonly SMM2_V3_0_2 =       new Versions('v3.0.2',       2,     new Date(2022, 11, 23,),)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -62,12 +65,12 @@ export class Versions
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null,)
-    private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null, gameStyle: typeof GameStyles['SUPER_MARIO_3D_WORLD'],)
-    private constructor(name: PossibleName, game: | 1 | '3DS' | 2, releaseDate: | Date | null, gameStyle?: typeof GameStyles['SUPER_MARIO_3D_WORLD'],) {
+    private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>,)
+    private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle: GameStyles_SM3DW,)
+    private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle?: GameStyles_SM3DW,) {
         super()
         this.#name = name
-        this.#game = Games.getValue(game === 1 ? 'SMM' : `SMM${game}` as const)
+        this.#game = Games.getValueByValue(game === 1 ? 'SMM' : `SMM${game}` as const)
         this.#releaseDate = releaseDate
         this.#gameStyle = gameStyle ?? null
     }
@@ -82,7 +85,7 @@ export class Versions
         return this.#game
     }
 
-    public get gameStyle(): | typeof GameStyles['SUPER_MARIO_3D_WORLD'] | null {
+    public get gameStyle(): NullOr<GameStyles_SM3DW> {
         return this.#gameStyle
     }
 
@@ -90,53 +93,48 @@ export class Versions
     //region -------------------- Methods --------------------
 
     public static get everyNames(): readonly PossibleName[] {
-        return this.values.map(enumerable => enumerable.simpleName)
+        return this.values.map(it => it.simpleName).toArray()
     }
 
     public static get everyNames_smm1(): readonly PossibleName_SMM1[] {
-        return this.values.filter(enumerable => enumerable.game === SUPER_MARIO_MAKER_1).map(enumerable => enumerable.simpleName as PossibleName_SMM1)
+        return this.values.filter(it => it.game === SUPER_MARIO_MAKER_1).map(it => it.simpleName as PossibleName_SMM1).toArray()
     }
 
     public static get everyNames_smm3ds(): readonly PossibleName_SMM3DS[] {
-        return this.values.filter(enumerable => enumerable.game === SUPER_MARIO_MAKER_FOR_NINTENDO_3DS).map(enumerable => enumerable.simpleName as PossibleName_SMM3DS)
+        return this.values.filter(it => it.game === SUPER_MARIO_MAKER_FOR_NINTENDO_3DS).map(it => it.simpleName as PossibleName_SMM3DS).toArray()
     }
 
     public static get everyNames_smm2(): readonly PossibleName_SMM2[] {
-        return this.values.filter(enumerable => enumerable.game === SUPER_MARIO_MAKER_2).map(enumerable => enumerable.simpleName as PossibleName_SMM2)
+        return this.values.filter(it => it.game === SUPER_MARIO_MAKER_2).map(it => it.simpleName as PossibleName_SMM2).toArray()
+    }
+
+
+    // public static getValueByName<T extends string, >(value: Nullable<| Versions | string>,): VersionsByName<T>
+    public static getValueByName(value: Nullable<| Versions | string>,): Versions {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.simpleName === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "Versions" could be found by this value "${value}".`)
+        return valueFound
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<Versions> {
+    protected get _static(): EnumerableConstructor<Ordinals, Names> {
         return Versions
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.simpleName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Versions = Versions, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Versions
-    public static getValue(value: PossibleValue,): | Versions | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Versions>,): Versions {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Versions> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()
@@ -145,3 +143,6 @@ export class Versions
     //endregion -------------------- Enum methods --------------------
 
 }
+
+type PossibleGame = | 1 | '3DS' | 2
+type GameStyles_SM3DW = typeof GameStyles['SUPER_MARIO_3D_WORLD']

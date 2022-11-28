@@ -1,20 +1,21 @@
-import {Fragment, lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {Fragment, lazy}                                                          from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                                                   from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                                                 from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleMysteryMushroomType, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './MysteryMushroomAppOption.types'
-import type {MysteryMushroom}               from '../../core/mysteryMushroom/MysteryMushroom'
-import type {MysteryMushroomSoundFile}      from '../../core/mysteryMushroom/file/MysteryMushroomSoundFile'
-import type {NotApplicable}                 from '../../core/_properties/Property'
-import type {PossibleImageSourceForFile, PossibleSoundSourceForFile}                                                                                                                                             from '../../core/mysteryMushroom/MysteryMushrooms.types'
-import type {ReactElement}                                                                                                                                                                                       from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                                                from '../tools/table/SimpleHeader'
-import type {StaticReference}                                                                                                                                                                                    from '../../util/enum/Enum.types'
+import type {AppOptionWithContent, PossibleRenderReactElement}       from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                                     from './component/AppOptionWithTable'
+import type {MysteryMushroom}                                        from '../../core/mysteryMushroom/MysteryMushroom'
+import type {MysteryMushroomSoundFile}                               from '../../core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {Names, Ordinals, PossibleMysteryMushroomType}           from './MysteryMushroomAppOption.types'
+import type {NullOr}                                                 from '../../util/types'
+import type {NotApplicable}                                          from '../../core/_properties/Property'
+import type {PossibleImageSourceForFile, PossibleSoundSourceForFile} from '../../core/mysteryMushroom/MysteryMushrooms.types'
+import type {ReactElement}                                           from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                                    from '../tools/table/SimpleHeader'
 
 import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
 import {CommonOptions}                 from './CommonOptions'
-import {Enum}                          from '../../util/enum/Enum'
 import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
 import {MysteryMushrooms}              from '../../core/mysteryMushroom/MysteryMushrooms'
 import TextComponent                   from '../tools/text/TextComponent'
@@ -40,35 +41,35 @@ export abstract class MysteryMushroomAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'conditionToUnlockIt', element: <>--Condition to unlock it--</>,}
+            return {key: 'conditionToUnlockIt', element: '--Condition to unlock it--',}//TODO add condition to unlock it
         }
 
     }(null,)
     public static readonly GAME = new class MysteryMushroomAppOption_Game extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(enumeration: MysteryMushrooms,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: MysteryMushrooms,) {
             const {uniqueEnglishName, englishNameInHtml, reference,} = enumeration
 
             return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{
-                    reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
-                        <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
-                        {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
-                    </Fragment>)
-                }</div>
+                reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
+                    <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
+                    {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
+                </Fragment>)
+            }</div>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.gameHeader
         }
 
     }(null,)
     public static readonly NAME = new class MysteryMushroomAppOption_Name extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(enumeration: MysteryMushrooms,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: MysteryMushrooms,) {
             return CommonOptions.get.getNameContent(enumeration)/*<YesOrNoResultTextComponent boolean={reference.canBeUnlockedByAnAmiibo}/>*/
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
@@ -77,13 +78,13 @@ export abstract class MysteryMushroomAppOption
 
     public static readonly IMAGES_AND_SOUNDS = new class MysteryMushroomAppOption_ImagesAndSounds extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return MysteryMushroomAppOption._imagesAndSounds.map(enumerable => enumerable.renderContent).flat()
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'imagesAndSounds', element: <>--Images & sounds--</>,
+                key: 'imagesAndSounds', element: '--Images & sounds--',//TODO add images & sound
                 subHeaders: MysteryMushroomAppOption._imagesAndSounds.map(enumerable => enumerable.renderTableHeader!)
             }
         }
@@ -91,63 +92,63 @@ export abstract class MysteryMushroomAppOption
     }(null,)
     public static readonly POWER_UP_COLLECTED = new class MysteryMushroomAppOption_PowerUpCollectedSound extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderSoundContent()
         }
 
-        public override _createSoundContent(renderDiv: boolean,): ReactElement {
+        public override _createSoundContent(renderDiv: boolean,) {
             return this._createSound(enumeration => enumeration.powerUpCollectedSound, reference => reference.haveASoundEffectWhenCollected, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'powerUpCollectedSound', element: <>--Power-up collected (sound)--</>,}
+            return {key: 'powerUpCollectedSound', element: '--Power-up collected (sound)--',}//TODO add power-up collected & sound
         }
 
     }('power-up collected',)
     public static readonly WAITING = new class MysteryMushroomAppOption_WaitingImages extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        public override _createImageContent(renderDiv: boolean,): ReactElement {
+        public override _createImageContent(renderDiv: boolean,) {
             return this._createImage(enumeration => enumeration.waitingImage, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'waitingImage', element: <>--Waiting (image)--</>,}
+            return {key: 'waitingImage', element: '--Waiting (image)--',}//TODO add waiting & image
         }
 
     }('waiting',)
     public static readonly TAUNT = new class MysteryMushroomAppOption_Taunt extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._createSingleImageAndSoundContainer(() => <>
                 {this._renderImageContent(false,)}
                 {this._renderSoundContent(false,)}
             </>)
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createImage(enumeration => enumeration.tauntImage, renderDiv,)
         }
 
-        public override _createSoundContent(renderDiv: boolean,): ReactElement {
+        public override _createSoundContent(renderDiv: boolean,) {
             return this._createSound(enumeration => enumeration.tauntSound, reference => reference.haveASoundEffectOnTaunt, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'tauntImageAndSound', element: <>--Taunt (image & sound)--</>,}
+            return {key: 'tauntImageAndSound', element: '--Taunt (image & sound)--',}//TODO add taunt, image & sound
         }
 
     }('taunt',)
     public static readonly PRESSING_DOWN = new class MysteryMushroomAppOption_PressingDown extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createImage(enumeration => enumeration.pressingDownImage, renderDiv,)
         }
 
@@ -158,175 +159,175 @@ export abstract class MysteryMushroomAppOption
     }('pressing ↓',)
     public static readonly WALK = new class MysteryMushroomAppOption_Walk extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createAnimatedImages(enumeration => enumeration.walkImages, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'walkImages', element: <>--Walk (image)--</>,}
+            return {key: 'walkImages', element: '--Walk (image)--',}//TODO add walk & image
         }
 
     }('walk',)
     public static readonly RUNNING = new class MysteryMushroomAppOption_Running extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createAnimatedImages(enumeration => enumeration.runningImages, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'runningImages', element: <>--Running (images)--</>,}
+            return {key: 'runningImages', element: '--Running (images)--',}//TODO add running & image
         }
 
     }('running',)
     public static readonly SWIMMING = new class MysteryMushroomAppOption_Swimming extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createAnimatedImages(enumeration => enumeration.swimmingImages, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'swimmingImages', element: <>--Swimming (images)--</>,}
+            return {key: 'swimmingImages', element: '--Swimming (images)--',}//TODO add swimming & image
         }
 
     }('swimming',)
     public static readonly JUMP = new class MysteryMushroomAppOption_Jump extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._createSingleImageAndSoundContainer(() => <>
                 {this._renderImageContent(false,)}
                 {this._renderSoundContent(false,)}
             </>)
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             const enumeration = MysteryMushroomAppOption_Jump.CALLBACK_TO_GET_ENUMERATION()
             return (enumeration.jumpImages[0]?.length ?? 0) > 1
                 ? this._createAnimatedImages(() => enumeration.jumpImages, renderDiv,)
                 : this._createImage(() => enumeration.jumpImages.map(images => images[0]!) as unknown as PossibleImageSourceForFile<string>, renderDiv,)
         }
 
-        public override _createSoundContent(renderDiv: boolean,): ReactElement {
+        public override _createSoundContent(renderDiv: boolean,) {
             return this._createSounds(enumeration => enumeration.jumpSounds, reference => reference.haveASoundEffectOnJump, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'jumpingImagesAndSounds', element: <>--Jumping (images & sounds)--</>,}
+            return {key: 'jumpingImagesAndSounds', element: '--Jumping (images & sounds)--',}//TODO add jumping, image & sound
         }
 
     }('jump',)
     public static readonly FALLING_AFTER_JUMP = new class MysteryMushroomAppOption_FallingAfterJump extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createImage(enumeration => enumeration.fallingAfterJumpImage, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'fallingAfterJumpImage', element: <>--Falling after jump (images)--</>,}
+            return {key: 'fallingAfterJumpImage', element: '--Falling after jump (images)--',}//TODO add falling after jump & image
         }
 
     }('falling after jump',)
     public static readonly ON_GROUND_AFTER_JUMP = new class MysteryMushroomAppOption_OnGroundAfterJump extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderSoundContent()
         }
 
-        public override _createSoundContent(renderDiv: boolean,): ReactElement {
+        public override _createSoundContent(renderDiv: boolean,) {
             return this._createSound(enumeration => enumeration.onGroundAfterJumpSound, reference => reference.haveASoundEffectOnGroundAfterJump, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'groundAfterJumpImage', element: <>--Ground after jump (sound)--</>,}
+            return {key: 'groundAfterJumpImage', element: '--Ground after jump (sound)--',}//TODO add ground after jump & sound
         }
 
     }('ground after jump',)
     public static readonly TURNING = new class MysteryMushroomAppOption_Turning extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._createSingleImageAndSoundContainer(() => <>
                 {this._renderImageContent(false,)}
                 {this._renderSoundContent(false,)}
             </>)
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createImage(enumeration => enumeration.turningImage, renderDiv,)
         }
 
-        public override _createSoundContent(renderDiv: boolean,): ReactElement {
+        public override _createSoundContent(renderDiv: boolean,) {
             return this._createSound(enumeration => enumeration.turningSound, reference => reference.haveASoundEffectOnTurnAfterRun, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'turningImageAndSound', element: <>-Turning (image & sound)--</>,}
+            return {key: 'turningImageAndSound', element: '--Turning (image & sound)--',}//TODO add turning, image & sound
         }
 
     }('turning',)
     public static readonly CLIMBING = new class MysteryMushroomAppOption_Climbing extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createAnimatedImages(enumeration => enumeration.climbingImages, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'climbingImages', element: <>-Climbing (images)--</>,}
+            return {key: 'climbingImages', element: '--Climbing (images)--',}//TODO add climbing & image
         }
 
     }('climbing',)
     public static readonly GOAL_POLE = new class MysteryMushroomAppOption_GoalPole extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._createSingleImageAndSoundContainer(() => <>
                 {this._renderImageContent(false,)}
                 {this._renderSoundContent(false,)}
             </>)
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createAnimatedImages(enumeration => enumeration.goalPoleImages, renderDiv,)
         }
 
-        public override _createSoundContent(renderDiv: boolean,): ReactElement {
+        public override _createSoundContent(renderDiv: boolean,) {
             return this._createSound(enumeration => enumeration.goalPoleSound, reference => reference.haveASoundEffectOnGoalPole, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'goalPoleImagesAndSound', element: <>-Goal pole (images & sound)--</>,}
+            return {key: 'goalPoleImagesAndSound', element: <>--Goal pole (images & sound)--</>,}
         }
 
     }('goal pole',)
     public static readonly LOST_A_LIFE = new class MysteryMushroomAppOption_LostALife extends MysteryMushroomAppOption {
 
-        protected override _createContentOption(): PossibleRenderReactElement {
+        protected override _createContentOption() {
             return this._renderImageContent()
         }
 
-        protected override _createImageContent(renderDiv: boolean,): ReactElement {
+        protected override _createImageContent(renderDiv: boolean,) {
             return this._createSound(enumeration => enumeration.lostALifeSound, reference => reference.haveASoundEffectOnDeath, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'lostALifeSound', element: <>-Lost a life (sound)--</>,}
+            return {key: 'lostALifeSound', element: '--Lost a life (sound)--',}//TODO add lost a life & sound
         }
 
     }('lost a life',)
@@ -385,7 +386,7 @@ export abstract class MysteryMushroomAppOption
 
     //region -------------------- App option - content --------------------
 
-    #createSingleImageAndSoundContainer(renderDiv: boolean, callback: (enumeration: MysteryMushrooms,) => ReactElement,): ReactElement {
+    #createSingleImageAndSoundContainer(renderDiv: boolean, callback: (enumeration: MysteryMushrooms,) => ReactElement,) {
         const enumeration = MysteryMushroomAppOption.CALLBACK_TO_GET_ENUMERATION()
 
         return enumeration === MysteryMushrooms.MYSTERY_MUSHROOM
@@ -493,7 +494,7 @@ export abstract class MysteryMushroomAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 
@@ -502,30 +503,17 @@ export abstract class MysteryMushroomAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<MysteryMushroomAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return MysteryMushroomAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends MysteryMushroomAppOption = MysteryMushroomAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): MysteryMushroomAppOption
-    public static getValue(value: PossibleValue,): | MysteryMushroomAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<MysteryMushroomAppOption>,): MysteryMushroomAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<MysteryMushroomAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

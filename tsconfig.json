@@ -4,7 +4,7 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
     ],
     "allowJs": true,
     "skipLibCheck": true,
@@ -15,6 +15,7 @@
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitOverride": true,
+    "strictPropertyInitialization": true,
 
     "module": "esnext",
     "moduleResolution": "node",
@@ -22,9 +23,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "removeComments": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
   },
   "include": [
-    "src"
-  ]
+    "src",
+  ],
 }

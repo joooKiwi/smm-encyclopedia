@@ -1,12 +1,6 @@
-import type {Characters}                       from './Characters'
-import type {SimpleEnum as OriginalSimpleEnum} from '../util/enum/Enum.types'
+import type {Characters} from './Characters'
 
 export type PossibleSingleCharacter = | SpaceEvenCharacter | SpaceUnevenCharacter
-export type PossibleNonNullableValue = | Characters
-                                       | Ordinals
-                                       | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleSingleCharacter
-export type PossibleValue = | PossibleNonNullableValue | string | number | null | undefined
 
 enum Enum {
     POINT, INTERROGATION_POINT, EXCLAMATION_POINT,
@@ -33,27 +27,23 @@ enum Enum {
     NUMBER_5, NUMBER_6, NUMBER_7, NUMBER_8, NUMBER_9,
 }
 
+export type Ordinals = typeof Enum[Names]
+export type Names = keyof typeof Enum
+
 //region -------------------- Utility types --------------------
 
 export type VariableValueByBoolean<B extends boolean, V1, V2, > = B extends true ? V1 : B extends false ? V2 : | V1 | V2
 
 export type VariableCharactersByBoolean<B extends boolean, > = VariableValueByBoolean<B, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters>
 export type VariableCharacterByCharacter<B extends boolean, C extends PossibleSingleCharacter, > = VariableValueByBoolean<B, SpaceEvenCharacterFromEquivalenceMap<C>, SpaceUnevenCharacterFromEquivalenceMap<C>>
-export type VariableCharacterByString<B extends boolean, C extends string, > = C extends PossibleSingleCharacter ? VariableCharacterByCharacter<B, C> : | PossibleSingleCharacter | null
+export type VariableCharacterByString<B extends boolean, C extends string, > = C extends PossibleSingleCharacter ? VariableCharacterByCharacter<B, C> : PossibleSingleCharacter
 
 export type TextInParentheses<B extends boolean, S extends string, > = VariableValueByBoolean<B, `${SpaceUnevenCharacter_StartingParenthesis}${S}${SpaceUnevenCharacter_EndingParenthesis}`, `${SpaceEvenCharacter_StartingParenthesis}${S}${SpaceEvenCharacter_EndingParenthesis}`>
 export type TextInBrackets<B extends boolean, S extends string, > = VariableValueByBoolean<B, `${SpaceUnevenCharacter_StartingBrace}${S}${SpaceUnevenCharacter_EndingBrace}`, `${SpaceEvenCharacter_StartingBrace}${S}${SpaceEvenCharacter_EndingBrace}`>
 export type TextInBraces<B extends boolean, S extends string, > = VariableValueByBoolean<B, `${SpaceUnevenCharacter_StartingBracket}${S}${SpaceUnevenCharacter_EndingBracket}`, `${SpaceEvenCharacter_StartingBracket}${S}${SpaceEvenCharacter_EndingBracket}`>
 
 //endregion -------------------- Utility types --------------------
-//region -------------------- Number types --------------------
-
-export type Ordinals = typeof Enum[Names]
-
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
-export type Names = keyof typeof Enum
+//region -------------------- Character types --------------------
 
 export type SpaceEvenCharacter_Point = '．'
 export type SpaceEvenCharacter_InterrogationPoint = '？'
@@ -146,25 +136,17 @@ export type PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet = Exclude<S
 export type PossibleMixedSpaceEvenCharacter_RomainAlphabet = `${Uppercase<SpaceEvenCharacter_RomainAlphabet>}${Lowercase<SpaceEvenCharacter_RomainAlphabet>}`
 export type PossibleSpaceEvenCharacters = | [PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet,] | [Uppercase<SpaceEvenCharacter_RomainAlphabet>, Lowercase<SpaceEvenCharacter_RomainAlphabet>,]
 
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<T extends Characters = Characters, > = OriginalSimpleEnum<Names, T>
-
-export type EnumByOrdinal<O extends Ordinals, E extends Characters = Characters, > = EnumArray<E>[O]
-export type EnumByNumber<O extends number, E extends Characters = Characters, > = | NonNullable<EnumArray<E>[O]> | null
-
-export type EnumByName<N extends Names, E extends Characters = Characters, > = SimpleEnum<E>[N]
-export type EnumByPossibleString<PS extends PossibleStringValue, E extends Characters = Characters, > = PS extends Names ? EnumByName<PS, E> : E
-export type EnumByString<S extends string, E extends Characters = Characters, > = S extends PossibleStringValue ? EnumByPossibleString<S, E> : | E | null
-
-//endregion -------------------- Instance types --------------------
+//endregion -------------------- Character types --------------------
 //region -------------------- Array types --------------------
 
 //region -------------------- Array types (points) --------------------
 
-export type EnumArray_Points<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['POINT'], SimpleEnum<T>['INTERROGATION_POINT'], SimpleEnum<T>['EXCLAMATION_POINT'], SimpleEnum<T>['COLON'], SimpleEnum<T>['SEMICOLON'],
+export type Points = readonly [
+    typeof Characters['POINT'],
+    typeof Characters['INTERROGATION_POINT'],
+    typeof Characters['EXCLAMATION_POINT'],
+    typeof Characters['COLON'],
+    typeof Characters['SEMICOLON'],
 ]
 
 type _SinglePointsArray = readonly [point: string, interrogationPoint: string, exclamationPoint: string, doublePoints: string, pointComma: string,]
@@ -191,8 +173,9 @@ type _MixedParenthesesOrBracketOrBrace<A1 extends _SingleParenthesesOrBracketOrB
 
 //region -------------------- Array types (parentheses) --------------------
 
-export type EnumArray_Parentheses<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['STARTING_PARENTHESIS'], SimpleEnum<T>['ENDING_PARENTHESIS'],
+export type Parentheses = readonly [
+    typeof Characters['STARTING_PARENTHESIS'],
+    typeof Characters['ENDING_PARENTHESIS'],
 ]
 export type Parentheses_SpaceUneven_Array = [SpaceUnevenCharacter_StartingParenthesis, SpaceUnevenCharacter_EndingParenthesis,]
 export type Parentheses_SpaceEven_Array = [SpaceEvenCharacter_StartingParenthesis, SpaceEvenCharacter_EndingParenthesis,]
@@ -202,8 +185,9 @@ export type PossibleParentheses_Array = | Parentheses_SpaceUneven_Array | Parent
 //endregion -------------------- Array types (parentheses) --------------------
 //region -------------------- Array types (brackets) --------------------
 
-export type EnumArray_Brackets<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['STARTING_BRACKET'], SimpleEnum<T>['ENDING_BRACKET'],
+export type Brackets = readonly [
+    typeof Characters['STARTING_BRACKET'],
+    typeof Characters['ENDING_BRACKET'],
 ]
 export type Brackets_SpaceUneven_Array = [SpaceUnevenCharacter_StartingBracket, SpaceUnevenCharacter_EndingBracket,]
 export type Brackets_SpaceEven_Array = [SpaceEvenCharacter_StartingBracket, SpaceEvenCharacter_EndingBracket,]
@@ -213,8 +197,9 @@ export type PossibleBrackets_Array = | Brackets_SpaceUneven_Array | Brackets_Spa
 //endregion -------------------- Array types (brackets) --------------------
 //region -------------------- Array types (braces) --------------------
 
-export type EnumArray_Braces<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['STARTING_BRACE'], SimpleEnum<T>['ENDING_BRACE'],
+export type Braces = readonly [
+    typeof Characters['STARTING_BRACE'],
+    typeof Characters['ENDING_BRACE'],
 ]
 export type Braces_SpaceUneven_Array = [SpaceUnevenCharacter_StartingBrace, SpaceUnevenCharacter_EndingBrace,]
 export type Braces_SpaceEven_Array = [SpaceEvenCharacter_StartingBrace, SpaceEvenCharacter_EndingBrace,]
@@ -226,8 +211,9 @@ export type PossibleBraces_Array = | Braces_SpaceUneven_Array | Braces_SpaceEven
 //endregion -------------------- Array types (parentheses & brackets & braces) --------------------
 //region -------------------- Array types (slashes) --------------------
 
-export type EnumArray_Slashes<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['SLASH'], SimpleEnum<T>['VERTICAL_SLASH'],
+export type Slashes = readonly [
+    typeof Characters['SLASH'],
+    typeof Characters['VERTICAL_SLASH'],
 ]
 
 type _SingleSlashesArray = readonly [slash: string, verticalSlash: string,]
@@ -243,13 +229,33 @@ export type PossibleSlashes_Array = | Slashes_SpaceUneven_Array | Slashes_SpaceE
 //endregion -------------------- Array types (slashes) --------------------
 //region -------------------- Array types (romain alphabet) --------------------
 
-export type EnumArray_RomainAlphabet<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['LETTER_A'], SimpleEnum<T>['LETTER_B'], SimpleEnum<T>['LETTER_C'], SimpleEnum<T>['LETTER_D'], SimpleEnum<T>['LETTER_E'],
-    SimpleEnum<T>['LETTER_F'], SimpleEnum<T>['LETTER_G'], SimpleEnum<T>['LETTER_H'], SimpleEnum<T>['LETTER_I'], SimpleEnum<T>['LETTER_J'],
-    SimpleEnum<T>['LETTER_K'], SimpleEnum<T>['LETTER_L'], SimpleEnum<T>['LETTER_M'], SimpleEnum<T>['LETTER_N'], SimpleEnum<T>['LETTER_O'],
-    SimpleEnum<T>['LETTER_P'], SimpleEnum<T>['LETTER_Q'], SimpleEnum<T>['LETTER_R'], SimpleEnum<T>['LETTER_S'], SimpleEnum<T>['LETTER_T'],
-    SimpleEnum<T>['LETTER_U'], SimpleEnum<T>['LETTER_V'], SimpleEnum<T>['LETTER_W'], SimpleEnum<T>['LETTER_X'], SimpleEnum<T>['LETTER_Y'],
-    SimpleEnum<T>['LETTER_Z'],
+export type RomainAlphabet = readonly [
+    typeof Characters['LETTER_A'],
+    typeof Characters['LETTER_B'],
+    typeof Characters['LETTER_C'],
+    typeof Characters['LETTER_D'],
+    typeof Characters['LETTER_E'],
+    typeof Characters['LETTER_F'],
+    typeof Characters['LETTER_G'],
+    typeof Characters['LETTER_H'],
+    typeof Characters['LETTER_I'],
+    typeof Characters['LETTER_J'],
+    typeof Characters['LETTER_K'],
+    typeof Characters['LETTER_L'],
+    typeof Characters['LETTER_M'],
+    typeof Characters['LETTER_N'],
+    typeof Characters['LETTER_O'],
+    typeof Characters['LETTER_P'],
+    typeof Characters['LETTER_Q'],
+    typeof Characters['LETTER_R'],
+    typeof Characters['LETTER_S'],
+    typeof Characters['LETTER_T'],
+    typeof Characters['LETTER_U'],
+    typeof Characters['LETTER_V'],
+    typeof Characters['LETTER_W'],
+    typeof Characters['LETTER_X'],
+    typeof Characters['LETTER_Y'],
+    typeof Characters['LETTER_Z'],
 ]
 
 enum _RomainAlphabet {
@@ -340,9 +346,17 @@ export type PossibleRomainAlphabet_Array = | UppercaseRomainAlphabet_SpaceUneven
 //endregion -------------------- Array types (romain alphabet) --------------------
 //region -------------------- Array types (numbers) --------------------
 
-export type EnumArray_Number<T extends Characters = Characters, > = readonly [
-    SimpleEnum<T>['NUMBER_0'], SimpleEnum<T>['NUMBER_1'], SimpleEnum<T>['NUMBER_2'], SimpleEnum<T>['NUMBER_3'], SimpleEnum<T>['NUMBER_4'],
-    SimpleEnum<T>['NUMBER_5'], SimpleEnum<T>['NUMBER_6'], SimpleEnum<T>['NUMBER_7'], SimpleEnum<T>['NUMBER_8'], SimpleEnum<T>['NUMBER_9'],
+export type Numbers = readonly [
+    typeof Characters['NUMBER_0'],
+    typeof Characters['NUMBER_1'],
+    typeof Characters['NUMBER_2'],
+    typeof Characters['NUMBER_3'],
+    typeof Characters['NUMBER_4'],
+    typeof Characters['NUMBER_5'],
+    typeof Characters['NUMBER_6'],
+    typeof Characters['NUMBER_7'],
+    typeof Characters['NUMBER_8'],
+    typeof Characters['NUMBER_9'],
 ]
 
 type _SingleNumbersArray = readonly [string, string, string, string, string, string, string, string, string, string,]
@@ -364,24 +378,6 @@ export type Numbers_Array = _MergedNumberArray<Numbers_SpaceUneven_Array, Number
 export type PossibleNumbers_Array = | Numbers_SpaceUneven_Array | Numbers_SpaceEven_Array
 
 //endregion -------------------- Array types (numbers) --------------------
-
-export type EnumArray<T extends Characters = Characters, > = readonly [
-    ...EnumArray_Points<T>,
-    SimpleEnum<T>['COMMA'],
-    SimpleEnum<T>['UNION_TRAIT'],
-
-    SimpleEnum<T>['COMMERCIAL_AND'],
-
-    ...EnumArray_Parentheses<T>,
-    ...EnumArray_Brackets<T>,
-    ...EnumArray_Braces<T>,
-
-    ...EnumArray_Slashes<T>,
-
-    ...EnumArray_RomainAlphabet<T>,
-
-    ...EnumArray_Number<T>,
-]
 
 //endregion -------------------- Array types --------------------
 //region -------------------- Equivalence types --------------------

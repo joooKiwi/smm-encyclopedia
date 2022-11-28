@@ -254,7 +254,7 @@ export interface ExtendedMap<K, V, LENGTH extends number = number, >
     /**
      * @see Map.toLocalString
      */
-    toLocalString(): string
+    toLocaleString(): string
 
     //endregion -------------------- Conversion methods --------------------
     //region -------------------- Javascript only methods --------------------

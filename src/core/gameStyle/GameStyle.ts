@@ -2,6 +2,7 @@ import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/Cl
 import type {Entity}                           from '../entity/Entity'
 import type {GameProperty}                     from '../entity/properties/game/GameProperty'
 import type {NameTrait}                        from '../../lang/name/NameTrait'
+import type {NullOr}                           from '../../util/types'
 
 export interface GameStyle
     extends NameTrait<string>, GameProperty,
@@ -17,4 +18,4 @@ export interface GameStyle
 
 }
 
-export type PossibleNightDesertWindTranslationKey = `${| '→' | '←' | '↔'} periodic` | '← constant' | null
+export type PossibleNightDesertWindTranslationKey = NullOr<| `${| '→' | '←' | '↔'} periodic` | '← constant'>

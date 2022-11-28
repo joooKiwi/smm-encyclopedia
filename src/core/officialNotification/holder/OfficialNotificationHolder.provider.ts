@@ -1,6 +1,7 @@
-import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
+import type {NullOrNumber}                      from '../../../util/types'
 import type {OfficialNotifications}             from '../OfficialNotifications'
 import type {OfficialNotificationHolder}        from './OfficialNotificationHolder'
+import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
 import type {ProviderWithKey}                   from '../../../util/provider/ProviderWithKey'
 
 import {AbstractProvider}                    from '../../../util/provider/AbstractProvider'
@@ -56,6 +57,6 @@ export class OfficialNotificationHolderProvider
 type Key = PossibleEnglishNameWithOnlyAmount
 type ArgumentsReceived = readonly [
     officialNotification: OfficialNotifications,
-    amount: | number | null,
+    amount: NullOrNumber,
 ]
 type ArgumentsReceived_Simplified = readonly [OfficialNotifications,]

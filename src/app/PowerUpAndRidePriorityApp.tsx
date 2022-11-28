@@ -3,21 +3,20 @@ import './PowerUpAndRidePriorityApp.scss'
 import type {PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, PowerUpPriority} from './powerUp/priority/PowerUpPriority'
 import type {ReactElement}                                                                     from '../util/react/ReactProperties'
 
-import AbstractApp                     from './AbstractApp'
-import {AbstractPowerUpPriority}       from './powerUp/priority/AbstractPowerUpPriority'
-import {AllGamesPowerUpPriority}       from './powerUp/priority/AllGamesPowerUpPriority'
-import Accordion                       from '../bootstrap/accordion/Accordion'
-import {Entities}                      from '../core/entity/Entities'
-import {GameStyles}                    from '../core/gameStyle/GameStyles'
-import GroupOf2PowerUpPriority         from './powerUp/group/GroupOf2PowerUpPriority'
-import GroupOf3PowerUpPriority         from './powerUp/group/GroupOf3PowerUpPriority'
-import GroupOf4PowerUpPriority         from './powerUp/group/GroupOf4PowerUpPriority'
-import GroupOf5PowerUpPriority         from './powerUp/group/GroupOf5PowerUpPriority'
-import PowerUpPriorityComponent        from './powerUp/priority/PowerUpPriority.component'
-import {SMM1PowerUpPriority}           from './powerUp/priority/SMM1PowerUpPriority'
-import {SMM2PowerUpPriority}           from './powerUp/priority/SMM2PowerUpPriority'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {TranslationUtility}            from '../lang/components/TranslationUtility'
+import AbstractApp               from './AbstractApp'
+import {AbstractPowerUpPriority} from './powerUp/priority/AbstractPowerUpPriority'
+import Accordion                 from '../bootstrap/accordion/Accordion'
+import {AllGamesPowerUpPriority} from './powerUp/priority/AllGamesPowerUpPriority'
+import {Entities}                from '../core/entity/Entities'
+import {gameContentTranslation}  from '../lang/components/translationMethods'
+import {GameStyles}              from '../core/gameStyle/GameStyles'
+import GroupOf2PowerUpPriority   from './powerUp/group/GroupOf2PowerUpPriority'
+import GroupOf3PowerUpPriority   from './powerUp/group/GroupOf3PowerUpPriority'
+import GroupOf4PowerUpPriority   from './powerUp/group/GroupOf4PowerUpPriority'
+import GroupOf5PowerUpPriority   from './powerUp/group/GroupOf5PowerUpPriority'
+import PowerUpPriorityComponent  from './powerUp/priority/PowerUpPriority.component'
+import {SMM1PowerUpPriority}     from './powerUp/priority/SMM1PowerUpPriority'
+import {SMM2PowerUpPriority}     from './powerUp/priority/SMM2PowerUpPriority'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -99,9 +98,7 @@ export default class PowerUpAndRidePriorityApp
 
     protected override _mainContent(): ReactElement {
         return <>
-            <GameContentTranslationComponent>{translation =>
-                <h1>{TranslationUtility.replaceAndInterpretTranslation(translation, 'Every power-ups & rides priority', {powerUps: '--power-up--', rides: '--rides--',},)}</h1>
-            }</GameContentTranslationComponent>
+            <h1>{gameContentTranslation('Every power-ups & rides priority', {powerUps: '--power-up--', rides: '--rides--',},)}</h1>
             <p>--description--{/*TODO add description*/}</p>
             {/*TODO add legend for the colors & styles*/}
             <div key="Power-up priority (container)" id="powerUpPriority-container" className="container-fluid">

@@ -1,4 +1,5 @@
 import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from './LimitProperty'
+import type {Nullable}     from '../../../../util/types'
 import type {GameStructure}                                                                                                                                                                                                from '../../../game/GameStructure'
 
 import {EntityLimits} from '../../../entityLimit/EntityLimits'
@@ -134,7 +135,7 @@ export class LimitPropertyContainer<EDITOR_SMM1AND3DS extends PossibleEditorLimi
      *
      * @param values the values (null are ignored)
      */
-    #newMap(...values: readonly (EntityLimits | null)[]): ReadonlyMap<EntityLimits, boolean> {
+    #newMap(...values: readonly Nullable<EntityLimits>[]): ReadonlyMap<EntityLimits, boolean> {
         const newValues = values.filter(limit => limit != null) as EntityLimits[]
         return new Map(EntityLimits.values.map(limit => [limit, newValues.includes(limit),]))
     }

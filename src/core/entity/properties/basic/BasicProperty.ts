@@ -1,4 +1,5 @@
 import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from '../../../_properties/Property'
+import type {NullOr, NullOrBoolean}                                                                                   from '../../../../util/types'
 
 export interface BasicProperty<HAS_A_MUSHROOM_VARIANT extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant,
     CAN_BE_IN_A_PARACHUTE extends PossibleCanBeInAParachute = PossibleCanBeInAParachute,
@@ -38,6 +39,6 @@ export type CanHaveWings<T extends PossibleCanHaveWings = PossibleCanHaveWings, 
 
 export type LCL_whilePlaying = 'While playing → LCL'
 
-export type PossibleHasAMushroomVariant = | boolean | null
-export type PossibleCanBeInAParachute = | boolean | LCL_whilePlaying | null
-export type PossibleCanHaveWings = | boolean | LCL_whilePlaying | null
+export type PossibleHasAMushroomVariant = NullOrBoolean
+export type PossibleCanBeInAParachute = NullOr<| boolean | LCL_whilePlaying>
+export type PossibleCanHaveWings = NullOr<| boolean | LCL_whilePlaying>

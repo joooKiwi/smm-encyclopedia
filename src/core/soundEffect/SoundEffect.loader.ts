@@ -1,11 +1,13 @@
 import resource from '../../resources/compiled/Sound effect.json'
 
-import type {PropertiesArray as LanguagesPropertyArray}            from '../../lang/Loader.types'
-import type {Loader}                                               from '../../util/loader/Loader'
-import type {PropertiesArrayFrom1And2 as GamesPropertyArray}       from '../game/Loader.types'
-import type {PossibleSoundEffectCategoryType, SoundEffectTemplate} from './SoundEffect.template'
-import type {PossibleEnglishName}                                  from './SoundEffects.types'
-import type {SoundEffect}                                          from './SoundEffect'
+import type {PropertiesArray as LanguagesPropertyArray}                     from '../../lang/Loader.types'
+import type {Loader}                                                        from '../../util/loader/Loader'
+import type {NullOr}                                                        from '../../util/types'
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                from '../game/Loader.types'
+import type {SoundEffectTemplate}                                           from './SoundEffect.template'
+import type {PossibleEnglishName}                                           from './SoundEffects.types'
+import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types'
+import type {SoundEffect}                                                   from './SoundEffect'
 
 import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
 import {CSVLoader}               from '../../util/loader/CSVLoader'
@@ -78,7 +80,7 @@ type ExclusivePropertiesArray = [
 
     //endregion -------------------- Triggers --------------------
 
-    category: PossibleSoundEffectCategoryType,
+    category: NullOr<PossibleSoundEffectCategoryEnglishName>,
 
 ]
 

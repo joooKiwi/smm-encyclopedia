@@ -1,4 +1,5 @@
 import type {NameTemplate}                    from '../../lang/name/Name.template'
+import type {NullOr}                          from '../../util/types'
 import type {PossibleEnglishName}             from '../nightEffect/NightEffects.types'
 import type {PossibleIsAvailableFromTheStart} from '../availableFromTheStart/loader.types'
 import type {SimpleGameFrom1And2Template}     from '../game/SimpleGame.template'
@@ -24,4 +25,4 @@ export interface ThemeTemplate
 
 }
 
-export type PossibleEffectInNightTheme = | PossibleEnglishName | null
+export type PossibleEffectInNightTheme = NullOr<PossibleEnglishName>

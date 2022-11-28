@@ -1,12 +1,13 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Texts.types'
-import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types'
+import type {ClassWithValue}  from './ClassWithValue'
+import type {Names, Ordinals} from './Texts.types'
+import type {Nullable}        from '../../../util/types'
+import type {ReactElement}    from '../../../util/react/ReactProperties'
 
 import {EMPTY_REACT_ELEMENT}                 from '../../../util/emptyReactVariables'
-import {Enum}                                from '../../../util/enum/Enum'
 import {PossibleTextContent, TextProperties} from '../../tools/text/properties/TextProperties'
 import {YesOrNoTextProperties}               from '../../tools/text/properties/YesOrNoTextProperties'
 import {BooleanTextProperties}               from '../../tools/text/properties/BooleanTextProperties'
@@ -44,46 +45,46 @@ export abstract class Texts
 
     public static readonly YES = new class Texts_Yes extends Texts {
 
-        public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement {
+        public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,) {
             return <TextComponent {...properties}/>
         }
 
-        public override renderNameComponent(properties: _NameProperties,): ReactElement {
+        public override renderNameComponent(properties: _NameProperties,) {
             return <NameComponent {...properties}/>
         }
 
-        public override renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement {
+        public override renderYesNoComponent(properties: _YesOrNoTextProperties,) {
             return <YesOrNoResultTextComponent {...properties}/>
         }
 
-        public override renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement {
+        public override renderBooleanComponent(properties: _BooleanTextProperties,) {
             return <BooleanTextComponent {...properties}/>
         }
 
-        public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement {
+        public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,) {
             return <BooleanResultTextComponent {...properties}/>
         }
 
     }(true,)
     public static readonly NO =  new class Texts_No extends Texts {
 
-        public override renderTextComponent(): ReactElement {
+        public override renderTextComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderNameComponent(): ReactElement {
+        public override renderNameComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderYesNoComponent(): ReactElement {
+        public override renderYesNoComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderBooleanComponent(): ReactElement {
+        public override renderBooleanComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
-        public override renderBooleanResultComponent(): ReactElement {
+        public override renderBooleanResultComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
@@ -125,38 +126,33 @@ export abstract class Texts
 
     public abstract renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement
 
+
+    // public static getValueByValue<T, >(value: T,): TextsByValue<T>
+    public static getValueByValue(value: Nullable<| Texts | boolean>,): Texts {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if(value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.value === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Texts> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Texts
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByBoolean(value: boolean,) {
-        return this.values.find(enumerable => enumerable.value === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Texts = Texts, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Texts
-    public static getValue(value: PossibleValue,): | Texts | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Texts>,): Texts {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Texts> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

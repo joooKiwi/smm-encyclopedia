@@ -1,5 +1,6 @@
 import type {Builder}             from '../../../../util/builder/Builder'
 import type {EditorImage}         from './EditorImage'
+import type {NullOr}              from '../../../../util/types'
 import type {PossibleEnglishName} from '../../Entities.types'
 import type {PossibleGameName}    from '../../../theme/Themes.types'
 
@@ -467,4 +468,4 @@ export type EditorImageName = | readonly []
 export type PossibleAmountOfImages = | 1 | 2 | 3 | 4
 export type ImageNumber = | 0 | 1 | 2 | 3
 
-export type PossibleImageReceivedOnFactory = | Builder<EditorImage> | SimpleImageName | null
+export type PossibleImageReceivedOnFactory = NullOr<| Builder<EditorImage> | SimpleImageName>

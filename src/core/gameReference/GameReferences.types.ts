@@ -1,10 +1,4 @@
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
-import type {GameReferences as RealEnum}                                                                                                                                                                                                                   from './GameReferences'
-
-
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleEnglishName | PossibleAcronym
-export type PossibleValue = | RealEnum | number | string | null | undefined
+import type {GameReferences} from './GameReferences'
 
 enum Enum {
 
@@ -117,14 +111,14 @@ enum Enum {
 
 }
 
-//region -------------------- Number types --------------------
-
 export type Ordinals = typeof Enum[Names]
-
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
 export type Names = keyof typeof Enum
+
+//region -------------------- Name & acronym --------------------
+
+export type PossibleEnglishName = | PossibleEnglishName_Game | PossibleEnglishName_GameStyle | PossibleEnglishName_SoundEffect | PossibleEnglishName_Exclusive
+export type PossibleAcronym = | PossibleAcronym_Game | PossibleAcronym_GameStyle | PossibleAcronym_SoundEffect | PossibleAcronym_Exclusive
+
 
 export type PossibleEnglishName_Game = `Super Mario Maker${| '' | ' for Nintendo 3DS' | ' 2'}`
 export type PossibleAcronym_Game = `SMM${| '' | '3DS' | 2}`
@@ -227,7 +221,7 @@ export type PossibleEnglishName_Exclusive =
     | 'Shaun the Sheep'
 
     | 'Brain Age: Train Your Brain in Minutes a Day!'
-    
+
 export type PossibleAcronym_Exclusive =
     | 'MB' | 'SMB2' | 'SMW2:YI' | 'SML' | 'WL:SML3' | 'MT' | `DM${| '' | 64}` | 'LM' | 'YWW' | 'CT:TT' | 'WW:T' | 'M&L:PJ'
     | `DK${| '' | 'J' | 'C'}`
@@ -273,133 +267,7 @@ export type PossibleAcronym_Exclusive =
     | 'IC'
     | 'HK' | 'MyM' | 'SS'
     | 'BA:TYBMD'
-    
 
+//endregion -------------------- Name & acronym --------------------
 
-export type PossibleEnglishName = | PossibleEnglishName_Game | PossibleEnglishName_GameStyle | PossibleEnglishName_SoundEffect | PossibleEnglishName_Exclusive
-export type PossibleAcronym = | PossibleAcronym_Game | PossibleAcronym_GameStyle | PossibleAcronym_SoundEffect | PossibleAcronym_Exclusive
-
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<T extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, T>
-
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
-
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
-
-//endregion -------------------- Instance types --------------------
-//region -------------------- Array types --------------------
-
-export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['SUPER_MARIO_MAKER_1'], SimpleEnum<T>['SUPER_MARIO_MAKER_FOR_NINTENDO_3DS'], SimpleEnum<T>['SUPER_MARIO_MAKER_2'],
-
-    SimpleEnum<T>['SUPER_MARIO_BROS'], SimpleEnum<T>['SUPER_MARIO_WORLD'], SimpleEnum<T>['SUPER_MARIO_BROS_3'],
-    SimpleEnum<T>['NEW_SUPER_MARIO_BROS_U'], SimpleEnum<T>['SUPER_MARIO_3D_WORLD'],
-
-    SimpleEnum<T>['SUPER_MARIO_KART'], SimpleEnum<T>['SUPER_MARIO_64'], SimpleEnum<T>['SUPER_MARIO_SUNSHINE'],
-    SimpleEnum<T>['SUPER_MARIO_GALAXY'],
-
-    SimpleEnum<T>['MARIO_BROS'], SimpleEnum<T>['SUPER_MARIO_BROS_2'], SimpleEnum<T>['SUPER_MARIO_WORLD_2_YOSHI_ISLAND'], SimpleEnum<T>['SUPER_MARIO_LAND'],
-    SimpleEnum<T>['WARIO_LAND_SUPER_MARIO_LAND_3'], SimpleEnum<T>['MARIO_TENNIS'], SimpleEnum<T>['DR_MARIO'], SimpleEnum<T>['DR_MARIO_64'],
-    SimpleEnum<T>['LUIGI_MANSION'], SimpleEnum<T>['YOSHI_WOOLLY_WORLD'], SimpleEnum<T>['CAPTAIN_TOAD_TREASURE_TRACKER'], SimpleEnum<T>['WARIOWARE_TOUCHED'],
-    SimpleEnum<T>['MARIO_AND_LUIGI_PAPER_JAM'],
-
-    SimpleEnum<T>['DONKEY_KONG'], SimpleEnum<T>['DONKEY_KONG_JR'], SimpleEnum<T>['DONKEY_KONG_COUNTRY'],
-
-    SimpleEnum<T>['KIRBY_DREAM_LAND'], SimpleEnum<T>['KIRBY_ADVENTURE'],
-
-    SimpleEnum<T>['KID_ICARIUS'], SimpleEnum<T>['KID_ICARIUS_UPRISING'],
-
-    SimpleEnum<T>['MEGA_MAN'],
-
-    SimpleEnum<T>['METROID'], SimpleEnum<T>['METROID_ZERO_MISSION'],
-
-    SimpleEnum<T>['NINTENDO_ENTERTAINMENT_SYSTEM_ROB'],
-
-    SimpleEnum<T>['FIRE_EMBLEM_SHADOW_DRAGON'], SimpleEnum<T>['FIRE_EMBLEM_RADIANT_DAWN'], SimpleEnum<T>['FIRE_EMBLEM_AWAKENING'],
-
-    SimpleEnum<T>['POKEMON_RED'], SimpleEnum<T>['POKEMON_GREEN'], SimpleEnum<T>['POKEMON_BLUE'], SimpleEnum<T>['POKEMON_YELLOW'],
-    SimpleEnum<T>['POKEMON_DIAMOND'], SimpleEnum<T>['POKEMON_PEARL'],
-    SimpleEnum<T>['POKEMON_X'], SimpleEnum<T>['POKEMON_Y'],
-
-    SimpleEnum<T>['PIKMIN'], SimpleEnum<T>['PIKMIN_3'],
-
-    SimpleEnum<T>['THE_LEGEND_OF_ZELDA'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_A_LINK_TO_THE_PAST'], SimpleEnum<T>['ZELDA_II_THE_ADVENTURE_OF_LINK'],
-    SimpleEnum<T>['THE_LEGEND_OF_ZELDA_OCARINA_OF_TIME'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_MAJORA_MASK'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_THE_WIND_WAKER'],
-    SimpleEnum<T>['THE_LEGEND_OF_ZELDA_TWILIGHT_PRINCESS'], SimpleEnum<T>['THE_LEGEND_OF_ZELDA_TRI_FORCE_HEROES'],
-
-    SimpleEnum<T>['XENOBLADE_CHRONICLES'],
-
-    SimpleEnum<T>['EARTHBOUND'], SimpleEnum<T>['MOTHER3'],
-
-    SimpleEnum<T>['SPLATOON'],
-
-    SimpleEnum<T>['WII_FIT'],
-
-    SimpleEnum<T>['CHIBI_ROBO'],
-
-    SimpleEnum<T>['ANIMAL_CROSSING'], SimpleEnum<T>['ANIMAL_CROSSING_WILD_WORLD'], SimpleEnum<T>['ANIMAL_CROSSING_CITY_FOLK'],
-    SimpleEnum<T>['ANIMAL_CROSSING_NEW_LEAF'], SimpleEnum<T>['ANIMAL_CROSSING_HAPPY_HOME_DESIGNER'],
-
-    SimpleEnum<T>['F_ZERO'],
-
-    SimpleEnum<T>['GAME_AND_WATCH'],
-
-    SimpleEnum<T>['SONIC_THE_HEDGEHOG'],
-
-    SimpleEnum<T>['DUCK_HUNT'],
-
-    SimpleEnum<T>['PAC_MAN'],
-
-    SimpleEnum<T>['WRECKING_CREW'],
-
-    SimpleEnum<T>['PUNCH_OUT'],
-
-    SimpleEnum<T>['STAR_FOX'], SimpleEnum<T>['STAR_FOX_ZERO'],
-
-    SimpleEnum<T>['YAKUMAN_HO_O'],
-
-    SimpleEnum<T>['BIG_BRAIN_ACADEMY'],
-
-    SimpleEnum<T>['SWAPNOTE'], SimpleEnum<T>['NINTENDO_BADGE_ARCADE'], SimpleEnum<T>['MONSTER_MANOR'],
-
-    SimpleEnum<T>['GAMECENTER_CX'], SimpleEnum<T>['CORO_COR0_COMIC'], SimpleEnum<T>['FAMITSU'],
-    SimpleEnum<T>['MERCENDES_BENZ'], SimpleEnum<T>['FAMICOM_DISK_SYSTEM'], SimpleEnum<T>['BABYMETAL'],
-
-    SimpleEnum<T>['MONSTER_HUNTER'],
-
-    SimpleEnum<T>['EXCITEBIKE'],
-
-    SimpleEnum<T>['NISEKOI'],
-
-    SimpleEnum<T>['JAM_WITH_THE_BAND'],
-
-    SimpleEnum<T>['DAIGASSO_BAND_BROS_P'],
-
-    SimpleEnum<T>['THE_LEGENDARY_STARFY'],
-
-    SimpleEnum<T>['BALLOON_FIGHT'],
-
-    SimpleEnum<T>['SHIN_ONIGASHIMA'],
-
-    SimpleEnum<T>['FAMICOM_DETECTIVE_CLUB_PART_II'],
-
-    SimpleEnum<T>['PUSHMO'],
-
-    SimpleEnum<T>['CLU_CLU_LAND'],
-
-    SimpleEnum<T>['VOLLEYBALL'],
-
-    SimpleEnum<T>['ICE_CLIMBER'],
-
-    SimpleEnum<T>['HELLO_KITTY'], SimpleEnum<T>['MY_MELODY'],
-    SimpleEnum<T>['SHAUN_THE_SHEEP'],
-
-    SimpleEnum<T>['BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY'],
-]
-
-//endregion -------------------- Array types --------------------
+export type GameReferencesByNameOrAcronym<T extends string, > = T extends (| PossibleEnglishName | PossibleAcronym) ? GameReferences : never

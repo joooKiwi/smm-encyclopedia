@@ -1,4 +1,4 @@
-import type {Namespace, SimpleAnyTranslationProperty, TranslationReplaceKeysMap} from '../../../lang/components/TranslationProperty'
+import type {ReactElementOrString} from '../../../util/react/ReactProperties'
 
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader
 export type SingleHeadersContent = readonly SingleHeaderContent[]
@@ -9,14 +9,7 @@ export interface SimpleHeader {
 
     subHeaders?: SingleHeadersContent
 
-    tooltip?: HeaderTooltip
-
-}
-
-export interface HeaderTooltip
-    extends Omit<SimpleAnyTranslationProperty<Namespace>, 'replace'> {
-
-    replace?: TranslationReplaceKeysMap<string>
+    tooltip?: string
 
 }
 
@@ -35,6 +28,6 @@ export interface SimpleImageHeader
 export interface SimpleReactHeader
     extends SimpleHeader {
 
-    element: JSX.Element
+    element: ReactElementOrString
 
 }

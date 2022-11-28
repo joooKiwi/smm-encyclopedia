@@ -1,11 +1,10 @@
+import type {NullOrNumber, NullOrString}  from '../../../util/types'
 import type {NumberPropertyWithComment}   from '../PropertyWithComment'
-import type {PossibleComment}             from '../ClassWithComment'
-import type {PossibleNumber}              from '../Property'
 import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
 
 import {PropertyWithCommentContainer} from '../PropertyWithComment.container'
 
-export class NumberPropertyWithCommentContainer<N extends PossibleNumber = PossibleNumber, COMMENT extends PossibleComment = PossibleComment, >
+export class NumberPropertyWithCommentContainer<N extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithCommentContainer<N, COMMENT>
     implements NumberPropertyWithComment<N, COMMENT> {
 

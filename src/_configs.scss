@@ -1,17 +1,22 @@
+//@use "sass:math";
 @import 'variables';
 @import '~bootstrap/scss/bootstrap';
 
+//@function to-decimal($value,) {
+//  @return math.div($value, 100%);
+//}
+
 :root {
   --entityCategory-terrain-bg-color: var(--bs-blue);
-  --entityCategory-item-bg-color: var(--bs-pink);
-  --entityCategory-ennemy-bg-color: var(--bs-green);
-  --entityCategory-gizmo-bg-color: var(--bs-yellow);
+  --entityCategory-item-bg-color:    var(--bs-pink);
+  --entityCategory-ennemy-bg-color:  var(--bs-green);
+  --entityCategory-gizmo-bg-color:   var(--bs-yellow);
 
-  --soundEffectCategory-feelings-bg-color: var(--bs-yellow);
-  --soundEffectCategory-stingers-bg-color: var(--bs-orange);
-  --soundEffectCategory-reactions-bg-color: var(--bs-green);
+  --soundEffectCategory-feelings-bg-color:   var(--bs-yellow);
+  --soundEffectCategory-stingers-bg-color:   var(--bs-orange);
+  --soundEffectCategory-reactions-bg-color:  var(--bs-green);
   --soundEffectCategory-animations-bg-color: var(--bs-pink);
-  --soundEffectCategory-music-bg-color: var(--bs-blue);
+  --soundEffectCategory-music-bg-color:      var(--bs-blue);
 }
 
 :root {
@@ -52,23 +57,23 @@
 
 :root {
 
-  //region -------------------- Spacer variables --------------------
+  //region -------------------- Spacer --------------------
 
-  --bs-spacer-xs: #{map-get($spacers-original, 0)};
-  --bs-spacer-sm: #{map-get($spacers-original, 1)};
-  --bs-spacer-md: #{map-get($spacers-original, 2)};
-  --bs-spacer-lg: #{map-get($spacers-original, 3)};
-  --bs-spacer-xl: #{map-get($spacers-original, 4)};
-  --bs-spacer-xxl: #{map-get($spacers-original, 5)};
-  --bs-negative-spacer-xs: #{map-get($negative-spacers, 0)};
-  --bs-negative-spacer-sm: #{map-get($negative-spacers, 1)};
-  --bs-negative-spacer-md: #{map-get($negative-spacers, 2)};
-  --bs-negative-spacer-lg: #{map-get($negative-spacers, 3)};
-  --bs-negative-spacer-xl: #{map-get($negative-spacers, 4)};
-  --bs-negative-spacer-xxl: #{map-get($negative-spacers, 5)};
+  --bs-spacer-xs:           #{map-get($spacers-original, 0)};
+  --bs-spacer-sm:           #{map-get($spacers-original, 1)};
+  --bs-spacer-md:           #{map-get($spacers-original, 2)};
+  --bs-spacer-lg:           #{map-get($spacers-original, 3)};
+  --bs-spacer-xl:           #{map-get($spacers-original, 4)};
+  --bs-spacer-xxl:          #{map-get($spacers-original, 5)};
+  --bs-negative-spacer-xs:  calc(var(--bs-spacer-xs) * -1);
+  --bs-negative-spacer-sm:  calc(var(--bs-spacer-sm) * -1);
+  --bs-negative-spacer-md:  calc(var(--bs-spacer-md) * -1);
+  --bs-negative-spacer-lg:  calc(var(--bs-spacer-lg) * -1);
+  --bs-negative-spacer-xl:  calc(var(--bs-spacer-xl) * -1);
+  --bs-negative-spacer-xxl: calc(var(--bs-spacer-xxl) * -1);
 
-  //endregion -------------------- Spacer variables --------------------
-  //region -------------------- Border variables --------------------
+  //endregion -------------------- Spacer --------------------
+  //region -------------------- Border --------------------
 
   --bs-border-width-1: #{$border-width-1};
   --bs-border-width-2: #{$border-width-2};
@@ -76,484 +81,962 @@
   --bs-border-width-4: #{$border-width-4};
   --bs-border-width-5: #{$border-width-5};
 
-  --bs-border-radius: #{$border-radius-original};
-  --bs-border-sm-radius: #{$border-radius-sm-original};
-  --bs-border-lg-radius: #{$border-radius-lg-original};
-  --bs-border-pill-radius: #{$border-radius-pill-original};
+  --bs-border-radius:        #{$border-radius-original};
+  --bs-border-sm-radius:     #{$border-radius-sm-original};
+  --bs-border-lg-radius:     #{$border-radius-lg-original};
+  --bs-border-xl-radius:     #{$border-radius-xl-original};
+  --bs-border-xxl-radius:    #{$border-radius-xxl-original};
+  --bs-border-pill-radius:   #{$border-radius-pill-original};
   --bs-border-circle-radius: #{$border-radius-circle-original};
 
-  //endregion -------------------- Border variables --------------------
-  //region -------------------- Z-index variables --------------------
+  //endregion -------------------- Border --------------------
+  //region -------------------- Z-index --------------------
 
-  --bs-z-index-dropdown: #{$z-index-dropdown-original};
-  --bs-z-index-sticky: #{$z-index-sticky-original};
-  --bs-z-index-fixed: #{$z-index-fixed-original};
+  --bs-z-index-dropdown:           #{$z-index-dropdown-original};
+  --bs-z-index-sticky:             #{$z-index-sticky-original};
+  --bs-z-index-fixed:              #{$z-index-fixed-original};
   --bs-z-index-offcanvas-backdrop: #{$z-index-offcanvas-backdrop-original};
-  --bs-z-index-offcanvas: #{$z-index-offcanvas-original};
-  --bs-z-index-modal-backdrop: #{$z-index-modal-backdrop-original};
-  --bs-z-index-modal: #{$z-index-modal-original};
-  --bs-z-index-popover: #{$z-index-popover-original};
-  --bs-z-index-tooltip: #{$z-index-tooltip-original};
+  --bs-z-index-offcanvas:          #{$z-index-offcanvas-original};
+  --bs-z-index-modal-backdrop:     #{$z-index-modal-backdrop-original};
+  --bs-z-index-modal:              #{$z-index-modal-original};
+  --bs-z-index-popover:            #{$z-index-popover-original};
+  --bs-z-index-tooltip:            #{$z-index-tooltip-original};
+  --bs-z-index-toast:              #{$z-index-toast-original};
 
-  //endregion -------------------- Z-index variables --------------------
-  //region -------------------- Font-size variables --------------------
+  //endregion -------------------- Z-index --------------------
+  //region -------------------- Font-size --------------------
 
-  --bs-font-size-base: #{$font-size-base};
-  --bs-font-size-sm: #{$font-size-sm-original};
-  --bs-font-size-lg: #{$font-size-lg-original};
-  --bs-small-font-size: #{$small-font-size-original};
+  --bs-font-size-base:    #{$font-size-base};
+  --bs-font-size-sm:      #{$font-size-sm-original};
+  --bs-font-size-lg:      #{$font-size-lg-original};
+  --bs-small-font-size:   #{$small-font-size-original};
   --bs-sub-sup-font-size: #{$sub-sup-font-size-original};
 
-  //endregion -------------------- Font-size variables --------------------
-  //region -------------------- Font-weight variables --------------------
+  //endregion -------------------- Font-size --------------------
+  //region -------------------- Font-weight --------------------
 
   --bs-font-weight-lighter: #{$font-weight-lighter-original};
-  --bs-font-weight-light: #{$font-weight-light-original};
-  --bs-font-weight-normal: #{$font-weight-normal-original};
-  --bs-font-weight-bold: #{$font-weight-bold-original};
-  --bs-font-weight-bolder: #{$font-weight-bolder-original};
+  --bs-font-weight-light:   #{$font-weight-light-original};
+  --bs-font-weight-normal:  #{$font-weight-normal-original};
+  --bs-font-weight-bold:    #{$font-weight-bold-original};
+  --bs-font-weight-bolder:  #{$font-weight-bolder-original};
 
-  //endregion -------------------- Font-weight variables --------------------
+  //endregion -------------------- Font-weight --------------------
 
   --bs-code-font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 
 }
 
-//region -------------------- Color variables --------------------
-
 :root {
+  //region -------------------- Blue --------------------
 
-  --bs-blue-100: #{$blue-100};
+  --bs-blue:          var(--bs-blue-500);
+  --bs-blue-rgb:      var(--bs-blue-500-rgb);
+  --bs-blue-050:  rgb(var(--bs-blue-050-rgb));
+  --bs-blue-050-rgb: #{to-rgb($blue-050)};
+  --bs-blue-100:  rgb(var(--bs-blue-100-rgb));
   --bs-blue-100-rgb: #{to-rgb($blue-100)};
-  --bs-blue-200: #{$blue-200};
+  --bs-blue-150:  rgb(var(--bs-blue-150-rgb));
+  --bs-blue-150-rgb: #{to-rgb($blue-150)};
+  --bs-blue-200:  rgb(var(--bs-blue-200-rgb));
   --bs-blue-200-rgb: #{to-rgb($blue-200)};
-  --bs-blue-300: #{$blue-300};
+  --bs-blue-250:  rgb(var(--bs-blue-250-rgb));
+  --bs-blue-250-rgb: #{to-rgb($blue-250)};
+  --bs-blue-300:  rgb(var(--bs-blue-300-rgb));
   --bs-blue-300-rgb: #{to-rgb($blue-300)};
-  --bs-blue-400: #{$blue-400};
+  --bs-blue-350:  rgb(var(--bs-blue-350-rgb));
+  --bs-blue-350-rgb: #{to-rgb($blue-350)};
+  --bs-blue-400:  rgb(var(--bs-blue-400-rgb));
   --bs-blue-400-rgb: #{to-rgb($blue-400)};
-  --bs-blue-500: #{$blue-500};
+  --bs-blue-450:  rgb(var(--bs-blue-450-rgb));
+  --bs-blue-450-rgb: #{to-rgb($blue-450)};
+  --bs-blue-500:  rgb(var(--bs-blue-500-rgb));
   --bs-blue-500-rgb: #{to-rgb($blue-500)};
-  --bs-blue-600: #{$blue-600};
+  --bs-blue-550:  rgb(var(--bs-blue-550-rgb));
+  --bs-blue-550-rgb: #{to-rgb($blue-550)};
+  --bs-blue-600:  rgb(var(--bs-blue-600-rgb));
   --bs-blue-600-rgb: #{to-rgb($blue-600)};
-  --bs-blue-700: #{$blue-700};
+  --bs-blue-650:  rgb(var(--bs-blue-650-rgb));
+  --bs-blue-650-rgb: #{to-rgb($blue-650)};
+  --bs-blue-700:  rgb(var(--bs-blue-700-rgb));
   --bs-blue-700-rgb: #{to-rgb($blue-700)};
-  --bs-blue-800: #{$blue-800};
+  --bs-blue-750:  rgb(var(--bs-blue-750-rgb));
+  --bs-blue-750-rgb: #{to-rgb($blue-750)};
+  --bs-blue-800:  rgb(var(--bs-blue-800-rgb));
   --bs-blue-800-rgb: #{to-rgb($blue-800)};
-  --bs-blue-900: #{$blue-900};
+  --bs-blue-850:  rgb(var(--bs-blue-850-rgb));
+  --bs-blue-850-rgb: #{to-rgb($blue-850)};
+  --bs-blue-900:  rgb(var(--bs-blue-900-rgb));
   --bs-blue-900-rgb: #{to-rgb($blue-900)};
+  --bs-blue-950:  rgb(var(--bs-blue-950-rgb));
+  --bs-blue-950-rgb: #{to-rgb($blue-950)};
 
-  --bs-indigo-100: #{$indigo-100};
+  //endregion -------------------- Blue --------------------
+  //region -------------------- Indigo --------------------
+
+  --bs-indigo:          var(--bs-indigo-500);
+  --bs-indigo-rgb:      var(--bs-indigo-500-rgb);
+  --bs-indigo-050:  rgb(var(--bs-indigo-050-rgb));
+  --bs-indigo-050-rgb: #{to-rgb($indigo-050)};
+  --bs-indigo-100:  rgb(var(--bs-indigo-100-rgb));
   --bs-indigo-100-rgb: #{to-rgb($indigo-100)};
-  --bs-indigo-200: #{$indigo-200};
+  --bs-indigo-150:  rgb(var(--bs-indigo-150-rgb));
+  --bs-indigo-150-rgb: #{to-rgb($indigo-150)};
+  --bs-indigo-200:  rgb(var(--bs-indigo-200-rgb));
   --bs-indigo-200-rgb: #{to-rgb($indigo-200)};
-  --bs-indigo-300: #{$indigo-300};
+  --bs-indigo-250:  rgb(var(--bs-indigo-250-rgb));
+  --bs-indigo-250-rgb: #{to-rgb($indigo-250)};
+  --bs-indigo-300:  rgb(var(--bs-indigo-300-rgb));
   --bs-indigo-300-rgb: #{to-rgb($indigo-300)};
-  --bs-indigo-400: #{$indigo-400};
+  --bs-indigo-350:  rgb(var(--bs-indigo-350-rgb));
+  --bs-indigo-350-rgb: #{to-rgb($indigo-350)};
+  --bs-indigo-400:  rgb(var(--bs-indigo-400-rgb));
   --bs-indigo-400-rgb: #{to-rgb($indigo-400)};
-  --bs-indigo-500: #{$indigo-500};
+  --bs-indigo-450:  rgb(var(--bs-indigo-450-rgb));
+  --bs-indigo-450-rgb: #{to-rgb($indigo-450)};
+  --bs-indigo-500:  rgb(var(--bs-indigo-500-rgb));
   --bs-indigo-500-rgb: #{to-rgb($indigo-500)};
-  --bs-indigo-600: #{$indigo-600};
+  --bs-indigo-550:  rgb(var(--bs-indigo-550-rgb));
+  --bs-indigo-550-rgb: #{to-rgb($indigo-550)};
+  --bs-indigo-600:  rgb(var(--bs-indigo-600-rgb));
   --bs-indigo-600-rgb: #{to-rgb($indigo-600)};
-  --bs-indigo-700: #{$indigo-700};
+  --bs-indigo-650:  rgb(var(--bs-indigo-650-rgb));
+  --bs-indigo-650-rgb: #{to-rgb($indigo-650)};
+  --bs-indigo-700:  rgb(var(--bs-indigo-700-rgb));
   --bs-indigo-700-rgb: #{to-rgb($indigo-700)};
-  --bs-indigo-800: #{$indigo-800};
+  --bs-indigo-750:  rgb(var(--bs-indigo-750-rgb));
+  --bs-indigo-750-rgb: #{to-rgb($indigo-750)};
+  --bs-indigo-800:  rgb(var(--bs-indigo-800-rgb));
   --bs-indigo-800-rgb: #{to-rgb($indigo-800)};
-  --bs-indigo-900: #{$indigo-900};
+  --bs-indigo-850:  rgb(var(--bs-indigo-850-rgb));
+  --bs-indigo-850-rgb: #{to-rgb($indigo-850)};
+  --bs-indigo-900:  rgb(var(--bs-indigo-900-rgb));
   --bs-indigo-900-rgb: #{to-rgb($indigo-900)};
+  --bs-indigo-950:  rgb(var(--bs-indigo-950-rgb));
+  --bs-indigo-950-rgb: #{to-rgb($indigo-950)};
 
-  --bs-purple-100: #{$purple-100};
+  //endregion -------------------- Indigo --------------------
+  //region -------------------- Purple --------------------
+
+  --bs-purple:          var(--bs-purple-500);
+  --bs-purple-rgb:      var(--bs-purple-500-rgb);
+  --bs-purple-050:  rgb(var(--bs-purple-050-rgb));
+  --bs-purple-050-rgb: #{to-rgb($purple-050)};
+  --bs-purple-100:  rgb(var(--bs-purple-100-rgb));
   --bs-purple-100-rgb: #{to-rgb($purple-100)};
-  --bs-purple-200: #{$purple-200};
+  --bs-purple-150:  rgb(var(--bs-purple-150-rgb));
+  --bs-purple-150-rgb: #{to-rgb($purple-150)};
+  --bs-purple-200:  rgb(var(--bs-purple-200-rgb));
   --bs-purple-200-rgb: #{to-rgb($purple-200)};
-  --bs-purple-300: #{$purple-300};
+  --bs-purple-250:  rgb(var(--bs-purple-250-rgb));
+  --bs-purple-250-rgb: #{to-rgb($purple-250)};
+  --bs-purple-300:  rgb(var(--bs-purple-300-rgb));
   --bs-purple-300-rgb: #{to-rgb($purple-300)};
-  --bs-purple-400: #{$purple-400};
+  --bs-purple-350:  rgb(var(--bs-purple-350-rgb));
+  --bs-purple-350-rgb: #{to-rgb($purple-350)};
+  --bs-purple-400:  rgb(var(--bs-purple-400-rgb));
   --bs-purple-400-rgb: #{to-rgb($purple-400)};
-  --bs-purple-500: #{$purple-500};
+  --bs-purple-450:  rgb(var(--bs-purple-450-rgb));
+  --bs-purple-450-rgb: #{to-rgb($purple-450)};
+  --bs-purple-500:  rgb(var(--bs-purple-500-rgb));
   --bs-purple-500-rgb: #{to-rgb($purple-500)};
-  --bs-purple-600: #{$purple-600};
+  --bs-purple-550:  rgb(var(--bs-purple-550-rgb));
+  --bs-purple-550-rgb: #{to-rgb($purple-550)};
+  --bs-purple-600:  rgb(var(--bs-purple-600-rgb));
   --bs-purple-600-rgb: #{to-rgb($purple-600)};
-  --bs-purple-700: #{$purple-700};
+  --bs-purple-650:  rgb(var(--bs-purple-650-rgb));
+  --bs-purple-650-rgb: #{to-rgb($purple-650)};
+  --bs-purple-700:  rgb(var(--bs-purple-700-rgb));
   --bs-purple-700-rgb: #{to-rgb($purple-700)};
-  --bs-purple-800: #{$purple-800};
+  --bs-purple-750:  rgb(var(--bs-purple-750-rgb));
+  --bs-purple-750-rgb: #{to-rgb($purple-750)};
+  --bs-purple-800:  rgb(var(--bs-purple-800-rgb));
   --bs-purple-800-rgb: #{to-rgb($purple-800)};
-  --bs-purple-900: #{$purple-900};
+  --bs-purple-850:  rgb(var(--bs-purple-850-rgb));
+  --bs-purple-850-rgb: #{to-rgb($purple-850)};
+  --bs-purple-900:  rgb(var(--bs-purple-900-rgb));
   --bs-purple-900-rgb: #{to-rgb($purple-900)};
+  --bs-purple-950:  rgb(var(--bs-purple-950-rgb));
+  --bs-purple-950-rgb: #{to-rgb($purple-950)};
 
-  --bs-pink-100: #{$pink-100};
+  //endregion -------------------- Purple --------------------
+  //region -------------------- Pink --------------------
+
+  --bs-pink:          var(--bs-pink-500);
+  --bs-pink-rgb:      var(--bs-pink-500-rgb);
+  --bs-pink-050:  rgb(var(--bs-pink-050-rgb));
+  --bs-pink-050-rgb: #{to-rgb($pink-050)};
+  --bs-pink-100:  rgb(var(--bs-pink-100-rgb));
   --bs-pink-100-rgb: #{to-rgb($pink-100)};
-  --bs-pink-200: #{$pink-200};
+  --bs-pink-150:  rgb(var(--bs-pink-150-rgb));
+  --bs-pink-150-rgb: #{to-rgb($pink-150)};
+  --bs-pink-200:  rgb(var(--bs-pink-200-rgb));
   --bs-pink-200-rgb: #{to-rgb($pink-200)};
-  --bs-pink-300: #{$pink-300};
+  --bs-pink-250:  rgb(var(--bs-pink-250-rgb));
+  --bs-pink-250-rgb: #{to-rgb($pink-250)};
+  --bs-pink-300:  rgb(var(--bs-pink-300-rgb));
   --bs-pink-300-rgb: #{to-rgb($pink-300)};
-  --bs-pink-400: #{$pink-400};
+  --bs-pink-350:  rgb(var(--bs-pink-350-rgb));
+  --bs-pink-350-rgb: #{to-rgb($pink-350)};
+  --bs-pink-400:  rgb(var(--bs-pink-400-rgb));
   --bs-pink-400-rgb: #{to-rgb($pink-400)};
-  --bs-pink-500: #{$pink-500};
+  --bs-pink-450:  rgb(var(--bs-pink-450-rgb));
+  --bs-pink-450-rgb: #{to-rgb($pink-450)};
+  --bs-pink-500:  rgb(var(--bs-pink-500-rgb));
   --bs-pink-500-rgb: #{to-rgb($pink-500)};
-  --bs-pink-600: #{$pink-600};
+  --bs-pink-550:  rgb(var(--bs-pink-550-rgb));
+  --bs-pink-550-rgb: #{to-rgb($pink-550)};
+  --bs-pink-600:  rgb(var(--bs-pink-600-rgb));
   --bs-pink-600-rgb: #{to-rgb($pink-600)};
-  --bs-pink-700: #{$pink-700};
+  --bs-pink-650:  rgb(var(--bs-pink-650-rgb));
+  --bs-pink-650-rgb: #{to-rgb($pink-650)};
+  --bs-pink-700:  rgb(var(--bs-pink-700-rgb));
   --bs-pink-700-rgb: #{to-rgb($pink-700)};
-  --bs-pink-800: #{$pink-800};
+  --bs-pink-750:  rgb(var(--bs-pink-750-rgb));
+  --bs-pink-750-rgb: #{to-rgb($pink-750)};
+  --bs-pink-800:  rgb(var(--bs-pink-800-rgb));
   --bs-pink-800-rgb: #{to-rgb($pink-800)};
-  --bs-pink-900: #{$pink-900};
+  --bs-pink-850:  rgb(var(--bs-pink-850-rgb));
+  --bs-pink-850-rgb: #{to-rgb($pink-850)};
+  --bs-pink-900:  rgb(var(--bs-pink-900-rgb));
   --bs-pink-900-rgb: #{to-rgb($pink-900)};
+  --bs-pink-950:  rgb(var(--bs-pink-950-rgb));
+  --bs-pink-950-rgb: #{to-rgb($pink-950)};
 
-  --bs-red-100: #{$red-100};
+  //endregion -------------------- Pink --------------------
+  //region -------------------- Red --------------------
+
+  --bs-red:          var(--bs-red-500);
+  --bs-red-rgb:      var(--bs-red-500-rgb);
+  --bs-red-050:  rgb(var(--bs-red-050-rgb));
+  --bs-red-050-rgb: #{to-rgb($red-050)};
+  --bs-red-100:  rgb(var(--bs-red-100-rgb));
   --bs-red-100-rgb: #{to-rgb($red-100)};
-  --bs-red-200: #{$red-200};
+  --bs-red-150:  rgb(var(--bs-red-150-rgb));
+  --bs-red-150-rgb: #{to-rgb($red-150)};
+  --bs-red-200:  rgb(var(--bs-red-200-rgb));
   --bs-red-200-rgb: #{to-rgb($red-200)};
-  --bs-red-300: #{$red-300};
+  --bs-red-250:  rgb(var(--bs-red-250-rgb));
+  --bs-red-250-rgb: #{to-rgb($red-250)};
+  --bs-red-300:  rgb(var(--bs-red-300-rgb));
   --bs-red-300-rgb: #{to-rgb($red-300)};
-  --bs-red-400: #{$red-400};
+  --bs-red-350:  rgb(var(--bs-red-350-rgb));
+  --bs-red-350-rgb: #{to-rgb($red-350)};
+  --bs-red-400:  rgb(var(--bs-red-400-rgb));
   --bs-red-400-rgb: #{to-rgb($red-400)};
-  --bs-red-500: #{$red-500};
+  --bs-red-450:  rgb(var(--bs-red-450-rgb));
+  --bs-red-450-rgb: #{to-rgb($red-450)};
+  --bs-red-500:  rgb(var(--bs-red-500-rgb));
   --bs-red-500-rgb: #{to-rgb($red-500)};
-  --bs-red-600: #{$red-600};
+  --bs-red-550:  rgb(var(--bs-red-550-rgb));
+  --bs-red-550-rgb: #{to-rgb($red-550)};
+  --bs-red-600:  rgb(var(--bs-red-600-rgb));
   --bs-red-600-rgb: #{to-rgb($red-600)};
-  --bs-red-700: #{$red-700};
+  --bs-red-650:  rgb(var(--bs-red-650-rgb));
+  --bs-red-650-rgb: #{to-rgb($red-650)};
+  --bs-red-700:  rgb(var(--bs-red-700-rgb));
   --bs-red-700-rgb: #{to-rgb($red-700)};
-  --bs-red-800: #{$red-800};
+  --bs-red-750:  rgb(var(--bs-red-750-rgb));
+  --bs-red-750-rgb: #{to-rgb($red-750)};
+  --bs-red-800:  rgb(var(--bs-red-800-rgb));
   --bs-red-800-rgb: #{to-rgb($red-800)};
-  --bs-red-900: #{$red-900};
+  --bs-red-850:  rgb(var(--bs-red-850-rgb));
+  --bs-red-850-rgb: #{to-rgb($red-850)};
+  --bs-red-900:  rgb(var(--bs-red-900-rgb));
   --bs-red-900-rgb: #{to-rgb($red-900)};
+  --bs-red-950:  rgb(var(--bs-red-950-rgb));
+  --bs-red-950-rgb: #{to-rgb($red-950)};
 
-  --bs-orange-100: #{$orange-100};
+  //endregion -------------------- Red --------------------
+  //region -------------------- Orange --------------------
+
+  --bs-orange:          var(--bs-orange-500);
+  --bs-orange-rgb:      var(--bs-orange-500-rgb);
+  --bs-orange-050:  rgb(var(--bs-orange-050-rgb));
+  --bs-orange-050-rgb: #{to-rgb($orange-050)};
+  --bs-orange-100:  rgb(var(--bs-orange-100-rgb));
   --bs-orange-100-rgb: #{to-rgb($orange-100)};
-  --bs-orange-200: #{$orange-200};
+  --bs-orange-150:  rgb(var(--bs-orange-150-rgb));
+  --bs-orange-150-rgb: #{to-rgb($orange-150)};
+  --bs-orange-200:  rgb(var(--bs-orange-200-rgb));
   --bs-orange-200-rgb: #{to-rgb($orange-200)};
-  --bs-orange-300: #{$orange-300};
+  --bs-orange-250:  rgb(var(--bs-orange-250-rgb));
+  --bs-orange-250-rgb: #{to-rgb($orange-250)};
+  --bs-orange-300:  rgb(var(--bs-orange-300-rgb));
   --bs-orange-300-rgb: #{to-rgb($orange-300)};
-  --bs-orange-400: #{$orange-400};
+  --bs-orange-350:  rgb(var(--bs-orange-350-rgb));
+  --bs-orange-350-rgb: #{to-rgb($orange-350)};
+  --bs-orange-400:  rgb(var(--bs-orange-400-rgb));
   --bs-orange-400-rgb: #{to-rgb($orange-400)};
-  --bs-orange-500: #{$orange-500};
+  --bs-orange-450:  rgb(var(--bs-orange-450-rgb));
+  --bs-orange-450-rgb: #{to-rgb($orange-450)};
+  --bs-orange-500:  rgb(var(--bs-orange-500-rgb));
   --bs-orange-500-rgb: #{to-rgb($orange-500)};
-  --bs-orange-600: #{$orange-600};
+  --bs-orange-550:  rgb(var(--bs-orange-550-rgb));
+  --bs-orange-550-rgb: #{to-rgb($orange-550)};
+  --bs-orange-600:  rgb(var(--bs-orange-600-rgb));
   --bs-orange-600-rgb: #{to-rgb($orange-600)};
-  --bs-orange-700: #{$orange-700};
+  --bs-orange-650:  rgb(var(--bs-orange-650-rgb));
+  --bs-orange-650-rgb: #{to-rgb($orange-650)};
+  --bs-orange-700:  rgb(var(--bs-orange-700-rgb));
   --bs-orange-700-rgb: #{to-rgb($orange-700)};
-  --bs-orange-800: #{$orange-800};
+  --bs-orange-750:  rgb(var(--bs-orange-750-rgb));
+  --bs-orange-750-rgb: #{to-rgb($orange-750)};
+  --bs-orange-800:  rgb(var(--bs-orange-800-rgb));
   --bs-orange-800-rgb: #{to-rgb($orange-800)};
-  --bs-orange-900: #{$orange-900};
+  --bs-orange-850:  rgb(var(--bs-orange-850-rgb));
+  --bs-orange-850-rgb: #{to-rgb($orange-850)};
+  --bs-orange-900:  rgb(var(--bs-orange-900-rgb));
   --bs-orange-900-rgb: #{to-rgb($orange-900)};
+  --bs-orange-950:  rgb(var(--bs-orange-950-rgb));
+  --bs-orange-950-rgb: #{to-rgb($orange-950)};
 
-  --bs-yellow-100: #{$yellow-100};
+  //endregion -------------------- Orange --------------------
+  //region -------------------- Yellow --------------------
+
+  --bs-yellow:          var(--bs-yellow-500);
+  --bs-yellow-rgb:      var(--bs-yellow-500-rgb);
+  --bs-yellow-050:  rgb(var(--bs-yellow-050-rgb));
+  --bs-yellow-050-rgb: #{to-rgb($yellow-050)};
+  --bs-yellow-100:  rgb(var(--bs-yellow-100-rgb));
   --bs-yellow-100-rgb: #{to-rgb($yellow-100)};
-  --bs-yellow-200: #{$yellow-200};
+  --bs-yellow-150:  rgb(var(--bs-yellow-150-rgb));
+  --bs-yellow-150-rgb: #{to-rgb($yellow-150)};
+  --bs-yellow-200:  rgb(var(--bs-yellow-200-rgb));
   --bs-yellow-200-rgb: #{to-rgb($yellow-200)};
-  --bs-yellow-300: #{$yellow-300};
+  --bs-yellow-250:  rgb(var(--bs-yellow-250-rgb));
+  --bs-yellow-250-rgb: #{to-rgb($yellow-250)};
+  --bs-yellow-300:  rgb(var(--bs-yellow-300-rgb));
   --bs-yellow-300-rgb: #{to-rgb($yellow-300)};
-  --bs-yellow-400: #{$yellow-400};
+  --bs-yellow-350:  rgb(var(--bs-yellow-350-rgb));
+  --bs-yellow-350-rgb: #{to-rgb($yellow-350)};
+  --bs-yellow-400:  rgb(var(--bs-yellow-400-rgb));
   --bs-yellow-400-rgb: #{to-rgb($yellow-400)};
-  --bs-yellow-500: #{$yellow-500};
+  --bs-yellow-450:  rgb(var(--bs-yellow-450-rgb));
+  --bs-yellow-450-rgb: #{to-rgb($yellow-450)};
+  --bs-yellow-500:  rgb(var(--bs-yellow-500-rgb));
   --bs-yellow-500-rgb: #{to-rgb($yellow-500)};
-  --bs-yellow-600: #{$yellow-600};
+  --bs-yellow-550:  rgb(var(--bs-yellow-550-rgb));
+  --bs-yellow-550-rgb: #{to-rgb($yellow-550)};
+  --bs-yellow-600:  rgb(var(--bs-yellow-600-rgb));
   --bs-yellow-600-rgb: #{to-rgb($yellow-600)};
-  --bs-yellow-700: #{$yellow-700};
+  --bs-yellow-650:  rgb(var(--bs-yellow-650-rgb));
+  --bs-yellow-650-rgb: #{to-rgb($yellow-650)};
+  --bs-yellow-700:  rgb(var(--bs-yellow-700-rgb));
   --bs-yellow-700-rgb: #{to-rgb($yellow-700)};
-  --bs-yellow-800: #{$yellow-800};
+  --bs-yellow-750:  rgb(var(--bs-yellow-750-rgb));
+  --bs-yellow-750-rgb: #{to-rgb($yellow-750)};
+  --bs-yellow-800:  rgb(var(--bs-yellow-800-rgb));
   --bs-yellow-800-rgb: #{to-rgb($yellow-800)};
-  --bs-yellow-900: #{$yellow-900};
+  --bs-yellow-850:  rgb(var(--bs-yellow-850-rgb));
+  --bs-yellow-850-rgb: #{to-rgb($yellow-850)};
+  --bs-yellow-900:  rgb(var(--bs-yellow-900-rgb));
   --bs-yellow-900-rgb: #{to-rgb($yellow-900)};
+  --bs-yellow-950:  rgb(var(--bs-yellow-950-rgb));
+  --bs-yellow-950-rgb: #{to-rgb($yellow-950)};
 
-  --bs-green-100: #{$green-100};
+  //endregion -------------------- Yellow --------------------
+  //region -------------------- Green --------------------
+
+  --bs-green:          var(--bs-green-500);
+  --bs-green-rgb:      var(--bs-green-500-rgb);
+  --bs-green-050:  rgb(var(--bs-green-050-rgb));
+  --bs-green-050-rgb: #{to-rgb($green-050)};
+  --bs-green-100:  rgb(var(--bs-green-100-rgb));
   --bs-green-100-rgb: #{to-rgb($green-100)};
-  --bs-green-200: #{$green-200};
+  --bs-green-150:  rgb(var(--bs-green-150-rgb));
+  --bs-green-150-rgb: #{to-rgb($green-150)};
+  --bs-green-200:  rgb(var(--bs-green-200-rgb));
   --bs-green-200-rgb: #{to-rgb($green-200)};
-  --bs-green-300: #{$green-300};
+  --bs-green-250:  rgb(var(--bs-green-250-rgb));
+  --bs-green-250-rgb: #{to-rgb($green-250)};
+  --bs-green-300:  rgb(var(--bs-green-300-rgb));
   --bs-green-300-rgb: #{to-rgb($green-300)};
-  --bs-green-400: #{$green-400};
+  --bs-green-350:  rgb(var(--bs-green-350-rgb));
+  --bs-green-350-rgb: #{to-rgb($green-350)};
+  --bs-green-400:  rgb(var(--bs-green-400-rgb));
   --bs-green-400-rgb: #{to-rgb($green-400)};
-  --bs-green-500: #{$green-500};
+  --bs-green-450:  rgb(var(--bs-green-450-rgb));
+  --bs-green-450-rgb: #{to-rgb($green-450)};
+  --bs-green-500:  rgb(var(--bs-green-500-rgb));
   --bs-green-500-rgb: #{to-rgb($green-500)};
-  --bs-green-600: #{$green-600};
+  --bs-green-550:  rgb(var(--bs-green-550-rgb));
+  --bs-green-550-rgb: #{to-rgb($green-550)};
+  --bs-green-600:  rgb(var(--bs-green-600-rgb));
   --bs-green-600-rgb: #{to-rgb($green-600)};
-  --bs-green-700: #{$green-700};
+  --bs-green-650:  rgb(var(--bs-green-650-rgb));
+  --bs-green-650-rgb: #{to-rgb($green-650)};
+  --bs-green-700:  rgb(var(--bs-green-700-rgb));
   --bs-green-700-rgb: #{to-rgb($green-700)};
-  --bs-green-800: #{$green-800};
+  --bs-green-750:  rgb(var(--bs-green-750-rgb));
+  --bs-green-750-rgb: #{to-rgb($green-750)};
+  --bs-green-800:  rgb(var(--bs-green-800-rgb));
   --bs-green-800-rgb: #{to-rgb($green-800)};
-  --bs-green-900: #{$green-900};
+  --bs-green-850:  rgb(var(--bs-green-850-rgb));
+  --bs-green-850-rgb: #{to-rgb($green-850)};
+  --bs-green-900:  rgb(var(--bs-green-900-rgb));
   --bs-green-900-rgb: #{to-rgb($green-900)};
+  --bs-green-950:  rgb(var(--bs-green-950-rgb));
+  --bs-green-950-rgb: #{to-rgb($green-950)};
 
-  --bs-teal-100: #{$teal-100};
+  //endregion -------------------- Green --------------------
+  //region -------------------- Teal --------------------
+
+  --bs-teal:          var(--bs-teal-500);
+  --bs-teal-rgb:      var(--bs-teal-500-rgb);
+  --bs-teal-050:  rgb(var(--bs-teal-050-rgb));
+  --bs-teal-050-rgb: #{to-rgb($teal-050)};
+  --bs-teal-100:  rgb(var(--bs-teal-100-rgb));
   --bs-teal-100-rgb: #{to-rgb($teal-100)};
-  --bs-teal-200: #{$teal-200};
+  --bs-teal-150:  rgb(var(--bs-teal-150-rgb));
+  --bs-teal-150-rgb: #{to-rgb($teal-150)};
+  --bs-teal-200:  rgb(var(--bs-teal-200-rgb));
   --bs-teal-200-rgb: #{to-rgb($teal-200)};
-  --bs-teal-300: #{$teal-300};
+  --bs-teal-250:  rgb(var(--bs-teal-250-rgb));
+  --bs-teal-250-rgb: #{to-rgb($teal-250)};
+  --bs-teal-300:  rgb(var(--bs-teal-300-rgb));
   --bs-teal-300-rgb: #{to-rgb($teal-300)};
-  --bs-teal-400: #{$teal-400};
+  --bs-teal-350:  rgb(var(--bs-teal-350-rgb));
+  --bs-teal-350-rgb: #{to-rgb($teal-350)};
+  --bs-teal-400:  rgb(var(--bs-teal-400-rgb));
   --bs-teal-400-rgb: #{to-rgb($teal-400)};
-  --bs-teal-500: #{$teal-500};
+  --bs-teal-450:  rgb(var(--bs-teal-450-rgb));
+  --bs-teal-450-rgb: #{to-rgb($teal-450)};
+  --bs-teal-500:  rgb(var(--bs-teal-500-rgb));
   --bs-teal-500-rgb: #{to-rgb($teal-500)};
-  --bs-teal-600: #{$teal-600};
+  --bs-teal-550:  rgb(var(--bs-teal-550-rgb));
+  --bs-teal-550-rgb: #{to-rgb($teal-550)};
+  --bs-teal-600:  rgb(var(--bs-teal-600-rgb));
   --bs-teal-600-rgb: #{to-rgb($teal-600)};
-  --bs-teal-700: #{$teal-700};
+  --bs-teal-650:  rgb(var(--bs-teal-650-rgb));
+  --bs-teal-650-rgb: #{to-rgb($teal-650)};
+  --bs-teal-700:  rgb(var(--bs-teal-700-rgb));
   --bs-teal-700-rgb: #{to-rgb($teal-700)};
-  --bs-teal-800: #{$teal-800};
+  --bs-teal-750:  rgb(var(--bs-teal-750-rgb));
+  --bs-teal-750-rgb: #{to-rgb($teal-750)};
+  --bs-teal-800:  rgb(var(--bs-teal-800-rgb));
   --bs-teal-800-rgb: #{to-rgb($teal-800)};
-  --bs-teal-900: #{$teal-900};
+  --bs-teal-850:  rgb(var(--bs-teal-850-rgb));
+  --bs-teal-850-rgb: #{to-rgb($teal-850)};
+  --bs-teal-900:  rgb(var(--bs-teal-900-rgb));
   --bs-teal-900-rgb: #{to-rgb($teal-900)};
+  --bs-teal-950:  rgb(var(--bs-teal-950-rgb));
+  --bs-teal-950-rgb: #{to-rgb($teal-950)};
 
-  --bs-cyan-100: #{$cyan-100};
+  //endregion -------------------- Teal --------------------
+  //region -------------------- Cyan --------------------
+
+  --bs-cyan:          var(--bs-cyan-500);
+  --bs-cyan-rgb:      var(--bs-cyan-500-rgb);
+  --bs-cyan-050:  rgb(var(--bs-cyan-050-rgb));
+  --bs-cyan-050-rgb: #{to-rgb($cyan-050)};
+  --bs-cyan-100:  rgb(var(--bs-cyan-100-rgb));
   --bs-cyan-100-rgb: #{to-rgb($cyan-100)};
-  --bs-cyan-200: #{$cyan-200};
+  --bs-cyan-150:  rgb(var(--bs-cyan-150-rgb));
+  --bs-cyan-150-rgb: #{to-rgb($cyan-150)};
+  --bs-cyan-200:  rgb(var(--bs-cyan-200-rgb));
   --bs-cyan-200-rgb: #{to-rgb($cyan-200)};
-  --bs-cyan-300: #{$cyan-300};
+  --bs-cyan-250:  rgb(var(--bs-cyan-250-rgb));
+  --bs-cyan-250-rgb: #{to-rgb($cyan-250)};
+  --bs-cyan-300:  rgb(var(--bs-cyan-300-rgb));
   --bs-cyan-300-rgb: #{to-rgb($cyan-300)};
-  --bs-cyan-400: #{$cyan-400};
+  --bs-cyan-350:  rgb(var(--bs-cyan-350-rgb));
+  --bs-cyan-350-rgb: #{to-rgb($cyan-350)};
+  --bs-cyan-400:  rgb(var(--bs-cyan-400-rgb));
   --bs-cyan-400-rgb: #{to-rgb($cyan-400)};
-  --bs-cyan-500: #{$cyan-500};
+  --bs-cyan-450:  rgb(var(--bs-cyan-450-rgb));
+  --bs-cyan-450-rgb: #{to-rgb($cyan-450)};
+  --bs-cyan-500:  rgb(var(--bs-cyan-500-rgb));
   --bs-cyan-500-rgb: #{to-rgb($cyan-500)};
-  --bs-cyan-600: #{$cyan-600};
+  --bs-cyan-550:  rgb(var(--bs-cyan-550-rgb));
+  --bs-cyan-550-rgb: #{to-rgb($cyan-550)};
+  --bs-cyan-600:  rgb(var(--bs-cyan-600-rgb));
   --bs-cyan-600-rgb: #{to-rgb($cyan-600)};
-  --bs-cyan-700: #{$cyan-700};
+  --bs-cyan-650:  rgb(var(--bs-cyan-650-rgb));
+  --bs-cyan-650-rgb: #{to-rgb($cyan-650)};
+  --bs-cyan-700:  rgb(var(--bs-cyan-700-rgb));
   --bs-cyan-700-rgb: #{to-rgb($cyan-700)};
-  --bs-cyan-800: #{$cyan-800};
+  --bs-cyan-750:  rgb(var(--bs-cyan-750-rgb));
+  --bs-cyan-750-rgb: #{to-rgb($cyan-750)};
+  --bs-cyan-800:  rgb(var(--bs-cyan-800-rgb));
   --bs-cyan-800-rgb: #{to-rgb($cyan-800)};
-  --bs-cyan-900: #{$cyan-900};
+  --bs-cyan-850:  rgb(var(--bs-cyan-850-rgb));
+  --bs-cyan-850-rgb: #{to-rgb($cyan-850)};
+  --bs-cyan-900:  rgb(var(--bs-cyan-900-rgb));
   --bs-cyan-900-rgb: #{to-rgb($cyan-900)};
+  --bs-cyan-950:  rgb(var(--bs-cyan-950-rgb));
+  --bs-cyan-950-rgb: #{to-rgb($cyan-950)};
 
+  //endregion -------------------- Cyan --------------------
+
+  //region -------------------- White --------------------
+
+  --bs-white:  rgb(var(--bs-white-rgb));
+  //--bs-white-rgb: #{to-rgb($white)};
+
+  //endregion -------------------- White --------------------
+  //region -------------------- Gray --------------------
+
+  --bs-gray:          var(--bs-gray-600);
+  --bs-gray-rgb:      var(--bs-gray-600-rgb);
+  --bs-gray-dark:     var(--bs-gray-800);
+  --bs-gray-dark-rgb: var(--bs-gray-800-rgb);
+  --bs-gray-050:  rgb(var(--bs-gray-050-rgb));
+  --bs-gray-050-rgb: #{to-rgb($gray-050)};
+  --bs-gray-100:  rgb(var(--bs-gray-100-rgb));
   --bs-gray-100-rgb: #{to-rgb($gray-100)};
+  --bs-gray-150:  rgb(var(--bs-gray-150-rgb));
+  --bs-gray-150-rgb: #{to-rgb($gray-150)};
+  --bs-gray-200:  rgb(var(--bs-gray-200-rgb));
   --bs-gray-200-rgb: #{to-rgb($gray-200)};
+  --bs-gray-250:  rgb(var(--bs-gray-250-rgb));
+  --bs-gray-250-rgb: #{to-rgb($gray-250)};
+  --bs-gray-300:  rgb(var(--bs-gray-300-rgb));
   --bs-gray-300-rgb: #{to-rgb($gray-300)};
+  --bs-gray-350:  rgb(var(--bs-gray-350-rgb));
+  --bs-gray-350-rgb: #{to-rgb($gray-350)};
+  --bs-gray-400:  rgb(var(--bs-gray-400-rgb));
   --bs-gray-400-rgb: #{to-rgb($gray-400)};
+  --bs-gray-450:  rgb(var(--bs-gray-450-rgb));
+  --bs-gray-450-rgb: #{to-rgb($gray-450)};
+  --bs-gray-500:  rgb(var(--bs-gray-500-rgb));
   --bs-gray-500-rgb: #{to-rgb($gray-500)};
+  --bs-gray-550:  rgb(var(--bs-gray-550-rgb));
+  --bs-gray-550-rgb: #{to-rgb($gray-550)};
+  --bs-gray-600:  rgb(var(--bs-gray-600-rgb));
   --bs-gray-600-rgb: #{to-rgb($gray-600)};
+  --bs-gray-650:  rgb(var(--bs-gray-650-rgb));
+  --bs-gray-650-rgb: #{to-rgb($gray-650)};
+  --bs-gray-700:  rgb(var(--bs-gray-700-rgb));
   --bs-gray-700-rgb: #{to-rgb($gray-700)};
+  --bs-gray-750:  rgb(var(--bs-gray-750-rgb));
+  --bs-gray-750-rgb: #{to-rgb($gray-750)};
+  --bs-gray-800:  rgb(var(--bs-gray-800-rgb));
   --bs-gray-800-rgb: #{to-rgb($gray-800)};
+  --bs-gray-850:  rgb(var(--bs-gray-850-rgb));
+  --bs-gray-850-rgb: #{to-rgb($gray-850)};
+  --bs-gray-900:  rgb(var(--bs-gray-900-rgb));
   --bs-gray-900-rgb: #{to-rgb($gray-900)};
+  --bs-gray-950:  rgb(var(--bs-gray-950-rgb));
+  --bs-gray-950-rgb: #{to-rgb($gray-950)};
 
-  --bs-black: #{$black};
+  //endregion -------------------- Gray --------------------
+  //region -------------------- Black --------------------
 
-  --bs-primary-100: #{$primary-100};
+  --bs-black:  rgb(var(--bs-black-rgb));
+  //--bs-black-rgb: #{to-rgb($black)};
+
+  //endregion -------------------- Black --------------------
+
+  //region -------------------- Primary --------------------
+
+  --bs-primary:          var(--bs-primary-500);
+  --bs-primary-rgb:      var(--bs-primary-500-rgb);
+  --bs-primary-050:  rgb(var(--bs-primary-050-rgb));
+  --bs-primary-050-rgb: #{to-rgb($primary-050)};
+  --bs-primary-100:  rgb(var(--bs-primary-100-rgb));
   --bs-primary-100-rgb: #{to-rgb($primary-100)};
-  --bs-primary-200: #{$primary-200};
+  --bs-primary-150:  rgb(var(--bs-primary-150-rgb));
+  --bs-primary-150-rgb: #{to-rgb($primary-150)};
+  --bs-primary-200:  rgb(var(--bs-primary-200-rgb));
   --bs-primary-200-rgb: #{to-rgb($primary-200)};
-  --bs-primary-300: #{$primary-300};
+  --bs-primary-250:  rgb(var(--bs-primary-250-rgb));
+  --bs-primary-250-rgb: #{to-rgb($primary-250)};
+  --bs-primary-300:  rgb(var(--bs-primary-300-rgb));
   --bs-primary-300-rgb: #{to-rgb($primary-300)};
-  --bs-primary-400: #{$primary-400};
+  --bs-primary-350:  rgb(var(--bs-primary-350-rgb));
+  --bs-primary-350-rgb: #{to-rgb($primary-350)};
+  --bs-primary-400:  rgb(var(--bs-primary-400-rgb));
   --bs-primary-400-rgb: #{to-rgb($primary-400)};
-  --bs-primary-500: #{$primary-500};
+  --bs-primary-450:  rgb(var(--bs-primary-450-rgb));
+  --bs-primary-450-rgb: #{to-rgb($primary-450)};
+  --bs-primary-500:  rgb(var(--bs-primary-500-rgb));
   --bs-primary-500-rgb: #{to-rgb($primary-500)};
-  --bs-primary-600: #{$primary-600};
+  --bs-primary-550:  rgb(var(--bs-primary-550-rgb));
+  --bs-primary-550-rgb: #{to-rgb($primary-550)};
+  --bs-primary-600:  rgb(var(--bs-primary-600-rgb));
   --bs-primary-600-rgb: #{to-rgb($primary-600)};
-  --bs-primary-700: #{$primary-700};
+  --bs-primary-650:  rgb(var(--bs-primary-650-rgb));
+  --bs-primary-650-rgb: #{to-rgb($primary-650)};
+  --bs-primary-700:  rgb(var(--bs-primary-700-rgb));
   --bs-primary-700-rgb: #{to-rgb($primary-700)};
-  --bs-primary-800: #{$primary-800};
+  --bs-primary-750:  rgb(var(--bs-primary-750-rgb));
+  --bs-primary-750-rgb: #{to-rgb($primary-750)};
+  --bs-primary-800:  rgb(var(--bs-primary-800-rgb));
   --bs-primary-800-rgb: #{to-rgb($primary-800)};
-  --bs-primary-900: #{$primary-900};
+  --bs-primary-850:  rgb(var(--bs-primary-850-rgb));
+  --bs-primary-850-rgb: #{to-rgb($primary-850)};
+  --bs-primary-900:  rgb(var(--bs-primary-900-rgb));
   --bs-primary-900-rgb: #{to-rgb($primary-900)};
+  --bs-primary-950:  rgb(var(--bs-primary-950-rgb));
+  --bs-primary-950-rgb: #{to-rgb($primary-950)};
 
-  --bs-secondary-100: #{$secondary-100};
+  //endregion -------------------- Primary --------------------
+  //region -------------------- Secondary --------------------
+
+  --bs-secondary:          var(--bs-secondary-500);
+  --bs-secondary-rgb:      var(--bs-secondary-500-rgb);
+  --bs-secondary-050:  rgb(var(--bs-secondary-050-rgb));
+  --bs-secondary-050-rgb: #{to-rgb($secondary-050)};
+  --bs-secondary-100:  rgb(var(--bs-secondary-100-rgb));
   --bs-secondary-100-rgb: #{to-rgb($secondary-100)};
-  --bs-secondary-200: #{$secondary-200};
+  --bs-secondary-150:  rgb(var(--bs-secondary-150-rgb));
+  --bs-secondary-150-rgb: #{to-rgb($secondary-150)};
+  --bs-secondary-200:  rgb(var(--bs-secondary-200-rgb));
   --bs-secondary-200-rgb: #{to-rgb($secondary-200)};
-  --bs-secondary-300: #{$secondary-300};
+  --bs-secondary-250:  rgb(var(--bs-secondary-250-rgb));
+  --bs-secondary-250-rgb: #{to-rgb($secondary-250)};
+  --bs-secondary-300:  rgb(var(--bs-secondary-300-rgb));
   --bs-secondary-300-rgb: #{to-rgb($secondary-300)};
-  --bs-secondary-400: #{$secondary-400};
+  --bs-secondary-350:  rgb(var(--bs-secondary-350-rgb));
+  --bs-secondary-350-rgb: #{to-rgb($secondary-350)};
+  --bs-secondary-400:  rgb(var(--bs-secondary-400-rgb));
   --bs-secondary-400-rgb: #{to-rgb($secondary-400)};
-  --bs-secondary-500: #{$secondary-500};
+  --bs-secondary-450:  rgb(var(--bs-secondary-450-rgb));
+  --bs-secondary-450-rgb: #{to-rgb($secondary-450)};
+  --bs-secondary-500:  rgb(var(--bs-secondary-500-rgb));
   --bs-secondary-500-rgb: #{to-rgb($secondary-500)};
-  --bs-secondary-600: #{$secondary-600};
+  --bs-secondary-550:  rgb(var(--bs-secondary-550-rgb));
+  --bs-secondary-550-rgb: #{to-rgb($secondary-550)};
+  --bs-secondary-600:  rgb(var(--bs-secondary-600-rgb));
   --bs-secondary-600-rgb: #{to-rgb($secondary-600)};
-  --bs-secondary-700: #{$secondary-700};
+  --bs-secondary-650:  rgb(var(--bs-secondary-650-rgb));
+  --bs-secondary-650-rgb: #{to-rgb($secondary-650)};
+  --bs-secondary-700:  rgb(var(--bs-secondary-700-rgb));
   --bs-secondary-700-rgb: #{to-rgb($secondary-700)};
-  --bs-secondary-800: #{$secondary-800};
+  --bs-secondary-750:  rgb(var(--bs-secondary-750-rgb));
+  --bs-secondary-750-rgb: #{to-rgb($secondary-750)};
+  --bs-secondary-800:  rgb(var(--bs-secondary-800-rgb));
   --bs-secondary-800-rgb: #{to-rgb($secondary-800)};
-  --bs-secondary-900: #{$secondary-900};
+  --bs-secondary-850:  rgb(var(--bs-secondary-850-rgb));
+  --bs-secondary-850-rgb: #{to-rgb($secondary-850)};
+  --bs-secondary-900:  rgb(var(--bs-secondary-900-rgb));
   --bs-secondary-900-rgb: #{to-rgb($secondary-900)};
+  --bs-secondary-950:  rgb(var(--bs-secondary-950-rgb));
+  --bs-secondary-950-rgb: #{to-rgb($secondary-950)};
 
-  --bs-success-100: #{$success-100};
+  //endregion -------------------- Secondary --------------------
+  //region -------------------- Success --------------------
+
+  --bs-success:          var(--bs-success-500);
+  --bs-success-rgb:      var(--bs-success-500-rgb);
+  --bs-success-050:  rgb(var(--bs-success-050-rgb));
+  --bs-success-050-rgb: #{to-rgb($success-050)};
+  --bs-success-100:  rgb(var(--bs-success-100-rgb));
   --bs-success-100-rgb: #{to-rgb($success-100)};
-  --bs-success-200: #{$success-200};
+  --bs-success-150:  rgb(var(--bs-success-150-rgb));
+  --bs-success-150-rgb: #{to-rgb($success-150)};
+  --bs-success-200:  rgb(var(--bs-success-200-rgb));
   --bs-success-200-rgb: #{to-rgb($success-200)};
-  --bs-success-300: #{$success-300};
+  --bs-success-250:  rgb(var(--bs-success-250-rgb));
+  --bs-success-250-rgb: #{to-rgb($success-250)};
+  --bs-success-300:  rgb(var(--bs-success-300-rgb));
   --bs-success-300-rgb: #{to-rgb($success-300)};
-  --bs-success-400: #{$success-400};
+  --bs-success-350:  rgb(var(--bs-success-350-rgb));
+  --bs-success-350-rgb: #{to-rgb($success-350)};
+  --bs-success-400:  rgb(var(--bs-success-400-rgb));
   --bs-success-400-rgb: #{to-rgb($success-400)};
-  --bs-success-500: #{$success-500};
+  --bs-success-450:  rgb(var(--bs-success-450-rgb));
+  --bs-success-450-rgb: #{to-rgb($success-450)};
+  --bs-success-500:  rgb(var(--bs-success-500-rgb));
   --bs-success-500-rgb: #{to-rgb($success-500)};
-  --bs-success-600: #{$success-600};
+  --bs-success-550:  rgb(var(--bs-success-550-rgb));
+  --bs-success-550-rgb: #{to-rgb($success-550)};
+  --bs-success-600:  rgb(var(--bs-success-600-rgb));
   --bs-success-600-rgb: #{to-rgb($success-600)};
-  --bs-success-700: #{$success-700};
+  --bs-success-650:  rgb(var(--bs-success-650-rgb));
+  --bs-success-650-rgb: #{to-rgb($success-650)};
+  --bs-success-700:  rgb(var(--bs-success-700-rgb));
   --bs-success-700-rgb: #{to-rgb($success-700)};
-  --bs-success-800: #{$success-800};
+  --bs-success-750:  rgb(var(--bs-success-750-rgb));
+  --bs-success-750-rgb: #{to-rgb($success-750)};
+  --bs-success-800:  rgb(var(--bs-success-800-rgb));
   --bs-success-800-rgb: #{to-rgb($success-800)};
-  --bs-success-900: #{$success-900};
+  --bs-success-850:  rgb(var(--bs-success-850-rgb));
+  --bs-success-850-rgb: #{to-rgb($success-850)};
+  --bs-success-900:  rgb(var(--bs-success-900-rgb));
   --bs-success-900-rgb: #{to-rgb($success-900)};
+  --bs-success-950:  rgb(var(--bs-success-950-rgb));
+  --bs-success-950-rgb: #{to-rgb($success-950)};
 
-  --bs-danger-100: #{$danger-100};
+  //endregion -------------------- Success --------------------
+  //region -------------------- Danger --------------------
+
+  --bs-danger:          var(--bs-danger-500);
+  --bs-danger-rgb:      var(--bs-danger-500-rgb);
+  --bs-danger-050:  rgb(var(--bs-danger-050-rgb));
+  --bs-danger-050-rgb: #{to-rgb($danger-050)};
+  --bs-danger-100:  rgb(var(--bs-danger-100-rgb));
   --bs-danger-100-rgb: #{to-rgb($danger-100)};
-  --bs-danger-200: #{$danger-200};
+  --bs-danger-150:  rgb(var(--bs-danger-150-rgb));
+  --bs-danger-150-rgb: #{to-rgb($danger-150)};
+  --bs-danger-200:  rgb(var(--bs-danger-200-rgb));
   --bs-danger-200-rgb: #{to-rgb($danger-200)};
-  --bs-danger-300: #{$danger-300};
+  --bs-danger-250:  rgb(var(--bs-danger-250-rgb));
+  --bs-danger-250-rgb: #{to-rgb($danger-250)};
+  --bs-danger-300:  rgb(var(--bs-danger-300-rgb));
   --bs-danger-300-rgb: #{to-rgb($danger-300)};
-  --bs-danger-400: #{$danger-400};
+  --bs-danger-350:  rgb(var(--bs-danger-350-rgb));
+  --bs-danger-350-rgb: #{to-rgb($danger-350)};
+  --bs-danger-400:  rgb(var(--bs-danger-400-rgb));
   --bs-danger-400-rgb: #{to-rgb($danger-400)};
-  --bs-danger-500: #{$danger-500};
+  --bs-danger-450:  rgb(var(--bs-danger-450-rgb));
+  --bs-danger-450-rgb: #{to-rgb($danger-450)};
+  --bs-danger-500:  rgb(var(--bs-danger-500-rgb));
   --bs-danger-500-rgb: #{to-rgb($danger-500)};
-  --bs-danger-600: #{$danger-600};
+  --bs-danger-550:  rgb(var(--bs-danger-550-rgb));
+  --bs-danger-550-rgb: #{to-rgb($danger-550)};
+  --bs-danger-600:  rgb(var(--bs-danger-600-rgb));
   --bs-danger-600-rgb: #{to-rgb($danger-600)};
-  --bs-danger-700: #{$danger-700};
+  --bs-danger-650:  rgb(var(--bs-danger-650-rgb));
+  --bs-danger-650-rgb: #{to-rgb($danger-650)};
+  --bs-danger-700:  rgb(var(--bs-danger-700-rgb));
   --bs-danger-700-rgb: #{to-rgb($danger-700)};
-  --bs-danger-800: #{$danger-800};
+  --bs-danger-750:  rgb(var(--bs-danger-750-rgb));
+  --bs-danger-750-rgb: #{to-rgb($danger-750)};
+  --bs-danger-800:  rgb(var(--bs-danger-800-rgb));
   --bs-danger-800-rgb: #{to-rgb($danger-800)};
-  --bs-danger-900: #{$danger-900};
+  --bs-danger-850:  rgb(var(--bs-danger-850-rgb));
+  --bs-danger-850-rgb: #{to-rgb($danger-850)};
+  --bs-danger-900:  rgb(var(--bs-danger-900-rgb));
   --bs-danger-900-rgb: #{to-rgb($danger-900)};
+  --bs-danger-950:  rgb(var(--bs-danger-950-rgb));
+  --bs-danger-950-rgb: #{to-rgb($danger-950)};
 
-  --bs-warning-100: #{$warning-100};
+  //endregion -------------------- Danger --------------------
+  //region -------------------- Warning --------------------
+
+  --bs-warning:          var(--bs-warning-500);
+  --bs-warning-rgb:      var(--bs-warning-500-rgb);
+  --bs-warning-050:  rgb(var(--bs-warning-050-rgb));
+  --bs-warning-050-rgb: #{to-rgb($warning-050)};
+  --bs-warning-100:  rgb(var(--bs-warning-100-rgb));
   --bs-warning-100-rgb: #{to-rgb($warning-100)};
-  --bs-warning-200: #{$warning-200};
+  --bs-warning-150:  rgb(var(--bs-warning-150-rgb));
+  --bs-warning-150-rgb: #{to-rgb($warning-150)};
+  --bs-warning-200:  rgb(var(--bs-warning-200-rgb));
   --bs-warning-200-rgb: #{to-rgb($warning-200)};
-  --bs-warning-300: #{$warning-300};
+  --bs-warning-250:  rgb(var(--bs-warning-250-rgb));
+  --bs-warning-250-rgb: #{to-rgb($warning-250)};
+  --bs-warning-300:  rgb(var(--bs-warning-300-rgb));
   --bs-warning-300-rgb: #{to-rgb($warning-300)};
-  --bs-warning-400: #{$warning-400};
+  --bs-warning-350:  rgb(var(--bs-warning-350-rgb));
+  --bs-warning-350-rgb: #{to-rgb($warning-350)};
+  --bs-warning-400:  rgb(var(--bs-warning-400-rgb));
   --bs-warning-400-rgb: #{to-rgb($warning-400)};
-  --bs-warning-500: #{$warning-500};
+  --bs-warning-450:  rgb(var(--bs-warning-450-rgb));
+  --bs-warning-450-rgb: #{to-rgb($warning-450)};
+  --bs-warning-500:  rgb(var(--bs-warning-500-rgb));
   --bs-warning-500-rgb: #{to-rgb($warning-500)};
-  --bs-warning-600: #{$warning-600};
+  --bs-warning-550:  rgb(var(--bs-warning-550-rgb));
+  --bs-warning-550-rgb: #{to-rgb($warning-550)};
+  --bs-warning-600:  rgb(var(--bs-warning-600-rgb));
   --bs-warning-600-rgb: #{to-rgb($warning-600)};
-  --bs-warning-700: #{$warning-700};
+  --bs-warning-650:  rgb(var(--bs-warning-650-rgb));
+  --bs-warning-650-rgb: #{to-rgb($warning-650)};
+  --bs-warning-700:  rgb(var(--bs-warning-700-rgb));
   --bs-warning-700-rgb: #{to-rgb($warning-700)};
-  --bs-warning-800: #{$warning-800};
+  --bs-warning-750:  rgb(var(--bs-warning-750-rgb));
+  --bs-warning-750-rgb: #{to-rgb($warning-750)};
+  --bs-warning-800:  rgb(var(--bs-warning-800-rgb));
   --bs-warning-800-rgb: #{to-rgb($warning-800)};
-  --bs-warning-900: #{$warning-900};
+  --bs-warning-850:  rgb(var(--bs-warning-850-rgb));
+  --bs-warning-850-rgb: #{to-rgb($warning-850)};
+  --bs-warning-900:  rgb(var(--bs-warning-900-rgb));
   --bs-warning-900-rgb: #{to-rgb($warning-900)};
+  --bs-warning-950:  rgb(var(--bs-warning-950-rgb));
+  --bs-warning-950-rgb: #{to-rgb($warning-950)};
 
-  --bs-info-100: #{$info-100};
+  //endregion -------------------- Warning --------------------
+  //region -------------------- Info --------------------
+
+  --bs-info:          var(--bs-info-500);
+  --bs-info-rgb:      var(--bs-info-500-rgb);
+  --bs-info-050:  rgb(var(--bs-info-050-rgb));
+  --bs-info-050-rgb: #{to-rgb($info-050)};
+  --bs-info-100:  rgb(var(--bs-info-100-rgb));
   --bs-info-100-rgb: #{to-rgb($info-100)};
-  --bs-info-200: #{$info-200};
+  --bs-info-150:  rgb(var(--bs-info-150-rgb));
+  --bs-info-150-rgb: #{to-rgb($info-150)};
+  --bs-info-200:  rgb(var(--bs-info-200-rgb));
   --bs-info-200-rgb: #{to-rgb($info-200)};
-  --bs-info-300: #{$info-300};
+  --bs-info-250:  rgb(var(--bs-info-250-rgb));
+  --bs-info-250-rgb: #{to-rgb($info-250)};
+  --bs-info-300:  rgb(var(--bs-info-300-rgb));
   --bs-info-300-rgb: #{to-rgb($info-300)};
-  --bs-info-400: #{$info-400};
+  --bs-info-350:  rgb(var(--bs-info-350-rgb));
+  --bs-info-350-rgb: #{to-rgb($info-350)};
+  --bs-info-400:  rgb(var(--bs-info-400-rgb));
   --bs-info-400-rgb: #{to-rgb($info-400)};
-  --bs-info-500: #{$info-500};
+  --bs-info-450:  rgb(var(--bs-info-450-rgb));
+  --bs-info-450-rgb: #{to-rgb($info-450)};
+  --bs-info-500:  rgb(var(--bs-info-500-rgb));
   --bs-info-500-rgb: #{to-rgb($info-500)};
-  --bs-info-600: #{$info-600};
+  --bs-info-550:  rgb(var(--bs-info-550-rgb));
+  --bs-info-550-rgb: #{to-rgb($info-550)};
+  --bs-info-600:  rgb(var(--bs-info-600-rgb));
   --bs-info-600-rgb: #{to-rgb($info-600)};
-  --bs-info-700: #{$info-700};
+  --bs-info-650:  rgb(var(--bs-info-650-rgb));
+  --bs-info-650-rgb: #{to-rgb($info-650)};
+  --bs-info-700:  rgb(var(--bs-info-700-rgb));
   --bs-info-700-rgb: #{to-rgb($info-700)};
-  --bs-info-800: #{$info-800};
+  --bs-info-750:  rgb(var(--bs-info-750-rgb));
+  --bs-info-750-rgb: #{to-rgb($info-750)};
+  --bs-info-800:  rgb(var(--bs-info-800-rgb));
   --bs-info-800-rgb: #{to-rgb($info-800)};
-  --bs-info-900: #{$info-900};
+  --bs-info-850:  rgb(var(--bs-info-850-rgb));
+  --bs-info-850-rgb: #{to-rgb($info-850)};
+  --bs-info-900:  rgb(var(--bs-info-900-rgb));
   --bs-info-900-rgb: #{to-rgb($info-900)};
+  --bs-info-950:  rgb(var(--bs-info-950-rgb));
+  --bs-info-950-rgb: #{to-rgb($info-950)};
 
-  --bs-light-100: #{$light-100};
+  //endregion -------------------- Info --------------------
+  //region -------------------- Light --------------------
+
+  --bs-light:          var(--bs-light-500);
+  --bs-light-rgb:      var(--bs-light-500-rgb);
+  --bs-light-050:  rgb(var(--bs-light-050-rgb));
+  --bs-light-050-rgb: #{to-rgb($light-050)};
+  --bs-light-100:  rgb(var(--bs-light-100-rgb));
   --bs-light-100-rgb: #{to-rgb($light-100)};
-  --bs-light-200: #{$light-200};
+  --bs-light-150:  rgb(var(--bs-light-150-rgb));
+  --bs-light-150-rgb: #{to-rgb($light-150)};
+  --bs-light-200:  rgb(var(--bs-light-200-rgb));
   --bs-light-200-rgb: #{to-rgb($light-200)};
-  --bs-light-300: #{$light-300};
+  --bs-light-250:  rgb(var(--bs-light-250-rgb));
+  --bs-light-250-rgb: #{to-rgb($light-250)};
+  --bs-light-300:  rgb(var(--bs-light-300-rgb));
   --bs-light-300-rgb: #{to-rgb($light-300)};
-  --bs-light-400: #{$light-400};
+  --bs-light-350:  rgb(var(--bs-light-350-rgb));
+  --bs-light-350-rgb: #{to-rgb($light-350)};
+  --bs-light-400:  rgb(var(--bs-light-400-rgb));
   --bs-light-400-rgb: #{to-rgb($light-400)};
-  --bs-light-500: #{$light-500};
+  --bs-light-450:  rgb(var(--bs-light-450-rgb));
+  --bs-light-450-rgb: #{to-rgb($light-450)};
+  --bs-light-500:  rgb(var(--bs-light-500-rgb));
   --bs-light-500-rgb: #{to-rgb($light-500)};
-  --bs-light-600: #{$light-600};
+  --bs-light-550:  rgb(var(--bs-light-550-rgb));
+  --bs-light-550-rgb: #{to-rgb($light-550)};
+  --bs-light-600:  rgb(var(--bs-light-600-rgb));
   --bs-light-600-rgb: #{to-rgb($light-600)};
-  --bs-light-700: #{$light-700};
+  --bs-light-650:  rgb(var(--bs-light-650-rgb));
+  --bs-light-650-rgb: #{to-rgb($light-650)};
+  --bs-light-700:  rgb(var(--bs-light-700-rgb));
   --bs-light-700-rgb: #{to-rgb($light-700)};
-  --bs-light-800: #{$light-800};
+  --bs-light-750:  rgb(var(--bs-light-750-rgb));
+  --bs-light-750-rgb: #{to-rgb($light-750)};
+  --bs-light-800:  rgb(var(--bs-light-800-rgb));
   --bs-light-800-rgb: #{to-rgb($light-800)};
-  --bs-light-900: #{$light-900};
+  --bs-light-850:  rgb(var(--bs-light-850-rgb));
+  --bs-light-850-rgb: #{to-rgb($light-850)};
+  --bs-light-900:  rgb(var(--bs-light-900-rgb));
   --bs-light-900-rgb: #{to-rgb($light-900)};
+  --bs-light-950:  rgb(var(--bs-light-950-rgb));
+  --bs-light-950-rgb: #{to-rgb($light-950)};
 
-  --bs-dark-100: #{$dark-100};
+  //endregion -------------------- Light --------------------
+  //region -------------------- Dark --------------------
+
+  --bs-dark:          var(--bs-dark-500);
+  --bs-dark-rgb:      var(--bs-dark-500-rgb);
+  --bs-dark-050:  rgb(var(--bs-dark-050-rgb));
+  --bs-dark-050-rgb: #{to-rgb($dark-050)};
+  --bs-dark-100:  rgb(var(--bs-dark-100-rgb));
   --bs-dark-100-rgb: #{to-rgb($dark-100)};
-  --bs-dark-200: #{$dark-200};
+  --bs-dark-150:  rgb(var(--bs-dark-150-rgb));
+  --bs-dark-150-rgb: #{to-rgb($dark-150)};
+  --bs-dark-200:  rgb(var(--bs-dark-200-rgb));
   --bs-dark-200-rgb: #{to-rgb($dark-200)};
-  --bs-dark-300: #{$dark-300};
+  --bs-dark-250:  rgb(var(--bs-dark-250-rgb));
+  --bs-dark-250-rgb: #{to-rgb($dark-250)};
+  --bs-dark-300:  rgb(var(--bs-dark-300-rgb));
   --bs-dark-300-rgb: #{to-rgb($dark-300)};
-  --bs-dark-400: #{$dark-400};
+  --bs-dark-350:  rgb(var(--bs-dark-350-rgb));
+  --bs-dark-350-rgb: #{to-rgb($dark-350)};
+  --bs-dark-400:  rgb(var(--bs-dark-400-rgb));
   --bs-dark-400-rgb: #{to-rgb($dark-400)};
-  --bs-dark-500: #{$dark-500};
+  --bs-dark-450:  rgb(var(--bs-dark-450-rgb));
+  --bs-dark-450-rgb: #{to-rgb($dark-450)};
+  --bs-dark-500:  rgb(var(--bs-dark-500-rgb));
   --bs-dark-500-rgb: #{to-rgb($dark-500)};
-  --bs-dark-600: #{$dark-600};
+  --bs-dark-550:  rgb(var(--bs-dark-550-rgb));
+  --bs-dark-550-rgb: #{to-rgb($dark-550)};
+  --bs-dark-600:  rgb(var(--bs-dark-600-rgb));
   --bs-dark-600-rgb: #{to-rgb($dark-600)};
-  --bs-dark-700: #{$dark-700};
+  --bs-dark-650:  rgb(var(--bs-dark-650-rgb));
+  --bs-dark-650-rgb: #{to-rgb($dark-650)};
+  --bs-dark-700:  rgb(var(--bs-dark-700-rgb));
   --bs-dark-700-rgb: #{to-rgb($dark-700)};
-  --bs-dark-800: #{$dark-800};
+  --bs-dark-750:  rgb(var(--bs-dark-750-rgb));
+  --bs-dark-750-rgb: #{to-rgb($dark-750)};
+  --bs-dark-800:  rgb(var(--bs-dark-800-rgb));
   --bs-dark-800-rgb: #{to-rgb($dark-800)};
-  --bs-dark-900: #{$dark-900};
+  --bs-dark-850:  rgb(var(--bs-dark-850-rgb));
+  --bs-dark-850-rgb: #{to-rgb($dark-850)};
+  --bs-dark-900:  rgb(var(--bs-dark-900-rgb));
   --bs-dark-900-rgb: #{to-rgb($dark-900)};
+  --bs-dark-950:  rgb(var(--bs-dark-950-rgb));
+  --bs-dark-950-rgb: #{to-rgb($dark-950)};
 
+  //endregion -------------------- Dark --------------------
 }
-
-//endregion -------------------- Color variables --------------------
 
 .rounded-circle {
   border-radius: var(--bs-border-circle-radius);
 }
 
-//region -------------------- button colors --------------------
+//region -------------------- Button colors --------------------
 
 @each $color, $value in $theme-colors {
 
   $text-color: null;
-  $variant-amount: null;
+  $hover-background-color-amount: null;
+  $hover-border-color-amount: null;
+  $active-background-color-amount: null;
+  $active-border-color-amount: null;
   @if ($color == 'primary' or $color =='secondary' or $color == 'warning' or $color =='info' or $color == 'light') {
     $text-color: var(--bs-black);
-    $variant-amount: -1;
+    $hover-background-color-amount:  50;//75;//1000 * to-decimal($btn-hover-bg-tint-amount);
+    $hover-border-color-amount:      100;//1000 * $btn-hover-border-tint-amount;
+    $active-background-color-amount: 100;//1000 * $btn-active-bg-tint-amount;
+    $active-border-color-amount:     150;//125;//1000 * $btn-active-border-tint-amount;
   } @else {
     $text-color: var(--bs-white);
-    $variant-amount: 1;
+    $hover-background-color-amount:  -50;//-75;//-1000 * to-decimal($btn-hover-bg-shade-amount);
+    $hover-border-color-amount:      -50;//-1000 * $btn-hover-border-shade-amount;
+    $active-background-color-amount: -100;//-1000 * $btn-active-bg-shade-amount;
+    $active-border-color-amount:     -50;//-1000 * $btn-active-border-shade-amount;
   }
 
   .btn-#{$color} {
-
-    color: $text-color;
-    background-color: var(--bs-#{$color});
-    border-color: var(--bs-#{$color});
-
-    &:hover, .btn-check:focus + &, &:focus, {
-      color: $text-color;
-      background-color: var(--bs-#{$color}-#{500 + $variant-amount * 200});
-      border-color: var(--bs-#{$color}-#{500 + $variant-amount * 100});
-    }
-
-    .btn-check:checked + &, .btn-check:active + &, &:active, &.active, .show > &.dropdown-toggle {
-      color: $text-color;
-      background-color: var(--bs-#{$color}-#{500 + $variant-amount * 100});
-      border-color: var(--bs-#{$color}-500);
-
-      //&:focus {}
-
-    }
-
-    &:disabled, &.disabled, {
-      color: $text-color;
-      background-color: var(--bs-#{$color});
-      border-color: var(--bs-#{$color});
-    }
-
+    --bs-btn-color:                 #{$text-color};
+    --bs-btn-bg:                    var(--bs-#{$color}-500);
+    --bs-btn-border-color:          var(--bs-#{$color}-500);
+    --bs-btn-hover-color:           #{$text-color};
+    --bs-btn-hover-bg:              var(--bs-#{$color}-#{500 + $hover-background-color-amount});
+    --bs-btn-hover-border-color:    var(--bs-#{$color}-#{500 + $hover-border-color-amount});
+    --bs-btn-active-color:          #{$text-color};
+    --bs-btn-active-bg:             var(--bs-#{$color}-#{500 + $active-background-color-amount});
+    --bs-btn-active-border-color:   var(--bs-#{$color}-#{500 + $active-border-color-amount});
+    --bs-btn-disabled-color:        #{$text-color};
+    --bs-btn-disabled-bg:           var(--bs-#{$color}-500);
+    --bs-btn-disabled-border-color: var(--bs-#{$color}-500);
   }
 
   .btn-outline-#{$color} {
-    color: var(--bs-#{$color});
-    border-color: var(--bs-#{$color});
-
-    &:hover, {
-      color: $text-color;
-      background-color: var(--bs-#{$color});
-      border-color: var(--bs-#{$color});
-    }
-
-    //.btn-check:focus + &, &:focus, {}
-
-    .btn-check:checked + &, .btn-check:active + &, &:active, &.active, &.dropdown-toggle.show, {
-      color: $text-color;
-      background-color: var(--bs-#{$color});
-      border-color: var(--bs-#{$color});
-
-      //&:focus{}
-
-    }
-
-    &:disabled, &.disabled, {
-      color: var(--bs-#{$color});
-    }
-
+    --bs-btn-color:                 var(--bs-#{$color}-500);
+    --bs-btn-border-color:          var(--bs-#{$color}-500);
+    --bs-btn-hover-color:           #{$text-color};
+    --bs-btn-hover-bg:              var(--bs-#{$color}-500);
+    --bs-btn-hover-border-color:    var(--bs-#{$color}-500);
+    --bs-btn-active-color:          #{$text-color};
+    --bs-btn-active-bg:             var(--bs-#{$color}-500);
+    --bs-btn-active-border-color:   var(--bs-#{$color}-500);
+    --bs-btn-disabled-color:        var(--bs-#{$color}-500);
+    --bs-btn-disabled-border-color: var(--bs-#{$color}-500);
   }
+
 }
 
-//endregion -------------------- button colors --------------------
+//endregion -------------------- Button colors --------------------

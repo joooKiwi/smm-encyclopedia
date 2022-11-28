@@ -1,11 +1,13 @@
-import type {ClassWithEditorVoiceSound}                                                                                                                                                                  from './ClassWithEditorVoiceSound'
-import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EditorVoices.types'
-import type {Enumerable}                                                                                                                                                                                 from '../../util/enum/Enumerable'
-import type {EntityReferenceHolder, PossibleEntityReferences_Received}                                                                                                                                   from './holder/EntityReferenceHolder'
-import type {EditorVoiceSound, PossibleSoundReceivedOnFactory}                                                                                                                                           from './EditorVoiceSound'
-import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types'
-import type {ObjectHolder}                                                                                                                                                                               from '../../util/holder/ObjectHolder'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {ClassWithEditorVoiceSound}                                from './ClassWithEditorVoiceSound'
+import type {ClassWithEnglishName}                                     from '../ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName}                     from './EditorVoices.types'
+import type {EntityReferenceHolder, PossibleEntityReferences_Received} from './holder/EntityReferenceHolder'
+import type {EditorVoiceSound, PossibleSoundReceivedOnFactory}         from './EditorVoiceSound'
+import type {ObjectHolder}                                             from '../../util/holder/ObjectHolder'
+import type {Nullable, NullOr}                                         from '../../util/types'
 
 import {DelayedObjectHolderContainer}                from '../../util/holder/DelayedObjectHolder.container'
 import {EditorVoiceSoundFactory}                     from './EditorVoiceSound.factory'
@@ -13,7 +15,7 @@ import {EditorVoiceSoundHolderWithSingingPartBefore} from './holder/EditorVoiceS
 import {EditorVoiceSoundHolderWithVoiceBefore}       from './holder/EditorVoiceSoundHolderWithVoiceBefore'
 import type {Entities}                               from '../entity/Entities'
 import {EntityReferenceHolderContainer}              from './holder/EntityReferenceHolder.container'
-import {Enum}                                        from '../../util/enum/Enum'
+import {getValueByEnglishName}                       from '../../util/utilitiesMethods'
 import {Import}                                      from '../../util/DynamicImporter'
 import {StringContainer}                             from '../../util/StringContainer'
 
@@ -537,45 +539,43 @@ export class EditorVoices
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    public static getValueByName(value: Nullable<| EditorVoices | string>,): EditorVoices {
+        return getValueByEnglishName(value, this,)
+    }
+
+    public static getValueByEntity(value: PossibleValueByEnumerable<| EditorVoices | Entities>,): EditorVoices {
+        if (value instanceof EditorVoices)
+            return value
+        const entityValue = value instanceof Import.Entities ? value : Import.Entities.getValue(value),
+            valueFound = this.#findByEntity(entityValue)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by "${Import.Entities.name}.${entityValue}".`)
+        return valueFound
+    }
+
+    public static hasReference(value: Entities,): boolean {
+        return this.#findByEntity(value) != null
+    }
+
+    static #findByEntity(value: Entities,): NullOr<EditorVoices> {
+        return this.values.find(it => it.entityReferences.references.includes(value as never))
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EditorVoices> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return EditorVoices
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    protected static override _getValueByEnumerable(value: Enumerable,) {
-        return value instanceof Import.Entities
-            ? this.values.find(enumerable => (enumerable.entityReferences.references as readonly Entities[]).includes(value))
-            ?? null
-            : null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends EditorVoices = EditorVoices, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EditorVoices
-    public static getValue(value: PossibleValue,): | EditorVoices | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<EditorVoices>,): EditorVoices {
         return Enum.getValueOn<EditorVoices>(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<EditorVoices> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

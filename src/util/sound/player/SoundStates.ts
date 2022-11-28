@@ -1,10 +1,13 @@
-import type {EnglishName, EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './SoundStates.types'
-import type {ClassWithEnglishName}                                                                                                                                                               from '../../../core/ClassWithEnglishName'
-import type {StaticReference}                                                                                                                                                                    from '../../enum/Enum.types'
-import type {ReactElement}                                                                                                                                                                       from '../../react/ReactProperties'
-import type {SoundSubElementsHolder}                                                                                                                                                             from '../holder/SoundSubElementsHolder'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum} from '../../enum/Enum'
+import type {EnglishName, Names, Ordinals} from './SoundStates.types'
+import type {ClassWithEnglishName}         from '../../../core/ClassWithEnglishName'
+import type {Nullable}                     from '../../types'
+import type {ReactElement}                 from '../../react/ReactProperties'
+import type {SoundSubElementsHolder}       from '../holder/SoundSubElementsHolder'
+
+import {getValueByEnglishName} from '../../utilitiesMethods'
 
 export abstract class SoundStates
     extends Enum<Ordinals, Names>
@@ -80,38 +83,26 @@ export abstract class SoundStates
 
     public abstract getElementsFrom(elementsHolder: SoundSubElementsHolder,): readonly ReactElement[]
 
+
+    // public static getValueByName<T, >(value: T,): SoundStatesByName<T>
+    public static getValueByName(value: Nullable<| SoundStates | string>,): SoundStates {
+        return getValueByEnglishName(value, this,)
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): StaticReference<SoundStates> {
+    protected get _static(): EnumerableConstructor<Ordinals, Names> {
         return SoundStates
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(value: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: S,): EnumByPossibleString<S>
-    public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
-    public static getValue<I extends SoundStates, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): SoundStates
-    public static getValue(value: PossibleValue,): | SoundStates | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<SoundStates>,): SoundStates {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<SoundStates> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

@@ -1,6 +1,7 @@
 import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from './ClassThatCanGetItems'
 import type {ExtendedSet}                                    from './ExtendedSet'
 import type {ExtendedMap}                                    from './ExtendedMap'
+import type {Nullable}                                       from '../types'
 import type {VariableReturnValue}                            from './ClassThatCanSearchItems'
 
 import {ConditionalIntermediate} from './tools/ConditionalIntermediate'
@@ -27,7 +28,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(values?: Iterable<T> | null | undefined,) {
+    public constructor(values?: Nullable<Iterable<T>>,) {
         this.#set = new Set(values)
         this.#indexMapReference = new Array(...values ?? [])
     }
@@ -360,7 +361,7 @@ export class ExtendedSetContainer<T, LENGTH extends number = number, >
     /**
      * @see Array.toLocalString
      */
-    public toLocalString(): string {
+    public toLocaleString(): string {
         return this.#array.toLocaleString()
     }
 

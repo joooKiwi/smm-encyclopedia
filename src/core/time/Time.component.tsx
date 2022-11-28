@@ -1,7 +1,7 @@
 import type {TimeProperty} from '../entity/properties/time/TimeProperty'
 
 import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent'
-import GameContentTranslationComponent       from '../../lang/components/GameContentTranslationComponent'
+import {gameContentTranslation}              from '../../lang/components/translationMethods'
 import Image                                 from '../../app/tools/images/Image'
 import {Times}                               from './Times'
 import TextComponent                         from '../../app/tools/text/TextComponent'
@@ -43,7 +43,7 @@ export default class TimeComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <GameContentTranslationComponent>{translation => <TextComponent content={translation('Every times')}/>}</GameContentTranslationComponent>
+        return <TextComponent content={gameContentTranslation('Every times')}/>
     }
 
     protected override _renderComponentForAllAsImages() {

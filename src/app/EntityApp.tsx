@@ -7,15 +7,14 @@ import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './inter
 import type {AppProperties}                                        from './AppProperties.types'
 import type {EntityAppStates}                                      from './AppStates.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
-import {Entities}                      from '../core/entity/Entities'
-import {EntityAppOption}               from './options/EntityAppOption'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
+import {Entities}               from '../core/entity/Entities'
+import {EntityAppOption}        from './options/EntityAppOption'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 //region -------------------- dynamic imports --------------------
 
@@ -38,18 +37,18 @@ export default class EntityApp
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey(): string {
+    protected override _createKey() {
         return 'entity'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every entities"/>
+        return gameContentTranslation('Every entities')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
         return new class implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
-            public get iterable(): IterableIterator<Entities> {
+            public get iterable() {
                 return Entities[Symbol.iterator]()
             }
 
@@ -71,7 +70,7 @@ export default class EntityApp
                 return 'list'
             }
 
-            public createCardListContent({englishNameInHtml: htmlName, reference, editorVoiceSound: {file: editorVoice1, europeanFile: editorVoice2,},}: Entities,): ReactElement {
+            public createCardListContent({englishNameInHtml: htmlName, reference, editorVoiceSound: {file: editorVoice1, europeanFile: editorVoice2,},}: Entities,) {
                 //TODO encapsulate the voiceSound into a sound interpreter.
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
                 return <div className={`${category}`}>
@@ -101,15 +100,15 @@ export default class EntityApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every entities"/>,
+                    caption: gameContentTranslation('Every entities'),
                 }
             }
 
-            public createTableContent(option: EntityAppOption,): readonly ReactElement[] {
+            public createTableContent(option: EntityAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: EntityAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: EntityAppOption,) {
                 return option.renderTableHeader
             }
 

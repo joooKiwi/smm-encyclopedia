@@ -1,21 +1,22 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './GameStyleAppOption.types'
-import type {GameStyles}                                                                                                                                                            from '../../core/gameStyle/GameStyles'
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
+import type {Names, Ordinals}                                  from './GameStyleAppOption.types'
+import type {NullOr}                                           from '../../util/types'
+import type {GameStyles}                                       from '../../core/gameStyle/GameStyles'
+import type {ReactElement}                                     from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {Enum}                          from '../../util/enum/Enum'
-import {ProjectLanguages}              from '../../lang/ProjectLanguages'
-import {Themes}                        from '../../core/theme/Themes'
-import {Times}                         from '../../core/time/Times'
+import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
+import {CommonOptions}                              from './CommonOptions'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {ProjectLanguages}                           from '../../lang/ProjectLanguages'
+import {Themes}                                     from '../../core/theme/Themes'
+import {Times}                                      from '../../core/time/Times'
 
 //region -------------------- dynamic imports --------------------
 
@@ -32,29 +33,29 @@ export abstract class GameStyleAppOption
 
     public static readonly IMAGE =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
-        protected override _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: GameStyles,) {
             return enumeration.renderSingleComponent
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,}
+            return {key: 'image', element: contentTranslation('Image'),}
         }
 
     }()
     public static readonly NAME =              new class GameStyleAppOption_Name extends GameStyleAppOption {
 
-        protected override _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: GameStyles,) {
             return CommonOptions.get.getNameContent(enumeration)
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
     }()
     public static readonly GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
 
-        protected override _createContentOption({reference,}: GameStyles,): PossibleRenderReactElement {
+        protected override _createContentOption({reference,}: GameStyles,) {
             return [
                 <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker1}/>,
                 <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMakerFor3DS}/>,
@@ -62,28 +63,25 @@ export abstract class GameStyleAppOption
             ]
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.gameHeaderWithAllGames
         }
 
     }()
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
-        protected override _createContentOption({reference,}: GameStyles,): PossibleRenderReactElement {
-                return <NightEffectComponent gameStyle={reference}/>
+        protected override _createContentOption({reference,}: GameStyles,) {
+            return <NightEffectComponent gameStyle={reference}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'nightDesertWind',
                 element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
-                tooltip: {
-                    namespace: 'gameContent', translationKey: 'Wind effect (night desert)',
-                    replace: {
-                        night: '--night--',//TODO add night reference
-                        desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
-                    },
-                },
+                tooltip: gameContentTranslation('Wind effect (night desert)', {
+                    night: '--night--',//TODO add night reference
+                    desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
+                },),
             }
         }
 
@@ -138,7 +136,7 @@ export abstract class GameStyleAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 
@@ -147,30 +145,17 @@ export abstract class GameStyleAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<GameStyleAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return GameStyleAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends GameStyleAppOption = GameStyleAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): GameStyleAppOption
-    public static getValue(value: PossibleValue,): | GameStyleAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<GameStyleAppOption>,): GameStyleAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<GameStyleAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

@@ -1,14 +1,14 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './containers/Language'
-import type {EnumArray as GameArray}                                                                                        from '../../core/game/Games.types'
-import type {IsACompleteNameCallback, PossibleGameReceived}                                                                 from './Name.builder.types'
-import type {Name}                                                                                                          from './Name'
-import type {NameBuilder}                                                                                                   from './Name.builder'
-import type {PossibleNameTemplate}                                                                                          from './Name.template'
-import type {PossibleLanguageValue}                                                                                         from '../ClassWithOnlyProjectLanguages'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language'
+import type {IsACompleteNameCallback, PossibleGameReceived}                           from './Name.builder.types'
+import type {Name}                                                                    from './Name'
+import type {NameBuilder}                                                             from './Name.builder'
+import type {Nullable, NullableString, NullOr, NullOrString}                          from '../../util/types'
+import type {PossibleNameTemplate}                                                    from './Name.template'
 
 import {assert}         from '../../util/utilitiesMethods'
 import {EveryLanguages} from '../EveryLanguages'
 import {Games}          from '../../core/game/Games'
+import {isInProduction} from '../../variables'
 import {NameContainer}  from './Name.container'
 
 export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
@@ -19,7 +19,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     /**
      * A constant meant to signify a complete language.
      *
-     * As it stands, only the english and french language are complete.
+     * As it stands, only the English and French language are complete.
      *
      * @see EveryLanguages.isACompleteLanguage
      */
@@ -27,7 +27,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     /**
      * A constant meant to signify an optional language.
      *
-     * As it stands, only the greek is optional.
+     * As it stands, only the Hebrew, Polish, Ukrainian & Greek is optional.
      *
      * @see ProjectLanguages.isInEverySuperMarioMakerGame
      */
@@ -41,19 +41,19 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
 
     #english?: AmericanOrEuropeanOriginal<string>
     #french?: CanadianOrEuropeanOriginal<string>
-    #german?: PossibleLanguageValue<string>
-    #spanish?: PossibleAmericanOrEuropeanValue<string>
-    #italian?: PossibleLanguageValue<string>
-    #dutch?: PossibleLanguageValue<string>
-    #portuguese?: PossibleAmericanOrEuropeanValue<string>
-    #russian?: PossibleLanguageValue<string>
-    #japanese?: PossibleLanguageValue<string>
-    #chinese?: PossibleChineseValue<string>
-    #korean?: PossibleLanguageValue<string>
-    #hebrew?: PossibleLanguageValue<string>
-    #polish?: PossibleLanguageValue<string>
-    #ukrainian?: PossibleLanguageValue<string>
-    #greek?: PossibleLanguageValue<string>
+    #german?: NullOrString
+    #spanish?: NullOr<AmericanOrEuropeanOriginal<string>>
+    #italian?: NullOrString
+    #dutch?: NullOrString
+    #portuguese?: NullOr<AmericanOrEuropeanOriginal<string>>
+    #russian?: NullOrString
+    #japanese?: NullOrString
+    #chinese?: NullOr<ChineseOriginal<string>>
+    #korean?: NullOrString
+    #hebrew?: NullOrString
+    #polish?: NullOrString
+    #ukrainian?: NullOrString
+    #greek?: NullOrString
 
     readonly #template
     readonly #game
@@ -73,13 +73,16 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     public constructor(template: TEMPLATE, game: PossibleGameReceived, isACompleteName: boolean,) {
         this.#template = template
         if (game === 'all') {
-            this.#game = Games.values
+            this.#game = Games.values.toArray() as readonly [Games, Games, Games,]
             this.#isACompleteName = () => isACompleteName
         } else if (game === 'notSMM2') {
             this.#game = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
             this.#isACompleteName = () => isACompleteName
         } else {
-            const _game = this.#game = game
+            if (game instanceof Games && !isInProduction)
+                console.warn('The usage of Games in the NameBuilderContainer is deprecated, the usage of "1" "" or "3DS" should be used instead')
+            const _game = game instanceof Games ? game : Games.getValueByValue(game)
+            this.#game = [_game,] as const
             this.#isACompleteName = language => NameBuilderContainer.#IS_A_COMPLETE_NAME_BASED_ON_GAME(_game, language,) && isACompleteName
         }
     }
@@ -116,7 +119,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#german
     }
 
-    public setGerman(value: PossibleLanguageValue<string>,): this {
+    public setGerman(value: NullOrString,): this {
         this.#german = value
         return this
     }
@@ -128,7 +131,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#spanish
     }
 
-    public setSpanish(value: PossibleAmericanOrEuropeanValue<string>,): this {
+    public setSpanish(value: NullOr<AmericanOrEuropeanOriginal<string>>,): this {
         this.#spanish = value
         return this
     }
@@ -140,7 +143,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#italian
     }
 
-    public setItalian(value: PossibleLanguageValue<string>,): this {
+    public setItalian(value: NullOrString,): this {
         this.#italian = value
         return this
     }
@@ -152,7 +155,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#dutch
     }
 
-    public setDutch(value: PossibleLanguageValue<string>,): this {
+    public setDutch(value: NullOrString,): this {
         this.#dutch = value
         return this
     }
@@ -164,7 +167,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#portuguese
     }
 
-    public setPortuguese(value: PossibleAmericanOrEuropeanValue<string>,): this {
+    public setPortuguese(value: NullOr<AmericanOrEuropeanOriginal<string>>,): this {
         this.#portuguese = value
         return this
     }
@@ -176,7 +179,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#russian
     }
 
-    public setRussian(value: PossibleLanguageValue<string>,): this {
+    public setRussian(value: NullOrString,): this {
         this.#russian = value
         return this
     }
@@ -188,7 +191,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#japanese
     }
 
-    public setJapanese(value: PossibleLanguageValue<string>,): this {
+    public setJapanese(value: NullOrString,): this {
         this.#japanese = value
         return this
     }
@@ -200,7 +203,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#chinese
     }
 
-    public setChinese(value: |PossibleChineseValue<string>,): this {
+    public setChinese(value: NullOr<ChineseOriginal<string>>,): this {
         this.#chinese = value
         return this
     }
@@ -212,7 +215,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#korean
     }
 
-    public setKorean(value: PossibleLanguageValue<string>,): this {
+    public setKorean(value: NullOrString,): this {
         this.#korean = value
         return this
     }
@@ -224,7 +227,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#hebrew
     }
 
-    public setHebrew(value: PossibleLanguageValue<string>,): this {
+    public setHebrew(value: NullOrString,): this {
         this.#hebrew = value
         return this
     }
@@ -236,7 +239,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#polish
     }
 
-    public setPolish(value: PossibleLanguageValue<string>,): this {
+    public setPolish(value: NullOrString,): this {
         this.#polish = value
         return this
     }
@@ -248,7 +251,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#ukrainian
     }
 
-    public setUkrainian(value: PossibleLanguageValue<string>,): this {
+    public setUkrainian(value: NullOrString,): this {
         this.#ukrainian = value
         return this
     }
@@ -260,7 +263,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#greek
     }
 
-    public setGreek(value: PossibleLanguageValue<string>,): this {
+    public setGreek(value: NullOrString,): this {
         this.#greek = value
         return this
     }
@@ -271,7 +274,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
         return this.#template
     }
 
-    public get game(): | Games | readonly [Games, Games,] | GameArray {
+    public get game(): | readonly [Games,] | readonly [Games, Games,] | readonly [Games, Games, Games,] {
         return this.#game
     }
 
@@ -282,9 +285,9 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------
 
-    #get<S extends string = string, >(language: EveryLanguages, value: | S | null,): | S | null
-    #get<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(language: EveryLanguages, value1: | S1 | null, value2: | S2 | null, value3: | S3 | null,): | S1 | [S2, S3,]
-    #get(language: EveryLanguages, value1: PossibleLanguageValue<string>, value2?: PossibleLanguageValue<string>, value3?: PossibleLanguageValue<string>,) {
+    #get<S extends string = string, >(language: EveryLanguages, value: Nullable<S>,): NullOr<S>
+    #get<S1 extends string = string, S2 extends string = string, S3 extends string = string, >(language: EveryLanguages, value1: Nullable<S1>, value2: Nullable<S2>, value3: Nullable<S3>,): | S1 | [S2, S3,]
+    #get(language: EveryLanguages, value1: NullableString, value2?: NullableString, value3?: NullableString,) {
         const canBeNullable = (() => {
             //TODO change to the ProjectLanguages.isACompleteLanguage instead
             switch (language) {

@@ -1,16 +1,19 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                   from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                                                                                                                     from '../ClassWithImagePath'
-import type {PossibleOtherEntities}                                                                                                                                                                                                                  from '../entity/Entity'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleNonNullableValue, PossibleSimpleImagePath, PossibleStringValue, PossibleValue} from './Times.types'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                from '../PropertyGetter'
-import type {StaticReference}                                                                                                                                                                                                                        from '../../util/enum/Enum.types'
-import type {TimeProperty}                                                                                                                                                                                                                           from '../entity/properties/time/TimeProperty'
-import type {TimeReferences}                                                                                                                                                                                                                         from '../entity/properties/time/TimeReferences'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {BASE_PATH}       from '../../variables'
-import {Enum}            from '../../util/enum/Enum'
-import {StringContainer} from '../../util/StringContainer'
-import TimeComponent     from './Time.component'
+import type {ClassWithEnglishName}                                                             from '../ClassWithEnglishName'
+import type {ClassWithImagePath}                                                               from '../ClassWithImagePath'
+import type {PossibleOtherEntities}                                                            from '../entity/Entity'
+import type {Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleSimpleImagePath} from './Times.types'
+import type {Nullable}                                                                         from '../../util/types'
+import type {PropertyGetter, PropertyReferenceGetter}                                          from '../PropertyGetter'
+import type {TimeProperty}                                                                     from '../entity/properties/time/TimeProperty'
+import type {TimeReferences}                                                                   from '../entity/properties/time/TimeReferences'
+
+import {BASE_PATH}             from '../../variables'
+import {getValueByEnglishName} from '../../util/utilitiesMethods'
+import {StringContainer}       from '../../util/StringContainer'
+import TimeComponent           from './Time.component'
 
 export abstract class Times
     extends Enum<Ordinals, Names>
@@ -23,7 +26,7 @@ export abstract class Times
 
     public static readonly DAY =   new class Times_Day extends Times {
 
-        public override get(property: TimeProperty,): boolean {
+        public override get(property: TimeProperty,) {
             return property.isInDayTheme
         }
 
@@ -34,7 +37,7 @@ export abstract class Times
     }('Day', 'Sun',)
     public static readonly NIGHT = new class Times_Night extends Times {
 
-        public override get(property: TimeProperty,): boolean {
+        public override get(property: TimeProperty,) {
             return property.isInNightTheme === true
         }
 
@@ -89,38 +92,26 @@ export abstract class Times
         return TimeComponent.renderSingleComponent(this)
     }
 
+
+    // public static getValueByName<T extends string, >(value: Nullable<| Times | T>,) TimesByName<T>
+    public static getValueByName(value: Nullable<| Times | string>,): Times {
+        return getValueByEnglishName(value, this,)
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Times> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Times
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Times = Times, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Times
-    public static getValue(value: PossibleValue,): | Times | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Times>,): Times {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Times> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

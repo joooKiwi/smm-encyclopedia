@@ -8,8 +8,8 @@ export abstract class AbstractSoundEffectMusic<ALL extends PossibleSoundEffectMu
 
     //region -------------------- Fields --------------------
 
-    readonly #soundEffect
-    readonly #editorSoundEffect
+    readonly #soundEffect: SOUND_EFFECT//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #editorSoundEffect: EDITOR_SOUND_EFFECT//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

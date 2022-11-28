@@ -1,4 +1,5 @@
 import type {NameTemplate as OriginalNameTemplate} from '../../lang/name/Name.template'
+import type {NullOr}                               from '../../util/types'
 import type {PossibleMakerCentralName}             from './CourseTags.types'
 import type {TemplateWithNameTemplate}             from '../_template/TemplateWithName.template'
 
@@ -14,8 +15,8 @@ export interface CourseTagTemplate
 export interface NameTemplate
     extends OriginalNameTemplate {
 
-    makerCentral: | PossibleMakerCentralName | null
+    makerCentral: NullOr<PossibleMakerCentralName>
 
 }
 
-export type PossibleFirstAppearanceInMarioMaker = | `v${1 | 3}.0.0` | null
+export type PossibleFirstAppearanceInMarioMaker = NullOr<`v${1 | 3}.0.0`>

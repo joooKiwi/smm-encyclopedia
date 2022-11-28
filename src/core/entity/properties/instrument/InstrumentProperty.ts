@@ -1,6 +1,7 @@
-import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment, PossibleBoolean} from '../../../_properties/Property'
-import type {Instrument}                                                                from '../../../instrument/Instrument'
-import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                             from './loader.types'
+import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment} from '../../../_properties/Property'
+import type {Instrument}                                               from '../../../instrument/Instrument'
+import type {NullableBoolean, NullOr}                                  from '../../../../util/types'
+import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}            from './loader.types'
 
 export interface InstrumentProperty<CAN_MAKE_A_SOUND_OUT_OF_A_MUSIC_BLOCK extends CanMakeASoundOutOfAMusicBlockProperty = CanMakeASoundOutOfAMusicBlockProperty, > {
 
@@ -47,5 +48,5 @@ export interface InstrumentProperty<CAN_MAKE_A_SOUND_OUT_OF_A_MUSIC_BLOCK extend
  * @see InstrumentProperty
  * @see PossibleCanMakeASoundOutOfAMusicBlock_Comment
  */
-export type CanMakeASoundOutOfAMusicBlockProperty<COMMENT extends | PossibleCanMakeASoundOutOfAMusicBlock_Comment | null = | PossibleCanMakeASoundOutOfAMusicBlock_Comment | null, >
-    = InferredBooleanPropertyThatCanBeNotApplicableWithComment<PossibleBoolean, COMMENT>
+export type CanMakeASoundOutOfAMusicBlockProperty<COMMENT extends NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment> = NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>, >
+    = InferredBooleanPropertyThatCanBeNotApplicableWithComment<NullableBoolean, COMMENT>

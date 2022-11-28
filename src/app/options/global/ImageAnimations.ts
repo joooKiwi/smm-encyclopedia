@@ -1,8 +1,9 @@
-import type {ClassWithValue}                                                                                                                                                                                from './ClassWithValue'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleImageAnimation, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ImageAnimations.types'
-import type {StaticReference}                                                                                                                                                                               from '../../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum} from '../../../util/enum/Enum'
+import type {ClassWithValue}                          from './ClassWithValue'
+import type {Names, Ordinals, PossibleImageAnimation} from './ImageAnimations.types'
+import type {Nullable}                                from '../../../util/types'
 
 /**
  * The possible image animation as either
@@ -42,49 +43,39 @@ export class ImageAnimations
 
     //region -------------------- Getter methods --------------------
 
-    public get value() {
+    public get value(): PossibleImageAnimation {
         return this.#value
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    // public static getValueByValue<T, >(value: T,): ImageAnimationByValue<T>
+    public static getValueByValue(value: Nullable<| ImageAnimations | boolean | string>,): ImageAnimations {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if(value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.value === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<ImageAnimations> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return ImageAnimations
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.value === value)
-            ?? null
-    }
-
-    protected static override _getValueByBoolean(value: boolean,) {
-        return this.values.find(enumerable => enumerable.value === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends ImageAnimations = ImageAnimations, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): ImageAnimations
-    public static getValue(value: PossibleValue,): | ImageAnimations | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<ImageAnimations>,): ImageAnimations {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<ImageAnimations> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

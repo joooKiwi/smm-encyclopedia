@@ -35,7 +35,7 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
 
     //endregion -------------------- Getter methods --------------------
 
-    protected abstract _renderElement(element: T, option: GlobalAppOption<U>, isDisabled: readonly [boolean, boolean,], onClickCallback: | OnClickCallback | null,): ReactElement
+    protected abstract _renderElement(element: T, option: GlobalAppOption<U>, isDisabled: readonly [boolean, boolean,], onClickCallback: NullOr<OnClickCallback>,): ReactElement
 
     public override render(): ReactElement {
         return this.isHidden

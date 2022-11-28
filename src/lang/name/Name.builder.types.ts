@@ -3,7 +3,8 @@ import type {Games}          from '../../core/game/Games'
 
 export type AllGameReceived = 'all'
 export type NotSMM2GameReceived = 'notSMM2'
-export type PossibleGameReceived = | Games | NotSMM2GameReceived | AllGameReceived
+export type SingleGame = | '1' | '2' | '3DS'
+export type PossibleGameReceived = | Games | SingleGame | NotSMM2GameReceived | AllGameReceived
 
 /**
  * The possible way to tell if the {@link Name} will be a complete one based

@@ -1,3 +1,4 @@
+import type {NullOrNumber}               from '../../../util/types'
 import type {OfficialNotificationHolder} from './OfficialNotificationHolder'
 import type {OfficialNotifications}      from '../OfficialNotifications'
 
@@ -11,7 +12,7 @@ export class OfficialNotificationHolderContainer
 
     //endregion -------------------- Fields --------------------
 
-    constructor(officialNotification: OfficialNotifications, amount: | number | null,) {
+    constructor(officialNotification: OfficialNotifications, amount: NullOrNumber,) {
         this.#officialNotification = officialNotification
         this.#amount = amount
     }
@@ -22,7 +23,7 @@ export class OfficialNotificationHolderContainer
         return this.#officialNotification
     }
 
-    public get amount(): | number | null {
+    public get amount(): NullOrNumber {
         return this.#amount
     }
 

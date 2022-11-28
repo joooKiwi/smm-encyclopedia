@@ -1,20 +1,21 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ThemeAppOption.types'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
-import type {Themes}                                                                                                                                                                from '../../core/theme/Themes'
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
+import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
+import type {Names, Ordinals}                                  from './ThemeAppOption.types'
+import type {NullOr}                                           from '../../util/types'
+import type {Themes}                                           from '../../core/theme/Themes'
+import type {ReactElement}                                     from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Enum}                          from '../../util/enum/Enum'
-import {Times}                         from '../../core/time/Times'
+import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
+import {CommonOptions}                              from './CommonOptions'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
+import {Times}                                      from '../../core/time/Times'
 
 //region -------------------- dynamic imports --------------------
 
@@ -34,7 +35,7 @@ export abstract class ThemeAppOption
 
     public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
-        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: Themes,) {
             return [
                 enumeration.renderSingleComponent(false),
                 enumeration.endlessMarioImagePath != null ? <Image source={enumeration.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/> : EMPTY_REACT_ELEMENT,
@@ -43,10 +44,10 @@ export abstract class ThemeAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'image', element: <ContentTranslationComponent translationKey="Image"/>,
+                key: 'image', element: contentTranslation('Image'),
                 subHeaders: [
                     {key: 'image-empty', element: EMPTY_REACT_ELEMENT,},
-                    {key: 'image-endless-mario', element: <>--Endless Mario--</>},
+                    {key: 'image-endless-mario', element: '--Endless Mario--',},//TODO add Endless Mario
                 ],
             }
         }
@@ -54,35 +55,31 @@ export abstract class ThemeAppOption
     }()
     public static readonly NAME =                   new class ThemeAppOptionName extends ThemeAppOption {
 
-        protected override _createContentOption(enumeration: Themes,): PossibleRenderReactElement {
+        protected override _createContentOption(enumeration: Themes,) {
             return <div className="nameWithContent-container">
-                    <div className="col-10">
-                        {CommonOptions.get.getGameContent(enumeration)}
-                        {CommonOptions.get.getNameContent(enumeration)}
-                    </div>
-                    <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
+                <div className="col-10">
+                    {CommonOptions.get.getGameContent(enumeration)}
+                    {CommonOptions.get.getNameContent(enumeration)}
                 </div>
+                <div className="col-2">{CommonOptions.get.getThemeContent(enumeration)}</div>
+            </div>
         }
 
-        protected override _createTableHeaderOption(): SingleHeaderContent {
+        protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
         }
 
     }()
     public static readonly NIGHT_EFFECT =           new class ThemeAppOption_NightEffect extends ThemeAppOption {
 
-        protected override _createContentOption({reference: {courseTheme,},}: Themes,): PossibleRenderReactElement {
+        protected override _createContentOption({reference: {courseTheme,},}: Themes,) {
             return <NightEffectComponent theme={courseTheme}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'effect', element: <Image source={Times.NIGHT.imagePath} fallbackName={`effect - ${Times.NIGHT.englishName}`}/>,
-                tooltip: {
-                    namespace: 'gameContent', translationKey: 'Effect (night)',
-                    replace: {night: '--night effect name--',},//TODO add translation for the night effect name
-                    // replace: {night: translation(Times.NIGHT.englishName).toLowerCase(),},
-                },
+                tooltip: gameContentTranslation('Effect (night)', {night: '--night effect name--',},)//TODO add translation for the night effect name
             }
         }
 
@@ -137,7 +134,7 @@ export abstract class ThemeAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 
@@ -146,30 +143,17 @@ export abstract class ThemeAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<ThemeAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return ThemeAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends ThemeAppOption = ThemeAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): ThemeAppOption
-    public static getValue(value: PossibleValue,): | ThemeAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<ThemeAppOption>,): ThemeAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<ThemeAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

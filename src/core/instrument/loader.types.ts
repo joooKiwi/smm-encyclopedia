@@ -1,3 +1,4 @@
+import type {NullOr}              from '../../util/types'
 import type {PossibleEnglishName} from './Instruments.types'
 
 export type PossibleMixedInstrument =
@@ -5,4 +6,4 @@ export type PossibleMixedInstrument =
     | 'Regular → Cymbal\nSideway → Hi-hat'
     | 'Bottom → Hello\nTop → Ok'
 
-export type PossibleInstrument = | PossibleEnglishName | PossibleMixedInstrument | null
+export type PossibleInstrument = NullOr<| PossibleEnglishName | PossibleMixedInstrument>

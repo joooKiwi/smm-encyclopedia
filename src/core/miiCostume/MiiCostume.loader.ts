@@ -1,9 +1,10 @@
 import resource from '../../resources/compiled/Mii Costume (SMM2).json'
 
 import type {Loader}                                                                        from '../../util/loader/Loader'
-import type {PossibleEnglishName}                                                           from './MiiCostumes.types'
+import type {NullOr}                                                                        from '../../util/types'
 import type {MiiCostume}                                                                    from './MiiCostume'
 import type {MiiCostumeTemplate}                                                            from './MiiCostume.template'
+import type {PossibleEnglishName}                                                           from './MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_Category}                           from '../miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from '../officialNotification/OfficialNotifications.types'
 import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from '../version/Versions.types'
@@ -46,9 +47,9 @@ enum Headers {
 
 type ExclusivePropertiesArray = [
 
-    notificationIfUnlocked: | PossibleEnglishName_OfficialNotification | null,
+    notificationIfUnlocked: NullOr<PossibleEnglishName_OfficialNotification>,
 
-    MM2_version: | PossibleMarioMakerVersion_SMM2_Number | null,
+    MM2_version: NullOr<PossibleMarioMakerVersion_SMM2_Number>,
     category: PossibleEnglishName_Category,
 
 ]

@@ -4,6 +4,7 @@ import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemp
 import type {EntityLimit}                                                                                                                                                                         from './EntityLimit'
 import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from '../../lang/Loader.types'
 import type {Loader}                                                                                                                                                                              from '../../util/loader/Loader'
+import type {NullOr}                                                                                                                                                                              from '../../util/types'
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from './EntityLimits.types'
 import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from '../entity/Entities.types'
 import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from './EntityLimitTypes.types'
@@ -47,17 +48,17 @@ enum Headers {
 
 type ExclusivePropertyArray = [
 
-    alternative: | PossibleAlternativeEnglishName | null,
+    alternative: NullOr<PossibleAlternativeEnglishName>,
 
-    type: | PossibleEnglishName_LimitType | null,
-    acronym: | PossibleAcronym | PossibleAlternativeAcronym | null,
+    type: NullOr<PossibleEnglishName_LimitType>,
+    acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>,
 
     limit_SMM1And3DS: PossibleLimitAmount_SMM1And3DS,
     limit_SMM2: PossibleLimitAmount_SMM2,
     limit_comment: PossibleLimitAmount_Comment,
 
-    link_group: | PossibleGroupName | null,
-    link_entity: | PossibleEnglishName_Entity | null,
+    link_group: NullOr<PossibleGroupName>,
+    link_entity: NullOr<PossibleEnglishName_Entity>,
 
 ]
 type PropertiesArray = [
@@ -68,12 +69,6 @@ type PropertiesArray = [
 //endregion -------------------- Properties --------------------
 
 //endregion -------------------- CSV array related types --------------------
-//region -------------------- Private types --------------------
-
-type PossibleNullableAlternativeAcronym = | PossibleAlternativeAcronym | null
-type PossibleNullableAcronym = | PossibleAcronym | null
-
-//endregion -------------------- Private types --------------------
 
 /**
  * @singleton
@@ -159,11 +154,11 @@ class TemplateBuilder
         const acronym = this._getContent(this._headersIndexMap.acronym)
 
         return type == null
-            ? this.#createAlternativeLimitTemplate(acronym as PossibleNullableAlternativeAcronym,)
-            : this.#createLimitTemplate(type, acronym as PossibleNullableAcronym,)
+            ? this.#createAlternativeLimitTemplate(acronym as NullOr<PossibleAlternativeAcronym>,)
+            : this.#createLimitTemplate(type, acronym as NullOr<PossibleAcronym>,)
     }
 
-    #createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: PossibleNullableAcronym,): EntityLimitTemplate {
+    #createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: NullOr<PossibleAcronym>,): EntityLimitTemplate {
         return {
 
             references: {
@@ -182,7 +177,7 @@ class TemplateBuilder
         }
     }
 
-    #createAlternativeLimitTemplate(acronym: PossibleNullableAlternativeAcronym,): AlternativeLimitTemplate {
+    #createAlternativeLimitTemplate(acronym: NullOr<PossibleAlternativeAcronym>,): AlternativeLimitTemplate {
         return {
 
             references: TemplateBuilder.#EMPTY_REFERENCES,

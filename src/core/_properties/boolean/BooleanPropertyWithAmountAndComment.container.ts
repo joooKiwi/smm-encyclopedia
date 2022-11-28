@@ -1,12 +1,10 @@
-import type {BooleanPropertyWithAmountAndComment} from '../PropertyWithAmountAndComment'
-import type {PossibleAmount}                      from '../ClassWithAmount'
-import type {PossibleBoolean}                     from '../Property'
-import type {PossibleComment}                     from '../ClassWithComment'
-import type {PossibleValueOnObjectHolder}         from '../../../util/holder/ObjectHolder'
+import type {BooleanPropertyWithAmountAndComment}       from '../PropertyWithAmountAndComment'
+import type {NullOrBoolean, NullOrNumber, NullOrString} from '../../../util/types'
+import type {PossibleValueOnObjectHolder}               from '../../../util/holder/ObjectHolder'
 
 import {PropertyWithAmountAndCommentContainer} from '../PropertyWithAmountAndComment.container'
 
-export class BooleanPropertyWithAmountAndCommentContainer<B extends PossibleBoolean = PossibleBoolean, AMOUNT extends PossibleAmount = PossibleAmount, COMMENT extends PossibleComment = PossibleComment, >
+export class BooleanPropertyWithAmountAndCommentContainer<B extends NullOrBoolean = NullOrBoolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithAmountAndCommentContainer<B, AMOUNT, COMMENT>
     implements BooleanPropertyWithAmountAndComment<B, AMOUNT, COMMENT> {
 

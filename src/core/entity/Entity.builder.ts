@@ -12,8 +12,8 @@ import type {LimitProperty}                                                     
 import type {LimitPropertyTemplate}                                                           from './properties/limit/LimitProperty.template'
 import type {Name}                                                                            from '../../lang/name/Name'
 import type {NotApplicableProperty, UnknownProperty}                                          from '../_properties/PropertyWithEverything'
+import type {Nullable, NullOr, NullOrString}                                                  from '../../util/types'
 import type {ObjectHolder}                                                                    from '../../util/holder/ObjectHolder'
-import type {PossibleComment}                                                                 from '../_properties/ClassWithComment'
 import type {PossibleEnglishName}                                                             from './Entities.types'
 import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                          from '../entityLimit/EntityLimits.types'
 import type {PossibleGameReceived as OriginalPossibleGameReceived}                            from '../../lang/name/Name.builder.types'
@@ -112,26 +112,28 @@ export class EntityBuilder
      * or return an {@link EmptyEntityCategory empty category}.
      */
     #getEntityCategory(): EntityCategory {
-        return EntityCategories.getValue(this.template.categoryInTheEditor)?.reference
-            ?? EmptyEntityCategory.get
+        const category = this.template.categoryInTheEditor
+        return category == null
+            ? EmptyEntityCategory.get
+            : EntityCategories.getValueByName(category).reference
     }
 
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
     static #whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
-    static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,): | EntityLimits | null
-    static #whereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null,) {
-        return EntityLimits.getValue(entityLimit)
+    static #whereEntityLimit(entityLimit: Nullable<PossibleEnglishName_EntityLimit>,): NullOr<EntityLimits>
+    static #whereEntityLimit(entityLimit: Nullable<PossibleEnglishName_EntityLimit>,) {
+        return entityLimit == null ? null : EntityLimits.getValueByNameOrAcronym(entityLimit)
     }
 
-    static #getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?',): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
-    static #getPropertyWhereEntityLimit<COMMENT extends PossibleComment, >(entityLimit: | PossibleEnglishName_EntityLimit | null, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
-    static #getPropertyWhereEntityLimit(entityLimit: | PossibleEnglishName_EntityLimit | null | '?', comment: PossibleComment = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
-        return entityLimit === '?'
-            ? UNKNOWN_CONTAINER
-            : entityLimit == null
-                ? NOT_APPLICABLE_CONTAINER
+    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | '?'>,): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
+    static #getPropertyWhereEntityLimit<COMMENT extends NullOrString, >(entityLimit: Nullable<PossibleEnglishName_EntityLimit>, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
+    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | '?'>, comment: NullOrString = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
+        return entityLimit == null
+            ? NOT_APPLICABLE_CONTAINER
+            : entityLimit === '?'
+                ? UNKNOWN_CONTAINER
                 : new PropertyThatCanBeUnknownWithCommentContainer(this.#whereEntityLimit(entityLimit), false, comment,)
     }
 
@@ -187,12 +189,13 @@ export class EntityBuilder
      */
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): | readonly [Instrument,] | readonly [Instrument, Instrument,]
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): readonly Instrument[] {
-        const singleInstrument = Instruments.getValue(instrument)
+        const singleInstrument = Instruments.getValueByName(instrument)
         if (singleInstrument != null)
-            return [singleInstrument.reference]
+            return [singleInstrument.reference,]
 
-        return Instruments.values.filter(enumerable => instrument.includes(enumerable.englishName))!
-            .map(enumerable => enumerable.reference)
+        return Instruments.values.filter(it => instrument.includes(it.englishName))
+            .map(it => it.reference)
+            .toArray()
     }
 
     /**
@@ -303,10 +306,10 @@ export class EntityBuilder
         )
     }
 
-    #createGroupReference(set: Set<EntityTemplate> | null,): ObjectHolder<readonly Entity[]> {
+    #createGroupReference(set: Nullable<Set<EntityTemplate>>,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
-            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValue((reference.name.english.simple || reference.name.english.american!) as PossibleEnglishName).reference))
+            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValueByName(reference.name.english.simple ?? reference.name.english.american).reference))
     }
 
     /**
@@ -315,13 +318,13 @@ export class EntityBuilder
      *
      * @param link the entity link or null
      */
-    #createOtherEntityReferences(link: | EntityLink | null,): ObjectHolder<PossibleOtherEntities> {
+    #createOtherEntityReferences(link: Nullable<EntityLink>,): ObjectHolder<PossibleOtherEntities> {
         return new DelayedObjectHolderContainer(
-            link === null
+            link == null
                 ? EntityBuilder.#EMPTY_ENTITY_CALLBACK
                 : link === 'this'
                     ? this.#selfCallback
-                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValue(splitLink).reference) as unknown as PossibleOtherEntities
+                    : () => (link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValueByName(splitLink).reference) as unknown as PossibleOtherEntities
         )
     }
 

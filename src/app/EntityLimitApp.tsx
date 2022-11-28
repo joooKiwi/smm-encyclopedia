@@ -4,15 +4,14 @@ import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './inter
 import type {AppProperties}                                        from './AppProperties.types'
 import type {EntityLimitAppStates}                                 from './AppStates.types'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElement, ReactElementOrString}                   from '../util/react/ReactProperties'
-import type {SingleHeaderContent}                                  from './tools/table/SimpleHeader'
+import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
 
-import {AbstractTableApp}              from './withInterpreter/AbstractTableApp'
-import {EntityLimitAppOption}          from './options/EntityLimitAppOption'
-import {EntityLimits}                  from '../core/entityLimit/EntityLimits'
-import GameContentTranslationComponent from '../lang/components/GameContentTranslationComponent'
-import TextComponent                   from './tools/text/TextComponent'
-import {ViewDisplays}                  from './withInterpreter/ViewDisplays'
+import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
+import {EntityLimitAppOption}   from './options/EntityLimitAppOption'
+import {EntityLimits}           from '../core/entityLimit/EntityLimits'
+import {gameContentTranslation} from '../lang/components/translationMethods'
+import TextComponent            from './tools/text/TextComponent'
+import {ViewDisplays}           from './withInterpreter/ViewDisplays'
 
 /**
  * @reactComponent
@@ -34,13 +33,13 @@ export default class EntityLimitApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <GameContentTranslationComponent translationKey="Every entity limits"/>
+        return gameContentTranslation('Every entity limits')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
         return new class implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
 
-            public get iterable(): IterableIterator<EntityLimits> {
+            public get iterable() {
                 return EntityLimits[Symbol.iterator]()
             }
 
@@ -61,7 +60,7 @@ export default class EntityLimitApp
                 return 'list'
             }
 
-            public createCardListContent(enumeration: EntityLimits,): ReactElement {
+            public createCardListContent(enumeration: EntityLimits,) {
                 EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration
                 const {reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName, englishNameInHtml,} = enumeration
 
@@ -90,16 +89,16 @@ export default class EntityLimitApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: <GameContentTranslationComponent translationKey="Every entity limits"/>,
+                    caption: gameContentTranslation('Every entity limits'),
                 }
             }
 
 
-            public createTableContent(option: EntityLimitAppOption,): readonly ReactElement[] {
+            public createTableContent(option: EntityLimitAppOption,) {
                 return option.renderContent
             }
 
-            public createTableHeader(option: EntityLimitAppOption,): | SingleHeaderContent | null {
+            public createTableHeader(option: EntityLimitAppOption,) {
                 return option.renderTableHeader
             }
 

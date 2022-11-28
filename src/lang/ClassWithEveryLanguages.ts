@@ -1,6 +1,7 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal, PossibleAmericanOrEuropeanValue, PossibleChineseValue} from './name/containers/Language'
-import type {ClassWithOnlyProjectLanguages, PossibleLanguageValue}                                                                           from './ClassWithOnlyProjectLanguages'
-import type {EveryLanguages}                                                                                                                 from './EveryLanguages'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './name/containers/Language'
+import type {ClassWithOnlyProjectLanguages}                                           from './ClassWithOnlyProjectLanguages'
+import type {EveryLanguages}                                                          from './EveryLanguages'
+import type {NullOr}                                                                  from '../util/types'
 
 /**
  * <p>
@@ -15,19 +16,19 @@ import type {EveryLanguages}                                                    
  * </p>
  */
 export interface ClassWithEveryLanguages<T,
-    GERMAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    ORIGINAL_SPANISH extends PossibleAmericanOrEuropeanValue<T> = PossibleAmericanOrEuropeanValue<T>, SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, AMERICAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_SPANISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    ITALIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    DUTCH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    ORIGINAL_PORTUGUESE extends PossibleAmericanOrEuropeanValue<T> = PossibleAmericanOrEuropeanValue<T>, PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, AMERICAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, EUROPEAN_PORTUGUESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    RUSSIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    JAPANESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    ORIGINAL_CHINESE extends PossibleChineseValue<T> = PossibleChineseValue<T>, CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, TRADITIONAL_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, SIMPLIFIED_CHINESE extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    KOREAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    HEBREW extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    POLISH extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    UKRAINIAN extends PossibleLanguageValue<T> = PossibleLanguageValue<T>,
-    GREEK extends PossibleLanguageValue<T> = PossibleLanguageValue<T>, >
+    GERMAN extends NullOr<T> = NullOr<T>,
+    ORIGINAL_SPANISH extends NullOr<AmericanOrEuropeanOriginal<T>> = NullOr<AmericanOrEuropeanOriginal<T>>, SPANISH extends NullOr<T> = NullOr<T>, AMERICAN_SPANISH extends NullOr<T> = NullOr<T>, EUROPEAN_SPANISH extends NullOr<T> = NullOr<T>,
+    ITALIAN extends NullOr<T> = NullOr<T>,
+    DUTCH extends NullOr<T> = NullOr<T>,
+    ORIGINAL_PORTUGUESE extends NullOr<AmericanOrEuropeanOriginal<T>> = NullOr<AmericanOrEuropeanOriginal<T>>, PORTUGUESE extends NullOr<T> = NullOr<T>, AMERICAN_PORTUGUESE extends NullOr<T> = NullOr<T>, EUROPEAN_PORTUGUESE extends NullOr<T> = NullOr<T>,
+    RUSSIAN extends NullOr<T> = NullOr<T>,
+    JAPANESE extends NullOr<T> = NullOr<T>,
+    ORIGINAL_CHINESE extends NullOr<ChineseOriginal<T>> = NullOr<ChineseOriginal<T>>, CHINESE extends NullOr<T> = NullOr<T>, TRADITIONAL_CHINESE extends NullOr<T> = NullOr<T>, SIMPLIFIED_CHINESE extends NullOr<T> = NullOr<T>,
+    KOREAN extends NullOr<T> = NullOr<T>,
+    HEBREW extends NullOr<T> = NullOr<T>,
+    POLISH extends NullOr<T> = NullOr<T>,
+    UKRAINIAN extends NullOr<T> = NullOr<T>,
+    GREEK extends NullOr<T> = NullOr<T>, >
     extends ClassWithOnlyProjectLanguages<T, GERMAN, AMERICAN_SPANISH, EUROPEAN_SPANISH, ITALIAN, DUTCH, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, RUSSIAN, JAPANESE, TRADITIONAL_CHINESE, SIMPLIFIED_CHINESE, KOREAN, HEBREW, POLISH, UKRAINIAN, GREEK> {
 
     //region -------------------- English properties --------------------

@@ -1,13 +1,14 @@
-import {lazy} from 'react'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+import {lazy}                                                                    from 'react'
 
-import type {ClassWithValue}                                                                                                                                                        from './ClassWithValue'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Images.types'
-import type {ImageProperties}                                                                                                                                                       from '../../tools/images/properties/ImageProperties'
-import type {ReactElement}                                                                                                                                                          from '../../../util/react/ReactProperties'
-import type {StaticReference}                                                                                                                                                       from '../../../util/enum/Enum.types'
+import type {ClassWithValue}  from './ClassWithValue'
+import type {ImageProperties} from '../../tools/images/properties/ImageProperties'
+import type {Names, Ordinals} from './Images.types'
+import type {Nullable}        from '../../../util/types'
+import type {ReactElement}    from '../../../util/react/ReactProperties'
 
 import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
-import {Enum}                from '../../../util/enum/Enum'
 
 //region -------------------- dynamic imports --------------------
 
@@ -31,14 +32,14 @@ export abstract class Images
 
     public static readonly YES = new class Images_Yes extends Images {
 
-        public override renderComponent(properties: _ImageProperties,): ReactElement {
+        public override renderComponent(properties: _ImageProperties,) {
             return <Image {...properties}/>
         }
 
     }(true,)
     public static readonly NO =  new class Images_No extends Images {
 
-        public override renderComponent(): ReactElement {
+        public override renderComponent() {
             return EMPTY_REACT_ELEMENT
         }
 
@@ -63,7 +64,7 @@ export abstract class Images
 
     //region -------------------- Getter methods --------------------
 
-    public get value() {
+    public get value(): boolean {
         return this.#value
     }
 
@@ -72,38 +73,33 @@ export abstract class Images
 
     public abstract renderComponent(properties: _ImageProperties,): ReactElement
 
+
+    // public static getValueByValue<T, >(value: T,): ImagesByValue<T>
+    public static getValueByValue(value: Nullable<| Images | boolean>,): Images {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.value === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Images> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Images
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByBoolean(value: boolean,) {
-        return this.values.find(enumerable => enumerable.value === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Images = Images, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Images
-    public static getValue(value: PossibleValue,): | Images | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Images>,): Images {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Images> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

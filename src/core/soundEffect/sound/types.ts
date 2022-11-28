@@ -1,3 +1,4 @@
+import type {NullOr}              from '../../../util/types'
 import type {PossibleEnglishName} from '../SoundEffects.types'
 
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
@@ -162,7 +163,7 @@ type SoundEffectSoundNamesForHorror = readonly [
 //endregion -------------------- Name for ... --------------------
 //region -------------------- Value for map --------------------
 
-type PossibleEditorValue<NAMES extends readonly string[], > = | NAMES[number] | null
+type PossibleEditorValue<NAMES extends readonly string[], > = NullOr<NAMES[number]>
 type PossibleValueOnLinkOrSMB2Value<NAMES extends readonly string[], > = | readonly [] | readonly [NAMES[number],] | readonly [NAMES[number], NAMES[number],]
 
 interface SoundEffectSound<SOUNDS extends readonly string[], NAME_IN_EDITOR extends PossibleEditorValue<SOUNDS>, LINK_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, SMB2_NAMES extends PossibleValueOnLinkOrSMB2Value<SOUNDS>, > {

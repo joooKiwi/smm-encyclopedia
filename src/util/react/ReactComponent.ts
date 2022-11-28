@@ -1,3 +1,4 @@
+import type {NullOr}     from '../types'
 import type {ReactNode}  from 'react'
 import type {ReactState} from './ReactState'
 
@@ -29,4 +30,4 @@ export interface ReactComponentWithState<S extends ReactState, > {
 
 }
 
-export type PossibleState<K extends keyof S, S extends ReactState, > = | Pick<S, K> | S | null
+export type PossibleState<K extends keyof S, S extends ReactState, > = NullOr<| Pick<S, K> | S>

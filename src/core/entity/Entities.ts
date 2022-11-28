@@ -1,19 +1,22 @@
-import type {ClassWithEditorVoiceSound}                                                                                                                                                                  from '../editorVoice/ClassWithEditorVoiceSound'
-import type {ClassWithEnglishName}                                                                                                                                                                       from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                         from '../ClassWithReference'
-import type {ClearConditionImage}                                                                                                                                                                        from './images/clearCondition/ClearConditionImage'
-import type {EditorImage}                                                                                                                                                                                from './images/editor/EditorImage'
-import type {EditorVoiceSound}                                                                                                                                                                           from '../editorVoice/EditorVoiceSound'
-import type {Entity}                                                                                                                                                                                     from './Entity'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleEnglishName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './Entities.types'
-import type {InGameImage}                                                                                                                                                                                from './images/inGame/InGameImage'
-import type {PossibleImageReceivedOnFactory as PossibleClearConditionImage}                                                                                                                              from './images/clearCondition/ClearConditionImage.types'
-import type {PossibleImageReceivedOnFactory as PossibleEditorImage, SimpleImageName_GroundOrSlope}                                                                                                       from './images/editor/EditorImage.types'
-import type {PossibleImageReceivedOnFactory as PossibleUnusedImage}                                                                                                                                      from './images/unused/UnusedImage.types'
-import type {PossibleImageReceivedOnFactory as PossibleInGameImage}                                                                                                                                      from './images/inGame/InGameImage.types'
-import type {StaticReference}                                                                                                                                                                            from '../../util/enum/Enum.types'
-import type {UniqueImage}                                                                                                                                                                                from './images/unique/UniqueImage'
-import type {UnusedImages}                                                                                                                                                                               from './images/unused/UnusedImage'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
+
+import type {ClassWithEditorVoiceSound}                                                            from '../editorVoice/ClassWithEditorVoiceSound'
+import type {ClassWithEnglishName}                                                                 from '../ClassWithEnglishName'
+import type {ClassWithReference}                                                                   from '../ClassWithReference'
+import type {ClearConditionImage}                                                                  from './images/clearCondition/ClearConditionImage'
+import type {EditorImage}                                                                          from './images/editor/EditorImage'
+import type {EditorVoiceSound}                                                                     from '../editorVoice/EditorVoiceSound'
+import type {Entity}                                                                               from './Entity'
+import type {InGameImage}                                                                          from './images/inGame/InGameImage'
+import type {Names, Ordinals, PossibleEnglishName}                                                 from './Entities.types'
+import type {Nullable}                                                                             from '../../util/types'
+import type {PossibleImageReceivedOnFactory as PossibleClearConditionImage}                        from './images/clearCondition/ClearConditionImage.types'
+import type {PossibleImageReceivedOnFactory as PossibleEditorImage, SimpleImageName_GroundOrSlope} from './images/editor/EditorImage.types'
+import type {PossibleImageReceivedOnFactory as PossibleUnusedImage}                                from './images/unused/UnusedImage.types'
+import type {PossibleImageReceivedOnFactory as PossibleInGameImage}                                from './images/inGame/InGameImage.types'
+import type {UniqueImage}                                                                          from './images/unique/UniqueImage'
+import type {UnusedImages}                                                                         from './images/unused/UnusedImage'
 
 import {ClearConditionImageBuilder}     from './images/clearCondition/ClearConditionImage.builder'
 import {ClearConditionImageFactory}     from './images/clearCondition/ClearConditionImage.factory'
@@ -21,10 +24,10 @@ import {EditorImageBuilder}             from './images/editor/EditorImage.builde
 import {EditorImageFactory}             from './images/editor/EditorImage.factory'
 import {EditorVoices}                   from '../editorVoice/EditorVoices'
 import {EmptyEditorVoiceSound}          from '../editorVoice/EmptyEditorVoiceSound'
-import {Enum}                           from '../../util/enum/Enum'
 import {GameStyles}                     from '../gameStyle/GameStyles'
 import {InGameImage_SMM1Builder}        from './images/inGame/InGameImage_SMM1.builder'
 import {InGameImageFactory}             from './images/inGame/InGameImage.factory'
+import {getValueByEnglishName}          from '../../util/utilitiesMethods'
 import {Import}                         from '../../util/DynamicImporter'
 import {StringContainer}                from '../../util/StringContainer'
 import {Themes}                         from '../theme/Themes'
@@ -1065,7 +1068,7 @@ export class Entities
         }
 
         protected override get _createEditorImage() {
-            return new EditorImageBuilder('Nokonoko',1,).setAllGameStyles()
+            return new EditorImageBuilder('Nokonoko', 1,).setAllGameStyles()
         }
 
         protected override get _createClearConditionImage(): PossibleClearConditionImage {
@@ -1076,7 +1079,7 @@ export class Entities
     public static readonly RED_KOOPA_TROOPA =                              new class Entities_RedKoopaTroopa extends Entities {
 
         protected override get _createEditorImage() {
-            return new EditorImageBuilder('Nokonoko',2,).setAllGameStyles()
+            return new EditorImageBuilder('Nokonoko', 2,).setAllGameStyles()
         }
 
     }('Red Koopa Troopa',)
@@ -2883,7 +2886,9 @@ export class Entities
     //endregion -------------------- editor image --------------------
 
     public get editorVoiceSound(): EditorVoiceSound {
-        return this.#editorVoiceSound ??= EditorVoices.getValue(this)?.editorVoiceSound ?? EmptyEditorVoiceSound.get
+        return this.#editorVoiceSound ??= EditorVoices.hasReference(this)
+            ? EditorVoices.getValueByEntity(this).editorVoiceSound
+            : EmptyEditorVoiceSound.get
     }
 
     //region -------------------- clear condition image --------------------
@@ -2968,41 +2973,31 @@ export class Entities
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(limit => limit.englishName)
+        return this.values.map(it => it.englishName).toArray()
+    }
+
+    public static getValueByName(value: Nullable<| Entities | string>,): Entities {
+        return getValueByEnglishName(value, this,)
+    }
+
+    public static hasValueByName(value: Nullable<| Entities | string>,) {
+        return value != null && (value instanceof Entities || this.everyEnglishNames.includes(value as never))
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Entities> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Entities
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Entities = Entities, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Entities
-    public static getValue(value: PossibleValue,): | Entities | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Entities>,): Entities {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Entities> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

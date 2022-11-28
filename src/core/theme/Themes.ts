@@ -1,21 +1,24 @@
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                   from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                                                                                                                     from '../ClassWithReference'
-import type {CourseAndWorldTheme}                                                                                                                                                                                                                                                                                                                                                                                                                    from './CourseAndWorldTheme'
-import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, EnumArray, EnumArray_OnlyCourseTheme, EnumArray_OnlyCourseTheme_SMM1, EnumArray_OnlyWorldTheme, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, LargeImagePath, Names, NightGameName, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, PossibleNonNullableValue, PossibleStringValue, PossibleValue, SmallImagePath} from './Themes.types'
-import type {CourseTheme}                                                                                                                                                                                                                                                                                                                                                                                                                            from './CourseTheme'
-import type {PossibleOtherEntities}                                                                                                                                                                                                                                                                                                                                                                                                                  from '../entity/Entity'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                                                                                                                                                                                                from '../PropertyGetter'
-import type {StaticReference}                                                                                                                                                                                                                                                                                                                                                                                                                        from '../../util/enum/Enum.types'
-import type {ThemeProperty}                                                                                                                                                                                                                                                                                                                                                                                                                          from '../entity/properties/theme/ThemeProperty'
-import type {ThemeReferences}                                                                                                                                                                                                                                                                                                                                                                                                                        from '../entity/properties/theme/ThemeReferences'
-import type {WorldTheme}                                                                                                                                                                                                                                                                                                                                                                                                                             from './WorldTheme'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {BASE_PATH}       from '../../variables'
-import {Enum}            from '../../util/enum/Enum'
-import {EmptyEntity}     from '../entity/EmptyEntity'
-import {Import}          from '../../util/DynamicImporter'
-import {StringContainer} from '../../util/StringContainer'
-import {ThemeComponent}  from './Theme.component'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                   from '../ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                                                                                                     from '../ClassWithReference'
+import type {CourseAndWorldTheme}                                                                                                                                                                                                                                    from './CourseAndWorldTheme'
+import type {CourseTheme}                                                                                                                                                                                                                                            from './CourseTheme'
+import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, SmallImagePath} from './Themes.types'
+import type {Nullable, NullableString, NullOr, NullOrBoolean}                                                                                                                                                                                                        from '../../util/types'
+import type {PossibleOtherEntities}                                                                                                                                                                                                                                  from '../entity/Entity'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                from '../PropertyGetter'
+import type {ThemeProperty}                                                                                                                                                                                                                                          from '../entity/properties/theme/ThemeProperty'
+import type {ThemeReferences}                                                                                                                                                                                                                                        from '../entity/properties/theme/ThemeReferences'
+import type {WorldTheme}                                                                                                                                                                                                                                             from './WorldTheme'
+
+import {BASE_PATH}             from '../../variables'
+import {EmptyEntity}           from '../entity/EmptyEntity'
+import {getValueByEnglishName} from '../../util/utilitiesMethods'
+import {Import}                from '../../util/DynamicImporter'
+import {StringContainer}       from '../../util/StringContainer'
+import {ThemeComponent}        from './Theme.component'
 
 /**
  * @recursiveReferenceVia {@link ThemeBuilder} → {@link ThemeLoader}
@@ -33,7 +36,7 @@ export class Themes
 
     public static readonly GROUND =      new class Themes_Ground extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInGroundTheme
         }
 
@@ -44,7 +47,7 @@ export class Themes
     }('Ground', 'plain',)
     public static readonly UNDERGROUND = new class Themes_Underground extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInUndergroundTheme
         }
 
@@ -55,7 +58,7 @@ export class Themes
     }('Underground', 'underground',)
     public static readonly UNDERWATER =  new class Themes_Underwater extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInUnderwaterTheme
         }
 
@@ -66,7 +69,7 @@ export class Themes
     }('Underwater', 'water',)
     public static readonly DESERT =      new class Themes_Desert extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInDesertTheme
         }
 
@@ -77,7 +80,7 @@ export class Themes
     }('Desert', 'desert',)
     public static readonly SNOW =        new class Themes_Snow extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInSnowTheme
         }
 
@@ -88,7 +91,7 @@ export class Themes
     }('Snow', 'snow',)
     public static readonly SKY =         new class Themes_Sky extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInSkyTheme
         }
 
@@ -99,7 +102,7 @@ export class Themes
     }('Sky', 'athletic',)
     public static readonly FOREST =      new class Themes_Forest extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInForestTheme
         }
 
@@ -110,7 +113,7 @@ export class Themes
     }('Forest', 'woods',)
     public static readonly GHOST_HOUSE = new class Themes_GhostHouse extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInGhostHouseTheme
         }
 
@@ -121,7 +124,7 @@ export class Themes
     }('Ghost House', 'hauntedhouse',)
     public static readonly AIRSHIP =     new class Themes_Airship extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInAirshipTheme
         }
 
@@ -132,7 +135,7 @@ export class Themes
     }('Airship', 'airship',)
     public static readonly CASTLE =      new class Themes_Castle extends Themes {
 
-        protected override _get(property: ThemeProperty,): | boolean | null {
+        protected override _get(property: ThemeProperty,) {
             return property.isInCastleTheme
         }
 
@@ -166,16 +169,16 @@ export class Themes
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>
-    static #COURSES: EnumArray_OnlyCourseTheme
-    static #COURSES_SMM1: EnumArray_OnlyCourseTheme_SMM1
-    static #WORLDS: EnumArray_OnlyWorldTheme
+    static #COURSES: OnlyCourseThemes
+    static #COURSES_SMM1: OnlyCourseThemesInSMM1
+    static #WORLDS: OnlyWorldThemes
 
     #reference?: CourseAndWorldTheme
     readonly #englishName: StringContainer<PossibleEnglishName>
     readonly #gameName: PossibleGameName
     #smallImagePath?: SmallImagePath
     #largeImagePath?: LargeImagePath
-    #endlessMarioImagePath?: | EndlessMarioImagePath | null
+    #endlessMarioImagePath?: NullOr<EndlessMarioImagePath>
 
     //endregion -------------------- Fields --------------------
 
@@ -236,14 +239,14 @@ export class Themes
         return this.#largeImagePath ??= `/${BASE_PATH}/theme/Lyt_E_Scene_${this.gameName}_00.tiff`
     }
 
-    public get endlessMarioImagePath(): | EndlessMarioImagePath | null {
+    public get endlessMarioImagePath(): NullOr<EndlessMarioImagePath> {
         return this.#endlessMarioImagePath ??= `/${BASE_PATH}/theme/WM_GameSkin_${this.gameName as PossibleGameName_CourseTheme}_00^l.tiff`
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    protected _get(property: ThemeProperty,): | boolean | null {
+    protected _get(property: ThemeProperty,): NullOrBoolean {
         return false
     }
 
@@ -256,13 +259,13 @@ export class Themes
     }
 
     public getGameName(name: null, isNightTheme: any,): ''
-    public getGameName<V extends string = string, >(name: | V | null, isNightTheme: false,): | '' | DayGameName<V>
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: false,): | '' | DayGameName<V>
     public getGameName<V extends string = string, >(name: V, isNightTheme: false,): | '' | DayGameName<V>
-    public getGameName<V extends string = string, >(name: | V | null, isNightTheme: true,): | '' | NightGameName<V>
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: true,): | '' | NightGameName<V>
     public getGameName<V extends string = string, >(name: V, isNightTheme: true,): | '' | NightGameName<V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: | V | null, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
+    public getGameName<B extends boolean = boolean, V extends string = string, >(name: Nullable<V>, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
     public getGameName<B extends boolean = boolean, V extends string = string, >(name: V, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
-    public getGameName(name: | string | null, isNightTheme: boolean,) {
+    public getGameName(name: NullableString, isNightTheme: boolean,) {
         if (name == null)
             return ''
         const text = this.gameName
@@ -277,10 +280,10 @@ export class Themes
 
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(limit => limit.englishName)
+        return this.values.map(it => it.englishName).toArray()
     }
 
-    public static get courseThemes(): EnumArray_OnlyCourseTheme {
+    public static get courseThemes(): OnlyCourseThemes {
         return this.#COURSES ??= [
             this.GROUND,
             this.UNDERGROUND,
@@ -295,7 +298,7 @@ export class Themes
         ]
     }
 
-    public static get courseThemes_smm1(): EnumArray_OnlyCourseTheme_SMM1 {
+    public static get courseThemes_smm1(): OnlyCourseThemesInSMM1 {
         return this.#COURSES_SMM1 ??= [
             this.GROUND,
             this.UNDERGROUND,
@@ -306,7 +309,7 @@ export class Themes
         ]
     }
 
-    public static get worldThemes(): EnumArray_OnlyWorldTheme {
+    public static get worldThemes(): OnlyWorldThemes {
         return this.#WORLDS ??= [
             this.GROUND,
             this.UNDERGROUND,
@@ -319,38 +322,25 @@ export class Themes
         ]
     }
 
+    // public static getValueByName<T extends string, >(value: Nullable<| Themes | T>,): ThemesByName<T>
+    public static getValueByName(value: Nullable<| Themes | string>,): Themes {
+        return getValueByEnglishName(value, this,)
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<Themes> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return Themes
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.englishName === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends Themes = Themes, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): Themes
-    public static getValue(value: PossibleValue,): | Themes | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<Themes>,): Themes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<Themes> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

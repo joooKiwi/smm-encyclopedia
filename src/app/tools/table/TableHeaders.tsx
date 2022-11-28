@@ -5,12 +5,11 @@ import type {ReactComponent}                                     from '../../../
 import type {ReactElement}                                       from '../../../util/react/ReactProperties'
 import type {SingleHeaderContent, SingleHeadersContent}          from './SimpleHeader'
 
-import AnyTranslationComponent from '../../../lang/components/AnyTranslationComponent'
-import {EMPTY_ARRAY}           from '../../../util/emptyVariables'
-import {EMPTY_REACT_ELEMENT}   from '../../../util/emptyReactVariables'
-import {HeaderTypes}           from './header/HeaderTypes'
-import Image                   from '../images/Image'
-import Tooltip                 from '../../../bootstrap/tooltip/Tooltip'
+import {EMPTY_ARRAY}         from '../../../util/emptyVariables'
+import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {HeaderTypes}         from './header/HeaderTypes'
+import Image                 from '../images/Image'
+import Tooltip               from '../../../bootstrap/tooltip/Tooltip'
 
 /**
  * @reactComponent
@@ -73,9 +72,7 @@ export default class TableHeaders
         if (tooltip == null)
             return EMPTY_REACT_ELEMENT
 
-        return <AnyTranslationComponent namespace={tooltip.namespace}>{translation =>
-            <Tooltip option={({title: translation(tooltip.translationKey, tooltip.replace,) as string, placement: type.placement,})}
-                     elementId={`${this.getHeaderKey(header)}-${type.simpleName}`}/>}</AnyTranslationComponent>
+        return <Tooltip option={({title: tooltip, placement: type.placement,})} elementId={`${this.getHeaderKey(header)}-${type.simpleName}`}/>
     }
 
     public static createSingleHeaderContent(type: HeaderTypes, header: SingleHeaderContent, height: number, width: number,) {

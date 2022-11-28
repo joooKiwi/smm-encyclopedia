@@ -1,8 +1,8 @@
 import type {PossibleContent}          from './AbstractNavigationButton.types'
 import type {PossibleTooltipPlacement} from '../../bootstrap/Bootstrap.types'
-import type {TranslationMethod}        from '../../lang/components/TranslationProperty'
 
 import {AbstractNavigationButton} from './AbstractNavigationButton'
+import {contentTranslation}       from '../../lang/components/translationMethods'
 
 /**
  * @reactComponent
@@ -28,8 +28,8 @@ export default class ParameterButton
         return 'bi-gear-fill'
     }
 
-    protected override _getContent(translation: TranslationMethod<'content'>,): PossibleContent {
-        return [translation('Options'), 'lg',]
+    protected override _getContent(): PossibleContent {
+        return [contentTranslation('Options'), 'lg',]
     }
 
 }

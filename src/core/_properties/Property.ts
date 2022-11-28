@@ -5,7 +5,7 @@ import type {BooleanPropertyWithAmount}                                         
 import type {BooleanPropertyWithAmountAndComment}                                                                                              from './PropertyWithAmountAndComment'
 import type {BooleanPropertyWithComment, NumberPropertyWithComment, StringPropertyWithComment}                                                 from './PropertyWithComment'
 import type {BooleanPropertyWithEverything, NotApplicableProperty, NullProperty, NumberPropertyWithEverything}                                 from './PropertyWithEverything'
-import type {PossibleComment}                                                                                                                  from './ClassWithComment'
+import type {NullOr, NullOrBoolean, NullOrNumber, NullOrString}                                                                                from '../../util/types'
 import type {PropertyWithNoValues}                                                                                                             from './PropertyWithNoValues'
 
 /**
@@ -18,21 +18,21 @@ export interface Property<T>
 
 }
 
-export type BooleanProperty<B extends PossibleBoolean = PossibleBoolean, > = Property<B>
-export type NumberProperty<N extends PossibleNumber = PossibleNumber, > = Property<N>
-export type StringProperty<S extends PossibleString = PossibleString, > = Property<S>
+export type BooleanProperty<B extends NullOrBoolean = NullOrBoolean, > = Property<B>
+export type NumberProperty<N extends NullOrNumber = NullOrNumber, > = Property<N>
+export type StringProperty<S extends NullOrString = NullOrString, > = Property<S>
 
 //region -------------------- Inferred property by a value --------------------
 
 //region -------------------- Inferred boolean property by a value --------------------
 
-export type PossibleBooleanValuesByInferredProperty = | boolean | string | number | null
+export type PossibleBooleanValuesByInferredProperty = NullOr<| boolean | string | number>
 export type InferredAmountByBoolean<T extends boolean = boolean, > = T extends true ? 1 : T extends false ? 0 : (| 1 | 0)
 export type InferredAmountByStringOnBoolean<T extends string = string, > = T extends EmptyString ? 0 : T extends Exclude<T, EmptyString> ? 1 : (| 0 | 1)
 
-type _UnknownBooleanProperty<COMMENT extends PossibleComment, > = BooleanPropertyWithEverything<null, true, null, COMMENT>
+type _UnknownBooleanProperty<COMMENT extends NullOrString, > = BooleanPropertyWithEverything<null, true, null, COMMENT>
 
-export type PossibleInferredBooleanProperty<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, > =
+export type PossibleInferredBooleanProperty<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, COMMENT extends NullOrString = NullOrString, > =
     CAN_BE_NOT_APPLICABLE extends true
         ? DOES_HAVE_AN_AMOUNT extends true
             ? HAVE_A_COMMENT extends true ? InferredBooleanPropertyWithEverything<T, COMMENT> :                    InferredBooleanPropertyThatCanBeNotApplicableWithAmount<T>
@@ -83,14 +83,14 @@ export type InferredBooleanPropertyThatCanBeNotApplicableWithAmount<T extends Po
 //endregion -------------------- Inferred boolean property (with amount) --------------------
 //region -------------------- Inferred boolean property (with comment) --------------------
 
-export type InferredBooleanPropertyWithComment<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
+export type InferredBooleanPropertyWithComment<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends NullOrString = NullOrString, > =
       T extends null    ? NullProperty
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
     : T extends boolean ? BooleanPropertyWithComment<T, COMMENT>
     : T extends string  ? BooleanPropertyWithComment<true, T>
     : T extends number  ? BooleanPropertyWithAmountAndComment<true, T, COMMENT>
     : never
-export type InferredBooleanPropertyThatCanBeNotApplicableWithComment<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
+export type InferredBooleanPropertyThatCanBeNotApplicableWithComment<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends NullOrString = NullOrString, > =
       T extends null    ? NotApplicableProperty
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
     : T extends boolean ? BooleanPropertyThatCanBeUnknownWithComment<T, false, COMMENT>
@@ -101,7 +101,7 @@ export type InferredBooleanPropertyThatCanBeNotApplicableWithComment<T extends P
 //endregion -------------------- Inferred boolean property (with comment) --------------------
 //region -------------------- Inferred boolean property (with amount & comment) --------------------
 
-export type InferredBooleanPropertyWithAmountAndComment<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment,> =
+export type InferredBooleanPropertyWithAmountAndComment<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends NullOrString = NullOrString,> =
       T extends null    ? NullProperty
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
     : T extends boolean ? T extends boolean
@@ -110,7 +110,7 @@ export type InferredBooleanPropertyWithAmountAndComment<T extends PossibleBoolea
     : T extends string  ? BooleanPropertyWithAmountAndComment<true, InferredAmountByStringOnBoolean<T>, T>
     : T extends number  ? BooleanPropertyWithAmountAndComment<true, T, COMMENT>
     : never
-export type InferredBooleanPropertyWithEverything<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment,> =
+export type InferredBooleanPropertyWithEverything<T extends PossibleBooleanValuesByInferredProperty = PossibleBooleanValuesByInferredProperty, COMMENT extends NullOrString = NullOrString,> =
       T extends null    ? NotApplicableProperty
     : T extends Unknown ? _UnknownBooleanProperty<COMMENT>
     : T extends boolean ? T extends boolean
@@ -125,11 +125,11 @@ export type InferredBooleanPropertyWithEverything<T extends PossibleBooleanValue
 //endregion -------------------- Inferred boolean property by a value --------------------
 //region -------------------- Inferred number property by a value --------------------
 
-export type PossibleNumberValuesByInferredProperty = | string | number | null
+export type PossibleNumberValuesByInferredProperty = NullOr<| string | number>
 
-type _UnknownNumberProperty<COMMENT extends PossibleComment, > = NumberPropertyWithEverything<null, true, null, COMMENT>
+type _UnknownNumberProperty<COMMENT extends NullOrString, > = NumberPropertyWithEverything<null, true, null, COMMENT>
 
-export type PossibleInferredNumberProperty<T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, > =
+export type PossibleInferredNumberProperty<T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, COMMENT extends NullOrString = NullOrString, > =
     CAN_BE_NOT_APPLICABLE extends true
         ? HAVE_A_COMMENT extends true ? InferredNumberPropertyThatCanBeNotApplicableWithComment<T, COMMENT> : InferredNumberPropertyThatCanBeNotApplicable<T>
         : HAVE_A_COMMENT extends true ? InferredNumberPropertyWithComment<T, COMMENT> :                       InferredNumberProperty<T>
@@ -152,13 +152,13 @@ export type InferredNumberPropertyThatCanBeNotApplicable<T extends PossibleNumbe
 //endregion -------------------- Basic inferred number property --------------------
 //region -------------------- Inferred number property (with comment) --------------------
 
-export type InferredNumberPropertyWithComment<T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
+export type InferredNumberPropertyWithComment<T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, COMMENT extends NullOrString = NullOrString, > =
     T extends null      ? NullProperty
     : T extends Unknown ? _UnknownNumberProperty<COMMENT>
     : T extends number  ? NumberPropertyWithComment<T, COMMENT>
     : T extends string  ? NumberPropertyWithComment<null, T>
     : never
-export type InferredNumberPropertyThatCanBeNotApplicableWithComment<T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
+export type InferredNumberPropertyThatCanBeNotApplicableWithComment<T extends PossibleNumberValuesByInferredProperty = PossibleNumberValuesByInferredProperty, COMMENT extends NullOrString = NullOrString, > =
     T extends null      ? NotApplicableProperty
     : T extends Unknown ? _UnknownNumberProperty<COMMENT>
     : T extends number  ? NumberPropertyThatCanBeUnknownWithComment<T, false, COMMENT>
@@ -170,23 +170,21 @@ export type InferredNumberPropertyThatCanBeNotApplicableWithComment<T extends Po
 //endregion -------------------- Inferred number property by a value --------------------
 //region -------------------- Inferred string property by a value --------------------
 
-export type PossibleStringValuesByInferredProperty = | string | null
+type _UnknownStringProperty<COMMENT extends NullOrString, > = NumberPropertyWithEverything<null, true, null, COMMENT>
 
-type _UnknownStringProperty<COMMENT extends PossibleComment, > = NumberPropertyWithEverything<null, true, null, COMMENT>
-
-export type PossibleInferredStringProperty<T extends PossibleStringValuesByInferredProperty = PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, COMMENT extends PossibleComment = PossibleComment, > =
+export type PossibleInferredStringProperty<T extends NullOrString = NullOrString, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, COMMENT extends NullOrString = NullOrString, > =
     CAN_BE_NOT_APPLICABLE extends true
         ? HAVE_A_COMMENT extends true ? InferredStringPropertyThatCanBeNotApplicableWithComment<T, COMMENT> : InferredStringPropertyThatCanBeNotApplicable<T>
         : HAVE_A_COMMENT extends true ? InferredStringPropertyWithComment<T, COMMENT> :                       InferredStringProperty<T>
 
 //region -------------------- Basic inferred string property --------------------
 
-export type InferredStringProperty<T extends PossibleStringValuesByInferredProperty = PossibleStringValuesByInferredProperty, > =
+export type InferredStringProperty<T extends NullOrString = NullOrString, > =
       T extends null    ? NullProperty
     : T extends Unknown ? _UnknownStringProperty<null>
     : T extends string  ? StringProperty<T>
     : never
-export type InferredStringPropertyThatCanBeNotApplicable<T extends PossibleStringValuesByInferredProperty = PossibleStringValuesByInferredProperty, > =
+export type InferredStringPropertyThatCanBeNotApplicable<T extends NullOrString = NullOrString, > =
       T extends null    ? NotApplicableProperty
     : T extends Unknown ? _UnknownStringProperty<null>
     : T extends string  ? StringPropertyThatCanBeUnknown<T, false>
@@ -195,12 +193,12 @@ export type InferredStringPropertyThatCanBeNotApplicable<T extends PossibleStrin
 //endregion -------------------- Basic inferred string property --------------------
 //region -------------------- Inferred string property (with comment) --------------------
 
-export type InferredStringPropertyWithComment<T extends PossibleStringValuesByInferredProperty = PossibleStringValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
+export type InferredStringPropertyWithComment<T extends NullOrString = NullOrString, COMMENT extends NullOrString = NullOrString, > =
       T extends null    ? NullProperty
     : T extends Unknown ? _UnknownStringProperty<COMMENT>
     : T extends string  ? StringPropertyWithComment<T, COMMENT>
     : never
-export type InferredStringPropertyThatCanBeNotApplicableWithComment<T extends PossibleStringValuesByInferredProperty = PossibleStringValuesByInferredProperty, COMMENT extends PossibleComment = PossibleComment, > =
+export type InferredStringPropertyThatCanBeNotApplicableWithComment<T extends NullOrString = NullOrString, COMMENT extends NullOrString = NullOrString, > =
       T extends null    ? NotApplicableProperty
     : T extends Unknown ? _UnknownStringProperty<COMMENT>
     : T extends string  ? StringPropertyThatCanBeUnknownWithComment<T, false, COMMENT>
@@ -225,8 +223,5 @@ export type EmptyString = ''
 export type Unknown = '?'
 export type NotApplicable = 'N/A'
 export type NotANumber = typeof Number['NaN']
-export type PossibleBoolean<B extends boolean = boolean, > = | B | null
-export type PossibleNumber<N extends number = number, > = | N | null
-export type PossibleString<S extends string = string, > = | S | null
 
 //endregion -------------------- Possible values for a property --------------------

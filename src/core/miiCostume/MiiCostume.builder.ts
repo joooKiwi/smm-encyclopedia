@@ -2,6 +2,7 @@ import type {Builder}                    from '../../util/builder/Builder'
 import type {MiiCostume}                 from './MiiCostume'
 import type {MiiCostumeTemplate}         from './MiiCostume.template'
 import type {Name}                       from '../../lang/name/Name'
+import type {NullOr}                     from '../../util/types'
 import type {ObjectHolder}               from '../../util/holder/ObjectHolder'
 import type {OfficialNotificationHolder} from '../officialNotification/holder/OfficialNotificationHolder'
 
@@ -33,14 +34,14 @@ export class MiiCostumeBuilder
         return new DelayedObjectHolderContainer(() => new OfficialNotificationHolderBuilder(officialNotificationName).build())
     }
 
-    static #createVersion({version,}: MiiCostumeTemplate,): ObjectHolder<Versions | null> {
+    static #createVersion({version,}: MiiCostumeTemplate,): ObjectHolder<NullOr<Versions>> {
         return version == null
             ? ObjectHolders.NULL
-            : new DelayedObjectHolderContainer(() => Versions.getValue(version))
+            : new DelayedObjectHolderContainer(() => Versions.getValueByName(version))
     }
 
     static #createCategory({category,}: MiiCostumeTemplate,): ObjectHolder<MiiCostumeCategory> {
-        return new DelayedObjectHolderContainer(() => MiiCostumeCategories.getValue(category).reference)
+        return new DelayedObjectHolderContainer(() => MiiCostumeCategories.getValueByName(category).reference)
     }
 
     //endregion -------------------- Build helper methods --------------------

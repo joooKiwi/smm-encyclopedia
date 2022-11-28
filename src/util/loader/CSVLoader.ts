@@ -719,7 +719,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     protected _getConverterBasedOnHeader(header: SimpleHeader<H>,): ConversionCallbackToConverter {
         const headerContainer = this.headerContainerMap.get(header)
         if (headerContainer == null)
-            return value => PredefinedConverter.getValue(this.defaultConversion).newConvertor(value, null,)
+            return value => PredefinedConverter.getValueByName(this.defaultConversion).newConvertor(value, null,)
         if (headerContainer.amountOfValidator === 1)
             return this._createSingleConvertor(headerContainer)
         return this._createMixedConvertor(headerContainer)

@@ -1,9 +1,10 @@
+import type {NullOr, NullOrNumber}  from '../../../util/types'
 import type {OfficialNotifications} from '../OfficialNotifications'
 
 export interface OfficialNotificationHolder {
 
-    get officialNotification(): | OfficialNotifications | null
+    get officialNotification(): NullOr<OfficialNotifications>
 
-    get amount(): | number | null
+    get amount(): NullOrNumber
 
 }

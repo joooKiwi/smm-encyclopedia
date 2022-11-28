@@ -1,4 +1,5 @@
 import type {Builder}                           from '../../../util/builder/Builder'
+import type {NullOr}                            from '../../../util/types'
 import type {OfficialNotificationHolder}        from './OfficialNotificationHolder'
 import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
 
@@ -20,7 +21,7 @@ export class OfficialNotificationHolderBuilder
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: | PossibleEnglishNameWithOnlyAmount | null,) {
+    public constructor(name: NullOr<PossibleEnglishNameWithOnlyAmount>,) {
         this.#name = name
     }
 
@@ -38,7 +39,7 @@ export class OfficialNotificationHolderBuilder
         if (name == null)
             return EmptyOfficialNotificationHolder.get
 
-        const officialNotification = OfficialNotifications.getValue(name)
+        const officialNotification = OfficialNotifications.getValueByName(name)
 
         if (OfficialNotificationHolderBuilder.#POSSIBLE_EXCLUDED_CASES.includes(officialNotification))
             return OfficialNotificationHolderProvider.get.get(name, officialNotification,)

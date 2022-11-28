@@ -1,20 +1,21 @@
-import type {AppOptionWithContent, PossibleRenderReactElement}                                                                                                                      from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                                                                                                                                                    from './component/AppOptionWithTable'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './EntityLimitAppOption.types'
-import type {EntityLimits}                                                                                                                                                          from '../../core/entityLimit/EntityLimits'
-import type {ReactElement}                                                                                                                                                          from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                                                                                                                                                   from '../tools/table/SimpleHeader'
-import type {StaticReference}                                                                                                                                                       from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import ContentTranslationComponent     from '../../lang/components/ContentTranslationComponent'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Enum}                          from '../../util/enum/Enum'
-import GameContentTranslationComponent from '../../lang/components/GameContentTranslationComponent'
-import {Games}                         from '../../core/game/Games'
-import NameComponent                   from '../../lang/name/component/Name.component'
-import TextComponent                   from '.././tools/text/TextComponent'
+import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
+import type {EntityLimits}                                     from '../../core/entityLimit/EntityLimits'
+import type {Names, Ordinals}                                  from './EntityLimitAppOption.types'
+import type {NullOr}                                           from '../../util/types'
+import type {ReactElement}                                     from '../../util/react/ReactProperties'
+import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
+
+import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
+import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
+import {Games}                                      from '../../core/game/Games'
+import NameComponent                                from '../../lang/name/component/Name.component'
+import TextComponent                                from '.././tools/text/TextComponent'
 
 export abstract class EntityLimitAppOption
     extends Enum<Ordinals, Names> {
@@ -23,7 +24,7 @@ export abstract class EntityLimitAppOption
 
     public static readonly ACRONYM = new class EntityLimitAppOption_Acronym extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: EntityLimits,) {
             const finalAcronym = alternativeAcronym == null
                 ? acronym == null
                     ? ''
@@ -34,13 +35,13 @@ export abstract class EntityLimitAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'acronym', element: <ContentTranslationComponent translationKey="Acronym(s)"/>,}
+            return {key: 'acronym', element: contentTranslation('Acronym(s)'),}
         }
 
     }()
     public static readonly NAME = new class EntityLimitAppOption_Name extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference,}: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference,}: EntityLimits,) {
             return [
                 <NameComponent id="name" name={reference} popoverOrientation="bottom"/>,
                 <NameComponent id="alternativeName" name={reference.alternativeContainer} popoverOrientation="bottom"/>,
@@ -49,10 +50,10 @@ export abstract class EntityLimitAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'names', element: <ContentTranslationComponent translationKey="Name"/>,
+                key: 'names', element: contentTranslation('Name'),
                 subHeaders: [
                     {key: 'name', element: EMPTY_REACT_ELEMENT,},
-                    {key: 'alternativeName', element: <ContentTranslationComponent translationKey="Alternative name"/>,},
+                    {key: 'alternativeName', element: contentTranslation('Alternative name'),},
                 ],
             }
         }
@@ -60,7 +61,7 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference, englishName, }: EntityLimits,): PossibleRenderReactElement {
+        protected override _createContentOption({reference, englishName,}: EntityLimits,) {
             return [
                 <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
                 <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
@@ -69,7 +70,7 @@ export abstract class EntityLimitAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'limit', element: <ContentTranslationComponent translationKey="Limit"/>, subHeaders: [
+                key: 'limit', element: contentTranslation('Limit'), subHeaders: [
                     {key: 'limit-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
                     {key: 'limit-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
                 ],
@@ -79,12 +80,12 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly TYPE = new class EntityLimitAppOption_Type extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference: {type,},}: EntityLimits,): PossibleRenderReactElement {
-            return <GameContentTranslationComponent>{translation => <TextComponent content={translation(type.englishCommonText)}/>}</GameContentTranslationComponent>
+        protected override _createContentOption({reference: {type,},}: EntityLimits,) {
+            return <TextComponent content={gameContentTranslation(type.englishCommonText)}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'type', element: <ContentTranslationComponent translationKey="Type"/>,}
+            return {key: 'type', element: contentTranslation('Type'),}
         }
 
     }()
@@ -138,7 +139,7 @@ export abstract class EntityLimitAppOption
         return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
     }
 
-    public get renderTableHeader(): | SingleHeaderContent | null {
+    public get renderTableHeader(): NullOr<SingleHeaderContent> {
         return this.__appOptionWithTable.renderTableHeader
     }
 
@@ -147,30 +148,17 @@ export abstract class EntityLimitAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EntityLimitAppOption> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return EntityLimitAppOption
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends EntityLimitAppOption = EntityLimitAppOption, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EntityLimitAppOption
-    public static getValue(value: PossibleValue,): | EntityLimitAppOption | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<EntityLimitAppOption>,): EntityLimitAppOption {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<EntityLimitAppOption> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

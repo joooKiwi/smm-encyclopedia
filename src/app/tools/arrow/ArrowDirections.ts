@@ -1,7 +1,8 @@
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleName, PossibleNonNullableValue, PossibleStringValue, PossibleValue} from './ArrowDirections.types'
-import type {StaticReference}                                                                                                                                                                     from '../../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum} from '../../../util/enum/Enum'
+import type {Names, Ordinals, PossibleName} from './ArrowDirections.types'
+import type {Nullable}                      from '../../../util/types'
 
 /**
  * The arrow direction.<br/>
@@ -43,38 +44,33 @@ export class ArrowDirections
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
+
+    // public static getValueByValue<T,>(value: T,): ArrowDirectionsByValue<T>
+    public static getValueByValue(value: Nullable<| ArrowDirections | string>,): ArrowDirections {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.value === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
+    }
+
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<ArrowDirections> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return ArrowDirections
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    protected static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.value === value)
-            ?? null
-    }
-
-    public static getValue(value: | null | undefined,): null
-    public static getValue<O extends Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(nameOrCharacter: S,): EnumByPossibleString<S>
-    public static getValue<S extends string, >(nameOrCharacter: S,): EnumByString<S>
-    public static getValue<I extends ArrowDirections, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): ArrowDirections
-    public static getValue(value: PossibleValue,): | ArrowDirections | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<ArrowDirections>,): ArrowDirections {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<ArrowDirections> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

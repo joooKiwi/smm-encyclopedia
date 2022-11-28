@@ -2,6 +2,7 @@ import type {Builder}                         from '../../util/builder/Builder'
 import type {CourseTag}                       from './CourseTag'
 import type {CourseTagTemplate, NameTemplate} from './CourseTag.template'
 import type {Name}                            from '../../lang/name/Name'
+import type {NullOr}                          from '../../util/types'
 import type {ObjectHolder}                    from '../../util/holder/ObjectHolder'
 import type {PossibleMakerCentralName}        from './CourseTags.types'
 
@@ -27,7 +28,7 @@ export class CourseTagBuilder
     }
 
 
-    static #getMakerCentralName({makerCentral,}: NameTemplate,): ObjectHolder<| PossibleMakerCentralName | null> {
+    static #getMakerCentralName({makerCentral,}: NameTemplate,): ObjectHolder<NullOr<PossibleMakerCentralName>> {
         return makerCentral == null
             ? ObjectHolders.NULL
             : new DelayedObjectHolderContainer(() => makerCentral)
@@ -38,10 +39,10 @@ export class CourseTagBuilder
      *
      * @param template
      */
-    static #getFirstAppearance({firstAppearance,}: CourseTagTemplate,): ObjectHolder<| Versions | null> {
+    static #getFirstAppearance({firstAppearance,}: CourseTagTemplate,): ObjectHolder<NullOr<Versions>> {
         return firstAppearance == null
             ? ObjectHolders.NULL
-            : new DelayedObjectHolderContainer(() => Versions.getValue(firstAppearance))
+            : new DelayedObjectHolderContainer(() => Versions.getValueByName(firstAppearance))
     }
 
     //endregion -------------------- Build helper methods --------------------

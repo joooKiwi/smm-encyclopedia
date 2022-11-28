@@ -1,4 +1,5 @@
 import type {ExtendedMap}                                                       from '../../../../util/extended/ExtendedMap'
+import type {NullOrBoolean}                                                     from '../../../../util/types'
 import type {PossibleValues, PossibleValuesReceived, SoundEffectOnTurnAfterRun} from './SoundEffectOnTurnAfterRun'
 
 import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
@@ -14,7 +15,7 @@ export class SoundEffectOnTurnAfterRunContainer
 
     //region -------------------- Fields --------------------
 
-    static readonly #EVERY_CONTAINERS: ExtendedMap<PossibleValuesReceived, SoundEffectOnTurnAfterRun> = new ExtendedMapContainer()
+    static readonly #EVERY_CONTAINERS: ExtendedMap<NullOrBoolean, SoundEffectOnTurnAfterRun> = new ExtendedMapContainer()
 
     readonly #property
 

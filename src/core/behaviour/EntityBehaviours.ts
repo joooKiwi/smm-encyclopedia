@@ -1,11 +1,13 @@
-import type {ClassWithAcronym}                                                                                                                                                                                                from '../ClassWithAcronym'
-import type {ClassWithReference}                                                                                                                                                                                              from '../ClassWithReference'
-import type {ClassWithTranslationKey}                                                                                                                                                                                         from '../../lang/ClassWithTranslationKey'
-import type {EnumArray, EnumByName, EnumByNumber, EnumByOrdinal, EnumByPossibleString, EnumByString, Names, Ordinals, PossibleAcronym, PossibleNonNullableValue, PossibleStringValue, PossibleTranslationKeys, PossibleValue} from './EntityBehaviours.types'
-import type {EntityBehaviour}                                                                                                                                                                                                 from './EntityBehaviour'
-import type {StaticReference}                                                                                                                                                                                                 from '../../util/enum/Enum.types'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import {Enum}   from '../../util/enum/Enum'
+import type {ClassWithAcronym}                                          from '../ClassWithAcronym'
+import type {ClassWithReference}                                        from '../ClassWithReference'
+import type {ClassWithTranslationKey}                                   from '../../lang/ClassWithTranslationKey'
+import type {EntityBehaviour}                                           from './EntityBehaviour'
+import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
+import type {Nullable}                                                  from '../../util/types'
+
 import {Import} from '../../util/DynamicImporter'
 
 /**
@@ -84,46 +86,40 @@ export class EntityBehaviours
     //region -------------------- Methods --------------------
 
     public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(limit => limit.acronym)
+        return this.values.map(it => it.acronym).toArray()
     }
 
     public static get everyTranslationKeys(): readonly PossibleTranslationKeys[] {
-        return this.values.map(limit => limit.translationKey)
+        return this.values.map(it => it.translationKey).toArray()
+    }
+
+
+    public static getValueByAcronymOrTranslationKey(value: Nullable<| EntityBehaviours | string>,): EntityBehaviours {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value`)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.acronym === value
+            || it.translationKey === value)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
+        return valueFound
     }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): StaticReference<EntityBehaviours> {
+    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
         return EntityBehaviours
     }
 
-    //region -------------------- Enum value methods --------------------
-
-    public static override _getValueByString(value: string,) {
-        return this.values.find(enumerable => enumerable.acronym === value
-                || enumerable.translationKey === value)
-            ?? null
-    }
-
-    public static getValue(nullValue: | null | undefined,): null
-    public static getValue<O extends Ordinals = Ordinals, >(ordinal: O,): EnumByOrdinal<O>
-    public static getValue<O extends number = number, >(ordinal: O,): EnumByNumber<O>
-    public static getValue<N extends Names = Names, >(name: N,): EnumByName<N>
-    public static getValue<S extends PossibleStringValue = PossibleStringValue, >(name: S,): EnumByPossibleString<S>
-    public static getValue<S extends string = string, >(name: S,): EnumByString<S>
-    public static getValue<I extends EntityBehaviours = EntityBehaviours, >(instance: I,): I
-    public static getValue(value: PossibleNonNullableValue,): EntityBehaviours
-    public static getValue(value: PossibleValue,): | EntityBehaviours | null
-    public static getValue(value: PossibleValue,) {
+    public static getValue(value: PossibleValueByEnumerable<EntityBehaviours>,): EntityBehaviours {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): EnumArray {
+    public static get values(): CollectionHolder<EntityBehaviours> {
         return Enum.getValuesOn(this)
     }
-
-    //endregion -------------------- Enum value methods --------------------
 
     public static [Symbol.iterator]() {
         return this.values[Symbol.iterator]()

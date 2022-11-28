@@ -26,6 +26,9 @@
   height: var(--audio-state-height);
 }
 
+.audio-state-play, .audio-state-pause, .audio-state-stop, .audio-state-exception,{
+  background-image: none;
+}
 .audio-state-play, .audio-state-pause, .audio-state-stop, {
   border-radius: var(--play-pause-stop-border-radius);
   z-index: var(--audio-state-base-z-index);

@@ -1,7 +1,9 @@
+import type {NullOr} from '../../types'
+
 import {GenericStringToAnyConverter} from './GenericStringToAnyConverter'
 
 export class GenericStringToAnyNullableConverter<T, >
-    extends GenericStringToAnyConverter<| T | null> {
+    extends GenericStringToAnyConverter<NullOr<T>> {
 
     //region -------------------- Methods --------------------
 
@@ -11,7 +13,7 @@ export class GenericStringToAnyNullableConverter<T, >
             : super._convertTheValue(validValue)
     }
 
-    public override isValueValid(value: string,): boolean {
+    public override isValueValid(value: string,) {
         return value === '' || super.isValueValid(value)
     }
 

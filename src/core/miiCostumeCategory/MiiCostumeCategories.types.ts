@@ -1,11 +1,5 @@
-import type {BasePath}                                                                                                                                                                                                                                     from '../../variables'
-import type {EnumByName as OriginalEnumByName, EnumByNumber as OriginalEnumByNumber, EnumByOrdinal as OriginalEnumByOrdinal, EnumByPossibleString as OriginalEnumByPossibleString, EnumByString as OriginalEnumByString, SimpleEnum as OriginalSimpleEnum} from '../../util/enum/Enum.types'
-import type {MiiCostumeCategories as RealEnum}                                                                                                                                                                                                             from './MiiCostumeCategories'
-
-
-export type PossibleNonNullableValue = | RealEnum | Ordinals | PossibleStringValue
-export type PossibleStringValue = | Names | PossibleEnglishName | PossibleImageName
-export type PossibleValue = | RealEnum | string | number | null | undefined
+import type {BasePath}             from '../../variables'
+import type {MiiCostumeCategories} from './MiiCostumeCategories'
 
 enum Enum {
 
@@ -16,13 +10,7 @@ enum Enum {
 
 }
 
-//region -------------------- Number types --------------------
-
 export type Ordinals = typeof Enum[Names]
-
-//endregion -------------------- Number types --------------------
-//region -------------------- String types --------------------
-
 export type Names = keyof typeof Enum
 
 //region -------------------- English name --------------------
@@ -38,26 +26,4 @@ export type PossibleImagePath = `/${BasePath}/category/${PossibleImageName}^s.ti
 
 //endregion -------------------- Image name --------------------
 
-//endregion -------------------- String types --------------------
-//region -------------------- Instance types --------------------
-
-export type SimpleEnum<E extends RealEnum = RealEnum, > = OriginalSimpleEnum<Names, E>
-
-export type EnumByOrdinal<O extends Ordinals, E extends RealEnum = RealEnum, > = OriginalEnumByOrdinal<EnumArray<E>, O, E>
-export type EnumByNumber<O extends number, E extends RealEnum = RealEnum, > = OriginalEnumByNumber<EnumArray<E>, O>
-
-export type EnumByName<N extends Names, E extends RealEnum = RealEnum, > = OriginalEnumByName<N, E>
-export type EnumByPossibleString<S extends PossibleStringValue, E extends RealEnum = RealEnum, > = OriginalEnumByPossibleString<S, Names, E>
-export type EnumByString<S extends string, E extends RealEnum = RealEnum, > = OriginalEnumByString<S, PossibleStringValue, Names, E>
-
-//endregion -------------------- Instance types --------------------
-//region -------------------- Array types --------------------
-
-export type EnumArray<T extends RealEnum = RealEnum, > = readonly [
-    SimpleEnum<T>['TOP'],
-    SimpleEnum<T>['HEADGEAR'],
-    SimpleEnum<T>['COSTUME'],
-    SimpleEnum<T>['BOTTOM'],
-]
-
-//endregion -------------------- Array types --------------------
+export type MiiCostumeCategoriesByName<T extends string, > = T extends (| PossibleEnglishName | PossibleImageName) ? MiiCostumeCategories : never

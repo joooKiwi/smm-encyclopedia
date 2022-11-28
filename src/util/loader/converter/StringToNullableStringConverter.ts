@@ -1,9 +1,11 @@
+import type {NullOrString} from '../../types'
+
 import {AbstractEmptyableStringConverter} from './AbstractEmptyableStringConverter'
 import {ConverterPatterns}                from './ConverterPatterns'
 import {ConverterUtil}                    from './ConverterUtil'
 
 export class StringToNullableStringConverter
-    extends AbstractEmptyableStringConverter<| string | null> {
+    extends AbstractEmptyableStringConverter<NullOrString> {
 
     public constructor(originalValue: string,) {
         super(originalValue)
