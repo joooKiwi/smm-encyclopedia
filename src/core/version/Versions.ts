@@ -48,6 +48,7 @@ export class Versions
     public static readonly SMM2_V3_0_0 =       new Versions('v3.0.0',       2,     new Date(2020, 4,  22,),)
     public static readonly SMM2_SM3DW_V3_0_0 = new Versions('SM3DW v3.0.0', 2,     new Date(2020, 4,  22,), SUPER_MARIO_3D_WORLD,)
     public static readonly SMM2_V3_0_1 =       new Versions('v3.0.1',       2,     new Date(2020, 7,  15,),)
+    public static readonly SMM2_V3_0_2 =       new Versions('v3.0.2',       2,     new Date(2022, 11, 23,),)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
