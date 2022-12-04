@@ -235,7 +235,7 @@ export class MiiCostumes
         return MiiCostumes
     }
 
-    public static getValue(value: PossibleValueByEnumerable<MiiCostumes>,):MiiCostumes {
+    public static getValue(value: PossibleValueByEnumerable<MiiCostumes>,): MiiCostumes {
         return Enum.getValueOn(this, value,)
     }
 

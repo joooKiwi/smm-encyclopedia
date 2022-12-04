@@ -17,7 +17,7 @@ interface MusicTemplateMap {
     'Super Mario Kart': SimpleBackgroundMusic<'SFCMarioKart', 'Circuit'>
     'Super Mario 64': SimpleBackgroundMusic<'SuperMario64', 'Slider'>
     'Super Mario Sunshine': SimpleBackgroundMusic<'MarioSunshine', 'DolphicTown'>
-    'Super Mario Galaxy': SimpleBackgroundMusic<'MarioGalaxy', 'WindGarden'>,
+    'Super Mario Galaxy': SimpleBackgroundMusic<'MarioGalaxy', 'WindGarden'>
 }
 
 //region -------------------- Internal types --------------------
@@ -25,7 +25,7 @@ interface MusicTemplateMap {
 interface BackgroundMusicFromAGameStyle<EDITOR extends string, REGULAR extends string, FAST extends string, > {
     editor: EDITOR
     regular: REGULAR
-    fast: FAST,
+    fast: FAST
 }
 
 type BackgroundMusicFromAGameStyleWithSameEditorAsRegular<REGULAR extends string, FAST extends string, > = BackgroundMusicFromAGameStyle<REGULAR, REGULAR, FAST>
@@ -65,7 +65,7 @@ interface BackgroundMusic_SMB2AndLink<UNIQUE_NAME extends string, LINK_UNIQUE_NA
     nsmbu: AnyBackgroundMusicInNSMBU<UNIQUE_NAME>
     'nsmbu (yoshi)': never
     sm3dw: AnyBackgroundMusicInSM3DW<UNIQUE_NAME>
-    'sm3dw (underwater)': never,
+    'sm3dw (underwater)': never
 }
 
 interface BackgroundMusic_NSMBUYoshi_SMB2AndLink<UNIQUE_NAME extends string, LINK_UNIQUE_NAME extends string, FAST_LINK_UNIQUE_NAME extends string, SMB2_UNIQUE_NAME extends string, > {
@@ -82,7 +82,7 @@ interface BackgroundMusic_NSMBUYoshi_SMB2AndLink<UNIQUE_NAME extends string, LIN
     nsmbu: AnyBackgroundMusicInNSMBU_NoYoshi<UNIQUE_NAME>
     'nsmbu (yoshi)': AnyBackgroundMusicInNSMBU_Yoshi<UNIQUE_NAME>
     sm3dw: AnyBackgroundMusicInSM3DW<UNIQUE_NAME>
-    'sm3dw (underwater)': never,
+    'sm3dw (underwater)': never
 }
 
 interface BackgroundMusic_SMBAsSMB3_SMWIcon_SMB2AndLink<UNIQUE_NAME extends string, LINK_UNIQUE_NAME extends string, FAST_LINK_UNIQUE_NAME extends string, SMB2_UNIQUE_NAME extends string, > {
@@ -99,7 +99,7 @@ interface BackgroundMusic_SMBAsSMB3_SMWIcon_SMB2AndLink<UNIQUE_NAME extends stri
     nsmbu: AnyBackgroundMusicInNSMBU<UNIQUE_NAME>
     'nsmbu (yoshi)': never
     sm3dw: AnyBackgroundMusicInSM3DW<UNIQUE_NAME>
-    'sm3dw (underwater)': never,
+    'sm3dw (underwater)': never
 }
 
 interface SingleSoundEffectBackgroundMusic<LINK_UNIQUE_NAME extends string, SMB2_UNIQUE_NAME extends string, > {
@@ -116,7 +116,7 @@ interface SingleSoundEffectBackgroundMusic<LINK_UNIQUE_NAME extends string, SMB2
     nsmbu: never
     'nsmbu (yoshi)': never
     sm3dw: never
-    'sm3dw (underwater)': never,
+    'sm3dw (underwater)': never
 }
 
 interface SimpleBackgroundMusic<UNIQUE_NAME_PART_1 extends string, UNIQUE_NAME_PART_2 extends string, > {
@@ -133,7 +133,7 @@ interface SimpleBackgroundMusic<UNIQUE_NAME_PART_1 extends string, UNIQUE_NAME_P
     nsmbu: never
     'nsmbu (yoshi)': never
     sm3dw: never
-    'sm3dw (underwater)': never,
+    'sm3dw (underwater)': never
 }
 
 //endregion -------------------- Internal types --------------------

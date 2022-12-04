@@ -14,7 +14,7 @@ import {EveryLanguages} from 'lang/EveryLanguages'
 
 /**
  * <p>
- *     An enum class containing every languages in the project.
+ *     An enum class containing every language in the project.
  *     The languages used are only those direct languages and not a basic language.
  * </p>
  *

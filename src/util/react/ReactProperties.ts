@@ -1,6 +1,6 @@
 import type {ReactElement as SourceReactElement} from 'react'
 
-/** A simple interface to help identify a react property */
+/** A simple interface to help identify a React property */
 export interface ReactProperties {
 
 }

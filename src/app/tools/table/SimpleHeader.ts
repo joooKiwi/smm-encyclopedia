@@ -16,11 +16,10 @@ export interface SimpleHeader {
 export interface SimpleImageHeader
     extends SimpleHeader {
 
-    /**
-     * The name if the image cannot be loaded.
-     */
+    /** The name if the image cannot be loaded */
     alt: string
 
+    /** The path of the image */
     path: string
 
 }

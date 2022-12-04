@@ -12,7 +12,7 @@ interface PowerUpPriorityProperties<T extends PowerUpPriority, >
 
     id: string
 
-    value: | T| readonly T[]
+    value: | T | readonly T[]
 
     images?: (priority: T,) => readonly string[]
 

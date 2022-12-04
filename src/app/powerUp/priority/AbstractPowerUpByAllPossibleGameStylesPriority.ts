@@ -27,7 +27,6 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
     protected constructor(entity: Entities, gameStylesDisplayed: | GameStyles | PossibleGameStyles, callback: ImageRetrieverCallback, isIn: ClassInAnySuperMarioMakerGame,) {
         super(entity, gameStylesDisplayed, callback, isIn,)
         this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? new DelayedObjectHolderContainer(() => callback(entity, SUPER_MARIO_3D_WORLD)) : ObjectHolders.EMPTY_ARRAY
-
     }
 
     //region -------------------- Getter methods --------------------

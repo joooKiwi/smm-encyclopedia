@@ -798,7 +798,7 @@ export abstract class SoundEffects
         return this.#SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY ??= ['Otoasobi_DJ00', 'Otoasobi_DJ01', 'Otoasobi_DJ02', 'Otoasobi_DJ03', 'Otoasobi_DJ04', 'Otoasobi_DJ05',]
     }
 
-    protected _createSMM2Sounds(): NullOr<|Builder<SMM2SoundEffectSound> | Musics> {
+    protected _createSMM2Sounds(): NullOr<| Builder<SMM2SoundEffectSound> | Musics> {
         return null
     }
 

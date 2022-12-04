@@ -5,6 +5,6 @@ import type {DateDayLanguages}                                                  
 
 export type DateDayLanguagesByLanguage<T, > = T extends (PossibleAcronym | PossibleInternationalAcronym | PossibleEnglishName | PossibleOriginalName | ProjectLanguages)
     ? DateDayLanguages
-    : T extends (EveryLanguages)
+    : T extends EveryLanguages
         ? | DateDayLanguages | never
         : never

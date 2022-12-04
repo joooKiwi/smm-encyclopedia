@@ -71,8 +71,7 @@ export abstract class AbstractNavigationButton
         const content = willBeHiddenOnShorterScreen ? contentValue[0] : contentValue
 
         return <Tooltip elementId={id} option={({title: content, placement: this._tooltipPlacement,})}>
-            <ModalButton key={`navigation button (${id})`} id={id} elementToShow={this.props.id}
-                         className={`btn btn-lg btn-outline-${isTopButton ? 'primary' : 'light'} btn-navigation ${this._addedClass} rounded-pill`}>{
+            <ModalButton key={`navigation button (${id})`} id={id} elementToShow={this.props.id} className={`btn btn-lg btn-outline-${isTopButton ? 'primary' : 'light'} btn-navigation ${this._addedClass} rounded-pill`}>{
                 willBeHiddenOnShorterScreen
                     ? <span key={`navigation text button (${id})`} className={`btn-navigation-text d-none d-${contentValue[1]}-inline-block`}>{content}</span>
                     : <span key={`navigation text button (${id})`} className="btn-navigation-text">{content}</span>

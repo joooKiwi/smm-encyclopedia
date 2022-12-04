@@ -1,6 +1,6 @@
 import type {GameStructure} from 'core/game/GameStructure'
 
-export class GameStructureContainer<SMM1 extends any = any, SMM3DS extends any = any, SMM2 extends any = any, >
+export class GameStructureContainer<SMM1 = any, SMM3DS = any, SMM2 = any, >
     implements GameStructure<SMM1, SMM3DS, SMM2> {
 
     //region -------------------- Fields --------------------

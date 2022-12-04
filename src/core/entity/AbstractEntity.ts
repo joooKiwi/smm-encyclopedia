@@ -13,7 +13,7 @@ import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAn
 /**
  * A simple entity implementation, but without any specification.
  *
- * @note It use the generic to have a type based on the property used for each methods in {@link Property}.
+ * @note It use the generic to have a type based on the property used for each method in {@link Property}.
  *
  * @property CATEGORY the {@link EntityCategory entity category} instance
  * @property PROPERTY the {@link Property property} specific to the current instance

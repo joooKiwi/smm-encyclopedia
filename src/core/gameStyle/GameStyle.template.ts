@@ -8,16 +8,32 @@ import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency}
  */
 export interface GameStyleTemplate {
 
-    is: {
-        in: {
-            game: SimpleGameFrom1And2Template<boolean, boolean>
-        }
-        availableFromTheStart: PossibleIsAvailableFromTheStart
-    }
+    is: IsGameStyleTemplate
 
     reference: PossibleAcronym
 
     nightDesertWind: NightDesertWindTemplate
+
+}
+
+
+/**
+ * @template
+ */
+export interface IsGameStyleTemplate {
+
+    in: IsInGameStyleTemplate
+
+    availableFromTheStart: PossibleIsAvailableFromTheStart
+
+}
+
+/**
+ * @template
+ */
+export interface IsInGameStyleTemplate {
+
+    game: SimpleGameFrom1And2Template<boolean, boolean>
 
 }
 
