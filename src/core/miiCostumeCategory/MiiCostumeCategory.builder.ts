@@ -4,7 +4,6 @@ import type {Name}                       from 'lang/name/Name'
 import type {Builder}                    from 'util/builder/Builder'
 
 import {TemplateWithNameBuilder}     from 'core/_template/TemplateWithName.builder'
-import {Games}                       from 'core/game/Games'
 import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
 
 export class MiiCostumeCategoryBuilder
@@ -12,7 +11,7 @@ export class MiiCostumeCategoryBuilder
 
 
     public constructor(templateBuilder_or_template: Builder<MiiCostumeCategoryTemplate>,) {
-        super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder_or_template, 2, false,)
     }
 
     protected /*static*/ override get _static() {

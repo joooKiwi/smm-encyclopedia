@@ -19,7 +19,6 @@ import {EntityLimitContainer}                    from 'core/entityLimit/EntityLi
 import {EntityLimitTypes}                        from 'core/entityLimit/EntityLimitTypes'
 import {EmptyEntityLimitAmount}                  from 'core/entityLimit/properties/EmptyEntityLimitAmount'
 import {EntityLimitAmountContainer}              from 'core/entityLimit/properties/EntityLimitAmount.container'
-import {Games}                                   from 'core/game/Games'
 import {DelayedObjectHolderContainer}            from 'util/holder/DelayedObjectHolder.container'
 import {Import}                                  from 'util/DynamicImporter'
 import {ObjectHolderContainer}                   from 'util/holder/ObjectHolder.container'
@@ -44,7 +43,7 @@ export class EntityLimitBuilder
     //endregion -------------------- Fields --------------------
 
     public constructor(templateBuilder: Builder<| EntityLimitTemplate | AlternativeLimitTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder, 2, false,)
     }
 
     //region -------------------- Build helper methods --------------------

@@ -7,7 +7,6 @@ import type {ObjectHolder}                     from 'util/holder/ObjectHolder'
 
 import {TemplateWithNameBuilder}      from 'core/_template/TemplateWithName.builder'
 import {GamePropertyProvider}         from 'core/entity/properties/game/GameProperty.provider'
-import {Games}                        from 'core/game/Games'
 import {PlayerSoundEffectTriggers}    from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 import {SoundEffectContainer}         from 'core/soundEffect/SoundEffect.container'
 import {SoundEffectPropertyContainer} from 'core/soundEffect/property/SoundEffectProperty.container'
@@ -19,7 +18,7 @@ export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
 
     public constructor(templateBuilder: Builder<SoundEffectTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder, 2, false,)
     }
 
     //region -------------------- Build helper methods --------------------

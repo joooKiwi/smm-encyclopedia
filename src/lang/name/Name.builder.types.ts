@@ -3,7 +3,7 @@ import type {EveryLanguages} from 'lang/EveryLanguages'
 
 export type AllGameReceived = 'all'
 export type NotSMM2GameReceived = 'notSMM2'
-export type SingleGame = | '1' | '2' | '3DS'
+export type SingleGame = | '1' | 1 | '2' | 2 | '3DS'
 export type PossibleGameReceived = | Games | SingleGame | NotSMM2GameReceived | AllGameReceived
 
 /**

@@ -4,7 +4,6 @@ import type {Name}                      from 'lang/name/Name'
 import type {Builder}                   from 'util/builder/Builder'
 
 import {TemplateWithNameBuilder}    from 'core/_template/TemplateWithName.builder'
-import {Games}                      from 'core/game/Games'
 import {PredefinedMessageContainer} from 'core/predefinedMessage/PredefinedMessage.container'
 
 export class PredefinedMessageBuilder
@@ -12,7 +11,7 @@ export class PredefinedMessageBuilder
 
 
     public constructor(templateBuilder_or_template: Builder<PredefinedMessageTemplate>,) {
-        super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, true,)
+        super(templateBuilder_or_template, 2, true,)
     }
 
     protected /*static*/ override get _static() {

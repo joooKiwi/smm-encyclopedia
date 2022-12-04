@@ -5,7 +5,6 @@ import type {NullOrString}                          from 'util/types/nullable'
 import type {Builder}                               from 'util/builder/Builder'
 
 import {TemplateWithNameBuilder}          from 'core/_template/TemplateWithName.builder'
-import {Games}                            from 'core/game/Games'
 import {GameReferences}                   from 'core/gameReference/GameReferences'
 import {MysteryMushroomContainer}         from 'core/mysteryMushroom/MysteryMushroom.container'
 import {MysteryMushroomPropertyContainer} from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
@@ -15,7 +14,6 @@ import {SoundPropertyContainer}           from 'core/mysteryMushroom/properties/
 //region -------------------- Import from deconstruction --------------------
 
 const {POKEMON_RED, POKEMON_GREEN, POKEMON_BLUE, POKEMON_YELLOW, POKEMON_DIAMOND, POKEMON_PEARL, POKEMON_X, POKEMON_Y,} = GameReferences
-const {SUPER_MARIO_MAKER_1,} = Games
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -29,7 +27,7 @@ export class MysteryMushroomBuilder
     //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<MysteryMushroomTemplate>,) {
-        super(templateBuilder, SUPER_MARIO_MAKER_1, false,)//TODO change the false to true since it is a complete SMM1 name
+        super(templateBuilder, 1, false,)//TODO change the false to true since it is a complete SMM1 name
     }
 
     //region -------------------- Build helper methods --------------------

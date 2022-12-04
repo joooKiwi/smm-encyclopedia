@@ -16,7 +16,6 @@ import {TemplateWithNameBuilder}                  from 'core/_template/TemplateW
 import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
 import {Entities}                                 from 'core/entity/Entities'
 import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
-import {Games}                                    from 'core/game/Games'
 import {NightEffects}                             from 'core/nightEffect/NightEffects'
 import {CourseThemeContainer}                     from 'core/theme/CourseTheme.container'
 import {CourseAndWorldThemeContainer}             from 'core/theme/CourseAndWorldTheme.container'
@@ -41,7 +40,7 @@ export class ThemeBuilder
     //endregion -------------------- Fields --------------------
 
     public constructor(templateBuilder: Builder<ThemeTemplate>,) {
-        super(templateBuilder, ({is: {in: {game: {'1And3DS': isInSMM1And3DS,},},},},) => isInSMM1And3DS ? 'all' : Games.SUPER_MARIO_MAKER_2, true,)
+        super(templateBuilder, ({is: {in: {game: {'1And3DS': isInSMM1And3DS,},},},},) => isInSMM1And3DS ? 'all' : 2, true,)
     }
 
     //region -------------------- Builder helper methods --------------------

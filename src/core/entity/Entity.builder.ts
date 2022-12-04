@@ -42,7 +42,6 @@ import {TimePropertyProvider}                           from 'core/entity/proper
 import {EmptyEntityCategory}                            from 'core/entityCategory/EmptyEntityCategory'
 import {EntityCategories}                               from 'core/entityCategory/EntityCategories'
 import {EntityLimits}                                   from 'core/entityLimit/EntityLimits'
-import {Games}                                          from 'core/game/Games'
 import {GameStructureProvider}                          from 'core/game/GameStructure.provider'
 import {Instruments}                                    from 'core/instrument/Instruments'
 import {ObjectHolders}                                  from 'util/holder/objectHolders'
@@ -51,7 +50,6 @@ import {DelayedObjectHolderContainer}                   from 'util/holder/Delaye
 
 //region -------------------- Import from deconstruction --------------------
 
-const {SUPER_MARIO_MAKER_1, SUPER_MARIO_MAKER_2,} = Games
 const {UNKNOWN_CONTAINER, NOT_APPLICABLE_CONTAINER,} = PropertyContainer
 
 //region -------------------- Import from deconstruction --------------------
@@ -95,8 +93,8 @@ export class EntityBuilder
                 ? 'all'
                 : 'notSMM2'
             : isInSMM1 && !isInSMM2
-                ? SUPER_MARIO_MAKER_1
-                : SUPER_MARIO_MAKER_2
+                ? 1
+                : 2
     }
 
     //region -------------------- Build helper methods --------------------

@@ -4,14 +4,13 @@ import type {Name}                        from 'lang/name/Name'
 import type {Builder}                     from 'util/builder/Builder'
 
 import {TemplateWithNameBuilder}      from 'core/_template/TemplateWithName.builder'
-import {Games}                        from 'core/game/Games'
 import {SoundEffectCategoryContainer} from 'core/soundEffectCategory/SoundEffectCategory.container'
 
 export class SoundEffectCategoryBuilder
     extends TemplateWithNameBuilder<SoundEffectCategoryTemplate, SoundEffectCategory> {
 
     public constructor(templateBuilder: Builder<SoundEffectCategoryTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder, 2, false,)
     }
 
     protected /*static*/ override get _static() {

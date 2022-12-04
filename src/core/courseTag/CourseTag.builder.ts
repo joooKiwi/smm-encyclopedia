@@ -8,7 +8,6 @@ import type {NullOr}                          from 'util/types/nullable'
 
 import {TemplateWithNameBuilder}      from 'core/_template/TemplateWithName.builder'
 import {CourseTagContainer}           from 'core/courseTag/CourseTag.container'
-import {Games}                        from 'core/game/Games'
 import {Versions}                     from 'core/version/Versions'
 import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 import {ObjectHolders}                from 'util/holder/objectHolders'
@@ -18,7 +17,7 @@ export class CourseTagBuilder
     implements Builder<CourseTag> {
 
     public constructor(templateBuilder: Builder<CourseTagTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder, 2, false,)
     }
 
     //region -------------------- Build helper methods --------------------

@@ -100,14 +100,15 @@ export abstract class Games
 
 
     // public static getValueByValue<T extends string, >(value: Nullable<| Games | T>,): GamesByValue<T>
-    public static getValueByValue(value: Nullable<| Games | string>,): Games {
+    public static getValueByValue(value: Nullable<| Games | string | number>,): Games {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)
             return value
-        const valueFound = this.values.find(enumerable => enumerable.englishName === value
-            || enumerable.acronym === value
-            || enumerable.simpleValue === value)
+        const stringValue = `${value}`,
+            valueFound = this.values.find(enumerable => enumerable.englishName === value
+                || enumerable.acronym === value
+                || enumerable.simpleValue === stringValue)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
         return valueFound

@@ -5,14 +5,13 @@ import type {Builder}                from 'util/builder/Builder'
 
 import {TemplateWithNameBuilder} from 'core/_template/TemplateWithName.builder'
 import {EntityCategoryContainer} from 'core/entityCategory/EntityCategory.container'
-import {Games}                   from 'core/game/Games'
 
 export class EntityCategoryBuilder
     extends TemplateWithNameBuilder<EntityCategoryTemplate, EntityCategory>
     implements Builder<EntityCategory> {
 
     public constructor(templateBuilder: Builder<EntityCategoryTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, true,)
+        super(templateBuilder, 2, true,)
     }
 
     protected /*static*/ override get _static() {
