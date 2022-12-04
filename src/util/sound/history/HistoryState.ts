@@ -6,12 +6,14 @@ export class HistoryState {
 
     readonly #state
     readonly #isLoading
+    readonly #isFromEventDirectly
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(state: | SoundStates | HistoryState, isLoading: | boolean | HistoryState,) {
+    public constructor(state: | SoundStates | HistoryState, isLoading: | boolean | HistoryState, isFromEventDirectly: | boolean | HistoryState,) {
         this.#state = state instanceof HistoryState ? state.state : state
         this.#isLoading = isLoading instanceof HistoryState ? isLoading.isLoading : isLoading
+        this.#isFromEventDirectly = isFromEventDirectly instanceof HistoryState ? isFromEventDirectly.isFromEventDirectly : isFromEventDirectly
     }
 
     //region -------------------- Getter methods --------------------
@@ -22,6 +24,10 @@ export class HistoryState {
 
     public get isLoading(): boolean {
         return this.#isLoading
+    }
+
+    public get isFromEventDirectly(): boolean {
+        return this.#isFromEventDirectly
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -35,6 +41,7 @@ export class HistoryState {
 
         return this.state === other.state
             && this.isLoading === other.isLoading
+            && this.isFromEventDirectly === other.isFromEventDirectly
     }
 
     //endregion -------------------- Equals methods --------------------

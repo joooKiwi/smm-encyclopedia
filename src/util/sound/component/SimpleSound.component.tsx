@@ -43,7 +43,7 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
     public constructor(props: SimpleSoundProperties<FILE, TITLE>,) {
         super(props,)
         this.state = {
-            state: new HistoryState(STANDBY, false,),
+            state: new HistoryState(STANDBY, false, false,),
             isSourceRetrieved: false,
         }
         this.#isSourceFoundCallback = value => {
@@ -111,7 +111,7 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
         const audio = this.#audio
         if (audio == null)
             return
-        audio.setState(new HistoryState(STANDBY, false,),)
+        audio.setState(new HistoryState(STANDBY, false, false,),)
         AbstractSoundPlayer.map.remove(audio.source.key)
     }
 

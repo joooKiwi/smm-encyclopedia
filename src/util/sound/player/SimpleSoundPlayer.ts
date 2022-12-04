@@ -13,6 +13,10 @@ const {STANDBY, PAUSED, PLAYING, EXCEPTION,} = SoundStates
 
 //endregion -------------------- Import from deconstruction --------------------
 
+/**
+ * @see https://www.w3schools.com/tags/ref_av_dom.asp Audio DOM reference (W3School.com)
+ * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio Embed audio element (Mozilla.org)
+ */
 export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE extends string = string, DOES_LOOP extends boolean = false, >
     extends AbstractSoundPlayer<SOURCE['key']> {
 
@@ -27,14 +31,17 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     #isDurationValid?: boolean
     #onBeforePlay?: NullOr<OnBeforePlaySoundPlayerCallback<this>>
     #onAfterPlay?: NullOr<OnAfterPlaySoundPlayerCallback<this>>
-    #onPlaying?: NullOr<OnAfterPlayingSoundPlayerCallback<this>>
     #onBeforePause?: NullOr<OnBeforePauseSoundPlayerCallback<this>>
     #onAfterPause?: NullOr<OnAfterPauseSoundPlayerCallback<this>>
     #onBeforeStop?: NullOr<OnBeforeStopSoundPlayerCallback<this>>
     #onAfterStop?: NullOr<OnAfterStopSoundPlayerCallback<this>>
-    #onEnd?: NullOr<OnEndSoundPlayerCallback<this>>
     #onBeforeStateChanged?: NullOr<OnBeforeStateChangedSoundPlayerCallback<this>>
     #onAfterStateChanged?: NullOr<OnAfterStateChangedSoundPlayerCallback<this>>
+
+    #onPlayEvent?: NullOr<OnPlayEventSoundPlayerCallback<this>>
+    #onPlayingEvent?: NullOr<OnPlayingEventSoundPlayerCallback<this>>
+    #onPauseEvent?: NullOr<OnPauseEventSoundPlayerCallback<this>>
+    #onEndEvent?: NullOr<OnEndSoundPlayerCallback<this>>
 
     //endregion -------------------- Fields --------------------
 
@@ -76,12 +83,20 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
                     case PAUSED:
                         return this.pause()
                 }
-                this.setState(new HistoryState(PLAYING, false,),)
-                this.onPlaying?.(this, event,)
+                this.setState(new HistoryState(PLAYING, false, true,),)
+                this.onPlayingEvent?.(this, event,)
+            }
+            audio.onpause = event => {
+                this.setState(new HistoryState(PAUSED, false, true,),)
+                this.onPauseEvent?.(this, event,)
+            }
+            audio.onplay = event => {
+                this.setState(new HistoryState(PLAYING, true, true,),)
+                this.onPlayEvent?.(this, event,)
             }
             audio.onended = event => {
-                this.setState(new HistoryState(STANDBY, false,),)
-                this.onEnd?.(this, event,)
+                this.setState(new HistoryState(STANDBY, false, true,),)
+                this.onEndEvent?.(this, event,)
             }
             audio.title = this.title
             audio.loop = this.doesLoop
@@ -147,20 +162,6 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     }
 
 
-    public get onPlaying(): NullOr<OnAfterPlayingSoundPlayerCallback<this>> {
-        return this.#onPlaying ?? null
-    }
-
-    public set onPlaying(value: Nullable<OnAfterPlayingSoundPlayerCallback<this>>,) {
-        this.#onPlaying = value ?? null
-    }
-
-    public setOnPlaying(value: Nullable<OnAfterPlayingSoundPlayerCallback<this>>,) {
-        this.onPlaying = value
-        return this
-    }
-
-
     public get onBeforePause(): NullOr<OnBeforePauseSoundPlayerCallback<this>> {
         return this.#onBeforePause ?? null
     }
@@ -217,20 +218,6 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     }
 
 
-    public get onEnd(): NullOr<OnEndSoundPlayerCallback<this>> {
-        return this.#onEnd ?? null
-    }
-
-    public set onEnd(value: Nullable<OnEndSoundPlayerCallback<this>>,) {
-        this.#onEnd = value ?? null
-    }
-
-    public setOnEnd(value: Nullable<OnEndSoundPlayerCallback<this>>,): this {
-        this.onEnd = value
-        return this
-    }
-
-
     public get onBeforeStateChanged(): NullOr<OnBeforeStateChangedSoundPlayerCallback<this>> {
         return this.#onBeforeStateChanged ?? null
     }
@@ -259,6 +246,64 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     }
 
     //endregion -------------------- Getter & setter methods (audio event) --------------------
+    //region -------------------- Getter & setter methods (audio HTML event) --------------------
+
+    public get onPlayingEvent(): NullOr<OnPlayingEventSoundPlayerCallback<this>> {
+        return this.#onPlayingEvent ?? null
+    }
+
+    public set onPlayingEvent(value: Nullable<OnPlayingEventSoundPlayerCallback<this>>,) {
+        this.#onPlayingEvent = value ?? null
+    }
+
+    public setOnPlayingEvent(value: Nullable<OnPlayingEventSoundPlayerCallback<this>>,) {
+        this.onPlayingEvent = value
+        return this
+    }
+
+
+    public get onPlayEvent(): NullOr<OnPlayEventSoundPlayerCallback<this>> {
+        return this.#onPlayEvent ?? null
+    }
+
+    public set onPlayEvent(value: Nullable<OnPlayEventSoundPlayerCallback<this>>,) {
+        this.#onPlayEvent = value ?? null
+    }
+
+    public setOnPlayEvent(value: Nullable<OnPlayEventSoundPlayerCallback<this>>,) {
+        this.onPlayEvent = value
+        return this
+    }
+
+
+    public get onPauseEvent(): NullOr<OnPauseEventSoundPlayerCallback<this>> {
+        return this.#onPauseEvent ?? null
+    }
+
+    public set onPauseEvent(value: Nullable<OnPauseEventSoundPlayerCallback<this>>,) {
+        this.#onPauseEvent = value ?? null
+    }
+
+    public setOnPauseEvent(value: Nullable<OnPauseEventSoundPlayerCallback<this>>,): this {
+        this.onPauseEvent = value
+        return this
+    }
+
+
+    public get onEndEvent(): NullOr<OnEndSoundPlayerCallback<this>> {
+        return this.#onEndEvent ?? null
+    }
+
+    public set onEndEvent(value: Nullable<OnEndSoundPlayerCallback<this>>,) {
+        this.#onEndEvent = value ?? null
+    }
+
+    public setOnEndEvent(value: Nullable<OnEndSoundPlayerCallback<this>>,): this {
+        this.onEndEvent = value
+        return this
+    }
+
+    //endregion -------------------- Getter & setter methods (audio HTML event) --------------------
 
     //endregion -------------------- Getter & setter methods (audio) --------------------
 
@@ -285,7 +330,7 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
         const currentState = this.history.current
 
         if (currentState.isLoading)
-            return this.setState(new HistoryState(PLAYING, true,))
+            return this.setState(new HistoryState(PLAYING, true, false,))
         if (currentState.state === PLAYING)
             return this
 
@@ -293,9 +338,9 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
 
         const audio = this.audio
         audio.play()
-            .then(() => this.isDurationValid ? this : this.setState(new HistoryState(EXCEPTION, false,),),)
-            .catch(() => this.setState(new HistoryState(EXCEPTION, false,),))
-        this.setState(new HistoryState(PLAYING, true,),)
+            .then(() => this.isDurationValid ? this : this.setState(new HistoryState(EXCEPTION, false, false,),),)
+            .catch(() => this.setState(new HistoryState(EXCEPTION, false, false,),))
+        this.setState(new HistoryState(PLAYING, true, false,),)
         this.onAfterPlay?.(this)
         return this
     }
@@ -313,14 +358,14 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
 
         if (!isLoading || !isPaused) {
             if (isLoading)
-                return this.setState(new HistoryState(PAUSED, true,))
+                return this.setState(new HistoryState(PAUSED, true, false,))
             if (isPaused)
                 return this
         }
 
         this.onBeforePause?.(this)
         this.audio.pause()
-        this.setState(new HistoryState(PAUSED, false,),)
+        this.setState(new HistoryState(PAUSED, false, false,),)
         this.onAfterPause?.(this)
         return this
     }
@@ -339,7 +384,7 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
 
         if (!isLoading || !isStandby) {
             if (isLoading)
-                return this.setState(new HistoryState(STANDBY, true,))
+                return this.setState(new HistoryState(STANDBY, true, false,))
             if (isStandby)
                 return this
         }
@@ -348,7 +393,7 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
         const audio = this.audio
         audio.pause()
         audio.currentTime = 0
-        this.setState(new HistoryState(STANDBY, false,),)
+        this.setState(new HistoryState(STANDBY, false, false,),)
         this.onAfterStop?.(this)
         return this
     }
