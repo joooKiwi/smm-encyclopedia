@@ -1,9 +1,9 @@
-import type {NullOrBoolean}      from '../../../../util/types'
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
-import type {ThemeProperty}      from './ThemeProperty'
+import type {ThemeProperty}      from 'core/entity/properties/theme/ThemeProperty'
+import type {NullOrBoolean}      from 'util/types/nullable'
+import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}       from '../../../../util/provider/AbstractProvider'
-import {ThemePropertyContainer} from './ThemeProperty.container'
+import {ThemePropertyContainer} from 'core/entity/properties/theme/ThemeProperty.container'
+import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

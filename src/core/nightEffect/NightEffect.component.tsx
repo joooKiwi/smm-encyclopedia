@@ -1,9 +1,9 @@
-import type {CourseTheme}     from '../theme/CourseTheme'
-import type {GameStyle}       from '../gameStyle/GameStyle'
-import type {ReactProperties} from '../../util/react/ReactProperties'
+import type {GameStyle}       from 'core/gameStyle/GameStyle'
+import type {CourseTheme}     from 'core/theme/CourseTheme'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT}    from '../../util/emptyReactVariables'
-import {gameContentTranslation} from '../../lang/components/translationMethods'
+import {gameContentTranslation} from 'lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 interface NightEffectComponentProperties_GameStyle
     extends ReactProperties {

@@ -1,4 +1,4 @@
-import type {EmptyableLanguage} from './EmptyableLanguage'
+import type {EmptyableLanguage} from 'lang/name/containers/EmptyableLanguage'
 
 export type AmericanOrEuropeanOriginal<T, > = | T | AmericanOrEuropeanArray<T>
 export type AmericanOrEuropeanArray<T, > = readonly [american: T, european: T,]

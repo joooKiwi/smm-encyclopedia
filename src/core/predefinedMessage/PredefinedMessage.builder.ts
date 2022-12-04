@@ -1,11 +1,11 @@
-import type {Builder}                   from '../../util/builder/Builder'
-import type {PredefinedMessage}         from './PredefinedMessage'
-import type {PredefinedMessageTemplate} from './PredefinedMessage.template'
-import type {Name}                      from '../../lang/name/Name'
+import type {PredefinedMessage}         from 'core/predefinedMessage/PredefinedMessage'
+import type {PredefinedMessageTemplate} from 'core/predefinedMessage/PredefinedMessage.template'
+import type {Name}                      from 'lang/name/Name'
+import type {Builder}                   from 'util/builder/Builder'
 
-import {Games}                      from '../game/Games'
-import {PredefinedMessageContainer} from './PredefinedMessage.container'
-import {TemplateWithNameBuilder}    from '../_template/TemplateWithName.builder'
+import {TemplateWithNameBuilder}    from 'core/_template/TemplateWithName.builder'
+import {Games}                      from 'core/game/Games'
+import {PredefinedMessageContainer} from 'core/predefinedMessage/PredefinedMessage.container'
 
 export class PredefinedMessageBuilder
     extends TemplateWithNameBuilder<PredefinedMessageTemplate, PredefinedMessage> {

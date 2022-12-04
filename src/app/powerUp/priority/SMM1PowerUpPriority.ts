@@ -1,9 +1,9 @@
-import type {ClassInAnySuperMarioMakerGame}              from '../../../core/game/ClassInAnySuperMarioMakerGame'
-import type {Entities}                                   from '../../../core/entity/Entities'
-import type {GameStyles}                                 from '../../../core/gameStyle/GameStyles'
-import type {ImageRetrieverCallback, PossibleGameStyles} from './PowerUpPriority'
+import type {ImageRetrieverCallback, PossibleGameStyles} from 'app/powerUp/priority/PowerUpPriority'
+import type {Entities}                                   from 'core/entity/Entities'
+import type {ClassInAnySuperMarioMakerGame}              from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {GameStyles}                                 from 'core/gameStyle/GameStyles'
 
-import {AbstractPowerUpByAllPossibleGameStylesPriority} from './AbstractPowerUpByAllPossibleGameStylesPriority'
+import {AbstractPowerUpByAllPossibleGameStylesPriority} from 'app/powerUp/priority/AbstractPowerUpByAllPossibleGameStylesPriority'
 
 export class SMM1PowerUpPriority
     extends AbstractPowerUpByAllPossibleGameStylesPriority {

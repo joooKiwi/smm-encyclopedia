@@ -1,11 +1,11 @@
 import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                               from '@joookiwi/enumerable'
 
-import type {EnglishName, IsSourceFoundCallback, Names, Ordinals} from './Validators.types'
-import type {ClassWithEnglishName}                                from '../../../core/ClassWithEnglishName'
-import type {Nullable, NullOrBoolean}                             from '../../types'
+import type {ClassWithEnglishName}                                from 'core/ClassWithEnglishName'
+import type {EnglishName, IsSourceFoundCallback, Names, Ordinals} from 'util/sound/player/Validators.types'
+import type {Nullable, NullOrBoolean}                             from 'util/types/nullable'
 
-import {getValueByEnglishName} from '../../utilitiesMethods'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 export abstract class Validators
     extends Enum<Ordinals, Names>

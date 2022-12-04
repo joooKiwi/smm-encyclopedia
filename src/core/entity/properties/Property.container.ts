@@ -1,11 +1,11 @@
-import type {GameProperty}       from './game/GameProperty'
-import type {GameStyleProperty}  from './gameStyle/GameStyleProperty'
-import type {InstrumentProperty} from './instrument/InstrumentProperty'
-import type {LimitProperty}      from './limit/LimitProperty'
-import type {ObjectHolder}       from '../../../util/holder/ObjectHolder'
-import type {Property}           from './Property'
-import type {ThemeProperty}      from './theme/ThemeProperty'
-import type {TimeProperty}       from './time/TimeProperty'
+import type {Property}           from 'core/entity/properties/Property'
+import type {GameProperty}       from 'core/entity/properties/game/GameProperty'
+import type {GameStyleProperty}  from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {InstrumentProperty} from 'core/entity/properties/instrument/InstrumentProperty'
+import type {LimitProperty}      from 'core/entity/properties/limit/LimitProperty'
+import type {ThemeProperty}      from 'core/entity/properties/theme/ThemeProperty'
+import type {TimeProperty}       from 'core/entity/properties/time/TimeProperty'
+import type {ObjectHolder}       from 'util/holder/ObjectHolder'
 
 export class PropertyContainer
     implements Property {

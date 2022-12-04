@@ -1,20 +1,20 @@
-import type {BooleanPropertyWithAmountAndComment}                                                                                                                                                                                                                      from './PropertyWithAmountAndComment'
-import type {BooleanPropertyWithAmount}                                                                                                                                                                                                                                from './PropertyWithAmount'
-import type {BooleanPropertyWithComment, NumberPropertyWithComment}                                                                                                                                                                                                    from './PropertyWithComment'
-import type {Nullable, NullableString, NullOrNumber, NullOrString}                                                                                                                                                                                                     from '../../util/types'
-import type {NumberProperty, PossibleBooleanValuesByInferredProperty, PossibleInferredBooleanProperty, PossibleInferredNumberProperty, PossibleInferredStringProperty, PossibleNumberValuesByInferredProperty, PossibleStringValuesByInferredProperty, StringProperty} from './Property'
+import type {BooleanPropertyWithAmountAndComment}                                                                                                                                                                              from 'core/_properties/PropertyWithAmountAndComment'
+import type {BooleanPropertyWithAmount}                                                                                                                                                                                        from 'core/_properties/PropertyWithAmount'
+import type {BooleanPropertyWithComment, NumberPropertyWithComment}                                                                                                                                                            from 'core/_properties/PropertyWithComment'
+import type {Nullable, NullableString, NullOr, NullOrNumber, NullOrString}                                                                                                                                                     from 'util/types/nullable'
+import type {NumberProperty, PossibleBooleanValuesByInferredProperty, PossibleInferredBooleanProperty, PossibleInferredNumberProperty, PossibleInferredStringProperty, PossibleNumberValuesByInferredProperty, StringProperty} from 'core/_properties/Property'
 
-import {BooleanPropertyWithAmountAndCommentContainer} from './boolean/BooleanPropertyWithAmountAndComment.container'
-import {BooleanPropertyWithAmountContainer}           from './boolean/BooleanPropertyWithAmount.container'
-import {BooleanPropertyWithCommentContainer}          from './boolean/BooleanPropertyWithComment.container'
-import {BooleanPropertyWithEverythingContainer}       from './boolean/BooleanPropertyWithEverything.container'
-import {NumberPropertyWithCommentContainer}           from './number/NumberPropertyWithComment.container'
-import {NumberPropertyWithEverythingContainer}        from './number/NumberPropertyWithEverything.container'
-import {NumberPropertyContainer}                      from './number/NumberProperty.container'
-import {PropertyContainer}                            from './Property.container'
-import {StringPropertyContainer}                      from './string/StringProperty.container'
-import {StringPropertyWithCommentContainer}           from './string/StringPropertyWithComment.container'
-import {StringPropertyWithEverythingContainer}        from './string/StringPropertyWithEverything.container'
+import {PropertyContainer}                            from 'core/_properties/Property.container'
+import {BooleanPropertyWithAmountAndCommentContainer} from 'core/_properties/boolean/BooleanPropertyWithAmountAndComment.container'
+import {BooleanPropertyWithAmountContainer}           from 'core/_properties/boolean/BooleanPropertyWithAmount.container'
+import {BooleanPropertyWithCommentContainer}          from 'core/_properties/boolean/BooleanPropertyWithComment.container'
+import {BooleanPropertyWithEverythingContainer}       from 'core/_properties/boolean/BooleanPropertyWithEverything.container'
+import {NumberPropertyContainer}                      from 'core/_properties/number/NumberProperty.container'
+import {NumberPropertyWithCommentContainer}           from 'core/_properties/number/NumberPropertyWithComment.container'
+import {NumberPropertyWithEverythingContainer}        from 'core/_properties/number/NumberPropertyWithEverything.container'
+import {StringPropertyContainer}                      from 'core/_properties/string/StringProperty.container'
+import {StringPropertyWithCommentContainer}           from 'core/_properties/string/StringPropertyWithComment.container'
+import {StringPropertyWithEverythingContainer}        from 'core/_properties/string/StringPropertyWithEverything.container'
 
 export class PropertyProvider {
 
@@ -38,9 +38,9 @@ export class PropertyProvider {
         return this.#newContainer('number', value, canBeNotApplicable, false, comment,)
     }
 
-    public static newStringContainer<T extends PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
-    public static newStringContainer<T extends PossibleStringValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
-    public static newStringContainer(value: PossibleStringValuesByInferredProperty, canBeNotApplicable: boolean, comment?: NullOrString,) {
+    public static newStringContainer<T extends NullOrString, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
+    public static newStringContainer<T extends NullOrString, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
+    public static newStringContainer(value: NullOrString, canBeNotApplicable: boolean, comment?: NullOrString,) {
         return this.#newContainer('string', value, canBeNotApplicable, false, comment,)
     }
 

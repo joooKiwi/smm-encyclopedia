@@ -1,5 +1,5 @@
-import type {ClassWithTranslationKey} from '../../../lang/ClassWithTranslationKey'
-import type {PossibleTranslationKey}  from './PlayerSoundEffectTriggers.types'
+import type {PossibleTranslationKey}  from 'core/soundEffect/property/PlayerSoundEffectTriggers.types'
+import type {ClassWithTranslationKey} from 'lang/ClassWithTranslationKey'
 
 export interface PlayerSoundEffectTriggerProperty
     extends ClassWithTranslationKey<PossibleTranslationKey> {

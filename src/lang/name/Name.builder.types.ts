@@ -1,5 +1,5 @@
-import type {EveryLanguages} from '../EveryLanguages'
-import type {Games}          from '../../core/game/Games'
+import type {Games}          from 'core/game/Games'
+import type {EveryLanguages} from 'lang/EveryLanguages'
 
 export type AllGameReceived = 'all'
 export type NotSMM2GameReceived = 'notSMM2'

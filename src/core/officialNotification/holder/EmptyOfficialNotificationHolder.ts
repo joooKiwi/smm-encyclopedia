@@ -1,5 +1,5 @@
-import {OfficialNotificationHolder}                                from './OfficialNotificationHolder'
-import {ClassWithNullObjectPattern, EmptyOfficialNotificationName} from '../../../util/ClassWithNullObjectPattern'
+import {OfficialNotificationHolder}                                from 'core/officialNotification/holder/OfficialNotificationHolder'
+import {ClassWithNullObjectPattern, EmptyOfficialNotificationName} from 'util/ClassWithNullObjectPattern'
 
 /**
  * @singleton

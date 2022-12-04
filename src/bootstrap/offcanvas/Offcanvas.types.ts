@@ -1,6 +1,6 @@
-import type {BootstrapConfigurationWithNoOption}                                                                         from '../Bootstrap.types'
-import type {BootstrapWithBasicEventCallback, BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEventsReceived} from '../BootstrapWithBasicEventsInstance.types'
-import type {OffcanvasInstance}                                                                                          from './OffcanvasInstance'
+import type {BootstrapConfigurationWithNoOption}                                                                         from 'bootstrap/Bootstrap.types'
+import type {BootstrapWithBasicEventCallback, BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEventsReceived} from 'bootstrap/BootstrapWithBasicEventsInstance.types'
+import type {OffcanvasInstance}                                                                                          from 'bootstrap/offcanvas/OffcanvasInstance'
 
 export type OffcanvasConfiguration = BootstrapConfigurationWithNoOption<OffcanvasEvents>
 

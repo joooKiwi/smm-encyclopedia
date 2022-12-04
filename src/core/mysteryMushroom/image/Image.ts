@@ -1,5 +1,5 @@
-import type {BasePath}         from '../../../variables'
-import type {PossibleFileName} from '../MysteryMushrooms.types'
+import type {BasePath}         from 'variables'
+import type {PossibleFileName} from 'core/mysteryMushroom/MysteryMushrooms.types'
 
 export interface Image<FILE extends PossibleFileName = PossibleFileName, > {
 

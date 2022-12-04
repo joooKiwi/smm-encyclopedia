@@ -1,11 +1,11 @@
-import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {CourseAndWorldTheme}              from './CourseAndWorldTheme'
-import type {CourseTheme}                      from './CourseTheme'
-import type {GameProperty}                     from '../entity/properties/game/GameProperty'
-import type {Name}                             from '../../lang/name/Name'
-import type {WorldTheme}                       from './WorldTheme'
+import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
+import type {CourseAndWorldTheme}              from 'core/theme/CourseAndWorldTheme'
+import type {CourseTheme}                      from 'core/theme/CourseTheme'
+import type {WorldTheme}                       from 'core/theme/WorldTheme'
+import type {Name}                             from 'lang/name/Name'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export abstract class AbstractCourseAndWorldTheme
     extends ClassContainingAName<string>

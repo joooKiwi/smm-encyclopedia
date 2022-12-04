@@ -1,17 +1,18 @@
 import './GameReferenceApp.scss'
 
-import {Fragment}                       from 'react'
-import type {PossibleEnglishName_Games} from '../core/soundEffect/SoundEffects.types'
-import type {ReactElement}              from '../util/react/ReactProperties'
+import {Fragment} from 'react'
 
-import AbstractApp                     from './AbstractApp'
-import {EMPTY_REACT_ELEMENT}           from '../util/emptyReactVariables'
-import {GameReferences}                from '../core/gameReference/GameReferences'
-import {gameContentTranslation}        from '../lang/components/translationMethods'
-import {Games}                         from '../core/game/Games'
-import {GameStyles}                    from '../core/gameStyle/GameStyles'
-import NameComponent                   from '../lang/name/component/Name.component'
-import {SoundEffects}                  from '../core/soundEffect/SoundEffects'
+import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
+import type {ReactElement}              from 'util/react/ReactProperties'
+
+import AbstractApp              from 'app/AbstractApp'
+import {Games}                  from 'core/game/Games'
+import {GameReferences}         from 'core/gameReference/GameReferences'
+import {GameStyles}             from 'core/gameStyle/GameStyles'
+import {SoundEffects}           from 'core/soundEffect/SoundEffects'
+import {gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent            from 'lang/name/component/Name.component'
+import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 /**
  * @reactComponent

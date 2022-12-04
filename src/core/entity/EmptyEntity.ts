@@ -1,12 +1,12 @@
-import type {ClassWithNullObjectPattern, EmptyEntityName} from '../../util/ClassWithNullObjectPattern'
-import type {Entity}                                      from './Entity'
+import type {Entity}                                      from 'core/entity/Entity'
+import type {ClassWithNullObjectPattern, EmptyEntityName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory'
-import {EMPTY_MAP}                        from '../../util/emptyVariables'
-import {EmptyEntityReference}             from './properties/EmptyEntityReference'
-import {EmptyEntityCategory}              from '../entityCategory/EmptyEntityCategory'
-import {EmptyIsInProperty}                from './properties/EmptyIsInProperty'
-import {EmptyStringName}                  from '../../lang/name/EmptyStringName'
+import {EmptyEntityReference}             from 'core/entity/properties/EmptyEntityReference'
+import {EmptyIsInProperty}                from 'core/entity/properties/EmptyIsInProperty'
+import {EmptyEntityCategory}              from 'core/entityCategory/EmptyEntityCategory'
+import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
+import {EmptyStringName}                  from 'lang/name/EmptyStringName'
+import {EMPTY_MAP}                        from 'util/emptyVariables'
 
 /**
  * An empty entity with the default values of nothing

@@ -1,8 +1,8 @@
 import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {ClassWithEnglishName} from '../../core/ClassWithEnglishName'
-import type {ClassWithReference}   from '../../core/ClassWithReference'
-import type {Name}                 from '../../lang/name/Name'
+import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
+import type {ClassWithReference}   from 'core/ClassWithReference'
+import type {Name}                 from 'lang/name/Name'
 
 /**
  * An application interpreter when using {@link AbstractAppWithInterpreter}

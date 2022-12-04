@@ -1,4 +1,4 @@
-import type {Texts} from './Texts'
+import type {Texts} from 'app/options/global/Texts'
 
 enum Enum {
 

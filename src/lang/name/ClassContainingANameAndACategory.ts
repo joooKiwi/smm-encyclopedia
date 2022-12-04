@@ -1,11 +1,11 @@
-import type {EveryLanguages}                            from '../EveryLanguages'
-import type {Name}                                      from './Name'
-import type {NameTrait}                                 from './NameTrait'
-import type {NameTraitFromACategory}                    from './NameTraitFromACategory'
-import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
+import type {EveryLanguages}                            from 'lang/EveryLanguages'
+import type {Name}                                      from 'lang/name/Name'
+import type {NameTrait}                                 from 'lang/name/NameTrait'
+import type {NameTraitFromACategory}                    from 'lang/name/NameTraitFromACategory'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
-import {ClassContainingAName}         from './ClassContainingAName'
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
+import {ClassContainingAName}         from 'lang/name/ClassContainingAName'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U>, >
     extends ClassContainingAName<T>

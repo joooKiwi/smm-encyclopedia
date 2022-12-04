@@ -1,7 +1,7 @@
-import type {EntityCategory} from './EntityCategory'
-import type {Name}           from '../../lang/name/Name'
+import type {EntityCategory} from 'core/entityCategory/EntityCategory'
+import type {Name}           from 'lang/name/Name'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class EntityCategoryContainer
     extends ClassContainingAName<string>

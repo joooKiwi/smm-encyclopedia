@@ -1,6 +1,6 @@
-import {AbstractGroupWithSingleImage} from './AbstractGroupWithSingleImage'
+import type {Games} from 'core/game/Games'
 
-import type {Games} from '../../../../core/game/Games'
+import {AbstractGroupWithSingleImage} from 'app/options/global/group/AbstractGroupWithSingleImage'
 
 /**
  * @reactComponent

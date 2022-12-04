@@ -1,16 +1,16 @@
-import resource from '../../resources/compiled/Course tag (SMM2).json'
+import resource from 'resources/compiled/Course tag (SMM2).json'
 
-import type {CourseTag}                                              from './CourseTag'
-import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from './CourseTag.template'
-import type {Loader}                                                 from '../../util/loader/Loader'
-import type {NullOr}                                                 from '../../util/types'
-import type {PossibleEnglishName, PossibleMakerCentralName}          from './CourseTags.types'
-import type {PropertiesArray as LanguagesPropertyArray}              from '../../lang/Loader.types'
+import type {CourseTag}                                              from 'core/courseTag/CourseTag'
+import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/CourseTag.template'
+import type {PossibleEnglishName, PossibleMakerCentralName}          from 'core/courseTag/CourseTags.types'
+import type {PropertiesArray as LanguagesPropertyArray}              from 'lang/Loader.types'
+import type {Loader}                                                 from 'util/loader/Loader'
+import type {NullOr}                                                 from 'util/types/nullable'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {CourseTagBuilder}        from './CourseTag.builder'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {CourseTagBuilder}        from 'core/courseTag/CourseTag.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

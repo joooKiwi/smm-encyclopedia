@@ -1,6 +1,6 @@
-import type {BasePath}               from '../../../variables'
-import type {GameStyles}             from './GameStyles'
-import type {PossibleShortImagePath} from '../../gameStyle/GameStyles.types'
+import type {BasePath}               from 'variables'
+import type {GameStyles}             from 'core/entity/images/GameStyles'
+import type {PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
 
 export type GamePath_Editor = `/${BasePath}/entity/${PossibleShortImagePath}/Editor/`
 export type GamePath_ClearCondition = `/${BasePath}/entity/${PossibleShortImagePath}/Clear Condition/`

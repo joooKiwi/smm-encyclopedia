@@ -1,7 +1,7 @@
-import type {OptionalLanguage} from './OptionalLanguage'
+import type {OptionalLanguage} from 'lang/name/containers/OptionalLanguage'
 
-import {LanguageContainer}     from './LanguageContainer'
-import {isNullableEmptyString} from '../../../util/utilitiesMethods'
+import {LanguageContainer}     from 'lang/name/containers/LanguageContainer'
+import {isNullableEmptyString} from 'util/utilitiesMethods'
 
 /**
  * @provider

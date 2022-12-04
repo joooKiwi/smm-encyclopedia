@@ -1,7 +1,7 @@
-import type {Language} from './Language'
-import type {NullOr}   from '../../../util/types'
+import type {Language} from 'lang/name/containers/Language'
+import type {NullOr}   from 'util/types/nullable'
 
-import {EMPTY_ARRAY} from '../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @provider

@@ -1,5 +1,5 @@
-import type {EveryLanguages} from '../EveryLanguages'
-import type {NameTrait}      from './NameTrait'
+import type {EveryLanguages} from 'lang/EveryLanguages'
+import type {NameTrait}      from 'lang/name/NameTrait'
 
 /**
  * A simili-trait class method that is a kind of {@link NameTrait},

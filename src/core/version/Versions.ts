@@ -1,11 +1,11 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from './Versions.types'
-import type {Nullable, NullOr}                                                                         from '../../util/types'
+import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from 'core/version/Versions.types'
+import type {Nullable, NullOr}                                                                         from 'util/types/nullable'
 
-import {Games}      from '../game/Games'
-import {GameStyles} from '../gameStyle/GameStyles'
+import {Games}      from 'core/game/Games'
+import {GameStyles} from 'core/gameStyle/GameStyles'
 
 //region -------------------- Import from deconstruction --------------------
 

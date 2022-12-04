@@ -1,14 +1,14 @@
 import './AbstractAppWithInterpreter.scss'
 
-import type {AppInterpreter}                     from '../interpreter/AppInterpreter'
-import type {AppProperties}                      from '../AppProperties.types'
-import type {AppWithVariableDisplayStates}       from '../AppStates.types'
-import type {NullOr}                             from '../../util/types'
-import type {ReactElement, ReactElementOrString} from '../../util/react/ReactProperties'
+import type {AppProperties}                      from 'app/AppProperties.types'
+import type {AppWithVariableDisplayStates}       from 'app/AppStates.types'
+import type {AppInterpreter}                     from 'app/interpreter/AppInterpreter'
+import type {ReactElement, ReactElementOrString} from 'util/react/ReactProperties'
+import type {NullOr}                             from 'util/types/nullable'
 
-import AbstractApp    from '../AbstractApp'
-import {ViewDisplays} from './ViewDisplays'
-import {assert}       from '../../util/utilitiesMethods'
+import AbstractApp    from 'app/AbstractApp'
+import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import {assert}       from 'util/utilitiesMethods'
 
 export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >

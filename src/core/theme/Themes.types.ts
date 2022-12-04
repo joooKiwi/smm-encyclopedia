@@ -1,5 +1,5 @@
-import type {BasePath} from '../../variables'
-import type {Themes}   from './Themes'
+import type {BasePath} from 'variables'
+import type {Themes}   from 'core/theme/Themes'
 
 enum Enum {
 

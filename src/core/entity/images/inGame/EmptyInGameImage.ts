@@ -1,7 +1,7 @@
-import type {ClassWithNullObjectPattern, EmptyInGameImageName} from '../../../../util/ClassWithNullObjectPattern'
-import type {InGameImage}                                      from './InGameImage'
+import type {InGameImage}                                      from 'core/entity/images/inGame/InGameImage'
+import type {ClassWithNullObjectPattern, EmptyInGameImageName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @singleton

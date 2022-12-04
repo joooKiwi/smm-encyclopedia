@@ -1,7 +1,7 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './name/containers/Language'
-import type {ClassWithOnlyProjectLanguages}                                           from './ClassWithOnlyProjectLanguages'
-import type {EveryLanguages}                                                          from './EveryLanguages'
-import type {NullOr}                                                                  from '../util/types'
+import type {ClassWithOnlyProjectLanguages}                                           from 'lang/ClassWithOnlyProjectLanguages'
+import type {EveryLanguages}                                                          from 'lang/EveryLanguages'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
+import type {NullOr}                                                                  from 'util/types/nullable'
 
 /**
  * <p>

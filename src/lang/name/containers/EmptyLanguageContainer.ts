@@ -1,4 +1,4 @@
-import {EmptyLanguage} from './EmptyLanguage'
+import {EmptyLanguage} from 'lang/name/containers/EmptyLanguage'
 
 /**
  * @singleton

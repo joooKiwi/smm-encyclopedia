@@ -1,7 +1,7 @@
-import type {Nullable} from '../../types'
+import type {Nullable} from 'util/types/nullable'
 
-import {SoundStates}  from '../player/SoundStates'
-import {HistoryState} from './HistoryState'
+import {HistoryState} from 'util/sound/history/HistoryState'
+import {SoundStates}  from 'util/sound/player/SoundStates'
 
 export class SoundStateHistory {
 

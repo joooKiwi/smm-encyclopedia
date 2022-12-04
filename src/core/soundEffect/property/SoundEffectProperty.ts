@@ -1,6 +1,6 @@
-import type {GameProperty}                     from '../../entity/properties/game/GameProperty'
-import type {PlayerSoundEffectTriggerProperty} from './PlayerSoundEffectTriggerProperty'
-import type {PlayerSoundEffectTriggers}        from './PlayerSoundEffectTriggers'
+import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
+import type {PlayerSoundEffectTriggerProperty} from 'core/soundEffect/property/PlayerSoundEffectTriggerProperty'
+import type {PlayerSoundEffectTriggers}        from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 
 export interface SoundEffectProperty
     extends GameProperty, PlayerSoundEffectTriggerProperty {

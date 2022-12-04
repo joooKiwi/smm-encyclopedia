@@ -1,7 +1,7 @@
-import type {ClimbingImageFile, ClimbingImages, FallingAfterJumpImage, FallingAfterJumpImageFile, GoalPoleImageFile, GoalPoleImages, Image, JumpImageFile, JumpImages, Path, PossibleImages, PressingDownImage, PressingDownImageFile, RunningImageFile, RunningImages, SingleImage, SwimmingImageFile, SwimmingImages, TauntImage, TauntImageFile, TurningImage, TurningImageFile, WaitingImage, WaitingImageFile, WalkImageFile, WalkImages} from './Image'
-import type {PossibleFileName}                                                                                                                                                                                                                                                                                                                                                                                                                 from '../MysteryMushrooms.types'
+import type {ClimbingImageFile, ClimbingImages, FallingAfterJumpImage, FallingAfterJumpImageFile, GoalPoleImageFile, GoalPoleImages, Image, JumpImageFile, JumpImages, Path, PossibleImages, PressingDownImage, PressingDownImageFile, RunningImageFile, RunningImages, SingleImage, SwimmingImageFile, SwimmingImages, TauntImage, TauntImageFile, TurningImage, TurningImageFile, WaitingImage, WaitingImageFile, WalkImageFile, WalkImages} from 'core/mysteryMushroom/image/Image'
+import type {PossibleFileName}                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/mysteryMushroom/MysteryMushrooms.types'
 
-import {BASE_PATH} from '../../../variables'
+import {BASE_PATH} from 'variables'
 
 export class ImageContainer<FILE extends PossibleFileName = PossibleFileName, >
     implements Image<FILE> {

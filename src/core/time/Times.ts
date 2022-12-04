@@ -1,19 +1,19 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                             from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                               from '../ClassWithImagePath'
-import type {PossibleOtherEntities}                                                            from '../entity/Entity'
-import type {Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleSimpleImagePath} from './Times.types'
-import type {Nullable}                                                                         from '../../util/types'
-import type {PropertyGetter, PropertyReferenceGetter}                                          from '../PropertyGetter'
-import type {TimeProperty}                                                                     from '../entity/properties/time/TimeProperty'
-import type {TimeReferences}                                                                   from '../entity/properties/time/TimeReferences'
+import type {ClassWithEnglishName}                                                             from 'core/ClassWithEnglishName'
+import type {ClassWithImagePath}                                                               from 'core/ClassWithImagePath'
+import type {PropertyGetter, PropertyReferenceGetter}                                          from 'core/PropertyGetter'
+import type {PossibleOtherEntities}                                                            from 'core/entity/Entity'
+import type {TimeProperty}                                                                     from 'core/entity/properties/time/TimeProperty'
+import type {TimeReferences}                                                                   from 'core/entity/properties/time/TimeReferences'
+import type {Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleSimpleImagePath} from 'core/time/Times.types'
+import type {Nullable}                                                                         from 'util/types/nullable'
 
-import {BASE_PATH}             from '../../variables'
-import {getValueByEnglishName} from '../../util/utilitiesMethods'
-import {StringContainer}       from '../../util/StringContainer'
-import TimeComponent           from './Time.component'
+import {BASE_PATH}             from 'variables'
+import TimeComponent           from 'core/time/Time.component'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {StringContainer}       from 'util/StringContainer'
 
 export abstract class Times
     extends Enum<Ordinals, Names>

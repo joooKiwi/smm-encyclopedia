@@ -1,8 +1,8 @@
-import type {NullOrNumber}                from '../../../util/types'
-import type {NumberPropertyWithAmount}    from '../PropertyWithAmount'
-import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
+import type {NumberPropertyWithAmount}    from 'core/_properties/PropertyWithAmount'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {NullOrNumber}                from 'util/types/nullable'
 
-import {PropertyWithAmountContainer} from '../PropertyWithAmount.container'
+import {PropertyWithAmountContainer} from 'core/_properties/PropertyWithAmount.container'
 
 export class NumberPropertyWithAmountContainer<N extends NullOrNumber = NullOrNumber, AMOUNT extends NullOrNumber = NullOrNumber, >
     extends PropertyWithAmountContainer<N, AMOUNT>

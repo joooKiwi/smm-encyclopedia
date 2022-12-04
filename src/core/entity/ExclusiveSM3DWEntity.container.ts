@@ -1,11 +1,11 @@
-import type {EntityCategory}                         from '../entityCategory/EntityCategory'
-import type {EntityReferences}                       from './properties/EntityReferences'
-import type {ExclusiveSM3DWEntity}                   from './Entity'
-import type {ExclusiveSMM2PropertyInSM3DW, Property} from './properties/Property'
-import type {Name}                                   from '../../lang/name/Name'
+import type {ExclusiveSM3DWEntity}                   from 'core/entity/Entity'
+import type {EntityReferences}                       from 'core/entity/properties/EntityReferences'
+import type {ExclusiveSMM2PropertyInSM3DW, Property} from 'core/entity/properties/Property'
+import type {EntityCategory}                         from 'core/entityCategory/EntityCategory'
+import type {Name}                                   from 'lang/name/Name'
 
-import {AbstractExclusiveSMM2Entity} from './AbstractExclusiveSMM2Entity'
-import {assert}                      from '../../util/utilitiesMethods'
+import {AbstractExclusiveSMM2Entity} from 'core/entity/AbstractExclusiveSMM2Entity'
+import {assert}                      from 'util/utilitiesMethods'
 
 /**
  * An entity that is exclusive to the {@link Games.SUPER_MARIO_MAKER_2 Super Mario Maker 2} {@link Games game}

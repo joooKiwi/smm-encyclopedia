@@ -1,9 +1,9 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithValue}                          from './ClassWithValue'
-import type {Names, Ordinals, PossibleImageAnimation} from './ImageAnimations.types'
-import type {Nullable}                                from '../../../util/types'
+import type {Names, Ordinals, PossibleImageAnimation} from 'app/options/global/ImageAnimations.types'
+import type {ClassWithValue}                          from 'util/types/ClassWithValue'
+import type {Nullable}                                from 'util/types/nullable'
 
 /**
  * The possible image animation as either

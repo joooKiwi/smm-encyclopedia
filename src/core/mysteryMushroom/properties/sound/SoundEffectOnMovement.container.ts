@@ -1,8 +1,8 @@
-import type {ExtendedMap}                                                                            from '../../../../util/extended/ExtendedMap'
-import type {PossibleTranslationKeys, PossibleValues, PossibleValuesReceived, SoundEffectOnMovement} from './SoundEffectOnMovement'
+import type {PossibleTranslationKeys, PossibleValues, PossibleValuesReceived, SoundEffectOnMovement} from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
+import type {ExtendedMap}                                                                            from 'util/extended/ExtendedMap'
 
-import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
-import {PropertyProvider}     from '../../../_properties/PropertyProvider'
+import {PropertyProvider}     from 'core/_properties/PropertyProvider'
+import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
  * @todo move the content in the constructor in the builder instead

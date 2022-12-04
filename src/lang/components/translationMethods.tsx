@@ -1,10 +1,10 @@
 import i18next from 'i18next'
 
-import type {Namespace, SingleTranslationKey, TranslationReplaceKeysMap, TranslationReturnValue} from './TranslationProperty'
-import type {Nullable}                                                                           from '../../util/types'
-import type {ReactElement, ReactElementOrString}                                                 from '../../util/react/ReactProperties'
+import type {Namespace, SingleTranslationKey, TranslationReplaceKeysMap, TranslationReturnValue} from 'lang/components/TranslationProperty'
+import type {Nullable}                                                                           from 'util/types/nullable'
+import type {ReactElement, ReactElementOrString}                                                 from 'util/react/ReactProperties'
 
-import {TranslationUtility} from './TranslationUtility'
+import {TranslationUtility} from 'lang/components/TranslationUtility'
 
 // @ts-ignore
 export function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N> = SingleTranslationKey<N>, >(namespace: N, value: V,): TranslationReturnValue<N>

@@ -1,12 +1,12 @@
 import React, {type ErrorInfo, PureComponent, useState} from 'react'
 import {IntlProvider}                                   from 'react-intl'
 
-import type {PossibleInternationalAcronym} from './lang/ProjectLanguages.types'
-import type {ReactState}                   from './util/react/ReactState'
+import type {PossibleInternationalAcronym} from 'lang/ProjectLanguages.types'
+import type {ReactState}                   from 'util/react/ReactState'
 
-import {EveryLanguages}   from './lang/EveryLanguages'
-import {ProjectLanguages} from './lang/ProjectLanguages'
-import Routes             from './routes/Routes'
+import {EveryLanguages}   from 'lang/EveryLanguages'
+import {ProjectLanguages} from 'lang/ProjectLanguages'
+import Routes             from 'routes/Routes'
 
 /**
  *

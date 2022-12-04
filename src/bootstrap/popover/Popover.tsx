@@ -1,10 +1,10 @@
-import {useEffect}         from 'react'
+import {useEffect} from 'react'
 
-import type {PopoverConfiguration}                              from './Popover.types'
-import type {ReactElement, ReactPropertiesWithOptionalChildren} from '../../util/react/ReactProperties'
+import type {PopoverConfiguration}                              from 'bootstrap/popover/Popover.types'
+import type {ReactElement, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../util/emptyReactVariables'
-import {PopoverInstance}     from './PopoverInstance'
+import {PopoverInstance}     from 'bootstrap/popover/PopoverInstance'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 /**
  * Create a new {@link bootstrap.Popover Popover} instance once the element is rendered

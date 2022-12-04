@@ -1,7 +1,7 @@
-import type {Name}              from '../../lang/name/Name'
-import type {PredefinedMessage} from './PredefinedMessage'
+import type {PredefinedMessage} from 'core/predefinedMessage/PredefinedMessage'
+import type {Name}              from 'lang/name/Name'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class PredefinedMessageContainer
     extends ClassContainingAName<string>

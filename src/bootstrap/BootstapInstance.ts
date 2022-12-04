@@ -1,9 +1,9 @@
 import type BaseComponent      from 'bootstrap/js/dist/base-component'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
-import type {GenericBootstrapInstance, StaticBootstrapInstance, Template} from './BootstrapInstance.types'
+import type {GenericBootstrapInstance, StaticBootstrapInstance, Template} from 'bootstrap/BootstrapInstance.types'
 
-import {assert} from '../util/utilitiesMethods'
+import {assert} from 'util/utilitiesMethods'
 
 export abstract class BootstrapInstance<STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>, INSTANCE extends BaseComponent, OPTION extends ComponentOptions, ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > {
 

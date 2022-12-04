@@ -1,7 +1,7 @@
-import type {ObjectHolder} from './ObjectHolder'
+import type {ObjectHolder} from 'util/holder/ObjectHolder'
 
-import {EMPTY_ARRAY, EMPTY_OBJECT, EMPTY_STRING} from '../emptyVariables'
-import {ObjectHolderContainer}                   from './ObjectHolder.container'
+import {EMPTY_ARRAY, EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
+import {ObjectHolderContainer}                   from 'util/holder/ObjectHolder.container'
 
 export class ObjectHolders {
 

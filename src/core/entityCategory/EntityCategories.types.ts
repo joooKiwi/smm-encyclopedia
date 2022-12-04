@@ -1,4 +1,4 @@
-import type {BasePath} from '../../variables'
+import type {BasePath} from 'variables'
 
 enum Enum {
 

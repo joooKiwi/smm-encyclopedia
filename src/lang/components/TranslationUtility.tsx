@@ -1,10 +1,10 @@
 import type {TOptions} from 'i18next'
 
-import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap} from './TranslationProperty'
-import type {ReactElement, ReactElementOrString}                                            from '../../util/react/ReactProperties'
+import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
+import type {ReactElement, ReactElementOrString}                                            from 'util/react/ReactProperties'
 
-import {assert}         from '../../util/utilitiesMethods'
-import {isInProduction} from '../../variables'
+import {isInProduction} from 'variables'
+import {assert}         from 'util/utilitiesMethods'
 
 export class TranslationUtility {
 

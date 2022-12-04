@@ -1,6 +1,6 @@
-import type {NullOr}                            from '../../../util/types'
-import type {PossibleGroupName}                 from '../../entityTypes'
-import type {PossibleEnglishName as EntityName} from '../../entity/Entities.types'
+import type {PossibleGroupName}                 from 'core/entityTypes'
+import type {PossibleEnglishName as EntityName} from 'core/entity/Entities.types'
+import type {NullOr}                            from 'util/types/nullable'
 
 export interface EntityBehaviourLinkTemplate {
 

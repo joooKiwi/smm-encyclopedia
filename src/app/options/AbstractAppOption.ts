@@ -1,8 +1,8 @@
 import {Enum} from '@joookiwi/enumerable'
 
-import type {ReactState} from '../../util/react/ReactState'
+import type {ReactState} from 'util/react/ReactState'
 
-import {isInProduction} from '../../variables'
+import {isInProduction} from 'variables'
 
 /**@deprecated*/
 export abstract class AbstractAppOption<T, S extends ReactState, O extends number = number, N extends string = string, >

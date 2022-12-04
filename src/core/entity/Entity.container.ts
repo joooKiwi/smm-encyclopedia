@@ -1,9 +1,9 @@
-import type {EntityReferences} from './properties/EntityReferences'
-import type {EntityCategory}   from '../entityCategory/EntityCategory'
-import type {Name}             from '../../lang/name/Name'
-import type {Property}         from './properties/Property'
+import type {EntityReferences} from 'core/entity/properties/EntityReferences'
+import type {Property}         from 'core/entity/properties/Property'
+import type {EntityCategory}   from 'core/entityCategory/EntityCategory'
+import type {Name}             from 'lang/name/Name'
 
-import {AbstractEntity} from './AbstractEntity'
+import {AbstractEntity} from 'core/entity/AbstractEntity'
 
 /**
  * An entity that is not exclusive to any {@link GameStyles game style}.

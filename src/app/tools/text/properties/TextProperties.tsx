@@ -1,6 +1,6 @@
-import type {HTMLSpanProperties}            from '../../../../util/react/html/HTMLSpanProperties'
-import type {Nullable}                      from '../../../../util/types'
-import type {ReactElement, ReactProperties} from '../../../../util/react/ReactProperties'
+import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import type {HTMLSpanProperties}            from 'util/react/html/HTMLSpanProperties'
+import type {Nullable}                      from 'util/types/nullable'
 
 export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
     extends ReactProperties, Omit<HTMLSpanProperties, | 'content' | 'className'> {

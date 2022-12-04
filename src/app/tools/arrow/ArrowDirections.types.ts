@@ -1,4 +1,4 @@
-import type {ArrowDirections} from './ArrowDirections'
+import type {ArrowDirections} from 'app/tools/arrow/ArrowDirections'
 
 enum Enum {
     VERTICAL,

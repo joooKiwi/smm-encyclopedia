@@ -1,6 +1,6 @@
-import type {MysteryMushroomProperty} from './MysteryMushroomProperty'
-import type {SoundProperty}           from './sound/SoundProperty'
-import type {UnlockProperty}          from './UnlockProperty'
+import type {MysteryMushroomProperty} from 'core/mysteryMushroom/properties/MysteryMushroomProperty'
+import type {UnlockProperty}          from 'core/mysteryMushroom/properties/UnlockProperty'
+import type {SoundProperty}           from 'core/mysteryMushroom/properties/sound/SoundProperty'
 
 export class MysteryMushroomPropertyContainer
     implements MysteryMushroomProperty {

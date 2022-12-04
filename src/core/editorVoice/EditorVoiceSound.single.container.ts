@@ -1,5 +1,5 @@
-import type {EditorVoiceSound, PossibleFileName, PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative} from './EditorVoiceSound'
-import type {EditorVoiceSoundFile}                                                                                from './file/EditorVoiceSoundFile'
+import type {EditorVoiceSound, PossibleFileName, PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative} from 'core/editorVoice/EditorVoiceSound'
+import type {EditorVoiceSoundFile}                                                                                from 'core/editorVoice/file/EditorVoiceSoundFile'
 
 export class EditorVoiceSoundSingleContainer<NAME extends PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative>, >
     implements EditorVoiceSound<EditorVoiceSoundFile<NAME>, null> {

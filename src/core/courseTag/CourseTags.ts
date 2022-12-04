@@ -1,15 +1,15 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                  from '../ClassWithReference'
-import type {CourseTag}                                                                                                                           from './CourseTag'
-import type {MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName, UnofficialCourseTags} from './CourseTags.types'
-import type {Nullable}                                                                                                                            from '../../util/types'
+import type {ClassWithEnglishName}                                                                                                                from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                  from 'core/ClassWithReference'
+import type {CourseTag}                                                                                                                           from 'core/courseTag/CourseTag'
+import type {MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName, UnofficialCourseTags} from 'core/courseTag/CourseTags.types'
+import type {Nullable}                                                                                                                            from 'util/types/nullable'
 
-import {getValueByEnglishName} from '../../util/utilitiesMethods'
-import {Import}                from '../../util/DynamicImporter'
-import {StringContainer}       from '../../util/StringContainer'
+import {Import}                from 'util/DynamicImporter'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 /**
  * @recursiveReference {@link CourseTagLoader}

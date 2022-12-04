@@ -1,4 +1,4 @@
-import type {PossibleFileName} from '../../MysteryMushrooms.types'
+import type {PossibleFileName} from 'core/mysteryMushroom/MysteryMushrooms.types'
 
 export interface FileName<IMAGE_FILE_NAMES extends PossibleImageFileNames = PossibleImageFileNames, SOUND_FILE_NAME extends PossibleSoundFileNames = PossibleSoundFileNames, > {
 

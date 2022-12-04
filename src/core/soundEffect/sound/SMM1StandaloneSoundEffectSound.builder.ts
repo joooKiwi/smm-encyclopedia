@@ -1,15 +1,15 @@
-import type {Builder}                        from '../../../util/builder/Builder'
-import type {NullOr}                         from '../../../util/types'
-import type {SMM1StandaloneSoundEffectSound} from './SMM1StandaloneSoundEffectSound'
-import type {SMM1ExclusiveSoundEffectSound}  from './SMM1ExclusiveSoundEffectSound'
-import type {SMM2SoundEffectSound}           from './SMM2SoundEffectSound'
-import type {SoundEffectSoundFile}           from '../file/SoundEffectSoundFile'
-import type {SingleIndex}                    from './AbstractExclusiveSoundEffectSound.builder'
+import type {SoundEffectSoundFile}           from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {SingleIndex}                    from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'
+import type {SMM1StandaloneSoundEffectSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
+import type {SMM1ExclusiveSoundEffectSound}  from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
+import type {SMM2SoundEffectSound}           from 'core/soundEffect/sound/SMM2SoundEffectSound'
+import type {Builder}                        from 'util/builder/Builder'
+import type {NullOr}                         from 'util/types/nullable'
 
-import {assert}                                  from '../../../util/utilitiesMethods'
-import {EmptySMMSoundEffectSound}                from './EmptySMMSoundEffectSound'
-import {ObjectHolderContainer}                   from '../../../util/holder/ObjectHolder.container'
-import {SMM1StandaloneSoundEffectSoundContainer} from './SMM1StandaloneSoundEffectSound.container'
+import {EmptySMMSoundEffectSound}                from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
+import {SMM1StandaloneSoundEffectSoundContainer} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.container'
+import {ObjectHolderContainer}                   from 'util/holder/ObjectHolder.container'
+import {assert}                                  from 'util/utilitiesMethods'
 
 export class SMM1StandaloneSoundEffectSoundBuilder
     implements Builder<SMM1StandaloneSoundEffectSound> {

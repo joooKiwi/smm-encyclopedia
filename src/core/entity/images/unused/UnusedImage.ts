@@ -1,6 +1,6 @@
-import type {Image}                   from '../Image'
-import type {UnusedImage_BigMushroom} from './UnusedImage_BigMushroom'
-import type {UnusedImage_Regular}     from './UnusedImage_Regular'
+import type {Image}                   from 'core/entity/images/Image'
+import type {UnusedImage_BigMushroom} from 'core/entity/images/unused/UnusedImage_BigMushroom'
+import type {UnusedImage_Regular}     from 'core/entity/images/unused/UnusedImage_Regular'
 
 export interface UnusedImage
     extends Image {

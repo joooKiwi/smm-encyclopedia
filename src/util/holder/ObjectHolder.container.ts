@@ -1,4 +1,4 @@
-import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
 export class ObjectHolderContainer<T>
     implements ObjectHolder<T> {

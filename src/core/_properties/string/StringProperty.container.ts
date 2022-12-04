@@ -1,8 +1,8 @@
-import type {NullOrString}                from '../../../util/types'
-import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
-import type {StringProperty}              from '../Property'
+import type {StringProperty}              from 'core/_properties/Property'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {NullOrString}                from 'util/types/nullable'
 
-import {PropertyContainer} from '../Property.container'
+import {PropertyContainer} from 'core/_properties/Property.container'
 
 export class StringPropertyContainer<S extends NullOrString = NullOrString, >
     extends PropertyContainer<S>

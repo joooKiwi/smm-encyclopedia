@@ -1,4 +1,4 @@
-import type {FileName, PossibleImageFileNames, PossibleSoundFileNames} from './FileName'
+import type {FileName, PossibleImageFileNames, PossibleSoundFileNames} from 'core/mysteryMushroom/file/name/FileName'
 
 export class AbstractFileName<IMAGE_FILE_NAMES extends PossibleImageFileNames, SOUND_FILE_NAME extends PossibleSoundFileNames, >
     implements FileName<IMAGE_FILE_NAMES, SOUND_FILE_NAME> {

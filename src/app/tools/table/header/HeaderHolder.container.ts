@@ -1,10 +1,10 @@
-import type {HeaderHolder}        from './HeaderHolder'
-import type {Nullable, NullOr}    from '../../../../util/types'
-import type {ReactElement}        from '../../../../util/react/ReactProperties'
-import type {SingleHeaderContent} from '../SimpleHeader'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {HeaderHolder}        from 'app/tools/table/header/HeaderHolder'
+import type {ReactElement}        from 'util/react/ReactProperties'
+import type {Nullable, NullOr}    from 'util/types/nullable'
 
-import {assert}              from '../../../../util/utilitiesMethods'
-import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
+import {assert}              from 'util/utilitiesMethods'
 
 export class HeaderHolderContainer
     implements HeaderHolder {

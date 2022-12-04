@@ -1,8 +1,8 @@
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {Names, Ordinals, PossibleRepeatableName} from './RepeatableTypes.types'
-import type {Nullable}                                from '../types'
+import type {Names, Ordinals, PossibleRepeatableName} from 'util/sound/RepeatableTypes.types'
+import type {Nullable}                                from 'util/types/nullable'
 
 /**
  * @todo Add more types (within a range instead of just loop a single value)

@@ -1,5 +1,5 @@
-import type {EditorVoiceSound}                                      from './EditorVoiceSound'
-import type {ClassWithNullObjectPattern, EmptyEditorVoiceSoundName} from '../../util/ClassWithNullObjectPattern'
+import type {EditorVoiceSound}                                      from 'core/editorVoice/EditorVoiceSound'
+import type {ClassWithNullObjectPattern, EmptyEditorVoiceSoundName} from 'util/ClassWithNullObjectPattern'
 
 export class EmptyEditorVoiceSound
     implements EditorVoiceSound<null, null>, ClassWithNullObjectPattern<EmptyEditorVoiceSoundName> {

@@ -2,15 +2,15 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {Link}                                                                    from 'react-router-dom'
 
-import type {BootstrapColor}                         from '../../bootstrap/Bootstrap.types'
-import type {EveryPossibleRouteNames}                from '../../routes/everyRoutes.types'
-import type {Names, Ordinals, PossibleCourseTagType} from './CourseTagType.types'
-import type {Nullable}                               from '../../util/types'
-import type {ReactElement, ReactElementOrString}     from '../../util/react/ReactProperties'
+import type {Names, Ordinals, PossibleCourseTagType} from 'app/property/CourseTagType.types'
+import type {BootstrapColor}                         from 'bootstrap/Bootstrap.types'
+import type {EveryPossibleRouteNames}                from 'routes/everyRoutes.types'
+import type {ReactElement, ReactElementOrString}     from 'util/react/ReactProperties'
+import type {Nullable}                               from 'util/types/nullable'
 
-import {contentTranslation} from '../../lang/components/translationMethods'
-import {CourseTags}         from '../../core/courseTag/CourseTags'
-import {route}              from '../../routes/route'
+import {contentTranslation} from 'lang/components/translationMethods'
+import {CourseTags}         from 'core/courseTag/CourseTags'
+import {route}              from 'routes/route'
 
 export abstract class CourseTagTypes
     extends Enum<Ordinals, Names> {

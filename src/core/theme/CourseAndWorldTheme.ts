@@ -1,6 +1,6 @@
-import type {CourseTheme} from './CourseTheme'
-import type {Theme}       from './Theme'
-import type {WorldTheme}  from './WorldTheme'
+import type {CourseTheme} from 'core/theme/CourseTheme'
+import type {Theme}       from 'core/theme/Theme'
+import type {WorldTheme}  from 'core/theme/WorldTheme'
 
 export interface CourseAndWorldTheme
     extends Theme {

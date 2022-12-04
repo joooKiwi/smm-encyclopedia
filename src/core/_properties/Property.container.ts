@@ -1,9 +1,9 @@
-import type {DEFAULT_AMOUNT, DEFAULT_COMMENT, DEFAULT_IS_UNKNOWN}                                                       from './Property'
-import type {FalseProperty, NotApplicableProperty, NullProperty, PropertyWithEverything, TrueProperty, UnknownProperty} from './PropertyWithEverything'
-import type {NullOrNumber, NullOrString}                                                                                from '../../util/types'
-import type {ObjectHolder, PossibleValueOnObjectHolder}                                                                 from '../../util/holder/ObjectHolder'
+import type {DEFAULT_AMOUNT, DEFAULT_COMMENT, DEFAULT_IS_UNKNOWN}                                                       from 'core/_properties/Property'
+import type {FalseProperty, NotApplicableProperty, NullProperty, PropertyWithEverything, TrueProperty, UnknownProperty} from 'core/_properties/PropertyWithEverything'
+import type {ObjectHolder, PossibleValueOnObjectHolder}                                                                 from 'util/holder/ObjectHolder'
+import type {NullOrNumber, NullOrString}                                                                                from 'util/types/nullable'
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 export class PropertyContainer<T, IS_UNKNOWN extends boolean = DEFAULT_IS_UNKNOWN, AMOUNT extends NullOrNumber = DEFAULT_AMOUNT, COMMENT extends NullOrString = DEFAULT_COMMENT, >
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {

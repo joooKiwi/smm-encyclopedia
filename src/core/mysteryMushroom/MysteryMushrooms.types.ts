@@ -1,6 +1,6 @@
-import type {Nullable}                 from '../../util/types'
-import type {MysteryMushrooms}         from './MysteryMushrooms'
-import type {MysteryMushroomSoundFile} from './file/MysteryMushroomSoundFile'
+import type {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
+import type {MysteryMushroomSoundFile} from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {Nullable}                 from 'util/types/nullable'
 
 enum Enum {
     MYSTERY_MUSHROOM,

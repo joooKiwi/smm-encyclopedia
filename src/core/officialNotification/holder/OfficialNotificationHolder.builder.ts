@@ -1,11 +1,11 @@
-import type {Builder}                           from '../../../util/builder/Builder'
-import type {NullOr}                            from '../../../util/types'
-import type {OfficialNotificationHolder}        from './OfficialNotificationHolder'
-import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
+import type {OfficialNotificationHolder}        from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {PossibleEnglishNameWithOnlyAmount} from 'core/officialNotification/OfficialNotifications.types'
+import type {Builder}                           from 'util/builder/Builder'
+import type {NullOr}                            from 'util/types/nullable'
 
-import {EmptyOfficialNotificationHolder}    from './EmptyOfficialNotificationHolder'
-import {OfficialNotificationHolderProvider} from './OfficialNotificationHolder.provider'
-import {OfficialNotifications}              from '../OfficialNotifications'
+import {OfficialNotifications}              from 'core/officialNotification/OfficialNotifications'
+import {EmptyOfficialNotificationHolder}    from 'core/officialNotification/holder/EmptyOfficialNotificationHolder'
+import {OfficialNotificationHolderProvider} from 'core/officialNotification/holder/OfficialNotificationHolder.provider'
 
 export class OfficialNotificationHolderBuilder
     implements Builder<OfficialNotificationHolder> {

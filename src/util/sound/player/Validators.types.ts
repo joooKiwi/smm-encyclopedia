@@ -1,4 +1,4 @@
-import type {Validators} from './Validators'
+import type {Validators} from 'util/sound/player/Validators'
 
 enum Enum {
     ALL_YES,

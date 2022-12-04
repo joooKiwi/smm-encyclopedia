@@ -1,11 +1,11 @@
-import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from '../../util/ClassWithNullObjectPattern'
-import type {MiiCostume}                                      from './MiiCostume'
+import type {MiiCostume}                                      from 'core/miiCostume/MiiCostume'
+import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory'
-import {EmptyMiiCostumeCategory}          from '../miiCostumeCategory/EmptyMiiCostumeCategory'
-import {EmptyStringName}                  from '../../lang/name/EmptyStringName'
-import {EmptyOfficialNotificationHolder}  from '../officialNotification/holder/EmptyOfficialNotificationHolder'
-import {MiiCostumeCategory}               from '../miiCostumeCategory/MiiCostumeCategory'
+import {EmptyMiiCostumeCategory}          from 'core/miiCostumeCategory/EmptyMiiCostumeCategory'
+import {MiiCostumeCategory}               from 'core/miiCostumeCategory/MiiCostumeCategory'
+import {EmptyOfficialNotificationHolder}  from 'core/officialNotification/holder/EmptyOfficialNotificationHolder'
+import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
+import {EmptyStringName}                  from 'lang/name/EmptyStringName'
 
 /**
  * @singleton

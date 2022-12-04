@@ -1,7 +1,7 @@
-import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderReceived, SimpleHeaderTypeOrConvertor} from './CSVLoader.types'
-import {PredefinedConverter}                                                                                                                                from './converter/PredefinedConverter'
-import {GenericStringToAnyConverter}                                                                                                                        from './converter/GenericStringToAnyConverter'
-import {CSVLoader}                                                                                                                                          from './CSVLoader'
+import {CSVLoader}                                                                                                                                          from 'util/loader/CSVLoader'
+import {ArrayOfHeaders, ArrayOrSimpleHeaderTypeOrConvertor, ConversionCallbackToConverter, SimpleHeader, SimpleHeaderReceived, SimpleHeaderTypeOrConvertor} from 'util/loader/CSVLoader.types'
+import {PredefinedConverter}                                                                                                                                from 'util/loader/converter/PredefinedConverter'
+import {GenericStringToAnyConverter}                                                                                                                        from 'util/loader/converter/GenericStringToAnyConverter'
 
 export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayOfHeaders, > {
 

@@ -1,8 +1,8 @@
-import type {Nullable}  from '../../types'
-import type {SoundFile} from '../SoundFile'
+import type {SoundFile} from 'util/sound/SoundFile'
+import type {Nullable}  from 'util/types/nullable'
 
-import {AbstractSoundPlayer} from './AbstractSoundPlayer'
-import {SimpleSoundPlayer}   from './SimpleSoundPlayer'
+import {AbstractSoundPlayer} from 'util/sound/player/AbstractSoundPlayer'
+import {SimpleSoundPlayer}   from 'util/sound/player/SimpleSoundPlayer'
 
 export class SoundPlayerFactory {
 

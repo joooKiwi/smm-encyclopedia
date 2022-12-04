@@ -2,20 +2,20 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {Fragment, lazy}                                                          from 'react'
 
-import type {ClassWithTranslationKey}                 from '../../../lang/ClassWithTranslationKey'
-import type {Names, Ordinals, PossibleTranslationKey} from './PlayerSoundEffectTriggers.types'
-import type {Nullable}                                from '../../../util/types'
-import type {PlayerSoundEffectTriggerProperty}        from './PlayerSoundEffectTriggerProperty'
-import type {ReactElement}                            from '../../../util/react/ReactProperties'
-import type {TranslationReplaceKeysMap}               from '../../../lang/components/TranslationProperty'
+import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
+import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
+import type {Names, Ordinals, PossibleTranslationKey} from 'core/soundEffect/property/PlayerSoundEffectTriggers.types'
+import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTriggerProperty'
+import type {ReactElement}                            from 'util/react/ReactProperties'
+import type {Nullable}                                from 'util/types/nullable'
 
-import {assert}                 from '../../../util/utilitiesMethods'
-import {gameContentTranslation} from '../../../lang/components/translationMethods'
+import {gameContentTranslation} from 'lang/components/translationMethods'
+import {assert}                 from 'util/utilitiesMethods'
 
 //region -------------------- dynamic imports --------------------
 
-const Image =         lazy(() => import('../../../app/tools/images/Image'))
-const TextComponent = lazy(() => import('../../../app/tools/text/TextComponent'))
+const Image =         lazy(() => import('app/tools/images/Image'))
+const TextComponent = lazy(() => import('app/tools/text/TextComponent'))
 
 //endregion -------------------- dynamic imports --------------------
 

@@ -1,6 +1,6 @@
-import type {ReactElement} from '../../util/react/ReactProperties'
+import type {ReactElement} from 'util/react/ReactProperties'
 
-import {AbstractEntityPropertyThatCanDisplayAllComponent} from './AbstractEntityPropertyThatCanDisplayAllComponent'
+import {AbstractEntityPropertyThatCanDisplayAllComponent} from 'core/_component/AbstractEntityPropertyThatCanDisplayAllComponent'
 
 /**
  * @reactComponent

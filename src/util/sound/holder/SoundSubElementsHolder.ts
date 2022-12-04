@@ -1,4 +1,4 @@
-import type {ReactElement} from '../../react/ReactProperties'
+import type {ReactElement} from 'util/react/ReactProperties'
 
 export class SoundSubElementsHolder {
 

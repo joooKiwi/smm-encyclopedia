@@ -1,4 +1,4 @@
-import type {Time} from './Time'
+import type {Time} from 'util/sound/time/Time'
 
 export abstract class AbstractTime<MILLISECOND extends number = number, SECOND extends number = number, >
     implements Time<MILLISECOND, SECOND> {

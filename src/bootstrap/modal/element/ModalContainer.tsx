@@ -1,8 +1,8 @@
-import type {HTMLDivProperties}                                                  from '../../../util/react/html/HTMLDivProperties'
-import type {ReactElement, ReactProperties, ReactPropertiesWithOptionalChildren} from '../../../util/react/ReactProperties'
-import {EMPTY_OBJECT, EMPTY_STRING}                                              from '../../../util/emptyVariables'
+import type {PossibleModalSize}                                                  from 'bootstrap/modal/Modal.types'
+import type {HTMLDivProperties}                                                  from 'util/react/html/HTMLDivProperties'
+import type {ReactElement, ReactProperties, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
-export type PossibleModalSize = | 'sm' | 'md' | 'lg' | 'xl'
+import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
 
 interface ModalContainerProperties
     extends ReactProperties, Omit<HTMLDivProperties, 'key'> {

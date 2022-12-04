@@ -1,8 +1,8 @@
-import type {ClearConditionImage}            from './ClearConditionImage'
-import type {PossibleImageReceivedOnFactory} from './ClearConditionImage.types'
+import type {ClearConditionImage}            from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {PossibleImageReceivedOnFactory} from 'core/entity/images/clearCondition/ClearConditionImage.types'
 
-import {ClearConditionImageBuilder} from './ClearConditionImage.builder'
-import {EmptyClearConditionImage}   from './EmptyClearConditionImage'
+import {ClearConditionImageBuilder} from 'core/entity/images/clearCondition/ClearConditionImage.builder'
+import {EmptyClearConditionImage}   from 'core/entity/images/clearCondition/EmptyClearConditionImage'
 
 export class ClearConditionImageFactory {
 

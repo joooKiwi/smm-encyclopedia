@@ -1,10 +1,10 @@
 import {useEffect} from 'react'
 
-import type {TooltipConfiguration}                              from './Tooltip.types'
-import type {ReactElement, ReactPropertiesWithOptionalChildren} from '../../util/react/ReactProperties'
+import type {TooltipConfiguration}                              from 'bootstrap/tooltip/Tooltip.types'
+import type {ReactElement, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../util/emptyReactVariables'
-import {TooltipInstance}     from './TooltipInstance'
+import {TooltipInstance}     from 'bootstrap/tooltip/TooltipInstance'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 /**
  * Create a new {@link bootstrap.Tooltip Tooltip} instance.

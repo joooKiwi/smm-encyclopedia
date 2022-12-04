@@ -1,6 +1,6 @@
-import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
-import {ObjectHolderContainer} from './ObjectHolder.container'
+import {ObjectHolderContainer} from 'util/holder/ObjectHolder.container'
 
 export class DelayedObjectHolderContainer<T>
     implements ObjectHolder<T> {

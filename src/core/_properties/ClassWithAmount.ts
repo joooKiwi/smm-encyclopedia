@@ -1,4 +1,4 @@
-import type {NullOrNumber} from '../../util/types'
+import type {NullOrNumber} from 'util/types/nullable'
 
 export interface ClassWithAmount<AMOUNT extends NullOrNumber = NullOrNumber, > {
 

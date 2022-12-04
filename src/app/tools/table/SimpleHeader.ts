@@ -1,4 +1,4 @@
-import type {ReactElementOrString} from '../../../util/react/ReactProperties'
+import type {ReactElementOrString} from 'util/react/ReactProperties'
 
 export type SingleHeaderContent = | string | SimpleImageHeader | SimpleReactHeader
 export type SingleHeadersContent = readonly SingleHeaderContent[]

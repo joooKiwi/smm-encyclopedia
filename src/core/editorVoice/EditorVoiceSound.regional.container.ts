@@ -1,5 +1,5 @@
-import type {EditorVoiceSound, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular} from './EditorVoiceSound'
-import type {EditorVoiceSoundFile}                                                                                                                                  from './file/EditorVoiceSoundFile'
+import type {EditorVoiceSound, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European, PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular} from 'core/editorVoice/EditorVoiceSound'
+import type {EditorVoiceSoundFile}                                                                                                                                  from 'core/editorVoice/file/EditorVoiceSoundFile'
 
 export class EditorVoiceSoundRegionalContainer<REGULAR_NAME extends PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular, EUROPEAN_NAME extends PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European, >
     implements EditorVoiceSound<EditorVoiceSoundFile<REGULAR_NAME>, EditorVoiceSoundFile<EUROPEAN_NAME>> {

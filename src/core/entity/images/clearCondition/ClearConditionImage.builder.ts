@@ -1,9 +1,9 @@
-import type {ImageNumber, PossibleAmountOfImages, SimpleImageName} from './ClearConditionImage.types'
-import type {GameStyles as OriginalGameStyles}                     from '../../../gameStyle/GameStyles'
+import type {ImageNumber, PossibleAmountOfImages, SimpleImageName} from 'core/entity/images/clearCondition/ClearConditionImage.types'
+import type {GameStyles as OriginalGameStyles}                     from 'core/gameStyle/GameStyles'
 
-import {AbstractImageBuilder}         from '../AbstractImage.builder'
-import {ClearConditionImageContainer} from './ClearConditionImage.container'
-import {GameStyles}                   from '../GameStyles'
+import {AbstractImageBuilder}         from 'core/entity/images/AbstractImage.builder'
+import {ClearConditionImageContainer} from 'core/entity/images/clearCondition/ClearConditionImage.container'
+import {GameStyles}                   from 'core/entity/images/GameStyles'
 
 export class ClearConditionImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
     extends AbstractImageBuilder<NAME, PossibleAmountOfImages> {

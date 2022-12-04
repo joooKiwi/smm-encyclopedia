@@ -2,20 +2,20 @@ import './SimpleSound.component.scss'
 
 import {Component} from 'react'
 
-import type {IsSourceFoundCallback} from '../player/Validators.types'
-import type {ReactComponent}        from '../../react/ReactComponent'
-import type {ReactElement}          from '../../react/ReactProperties'
-import type {SimpleSoundState}      from './state/SimpleSound.state'
-import type {SimpleSoundPlayer}     from '../player/SimpleSoundPlayer'
-import type {SimpleSoundProperties} from './property/SimpleSoundProperties'
-import type {SoundFile}             from '../SoundFile'
+import type {ReactComponent}        from 'util/react/ReactComponent'
+import type {ReactElement}          from 'util/react/ReactProperties'
+import type {SoundFile}             from 'util/sound/SoundFile'
+import type {SimpleSoundProperties} from 'util/sound/component/property/SimpleSoundProperties'
+import type {SimpleSoundState}      from 'util/sound/component/state/SimpleSound.state'
+import type {SimpleSoundPlayer}     from 'util/sound/player/SimpleSoundPlayer'
+import type {IsSourceFoundCallback} from 'util/sound/player/Validators.types'
 
-import {AbstractSoundPlayer}    from '../player/AbstractSoundPlayer'
-import {SoundPlayerFactory}     from '../player/SoundPlayer.factory'
-import {SoundStates}            from '../player/SoundStates'
-import {SoundSubElementsHolder} from '../holder/SoundSubElementsHolder'
-import {Validators}             from '../player/Validators'
-import {HistoryState}           from '../history/HistoryState'
+import {HistoryState}           from 'util/sound/history/HistoryState'
+import {SoundSubElementsHolder} from 'util/sound/holder/SoundSubElementsHolder'
+import {AbstractSoundPlayer}    from 'util/sound/player/AbstractSoundPlayer'
+import {SoundPlayerFactory}     from 'util/sound/player/SoundPlayer.factory'
+import {SoundStates}            from 'util/sound/player/SoundStates'
+import {Validators}             from 'util/sound/player/Validators'
 
 //region -------------------- Import from deconstruction --------------------
 

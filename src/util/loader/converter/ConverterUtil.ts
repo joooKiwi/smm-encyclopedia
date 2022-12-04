@@ -1,4 +1,4 @@
-import type {NullOrString} from '../../types'
+import type {NullOrString} from 'util/types/nullable'
 
 export class ConverterUtil {
 

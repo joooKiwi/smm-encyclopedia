@@ -1,8 +1,8 @@
-import type {BooleanPropertyWithComment}  from '../PropertyWithComment'
-import type {NullOrBoolean, NullOrString} from '../../../util/types'
-import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
+import type {BooleanPropertyWithComment}  from 'core/_properties/PropertyWithComment'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {NullOrBoolean, NullOrString} from 'util/types/nullable'
 
-import {PropertyWithCommentContainer} from '../PropertyWithComment.container'
+import {PropertyWithCommentContainer} from 'core/_properties/PropertyWithComment.container'
 
 export class BooleanPropertyWithCommentContainer<B extends NullOrBoolean = NullOrBoolean, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithCommentContainer<B, COMMENT>

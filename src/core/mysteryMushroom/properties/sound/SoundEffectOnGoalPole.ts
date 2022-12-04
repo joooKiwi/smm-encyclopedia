@@ -1,8 +1,8 @@
-import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference'
-import type {ClassWithTranslationKey} from '../../../../lang/ClassWithTranslationKey'
-import type {GameReferences}          from '../../../gameReference/GameReferences'
-import type {NotApplicable, Property} from '../../../_properties/Property'
-import type {NullOr}                  from '../../../../util/types'
+import type {NotApplicable, Property} from 'core/_properties/Property'
+import type {ClassWithGameReference}  from 'core/gameReference/ClassWithGameReference'
+import type {GameReferences}          from 'core/gameReference/GameReferences'
+import type {ClassWithTranslationKey} from 'lang/ClassWithTranslationKey'
+import type {NullOr}                  from 'util/types/nullable'
 
 export interface SoundEffectOnGoalPole
     extends Property<PossibleValues>, ClassWithGameReference<NullOr<GameReferences>>, ClassWithTranslationKey<PossibleTranslationKeys> {

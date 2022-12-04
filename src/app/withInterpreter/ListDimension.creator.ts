@@ -1,9 +1,9 @@
-import type {DefaultDefaultDimension, DefaultDimensionOnCardList, DefaultExtraExtraLargeDimension, DefaultExtraLargeDimension, DefaultLargeDimension, DefaultMediumDimension, DefaultSmallDimension, PossibleDimension} from './ListDimension.creator.types'
-import type {DimensionOnList}                                                                                                                                                                                           from '../interpreter/DimensionOnList'
-import type {NullOr}                                                                                                                                                                                                    from '../../util/types'
-import type {ObjectHolder}                                                                                                                                                                                              from '../../util/holder/ObjectHolder'
+import type {DimensionOnList}                                                                                                                                                                                           from 'app/interpreter/DimensionOnList'
+import type {DefaultDefaultDimension, DefaultDimensionOnCardList, DefaultExtraExtraLargeDimension, DefaultExtraLargeDimension, DefaultLargeDimension, DefaultMediumDimension, DefaultSmallDimension, PossibleDimension} from 'app/withInterpreter/ListDimension.creator.types'
+import type {ObjectHolder}                                                                                                                                                                                              from 'util/holder/ObjectHolder'
+import type {NullOr}                                                                                                                                                                                                    from 'util/types/nullable'
 
-import {ObjectHolderContainer} from '../../util/holder/ObjectHolder.container'
+import {ObjectHolderContainer} from 'util/holder/ObjectHolder.container'
 
 export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDimension,
     SMALL extends PossibleDimension = PossibleDimension,

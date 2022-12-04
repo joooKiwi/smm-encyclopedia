@@ -1,10 +1,10 @@
-import type {GameProperty} from '../entity/properties/game/GameProperty'
+import type {GameProperty} from 'core/entity/properties/game/GameProperty'
 
-import {AbstractEntityPropertyComponent} from '../_component/AbstractEntityPropertyComponent'
-import {gameContentTranslation}          from '../../lang/components/translationMethods'
-import {Games}                           from './Games'
-import Image                             from '../../app/tools/images/Image'
-import {StringContainer}                 from '../../util/StringContainer'
+import Image                             from 'app/tools/images/Image'
+import {AbstractEntityPropertyComponent} from 'core/_component/AbstractEntityPropertyComponent'
+import {Games}                           from 'core/game/Games'
+import {gameContentTranslation}          from 'lang/components/translationMethods'
+import {StringContainer}                 from 'util/StringContainer'
 
 /**
  * @reactComponent

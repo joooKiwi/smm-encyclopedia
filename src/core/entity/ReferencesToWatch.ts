@@ -1,8 +1,8 @@
-import type {EntityLink}          from './loader.types'
-import type {EntityTemplate}      from './Entity.template'
-import type {PossibleEnglishName} from './Entities.types'
+import type {EntityTemplate}      from 'core/entity/Entity.template'
+import type {PossibleEnglishName} from 'core/entity/Entities.types'
+import type {EntityLink}          from 'core/entity/loader.types'
 
-import {isInProduction} from '../../variables'
+import {isInProduction} from 'variables'
 
 interface ReferencesToWatchDefinition {
 

@@ -1,26 +1,26 @@
 import type {Enum} from '@joookiwi/enumerable/dist/types'
 import {lazy}      from 'react'
 
-import type {ClassInAnySuperMarioMakerGame}             from '../../core/game/ClassInAnySuperMarioMakerGame'
-import type {ClassWithEnglishName}                      from '../../core/ClassWithEnglishName'
-import type {ClassWithReference}                        from '../../core/ClassWithReference'
-import type {Name}                                      from '../../lang/name/Name'
-import type {NameTrait}                                 from '../../lang/name/NameTrait'
-import type {NameTraitFromACategory}                    from '../../lang/name/NameTraitFromACategory'
-import type {ReactElement}                              from '../../util/react/ReactProperties'
-import type {SingleHeaderContent, SingleHeadersContent} from '../tools/table/SimpleHeader'
-import type {Themes}                                    from '../../core/theme/Themes'
+import type {SingleHeaderContent, SingleHeadersContent} from 'app/tools/table/SimpleHeader'
+import type {ClassWithEnglishName}                      from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                        from 'core/ClassWithReference'
+import type {ClassInAnySuperMarioMakerGame}             from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Themes}                                    from 'core/theme/Themes'
+import type {Name}                                      from 'lang/name/Name'
+import type {NameTrait}                                 from 'lang/name/NameTrait'
+import type {NameTraitFromACategory}                    from 'lang/name/NameTraitFromACategory'
+import type {ReactElement}                              from 'util/react/ReactProperties'
 
-import {BASE_PATH}                                  from '../../variables'
-import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
-import {EmptyStringName}                            from '../../lang/name/EmptyStringName'
-import {Games}                                      from '../../core/game/Games'
+import {BASE_PATH}                                  from 'variables'
+import {Games}                                      from 'core/game/Games'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {EmptyStringName}                            from 'lang/name/EmptyStringName'
+import {EMPTY_REACT_ELEMENT}                        from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
-const Image =         lazy(() => import('../tools/images/Image'))
-const NameComponent = lazy(() => import('../../lang/name/component/Name.component'))
+const Image =         lazy(() => import('app/tools/images/Image'))
+const NameComponent = lazy(() => import('lang/name/component/Name.component'))
 
 //endregion -------------------- dynamic imports --------------------
 

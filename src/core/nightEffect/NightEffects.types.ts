@@ -1,4 +1,4 @@
-import type {NightEffects} from './NightEffects'
+import type {NightEffects} from 'core/nightEffect/NightEffects'
 
 enum Enum {
 

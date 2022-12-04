@@ -2,13 +2,13 @@ import './SoundEffect.scss'
 
 import {PureComponent} from 'react'
 
-import type {Name}         from '../../lang/name/Name'
-import type {ReactElement} from '../../util/react/ReactProperties'
-import type {SoundEffects} from './SoundEffects'
+import type {SoundEffects} from 'core/soundEffect/SoundEffects'
+import type {Name}         from 'lang/name/Name'
+import type {ReactElement} from 'util/react/ReactProperties'
 
-import {Games}            from '../game/Games'
-import Image              from '../../app/tools/images/Image'
-import {StringContainer}  from '../../util/StringContainer'
+import Image             from 'app/tools/images/Image'
+import {Games}           from 'core/game/Games'
+import {StringContainer} from 'util/StringContainer'
 
 interface SoundEffectProperties {
 

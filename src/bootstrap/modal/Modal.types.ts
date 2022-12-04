@@ -1,8 +1,8 @@
 import type {Modal as BootstrapModal} from 'bootstrap'
 
-import type {BootstrapConfiguration}                                                                                                               from '../Bootstrap.types'
-import type {BootstrapWithBasicEventCallback, BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEvents, BootstrapWithBasicEventsReceived} from '../BootstrapWithBasicEventsInstance.types'
-import type {ModalInstance}                                                                                                                        from './ModalInstance'
+import type {BootstrapConfiguration}                                                                                                               from 'bootstrap/Bootstrap.types'
+import type {BootstrapWithBasicEventCallback, BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEvents, BootstrapWithBasicEventsReceived} from 'bootstrap/BootstrapWithBasicEventsInstance.types'
+import type {ModalInstance}                                                                                                                        from 'bootstrap/modal/ModalInstance'
 
 export type ModalConfiguration = BootstrapConfiguration<BootstrapModal.Options, ModalEvents>
 
@@ -25,6 +25,8 @@ export interface ModalEvents<I extends ModalInstance = ModalInstance, >
     hidePrevented: ModalEventCallback<I>
 
 }
+
+export type PossibleModalSize = | 'sm' | 'md' | 'lg' | 'xl'
 
 export type ModalEventCallback<I extends ModalInstance = ModalInstance, > = BootstrapWithBasicEventCallback<I>
 export type ModalEventsReceived<I extends ModalInstance = ModalInstance, > = BootstrapWithBasicEventsReceived<I, ModalEvents<I>>

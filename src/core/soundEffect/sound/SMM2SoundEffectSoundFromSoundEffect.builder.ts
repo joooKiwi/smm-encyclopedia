@@ -1,13 +1,13 @@
-import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from './SMM2SoundEffectSound'
-import type {PossibleSoundEffectSoundName_SMM2}                         from './types'
-import type {SMM2SoundEffectSoundFile}                                  from '../file/SMM2SoundEffectSoundFile'
+import type {SMM2SoundEffectSoundFile}                                  from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
+import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from 'core/soundEffect/sound/SMM2SoundEffectSound'
+import type {PossibleSoundEffectSoundName_SMM2}                         from 'core/soundEffect/sound/types'
 
-import {AbstractExclusiveSoundEffectSoundBuilder, type SingleIndex} from './AbstractExclusiveSoundEffectSound.builder'
-import {EMPTY_ARRAY}                                                from '../../../util/emptyVariables'
-import {ObjectHolder}                                               from '../../../util/holder/ObjectHolder'
-import {SMM2SoundEffectSoundContainer}                              from './SMM2SoundEffectSound.container'
-import {DelayedObjectHolderContainer}                               from '../../../util/holder/DelayedObjectHolder.container'
-import {SMM2SoundEffectSoundFileContainer}                          from '../file/SMM2SoundEffectSoundFile.container'
+import {SMM2SoundEffectSoundFileContainer}                          from 'core/soundEffect/file/SMM2SoundEffectSoundFile.container'
+import {AbstractExclusiveSoundEffectSoundBuilder, type SingleIndex} from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'
+import {SMM2SoundEffectSoundContainer}                              from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
+import {EMPTY_ARRAY}                                                from 'util/emptyVariables'
+import {DelayedObjectHolderContainer}                               from 'util/holder/DelayedObjectHolder.container'
+import {ObjectHolder}                                               from 'util/holder/ObjectHolder'
 
 export class SMM2SoundEffectSoundFromSoundEffectBuilder
     extends AbstractExclusiveSoundEffectSoundBuilder<SMM2SoundEffectSound, PossibleSoundEffectSoundName_SMM2, SMM2SoundEffectSoundFile> {

@@ -1,11 +1,11 @@
-import type {OnAfterPauseSoundPlayerCallback, OnAfterPlayingSoundPlayerCallback, OnAfterPlaySoundPlayerCallback, OnAfterStateChangedSoundPlayerCallback, OnAfterStopSoundPlayerCallback, OnBeforePauseSoundPlayerCallback, OnBeforePlaySoundPlayerCallback, OnBeforeStateChangedSoundPlayerCallback, OnBeforeStopSoundPlayerCallback, OnEndSoundPlayerCallback} from './types'
-import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                  from '../../types'
-import type {SoundFile}                                                                                                                                                                                                                                                                                                                                         from '../SoundFile'
+import type {SoundFile}                                                                                                                                                                                                                                                                                                                                                                                                          from 'util/sound/SoundFile'
+import type {OnAfterPauseSoundPlayerCallback, OnAfterPlaySoundPlayerCallback, OnAfterStateChangedSoundPlayerCallback, OnAfterStopSoundPlayerCallback, OnBeforePauseSoundPlayerCallback, OnBeforePlaySoundPlayerCallback, OnBeforeStateChangedSoundPlayerCallback, OnBeforeStopSoundPlayerCallback, OnEndSoundPlayerCallback, OnPauseEventSoundPlayerCallback, OnPlayEventSoundPlayerCallback, OnPlayingEventSoundPlayerCallback} from 'util/sound/player/types'
+import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                   from 'util/types/nullable'
 
-import {AbstractSoundPlayer} from './AbstractSoundPlayer'
-import {SoundStateHistory}   from '../history/SoundStateHistory'
-import {SoundStates}         from './SoundStates'
-import {HistoryState}        from '../history/HistoryState'
+import {HistoryState}        from 'util/sound/history/HistoryState'
+import {SoundStateHistory}   from 'util/sound/history/SoundStateHistory'
+import {AbstractSoundPlayer} from 'util/sound/player/AbstractSoundPlayer'
+import {SoundStates}         from 'util/sound/player/SoundStates'
 
 //region -------------------- Import from deconstruction --------------------
 

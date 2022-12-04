@@ -1,5 +1,5 @@
-import type {NullOr, NullOrBoolean} from '../../../../util/types'
-import type {PossibleEnglishName}   from '../../../entityLimit/EntityLimits.types'
+import type {NullOr, NullOrBoolean} from 'util/types/nullable'
+import type {PossibleEnglishName}   from 'core/entityLimit/EntityLimits.types'
 
 //region -------------------- Limit amount --------------------
 

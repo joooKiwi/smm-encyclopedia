@@ -1,11 +1,11 @@
 import {Fragment} from 'react'
 
-import type {PowerUpPriority} from './PowerUpPriority'
-import type {ReactProperties} from '../../../util/react/ReactProperties'
+import type {PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
-import NameComponent         from '../../../lang/name/component/Name.component'
-import Image                 from '../../tools/images/Image'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
+import NameComponent         from 'lang/name/component/Name.component'
+import Image                 from 'app/tools/images/Image'
 
 interface PowerUpPriorityProperties<T extends PowerUpPriority, >
     extends ReactProperties {

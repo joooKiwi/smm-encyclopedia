@@ -1,9 +1,9 @@
-import type {EditorImage} from './EditorImage'
+import type {EditorImage} from 'core/entity/images/editor/EditorImage'
 
-import {AbstractImageWithTimesThemesAndGameStyles} from '../AbstractImageWithTimesThemesAndGameStyles'
-import {GameStyles}                                from '../../../gameStyle/GameStyles'
-import {Themes}                                    from '../../../theme/Themes'
-import {Times}                                     from '../../../time/Times'
+import {AbstractImageWithTimesThemesAndGameStyles} from 'core/entity/images/AbstractImageWithTimesThemesAndGameStyles'
+import {GameStyles}                                from 'core/gameStyle/GameStyles'
+import {Themes}                                    from 'core/theme/Themes'
+import {Times}                                     from 'core/time/Times'
 
 export class EditorImageContainer
     extends AbstractImageWithTimesThemesAndGameStyles

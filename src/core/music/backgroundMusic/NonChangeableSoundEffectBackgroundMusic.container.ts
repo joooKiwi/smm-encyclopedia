@@ -1,8 +1,8 @@
-import type {MusicSoundFile}                                                      from '../file/MusicSoundFile'
-import type {NonChangeableSoundEffectBackgroundMusic}                             from './NonChangeableSoundEffectBackgroundMusic'
-import type {Possible_Music, PossibleOther_FastMusic, PossibleOther_RegularMusic} from './types'
+import type {Possible_Music, PossibleOther_FastMusic, PossibleOther_RegularMusic} from 'core/music/backgroundMusic/types'
+import type {NonChangeableSoundEffectBackgroundMusic}                             from 'core/music/backgroundMusic/NonChangeableSoundEffectBackgroundMusic'
+import type {MusicSoundFile}                                                      from 'core/music/file/MusicSoundFile'
 
-import {BackgroundMusicContainer} from './BackgroundMusic.container'
+import {BackgroundMusicContainer} from 'core/music/backgroundMusic/BackgroundMusic.container'
 
 export class NonChangeableSoundEffectBackgroundMusicContainer<MUSIC extends MusicSoundFile<PossibleOther_RegularMusic>, FAST_MUSIC extends MusicSoundFile<PossibleOther_FastMusic>, >
     extends BackgroundMusicContainer<MUSIC, MUSIC, FAST_MUSIC, null, null, null, null, MUSIC, MUSIC, FAST_MUSIC, MUSIC, MUSIC, null, FAST_MUSIC, null, MUSIC, MUSIC, null, FAST_MUSIC, null, MUSIC, MUSIC, null, FAST_MUSIC, null>

@@ -1,12 +1,12 @@
-import type {ImageName_Unused_SMM1}            from './UnusedImage'
-import type {ExtendedMap}                      from '../../../../util/extended/ExtendedMap'
-import type {UnusedImage_Regular}              from './UnusedImage_Regular'
-import type {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles'
+import type {ImageName_Unused_SMM1}            from 'core/entity/images/unused/UnusedImage'
+import type {UnusedImage_Regular}              from 'core/entity/images/unused/UnusedImage_Regular'
+import type {GameStyles as OriginalGameStyles} from 'core/gameStyle/GameStyles'
+import type {ExtendedMap}                      from 'util/extended/ExtendedMap'
 
-import {ExtendedMapContainer}         from '../../../../util/extended/ExtendedMap.container'
-import {GameStyles}                   from '../GameStyles'
-import {UnusedImage_RegularContainer} from './UnusedImage_Regular.container'
-import {UnusedImageBuilder}           from './UnusedImage.builder'
+import {GameStyles}                   from 'core/entity/images/GameStyles'
+import {UnusedImage_RegularContainer} from 'core/entity/images/unused/UnusedImage_Regular.container'
+import {UnusedImageBuilder}           from 'core/entity/images/unused/UnusedImage.builder'
+import {ExtendedMapContainer}         from 'util/extended/ExtendedMap.container'
 
 export class UnusedImage_RegularBuilder
     extends UnusedImageBuilder<UnusedImage_Regular, ImageName_Unused_SMM1> {

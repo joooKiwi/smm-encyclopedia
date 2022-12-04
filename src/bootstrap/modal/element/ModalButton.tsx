@@ -1,7 +1,7 @@
-import type {ReactProperties}      from '../../../util/react/ReactProperties'
-import type {HTMLButtonProperties} from '../../../util/react/html/HTMLButtonProperties'
+import type {ReactProperties}      from 'util/react/ReactProperties'
+import type {HTMLButtonProperties} from 'util/react/html/HTMLButtonProperties'
 
-import {ModalInstance} from '../ModalInstance'
+import {ModalInstance} from 'bootstrap/modal/ModalInstance'
 
 interface ModalButtonProperties
     extends ReactProperties, Omit<HTMLButtonProperties, | 'type' | 'onClick'> {

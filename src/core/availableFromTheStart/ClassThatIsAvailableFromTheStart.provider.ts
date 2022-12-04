@@ -1,10 +1,10 @@
-import type {ClassThatIsAvailableFromTheStart, InferredClassThatIsAvailableFromTheStartBySMM1, PossibleIsAvailableFromTheStart} from './ClassThatIsAvailableFromTheStart'
-import type {ProviderForNullable}                                                                                               from '../../util/provider/ProviderForNullable'
-import type {ProviderWithoutKey}                                                                                                from '../../util/provider/ProviderWithoutKey'
+import type {ClassThatIsAvailableFromTheStart, InferredClassThatIsAvailableFromTheStartBySMM1, PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {ProviderForNullable}                                                                                               from 'util/provider/ProviderForNullable'
+import type {ProviderWithoutKey}                                                                                                from 'util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}                          from '../../util/provider/AbstractProvider'
-import {ClassThatIsAvailableFromTheStartContainer} from './ClassThatIsAvailableFromTheStart.container'
-import {GameStructureProvider}                     from '../game/GameStructure.provider'
+import {ClassThatIsAvailableFromTheStartContainer} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container'
+import {GameStructureProvider}                     from 'core/game/GameStructure.provider'
+import {AbstractProvider}                          from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

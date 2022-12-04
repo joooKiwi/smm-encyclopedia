@@ -1,14 +1,14 @@
-import type {Entity, PossibleOtherEntities} from './Entity'
-import type {EntityCategory}                from '../entityCategory/EntityCategory'
-import type {EntityReferences}              from './properties/EntityReferences'
-import type {GameStyles}                    from '../gameStyle/GameStyles'
-import type {Name}                          from '../../lang/name/Name'
-import type {Property}                      from './properties/Property'
-import type {Themes}                        from '../theme/Themes'
-import type {Times}                         from '../time/Times'
+import type {Entity, PossibleOtherEntities} from 'core/entity/Entity'
+import type {EntityReferences}              from 'core/entity/properties/EntityReferences'
+import type {Property}                      from 'core/entity/properties/Property'
+import type {EntityCategory}                from 'core/entityCategory/EntityCategory'
+import type {GameStyles}                    from 'core/gameStyle/GameStyles'
+import type {Themes}                        from 'core/theme/Themes'
+import type {Times}                         from 'core/time/Times'
+import type {Name}                          from 'lang/name/Name'
 
-import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory'
-import {isInProduction}                   from '../../variables'
+import {isInProduction}                   from 'variables'
+import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 
 /**
  * A simple entity implementation, but without any specification.

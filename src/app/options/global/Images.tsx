@@ -2,17 +2,17 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {ClassWithValue}  from './ClassWithValue'
-import type {ImageProperties} from '../../tools/images/properties/ImageProperties'
-import type {Names, Ordinals} from './Images.types'
-import type {Nullable}        from '../../../util/types'
-import type {ReactElement}    from '../../../util/react/ReactProperties'
+import type {ClassWithValue}  from 'util/types/ClassWithValue'
+import type {ImageProperties} from 'app/tools/images/properties/ImageProperties'
+import type {Names, Ordinals} from 'app/options/global/Images.types'
+import type {Nullable}        from 'util/types/nullable'
+import type {ReactElement}    from 'util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
-const Image = lazy(() => import('../../tools/images/Image'))
+const Image = lazy(() => import('app/tools/images/Image'))
 
 //endregion -------------------- dynamic imports --------------------
 

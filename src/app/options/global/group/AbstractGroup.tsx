@@ -1,11 +1,12 @@
 import {PureComponent} from 'react'
 
-import type {GlobalAppOption}                                                                                   from '../GlobalAppOption'
-import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from './Group.types'
-import type {ReactComponent}                                                                                    from '../../../../util/react/ReactComponent'
-import type {ReactElement}                                                                                      from '../../../../util/react/ReactProperties'
+import type {GlobalAppOption}                                                                                   from 'app/options/global/GlobalAppOption'
+import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from 'app/options/global/group/Group.types'
+import type {ReactComponent}                                                                                    from 'util/react/ReactComponent'
+import type {ReactElement}                                                                                      from 'util/react/ReactProperties'
+import type {NullOr}                                                                                            from 'util/types/nullable'
 
-import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 /**
  * @reactComponent

@@ -1,16 +1,16 @@
 import './SoundEffectApp.scss'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
-import type {AppProperties}                                        from './AppProperties.types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
-import type {SoundEffectAppStates}                                 from './AppStates.types'
+import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {SoundEffectAppStates}                                 from 'app/AppStates.types'
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import {SoundEffects}           from '../core/soundEffect/SoundEffects'
-import {SoundEffectAppOption}   from './options/SoundEffectAppOption'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
+import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {SoundEffects}           from 'core/soundEffect/SoundEffects'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @reactComponent

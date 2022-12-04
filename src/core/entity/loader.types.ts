@@ -1,4 +1,4 @@
-import type {PossibleEnglishName} from './Entities.types'
+import type {PossibleEnglishName} from 'core/entity/Entities.types'
 
 export type EntityLink = | 'this' | PossibleEnglishName
                          | `this / ${PossibleEnglishName}`

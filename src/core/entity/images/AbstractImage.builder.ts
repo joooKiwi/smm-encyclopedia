@@ -1,11 +1,11 @@
-import type {Builder}                          from '../../../util/builder/Builder'
-import type {ExtendedList}                     from '../../../util/extended/ExtendedList'
-import type {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles'
-import type {Image}                            from './Image'
-import type {NullOr}                           from '../../../util/types'
+import type {Image}                            from 'core/entity/images/Image'
+import type {GameStyles as OriginalGameStyles} from 'core/gameStyle/GameStyles'
+import type {ExtendedList}                     from 'util/extended/ExtendedList'
+import type {Builder}                          from 'util/builder/Builder'
+import type {NullOr}                           from 'util/types/nullable'
 
-import {ExtendedSetContainer} from '../../../util/extended/ExtendedSet.container'
-import {GameStyles}           from './GameStyles'
+import {GameStyles}           from 'core/entity/images/GameStyles'
+import {ExtendedSetContainer} from 'util/extended/ExtendedSet.container'
 
 //region -------------------- Import from deconstruction --------------------
 

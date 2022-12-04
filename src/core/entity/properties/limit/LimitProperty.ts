@@ -1,11 +1,11 @@
-import type {BooleanProperty}                                                                                                                             from '../../../_properties/Property'
-import type {BooleanPropertyWithComment, PropertyWithComment}                                                                                             from '../../../_properties/PropertyWithComment'
-import type {EntityLimits}                                                                                                                                from '../../../entityLimit/EntityLimits'
-import type {GameStructure}                                                                                                                               from '../../../game/GameStructure'
-import type {NotApplicableProperty, UnknownProperty}                                                                                                      from '../../../_properties/PropertyWithEverything'
-import type {NullOr}                                                                                                                                      from '../../../../util/types'
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment} from './Loader.types'
-import type {PropertyThatCanBeUnknown}                                                                                                                    from '../../../_properties/PropertyThatCanBeUnknown'
+import type {BooleanProperty}                                                                                                                             from 'core/_properties/Property'
+import type {PropertyThatCanBeUnknown}                                                                                                                    from 'core/_properties/PropertyThatCanBeUnknown'
+import type {BooleanPropertyWithComment, PropertyWithComment}                                                                                             from 'core/_properties/PropertyWithComment'
+import type {NotApplicableProperty, UnknownProperty}                                                                                                      from 'core/_properties/PropertyWithEverything'
+import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment} from 'core/entity/properties/limit/Loader.types'
+import type {EntityLimits}                                                                                                                                from 'core/entityLimit/EntityLimits'
+import type {GameStructure}                                                                                                                               from 'core/game/GameStructure'
+import type {NullOr}                                                                                                                                      from 'util/types/nullable'
 
 export interface LimitProperty<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM1And3DS = PossibleEditorLimit_SMM1And3DS,
     EDITOR_SMM2 extends PossibleEditorLimit_SMM2 = PossibleEditorLimit_SMM2,

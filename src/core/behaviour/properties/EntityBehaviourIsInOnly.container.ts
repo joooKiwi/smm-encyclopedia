@@ -1,4 +1,4 @@
-import type {EntityBehaviourIsInOnly} from './EntityBehaviourIsInOnly'
+import type {EntityBehaviourIsInOnly} from 'core/behaviour/properties/EntityBehaviourIsInOnly'
 
 export class EntityBehaviourIsInOnlyContainer
     implements EntityBehaviourIsInOnly {

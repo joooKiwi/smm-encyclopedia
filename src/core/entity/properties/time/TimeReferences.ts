@@ -1,5 +1,5 @@
-import type {Entity, PossibleOtherEntities} from '../../Entity'
-import type {Times}                         from '../../../time/Times'
+import type {Entity, PossibleOtherEntities} from 'core/entity/Entity'
+import type {Times}                         from 'core/time/Times'
 
 export interface TimeReferences {
 

@@ -1,8 +1,8 @@
-import type {NullOrNumber, NullOrString}   from '../../../util/types'
-import type {NumberPropertyWithEverything} from '../PropertyWithEverything'
-import type {PossibleValueOnObjectHolder}  from '../../../util/holder/ObjectHolder'
+import type {NumberPropertyWithEverything} from 'core/_properties/PropertyWithEverything'
+import type {PossibleValueOnObjectHolder}  from 'util/holder/ObjectHolder'
+import type {NullOrNumber, NullOrString}   from 'util/types/nullable'
 
-import {PropertyWithEverythingContainer} from '../PropertyWithEverything.container'
+import {PropertyWithEverythingContainer} from 'core/_properties/PropertyWithEverything.container'
 
 export class NumberPropertyWithEverythingContainer<N extends NullOrNumber = NullOrNumber, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithEverythingContainer<N, IS_UNKNOWN, AMOUNT, COMMENT>

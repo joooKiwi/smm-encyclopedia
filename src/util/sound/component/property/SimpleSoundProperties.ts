@@ -1,6 +1,6 @@
-import type {ReactProperties} from '../../../react/ReactProperties'
-import type {Validators}      from '../../player/Validators'
-import type {SoundFile}       from '../../SoundFile'
+import type {ReactProperties} from 'util/react/ReactProperties'
+import type {Validators}      from 'util/sound/player/Validators'
+import type {SoundFile}       from 'util/sound/SoundFile'
 
 export interface SimpleSoundProperties<FILE extends SoundFile = SoundFile, TITLE extends string = string, >
     extends ReactProperties {

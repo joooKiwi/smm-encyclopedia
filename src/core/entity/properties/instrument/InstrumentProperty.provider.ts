@@ -1,12 +1,12 @@
-import type {CanMakeASoundOutOfAMusicBlock}                             from './loader.types'
-import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from './InstrumentProperty'
-import type {Instrument}                                                from '../../../instrument/Instrument'
-import type {ObjectHolder}                                              from '../../../../util/holder/ObjectHolder'
-import type {PossibleInstrument}                                        from '../../../instrument/loader.types'
-import type {ProviderWithKey}                                           from '../../../../util/provider/ProviderWithKey'
+import type {CanMakeASoundOutOfAMusicBlock}                             from 'core/entity/properties/instrument/loader.types'
+import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from 'core/entity/properties/instrument/InstrumentProperty'
+import type {Instrument}                                                from 'core/instrument/Instrument'
+import type {PossibleInstrument}                                        from 'core/instrument/loader.types'
+import type {ObjectHolder}                                              from 'util/holder/ObjectHolder'
+import type {ProviderWithKey}                                           from 'util/provider/ProviderWithKey'
 
-import {AbstractProvider}            from '../../../../util/provider/AbstractProvider'
-import {InstrumentPropertyContainer} from './InstrumentProperty.container'
+import {InstrumentPropertyContainer} from 'core/entity/properties/instrument/InstrumentProperty.container'
+import {AbstractProvider}            from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

@@ -2,11 +2,11 @@ import './GroupOf2PowerUpPriority.scss'
 
 import type {PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties'
+import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 
-import Arrow             from '../../tools/arrow/Arrow'
-import {Arrows}          from '../../tools/arrow/Arrows'
-import {ArrowDirections} from '../../tools/arrow/ArrowDirections'
+import Arrow             from 'app/tools/arrow/Arrow'
+import {ArrowDirections} from 'app/tools/arrow/ArrowDirections'
+import {Arrows}          from 'app/tools/arrow/Arrows'
 
 interface GroupOf2PowerUpPriorityProperties
     extends ReactProperties {

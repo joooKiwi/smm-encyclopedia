@@ -1,7 +1,7 @@
-import {EntityBehaviour}                          from './EntityBehaviour'
-import {EntityBehaviourLink}                      from './properties/EntityBehaviourLink'
-import {EntityBehaviourIsInOnly}                  from './properties/EntityBehaviourIsInOnly'
-import {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
+import {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
+import {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
+import {EntityBehaviourLink}                      from 'core/behaviour/properties/EntityBehaviourLink'
+import {EntityBehaviourIsInOnly}                  from 'core/behaviour/properties/EntityBehaviourIsInOnly'
 
 export class EntityBehaviourContainer
     implements EntityBehaviour {

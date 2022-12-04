@@ -2,27 +2,27 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
-import type {MiiCostumeAppStates}                              from '../AppStates.types'
-import type {MiiCostumes}                                      from '../../core/miiCostume/MiiCostumes'
-import type {Names, Ordinals}                                  from './MiiCostumeAppOption.types'
-import type {NullOr}                                           from '../../util/types'
-import type {ReactElement}                                     from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
+import type {MiiCostumeAppStates}                              from 'app/AppStates.types'
+import type {Names, Ordinals}                                  from 'app/options/MiiCostumeAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {MiiCostumes}                                      from 'core/miiCostume/MiiCostumes'
+import type {ReactElement}                                     from 'util/react/ReactProperties'
+import type {NullOr}                                           from 'util/types/nullable'
 
-import {AbstractAppOption}             from './AbstractAppOption'
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import {contentTranslation}            from '../../lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {EmptyAppOption}                from './component/EmptyAppOption'
-import {MiiCostumeCategories}          from '../../core/miiCostumeCategory/MiiCostumeCategories'
+import {AbstractAppOption}             from 'app/options/AbstractAppOption'
+import {CommonOptions}                 from 'app/options/CommonOptions'
+import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
+import {EmptyAppOption}                from 'app/options/component/EmptyAppOption'
+import {MiiCostumeCategories}          from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {contentTranslation}            from 'lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}           from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
-const Image = lazy(() => import('../tools/images/Image'))
+const Image = lazy(() => import('app/tools/images/Image'))
 
 //endregion -------------------- dynamic imports --------------------
 

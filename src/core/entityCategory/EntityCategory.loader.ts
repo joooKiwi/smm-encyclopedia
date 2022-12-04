@@ -1,14 +1,14 @@
-import resource from '../../resources/compiled/Entity category.json'
+import resource from 'resources/compiled/Entity category.json'
 
-import type {EntityCategory}                            from './EntityCategory'
-import type {EntityCategoryTemplate}                    from './EntityCategory.template'
-import type {Loader}                                    from '../../util/loader/Loader'
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
-import type {PossibleEnglishName}                       from './EntityCategories.types'
+import type {PossibleEnglishName}                       from 'core/entityCategory/EntityCategories.types'
+import type {EntityCategory}                            from 'core/entityCategory/EntityCategory'
+import type {EntityCategoryTemplate}                    from 'core/entityCategory/EntityCategory.template'
+import type {PropertiesArray as LanguagesPropertyArray} from 'lang/Loader.types'
+import type {Loader}                                    from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {EntityCategoryBuilder}   from './EntityCategory.builder'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {EntityCategoryBuilder}   from 'core/entityCategory/EntityCategory.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

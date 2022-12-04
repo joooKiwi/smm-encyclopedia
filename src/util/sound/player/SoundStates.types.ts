@@ -1,4 +1,4 @@
-import type {SoundStates} from './SoundStates'
+import type {SoundStates} from 'util/sound/player/SoundStates'
 
 enum Enum {
     STANDBY,

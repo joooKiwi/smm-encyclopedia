@@ -1,8 +1,8 @@
-import type {NullOrNumber, NullOrString}  from '../../../util/types'
-import type {NumberPropertyWithComment}   from '../PropertyWithComment'
-import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
+import type {NumberPropertyWithComment}   from 'core/_properties/PropertyWithComment'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {NullOrNumber, NullOrString}  from 'util/types/nullable'
 
-import {PropertyWithCommentContainer} from '../PropertyWithComment.container'
+import {PropertyWithCommentContainer} from 'core/_properties/PropertyWithComment.container'
 
 export class NumberPropertyWithCommentContainer<N extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithCommentContainer<N, COMMENT>

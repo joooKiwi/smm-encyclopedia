@@ -1,8 +1,8 @@
 import type {Tooltip as BootstrapTooltip} from 'bootstrap'
 
-import type {BootstrapConfiguration}                                                                                                               from '../Bootstrap.types'
-import type {BootstrapWithBasicEventCallback, BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEvents, BootstrapWithBasicEventsReceived} from '../BootstrapWithBasicEventsInstance.types'
-import type {TooltipInstance}                                                                                                                      from './TooltipInstance'
+import type {BootstrapConfiguration}                                                                                                               from 'bootstrap/Bootstrap.types'
+import type {BootstrapWithBasicEventCallback, BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEvents, BootstrapWithBasicEventsReceived} from 'bootstrap/BootstrapWithBasicEventsInstance.types'
+import type {TooltipInstance}                                                                                                                      from 'bootstrap/tooltip/TooltipInstance'
 
 export type TooltipConfiguration = BootstrapConfiguration<BootstrapTooltip.Options, TooltipEvents>
 

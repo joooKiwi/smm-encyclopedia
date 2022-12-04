@@ -1,11 +1,11 @@
-import type {EveryLanguages}                            from '../EveryLanguages'
-import type {Name}                                      from './Name'
-import type {NameTrait}                                 from './NameTrait'
-import type {NameTraitFromAnAlternativeContainer}       from './NameTraitFromAnAlternativeContainer'
-import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
+import type {EveryLanguages}                            from 'lang/EveryLanguages'
+import type {Name}                                      from 'lang/name/Name'
+import type {NameTrait}                                 from 'lang/name/NameTrait'
+import type {NameTraitFromAnAlternativeContainer}       from 'lang/name/NameTraitFromAnAlternativeContainer'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
-import {ClassContainingAName}         from './ClassContainingAName'
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
+import {ClassContainingAName}         from 'lang/name/ClassContainingAName'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends NameTrait<U>, >
     extends ClassContainingAName<T>

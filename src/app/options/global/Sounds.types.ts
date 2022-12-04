@@ -1,4 +1,4 @@
-import type {Sounds} from './Sounds'
+import type {Sounds} from 'app/options/global/Sounds'
 
 enum Enum {
 

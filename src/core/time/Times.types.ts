@@ -1,5 +1,5 @@
-import type {BasePath} from '../../variables'
-import type {Times}    from './Times'
+import type {BasePath} from 'variables'
+import type {Times}    from 'core/time/Times'
 
 enum Enum {
 

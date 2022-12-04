@@ -1,5 +1,5 @@
-import type {NullOr}              from '../../../util/types'
-import type {PossibleEnglishName} from '../SoundEffects.types'
+import type {PossibleEnglishName} from 'core/soundEffect/SoundEffects.types'
+import type {NullOr}              from 'util/types/nullable'
 
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
 

@@ -1,16 +1,16 @@
 import './GameStyleApp.scss'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
-import type {AppProperties}                                        from './AppProperties.types'
-import type {GameStyleAppStates}                                   from './AppStates.types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
+import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {GameStyleAppStates}                                   from 'app/AppStates.types'
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import {GameStyleAppOption}     from './options/GameStyleAppOption'
-import {GameStyles}             from '../core/gameStyle/GameStyles'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
+import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {GameStyles}             from 'core/gameStyle/GameStyles'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @reactComponent

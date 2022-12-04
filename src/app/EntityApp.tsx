@@ -3,22 +3,22 @@ import './options/EntityAppOption.scss'
 
 import {lazy} from 'react'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
-import type {AppProperties}                                        from './AppProperties.types'
-import type {EntityAppStates}                                      from './AppStates.types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
+import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {EntityAppStates}                                      from 'app/AppStates.types'
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
-import {Entities}               from '../core/entity/Entities'
-import {EntityAppOption}        from './options/EntityAppOption'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {EntityAppOption}        from 'app/options/EntityAppOption'
+import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {Entities}               from 'core/entity/Entities'
+import {gameContentTranslation} from 'lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import('../util/sound/component/SimpleSound.component'))
+const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
 
 //endregion -------------------- dynamic imports --------------------
 

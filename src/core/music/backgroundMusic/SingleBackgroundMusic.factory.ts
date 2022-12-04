@@ -1,7 +1,7 @@
-import type {PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from './SingleBackgroundMusic'
+import type {PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
-import {EmptySingleBackgroundMusic}     from './EmptySingleBackgroundMusic'
-import {SingleBackgroundMusicContainer} from './SingleBackgroundMusic.container'
+import {EmptySingleBackgroundMusic}     from 'core/music/backgroundMusic/EmptySingleBackgroundMusic'
+import {SingleBackgroundMusicContainer} from 'core/music/backgroundMusic/SingleBackgroundMusic.container'
 
 export class SingleBackgroundMusicFactory {
 

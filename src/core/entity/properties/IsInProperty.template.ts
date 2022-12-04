@@ -1,7 +1,7 @@
-import type {SimpleGameFromAllGamesTemplate} from '../../game/SimpleGame.template'
-import type {SimpleGameStyleTemplate}        from '../../gameStyle/SimpleGameStyle.template'
-import type {SimpleThemeTemplate}            from '../../theme/SimpleTheme.template'
-import type {SimpleTimeTemplate}             from '../../time/SimpleTime.template'
+import type {SimpleGameFromAllGamesTemplate} from 'core/game/SimpleGame.template'
+import type {SimpleGameStyleTemplate}        from 'core/gameStyle/SimpleGameStyle.template'
+import type {SimpleThemeTemplate}            from 'core/theme/SimpleTheme.template'
+import type {SimpleTimeTemplate}             from 'core/time/SimpleTime.template'
 
 /**
  * @template

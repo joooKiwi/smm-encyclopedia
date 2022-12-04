@@ -1,4 +1,4 @@
-import type {NullOr, NullOrBoolean} from '../util/types'
+import type {NullOr, NullOrBoolean} from 'util/types/nullable'
 
 /** @temporaryVariable */
 export type PossibleGroupName = string

@@ -2,17 +2,17 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {ClassWithValue}        from './ClassWithValue'
-import type {Names, Ordinals}       from './Sounds.types'
-import type {Nullable}              from '../../../util/types'
-import type {ReactElement}          from '../../../util/react/ReactProperties'
-import type {SimpleSoundProperties} from '../../../util/sound/component/property/SimpleSoundProperties'
+import type {ClassWithValue}        from 'util/types/ClassWithValue'
+import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
+import type {Nullable}              from 'util/types/nullable'
+import type {ReactElement}          from 'util/react/ReactProperties'
+import type {SimpleSoundProperties} from 'util/sound/component/property/SimpleSoundProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import('../../../util/sound/component/SimpleSound.component'))
+const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
 
 //endregion -------------------- dynamic imports --------------------
 

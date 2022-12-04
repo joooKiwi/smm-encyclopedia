@@ -2,25 +2,25 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
-import type {Names, Ordinals}                                  from './SoundEffectAppOption.types'
-import type {NullOr}                                           from '../../util/types'
-import type {ReactElement}                                     from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
+import type {Names, Ordinals}                                  from 'app/options/SoundEffectAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {ReactElement}                                     from 'util/react/ReactProperties'
+import type {NullOr}                                           from 'util/types/nullable'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Games}                         from '../../core/game/Games'
-import {SoundEffects}                  from '../../core/soundEffect/SoundEffects'
-import {SoundEffectCategories}         from '../../core/soundEffectCategory/SoundEffectCategories'
+import {CommonOptions}                 from 'app/options/CommonOptions'
+import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
+import {Games}                         from 'core/game/Games'
+import {SoundEffects}                  from 'core/soundEffect/SoundEffects'
+import {SoundEffectCategories}         from 'core/soundEffectCategory/SoundEffectCategories'
+import {EMPTY_REACT_ELEMENT}           from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import( '../../util/sound/component/SimpleSound.component'))
-const SoundEffectComponent = lazy(() => import( '../../core/soundEffect/SoundEffect.component'))
+const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
+const SoundEffectComponent = lazy(() => import('core/soundEffect/SoundEffect.component'))
 
 //endregion -------------------- dynamic imports --------------------
 

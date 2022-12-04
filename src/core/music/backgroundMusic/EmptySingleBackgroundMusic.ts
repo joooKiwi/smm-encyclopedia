@@ -1,7 +1,7 @@
-import type {SingleBackgroundMusic}                                      from './SingleBackgroundMusic'
-import type {ClassWithNullObjectPattern, EmptySingleBackgroundMusicName} from '../../../util/ClassWithNullObjectPattern'
+import type {SingleBackgroundMusic}                                      from 'core/music/backgroundMusic/SingleBackgroundMusic'
+import type {ClassWithNullObjectPattern, EmptySingleBackgroundMusicName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY} from '../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @singleton

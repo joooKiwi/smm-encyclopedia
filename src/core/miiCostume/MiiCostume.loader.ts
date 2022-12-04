@@ -1,19 +1,19 @@
-import resource from '../../resources/compiled/Mii Costume (SMM2).json'
+import resource from 'resources/compiled/Mii Costume (SMM2).json'
 
-import type {Loader}                                                                        from '../../util/loader/Loader'
-import type {NullOr}                                                                        from '../../util/types'
-import type {MiiCostume}                                                                    from './MiiCostume'
-import type {MiiCostumeTemplate}                                                            from './MiiCostume.template'
-import type {PossibleEnglishName}                                                           from './MiiCostumes.types'
-import type {PossibleEnglishName as PossibleEnglishName_Category}                           from '../miiCostumeCategory/MiiCostumeCategories.types'
-import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from '../officialNotification/OfficialNotifications.types'
-import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from '../version/Versions.types'
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                from '../../lang/Loader.types'
+import type {MiiCostume}                                                                    from 'core/miiCostume/MiiCostume'
+import type {MiiCostumeTemplate}                                                            from 'core/miiCostume/MiiCostume.template'
+import type {PossibleEnglishName}                                                           from 'core/miiCostume/MiiCostumes.types'
+import type {PossibleEnglishName as PossibleEnglishName_Category}                           from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
+import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from 'core/version/Versions.types'
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray}                from 'lang/Loader.types'
+import type {Loader}                                                                        from 'util/loader/Loader'
+import type {NullOr}                                                                        from 'util/types/nullable'
 
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
-import {MiiCostumeBuilder}       from './MiiCostume.builder'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {MiiCostumeBuilder}       from 'core/miiCostume/MiiCostume.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

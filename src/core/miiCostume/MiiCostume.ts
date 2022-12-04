@@ -1,10 +1,10 @@
-import type {MiiCostumeCategory}         from '../miiCostumeCategory/MiiCostumeCategory'
-import type {NameTrait}                  from '../../lang/name/NameTrait'
-import type {NameTraitFromACategory}     from '../../lang/name/NameTraitFromACategory'
-import type {NullOr, NullOrNumber}       from '../../util/types'
-import type {OfficialNotificationHolder} from '../officialNotification/holder/OfficialNotificationHolder'
-import type {OfficialNotifications}      from '../officialNotification/OfficialNotifications'
-import type {Versions}                   from '../version/Versions'
+import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {OfficialNotifications}      from 'core/officialNotification/OfficialNotifications'
+import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {Versions}                   from 'core/version/Versions'
+import type {NameTrait}                  from 'lang/name/NameTrait'
+import type {NameTraitFromACategory}     from 'lang/name/NameTraitFromACategory'
+import type {NullOr, NullOrNumber}       from 'util/types/nullable'
 
 export interface MiiCostume
     extends NameTrait<string>, NameTraitFromACategory<string, MiiCostumeCategory> {

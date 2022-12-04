@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Mii Costume category (SMM2).json'
+import resource from 'resources/compiled/Mii Costume category (SMM2).json'
 
-import type {Loader}                                                         from '../../util/loader/Loader'
-import type {MiiCostumeCategory}                                             from './MiiCostumeCategory'
-import type {MiiCostumeCategoryTemplate}                                     from './MiiCostumeCategory.template'
-import type {PossibleEnglishName}                                            from './MiiCostumeCategories.types'
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../lang/Loader.types'
+import type {PossibleEnglishName}                                            from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {MiiCostumeCategory}                                             from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {MiiCostumeCategoryTemplate}                                     from 'core/miiCostumeCategory/MiiCostumeCategory.template'
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from 'lang/Loader.types'
+import type {Loader}                                                         from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder}   from '../_template/AbstractTemplate.builder'
-import {CSVLoader}                 from '../../util/loader/CSVLoader'
-import {HeaderTypesForConvertor}   from '../_util/loader/HeaderTypesForConvertor'
-import {MiiCostumeCategoryBuilder} from './MiiCostumeCategory.builder'
+import {AbstractTemplateBuilder}   from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor}   from 'core/_util/loader/HeaderTypesForConvertor'
+import {MiiCostumeCategoryBuilder} from 'core/miiCostumeCategory/MiiCostumeCategory.builder'
+import {CSVLoader}                 from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

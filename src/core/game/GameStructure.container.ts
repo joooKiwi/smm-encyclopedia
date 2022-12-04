@@ -1,4 +1,4 @@
-import type {GameStructure} from './GameStructure'
+import type {GameStructure} from 'core/game/GameStructure'
 
 export class GameStructureContainer<SMM1 extends any = any, SMM3DS extends any = any, SMM2 extends any = any, >
     implements GameStructure<SMM1, SMM3DS, SMM2> {

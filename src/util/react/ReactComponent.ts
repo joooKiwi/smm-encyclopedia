@@ -1,6 +1,7 @@
-import type {NullOr}     from '../types'
-import type {ReactNode}  from 'react'
-import type {ReactState} from './ReactState'
+import type {ReactNode} from 'react'
+
+import type {ReactState} from 'util/react/ReactState'
+import type {NullOr}     from 'util/types/nullable'
 
 /**
  * A simplified react component class with a render method.

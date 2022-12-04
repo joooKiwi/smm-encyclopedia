@@ -1,4 +1,4 @@
-import {SoundEffectImage} from './SoundEffectImage'
+import {SoundEffectImage} from 'core/soundEffect/image/SoundEffectImage'
 
 /**
  * @singleton

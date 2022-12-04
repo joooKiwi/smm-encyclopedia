@@ -1,6 +1,6 @@
-import type {BackgroundMusic}                                from './BackgroundMusic'
-import type {MusicSoundFile}                                 from '../file/MusicSoundFile'
-import type {PossibleLink_LinkMusic, PossibleSMB2_SMB2Music} from './types'
+import type {BackgroundMusic}                                from 'core/music/backgroundMusic/BackgroundMusic'
+import type {PossibleLink_LinkMusic, PossibleSMB2_SMB2Music} from 'core/music/backgroundMusic/types'
+import type {MusicSoundFile}                                 from 'core/music/file/MusicSoundFile'
 
 /**
  * A "sound effect" "background music" made for a {@link SoundEffects sound effect}.

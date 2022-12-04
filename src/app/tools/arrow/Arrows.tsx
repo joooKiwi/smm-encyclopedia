@@ -1,11 +1,11 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleContainer} from './Arrows.types'
-import type {ReactElement}                       from '../../../util/react/ReactProperties'
+import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
+import type {ReactElement}                       from 'util/react/ReactProperties'
 
-import {ArrowDirections}     from './ArrowDirections'
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {ArrowDirections}     from 'app/tools/arrow/ArrowDirections'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 const {VERTICAL, HORIZONTAL} = ArrowDirections
 

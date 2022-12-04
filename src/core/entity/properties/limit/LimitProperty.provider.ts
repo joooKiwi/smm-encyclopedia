@@ -1,10 +1,10 @@
-import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}             from './Loader.types'
-import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from './LimitProperty'
-import type {GameStructure}                                                                                                                                                                                                from '../../../game/GameStructure'
-import type {ProviderWithKey}                                                                                                                                                                                              from '../../../../util/provider/ProviderWithKey'
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}             from 'core/entity/properties/limit/Loader.types'
+import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
+import type {GameStructure}                                                                                                                                                                                                from 'core/game/GameStructure'
+import type {ProviderWithKey}                                                                                                                                                                                              from 'util/provider/ProviderWithKey'
 
-import {AbstractProvider}       from '../../../../util/provider/AbstractProvider'
-import {LimitPropertyContainer} from './LimitProperty.container'
+import {LimitPropertyContainer} from 'core/entity/properties/limit/LimitProperty.container'
+import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

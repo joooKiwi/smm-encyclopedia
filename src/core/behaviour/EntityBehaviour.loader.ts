@@ -1,17 +1,17 @@
-import resource from '../../resources/compiled/Entity behaviour.json'
+import resource from 'resources/compiled/Entity behaviour.json'
 
-import type {EntityBehaviour}                          from './EntityBehaviour'
-import type {EntityBehaviourTemplate}                  from './EntityBehaviour.template'
-import type {Loader}                                   from '../../util/loader/Loader'
-import type {NullOr}                                   from '../../util/types'
-import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
-import type {PossibleEnglishName as EntityName}        from '../entity/Entities.types'
-import type {PossibleGroupName}                        from '../entityTypes'
+import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
+import type {EntityBehaviourTemplate}                  from 'core/behaviour/EntityBehaviour.template'
+import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
+import type {PossibleGroupName}                        from 'core/entityTypes'
+import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
+import type {Loader}                                   from 'util/loader/Loader'
+import type {NullOr}                                   from 'util/types/nullable'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {EntityBehaviourBuilder}  from './EntityBehaviour.builder'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {EntityBehaviourBuilder}  from 'core/behaviour/EntityBehaviour.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

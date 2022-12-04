@@ -1,10 +1,10 @@
 import {FormattedDateParts} from 'react-intl'
 import {Fragment}           from 'react'
 
-import type {DayNumber, MonthNumber} from './types'
-import type {ReactProperties}        from '../../util/react/ReactProperties'
+import type {DayNumber, MonthNumber} from 'lang/date/types'
+import type {ReactProperties}        from 'util/react/ReactProperties'
 
-import {DateDayLanguages} from './DateDayLanguages'
+import {DateDayLanguages} from 'lang/date/DateDayLanguages'
 
 export interface DateTimeFormatProperties
     extends ReactProperties {

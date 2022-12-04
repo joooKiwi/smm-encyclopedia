@@ -1,15 +1,15 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language'
-import type {IsACompleteNameCallback, PossibleGameReceived}                           from './Name.builder.types'
-import type {Name}                                                                    from './Name'
-import type {NameBuilder}                                                             from './Name.builder'
-import type {Nullable, NullableString, NullOr, NullOrString}                          from '../../util/types'
-import type {PossibleNameTemplate}                                                    from './Name.template'
+import type {Name}                                                                    from 'lang/name/Name'
+import type {NameBuilder}                                                             from 'lang/name/Name.builder'
+import type {IsACompleteNameCallback, PossibleGameReceived}                           from 'lang/name/Name.builder.types'
+import type {PossibleNameTemplate}                                                    from 'lang/name/Name.template'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
+import type {Nullable, NullableString, NullOr, NullOrString}                          from 'util/types/nullable'
 
-import {assert}         from '../../util/utilitiesMethods'
-import {EveryLanguages} from '../EveryLanguages'
-import {Games}          from '../../core/game/Games'
-import {isInProduction} from '../../variables'
-import {NameContainer}  from './Name.container'
+import {isInProduction} from 'variables'
+import {Games}          from 'core/game/Games'
+import {EveryLanguages} from 'lang/EveryLanguages'
+import {NameContainer}  from 'lang/name/Name.container'
+import {assert}         from 'util/utilitiesMethods'
 
 export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     implements NameBuilder<string, TEMPLATE> {

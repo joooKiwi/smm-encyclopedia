@@ -1,5 +1,5 @@
-import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from '../../../_properties/Property'
-import type {NullOr, NullOrBoolean}                                                                                   from '../../../../util/types'
+import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from 'core/_properties/Property'
+import type {NullOr, NullOrBoolean}                                                                                   from 'util/types/nullable'
 
 export interface BasicProperty<HAS_A_MUSHROOM_VARIANT extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant,
     CAN_BE_IN_A_PARACHUTE extends PossibleCanBeInAParachute = PossibleCanBeInAParachute,

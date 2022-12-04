@@ -1,13 +1,13 @@
-import type {CourseAndWorldTheme}                                      from './CourseAndWorldTheme'
-import type {ClassWithNullObjectPattern, EmptyCourseAndWorldThemeName} from '../../util/ClassWithNullObjectPattern'
+import type {CourseAndWorldTheme}                                      from 'core/theme/CourseAndWorldTheme'
+import type {ClassWithNullObjectPattern, EmptyCourseAndWorldThemeName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName}                     from '../../lang/name/ClassContainingAName'
-import {ClassThatIsAvailableFromTheStartProvider} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {EMPTY_MAP}                                from '../../util/emptyVariables'
-import {EmptyCourseTheme}                         from './EmptyCourseTheme'
-import {EmptyStringName}                          from '../../lang/name/EmptyStringName'
-import {EmptyWorldTheme}                          from './EmptyWorldTheme'
-import {GamePropertyProvider}                     from '../entity/properties/game/GameProperty.provider'
+import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
+import {EmptyCourseTheme}                         from 'core/theme/EmptyCourseTheme'
+import {EmptyWorldTheme}                          from 'core/theme/EmptyWorldTheme'
+import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
+import {EmptyStringName}                          from 'lang/name/EmptyStringName'
+import {ClassContainingAName}                     from 'lang/name/ClassContainingAName'
+import {EMPTY_MAP}                                from 'util/emptyVariables'
 
 /**
  * @singleton

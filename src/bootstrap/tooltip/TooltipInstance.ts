@@ -1,9 +1,9 @@
 import {Tooltip} from 'bootstrap'
 
-import type {TooltipEventCallbackReceived, TooltipEvents, TooltipEventsReceived} from './Tooltip.types'
+import type {TooltipEventCallbackReceived, TooltipEvents, TooltipEventsReceived} from 'bootstrap/tooltip/Tooltip.types'
 
-import {BootstrapInstance}                from '../BootstapInstance'
-import {BootstrapWithBasicEventsInstance} from '../BootstrapWithBasicEventsInstance'
+import {BootstrapInstance}                from 'bootstrap/BootstapInstance'
+import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
 
 export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<typeof TooltipInstance, Tooltip, Tooltip.Options, ELEMENT, ID> {

@@ -1,17 +1,17 @@
 import './MiiCostumeApp.scss'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
-import type {AppProperties}                                        from './AppProperties.types'
-import type {MiiCostumeAppStates}                                  from './AppStates.types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
+import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {MiiCostumeAppStates}                                  from 'app/AppStates.types'
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import Image                    from './tools/images/Image'
-import {MiiCostumes}            from '../core/miiCostume/MiiCostumes'
-import {MiiCostumeAppOption}    from './options/MiiCostumeAppOption'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
+import Image                    from 'app/tools/images/Image'
+import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {MiiCostumes}            from 'core/miiCostume/MiiCostumes'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class MiiCostumeApp
     extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, AppProperties, MiiCostumeAppStates> {

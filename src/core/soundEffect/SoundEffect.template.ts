@@ -1,8 +1,8 @@
-import type {NullOr}                                                        from '../../util/types'
-import type {PlayerSoundEffectTriggerTemplate}                              from './property/PlayerSoundEffectTrigger.template'
-import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types'
-import type {SimpleGameFrom1And2Template}                                   from '../game/SimpleGame.template'
-import type {TemplateWithNameTemplate}                                      from '../_template/TemplateWithName.template'
+import type {TemplateWithNameTemplate}                                      from 'core/_template/TemplateWithName.template'
+import type {SimpleGameFrom1And2Template}                                   from 'core/game/SimpleGame.template'
+import type {PlayerSoundEffectTriggerTemplate}                              from 'core/soundEffect/property/PlayerSoundEffectTrigger.template'
+import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {NullOr}                                                        from 'util/types/nullable'
 
 export interface SoundEffectTemplate
     extends TemplateWithNameTemplate {

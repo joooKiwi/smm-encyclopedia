@@ -1,8 +1,8 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleName} from './ArrowDirections.types'
-import type {Nullable}                      from '../../../util/types'
+import type {Names, Ordinals, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
+import type {Nullable}                      from 'util/types/nullable'
 
 /**
  * The arrow direction.<br/>

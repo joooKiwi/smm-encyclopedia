@@ -1,4 +1,4 @@
-import type {PossibleKeys, Provider} from './Provider'
+import type {PossibleKeys, Provider} from 'util/provider/Provider'
 
 /**
  * A class "factory" that can get (or create) an instance

@@ -1,6 +1,6 @@
-import type {BooleanTextProperties} from './properties/BooleanTextProperties'
+import type {BooleanTextProperties} from 'app/tools/text/properties/BooleanTextProperties'
 
-import TextComponent from './TextComponent'
+import TextComponent from 'app/tools/text/TextComponent'
 
 /**
  * Create a simple {@link TextComponent}

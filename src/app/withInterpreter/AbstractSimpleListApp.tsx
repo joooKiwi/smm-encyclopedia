@@ -1,13 +1,13 @@
-import type {AppProperties}                from '../AppProperties.types'
-import type {AppInterpreterWithSimpleList} from '../interpreter/AppInterpreterWithSimpleList'
-import type {AppWithVariableDisplayStates} from '../AppStates.types'
-import type {ReactElement}                 from '../../util/react/ReactProperties'
-import type {ValueByApp}                   from '../interpreter/AppInterpreter'
+import type {AppProperties}                from 'app/AppProperties.types'
+import type {AppWithVariableDisplayStates} from 'app/AppStates.types'
+import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
+import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
+import type {ReactElement}                 from 'util/react/ReactProperties'
 
-import {AbstractAppWithInterpreter} from './AbstractAppWithInterpreter'
-import NameComponent                from '../../lang/name/component/Name.component'
-import {ViewDisplays}               from './ViewDisplays'
-import {ListDimensionCreator}       from './ListDimension.creator'
+import {AbstractAppWithInterpreter} from 'app/withInterpreter/AbstractAppWithInterpreter'
+import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
+import {ListDimensionCreator}       from 'app/withInterpreter/ListDimension.creator'
+import NameComponent                from 'lang/name/component/Name.component'
 
 export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimpleList,
     T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >

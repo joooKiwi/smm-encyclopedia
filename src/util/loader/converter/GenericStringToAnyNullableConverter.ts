@@ -1,6 +1,6 @@
-import type {NullOr} from '../../types'
+import type {NullOr} from 'util/types/nullable'
 
-import {GenericStringToAnyConverter} from './GenericStringToAnyConverter'
+import {GenericStringToAnyConverter} from 'util/loader/converter/GenericStringToAnyConverter'
 
 export class GenericStringToAnyNullableConverter<T, >
     extends GenericStringToAnyConverter<NullOr<T>> {

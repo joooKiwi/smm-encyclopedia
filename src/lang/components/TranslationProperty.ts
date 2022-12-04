@@ -1,6 +1,6 @@
 import type {TFuncKey, TFuncReturn, TFunction} from 'i18next'
 
-import type {ReactElementOrString} from '../../util/react/ReactProperties'
+import type {ReactElementOrString} from 'util/react/ReactProperties'
 
 export type ContentNamespace = 'content'
 export type GameContentNamespace = 'gameContent'

@@ -1,13 +1,13 @@
 import {PureComponent} from 'react'
 
-import type {ModalProperties}               from '../ModalContainers.types'
-import type {PossibleContent}               from './AbstractNavigationButton.types'
-import type {PossibleTooltipPlacement}      from '../../bootstrap/Bootstrap.types'
-import type {ReactComponent}                from '../../util/react/ReactComponent'
-import type {ReactElement, ReactProperties} from '../../util/react/ReactProperties'
+import type {PossibleTooltipPlacement}      from 'bootstrap/Bootstrap.types'
+import type {ModalProperties}               from 'navigation/ModalContainers.types'
+import type {PossibleContent}               from 'navigation/button/AbstractNavigationButton.types'
+import type {ReactComponent}                from 'util/react/ReactComponent'
+import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 
-import ModalButton from '../../bootstrap/modal/element/ModalButton'
-import Tooltip     from '../../bootstrap/tooltip/Tooltip'
+import ModalButton from 'bootstrap/modal/element/ModalButton'
+import Tooltip     from 'bootstrap/tooltip/Tooltip'
 
 interface NavButtonProperties
     extends ReactProperties, ModalProperties {

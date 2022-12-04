@@ -2,26 +2,26 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
-import type {Names, Ordinals}                                  from './GameStyleAppOption.types'
-import type {NullOr}                                           from '../../util/types'
-import type {GameStyles}                                       from '../../core/gameStyle/GameStyles'
-import type {ReactElement}                                     from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
+import type {Names, Ordinals}                                  from 'app/options/GameStyleAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {GameStyles}                                       from 'core/gameStyle/GameStyles'
+import type {ReactElement}                                     from 'util/react/ReactProperties'
+import type {NullOr}                                           from 'util/types/nullable'
 
-import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
-import {CommonOptions}                              from './CommonOptions'
-import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
-import {ProjectLanguages}                           from '../../lang/ProjectLanguages'
-import {Themes}                                     from '../../core/theme/Themes'
-import {Times}                                      from '../../core/time/Times'
+import {CommonOptions}                              from 'app/options/CommonOptions'
+import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
+import {Themes}                                     from 'core/theme/Themes'
+import {Times}                                      from 'core/time/Times'
+import {ProjectLanguages}                           from 'lang/ProjectLanguages'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
 //region -------------------- dynamic imports --------------------
 
-const NightEffectComponent =       lazy(() => import( '../../core/nightEffect/NightEffect.component'))
-const YesOrNoResultTextComponent = lazy(() => import( '../tools/text/YesOrNoResultTextComponent'))
+const NightEffectComponent =       lazy(() => import('core/nightEffect/NightEffect.component'))
+const YesOrNoResultTextComponent = lazy(() => import('app/tools/text/YesOrNoResultTextComponent'))
 
 //endregion -------------------- dynamic imports --------------------
 

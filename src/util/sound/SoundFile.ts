@@ -1,7 +1,7 @@
-import type {BasePath}        from '../../variables'
-import type {NullOr}          from '../types'
-import type {RepeatableTypes} from './RepeatableTypes'
-import type {Time}            from './time/Time'
+import type {BasePath}        from 'variables'
+import type {NullOr}          from 'types/nullable'
+import type {RepeatableTypes} from 'util/sound/RepeatableTypes'
+import type {Time}            from 'util/sound/time/Time'
 
 export interface SoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, > {
 

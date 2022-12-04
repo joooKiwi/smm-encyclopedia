@@ -1,15 +1,15 @@
 import './EntityCategoryApp.scss'
 
-import type {AppInterpreterWithCardList}                           from './interpreter/AppInterpreterWithCardList'
-import type {AppProperties}                                        from './AppProperties.types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
+import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
-import {EntityCategories}       from '../core/entityCategory/EntityCategories'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import Image                    from './tools/images/Image'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import Image                    from 'app/tools/images/Image'
+import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {EntityCategories}       from 'core/entityCategory/EntityCategories'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @reactComponent

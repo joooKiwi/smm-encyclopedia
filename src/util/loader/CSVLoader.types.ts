@@ -1,7 +1,7 @@
-import type {CSVLoader}                                            from './CSVLoader'
-import type {Converter}                                            from './converter/Converter'
-import type {NullOr}                                               from '../types'
-import type {PredefinedConversion, SinglePrimitiveValueConversion} from './converter/PredefinedConverter.types'
+import type {CSVLoader}                                            from 'util/loader/CSVLoader'
+import type {Converter}                                            from 'util/loader/converter/Converter'
+import type {PredefinedConversion, SinglePrimitiveValueConversion} from 'util/loader/converter/PredefinedConverter.types'
+import type {NullOr}                                               from 'util/types/nullable'
 
 export type ConversionCallbackToConverter = (value: string,) => Converter<string, any>
 

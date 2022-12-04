@@ -1,11 +1,11 @@
 import {Fragment} from 'react'
 
-import type {ReactProperties} from '../../util/react/ReactProperties'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {EntityLimits}     from './EntityLimits'
-import NameComponent      from '../../lang/name/component/Name.component'
-import {ProjectLanguages} from '../../lang/ProjectLanguages'
-import TextComponent      from '../../app/tools/text/TextComponent'
+import {EntityLimits}     from 'core/entityLimit/EntityLimits'
+import NameComponent      from 'lang/name/component/Name.component'
+import {ProjectLanguages} from 'lang/ProjectLanguages'
+import TextComponent      from 'app/tools/text/TextComponent'
 
 type Id = `${| 'editor' | 'whilePlaying'}-${string}`
 

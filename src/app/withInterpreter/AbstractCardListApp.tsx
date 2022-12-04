@@ -1,13 +1,13 @@
-import type {AppInterpreterWithCardList}   from '../interpreter/AppInterpreterWithCardList'
-import type {AppProperties}                from '../AppProperties.types'
-import type {AppWithVariableDisplayStates} from '../AppStates.types'
-import type {ReactElement}                 from '../../util/react/ReactProperties'
-import type {ValueByApp}                   from '../interpreter/AppInterpreter'
+import type {AppProperties}                from 'app/AppProperties.types'
+import type {AppWithVariableDisplayStates} from 'app/AppStates.types'
+import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
+import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
+import type {ReactElement}                 from 'util/react/ReactProperties'
 
-import {AbstractSimpleListApp} from './AbstractSimpleListApp'
-import {ListDimensionCreator}  from './ListDimension.creator'
-import NameComponent           from '../../lang/name/component/Name.component'
-import {ViewDisplays}          from './ViewDisplays'
+import {AbstractSimpleListApp} from 'app/withInterpreter/AbstractSimpleListApp'
+import {ListDimensionCreator}  from 'app/withInterpreter/ListDimension.creator'
+import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
+import NameComponent           from 'lang/name/component/Name.component'
 
 export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
     T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >

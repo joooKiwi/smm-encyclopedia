@@ -1,13 +1,13 @@
-import type {DefaultValueIfNotFound} from './ClassThatCanGetItems'
-import type {EntrySet}               from './EntrySet'
-import type {ExtendedMap}            from './ExtendedMap'
-import type {ExtendedSet}            from './ExtendedSet'
-import type {VariableReturnValue}    from './ClassThatCanSearchItems'
+import type {DefaultValueIfNotFound} from 'util/extended/ClassThatCanGetItems'
+import type {VariableReturnValue}    from 'util/extended/ClassThatCanSearchItems'
+import type {EntrySet}               from 'util/extended/EntrySet'
+import type {ExtendedMap}            from 'util/extended/ExtendedMap'
+import type {ExtendedSet}            from 'util/extended/ExtendedSet'
 
-import {ConditionalIntermediate} from './tools/ConditionalIntermediate'
-import {isArrayEquals}           from '../utilitiesMethods'
-import {EntrySetContainer}       from './EntrySet.container'
-import {ExtendedSetContainer}    from './ExtendedSet.container'
+import {ConditionalIntermediate} from 'util/extended/tools/ConditionalIntermediate'
+import {EntrySetContainer}       from 'util/extended/EntrySet.container'
+import {ExtendedSetContainer}    from 'util/extended/ExtendedSet.container'
+import {isArrayEquals}           from 'util/utilitiesMethods'
 
 export class ExtendedMapContainer<K, V, LENGTH extends number = number, >
     implements ExtendedMap<K, V, LENGTH> {

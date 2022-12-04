@@ -1,7 +1,7 @@
-import type {ClassWithNullObjectPattern, EmptyUnusedImageName} from '../../../../util/ClassWithNullObjectPattern'
-import type {UnusedImage_BigMushroom}                          from './UnusedImage_BigMushroom'
+import type {UnusedImage_BigMushroom}                          from 'core/entity/images/unused/UnusedImage_BigMushroom'
+import type {ClassWithNullObjectPattern, EmptyUnusedImageName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 export class EmptyUnusedImage_BigMushroom
     implements UnusedImage_BigMushroom, ClassWithNullObjectPattern<EmptyUnusedImageName> {

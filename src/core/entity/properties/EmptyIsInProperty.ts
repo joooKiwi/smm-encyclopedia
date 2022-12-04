@@ -1,9 +1,9 @@
-import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from '../../../util/ClassWithNullObjectPattern'
-import type {Property}                                          from './Property'
+import type {Property}                                          from 'core/entity/properties/Property'
+import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_MAP}               from '../../../util/emptyVariables'
-import {EmptyInstrumentProperty} from './instrument/EmptyInstrumentProperty'
-import {EmptyLimitProperty}      from './limit/EmptyLimitProperty'
+import {EmptyInstrumentProperty} from 'core/entity/properties/instrument/EmptyInstrumentProperty'
+import {EmptyLimitProperty}      from 'core/entity/properties/limit/EmptyLimitProperty'
+import {EMPTY_MAP}               from 'util/emptyVariables'
 
 /**
  * @singleton

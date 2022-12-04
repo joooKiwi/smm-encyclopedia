@@ -1,15 +1,15 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                      from '../ClassWithAcronym'
-import type {ClassWithEnglishName}                                  from '../ClassWithEnglishName'
-import type {ClassWithReference}                                    from '../ClassWithReference'
-import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from './GameReferences.types'
-import type {Nullable}                                              from '../../util/types'
-import type {GameReference}                                         from './GameReference'
+import type {ClassWithAcronym}                                      from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                  from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                    from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
+import type {GameReference}                                         from 'core/gameReference/GameReference'
+import type {Nullable}                                              from 'util/types/nullable'
 
-import {Import}          from '../../util/DynamicImporter'
-import {StringContainer} from '../../util/StringContainer'
+import {Import}          from 'util/DynamicImporter'
+import {StringContainer} from 'util/StringContainer'
 
 /**
  * @recursiveReference {@link GameReferenceLoader}

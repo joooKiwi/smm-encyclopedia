@@ -1,4 +1,4 @@
-import type {SoundStates} from '../player/SoundStates'
+import type {SoundStates} from 'util/sound/player/SoundStates'
 
 export class HistoryState {
 

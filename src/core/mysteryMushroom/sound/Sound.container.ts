@@ -1,11 +1,11 @@
-import type {PossibleFileName}                                                                                                                                                                                                                                                                         from '../MysteryMushrooms.types'
-import type {GoalPoleSound, GoalPoleSoundFile, JumpSoundFile, JumpSounds, LostALifeSound, LostALifeSoundFile, OnGroundAfterJumpSound, OnGroundAfterJumpSoundFile, PossibleSounds, PowerUpCollectedSound, PowerUpCollectedSoundFile, Sound, TauntSound, TauntSoundFile, TurningSound, TurningSoundFile} from './Sound'
-import type {MysteryMushroomSoundFile}                                                                                                                                                                                                                                                                 from '../file/MysteryMushroomSoundFile'
-import type {SoundProperty}                                                                                                                                                                                                                                                                            from '../properties/sound/SoundProperty'
+import type {PossibleFileName}                                                                                                                                                                                                                                                                         from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {MysteryMushroomSoundFile}                                                                                                                                                                                                                                                                 from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {SoundProperty}                                                                                                                                                                                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundProperty'
+import type {GoalPoleSound, GoalPoleSoundFile, JumpSoundFile, JumpSounds, LostALifeSound, LostALifeSoundFile, OnGroundAfterJumpSound, OnGroundAfterJumpSoundFile, PossibleSounds, PowerUpCollectedSound, PowerUpCollectedSoundFile, Sound, TauntSound, TauntSoundFile, TurningSound, TurningSoundFile} from 'core/mysteryMushroom/sound/Sound'
 
-import {DelayedObjectHolderContainer}                   from '../../../util/holder/DelayedObjectHolder.container'
-import {EMPTY_ARRAY}                                    from '../../../util/emptyVariables'
-import {MysteryMushroomSoundFileContainer as SoundFile} from '../file/MysteryMushroomSoundFile.container'
+import {MysteryMushroomSoundFileContainer as SoundFile} from 'core/mysteryMushroom/file/MysteryMushroomSoundFile.container'
+import {DelayedObjectHolderContainer}                   from 'util/holder/DelayedObjectHolder.container'
+import {EMPTY_ARRAY}                                    from 'util/emptyVariables'
 
 export class SoundContainer<FILE extends PossibleFileName = PossibleFileName, >
     implements Sound {

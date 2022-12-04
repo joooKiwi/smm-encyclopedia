@@ -1,5 +1,5 @@
-import {ReactProperties}        from '../util/react/ReactProperties'
-import {ModalPropertiesWithDiv} from './ModalContainers.types'
+import {ModalPropertiesWithDiv} from 'navigation/ModalContainers.types'
+import {ReactProperties}        from 'util/react/ReactProperties'
 
 interface SearchBodyProperties
     extends ReactProperties, ModalPropertiesWithDiv {

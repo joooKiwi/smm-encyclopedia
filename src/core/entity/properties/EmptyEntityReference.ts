@@ -1,8 +1,8 @@
-import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from '../../../util/ClassWithNullObjectPattern'
-import type {EntityReferences}                                     from './EntityReferences'
+import type {EntityReferences}                                     from 'core/entity/properties/EntityReferences'
+import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY} from '../../../util/emptyVariables'
-import {EmptyEntity} from '../EmptyEntity'
+import {EmptyEntity} from 'core/entity/EmptyEntity'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @singleton

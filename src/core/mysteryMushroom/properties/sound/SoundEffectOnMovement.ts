@@ -1,6 +1,6 @@
-import type {ClassWithTranslationKey} from '../../../../lang/ClassWithTranslationKey'
-import type {NotApplicable, Property} from '../../../_properties/Property'
-import type {NullOr}                  from '../../../../util/types'
+import type {NotApplicable, Property} from 'core/_properties/Property'
+import type {ClassWithTranslationKey} from 'lang/ClassWithTranslationKey'
+import type {NullOr}                  from 'util/types/nullable'
 
 export interface SoundEffectOnMovement
     extends Property<PossibleValues>, ClassWithTranslationKey<PossibleTranslationKeys> {

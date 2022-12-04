@@ -1,8 +1,8 @@
-import type {MiiCostumeCategory}                                      from './MiiCostumeCategory'
-import type {ClassWithNullObjectPattern, EmptyMiiCostumeCategoryName} from '../../util/ClassWithNullObjectPattern'
+import type {MiiCostumeCategory}                                      from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {ClassWithNullObjectPattern, EmptyMiiCostumeCategoryName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
-import {EmptyStringName}      from '../../lang/name/EmptyStringName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {EmptyStringName}      from 'lang/name/EmptyStringName'
 
 export class EmptyMiiCostumeCategory
     extends ClassContainingAName<string>

@@ -1,11 +1,11 @@
 import {HashRouter, Navigate, Route, Routes as ReactRoutes} from 'react-router-dom'
 import {Suspense}                                           from 'react'
 
-import DirectRoute         from './DirectRoute'
-import {everySimpleRoutes} from './everyRoutes'
-import LoadingApp          from '../app/LoadingApp'
-import {ProjectLanguages}  from '../lang/ProjectLanguages'
-import {redirectToHome}    from './redirectToHome'
+import LoadingApp          from 'app/LoadingApp'
+import {ProjectLanguages}  from 'lang/ProjectLanguages'
+import DirectRoute         from 'routes/DirectRoute'
+import {everySimpleRoutes} from 'routes/everyRoutes'
+import {redirectToHome}    from 'routes/redirectToHome'
 
 /**
  *

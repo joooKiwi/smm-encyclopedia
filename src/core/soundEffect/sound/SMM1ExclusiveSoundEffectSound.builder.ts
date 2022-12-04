@@ -1,11 +1,11 @@
-import type {ObjectHolder}                      from '../../../util/holder/ObjectHolder'
-import type {PossibleSoundEffectSoundName_SMM1} from './types'
-import type {SMM1ExclusiveSoundEffectSound}     from './SMM1ExclusiveSoundEffectSound'
-import type {SMM1SoundEffectSoundFile}          from '../file/SMM1SoundEffectSoundFile'
+import type {SMM1SoundEffectSoundFile}          from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
+import type {SMM1ExclusiveSoundEffectSound}     from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
+import type {PossibleSoundEffectSoundName_SMM1} from 'core/soundEffect/sound/types'
+import type {ObjectHolder}                      from 'util/holder/ObjectHolder'
 
-import {AbstractExclusiveSoundEffectSoundBuilder} from './AbstractExclusiveSoundEffectSound.builder'
-import {SMM1ExclusiveSoundEffectSoundContainer}   from './SMM1ExclusiveSoundEffectSound.container'
-import {SMM1SoundEffectSoundFileContainer}        from '../file/SMM1SoundEffectSoundFile.container'
+import {SMM1SoundEffectSoundFileContainer}        from 'core/soundEffect/file/SMM1SoundEffectSoundFile.container'
+import {AbstractExclusiveSoundEffectSoundBuilder} from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'
+import {SMM1ExclusiveSoundEffectSoundContainer}   from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound.container'
 
 export class SMM1ExclusiveSoundEffectSoundBuilder
     extends AbstractExclusiveSoundEffectSoundBuilder<SMM1ExclusiveSoundEffectSound, PossibleSoundEffectSoundName_SMM1, SMM1SoundEffectSoundFile> {

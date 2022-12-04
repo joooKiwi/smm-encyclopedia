@@ -2,18 +2,18 @@ import './CourseTagApp.scss'
 
 import {Fragment} from 'react'
 
-import type {AppInterpreterWithCardList,}                          from './interpreter/AppInterpreterWithCardList'
-import type {CourseTagAppProperties}                               from './AppProperties.types'
-import type {NullOr}                                               from '../util/types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
+import type {CourseTagAppProperties}                               from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList,}                          from 'app/interpreter/AppInterpreterWithCardList'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {NullOr}                                               from 'util/types/nullable'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractCardListApp}    from './withInterpreter/AbstractCardListApp'
-import {CourseTags}             from '../core/courseTag/CourseTags'
-import {CourseTagTypes}         from './property/CourseTagTypes'
-import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {CourseTagTypes}         from 'app/property/CourseTagTypes'
+import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {CourseTags}             from 'core/courseTag/CourseTags'
+import {gameContentTranslation} from 'lang/components/translationMethods'
+import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 export default class CourseTagApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties> {

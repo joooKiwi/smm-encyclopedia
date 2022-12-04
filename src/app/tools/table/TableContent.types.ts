@@ -1,5 +1,5 @@
-import type {ReactProperties}    from '../../../util/react/ReactProperties'
-import type {SingleTableContent} from './Table.types'
+import type {SingleTableContent} from 'app/tools/table/Table.types'
+import type {ReactProperties}    from 'util/react/ReactProperties'
 
 export interface TableContentProperties
     extends ReactProperties {

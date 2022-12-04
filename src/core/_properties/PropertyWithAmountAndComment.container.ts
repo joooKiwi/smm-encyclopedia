@@ -1,9 +1,9 @@
-import type {DEFAULT_IS_UNKNOWN}           from './Property'
-import type {NullOrNumber, NullOrString}   from '../../util/types'
-import type {PossibleValueOnObjectHolder}  from '../../util/holder/ObjectHolder'
-import type {PropertyWithAmountAndComment} from './PropertyWithAmountAndComment'
+import type {DEFAULT_IS_UNKNOWN}           from 'core/_properties/Property'
+import type {PropertyWithAmountAndComment} from 'core/_properties/PropertyWithAmountAndComment'
+import type {PossibleValueOnObjectHolder}  from 'util/holder/ObjectHolder'
+import type {NullOrNumber, NullOrString}   from 'util/types/nullable'
 
-import {PropertyContainer} from './Property.container'
+import {PropertyContainer} from 'core/_properties/Property.container'
 
 export class PropertyWithAmountAndCommentContainer<T, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyContainer<T, DEFAULT_IS_UNKNOWN, AMOUNT, COMMENT>

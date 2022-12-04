@@ -1,4 +1,4 @@
-import type {UnusedImage_BigMushroom} from './UnusedImage_BigMushroom'
+import type {UnusedImage_BigMushroom} from 'core/entity/images/unused/UnusedImage_BigMushroom'
 
 export class UnusedImage_BigMushroomContainer
     implements UnusedImage_BigMushroom {

@@ -1,9 +1,9 @@
-import type {NameTemplate}                                                                  from '../../lang/name/Name.template'
-import type {NullOr}                                                                        from '../../util/types'
-import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from '../version/Versions.types'
-import type {PossibleEnglishName as PossibleEnglishName_Category}                           from '../miiCostumeCategory/MiiCostumeCategories.types'
-import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from '../officialNotification/OfficialNotifications.types'
-import type {TemplateWithNameTemplate}                                                      from '../_template/TemplateWithName.template'
+import type {TemplateWithNameTemplate}                                                      from 'core/_template/TemplateWithName.template'
+import type {PossibleEnglishName as PossibleEnglishName_Category}                           from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
+import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from 'core/version/Versions.types'
+import type {NameTemplate}                                                                  from 'lang/name/Name.template'
+import type {NullOr}                                                                        from 'util/types/nullable'
 
 export interface MiiCostumeTemplate
     extends TemplateWithNameTemplate<NameTemplate> {

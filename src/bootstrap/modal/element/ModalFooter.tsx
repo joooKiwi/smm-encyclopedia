@@ -1,12 +1,12 @@
 import type {ReactNode} from 'react'
 
-import type {ReactProperties}      from '../../../util/react/ReactProperties'
-import type {HTMLButtonProperties} from '../../../util/react/html/HTMLButtonProperties'
-import type {HTMLDivProperties}    from '../../../util/react/html/HTMLDivProperties'
+import type {ReactProperties}      from 'util/react/ReactProperties'
+import type {HTMLButtonProperties} from 'util/react/html/HTMLButtonProperties'
+import type {HTMLDivProperties}    from 'util/react/html/HTMLDivProperties'
 
-import {contentTranslation}         from '../../../lang/components/translationMethods'
-import {EMPTY_OBJECT, EMPTY_STRING} from '../../../util/emptyVariables'
-import {EMPTY_REACT_ELEMENT}        from '../../../util/emptyReactVariables'
+import {contentTranslation}         from 'lang/components/translationMethods'
+import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
+import {EMPTY_REACT_ELEMENT}        from 'util/emptyReactVariables'
 
 interface ModalFooterProperties
     extends ReactProperties, HTMLDivProperties {

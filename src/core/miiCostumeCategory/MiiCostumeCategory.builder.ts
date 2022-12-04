@@ -1,11 +1,11 @@
-import type {Builder}                    from '../../util/builder/Builder'
-import type {MiiCostumeCategory}         from './MiiCostumeCategory'
-import type {MiiCostumeCategoryTemplate} from './MiiCostumeCategory.template'
-import type {Name}                       from '../../lang/name/Name'
+import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {MiiCostumeCategoryTemplate} from 'core/miiCostumeCategory/MiiCostumeCategory.template'
+import type {Name}                       from 'lang/name/Name'
+import type {Builder}                    from 'util/builder/Builder'
 
-import {Games}                       from '../game/Games'
-import {MiiCostumeCategoryContainer} from './MiiCostumeCategory.container'
-import {TemplateWithNameBuilder}     from '../_template/TemplateWithName.builder'
+import {TemplateWithNameBuilder}     from 'core/_template/TemplateWithName.builder'
+import {Games}                       from 'core/game/Games'
+import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
 
 export class MiiCostumeCategoryBuilder
     extends TemplateWithNameBuilder<MiiCostumeCategoryTemplate, MiiCostumeCategory> {

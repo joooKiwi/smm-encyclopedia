@@ -1,7 +1,7 @@
-import type {NonRepeatableSoundFile}       from '../../../util/sound/NonRepeatableSoundFile'
-import type {PossibleSoundEffectSoundName} from '../sound/types'
-import type {SMM1SoundFilePath}            from './SMM1SoundEffectSoundFile'
-import type {SMM2SoundFilePath}            from './SMM2SoundEffectSoundFile'
+import type {SMM1SoundFilePath}            from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
+import type {SMM2SoundFilePath}            from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
+import type {PossibleSoundEffectSoundName} from 'core/soundEffect/sound/types'
+import type {NonRepeatableSoundFile}       from 'util/sound/NonRepeatableSoundFile'
 
 export interface SoundEffectSoundFile<PATH extends PossibleSoundFilePath = PossibleSoundFilePath, NAME extends PossibleSoundEffectSoundName = PossibleSoundEffectSoundName, >
     extends NonRepeatableSoundFile<PATH, NAME, SoundFileExtension> {

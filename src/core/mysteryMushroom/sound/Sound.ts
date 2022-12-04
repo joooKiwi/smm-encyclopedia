@@ -1,5 +1,5 @@
-import type {PossibleFileName}         from '../MysteryMushrooms.types'
-import type {MysteryMushroomSoundFile} from '../file/MysteryMushroomSoundFile'
+import type {PossibleFileName}         from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {MysteryMushroomSoundFile} from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
 
 export interface Sound<FILE extends PossibleFileName = PossibleFileName, > {
 

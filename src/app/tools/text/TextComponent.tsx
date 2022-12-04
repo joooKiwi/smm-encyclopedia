@@ -1,8 +1,8 @@
 import './TextComponent.scss'
 
-import type {PossibleTextContent, TextProperties} from './properties/TextProperties'
+import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 const NOT_APPLICABLE = 'N/A'
 const UNKNOWN_REFERENCE = '???'

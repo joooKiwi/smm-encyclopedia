@@ -1,17 +1,17 @@
-import resource from '../../resources/compiled/Game style.json'
+import resource from 'resources/compiled/Game style.json'
 
-import type {Loader}                                                             from '../../util/loader/Loader'
-import type {GameStyle}                                                          from './GameStyle'
-import type {GameStyleTemplate}                                                  from './GameStyle.template'
-import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                     from '../game/Loader.types'
-import type {PossibleAcronym, PossibleEnglishName}                               from './GameStyles.types'
-import type {PossibleIsAvailableFromTheStart}                                    from '../availableFromTheStart/loader.types'
-import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types'
+import type {PossibleIsAvailableFromTheStart}                                    from 'core/availableFromTheStart/loader.types'
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                     from 'core/game/Loader.types'
+import type {GameStyle}                                                          from 'core/gameStyle/GameStyle'
+import type {PossibleAcronym, PossibleEnglishName}                               from 'core/gameStyle/GameStyles.types'
+import type {GameStyleTemplate}                                                  from 'core/gameStyle/GameStyle.template'
+import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/Loader.types'
+import type {Loader}                                                             from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {GameStyleBuilder}        from './GameStyle.builder'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {GameStyleBuilder}        from 'core/gameStyle/GameStyle.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

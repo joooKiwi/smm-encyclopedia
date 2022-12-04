@@ -1,17 +1,17 @@
-import resource from '../../resources/compiled/Theme.json'
+import resource from 'resources/compiled/Theme.json'
 
-import type {CourseAndWorldTheme}                            from './CourseAndWorldTheme'
-import type {PossibleEnglishName}                            from './Themes.types'
-import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from '../game/Loader.types'
-import type {PropertiesArray as LanguagesPropertyArray}      from '../../lang/Loader.types'
-import type {PossibleEffectInNightTheme, ThemeTemplate}      from './Theme.template'
-import type {PossibleIsAvailableFromTheStart}                from '../availableFromTheStart/loader.types'
-import type {Loader}                                         from '../../util/loader/Loader'
+import type {PossibleIsAvailableFromTheStart}                from 'core/availableFromTheStart/loader.types'
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from 'core/game/Loader.types'
+import type {CourseAndWorldTheme}                            from 'core/theme/CourseAndWorldTheme'
+import type {PossibleEnglishName}                            from 'core/theme/Themes.types'
+import type {PossibleEffectInNightTheme, ThemeTemplate}      from 'core/theme/Theme.template'
+import type {PropertiesArray as LanguagesPropertyArray}      from 'lang/Loader.types'
+import type {Loader}                                         from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
-import {ThemeBuilder}            from './Theme.builder'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {ThemeBuilder}            from 'core/theme/Theme.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

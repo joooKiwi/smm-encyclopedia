@@ -1,8 +1,9 @@
-import type BaseComponent, {ComponentOptions} from 'bootstrap/js/dist/base-component'
+import type BaseComponent      from 'bootstrap/js/dist/base-component'
+import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
-import type {BootstrapWithBasicEventsInstance} from './BootstrapWithBasicEventsInstance'
-import type {Nullable}                         from '../util/types'
-import type {StaticBootstrapInstance}          from './BootstrapInstance.types'
+import type {StaticBootstrapInstance}          from 'bootstrap/BootstrapInstance.types'
+import type {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
+import type {Nullable}                         from 'util/types/nullable'
 
 export interface BootstrapWithBasicEvents<I extends GenericBootstrapInstanceWithEvent = GenericBootstrapInstanceWithEvent, > {
 

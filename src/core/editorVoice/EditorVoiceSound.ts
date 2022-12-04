@@ -1,6 +1,6 @@
-import type {EditorVoiceSoundFile}   from './file/EditorVoiceSoundFile'
-import type {EditorVoiceSoundHolder} from './holder/EditorVoiceSoundHolder'
-import type {NullOr}                 from '../../util/types'
+import type {EditorVoiceSoundFile}   from 'core/editorVoice/file/EditorVoiceSoundFile'
+import type {EditorVoiceSoundHolder} from 'core/editorVoice/holder/EditorVoiceSoundHolder'
+import type {NullOr}                 from 'util/types/nullable'
 
 export interface EditorVoiceSound<T extends NullOr<EditorVoiceSoundFile<PossibleFileName>> = NullOr<EditorVoiceSoundFile<PossibleFileName>>, U extends NullOr<EditorVoiceSoundFile<PossibleFileName>> = NullOr<EditorVoiceSoundFile<PossibleFileName>>, > {
 

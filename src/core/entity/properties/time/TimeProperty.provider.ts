@@ -1,9 +1,9 @@
-import type {NullOrBoolean}      from '../../../../util/types'
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
-import type {TimeProperty}       from './TimeProperty'
+import type {TimeProperty}       from 'core/entity/properties/time/TimeProperty'
+import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
+import type {NullOrBoolean}      from 'util/types/nullable'
 
-import {AbstractProvider}      from '../../../../util/provider/AbstractProvider'
-import {TimePropertyContainer} from './TimeProperty.container'
+import {TimePropertyContainer} from 'core/entity/properties/time/TimeProperty.container'
+import {AbstractProvider}      from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

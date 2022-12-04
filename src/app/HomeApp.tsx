@@ -1,4 +1,4 @@
-import AbstractApp from './AbstractApp'
+import AbstractApp from 'app/AbstractApp'
 
 /**
  * @reactComponent

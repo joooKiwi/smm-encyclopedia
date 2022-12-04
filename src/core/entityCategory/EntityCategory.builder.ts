@@ -1,11 +1,11 @@
-import type {Builder}                from '../../util/builder/Builder'
-import type {EntityCategory}         from './EntityCategory'
-import type {EntityCategoryTemplate} from './EntityCategory.template'
-import type {Name}                   from '../../lang/name/Name'
+import type {EntityCategory}         from 'core/entityCategory/EntityCategory'
+import type {EntityCategoryTemplate} from 'core/entityCategory/EntityCategory.template'
+import type {Name}                   from 'lang/name/Name'
+import type {Builder}                from 'util/builder/Builder'
 
-import {EntityCategoryContainer} from './EntityCategory.container'
-import {Games}                   from '../game/Games'
-import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder'
+import {TemplateWithNameBuilder} from 'core/_template/TemplateWithName.builder'
+import {EntityCategoryContainer} from 'core/entityCategory/EntityCategory.container'
+import {Games}                   from 'core/game/Games'
 
 export class EntityCategoryBuilder
     extends TemplateWithNameBuilder<EntityCategoryTemplate, EntityCategory>

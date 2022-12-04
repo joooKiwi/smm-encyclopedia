@@ -1,4 +1,4 @@
-import type {EntrySet} from './EntrySet'
+import type {EntrySet} from 'util/extended/EntrySet'
 
 export class EntrySetContainer<K, V, >
     implements EntrySet<K, V> {

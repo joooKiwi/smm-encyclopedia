@@ -1,6 +1,6 @@
-import type {BasePath}                                       from '../../variables'
-import type {Games}                                          from './Games'
-import type {PossibleAcronym_Game, PossibleEnglishName_Game} from '../gameReference/GameReferences.types'
+import type {BasePath}                                       from 'variables'
+import type {Games}                                          from 'core/game/Games'
+import type {PossibleAcronym_Game, PossibleEnglishName_Game} from 'core/gameReference/GameReferences.types'
 
 enum Enum {
 

@@ -1,10 +1,10 @@
 import {useEffect} from 'react'
 
-import type {ReactElement, ReactPropertiesWithOptionalChildren} from '../../util/react/ReactProperties'
-import type {ModalConfiguration}                                from './Modal.types'
+import type {ModalConfiguration}                                from 'bootstrap/modal/Modal.types'
+import type {ReactElement, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT} from '../../util/emptyReactVariables'
-import {ModalInstance}       from './ModalInstance'
+import {ModalInstance}       from 'bootstrap/modal/ModalInstance'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 /**
  *

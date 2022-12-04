@@ -1,9 +1,9 @@
-import type {AbstractExclusiveSMM2GameProperty, ExclusiveSMM1GameProperty, ExclusiveSMM2GameProperty, ExclusiveSMM2GamePropertyInSM3DW, GameProperty}                          from './game/GameProperty'
-import type {AbstractExclusiveSMM2GameStyleProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM2GameStyleProperty, ExclusiveSMM2GameStylePropertyInSM3DW, GameStyleProperty} from './gameStyle/GameStyleProperty'
-import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM2ThemeProperty, ExclusiveSMM2ThemePropertyInSM3DW, ThemeProperty}                     from './theme/ThemeProperty'
-import type {AbstractExclusiveSMM2TimeProperty, ExclusiveSMM1TimeProperty, ExclusiveSMM2TimeProperty, ExclusiveSMM2TimePropertyInSM3DW, TimeProperty}                          from './time/TimeProperty'
-import type {AbstractExclusiveSMM2LimitProperty, ExclusiveSMM1LimitProperty, ExclusiveSMM2LimitProperty, ExclusiveSMM2LimitPropertyInSM3DW, LimitProperty}                     from './limit/LimitProperty'
-import type {InstrumentProperty}                                                                                                                                               from './instrument/InstrumentProperty'
+import type {AbstractExclusiveSMM2GameProperty, ExclusiveSMM1GameProperty, ExclusiveSMM2GameProperty, ExclusiveSMM2GamePropertyInSM3DW, GameProperty}                          from 'core/entity/properties/game/GameProperty'
+import type {AbstractExclusiveSMM2GameStyleProperty, ExclusiveSMM1GameStyleProperty, ExclusiveSMM2GameStyleProperty, ExclusiveSMM2GameStylePropertyInSM3DW, GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {AbstractExclusiveSMM2ThemeProperty, ExclusiveSMM1ThemeProperty, ExclusiveSMM2ThemeProperty, ExclusiveSMM2ThemePropertyInSM3DW, ThemeProperty}                     from 'core/entity/properties/theme/ThemeProperty'
+import type {AbstractExclusiveSMM2TimeProperty, ExclusiveSMM1TimeProperty, ExclusiveSMM2TimeProperty, ExclusiveSMM2TimePropertyInSM3DW, TimeProperty}                          from 'core/entity/properties/time/TimeProperty'
+import type {AbstractExclusiveSMM2LimitProperty, ExclusiveSMM1LimitProperty, ExclusiveSMM2LimitProperty, ExclusiveSMM2LimitPropertyInSM3DW, LimitProperty}                     from 'core/entity/properties/limit/LimitProperty'
+import type {InstrumentProperty}                                                                                                                                               from 'core/entity/properties/instrument/InstrumentProperty'
 
 export interface Property<GAME extends GameProperty = GameProperty, GAME_STYLE extends GameStyleProperty = GameStyleProperty, THEME extends ThemeProperty = ThemeProperty, TIME extends TimeProperty = TimeProperty, LIMIT extends LimitProperty = LimitProperty, INSTRUMENT extends InstrumentProperty = InstrumentProperty, >
     extends GameProperty<GAME['isInSuperMarioMaker1'], GAME['isInSuperMarioMakerFor3DS'], GAME['isInSuperMarioMaker2']>,

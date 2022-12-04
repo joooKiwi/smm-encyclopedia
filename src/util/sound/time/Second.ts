@@ -1,4 +1,4 @@
-import {AbstractTime} from './AbstractTime'
+import {AbstractTime} from 'util/sound/time/AbstractTime'
 
 export class Second<TIME extends number = number, >
     extends AbstractTime<number, TIME> {

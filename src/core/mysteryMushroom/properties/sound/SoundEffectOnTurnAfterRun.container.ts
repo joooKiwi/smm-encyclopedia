@@ -1,9 +1,9 @@
-import type {ExtendedMap}                                                       from '../../../../util/extended/ExtendedMap'
-import type {NullOrBoolean}                                                     from '../../../../util/types'
-import type {PossibleValues, PossibleValuesReceived, SoundEffectOnTurnAfterRun} from './SoundEffectOnTurnAfterRun'
+import type {PossibleValues, PossibleValuesReceived, SoundEffectOnTurnAfterRun} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
+import type {ExtendedMap}                                                       from 'util/extended/ExtendedMap'
+import type {NullOrBoolean}                                                     from 'util/types/nullable'
 
-import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
-import {PropertyProvider}     from '../../../_properties/PropertyProvider'
+import {PropertyProvider}     from 'core/_properties/PropertyProvider'
+import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
  * @todo move the content in the constructor in the builder instead

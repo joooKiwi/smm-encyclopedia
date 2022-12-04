@@ -1,6 +1,6 @@
-import type {NullOrBoolean, NullOrNumber, NullOrString} from '../../util/types'
-import type {PropertyWithAmount}                        from './PropertyWithAmount'
-import type {PropertyThatCanBeUnknown}                  from './PropertyThatCanBeUnknown'
+import type {PropertyThatCanBeUnknown}                  from 'core/_properties/PropertyThatCanBeUnknown'
+import type {PropertyWithAmount}                        from 'core/_properties/PropertyWithAmount'
+import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
 
 /**
  * A generic property with a value,

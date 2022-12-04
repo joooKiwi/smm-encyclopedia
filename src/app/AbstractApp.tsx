@@ -2,16 +2,16 @@ import './AbstractApp.scss'
 
 import {Component} from 'react'
 
-import type {AppProperties}                                      from './AppProperties.types'
-import type {AppStates}                                          from './AppStates.types'
-import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from '../navigation/ModalContainers.types'
-import type {ReactComponent}                                     from '../util/react/ReactComponent'
-import type {ReactElement}                                       from '../util/react/ReactProperties'
+import type {AppProperties}                                      from 'app/AppProperties.types'
+import type {AppStates}                                          from 'app/AppStates.types'
+import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from 'navigation/ModalContainers.types'
+import type {ReactComponent}                                     from 'util/react/ReactComponent'
+import type {ReactElement}                                       from 'util/react/ReactProperties'
 
-import Footer                from '../navigation/Footer'
-import GlobalOptionComponent from './options/global/GlobalOption.component'
-import ModalContainers       from '../navigation/ModalContainers'
-import Navigation            from '../navigation/Navigation'
+import GlobalOptionComponent from 'app/options/global/GlobalOption.component'
+import Footer                from 'navigation/Footer'
+import ModalContainers       from 'navigation/ModalContainers'
+import Navigation            from 'navigation/Navigation'
 
 /**
  * @reactComponent

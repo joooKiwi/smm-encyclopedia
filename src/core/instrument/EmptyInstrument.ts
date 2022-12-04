@@ -1,8 +1,8 @@
-import type {Instrument} from './Instrument'
+import type {Instrument} from 'core/instrument/Instrument'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
-import {EmptyStringName}      from '../../lang/name/EmptyStringName'
-import {EMPTY_ARRAY}          from '../../util/emptyVariables'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {EmptyStringName}      from 'lang/name/EmptyStringName'
+import {EMPTY_ARRAY}          from 'util/emptyVariables'
 
 export class EmptyInstrument
     extends ClassContainingAName<string>

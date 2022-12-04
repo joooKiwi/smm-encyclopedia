@@ -1,13 +1,13 @@
-import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from './properties/Property'
-import type {EntityReferences}                                                                                                    from './properties/EntityReferences'
-import type {EntityCategory}                                                                                                      from '../entityCategory/EntityCategory'
-import type {EmptyEntityCategory}                                                                                                 from '../entityCategory/EmptyEntityCategory'
-import type {GameProperty}                                                                                                        from './properties/game/GameProperty'
-import type {GameStyleProperty}                                                                                                   from './properties/gameStyle/GameStyleProperty'
-import type {NameTrait}                                                                                                           from '../../lang/name/NameTrait'
-import type {NameTraitFromACategory}                                                                                              from '../../lang/name/NameTraitFromACategory'
-import type {ThemeProperty}                                                                                                       from './properties/theme/ThemeProperty'
-import type {TimeProperty}                                                                                                        from './properties/time/TimeProperty'
+import type {EntityReferences}                                                                                                    from 'core/entity/properties/EntityReferences'
+import type {AbstractExclusiveSMM2Property, ExclusiveSMM1Property, ExclusiveSMM2Property, ExclusiveSMM2PropertyInSM3DW, Property} from 'core/entity/properties/Property'
+import type {GameProperty}                                                                                                        from 'core/entity/properties/game/GameProperty'
+import type {GameStyleProperty}                                                                                                   from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {ThemeProperty}                                                                                                       from 'core/entity/properties/theme/ThemeProperty'
+import type {TimeProperty}                                                                                                        from 'core/entity/properties/time/TimeProperty'
+import type {EmptyEntityCategory}                                                                                                 from 'core/entityCategory/EmptyEntityCategory'
+import type {EntityCategory}                                                                                                      from 'core/entityCategory/EntityCategory'
+import type {NameTrait}                                                                                                           from 'lang/name/NameTrait'
+import type {NameTraitFromACategory}                                                                                              from 'lang/name/NameTraitFromACategory'
 
 export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
     extends NameTrait<string>,

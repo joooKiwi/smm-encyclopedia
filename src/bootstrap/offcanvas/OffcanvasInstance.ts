@@ -1,10 +1,10 @@
-import {Offcanvas} from 'bootstrap'
+import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
+import {Offcanvas}             from 'bootstrap'
 
-import type {ComponentOptions}                                                         from 'bootstrap/js/dist/base-component'
-import type {OffcanvasEventCallbackReceived, OffcanvasEvents, OffcanvasEventsReceived} from './Offcanvas.types'
+import type {OffcanvasEventCallbackReceived, OffcanvasEvents, OffcanvasEventsReceived} from 'bootstrap/offcanvas/Offcanvas.types'
 
-import {BootstrapInstance}                from '../BootstapInstance'
-import {BootstrapWithBasicEventsInstance} from '../BootstrapWithBasicEventsInstance'
+import {BootstrapInstance}                from 'bootstrap/BootstapInstance'
+import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
 
 export class OffcanvasInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<typeof OffcanvasInstance, Offcanvas, ComponentOptions, ELEMENT, ID> {

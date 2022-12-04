@@ -1,14 +1,14 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {AbstractAppWithInterpreter}      from './AbstractAppWithInterpreter'
-import type {AbstractCardListApp}             from './AbstractCardListApp'
-import type {AbstractSimpleListApp}           from './AbstractSimpleListApp'
-import type {AbstractTableApp}                from './AbstractTableApp'
-import type {HTMLType, Names, Ordinals, Type} from './ViewDisplays.types'
-import type {ReactElement}                    from '../../util/react/ReactProperties'
+import type {AbstractAppWithInterpreter}      from 'app/withInterpreter/AbstractAppWithInterpreter'
+import type {AbstractCardListApp}             from 'app/withInterpreter/AbstractCardListApp'
+import type {AbstractSimpleListApp}           from 'app/withInterpreter/AbstractSimpleListApp'
+import type {AbstractTableApp}                from 'app/withInterpreter/AbstractTableApp'
+import type {HTMLType, Names, Ordinals, Type} from 'app/withInterpreter/ViewDisplays.types'
+import type {ReactElement}                    from 'util/react/ReactProperties'
 
-import {assert} from '../../util/utilitiesMethods'
+import {assert} from 'util/utilitiesMethods'
 
 export abstract class ViewDisplays
     extends Enum<Ordinals, Names> {

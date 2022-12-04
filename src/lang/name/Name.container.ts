@@ -1,16 +1,16 @@
-import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from './containers/Language'
-import type {EmptyableOptionalLanguage}                                                                                                                         from './containers/EmptyableOptionalLanguage'
-import type {EmptyableLanguage}                                                                                                                                 from './containers/EmptyableLanguage'
-import type {Name}                                                                                                                                              from './Name'
-import type {Nullable, NullOr}                                                                                                                                  from '../../util/types'
-import type {OptionalLanguage}                                                                                                                                  from './containers/OptionalLanguage'
+import type {Name}                                                                                                                                              from 'lang/name/Name'
+import type {EmptyableOptionalLanguage}                                                                                                                         from 'lang/name/containers/EmptyableOptionalLanguage'
+import type {EmptyableLanguage}                                                                                                                                 from 'lang/name/containers/EmptyableLanguage'
+import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from 'lang/name/containers/Language'
+import type {OptionalLanguage}                                                                                                                                  from 'lang/name/containers/OptionalLanguage'
+import type {Nullable, NullOr}                                                                                                                                  from 'util/types/nullable'
 
-import {assert}                    from '../../util/utilitiesMethods'
-import {EmptyLanguageContainer}    from './containers/EmptyLanguageContainer'
-import {EveryLanguages}            from '../EveryLanguages'
-import {LanguageContainer}         from './containers/LanguageContainer'
-import {OptionalLanguageContainer} from './containers/OptionalLanguageContainer'
-import {ProjectLanguages}          from '../ProjectLanguages'
+import {EveryLanguages}            from 'lang/EveryLanguages'
+import {ProjectLanguages}          from 'lang/ProjectLanguages'
+import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguageContainer'
+import {LanguageContainer}         from 'lang/name/containers/LanguageContainer'
+import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguageContainer'
+import {assert}                    from 'util/utilitiesMethods'
 
 //region -------------------- Import from deconstruction --------------------
 

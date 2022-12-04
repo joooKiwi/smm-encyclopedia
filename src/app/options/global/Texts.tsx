@@ -2,25 +2,25 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {ClassWithValue}  from './ClassWithValue'
-import type {Names, Ordinals} from './Texts.types'
-import type {Nullable}        from '../../../util/types'
-import type {ReactElement}    from '../../../util/react/ReactProperties'
+import type {Names, Ordinals}                     from 'app/options/global/Texts.types'
+import type {BooleanResultTextProperties}         from 'app/tools/text/properties/BooleanResultTextProperties'
+import type {BooleanTextProperties}               from 'app/tools/text/properties/BooleanTextProperties'
+import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
+import type {YesOrNoTextProperties}               from 'app/tools/text/properties/YesOrNoTextProperties'
+import type {NameProperties}                      from 'lang/name/component/Name.properties'
+import type {ReactElement}                        from 'util/react/ReactProperties'
+import type {ClassWithValue}                      from 'util/types/ClassWithValue'
+import type {Nullable}                            from 'util/types/nullable'
 
-import {EMPTY_REACT_ELEMENT}                 from '../../../util/emptyReactVariables'
-import {PossibleTextContent, TextProperties} from '../../tools/text/properties/TextProperties'
-import {YesOrNoTextProperties}               from '../../tools/text/properties/YesOrNoTextProperties'
-import {BooleanTextProperties}               from '../../tools/text/properties/BooleanTextProperties'
-import {BooleanResultTextProperties}         from '../../tools/text/properties/BooleanResultTextProperties'
-import {NameProperties}                      from '../../../lang/name/component/Name.properties'
+import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
-const TextComponent =              lazy(() => import('../../tools/text/TextComponent'))
-const NameComponent =              lazy(() => import('../../../lang/name/component/Name.component'))
-const YesOrNoResultTextComponent = lazy(() => import('../../tools/text/YesOrNoResultTextComponent'))
-const BooleanTextComponent =       lazy(() => import('../../tools/text/BooleanTextComponent'))
-const BooleanResultTextComponent = lazy(() => import('../../tools/text/BooleanResultTextComponent'))
+const TextComponent =              lazy(() => import('app/tools/text/TextComponent'))
+const NameComponent =              lazy(() => import('lang/name/component/Name.component'))
+const YesOrNoResultTextComponent = lazy(() => import('app/tools/text/YesOrNoResultTextComponent'))
+const BooleanTextComponent =       lazy(() => import('app/tools/text/BooleanTextComponent'))
+const BooleanResultTextComponent = lazy(() => import('app/tools/text/BooleanResultTextComponent'))
 
 //endregion -------------------- dynamic imports --------------------
 

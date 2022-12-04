@@ -1,12 +1,12 @@
-import type {ClassInAnySuperMarioMakerGame}                                              from '../../../core/game/ClassInAnySuperMarioMakerGame'
-import type {Entities}                                                                   from '../../../core/entity/Entities'
-import type {ImageRetrieverCallback, PossibleGameStyles, PowerUpByAllGameStylesPriority} from './PowerUpPriority'
-import type {ObjectHolder}                                                               from '../../../util/holder/ObjectHolder'
+import type {ImageRetrieverCallback, PossibleGameStyles, PowerUpByAllGameStylesPriority} from 'app/powerUp/priority/PowerUpPriority'
+import type {Entities}                                                                   from 'core/entity/Entities'
+import type {ClassInAnySuperMarioMakerGame}                                              from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {ObjectHolder}                                                               from 'util/holder/ObjectHolder'
 
-import {AbstractPowerUpBySMM1GameStylesPriority} from './AbstractPowerUpBySMM1GameStylesPriority'
-import {DelayedObjectHolderContainer}            from '../../../util/holder/DelayedObjectHolder.container'
-import {GameStyles}                              from '../../../core/gameStyle/GameStyles'
-import {ObjectHolders}                           from '../../../util/holder/objectHolders'
+import {AbstractPowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/AbstractPowerUpBySMM1GameStylesPriority'
+import {GameStyles}                              from 'core/gameStyle/GameStyles'
+import {DelayedObjectHolderContainer}            from 'util/holder/DelayedObjectHolder.container'
+import {ObjectHolders}                           from 'util/holder/objectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 

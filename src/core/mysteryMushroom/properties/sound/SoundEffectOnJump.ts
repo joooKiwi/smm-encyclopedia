@@ -1,8 +1,8 @@
-import type {ClassWithGameReference} from '../../../gameReference/ClassWithGameReference'
-import type {GameReferences}         from '../../../gameReference/GameReferences'
-import type {NotApplicable}          from '../../../_properties/Property'
-import type {NullOr}                 from '../../../../util/types'
-import type {PropertyWithAmount}     from '../../../_properties/PropertyWithAmount'
+import type {NotApplicable}          from 'core/_properties/Property'
+import type {PropertyWithAmount}     from 'core/_properties/PropertyWithAmount'
+import type {ClassWithGameReference} from 'core/gameReference/ClassWithGameReference'
+import type {GameReferences}         from 'core/gameReference/GameReferences'
+import type {NullOr}                 from 'util/types/nullable'
 
 export interface SoundEffectOnJump
     extends PropertyWithAmount<PossibleValues, PossibleAmount>, ClassWithGameReference<NullOr<GameReferences>> {

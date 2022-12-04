@@ -1,4 +1,4 @@
-import {Millisecond} from './Millisecond'
+import {Millisecond} from 'util/sound/time/Millisecond'
 
 export class FramePerMillisecond<FRAME extends number = number, >
     extends Millisecond {

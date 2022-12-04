@@ -1,4 +1,4 @@
-import {CourseTags} from './CourseTags'
+import {CourseTags} from 'core/courseTag/CourseTags'
 
 enum Enum {
 

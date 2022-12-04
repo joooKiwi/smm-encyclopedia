@@ -1,8 +1,8 @@
-import type {NullOrNumber}                from '../../../util/types'
-import type {NumberProperty}              from '../Property'
-import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
+import type {NumberProperty}              from 'core/_properties/Property'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {NullOrNumber}                from 'util/types/nullable'
 
-import {PropertyContainer} from '../Property.container'
+import {PropertyContainer} from 'core/_properties/Property.container'
 
 export class NumberPropertyContainer<N extends NullOrNumber = NullOrNumber, >
     extends PropertyContainer<N>

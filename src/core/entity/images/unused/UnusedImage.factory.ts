@@ -1,8 +1,8 @@
-import type {UnusedImages}                   from './UnusedImage'
-import type {PossibleImageReceivedOnFactory} from './UnusedImage.types'
+import type {UnusedImages}                   from 'core/entity/images/unused/UnusedImage'
+import type {PossibleImageReceivedOnFactory} from 'core/entity/images/unused/UnusedImage.types'
 
-import {EmptyUnusedImage_BigMushroom} from './EmptyUnusedImage_BigMushroom'
-import {EmptyUnusedImage_Regular}     from './EmptyUnusedImage_Regular'
+import {EmptyUnusedImage_BigMushroom} from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
+import {EmptyUnusedImage_Regular}     from 'core/entity/images/unused/EmptyUnusedImage_Regular'
 
 export class UnusedImageFactory {
 

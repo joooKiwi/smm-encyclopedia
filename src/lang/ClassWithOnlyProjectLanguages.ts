@@ -1,4 +1,4 @@
-import type {NullOr} from '../util/types'
+import type {NullOr} from 'util/types/nullable'
 
 /**
  * <p>

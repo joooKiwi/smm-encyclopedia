@@ -1,5 +1,5 @@
-import type {Entities}            from '../../entity/Entities'
-import type {PossibleEnglishName} from '../EditorVoices.types'
+import type {PossibleEnglishName} from 'core/editorVoice/EditorVoices.types'
+import type {Entities}            from 'core/entity/Entities'
 
 export interface EntityReferenceHolder {
 

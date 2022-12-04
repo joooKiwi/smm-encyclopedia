@@ -1,10 +1,10 @@
 import './YesOrNoResultTextComponent.scss'
 
-import type {TextColor}             from './properties/BooleanResultTextProperties'
-import type {YesOrNoTextProperties} from './properties/YesOrNoTextProperties'
+import type {TextColor}             from 'app/tools/text/properties/BooleanResultTextProperties'
+import type {YesOrNoTextProperties} from 'app/tools/text/properties/YesOrNoTextProperties'
 
-import BooleanResultTextComponent from './BooleanResultTextComponent'
-import {contentTranslation}       from '../../../lang/components/translationMethods'
+import BooleanResultTextComponent from 'app/tools/text/BooleanResultTextComponent'
+import {contentTranslation}       from 'lang/components/translationMethods'
 
 const YES_COLOR: TextColor = 'text-yes'
 const NO_COLOR: TextColor = 'text-no'

@@ -1,8 +1,8 @@
-import type {BooleanPropertyWithAmount}   from '../PropertyWithAmount'
-import type {NullOrBoolean, NullOrNumber} from '../../../util/types'
-import type {PossibleValueOnObjectHolder} from '../../../util/holder/ObjectHolder'
+import type {BooleanPropertyWithAmount}   from 'core/_properties/PropertyWithAmount'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {NullOrBoolean, NullOrNumber} from 'util/types/nullable'
 
-import {PropertyWithAmountContainer} from '../PropertyWithAmount.container'
+import {PropertyWithAmountContainer} from 'core/_properties/PropertyWithAmount.container'
 
 export class BooleanPropertyWithAmountContainer<B extends NullOrBoolean = NullOrBoolean, AMOUNT extends NullOrNumber = NullOrNumber, >
     extends PropertyWithAmountContainer<B, AMOUNT>

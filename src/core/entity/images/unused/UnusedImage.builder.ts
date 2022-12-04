@@ -1,5 +1,5 @@
-import {Builder}     from '../../../../util/builder/Builder'
-import {UnusedImage} from './UnusedImage'
+import {UnusedImage} from 'core/entity/images/unused/UnusedImage'
+import {Builder}     from 'util/builder/Builder'
 
 export abstract class UnusedImageBuilder<T extends UnusedImage, N extends string, >
     implements Builder<T> {

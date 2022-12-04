@@ -1,4 +1,4 @@
-import type {EntityLimitTypes} from './EntityLimitTypes'
+import type {EntityLimitTypes} from 'core/entityLimit/EntityLimitTypes'
 
 enum Enum {
 

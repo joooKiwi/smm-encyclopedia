@@ -1,12 +1,12 @@
-import type {BooleanPropertyThatCanBeUnknown, NumberPropertyThatCanBeUnknown, StringPropertyThatCanBeUnknown}                                  from './PropertyThatCanBeUnknown'
-import type {BooleanPropertyThatCanBeUnknownWithAmount}                                                                                        from './PropertyThatCanBeUnknownWithAmount'
-import type {BooleanPropertyThatCanBeUnknownWithComment, NumberPropertyThatCanBeUnknownWithComment, StringPropertyThatCanBeUnknownWithComment} from './PropertyThatCanBeUnknownWithComment'
-import type {BooleanPropertyWithAmount}                                                                                                        from './PropertyWithAmount'
-import type {BooleanPropertyWithAmountAndComment}                                                                                              from './PropertyWithAmountAndComment'
-import type {BooleanPropertyWithComment, NumberPropertyWithComment, StringPropertyWithComment}                                                 from './PropertyWithComment'
-import type {BooleanPropertyWithEverything, NotApplicableProperty, NullProperty, NumberPropertyWithEverything}                                 from './PropertyWithEverything'
-import type {NullOr, NullOrBoolean, NullOrNumber, NullOrString}                                                                                from '../../util/types'
-import type {PropertyWithNoValues}                                                                                                             from './PropertyWithNoValues'
+import type {BooleanPropertyThatCanBeUnknown, NumberPropertyThatCanBeUnknown, StringPropertyThatCanBeUnknown}                                  from 'core/_properties/PropertyThatCanBeUnknown'
+import type {BooleanPropertyThatCanBeUnknownWithAmount}                                                                                        from 'core/_properties/PropertyThatCanBeUnknownWithAmount'
+import type {BooleanPropertyThatCanBeUnknownWithComment, NumberPropertyThatCanBeUnknownWithComment, StringPropertyThatCanBeUnknownWithComment} from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {BooleanPropertyWithAmount}                                                                                                        from 'core/_properties/PropertyWithAmount'
+import type {BooleanPropertyWithAmountAndComment}                                                                                              from 'core/_properties/PropertyWithAmountAndComment'
+import type {BooleanPropertyWithComment, NumberPropertyWithComment, StringPropertyWithComment}                                                 from 'core/_properties/PropertyWithComment'
+import type {BooleanPropertyWithEverything, NotApplicableProperty, NullProperty, NumberPropertyWithEverything}                                 from 'core/_properties/PropertyWithEverything'
+import type {PropertyWithNoValues}                                                                                                             from 'core/_properties/PropertyWithNoValues'
+import type {NullOr, NullOrBoolean, NullOrNumber, NullOrString}                                                                                from 'util/types/nullable'
 
 /**
  * A generic property with a value contained in it.

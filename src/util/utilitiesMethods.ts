@@ -1,10 +1,10 @@
 import type {BasicEnumerableConstructor, CollectionHolder, Enumerable} from '@joookiwi/enumerable/dist/types'
 import {AssertionError}                                                from 'assert'
 
-import type {ClassWithEnglishName} from '../core/ClassWithEnglishName'
-import type {Nullable}             from './types'
+import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
+import type {Nullable}             from 'types/nullable'
 
-import {isInProduction} from '../variables'
+import {isInProduction} from 'variables'
 
 /**
  * Validate if an array is equals to another one.

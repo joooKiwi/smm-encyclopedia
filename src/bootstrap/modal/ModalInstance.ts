@@ -1,9 +1,9 @@
 import {Modal} from 'bootstrap'
 
-import type {ModalEventCallbackReceived, ModalEvents, ModalEventsReceived} from './Modal.types'
+import type {ModalEventCallbackReceived, ModalEvents, ModalEventsReceived} from 'bootstrap/modal/Modal.types'
 
-import {BootstrapInstance}                from '../BootstapInstance'
-import {BootstrapWithBasicEventsInstance} from '../BootstrapWithBasicEventsInstance'
+import {BootstrapInstance}                from 'bootstrap/BootstapInstance'
+import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
 
 export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<typeof ModalInstance, Modal, Modal.Options, ELEMENT, ID> {

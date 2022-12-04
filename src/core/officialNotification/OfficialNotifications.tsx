@@ -2,25 +2,25 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {Fragment, lazy}                                                          from 'react'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from '../ClassWithEnglishName'
-import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                from '../../lang/ClassWithTranslationKey'
-import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from './OfficialNotifications.types'
-import type {Nullable, NullableNumber, NullOr}                                                                                                                                                                                                                                                                       from '../../util/types'
-import type {ObjectHolder}                                                                                                                                                                                                                                                                                           from '../../util/holder/ObjectHolder'
-import type {ReactElement}                                                                                                                                                                                                                                                                                           from '../../util/react/ReactProperties'
-import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                              from '../../lang/components/TranslationProperty'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
+import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
+import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                from 'lang/ClassWithTranslationKey'
+import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                              from 'lang/components/TranslationProperty'
+import type {ObjectHolder}                                                                                                                                                                                                                                                                                           from 'util/holder/ObjectHolder'
+import type {ReactElement}                                                                                                                                                                                                                                                                                           from 'util/react/ReactProperties'
+import type {Nullable, NullableNumber, NullOr}                                                                                                                                                                                                                                                                       from 'util/types/nullable'
 
-import {BASE_PATH}                    from '../../variables'
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
-import {EMPTY_ARRAY, EMPTY_STRING}    from '../../util/emptyVariables'
-import {EMPTY_REACT_ELEMENT}          from '../../util/emptyReactVariables'
-import {gameContentTranslation}       from '../../lang/components/translationMethods'
-import {StringContainer}              from '../../util/StringContainer'
+import {BASE_PATH}                    from 'variables'
+import {gameContentTranslation}       from 'lang/components/translationMethods'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {EMPTY_ARRAY, EMPTY_STRING}    from 'util/emptyVariables'
+import {EMPTY_REACT_ELEMENT}          from 'util/emptyReactVariables'
+import {StringContainer}              from 'util/StringContainer'
 
 //region -------------------- dynamic imports --------------------
 
-const TextComponent = lazy(() => import('../../app/tools/text/TextComponent'))
-const Image =         lazy(() => import('../../app/tools/images/Image'))
+const TextComponent = lazy(() => import('app/tools/text/TextComponent'))
+const Image =         lazy(() => import('app/tools/images/Image'))
 
 //endregion -------------------- dynamic imports --------------------
 //region -------------------- Constructor constants --------------------

@@ -1,5 +1,5 @@
-import type {SoundPlayer}  from './SoundPlayer'
-import type {HistoryState} from '../history/HistoryState'
+import type {HistoryState} from 'util/sound/history/HistoryState'
+import type {SoundPlayer}  from 'util/sound/player/SoundPlayer'
 
 type EventCallback<SOUND_PLAYER extends SoundPlayer, > = (soundPlayer: SOUND_PLAYER, event: Event,) => void
 type SoundPlayerCallback<SOUND_PLAYER extends SoundPlayer, > = (soundPlayer: SOUND_PLAYER,) => void

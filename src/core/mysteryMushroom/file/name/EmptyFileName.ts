@@ -1,6 +1,6 @@
-import type {FileName} from './FileName'
+import type {FileName} from 'core/mysteryMushroom/file/name/FileName'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @singleton

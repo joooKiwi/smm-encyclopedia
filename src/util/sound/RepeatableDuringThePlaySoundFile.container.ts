@@ -1,9 +1,9 @@
-import type {PossibleExtension}                from './SoundFile'
-import type {RepeatableDuringThePlaySoundFile} from './RepeatableDuringThePlaySoundFile'
-import type {Time}                             from './time/Time'
+import type {RepeatableDuringThePlaySoundFile} from 'util/sound/RepeatableDuringThePlaySoundFile'
+import type {PossibleExtension}                from 'util/sound/SoundFile'
+import type {Time}                             from 'util/sound/time/Time'
 
-import {AbstractRepeatableSoundFile} from './AbstractRepeatableSoundFile'
-import {RepeatableTypes}             from './RepeatableTypes'
+import {AbstractRepeatableSoundFile} from 'util/sound/AbstractRepeatableSoundFile'
+import {RepeatableTypes}             from 'util/sound/RepeatableTypes'
 
 export class RepeatableDuringThePlaySoundFileContainer<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, REPEATABLE_TIME extends Time = Time, >
     extends AbstractRepeatableSoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME>

@@ -1,9 +1,8 @@
-import Popover from './Popover'
+import type {SpanPopoverConfiguration}                          from 'bootstrap/popover/Popover.types'
+import type {ReactElementOrString, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
-import type {SpanPopoverConfiguration}                          from './Popover.types'
-import type {ReactElementOrString, ReactPropertiesWithChildren} from '../../util/react/ReactProperties'
-
-import TextComponent from '../../app/tools/text/TextComponent'
+import Popover       from 'bootstrap/popover/Popover'
+import TextComponent from 'app/tools/text/TextComponent'
 
 /**
  *

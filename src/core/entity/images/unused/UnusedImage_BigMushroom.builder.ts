@@ -1,10 +1,10 @@
-import type {ImageName_BigMushroom_Unused_SMM1} from './UnusedImage'
-import type {NullOr}                            from '../../../../util/types'
-import type {UnusedImage_BigMushroom}           from './UnusedImage_BigMushroom'
+import type {ImageName_BigMushroom_Unused_SMM1} from 'core/entity/images/unused/UnusedImage'
+import type {UnusedImage_BigMushroom}           from 'core/entity/images/unused/UnusedImage_BigMushroom'
+import type {NullOr}                            from 'util/types/nullable'
 
-import {GameStyles}                       from '../GameStyles'
-import {UnusedImage_BigMushroomContainer} from './UnusedImage_BigMushroom.container'
-import {UnusedImageBuilder}               from './UnusedImage.builder'
+import {GameStyles}                       from 'core/entity/images/GameStyles'
+import {UnusedImage_BigMushroomContainer} from 'core/entity/images/unused/UnusedImage_BigMushroom.container'
+import {UnusedImageBuilder}               from 'core/entity/images/unused/UnusedImage.builder'
 
 /**
  * @predefinedBuilder

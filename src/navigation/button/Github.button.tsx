@@ -1,7 +1,7 @@
 import './Github.button.scss'
 
-import {contentTranslation} from '../../lang/components/translationMethods'
-import Tooltip              from '../../bootstrap/tooltip/Tooltip'
+import Tooltip              from 'bootstrap/tooltip/Tooltip'
+import {contentTranslation} from 'lang/components/translationMethods'
 
 const ID = 'github-button'
 export default function GithubButton() {

@@ -1,7 +1,7 @@
-import type {Builder}      from './Builder'
-import type {ObjectHolder} from '../holder/ObjectHolder'
+import type {Builder}      from 'util/builder/Builder'
+import type {ObjectHolder} from 'util/holder/ObjectHolder'
 
-import {DelayedObjectHolderContainer} from '../holder/DelayedObjectHolder.container'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 /**
  * A generic builder that create only <b>once</b> an instance from another {@link Builder}.

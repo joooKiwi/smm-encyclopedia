@@ -1,8 +1,8 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleName, PossiblePlacement} from './HeaderTypes.types'
-import type {Nullable}                                         from '../../../../util/types'
+import type {Names, Ordinals, PossibleName, PossiblePlacement} from 'app/tools/table/header/HeaderTypes.types'
+import type {Nullable}                                         from 'util/types/nullable'
 
 export abstract class HeaderTypes
     extends Enum<Ordinals, Names> {
