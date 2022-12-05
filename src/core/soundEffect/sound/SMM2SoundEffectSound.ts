@@ -1,5 +1,5 @@
-import type {PossibleEditorValue, PossibleValueOnLinkOrSMB2Value, SoundEffectSound} from './SoundEffectSound'
-import type {SMM2SoundEffectSoundFile}                                              from '../file/SMM2SoundEffectSoundFile'
+import type {SMM2SoundEffectSoundFile}                                              from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
+import type {PossibleEditorValue, PossibleValueOnLinkOrSMB2Value, SoundEffectSound} from 'core/soundEffect/sound/SoundEffectSound'
 
 export interface SMM2SoundEffectSound<SOUNDS extends readonly SMM2SoundEffectSoundFile[] = readonly SMM2SoundEffectSoundFile[],
     EDITOR_SOUNDS extends PossibleEditorValue_SMM2<SOUNDS> = PossibleEditorValue_SMM2<SOUNDS>,

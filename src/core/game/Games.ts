@@ -1,17 +1,17 @@
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {ClassWithAcronym}                                                                              from '../ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                          from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                            from '../ClassWithImagePath'
-import type {GameProperty}                                                                                  from '../entity/properties/game/GameProperty'
-import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleSimpleValue} from './Games.types'
-import type {Nullable}                                                                                      from '../../util/types'
-import type {PropertyGetter}                                                                                from '../PropertyGetter'
+import type {ClassWithAcronym}                                                                              from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                          from 'core/ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                            from 'core/ClassWithImagePath'
+import type {PropertyGetter}                                                                                from 'core/PropertyGetter'
+import type {GameProperty}                                                                                  from 'core/entity/properties/game/GameProperty'
+import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleSimpleValue} from 'core/game/Games.types'
+import type {Nullable}                                                                                      from 'util/types/nullable'
 
-import {BASE_PATH}       from '../../variables'
-import GameComponent     from './Game.component'
-import {StringContainer} from '../../util/StringContainer'
+import {BASE_PATH}       from 'variables'
+import GameComponent     from 'core/game/Game.component'
+import {StringContainer} from 'util/StringContainer'
 
 export abstract class Games
     extends Enum<Ordinals, Names>
@@ -100,14 +100,15 @@ export abstract class Games
 
 
     // public static getValueByValue<T extends string, >(value: Nullable<| Games | T>,): GamesByValue<T>
-    public static getValueByValue(value: Nullable<| Games | string>,): Games {
+    public static getValueByValue(value: Nullable<| Games | string | number>,): Games {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)
             return value
-        const valueFound = this.values.find(enumerable => enumerable.englishName === value
-            || enumerable.acronym === value
-            || enumerable.simpleValue === value)
+        const stringValue = `${value}`,
+            valueFound = this.values.find(enumerable => enumerable.englishName === value
+                || enumerable.acronym === value
+                || enumerable.simpleValue === stringValue)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
         return valueFound

@@ -2,25 +2,24 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
-import type {Names, Ordinals}                                  from './SoundEffectAppOption.types'
-import type {NullOr}                                           from '../../util/types'
-import type {ReactElement}                                     from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
+import type {Names, Ordinals}                                  from 'app/options/SoundEffectAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {ReactElement}                                     from 'util/react/ReactProperties'
+import type {NullOr}                                           from 'util/types/nullable'
 
-import {AppOptionWithContentComponent} from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from './component/AppOptionWithTable.component'
-import {CommonOptions}                 from './CommonOptions'
-import {EMPTY_REACT_ELEMENT}           from '../../util/emptyReactVariables'
-import {Games}                         from '../../core/game/Games'
-import {SoundEffects}                  from '../../core/soundEffect/SoundEffects'
-import {SoundEffectCategories}         from '../../core/soundEffectCategory/SoundEffectCategories'
+import {CommonOptions}                 from 'app/options/CommonOptions'
+import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
+import {Games}                         from 'core/game/Games'
+import {SoundEffects}                  from 'core/soundEffect/SoundEffects'
+import {SoundEffectCategories}         from 'core/soundEffectCategory/SoundEffectCategories'
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import( '../../util/sound/component/SimpleSound.component'))
-const SoundEffectComponent = lazy(() => import( '../../core/soundEffect/SoundEffect.component'))
+const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
+const SoundEffectComponent = lazy(() => import('core/soundEffect/SoundEffect.component'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -86,17 +85,18 @@ export abstract class SoundEffectAppOption
                 isSMM2Empty = sounds_smm2.length === 0
 
             return isSMM1Empty && isSMM2Empty
-                ? EMPTY_REACT_ELEMENT
-                : <div key={`${englishName} (sound effect sounds)`} className={`soundEffect-sounds-container ${isSMM1Empty || isSMM2Empty ? ` soundEffect-sounds-smm${isSMM1Empty ? 2 : 1}-only-container` : ''}`}>
+                ? null
+                : <div key={`${englishName} (sound effect sounds)`}
+                       className={`soundEffect-sounds-container ${isSMM1Empty || isSMM2Empty ? ` soundEffect-sounds-smm${isSMM1Empty ? 2 : 1}-only-container` : ''}`}>
                     {isSMM1Empty
-                        ? EMPTY_REACT_ELEMENT
+                        ? null
                         : <div key={`${englishName} (sound effect sounds - SMM1&3DS)`} className="soundEffect-sounds-smm1-container">
                             {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
                                 <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
                             </div>)}
                         </div>}
                     {isSMM2Empty
-                        ? EMPTY_REACT_ELEMENT
+                        ? null
                         : <div key={`${englishName} (sound effect sounds (SMM2))`} className="soundEffect-sounds-smm2-container">
                             {sounds_smm2.map(sound => <div key={`${englishName} (sound effect sound - SMM2 - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm2-container col-12 col-lg-6 col-xl-4 col-xxl-3">
                                 <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
@@ -144,13 +144,13 @@ export abstract class SoundEffectAppOption
     public static renderSMM1And3DSImage(enumerable: SoundEffects,): ReactElement {
         const reference = enumerable.reference
 
-        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_1}/> : EMPTY_REACT_ELEMENT
+        return reference.isInSuperMarioMaker1 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_1}/> : null
     }
 
     public static renderSMM2Image(enumerable: SoundEffects,): ReactElement {
         const reference = enumerable.reference
 
-        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_2}/> : EMPTY_REACT_ELEMENT
+        return reference.isInSuperMarioMaker2 ? <SoundEffectComponent reference={enumerable} name={reference} game={Games.SUPER_MARIO_MAKER_2}/> : null
     }
 
     protected abstract _createContentOption(enumeration: SoundEffects,): PossibleRenderReactElement

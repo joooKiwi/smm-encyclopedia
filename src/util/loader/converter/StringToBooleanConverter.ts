@@ -1,6 +1,6 @@
-import {AbstractStringConverter} from './AbstractStringConverter'
-import {ConverterPatterns}       from './ConverterPatterns'
-import {ConverterUtil}           from './ConverterUtil'
+import {AbstractStringConverter} from 'util/loader/converter/AbstractStringConverter'
+import {ConverterPatterns}       from 'util/loader/converter/ConverterPatterns'
+import {ConverterUtil}           from 'util/loader/converter/ConverterUtil'
 
 export class StringToBooleanConverter
     extends AbstractStringConverter<boolean> {

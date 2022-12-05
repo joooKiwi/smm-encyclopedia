@@ -1,6 +1,6 @@
-import type {everySimpleRoutes} from './everyRoutes'
-import type {PossibleAcronym}   from '../lang/ProjectLanguages.types'
-import type {SimpleRoute}       from './SimpleRoute'
+import type {PossibleAcronym}   from 'lang/ProjectLanguages.types'
+import type {everySimpleRoutes} from 'routes/everyRoutes'
+import type {SimpleRoute}       from 'routes/SimpleRoute'
 
 export type EveryPossibleRoutes = `/${PossibleAcronym}${EveryPossibleRoutePartialPaths}`
 

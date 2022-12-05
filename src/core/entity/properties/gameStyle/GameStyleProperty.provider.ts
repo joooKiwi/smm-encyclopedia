@@ -1,9 +1,9 @@
-import type {GameStyleProperty}  from './GameStyleProperty'
-import type {NullOrBoolean}      from '../../../../util/types'
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
+import type {GameStyleProperty}  from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
+import type {NullOrBoolean}      from 'util/types/nullable'
 
-import {AbstractProvider}           from '../../../../util/provider/AbstractProvider'
-import {GameStylePropertyContainer} from './GameStyleProperty.container'
+import {GameStylePropertyContainer} from 'core/entity/properties/gameStyle/GameStyleProperty.container'
+import {AbstractProvider}           from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

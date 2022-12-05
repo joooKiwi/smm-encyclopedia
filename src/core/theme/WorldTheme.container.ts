@@ -1,10 +1,10 @@
-import type {AbstractExclusiveSMM2GameProperty, GameProperty} from '../entity/properties/game/GameProperty'
-import type {ClassThatIsAvailableFromTheStart}                from '../availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {Name}                                            from '../../lang/name/Name'
-import type {ObjectHolder}                                    from '../../util/holder/ObjectHolder'
-import type {WorldTheme}                                      from './WorldTheme'
+import type {ClassThatIsAvailableFromTheStart}                from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {AbstractExclusiveSMM2GameProperty, GameProperty} from 'core/entity/properties/game/GameProperty'
+import type {WorldTheme}                                      from 'core/theme/WorldTheme'
+import type {Name}                                            from 'lang/name/Name'
+import type {ObjectHolder}                                    from 'util/holder/ObjectHolder'
 
-import {AbstractTheme} from './AbstractTheme'
+import {AbstractTheme} from 'core/theme/AbstractTheme'
 
 export class WorldThemeContainer
     extends AbstractTheme<AbstractExclusiveSMM2GameProperty>

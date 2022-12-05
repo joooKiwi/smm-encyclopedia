@@ -1,8 +1,8 @@
-import type {ObjectHolder}                                                                        from '../../../util/holder/ObjectHolder'
-import type {PossibleEditorValue_SMM2, PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from './SMM2SoundEffectSound'
-import type {SMM2SoundEffectSoundFile}                                                            from '../file/SMM2SoundEffectSoundFile'
+import type {PossibleEditorValue_SMM2, PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from 'core/soundEffect/sound/SMM2SoundEffectSound'
+import type {SMM2SoundEffectSoundFile}                                                            from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
+import type {ObjectHolder}                                                                        from 'util/holder/ObjectHolder'
 
-import {AbstractSoundEffectSound} from './AbstractSoundEffectSound'
+import {AbstractSoundEffectSound} from 'core/soundEffect/sound/AbstractSoundEffectSound'
 
 export class SMM2SoundEffectSoundContainer<SOUNDS extends readonly SMM2SoundEffectSoundFile[], EDITOR_SOUND extends PossibleEditorValue_SMM2<SOUNDS>, LINK_SOUNDS extends PossibleValueOnLinkOrSMB2Value_SMM2<SOUNDS>, SMB2_SOUNDS extends PossibleValueOnLinkOrSMB2Value_SMM2<SOUNDS>, >
     extends AbstractSoundEffectSound<SOUNDS, EDITOR_SOUND, LINK_SOUNDS, SMB2_SOUNDS>

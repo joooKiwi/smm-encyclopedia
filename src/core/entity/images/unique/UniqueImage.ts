@@ -1,8 +1,8 @@
-import type {ClearConditionImage} from '../clearCondition/ClearConditionImage'
-import type {EditorImage}         from '../editor/EditorImage'
-import type {GameStyles}          from '../../../gameStyle/GameStyles'
-import type {Image}               from '../Image'
-import type {InGameImage}         from '../inGame/InGameImage'
+import type {Image}               from 'core/entity/images/Image'
+import type {ClearConditionImage} from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}         from 'core/entity/images/editor/EditorImage'
+import type {InGameImage}         from 'core/entity/images/inGame/InGameImage'
+import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
 export interface UniqueImage
     extends Image {

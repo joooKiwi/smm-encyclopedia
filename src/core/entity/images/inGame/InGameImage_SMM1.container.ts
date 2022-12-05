@@ -1,8 +1,8 @@
-import {AbstractImageWithTimesThemesAndGameStyles} from '../AbstractImageWithTimesThemesAndGameStyles'
-import {assert}                                    from '../../../../util/utilitiesMethods'
-import {Themes}                                    from '../../../theme/Themes'
-import {Times}                                     from '../../../time/Times'
-import {GameStyles}                                from '../../../gameStyle/GameStyles'
+import {AbstractImageWithTimesThemesAndGameStyles} from 'core/entity/images/AbstractImageWithTimesThemesAndGameStyles'
+import {GameStyles}                                from 'core/gameStyle/GameStyles'
+import {Themes}                                    from 'core/theme/Themes'
+import {Times}                                     from 'core/time/Times'
+import {assert}                                    from 'util/utilitiesMethods'
 
 export class InGameImage_SMM1Container
     extends AbstractImageWithTimesThemesAndGameStyles {

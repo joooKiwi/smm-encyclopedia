@@ -1,12 +1,12 @@
-import type {MiiCostume}                                from './MiiCostume'
-import type {MiiCostumeCategory}                        from '../miiCostumeCategory/MiiCostumeCategory'
-import type {Name}                                      from '../../lang/name/Name'
-import type {NullOr}                                    from '../../util/types'
-import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
-import type {OfficialNotificationHolder}                from '../officialNotification/holder/OfficialNotificationHolder'
-import type {Versions}                                  from '../version/Versions'
+import type {MiiCostume}                                from 'core/miiCostume/MiiCostume'
+import type {MiiCostumeCategory}                        from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {OfficialNotificationHolder}                from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {Versions}                                  from 'core/version/Versions'
+import type {Name}                                      from 'lang/name/Name'
+import type {NullOr}                                    from 'util/types/nullable'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
-import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory'
+import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 
 export class MiiCostumeContainer
     extends ClassContainingANameAndACategory<string, string, MiiCostumeCategory>

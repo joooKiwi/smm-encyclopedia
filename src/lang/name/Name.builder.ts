@@ -1,9 +1,9 @@
-import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from './containers/Language'
-import type {Builder}                                                                 from '../../util/builder/Builder'
-import type {Games}                                                                   from '../../core/game/Games'
-import type {IsACompleteNameCallback}                                                 from './Name.builder.types'
-import type {Name}                                                                    from './Name'
-import type {Nullable, NullOr, UndefinedOr}                                           from '../../util/types'
+import type {Games}                                                                   from 'core/game/Games'
+import type {Name}                                                                    from 'lang/name/Name'
+import type {IsACompleteNameCallback}                                                 from 'lang/name/Name.builder.types'
+import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
+import type {Builder}                                                                 from 'util/builder/Builder'
+import type {Nullable, NullOr, UndefinedOr}                                           from 'util/types/nullable'
 
 export interface NameBuilder<T, TEMPLATE, >
     extends Builder<Name<T>> {

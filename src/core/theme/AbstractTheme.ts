@@ -1,10 +1,10 @@
-import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {GameProperty}                     from '../entity/properties/game/GameProperty'
-import type {Name}                             from '../../lang/name/Name'
-import type {ObjectHolder}                     from '../../util/holder/ObjectHolder'
-import type {Theme}                            from './Theme'
+import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
+import type {Theme}                            from 'core/theme/Theme'
+import type {Name}                             from 'lang/name/Name'
+import type {ObjectHolder}                     from 'util/holder/ObjectHolder'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     extends ClassContainingAName<string>

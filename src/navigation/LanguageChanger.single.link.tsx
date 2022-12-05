@@ -1,13 +1,13 @@
 import {Link, useLocation} from 'react-router-dom'
 
-import type {LanguageChangerLinkProperties} from './LanguageChanger.link'
-import type {ReactElement, ReactProperties} from '../util/react/ReactProperties'
+import type {LanguageChangerLinkProperties} from 'navigation/LanguageChanger.link'
+import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 
-import {languageTranslation} from '../lang/components/translationMethods'
-import {ProjectLanguages}    from '../lang/ProjectLanguages'
-import {route}               from '../routes/route'
-import {StringContainer}     from '../util/StringContainer'
-import Tooltip               from '../bootstrap/tooltip/Tooltip'
+import Tooltip               from 'bootstrap/tooltip/Tooltip'
+import {languageTranslation} from 'lang/components/translationMethods'
+import {ProjectLanguages}    from 'lang/ProjectLanguages'
+import {route}               from 'routes/route'
+import {StringContainer}     from 'util/StringContainer'
 
 export interface SingleLanguageChangerLinkProperties
     extends ReactProperties, LanguageChangerLinkProperties {

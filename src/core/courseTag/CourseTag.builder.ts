@@ -1,24 +1,23 @@
-import type {Builder}                         from '../../util/builder/Builder'
-import type {CourseTag}                       from './CourseTag'
-import type {CourseTagTemplate, NameTemplate} from './CourseTag.template'
-import type {Name}                            from '../../lang/name/Name'
-import type {NullOr}                          from '../../util/types'
-import type {ObjectHolder}                    from '../../util/holder/ObjectHolder'
-import type {PossibleMakerCentralName}        from './CourseTags.types'
+import type {CourseTag}                       from 'core/courseTag/CourseTag'
+import type {CourseTagTemplate, NameTemplate} from 'core/courseTag/CourseTag.template'
+import type {PossibleMakerCentralName}        from 'core/courseTag/CourseTags.types'
+import type {Name}                            from 'lang/name/Name'
+import type {Builder}                         from 'util/builder/Builder'
+import type {ObjectHolder}                    from 'util/holder/ObjectHolder'
+import type {NullOr}                          from 'util/types/nullable'
 
-import {CourseTagContainer}           from './CourseTag.container'
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
-import {Games}                        from '../game/Games'
-import {ObjectHolders}                from '../../util/holder/objectHolders'
-import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder'
-import {Versions}                     from '../version/Versions'
+import {TemplateWithNameBuilder}      from 'core/_template/TemplateWithName.builder'
+import {CourseTagContainer}           from 'core/courseTag/CourseTag.container'
+import {Versions}                     from 'core/version/Versions'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {ObjectHolders}                from 'util/holder/objectHolders'
 
 export class CourseTagBuilder
     extends TemplateWithNameBuilder<CourseTagTemplate, CourseTag>
     implements Builder<CourseTag> {
 
     public constructor(templateBuilder: Builder<CourseTagTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder, 2, false,)
     }
 
     //region -------------------- Build helper methods --------------------

@@ -1,6 +1,6 @@
-import {AbstractStringToSingleValueConvertor} from './AbstractStringToSingleValueConvertor'
-import {ConverterPatterns}                    from './ConverterPatterns'
-import {ConverterUtil}                        from './ConverterUtil'
+import {AbstractStringToSingleValueConvertor} from 'util/loader/converter/AbstractStringToSingleValueConvertor'
+import {ConverterPatterns}                    from 'util/loader/converter/ConverterPatterns'
+import {ConverterUtil}                        from 'util/loader/converter/ConverterUtil'
 
 export class StringToSingleBooleanConverter<B extends boolean, >
     extends AbstractStringToSingleValueConvertor<B> {

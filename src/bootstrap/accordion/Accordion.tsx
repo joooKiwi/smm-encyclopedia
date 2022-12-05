@@ -1,6 +1,6 @@
 import './Accordion.scss'
 
-import type {AccordionProperties} from './Accordion.types'
+import type {AccordionProperties} from 'bootstrap/accordion/Accordion.types'
 
 /**
  * @param properties

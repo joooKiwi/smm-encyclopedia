@@ -1,4 +1,4 @@
-import type {GameReferences} from './GameReferences'
+import type {GameReferences} from 'core/gameReference/GameReferences'
 
 enum Enum {
 

@@ -1,9 +1,9 @@
 import {Popover} from 'bootstrap'
 
-import type {PopoverEventCallbackReceived, PopoverEvents, PopoverEventsReceived} from './Popover.types'
+import type {PopoverEventCallbackReceived, PopoverEvents, PopoverEventsReceived} from 'bootstrap/popover/Popover.types'
 
-import {BootstrapInstance}                from '../BootstapInstance'
-import {BootstrapWithBasicEventsInstance} from '../BootstrapWithBasicEventsInstance'
+import {BootstrapInstance}                from 'bootstrap/BootstapInstance'
+import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
 
 export class PopoverInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
     extends BootstrapWithBasicEventsInstance<typeof PopoverInstance, Popover, Popover.Options, ELEMENT, ID> {

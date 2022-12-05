@@ -1,7 +1,7 @@
-import type {NullOrBoolean} from '../../../../util/types'
-import type {ThemeProperty} from './ThemeProperty'
+import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
+import type {NullOrBoolean} from 'util/types/nullable'
 
-import {Themes} from '../../../theme/Themes'
+import {Themes} from 'core/theme/Themes'
 
 /**
  * @classWithDynamicImport {@link Themes}

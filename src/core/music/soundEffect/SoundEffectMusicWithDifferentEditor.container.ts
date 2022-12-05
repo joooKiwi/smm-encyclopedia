@@ -1,7 +1,7 @@
-import type {MusicSoundFile}                                                                                                                        from '../file/MusicSoundFile'
-import type {PossibleMusicArray, PossibleSoundEffectEditorOnly_EditorName, PossibleSoundEffectEditorOnly_Name, SoundEffectMusicWithDifferentEditor} from './SoundEffectMusicWithDifferentEditor'
+import type {MusicSoundFile}                                                                                                                        from 'core/music/file/MusicSoundFile'
+import type {PossibleMusicArray, PossibleSoundEffectEditorOnly_EditorName, PossibleSoundEffectEditorOnly_Name, SoundEffectMusicWithDifferentEditor} from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 
-import {AbstractSoundEffectMusic} from './AbstractSoundEffectMusic'
+import {AbstractSoundEffectMusic} from 'core/music/soundEffect/AbstractSoundEffectMusic'
 
 export class SoundEffectMusicWithDifferentEditorContainer<NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_Name>, EDITOR_NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_EditorName>, >
     extends AbstractSoundEffectMusic<PossibleMusicArray<NAME, EDITOR_NAME>, NAME, EDITOR_NAME>

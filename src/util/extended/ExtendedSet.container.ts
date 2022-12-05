@@ -1,12 +1,12 @@
-import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from './ClassThatCanGetItems'
-import type {ExtendedSet}                                    from './ExtendedSet'
-import type {ExtendedMap}                                    from './ExtendedMap'
-import type {Nullable}                                       from '../types'
-import type {VariableReturnValue}                            from './ClassThatCanSearchItems'
+import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from 'util/extended/ClassThatCanGetItems'
+import type {VariableReturnValue}                            from 'util/extended/ClassThatCanSearchItems'
+import type {ExtendedSet}                                    from 'util/extended/ExtendedSet'
+import type {ExtendedMap}                                    from 'util/extended/ExtendedMap'
+import type {Nullable}                                       from 'util/types/nullable'
 
-import {ConditionalIntermediate} from './tools/ConditionalIntermediate'
-import {isArrayEquals}           from '../utilitiesMethods'
-import {ExtendedMapContainer}    from './ExtendedMap.container'
+import {ConditionalIntermediate} from 'util/extended/tools/ConditionalIntermediate'
+import {ExtendedMapContainer}    from 'util/extended/ExtendedMap.container'
+import {isArrayEquals}           from 'util/utilitiesMethods'
 
 export class ExtendedSetContainer<T, LENGTH extends number = number, >
     implements ExtendedSet<T, LENGTH> {

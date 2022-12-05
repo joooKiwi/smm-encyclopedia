@@ -1,9 +1,9 @@
-import type {ClassWithNullObjectPattern, EmptyInstrumentName} from '../../../../util/ClassWithNullObjectPattern'
-import type {InstrumentProperty}                              from './InstrumentProperty'
-import type {NotApplicableProperty}                           from '../../../_properties/PropertyWithEverything'
+import type {InstrumentProperty}                              from 'core/entity/properties/instrument/InstrumentProperty'
+import type {NotApplicableProperty}                           from 'core/_properties/PropertyWithEverything'
+import type {ClassWithNullObjectPattern, EmptyInstrumentName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY}       from '../../../../util/emptyVariables'
-import {PropertyContainer} from '../../../_properties/Property.container'
+import {PropertyContainer} from 'core/_properties/Property.container'
+import {EMPTY_ARRAY}       from 'util/emptyVariables'
 
 /**
  * @singleton

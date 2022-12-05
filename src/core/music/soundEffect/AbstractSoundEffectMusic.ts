@@ -1,6 +1,6 @@
-import type {PossibleSoundEffectMusicEditorName, PossibleSoundEffectMusicFileName, PossibleSoundEffectMusicName, SoundEffectMusic} from './SoundEffectMusic'
+import type {PossibleSoundEffectMusicEditorName, PossibleSoundEffectMusicFileName, PossibleSoundEffectMusicName, SoundEffectMusic} from 'core/music/soundEffect/SoundEffectMusic'
 
-import {AbstractMusic} from '../AbstractMusic'
+import {AbstractMusic} from 'core/music/AbstractMusic'
 
 export abstract class AbstractSoundEffectMusic<ALL extends PossibleSoundEffectMusicFileName, SOUND_EFFECT extends PossibleSoundEffectMusicName, EDITOR_SOUND_EFFECT extends PossibleSoundEffectMusicEditorName, >
     extends AbstractMusic<ALL>

@@ -1,7 +1,8 @@
-import type {ClassWithNullObjectPattern, EmptyClearConditionImageName} from '../../../../util/ClassWithNullObjectPattern'
-import type {ClearConditionImage}                                      from './ClearConditionImage'
+import type {ClearConditionImage}                                      from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {ClassWithNullObjectPattern, EmptyClearConditionImageName} from 'util/ClassWithNullObjectPattern'
+import type {EmptyArray}                                               from 'util/types/variables'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 export class EmptyClearConditionImage
     implements ClearConditionImage, ClassWithNullObjectPattern<EmptyClearConditionImageName> {
@@ -19,7 +20,7 @@ export class EmptyClearConditionImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public get(): typeof EMPTY_ARRAY {
+    public get(): EmptyArray {
         return EMPTY_ARRAY
     }
 

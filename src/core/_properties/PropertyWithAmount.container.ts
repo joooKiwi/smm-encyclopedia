@@ -1,12 +1,12 @@
-import type {DEFAULT_IS_UNKNOWN}          from './Property'
-import type {NullOrNumber}                from '../../util/types'
-import type {PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
-import type {PropertyWithAmount}          from './PropertyWithAmount'
+import type {DefaultIsUnknown}            from 'core/_properties/Property'
+import type {PropertyWithAmount}          from 'core/_properties/PropertyWithAmount'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {NullOrNumber}                from 'util/types/nullable'
 
-import {PropertyContainer} from './Property.container'
+import {PropertyContainer} from 'core/_properties/Property.container'
 
 export class PropertyWithAmountContainer<T, AMOUNT extends NullOrNumber = NullOrNumber, >
-    extends PropertyContainer<T, DEFAULT_IS_UNKNOWN, AMOUNT>
+    extends PropertyContainer<T, DefaultIsUnknown, AMOUNT>
     implements PropertyWithAmount<T, AMOUNT> {
 
     public constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT,) {

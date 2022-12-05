@@ -1,9 +1,9 @@
-import type {Name}                from '../../lang/name/Name'
-import type {SoundEffect}         from './SoundEffect'
-import type {SoundEffectCategory} from '../soundEffectCategory/SoundEffectCategory'
-import type {SoundEffectProperty} from './property/SoundEffectProperty'
+import type {SoundEffect}         from 'core/soundEffect/SoundEffect'
+import type {SoundEffectProperty} from 'core/soundEffect/property/SoundEffectProperty'
+import type {SoundEffectCategory} from 'core/soundEffectCategory/SoundEffectCategory'
+import type {Name}                from 'lang/name/Name'
 
-import {ClassContainingANameAndACategory} from '../../lang/name/ClassContainingANameAndACategory'
+import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 
 export class SoundEffectContainer
     extends ClassContainingANameAndACategory<string, string, SoundEffectCategory>

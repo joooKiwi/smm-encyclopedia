@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Instrument.json'
+import resource from 'resources/compiled/Instrument.json'
 
-import type {Instrument}                                from './Instrument'
-import type {InstrumentTemplate}                        from './Instrument.template'
-import type {Loader}                                    from '../../util/loader/Loader'
-import type {PossibleEnglishName}                       from './Instruments.types'
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
+import type {Instrument}                                from 'core/instrument/Instrument'
+import type {PossibleEnglishName}                       from 'core/instrument/Instruments.types'
+import type {InstrumentTemplate}                        from 'core/instrument/Instrument.template'
+import type {PropertiesArray as LanguagesPropertyArray} from 'lang/Loader.types'
+import type {Loader}                                    from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
-import {InstrumentBuilder}       from './Instrument.builder'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {InstrumentBuilder}       from 'core/instrument/Instrument.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

@@ -1,12 +1,13 @@
-import type {FileName} from './FileName'
+import type {FileName}   from 'core/mysteryMushroom/file/name/FileName'
+import type {EmptyArray} from 'util/types/variables'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @singleton
  */
 export class EmptyFileName
-    implements FileName<readonly [], readonly []> {
+    implements FileName<EmptyArray, EmptyArray> {
 
     //region -------------------- Singleton usage --------------------
 

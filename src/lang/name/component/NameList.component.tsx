@@ -1,8 +1,8 @@
-import type {NameListProperties} from './Name.properties'
+import type {NameListProperties} from 'lang/name/component/Name.properties'
 
-import {languageTranslation} from '../../components/translationMethods'
-import {ProjectLanguages}    from '../../ProjectLanguages'
-import TextComponent         from '../../../app/tools/text/TextComponent'
+import TextComponent         from 'app/tools/text/TextComponent'
+import {languageTranslation} from 'lang/components/translationMethods'
+import {ProjectLanguages}    from 'lang/ProjectLanguages'
 
 /**
  * @reactComponent

@@ -2,25 +2,23 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {ClassWithValue}  from './ClassWithValue'
-import type {Names, Ordinals} from './Texts.types'
-import type {Nullable}        from '../../../util/types'
-import type {ReactElement}    from '../../../util/react/ReactProperties'
-
-import {EMPTY_REACT_ELEMENT}                 from '../../../util/emptyReactVariables'
-import {PossibleTextContent, TextProperties} from '../../tools/text/properties/TextProperties'
-import {YesOrNoTextProperties}               from '../../tools/text/properties/YesOrNoTextProperties'
-import {BooleanTextProperties}               from '../../tools/text/properties/BooleanTextProperties'
-import {BooleanResultTextProperties}         from '../../tools/text/properties/BooleanResultTextProperties'
-import {NameProperties}                      from '../../../lang/name/component/Name.properties'
+import type {Names, Ordinals}                     from 'app/options/global/Texts.types'
+import type {BooleanResultTextProperties}         from 'app/tools/text/properties/BooleanResultTextProperties'
+import type {BooleanTextProperties}               from 'app/tools/text/properties/BooleanTextProperties'
+import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
+import type {YesOrNoTextProperties}               from 'app/tools/text/properties/YesOrNoTextProperties'
+import type {NameProperties}                      from 'lang/name/component/Name.properties'
+import type {ReactElement}                        from 'util/react/ReactProperties'
+import type {ClassWithValue}                      from 'util/types/ClassWithValue'
+import type {Nullable}                            from 'util/types/nullable'
 
 //region -------------------- dynamic imports --------------------
 
-const TextComponent =              lazy(() => import('../../tools/text/TextComponent'))
-const NameComponent =              lazy(() => import('../../../lang/name/component/Name.component'))
-const YesOrNoResultTextComponent = lazy(() => import('../../tools/text/YesOrNoResultTextComponent'))
-const BooleanTextComponent =       lazy(() => import('../../tools/text/BooleanTextComponent'))
-const BooleanResultTextComponent = lazy(() => import('../../tools/text/BooleanResultTextComponent'))
+const TextComponent =              lazy(() => import('app/tools/text/TextComponent'))
+const NameComponent =              lazy(() => import('lang/name/component/Name.component'))
+const YesOrNoResultTextComponent = lazy(() => import('app/tools/text/YesOrNoResultTextComponent'))
+const BooleanTextComponent =       lazy(() => import('app/tools/text/BooleanTextComponent'))
+const BooleanResultTextComponent = lazy(() => import('app/tools/text/BooleanResultTextComponent'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -66,26 +64,26 @@ export abstract class Texts
         }
 
     }(true,)
-    public static readonly NO =  new class Texts_No extends Texts {
+    public static readonly NO = new class Texts_No extends Texts {
 
         public override renderTextComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderNameComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderYesNoComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderBooleanComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderBooleanResultComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
     }(false,)
@@ -131,7 +129,7 @@ export abstract class Texts
     public static getValueByValue(value: Nullable<| Texts | boolean>,): Texts {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if(value instanceof this)
+        if (value instanceof this)
             return value
         const valueFound = this.values.find(it => it.value === value)
         if (valueFound == null)

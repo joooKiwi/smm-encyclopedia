@@ -1,11 +1,12 @@
-import type {Builder}                           from '../../../util/builder/Builder'
-import type {NullOr}                            from '../../../util/types'
-import type {OfficialNotificationHolder}        from './OfficialNotificationHolder'
-import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
+import type {OfficialNotificationHolder}        from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {PossibleEnglishNameWithOnlyAmount} from 'core/officialNotification/OfficialNotifications.types'
+import type {Builder}                           from 'util/builder/Builder'
+import type {NullOr}                            from 'util/types/nullable'
 
-import {EmptyOfficialNotificationHolder}    from './EmptyOfficialNotificationHolder'
-import {OfficialNotificationHolderProvider} from './OfficialNotificationHolder.provider'
-import {OfficialNotifications}              from '../OfficialNotifications'
+import {OfficialNotifications}              from 'core/officialNotification/OfficialNotifications'
+import {EmptyOfficialNotificationHolder}    from 'core/officialNotification/holder/EmptyOfficialNotificationHolder'
+import {OfficialNotificationHolderProvider} from 'core/officialNotification/holder/OfficialNotificationHolder.provider'
+import {SPACE}                              from 'util/commonVariables'
 
 export class OfficialNotificationHolderBuilder
     implements Builder<OfficialNotificationHolder> {
@@ -13,7 +14,7 @@ export class OfficialNotificationHolderBuilder
     //region -------------------- Fields --------------------
 
     static readonly #NUMBER_ONLY_REGEX = /^\d+$/
-    static readonly #OFFICIAL_NOTIFICATION_SEPARATOR = ' '
+    static readonly #OFFICIAL_NOTIFICATION_SEPARATOR = SPACE
     static readonly #POSSIBLE_EXCLUDED_CASES: readonly OfficialNotifications[] = [OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_1, OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_2,]
     static readonly #NO_NUMBER_FOUND = -1
 

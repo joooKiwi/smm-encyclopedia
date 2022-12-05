@@ -1,6 +1,7 @@
 import type {ReactElement as SourceReactElement} from 'react'
+import type {Nullable}                           from 'util/types/nullable'
 
-/** A simple interface to help identify a react property */
+/** A simple interface to help identify a React property */
 export interface ReactProperties {
 
 }
@@ -18,7 +19,7 @@ export type ReactPropertiesWithChildren<T extends object, CHILDREN, > = T & Simp
  */
 export type ReactPropertiesWithOptionalChildren<T extends object, CHILDREN, > = T & SimpleReactPropertiesWithOptionalChildren<CHILDREN>
 
-/** A simple interface to help identify a react property with a children property */
+/** A simple interface to help identify a React property with a children property */
 export interface SimpleReactPropertiesWithChildren<T, >
     extends ReactProperties {
 
@@ -33,5 +34,5 @@ export interface SimpleReactPropertiesWithOptionalChildren<T, >
 
 }
 
-export type ReactElement = SourceReactElement
+export type ReactElement = Nullable<SourceReactElement>
 export type ReactElementOrString = | ReactElement | string

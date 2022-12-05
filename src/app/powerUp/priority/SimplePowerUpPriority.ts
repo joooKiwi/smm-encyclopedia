@@ -1,9 +1,9 @@
-import type {ClassInAnySuperMarioMakerGame} from '../../../core/game/ClassInAnySuperMarioMakerGame'
-import type {ImagesCallback}                from './PowerUpPriority'
-import type {Nullable}                      from '../../../util/types'
+import type {ImagesCallback}                from 'app/powerUp/priority/PowerUpPriority'
+import type {ClassInAnySuperMarioMakerGame} from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Nullable}                      from 'util/types/nullable'
 
-import {AbstractPowerUpPriority} from './AbstractPowerUpPriority'
-import {EmptyStringName}         from '../../../lang/name/EmptyStringName'
+import {AbstractPowerUpPriority} from 'app/powerUp/priority/AbstractPowerUpPriority'
+import {EmptyStringName}         from 'lang/name/EmptyStringName'
 
 
 /**

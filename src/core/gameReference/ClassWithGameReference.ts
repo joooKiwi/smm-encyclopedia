@@ -1,5 +1,5 @@
-import type {NullOr}         from '../../util/types'
-import type {GameReferences} from './GameReferences'
+import type {GameReferences} from 'core/gameReference/GameReferences'
+import type {NullOr}         from 'util/types/nullable'
 
 export interface ClassWithGameReference<T extends NullOr<GameReferences> = GameReferences, > {
 

@@ -1,8 +1,8 @@
-import type {EditorImage}                    from './EditorImage'
-import type {PossibleImageReceivedOnFactory} from './EditorImage.types'
+import type {EditorImage}                    from 'core/entity/images/editor/EditorImage'
+import type {PossibleImageReceivedOnFactory} from 'core/entity/images/editor/EditorImage.types'
 
-import {EditorImageBuilder} from './EditorImage.builder'
-import {EmptyEditorImage}   from './EmptyEditorImage'
+import {EditorImageBuilder} from 'core/entity/images/editor/EditorImage.builder'
+import {EmptyEditorImage}   from 'core/entity/images/editor/EmptyEditorImage'
 
 export class EditorImageFactory {
 

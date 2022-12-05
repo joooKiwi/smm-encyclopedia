@@ -1,12 +1,12 @@
-import type {ClassThatIsAvailableFromTheStart} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {CourseTheme}                      from './CourseTheme'
-import type {Entity}                           from '../entity/Entity'
-import type {GameProperty}                     from '../entity/properties/game/GameProperty'
-import type {Name}                             from '../../lang/name/Name'
-import type {NightEffects}                     from '../nightEffect/NightEffects'
-import type {ObjectHolder}                     from '../../util/holder/ObjectHolder'
+import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {Entity}                           from 'core/entity/Entity'
+import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
+import type {NightEffects}                     from 'core/nightEffect/NightEffects'
+import type {CourseTheme}                      from 'core/theme/CourseTheme'
+import type {Name}                             from 'lang/name/Name'
+import type {ObjectHolder}                     from 'util/holder/ObjectHolder'
 
-import {AbstractTheme} from './AbstractTheme'
+import {AbstractTheme} from 'core/theme/AbstractTheme'
 
 export class CourseThemeContainer
     extends AbstractTheme

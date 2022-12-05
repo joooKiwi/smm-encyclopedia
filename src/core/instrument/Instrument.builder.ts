@@ -1,13 +1,13 @@
-import type {Builder}            from '../../util/builder/Builder'
-import type {Entity}             from '../entity/Entity'
-import type {Instrument}         from './Instrument'
-import type {InstrumentTemplate} from './Instrument.template'
-import type {Name}               from '../../lang/name/Name'
-import type {ObjectHolder}       from '../../util/holder/ObjectHolder'
+import type {Entity}             from 'core/entity/Entity'
+import type {Instrument}         from 'core/instrument/Instrument'
+import type {InstrumentTemplate} from 'core/instrument/Instrument.template'
+import type {Name}               from 'lang/name/Name'
+import type {Builder}            from 'util/builder/Builder'
+import type {ObjectHolder}       from 'util/holder/ObjectHolder'
 
-import {InstrumentContainer}     from './Instrument.container'
-import {ObjectHolders}           from '../../util/holder/objectHolders'
-import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder'
+import {TemplateWithNameBuilder} from 'core/_template/TemplateWithName.builder'
+import {InstrumentContainer}     from 'core/instrument/Instrument.container'
+import {ObjectHolders}           from 'util/holder/objectHolders'
 
 export class InstrumentBuilder
     extends TemplateWithNameBuilder<InstrumentTemplate, Instrument> {

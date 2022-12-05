@@ -1,7 +1,7 @@
-import type {InGameImage}                    from './InGameImage'
-import type {PossibleImageReceivedOnFactory} from './InGameImage.types'
+import type {InGameImage}                    from 'core/entity/images/inGame/InGameImage'
+import type {PossibleImageReceivedOnFactory} from 'core/entity/images/inGame/InGameImage.types'
 
-import {EmptyInGameImage} from './EmptyInGameImage'
+import {EmptyInGameImage} from 'core/entity/images/inGame/EmptyInGameImage'
 
 export class InGameImageFactory {
 

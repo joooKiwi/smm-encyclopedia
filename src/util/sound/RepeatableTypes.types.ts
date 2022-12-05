@@ -1,4 +1,4 @@
-import type {RepeatableTypes} from './RepeatableTypes'
+import type {RepeatableTypes} from 'util/sound/RepeatableTypes'
 
 enum Enum {
     NONE,

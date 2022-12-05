@@ -1,4 +1,4 @@
-import type {PredefinedConverter} from './PredefinedConverter'
+import type {PredefinedConverter} from 'util/loader/converter/PredefinedConverter'
 
 enum Enum {
     NUMBER, NULLABLE_NUMBER,

@@ -1,5 +1,5 @@
-import type {HTMLIProperties} from '../../../../util/react/html/HTMLIProperties'
-import type {ReactProperties} from '../../../../util/react/ReactProperties'
+import type {ReactProperties} from 'util/react/ReactProperties'
+import type {HTMLIProperties} from 'util/react/html/HTMLIProperties'
 
 export interface ImageFromVariableProperties
     extends ReactProperties, HTMLIProperties {

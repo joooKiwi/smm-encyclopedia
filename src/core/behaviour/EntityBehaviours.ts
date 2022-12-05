@@ -1,14 +1,14 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                          from '../ClassWithAcronym'
-import type {ClassWithReference}                                        from '../ClassWithReference'
-import type {ClassWithTranslationKey}                                   from '../../lang/ClassWithTranslationKey'
-import type {EntityBehaviour}                                           from './EntityBehaviour'
-import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
-import type {Nullable}                                                  from '../../util/types'
+import type {ClassWithAcronym}                                          from 'core/ClassWithAcronym'
+import type {ClassWithReference}                                        from 'core/ClassWithReference'
+import type {EntityBehaviour}                                           from 'core/behaviour/EntityBehaviour'
+import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
+import type {ClassWithTranslationKey}                                   from 'lang/ClassWithTranslationKey'
+import type {Nullable}                                                  from 'util/types/nullable'
 
-import {Import} from '../../util/DynamicImporter'
+import {Import} from 'util/DynamicImporter'
 
 /**
  * @recursiveReference {@link EntityBehaviourLoader}

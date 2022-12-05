@@ -1,8 +1,8 @@
-import type {PossibleConditionToUnlockIt, UnlockProperty} from './UnlockProperty'
-import type {ProviderWithoutKey}                          from '../../../util/provider/ProviderWithoutKey'
+import type {PossibleConditionToUnlockIt, UnlockProperty} from 'core/mysteryMushroom/properties/UnlockProperty'
+import type {ProviderWithoutKey}                          from 'util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}        from '../../../util/provider/AbstractProvider'
-import {UnlockPropertyContainer} from './UnlockProperty.container'
+import {UnlockPropertyContainer} from 'core/mysteryMushroom/properties/UnlockProperty.container'
+import {AbstractProvider}        from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

@@ -1,6 +1,6 @@
-import type {HTMLDivProperties}                     from '../../util/react/html/HTMLDivProperties'
-import type {HTMLHeadingProperties}                 from '../../util/react/html/HTMLHeadingProperties'
-import type {ReactElementOrString, ReactProperties} from '../../util/react/ReactProperties'
+import type {HTMLDivProperties}                     from 'util/react/html/HTMLDivProperties'
+import type {HTMLHeadingProperties}                 from 'util/react/html/HTMLHeadingProperties'
+import type {ReactElementOrString, ReactProperties} from 'util/react/ReactProperties'
 
 export interface AccordionProperties
     extends ReactProperties, Omit<HTMLDivProperties, 'children'> {

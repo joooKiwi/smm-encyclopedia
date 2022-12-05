@@ -1,6 +1,6 @@
-import type {BasePath}                        from '../../variables'
-import type {PossibleEnglishName_SoundEffect} from '../gameReference/GameReferences.types'
-import type {SoundEffects}                    from './SoundEffects'
+import type {BasePath}                        from 'variables'
+import type {PossibleEnglishName_SoundEffect} from 'core/gameReference/GameReferences.types'
+import type {SoundEffects}                    from 'core/soundEffect/SoundEffects'
 
 enum Enum {
 

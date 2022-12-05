@@ -1,9 +1,9 @@
-import type {NameTrait}                                 from './NameTrait'
-import type {Name}                                      from './Name'
-import type {EveryLanguages}                            from '../EveryLanguages'
-import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
+import type {EveryLanguages}                            from 'lang/EveryLanguages'
+import type {Name}                                      from 'lang/name/Name'
+import type {NameTrait}                                 from 'lang/name/NameTrait'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 /**
  * A simple implementation of the {@link NameTrait}

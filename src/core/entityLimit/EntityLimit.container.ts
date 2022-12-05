@@ -1,12 +1,12 @@
-import type {AlternativeEntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from './EntityLimit'
-import type {EntityLimitAmount}                                                     from './properties/EntityLimitAmount'
-import type {EntityLimitTypes}                                                      from './EntityLimitTypes'
-import type {Name}                                                                  from '../../lang/name/Name'
-import type {NullOr}                                                                from '../../util/types'
-import type {ObjectHolder, PossibleValueOnObjectHolder}                             from '../../util/holder/ObjectHolder'
-import type {PossibleAcronym}                                                       from './EntityLimits.types'
+import type {AlternativeEntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from 'core/entityLimit/EntityLimit'
+import type {PossibleAcronym}                                                       from 'core/entityLimit/EntityLimits.types'
+import type {EntityLimitTypes}                                                      from 'core/entityLimit/EntityLimitTypes'
+import type {EntityLimitAmount}                                                     from 'core/entityLimit/properties/EntityLimitAmount'
+import type {Name}                                                                  from 'lang/name/Name'
+import type {ObjectHolder, PossibleValueOnObjectHolder}                             from 'util/holder/ObjectHolder'
+import type {NullOr}                                                                from 'util/types/nullable'
 
-import {AbstractEntityLimitContainer} from './AbstractEntityLimit.container'
+import {AbstractEntityLimitContainer} from 'core/entityLimit/AbstractEntityLimit.container'
 
 export class EntityLimitContainer
     extends AbstractEntityLimitContainer<NullOr<PossibleAcronym>>

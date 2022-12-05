@@ -1,18 +1,18 @@
-import resource from '../../resources/compiled/Sound effect.json'
+import resource from 'resources/compiled/Sound effect.json'
 
-import type {PropertiesArray as LanguagesPropertyArray}                     from '../../lang/Loader.types'
-import type {Loader}                                                        from '../../util/loader/Loader'
-import type {NullOr}                                                        from '../../util/types'
-import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                from '../game/Loader.types'
-import type {SoundEffectTemplate}                                           from './SoundEffect.template'
-import type {PossibleEnglishName}                                           from './SoundEffects.types'
-import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from '../soundEffectCategory/SoundEffectCategories.types'
-import type {SoundEffect}                                                   from './SoundEffect'
+import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                from 'core/game/Loader.types'
+import type {SoundEffect}                                                   from 'core/soundEffect/SoundEffect'
+import type {PossibleEnglishName}                                           from 'core/soundEffect/SoundEffects.types'
+import type {SoundEffectTemplate}                                           from 'core/soundEffect/SoundEffect.template'
+import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {PropertiesArray as LanguagesPropertyArray}                     from 'lang/Loader.types'
+import type {Loader}                                                        from 'util/loader/Loader'
+import type {NullOr}                                                        from 'util/types/nullable'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {SoundEffectBuilder}      from './SoundEffect.builder'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {SoundEffectBuilder}      from 'core/soundEffect/SoundEffect.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

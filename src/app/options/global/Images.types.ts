@@ -1,4 +1,4 @@
-import type {Images} from './Images'
+import type {Images} from 'app/options/global/Images'
 
 enum Enum {
 

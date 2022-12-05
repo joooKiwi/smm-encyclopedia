@@ -1,11 +1,11 @@
-import type {CourseTag}                from './CourseTag'
-import type {Name}                     from '../../lang/name/Name'
-import type {NullOr}                   from '../../util/types'
-import type {ObjectHolder}             from '../../util/holder/ObjectHolder'
-import type {PossibleMakerCentralName} from './CourseTags.types'
-import type {Versions}                 from '../version/Versions'
+import type {CourseTag}                from 'core/courseTag/CourseTag'
+import type {PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
+import type {Versions}                 from 'core/version/Versions'
+import type {Name}                     from 'lang/name/Name'
+import type {ObjectHolder}             from 'util/holder/ObjectHolder'
+import type {NullOr}                   from 'util/types/nullable'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class CourseTagContainer
     extends ClassContainingAName<string>

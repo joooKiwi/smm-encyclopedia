@@ -1,9 +1,9 @@
-import type {NameTemplate}                    from '../../lang/name/Name.template'
-import type {NullOr}                          from '../../util/types'
-import type {PossibleEnglishName}             from '../nightEffect/NightEffects.types'
-import type {PossibleIsAvailableFromTheStart} from '../availableFromTheStart/loader.types'
-import type {SimpleGameFrom1And2Template}     from '../game/SimpleGame.template'
-import type {TemplateWithNameTemplate}        from '../_template/TemplateWithName.template'
+import type {TemplateWithNameTemplate}        from 'core/_template/TemplateWithName.template'
+import type {PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/loader.types'
+import type {SimpleGameFrom1And2Template}     from 'core/game/SimpleGame.template'
+import type {PossibleEnglishName}             from 'core/nightEffect/NightEffects.types'
+import type {NameTemplate}                    from 'lang/name/Name.template'
+import type {NullOr}                          from 'util/types/nullable'
 
 /**
  * @template

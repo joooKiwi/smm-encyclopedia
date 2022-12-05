@@ -1,8 +1,8 @@
-import type {CourseTheme} from './CourseTheme'
-import type {Name}        from '../../lang/name/Name'
+import type {CourseTheme} from 'core/theme/CourseTheme'
+import type {Name}        from 'lang/name/Name'
 
-import {AbstractCourseAndWorldTheme} from './AbstractCourseAndWorldTheme'
-import {EmptyWorldTheme}             from './EmptyWorldTheme'
+import {AbstractCourseAndWorldTheme} from 'core/theme/AbstractCourseAndWorldTheme'
+import {EmptyWorldTheme}             from 'core/theme/EmptyWorldTheme'
 
 export class CourseOnlyThemeContainer
     extends AbstractCourseAndWorldTheme {

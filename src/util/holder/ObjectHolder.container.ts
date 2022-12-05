@@ -1,4 +1,4 @@
-import type {ObjectHolder, PossibleValueOnObjectHolder} from './ObjectHolder'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
 export class ObjectHolderContainer<T>
     implements ObjectHolder<T> {
@@ -10,7 +10,7 @@ export class ObjectHolderContainer<T>
     }
 
     static #retrieveValue<T, >(value: PossibleValueOnObjectHolder<T>,): T {
-        return value == null
+        return value == null || value instanceof Map
             ? value
             : value instanceof Function
                 ? value()

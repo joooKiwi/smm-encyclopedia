@@ -1,4 +1,4 @@
-import type {OfficialNotifications} from './OfficialNotifications'
+import type {OfficialNotifications} from 'core/officialNotification/OfficialNotifications'
 
 enum Enum {
 

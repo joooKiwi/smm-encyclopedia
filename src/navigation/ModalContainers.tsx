@@ -1,17 +1,17 @@
 import {useEffect} from 'react'
 
-import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from './ModalContainers.types'
-import type {ReactProperties}                                    from '../util/react/ReactProperties'
+import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from 'navigation/ModalContainers.types'
+import type {ReactProperties}                                    from 'util/react/ReactProperties'
 
-import {contentTranslation} from '../lang/components/translationMethods'
-import DisplayViewBody      from './DisplayView.body'
-import LanguageChangerBody  from './LanguageChanger.body'
-import ModalBody            from '../bootstrap/modal/element/ModalBody'
-import ModalContainer       from '../bootstrap/modal/element/ModalContainer'
-import ModalFooter          from '../bootstrap/modal/element/ModalFooter'
-import ModalHeader          from '../bootstrap/modal/element/ModalHeader'
-import {ModalInstance}      from '../bootstrap/modal/ModalInstance'
-import SearchBody           from './Search.body'
+import ModalBody            from 'bootstrap/modal/element/ModalBody'
+import ModalContainer       from 'bootstrap/modal/element/ModalContainer'
+import ModalFooter          from 'bootstrap/modal/element/ModalFooter'
+import ModalHeader          from 'bootstrap/modal/element/ModalHeader'
+import {ModalInstance}      from 'bootstrap/modal/ModalInstance'
+import {contentTranslation} from 'lang/components/translationMethods'
+import DisplayViewBody      from 'navigation/DisplayView.body'
+import LanguageChangerBody  from 'navigation/LanguageChanger.body'
+import SearchBody           from 'navigation/Search.body'
 
 interface ModalContainersProperties
     extends ReactProperties {

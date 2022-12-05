@@ -1,8 +1,8 @@
-import type {PossibleExtension}           from './SoundFile'
-import type {RepeatableAtTheEndSoundFile} from './RepeatableAtTheEndSoundFile'
+import type {RepeatableAtTheEndSoundFile} from 'util/sound/RepeatableAtTheEndSoundFile'
+import type {PossibleExtension}           from 'util/sound/SoundFile'
 
-import {AbstractRepeatableSoundFile} from './AbstractRepeatableSoundFile'
-import {RepeatableTypes}             from './RepeatableTypes'
+import {AbstractRepeatableSoundFile} from 'util/sound/AbstractRepeatableSoundFile'
+import {RepeatableTypes}             from 'util/sound/RepeatableTypes'
 
 export class RepeatableAtTheEndSoundFileContainer<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleExtension = PossibleExtension, >
     extends AbstractRepeatableSoundFile<PATH, NAME, EXTENSION, null>

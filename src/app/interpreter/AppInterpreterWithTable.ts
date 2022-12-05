@@ -1,11 +1,11 @@
 import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {AppInterpreterWithCardList} from './AppInterpreterWithCardList'
-import type {Content}                    from './AppInterpreter'
-import type {NullOr}                     from '../../util/types'
-import type {SingleHeaderContent}        from '../tools/table/SimpleHeader'
-import type {TableProperties}            from '../tools/table/Table.types'
-import type {ReactElement}               from '../../util/react/ReactProperties'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {Content}                    from 'app/interpreter/AppInterpreter'
+import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
+import type {TableProperties}            from 'app/tools/table/Table.types'
+import type {ReactElement}               from 'util/react/ReactProperties'
+import type {NullOr}                     from 'util/types/nullable'
 
 /**
  * An application interpreter when using {@link AbstractTableApp}

@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Predefined message (SMM2).json'
+import resource from 'resources/compiled/Predefined message (SMM2).json'
 
-import type {Loader}                                                         from '../../util/loader/Loader'
-import type {PredefinedMessage}                                              from './PredefinedMessage'
-import type {PredefinedMessageTemplate}                                      from './PredefinedMessage.template'
-import type {PossibleEnglishName}                                            from './PredefinedMessages.types'
-import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from '../../lang/Loader.types'
+import type {PredefinedMessage}                                              from 'core/predefinedMessage/PredefinedMessage'
+import type {PredefinedMessageTemplate}                                      from 'core/predefinedMessage/PredefinedMessage.template'
+import type {PossibleEnglishName}                                            from 'core/predefinedMessage/PredefinedMessages.types'
+import type {PropertiesArrayWithOptionalLanguages as LanguagesPropertyArray} from 'lang/Loader.types'
+import type {Loader}                                                         from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder}  from '../_template/AbstractTemplate.builder'
-import {CSVLoader}                from '../../util/loader/CSVLoader'
-import {HeaderTypesForConvertor}  from '../_util/loader/HeaderTypesForConvertor'
-import {PredefinedMessageBuilder} from './PredefinedMessage.builder'
+import {AbstractTemplateBuilder}  from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor}  from 'core/_util/loader/HeaderTypesForConvertor'
+import {PredefinedMessageBuilder} from 'core/predefinedMessage/PredefinedMessage.builder'
+import {CSVLoader}                from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

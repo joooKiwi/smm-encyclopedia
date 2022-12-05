@@ -1,14 +1,14 @@
 import {Fragment} from 'react'
 
-import type {AppInterpreterWithSimpleList} from './interpreter/AppInterpreterWithSimpleList'
-import type {AppProperties}                from './AppProperties.types'
-import type {PossibleDimensionOnList}      from './interpreter/DimensionOnList'
-import type {ReactElementOrString}         from '../util/react/ReactProperties'
+import type {AppProperties}                from 'app/AppProperties.types'
+import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
+import type {PossibleDimensionOnList}      from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}         from 'util/react/ReactProperties'
 
-import {AbstractSimpleListApp}  from './withInterpreter/AbstractSimpleListApp'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import {PredefinedMessages}     from '../core/predefinedMessage/PredefinedMessages'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
+import {AbstractSimpleListApp}  from 'app/withInterpreter/AbstractSimpleListApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {PredefinedMessages}     from 'core/predefinedMessage/PredefinedMessages'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class PredefinedMessageApp
     extends AbstractSimpleListApp<AppInterpreterWithSimpleList<PredefinedMessages>> {

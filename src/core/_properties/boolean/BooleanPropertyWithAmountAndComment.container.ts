@@ -1,8 +1,8 @@
-import type {BooleanPropertyWithAmountAndComment}       from '../PropertyWithAmountAndComment'
-import type {NullOrBoolean, NullOrNumber, NullOrString} from '../../../util/types'
-import type {PossibleValueOnObjectHolder}               from '../../../util/holder/ObjectHolder'
+import type {BooleanPropertyWithAmountAndComment}       from 'core/_properties/PropertyWithAmountAndComment'
+import type {PossibleValueOnObjectHolder}               from 'util/holder/ObjectHolder'
+import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
 
-import {PropertyWithAmountAndCommentContainer} from '../PropertyWithAmountAndComment.container'
+import {PropertyWithAmountAndCommentContainer} from 'core/_properties/PropertyWithAmountAndComment.container'
 
 export class BooleanPropertyWithAmountAndCommentContainer<B extends NullOrBoolean = NullOrBoolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithAmountAndCommentContainer<B, AMOUNT, COMMENT>

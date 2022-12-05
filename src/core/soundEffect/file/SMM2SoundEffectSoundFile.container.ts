@@ -1,8 +1,8 @@
-import type {PossibleSoundEffectSoundName_SMM2}           from '../sound/types'
-import type {SMM2SoundEffectSoundFile, SMM2SoundFilePath} from './SMM2SoundEffectSoundFile'
-import type {SoundFileExtension}                          from './SoundEffectSoundFile'
+import type {SMM2SoundEffectSoundFile, SMM2SoundFilePath} from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
+import type {SoundFileExtension}                          from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {PossibleSoundEffectSoundName_SMM2}           from 'core/soundEffect/sound/types'
 
-import {NonRepeatableSoundFileContainer} from '../../../util/sound/NonRepeatableSoundFile.container'
+import {NonRepeatableSoundFileContainer} from 'util/sound/NonRepeatableSoundFile.container'
 
 export class SMM2SoundEffectSoundFileContainer<NAME extends PossibleSoundEffectSoundName_SMM2, >
     extends NonRepeatableSoundFileContainer<SMM2SoundFilePath, NAME, SoundFileExtension>

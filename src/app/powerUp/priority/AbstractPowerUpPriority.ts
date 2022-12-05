@@ -1,14 +1,14 @@
-import type {ClassInAnySuperMarioMakerGame}                                               from '../../../core/game/ClassInAnySuperMarioMakerGame'
-import type {Name}                                                                        from '../../../lang/name/Name'
-import type {ObjectHolder}                                                                from '../../../util/holder/ObjectHolder'
-import type {ImageRetrieverCallback, ImagesCallback, PossibleGameStyles, PowerUpPriority} from './PowerUpPriority'
+import type {ImageRetrieverCallback, ImagesCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
+import type {ClassInAnySuperMarioMakerGame}                                               from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Name}                                                                        from 'lang/name/Name'
+import type {ObjectHolder}                                                                from 'util/holder/ObjectHolder'
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container'
-import {EMPTY_ARRAY}                  from '../../../util/emptyVariables'
-import {Entities}                     from '../../../core/entity/Entities'
-import {GameStyles}                   from '../../../core/gameStyle/GameStyles'
-import {Themes}                       from '../../../core/theme/Themes'
-import {Times}                        from '../../../core/time/Times'
+import {Entities}                     from 'core/entity/Entities'
+import {GameStyles}                   from 'core/gameStyle/GameStyles'
+import {Themes}                       from 'core/theme/Themes'
+import {Times}                        from 'core/time/Times'
+import {EMPTY_ARRAY}                  from 'util/emptyVariables'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 //region -------------------- Import from deconstruction --------------------
 

@@ -1,11 +1,10 @@
 import './InstrumentProperty.scss'
 
-import type {ReactProperties} from '../../../../util/react/ReactProperties'
-import type {Entities}        from '../../Entities'
+import type {Entities}        from 'core/entity/Entities'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {EMPTY_REACT_ELEMENT}    from '../../../../util/emptyReactVariables'
-import {gameContentTranslation} from '../../../../lang/components/translationMethods'
-import Tooltip                  from '../../../../bootstrap/tooltip/Tooltip'
+import Tooltip                  from 'bootstrap/tooltip/Tooltip'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 interface InstrumentPropertyProperties
     extends ReactProperties {
@@ -20,7 +19,7 @@ interface InstrumentPropertyProperties
  */
 export default function InstrumentPropertyComponent({value: {englishNameInHtml, reference: {canMakeASoundOutOfAMusicBlock: value, canMakeASoundOutOfAMusicBlockComment: comment,},},}: InstrumentPropertyProperties,) {
     if (value !== true)
-        return EMPTY_REACT_ELEMENT
+        return null
     const id = `${englishNameInHtml}-instrumentProperty`
 
     if (comment == null)

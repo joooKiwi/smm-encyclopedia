@@ -1,15 +1,15 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleAppOptionValue} from './GlobalAppOption.types'
-import type {GlobalAppState}                          from '../../AppStates.types'
+import type {GlobalAppState}                          from 'app/AppStates.types'
+import type {Names, Ordinals, PossibleAppOptionValue} from 'app/options/global/GlobalAppOption.types'
 
-import {AbstractAppOption} from '../AbstractAppOption'
-import {ImageAnimations}   from './ImageAnimations'
-import {Images}            from './Images'
-import {GlobalThemeOption} from './GlobalThemeOption'
-import {Sounds}            from './Sounds'
-import {Texts}             from './Texts'
+import {AbstractAppOption} from 'app/options/AbstractAppOption'
+import {ImageAnimations}   from 'app/options/global/ImageAnimations'
+import {Images}            from 'app/options/global/Images'
+import {GlobalThemeOption} from 'app/options/global/GlobalThemeOption'
+import {Sounds}            from 'app/options/global/Sounds'
+import {Texts}             from 'app/options/global/Texts'
 
 /**
  * @todo Change to a different kind of option (that can work with the url directly)

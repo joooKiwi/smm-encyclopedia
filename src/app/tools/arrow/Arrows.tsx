@@ -1,11 +1,10 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleContainer} from './Arrows.types'
-import type {ReactElement}                       from '../../../util/react/ReactProperties'
+import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
+import type {ReactElement}                       from 'util/react/ReactProperties'
 
-import {ArrowDirections}     from './ArrowDirections'
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
+import {ArrowDirections} from 'app/tools/arrow/ArrowDirections'
 
 const {VERTICAL, HORIZONTAL} = ArrowDirections
 
@@ -164,9 +163,9 @@ export abstract class Arrows
         const [firstArrow, secondArrow,] = this.__arrows
 
         return <div className={`${this.__container} ${this.direction.value}`}>
-            {firstArrow ?? EMPTY_REACT_ELEMENT}
-            {this.__doesDisplayLine ? <div className="line"/> : EMPTY_REACT_ELEMENT}
-            {secondArrow ?? EMPTY_REACT_ELEMENT}
+            {firstArrow}
+            {this.__doesDisplayLine ? <div className="line"/> : null}
+            {secondArrow}
         </div>
     }
 

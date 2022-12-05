@@ -1,6 +1,6 @@
-import type {MusicSoundFile}                                                                                                                                                                                                                                                   from '../file/MusicSoundFile'
-import type {NullOr}                                                                                                                                                                                                                                                           from '../../../util/types'
-import type {Possible_Music, PossibleLink_Music, PossibleNSMBU_Music, PossibleNSMBU_YoshiSound, PossibleOther_Music, PossibleSM3DW_Music, PossibleSM3DW_UnderwaterMusic, PossibleSMB2_Music, PossibleSMB3_Music, PossibleSMB_Music, PossibleSMW_Music, PossibleSMW_YoshiSound} from './types'
+import type {Possible_Music, PossibleLink_Music, PossibleNSMBU_Music, PossibleNSMBU_YoshiSound, PossibleOther_Music, PossibleSM3DW_Music, PossibleSM3DW_UnderwaterMusic, PossibleSMB2_Music, PossibleSMB3_Music, PossibleSMB_Music, PossibleSMW_Music, PossibleSMW_YoshiSound} from 'core/music/backgroundMusic/types'
+import type {MusicSoundFile}                                                                                                                                                                                                                                                   from 'core/music/file/MusicSoundFile'
+import type {NullOr}                                                                                                                                                                                                                                                           from 'util/types/nullable'
 
 /**
  * A single "background music" with only the {@link Themes} as the basis.

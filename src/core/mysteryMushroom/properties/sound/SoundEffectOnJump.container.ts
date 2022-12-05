@@ -1,10 +1,11 @@
-import type {ExtendedMap}                                                                                      from '../../../../util/extended/ExtendedMap'
-import type {NullOr}                                                                                           from '../../../../util/types'
-import type {PossibleAmount, PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnJump} from './SoundEffectOnJump'
+import type {PossibleAmount, PossibleGamesReceived, PossibleValuesReceived, SoundEffectOnJump} from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump'
+import type {ExtendedMap}                                                                      from 'util/extended/ExtendedMap'
+import type {NullOr}                                                                           from 'util/types/nullable'
+import type {BooleanOrNotApplicable}                                                           from 'util/types/variables'
 
-import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
-import {GameReferences}       from '../../../gameReference/GameReferences'
-import {PropertyProvider}     from '../../../_properties/PropertyProvider'
+import {PropertyProvider}     from 'core/_properties/PropertyProvider'
+import {GameReferences}       from 'core/gameReference/GameReferences'
+import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
  * @todo move the content in the constructor in the builder instead
@@ -32,7 +33,7 @@ export class SoundEffectOnJumpContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get value(): PossibleValues {
+    public get value(): BooleanOrNotApplicable {
         return this.#property.value
     }
 

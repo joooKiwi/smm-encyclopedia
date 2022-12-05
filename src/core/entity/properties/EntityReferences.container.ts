@@ -1,9 +1,9 @@
-import type {Entity, PossibleOtherEntities} from '../Entity'
-import type {EntityReferences}              from './EntityReferences'
-import type {GameStyles}                    from '../../gameStyle/GameStyles'
-import type {ObjectHolder}                  from '../../../util/holder/ObjectHolder'
-import type {Themes}                        from '../../theme/Themes'
-import type {Times}                         from '../../time/Times'
+import type {Entity, PossibleOtherEntities} from 'core/entity/Entity'
+import type {EntityReferences}              from 'core/entity/properties/EntityReferences'
+import type {GameStyles}                    from 'core/gameStyle/GameStyles'
+import type {Themes}                        from 'core/theme/Themes'
+import type {Times}                         from 'core/time/Times'
+import type {ObjectHolder}                  from 'util/holder/ObjectHolder'
 
 export class EntityReferencesContainer
     implements EntityReferences {

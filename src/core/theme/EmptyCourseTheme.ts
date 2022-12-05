@@ -1,11 +1,11 @@
-import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from '../../util/ClassWithNullObjectPattern'
-import type {CourseTheme}                                      from './CourseTheme'
+import type {CourseTheme}                                      from 'core/theme/CourseTheme'
+import type {ClassWithNullObjectPattern, EmptyCourseThemeName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName}                     from '../../lang/name/ClassContainingAName'
-import {ClassThatIsAvailableFromTheStartProvider} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {EMPTY_ARRAY, EMPTY_MAP}                   from '../../util/emptyVariables'
-import {EmptyIsInProperty}                        from '../entity/properties/EmptyIsInProperty'
-import {EmptyStringName}                          from '../../lang/name/EmptyStringName'
+import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
+import {EmptyIsInProperty}                        from 'core/entity/properties/EmptyIsInProperty'
+import {ClassContainingAName}                     from 'lang/name/ClassContainingAName'
+import {EmptyStringName}                          from 'lang/name/EmptyStringName'
+import {EMPTY_ARRAY, EMPTY_MAP}                   from 'util/emptyVariables'
 
 /**
  * @singleton

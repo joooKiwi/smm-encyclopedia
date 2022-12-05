@@ -1,4 +1,4 @@
-import type {PossibleNameTemplate} from '../../lang/name/Name.template'
+import type {PossibleNameTemplate} from 'lang/name/Name.template'
 
 /**
  * @template

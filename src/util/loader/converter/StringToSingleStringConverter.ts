@@ -1,4 +1,4 @@
-import {AbstractStringToSingleValueConvertor} from './AbstractStringToSingleValueConvertor'
+import {AbstractStringToSingleValueConvertor} from 'util/loader/converter/AbstractStringToSingleValueConvertor'
 
 export class StringToSingleStringConverter<S extends string, >
     extends AbstractStringToSingleValueConvertor<S> {

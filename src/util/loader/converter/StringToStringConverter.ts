@@ -1,4 +1,4 @@
-import {AbstractStringConverter} from './AbstractStringConverter'
+import {AbstractStringConverter} from 'util/loader/converter/AbstractStringConverter'
 
 export class StringToStringConverter
     extends AbstractStringConverter<string> {

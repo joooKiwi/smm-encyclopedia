@@ -1,15 +1,15 @@
 import {Popover}                                       from 'bootstrap'
 import {Component, type Dispatch, type SetStateAction} from 'react'
 
-import type {Name}                                                                         from '../Name'
-import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from './Name.properties'
-import type {ReactComponent}                                                               from '../../../util/react/ReactComponent'
-import type {ReactElement}                                                                 from '../../../util/react/ReactProperties'
+import type {Name}                                                                         from 'lang/name/Name'
+import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from 'lang/name/component/Name.properties'
+import type {ReactComponent}                                                               from 'util/react/ReactComponent'
+import type {ReactElement}                                                                 from 'util/react/ReactProperties'
 
-import {contentTranslation} from '../../components/translationMethods'
-import {ProjectLanguages}   from '../../ProjectLanguages'
-import TextComponent        from '../../../app/tools/text/TextComponent'
-import TextPopover          from '../../../bootstrap/popover/TextPopover'
+import TextComponent        from 'app/tools/text/TextComponent'
+import TextPopover          from 'bootstrap/popover/TextPopover'
+import {ProjectLanguages}   from 'lang/ProjectLanguages'
+import {contentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @reactComponent

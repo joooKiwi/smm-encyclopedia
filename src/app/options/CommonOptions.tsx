@@ -1,26 +1,25 @@
 import type {Enum} from '@joookiwi/enumerable/dist/types'
 import {lazy}      from 'react'
 
-import type {ClassInAnySuperMarioMakerGame}             from '../../core/game/ClassInAnySuperMarioMakerGame'
-import type {ClassWithEnglishName}                      from '../../core/ClassWithEnglishName'
-import type {ClassWithReference}                        from '../../core/ClassWithReference'
-import type {Name}                                      from '../../lang/name/Name'
-import type {NameTrait}                                 from '../../lang/name/NameTrait'
-import type {NameTraitFromACategory}                    from '../../lang/name/NameTraitFromACategory'
-import type {ReactElement}                              from '../../util/react/ReactProperties'
-import type {SingleHeaderContent, SingleHeadersContent} from '../tools/table/SimpleHeader'
-import type {Themes}                                    from '../../core/theme/Themes'
+import type {SingleHeaderContent, SingleHeadersContent} from 'app/tools/table/SimpleHeader'
+import type {ClassWithEnglishName}                      from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                        from 'core/ClassWithReference'
+import type {ClassInAnySuperMarioMakerGame}             from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Themes}                                    from 'core/theme/Themes'
+import type {Name}                                      from 'lang/name/Name'
+import type {NameTrait}                                 from 'lang/name/NameTrait'
+import type {NameTraitFromACategory}                    from 'lang/name/NameTraitFromACategory'
+import type {ReactElement}                              from 'util/react/ReactProperties'
 
-import {BASE_PATH}                                  from '../../variables'
-import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
-import {EmptyStringName}                            from '../../lang/name/EmptyStringName'
-import {Games}                                      from '../../core/game/Games'
+import {BASE_PATH}                                  from 'variables'
+import {Games}                                      from 'core/game/Games'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {EmptyStringName}                            from 'lang/name/EmptyStringName'
 
 //region -------------------- dynamic imports --------------------
 
-const Image =         lazy(() => import('../tools/images/Image'))
-const NameComponent = lazy(() => import('../../lang/name/component/Name.component'))
+const Image =         lazy(() => import('app/tools/images/Image'))
+const NameComponent = lazy(() => import('lang/name/component/Name.component'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -68,7 +67,7 @@ export class CommonOptions {
     public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | string | Name<string>,): ReactElement {
         const name = enumeration.reference.categoryNameContainer
         if (name === EmptyStringName.get)
-            return EMPTY_REACT_ELEMENT
+            return null
 
         const imagePath_or_name = imagePath_or_nameCallback()
         const englishName = name.english
@@ -123,9 +122,9 @@ export class CommonOptions {
         const isInSMM2 = reference.isInSuperMarioMaker2
 
         return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
-            {isInSMM1 ? Games.SUPER_MARIO_MAKER_1.renderSingleComponent : EMPTY_REACT_ELEMENT}
-            {isInSMM3DS ? Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.renderSingleComponent : EMPTY_REACT_ELEMENT}
-            {isInSMM2 ? Games.SUPER_MARIO_MAKER_2.renderSingleComponent : EMPTY_REACT_ELEMENT}
+            {isInSMM1 ? Games.SUPER_MARIO_MAKER_1.renderSingleComponent : null}
+            {isInSMM3DS ? Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.renderSingleComponent : null}
+            {isInSMM2 ? Games.SUPER_MARIO_MAKER_2.renderSingleComponent : null}
         </div>
     }
 
@@ -134,8 +133,8 @@ export class CommonOptions {
         const reference = enumeration.reference
 
         return <div key={`${enumeration.englishName} (theme content images)`} id={`${enumeration.englishNameInHtml}-themeContentImages-container`} className="themeContentImages-container">
-            {reference.isInCourseTheme ? <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/> : EMPTY_REACT_ELEMENT}
-            {reference.isInWorldTheme ? <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/> : EMPTY_REACT_ELEMENT}
+            {reference.isInCourseTheme ? <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/> : null}
+            {reference.isInWorldTheme ? <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/> : null}
         </div>
     }
 

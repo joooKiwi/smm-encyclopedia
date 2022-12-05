@@ -1,8 +1,8 @@
-import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from '../../util/ClassWithNullObjectPattern'
-import type {SoundEffectCategory}                                      from './SoundEffectCategory'
+import type {SoundEffectCategory}                                      from 'core/soundEffectCategory/SoundEffectCategory'
+import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
-import {EmptyStringName}      from '../../lang/name/EmptyStringName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {EmptyStringName}      from 'lang/name/EmptyStringName'
 
 /**
  * @singleton

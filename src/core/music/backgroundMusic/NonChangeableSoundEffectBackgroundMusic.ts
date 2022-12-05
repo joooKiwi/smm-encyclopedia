@@ -1,6 +1,6 @@
-import type {BackgroundMusic}                                     from './BackgroundMusic'
-import type {MusicSoundFile}                                      from '../file/MusicSoundFile'
-import type {PossibleOther_FastMusic, PossibleOther_RegularMusic} from './types'
+import type {BackgroundMusic}                                     from 'core/music/backgroundMusic/BackgroundMusic'
+import type {PossibleOther_FastMusic, PossibleOther_RegularMusic} from 'core/music/backgroundMusic/types'
+import type {MusicSoundFile}                                      from 'core/music/file/MusicSoundFile'
 
 /**
  * A "sound effect" "background music" that is not changeable depending on the {@link Themes theme}.

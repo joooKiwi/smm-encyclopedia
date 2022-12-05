@@ -1,5 +1,5 @@
-import type {NullOr}                                                                      from '../../../util/types'
-import type {PossibleImagePath_SMM1, PossibleImagePath_SMM2, SoundEffectImageNumber_SMM1} from '../SoundEffects.types'
+import type {PossibleImagePath_SMM1, PossibleImagePath_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
+import type {NullOr}                                                                      from 'util/types/nullable'
 
 export interface SoundEffectImage {
 

@@ -1,8 +1,8 @@
-import type {NullOrString} from '../../types'
+import type {NullOrString} from 'types/nullable'
 
-import {AbstractEmptyableStringConverter} from './AbstractEmptyableStringConverter'
-import {ConverterPatterns}                from './ConverterPatterns'
-import {ConverterUtil}                    from './ConverterUtil'
+import {AbstractEmptyableStringConverter} from 'util/loader/converter/AbstractEmptyableStringConverter'
+import {ConverterPatterns}                from 'util/loader/converter/ConverterPatterns'
+import {ConverterUtil}                    from 'util/loader/converter/ConverterUtil'
 
 export class StringToNullableStringConverter
     extends AbstractEmptyableStringConverter<NullOrString> {

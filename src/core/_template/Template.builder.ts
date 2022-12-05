@@ -1,4 +1,4 @@
-import type {Builder} from '../../util/builder/Builder'
+import type {Builder} from 'util/builder/Builder'
 
 export abstract class TemplateBuilder<T, U, >
     implements Builder<U> {
@@ -19,7 +19,12 @@ export abstract class TemplateBuilder<T, U, >
 
 
     public get template(): T {
-        return this.#template ??= 'build' in this.#templateBuilder_or_template ? this.#templateBuilder_or_template.build() : this.#templateBuilder_or_template
+        return this.#template ??= this.#createTemplate()
+    }
+
+    #createTemplate(): T {
+        const template = this.#templateBuilder_or_template
+        return typeof template == 'object' && 'build' in template! ? template.build() : template
     }
 
     public abstract build(): U

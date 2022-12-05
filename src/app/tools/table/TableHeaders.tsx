@@ -1,15 +1,14 @@
 import {PureComponent} from 'react'
 
-import type {EveryHeaderHolders, Layout, TableHeadersProperties} from './TableHeaders.types'
-import type {ReactComponent}                                     from '../../../util/react/ReactComponent'
-import type {ReactElement}                                       from '../../../util/react/ReactProperties'
-import type {SingleHeaderContent, SingleHeadersContent}          from './SimpleHeader'
+import type {SingleHeaderContent, SingleHeadersContent}          from 'app/tools/table/SimpleHeader'
+import type {EveryHeaderHolders, Layout, TableHeadersProperties} from 'app/tools/table/TableHeaders.types'
+import type {ReactComponent}                                     from 'util/react/ReactComponent'
+import type {ReactElement}                                       from 'util/react/ReactProperties'
 
-import {EMPTY_ARRAY}         from '../../../util/emptyVariables'
-import {EMPTY_REACT_ELEMENT} from '../../../util/emptyReactVariables'
-import {HeaderTypes}         from './header/HeaderTypes'
-import Image                 from '../images/Image'
-import Tooltip               from '../../../bootstrap/tooltip/Tooltip'
+import {HeaderTypes} from 'app/tools/table/header/HeaderTypes'
+import Image         from 'app/tools/images/Image'
+import Tooltip       from 'bootstrap/tooltip/Tooltip'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @reactComponent
@@ -66,11 +65,11 @@ export default class TableHeaders
 
     public static createTooltip(type: HeaderTypes, header: SingleHeaderContent,) {
         if (typeof header == 'string')
-            return EMPTY_REACT_ELEMENT
+            return null
 
         const tooltip = header.tooltip
         if (tooltip == null)
-            return EMPTY_REACT_ELEMENT
+            return null
 
         return <Tooltip option={({title: tooltip, placement: type.placement,})} elementId={`${this.getHeaderKey(header)}-${type.simpleName}`}/>
     }

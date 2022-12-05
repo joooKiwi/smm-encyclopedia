@@ -1,10 +1,10 @@
-import type {Builder}               from '../../util/builder/Builder'
-import type {GameReference}         from './GameReference'
-import type {GameReferenceTemplate} from './GameReference.template'
-import type {Name}                  from '../../lang/name/Name'
+import type {GameReference}         from 'core/gameReference/GameReference'
+import type {GameReferenceTemplate} from 'core/gameReference/GameReference.template'
+import type {Name}                  from 'lang/name/Name'
+import type {Builder}               from 'util/builder/Builder'
 
-import {TemplateWithNameBuilder} from '../_template/TemplateWithName.builder'
-import {GameReferenceContainer}  from './GameReference.container'
+import {TemplateWithNameBuilder} from 'core/_template/TemplateWithName.builder'
+import {GameReferenceContainer}  from 'core/gameReference/GameReference.container'
 
 export class GameReferenceBuilder
     extends TemplateWithNameBuilder<GameReferenceTemplate, GameReference> {

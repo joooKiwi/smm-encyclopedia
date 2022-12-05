@@ -1,8 +1,8 @@
-import type {ClassWithNullObjectPattern, EmptyEntityCategoryName} from '../../util/ClassWithNullObjectPattern'
-import type {EntityCategory}                                      from './EntityCategory'
+import type {EntityCategory}                                      from 'core/entityCategory/EntityCategory'
+import type {ClassWithNullObjectPattern, EmptyEntityCategoryName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
-import {EmptyStringName}      from '../../lang/name/EmptyStringName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {EmptyStringName}      from 'lang/name/EmptyStringName'
 
 /**
  * @singleton

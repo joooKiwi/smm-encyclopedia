@@ -1,6 +1,7 @@
-import type {HTMLSpanProperties}            from '../../../../util/react/html/HTMLSpanProperties'
-import type {Nullable}                      from '../../../../util/types'
-import type {ReactElement, ReactProperties} from '../../../../util/react/ReactProperties'
+import type {ReactElement, ReactProperties}   from 'util/react/ReactProperties'
+import type {HTMLSpanProperties}              from 'util/react/html/HTMLSpanProperties'
+import type {Nullable}                        from 'util/types/nullable'
+import type {NotApplicable, UnknownReference} from 'util/types/variables'
 
 export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
     extends ReactProperties, Omit<HTMLSpanProperties, | 'content' | 'className'> {
@@ -24,4 +25,4 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
 
 }
 
-export type PossibleTextContent = | ReactElement | string | 'N/A' | '???' | number | boolean
+export type PossibleTextContent = | ReactElement | string | NotApplicable | UnknownReference | number | boolean

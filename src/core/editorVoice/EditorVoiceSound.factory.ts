@@ -1,9 +1,9 @@
-import type {EditorVoiceSound, PossibleSoundReceivedOnFactory} from './EditorVoiceSound'
+import type {EditorVoiceSound, PossibleSoundReceivedOnFactory} from 'core/editorVoice/EditorVoiceSound'
 
-import {EditorVoiceSoundFileContainer as SoundFile} from './file/EditorVoiceSoundFile.container'
-import {EditorVoiceSoundRegionalContainer}          from './EditorVoiceSound.regional.container'
-import {EditorVoiceSoundSingleContainer}            from './EditorVoiceSound.single.container'
-import {EmptyEditorVoiceSound}                      from './EmptyEditorVoiceSound'
+import {EditorVoiceSoundRegionalContainer}          from 'core/editorVoice/EditorVoiceSound.regional.container'
+import {EditorVoiceSoundSingleContainer}            from 'core/editorVoice/EditorVoiceSound.single.container'
+import {EmptyEditorVoiceSound}                      from 'core/editorVoice/EmptyEditorVoiceSound'
+import {EditorVoiceSoundFileContainer as SoundFile} from 'core/editorVoice/file/EditorVoiceSoundFile.container'
 
 /**
  * @factory

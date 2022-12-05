@@ -1,4 +1,4 @@
-import {Versions} from './Versions'
+import {Versions} from 'core/version/Versions'
 
 enum Enum {
 

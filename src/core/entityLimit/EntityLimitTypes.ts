@@ -1,8 +1,8 @@
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {EnglishNames, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from './EntityLimitTypes.types'
-import type {Nullable}                                                                      from '../../util/types'
+import type {EnglishNames, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
+import type {Nullable}                                                                      from 'util/types/nullable'
 
 export class EntityLimitTypes
     extends Enum<Ordinals, Names> {

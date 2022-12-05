@@ -1,11 +1,12 @@
-import type {NotApplicable, Property}                                         from './Property'
-import type {NullOrBoolean, NullOrNumber, NullOrString}                       from '../../util/types'
-import type {PossibleAmountOnFalse, PossibleAmountOnTrue, PropertyWithAmount} from './PropertyWithAmount'
-import type {PropertyThatCanBeUnknown}                                        from './PropertyThatCanBeUnknown'
-import type {PropertyThatCanBeUnknownWithAmount}                              from './PropertyThatCanBeUnknownWithAmount'
-import type {PropertyThatCanBeUnknownWithComment}                             from './PropertyThatCanBeUnknownWithComment'
-import type {PropertyWithAmountAndComment}                                    from './PropertyWithAmountAndComment'
-import type {PropertyWithComment}                                             from './PropertyWithComment'
+import type {Property}                                                        from 'core/_properties/Property'
+import type {PropertyThatCanBeUnknown}                                        from 'core/_properties/PropertyThatCanBeUnknown'
+import type {PropertyThatCanBeUnknownWithAmount}                              from 'core/_properties/PropertyThatCanBeUnknownWithAmount'
+import type {PropertyThatCanBeUnknownWithComment}                             from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PossibleAmountOnFalse, PossibleAmountOnTrue, PropertyWithAmount} from 'core/_properties/PropertyWithAmount'
+import type {PropertyWithAmountAndComment}                                    from 'core/_properties/PropertyWithAmountAndComment'
+import type {PropertyWithComment}                                             from 'core/_properties/PropertyWithComment'
+import type {NullOrBoolean, NullOrNumber, NullOrString}                       from 'util/types/nullable'
+import type {NotApplicable}                                                   from 'util/types/variables'
 
 export interface PropertyWithEverything<T, CAN_BE_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends Property<T>,

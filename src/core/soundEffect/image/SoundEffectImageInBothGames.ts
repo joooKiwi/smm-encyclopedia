@@ -1,7 +1,7 @@
-import type {PossibleSMM1ImagePathReceived}                          from './SoundEffectImage'
-import type {SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from '../SoundEffects.types'
+import type {SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
+import type {PossibleSMM1ImagePathReceived}                          from 'core/soundEffect/image/SoundEffectImage'
 
-import {AbstractSoundEffectImage} from './AbstractSoundEffectImage'
+import {AbstractSoundEffectImage} from 'core/soundEffect/image/AbstractSoundEffectImage'
 
 export class SoundEffectImageInBothGames
     extends AbstractSoundEffectImage {

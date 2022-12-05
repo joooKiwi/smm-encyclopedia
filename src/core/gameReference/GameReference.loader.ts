@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Game reference.json'
+import resource from 'resources/compiled/Game reference.json'
 
-import type {GameReference}                             from './GameReference'
-import type {GameReferenceTemplate}                     from './GameReference.template'
-import type {Loader}                                    from '../../util/loader/Loader'
-import type {PossibleAcronym, PossibleEnglishName}      from './GameReferences.types'
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
+import type {GameReference}                             from 'core/gameReference/GameReference'
+import type {PossibleAcronym, PossibleEnglishName}      from 'core/gameReference/GameReferences.types'
+import type {GameReferenceTemplate}                     from 'core/gameReference/GameReference.template'
+import type {PropertiesArray as LanguagesPropertyArray} from 'lang/Loader.types'
+import type {Loader}                                    from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
-import {GameReferenceBuilder}    from './GameReference.builder'
+import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
+import {GameReferenceBuilder}    from 'core/gameReference/GameReference.builder'
+import {CSVLoader}               from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

@@ -1,10 +1,10 @@
-import type {ClassWithNullObjectPattern, EmptyLimitName} from '../../../../util/ClassWithNullObjectPattern'
-import type {LimitProperty}                              from './LimitProperty'
-import type {NotApplicableProperty}                      from '../../../_properties/PropertyWithEverything'
+import type {NotApplicableProperty}                      from 'core/_properties/PropertyWithEverything'
+import type {LimitProperty}                              from 'core/entity/properties/limit/LimitProperty'
+import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_MAP}             from '../../../../util/emptyVariables'
-import {GameStructureProvider} from '../../../game/GameStructure.provider'
-import {PropertyContainer}     from '../../../_properties/Property.container'
+import {PropertyContainer}     from 'core/_properties/Property.container'
+import {GameStructureProvider} from 'core/game/GameStructure.provider'
+import {EMPTY_MAP}             from 'util/emptyVariables'
 
 /**
  * @singleton

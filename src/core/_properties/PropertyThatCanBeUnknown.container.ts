@@ -1,7 +1,7 @@
-import type {PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
-import type {PropertyThatCanBeUnknown}    from './PropertyThatCanBeUnknown'
+import type {PropertyThatCanBeUnknown}    from 'core/_properties/PropertyThatCanBeUnknown'
+import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
-import {PropertyContainer} from './Property.container'
+import {PropertyContainer} from 'core/_properties/Property.container'
 
 export class PropertyThatCanBeUnknownContainer<T, IS_UNKNOWN extends boolean = boolean, >
     extends PropertyContainer<T, IS_UNKNOWN>

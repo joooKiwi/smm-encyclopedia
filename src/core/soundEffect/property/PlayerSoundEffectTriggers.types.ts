@@ -1,4 +1,4 @@
-import type {PlayerSoundEffectTriggers} from './PlayerSoundEffectTriggers'
+import type {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 
 enum Enum {
 

@@ -1,5 +1,5 @@
-import type {Entity, PossibleOtherEntities} from '../../Entity'
-import type {GameStyles}                    from '../../../gameStyle/GameStyles'
+import type {Entity, PossibleOtherEntities} from 'core/entity/Entity'
+import type {GameStyles}                    from 'core/gameStyle/GameStyles'
 
 export interface GameStyleReferences {
 

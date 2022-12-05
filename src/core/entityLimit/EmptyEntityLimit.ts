@@ -1,10 +1,10 @@
-import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from '../../util/ClassWithNullObjectPattern'
-import type {EntityLimit}                                      from './EntityLimit'
+import type {EntityLimit}                                      from 'core/entityLimit/EntityLimit'
+import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from 'util/ClassWithNullObjectPattern'
 
-import {assert}                               from '../../util/utilitiesMethods'
-import {ClassContainingANameAndAnAlternative} from '../../lang/name/ClassContainingANameAndAnAlternative'
-import {EmptyStringName}                      from '../../lang/name/EmptyStringName'
-import {EmptyEntityLimitAmount}               from './properties/EmptyEntityLimitAmount'
+import {EmptyEntityLimitAmount}               from 'core/entityLimit/properties/EmptyEntityLimitAmount'
+import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
+import {EmptyStringName}                      from 'lang/name/EmptyStringName'
+import {assert}                               from 'util/utilitiesMethods'
 
 /**
  * @singleton

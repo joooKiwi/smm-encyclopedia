@@ -1,4 +1,4 @@
-import type {ImageAnimations} from './ImageAnimations'
+import type {ImageAnimations} from 'app/options/global/ImageAnimations'
 
 enum Enum {
 
@@ -12,4 +12,4 @@ export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
 export type PossibleImageAnimation = | boolean | 'separated'
-export type ImageAnimationByValue<T,> = T extends PossibleImageAnimation ? ImageAnimations : never
+export type ImageAnimationByValue<T, > = T extends PossibleImageAnimation ? ImageAnimations : never

@@ -1,7 +1,7 @@
-import type {AppOptionWithTable}   from './AppOptionWithTable'
-import type {AppOptionWithContent} from './AppOptionWithContent'
+import type {AppOptionWithContent} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}   from 'app/options/component/AppOptionWithTable'
 
-import {EMPTY_ARRAY} from '../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @singleton

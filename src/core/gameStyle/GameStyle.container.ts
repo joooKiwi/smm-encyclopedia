@@ -1,11 +1,11 @@
-import type {ClassThatIsAvailableFromTheStart}                 from '../availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {Entity}                                           from '../entity/Entity'
-import type {GameProperty}                                     from '../entity/properties/game/GameProperty'
-import type {GameStyle, PossibleNightDesertWindTranslationKey} from './GameStyle'
-import type {Name}                                             from '../../lang/name/Name'
-import type {ObjectHolder, PossibleValueOnObjectHolder}        from '../../util/holder/ObjectHolder'
+import type {ClassThatIsAvailableFromTheStart}                 from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {Entity}                                           from 'core/entity/Entity'
+import type {GameProperty}                                     from 'core/entity/properties/game/GameProperty'
+import type {GameStyle, PossibleNightDesertWindTranslationKey} from 'core/gameStyle/GameStyle'
+import type {Name}                                             from 'lang/name/Name'
+import type {ObjectHolder, PossibleValueOnObjectHolder}        from 'util/holder/ObjectHolder'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class GameStyleContainer
     extends ClassContainingAName<string>

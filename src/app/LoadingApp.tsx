@@ -1,6 +1,6 @@
-import AbstractApp          from './AbstractApp'
-import {contentTranslation} from '../lang/components/translationMethods'
-import TextComponent        from './tools/text/TextComponent'
+import AbstractApp          from 'app/AbstractApp'
+import TextComponent        from 'app/tools/text/TextComponent'
+import {contentTranslation} from 'lang/components/translationMethods'
 
 export default class LoadingApp
     extends AbstractApp {

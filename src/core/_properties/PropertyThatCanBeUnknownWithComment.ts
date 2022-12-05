@@ -1,6 +1,6 @@
-import type {NullOrBoolean, NullOrNumber, NullOrString} from '../../util/types'
-import type {PropertyWithComment}                       from './PropertyWithComment'
-import type {PropertyThatCanBeUnknown}                  from './PropertyThatCanBeUnknown'
+import type {PropertyThatCanBeUnknown}                  from 'core/_properties/PropertyThatCanBeUnknown'
+import type {PropertyWithComment}                       from 'core/_properties/PropertyWithComment'
+import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
 
 /**
  * A generic property with a value,

@@ -1,7 +1,7 @@
-import type {GameProperty}  from './GameProperty'
-import type {GameStructure} from '../../../game/GameStructure'
+import type {GameProperty}  from 'core/entity/properties/game/GameProperty'
+import type {GameStructure} from 'core/game/GameStructure'
 
-import {Games} from '../../../game/Games'
+import {Games} from 'core/game/Games'
 
 export class GamePropertyContainer
     implements GameProperty {

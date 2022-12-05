@@ -1,17 +1,17 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                          from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                            from '../ClassWithImagePath'
-import type {ClassWithReference}                                                                                            from '../ClassWithReference'
-import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './SoundEffectCategories.types'
-import type {Nullable}                                                                                                      from '../../util/types'
-import type {SoundEffectCategory}                                                                                           from './SoundEffectCategory'
+import type {ClassWithEnglishName}                                                                                          from 'core/ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                                            from 'core/ClassWithImagePath'
+import type {ClassWithReference}                                                                                            from 'core/ClassWithReference'
+import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {SoundEffectCategory}                                                                                           from 'core/soundEffectCategory/SoundEffectCategory'
+import type {Nullable}                                                                                                      from 'util/types/nullable'
 
-import {BASE_PATH}             from '../../variables'
-import {getValueByEnglishName} from '../../util/utilitiesMethods'
-import {Import}                from '../../util/DynamicImporter'
-import {StringContainer}       from '../../util/StringContainer'
+import {BASE_PATH}             from 'variables'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {Import}                from 'util/DynamicImporter'
+import {StringContainer}       from 'util/StringContainer'
 
 /**
  * @recursiveReference {@link SoundEffectCategoryLoader}

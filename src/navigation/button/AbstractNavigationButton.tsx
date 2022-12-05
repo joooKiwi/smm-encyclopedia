@@ -1,13 +1,13 @@
 import {PureComponent} from 'react'
 
-import type {ModalProperties}               from '../ModalContainers.types'
-import type {PossibleContent}               from './AbstractNavigationButton.types'
-import type {PossibleTooltipPlacement}      from '../../bootstrap/Bootstrap.types'
-import type {ReactComponent}                from '../../util/react/ReactComponent'
-import type {ReactElement, ReactProperties} from '../../util/react/ReactProperties'
+import type {PossibleTooltipPlacement}      from 'bootstrap/Bootstrap.types'
+import type {ModalProperties}               from 'navigation/ModalContainers.types'
+import type {PossibleContent}               from 'navigation/button/AbstractNavigationButton.types'
+import type {ReactComponent}                from 'util/react/ReactComponent'
+import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 
-import ModalButton from '../../bootstrap/modal/element/ModalButton'
-import Tooltip     from '../../bootstrap/tooltip/Tooltip'
+import ModalButton from 'bootstrap/modal/element/ModalButton'
+import Tooltip     from 'bootstrap/tooltip/Tooltip'
 
 interface NavButtonProperties
     extends ReactProperties, ModalProperties {
@@ -71,8 +71,7 @@ export abstract class AbstractNavigationButton
         const content = willBeHiddenOnShorterScreen ? contentValue[0] : contentValue
 
         return <Tooltip elementId={id} option={({title: content, placement: this._tooltipPlacement,})}>
-            <ModalButton key={`navigation button (${id})`} id={id} elementToShow={this.props.id}
-                         className={`btn btn-lg btn-outline-${isTopButton ? 'primary' : 'light'} btn-navigation ${this._addedClass} rounded-pill`}>{
+            <ModalButton key={`navigation button (${id})`} id={id} elementToShow={this.props.id} className={`btn btn-lg btn-outline-${isTopButton ? 'primary' : 'light'} btn-navigation ${this._addedClass} rounded-pill`}>{
                 willBeHiddenOnShorterScreen
                     ? <span key={`navigation text button (${id})`} className={`btn-navigation-text d-none d-${contentValue[1]}-inline-block`}>{content}</span>
                     : <span key={`navigation text button (${id})`} className="btn-navigation-text">{content}</span>

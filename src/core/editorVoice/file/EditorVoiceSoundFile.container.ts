@@ -1,7 +1,7 @@
-import type {EditorVoiceExtension, EditorVoicePath, EditorVoiceSoundFile} from './EditorVoiceSoundFile'
-import type {PossibleFileName}                                            from '../EditorVoiceSound'
+import type {PossibleFileName}                                            from 'core/editorVoice/EditorVoiceSound'
+import type {EditorVoiceExtension, EditorVoicePath, EditorVoiceSoundFile} from 'core/editorVoice/file/EditorVoiceSoundFile'
 
-import {NonRepeatableSoundFileContainer} from '../../../util/sound/NonRepeatableSoundFile.container'
+import {NonRepeatableSoundFileContainer} from 'util/sound/NonRepeatableSoundFile.container'
 
 export class EditorVoiceSoundFileContainer<NAME extends PossibleFileName, >
     extends NonRepeatableSoundFileContainer<EditorVoicePath, NAME, EditorVoiceExtension>

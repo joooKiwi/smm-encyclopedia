@@ -1,7 +1,7 @@
-import type {Name}                          from '../../../lang/name/Name'
-import type {ClassInAnySuperMarioMakerGame} from '../../../core/game/ClassInAnySuperMarioMakerGame'
-import type {GameStyles}                    from '../../../core/gameStyle/GameStyles'
-import type {Entities}                      from '../../../core/entity/Entities'
+import type {Entities}                      from 'core/entity/Entities'
+import type {ClassInAnySuperMarioMakerGame} from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {GameStyles}                    from 'core/gameStyle/GameStyles'
+import type {Name}                          from 'lang/name/Name'
 
 export interface PowerUpPriority {
 

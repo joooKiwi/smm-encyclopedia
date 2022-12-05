@@ -1,6 +1,6 @@
-import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from './SingleBackgroundMusic'
+import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
     SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,

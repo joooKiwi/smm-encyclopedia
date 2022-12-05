@@ -1,6 +1,6 @@
-import type {SoundEffectImageName_SMM2} from '../SoundEffects.types'
+import type {SoundEffectImageName_SMM2} from 'core/soundEffect/SoundEffects.types'
 
-import {AbstractSoundEffectImage} from './AbstractSoundEffectImage'
+import {AbstractSoundEffectImage} from 'core/soundEffect/image/AbstractSoundEffectImage'
 
 export class SMM2SoundEffectImage
     extends AbstractSoundEffectImage {

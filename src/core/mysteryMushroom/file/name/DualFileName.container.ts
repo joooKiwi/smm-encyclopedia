@@ -1,7 +1,7 @@
-import type {PossibleFileName} from '../../MysteryMushrooms.types'
-import type {DualFileName}     from './DualFileName'
+import type {PossibleFileName} from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {DualFileName}     from 'core/mysteryMushroom/file/name/DualFileName'
 
-import {AbstractFileName} from './AbstractFileName'
+import {AbstractFileName} from 'core/mysteryMushroom/file/name/AbstractFileName'
 
 export class DualFileNameContainer<IMAGE_FILE_NAME_1 extends PossibleFileName = PossibleFileName, IMAGE_FILE_NAME_2 extends PossibleFileName = PossibleFileName, SOUND_FILE_NAME extends PossibleFileName = IMAGE_FILE_NAME_1, >
     extends AbstractFileName<readonly [IMAGE_FILE_NAME_1, IMAGE_FILE_NAME_2,], readonly [SOUND_FILE_NAME,]>

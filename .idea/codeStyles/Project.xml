@@ -12,6 +12,7 @@
       <option name="UNION_TYPES_WRAP" value="0" />
       <option name="ALIGN_IMPORTS" value="true" />
       <option name="ALIGN_UNION_TYPES" value="true" />
+      <option name="IMPORT_PREFER_ABSOLUTE_PATH" value="TRUE" />
     </TypeScriptCodeStyleSettings>
     <codeStyleSettings language="Markdown">
       <indentOptions>

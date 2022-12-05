@@ -1,12 +1,12 @@
 import 'bootstrap/dist/js/bootstrap.esm'
 import './index.scss'
-import './lang/i18n'
+import 'lang/i18n'
 
 import {createRoot}    from 'react-dom/client'
-import reportWebVitals from './reportWebVitals'
+import reportWebVitals from 'reportWebVitals'
 
-import IndexComponent   from './IndexComponent'
-import {isInProduction} from './variables'
+import IndexComponent   from 'IndexComponent'
+import {isInProduction} from 'variables'
 
 const root = createRoot(document.getElementById('root')!)
 root.render(<IndexComponent/>)

@@ -1,15 +1,15 @@
-import resource from '../../resources/compiled/Sound effect category.json'
+import resource from 'resources/compiled/Sound effect category.json'
 
-import type {PropertiesArray as LanguagesPropertyArray} from '../../lang/Loader.types'
-import type {Loader}                                    from '../../util/loader/Loader'
-import type {PossibleEnglishName}                       from './SoundEffectCategories.types'
-import type {SoundEffectCategory}                       from './SoundEffectCategory'
-import type {SoundEffectCategoryTemplate}               from './SoundEffectCategory.template'
+import type {PossibleEnglishName}                       from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {SoundEffectCategory}                       from 'core/soundEffectCategory/SoundEffectCategory'
+import type {SoundEffectCategoryTemplate}               from 'core/soundEffectCategory/SoundEffectCategory.template'
+import type {PropertiesArray as LanguagesPropertyArray} from 'lang/Loader.types'
+import type {Loader}                                    from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder}    from '../_template/AbstractTemplate.builder'
-import {CSVLoader}                  from '../../util/loader/CSVLoader'
-import {SoundEffectCategoryBuilder} from './SoundEffectCategory.builder'
-import {HeaderTypesForConvertor}    from '../_util/loader/HeaderTypesForConvertor'
+import {AbstractTemplateBuilder}    from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor}    from 'core/_util/loader/HeaderTypesForConvertor'
+import {SoundEffectCategoryBuilder} from 'core/soundEffectCategory/SoundEffectCategory.builder'
+import {CSVLoader}                  from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 

@@ -1,9 +1,9 @@
-import type {GameProperty}       from './GameProperty'
-import type {ProviderWithoutKey} from '../../../../util/provider/ProviderWithoutKey'
+import type {GameProperty}       from 'core/entity/properties/game/GameProperty'
+import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}      from '../../../../util/provider/AbstractProvider'
-import {GamePropertyContainer} from './GameProperty.container'
-import {GameStructureProvider} from '../../../game/GameStructure.provider'
+import {GamePropertyContainer} from 'core/entity/properties/game/GameProperty.container'
+import {GameStructureProvider} from 'core/game/GameStructure.provider'
+import {AbstractProvider}      from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

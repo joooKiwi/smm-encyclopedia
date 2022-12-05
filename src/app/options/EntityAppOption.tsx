@@ -2,37 +2,38 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {Fragment, lazy}                                                          from 'react'
 
-import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
-import type {Entities}                                         from '../../core/entity/Entities'
-import type {Names, Ordinals}                                  from './EntityAppOption.types'
-import type {NullOr}                                           from '../../util/types'
-import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
-import type {ReactElement}                                     from '../../util/react/ReactProperties'
+import type {Names, Ordinals}                                  from 'app/options/EntityAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {Entities}                                         from 'core/entity/Entities'
+import type {ReactElement}                                     from 'util/react/ReactProperties'
+import type {NullOr}                                           from 'util/types/nullable'
+import type {EmptyArray}                                       from 'util/types/variables'
 
-import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
-import {CommonOptions}                              from './CommonOptions'
-import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
-import {EntityCategories}                           from '../../core/entityCategory/EntityCategories'
-import {EntityLimitTypes}                           from '../../core/entityLimit/EntityLimitTypes'
-import {EmptyAppOption}                             from './component/EmptyAppOption'
-import {Games}                                      from '../../core/game/Games'
-import {GameStyles}                                 from '../../core/gameStyle/GameStyles'
-import {Themes}                                     from '../../core/theme/Themes'
-import {Times}                                      from '../../core/time/Times'
+import {CommonOptions}                              from 'app/options/CommonOptions'
+import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
+import {EmptyAppOption}                             from 'app/options/component/EmptyAppOption'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
+import {EntityLimitTypes}                           from 'core/entityLimit/EntityLimitTypes'
+import {Games}                                      from 'core/game/Games'
+import {GameStyles}                                 from 'core/gameStyle/GameStyles'
+import {Themes}                                     from 'core/theme/Themes'
+import {Times}                                      from 'core/time/Times'
 
 //region -------------------- dynamic imports --------------------
 
-const CourseThemeComponent =        lazy(() => import('../../core/theme/CourseTheme.component'))
-const EditorVoiceSoundComponent =   lazy(() => import('../../core/editorVoice/EditorVoiceSound.component'))
-const Image =                       lazy(() => import( '../tools/images/Image'))
-const InstrumentPropertyComponent = lazy(() => import( '../../core/entity/properties/instrument/InstrumentProperty.component'))
-const GameComponent =               lazy(() => import('../../core/game/Game.component'))
-const GameStyleComponent =          lazy(() => import('../../core/gameStyle/GameStyle.component'))
-const LimitComponent =              lazy(() => import('../../core/entityLimit/Limit.component'))
-const TimeComponent =               lazy(() => import('../../core/time/Time.component'))
-const TextComponent =               lazy(() => import( '../tools/text/TextComponent'))
+const CourseThemeComponent =        lazy(() => import('core/theme/CourseTheme.component'))
+const EditorVoiceSoundComponent =   lazy(() => import('core/editorVoice/EditorVoiceSound.component'))
+const Image =                       lazy(() => import('app/tools/images/Image'))
+const InstrumentPropertyComponent = lazy(() => import('core/entity/properties/instrument/InstrumentProperty.component'))
+const GameComponent =               lazy(() => import('core/game/Game.component'))
+const GameStyleComponent =          lazy(() => import('core/gameStyle/GameStyle.component'))
+const LimitComponent =              lazy(() => import('core/entityLimit/Limit.component'))
+const TimeComponent =               lazy(() => import('core/time/Time.component'))
+const TextComponent =               lazy(() => import('app/tools/text/TextComponent'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -261,7 +262,7 @@ export class EntityAppOption
     public static CALLBACK_TO_GET_ENUMERATION: () => Entities
 
     static #gameStyles?: readonly GameStyles[]
-    static #gameStyles_unusedImages?: readonly [GameStyles,] | readonly []
+    static #gameStyles_unusedImages?: | readonly [GameStyles,] | EmptyArray
     static #times?: readonly Times[]
     static #themes?: readonly Themes[]
 
@@ -280,7 +281,7 @@ export class EntityAppOption
         return this.#gameStyles ??= GameStyles.values.toArray()
     }
 
-    protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | readonly [] {
+    protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | EmptyArray {
         return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS,]
     }
 

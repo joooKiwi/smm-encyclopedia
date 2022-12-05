@@ -1,7 +1,7 @@
-import type {GameProperty}              from '../../entity/properties/game/GameProperty'
-import type {ObjectHolder}              from '../../../util/holder/ObjectHolder'
-import type {PlayerSoundEffectTriggers} from './PlayerSoundEffectTriggers'
-import type {SoundEffectProperty}       from './SoundEffectProperty'
+import type {GameProperty}              from 'core/entity/properties/game/GameProperty'
+import type {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import type {SoundEffectProperty}       from 'core/soundEffect/property/SoundEffectProperty'
+import type {ObjectHolder}              from 'util/holder/ObjectHolder'
 
 export class SoundEffectPropertyContainer
     implements SoundEffectProperty {

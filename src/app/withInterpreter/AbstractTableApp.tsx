@@ -1,13 +1,13 @@
-import type {AppInterpreterWithTable}      from '../interpreter/AppInterpreterWithTable'
-import type {AppProperties}                from '../AppProperties.types'
-import type {AppWithVariableDisplayStates} from '../AppStates.types'
-import type {ReactElement}                 from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}          from '../tools/table/SimpleHeader'
-import type {SingleTableContent}           from '../tools/table/Table.types'
+import type {AppProperties}                from 'app/AppProperties.types'
+import type {AppWithVariableDisplayStates} from 'app/AppStates.types'
+import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
+import type {SingleHeaderContent}          from 'app/tools/table/SimpleHeader'
+import type {SingleTableContent}           from 'app/tools/table/Table.types'
+import type {ReactElement}                 from 'util/react/ReactProperties'
 
-import {AbstractCardListApp} from './AbstractCardListApp'
-import Table                 from '../tools/table/Table'
-import {ViewDisplays}        from './ViewDisplays'
+import Table                 from 'app/tools/table/Table'
+import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
+import {ViewDisplays}        from 'app/withInterpreter/ViewDisplays'
 
 export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >

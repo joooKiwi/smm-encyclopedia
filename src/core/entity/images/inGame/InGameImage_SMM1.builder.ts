@@ -1,13 +1,13 @@
-import type {Builder}                          from '../../../../util/builder/Builder'
-import type {GameStyles as OriginalGameStyles} from '../../../gameStyle/GameStyles'
-import type {ImageName_SMM1}                   from './InGameImage.types'
-import type {InGameImage}                      from './InGameImage'
-import type {Themes}                           from '../../../theme/Themes'
+import type {ImageName_SMM1}                   from 'core/entity/images/inGame/InGameImage.types'
+import type {InGameImage}                      from 'core/entity/images/inGame/InGameImage'
+import type {GameStyles as OriginalGameStyles} from 'core/gameStyle/GameStyles'
+import type {Themes}                           from 'core/theme/Themes'
+import type {Builder}                          from 'util/builder/Builder'
 
-import {AbstractImageBuilder}      from '../AbstractImage.builder'
-import {EMPTY_MAP}                 from '../../../../util/emptyVariables'
-import {GameStyles}                from '../GameStyles'
-import {InGameImage_SMM1Container} from './InGameImage_SMM1.container'
+import {AbstractImageBuilder}      from 'core/entity/images/AbstractImage.builder'
+import {GameStyles}                from 'core/entity/images/GameStyles'
+import {InGameImage_SMM1Container} from 'core/entity/images/inGame/InGameImage_SMM1.container'
+import {EMPTY_MAP}                 from 'util/emptyVariables'
 
 export class InGameImage_SMM1Builder
     extends AbstractImageBuilder<ImageName_SMM1>

@@ -1,19 +1,8 @@
-import type {Name}                          from '../../lang/name/Name'
-import type {ReactComponent}                from '../../util/react/ReactComponent'
-import type {ReactElement, ReactProperties} from '../../util/react/ReactProperties'
-
 import {PureComponent} from 'react'
 
-export interface EntityPropertyProperties<R>
-    extends ReactProperties {
-
-    reference: R
-
-    name: Name<string>
-
-    displayAllAsText: boolean
-
-}
+import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
+import type {ReactComponent}           from 'util/react/ReactComponent'
+import type {ReactElement}             from 'util/react/ReactProperties'
 
 /**
  * @reactComponent

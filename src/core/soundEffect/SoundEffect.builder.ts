@@ -1,25 +1,24 @@
-import type {Builder}                          from '../../util/builder/Builder'
-import type {Name}                             from '../../lang/name/Name'
-import type {SoundEffect}                      from './SoundEffect'
-import type {SoundEffectTemplate}              from './SoundEffect.template'
-import type {ObjectHolder}                     from '../../util/holder/ObjectHolder'
-import type {PlayerSoundEffectTriggerTemplate} from './property/PlayerSoundEffectTrigger.template'
+import type {SoundEffect}                      from 'core/soundEffect/SoundEffect'
+import type {SoundEffectTemplate}              from 'core/soundEffect/SoundEffect.template'
+import type {PlayerSoundEffectTriggerTemplate} from 'core/soundEffect/property/PlayerSoundEffectTrigger.template'
+import type {Name}                             from 'lang/name/Name'
+import type {Builder}                          from 'util/builder/Builder'
+import type {ObjectHolder}                     from 'util/holder/ObjectHolder'
 
-import {EmptySoundEffectCategory}     from '../soundEffectCategory/EmptySoundEffectCategory'
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
-import {GamePropertyProvider}         from '../entity/properties/game/GameProperty.provider'
-import {Games}                        from '../game/Games'
-import {PlayerSoundEffectTriggers}    from './property/PlayerSoundEffectTriggers'
-import {SoundEffectContainer}         from './SoundEffect.container'
-import {SoundEffectPropertyContainer} from './property/SoundEffectProperty.container'
-import {SoundEffectCategories}        from '../soundEffectCategory/SoundEffectCategories'
-import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder'
+import {TemplateWithNameBuilder}      from 'core/_template/TemplateWithName.builder'
+import {GamePropertyProvider}         from 'core/entity/properties/game/GameProperty.provider'
+import {PlayerSoundEffectTriggers}    from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import {SoundEffectContainer}         from 'core/soundEffect/SoundEffect.container'
+import {SoundEffectPropertyContainer} from 'core/soundEffect/property/SoundEffectProperty.container'
+import {EmptySoundEffectCategory}     from 'core/soundEffectCategory/EmptySoundEffectCategory'
+import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 export class SoundEffectBuilder
     extends TemplateWithNameBuilder<SoundEffectTemplate, SoundEffect> {
 
     public constructor(templateBuilder: Builder<SoundEffectTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder, 2, false,)
     }
 
     //region -------------------- Build helper methods --------------------

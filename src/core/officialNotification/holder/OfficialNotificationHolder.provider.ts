@@ -1,11 +1,11 @@
-import type {NullOrNumber}                      from '../../../util/types'
-import type {OfficialNotifications}             from '../OfficialNotifications'
-import type {OfficialNotificationHolder}        from './OfficialNotificationHolder'
-import type {PossibleEnglishNameWithOnlyAmount} from '../OfficialNotifications.types'
-import type {ProviderWithKey}                   from '../../../util/provider/ProviderWithKey'
+import type {OfficialNotifications}             from 'core/officialNotification/OfficialNotifications'
+import type {PossibleEnglishNameWithOnlyAmount} from 'core/officialNotification/OfficialNotifications.types'
+import type {OfficialNotificationHolder}        from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {NullOrNumber}                      from 'util/types/nullable'
+import type {ProviderWithKey}                   from 'util/provider/ProviderWithKey'
 
-import {AbstractProvider}                    from '../../../util/provider/AbstractProvider'
-import {OfficialNotificationHolderContainer} from './OfficialNotificationHolder.container'
+import {OfficialNotificationHolderContainer} from 'core/officialNotification/holder/OfficialNotificationHolder.container'
+import {AbstractProvider}                    from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

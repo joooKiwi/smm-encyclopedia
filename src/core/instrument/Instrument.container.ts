@@ -1,9 +1,9 @@
-import type {Entity}                                    from '../entity/Entity'
-import type {Instrument}                                from './Instrument'
-import type {ObjectHolder, PossibleValueOnObjectHolder} from '../../util/holder/ObjectHolder'
-import type {Name}                                      from '../../lang/name/Name'
+import type {Entity}                                    from 'core/entity/Entity'
+import type {Instrument}                                from 'core/instrument/Instrument'
+import type {Name}                                      from 'lang/name/Name'
+import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class InstrumentContainer
     extends ClassContainingAName<string>

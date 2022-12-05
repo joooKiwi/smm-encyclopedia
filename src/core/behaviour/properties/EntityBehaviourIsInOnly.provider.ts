@@ -1,8 +1,8 @@
-import type {EntityBehaviourIsInOnly} from './EntityBehaviourIsInOnly'
-import type {ProviderWithoutKey}      from '../../../util/provider/ProviderWithoutKey'
+import type {EntityBehaviourIsInOnly} from 'core/behaviour/properties/EntityBehaviourIsInOnly'
+import type {ProviderWithoutKey}      from 'util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}                 from '../../../util/provider/AbstractProvider'
-import {EntityBehaviourIsInOnlyContainer} from './EntityBehaviourIsInOnly.container'
+import {EntityBehaviourIsInOnlyContainer} from 'core/behaviour/properties/EntityBehaviourIsInOnly.container'
+import {AbstractProvider}                 from 'util/provider/AbstractProvider'
 
 /**
  * An entity behaviour "is in only" {@link Provider}.

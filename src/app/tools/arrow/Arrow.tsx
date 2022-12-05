@@ -2,9 +2,9 @@ import './Arrow.scss'
 
 import type {PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {ReactProperties} from '../../../util/react/ReactProperties'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {Arrows} from './Arrows'
+import {Arrows} from 'app/tools/arrow/Arrows'
 
 interface SingleArrowProperties
     extends ReactProperties {

@@ -1,4 +1,4 @@
-import type {PossibleConditionToUnlockIt, UnlockProperty} from './UnlockProperty'
+import type {PossibleConditionToUnlockIt, UnlockProperty} from 'core/mysteryMushroom/properties/UnlockProperty'
 
 export class UnlockPropertyContainer
     implements UnlockProperty {

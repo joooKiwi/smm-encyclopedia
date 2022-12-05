@@ -1,4 +1,4 @@
-import type {ClassWithEveryLanguages} from '../ClassWithEveryLanguages'
+import type {ClassWithEveryLanguages} from 'lang/ClassWithEveryLanguages'
 
 /**
  * A generic structure of a name holding a specific type of value.

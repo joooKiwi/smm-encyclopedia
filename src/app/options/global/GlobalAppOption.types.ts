@@ -1,8 +1,8 @@
-import type {GlobalThemeOption} from './GlobalThemeOption'
-import type {ImageAnimations}   from './ImageAnimations'
-import type {Images}            from './Images'
-import type {Sounds}            from './Sounds'
-import type {Texts}             from './Texts'
+import type {GlobalThemeOption} from 'app/options/global/GlobalThemeOption'
+import type {ImageAnimations}   from 'app/options/global/ImageAnimations'
+import type {Images}            from 'app/options/global/Images'
+import type {Sounds}            from 'app/options/global/Sounds'
+import type {Texts}             from 'app/options/global/Texts'
 
 enum Enum {
 

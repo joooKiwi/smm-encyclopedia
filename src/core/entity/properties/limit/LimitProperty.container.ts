@@ -1,8 +1,8 @@
-import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from './LimitProperty'
-import type {Nullable}     from '../../../../util/types'
-import type {GameStructure}                                                                                                                                                                                                from '../../../game/GameStructure'
+import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
+import type {GameStructure}                                                                                                                                                                                                from 'core/game/GameStructure'
+import type {Nullable}                                                                                                                                                                                                     from 'util/types/nullable'
 
-import {EntityLimits} from '../../../entityLimit/EntityLimits'
+import {EntityLimits} from 'core/entityLimit/EntityLimits'
 
 export class LimitPropertyContainer<EDITOR_SMM1AND3DS extends PossibleEditorLimit_SMM1And3DS = PossibleEditorLimit_SMM1And3DS,
     EDITOR_SMM2 extends PossibleEditorLimit_SMM2 = PossibleEditorLimit_SMM2,

@@ -1,4 +1,4 @@
-import type {CourseTagTypes} from './CourseTagTypes'
+import type {CourseTagTypes} from 'app/property/CourseTagTypes'
 
 enum Enum {
 

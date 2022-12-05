@@ -1,7 +1,7 @@
-import type {ClassWithNullObjectPattern, EmptyNameName} from '../../util/ClassWithNullObjectPattern'
-import type {Name}                                      from './Name'
+import type {Name}                                      from 'lang/name/Name'
+import type {ClassWithNullObjectPattern, EmptyNameName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from '../../util/emptyVariables'
+import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from 'util/emptyVariables'
 
 /**
  * @singleton

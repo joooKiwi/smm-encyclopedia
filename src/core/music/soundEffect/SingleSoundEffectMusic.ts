@@ -1,5 +1,5 @@
-import type {MusicSoundFile}   from '../file/MusicSoundFile'
-import type {SoundEffectMusic} from './SoundEffectMusic'
+import type {MusicSoundFile}   from 'core/music/file/MusicSoundFile'
+import type {SoundEffectMusic} from 'core/music/soundEffect/SoundEffectMusic'
 
 /** A {@link SoundEffects sound effect} that has only 1 track */
 export interface SingleSoundEffectMusic<SOUND_EFFECT extends MusicSoundFile<PossibleSoundEffectName> = MusicSoundFile<PossibleSoundEffectName>, >

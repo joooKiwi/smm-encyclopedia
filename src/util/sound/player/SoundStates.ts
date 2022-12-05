@@ -1,13 +1,13 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {EnglishName, Names, Ordinals} from './SoundStates.types'
-import type {ClassWithEnglishName}         from '../../../core/ClassWithEnglishName'
-import type {Nullable}                     from '../../types'
-import type {ReactElement}                 from '../../react/ReactProperties'
-import type {SoundSubElementsHolder}       from '../holder/SoundSubElementsHolder'
+import type {ClassWithEnglishName}         from 'core/ClassWithEnglishName'
+import type {ReactElement}                 from 'util/react/ReactProperties'
+import type {EnglishName, Names, Ordinals} from 'util/sound/player/SoundStates.types'
+import type {SoundSubElementsHolder}       from 'util/sound/holder/SoundSubElementsHolder'
+import type {Nullable}                     from 'util/types/nullable'
 
-import {getValueByEnglishName} from '../../utilitiesMethods'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 export abstract class SoundStates
     extends Enum<Ordinals, Names>

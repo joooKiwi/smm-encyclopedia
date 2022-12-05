@@ -1,11 +1,11 @@
-import type {ClassWithNullObjectPattern, EmptyWorldThemeName} from '../../util/ClassWithNullObjectPattern'
-import type {WorldTheme}                                      from './WorldTheme'
+import type {WorldTheme}                                      from 'core/theme/WorldTheme'
+import type {ClassWithNullObjectPattern, EmptyWorldThemeName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassContainingAName}                     from '../../lang/name/ClassContainingAName'
-import {ClassThatIsAvailableFromTheStartProvider} from '../availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {EMPTY_MAP}                                from '../../util/emptyVariables'
-import {EmptyStringName}                          from '../../lang/name/EmptyStringName'
-import {GamePropertyProvider}                     from '../entity/properties/game/GameProperty.provider'
+import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
+import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
+import {ClassContainingAName}                     from 'lang/name/ClassContainingAName'
+import {EmptyStringName}                          from 'lang/name/EmptyStringName'
+import {EMPTY_MAP}                                from 'util/emptyVariables'
 
 /**
  * @singleton

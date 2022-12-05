@@ -1,10 +1,10 @@
-import type {Nullable} from '../../../util/types'
+import type {Nullable} from 'util/types/nullable'
 
-import {EMPTY_ARRAY}                       from '../../../util/emptyVariables'
-import {ImageWithTimesThemesAndGameStyles} from './ImageWithTimesThemesAndGameStyles'
-import {GameStyles}                        from '../../gameStyle/GameStyles'
-import {Themes}                            from '../../theme/Themes'
-import {Times}                             from '../../time/Times'
+import {ImageWithTimesThemesAndGameStyles} from 'core/entity/images/ImageWithTimesThemesAndGameStyles'
+import {GameStyles}                        from 'core/gameStyle/GameStyles'
+import {Themes}                            from 'core/theme/Themes'
+import {Times}                             from 'core/time/Times'
+import {EMPTY_ARRAY}                       from 'util/emptyVariables'
 
 export abstract class AbstractImageWithTimesThemesAndGameStyles
     implements ImageWithTimesThemesAndGameStyles {

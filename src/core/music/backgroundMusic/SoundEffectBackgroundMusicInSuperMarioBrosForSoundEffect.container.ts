@@ -1,8 +1,8 @@
-import type {MusicSoundFile}                                                 from '../file/MusicSoundFile'
-import type {Possible_Music, PossibleLink_LinkMusic, PossibleSMB2_SMB2Music} from './types'
-import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect}       from './SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect'
+import type {Possible_Music, PossibleLink_LinkMusic, PossibleSMB2_SMB2Music} from 'core/music/backgroundMusic/types'
+import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect}       from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect'
+import type {MusicSoundFile}                                                 from 'core/music/file/MusicSoundFile'
 
-import {BackgroundMusicContainer} from './BackgroundMusic.container'
+import {BackgroundMusicContainer} from 'core/music/backgroundMusic/BackgroundMusic.container'
 
 export class SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer<LINK_MUSIC extends MusicSoundFile<PossibleLink_LinkMusic>, SMB2_MUSIC extends MusicSoundFile<PossibleSMB2_SMB2Music>, >
     extends BackgroundMusicContainer<null, null, null, LINK_MUSIC, LINK_MUSIC, SMB2_MUSIC, SMB2_MUSIC, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null>

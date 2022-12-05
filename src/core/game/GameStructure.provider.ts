@@ -1,8 +1,8 @@
-import type {GameStructure}      from './GameStructure'
-import type {ProviderWithoutKey} from '../../util/provider/ProviderWithoutKey'
+import type {GameStructure}      from 'core/game/GameStructure'
+import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
 
-import {AbstractProvider}       from '../../util/provider/AbstractProvider'
-import {GameStructureContainer} from './GameStructure.container'
+import {GameStructureContainer} from 'core/game/GameStructure.container'
+import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
 /**
  * @singleton

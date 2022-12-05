@@ -1,11 +1,11 @@
 import './AnimatedImages.scss'
 import './VariableImage.scss'
 
-import type {AnimatedImagesProperties}    from './properties/AnimatedImagesProperties'
-import type {ImageFromVariableProperties} from './properties/ImageFromVariableProperties'
-import type {ImageProperties}             from './properties/ImageProperties'
+import type {AnimatedImagesProperties}    from 'app/tools/images/properties/AnimatedImagesProperties'
+import type {ImageFromVariableProperties} from 'app/tools/images/properties/ImageFromVariableProperties'
+import type {ImageProperties}             from 'app/tools/images/properties/ImageProperties'
 
-import {assert} from '../../../util/utilitiesMethods'
+import {assert} from 'util/utilitiesMethods'
 
 /**
  *

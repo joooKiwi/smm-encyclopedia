@@ -1,10 +1,10 @@
-import type {EntityReferenceHolder, PossibleEntityReferences, PossibleEntityReferences_Received} from './EntityReferenceHolder'
-import type {ObjectHolder}                                                                       from '../../../util/holder/ObjectHolder'
+import type {EntityReferenceHolder, PossibleEntityReferences, PossibleEntityReferences_Received} from 'core/editorVoice/holder/EntityReferenceHolder'
+import type {ObjectHolder}                                                                       from 'util/holder/ObjectHolder'
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container'
-import {EMPTY_ARRAY}                  from '../../../util/emptyVariables'
-import {Import}                       from '../../../util/DynamicImporter'
-import {ObjectHolderContainer}        from '../../../util/holder/ObjectHolder.container'
+import {Import}                       from 'util/DynamicImporter'
+import {EMPTY_ARRAY}                  from 'util/emptyVariables'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {ObjectHolderContainer}        from 'util/holder/ObjectHolder.container'
 
 /**
  * @classWithDynamicImport {@link Entities}

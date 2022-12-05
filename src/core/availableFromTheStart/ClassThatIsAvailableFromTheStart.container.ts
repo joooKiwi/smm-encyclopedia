@@ -1,5 +1,5 @@
-import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart} from './ClassThatIsAvailableFromTheStart'
-import type {GameStructure}                                                     from '../game/GameStructure'
+import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {GameStructure}                                                     from 'core/game/GameStructure'
 
 export class ClassThatIsAvailableFromTheStartContainer<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM3DS extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM2 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, >
     implements ClassThatIsAvailableFromTheStart<SMM1, SMM3DS, SMM2> {

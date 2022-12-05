@@ -1,7 +1,7 @@
-import type {NullableString}       from '../../util/types'
-import type {PossibleNameTemplate} from './Name.template'
+import type {PossibleNameTemplate} from 'lang/name/Name.template'
+import type {NullableString}       from 'util/types/nullable'
 
-import {assert} from '../../util/utilitiesMethods'
+import {assert} from 'util/utilitiesMethods'
 
 /**
  * A class made to help the {@link PossibleNameTemplate names templates}.

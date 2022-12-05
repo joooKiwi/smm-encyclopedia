@@ -1,4 +1,4 @@
-import type {PredefinedMessages} from './PredefinedMessages'
+import type {PredefinedMessages} from 'core/predefinedMessage/PredefinedMessages'
 
 enum Enum {
 

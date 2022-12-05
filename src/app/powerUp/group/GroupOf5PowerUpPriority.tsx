@@ -1,9 +1,9 @@
 import './GroupOf5PowerUpPriority.scss'
 
-import type {ReactElement, ReactProperties} from '../../../util/react/ReactProperties'
+import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 
-import Arrow    from '../../tools/arrow/Arrow'
-import {Arrows} from '../../tools/arrow/Arrows'
+import Arrow    from 'app/tools/arrow/Arrow'
+import {Arrows} from 'app/tools/arrow/Arrows'
 
 interface GroupOf5PowerUpPriorityProperties
     extends ReactProperties {

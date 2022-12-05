@@ -1,23 +1,39 @@
-import type {PossibleAcronym}                                                    from './GameStyles.types'
-import type {PossibleIsAvailableFromTheStart}                                    from '../availableFromTheStart/loader.types'
-import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from './Loader.types'
-import type {SimpleGameFrom1And2Template}                                        from '../game/SimpleGame.template'
+import type {PossibleIsAvailableFromTheStart}                                    from 'core/availableFromTheStart/loader.types'
+import type {SimpleGameFrom1And2Template}                                        from 'core/game/SimpleGame.template'
+import type {PossibleAcronym}                                                    from 'core/gameStyle/GameStyles.types'
+import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/Loader.types'
 
 /**
  * @template
  */
 export interface GameStyleTemplate {
 
-    is: {
-        in: {
-            game: SimpleGameFrom1And2Template<boolean, boolean>
-        }
-        availableFromTheStart: PossibleIsAvailableFromTheStart
-    }
+    is: IsGameStyleTemplate
 
     reference: PossibleAcronym
 
     nightDesertWind: NightDesertWindTemplate
+
+}
+
+
+/**
+ * @template
+ */
+export interface IsGameStyleTemplate {
+
+    in: IsInGameStyleTemplate
+
+    availableFromTheStart: PossibleIsAvailableFromTheStart
+
+}
+
+/**
+ * @template
+ */
+export interface IsInGameStyleTemplate {
+
+    game: SimpleGameFrom1And2Template<boolean, boolean>
 
 }
 

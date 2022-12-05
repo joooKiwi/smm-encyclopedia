@@ -1,8 +1,8 @@
-import type {NullOrNumber, NullOrString}                from '../../../util/types'
-import type {NumberPropertyThatCanBeUnknownWithComment} from '../PropertyThatCanBeUnknownWithComment'
-import type {PossibleValueOnObjectHolder}               from '../../../util/holder/ObjectHolder'
+import type {NumberPropertyThatCanBeUnknownWithComment} from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PossibleValueOnObjectHolder}               from 'util/holder/ObjectHolder'
+import type {NullOrNumber, NullOrString}                from 'util/types/nullable'
 
-import {PropertyThatCanBeUnknownWithCommentContainer} from '../PropertyThatCanBeUnknownWithComment.container'
+import {PropertyThatCanBeUnknownWithCommentContainer} from 'core/_properties/PropertyThatCanBeUnknownWithComment.container'
 
 export class NumberPropertyThatCanBeUnknownWithCommentContainer<N extends NullOrNumber = NullOrNumber, IS_UNKNOWN extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >
     extends PropertyThatCanBeUnknownWithCommentContainer<N, IS_UNKNOWN, COMMENT>

@@ -1,8 +1,8 @@
-import type {NullOrBoolean} from '../../../../util/types'
-import type {TimeProperty}  from './TimeProperty'
+import type {TimeProperty}  from 'core/entity/properties/time/TimeProperty'
+import type {NullOrBoolean} from 'util/types/nullable'
 
-import {Import}     from '../../../../util/DynamicImporter'
-import type {Times} from '../../../time/Times'
+import type {Times} from 'core/time/Times'
+import {Import}     from 'util/DynamicImporter'
 
 /**
  * @classWithDynamicImport {@link Times}

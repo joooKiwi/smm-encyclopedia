@@ -1,6 +1,6 @@
-import type {PossibleFileName, PossibleStartingName_WithSingingPartBefore} from '../EditorVoiceSound'
+import type {PossibleFileName, PossibleStartingName_WithSingingPartBefore} from 'core/editorVoice/EditorVoiceSound'
 
-import {AbstractEditorVoiceSoundHolder} from './AbstractEditorVoiceSoundHolder'
+import {AbstractEditorVoiceSoundHolder} from 'core/editorVoice/holder/AbstractEditorVoiceSoundHolder'
 
 export class EditorVoiceSoundHolderWithSingingPartBefore<U extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
     extends AbstractEditorVoiceSoundHolder<never, U> {

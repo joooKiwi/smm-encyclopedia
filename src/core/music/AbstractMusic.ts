@@ -1,8 +1,8 @@
-import type {Music}          from './Music'
-import type {MusicSoundFile} from './file/MusicSoundFile'
-import type {ObjectHolder}   from '../../util/holder/ObjectHolder'
+import type {Music}          from 'core/music/Music'
+import type {MusicSoundFile} from 'core/music/file/MusicSoundFile'
+import type {ObjectHolder}   from 'util/holder/ObjectHolder'
 
-import {ObjectHolderContainer} from '../../util/holder/ObjectHolder.container'
+import {ObjectHolderContainer} from 'util/holder/ObjectHolder.container'
 
 export abstract class AbstractMusic<ALL extends readonly MusicSoundFile[] = readonly MusicSoundFile[], >
     implements Music<ALL> {

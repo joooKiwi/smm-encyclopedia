@@ -2,11 +2,11 @@ import './Name.component.scss'
 
 import {useState} from 'react'
 
-import type {NameProperties} from './Name.properties'
+import type {NameProperties} from 'lang/name/component/Name.properties'
 
-import {StringContainer}    from '../../../util/StringContainer'
-import NamePopoverComponent from './NamePopover.component'
-import NameListComponent    from './NameList.component'
+import NamePopoverComponent from 'lang/name/component/NamePopover.component'
+import NameListComponent    from 'lang/name/component/NameList.component'
+import {StringContainer}    from 'util/StringContainer'
 
 /**
  * A name component used to render the current language in text format

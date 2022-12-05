@@ -1,6 +1,6 @@
-import type {GameStyles} from '../../../gameStyle/GameStyles'
+import type {GameStyles} from 'core/gameStyle/GameStyles'
 
-import {ClearConditionImage} from './ClearConditionImage'
+import {ClearConditionImage} from 'core/entity/images/clearCondition/ClearConditionImage'
 
 export class ClearConditionImageContainer
     implements ClearConditionImage {

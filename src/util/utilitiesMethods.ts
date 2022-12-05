@@ -1,10 +1,12 @@
 import type {BasicEnumerableConstructor, CollectionHolder, Enumerable} from '@joookiwi/enumerable/dist/types'
 import {AssertionError}                                                from 'assert'
 
-import type {ClassWithEnglishName} from '../core/ClassWithEnglishName'
-import type {Nullable}             from './types'
+import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
+import type {Nullable}             from 'util/types/nullable'
+import type {EmptyString}          from 'util/types/variables'
 
-import {isInProduction} from '../variables'
+import {isInProduction} from 'variables'
+import {EMPTY_STRING}   from 'util/emptyVariables'
 
 /**
  * Validate if an array is equals to another one.
@@ -40,8 +42,8 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
  *
  * @param value The value to compare
  */
-export function isNullableEmptyString(value: unknown,): value is Nullable<''> {
-    return value === '' || value == null
+export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyString> {
+    return value === EMPTY_STRING || value == null
 }
 
 export function assert(condition: boolean, message: string,): asserts condition {

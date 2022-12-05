@@ -1,5 +1,5 @@
-import type {ReactState}   from '../../../react/ReactState'
-import type {HistoryState} from '../../history/HistoryState'
+import type {ReactState}   from 'util/react/ReactState'
+import type {HistoryState} from 'util/sound/history/HistoryState'
 
 export interface SimpleSoundState
     extends ReactState {

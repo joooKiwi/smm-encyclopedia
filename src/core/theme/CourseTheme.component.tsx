@@ -1,8 +1,8 @@
-import type {ThemeProperty} from '../entity/properties/theme/ThemeProperty'
+import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 
-import {gameContentTranslation} from '../../lang/components/translationMethods'
-import {ThemeComponent}         from './Theme.component'
-import {Themes}                 from './Themes'
+import {ThemeComponent}         from 'core/theme/Theme.component'
+import {Themes}                 from 'core/theme/Themes'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @reactComponent

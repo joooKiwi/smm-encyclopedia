@@ -1,12 +1,12 @@
-import type {AlternativeEntityLimit, EntityLimit}         from './EntityLimit'
-import type {EntityLimitAmount}                           from './properties/EntityLimitAmount'
-import type {EntityLimitTypes}                            from './EntityLimitTypes'
-import type {Name}                                        from '../../lang/name/Name'
-import type {NullOr}                                      from '../../util/types'
-import type {ObjectHolder, PossibleValueOnObjectHolder}   from '../../util/holder/ObjectHolder'
-import type {PossibleAcronym, PossibleAlternativeAcronym} from './EntityLimits.types'
+import type {AlternativeEntityLimit, EntityLimit}         from 'core/entityLimit/EntityLimit'
+import type {EntityLimitTypes}                            from 'core/entityLimit/EntityLimitTypes'
+import type {PossibleAcronym, PossibleAlternativeAcronym} from 'core/entityLimit/EntityLimits.types'
+import type {EntityLimitAmount}                           from 'core/entityLimit/properties/EntityLimitAmount'
+import type {Name}                                        from 'lang/name/Name'
+import type {NullOr}                                      from 'util/types/nullable'
+import type {ObjectHolder, PossibleValueOnObjectHolder}   from 'util/holder/ObjectHolder'
 
-import {ClassContainingANameAndAnAlternative} from '../../lang/name/ClassContainingANameAndAnAlternative'
+import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| PossibleAcronym | PossibleAlternativeAcronym> = NullOr<| PossibleAcronym | PossibleAlternativeAcronym>,
     TYPE extends EntityLimitTypes = EntityLimitTypes,

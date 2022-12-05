@@ -1,7 +1,7 @@
 import type BaseComponent      from 'bootstrap/js/dist/base-component'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
-import type {BootstrapInstance} from './BootstapInstance'
+import type {BootstrapInstance} from 'bootstrap/BootstapInstance'
 
 export interface Template<INSTANCE extends GenericBootstrapInstance = GenericBootstrapInstance, > {
 

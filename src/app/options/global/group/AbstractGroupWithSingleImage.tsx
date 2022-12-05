@@ -1,12 +1,12 @@
-import AbstractGroup from './AbstractGroup'
-import Image         from '../../../tools/images/Image'
+import type {GlobalAppOption}                                       from 'app/options/global/GlobalAppOption'
+import type {GlobalThemeOption}                                     from 'app/options/global/GlobalThemeOption'
+import type {OnClickCallback, PossibleElement, PossibleOptionValue} from 'app/options/global/group/Group.types'
+import type {Themes}                                                from 'core/theme/Themes'
+import type {ReactElement}                                          from 'util/react/ReactProperties'
+import type {NullOr}                                                from 'util/types/nullable'
 
-import type {GlobalAppOption}                                       from '../GlobalAppOption'
-import type {GlobalThemeOption}                                     from '../GlobalThemeOption'
-import type {NullOr}                                                from '../../../../util/types'
-import type {OnClickCallback, PossibleElement, PossibleOptionValue} from './Group.types'
-import type {ReactElement}                                          from '../../../../util/react/ReactProperties'
-import type {Themes}                                                from '../../../../core/theme/Themes'
+import AbstractGroup from 'app/options/global/group/AbstractGroup'
+import Image         from 'app/tools/images/Image'
 
 /**
  * @reactComponent

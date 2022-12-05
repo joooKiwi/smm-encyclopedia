@@ -1,19 +1,18 @@
 import './ThemeApp.scss'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
-import type {AppProperties}                                        from './AppProperties.types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
-import type {ThemeAppStates}                                       from './AppStates.types'
+import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {ThemeAppStates}                                       from 'app/AppStates.types'
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractTableApp}       from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}    from '../util/emptyReactVariables'
-import {gameContentTranslation} from '../lang/components/translationMethods'
-import Image                    from './tools/images/Image'
-import {ThemeAppOption}         from './options/ThemeAppOption'
-import {Themes}                 from '../core/theme/Themes'
-import {ViewDisplays}           from './withInterpreter/ViewDisplays'
-import {CommonOptions}          from './options/CommonOptions'
+import {CommonOptions}          from 'app/options/CommonOptions'
+import {ThemeAppOption}         from 'app/options/ThemeAppOption'
+import Image                    from 'app/tools/images/Image'
+import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {Themes}                 from 'core/theme/Themes'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @reactComponent
@@ -70,7 +69,7 @@ export default class ThemeApp
                     <div className="col-2">{CommonOptions.get.getGameContent(enumerable)}</div>
                     <div className="images-container col-7">
                         {enumerable.renderSingleComponent(true)}
-                        {endlessMarioImagePath != null ? <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/> : EMPTY_REACT_ELEMENT}
+                        {endlessMarioImagePath == null ? null : <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/>}
                     </div>
                     <div className="col-2">{CommonOptions.get.getThemeContent(enumerable)}</div>
                 </div>

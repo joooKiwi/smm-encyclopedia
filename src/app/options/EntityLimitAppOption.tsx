@@ -1,21 +1,20 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {AppOptionWithContent, PossibleRenderReactElement} from './component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from './component/AppOptionWithTable'
-import type {EntityLimits}                                     from '../../core/entityLimit/EntityLimits'
-import type {Names, Ordinals}                                  from './EntityLimitAppOption.types'
-import type {NullOr}                                           from '../../util/types'
-import type {ReactElement}                                     from '../../util/react/ReactProperties'
-import type {SingleHeaderContent}                              from '../tools/table/SimpleHeader'
+import type {Names, Ordinals}                                  from 'app/options/EntityLimitAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {EntityLimits}                                     from 'core/entityLimit/EntityLimits'
+import type {ReactElement}                                     from 'util/react/ReactProperties'
+import type {NullOr}                                           from 'util/types/nullable'
 
-import {AppOptionWithContentComponent}              from './component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}                from './component/AppOptionWithTable.component'
-import {contentTranslation, gameContentTranslation} from '../../lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}                        from '../../util/emptyReactVariables'
-import {Games}                                      from '../../core/game/Games'
-import NameComponent                                from '../../lang/name/component/Name.component'
-import TextComponent                                from '.././tools/text/TextComponent'
+import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
+import TextComponent                                from 'app/tools/text/TextComponent'
+import {Games}                                      from 'core/game/Games'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import NameComponent                                from 'lang/name/component/Name.component'
 
 export abstract class EntityLimitAppOption
     extends Enum<Ordinals, Names> {
@@ -52,7 +51,7 @@ export abstract class EntityLimitAppOption
             return {
                 key: 'names', element: contentTranslation('Name'),
                 subHeaders: [
-                    {key: 'name', element: EMPTY_REACT_ELEMENT,},
+                    {key: 'name', element: null,},
                     {key: 'alternativeName', element: contentTranslation('Alternative name'),},
                 ],
             }

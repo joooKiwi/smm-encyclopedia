@@ -1,5 +1,5 @@
-import type {BasePath}              from '../../variables'
-import type {SoundEffectCategories} from './SoundEffectCategories'
+import type {BasePath}              from 'variables'
+import type {SoundEffectCategories} from 'core/soundEffectCategory/SoundEffectCategories'
 
 enum Enum {
     FEELINGS,

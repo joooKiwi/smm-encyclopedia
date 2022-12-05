@@ -1,5 +1,5 @@
-import type {BasePath}             from '../../variables'
-import type {MiiCostumeCategories} from './MiiCostumeCategories'
+import type {BasePath}             from 'variables'
+import type {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
 
 enum Enum {
 

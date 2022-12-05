@@ -1,17 +1,16 @@
 import './MysteryMushroomApp.scss'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from './interpreter/AppInterpreterWithTable'
-import type {AppProperties}                                        from './AppProperties.types'
-import type {MysteryMushroomAppStates}                             from './AppStates.types'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from './interpreter/DimensionOnList'
-import type {ReactElementOrString}                                 from '../util/react/ReactProperties'
+import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {MysteryMushroomAppStates}                             from 'app/AppStates.types'
+import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {AbstractTableApp}         from './withInterpreter/AbstractTableApp'
-import {EMPTY_REACT_ELEMENT}      from '../util/emptyReactVariables'
-import {gameContentTranslation}   from '../lang/components/translationMethods'
-import {MysteryMushroomAppOption} from './options/MysteryMushroomAppOption'
-import {MysteryMushrooms}         from '../core/mysteryMushroom/MysteryMushrooms'
-import {ViewDisplays}             from './withInterpreter/ViewDisplays'
+import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
+import {AbstractTableApp}         from 'app/withInterpreter/AbstractTableApp'
+import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
+import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
+import {gameContentTranslation}   from 'lang/components/translationMethods'
 
 /**
  * @reactComponent
@@ -75,7 +74,7 @@ export default class MysteryMushroomApp
                 const contains2Images = amountOfImages === 2
 
                 return amountOfImages === 0
-                    ? EMPTY_REACT_ELEMENT
+                    ? null
                     : <div className={`image-content-container ${contains2Images ? 'dual' : 'single'}-image-content-container`}>
                         {[
                             MysteryMushroomAppOption.WAITING,

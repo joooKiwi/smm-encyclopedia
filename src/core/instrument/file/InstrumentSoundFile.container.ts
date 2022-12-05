@@ -1,7 +1,7 @@
-import type {InstrumentSoundExtension, InstrumentSoundFile, InstrumentSoundPath} from './InstrumentSoundFile'
-import type {PossibleFileName}                                                   from '../Instruments.types'
+import type {PossibleFileName}                                                   from 'core/instrument/Instruments.types'
+import type {InstrumentSoundExtension, InstrumentSoundFile, InstrumentSoundPath} from 'core/instrument/file/InstrumentSoundFile'
 
-import {NonRepeatableSoundFileContainer} from '../../../util/sound/NonRepeatableSoundFile.container'
+import {NonRepeatableSoundFileContainer} from 'util/sound/NonRepeatableSoundFile.container'
 
 export class InstrumentSoundFileContainer<NAME extends PossibleFileName = PossibleFileName, >
     extends NonRepeatableSoundFileContainer<InstrumentSoundPath, NAME, InstrumentSoundExtension>

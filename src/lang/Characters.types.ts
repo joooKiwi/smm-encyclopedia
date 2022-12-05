@@ -1,4 +1,4 @@
-import type {Characters} from './Characters'
+import type {Characters} from 'lang/Characters'
 
 export type PossibleSingleCharacter = | SpaceEvenCharacter | SpaceUnevenCharacter
 

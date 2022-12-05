@@ -1,8 +1,8 @@
-import type {Musics}         from '../music/Musics'
-import type {MusicSoundFile} from '../music/file/MusicSoundFile'
+import type {Musics}         from 'core/music/Musics'
+import type {MusicSoundFile} from 'core/music/file/MusicSoundFile'
 
-import {assert}      from '../../util/utilitiesMethods'
-import {EMPTY_ARRAY} from '../../util/emptyVariables'
+import {assert}      from 'util/utilitiesMethods'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @todo find a better implementation than using only this (this works for now, but is not-efficient)

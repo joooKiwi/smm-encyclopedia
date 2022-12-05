@@ -1,7 +1,7 @@
-import type {ClassWithNullObjectPattern, EmptyEntityLimitAmountName} from '../../../util/ClassWithNullObjectPattern'
-import type {EntityLimitAmount}                                      from './EntityLimitAmount'
+import type {EntityLimitAmount}                                      from 'core/entityLimit/properties/EntityLimitAmount'
+import type {ClassWithNullObjectPattern, EmptyEntityLimitAmountName} from 'util/ClassWithNullObjectPattern'
 
-import {PropertyContainer} from '../../_properties/Property.container'
+import {PropertyContainer} from 'core/_properties/Property.container'
 
 /**
  * @singleton

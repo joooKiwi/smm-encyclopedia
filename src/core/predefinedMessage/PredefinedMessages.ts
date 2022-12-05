@@ -1,15 +1,15 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                 from '../ClassWithEnglishName'
-import type {ClassWithReference}                   from '../ClassWithReference'
-import type {Names, Ordinals, PossibleEnglishName} from './PredefinedMessages.types'
-import type {Nullable}                             from '../../util/types'
-import type {PredefinedMessage}                    from './PredefinedMessage'
+import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                   from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
+import type {PredefinedMessage}                    from 'core/predefinedMessage/PredefinedMessage'
+import type {Nullable}                             from 'util/types/nullable'
 
-import {getValueByEnglishName} from '../../util/utilitiesMethods'
-import {Import}                from '../../util/DynamicImporter'
-import {StringContainer}       from '../../util/StringContainer'
+import {Import}                from 'util/DynamicImporter'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 /**
  * @recursiveReference {@link PredefinedMessageLoader}

@@ -1,11 +1,10 @@
 import {PureComponent} from 'react'
 
-import type {GlobalAppOption}                                                                                   from '../GlobalAppOption'
-import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from './Group.types'
-import type {ReactComponent}                                                                                    from '../../../../util/react/ReactComponent'
-import type {ReactElement}                                                                                      from '../../../../util/react/ReactProperties'
-
-import {EMPTY_REACT_ELEMENT} from '../../../../util/emptyReactVariables'
+import type {GlobalAppOption}                                                                                   from 'app/options/global/GlobalAppOption'
+import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from 'app/options/global/group/Group.types'
+import type {ReactComponent}                                                                                    from 'util/react/ReactComponent'
+import type {ReactElement}                                                                                      from 'util/react/ReactProperties'
+import type {NullOr}                                                                                            from 'util/types/nullable'
 
 /**
  * @reactComponent
@@ -39,11 +38,11 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
 
     public override render(): ReactElement {
         return this.isHidden
-            ? EMPTY_REACT_ELEMENT
+            ? null
             : <div key={`option container (${this.id})`} id={`${this.id}-option-container`} className="container-fluid">{
                 this.elements.map(([element, option, isDisabled, isHidden, onClickCallback = null,]) =>
                     isHidden
-                        ? EMPTY_REACT_ELEMENT
+                        ? null
                         : this._renderElement(
                             element,
                             option,

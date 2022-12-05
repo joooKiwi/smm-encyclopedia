@@ -1,5 +1,5 @@
-import type {SoundEffectMusic} from './SoundEffectMusic'
-import type {MusicSoundFile}   from '../file/MusicSoundFile'
+import type {SoundEffectMusic} from 'core/music/soundEffect/SoundEffectMusic'
+import type {MusicSoundFile}   from 'core/music/file/MusicSoundFile'
 
 /** A {@link SoundEffects sound effect} that has a different editor track than the one played when playing */
 export interface SoundEffectMusicWithDifferentEditor<SOUND_EFFECT extends MusicSoundFile<PossibleSoundEffectEditorOnly_Name> = MusicSoundFile<PossibleSoundEffectEditorOnly_Name>, EDITOR_SOUND_EFFECT extends MusicSoundFile<PossibleSoundEffectEditorOnly_EditorName> = MusicSoundFile<PossibleSoundEffectEditorOnly_EditorName>, >

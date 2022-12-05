@@ -1,6 +1,6 @@
-import type {ClassWithAmount}                                   from './ClassWithAmount'
-import type {NullOr, NullOrBoolean, NullOrNumber, NullOrString} from '../../util/types'
-import type {Property}                                          from './Property'
+import type {ClassWithAmount}                                   from 'core/_properties/ClassWithAmount'
+import type {Property}                                          from 'core/_properties/Property'
+import type {NullOr, NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
 
 /**
  * A generic property with a value

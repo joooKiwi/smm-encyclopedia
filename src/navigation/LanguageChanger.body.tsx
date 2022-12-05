@@ -2,14 +2,14 @@ import './LanguageChanger.body.scss'
 
 import {Fragment, useState} from 'react'
 
-import type {ReactProperties} from '../util/react/ReactProperties'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {EveryLanguages}    from '../lang/EveryLanguages'
-import LanguageChangerLink from './LanguageChanger.link'
-import {ProjectLanguages}  from '../lang/ProjectLanguages'
-import {ModalInstance}     from '../bootstrap/modal/ModalInstance'
-import {TooltipInstance}   from '../bootstrap/tooltip/TooltipInstance'
-import {StringContainer}   from '../util/StringContainer'
+import {ModalInstance}     from 'bootstrap/modal/ModalInstance'
+import {TooltipInstance}   from 'bootstrap/tooltip/TooltipInstance'
+import {EveryLanguages}    from 'lang/EveryLanguages'
+import {ProjectLanguages}  from 'lang/ProjectLanguages'
+import LanguageChangerLink from 'navigation/LanguageChanger.link'
+import {StringContainer}   from 'util/StringContainer'
 
 interface LanguageChangerBodyProperties
     extends ReactProperties {

@@ -1,6 +1,6 @@
-import type {MysteryMushroomProperty} from './properties/MysteryMushroomProperty'
-import type {NameTrait}               from '../../lang/name/NameTrait'
-import type {GameReferences}          from '../gameReference/GameReferences'
+import type {GameReferences}          from 'core/gameReference/GameReferences'
+import type {MysteryMushroomProperty} from 'core/mysteryMushroom/properties/MysteryMushroomProperty'
+import type {NameTrait}               from 'lang/name/NameTrait'
 
 export interface MysteryMushroom
     extends NameTrait<string>,

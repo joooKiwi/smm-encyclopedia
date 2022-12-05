@@ -1,12 +1,12 @@
 import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                               from '@joookiwi/enumerable'
 
-import type {DayNumber}       from './types'
-import type {EveryLanguages}  from '../EveryLanguages'
-import type {Names, Ordinals} from '../ProjectLanguages.types'
-import type {Nullable}        from '../../util/types'
+import type {DayNumber}       from 'lang/date/types'
+import type {EveryLanguages}  from 'lang/EveryLanguages'
+import type {Names, Ordinals} from 'lang/ProjectLanguages.types'
+import type {Nullable}        from 'util/types/nullable'
 
-import {ProjectLanguages} from '../ProjectLanguages'
+import {ProjectLanguages} from 'lang/ProjectLanguages'
 
 export abstract class DateDayLanguages
     extends ProjectLanguages {

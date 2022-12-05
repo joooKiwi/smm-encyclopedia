@@ -1,7 +1,7 @@
-import type {SMM1ExclusiveSoundEffectSound}         from './SMM1ExclusiveSoundEffectSound'
-import type {SMM2SoundEffectSound}                  from './SMM2SoundEffectSound'
-import type {SoundEffectSoundFile}                  from '../file/SoundEffectSoundFile'
-import type {PossibleEditorValue, SoundEffectSound} from './SoundEffectSound'
+import type {SoundEffectSoundFile}                  from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {SMM1ExclusiveSoundEffectSound}         from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
+import type {SMM2SoundEffectSound}                  from 'core/soundEffect/sound/SMM2SoundEffectSound'
+import type {PossibleEditorValue, SoundEffectSound} from 'core/soundEffect/sound/SoundEffectSound'
 
 export interface SMM1StandaloneSoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[],
     EDITOR_SOUND extends PossibleEditorValue<SOUNDS> = PossibleEditorValue<SOUNDS>>

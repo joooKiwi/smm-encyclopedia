@@ -1,12 +1,12 @@
-import type {Builder}                                                               from '../../util/builder/Builder'
-import type {EntityNameTemplate}                                                    from '../entity/Entity.template'
-import type {HasAReferenceInMarioMaker}                                             from '../entityTypes'
-import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from '../../lang/name/Name.template'
-import type {PartialGameEnumFrom1And2}                                              from './PartialGameEnumFrom1And2'
-import type {PartialGameEnumFromAllGames}                                           from './PartialGameEnumFromAllGames'
-import type {PossibleLanguagesDefinition}                                           from './PartialLanguageEnum'
-import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from '../../lang/Loader.types'
-import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate}           from '../game/SimpleGame.template'
+import type {PartialGameEnumFrom1And2}                                              from 'core/_template/PartialGameEnumFrom1And2'
+import type {PartialGameEnumFromAllGames}                                           from 'core/_template/PartialGameEnumFromAllGames'
+import type {PossibleLanguagesDefinition}                                           from 'core/_template/PartialLanguageEnum'
+import type {HasAReferenceInMarioMaker}                                             from 'core/entityTypes'
+import type {EntityNameTemplate}                                                    from 'core/entity/Entity.template'
+import type {SimpleGameFrom1And2Template, SimpleGameFromAllGamesTemplate}           from 'core/game/SimpleGame.template'
+import type {PropertiesArray, PropertiesArrayWithOptionalLanguages}                 from 'lang/Loader.types'
+import type {NameTemplate, NameTemplateWithOptionalLanguages, PossibleNameTemplate} from 'lang/name/Name.template'
+import type {Builder}                                                               from 'util/builder/Builder'
 
 /**
  * An abstract template builder with a lot of utilities methods

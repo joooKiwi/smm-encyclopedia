@@ -1,4 +1,4 @@
-import type {NullOrBoolean} from '../../util/types'
+import type {NullOrBoolean} from 'util/types/nullable'
 
 /**
  * @template

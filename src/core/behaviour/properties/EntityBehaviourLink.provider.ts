@@ -1,15 +1,15 @@
-import type {Entity}                                    from '../../entity/Entity'
-import type {EntityBehaviourLink, PossibleGroup}        from './EntityBehaviourLink'
-import type {NullOr}                                    from '../../../util/types'
-import type {ObjectHolder}                              from '../../../util/holder/ObjectHolder'
-import type {PossibleEnglishName as PossibleEntityName} from '../../entity/Entities.types'
-import type {PossibleGroupName}                         from '../../entityTypes'
-import type {ProviderForNullable}                       from '../../../util/provider/ProviderForNullable'
-import type {ProviderWithKey}                           from '../../../util/provider/ProviderWithKey'
+import type {PossibleGroupName}                         from 'core/entityTypes'
+import type {EntityBehaviourLink, PossibleGroup}        from 'core/behaviour/properties/EntityBehaviourLink'
+import type {PossibleEnglishName as PossibleEntityName} from 'core/entity/Entities.types'
+import type {Entity}                                    from 'core/entity/Entity'
+import type {ObjectHolder}                              from 'util/holder/ObjectHolder'
+import type {ProviderForNullable}                       from 'util/provider/ProviderForNullable'
+import type {ProviderWithKey}                           from 'util/provider/ProviderWithKey'
+import type {NullOr}                                    from 'util/types/nullable'
 
-import {AbstractProvider}             from '../../../util/provider/AbstractProvider'
-import {EntityBehaviourLinkContainer} from './EntityBehaviourLink.container'
-import {ObjectHolders}                from '../../../util/holder/objectHolders'
+import {EntityBehaviourLinkContainer} from 'core/behaviour/properties/EntityBehaviourLink.container'
+import {ObjectHolders}                from 'util/holder/objectHolders'
+import {AbstractProvider}             from 'util/provider/AbstractProvider'
 
 /**
  * An entity behaviour link {@link Provider}.

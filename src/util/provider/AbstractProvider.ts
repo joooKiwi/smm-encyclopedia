@@ -1,7 +1,7 @@
-import type {ExtendedMap}            from '../extended/ExtendedMap'
-import type {PossibleKeys, Provider} from './Provider'
+import type {ExtendedMap}            from 'util/extended/ExtendedMap'
+import type {PossibleKeys, Provider} from 'util/provider/Provider'
 
-import {ExtendedMapContainer} from '../extended/ExtendedMap.container'
+import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 export class AbstractProvider<K extends PossibleKeys, V>
     implements Provider<K, V> {

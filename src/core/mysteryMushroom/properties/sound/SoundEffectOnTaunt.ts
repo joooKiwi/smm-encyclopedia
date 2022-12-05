@@ -1,14 +1,13 @@
-import type {ClassWithGameReference}  from '../../../gameReference/ClassWithGameReference'
-import type {GameReferences}          from '../../../gameReference/GameReferences'
-import type {NotApplicable, Property} from '../../../_properties/Property'
-import type {NullOr}                  from '../../../../util/types'
+import type {Property}               from 'core/_properties/Property'
+import type {ClassWithGameReference} from 'core/gameReference/ClassWithGameReference'
+import type {GameReferences}         from 'core/gameReference/GameReferences'
+import type {NullOr}                 from 'util/types/nullable'
+import type {BooleanOrNotApplicable} from 'util/types/variables'
 
 export interface SoundEffectOnTaunt
-    extends Property<PossibleValues>, ClassWithGameReference<NullOr<GameReferences>> {
+    extends Property<BooleanOrNotApplicable>, ClassWithGameReference<NullOr<GameReferences>> {
 
 }
 
 export type PossibleGamesReceived = NullOr<string>
 export type PossibleValuesReceived = NullOr<boolean>
-
-/**@deprecated Create a new boolean or N/A*/export type PossibleValues = | boolean | NotApplicable

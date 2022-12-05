@@ -1,16 +1,16 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                            from '../ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                              from '../ClassWithImagePath'
-import type {ClassWithReference}                                                                              from '../ClassWithReference'
-import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from './MiiCostumeCategories.types'
-import type {Nullable}                                                                                        from '../../util/types'
-import type {MiiCostumeCategory}                                                                              from './MiiCostumeCategory'
+import type {ClassWithEnglishName}                                                                            from 'core/ClassWithEnglishName'
+import type {ClassWithImagePath}                                                                              from 'core/ClassWithImagePath'
+import type {ClassWithReference}                                                                              from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {MiiCostumeCategory}                                                                              from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {Nullable}                                                                                        from 'util/types/nullable'
 
-import {BASE_PATH}       from '../../variables'
-import {Import}          from '../../util/DynamicImporter'
-import {StringContainer} from '../../util/StringContainer'
+import {BASE_PATH}       from 'variables'
+import {Import}          from 'util/DynamicImporter'
+import {StringContainer} from 'util/StringContainer'
 
 /**
  * @recursiveReference {@link MiiCostumeCategoryLoader}

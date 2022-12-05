@@ -1,10 +1,11 @@
-import type {ExtendedMap}                                                                       from '../../../../util/extended/ExtendedMap'
-import type {NullOr}                                                                            from '../../../../util/types'
-import type {PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnTaunt} from './SoundEffectOnTaunt'
+import type {PossibleGamesReceived, PossibleValuesReceived, SoundEffectOnTaunt} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
+import type {ExtendedMap}                                                       from 'util/extended/ExtendedMap'
+import type {NullOr}                                                            from 'util/types/nullable'
+import type {BooleanOrNotApplicable}                                            from 'util/types/variables'
 
-import {ExtendedMapContainer} from '../../../../util/extended/ExtendedMap.container'
-import {GameReferences}       from '../../../gameReference/GameReferences'
-import {PropertyProvider}     from '../../../_properties/PropertyProvider'
+import {PropertyProvider}     from 'core/_properties/PropertyProvider'
+import {GameReferences}       from 'core/gameReference/GameReferences'
+import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
  * @todo move the content in the constructor in the builder instead
@@ -30,7 +31,7 @@ export class SoundEffectOnTauntContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get value(): PossibleValues {
+    public get value(): BooleanOrNotApplicable {
         return this.#property.value
     }
 

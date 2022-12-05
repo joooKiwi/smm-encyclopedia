@@ -1,6 +1,6 @@
-import type {DimensionOnList}            from '../interpreter/DimensionOnList'
-import type {NullOr}                     from '../../util/types'
-import type {PossibleBootstrapDimension} from '../../bootstrap/Bootstrap.types'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {PossibleBootstrapDimension} from 'bootstrap/Bootstrap.types'
+import type {NullOr}                     from 'util/types/nullable'
 
 export type DefaultDefaultDimension = 12
 export type DefaultSmallDimension = 4

@@ -1,8 +1,8 @@
-import type {BooleanPropertyThatCanBeUnknownWithComment} from '../PropertyThatCanBeUnknownWithComment'
-import type {NullOrBoolean, NullOrString}                from '../../../util/types'
-import type {PossibleValueOnObjectHolder}                from '../../../util/holder/ObjectHolder'
+import type {BooleanPropertyThatCanBeUnknownWithComment} from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PossibleValueOnObjectHolder}                from 'util/holder/ObjectHolder'
+import type {NullOrBoolean, NullOrString}                from 'util/types/nullable'
 
-import {PropertyThatCanBeUnknownWithCommentContainer} from '../PropertyThatCanBeUnknownWithComment.container'
+import {PropertyThatCanBeUnknownWithCommentContainer} from 'core/_properties/PropertyThatCanBeUnknownWithComment.container'
 
 export class BooleanPropertyThatCanBeUnknownWithCommentContainer<B extends NullOrBoolean = NullOrBoolean, IS_UNKNOWN extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >
     extends PropertyThatCanBeUnknownWithCommentContainer<B, IS_UNKNOWN, COMMENT>

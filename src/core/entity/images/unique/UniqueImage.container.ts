@@ -1,10 +1,10 @@
-import type {ClearConditionImage} from '../clearCondition/ClearConditionImage'
-import type {EditorImage}         from '../editor/EditorImage'
-import type {GameStyles}          from '../../../gameStyle/GameStyles'
-import type {InGameImage}         from '../inGame/InGameImage'
-import type {UniqueImage}         from './UniqueImage'
+import type {ClearConditionImage} from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}         from 'core/entity/images/editor/EditorImage'
+import type {InGameImage}         from 'core/entity/images/inGame/InGameImage'
+import type {UniqueImage}         from 'core/entity/images/unique/UniqueImage'
+import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-import {EMPTY_ARRAY} from '../../../../util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 export class UniqueImageContainer
     implements UniqueImage {

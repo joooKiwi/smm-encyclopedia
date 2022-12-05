@@ -1,5 +1,5 @@
-import type {NonRepeatableSoundFile} from '../../../util/sound/NonRepeatableSoundFile'
-import type {PossibleFileName}       from '../EditorVoiceSound'
+import type {PossibleFileName}       from 'core/editorVoice/EditorVoiceSound'
+import type {NonRepeatableSoundFile} from 'util/sound/NonRepeatableSoundFile'
 
 export interface EditorVoiceSoundFile<NAME extends PossibleFileName, >
     extends NonRepeatableSoundFile<EditorVoicePath, NAME, EditorVoiceExtension> {

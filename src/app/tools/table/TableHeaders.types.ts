@@ -1,7 +1,7 @@
-import type {HeaderTypes}          from './header/HeaderTypes'
-import type {ReactProperties}      from '../../../util/react/ReactProperties'
-import type {SingleHeadersContent} from './SimpleHeader'
-import type {HeaderHolder}         from './header/HeaderHolder'
+import type {SingleHeadersContent} from 'app/tools/table/SimpleHeader'
+import type {HeaderHolder}         from 'app/tools/table/header/HeaderHolder'
+import type {HeaderTypes}          from 'app/tools/table/header/HeaderTypes'
+import type {ReactProperties}      from 'util/react/ReactProperties'
 
 
 export type EveryHeaderHolders = ReadonlyMap<string, HeaderHolder>

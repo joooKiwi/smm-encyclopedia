@@ -1,6 +1,6 @@
-import type {NullOrNumber}               from '../../../util/types'
-import type {OfficialNotificationHolder} from './OfficialNotificationHolder'
-import type {OfficialNotifications}      from '../OfficialNotifications'
+import type {OfficialNotifications}      from 'core/officialNotification/OfficialNotifications'
+import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {NullOrNumber}               from 'util/types/nullable'
 
 export class OfficialNotificationHolderContainer
     implements OfficialNotificationHolder {

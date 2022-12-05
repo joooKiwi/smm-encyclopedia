@@ -1,4 +1,4 @@
-import type {Name} from './Name'
+import type {Name} from 'lang/name/Name'
 
 /**
  * <p>

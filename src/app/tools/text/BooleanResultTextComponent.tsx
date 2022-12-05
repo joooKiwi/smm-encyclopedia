@@ -1,6 +1,6 @@
-import type {BooleanResultTextProperties, TextColor} from './properties/BooleanResultTextProperties'
+import type {BooleanResultTextProperties, TextColor} from 'app/tools/text/properties/BooleanResultTextProperties'
 
-import BooleanTextComponent from './BooleanTextComponent'
+import BooleanTextComponent from 'app/tools/text/BooleanTextComponent'
 
 const TRUE_DEFAULT_COLOR: TextColor = 'text-success'
 const FALSE_DEFAULT_COLOR: TextColor = 'text-danger'

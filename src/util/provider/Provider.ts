@@ -1,4 +1,4 @@
-import type {ExtendedMap} from '../extended/ExtendedMap'
+import type {ExtendedMap} from 'util/extended/ExtendedMap'
 
 /**
  * The base provider giving a way to retrieve the containers

@@ -1,6 +1,6 @@
-import type {PossibleFileName}       from '../MysteryMushrooms.types'
-import type {NonRepeatableSoundFile} from '../../../util/sound/NonRepeatableSoundFile'
-import type {PossibleSounds}         from '../sound/Sound'
+import type {PossibleFileName}       from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {PossibleSounds}         from 'core/mysteryMushroom/sound/Sound'
+import type {NonRepeatableSoundFile} from 'util/sound/NonRepeatableSoundFile'
 
 export interface MysteryMushroomSoundFile<FILE extends PossibleFileName = PossibleFileName, NAME extends PossibleSounds = PossibleSounds, >
     extends NonRepeatableSoundFile<MysteryMushroomSoundPath<FILE>, NAME, MysteryMushroomSoundExtension> {

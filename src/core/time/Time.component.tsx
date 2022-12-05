@@ -1,11 +1,11 @@
-import type {TimeProperty} from '../entity/properties/time/TimeProperty'
+import type {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
-import {AbstractDualEntityPropertyComponent} from '../_component/AbstractDualEntityPropertyComponent'
-import {gameContentTranslation}              from '../../lang/components/translationMethods'
-import Image                                 from '../../app/tools/images/Image'
-import {Times}                               from './Times'
-import TextComponent                         from '../../app/tools/text/TextComponent'
-import {StringContainer}                     from '../../util/StringContainer'
+import Image                                 from 'app/tools/images/Image'
+import TextComponent                         from 'app/tools/text/TextComponent'
+import {AbstractDualEntityPropertyComponent} from 'core/_component/AbstractDualEntityPropertyComponent'
+import {Times}                               from 'core/time/Times'
+import {gameContentTranslation}              from 'lang/components/translationMethods'
+import {StringContainer}                     from 'util/StringContainer'
 
 /**
  * @reactComponent

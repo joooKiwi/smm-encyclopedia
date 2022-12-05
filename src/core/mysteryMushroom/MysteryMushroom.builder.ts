@@ -1,21 +1,19 @@
-import type {Builder}                               from '../../util/builder/Builder'
-import type {MysteryMushroomTemplate}               from './MysteryMushroom.template'
-import type {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom'
-import type {Name}                                  from '../../lang/name/Name'
-import type {NullOrString}                          from '../../util/types'
+import type {MysteryMushroom, MysteryMushroomGames} from 'core/mysteryMushroom/MysteryMushroom'
+import type {MysteryMushroomTemplate}               from 'core/mysteryMushroom/MysteryMushroom.template'
+import type {Name}                                  from 'lang/name/Name'
+import type {NullOrString}                          from 'util/types/nullable'
+import type {Builder}                               from 'util/builder/Builder'
 
-import {GameReferences}                   from '../gameReference/GameReferences'
-import {Games}                            from '../game/Games'
-import {MysteryMushroomContainer}         from './MysteryMushroom.container'
-import {MysteryMushroomPropertyContainer} from './properties/MysteryMushroomProperty.container'
-import {SoundPropertyContainer}           from './properties/sound/SoundProperty.container'
-import {TemplateWithNameBuilder}          from '../_template/TemplateWithName.builder'
-import {UnlockPropertyProvider}           from './properties/UnlockProperty.provider'
+import {TemplateWithNameBuilder}          from 'core/_template/TemplateWithName.builder'
+import {GameReferences}                   from 'core/gameReference/GameReferences'
+import {MysteryMushroomContainer}         from 'core/mysteryMushroom/MysteryMushroom.container'
+import {MysteryMushroomPropertyContainer} from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
+import {UnlockPropertyProvider}           from 'core/mysteryMushroom/properties/UnlockProperty.provider'
+import {SoundPropertyContainer}           from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
 
 //region -------------------- Import from deconstruction --------------------
 
 const {POKEMON_RED, POKEMON_GREEN, POKEMON_BLUE, POKEMON_YELLOW, POKEMON_DIAMOND, POKEMON_PEARL, POKEMON_X, POKEMON_Y,} = GameReferences
-const {SUPER_MARIO_MAKER_1,} = Games
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -29,7 +27,7 @@ export class MysteryMushroomBuilder
     //endregion -------------------- External object references --------------------
 
     public constructor(templateBuilder: Builder<MysteryMushroomTemplate>,) {
-        super(templateBuilder, SUPER_MARIO_MAKER_1, false,)//TODO change the false to true since it is a complete SMM1 name
+        super(templateBuilder, 1, false,)//TODO change the false to true since it is a complete SMM1 name
     }
 
     //region -------------------- Build helper methods --------------------

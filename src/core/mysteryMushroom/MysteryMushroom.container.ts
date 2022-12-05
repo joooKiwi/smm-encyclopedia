@@ -1,8 +1,8 @@
-import type {MysteryMushroom, MysteryMushroomGames} from './MysteryMushroom'
-import type {MysteryMushroomProperty}               from './properties/MysteryMushroomProperty'
-import type {Name}                                  from '../../lang/name/Name'
+import type {MysteryMushroom, MysteryMushroomGames} from 'core/mysteryMushroom/MysteryMushroom'
+import type {MysteryMushroomProperty}               from 'core/mysteryMushroom/properties/MysteryMushroomProperty'
+import type {Name}                                  from 'lang/name/Name'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class MysteryMushroomContainer
     extends ClassContainingAName<string>

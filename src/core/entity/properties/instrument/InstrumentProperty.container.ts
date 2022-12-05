@@ -1,6 +1,6 @@
-import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from './InstrumentProperty'
-import type {Instrument}                                                from '../../../instrument/Instrument'
-import type {ObjectHolder}                                              from '../../../../util/holder/ObjectHolder'
+import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from 'core/entity/properties/instrument/InstrumentProperty'
+import type {Instrument}                                                from 'core/instrument/Instrument'
+import type {ObjectHolder}                                              from 'util/holder/ObjectHolder'
 
 export class InstrumentPropertyContainer
     implements InstrumentProperty {

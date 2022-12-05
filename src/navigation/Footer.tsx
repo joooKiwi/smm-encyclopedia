@@ -1,12 +1,12 @@
 import './Footer.scss'
 
-import type {ModalProperties} from './ModalContainers.types'
-import type {ReactProperties} from '../util/react/ReactProperties'
+import type {ModalProperties} from 'navigation/ModalContainers.types'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {contentTranslation}  from '../lang/components/translationMethods'
-import GithubButton          from './button/Github.button'
-import LanguageChangerButton from './button/LanguageChanger.button'
-import SimpleDate            from '../lang/date/SimpleDate'
+import {contentTranslation}  from 'lang/components/translationMethods'
+import SimpleDate            from 'lang/date/SimpleDate'
+import GithubButton          from 'navigation/button/Github.button'
+import LanguageChangerButton from 'navigation/button/LanguageChanger.button'
 
 interface FooterProperties
     extends ReactProperties {
@@ -33,7 +33,7 @@ export default function Footer({languageChanger,}: FooterProperties,) {
                     {contentTranslation('React application made by')}: JóôòKiwi & Geitje
                 </span>
                 <span id="copyright_lastEdited" className="text-center text-light small">
-                    {contentTranslation('Last update')}: <SimpleDate day={27} month={11} year={2022}/>
+                    {contentTranslation('Last update')}: <SimpleDate day={4} month={12} year={2022}/>
                 </span>
             </div>
         </div>

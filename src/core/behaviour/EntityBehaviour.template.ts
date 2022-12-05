@@ -1,6 +1,6 @@
-import type {EntityBehaviourLinkTemplate}              from './properties/EntityBehaviourLink.template'
-import type {IsInOnlyTemplate}                         from './properties/IsInOnlyTemplate'
-import type {PossibleAcronym, PossibleTranslationKeys} from './EntityBehaviours.types'
+import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
+import type {EntityBehaviourLinkTemplate}              from 'core/behaviour/properties/EntityBehaviourLink.template'
+import type {IsInOnlyTemplate}                         from 'core/behaviour/properties/IsInOnlyTemplate'
 
 /**
  * @template

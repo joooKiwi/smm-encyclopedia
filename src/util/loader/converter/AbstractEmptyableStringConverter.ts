@@ -1,6 +1,6 @@
-import type {NullOr} from '../../types'
+import type {NullOr} from 'util/types/nullable'
 
-import {AbstractStringConverter} from './AbstractStringConverter'
+import {AbstractStringConverter} from 'util/loader/converter/AbstractStringConverter'
 
 export abstract class AbstractEmptyableStringConverter<T, >
     extends AbstractStringConverter<NullOr<T>> {

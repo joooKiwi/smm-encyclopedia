@@ -1,16 +1,16 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                     from '../ClassWithEnglishName'
-import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from './Instruments.types'
-import type {Nullable}                                                                                                                                                                                                                                 from '../../util/types'
-import type {InstrumentSoundFile}                                                                                                                                                                                                                      from './file/InstrumentSoundFile'
-import type {Instrument}                                                                                                                                                                                                                               from './Instrument'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                     from 'core/ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from 'core/instrument/Instruments.types'
+import type {InstrumentSoundFile}                                                                                                                                                                                                                      from 'core/instrument/file/InstrumentSoundFile'
+import type {Instrument}                                                                                                                                                                                                                               from 'core/instrument/Instrument'
+import type {Nullable}                                                                                                                                                                                                                                 from 'util/types/nullable'
 
-import {getValueByEnglishName}                     from '../../util/utilitiesMethods'
-import {Import}                                    from '../../util/DynamicImporter'
-import {InstrumentSoundFileContainer as SoundFile} from './file/InstrumentSoundFile.container'
-import {StringContainer}                           from '../../util/StringContainer'
+import {InstrumentSoundFileContainer as SoundFile} from 'core/instrument/file/InstrumentSoundFile.container'
+import {Import}                                    from 'util/DynamicImporter'
+import {StringContainer}                           from 'util/StringContainer'
+import {getValueByEnglishName}                     from 'util/utilitiesMethods'
 
 /**
  * @recursiveReference<{@link InstrumentLoader}>

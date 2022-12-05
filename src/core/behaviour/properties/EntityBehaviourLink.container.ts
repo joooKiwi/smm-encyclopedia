@@ -1,7 +1,7 @@
-import type {Entity}                             from '../../entity/Entity'
-import type {EntityBehaviourLink, PossibleGroup} from './EntityBehaviourLink'
-import type {NullOr}                             from '../../../util/types'
-import type {ObjectHolder}                       from '../../../util/holder/ObjectHolder'
+import type {EntityBehaviourLink, PossibleGroup} from 'core/behaviour/properties/EntityBehaviourLink'
+import type {Entity}                             from 'core/entity/Entity'
+import type {ObjectHolder}                       from 'util/holder/ObjectHolder'
+import type {NullOr}                             from 'util/types/nullable'
 
 export class EntityBehaviourLinkContainer<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends NullOr<Entity> = NullOr<Entity>, >
     implements EntityBehaviourLink<GROUP, ENTITY> {

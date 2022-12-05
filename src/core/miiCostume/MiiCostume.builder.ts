@@ -1,26 +1,25 @@
-import type {Builder}                    from '../../util/builder/Builder'
-import type {MiiCostume}                 from './MiiCostume'
-import type {MiiCostumeTemplate}         from './MiiCostume.template'
-import type {Name}                       from '../../lang/name/Name'
-import type {NullOr}                     from '../../util/types'
-import type {ObjectHolder}               from '../../util/holder/ObjectHolder'
-import type {OfficialNotificationHolder} from '../officialNotification/holder/OfficialNotificationHolder'
+import type {MiiCostume}                 from 'core/miiCostume/MiiCostume'
+import type {MiiCostumeTemplate}         from 'core/miiCostume/MiiCostume.template'
+import type {Name}                       from 'lang/name/Name'
+import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {Builder}                    from 'util/builder/Builder'
+import type {ObjectHolder}               from 'util/holder/ObjectHolder'
+import type {NullOr}                     from 'util/types/nullable'
 
-import {Games}                             from '../game/Games'
-import {DelayedObjectHolderContainer}      from '../../util/holder/DelayedObjectHolder.container'
-import {MiiCostumeCategories}              from '../miiCostumeCategory/MiiCostumeCategories'
-import {MiiCostumeContainer}               from './MiiCostume.container'
-import {ObjectHolders}                     from '../../util/holder/objectHolders'
-import {OfficialNotificationHolderBuilder} from '../officialNotification/holder/OfficialNotificationHolder.builder'
-import {TemplateWithNameBuilder}           from '../_template/TemplateWithName.builder'
-import {Versions}                          from '../version/Versions'
-import {MiiCostumeCategory}                from '../miiCostumeCategory/MiiCostumeCategory'
+import {TemplateWithNameBuilder}           from 'core/_template/TemplateWithName.builder'
+import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'
+import {MiiCostumeCategories}              from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {MiiCostumeCategory}                from 'core/miiCostumeCategory/MiiCostumeCategory'
+import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
+import {Versions}                          from 'core/version/Versions'
+import {DelayedObjectHolderContainer}      from 'util/holder/DelayedObjectHolder.container'
+import {ObjectHolders}                     from 'util/holder/objectHolders'
 
 export class MiiCostumeBuilder
     extends TemplateWithNameBuilder<MiiCostumeTemplate, MiiCostume> {
 
     public constructor(templateBuilder_or_template: Builder<MiiCostumeTemplate>,) {
-        super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, true,)
+        super(templateBuilder_or_template, 2, true,)
     }
 
     //region -------------------- Build helper methods --------------------

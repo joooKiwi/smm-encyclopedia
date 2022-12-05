@@ -1,17 +1,16 @@
-import type {Builder}                     from '../../util/builder/Builder'
-import type {Name}                        from '../../lang/name/Name'
-import type {SoundEffectCategory}         from './SoundEffectCategory'
-import type {SoundEffectCategoryTemplate} from './SoundEffectCategory.template'
+import type {SoundEffectCategory}         from 'core/soundEffectCategory/SoundEffectCategory'
+import type {SoundEffectCategoryTemplate} from 'core/soundEffectCategory/SoundEffectCategory.template'
+import type {Name}                        from 'lang/name/Name'
+import type {Builder}                     from 'util/builder/Builder'
 
-import {Games}                        from '../game/Games'
-import {SoundEffectCategoryContainer} from './SoundEffectCategory.container'
-import {TemplateWithNameBuilder}      from '../_template/TemplateWithName.builder'
+import {TemplateWithNameBuilder}      from 'core/_template/TemplateWithName.builder'
+import {SoundEffectCategoryContainer} from 'core/soundEffectCategory/SoundEffectCategory.container'
 
 export class SoundEffectCategoryBuilder
     extends TemplateWithNameBuilder<SoundEffectCategoryTemplate, SoundEffectCategory> {
 
     public constructor(templateBuilder: Builder<SoundEffectCategoryTemplate>,) {
-        super(templateBuilder, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder, 2, false,)
     }
 
     protected /*static*/ override get _static() {

@@ -1,18 +1,17 @@
-import type {Builder}                    from '../../util/builder/Builder'
-import type {MiiCostumeCategory}         from './MiiCostumeCategory'
-import type {MiiCostumeCategoryTemplate} from './MiiCostumeCategory.template'
-import type {Name}                       from '../../lang/name/Name'
+import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {MiiCostumeCategoryTemplate} from 'core/miiCostumeCategory/MiiCostumeCategory.template'
+import type {Name}                       from 'lang/name/Name'
+import type {Builder}                    from 'util/builder/Builder'
 
-import {Games}                       from '../game/Games'
-import {MiiCostumeCategoryContainer} from './MiiCostumeCategory.container'
-import {TemplateWithNameBuilder}     from '../_template/TemplateWithName.builder'
+import {TemplateWithNameBuilder}     from 'core/_template/TemplateWithName.builder'
+import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
 
 export class MiiCostumeCategoryBuilder
     extends TemplateWithNameBuilder<MiiCostumeCategoryTemplate, MiiCostumeCategory> {
 
 
     public constructor(templateBuilder_or_template: Builder<MiiCostumeCategoryTemplate>,) {
-        super(templateBuilder_or_template, Games.SUPER_MARIO_MAKER_2, false,)
+        super(templateBuilder_or_template, 2, false,)
     }
 
     protected /*static*/ override get _static() {

@@ -1,5 +1,5 @@
-import type {UnusedImage_Regular} from './UnusedImage_Regular'
-import type {GameStyles}          from '../../../gameStyle/GameStyles'
+import type {UnusedImage_Regular} from 'core/entity/images/unused/UnusedImage_Regular'
+import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
 export class UnusedImage_RegularContainer
     implements UnusedImage_Regular {

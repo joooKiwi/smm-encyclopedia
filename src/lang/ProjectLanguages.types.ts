@@ -1,5 +1,5 @@
-import type {EveryLanguages}   from './EveryLanguages'
-import type {ProjectLanguages} from './ProjectLanguages'
+import type {EveryLanguages}   from 'lang/EveryLanguages'
+import type {ProjectLanguages} from 'lang/ProjectLanguages'
 
 enum Enum {
 

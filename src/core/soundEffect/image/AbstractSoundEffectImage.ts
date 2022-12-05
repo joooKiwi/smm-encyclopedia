@@ -1,8 +1,8 @@
-import type {NullOr}                                                                 from '../../../util/types'
-import type {PossibleImagePath_SMM2, SoundEffectImageName_SMM2}                      from '../SoundEffects.types'
-import type {PossibleSMM1ImagePath, PossibleSMM1ImagePathReceived, SoundEffectImage} from './SoundEffectImage'
+import type {PossibleImagePath_SMM2, SoundEffectImageName_SMM2}                      from 'core/soundEffect/SoundEffects.types'
+import type {PossibleSMM1ImagePath, PossibleSMM1ImagePathReceived, SoundEffectImage} from 'core/soundEffect/image/SoundEffectImage'
+import type {NullOr}                                                                 from 'util/types/nullable'
 
-import {BASE_PATH} from '../../../variables'
+import {BASE_PATH} from 'variables'
 
 export class AbstractSoundEffectImage
     implements SoundEffectImage {

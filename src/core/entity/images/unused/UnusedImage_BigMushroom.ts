@@ -1,4 +1,4 @@
-import type {UnusedImage} from './UnusedImage'
+import type {UnusedImage} from 'core/entity/images/unused/UnusedImage'
 
 /**
  * An unused {@link Entities.BIG_MUSHROOM_CLASSIC} or {@link Entities.BIG_MUSHROOM_MODERN}

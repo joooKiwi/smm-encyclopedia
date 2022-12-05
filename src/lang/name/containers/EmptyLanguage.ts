@@ -1,5 +1,5 @@
-import type {EmptyableLanguage}         from './EmptyableLanguage'
-import type {EmptyableOptionalLanguage} from './EmptyableOptionalLanguage'
+import type {EmptyableLanguage}         from 'lang/name/containers/EmptyableLanguage'
+import type {EmptyableOptionalLanguage} from 'lang/name/containers/EmptyableOptionalLanguage'
 
 export interface EmptyLanguage
     extends EmptyableLanguage<never>, EmptyableOptionalLanguage<never, never, never, false> {

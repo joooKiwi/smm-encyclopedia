@@ -1,14 +1,14 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {GamePath_ClearCondition, GamePath_Editor, GamePath_InGameSMM1, GameStylesInSMM1} from './GameStyles.types'
-import type {GameStyleProperty}                                                               from '../properties/gameStyle/GameStyleProperty'
-import type {GameStyleReferences}                                                             from '../properties/gameStyle/GameStyleReferences'
-import type {Names, Ordinals}                                                                 from '../../gameStyle/GameStyles.types'
-import type {PossibleOtherEntities}                                                           from '../Entity'
+import type {PossibleOtherEntities}                                                           from 'core/entity/Entity'
+import type {GamePath_ClearCondition, GamePath_Editor, GamePath_InGameSMM1, GameStylesInSMM1} from 'core/entity/images/GameStyles.types'
+import type {GameStyleProperty}                                                               from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {GameStyleReferences}                                                             from 'core/entity/properties/gameStyle/GameStyleReferences'
+import type {Names, Ordinals}                                                                 from 'core/gameStyle/GameStyles.types'
 
-import {BASE_PATH}                        from '../../../variables'
-import {GameStyles as OriginalGameStyles} from '../../gameStyle/GameStyles'
+import {BASE_PATH}                        from 'variables'
+import {GameStyles as OriginalGameStyles} from 'core/gameStyle/GameStyles'
 
 export class GameStyles
     extends OriginalGameStyles {

@@ -1,4 +1,4 @@
-import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from './ClassThatCanGetItems'
+import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from 'util/extended/ClassThatCanGetItems'
 
 export interface ClassThatCanSearchItems {
 

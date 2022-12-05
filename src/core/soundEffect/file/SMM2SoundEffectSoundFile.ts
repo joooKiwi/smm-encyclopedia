@@ -1,5 +1,5 @@
-import type {PossibleSoundEffectSoundName_SMM2} from '../sound/types'
-import type {SoundEffectSoundFile}              from './SoundEffectSoundFile'
+import type {SoundEffectSoundFile}              from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {PossibleSoundEffectSoundName_SMM2} from 'core/soundEffect/sound/types'
 
 export interface SMM2SoundEffectSoundFile<NAME extends PossibleSoundEffectSoundName_SMM2 = PossibleSoundEffectSoundName_SMM2, >
     extends SoundEffectSoundFile<SMM2SoundFilePath, NAME> {

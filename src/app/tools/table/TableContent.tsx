@@ -1,4 +1,4 @@
-import type {TableContentProperties} from './TableContent.types'
+import type {TableContentProperties} from 'app/tools/table/TableContent.types'
 
 export default function TableContent({content,}: TableContentProperties,) {
     return <>{content.map((content, i,) => {

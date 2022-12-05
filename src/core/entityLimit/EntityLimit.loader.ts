@@ -1,19 +1,20 @@
-import resource from '../../resources/compiled/Entity limit.json'
+import resource from 'resources/compiled/Entity limit.json'
 
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from './EntityLimit.template'
-import type {EntityLimit}                                                                                                                                                                         from './EntityLimit'
-import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from '../../lang/Loader.types'
-import type {Loader}                                                                                                                                                                              from '../../util/loader/Loader'
-import type {NullOr}                                                                                                                                                                              from '../../util/types'
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from './EntityLimits.types'
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from '../entity/Entities.types'
-import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from './EntityLimitTypes.types'
-import type {PossibleGroupName}                                                                                                                                                                   from '../entityTypes'
+import type {PossibleGroupName}                                                                                                                                                                   from 'core/entityTypes'
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from 'core/entity/Entities.types'
+import type {EntityLimit}                                                                                                                                                                         from 'core/entityLimit/EntityLimit'
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from 'core/entityLimit/EntityLimit.template'
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from 'core/entityLimit/EntityLimits.types'
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from 'core/entityLimit/EntityLimitTypes.types'
+import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from 'lang/Loader.types'
+import type {Loader}                                                                                                                                                                              from 'util/loader/Loader'
+import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
 
-import {AbstractTemplateBuilder} from '../_template/AbstractTemplate.builder'
-import {CSVLoader}               from '../../util/loader/CSVLoader'
-import {EntityLimitBuilder}      from './EntityLimit.builder'
-import {HeaderTypesForConvertor} from '../_util/loader/HeaderTypesForConvertor'
+import {AbstractTemplateBuilder}           from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor}           from 'core/_util/loader/HeaderTypesForConvertor'
+import {EntityLimitBuilder}                from 'core/entityLimit/EntityLimit.builder'
+import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
+import {CSVLoader}                         from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 
@@ -110,8 +111,8 @@ export class EntityLimitLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'alternative',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limitType, 'type',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_limit, 'acronym',)
-                .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1And3DS',)
-                .convertToNullableNumberAnd(['?', '10?', '400?', '500?',], 'limit_SMM2',)
+                .convertToNullableNumberAnd([UNKNOWN_CHARACTER, NOT_APPLICABLE,], 'Limit_SMM1And3DS',)
+                .convertToNullableNumberAnd([UNKNOWN_CHARACTER, '10?', '400?', '500?',], 'limit_SMM2',)
                 .convertToEmptyableStringAnd(['Crash online if met', 'Per player', 'Per pair', 'Per section',], 'limit_comment',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'english',)

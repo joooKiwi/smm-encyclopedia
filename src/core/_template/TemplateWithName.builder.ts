@@ -1,15 +1,15 @@
-import type {Builder}                                              from '../../util/builder/Builder'
-import type {Name}                                                 from '../../lang/name/Name'
-import type {NullOrString}                                         from '../../util/types'
-import type {ObjectHolder}                                         from '../../util/holder/ObjectHolder'
-import type {PossibleGameReceived as OriginalPossibleGameReceived} from '../../lang/name/Name.builder.types'
-import type {PossibleGameReceived}                                 from './TemplateWithName.builder.types'
-import type {TemplateWithNameTemplate}                             from './TemplateWithName.template'
+import type {PossibleGameReceived}                                 from 'core/_template/TemplateWithName.builder.types'
+import type {TemplateWithNameTemplate}                             from 'core/_template/TemplateWithName.template'
+import type {Name}                                                 from 'lang/name/Name'
+import type {PossibleGameReceived as OriginalPossibleGameReceived} from 'lang/name/Name.builder.types'
+import type {Builder}                                              from 'util/builder/Builder'
+import type {ObjectHolder}                                         from 'util/holder/ObjectHolder'
+import type {NullOrString}                                         from 'util/types/nullable'
 
-import {DelayedObjectHolderContainer} from '../../util/holder/DelayedObjectHolder.container'
-import {NameBuilderContainer}         from '../../lang/name/Name.builder.container'
-import {NameCreator}                  from '../../lang/name/Name.creator'
-import {TemplateBuilder}              from './Template.builder'
+import {TemplateBuilder}              from 'core/_template/Template.builder'
+import {NameBuilderContainer}         from 'lang/name/Name.builder.container'
+import {NameCreator}                  from 'lang/name/Name.creator'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 /**
  *

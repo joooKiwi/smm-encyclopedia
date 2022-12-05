@@ -1,10 +1,10 @@
-import type {ClassWithNullObjectPattern, EmptyUniqueImageName} from '../../../../util/ClassWithNullObjectPattern'
-import type {UniqueImage}                                      from './UniqueImage'
+import type {UniqueImage}                                      from 'core/entity/images/unique/UniqueImage'
+import type {ClassWithNullObjectPattern, EmptyUniqueImageName} from 'util/ClassWithNullObjectPattern'
 
-import {ClearConditionImageFactory} from '../clearCondition/ClearConditionImage.factory'
-import {EditorImageFactory}         from '../editor/EditorImage.factory'
-import {EMPTY_ARRAY, EMPTY_MAP}     from '../../../../util/emptyVariables'
-import {InGameImageFactory}         from '../inGame/InGameImage.factory'
+import {ClearConditionImageFactory} from 'core/entity/images/clearCondition/ClearConditionImage.factory'
+import {EditorImageFactory}         from 'core/entity/images/editor/EditorImage.factory'
+import {InGameImageFactory}         from 'core/entity/images/inGame/InGameImage.factory'
+import {EMPTY_ARRAY, EMPTY_MAP}     from 'util/emptyVariables'
 
 /**
  * @singleton

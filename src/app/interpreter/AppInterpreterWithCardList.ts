@@ -1,7 +1,7 @@
-import type {AppInterpreterWithSimpleList} from './AppInterpreterWithSimpleList'
-import type {Content}                      from './AppInterpreter'
-import type {PossibleDimensionOnCardList}  from './DimensionOnList'
-import type {ReactElement}                 from '../../util/react/ReactProperties'
+import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
+import type {Content}                      from 'app/interpreter/AppInterpreter'
+import type {PossibleDimensionOnCardList}  from 'app/interpreter/DimensionOnList'
+import type {ReactElement}                 from 'util/react/ReactProperties'
 
 /**
  * An application interpreter when using {@link AbstractCardListApp}

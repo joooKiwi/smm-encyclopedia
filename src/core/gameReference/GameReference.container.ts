@@ -1,8 +1,8 @@
-import type {GameReference}   from './GameReference'
-import type {Name}            from '../../lang/name/Name'
-import type {PossibleAcronym} from './GameReferences.types'
+import type {GameReference}   from 'core/gameReference/GameReference'
+import type {PossibleAcronym} from 'core/gameReference/GameReferences.types'
+import type {Name}            from 'lang/name/Name'
 
-import {ClassContainingAName} from '../../lang/name/ClassContainingAName'
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
 export class GameReferenceContainer
     extends ClassContainingAName<string>

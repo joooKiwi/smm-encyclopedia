@@ -1,8 +1,8 @@
-import type {PossibleContent}          from './AbstractNavigationButton.types'
-import type {PossibleTooltipPlacement} from '../../bootstrap/Bootstrap.types'
+import type {PossibleTooltipPlacement} from 'bootstrap/Bootstrap.types'
+import type {PossibleContent}          from 'navigation/button/AbstractNavigationButton.types'
 
-import {AbstractNavigationButton} from './AbstractNavigationButton'
-import {contentTranslation}       from '../../lang/components/translationMethods'
+import {contentTranslation}       from 'lang/components/translationMethods'
+import {AbstractNavigationButton} from 'navigation/button/AbstractNavigationButton'
 
 /**
  * @reactComponent

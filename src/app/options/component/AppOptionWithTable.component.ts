@@ -1,7 +1,7 @@
-import type {AppOptionWithTable}  from './AppOptionWithTable'
-import type {SingleHeaderContent} from '../../tools/table/SimpleHeader'
+import type {AppOptionWithTable}  from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 
-import {AbstractAppOptionWithSomething} from './AbstractAppOptionWithSomething'
+import {AbstractAppOptionWithSomething} from 'app/options/component/AbstractAppOptionWithSomething'
 
 export class AppOptionWithTableComponent
     extends AbstractAppOptionWithSomething<SingleHeaderContent>

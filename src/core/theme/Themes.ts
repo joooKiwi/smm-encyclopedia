@@ -1,24 +1,26 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                   from '../ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                                                     from '../ClassWithReference'
-import type {CourseAndWorldTheme}                                                                                                                                                                                                                                    from './CourseAndWorldTheme'
-import type {CourseTheme}                                                                                                                                                                                                                                            from './CourseTheme'
-import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, SmallImagePath} from './Themes.types'
-import type {Nullable, NullableString, NullOr, NullOrBoolean}                                                                                                                                                                                                        from '../../util/types'
-import type {PossibleOtherEntities}                                                                                                                                                                                                                                  from '../entity/Entity'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                from '../PropertyGetter'
-import type {ThemeProperty}                                                                                                                                                                                                                                          from '../entity/properties/theme/ThemeProperty'
-import type {ThemeReferences}                                                                                                                                                                                                                                        from '../entity/properties/theme/ThemeReferences'
-import type {WorldTheme}                                                                                                                                                                                                                                             from './WorldTheme'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                                                                                                     from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                from 'core/PropertyGetter'
+import type {PossibleOtherEntities}                                                                                                                                                                                                                                  from 'core/entity/Entity'
+import type {ThemeProperty}                                                                                                                                                                                                                                          from 'core/entity/properties/theme/ThemeProperty'
+import type {ThemeReferences}                                                                                                                                                                                                                                        from 'core/entity/properties/theme/ThemeReferences'
+import type {CourseAndWorldTheme}                                                                                                                                                                                                                                    from 'core/theme/CourseAndWorldTheme'
+import type {CourseTheme}                                                                                                                                                                                                                                            from 'core/theme/CourseTheme'
+import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, SmallImagePath} from 'core/theme/Themes.types'
+import type {WorldTheme}                                                                                                                                                                                                                                             from 'core/theme/WorldTheme'
+import type {Nullable, NullableString, NullOr, NullOrBoolean}                                                                                                                                                                                                        from 'util/types/nullable'
+import type {EmptyString}                                                                                                                                                                                                                                            from 'util/types/variables'
 
-import {BASE_PATH}             from '../../variables'
-import {EmptyEntity}           from '../entity/EmptyEntity'
-import {getValueByEnglishName} from '../../util/utilitiesMethods'
-import {Import}                from '../../util/DynamicImporter'
-import {StringContainer}       from '../../util/StringContainer'
-import {ThemeComponent}        from './Theme.component'
+import {BASE_PATH}             from 'variables'
+import {EmptyEntity}           from 'core/entity/EmptyEntity'
+import {ThemeComponent}        from 'core/theme/Theme.component'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {Import}                from 'util/DynamicImporter'
+import {EMPTY_STRING}          from 'util/emptyVariables'
+import {StringContainer}       from 'util/StringContainer'
 
 /**
  * @recursiveReferenceVia {@link ThemeBuilder} → {@link ThemeLoader}
@@ -258,19 +260,19 @@ export class Themes
         return [EmptyEntity.get,]
     }
 
-    public getGameName(name: null, isNightTheme: any,): ''
-    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: false,): | '' | DayGameName<V>
-    public getGameName<V extends string = string, >(name: V, isNightTheme: false,): | '' | DayGameName<V>
-    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: true,): | '' | NightGameName<V>
-    public getGameName<V extends string = string, >(name: V, isNightTheme: true,): | '' | NightGameName<V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: Nullable<V>, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: V, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
+    public getGameName(name: null, isNightTheme: any,): EmptyString
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: false,): | EmptyString | DayGameName<V>
+    public getGameName<V extends string = string, >(name: V, isNightTheme: false,): | EmptyString | DayGameName<V>
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: true,): | EmptyString | NightGameName<V>
+    public getGameName<V extends string = string, >(name: V, isNightTheme: true,): | EmptyString | NightGameName<V>
+    public getGameName<B extends boolean = boolean, V extends string = string, >(name: Nullable<V>, isNightTheme: B,): | EmptyString | DayOrNightGameName<B, V>
+    public getGameName<B extends boolean = boolean, V extends string = string, >(name: V, isNightTheme: B,): | EmptyString | DayOrNightGameName<B, V>
     public getGameName(name: NullableString, isNightTheme: boolean,) {
         if (name == null)
-            return ''
+            return EMPTY_STRING
         const text = this.gameName
         if (text == null)
-            return ''
+            return EMPTY_STRING
         return isNightTheme ? `${name}_${text}_night` : `${name}_${text}`
     }
 

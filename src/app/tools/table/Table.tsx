@@ -1,20 +1,19 @@
 import {PureComponent} from 'react'
 
-import type {BootstrapColor}             from '../../../bootstrap/Bootstrap.types'
-import type {HeaderHolder}               from './header/HeaderHolder'
-import type {EveryHeaderHolders, Layout} from './TableHeaders.types'
-import type {ObjectHolder}               from '../../../util/holder/ObjectHolder'
-import type {ReactComponent}             from '../../../util/react/ReactComponent'
-import type {ReactElement}               from '../../../util/react/ReactProperties'
-import type {SingleHeaderContent}        from './SimpleHeader'
-import type {TableProperties}            from './Table.types'
+import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
+import type {EveryHeaderHolders, Layout} from 'app/tools/table/TableHeaders.types'
+import type {TableProperties}            from 'app/tools/table/Table.types'
+import type {HeaderHolder}               from 'app/tools/table/header/HeaderHolder'
+import type {BootstrapColor}             from 'bootstrap/Bootstrap.types'
+import type {ObjectHolder}               from 'util/holder/ObjectHolder'
+import type {ReactComponent}             from 'util/react/ReactComponent'
+import type {ReactElement}               from 'util/react/ReactProperties'
 
-import {DelayedObjectHolderContainer} from '../../../util/holder/DelayedObjectHolder.container'
-import {EMPTY_REACT_ELEMENT}          from '../../../util/emptyReactVariables'
-import {HeaderTypes}                  from './header/HeaderTypes'
-import {HeaderHolderContainer}        from './header/HeaderHolder.container'
-import TableContent                   from './TableContent'
-import TableHeaders                   from './TableHeaders'
+import TableContent                   from 'app/tools/table/TableContent'
+import TableHeaders                   from 'app/tools/table/TableHeaders'
+import {HeaderHolderContainer}        from 'app/tools/table/header/HeaderHolder.container'
+import {HeaderTypes}                  from 'app/tools/table/header/HeaderTypes'
+import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 /**
  * @reactComponent
@@ -110,13 +109,13 @@ export default class Table
         const layoutHolder: ObjectHolder<Layout> = new DelayedObjectHolderContainer(() => this.#getLayout(everyHeadersHolder.get))
 
         return <table key={this.id} id={this.id} className={`table table-${this.tableColor} table-bordered table-striped`}>
-            {caption == null ? EMPTY_REACT_ELEMENT : <caption>{caption}</caption>}
-            {isHeaderNull ? EMPTY_REACT_ELEMENT : <thead className={`table-${this.headersColor} table-borderless`}>
+            {caption == null ? null : <caption>{caption}</caption>}
+            {isHeaderNull ? null : <thead className={`table-${this.headersColor} table-borderless`}>
             <TableHeaders id={this.id} type={HeaderTypes.HEAD} headers={headers}
                           everyHeadersHolder={() => everyHeadersHolder.get} layout={() => layoutHolder.get}/>
             </thead>}
             <tbody><TableContent content={this.content}/></tbody>
-            {isHeaderNull ? EMPTY_REACT_ELEMENT : <tfoot className={`table-${this.headersColor} table-borderless`}>
+            {isHeaderNull ? null : <tfoot className={`table-${this.headersColor} table-borderless`}>
             <TableHeaders id={this.id} type={HeaderTypes.FOOT} headers={headers}
                           everyHeadersHolder={() => everyHeadersHolder.get} layout={() => layoutHolder.get}/>
             </tfoot>}

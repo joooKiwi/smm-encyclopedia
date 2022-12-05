@@ -1,5 +1,5 @@
-import type {NullOr}              from '../../../util/types'
-import type {SingleHeaderContent} from '../../tools/table/SimpleHeader'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {NullOr}              from 'util/types/nullable'
 
 export interface AppOptionWithTable {
 
