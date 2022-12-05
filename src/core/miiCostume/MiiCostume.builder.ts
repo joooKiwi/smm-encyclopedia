@@ -7,7 +7,6 @@ import type {ObjectHolder}               from 'util/holder/ObjectHolder'
 import type {NullOr}                     from 'util/types/nullable'
 
 import {TemplateWithNameBuilder}           from 'core/_template/TemplateWithName.builder'
-import {Games}                             from 'core/game/Games'
 import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'
 import {MiiCostumeCategories}              from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {MiiCostumeCategory}                from 'core/miiCostumeCategory/MiiCostumeCategory'

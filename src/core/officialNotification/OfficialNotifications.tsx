@@ -14,7 +14,6 @@ import {BASE_PATH}                    from 'variables'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 import {EMPTY_ARRAY, EMPTY_STRING}    from 'util/emptyVariables'
-import {EMPTY_REACT_ELEMENT}          from 'util/emptyReactVariables'
 import {StringContainer}              from 'util/StringContainer'
 
 //region -------------------- dynamic imports --------------------
@@ -496,7 +495,7 @@ export class OfficialNotifications
         this.#englishName = new StringContainer(englishName)
         this.#translationKey = translationKey
         this.#additionalEnglishName = amount[0] === 1 ? EMPTY_ARRAY : amount.map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount)
-        this.#additionalTranslationKeyHolder = new DelayedObjectHolderContainer(()=> this._createAdditionalTranslationKey)
+        this.#additionalTranslationKeyHolder = new DelayedObjectHolderContainer(() => this._createAdditionalTranslationKey)
     }
 
     //region -------------------- Getter methods --------------------
@@ -646,7 +645,6 @@ export class OfficialNotifications
         keyMap.MissionTitle = <Fragment key={`${key} - Mission title`}>--Mission title--</Fragment>//TODO add mission title reference
         return keyMap
     }
-
 
 
     protected _addRank(rank: | 'C' | 'B' | 'A' | `S${| '' | '⁺'}`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {

@@ -27,7 +27,7 @@ const DEFAULT_SIZE: PossibleModalSize = 'md'
  * @reactComponent
  * @param properties
  */
-export default function ModalContainer({id, className=EMPTY_STRING, title, children, verticallyCentered = DEFAULT_VERTICALLY_CENTERED, modalSize = DEFAULT_SIZE,
+export default function ModalContainer({id, className = EMPTY_STRING, title, children, verticallyCentered = DEFAULT_VERTICALLY_CENTERED, modalSize = DEFAULT_SIZE,
                                            modalDialogProperties: {className: modalDialogClassName = EMPTY_STRING, ...otherModalDialogProperties} = EMPTY_OBJECT,
                                            modalContentProperties: {className: modalContentClassName = EMPTY_STRING, ...otherModalContentProperties} = EMPTY_OBJECT,
                                            ...otherProperties}: ReactPropertiesWithOptionalChildren<ModalContainerProperties, | ReactElement | readonly ReactElement[]>,) {

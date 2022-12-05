@@ -129,7 +129,7 @@ export abstract class Texts
     public static getValueByValue(value: Nullable<| Texts | boolean>,): Texts {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if(value instanceof this)
+        if (value instanceof this)
             return value
         const valueFound = this.values.find(it => it.value === value)
         if (valueFound == null)

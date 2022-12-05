@@ -19,7 +19,7 @@ export type ReactPropertiesWithChildren<T extends object, CHILDREN, > = T & Simp
  */
 export type ReactPropertiesWithOptionalChildren<T extends object, CHILDREN, > = T & SimpleReactPropertiesWithOptionalChildren<CHILDREN>
 
-/** A simple interface to help identify a react property with a children property */
+/** A simple interface to help identify a React property with a children property */
 export interface SimpleReactPropertiesWithChildren<T, >
     extends ReactProperties {
 
