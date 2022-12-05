@@ -6,7 +6,7 @@ import type {Converter}                                                        f
 import type {ConversionCallbackToAny, ValidationCallback}                      from 'util/loader/CSVLoader.types'
 import type {Nullable, NullOr}                                                 from 'util/types/nullable'
 
-import {assert}                           from 'utilitiesMethods'
+import {assert}                           from 'util/utilitiesMethods'
 import {ConverterPatterns}                from 'util/loader/converter/ConverterPatterns'
 import {ConverterUtil}                    from 'util/loader/converter/ConverterUtil'
 import {StringToBooleanConverter}         from 'util/loader/converter/StringToBooleanConverter'
