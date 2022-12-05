@@ -14,7 +14,6 @@ import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Entities}               from 'core/entity/Entities'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
@@ -74,8 +73,8 @@ export default class EntityApp
                 //TODO encapsulate the voiceSound into a sound interpreter.
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
                 return <div className={`${category}`}>
-                    {editorVoice1 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent file={editorVoice1} title={`${htmlName} - editor voice`}/>}
-                    {editorVoice2 == null ? EMPTY_REACT_ELEMENT : <SimpleSoundComponent file={editorVoice2} title={`${htmlName} - editor voice (european)`}/>}
+                    {editorVoice1 == null ? null : <SimpleSoundComponent file={editorVoice1} title={`${htmlName} - editor voice`}/>}
+                    {editorVoice2 == null ? null : <SimpleSoundComponent file={editorVoice2} title={`${htmlName} - editor voice (european)`}/>}
                 </div>
             }
 

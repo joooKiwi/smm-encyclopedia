@@ -13,7 +13,6 @@ import TableContent                   from 'app/tools/table/TableContent'
 import TableHeaders                   from 'app/tools/table/TableHeaders'
 import {HeaderHolderContainer}        from 'app/tools/table/header/HeaderHolder.container'
 import {HeaderTypes}                  from 'app/tools/table/header/HeaderTypes'
-import {EMPTY_REACT_ELEMENT}          from 'util/emptyReactVariables'
 import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 /**
@@ -110,13 +109,13 @@ export default class Table
         const layoutHolder: ObjectHolder<Layout> = new DelayedObjectHolderContainer(() => this.#getLayout(everyHeadersHolder.get))
 
         return <table key={this.id} id={this.id} className={`table table-${this.tableColor} table-bordered table-striped`}>
-            {caption == null ? EMPTY_REACT_ELEMENT : <caption>{caption}</caption>}
-            {isHeaderNull ? EMPTY_REACT_ELEMENT : <thead className={`table-${this.headersColor} table-borderless`}>
+            {caption == null ? null : <caption>{caption}</caption>}
+            {isHeaderNull ? null : <thead className={`table-${this.headersColor} table-borderless`}>
             <TableHeaders id={this.id} type={HeaderTypes.HEAD} headers={headers}
                           everyHeadersHolder={() => everyHeadersHolder.get} layout={() => layoutHolder.get}/>
             </thead>}
             <tbody><TableContent content={this.content}/></tbody>
-            {isHeaderNull ? EMPTY_REACT_ELEMENT : <tfoot className={`table-${this.headersColor} table-borderless`}>
+            {isHeaderNull ? null : <tfoot className={`table-${this.headersColor} table-borderless`}>
             <TableHeaders id={this.id} type={HeaderTypes.FOOT} headers={headers}
                           everyHeadersHolder={() => everyHeadersHolder.get} layout={() => layoutHolder.get}/>
             </tfoot>}

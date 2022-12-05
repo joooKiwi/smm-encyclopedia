@@ -13,7 +13,6 @@ import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {CourseTags}             from 'core/courseTag/CourseTags'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 export default class CourseTagApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties> {
@@ -87,9 +86,7 @@ export default class CourseTagApp
             }
 
             public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,) {
-                return courseTag.firstAppearance == null
-                    ? EMPTY_REACT_ELEMENT
-                    : <sub key={`${name} - first appearance`}>{courseTag.firstAppearance.simpleName}</sub>
+                return courseTag.firstAppearance == null ? null : <sub key={`${name} - first appearance`}>{courseTag.firstAppearance.simpleName}</sub>
                 //TODO add Maker Central name
             }
 

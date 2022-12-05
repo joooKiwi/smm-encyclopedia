@@ -6,7 +6,6 @@ import type {HTMLDivProperties}    from 'util/react/html/HTMLDivProperties'
 
 import {contentTranslation}         from 'lang/components/translationMethods'
 import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
-import {EMPTY_REACT_ELEMENT}        from 'util/emptyReactVariables'
 
 interface ModalFooterProperties
     extends ReactProperties, HTMLDivProperties {
@@ -42,7 +41,7 @@ export default function ModalFooter({className = EMPTY_STRING, successButton: su
 
 function createSuccessButton(properties?: ModalSuccessButtonProperties,) {
     if (properties == null)
-        return EMPTY_REACT_ELEMENT
+        return null
 
     const {children, className = EMPTY_STRING, ...otherProperties} = properties
     return <button {...otherProperties} type="button" className={`btn btn-success ${className}`}>{children}</button>

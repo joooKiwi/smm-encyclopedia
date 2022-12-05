@@ -2,9 +2,7 @@ import './EditorVoiceSound.scss'
 
 import type {EditorVoiceSound} from 'core/editorVoice/EditorVoiceSound'
 import type {ReactProperties}  from 'util/react/ReactProperties'
-
-import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
-import SimpleSoundComponent  from 'util/sound/component/SimpleSound.component'
+import SimpleSoundComponent    from 'util/sound/component/SimpleSound.component'
 
 interface EditorVoiceSoundComponentProperties
     extends ReactProperties {
@@ -21,7 +19,7 @@ interface EditorVoiceSoundComponentProperties
  */
 export default function EditorVoiceSoundComponent({editorVoiceSound: {file, europeanFile,}, name,}: EditorVoiceSoundComponentProperties,) {
     return file == null
-        ? EMPTY_REACT_ELEMENT
+        ? null
         : europeanFile == null
             ? <div key={`Editor voice sound container (single - ${name})`} className="single-editorVoiceSound-container">
                 <SimpleSoundComponent file={file} title={name}/>

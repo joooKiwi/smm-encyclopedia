@@ -15,7 +15,6 @@ import {BASE_PATH}                                  from 'variables'
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {EmptyStringName}                            from 'lang/name/EmptyStringName'
-import {EMPTY_REACT_ELEMENT}                        from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
@@ -68,7 +67,7 @@ export class CommonOptions {
     public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | string | Name<string>,): ReactElement {
         const name = enumeration.reference.categoryNameContainer
         if (name === EmptyStringName.get)
-            return EMPTY_REACT_ELEMENT
+            return null
 
         const imagePath_or_name = imagePath_or_nameCallback()
         const englishName = name.english
@@ -123,9 +122,9 @@ export class CommonOptions {
         const isInSMM2 = reference.isInSuperMarioMaker2
 
         return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
-            {isInSMM1 ? Games.SUPER_MARIO_MAKER_1.renderSingleComponent : EMPTY_REACT_ELEMENT}
-            {isInSMM3DS ? Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.renderSingleComponent : EMPTY_REACT_ELEMENT}
-            {isInSMM2 ? Games.SUPER_MARIO_MAKER_2.renderSingleComponent : EMPTY_REACT_ELEMENT}
+            {isInSMM1 ? Games.SUPER_MARIO_MAKER_1.renderSingleComponent : null}
+            {isInSMM3DS ? Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.renderSingleComponent : null}
+            {isInSMM2 ? Games.SUPER_MARIO_MAKER_2.renderSingleComponent : null}
         </div>
     }
 
@@ -134,8 +133,8 @@ export class CommonOptions {
         const reference = enumeration.reference
 
         return <div key={`${enumeration.englishName} (theme content images)`} id={`${enumeration.englishNameInHtml}-themeContentImages-container`} className="themeContentImages-container">
-            {reference.isInCourseTheme ? <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/> : EMPTY_REACT_ELEMENT}
-            {reference.isInWorldTheme ? <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/> : EMPTY_REACT_ELEMENT}
+            {reference.isInCourseTheme ? <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/> : null}
+            {reference.isInWorldTheme ? <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/> : null}
         </div>
     }
 

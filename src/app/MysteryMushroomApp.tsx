@@ -11,7 +11,6 @@ import {AbstractTableApp}         from 'app/withInterpreter/AbstractTableApp'
 import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}      from 'util/emptyReactVariables'
 
 /**
  * @reactComponent
@@ -75,7 +74,7 @@ export default class MysteryMushroomApp
                 const contains2Images = amountOfImages === 2
 
                 return amountOfImages === 0
-                    ? EMPTY_REACT_ELEMENT
+                    ? null
                     : <div className={`image-content-container ${contains2Images ? 'dual' : 'single'}-image-content-container`}>
                         {[
                             MysteryMushroomAppOption.WAITING,

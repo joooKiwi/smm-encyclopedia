@@ -2,10 +2,8 @@ import './TextComponent.scss'
 
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
-import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
-
-const NOT_APPLICABLE = 'N/A'
-const UNKNOWN_REFERENCE = '???'
+const NOT_APPLICABLE = 'N/A'//FIXME relocate the variable elsewhere
+const UNKNOWN_REFERENCE = '???'//FIXME relocate the variable elsewhere
 
 /**
  *
@@ -19,7 +17,7 @@ export default function TextComponent<T extends PossibleTextContent = PossibleTe
     switch (content) {
         case null:
             if (Object.getOwnPropertyNames(otherProperties).length === 0 && classes == null)
-                return EMPTY_REACT_ELEMENT
+                return null
             if (classes == null)
                 return <span {...otherProperties}/>
             return <span className={classes.join(' ')} {...otherProperties}/>

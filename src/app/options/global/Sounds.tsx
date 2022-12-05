@@ -8,8 +8,6 @@ import type {Nullable}              from 'util/types/nullable'
 import type {ReactElement}          from 'util/react/ReactProperties'
 import type {SimpleSoundProperties} from 'util/sound/component/property/SimpleSoundProperties'
 
-import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
-
 //region -------------------- dynamic imports --------------------
 
 const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
@@ -42,7 +40,7 @@ export abstract class Sounds
     public static readonly NO =  new class Sounds_No extends Sounds {
 
         public override renderComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
     }(false,)

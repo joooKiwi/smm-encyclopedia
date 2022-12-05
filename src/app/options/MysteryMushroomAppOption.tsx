@@ -19,7 +19,6 @@ import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWith
 import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
 import TextComponent                   from 'app/tools/text/TextComponent'
 import {ProjectLanguages}              from 'lang/ProjectLanguages'
-import {EMPTY_REACT_ELEMENT}           from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
@@ -53,7 +52,7 @@ export abstract class MysteryMushroomAppOption
             return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{
                 reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
                     <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
-                    {index === games.length - 1 ? EMPTY_REACT_ELEMENT : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
+                    {index === games.length - 1 ? null : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
                 </Fragment>)
             }</div>
         }
@@ -404,7 +403,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const value = callback(enumeration)
             if (value == null)
-                return EMPTY_REACT_ELEMENT
+                return null
 
             const englishName = enumeration.englishName
             const type = this._mysteryMushroomType
@@ -460,7 +459,7 @@ export abstract class MysteryMushroomAppOption
 
 
     protected _createImageContent(renderDiv: boolean,): ReactElement {
-        return EMPTY_REACT_ELEMENT
+        return null
     }
 
     public renderImageContent(enumeration: MysteryMushrooms, renderDiv: boolean = false,): ReactElement {
@@ -473,7 +472,7 @@ export abstract class MysteryMushroomAppOption
     }
 
     public _createSoundContent(renderDiv: boolean,): ReactElement {
-        return EMPTY_REACT_ELEMENT
+        return null
     }
 
     public renderSoundContent(enumeration: MysteryMushrooms,): ReactElement {

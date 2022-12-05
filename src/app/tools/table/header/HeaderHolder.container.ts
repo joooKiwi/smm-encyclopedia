@@ -3,8 +3,7 @@ import type {HeaderHolder}        from 'app/tools/table/header/HeaderHolder'
 import type {ReactElement}        from 'util/react/ReactProperties'
 import type {Nullable, NullOr}    from 'util/types/nullable'
 
-import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
-import {assert}              from 'util/utilitiesMethods'
+import {assert} from 'util/utilitiesMethods'
 
 export class HeaderHolderContainer
     implements HeaderHolder {
@@ -164,14 +163,14 @@ export class HeaderHolderContainer
 
     public renderHead(): ReactElement {
         if (this.wasRendered)
-            return EMPTY_REACT_ELEMENT
+            return null
         this.setRendered(true)
         return this.#callbackToRenderHead(this)
     }
 
     public renderFoot(): ReactElement {
         if (this.wasRendered)
-            return EMPTY_REACT_ELEMENT
+            return null
         this.setRendered(true)
         return this.#callbackToRenderFoot(this)
     }

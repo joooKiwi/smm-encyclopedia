@@ -664,7 +664,7 @@ export class OfficialNotifications
         const upperText = gameContentTranslation(`Official notification.position.${type}.${position}`)
         keyMap.position = <Fragment key={`${key} - position (${type})`}>
             {position}
-            {upperText === EMPTY_STRING ? EMPTY_REACT_ELEMENT : <sup>{upperText}</sup>}
+            {upperText === EMPTY_STRING ? null : <sup>{upperText}</sup>}
         </Fragment>
         return keyMap
     }

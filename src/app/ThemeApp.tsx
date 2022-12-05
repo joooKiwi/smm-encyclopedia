@@ -13,7 +13,6 @@ import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Themes}                 from 'core/theme/Themes'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 /**
  * @reactComponent
@@ -70,7 +69,7 @@ export default class ThemeApp
                     <div className="col-2">{CommonOptions.get.getGameContent(enumerable)}</div>
                     <div className="images-container col-7">
                         {enumerable.renderSingleComponent(true)}
-                        {endlessMarioImagePath != null ? <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/> : EMPTY_REACT_ELEMENT}
+                        {endlessMarioImagePath == null ? null : <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/>}
                     </div>
                     <div className="col-2">{CommonOptions.get.getThemeContent(enumerable)}</div>
                 </div>

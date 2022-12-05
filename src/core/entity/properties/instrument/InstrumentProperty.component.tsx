@@ -5,7 +5,6 @@ import type {ReactProperties} from 'util/react/ReactProperties'
 
 import Tooltip                  from 'bootstrap/tooltip/Tooltip'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 interface InstrumentPropertyProperties
     extends ReactProperties {
@@ -20,7 +19,7 @@ interface InstrumentPropertyProperties
  */
 export default function InstrumentPropertyComponent({value: {englishNameInHtml, reference: {canMakeASoundOutOfAMusicBlock: value, canMakeASoundOutOfAMusicBlockComment: comment,},},}: InstrumentPropertyProperties,) {
     if (value !== true)
-        return EMPTY_REACT_ELEMENT
+        return null
     const id = `${englishNameInHtml}-instrumentProperty`
 
     if (comment == null)

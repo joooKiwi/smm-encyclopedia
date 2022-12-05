@@ -12,7 +12,6 @@ import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
-import {EMPTY_REACT_ELEMENT}    from 'util/emptyReactVariables'
 
 /**
  * @reactComponent
@@ -72,11 +71,11 @@ export default class GameReferenceApp
                     <Fragment key={`single name container - ${gameReference.englishName}`}>
                         <div id={`${gameReference.englishNameInHtml}-name-container`} className={`${enumReferences.length > 5 ? 'col-3' : 'col'} single-name-container`}>
                             <div className="single-name-sub-container">
-                                {enumReference.renderSingleComponent ?? EMPTY_REACT_ELEMENT}
+                                {enumReference.renderSingleComponent}
                                 <NameComponent id={`${groupId}-name`} name={gameReference.reference}/>
                             </div>
                         </div>
-                        {returnOfLine?.includes(gameReference) ? <div className="col-12 name-container return-of-line-name-container"/> : EMPTY_REACT_ELEMENT}
+                        {returnOfLine?.includes(gameReference) ? <div className="col-12 name-container return-of-line-name-container"/> : null}
                     </Fragment>)
             }</div>
         </div>

@@ -18,7 +18,6 @@ import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWith
 import {EmptyAppOption}                from 'app/options/component/EmptyAppOption'
 import {MiiCostumeCategories}          from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {contentTranslation}            from 'lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}           from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
@@ -68,12 +67,7 @@ export abstract class MiiCostumeAppOption
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
                 const miiCostume = enumeration.reference
 
-                const {officialNotification} = miiCostume
-
-                return officialNotification == null
-                    ? EMPTY_REACT_ELEMENT
-                    : officialNotification.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,)
-
+                return miiCostume.officialNotification?.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,)
             }
         }
 

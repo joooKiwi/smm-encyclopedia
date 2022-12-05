@@ -15,7 +15,6 @@ import {AppOptionWithTableComponent}                from 'app/options/component/
 import {CommonOptions}                              from 'app/options/CommonOptions'
 import {Times}                                      from 'core/time/Times'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {EMPTY_REACT_ELEMENT}                        from 'util/emptyReactVariables'
 
 //region -------------------- dynamic imports --------------------
 
@@ -36,9 +35,11 @@ export abstract class ThemeAppOption
     public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
         protected override _createContentOption(enumeration: Themes,) {
+            const {endlessMarioImagePath,} = enumeration
+
             return [
                 enumeration.renderSingleComponent(false),
-                enumeration.endlessMarioImagePath != null ? <Image source={enumeration.endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/> : EMPTY_REACT_ELEMENT,
+                endlessMarioImagePath == null ? null : <Image source={endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/>,
             ]
         }
 
@@ -46,7 +47,7 @@ export abstract class ThemeAppOption
             return {
                 key: 'image', element: contentTranslation('Image'),
                 subHeaders: [
-                    {key: 'image-empty', element: EMPTY_REACT_ELEMENT,},
+                    {key: 'image-empty', element: null,},
                     {key: 'image-endless-mario', element: '--Endless Mario--',},//TODO add Endless Mario
                 ],
             }

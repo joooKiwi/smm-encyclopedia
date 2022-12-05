@@ -12,8 +12,6 @@ import type {ReactElement}                        from 'util/react/ReactProperti
 import type {ClassWithValue}                      from 'util/types/ClassWithValue'
 import type {Nullable}                            from 'util/types/nullable'
 
-import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
-
 //region -------------------- dynamic imports --------------------
 
 const TextComponent =              lazy(() => import('app/tools/text/TextComponent'))
@@ -66,26 +64,26 @@ export abstract class Texts
         }
 
     }(true,)
-    public static readonly NO =  new class Texts_No extends Texts {
+    public static readonly NO = new class Texts_No extends Texts {
 
         public override renderTextComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderNameComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderYesNoComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderBooleanComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
         public override renderBooleanResultComponent() {
-            return EMPTY_REACT_ELEMENT
+            return null
         }
 
     }(false,)

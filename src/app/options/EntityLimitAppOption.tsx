@@ -15,7 +15,6 @@ import TextComponent                                from 'app/tools/text/TextCom
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent                                from 'lang/name/component/Name.component'
-import {EMPTY_REACT_ELEMENT}                        from 'util/emptyReactVariables'
 
 export abstract class EntityLimitAppOption
     extends Enum<Ordinals, Names> {
@@ -52,7 +51,7 @@ export abstract class EntityLimitAppOption
             return {
                 key: 'names', element: contentTranslation('Name'),
                 subHeaders: [
-                    {key: 'name', element: EMPTY_REACT_ELEMENT,},
+                    {key: 'name', element: null,},
                     {key: 'alternativeName', element: contentTranslation('Alternative name'),},
                 ],
             }

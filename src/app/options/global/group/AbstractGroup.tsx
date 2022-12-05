@@ -6,8 +6,6 @@ import type {ReactComponent}                                                    
 import type {ReactElement}                                                                                      from 'util/react/ReactProperties'
 import type {NullOr}                                                                                            from 'util/types/nullable'
 
-import {EMPTY_REACT_ELEMENT} from 'util/emptyReactVariables'
-
 /**
  * @reactComponent
  */
@@ -40,11 +38,11 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
 
     public override render(): ReactElement {
         return this.isHidden
-            ? EMPTY_REACT_ELEMENT
+            ? null
             : <div key={`option container (${this.id})`} id={`${this.id}-option-container`} className="container-fluid">{
                 this.elements.map(([element, option, isDisabled, isHidden, onClickCallback = null,]) =>
                     isHidden
-                        ? EMPTY_REACT_ELEMENT
+                        ? null
                         : this._renderElement(
                             element,
                             option,
