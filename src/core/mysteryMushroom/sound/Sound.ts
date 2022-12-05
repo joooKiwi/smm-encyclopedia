@@ -1,5 +1,6 @@
 import type {PossibleFileName}         from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {MysteryMushroomSoundFile} from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {EmptyArray}               from 'util/types/variables'
 
 export interface Sound<FILE extends PossibleFileName = PossibleFileName, > {
 
@@ -55,7 +56,7 @@ export type TauntSound<FILE extends PossibleFileName = PossibleFileName, > =
     MysteryMushroomSoundFile<FILE, TauntSoundFile>
 
 export type JumpSounds<FILE extends PossibleFileName = PossibleFileName, > =
-    | readonly []
+    | EmptyArray
     | readonly [MysteryMushroomSoundFile<FILE, JumpSoundFile<''>>,]
     | readonly [MysteryMushroomSoundFile<FILE, JumpSoundFile<''>>, MysteryMushroomSoundFile<FILE, JumpSoundFile<2>>,]
 

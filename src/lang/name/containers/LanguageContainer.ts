@@ -1,12 +1,13 @@
-import type {Language} from 'lang/name/containers/Language'
-import type {NullOr}   from 'util/types/nullable'
+import type {Language}   from 'lang/name/containers/Language'
+import type {NullOr}     from 'util/types/nullable'
+import type {EmptyArray} from 'util/types/variables'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @provider
  */
-export class LanguageContainer<T, S extends T = T, A extends readonly T[] = readonly [], >
+export class LanguageContainer<T, S extends T = T, A extends readonly T[] = EmptyArray, >
     implements Language<T, S, A> {
 
     //region -------------------- Fields --------------------
@@ -36,7 +37,7 @@ export class LanguageContainer<T, S extends T = T, A extends readonly T[] = read
         return this.#singleValue
     }
 
-    protected get _arrayValue(): | A | readonly [] {
+    protected get _arrayValue(): | A | EmptyArray {
         return this.#arrayValue
     }
 

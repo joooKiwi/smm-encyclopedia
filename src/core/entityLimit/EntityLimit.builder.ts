@@ -19,6 +19,7 @@ import {EntityLimitContainer}                    from 'core/entityLimit/EntityLi
 import {EntityLimitTypes}                        from 'core/entityLimit/EntityLimitTypes'
 import {EmptyEntityLimitAmount}                  from 'core/entityLimit/properties/EmptyEntityLimitAmount'
 import {EntityLimitAmountContainer}              from 'core/entityLimit/properties/EntityLimitAmount.container'
+import {NOT_APPLICABLE, UNKNOWN_CHARACTER}       from 'util/commonVariables'
 import {DelayedObjectHolderContainer}            from 'util/holder/DelayedObjectHolder.container'
 import {Import}                                  from 'util/DynamicImporter'
 import {ObjectHolderContainer}                   from 'util/holder/ObjectHolder.container'
@@ -80,13 +81,13 @@ export class EntityLimitBuilder
     //region -------------------- Limit amount helper methods --------------------
 
     #createLimitTemplateInSMM1And3DS(amount: Exclude<PossibleLimitAmount_SMM1And3DS, null>,) {
-        return amount === 'N/A'
+        return amount === NOT_APPLICABLE
             ? EntityLimitBuilder.#NOT_APPLICABLE_CONTAINER
             : new DelayedObjectHolderContainer(() => PropertyProvider.newNumberContainer(amount, true,))
     }
 
     #createLimitTemplateInSMM2(amount: Exclude<PossibleLimitAmount_SMM2, null>,) {
-        return amount === '?'
+        return amount === UNKNOWN_CHARACTER
             ? EntityLimitBuilder.#UNKNOWN_CONTAINER
             : new DelayedObjectHolderContainer(() =>
                 typeof amount == 'number'

@@ -10,10 +10,11 @@ import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}       
 import type {Loader}                                                                                                                                                                              from 'util/loader/Loader'
 import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
 
-import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
-import {EntityLimitBuilder}      from 'core/entityLimit/EntityLimit.builder'
-import {CSVLoader}               from 'util/loader/CSVLoader'
+import {AbstractTemplateBuilder}           from 'core/_template/AbstractTemplate.builder'
+import {HeaderTypesForConvertor}           from 'core/_util/loader/HeaderTypesForConvertor'
+import {EntityLimitBuilder}                from 'core/entityLimit/EntityLimit.builder'
+import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
+import {CSVLoader}                         from 'util/loader/CSVLoader'
 
 //region -------------------- CSV array related types --------------------
 
@@ -110,8 +111,8 @@ export class EntityLimitLoader
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'alternative',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limitType, 'type',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_limit, 'acronym',)
-                .convertToNullableNumberAnd(['?', 'N/A',], 'Limit_SMM1And3DS',)
-                .convertToNullableNumberAnd(['?', '10?', '400?', '500?',], 'limit_SMM2',)
+                .convertToNullableNumberAnd([UNKNOWN_CHARACTER, NOT_APPLICABLE,], 'Limit_SMM1And3DS',)
+                .convertToNullableNumberAnd([UNKNOWN_CHARACTER, '10?', '400?', '500?',], 'limit_SMM2',)
                 .convertToEmptyableStringAnd(['Crash online if met', 'Per player', 'Per pair', 'Per section',], 'limit_comment',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'english',)

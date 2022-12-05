@@ -2,6 +2,7 @@ import type {SMM1ExclusiveSoundEffectSound}                            from 'cor
 import type {SMM1StandaloneSoundEffectSound}                           from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
 import type {SMM2SoundEffectSound}                                     from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {ClassWithNullObjectPattern, EmptySMMSoundEffectSoundName} from 'util/ClassWithNullObjectPattern'
+import type {EmptyArray}                                               from 'util/types/variables'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
@@ -9,9 +10,9 @@ import {EMPTY_ARRAY} from 'util/emptyVariables'
  * @singleton
  */
 export class EmptySMMSoundEffectSound
-    implements SMM1ExclusiveSoundEffectSound<readonly [], null>,
-        SMM1StandaloneSoundEffectSound<readonly [], null>,
-        SMM2SoundEffectSound<readonly [], null, readonly [], readonly []>,
+    implements SMM1ExclusiveSoundEffectSound<EmptyArray, null>,
+        SMM1StandaloneSoundEffectSound<EmptyArray, null>,
+        SMM2SoundEffectSound<EmptyArray, null, EmptyArray, EmptyArray>,
         ClassWithNullObjectPattern<EmptySMMSoundEffectSoundName> {
 
     //region -------------------- Singleton usage --------------------

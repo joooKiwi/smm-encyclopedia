@@ -4,12 +4,13 @@ import type {SMM1StandaloneSoundEffectSound} from 'core/soundEffect/sound/SMM1St
 import type {SMM2SoundEffectSound}           from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {PossibleEditorValue}            from 'core/soundEffect/sound/SoundEffectSound'
 import type {ObjectHolder}                   from 'util/holder/ObjectHolder'
+import type {EmptyArray}                     from 'util/types/variables'
 
 import {AbstractSoundEffectSound} from 'core/soundEffect/sound/AbstractSoundEffectSound'
 import {EMPTY_ARRAY}              from 'util/emptyVariables'
 
 export class SMM1StandaloneSoundEffectSoundContainer<SOUNDS extends readonly SoundEffectSoundFile[], EDITOR_SOUND extends PossibleEditorValue<SOUNDS>, >
-    extends AbstractSoundEffectSound<SOUNDS, EDITOR_SOUND, readonly [], readonly []>
+    extends AbstractSoundEffectSound<SOUNDS, EDITOR_SOUND, EmptyArray, EmptyArray>
     implements SMM1StandaloneSoundEffectSound<SOUNDS, EDITOR_SOUND> {
 
     //region -------------------- Fields --------------------

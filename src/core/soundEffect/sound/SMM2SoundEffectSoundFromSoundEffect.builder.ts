@@ -1,13 +1,14 @@
 import type {SMM2SoundEffectSoundFile}                                  from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
 import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {PossibleSoundEffectSoundName_SMM2}                         from 'core/soundEffect/sound/types'
+import type {ObjectHolder}                                              from 'util/holder/ObjectHolder'
+import type {EmptyArray}                                                from 'util/types/variables'
 
 import {SMM2SoundEffectSoundFileContainer}                          from 'core/soundEffect/file/SMM2SoundEffectSoundFile.container'
 import {AbstractExclusiveSoundEffectSoundBuilder, type SingleIndex} from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'
 import {SMM2SoundEffectSoundContainer}                              from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
 import {EMPTY_ARRAY}                                                from 'util/emptyVariables'
 import {DelayedObjectHolderContainer}                               from 'util/holder/DelayedObjectHolder.container'
-import {ObjectHolder}                                               from 'util/holder/ObjectHolder'
 
 export class SMM2SoundEffectSoundFromSoundEffectBuilder
     extends AbstractExclusiveSoundEffectSoundBuilder<SMM2SoundEffectSound, PossibleSoundEffectSoundName_SMM2, SMM2SoundEffectSoundFile> {
@@ -81,6 +82,6 @@ export class SMM2SoundEffectSoundFromSoundEffectBuilder
 
 }
 
-type OriginalValuesOnLinkOrSMB2Value = | readonly []
+type OriginalValuesOnLinkOrSMB2Value = | EmptyArray
                                        | readonly [PossibleSoundEffectSoundName_SMM2,]
                                        | readonly [PossibleSoundEffectSoundName_SMM2, PossibleSoundEffectSoundName_SMM2,]

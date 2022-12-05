@@ -1,6 +1,7 @@
-import type {PossibleGamesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnTaunt} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
-import type {ExtendedMap}                                                                       from 'util/extended/ExtendedMap'
-import type {NullOr}                                                                            from 'util/types/nullable'
+import type {PossibleGamesReceived, PossibleValuesReceived, SoundEffectOnTaunt} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
+import type {ExtendedMap}                                                       from 'util/extended/ExtendedMap'
+import type {NullOr}                                                            from 'util/types/nullable'
+import type {BooleanOrNotApplicable}                                            from 'util/types/variables'
 
 import {PropertyProvider}     from 'core/_properties/PropertyProvider'
 import {GameReferences}       from 'core/gameReference/GameReferences'
@@ -30,7 +31,7 @@ export class SoundEffectOnTauntContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get value(): PossibleValues {
+    public get value(): BooleanOrNotApplicable {
         return this.#property.value
     }
 

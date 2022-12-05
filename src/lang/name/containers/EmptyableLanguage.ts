@@ -1,4 +1,6 @@
-export interface EmptyableLanguage<T, S extends T = T, A extends readonly T[] = readonly [],
+import type {EmptyArray} from 'util/types/variables'
+
+export interface EmptyableLanguage<T, S extends T = T, A extends readonly T[] = EmptyArray,
     ORIGINAL extends null = null, GET_SINGLE extends null = null, GET_INDEX extends null = null, > {
 
     get original(): | S | A | ORIGINAL

@@ -6,12 +6,12 @@ import type {Names, Ordinals, PossibleMysteryMushroomType}           from 'app/o
 import type {AppOptionWithContent, PossibleRenderReactElement}       from 'app/options/component/AppOptionWithContent'
 import type {AppOptionWithTable}                                     from 'app/options/component/AppOptionWithTable'
 import type {SingleHeaderContent}                                    from 'app/tools/table/SimpleHeader'
-import type {NotApplicable}                                          from 'core/_properties/Property'
 import type {MysteryMushroom}                                        from 'core/mysteryMushroom/MysteryMushroom'
 import type {PossibleImageSourceForFile, PossibleSoundSourceForFile} from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {MysteryMushroomSoundFile}                               from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
 import type {ReactElement}                                           from 'util/react/ReactProperties'
 import type {NullOr}                                                 from 'util/types/nullable'
+import type {NotApplicable}                                          from 'util/types/variables'
 
 import {MysteryMushrooms}              from 'core/mysteryMushroom/MysteryMushrooms'
 import {CommonOptions}                 from 'app/options/CommonOptions'

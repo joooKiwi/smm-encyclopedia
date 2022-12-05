@@ -1,4 +1,5 @@
 import type {OptionalLanguage} from 'lang/name/containers/OptionalLanguage'
+import type {EmptyArray}       from 'util/types/variables'
 
 import {LanguageContainer}     from 'lang/name/containers/LanguageContainer'
 import {isNullableEmptyString} from 'util/utilitiesMethods'
@@ -6,7 +7,7 @@ import {isNullableEmptyString} from 'util/utilitiesMethods'
 /**
  * @provider
  */
-export class OptionalLanguageContainer<T, S extends T = T, A extends readonly T[] = readonly [], U extends boolean = boolean, >
+export class OptionalLanguageContainer<T, S extends T = T, A extends readonly T[] = EmptyArray, U extends boolean = boolean, >
     extends LanguageContainer<T, S, A>
     implements OptionalLanguage<T, S, A, U> {
 

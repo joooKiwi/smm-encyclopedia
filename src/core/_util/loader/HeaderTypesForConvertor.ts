@@ -1,7 +1,8 @@
-import type {EmptyArray, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameOnEntity_Instrument, EveryPossibleNameOrUnknown_EntityLimit, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EveryPossibleUniqueEnglishName_MysteryMushroom, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition, UnknownCharacter, UnknownReference} from 'core/_util/loader/HeaderTypesForConvertorDefinition'
+import type {EmptyArray, EveryAlternativeAcronym_EntityLimit, EveryConditionToUnlockIt_MysteryMushroom, EveryEnglishName_EntityLimit, EveryEnglishNameOrUnknown_EntityLimit, EveryPossibleAcronym_EntityBehaviour, EveryPossibleAcronym_EntityLimit, EveryPossibleAcronym_GameReference, EveryPossibleAcronym_GameStyle, EveryPossibleAcronymWithPokemonGeneration_GameReference, EveryPossibleAcronymWithPokemonGenerationOrUnknown_GameReference, EveryPossibleEnglishName_EntityLimitType, EveryPossibleEnglishName_PredefinedMessage, EveryPossibleEnglishName_SoundEffect, EveryPossibleEnglishName_SoundEffectCategory, EveryPossibleName_Entity, EveryPossibleName_EntityCategory, EveryPossibleName_EntityGroup, EveryPossibleName_EntityLimit, EveryPossibleName_GameReference, EveryPossibleName_Instrument, EveryPossibleName_MiiCostumeCategory, EveryPossibleName_Theme, EveryPossibleName_ThemeNightEffect, EveryPossibleName_Version, EveryPossibleName_Version_SMM, EveryPossibleName_Version_SMM2, EveryPossibleName_Version_SMM3DS, EveryPossibleNameOnEntity_Instrument, EveryPossibleNameOrUnknown_EntityLimit, EveryPossibleNameWithAmount_OfficialNotification, EveryPossibleTranslationKey_EntityBehaviour, EveryPossibleUniqueEnglishName_MysteryMushroom, EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom, EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom, HeaderTypesForConvertorDefinition} from 'core/_util/loader/HeaderTypesForConvertorDefinition'
 
-import {Import}         from 'util/DynamicImporter'
-import {isInProduction} from 'variables'
+import {isInProduction}                       from 'variables'
+import {Import}                               from 'util/DynamicImporter'
+import {UNKNOWN_CHARACTER, UNKNOWN_REFERENCE} from 'util/commonVariables'
 
 /**
  * @singleton
@@ -24,9 +25,6 @@ class HeaderTypesForConvertorForTestAndDevelopment
     //endregion -------------------- Singleton usage --------------------
 
     //region -------------------- Fields --------------------
-
-    static readonly #UNKNOWN_CHARACTER: UnknownCharacter = '?'
-    static readonly #UNKNOWN_REFERENCE: UnknownReference = '???'
 
     //region -------------------- Array fields --------------------
 
@@ -98,7 +96,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     public get everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference() {
-        return this.#everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference ??= [...this.everyPossibleAcronymWithPokemonGeneration_gameReference, HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,]
+        return this.#everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference ??= [...this.everyPossibleAcronymWithPokemonGeneration_gameReference, UNKNOWN_REFERENCE,]
     }
 
     public get everyPossibleName_gameReference() {
@@ -172,7 +170,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     public get everyPossibleNameOrUnknown_limit() {
-        return this.#everyPossibleNameOrUnknown_limit ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...this.everyName_limit,]
+        return this.#everyPossibleNameOrUnknown_limit ??= [UNKNOWN_CHARACTER, ...this.everyName_limit,]
     }
 
     public get everyName_limit() {
@@ -180,7 +178,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
     }
 
     public get everyNameOrUnknown_limit() {
-        return this.#everyNameOrUnknown_limit ??= [HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_CHARACTER, ...Import.EntityLimits.everyEnglishNames,]
+        return this.#everyNameOrUnknown_limit ??= [UNKNOWN_CHARACTER, ...Import.EntityLimits.everyEnglishNames,]
     }
 
     //endregion -------------------- Entity limit --------------------
@@ -231,7 +229,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     public get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom() {
         return this.#everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom ??= [
-            HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,
+            UNKNOWN_REFERENCE,
             'Introduction', 'Startup', 'Game over',
             'Level finished', 'Level finished?', 'Race finished',
             'Airship completed', 'Timed event completed', 'Course completed',
@@ -246,7 +244,7 @@ class HeaderTypesForConvertorForTestAndDevelopment
 
     public get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom() {
         return this.#everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom ??= [
-            HeaderTypesForConvertorForTestAndDevelopment.#UNKNOWN_REFERENCE,
+            UNKNOWN_REFERENCE,
             'Game over', 'Defeated', 'Error sound',
             'Boss defeated', 'Dog laughing',
             'Lost a life', 'Lost an Arwing', 'Falling offscreen',

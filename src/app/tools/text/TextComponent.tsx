@@ -2,8 +2,7 @@ import './TextComponent.scss'
 
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
-const NOT_APPLICABLE = 'N/A'//FIXME relocate the variable elsewhere
-const UNKNOWN_REFERENCE = '???'//FIXME relocate the variable elsewhere
+import {NOT_APPLICABLE, SPACE, UNKNOWN_REFERENCE} from 'util/commonVariables'
 
 /**
  *
@@ -20,7 +19,7 @@ export default function TextComponent<T extends PossibleTextContent = PossibleTe
                 return null
             if (classes == null)
                 return <span {...otherProperties}/>
-            return <span className={classes.join(' ')} {...otherProperties}/>
+            return <span className={classes.join(SPACE)} {...otherProperties}/>
         case NOT_APPLICABLE:
             return <span className="not-applicable" {...otherProperties}/>
         case UNKNOWN_REFERENCE:
@@ -29,5 +28,5 @@ export default function TextComponent<T extends PossibleTextContent = PossibleTe
 
     if (classes == null)
         return <span {...otherProperties}>{content}</span>
-    return <span className={classes.join(' ')} {...otherProperties}>{content}</span>
+    return <span className={classes.join(SPACE)} {...otherProperties}>{content}</span>
 }

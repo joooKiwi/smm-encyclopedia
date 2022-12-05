@@ -1,4 +1,5 @@
 import type {NullOr, NullOrBoolean} from 'util/types/nullable'
+import type {UnknownCharacter}      from 'util/types/variables'
 
 /** @temporaryVariable */
 export type PossibleGroupName = string
@@ -13,14 +14,14 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = NullOrBoolean
 
-/** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | '?'>
+/** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
 
 /** @temporaryLocation */export type CanSpawnOutOfAPipe = NullOrBoolean
 
 /** @temporaryLocation */export type CanBePutInASwingingClaw = NullOrBoolean
 
-/** @temporaryLocation */export type CanBeThrownByALakitu = NullOr<| boolean | '?'>
-/** @temporaryLocation */export type CanBePutInALakituCloud = NullOr<| boolean | '?'>
+/** @temporaryLocation */export type CanBeThrownByALakitu = NullOr<| boolean | UnknownCharacter>
+/** @temporaryLocation */export type CanBePutInALakituCloud = NullOr<| boolean | UnknownCharacter>
 
 /** @temporaryLocation */export type CanBePutInAClownCar = NullOrBoolean
 
@@ -28,12 +29,12 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type CanBePutInABlock = NullOrBoolean
 
-/** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | '?'>
+/** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | UnknownCharacter>
 /** @temporaryLocation */export type CanBePutInATree = NullOrBoolean
 
 /** @temporaryLocation */export type HasALightSourceEmittedInSMB = NullOrBoolean
 
-/** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | '?' | `Castle${| '' | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground'
+/** @temporaryLocation */export type CanSurviveInTheLavaOrThePoison = | boolean | UnknownCharacter | `Castle${| '' | ' / Night Forest'}` | 'Explode' | 'Float' | 'Melt to Coin' | 'Only inside the ground'
 
 /** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle'
 /** @temporaryLocation */export type CanBeBrokenOrKilledByABobOmb = | boolean | 'Koopa Troopa' | 'Unchained Chomp' | 'Standing on top of block that get destroyed'
@@ -52,7 +53,7 @@ export type PossibleGroupName = string
                                                                   | 'Dim light / Full light when falling or collected'
                                                                   | 'Project a light in front of them'
                                                                   | 'Only when lit'
-                                                                  | '?'>
+                                                                  | UnknownCharacter>
 
 //endregion -------------------- Specific properties --------------------
 //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
@@ -61,18 +62,18 @@ export type PossibleGroupName = string
 /** @temporaryLocation */export type CanBeThrownByBowserJr = NullOr<| boolean | '3rd phase'>
 /** @temporaryLocation */export type CanBeThrownByBowserJrInClownCar = NullOr<| boolean | 'Koopa Troopa clear condition'>
 
-/** @temporaryLocation */export type CanBeTransformedByMagikoopa = NullOr<| boolean | '?'>
+/** @temporaryLocation */export type CanBeTransformedByMagikoopa = NullOr<| boolean | UnknownCharacter>
 /** @temporaryLocation */export type CanBeSpawnedByMagikoopa = NullOrBoolean
-/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = NullOr<| false | 'winged' | 'Green Winged Koopa Troopa' | '?'>
+/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = NullOr<| false | 'winged' | 'Green Winged Koopa Troopa' | UnknownCharacter>
 
 //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 //region -------------------- Dimension properties --------------------
 
-export type PossibleDimension = NullOr<| `${number}x${number}` | `${number}\n(only on the top or bottom of the screen)x∞` | 'string' | '?'>
+export type PossibleDimension = NullOr<| `${number}x${number}` | `${number}\n(only on the top or bottom of the screen)x∞` | 'string' | UnknownCharacter>
 export type PossibleMaximumDimension = NullOr<| `${number}x${number}` | `${number}\n(only on the top or bottom of the screen)x[level width]∞` | 'string'>
 export type PossibleDimensionDifferentInSM3DW = NullOr<| `${number}x${number}` | 'string'>
 export type PossibleMaximumDimensionDifferentInSM3DW = NullOr<| `${number}x${number}` | 'string'>
 
 //endregion -------------------- Dimension properties --------------------
 
-/** @temporaryBehaviour */export type HasAReferenceInMarioMaker = NullOr<| boolean | 'Only spoken (in english) in Editor' | '?'>
+/** @temporaryBehaviour */export type HasAReferenceInMarioMaker = NullOr<| boolean | 'Only spoken (in english) in Editor' | UnknownCharacter>

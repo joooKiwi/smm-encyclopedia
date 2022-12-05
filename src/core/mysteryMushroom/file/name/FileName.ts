@@ -1,4 +1,5 @@
 import type {PossibleFileName} from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {EmptyArray}       from 'util/types/variables'
 
 export interface FileName<IMAGE_FILE_NAMES extends PossibleImageFileNames = PossibleImageFileNames, SOUND_FILE_NAME extends PossibleSoundFileNames = PossibleSoundFileNames, > {
 
@@ -8,5 +9,5 @@ export interface FileName<IMAGE_FILE_NAMES extends PossibleImageFileNames = Poss
 
 }
 
-export type PossibleSoundFileNames = | readonly [] | readonly [PossibleFileName,]
-export type PossibleImageFileNames = | readonly [] | readonly [PossibleFileName,] | readonly [PossibleFileName, PossibleFileName,]
+export type PossibleSoundFileNames = | EmptyArray | readonly [PossibleFileName,]
+export type PossibleImageFileNames = | EmptyArray | readonly [PossibleFileName,] | readonly [PossibleFileName, PossibleFileName,]

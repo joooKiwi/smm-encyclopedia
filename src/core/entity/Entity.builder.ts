@@ -19,6 +19,7 @@ import type {PossibleGameReceived as OriginalPossibleGameReceived}              
 import type {Builder}                                                                         from 'util/builder/Builder'
 import type {ObjectHolder}                                                                    from 'util/holder/ObjectHolder'
 import type {Nullable, NullOr, NullOrString}                                                  from 'util/types/nullable'
+import type {UnknownCharacter}                                                                from 'util/types/variables'
 
 import {PropertyContainer}                              from 'core/_properties/Property.container'
 import {PropertyProvider}                               from 'core/_properties/PropertyProvider'
@@ -44,6 +45,7 @@ import {EntityCategories}                               from 'core/entityCategor
 import {EntityLimits}                                   from 'core/entityLimit/EntityLimits'
 import {GameStructureProvider}                          from 'core/game/GameStructure.provider'
 import {Instruments}                                    from 'core/instrument/Instruments'
+import {UNKNOWN_CHARACTER}                              from 'util/commonVariables'
 import {ObjectHolders}                                  from 'util/holder/objectHolders'
 import {ObjectHolderContainer}                          from 'util/holder/ObjectHolder.container'
 import {DelayedObjectHolderContainer}                   from 'util/holder/DelayedObjectHolder.container'
@@ -125,12 +127,12 @@ export class EntityBuilder
         return entityLimit == null ? null : EntityLimits.getValueByNameOrAcronym(entityLimit)
     }
 
-    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | '?'>,): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
+    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
     static #getPropertyWhereEntityLimit<COMMENT extends NullOrString, >(entityLimit: Nullable<PossibleEnglishName_EntityLimit>, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
-    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | '?'>, comment: NullOrString = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
+    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>, comment: NullOrString = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
         return entityLimit == null
             ? NOT_APPLICABLE_CONTAINER
-            : entityLimit === '?'
+            : entityLimit === UNKNOWN_CHARACTER
                 ? UNKNOWN_CONTAINER
                 : new PropertyThatCanBeUnknownWithCommentContainer(this.#whereEntityLimit(entityLimit), false, comment,)
     }

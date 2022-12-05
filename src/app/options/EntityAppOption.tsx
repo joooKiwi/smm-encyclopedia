@@ -9,6 +9,7 @@ import type {SingleHeaderContent}                              from 'app/tools/t
 import type {Entities}                                         from 'core/entity/Entities'
 import type {ReactElement}                                     from 'util/react/ReactProperties'
 import type {NullOr}                                           from 'util/types/nullable'
+import type {EmptyArray}                                       from 'util/types/variables'
 
 import {CommonOptions}                              from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
@@ -261,7 +262,7 @@ export class EntityAppOption
     public static CALLBACK_TO_GET_ENUMERATION: () => Entities
 
     static #gameStyles?: readonly GameStyles[]
-    static #gameStyles_unusedImages?: readonly [GameStyles,] | readonly []
+    static #gameStyles_unusedImages?: | readonly [GameStyles,] | EmptyArray
     static #times?: readonly Times[]
     static #themes?: readonly Themes[]
 
@@ -280,7 +281,7 @@ export class EntityAppOption
         return this.#gameStyles ??= GameStyles.values.toArray()
     }
 
-    protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | readonly [] {
+    protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | EmptyArray {
         return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS,]
     }
 

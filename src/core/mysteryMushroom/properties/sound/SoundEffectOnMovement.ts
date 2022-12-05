@@ -1,13 +1,13 @@
-import type {NotApplicable, Property} from 'core/_properties/Property'
+import type {Property}                from 'core/_properties/Property'
 import type {ClassWithTranslationKey} from 'lang/ClassWithTranslationKey'
 import type {NullOr}                  from 'util/types/nullable'
+import type {BooleanOrNotApplicable}  from 'util/types/variables'
 
 export interface SoundEffectOnMovement
-    extends Property<PossibleValues>, ClassWithTranslationKey<PossibleTranslationKeys> {
+    extends Property<BooleanOrNotApplicable>, ClassWithTranslationKey<PossibleTranslationKeys> {
 
 }
 
 export type PossibleValuesReceived = NullOr<| boolean | PossibleTranslationKeys>
 
-/**@deprecated Create a new boolean or N/A*/export type PossibleValues = | boolean | NotApplicable
 export type PossibleTranslationKeys = NullOr<| 'Twinkle' | 'Engine sound'>

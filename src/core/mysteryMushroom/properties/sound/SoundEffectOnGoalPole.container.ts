@@ -1,9 +1,11 @@
-import type {PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValues, PossibleValuesReceived, SoundEffectOnGoalPole} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
-import type {ExtendedMap}                                                                                                                                                                        from 'util/extended/ExtendedMap'
-import type {NullOr}                                                                                                                                                                             from 'util/types/nullable'
+import type {PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValuesReceived, SoundEffectOnGoalPole} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
+import type {ExtendedMap}                                                                                                                                                        from 'util/extended/ExtendedMap'
+import type {NullOr}                                                                                                                                                             from 'util/types/nullable'
+import type {BooleanOrNotApplicable}                                                                                                                                             from 'util/types/variables'
 
 import {PropertyProvider}     from 'core/_properties/PropertyProvider'
 import {GameReferences}       from 'core/gameReference/GameReferences'
+import {UNKNOWN_REFERENCE}    from 'util/commonVariables'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
@@ -28,7 +30,7 @@ export class SoundEffectOnGoalPoleContainer
     private constructor([value, type, game, smallDefinition,]: ArgumentsReceived,) {
         this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,)
         this.#type = type
-        this.#game = game == null || game === '???' || game.startsWith('Pokémon gen') ? null : GameReferences.getValueByNameOrAcronym(game)
+        this.#game = game == null || game === UNKNOWN_REFERENCE || game.startsWith('Pokémon gen') ? null : GameReferences.getValueByNameOrAcronym(game)
         //FIXME try not to receive ??? as the value for the game
         //FIXME try not to receive "Pokémon gen 1" as the value for the game
         this.#smallDefinition = smallDefinition
@@ -36,7 +38,7 @@ export class SoundEffectOnGoalPoleContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get value(): PossibleValues {
+    public get value(): BooleanOrNotApplicable {
         return this.#property.value
     }
 

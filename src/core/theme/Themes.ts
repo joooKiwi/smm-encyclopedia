@@ -12,12 +12,14 @@ import type {CourseTheme}                                                       
 import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, SmallImagePath} from 'core/theme/Themes.types'
 import type {WorldTheme}                                                                                                                                                                                                                                             from 'core/theme/WorldTheme'
 import type {Nullable, NullableString, NullOr, NullOrBoolean}                                                                                                                                                                                                        from 'util/types/nullable'
+import type {EmptyString}                                                                                                                                                                                                                                            from 'util/types/variables'
 
 import {BASE_PATH}             from 'variables'
 import {EmptyEntity}           from 'core/entity/EmptyEntity'
 import {ThemeComponent}        from 'core/theme/Theme.component'
 import {getValueByEnglishName} from 'util/utilitiesMethods'
 import {Import}                from 'util/DynamicImporter'
+import {EMPTY_STRING}          from 'util/emptyVariables'
 import {StringContainer}       from 'util/StringContainer'
 
 /**
@@ -258,19 +260,19 @@ export class Themes
         return [EmptyEntity.get,]
     }
 
-    public getGameName(name: null, isNightTheme: any,): ''
-    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: false,): | '' | DayGameName<V>
-    public getGameName<V extends string = string, >(name: V, isNightTheme: false,): | '' | DayGameName<V>
-    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: true,): | '' | NightGameName<V>
-    public getGameName<V extends string = string, >(name: V, isNightTheme: true,): | '' | NightGameName<V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: Nullable<V>, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: V, isNightTheme: B,): | '' | DayOrNightGameName<B, V>
+    public getGameName(name: null, isNightTheme: any,): EmptyString
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: false,): | EmptyString | DayGameName<V>
+    public getGameName<V extends string = string, >(name: V, isNightTheme: false,): | EmptyString | DayGameName<V>
+    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: true,): | EmptyString | NightGameName<V>
+    public getGameName<V extends string = string, >(name: V, isNightTheme: true,): | EmptyString | NightGameName<V>
+    public getGameName<B extends boolean = boolean, V extends string = string, >(name: Nullable<V>, isNightTheme: B,): | EmptyString | DayOrNightGameName<B, V>
+    public getGameName<B extends boolean = boolean, V extends string = string, >(name: V, isNightTheme: B,): | EmptyString | DayOrNightGameName<B, V>
     public getGameName(name: NullableString, isNightTheme: boolean,) {
         if (name == null)
-            return ''
+            return EMPTY_STRING
         const text = this.gameName
         if (text == null)
-            return ''
+            return EMPTY_STRING
         return isNightTheme ? `${name}_${text}_night` : `${name}_${text}`
     }
 

@@ -6,6 +6,7 @@ import type {NullOr}                            from 'util/types/nullable'
 import {OfficialNotifications}              from 'core/officialNotification/OfficialNotifications'
 import {EmptyOfficialNotificationHolder}    from 'core/officialNotification/holder/EmptyOfficialNotificationHolder'
 import {OfficialNotificationHolderProvider} from 'core/officialNotification/holder/OfficialNotificationHolder.provider'
+import {SPACE}                              from 'util/commonVariables'
 
 export class OfficialNotificationHolderBuilder
     implements Builder<OfficialNotificationHolder> {
@@ -13,7 +14,7 @@ export class OfficialNotificationHolderBuilder
     //region -------------------- Fields --------------------
 
     static readonly #NUMBER_ONLY_REGEX = /^\d+$/
-    static readonly #OFFICIAL_NOTIFICATION_SEPARATOR = ' '
+    static readonly #OFFICIAL_NOTIFICATION_SEPARATOR = SPACE
     static readonly #POSSIBLE_EXCLUDED_CASES: readonly OfficialNotifications[] = [OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_1, OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_2,]
     static readonly #NO_NUMBER_FOUND = -1
 

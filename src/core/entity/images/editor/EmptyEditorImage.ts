@@ -1,5 +1,6 @@
 import type {EditorImage}                                      from 'core/entity/images/editor/EditorImage'
 import type {ClassWithNullObjectPattern, EmptyEditorImageName} from 'util/ClassWithNullObjectPattern'
+import type {EmptyArray}                                       from 'util/types/variables'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
@@ -22,7 +23,7 @@ export class EmptyEditorImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public get(): typeof EMPTY_ARRAY {
+    public get(): EmptyArray {
         return EMPTY_ARRAY
     }
 

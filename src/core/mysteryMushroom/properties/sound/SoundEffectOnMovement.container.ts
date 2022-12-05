@@ -1,5 +1,6 @@
-import type {PossibleTranslationKeys, PossibleValues, PossibleValuesReceived, SoundEffectOnMovement} from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
-import type {ExtendedMap}                                                                            from 'util/extended/ExtendedMap'
+import type {PossibleTranslationKeys, PossibleValuesReceived, SoundEffectOnMovement} from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
+import type {ExtendedMap}                                                            from 'util/extended/ExtendedMap'
+import type {BooleanOrNotApplicable}                                                 from 'util/types/variables'
 
 import {PropertyProvider}     from 'core/_properties/PropertyProvider'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
@@ -26,7 +27,7 @@ export class SoundEffectOnMovementContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get value(): PossibleValues {
+    public get value(): BooleanOrNotApplicable {
         return this.#property.value
     }
 

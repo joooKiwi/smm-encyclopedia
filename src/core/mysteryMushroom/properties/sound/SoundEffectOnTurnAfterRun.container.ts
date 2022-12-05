@@ -1,6 +1,7 @@
-import type {PossibleValues, PossibleValuesReceived, SoundEffectOnTurnAfterRun} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
-import type {ExtendedMap}                                                       from 'util/extended/ExtendedMap'
-import type {NullOrBoolean}                                                     from 'util/types/nullable'
+import type {PossibleValuesReceived, SoundEffectOnTurnAfterRun} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
+import type {ExtendedMap}                                       from 'util/extended/ExtendedMap'
+import type {NullOrBoolean}                                     from 'util/types/nullable'
+import type {BooleanOrNotApplicable}                            from 'util/types/variables'
 
 import {PropertyProvider}     from 'core/_properties/PropertyProvider'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
@@ -27,7 +28,7 @@ export class SoundEffectOnTurnAfterRunContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get value(): PossibleValues {
+    public get value(): BooleanOrNotApplicable {
         return this.#property.value
     }
 

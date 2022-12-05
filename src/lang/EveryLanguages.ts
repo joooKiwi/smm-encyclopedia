@@ -10,8 +10,10 @@ import type {LanguageEnumerable}                                                
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'lang/ProjectLanguages.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
 import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/types/nullable'
+import type {EmptyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'util/types/variables'
 
 import {Characters}   from 'lang/Characters'
+import {SPACE}        from 'util/commonVariables'
 import {EMPTY_STRING} from 'util/emptyVariables'
 
 export abstract class EveryLanguages
@@ -488,8 +490,6 @@ export abstract class EveryLanguages
     //region -------------------- Fields --------------------
 
     static #CURRENT_LANGUAGE: EveryLanguages
-    public static readonly UNKNOWN_STRING = '???'
-    public static readonly SPACE_STRING = ' '
     public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: NullOr<Dispatch<SetStateAction<PossibleInternationalAcronym_Project>>> = null
     protected static readonly _SPACE_EVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, true, false,]
     protected static readonly _SPACE_EVEN_LANGUAGE_WITHOUT_SPACE: SpaceParameterReceived = [false, true,]
@@ -625,7 +625,7 @@ export abstract class EveryLanguages
     //region -------------------- Characters getter methods --------------------
 
     public get space(): PossibleSpaceCharacter {
-        return this.#space ??= this.hasSpace ? EveryLanguages.SPACE_STRING : EMPTY_STRING
+        return this.#space ??= this.hasSpace ? SPACE : EMPTY_STRING
     }
 
     public get points(): PossiblePoints_Array {
@@ -855,4 +855,4 @@ export abstract class EveryLanguages
 
 type SpaceParameterReceived = | [hasSpace: boolean, isSpaceEvenLanguage: boolean,] | readonly [hasSpace: boolean, isSpaceEvenLanguageExcludingPointsAndSpace: boolean, isSpaceEvenLanguagePointsAndSpace: boolean,]
 type SpaceParameters = readonly [hasSpace: boolean, isSpaceEvenLanguageExcludingPointsAndSpace: boolean, isSpaceEvenLanguagePointsAndSpace: boolean,]
-type PossibleChildrenLanguages = readonly [EveryLanguages, EveryLanguages,] | readonly []
+type PossibleChildrenLanguages = readonly [EveryLanguages, EveryLanguages,] | EmptyArray

@@ -15,6 +15,7 @@ import {NumberPropertyWithEverythingContainer}        from 'core/_properties/num
 import {StringPropertyContainer}                      from 'core/_properties/string/StringProperty.container'
 import {StringPropertyWithCommentContainer}           from 'core/_properties/string/StringPropertyWithComment.container'
 import {StringPropertyWithEverythingContainer}        from 'core/_properties/string/StringPropertyWithEverything.container'
+import {UNKNOWN_CHARACTER}                            from 'util/commonVariables'
 
 export class PropertyProvider {
 
@@ -54,7 +55,7 @@ export class PropertyProvider {
     static #newContainer(type: | 'string' | 'boolean' | 'number', value: Nullable<| boolean | string | number>, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment: NullableString = null,) {
         if (value == null)
             return canBeNotApplicable ? PropertyContainer.NOT_APPLICABLE_CONTAINER : PropertyContainer.NULL_CONTAINER
-        if (value === PropertyContainer.UNKNOWN) {
+        if (value === UNKNOWN_CHARACTER) {
             if (comment == null)
                 return PropertyContainer.UNKNOWN_CONTAINER
             switch (type) {

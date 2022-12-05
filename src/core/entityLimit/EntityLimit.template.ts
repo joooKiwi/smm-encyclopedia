@@ -4,6 +4,7 @@ import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}         
 import type {SimpleGameFrom1And2Template}                                                                      from 'core/game/SimpleGame.template'
 import type {NameTemplate}                                                                                     from 'lang/name/Name.template'
 import type {NullOr}                                                                                           from 'util/types/nullable'
+import type {NotApplicable, UnknownCharacter}                                                                  from 'util/types/variables'
 
 //region -------------------- Limit types --------------------
 
@@ -74,7 +75,7 @@ export type PossibleLimitAmount_SMM1And3DS_Amount = | 1 | 2 | 3 | 4 | 5 | 6 | 8
                                                     | 10
                                                     | 100 | 200 | 300 | 400
                                                     | 2000
-export type PossibleLimitAmount_SMM1And3DS = NullOr<| PossibleLimitAmount_SMM1And3DS_Amount | '?' | 'N/A'>
+export type PossibleLimitAmount_SMM1And3DS = NullOr<| PossibleLimitAmount_SMM1And3DS_Amount | UnknownCharacter | NotApplicable>
 
 export type PossibleLimitAmount_SMM2_Amount = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
                                               | 10 | 50
@@ -82,7 +83,7 @@ export type PossibleLimitAmount_SMM2_Amount = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
                                               | 1500 | 2000 | 4000
 export type PossibleLimitAmount_SMM2_UnknownAmount_Amount = | 10 | 400 | 500
 export type PossibleLimitAmount_SMM2_UnknownAmount = `${PossibleLimitAmount_SMM2_UnknownAmount_Amount}?`
-export type PossibleLimitAmount_SMM2 = NullOr<| PossibleLimitAmount_SMM2_Amount | PossibleLimitAmount_SMM2_UnknownAmount | '?'>
+export type PossibleLimitAmount_SMM2 = NullOr<| PossibleLimitAmount_SMM2_Amount | PossibleLimitAmount_SMM2_UnknownAmount | UnknownCharacter>
 
 export type PossibleLimitAmount_Comment = NullOr<| 'Crash online if met' | `Per ${| 'player' | 'pair' | 'section'}`>
 

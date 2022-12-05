@@ -19,8 +19,9 @@ import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}      
 import type {EnglishNames as EnglishNames_SoundEffect}                                                                                                                                                                                                                   from 'core/soundEffect/SoundEffects.types'
 import type {EnglishNames as EnglishNames_SoundEffectCategory}                                                                                                                                                                                                           from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from 'core/theme/Themes.types'
-import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from 'core/version/Versions.types'
-import type {NullOr}                                                                                                                                                                                                                                                     from 'util/types/nullable'
+import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS} from 'core/version/Versions.types'
+import type {EmptyArray, UnknownCharacter, UnknownReference}                                                                                                                                          from 'util/types/variables'
+import type {NullOr}                                                                                                                                                                                  from 'util/types/nullable'
 
 //TODO Change some ValueOrStringConstant<*> to return ValueOrNull<*>
 export interface HeaderTypesForConvertorDefinition {
@@ -161,11 +162,6 @@ type ValueOrEmptyArray<T, > = | T | EmptyArray
 // export type EmptyableStringConstant = `emptyable ${StringConstant}`
 // export type NumberConstant = 'number'
 // export type StringAndNumberConstants = readonly [StringConstant, NumberConstant,]
-/** An empty array */
-export type EmptyArray = readonly []
-
-export type UnknownCharacter = '?'
-export type UnknownReference = '???'
 
 export type EveryPossibleAcronym_GameReference = readonly PossibleAcronym_GameReference[]
 export type EveryPossibleAcronymWithPokemonGeneration_GameReference = readonly (| PossibleAcronym_GameReference | PokemonGeneration)[]

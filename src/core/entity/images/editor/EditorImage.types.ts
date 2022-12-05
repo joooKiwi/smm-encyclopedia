@@ -3,6 +3,7 @@ import type {EditorImage}         from 'core/entity/images/editor/EditorImage'
 import type {PossibleGameName}    from 'core/theme/Themes.types'
 import type {Builder}             from 'util/builder/Builder'
 import type {NullOr}              from 'util/types/nullable'
+import type {EmptyArray}          from 'util/types/variables'
 
 interface ImageNameMap {
 
@@ -456,7 +457,7 @@ export type VariantEditorImage =
     | VariantEditorImage_PowerUp
     | VariantEditorImage_GameStyle
 
-export type EditorImageName = | readonly []
+export type EditorImageName = | EmptyArray
                               | readonly [ImageName,]
                               | readonly [ImageName, ImageName,]
                               | readonly [ImageName, ImageName, ImageName, ImageName,]

@@ -24,6 +24,7 @@ import {AbstractTemplateBuilder}      from 'core/_template/AbstractTemplate.buil
 import {HeaderTypesForConvertor}      from 'core/_util/loader/HeaderTypesForConvertor'
 import {EntityBuilder}                from 'core/entity/Entity.builder'
 import {ReferencesToWatch}            from 'core/entity/ReferencesToWatch'
+import {INFINITY, UNKNOWN_CHARACTER}  from 'util/commonVariables'
 import {EMPTY_ARRAY}                  from 'util/emptyVariables'
 import {assert}                       from 'util/utilitiesMethods'
 import {GenericSingleInstanceBuilder} from 'util/builder/GenericSingleInstanceBuilder'
@@ -391,8 +392,6 @@ export class EntityLoader
 
     //endregion -------------------- Singleton usage --------------------
 
-    public static readonly UNKNOWN_CHARACTER = '?'
-    public static readonly INFINITE_CHARACTER = '∞'
     public static readonly THIS_REFERENCE = 'this'
 
     #map?: Map<PossibleEnglishName, Entity>
@@ -414,23 +413,23 @@ export class EntityLoader
                 .convertToNullableBoolean('isInSuperMarioMaker1', 'isInSuperMarioMakerFor3DS', 'isInSuperMarioMaker2',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_entityCategory, 'categoryInTheEditor',)
                 .convertToNullableBoolean('hasAMushroomVariant',)
-                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'While playing → LCL',], 'canBeInAParachute', 'canHaveWings',)
+                .convertToNullableBooleanAnd([UNKNOWN_CHARACTER, 'While playing → LCL',], 'canBeInAParachute', 'canHaveWings',)
 
                 .convertToNullableBoolean('canContainOrSpawnAKey',)
                 .convertToNullableBooleanAnd('Only some variants', 'isAffectedDirectlyByAnOnOrOffState',)
 
-                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBePutOnATrack',)
+                .convertToNullableBooleanAnd(UNKNOWN_CHARACTER, 'canBePutOnATrack',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'editorLimit_canBePutOnATrack',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleNameOrUnknown_limit, 'whilePlaying_canBePutOnATrack',)
 
                 .convertToNullableBoolean('canSpawnOutOfAPipe', 'canBePutInASwingingClaw',)
-                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
+                .convertToNullableBooleanAnd(UNKNOWN_CHARACTER, 'canBeThrownByALakitu', 'canBePutInALakituCloud',)
                 .convertToNullableBoolean('canBePutInAClownCar', 'canBeFiredOutOfABulletLauncher', 'canBePutInABlock', 'canBePutInATree',)
 
-                .convertToEmptyableStringAnd([EntityLoader.UNKNOWN_CHARACTER, 0, 1, '½', 2,], 'weight',)
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 'Full light', 'Dim light', 'Full light when falling', 'Full light when collected', 'Full light when shooting', 'Dim light / Full light when falling or collected', 'Project a light in front of them', 'Only when lit',], 'lightSourceEmitted')
-                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'lightSourceEmitted_isInSMB',)
-                .convertToBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Explode', 'Castle', 'Castle / Night Forest', 'Float', 'Melt to Coin', 'Only inside the ground',], 'canSurviveInTheLavaOrThePoison',)
+                .convertToEmptyableStringAnd([UNKNOWN_CHARACTER, 0, 1, '½', 2,], 'weight',)
+                .convertTo([UNKNOWN_CHARACTER, 'Full light', 'Dim light', 'Full light when falling', 'Full light when collected', 'Full light when shooting', 'Dim light / Full light when falling or collected', 'Project a light in front of them', 'Only when lit',], 'lightSourceEmitted')
+                .convertToNullableBooleanAnd(UNKNOWN_CHARACTER, 'lightSourceEmitted_isInSMB',)
+                .convertToBooleanAnd([UNKNOWN_CHARACTER, 'Explode', 'Castle', 'Castle / Night Forest', 'Float', 'Melt to Coin', 'Only inside the ground',], 'canSurviveInTheLavaOrThePoison',)
 
                 .convertToBooleanAnd(['NSMBU', 'Castle',], 'canIgniteABobOmb',)
                 .convertToBooleanAnd(['Koopa Troopa', 'Unchained Chomp', 'Standing on top of block that get destroyed',], 'canBeBrokenOrKilledByABobOmb',)
@@ -447,11 +446,11 @@ export class EntityLoader
                 .convertToNullableBooleanAnd('Bob-omb clear condition', 'canBeThrownByBowserInClownCar',)
                 .convertToNullableBooleanAnd('3rd phase', 'canBeThrownByBowserJr',)
                 .convertToNullableBooleanAnd('Koopa Troopa clear condition', 'canBeThrownByBowserJrInClownCar',)
-                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canBeTransformedByMagikoopa',)
+                .convertToNullableBooleanAnd(UNKNOWN_CHARACTER, 'canBeTransformedByMagikoopa',)
                 .convertToNullableBoolean('canBeSpawnedByMagikoopa',)
-                .convertToEmptyableStringAnd([EntityLoader.UNKNOWN_CHARACTER, false, 'Green Winged Koopa Troopa', 'winged',], 'canBeSpawnedByWingedMagikoopa',)
+                .convertToEmptyableStringAnd([UNKNOWN_CHARACTER, false, 'Green Winged Koopa Troopa', 'winged',], 'canBeSpawnedByWingedMagikoopa',)
 
-                .convertTo([EntityLoader.UNKNOWN_CHARACTER, 1, 2, '1?', EntityLoader.INFINITE_CHARACTER,
+                .convertTo([UNKNOWN_CHARACTER, 1, 2, '1?', INFINITY,
                     'For each entity', 'For each clone (2-4)',
                     'For each objects (4)',
                     'For each projectile', 'For each projectile (1)',
@@ -464,24 +463,24 @@ export class EntityLoader
                     'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',], 'whilePlaying_isInGEL',)
                 .convertToNullableBooleanAnd(['Not on track', 'While holding an entity',], 'whilePlaying_isInGEL_isSuperGlobal',)
                 .convertToNullableBoolean('whilePlaying_isInPEL',)
-                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
+                .convertToNullableBooleanAnd([UNKNOWN_CHARACTER, 'Temporary as it comes out', 'Each one separated',
                     'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',], 'whilePlaying_isInPJL',)
                 .convertToNullableBooleanAnd(['Only when not dotted', 'Only if not hit', 'Only if not hit?',], 'whilePlaying_isInObjectRenderedLimit',)
                 .convertTo(HeaderTypesForConvertor.everyNameOrUnknown_limit, 'whilePlaying_otherLimit',)
                 .convertToEmptyableStringAnd('Only falling coin', 'whilePlaying_otherLimit_comment',)
 
-                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'With Vine', 'If not collected',], 'canRespawn',)
-                .convertToNullableBooleanAnd(EntityLoader.UNKNOWN_CHARACTER, 'canRespawn_online', 'canRespawn_online_insideABlock',)
+                .convertToNullableBooleanAnd([UNKNOWN_CHARACTER, 'With Vine', 'If not collected',], 'canRespawn',)
+                .convertToNullableBooleanAnd(UNKNOWN_CHARACTER, 'canRespawn_online', 'canRespawn_online_insideABlock',)
                 .convertToEmptyableString('behaviour_solo', 'behaviour_localCoop', 'behaviour_onlineCoop', 'behaviour_onlineVS',)//TODO change to any possible behaviour type
 
-                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, 'Variable', EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningHorizontalRange',)
-                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, 'Variable',], 'offscreenDespawningHorizontalRange',)
-                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningUpwardVerticalRange')
-                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER,], 'offscreenSpawningUpwardVerticalRange',)
-                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER, EntityLoader.INFINITE_CHARACTER,], 'offscreenSpawningDownwardVerticalRange',)
-                .convertToNullableNumberAnd(['string', EntityLoader.UNKNOWN_CHARACTER,], 'offscreenDespawningDownwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', UNKNOWN_CHARACTER, 'Variable', INFINITY,], 'offscreenSpawningHorizontalRange',)
+                .convertToNullableNumberAnd(['string', UNKNOWN_CHARACTER, 'Variable',], 'offscreenDespawningHorizontalRange',)
+                .convertToNullableNumberAnd(['string', UNKNOWN_CHARACTER, INFINITY,], 'offscreenSpawningUpwardVerticalRange')
+                .convertToNullableNumberAnd(['string', UNKNOWN_CHARACTER,], 'offscreenSpawningUpwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', UNKNOWN_CHARACTER, INFINITY,], 'offscreenSpawningDownwardVerticalRange',)
+                .convertToNullableNumberAnd(['string', UNKNOWN_CHARACTER,], 'offscreenDespawningDownwardVerticalRange',)
 
-                .convertToEmptyableStringAnd([EntityLoader.UNKNOWN_CHARACTER,], 'dimension',)
+                .convertToEmptyableStringAnd([UNKNOWN_CHARACTER,], 'dimension',)
                 .convertToEmptyableStringAnd([], 'dimension_maximum',)
                 .convertToEmptyableStringAnd([], 'dimension_differentInSM3DW',)
                 .convertToEmptyableStringAnd([], 'dimension_maximum_differentInSM3DW',)
@@ -502,7 +501,7 @@ export class EntityLoader
                 // .convertToHeadersAnd(['english', 'americanEnglish',], thisText,'inGhostHouseTheme', 'inAirshipTheme', 'inCastleTheme',)
                 //
                 // .convertToHeadersAnd(['english', 'americanEnglish',], thisText, 'inSMBGameStyle', 'inSMB3GameStyle', 'inSMWGameStyle', 'inNSMBUGameStyle', 'inSM3DWGameStyle',)
-                .convertToNullableBooleanAnd([EntityLoader.UNKNOWN_CHARACTER, 'Only spoken (in english) in Editor',], 'hasANameReferencedInMarioMaker')
+                .convertToNullableBooleanAnd([UNKNOWN_CHARACTER, 'Only spoken (in english) in Editor',], 'hasANameReferencedInMarioMaker')
                 .convertTo(HeaderTypesForConvertor.everyPossibleName_entity, 'english', 'americanEnglish',)
 
                 .onAfterFinalObjectCreated(finalContent => {

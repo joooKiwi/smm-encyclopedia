@@ -1,11 +1,12 @@
-import type {NotApplicable, Property} from 'core/_properties/Property'
-import type {ClassWithGameReference}  from 'core/gameReference/ClassWithGameReference'
-import type {GameReferences}          from 'core/gameReference/GameReferences'
-import type {ClassWithTranslationKey} from 'lang/ClassWithTranslationKey'
-import type {NullOr}                  from 'util/types/nullable'
+import type {Property}                                 from 'core/_properties/Property'
+import type {ClassWithGameReference}                   from 'core/gameReference/ClassWithGameReference'
+import type {GameReferences}                           from 'core/gameReference/GameReferences'
+import type {ClassWithTranslationKey}                  from 'lang/ClassWithTranslationKey'
+import type {NullOr}                                   from 'util/types/nullable'
+import type {BooleanOrNotApplicable, UnknownReference} from 'util/types/variables'
 
 export interface SoundEffectOnDeath
-    extends Property<PossibleValues>, ClassWithGameReference<NullOr<GameReferences>>, ClassWithTranslationKey<PossibleTranslationKeys> {
+    extends Property<BooleanOrNotApplicable>, ClassWithGameReference<NullOr<GameReferences>>, ClassWithTranslationKey<PossibleTranslationKeys> {
 
     get simpleTranslationKey(): PossibleSimpleTranslationKeys
 
@@ -17,7 +18,6 @@ export type PossibleGamesReceived = NullOr<string>
 export type PossibleValuesReceived = NullOr<| boolean | NonNullable<PossibleSimpleTranslationKeys>>
 export type PossibleTypesReceived = PossibleTypes
 
-/**@deprecated Create a new boolean or N/A*/export type PossibleValues = | boolean | NotApplicable
 export type PossibleSimpleTranslationKeys = NullOr<`+ "${| 'Oh no' | 'Nooo' | 'Woah' | 'Yaha'}!"`>
 export type PossibleTranslationKeys = NullOr<| 'Game over' | 'Defeated' | 'Error sound'
                                              | 'Boss defeated' | 'Dog laughing'
@@ -26,5 +26,5 @@ export type PossibleTranslationKeys = NullOr<| 'Game over' | 'Defeated' | 'Error
                                              | `${| 'Minigame' | 'Round'} lost`
                                              | 'Timed event failed' | 'Ran out of energy' | 'Practice Catcher result jingle'
                                              | 'Bowser\'s death' | 'Mario saying "Mama mia"' | 'Zelda\'s Lullaby' | 'Link caught by Moblins' | 'K.K. howling' | 'Pikmin death'
-                                             | '???'>
+                                             | UnknownReference>
 export type PossibleTypes = NullOr<| 'Marimba' | 'Techno'>
