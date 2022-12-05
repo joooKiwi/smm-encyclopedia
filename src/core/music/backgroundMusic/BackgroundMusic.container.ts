@@ -43,6 +43,7 @@ export class BackgroundMusicContainer<SMB_EDITOR_MUSIC extends PossibleSMB_Edito
                        sm3dwEditor: SM3DW_EDITOR_MUSIC, sm3dw: SM3DW_MUSIC, sm3dwUnderwater: SM3DW_UNDERWATER_MUSIC, sm3dwFast: SM3DW_FAST_MUSIC, sm3dwFastUnderwater: SM3DW_FAST_UNDERWATER_MUSIC,
     ) {
         super()
+        //TODO relocate the object creation in another class
         this.#editorMusic = SingleBackgroundMusicFactory.create(smbEditor, smb3Editor, smwEditor, nsmbuEditor, sm3dwEditor,)
         this.#regularMusic = SingleBackgroundMusicFactory.create(smb, smb3, smw, nsmbu, sm3dw,)
         this.#linkMusic = SingleBackgroundMusicFactory.create(link, null, null, null, null,)

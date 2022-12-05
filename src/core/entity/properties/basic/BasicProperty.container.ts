@@ -18,6 +18,7 @@ export class BasicPropertyContainer<HAS_A_MUSHROOM_VARIANT extends PossibleHasAM
     //endregion -------------------- Fields --------------------
 
     public constructor(hasAMushroom: HAS_A_MUSHROOM_VARIANT, canBeInAParachute: CAN_BE_IN_A_PARACHUTE, canHaveWings: CAN_HAVE_WINGS,) {
+        //TODO Relocate the object creation in a separate class
         this.#hasAMushroomContainer = PropertyProvider.newBooleanContainer(hasAMushroom, true, false,)
         this.#canBeInAParachuteContainer = PropertyProvider.newBooleanContainer<CAN_BE_IN_A_PARACHUTE, true, false, true>(canBeInAParachute, true, false,)
         this.#canHaveWingsContainer = PropertyProvider.newBooleanContainer<CAN_HAVE_WINGS, true, false, true>(canHaveWings, true, false,)
