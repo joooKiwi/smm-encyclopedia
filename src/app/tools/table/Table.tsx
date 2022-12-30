@@ -7,7 +7,6 @@ import type {HeaderHolder}               from 'app/tools/table/header/HeaderHold
 import type {BootstrapColor}             from 'bootstrap/Bootstrap.types'
 import type {ObjectHolder}               from 'util/holder/ObjectHolder'
 import type {ReactComponent}             from 'util/react/ReactComponent'
-import type {ReactElement}               from 'util/react/ReactProperties'
 
 import TableContent                   from 'app/tools/table/TableContent'
 import TableHeaders                   from 'app/tools/table/TableHeaders'
@@ -101,7 +100,7 @@ export default class Table
 
     //endregion -------------------- Getter methods --------------------
 
-    public override render(): ReactElement {
+    public override render(): JSX.Element {
         const caption = this.caption
         const headers = this.headers
         const isHeaderNull = headers == null
