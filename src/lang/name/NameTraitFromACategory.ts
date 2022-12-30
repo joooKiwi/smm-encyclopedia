@@ -3,7 +3,7 @@ import type {NameTrait}      from 'lang/name/NameTrait'
 
 /**
  * A simili-trait class method that is a kind of {@link NameTrait},
- * but with every methods that the trait reference has with "category" before.
+ * but with every method that the trait reference has with "category" before.
  */
 export interface NameTraitFromACategory<T, CATEGORY extends NameTrait<T>, > {
 
