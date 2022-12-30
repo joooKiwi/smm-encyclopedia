@@ -1,0 +1,6 @@
+@use "sass:math";
+@import '~bootstrap/scss/functions';
+
+@function to-decimal($value,) {
+  @return math.div($value, 100%);
+}

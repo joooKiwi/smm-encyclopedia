@@ -1,10 +1,7 @@
-//@use "sass:math";
+@import "functions";
 @import 'variables';
 @import '~bootstrap/scss/bootstrap';
 
-//@function to-decimal($value,) {
-//  @return math.div($value, 100%);
-//}
 
 :root {
   --entityCategory-terrain-bg-color: var(--bs-blue);
@@ -59,12 +56,20 @@
 
   //region -------------------- Spacer --------------------
 
+  --bs-gutter-0:            var(--bs-spacer-xs);
+  --bs-gutter-1:            var(--bs-spacer-sm);
+  --bs-gutter-2:            var(--bs-spacer-md);
+  --bs-gutter-3:            var(--bs-spacer-lg);
+  --bs-gutter-4:            var(--bs-spacer-xl);
+  --bs-gutter-5:            var(--bs-spacer-xxl);
+
   --bs-spacer-xs:           #{map-get($spacers-original, 0)};
   --bs-spacer-sm:           #{map-get($spacers-original, 1)};
   --bs-spacer-md:           #{map-get($spacers-original, 2)};
   --bs-spacer-lg:           #{map-get($spacers-original, 3)};
   --bs-spacer-xl:           #{map-get($spacers-original, 4)};
   --bs-spacer-xxl:          #{map-get($spacers-original, 5)};
+
   --bs-negative-spacer-xs:  calc(var(--bs-spacer-xs) * -1);
   --bs-negative-spacer-sm:  calc(var(--bs-spacer-sm) * -1);
   --bs-negative-spacer-md:  calc(var(--bs-spacer-md) * -1);
@@ -995,18 +1000,30 @@
   $hover-border-color-amount: null;
   $active-background-color-amount: null;
   $active-border-color-amount: null;
-  @if ($color == 'primary' or $color =='secondary' or $color == 'warning' or $color =='info' or $color == 'light') {
+  @if ($color == 'light') {
     $text-color: var(--bs-black);
-    $hover-background-color-amount:  50;//75;//1000 * to-decimal($btn-hover-bg-tint-amount);
-    $hover-border-color-amount:      100;//1000 * $btn-hover-border-tint-amount;
-    $active-background-color-amount: 100;//1000 * $btn-active-bg-tint-amount;
-    $active-border-color-amount:     150;//125;//1000 * $btn-active-border-tint-amount;
+    $hover-background-color-amount:  1000 * to-decimal($btn-hover-bg-shade-amount);
+    $hover-border-color-amount:      1000 * to-decimal($btn-hover-border-shade-amount);
+    $active-background-color-amount: 1000 * to-decimal($btn-active-bg-shade-amount);
+    $active-border-color-amount:     1000 * to-decimal($btn-active-border-shade-amount);
+  } @else if ($color == 'dark') {
+    $text-color: var(--bs-white);
+    $hover-background-color-amount:  -1000 * to-decimal($btn-hover-bg-tint-amount);
+    $hover-border-color-amount:      -1000 * to-decimal($btn-hover-border-tint-amount);
+    $active-background-color-amount: -1000 * to-decimal($btn-active-bg-tint-amount);
+    $active-border-color-amount:     -1000 * to-decimal($btn-active-border-tint-amount);
+  } @else if ($color == 'warning' or $color == 'info') {
+    $text-color: var(--bs-black);
+    $hover-background-color-amount:  -1000 * to-decimal($btn-hover-bg-tint-amount);
+    $hover-border-color-amount:      -1000 * to-decimal($btn-hover-border-tint-amount);
+    $active-background-color-amount: -1000 * to-decimal($btn-active-bg-tint-amount);
+    $active-border-color-amount:     -1000 * to-decimal($btn-active-border-tint-amount);
   } @else {
     $text-color: var(--bs-white);
-    $hover-background-color-amount:  -50;//-75;//-1000 * to-decimal($btn-hover-bg-shade-amount);
-    $hover-border-color-amount:      -50;//-1000 * $btn-hover-border-shade-amount;
-    $active-background-color-amount: -100;//-1000 * $btn-active-bg-shade-amount;
-    $active-border-color-amount:     -50;//-1000 * $btn-active-border-shade-amount;
+    $hover-background-color-amount:  1000 * to-decimal($btn-hover-bg-shade-amount);
+    $hover-border-color-amount:      1000 * to-decimal($btn-hover-border-shade-amount);
+    $active-background-color-amount: 1000 * to-decimal($btn-active-bg-shade-amount);
+    $active-border-color-amount:     1000 * to-decimal($btn-active-border-shade-amount);
   }
 
   .btn-#{$color} {
@@ -1016,6 +1033,7 @@
     --bs-btn-hover-color:           #{$text-color};
     --bs-btn-hover-bg:              var(--bs-#{$color}-#{500 + $hover-background-color-amount});
     --bs-btn-hover-border-color:    var(--bs-#{$color}-#{500 + $hover-border-color-amount});
+    --bs-btn-focus-shadow-rgb:      var(--bs-#{$color}-500-rgb);
     --bs-btn-active-color:          #{$text-color};
     --bs-btn-active-bg:             var(--bs-#{$color}-#{500 + $active-background-color-amount});
     --bs-btn-active-border-color:   var(--bs-#{$color}-#{500 + $active-border-color-amount});
