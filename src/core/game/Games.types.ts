@@ -1,5 +1,4 @@
 import type {BasePath}                                       from 'variables'
-import type {Games}                                          from 'core/game/Games'
 import type {PossibleAcronym_Game, PossibleEnglishName_Game} from 'core/gameReference/GameReferences.types'
 
 enum Enum {
@@ -22,4 +21,3 @@ export type PossibleImagePath = `/${BasePath}/game/${PossibleEnglishName}.svg`
 
 //endregion -------------------- Name / acronym / image --------------------
 
-export type GamesByValue<T extends string, > = T extends (| PossibleEnglishName | PossibleAcronym | PossibleSimpleValue) ? Games : never

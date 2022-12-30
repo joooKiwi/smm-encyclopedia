@@ -849,7 +849,6 @@ export abstract class SoundEffects
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| SoundEffects | T>,): SoundEffectsByName<T>
     public static getValueByName(value: Nullable<| SoundEffects | string>,): SoundEffects {
         return getValueByEnglishName(value, this,)
     }

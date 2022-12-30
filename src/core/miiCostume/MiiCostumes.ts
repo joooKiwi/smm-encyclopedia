@@ -215,7 +215,6 @@ export class MiiCostumes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    // public static getValueByName<T extends string, >(value: Nullable<| MiiCostumes | T,): MiiCostumesByName<T>
     public static getValueByName(value: Nullable<| MiiCostumes | string>,): MiiCostumes {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null name.`)

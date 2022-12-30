@@ -138,5 +138,3 @@ export type EnglishNames = readonly [
 ]
 
 //endregion -------------------- Array types --------------------
-
-export type SoundEffectsByName<T extends string, > = T extends PossibleEnglishName ? SoundEffects : never

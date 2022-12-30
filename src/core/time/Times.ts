@@ -93,7 +93,6 @@ export abstract class Times
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| Times | T>,) TimesByName<T>
     public static getValueByName(value: Nullable<| Times | string>,): Times {
         return getValueByEnglishName(value, this,)
     }

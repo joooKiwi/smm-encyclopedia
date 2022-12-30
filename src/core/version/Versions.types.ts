@@ -1,5 +1,3 @@
-import {Versions} from 'core/version/Versions'
-
 enum Enum {
 
     SMM_V1_00, SMM_V1_01,
@@ -28,5 +26,3 @@ export type PossibleName_SMM2 = | PossibleName_SMM2_Number | 'SM3DW v3.0.0'
 export type PossibleName_SMM2_Number = `v${`1.${| 0 | 1}.0` | '2.0.0' | `3.0.${| 0 | 1 | 2}`}`
 
 //endregion -------------------- Name --------------------
-
-export type VersionsByName<T extends string, > = T extends PossibleName ? Versions : never

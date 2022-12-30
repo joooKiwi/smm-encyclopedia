@@ -1,5 +1,4 @@
-import type {BasePath}             from 'variables'
-import type {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
+import type {BasePath} from 'variables'
 
 enum Enum {
 
@@ -25,5 +24,3 @@ export type PossibleImageName = `DressIcon_0${PossibleImageNumber}`
 export type PossibleImagePath = `/${BasePath}/category/${PossibleImageName}^s.tiff`
 
 //endregion -------------------- Image name --------------------
-
-export type MiiCostumeCategoriesByName<T extends string, > = T extends (| PossibleEnglishName | PossibleImageName) ? MiiCostumeCategories : never

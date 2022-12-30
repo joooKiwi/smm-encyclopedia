@@ -91,7 +91,6 @@ export class SoundEffectCategories
         return this.values.map(soundEffectCategory => soundEffectCategory.englishName).toArray() as EnglishNames
     }
 
-    // public static getValueByName<T extends string, >(value: Nullable<| SoundEffectCategories | T>,): SoundEffectCategoriesByName<T>
     public static getValueByName(value: Nullable<| SoundEffectCategories | string>,): SoundEffectCategories {
         return getValueByEnglishName(value, this,)
     }

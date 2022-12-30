@@ -550,7 +550,6 @@ export class MysteryMushrooms
         return this.values.map(it => it.uniqueEnglishName).toArray()
     }
 
-    // public static getValueByName<T extends string, >(value: T,): MysteryMushroomsByName<T>
     public static getValueByName(value: Nullable<| MysteryMushrooms | string>,): MysteryMushrooms {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

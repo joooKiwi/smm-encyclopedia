@@ -69,5 +69,3 @@ export type OnlyWorldThemes = readonly [
 ]
 
 //endregion -------------------- Array types --------------------
-
-export type ThemesByName<T extends string, > = T extends PossibleEnglishName ? Themes : never

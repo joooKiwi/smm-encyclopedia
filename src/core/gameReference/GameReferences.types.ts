@@ -1,5 +1,3 @@
-import type {GameReferences} from 'core/gameReference/GameReferences'
-
 enum Enum {
 
     SUPER_MARIO_MAKER_1, SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, SUPER_MARIO_MAKER_2,
@@ -269,5 +267,3 @@ export type PossibleAcronym_Exclusive =
     | 'BA:TYBMD'
 
 //endregion -------------------- Name & acronym --------------------
-
-export type GameReferencesByNameOrAcronym<T extends string, > = T extends (| PossibleEnglishName | PossibleAcronym) ? GameReferences : never

@@ -1,5 +1,3 @@
-import type {OfficialNotifications} from 'core/officialNotification/OfficialNotifications'
-
 enum Enum {
 
     FINISH_ALL_JOBS,
@@ -185,5 +183,3 @@ export type PossibleTranslationKey =
 export type PossibleAdditionalTranslationKey = `position.${| 'place' | 'job'}.${1 | 2 | 3}`
 
 //endregion -------------------- Translation key --------------------
-
-export type OfficialNotificationsByEnglishName<T extends string, > = T extends (| PossibleEnglishName | PossibleEnglishNameWithEveryAmount) ? OfficialNotifications : never

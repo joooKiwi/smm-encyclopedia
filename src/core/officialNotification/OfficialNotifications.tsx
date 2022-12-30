@@ -678,7 +678,6 @@ export class OfficialNotifications
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| OfficialNotifications | T>,): OfficialNotificationsByEnglishName<T>
     public static getValueByName(value: Nullable<| OfficialNotifications | string>,): OfficialNotifications {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

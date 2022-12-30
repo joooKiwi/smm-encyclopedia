@@ -90,7 +90,6 @@ export class MiiCostumeCategories
         return this.values.map(it => it.englishName).toArray()
     }
 
-    // public static getValueByName<T extends string, >(value: Nullable<| MiiCostumeCategories | T>,): MiiCostumeCategoriesByName<T>
     public static getValueByName(value: Nullable<| MiiCostumeCategories | string>,): MiiCostumeCategories {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

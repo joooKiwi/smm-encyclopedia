@@ -48,7 +48,6 @@ export class EntityLimitTypes
         return this.values.map(type => type.englishName).toArray() as EnglishNames
     }
 
-    // public static getValueByName<T extends string, >(value: Nullable<| EntityLimitTypes | T>,): EntityLimitTypesByName<T>
     public static getValueByName(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null name.`)

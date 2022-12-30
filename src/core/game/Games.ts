@@ -99,7 +99,6 @@ export abstract class Games
     }
 
 
-    // public static getValueByValue<T extends string, >(value: Nullable<| Games | T>,): GamesByValue<T>
     public static getValueByValue(value: Nullable<| Games | string | number>,): Games {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

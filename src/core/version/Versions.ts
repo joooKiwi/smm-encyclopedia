@@ -109,7 +109,6 @@ export class Versions
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| Versions | string>,): VersionsByName<T>
     public static getValueByName(value: Nullable<| Versions | string>,): Versions {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

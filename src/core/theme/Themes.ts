@@ -324,7 +324,6 @@ export class Themes
         ]
     }
 
-    // public static getValueByName<T extends string, >(value: Nullable<| Themes | T>,): ThemesByName<T>
     public static getValueByName(value: Nullable<| Themes | string>,): Themes {
         return getValueByEnglishName(value, this,)
     }

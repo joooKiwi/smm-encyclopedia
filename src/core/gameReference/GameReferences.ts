@@ -235,7 +235,6 @@ export class GameReferences
         return this.values.map(it => it.englishName).toArray()
     }
 
-    // public static getValueByNameOrAcronym<T extends string, >(value: Nullable<| GameReferences | T>,): GameReferencesByNameOrAcronym<T>
     public static getValueByNameOrAcronym(value: Nullable<| GameReferences | string>,): GameReferences {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

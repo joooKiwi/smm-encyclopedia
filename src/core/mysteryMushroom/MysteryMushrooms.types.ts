@@ -1,4 +1,3 @@
-import type {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import type {MysteryMushroomSoundFile} from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
 import type {Nullable}                 from 'util/types/nullable'
 import type {EmptyArray}               from 'util/types/variables'
@@ -339,5 +338,3 @@ export type PossibleSoundSourceForFile<T, > =
             : never
 
 //endregion -------------------- Array types --------------------
-
-export type MysteryMushroomsByName<T extends string, > = T extends (| PossibleEnglishName | PossibleFileName) ? MysteryMushrooms : never

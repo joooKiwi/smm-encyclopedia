@@ -19,5 +19,3 @@ export type PossibleSimpleImagePath = | 'Sun' | 'Moon'
 export type PossibleImagePath = `/${BasePath}/time/${PossibleSimpleImagePath}.png`
 
 //endregion -------------------- Name & image path --------------------
-
-export type TimesByName<T extends string, > = T extends PossibleEnglishName ? Times : never

@@ -25,5 +25,3 @@ export type PossibleImageName = `CategoryIcon_0${PossibleImageNumber}`
 export type PossibleImagePath = `/${BasePath}/category/${PossibleImageName}^s.tiff`
 
 //endregion -------------------- Image --------------------
-
-export type SoundEffectCategoriesByName<T extends string, > = T extends PossibleEnglishName ? SoundEffectCategories : never
