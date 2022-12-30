@@ -28,6 +28,10 @@ export default class ParameterButton
         return 'bi-gear-fill'
     }
 
+    protected override get _isDisabled(): boolean {
+        return true
+    }
+
     protected override _getContent(): PossibleContent {
         return [contentTranslation('Options'), 'lg',]
     }

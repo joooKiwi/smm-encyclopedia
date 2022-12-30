@@ -28,6 +28,10 @@ export default class SearchButton
         return 'bi-search'
     }
 
+    protected override get _isDisabled(): boolean {
+        return true
+    }
+
     protected override _getContent(): PossibleContent {
         return [`${contentTranslation('Search')}…`, 'md',]
     }

@@ -30,7 +30,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         elementId="displayView-entity-button" id={id} divId={divId}/>
                 {/*TODO add other predefined group of entities*/}
             </div>
-            <div className="btn-group col-6">
+            <div className="btn-group col-6 disabled">
                 <DisplayViewRouteButton routeName="everyCategories" value={gameContentTranslation('Category')}
                                         tooltipValue={gameContentTranslation('Display every entity categories')}
                                         elementId="displayView-entityCategory-button" id={id} divId={divId}/>
