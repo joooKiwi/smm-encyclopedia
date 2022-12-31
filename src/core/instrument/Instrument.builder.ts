@@ -7,7 +7,7 @@ import type {ObjectHolder}       from 'util/holder/ObjectHolder'
 
 import {TemplateWithNameBuilder} from 'core/_template/TemplateWithName.builder'
 import {InstrumentContainer}     from 'core/instrument/Instrument.container'
-import {ObjectHolders}           from 'util/holder/objectHolders'
+import {ObjectHolders}           from 'util/holder/ObjectHolders'
 
 export class InstrumentBuilder
     extends TemplateWithNameBuilder<InstrumentTemplate, Instrument> {

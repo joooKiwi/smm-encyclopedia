@@ -6,7 +6,7 @@ import type {ObjectHolder}                                                      
 import {AbstractPowerUpPriority}      from 'app/powerUp/priority/AbstractPowerUpPriority'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
-import {ObjectHolders}                from 'util/holder/objectHolders'
+import {ObjectHolders}                from 'util/holder/ObjectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 

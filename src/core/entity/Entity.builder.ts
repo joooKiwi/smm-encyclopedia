@@ -46,7 +46,7 @@ import {EntityLimits}                                   from 'core/entityLimit/E
 import {GameStructureProvider}                          from 'core/game/GameStructure.provider'
 import {Instruments}                                    from 'core/instrument/Instruments'
 import {UNKNOWN_CHARACTER}                              from 'util/commonVariables'
-import {ObjectHolders}                                  from 'util/holder/objectHolders'
+import {ObjectHolders}                                  from 'util/holder/ObjectHolders'
 import {ObjectHolderContainer}                          from 'util/holder/ObjectHolder.container'
 import {DelayedObjectHolderContainer}                   from 'util/holder/DelayedObjectHolder.container'
 

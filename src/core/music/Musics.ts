@@ -22,7 +22,7 @@ import {FramePerMillisecond as Time}                                       from 
 import type {SoundEffects}                                                 from 'core/soundEffect/SoundEffects'
 import type {Themes}                                                       from 'core/theme/Themes'
 import {Import}                                                            from 'util/DynamicImporter'
-import {ObjectHolders}                                                     from 'util/holder/objectHolders'
+import {ObjectHolders}                                                     from 'util/holder/ObjectHolders'
 import {ObjectHolderContainer}                                             from 'util/holder/ObjectHolder.container'
 
 /**

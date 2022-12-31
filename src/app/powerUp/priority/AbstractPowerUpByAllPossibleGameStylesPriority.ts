@@ -6,7 +6,7 @@ import type {ObjectHolder}                                                      
 import {AbstractPowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/AbstractPowerUpBySMM1GameStylesPriority'
 import {GameStyles}                              from 'core/gameStyle/GameStyles'
 import {DelayedObjectHolderContainer}            from 'util/holder/DelayedObjectHolder.container'
-import {ObjectHolders}                           from 'util/holder/objectHolders'
+import {ObjectHolders}                           from 'util/holder/ObjectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 

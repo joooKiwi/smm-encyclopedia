@@ -21,7 +21,7 @@ export class ObjectHolders {
     /** A callback holder that only return an empty {@link Array array} */
     public static readonly EMPTY_ARRAY: ObjectHolder<EmptyArray> = new ObjectHolderContainer(EMPTY_ARRAY)
     /** A callback holder that only return an empty {@link Map map} */
-    public static readonly EMPTY_MAP: ObjectHolder<EmptyMap> = new ObjectHolderContainer(EMPTY_MAP)
+    public static readonly EMPTY_MAP: ObjectHolder<EmptyMap> = new ObjectHolderContainer<EmptyMap>(EMPTY_MAP)
     /** A callback holder that only return an empty {@link Object object} */
     public static readonly EMPTY_OBJECT: ObjectHolder<EmptyObject> = new ObjectHolderContainer(EMPTY_OBJECT)
 
