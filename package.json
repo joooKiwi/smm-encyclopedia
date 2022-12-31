@@ -63,13 +63,13 @@
     "@joookiwi/enumerable": "^1.2.0",
     "assert": "^2.0.0",
     "bootstrap": "^5.2.3",
-    "bootstrap-icons": "^1.10.2",
-    "i18next": "^22.0.6",
+    "bootstrap-icons": "^1.10.3",
+    "i18next": "^22.4.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-i18next": "^12.0.0",
+    "react-i18next": "^12.1.1",
     "react-intl": "^6.2.5",
-    "react-router-dom": "^6.4.4",
+    "react-router-dom": "^6.6.1",
     "react-scripts": "^5.0.1",
     "web-vitals": "^3.1.0"
   },
@@ -78,15 +78,15 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",
     "@types/bootstrap": "^5.2.6",
-    "@types/jest": "^29.2.3",
-    "@types/node": "^18.11.10",
+    "@types/jest": "^29.2.5",
+    "@types/node": "^18.11.18",
     "@types/react": "^18.0.26",
-    "@types/react-dom": "^18.0.9",
+    "@types/react-dom": "^18.0.10",
     "@types/react-router-dom": "^5.3.3",
     "fs-extra": "^11.1.0",
     "gh-pages": "^4.0.0",
     "npm-run-all": "^4.1.5",
     "papaparse": "^5.3.2",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.4"
   }
 }
