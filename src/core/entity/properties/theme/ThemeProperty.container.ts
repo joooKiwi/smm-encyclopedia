@@ -40,43 +40,43 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
 
     //region -------------------- Getter methods --------------------
 
-    public get isInGroundTheme() {
+    public get isInGroundTheme(): GROUND {
         return this.#isInGroundTheme
     }
 
-    public get isInUndergroundTheme() {
+    public get isInUndergroundTheme(): UNDERGROUND {
         return this.#isInUndergroundTheme
     }
 
-    public get isInUnderwaterTheme() {
+    public get isInUnderwaterTheme(): UNDERWATER {
         return this.#isInUnderwaterTheme
     }
 
-    public get isInDesertTheme() {
+    public get isInDesertTheme(): DESERT {
         return this.#isInDesertTheme
     }
 
-    public get isInSnowTheme() {
+    public get isInSnowTheme(): SNOW {
         return this.#isInSnowTheme
     }
 
-    public get isInSkyTheme() {
+    public get isInSkyTheme(): SKY {
         return this.#isInSkyTheme
     }
 
-    public get isInForestTheme() {
+    public get isInForestTheme(): FOREST {
         return this.#isInForestTheme
     }
 
-    public get isInGhostHouseTheme() {
+    public get isInGhostHouseTheme(): GHOST_HOUSE {
         return this.#isInGhostHouseTheme
     }
 
-    public get isInAirshipTheme() {
+    public get isInAirshipTheme(): AIRSHIP {
         return this.#isInAirshipTheme
     }
 
-    public get isInCastleTheme() {
+    public get isInCastleTheme(): CASTLE {
         return this.#isInCastleTheme
     }
 

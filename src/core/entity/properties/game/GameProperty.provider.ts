@@ -27,12 +27,12 @@ export class GamePropertyProvider
     //endregion -------------------- Singleton usage --------------------
 
     /** Get (or create) a property where it is in only {@link Games.SUPER_MARIO_MAKER_2}. */
-    public get smm2Only() {
+    public get smm2Only(): GameProperty<false, false, true> {
         return this.get(false, true,)
     }
 
     /** Get (or create) a property where is it in every {@link Games}. */
-    public get all() {
+    public get all(): GameProperty<true, true, true> {
         return this.get(true, true,)
     }
 

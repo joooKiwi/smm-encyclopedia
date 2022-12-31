@@ -73,77 +73,77 @@ export class EntityReferencesContainer
 
     //region -------------------- Game style references --------------------
 
-    public get referenceInSuperMarioBrosStyle() {
+    public get referenceInSuperMarioBrosStyle(): PossibleOtherEntities {
         return this.#referenceInSuperMarioBrosStyle.get
     }
 
-    public get referenceInSuperMarioBros3Style() {
+    public get referenceInSuperMarioBros3Style(): PossibleOtherEntities {
         return this.#referenceInSuperMarioBros3Style.get
     }
 
-    public get referenceInSuperMarioWorldStyle() {
+    public get referenceInSuperMarioWorldStyle(): PossibleOtherEntities {
         return this.#referenceInSuperMarioWorldStyle.get
     }
 
-    public get referenceInNewSuperMarioBrosUStyle() {
+    public get referenceInNewSuperMarioBrosUStyle(): PossibleOtherEntities {
         return this.#referenceInNewSuperMarioBrosUStyle.get
     }
 
-    public get referenceInSuperMario3DWorldStyle() {
+    public get referenceInSuperMario3DWorldStyle(): PossibleOtherEntities {
         return this.#referenceInSuperMario3DWorldStyle.get
     }
 
     //endregion -------------------- Game style references --------------------
     //region -------------------- Theme references --------------------
 
-    public get referenceInGroundTheme() {
+    public get referenceInGroundTheme(): PossibleOtherEntities {
         return this.#referenceInGroundTheme.get
     }
 
-    public get referenceInUndergroundTheme() {
+    public get referenceInUndergroundTheme(): PossibleOtherEntities {
         return this.#referenceInUndergroundTheme.get
     }
 
-    public get referenceInUnderwaterTheme() {
+    public get referenceInUnderwaterTheme(): PossibleOtherEntities {
         return this.#referenceInUnderwaterTheme.get
     }
 
-    public get referenceInDesertTheme() {
+    public get referenceInDesertTheme(): PossibleOtherEntities {
         return this.#referenceInDesertTheme.get
     }
 
-    public get referenceInSnowTheme() {
+    public get referenceInSnowTheme(): PossibleOtherEntities {
         return this.#referenceInSnowTheme.get
     }
 
-    public get referenceInSkyTheme() {
+    public get referenceInSkyTheme(): PossibleOtherEntities {
         return this.#referenceInSkyTheme.get
     }
 
-    public get referenceInForestTheme() {
+    public get referenceInForestTheme(): PossibleOtherEntities {
         return this.#referenceInForestTheme.get
     }
 
-    public get referenceInGhostHouseTheme() {
+    public get referenceInGhostHouseTheme(): PossibleOtherEntities {
         return this.#referenceInGhostHouseTheme.get
     }
 
-    public get referenceInAirshipTheme() {
+    public get referenceInAirshipTheme(): PossibleOtherEntities {
         return this.#referenceInAirshipTheme.get
     }
 
-    public get referenceInCastleTheme() {
+    public get referenceInCastleTheme(): PossibleOtherEntities {
         return this.#referenceInCastleTheme.get
     }
 
     //endregion -------------------- Theme references --------------------
     //region -------------------- Time references --------------------
 
-    public get referenceInDayTheme() {
+    public get referenceInDayTheme(): PossibleOtherEntities {
         return this.#referenceInDayTheme.get
     }
 
-    public get referenceInNightTheme() {
+    public get referenceInNightTheme(): PossibleOtherEntities {
         return this.#referenceInNightTheme.get
     }
 
@@ -153,23 +153,23 @@ export class EntityReferencesContainer
     public getReferenceFrom(time: Times,): PossibleOtherEntities
     public getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
     public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
-    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities {
         return gameStyleOrThemeOrTime.getReference(this)
     }
 
-    public get everyGameStyleReferences() {
+    public get everyGameStyleReferences(): PossibleOtherEntities {
         return this.#everyGameStyleReferences.get
     }
 
-    public get everyThemeReferences() {
+    public get everyThemeReferences(): PossibleOtherEntities {
         return this.#everyThemeReferences.get
     }
 
-    public get everyTimeReferences() {
+    public get everyTimeReferences(): PossibleOtherEntities {
         return this.#everyTimeReferences.get
     }
 
-    public get everyReferences() {
+    public get everyReferences(): PossibleOtherEntities {
         return this.#everyReferences.get
     }
 

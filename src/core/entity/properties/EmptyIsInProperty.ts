@@ -1,5 +1,6 @@
 import type {Property}                                          from 'core/entity/properties/Property'
 import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from 'util/ClassWithNullObjectPattern'
+import type {EmptyMap}                                          from 'util/types/variables'
 
 import {EmptyInstrumentProperty} from 'core/entity/properties/instrument/EmptyInstrumentProperty'
 import {EmptyLimitProperty}      from 'core/entity/properties/limit/EmptyLimitProperty'
@@ -109,31 +110,31 @@ export class EmptyIsInProperty
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap() {
+    public toGameMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toGameStyleMap() {
+    public toGameStyleMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toCourseThemeMap() {
+    public toCourseThemeMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toTimeMap() {
+    public toTimeMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitMap() {
+    public toLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitInTheEditorMap() {
+    public toLimitInTheEditorMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitWhilePlayingMap() {
+    public toLimitWhilePlayingMap(): EmptyMap {
         return EMPTY_MAP
     }
 

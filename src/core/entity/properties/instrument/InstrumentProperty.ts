@@ -2,18 +2,19 @@ import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment} from 'cor
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}            from 'core/entity/properties/instrument/loader.types'
 import type {Instrument}                                               from 'core/instrument/Instrument'
 import type {NullOr, NullOrBoolean}                                    from 'util/types/nullable'
+import type {BooleanOrNotApplicable}                                   from 'util/types/variables'
 
-export interface InstrumentProperty<CAN_MAKE_A_SOUND_OUT_OF_A_MUSIC_BLOCK extends CanMakeASoundOutOfAMusicBlockProperty = CanMakeASoundOutOfAMusicBlockProperty, > {
+export interface InstrumentProperty {
 
     get instruments(): readonly Instrument[]
 
     //region -------------------- Can make a sound out of a music block --------------------
 
-    get canMakeASoundOutOfAMusicBlockContainer(): CAN_MAKE_A_SOUND_OUT_OF_A_MUSIC_BLOCK
+    get canMakeASoundOutOfAMusicBlockContainer(): CanMakeASoundOutOfAMusicBlockProperty
 
-    get canMakeASoundOutOfAMusicBlock(): CAN_MAKE_A_SOUND_OUT_OF_A_MUSIC_BLOCK['value']
+    get canMakeASoundOutOfAMusicBlock(): BooleanOrNotApplicable
 
-    get canMakeASoundOutOfAMusicBlockComment(): CAN_MAKE_A_SOUND_OUT_OF_A_MUSIC_BLOCK['comment']
+    get canMakeASoundOutOfAMusicBlockComment(): NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
 
 
     //endregion -------------------- Can make a sound out of a music block --------------------

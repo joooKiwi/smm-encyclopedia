@@ -31,23 +31,23 @@ export class GameStylePropertyContainer<SMB extends boolean = boolean, SMB3 exte
 
     //region -------------------- Getter methods --------------------
 
-    public get isInSuperMarioBrosStyle() {
+    public get isInSuperMarioBrosStyle(): SMB {
         return this.#isInSuperMarioBrosStyle
     }
 
-    public get isInSuperMarioBros3Style() {
+    public get isInSuperMarioBros3Style(): SMB3 {
         return this.#isInSuperMarioBros3Style
     }
 
-    public get isInSuperMarioWorldStyle() {
+    public get isInSuperMarioWorldStyle(): SMW {
         return this.#isInSuperMarioWorldStyle
     }
 
-    public get isInNewSuperMarioBrosUStyle() {
+    public get isInNewSuperMarioBrosUStyle(): NSMBU {
         return this.#isInNewSuperMarioBrosUStyle
     }
 
-    public get isInSuperMario3DWorldStyle() {
+    public get isInSuperMario3DWorldStyle(): SM3DW {
         return this.#isInSuperMario3DWorldStyle
     }
 

@@ -1,5 +1,6 @@
 import type {Entity}                                      from 'core/entity/Entity'
 import type {ClassWithNullObjectPattern, EmptyEntityName} from 'util/ClassWithNullObjectPattern'
+import type {EmptyArray, EmptyMap}                        from 'util/types/variables'
 
 import {EmptyEntityReference}             from 'core/entity/properties/EmptyEntityReference'
 import {EmptyIsInProperty}                from 'core/entity/properties/EmptyIsInProperty'
@@ -13,7 +14,6 @@ import {EMPTY_MAP}                        from 'util/emptyVariables'
  *
  * @note A value that is equivalent to nothing can be false, null and itself
  * @singleton
- * @recursiveReference<{@link EmptyEntityReference}>
  */
 export class EmptyEntity
     extends ClassContainingANameAndACategory<string, string, EmptyEntityCategory>
@@ -129,77 +129,28 @@ export class EmptyEntity
     public readonly referencesContainer = EmptyEntityReference.get
 
 
-    public get referenceInSuperMarioBrosStyle() {
-        return this.referencesContainer.referenceInSuperMarioBrosStyle
-    }
+    public readonly referenceInSuperMarioBrosStyle = this.referencesContainer.referenceInSuperMarioBrosStyle
+    public readonly referenceInSuperMarioBros3Style = this.referencesContainer.referenceInSuperMarioBros3Style
+    public readonly referenceInSuperMarioWorldStyle = this.referencesContainer.referenceInSuperMarioWorldStyle
+    public readonly referenceInNewSuperMarioBrosUStyle = this.referencesContainer.referenceInNewSuperMarioBrosUStyle
+    public readonly referenceInSuperMario3DWorldStyle = this.referencesContainer.referenceInSuperMario3DWorldStyle
 
-    public get referenceInSuperMarioBros3Style() {
-        return this.referencesContainer.referenceInSuperMarioBros3Style
-    }
-
-    public get referenceInSuperMarioWorldStyle() {
-        return this.referencesContainer.referenceInSuperMarioWorldStyle
-    }
-
-    public get referenceInNewSuperMarioBrosUStyle() {
-        return this.referencesContainer.referenceInNewSuperMarioBrosUStyle
-    }
-
-    public get referenceInSuperMario3DWorldStyle() {
-        return this.referencesContainer.referenceInSuperMario3DWorldStyle
-    }
+    public readonly referenceInGroundTheme = this.referencesContainer.referenceInGroundTheme
+    public readonly referenceInUndergroundTheme = this.referencesContainer.referenceInUndergroundTheme
+    public readonly referenceInUnderwaterTheme = this.referencesContainer.referenceInUnderwaterTheme
+    public readonly referenceInDesertTheme = this.referencesContainer.referenceInDesertTheme
+    public readonly referenceInSnowTheme = this.referencesContainer.referenceInSnowTheme
+    public readonly referenceInSkyTheme = this.referencesContainer.referenceInSkyTheme
+    public readonly referenceInForestTheme = this.referencesContainer.referenceInForestTheme
+    public readonly referenceInGhostHouseTheme = this.referencesContainer.referenceInGhostHouseTheme
+    public readonly referenceInAirshipTheme = this.referencesContainer.referenceInAirshipTheme
+    public readonly referenceInCastleTheme = this.referencesContainer.referenceInCastleTheme
 
 
-    public get referenceInGroundTheme() {
-        return this.referencesContainer.referenceInGroundTheme
-    }
+    public readonly referenceInDayTheme = this.referencesContainer.referenceInDayTheme
+    public readonly referenceInNightTheme = this.referencesContainer.referenceInNightTheme
 
-    public get referenceInUndergroundTheme() {
-        return this.referencesContainer.referenceInUndergroundTheme
-    }
-
-    public get referenceInUnderwaterTheme() {
-        return this.referencesContainer.referenceInUnderwaterTheme
-    }
-
-    public get referenceInDesertTheme() {
-        return this.referencesContainer.referenceInDesertTheme
-    }
-
-    public get referenceInSnowTheme() {
-        return this.referencesContainer.referenceInSnowTheme
-    }
-
-    public get referenceInSkyTheme() {
-        return this.referencesContainer.referenceInSkyTheme
-    }
-
-    public get referenceInForestTheme() {
-        return this.referencesContainer.referenceInForestTheme
-    }
-
-    public get referenceInGhostHouseTheme() {
-        return this.referencesContainer.referenceInGhostHouseTheme
-    }
-
-    public get referenceInAirshipTheme() {
-        return this.referencesContainer.referenceInAirshipTheme
-    }
-
-    public get referenceInCastleTheme() {
-        return this.referencesContainer.referenceInCastleTheme
-    }
-
-
-    public get referenceInDayTheme() {
-        return this.referencesContainer.referenceInDayTheme
-    }
-
-    public get referenceInNightTheme() {
-        return this.referencesContainer.referenceInNightTheme
-    }
-
-    public getReferenceFrom() {
+    public getReferenceFrom(): EmptyArray {
         return this.referencesContainer.getReferenceFrom()
     }
 
@@ -213,31 +164,31 @@ export class EmptyEntity
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap() {
+    public toGameMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toGameStyleMap() {
+    public toGameStyleMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toCourseThemeMap() {
+    public toCourseThemeMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toTimeMap() {
+    public toTimeMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitMap() {
+    public toLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitInTheEditorMap() {
+    public toLimitInTheEditorMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitWhilePlayingMap() {
+    public toLimitWhilePlayingMap(): EmptyMap {
         return EMPTY_MAP
     }
 
