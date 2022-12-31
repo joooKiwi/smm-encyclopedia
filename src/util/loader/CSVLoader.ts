@@ -670,7 +670,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
     //endregion -------------------- Header conversion methods --------------------
 
     /**
-     * Add a conversion on each headers received with <u>only one</u> of:
+     * Add a conversion on each header received with <u>only one</u> of:
      * <ul>
      *     <li>a predefined conversion type ({@link PredefinedConversion})</li>
      *     <li>a custom convertor ({@link ConversionCallbackToConverter})</li>
@@ -731,7 +731,7 @@ export class CSVLoader<A extends any[] = any[], T = any, H extends string = stri
 
     /**
      * Create the {@link Converter} based on the {@link PredefinedConversion}
-     * and the create a new basic {@link Converter}.
+     * and then create a new basic {@link Converter}.
      *
      * @param headerContainer the header container
      */

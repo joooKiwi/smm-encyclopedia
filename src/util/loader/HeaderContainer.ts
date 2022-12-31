@@ -36,7 +36,7 @@ export class HeaderContainer<H extends string, A extends ArrayOfHeaders = ArrayO
     }
 
     /**
-     * Every headers used as a comparison on the {@link followingHeaders following headers method}.
+     * Every header used as a comparison on the {@link followingHeaders following headers method}.
      */
     public get otherHeaders(): A {
         return this.#otherHeaders
