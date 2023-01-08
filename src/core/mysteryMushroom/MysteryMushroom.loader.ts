@@ -180,7 +180,7 @@ export class MysteryMushroomLoader
                 .convertToEmptyableStringAnd(['Marimba', 'Techno',], 'haveASoundEffectOnDeath_type',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleAcronymWithPokemonGenerationOrUnknown_gameReference, 'haveASoundEffectOnDeath_game',)
                 .convertTo(HeaderTypesForConvertor.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom, 'haveASoundEffectOnDeath_smallDefinition',)
-                .convertToNullableBooleanAnd(['+ "Oh no!"', '+ "Nooo!"', '+ "Nooo"', '+ "Woah!"', '+ "Yaha!"',], 'haveASoundEffectOnDeath',)
+                .convertToNullableBooleanAnd(['+ Rooo…', '+ "Oh no!"', '+ "Nooo!"', '+ "Nooo"', '+ "Woah!"', '+ "Yaha!"',], 'haveASoundEffectOnDeath',)
 
                 .convertTo(HeaderTypesForConvertor.everyPossibleUniqueEnglishName_mysteryMushroom, 'english', 'americanEnglish',)
 
