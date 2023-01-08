@@ -128,8 +128,43 @@
 
   }
 
-  .big-mushroom-image {
+  //region -------------------- Helper guide for the user to distinguish the group by game style --------------------
+
+  .ground-image, .steepSlope-image, .gentleSlope-image, .bridge-image, {
+    &[alt*='Day'] {
+      margin: {
+        top: var(--bs-spacer-sm);
+      }
+      border-top: {
+        color: rgba(var(--bs-secondary-rgb), 50%,);
+        style: dotted;
+        width: var(--bs-border-width-1);
+      }
+    }
+  }
+
+  .semisolidPlatform-image, {
+    &[alt*='Day #1'] {
+      margin: {
+        top: var(--bs-spacer-sm);
+      }
+      border-top: {
+        color: rgba(var(--bs-secondary-rgb), 50%,);
+        style: dotted;
+        width: var(--bs-border-width-1);
+      }
+    }
+  }
+
+  //endregion -------------------- Helper guide for the user to distinguish the group by game style --------------------
+
+  .bigMushroom-image,
+  .mysteryMushroom-image, .weirdMushroom-image,
+  .bigMushroomClassic-image, .bigMushroomModern-image, {
     height: 32px;
+  }
+
+  .bigMushroom-image {
     margin: var(--bs-spacer-sm);
   }
 
