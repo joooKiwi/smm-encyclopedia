@@ -20,17 +20,17 @@ export class BackgroundMusicContainer<SMB_EDITOR_MUSIC extends PossibleSMB_Edito
 
     //region -------------------- Fields --------------------
 
-    readonly #editorMusic
-    readonly #regularMusic
-    readonly #linkMusic
-    readonly #smb2Music
-    readonly #underwaterMusic
-    readonly #yoshiSound
-    readonly #fastMusic
-    readonly #fastLinkMusic
-    readonly #fastSmb2Music
-    readonly #fastUnderwaterMusic
-    readonly #fastYoshiSound
+    readonly #editorMusic: SingleBackgroundMusic<SMB_EDITOR_MUSIC, SMB3_EDITOR_MUSIC, SMW_EDITOR_MUSIC, NSMBU_EDITOR_MUSIC, SM3DW_EDITOR_MUSIC>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #regularMusic: SingleBackgroundMusic<SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #linkMusic: SingleBackgroundMusic<LINK_MUSIC, null, null, null, null>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #smb2Music: SingleBackgroundMusic<SMB2_MUSIC, null, null, null, null>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #underwaterMusic: SingleBackgroundMusic<null, null, null, null, SM3DW_UNDERWATER_MUSIC>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #yoshiSound: SingleBackgroundMusic<null, null, SMW_YOSHI_SOUND, NSMBU_YOSHI_SOUND, null>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #fastMusic: SingleBackgroundMusic<SMB_FAST_MUSIC, SMB3_FAST_MUSIC, SMW_FAST_MUSIC, NSMBU_FAST_MUSIC, SM3DW_FAST_MUSIC>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #fastLinkMusic: SingleBackgroundMusic<LINK_FAST_MUSIC, null, null, null, null>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #fastSmb2Music: SingleBackgroundMusic<SMB2_FAST_MUSIC, null, null, null, null>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #fastUnderwaterMusic: SingleBackgroundMusic<null, null, null, null, SM3DW_FAST_UNDERWATER_MUSIC>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #fastYoshiSound: SingleBackgroundMusic<null, null, SMW_FAST_YOSHI_SOUND, NSMBU_FAST_YOSHI_SOUND, null>//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

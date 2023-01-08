@@ -1,7 +1,7 @@
 import type {OptionalLanguage} from 'lang/name/containers/OptionalLanguage'
 import type {EmptyArray}       from 'util/types/variables'
 
-import {LanguageContainer}     from 'lang/name/containers/LanguageContainer'
+import {LanguageContainer}     from 'lang/name/containers/Language.container'
 import {isNullableEmptyString} from 'util/utilitiesMethods'
 
 /**
@@ -11,15 +11,15 @@ export class OptionalLanguageContainer<T, S extends T = T, A extends readonly T[
     extends LanguageContainer<T, S, A>
     implements OptionalLanguage<T, S, A, U> {
 
-    readonly #isUsed
+    readonly #isUsed: U//FIXME this type is only there to help typescript (it's not the standard)
 
     public constructor(value: | S | A,) {
         super(value)
         this.#isUsed = !isNullableEmptyString(this.get()) && !isNullableEmptyString(this.get(0)) && !isNullableEmptyString(this.get(2))
     }
 
-    public get isUsed() {
-        return this.#isUsed as U
+    public get isUsed(): U {
+        return this.#isUsed
     }
 
 }

@@ -12,9 +12,9 @@ export class LanguageContainer<T, S extends T = T, A extends readonly T[] = Empt
 
     //region -------------------- Fields --------------------
 
-    readonly #original
-    readonly #singleValue
-    readonly #arrayValue
+    readonly #original: | S | A
+    readonly #singleValue: NullOr<S>
+    readonly #arrayValue: A | EmptyArray
 
     //endregion -------------------- Fields --------------------
 

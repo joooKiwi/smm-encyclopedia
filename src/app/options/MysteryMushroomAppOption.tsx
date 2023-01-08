@@ -344,7 +344,7 @@ export abstract class MysteryMushroomAppOption
 
     static readonly #NOT_APPLICABLE_COMPONENT = <TextComponent content="N/A"/>
 
-    readonly #type
+    readonly #type: PossibleMysteryMushroomType//FIXME this type is only there to help typescript (it's not the standard)
     #appOptionWithContent?: AppOptionWithContent
     #appOptionWithTable?: AppOptionWithTable
 

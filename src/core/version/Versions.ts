@@ -60,8 +60,8 @@ export class Versions
 
     readonly #name
     readonly #game
-    readonly #releaseDate
-    readonly #gameStyle
+    readonly #releaseDate: NullOr<Date>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #gameStyle: NullOr<GameStyles_SM3DW>//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

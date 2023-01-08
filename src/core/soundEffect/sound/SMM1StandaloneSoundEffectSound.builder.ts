@@ -17,7 +17,7 @@ export class SMM1StandaloneSoundEffectSoundBuilder
     //region -------------------- Fields --------------------
 
     readonly #smm1ExclusiveSounds
-    readonly #smm2ExclusiveSounds
+    readonly #smm2ExclusiveSounds: NullOr<SMM2SoundEffectSound>
 
     #soundIndexes?: SingleSoundIndex[]
     #editorIndex?: SingleSoundIndex

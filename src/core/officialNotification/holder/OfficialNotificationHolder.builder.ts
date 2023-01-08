@@ -18,7 +18,7 @@ export class OfficialNotificationHolderBuilder
     static readonly #POSSIBLE_EXCLUDED_CASES: readonly OfficialNotifications[] = [OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_1, OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_2,]
     static readonly #NO_NUMBER_FOUND = -1
 
-    readonly #name
+    readonly #name: NullOr<PossibleEnglishNameWithOnlyAmount>//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 
