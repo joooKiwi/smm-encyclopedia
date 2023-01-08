@@ -8,7 +8,7 @@ export class EntityCategoryImageFileContainer
     implements EntityCategoryImageFile {
 
     public constructor(imageNumber: PossibleImageNumber, englishName: PossibleEnglishName,) {
-        super('category', `CategoryIcon_0${imageNumber}`, 'tiff', englishName,)
+        super('category', `CategoryIcon_0${imageNumber}^s`, 'tiff', englishName,)
     }
 
 }

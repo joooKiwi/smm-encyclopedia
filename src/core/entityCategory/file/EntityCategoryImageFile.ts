@@ -8,6 +8,6 @@ export interface EntityCategoryImageFile
 export type ImageFilePath = 'category'
 
 export type PossibleImageNumber = | 0 | 1 | 2 | 3
-export type PossibleImageFileName = `CategoryIcon_0${PossibleImageNumber}`
+export type PossibleImageFileName = `CategoryIcon_0${PossibleImageNumber}^s`
 
 export type ImageFileExtension = 'tiff'

@@ -158,6 +158,26 @@
 
   //endregion -------------------- Helper guide for the user to distinguish the group by game style --------------------
 
+  img {
+
+    &[alt="Terrain"] {
+      filter: var(--filter-white-to-cyan);
+    }
+
+    &[alt="Item"] {
+      filter: var(--filter-white-to-pink);
+    }
+
+    &[alt="Enemy"] {
+      filter: var(--filter-white-to-green);
+    }
+
+    &[alt="Gizmo"] {
+      filter: var(--filter-white-to-yellow);
+    }
+
+  }
+
   .bigMushroom-image,
   .mysteryMushroom-image, .weirdMushroom-image,
   .bigMushroomClassic-image, .bigMushroomModern-image, {

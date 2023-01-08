@@ -8,7 +8,7 @@ export class MiiCostumeCategoryImageFileContainer
     implements MiiCostumeCategoryImageFile {
 
     public constructor(imageNumber: PossibleImageNumber, englishName: PossibleEnglishName,) {
-        super('category', `DressIcon_0${imageNumber}`, 'tiff', englishName,)
+        super('category', `DressIcon_0${imageNumber}^s`, 'tiff', englishName,)
     }
 
 }
