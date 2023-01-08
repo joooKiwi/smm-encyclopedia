@@ -55,16 +55,16 @@
 :root {
   //https://domysee.com/blogposts/coloring-white-images-css-filter
   //https://isotropic.co/tool/hex-color-to-css-filter/
-  --filter-white-to-red:    invert(75%) sepia(99%) saturate(2970%) hue-rotate(340deg) brightness(93%) contrast(84%);
-  --filter-white-to-orange: invert(46%) sepia(60%) saturate(1713%) hue-rotate(349deg) brightness(98%) contrast(102%);
-  --filter-white-to-yellow: invert(26%) sepia(49%) saturate(1425%) hue-rotate(349deg) brightness(104%) contrast(108%);
-  --filter-white-to-green:  invert(37%) sepia(84%) saturate(396%)  hue-rotate(100deg) brightness(96%) contrast(93%);
-  --filter-white-to-teal:   invert(68%) sepia(19%) saturate(1453%) hue-rotate(111deg) brightness(89%) contrast(100%);
-  --filter-white-to-cyan:   invert(28%) sepia(40%) saturate(5338%) hue-rotate(149deg) brightness(105%) contrast(90%);
-  --filter-white-to-blue:   invert(74%) sepia(90%) saturate(2348%) hue-rotate(209deg) brightness(101%) contrast(99%);
-  --filter-white-to-indigo: invert(85%) sepia(96%) saturate(7434%) hue-rotate(267deg) brightness(92%) contrast(107%);
-  --filter-white-to-purple: invert(69%) sepia(16%) saturate(5821%) hue-rotate(239deg) brightness(91%) contrast(95%);
-  --filter-white-to-pink:   invert(66%) sepia(58%) saturate(4131%) hue-rotate(310deg) brightness(88%) contrast(90%);
+  --filter-white-to-red:    invert(69%) sepia(51%) saturate(2632%) hue-rotate(331deg) brightness(88%)  contrast(96%);
+  --filter-white-to-orange: invert(26%) sepia(55%) saturate(6138%) hue-rotate(351deg) brightness(102%) contrast(98%);
+  --filter-white-to-yellow: invert(28%) sepia(41%) saturate(1584%) hue-rotate(351deg) brightness(108%) contrast(107%);
+  --filter-white-to-green:  invert(70%) sepia(52%) saturate(3308%) hue-rotate(140deg) brightness(85%)  contrast(80%);
+  --filter-white-to-teal:   invert(41%) sepia(43%) saturate(715%)  hue-rotate(111deg) brightness(101%) contrast(89%);
+  --filter-white-to-cyan:   invert(37%) sepia(90%) saturate(1325%) hue-rotate(145deg) brightness(96%)  contrast(95%);
+  --filter-white-to-blue:   invert(69%) sepia(48%) saturate(3939%) hue-rotate(208deg) brightness(98%)  contrast(102%);
+  --filter-white-to-indigo: invert(88%) sepia(98%) saturate(5914%) hue-rotate(266deg) brightness(90%)  contrast(111%);
+  --filter-white-to-purple: invert(76%) sepia(87%) saturate(2267%) hue-rotate(250deg) brightness(81%)  contrast(82%);
+  --filter-white-to-pink:   invert(66%) sepia(40%) saturate(2873%) hue-rotate(301deg) brightness(85%)  contrast(97%);
   //--filter-white-to-red:    brightness(50%) sepia(100%) hue-rotate(315deg) saturate(750%);
   //--filter-white-to-orange: brightness(50%) sepia(100%) hue-rotate(340deg) saturate(750%);
   //--filter-white-to-yellow: brightness(70%) sepia(100%) hue-rotate(15deg)  saturate(750%);
