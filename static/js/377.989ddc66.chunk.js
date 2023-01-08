@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksmm_encyclopedia=self.webpackChunksmm_encyclopedia||[]).push([[377],{3377:function(e,n,t){t.r(n),t.d(n,{default:function(){return i}});var c=t(6572),r=t(184);function i(e){return"gameStyle"in e?function(e){var n=e.gameStyle.nightDesertWindTranslationKey;return null==n?null:(0,r.jsx)(r.Fragment,{children:(0,c.aw)("nightEffect.nightDesertWindEffect.".concat(n))})}(e):function(e){var n=e.theme.effect;return null===n||void 0===n?void 0:n.createNewComponent}(e)}}}]);
-//# sourceMappingURL=377.989ddc66.chunk.js.map

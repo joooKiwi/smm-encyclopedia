@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksmm_encyclopedia=self.webpackChunksmm_encyclopedia||[]).push([[631],{5631:function(n,e,t){t.r(e),t.d(e,{default:function(){return o}});var u=t(5671),r=t(3144),c=t(136),a=t(9388),i=t(2163),s=t(184),o=function(n){(0,c.Z)(t,n);var e=(0,a.Z)(t);function t(){return(0,u.Z)(this,t),e.apply(this,arguments)}return(0,r.Z)(t,[{key:"_mainContent",value:function(){return(0,s.jsx)(s.Fragment,{children:"About page"})}}]),t}(i.Z)}}]);
+//# sourceMappingURL=631.afaf680a.chunk.js.map
