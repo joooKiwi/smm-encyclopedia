@@ -1,7 +1,6 @@
-import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType}             from 'core/entity/properties/limit/Loader.types'
-import type {LimitProperty, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
-import type {GameStructure}                                                                                                                                                                                                from 'core/game/GameStructure'
-import type {ProviderWithKey}                                                                                                                                                                                              from 'util/provider/ProviderWithKey'
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType} from 'core/entity/properties/limit/loader.types'
+import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit}                  from 'core/entity/properties/limit/LimitProperty'
+import type {ProviderWithKey}                                                                                                                                                                                  from 'util/provider/ProviderWithKey'
 
 import {LimitPropertyContainer} from 'core/entity/properties/limit/LimitProperty.container'
 import {AbstractProvider}       from 'util/provider/AbstractProvider'
@@ -43,7 +42,7 @@ type Key = readonly [
     otherLimit: readonly [OtherLimitType, OtherLimitCommentType,],
 ]
 type ArgumentsReceived = readonly [
-    editorLimit: GameStructure<PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM1And3DS, PossibleEditorLimit_SMM2>,
+    editorLimit: GameStructureForEditorLimit,
     generalLimit: readonly [value: PossibleIsInGeneralLimit, superGlobal: PossibleIsInGeneralGlobalLimit,],
     powerUpLimit: PossibleIsInPowerUpLimit,
     projectileLimit: PossibleIsInProjectileLimit,

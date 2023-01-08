@@ -86,7 +86,8 @@ export default class EntityApp
             }
 
             public get tableOptions(): readonly EntityAppOption[] {
-                return [EntityAppOption.IMAGES,
+                return [
+                    EntityAppOption.IMAGES,
                     EntityAppOption.NAME,
                     // EntityAppOption.GAME,
                     // EntityAppOption.GAME_STYLE,

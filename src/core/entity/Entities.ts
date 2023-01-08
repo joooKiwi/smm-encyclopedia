@@ -2800,12 +2800,14 @@ export class Entities
     #editorVoiceSound?: EditorVoiceSound
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
         super()
         this.#englishNameContainer = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, Entity> {

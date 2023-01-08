@@ -24,6 +24,7 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
     readonly #isInCastleTheme
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     constructor(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,) {
         this.#isInGroundTheme = isInGroundTheme
@@ -38,6 +39,7 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
         this.#isInCastleTheme = isInCastleTheme
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get isInGroundTheme(): GROUND {

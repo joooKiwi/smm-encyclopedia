@@ -294,5 +294,4 @@ export type PossibleEnglishName =
     | 'Toad' | 'Caged Toadette'
     | 'Bubble'
 
-
 //endregion -------------------- English name --------------------

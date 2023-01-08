@@ -18,6 +18,7 @@ export class LimitPropertyContainer
     readonly #isOtherLimitContainer
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     constructor(editorLimit: GameStructureForEditorLimit,
                 [generalLimit, generalGlobalLimit,]: readonly [value: PossibleIsInGeneralLimit, superGlobal: PossibleIsInGeneralGlobalLimit,],
@@ -32,6 +33,7 @@ export class LimitPropertyContainer
         this.#isOtherLimitContainer = otherLimit
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Editor limit --------------------

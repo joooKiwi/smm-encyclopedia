@@ -187,6 +187,7 @@ export class Themes
     #endlessMarioImageFile?: NullOr<EndlessMarioThemeImageFile>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, gameName: PossibleGameName,) {
         super()
@@ -194,6 +195,7 @@ export class Themes
         this.#gameName = gameName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {

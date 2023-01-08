@@ -768,6 +768,7 @@ export class MysteryMushrooms
     #lostALifeSound?: LostALifeSoundFile
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(fileName: FileName, englishName: PossibleEnglishName,)
     protected constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName,)
@@ -778,6 +779,7 @@ export class MysteryMushrooms
         this.#fileName = fileName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom> {
@@ -807,7 +809,7 @@ export class MysteryMushrooms
 
     //region -------------------- Files (images / sounds) getter methods --------------------
 
-    public get fileName(): FileName {
+    private get __fileName(): FileName {
         return this.#fileName
     }
 
@@ -963,7 +965,7 @@ export class MysteryMushrooms
         if (value instanceof this)
             return value
         const valueFound = this.values.find(it => {
-            const fileName = it.fileName
+            const fileName = it.__fileName
             return it.englishName === value
                 || it.uniqueEnglishName === value
                 || fileName.imageFileNames.includes(value as never)

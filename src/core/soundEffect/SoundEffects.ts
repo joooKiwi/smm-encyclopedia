@@ -1039,12 +1039,14 @@ export abstract class SoundEffects
     #sounds_smm2?: | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
         super()
         this.#englishName = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, SoundEffect> {
