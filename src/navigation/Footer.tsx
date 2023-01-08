@@ -28,15 +28,21 @@ export default function Footer({languageChanger,}: FooterProperties,) {
                 <div id="languageChanger-button-container" className="col-auto col-sm-12"><LanguageChangerButton {...languageChanger}/></div>
             </div>
             <div className="row">
-                <span id="copyright" className="text-center text-light small">
-                    {contentTranslation('Copyright')}<sup>©</sup> Nintendo™
+                <small id="version" className="text-center text-light">
+                    {contentTranslation('Version')} 0.12 <sub className="opacity-50">beta</sub>
+                </small>
+                <small id="copyright" className="text-center text-light">
+                    {contentTranslation('Copyright')}<sup className="opacity-50">©</sup> Nintendo<span className="opacity-50">™</span>
+                </small>
+                <span id="copyright_madeBy" className="text-center text-light">
+                    <small>{contentTranslation('React application made by')}: </small>
+                    JóôòKiwi<pre className="m-0 d-inline"> </pre>
+                    <small>{contentTranslation('and helped by')}: </small>
+                    Geitje
                 </span>
-                <span id="copyright_madeBy" className="text-center text-light small">
-                    {contentTranslation('React application made by')}: JóôòKiwi & Geitje
-                </span>
-                <span id="copyright_lastEdited" className="text-center text-light small">
-                    {contentTranslation('Last update')}: <SimpleDate day={4} month={12} year={2022}/>
-                </span>
+                <small id="copyright_lastEdited" className="text-center text-light">
+                    {contentTranslation('Last update')}: <i><SimpleDate day={8} month={1} year={2023}/></i>
+                </small>
             </div>
         </div>
     </footer>

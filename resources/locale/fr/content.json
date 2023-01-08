@@ -49,8 +49,10 @@
   "GitHub repository":           "Répertoire GitHub",
   "Go to the GitHub repository": "Aller au répertoire GitHub",
 
+  "Version":                   "Version",
   "Copyright":                 "Droit d'auteur",
   "React application made by": "Application React faite par",
+  "and helped by":             "et aidé par",
   "Last update":               "Dernière mise à jour",
 
   "Home":    "Accueil",
