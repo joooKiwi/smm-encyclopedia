@@ -1,5 +1,4 @@
-import type {BasePath} from 'variables'
-import type {Themes}   from 'core/theme/Themes'
+import type {Themes} from 'core/theme/Themes'
 
 enum Enum {
 
@@ -20,19 +19,15 @@ export type PossibleEnglishName_CourseTheme = | PossibleEnglishName_InBothCourse
 export type PossibleEnglishName_WorldTheme = | PossibleEnglishName_InBothCourseAndWorldTheme | 'Volcano' | 'Space'
 export type PossibleEnglishName = | PossibleEnglishName_CourseTheme | PossibleEnglishName_WorldTheme
 
-export type SmallImagePath = `/${BasePath}/theme/Lyt_E_SceneSmall_${PossibleGameName}_00.tiff`
-export type LargeImagePath = `/${BasePath}/theme/Lyt_E_Scene_${PossibleGameName}_00.tiff`
-export type EndlessMarioImagePath = `/${BasePath}/theme/WM_GameSkin_${PossibleGameName_CourseTheme}_00^l.tiff`
-
 export type PossibleGameName_CourseTheme = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'
 export type PossibleGameName_WorldTheme = | 'plain' | 'underground' | 'desert' | 'snow' | 'athletic' | 'woods' | 'magma' | 'night'
 export type PossibleGameName = | PossibleGameName_CourseTheme | PossibleGameName_WorldTheme
-export type DayGameName<V extends string = string, > = `${V}_${PossibleGameName}`
-export type NightGameName<V extends string = string, > = `${V}_${PossibleGameName}_night`
-export type DayOrNightGameName<B extends boolean = boolean, V extends string = string, >
-    = B extends true ? DayGameName<V> :
-    B extends false ? NightGameName<V>
-        : | DayGameName<V> | NightGameName<V>
+export type DayGameName = PossibleGameName
+export type NightGameName = `${PossibleGameName}_night`
+export type DayOrNightGameName<B extends boolean = boolean, >
+    = B extends true ? DayGameName :
+    B extends false ? NightGameName
+        : | DayGameName | NightGameName
 
 //endregion -------------------- Name & image --------------------
 //region -------------------- Array types --------------------

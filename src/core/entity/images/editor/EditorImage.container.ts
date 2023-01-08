@@ -1,4 +1,5 @@
-import type {EditorImage} from 'core/entity/images/editor/EditorImage'
+import type {EditorImageFile} from 'core/entity/file/EditorImageFile'
+import type {EditorImage}     from 'core/entity/images/editor/EditorImage'
 
 import {AbstractImageWithTimesThemesAndGameStyles} from 'core/entity/images/AbstractImageWithTimesThemesAndGameStyles'
 import {GameStyles}                                from 'core/gameStyle/GameStyles'
@@ -6,10 +7,10 @@ import {Themes}                                    from 'core/theme/Themes'
 import {Times}                                     from 'core/time/Times'
 
 export class EditorImageContainer
-    extends AbstractImageWithTimesThemesAndGameStyles
+    extends AbstractImageWithTimesThemesAndGameStyles<EditorImageFile>
     implements EditorImage {
 
-    public constructor(map: ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly string[]>>>, defaultImages: ReadonlyMap<GameStyles, readonly string[]>,) {
+    public constructor(map: ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly EditorImageFile[]>>>, defaultImages: ReadonlyMap<GameStyles, readonly EditorImageFile[]>,) {
         super(map, defaultImages,)
     }
 

@@ -31,7 +31,7 @@ export default class GameComponent
         const key = identifier == null ? game.englishName : `${identifier} - ${game.englishName}`
         const id = identifier == null ? `${gameEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${gameEnglishNameInHtml}-game-image`
 
-        return <Image key={key} id={id} source={game.imagePath} fallbackName={game.englishName} className={`game-image ${gameEnglishNameInHtml}-image`}/>
+        return <Image key={key} id={id} file={game.imageFile} className={`game-image ${gameEnglishNameInHtml}-image`}/>
     }
 
     protected override _renderComponentForAllAsText() {

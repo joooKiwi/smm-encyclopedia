@@ -59,7 +59,7 @@ export default class EntityCategoryApp
             }
 
             public createCardListContent(enumerable: EntityCategories,) {
-                return <Image source={enumerable.imagePath} fallbackName={`${enumerable.englishName} - image`}/>
+                return <Image file={enumerable.imageFile}/>
             }
 
             //endregion -------------------- Card list interpreter --------------------

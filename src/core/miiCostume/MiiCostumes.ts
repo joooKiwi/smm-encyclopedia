@@ -1,16 +1,17 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                       from 'core/ClassWithEnglishName'
-import type {ClassWithImagePath}                                                         from 'core/ClassWithImagePath'
-import type {ClassWithReference}                                                         from 'core/ClassWithReference'
-import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImagePath} from 'core/miiCostume/MiiCostumes.types'
-import type {MiiCostume}                                                                 from 'core/miiCostume/MiiCostume'
-import type {Nullable}                                                                   from 'util/types/nullable'
+import type {ClassWithEnglishName}                       from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                         from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName}       from 'core/miiCostume/MiiCostumes.types'
+import type {MiiCostume}                                 from 'core/miiCostume/MiiCostume'
+import type {MiiCostumeImageFile, PossibleImageFileName} from 'core/miiCostume/file/MiiCostumeImageFile'
+import type {ClassWithImageFile}                         from 'util/file/image/ClassWithImageFile'
+import type {Nullable}                                   from 'util/types/nullable'
 
-import {BASE_PATH}       from 'variables'
-import {Import}          from 'util/DynamicImporter'
-import {StringContainer} from 'util/StringContainer'
+import {MiiCostumeImageFileContainer as ImageFile} from 'core/miiCostume/file/MiiCostumeImageFile.container'
+import {Import}                                    from 'util/DynamicImporter'
+import {StringContainer}                           from 'util/StringContainer'
 
 /**
  * @recursiveReference {@link MiiCostumeLoader}
@@ -20,7 +21,7 @@ export class MiiCostumes
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MiiCostume>,
         ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImagePath<PossibleImagePath> {
+        ClassWithImageFile<MiiCostumeImageFile> {
 
     //region -------------------- Enum instances --------------------
 
@@ -168,17 +169,18 @@ export class MiiCostumes
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostume>
 
     #reference?: MiiCostume
+
     readonly #englishName: StringContainer<PossibleEnglishName>
-    readonly #imageName: PossibleImageName
-    readonly #imagePath: PossibleImagePath
+
+    readonly #imageName: PossibleImageFileName
+    #imageFile?: MiiCostumeImageFile
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(englishName: PossibleEnglishName, imageName: PossibleImageName,) {
+    private constructor(englishName: PossibleEnglishName, imageName: PossibleImageFileName,) {
         super()
         this.#englishName = new StringContainer(englishName)
         this.#imageName = imageName
-        this.#imagePath = `/${BASE_PATH}/Mii costume/${imageName}.tiff`
     }
 
     //region -------------------- Getter methods --------------------
@@ -204,12 +206,13 @@ export class MiiCostumes
         return this.#englishName.getInHtml
     }
 
-    public get imageName(): PossibleImageName {
+
+    private get __imageName(): PossibleImageFileName {
         return this.#imageName
     }
 
-    public get imagePath(): PossibleImagePath {
-        return this.#imagePath
+    public get imageFile(): MiiCostumeImageFile{
+        return this.#imageFile ??= new ImageFile(this.__imageName, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -221,7 +224,7 @@ export class MiiCostumes
         if (value instanceof this)
             return value
         const valueFound = this.values.find(enumerable => enumerable.englishName === value
-            || enumerable.imageName === value)
+            || enumerable.__imageName === value)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
         return valueFound

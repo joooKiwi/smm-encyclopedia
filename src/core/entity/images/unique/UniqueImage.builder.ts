@@ -1,13 +1,17 @@
-import type {ClearConditionImage} from 'core/entity/images/clearCondition/ClearConditionImage'
-import type {EditorImage}         from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}         from 'core/entity/images/inGame/InGameImage'
-import type {UniqueImage}         from 'core/entity/images/unique/UniqueImage'
-import type {Builder}             from 'util/builder/Builder'
-import type {Nullable, NullOr}    from 'util/types/nullable'
+import type {ClearConditionImageFile} from 'core/entity/file/ClearConditionImageFile'
+import type {EditorImageFile}         from 'core/entity/file/EditorImageFile'
+import type {EntityImageFile}         from 'core/entity/file/EntityImageFile'
+import type {InGameSMM1ImageFile}     from 'core/entity/file/InGameSMM1ImageFile'
+import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}             from 'core/entity/images/editor/EditorImage'
+import type {InGameImage_SMM1}        from 'core/entity/images/inGame/InGameImage_SMM1'
+import type {UniqueImage}             from 'core/entity/images/unique/UniqueImage'
+import type {Builder}                 from 'util/builder/Builder'
+import type {Nullable, NullOr}        from 'util/types/nullable'
 
 import {ClearConditionImageFactory} from 'core/entity/images/clearCondition/ClearConditionImage.factory'
 import {EditorImageFactory}         from 'core/entity/images/editor/EditorImage.factory'
-import {InGameImageFactory}         from 'core/entity/images/inGame/InGameImage.factory'
+import {InGameImage_SMM1Factory}    from 'core/entity/images/inGame/InGameImage_SMM1.factory'
 import {UniqueImageContainer}       from 'core/entity/images/unique/UniqueImage.container'
 import {GameStyles}                 from 'core/gameStyle/GameStyles'
 import {Themes}                     from 'core/theme/Themes'
@@ -29,7 +33,7 @@ export class UniqueImageBuilder
 
     #editorImage?: EditorImage
     #clearConditionImage?: ClearConditionImage
-    #whilePlayingImage?: InGameImage
+    #whilePlayingImage?: InGameImage_SMM1
 
     #referenceType?: NullOr<ReferenceType>
 
@@ -48,7 +52,7 @@ export class UniqueImageBuilder
         return this.#clearConditionImage ?? null
     }
 
-    private get __whilePlayingImage(): NullOr<InGameImage> {
+    private get __whilePlayingImage(): NullOr<InGameImage_SMM1> {
         return this.#whilePlayingImage ?? null
     }
 
@@ -96,7 +100,7 @@ export class UniqueImageBuilder
         return this
     }
 
-    public setWhilePlaying(image: InGameImage,): this {
+    public setWhilePlaying(image: InGameImage_SMM1,): this {
         this.#whilePlayingImage = image
         return this
     }
@@ -252,34 +256,32 @@ export class UniqueImageBuilder
     //endregion -------------------- Methods --------------------
     //region -------------------- Builder helper methods --------------------
 
-    #createEditorImageMap(image: EditorImage,): ReadonlyMap<GameStyles, readonly string[]> {
+    #createEditorImageMap(image: EditorImage,): ReadonlyMap<GameStyles, readonly EditorImageFile[]> {
         const themes = this.__themes,
             times = Times.values.toArray()
 
-        return new Map(this._gameStyles.map(gameStyle =>
-            [
-                gameStyle,
-                (themes.get(gameStyle) ?? EMPTY_ARRAY).map(theme =>
-                    times.map(time =>
-                        image.get(true, gameStyle, theme, time,))).flat(2),
-            ]))
+        return new Map(this._gameStyles.map(gameStyle => [gameStyle,
+            (themes.get(gameStyle) ?? EMPTY_ARRAY).map(theme =>
+                times.map(time =>
+                    image.get(true, gameStyle, theme, time,))).flat(2),
+        ]))
     }
 
-    #createClearConditionImageMap(image: ClearConditionImage,): ReadonlyMap<GameStyles, readonly string[]> {
+    #createClearConditionImageMap(image: ClearConditionImage,): ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]> {
         return new Map(
             this._gameStyles.map(gameStyle => [gameStyle, image.get(gameStyle),] as const)
                 .filter(([, images,]) => images.length !== 0)
         )
     }
 
-    #createWhilePlayingImageMap(image: InGameImage,): ReadonlyMap<GameStyles, readonly string[]> {
+    #createWhilePlayingImageMap(image: InGameImage_SMM1,): ReadonlyMap<GameStyles, readonly InGameSMM1ImageFile[]> {
         return new Map(
             this._gameStyles.map(gameStyle => [gameStyle, image.get(false, gameStyle, GROUND,),] as const)
                 .filter(([, images,]) => images.length !== 0)
         )
     }
 
-    #createMap(editorImage: Nullable<EditorImage>, clearConditionImage: Nullable<ClearConditionImage>, whilePlayingImage: Nullable<InGameImage>,): ReadonlyMap<GameStyles, readonly string[]> {
+    #createMap(editorImage: Nullable<EditorImage>, clearConditionImage: Nullable<ClearConditionImage>, whilePlayingImage: Nullable<InGameImage_SMM1>,): ReadonlyMap<GameStyles, readonly EntityImageFile[]> {
         const type = this.__referenceType
 
         if (type === 'editor' || (editorImage != null && clearConditionImage == null && whilePlayingImage == null)) {
@@ -308,7 +310,7 @@ export class UniqueImageBuilder
         return new UniqueImageContainer(
             editorImage ?? EditorImageFactory.EMPTY_EDITOR_IMAGE,
             clearConditionImage ?? ClearConditionImageFactory.EMPTY_CLEAR_CONDITION_IMAGE,
-            whilePlayingImage ?? InGameImageFactory.EMPTY_IN_GAME_IMAGE,
+            whilePlayingImage ?? InGameImage_SMM1Factory.EMPTY_IN_GAME_IMAGE,
             map.size === 0 ? EMPTY_MAP : map,
         )
     }

@@ -1,17 +1,18 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                            from 'core/ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                              from 'core/ClassWithImagePath'
-import type {ClassWithReference}                                                                              from 'core/ClassWithReference'
-import type {EntityCategory}                                                                                  from 'core/entityCategory/EntityCategory'
-import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from 'core/entityCategory/EntityCategories.types'
-import type {Nullable}                                                                                        from 'util/types/nullable'
+import type {ClassWithEnglishName}                         from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                           from 'core/ClassWithReference'
+import type {EntityCategory}                               from 'core/entityCategory/EntityCategory'
+import type {Names, Ordinals, PossibleEnglishName}         from 'core/entityCategory/EntityCategories.types'
+import type {EntityCategoryImageFile, PossibleImageNumber} from 'core/entityCategory/file/EntityCategoryImageFile'
+import type {ClassWithImageFile}                           from 'util/file/image/ClassWithImageFile'
+import type {Nullable}                                     from 'util/types/nullable'
 
-import {BASE_PATH}             from 'variables'
-import {Import}                from 'util/DynamicImporter'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {EntityCategoryImageFileContainer as ImageFile} from 'core/entityCategory/file/EntityCategoryImageFile.container'
+import {Import}                                        from 'util/DynamicImporter'
+import {StringContainer}                               from 'util/StringContainer'
+import {getValueByEnglishName}                         from 'util/utilitiesMethods'
 
 /**
  * @recursiveReference {@link EntityCategoryLoader}
@@ -21,7 +22,7 @@ export class EntityCategories
     extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityCategory>,
         ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImagePath<PossibleImagePath> {
+        ClassWithImageFile<EntityCategoryImageFile> {
 
     //region -------------------- Enum instances --------------------
 
@@ -42,15 +43,15 @@ export class EntityCategories
 
     #reference?: EntityCategory
     readonly #englishName
-    readonly #imageName: PossibleImageName
-    #imagePath?: PossibleImagePath
+    readonly #imageNumber
+    #imageFile?: EntityCategoryImageFile
 
     //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super()
         this.#englishName = new StringContainer<PossibleEnglishName, Lowercase<PossibleEnglishName>>(englishName)
-        this.#imageName = `CategoryIcon_0${imageNumber}`
+        this.#imageNumber = imageNumber
     }
 
     //region -------------------- Getter methods --------------------
@@ -76,12 +77,13 @@ export class EntityCategories
         return this.#englishName.getInHtml
     }
 
-    public get imageName(): PossibleImageName {
-        return this.#imageName
+
+    private get __imageNumber(): PossibleImageNumber {
+        return this.#imageNumber
     }
 
-    public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/${BASE_PATH}/category/${this.imageName}^s.tiff`
+    public get imageFile(): EntityCategoryImageFile {
+        return this.#imageFile ??= new ImageFile(this.__imageNumber, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------

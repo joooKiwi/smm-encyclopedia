@@ -17,7 +17,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
+const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
 
 //endregion -------------------- dynamic imports --------------------
 

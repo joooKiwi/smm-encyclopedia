@@ -3,7 +3,7 @@ import type {ExtendedMap}                                       from 'util/exten
 import type {NullOrBoolean}                                     from 'util/types/nullable'
 import type {BooleanOrNotApplicable}                            from 'util/types/variables'
 
-import {PropertyProvider}     from 'core/_properties/PropertyProvider'
+import {PropertyProvider}     from 'core/_properties/Property.provider'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**

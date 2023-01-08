@@ -9,7 +9,7 @@ import type {Builder}                                                           
 import type {ObjectHolder}                                                                                                                                                                from 'util/holder/ObjectHolder'
 import type {Nullable}                                                                                                                                                                    from 'util/types/nullable'
 
-import {PropertyProvider}                        from 'core/_properties/PropertyProvider'
+import {PropertyProvider}                        from 'core/_properties/Property.provider'
 import {PropertyContainer}                       from 'core/_properties/Property.container'
 import {NumberPropertyThatCanBeUnknownContainer} from 'core/_properties/number/NumberPropertyThatCanBeUnknown.container'
 import {TemplateWithNameBuilder}                 from 'core/_template/TemplateWithName.builder'
@@ -80,13 +80,13 @@ export class EntityLimitBuilder
 
     //region -------------------- Limit amount helper methods --------------------
 
-    #createLimitTemplateInSMM1And3DS(amount: Exclude<PossibleLimitAmount_SMM1And3DS, null>,) {
+    #createLimitTemplateInSMM1And3DS(amount: NonNullable<PossibleLimitAmount_SMM1And3DS>,) {
         return amount === NOT_APPLICABLE
             ? EntityLimitBuilder.#NOT_APPLICABLE_CONTAINER
             : new DelayedObjectHolderContainer(() => PropertyProvider.newNumberContainer(amount, true,))
     }
 
-    #createLimitTemplateInSMM2(amount: Exclude<PossibleLimitAmount_SMM2, null>,) {
+    #createLimitTemplateInSMM2(amount: NonNullable<PossibleLimitAmount_SMM2>,) {
         return amount === UNKNOWN_CHARACTER
             ? EntityLimitBuilder.#UNKNOWN_CONTAINER
             : new DelayedObjectHolderContainer(() =>

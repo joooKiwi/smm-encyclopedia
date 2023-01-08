@@ -70,7 +70,7 @@ export default class MysteryMushroomApp
             }
 
             public createCardListContent(enumerable: MysteryMushrooms,) {
-                const amountOfImages = enumerable.fileName.imageFileNames.length
+                const amountOfImages = enumerable.imageFileNames.length
                 const contains2Images = amountOfImages === 2
 
                 return amountOfImages === 0
@@ -84,7 +84,7 @@ export default class MysteryMushroomApp
                             MysteryMushroomAppOption.RUNNING,
                             MysteryMushroomAppOption.SWIMMING,
                             MysteryMushroomAppOption.JUMP,
-                            MysteryMushroomAppOption.FALLING_AFTER_JUMP,
+                            MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
                             MysteryMushroomAppOption.TURNING,
                             MysteryMushroomAppOption.CLIMBING,
                             MysteryMushroomAppOption.GOAL_POLE,

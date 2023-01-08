@@ -1,18 +1,17 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                      from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                          from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                                                                                                            from 'core/ClassWithReference'
-import type {Entity}                                                                                                                                                                                                                                                                                                        from 'core/entity/Entity'
-import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                    from 'core/entityLimit/EntityLimit'
-import type {Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} from 'core/entityLimit/EntityLimits.types'
-import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                              from 'util/types/nullable'
+import type {ClassWithNullableAcronym}                                                                                                                                                                                                                                                                                                          from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                              from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                                                                                                                                                                                from 'core/ClassWithReference'
+import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                                                                                                                                                                                                                        from 'core/entityLimit/EntityLimit'
+import type {Names, Ordinals, PossibleAcronym, PossibleAcronymInBothEditorAndWhilePlaying, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleEntityLink, PossibleStartingEnglishName, PossibleStartingEnglishNameInBothEditorAndWhilePlaying, PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} from 'core/entityLimit/EntityLimits.types'
+import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                  from 'util/types/nullable'
 
-import {EmptyEntity}      from 'core/entity/EmptyEntity'
 import type {Entities}    from 'core/entity/Entities'
 import {EntityLimitTypes} from 'core/entityLimit/EntityLimitTypes'
 import {Import}           from 'util/DynamicImporter'
+import {EMPTY_ARRAY}      from 'util/emptyVariables'
 import {StringContainer}  from 'util/StringContainer'
 
 /**
@@ -311,7 +310,7 @@ export class EntityLimits
     readonly #englishName: StringContainer<PossibleEnglishName>
     readonly #alternativeAcronym: NullOr<PossibleAlternativeAcronym>
     readonly #alternativeEnglishName: NullOr<StringContainer<PossibleAlternativeEnglishName>>
-    #entityLink?: | readonly [Entity] | readonly [Entity, Entity,]
+    #entityLink?: PossibleEntityLink
     #groupLink?: object
 
     //endregion -------------------- Fields --------------------
@@ -401,11 +400,11 @@ export class EntityLimits
         return null
     }
 
-    public get entityLink(): readonly [Entity] | readonly [Entity, Entity,] {
+    public get entityLink(): PossibleEntityLink {
         if (this.#entityLink == null) {
             const link = this._entityLink
             this.#entityLink = link == null
-                ? [EmptyEntity.get]
+                ? EMPTY_ARRAY
                 : link instanceof Array
                     ? [link[0].reference, link[1].reference,]
                     : [link.reference,]

@@ -2,16 +2,16 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {Fragment, lazy}                                                          from 'react'
 
-import type {Names, Ordinals, PossibleMysteryMushroomType}           from 'app/options/MysteryMushroomAppOption.types'
-import type {AppOptionWithContent, PossibleRenderReactElement}       from 'app/options/component/AppOptionWithContent'
-import type {AppOptionWithTable}                                     from 'app/options/component/AppOptionWithTable'
-import type {SingleHeaderContent}                                    from 'app/tools/table/SimpleHeader'
-import type {MysteryMushroom}                                        from 'core/mysteryMushroom/MysteryMushroom'
-import type {PossibleImageSourceForFile, PossibleSoundSourceForFile} from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {MysteryMushroomSoundFile}                               from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
-import type {ReactElement}                                           from 'util/react/ReactProperties'
-import type {NullOr}                                                 from 'util/types/nullable'
-import type {NotApplicable}                                          from 'util/types/variables'
+import type {Names, Ordinals, PossibleMysteryMushroomType}            from 'app/options/MysteryMushroomAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement}        from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                                      from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                                     from 'app/tools/table/SimpleHeader'
+import type {MysteryMushroom}                                         from 'core/mysteryMushroom/MysteryMushroom'
+import type {MysteryMushroomImageFile as ImageFile}                   from 'core/mysteryMushroom/file/MysteryMushroomImageFile'
+import type {MysteryMushroomSoundFile as SoundFile}                   from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {ReactElement}                                            from 'util/react/ReactProperties'
+import type {Nullable, NullOr}                                        from 'util/types/nullable'
+import type {NotApplicable}                                           from 'util/types/variables'
 
 import {MysteryMushrooms}              from 'core/mysteryMushroom/MysteryMushrooms'
 import {CommonOptions}                 from 'app/options/CommonOptions'
@@ -24,7 +24,7 @@ import {ProjectLanguages}              from 'lang/ProjectLanguages'
 
 const NameComponent =        lazy(() => import('lang/name/component/Name.component'))
 const Image =                lazy(() => import('app/tools/images/Image'))
-const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
+const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
 
 //endregion -------------------- dynamic imports --------------------
 
@@ -214,7 +214,7 @@ export abstract class MysteryMushroomAppOption
             const enumeration = MysteryMushroomAppOption_Jump.CALLBACK_TO_GET_ENUMERATION()
             return (enumeration.jumpImages[0]?.length ?? 0) > 1
                 ? this._createAnimatedImages(() => enumeration.jumpImages, renderDiv,)
-                : this._createImage(() => enumeration.jumpImages.map(images => images[0]!) as unknown as PossibleImageSourceForFile<string>, renderDiv,)
+                : this._createImage(() => enumeration.jumpImages.map(images => images[0]!), renderDiv,)
         }
 
         public override _createSoundContent(renderDiv: boolean,) {
@@ -226,36 +226,36 @@ export abstract class MysteryMushroomAppOption
         }
 
     }('jump',)
-    public static readonly FALLING_AFTER_JUMP = new class MysteryMushroomAppOption_FallingAfterJump extends MysteryMushroomAppOption {
+    public static readonly FALLING_AFTER_A_JUMP = new class MysteryMushroomAppOption_FallingAfterAJump extends MysteryMushroomAppOption {
 
         protected override _createContentOption() {
             return this._renderImageContent()
         }
 
         protected override _createImageContent(renderDiv: boolean,) {
-            return this._createImage(enumeration => enumeration.fallingAfterJumpImage, renderDiv,)
+            return this._createImage(enumeration => enumeration.fallingAfterAJumpImage, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {key: 'fallingAfterJumpImage', element: '--Falling after jump (images)--',}//TODO add falling after jump & image
         }
 
-    }('falling after jump',)
-    public static readonly ON_GROUND_AFTER_JUMP = new class MysteryMushroomAppOption_OnGroundAfterJump extends MysteryMushroomAppOption {
+    }('falling after a jump',)
+    public static readonly ON_GROUND_AFTER_A_JUMP = new class MysteryMushroomAppOption_OnGroundAfterAJump extends MysteryMushroomAppOption {
 
         protected override _createContentOption() {
             return this._renderSoundContent()
         }
 
         public override _createSoundContent(renderDiv: boolean,) {
-            return this._createSound(enumeration => enumeration.onGroundAfterJumpSound, reference => reference.haveASoundEffectOnGroundAfterJump, renderDiv,)
+            return this._createSound(enumeration => enumeration.onGroundAfterJumpASound, reference => reference.haveASoundEffectOnGroundAfterJump, renderDiv,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {key: 'groundAfterJumpImage', element: '--Ground after jump (sound)--',}//TODO add ground after jump & sound
         }
 
-    }('ground after jump',)
+    }('ground after a jump',)
     public static readonly TURNING = new class MysteryMushroomAppOption_Turning extends MysteryMushroomAppOption {
 
         protected override _createContentOption() {
@@ -371,8 +371,8 @@ export abstract class MysteryMushroomAppOption
             MysteryMushroomAppOption.RUNNING,
             MysteryMushroomAppOption.SWIMMING,
             MysteryMushroomAppOption.JUMP,
-            MysteryMushroomAppOption.FALLING_AFTER_JUMP,
-            MysteryMushroomAppOption.ON_GROUND_AFTER_JUMP,
+            MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
+            MysteryMushroomAppOption.ON_GROUND_AFTER_A_JUMP,
             MysteryMushroomAppOption.TURNING,
             MysteryMushroomAppOption.CLIMBING,
             MysteryMushroomAppOption.GOAL_POLE,
@@ -399,7 +399,7 @@ export abstract class MysteryMushroomAppOption
         return this.#createSingleImageAndSoundContainer(renderDiv, callback,)
     }
 
-    protected _createSound(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<MysteryMushroomSoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSound(callback: (enumeration: MysteryMushrooms,) => Nullable<SoundFile>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const value = callback(enumeration)
             if (value == null)
@@ -411,7 +411,7 @@ export abstract class MysteryMushroomAppOption
         },)
     }
 
-    protected _createSounds(callback: (enumeration: MysteryMushrooms,) => PossibleSoundSourceForFile<readonly MysteryMushroomSoundFile[]>, callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
+    protected _createSounds(callback: (enumeration: MysteryMushrooms,) => readonly SoundFile[], callbackToRender: ReferenceCallback, renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const englishName = enumeration.englishName
             const type = this._mysteryMushroomType
@@ -422,27 +422,23 @@ export abstract class MysteryMushroomAppOption
         },)
     }
 
-    protected _createImage(callback: (enumeration: MysteryMushrooms,) => PossibleImageSourceForFile<string>, renderDiv: boolean,): ReactElement {
+    protected _createImage(callback: (enumeration: MysteryMushrooms,) => readonly ImageFile[], renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const uniqueEnglishName = enumeration.uniqueEnglishName
-            const fallbackName = `${enumeration.englishName} (${this._mysteryMushroomType})`
 
             return <>{callback(enumeration).map((value, index,) =>
-                <Image key={`${uniqueEnglishName} #${index + 1}`} source={value} fallbackName={`${fallbackName} #${index + 1}`}/>
+                <Image key={`${uniqueEnglishName} #${index + 1}`} file={value}/>
             )}</>
         },)
     }
 
-    protected _createAnimatedImages(callback: (enumeration: MysteryMushrooms,) => PossibleImageSourceForFile<readonly string[]>, renderDiv: boolean,): ReactElement {
+    protected _createAnimatedImages(callback: (enumeration: MysteryMushrooms,) => readonly (| readonly ImageFile[] )[], renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const uniqueEnglishName = enumeration.uniqueEnglishName
             const englishNameInHtml = enumeration.englishNameInHtml
-            const fallbackName = `${enumeration.englishName} (${this._mysteryMushroomType})`
 
             return <>{callback(enumeration).map((value, index,) =>
-                <Image key={`${uniqueEnglishName} #${index + 1}`} partialId={`${englishNameInHtml}-${index + 1}`}
-                       images={value.map((image, index,) =>
-                           ({source: image, fallbackName: `${fallbackName} #${index + 1}`,}))}/>
+                <Image key={`${uniqueEnglishName} #${index + 1}`} partialId={`${englishNameInHtml}-${index + 1}`} images={value.map(it => ({file: it,}))}/>
             )}</>
         },)
     }

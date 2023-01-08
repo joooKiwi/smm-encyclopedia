@@ -63,13 +63,13 @@ export default class ThemeApp
             }
 
             public createCardListContent(enumerable: Themes,) {
-                const {englishName, englishNameInHtml, endlessMarioImagePath,} = enumerable
+                const {englishNameInHtml, endlessMarioImageFile,} = enumerable
 
                 return <div className="card-body" id={`theme-${englishNameInHtml}`}>
                     <div className="col-2">{CommonOptions.get.getGameContent(enumerable)}</div>
                     <div className="images-container col-7">
                         {enumerable.renderSingleComponent(true)}
-                        {endlessMarioImagePath == null ? null : <Image source={endlessMarioImagePath} fallbackName={`${englishName} (Endless mario)`}/>}
+                        <Image file={endlessMarioImageFile}/>
                     </div>
                     <div className="col-2">{CommonOptions.get.getThemeContent(enumerable)}</div>
                 </div>

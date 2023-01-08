@@ -1,4 +1,4 @@
-import type {InGameImage}                                      from 'core/entity/images/inGame/InGameImage'
+import type {InGameImage_SMM1}                                 from 'core/entity/images/inGame/InGameImage_SMM1'
 import type {ClassWithNullObjectPattern, EmptyInGameImageName} from 'util/ClassWithNullObjectPattern'
 import type {EmptyArray}                                       from 'util/types/variables'
 
@@ -8,7 +8,7 @@ import {EMPTY_ARRAY} from 'util/emptyVariables'
  * @singleton
  */
 export class EmptyInGameImage
-    implements InGameImage, ClassWithNullObjectPattern<EmptyInGameImageName> {
+    implements InGameImage_SMM1, ClassWithNullObjectPattern<EmptyInGameImageName> {
 
     //region -------------------- Singleton usage --------------------
 

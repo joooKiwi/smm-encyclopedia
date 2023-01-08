@@ -18,7 +18,7 @@ import {SoundEffectCategories}         from 'core/soundEffectCategory/SoundEffec
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
+const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
 const SoundEffectComponent = lazy(() => import('core/soundEffect/SoundEffect.component'))
 
 //endregion -------------------- dynamic imports --------------------
@@ -59,7 +59,7 @@ export abstract class SoundEffectAppOption
         protected override _createContentOption(enumeration: SoundEffects,) {
             const {reference,} = enumeration
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imagePath,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imageFile,)
         }
 
         protected override _createTableHeaderOption() {

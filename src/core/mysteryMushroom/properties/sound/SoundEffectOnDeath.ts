@@ -18,7 +18,7 @@ export type PossibleGamesReceived = NullOr<string>
 export type PossibleValuesReceived = NullOr<| boolean | NonNullable<PossibleSimpleTranslationKeys>>
 export type PossibleTypesReceived = PossibleTypes
 
-export type PossibleSimpleTranslationKeys = NullOr<`+ "${| 'Oh no' | 'Nooo' | 'Woah' | 'Yaha'}!"`>
+export type PossibleSimpleTranslationKeys = NullOr<`+ "${| `Rooo…` | `${| 'Oh no' | 'Nooo' | 'Woah' | 'Yaha'}!`}"`>
 export type PossibleTranslationKeys = NullOr<| 'Game over' | 'Defeated' | 'Error sound'
                                              | 'Boss defeated' | 'Dog laughing'
                                              | `Lost ${| 'a life' | 'an Arwing'}` | 'Falling offscreen'

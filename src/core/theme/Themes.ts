@@ -1,26 +1,30 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                                                     from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                                                from 'core/PropertyGetter'
-import type {PossibleOtherEntities}                                                                                                                                                                                                                                  from 'core/entity/Entity'
-import type {ThemeProperty}                                                                                                                                                                                                                                          from 'core/entity/properties/theme/ThemeProperty'
-import type {ThemeReferences}                                                                                                                                                                                                                                        from 'core/entity/properties/theme/ThemeReferences'
-import type {CourseAndWorldTheme}                                                                                                                                                                                                                                    from 'core/theme/CourseAndWorldTheme'
-import type {CourseTheme}                                                                                                                                                                                                                                            from 'core/theme/CourseTheme'
-import type {DayGameName, DayOrNightGameName, EndlessMarioImagePath, LargeImagePath, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleGameName, PossibleGameName_CourseTheme, SmallImagePath} from 'core/theme/Themes.types'
-import type {WorldTheme}                                                                                                                                                                                                                                             from 'core/theme/WorldTheme'
-import type {Nullable, NullableString, NullOr, NullOrBoolean}                                                                                                                                                                                                        from 'util/types/nullable'
-import type {EmptyString}                                                                                                                                                                                                                                            from 'util/types/variables'
+import type {ClassWithEnglishName}                                                                                                                                                                                                             from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                                                                               from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                          from 'core/PropertyGetter'
+import type {PossibleOtherEntities}                                                                                                                                                                                                            from 'core/entity/Entity'
+import type {ThemeProperty}                                                                                                                                                                                                                    from 'core/entity/properties/theme/ThemeProperty'
+import type {ThemeReferences}                                                                                                                                                                                                                  from 'core/entity/properties/theme/ThemeReferences'
+import type {CourseTheme}                                                                                                                                                                                                                      from 'core/theme/CourseTheme'
+import type {DayGameName, DayOrNightGameName, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleEnglishName_CourseTheme, PossibleGameName, PossibleGameName_CourseTheme} from 'core/theme/Themes.types'
+import type {CourseAndWorldTheme}                                                                                                                                                                                                              from 'core/theme/CourseAndWorldTheme'
+import type {WorldTheme}                                                                                                                                                                                                                       from 'core/theme/WorldTheme'
+import type {EndlessMarioThemeImageFile}                                                                                                                                                                                                       from 'core/theme/file/EndlessMarioThemeImageFile'
+import type {LargeThemeImageFile}                                                                                                                                                                                                              from 'core/theme/file/LargeThemeImageFile'
+import type {SmallThemeImageFile}                                                                                                                                                                                                              from 'core/theme/file/SmallThemeImageFile'
+import type {Nullable, NullOr, NullOrBoolean}                                                                                                                                                                                                  from 'util/types/nullable'
 
-import {BASE_PATH}             from 'variables'
-import {EmptyEntity}           from 'core/entity/EmptyEntity'
-import {ThemeComponent}        from 'core/theme/Theme.component'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
-import {Import}                from 'util/DynamicImporter'
-import {EMPTY_STRING}          from 'util/emptyVariables'
-import {StringContainer}       from 'util/StringContainer'
+import {ThemeComponent}                                               from 'core/theme/Theme.component'
+import {EndlessMarioThemeImageFileContainer as EndlessMarioImageFile} from 'core/theme/file/EndlessMarioThemeImageFile.container'
+import {LargeThemeImageFileContainer as LargeImageFile}               from 'core/theme/file/LargeThemeImageFile.container'
+import {SmallThemeImageFileContainer as SmallImageFile}               from 'core/theme/file/SmallThemeImageFile.container'
+import {getValueByEnglishName}                                        from 'util/utilitiesMethods'
+import {Import}                                                       from 'util/DynamicImporter'
+import type {Times}                                                   from 'core/time/Times'
+import {StringContainer}                                              from 'util/StringContainer'
+import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
 
 /**
  * @recursiveReferenceVia {@link ThemeBuilder} → {@link ThemeLoader}
@@ -149,14 +153,14 @@ export class Themes
 
     public static readonly VOLCANO =     new class Themes_Volcano extends Themes {
 
-        public override get endlessMarioImagePath() {
+        public override get endlessMarioImageFile() {
             return null
         }
 
     }('Volcano', 'magma',)
     public static readonly SPACE =       new class Themes_Space extends Themes   {
 
-        public override get endlessMarioImagePath() {
+        public override get endlessMarioImageFile() {
             return null
         }
 
@@ -176,26 +180,18 @@ export class Themes
     static #WORLDS: OnlyWorldThemes
 
     #reference?: CourseAndWorldTheme
-    readonly #englishName: StringContainer<PossibleEnglishName>
-    readonly #gameName: PossibleGameName
-    #smallImagePath?: SmallImagePath
-    #largeImagePath?: LargeImagePath
-    #endlessMarioImagePath?: NullOr<EndlessMarioImagePath>
+    readonly #englishName
+    readonly #gameName
+    #smallImageFile?: SmallThemeImageFile
+    #largeImageFile?: LargeThemeImageFile
+    #endlessMarioImageFile?: NullOr<EndlessMarioThemeImageFile>
 
     //endregion -------------------- Fields --------------------
 
-    // @ts-ignore
-    protected constructor(enumeration: Themes,)
-    private constructor(englishNameAndImagePath: PossibleEnglishName, gameName: PossibleGameName,)
-    private constructor(englishName_or_enumeration: | PossibleEnglishName | Themes, gameName: PossibleGameName,) {
+    private constructor(englishName: PossibleEnglishName, gameName: PossibleGameName,) {
         super()
-        if (englishName_or_enumeration instanceof Themes) {
-            this.#englishName = englishName_or_enumeration.#englishName
-            this.#gameName = englishName_or_enumeration.gameName
-        } else {
-            this.#englishName = new StringContainer(englishName_or_enumeration)
-            this.#gameName = gameName
-        }
+        this.#englishName = new StringContainer(englishName)
+        this.#gameName = gameName
     }
 
     //region -------------------- Getter methods --------------------
@@ -233,16 +229,17 @@ export class Themes
         return this.reference.worldTheme
     }
 
-    public get smallImagePath(): SmallImagePath {
-        return this.#smallImagePath ??= `/${BASE_PATH}/theme/Lyt_E_SceneSmall_${this.gameName}_00.tiff`
+
+    public get smallImageFile(): SmallThemeImageFile {
+        return this.#smallImageFile ??= new SmallImageFile(this.englishName, this.gameName,)
     }
 
-    public get longImagePath(): LargeImagePath {
-        return this.#largeImagePath ??= `/${BASE_PATH}/theme/Lyt_E_Scene_${this.gameName}_00.tiff`
+    public get largeImageFile(): LargeThemeImageFile {
+        return this.#largeImageFile ??= new LargeImageFile(this.englishName, this.gameName,)
     }
 
-    public get endlessMarioImagePath(): NullOr<EndlessMarioImagePath> {
-        return this.#endlessMarioImagePath ??= `/${BASE_PATH}/theme/WM_GameSkin_${this.gameName as PossibleGameName_CourseTheme}_00^l.tiff`
+    public get endlessMarioImageFile(): NullOr<EndlessMarioThemeImageFile> {
+        return this.#endlessMarioImageFile ??= new EndlessMarioImageFile(this.englishName as PossibleEnglishName_CourseTheme, this.gameName as PossibleGameName_CourseTheme,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -257,23 +254,18 @@ export class Themes
     }
 
     public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
-        return [EmptyEntity.get,]
+        return EMPTY_ARRAY
     }
 
-    public getGameName(name: null, isNightTheme: any,): EmptyString
-    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: false,): | EmptyString | DayGameName<V>
-    public getGameName<V extends string = string, >(name: V, isNightTheme: false,): | EmptyString | DayGameName<V>
-    public getGameName<V extends string = string, >(name: Nullable<V>, isNightTheme: true,): | EmptyString | NightGameName<V>
-    public getGameName<V extends string = string, >(name: V, isNightTheme: true,): | EmptyString | NightGameName<V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: Nullable<V>, isNightTheme: B,): | EmptyString | DayOrNightGameName<B, V>
-    public getGameName<B extends boolean = boolean, V extends string = string, >(name: V, isNightTheme: B,): | EmptyString | DayOrNightGameName<B, V>
-    public getGameName(name: NullableString, isNightTheme: boolean,) {
-        if (name == null)
-            return EMPTY_STRING
+    public getGameName(isNightTheme: true,): DayGameName
+    public getGameName(isNightTheme: false,): NightGameName
+    public getGameName<B extends boolean = boolean, >(isInDayTime: B,): DayOrNightGameName<B>
+    public getGameName(time: | boolean | Times,): DayOrNightGameName
+    public getGameName(isInDayTime: | boolean | Times,) {
+        if (isInDayTime instanceof Import.Times)
+            return this.getGameName( isInDayTime === Import.Times.DAY,)
         const text = this.gameName
-        if (text == null)
-            return EMPTY_STRING
-        return isNightTheme ? `${name}_${text}_night` : `${name}_${text}`
+        return `${text}${isInDayTime ? '' : '_night'}`
     }
 
     public renderSingleComponent(isSmallPath: boolean,) {

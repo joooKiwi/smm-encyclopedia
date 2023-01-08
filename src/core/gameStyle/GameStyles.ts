@@ -1,23 +1,24 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                                        from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                    from 'core/ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                                                                      from 'core/ClassWithImagePath'
-import type {ClassWithReference}                                                                                                                      from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                 from 'core/PropertyGetter'
-import type {GameStylesInSMM1, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleImagePath, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
-import type {GameStyle}                                                                                                                               from 'core/gameStyle/GameStyle'
-import type {PossibleOtherEntities}                                                                                                                   from 'core/entity/Entity'
-import type {GameStyleProperty}                                                                                                                       from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {GameStyleReferences}                                                                                                                     from 'core/entity/properties/gameStyle/GameStyleReferences'
-import type {Nullable}                                                                                                                                from 'util/types/nullable'
+import type {ClassWithAcronym}                                                                                                     from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                              from 'core/PropertyGetter'
+import type {GameStylesInSMM1, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
+import type {GameStyle}                                                                                                            from 'core/gameStyle/GameStyle'
+import type {GameStyleImageFile}                                                                                                   from 'core/gameStyle/file/GameStyleImageFile'
+import type {PossibleOtherEntities}                                                                                                from 'core/entity/Entity'
+import type {GameStyleProperty}                                                                                                    from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {GameStyleReferences}                                                                                                  from 'core/entity/properties/gameStyle/GameStyleReferences'
+import type {ClassWithImageFile}                                                                                                   from 'util/file/image/ClassWithImageFile'
+import type {Nullable}                                                                                                             from 'util/types/nullable'
 
-import {BASE_PATH}             from 'variables'
-import GameStyleComponent      from 'core/gameStyle/GameStyle.component'
-import {Import}                from 'util/DynamicImporter'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import GameStyleComponent            from 'core/gameStyle/GameStyle.component'
+import {GameStyleImageFileContainer} from 'core/gameStyle/file/GameStyleImageFile.container'
+import {Import}                      from 'util/DynamicImporter'
+import {StringContainer}             from 'util/StringContainer'
+import {getValueByEnglishName}       from 'util/utilitiesMethods'
 
 /**
  * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
@@ -28,7 +29,7 @@ export abstract class GameStyles
     implements ClassWithReference<GameStyle>,
         ClassWithAcronym<PossibleAcronym>,
         ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImagePath<PossibleImagePath>,
+        ClassWithImageFile<GameStyleImageFile>,
         PropertyReferenceGetter<GameStyleReferences, PossibleOtherEntities>,
         PropertyGetter<GameStyleProperty> {
 
@@ -105,25 +106,16 @@ export abstract class GameStyles
     readonly #acronym
     readonly #gameAcronym
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>
-    #imagePath?: PossibleImagePath
+    #imageFile?: GameStyleImageFile
     #shortImagePath?: PossibleShortImagePath
 
     //endregion -------------------- Fields --------------------
 
-    // @ts-ignore
-    protected constructor(enumeration: GameStyles,)
-    private constructor(acronym: PossibleAcronym, gameAcronym: PossibleGameAcronym, englishName: PossibleEnglishName,)
-    private constructor(acronym_or_enumeration: | PossibleAcronym | GameStyles, gameAcronym: PossibleGameAcronym, englishName: PossibleEnglishName,) {
+    private constructor(acronym: PossibleAcronym, gameAcronym: PossibleGameAcronym, englishName: PossibleEnglishName,) {
         super()
-        if (acronym_or_enumeration instanceof GameStyles) {
-            this.#acronym = acronym_or_enumeration.acronym
-            this.#gameAcronym = acronym_or_enumeration.gameAcronym
-            this.#englishNameContainer = acronym_or_enumeration.#englishNameContainer
-        } else {
-            this.#acronym = acronym_or_enumeration
-            this.#gameAcronym = gameAcronym
-            this.#englishNameContainer = new StringContainer(englishName)
-        }
+        this.#acronym = acronym
+        this.#gameAcronym = gameAcronym
+        this.#englishNameContainer = new StringContainer(englishName)
     }
 
     //region -------------------- Getter methods --------------------
@@ -157,8 +149,8 @@ export abstract class GameStyles
         return this.#englishNameContainer.getInHtml
     }
 
-    public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/${BASE_PATH}/game style/${this.gameAcronym}_Lyt_Logo_00.tiff`
+    public get imageFile(): GameStyleImageFile {
+        return this.#imageFile ??= new GameStyleImageFileContainer(this.englishName, this.gameAcronym,)
     }
 
     public get shortImagePath(): PossibleShortImagePath {
@@ -186,7 +178,6 @@ export abstract class GameStyles
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| GameStyles | T>,): GameStylesByName<T>
     public static getValueByName(value: Nullable<| GameStyles | string>,): GameStyles {
         return getValueByEnglishName(value, this,)
     }

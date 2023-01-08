@@ -9,7 +9,7 @@ import type {InstrumentPropertyTemplate}                                        
 import type {CanMakeASoundOutOfAMusicBlock}                                                   from 'core/entity/properties/instrument/loader.types'
 import type {LimitProperty}                                                                   from 'core/entity/properties/limit/LimitProperty'
 import type {LimitPropertyTemplate}                                                           from 'core/entity/properties/limit/LimitProperty.template'
-import type {GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType} from 'core/entity/properties/limit/Loader.types'
+import type {GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType} from 'core/entity/properties/limit/loader.types'
 import type {EntityCategory}                                                                  from 'core/entityCategory/EntityCategory'
 import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                          from 'core/entityLimit/EntityLimits.types'
 import type {Instrument}                                                                      from 'core/instrument/Instrument'
@@ -22,7 +22,7 @@ import type {Nullable, NullOr, NullOrString}                                    
 import type {UnknownCharacter}                                                                from 'util/types/variables'
 
 import {PropertyContainer}                              from 'core/_properties/Property.container'
-import {PropertyProvider}                               from 'core/_properties/PropertyProvider'
+import {PropertyProvider}                               from 'core/_properties/Property.provider'
 import {PropertyThatCanBeUnknownWithCommentContainer}   from 'core/_properties/PropertyThatCanBeUnknownWithComment.container'
 import {TemplateWithNameBuilder}                        from 'core/_template/TemplateWithName.builder'
 import {EmptyEntity}                                    from 'core/entity/EmptyEntity'

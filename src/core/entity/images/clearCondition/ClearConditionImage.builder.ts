@@ -1,49 +1,56 @@
+import type {ClassWithEnglishName}                                 from 'core/ClassWithEnglishName'
+import type {PossibleEnglishName}                                  from 'core/entity/Entities.types'
+import type {ClearConditionImageFile}                              from 'core/entity/file/ClearConditionImageFile'
+import type {ClearConditionImage}                                  from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName} from 'core/entity/images/clearCondition/ClearConditionImage.types'
-import type {GameStyles as OriginalGameStyles}                     from 'core/gameStyle/GameStyles'
+import type {GameStyles}                                           from 'core/gameStyle/GameStyles'
+import type {Nullable}                                             from 'util/types/nullable'
 
-import {AbstractImageBuilder}         from 'core/entity/images/AbstractImage.builder'
-import {ClearConditionImageContainer} from 'core/entity/images/clearCondition/ClearConditionImage.container'
-import {GameStyles}                   from 'core/entity/images/GameStyles'
+import {AbstractImageBuilder}                           from 'core/entity/images/AbstractImage.builder'
+import {ClearConditionImageContainer as ImageContainer} from 'core/entity/images/clearCondition/ClearConditionImage.container'
+import {ClearConditionImageFileContainer as ImageFile}  from 'core/entity/file/ClearConditionImageFile.container'
 
-export class ClearConditionImageBuilder<NAME extends Exclude<SimpleImageName, null> = Exclude<SimpleImageName, null>, >
+export class ClearConditionImageBuilder<NAME extends NonNullable<SimpleImageName> = NonNullable<SimpleImageName>, >
     extends AbstractImageBuilder<NAME, PossibleAmountOfImages> {
 
-    public constructor(simpleImageName: NAME,)
-    public constructor(simpleImageName: NAME, imageNumber: PossibleAmountOfImages,)
-    public constructor(simpleImageName: NAME, imageNumber?: PossibleAmountOfImages,) {
+    //region -------------------- Fields --------------------
+
+    readonly #entity
+
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(entity: ClassWithEnglishName<PossibleEnglishName>, simpleImageName: NAME,)
+    public constructor(entity: ClassWithEnglishName<PossibleEnglishName>, simpleImageName: NAME, imageNumber: PossibleAmountOfImages,)
+    public constructor(entity: ClassWithEnglishName<PossibleEnglishName>, simpleImageName: NAME, imageNumber?: PossibleAmountOfImages,) {
         super(simpleImageName, imageNumber,)
+        this.#entity = entity
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Build utility methods --------------------
 
-    protected _getImagePath(gameStyle: GameStyles, ending: string = '',) {
-        return `${gameStyle.gamePath_clearCondition}${gameStyle.gameAcronym}_Lyt_M_${this.simpleImageName}${ending}.tiff`
+    protected _createImageFile(gameStyle: GameStyles, imageNumber: Nullable<ImageNumber>,) {
+        return new ImageFile(gameStyle, this.#entity, this.simpleImageName, imageNumber,)
     }
 
-    protected _getAmountBasedOnValue(amountOfImages: PossibleAmountOfImages,): readonly ImageNumber[] {
-        return [...new Array(amountOfImages)].map((_value, index,) => index as ImageNumber,)
-    }
-
-    protected _createNewMap(callbackThatReturnNumbers: () => readonly ImageNumber[],): ReadonlyMap<OriginalGameStyles, readonly string[]> {
+    protected _createNewMap(...numbers: readonly Nullable<ImageNumber>[]): ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]> {
         return new Map(this._gameStyles.map(gameStyle => [
-            gameStyle.parent,
-            callbackThatReturnNumbers().map(number => this._getImagePath(gameStyle, `_0${number}`,)),
+            gameStyle,
+            numbers.map(number => this._createImageFile(gameStyle, number,)),
         ]))
     }
 
-    protected _createImages(): ReadonlyMap<OriginalGameStyles, readonly string[]> {
+    protected _createImages(): ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]> {
         const imageNumber = this.imageNumber
 
-        if (imageNumber != null)
-            return this._createNewMap(() => [imageNumber - 1 as ImageNumber])
-
-        return this._createNewMap(() => this._getAmountBasedOnValue(1))
+        return this._createNewMap(imageNumber == null ? null : imageNumber - 1 as ImageNumber,)
     }
 
     //endregion -------------------- Build utility methods --------------------
 
-    public override build(): ClearConditionImageContainer {
-        return new ClearConditionImageContainer(this._createImages(),)
+    public override build(): ClearConditionImage {
+        return new ImageContainer(this._createImages(),)
     }
 
 }

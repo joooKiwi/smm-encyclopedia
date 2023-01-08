@@ -2,7 +2,7 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {Link}                                                                    from 'react-router-dom'
 
-import type {Names, Ordinals, PossibleCourseTagType} from 'app/property/CourseTagType.types'
+import type {Names, Ordinals, PossibleCourseTagType} from 'app/property/CourseTagTypes.types'
 import type {BootstrapColor}                         from 'bootstrap/Bootstrap.types'
 import type {EveryPossibleRouteNames}                from 'routes/everyRoutes.types'
 import type {ReactElement, ReactElementOrString}     from 'util/react/ReactProperties'

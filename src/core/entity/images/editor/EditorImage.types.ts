@@ -3,7 +3,6 @@ import type {EditorImage}         from 'core/entity/images/editor/EditorImage'
 import type {PossibleGameName}    from 'core/theme/Themes.types'
 import type {Builder}             from 'util/builder/Builder'
 import type {NullOr}              from 'util/types/nullable'
-import type {EmptyArray}          from 'util/types/variables'
 
 interface ImageNameMap {
 
@@ -452,21 +451,11 @@ export type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`
 type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>
 type VariantEditorImage_Number = | 0 | 1 | 2 | 3
 export type VariantEditorImage_PowerUp = 'Uni'
-export type VariantEditorImage =
-    VariantEditorImage_Number
-    | VariantEditorImage_PowerUp
-    | VariantEditorImage_GameStyle
 
-export type EditorImageName = | EmptyArray
-                              | readonly [ImageName,]
-                              | readonly [ImageName, ImageName,]
-                              | readonly [ImageName, ImageName, ImageName, ImageName,]
-                              | readonly [ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName, ImageName,]
-
-/**
- * Describe the maximum amount of images possible in any possible Editor image in an {@link Entities}.
- */
+/** Describe the maximum amount of images possible in any possible Editor image in an {@link Entities} */
 export type PossibleAmountOfImages = | 1 | 2 | 3 | 4
+export type PossiblePowerUpAmountOfImages = | 1 | 2
 export type ImageNumber = | 0 | 1 | 2 | 3
+export type PowerUpImageNumber = | 0 | 1
 
 export type PossibleImageReceivedOnFactory = NullOr<| Builder<EditorImage> | SimpleImageName>

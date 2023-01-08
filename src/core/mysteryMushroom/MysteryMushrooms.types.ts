@@ -1,7 +1,3 @@
-import type {MysteryMushroomSoundFile} from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
-import type {Nullable}                 from 'util/types/nullable'
-import type {EmptyArray}               from 'util/types/variables'
-
 enum Enum {
     MYSTERY_MUSHROOM,
 
@@ -327,14 +323,3 @@ export type PossibleEnglishName =
     | 'Arino KACHO' | 'SUPER MARIO KUN' | 'Necky' | 'GLA' | 'BABYMETAL'
 
 //endregion -------------------- English name --------------------
-//region -------------------- Array types --------------------
-
-export type PossibleImageSourceForFile<T, > = | EmptyArray | readonly [T,] | readonly [T, T,]
-export type PossibleSoundSourceForFile<T, > =
-    T extends readonly MysteryMushroomSoundFile[]
-        ? (| EmptyArray | T)
-        : T extends MysteryMushroomSoundFile
-            ? Nullable<T>
-            : never
-
-//endregion -------------------- Array types --------------------

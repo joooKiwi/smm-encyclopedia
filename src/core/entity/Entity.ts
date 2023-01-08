@@ -8,6 +8,7 @@ import type {EmptyEntityCategory}                                               
 import type {EntityCategory}                                                                                                      from 'core/entityCategory/EntityCategory'
 import type {NameTrait}                                                                                                           from 'lang/name/NameTrait'
 import type {NameTraitFromACategory}                                                                                              from 'lang/name/NameTraitFromACategory'
+import type {EmptyArray}                                                                                                          from 'util/types/variables'
 
 export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
     extends NameTrait<string>,
@@ -223,4 +224,4 @@ export interface Entity<CATEGORY extends EntityCategory = EntityCategory, PROPER
 /**@deprecated*/export type ExclusiveSM3DWEntity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW> & ExclusiveSMM2PropertyInSM3DW
 /**@deprecated*/export type ExclusiveSMM2Entity<CATEGORY extends EntityCategory = EntityCategory, > = AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2Property> & ExclusiveSMM2Property
 
-export type PossibleOtherEntities = readonly [Entity,] | readonly [Entity, Entity,]
+export type PossibleOtherEntities = | EmptyArray | readonly [Entity,] | readonly [Entity, Entity,]

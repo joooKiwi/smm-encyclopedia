@@ -1,3 +1,5 @@
+import {PossibleEnglishName} from 'core/entity/Entities.types'
+
 export interface ClassWithEnglishName<NAME extends string, NAME_IN_HTML extends string = string, > {
 
     get englishName(): NAME
@@ -8,3 +10,5 @@ export interface ClassWithEnglishName<NAME extends string, NAME_IN_HTML extends 
     get englishNameInHtml(): NAME_IN_HTML
 
 }
+
+export type ClassWithEntityEnglishName = ClassWithEnglishName<PossibleEnglishName>

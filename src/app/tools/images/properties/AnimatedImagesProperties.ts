@@ -1,6 +1,7 @@
-import type {ReactProperties}   from 'util/react/ReactProperties'
-import type {HTMLDivProperties} from 'util/react/html/HTMLDivProperties'
-import type {ImageProperties}   from 'app/tools/images/properties/ImageProperties'
+import type {ImageFromFileProperties} from 'app/tools/images/properties/ImageFromFileProperties'
+import type {ImageProperties}         from 'app/tools/images/properties/ImageProperties'
+import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {HTMLDivProperties}       from 'util/react/html/HTMLDivProperties'
 
 export interface AnimatedImagesProperties
     extends ReactProperties, Omit<HTMLDivProperties, | 'key' | 'id'> {
@@ -10,9 +11,9 @@ export interface AnimatedImagesProperties
     /**
      * Multiple images
      *
-     * @note, the length of the array is required to have more than 2 items.
+     * @note, the length of the array is required to be between 2 & 10 items
      */
-    images: readonly ImageProperties[]
+    images: readonly (| ImageProperties | ImageFromFileProperties)[]
 
     displayAnimations?: boolean
 

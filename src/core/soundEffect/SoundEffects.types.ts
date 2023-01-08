@@ -1,6 +1,7 @@
-import type {BasePath}                        from 'variables'
 import type {PossibleEnglishName_SoundEffect} from 'core/gameReference/GameReferences.types'
 import type {SoundEffects}                    from 'core/soundEffect/SoundEffects'
+import type {SMM1SoundEffectImageFile}        from 'core/soundEffect/file/SMM1SoundEffectImageFile'
+import type {NullOr}                          from 'util/types/nullable'
 
 enum Enum {
 
@@ -70,15 +71,14 @@ export type PossibleEnglishName_SMM2 =
     | PossibleEnglishName_Games
 
 //endregion -------------------- English name --------------------
-//region -------------------- Image path (SMM1) --------------------
+//region -------------------- Image (SMM1) --------------------
 
-export type PossibleImagePath_SMM1 = `/${BasePath}/sound effect/Edit_Lyt_P_SE${SoundEffectImageNumber_SMM1}.tiff`
+export type PossibleSMM1ImageFiles = NullOr<| readonly [SMM1SoundEffectImageFile,] | readonly [SMM1SoundEffectImageFile, SMM1SoundEffectImageFile,]>
 export type SoundEffectImageNumber_SMM1 = `${`0${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9}` | 10 | 11 | 12 | 13 | 14}_0${| 0 | 1}`
 
-//endregion -------------------- Image path (SMM1) --------------------
-//region -------------------- Image path (SMM2) --------------------
+//endregion -------------------- Image (SMM1) --------------------
+//region -------------------- Image (SMM2) --------------------
 
-export type PossibleImagePath_SMM2 = `/${BasePath}/sound effect/Lyt_E_P_SE_${SoundEffectImageName_SMM2}.tiff`
 export type SoundEffectImageName_SMM2 =
     | 'Shock' | 'Scream'
     | `${| '' | 'Loud'}Laughter` | 'Boo'
@@ -105,7 +105,7 @@ export type SoundEffectImageName_SMM2 =
     | 'Bonus' | `${| '' | 'Last'}Boss`
     | `Mario0${| 0 | 1 | 2 | 3}`
 
-//endregion -------------------- Image path (SMM2) --------------------
+//endregion -------------------- Image (SMM2) --------------------
 //region -------------------- Array types --------------------
 
 export type SoundEffectGames = readonly [

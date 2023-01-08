@@ -18,10 +18,10 @@ import {RepeatableDuringThePlayMusicSoundFile as RepeatableDuringThePlay}  from 
 import {RepeatableAtTheEndMusicSoundFile as RepeatableAtTheEnd}            from 'core/music/file/RepeatableAtTheEndMusicSoundFile'
 import {SingleSoundEffectMusicContainer}                                   from 'core/music/soundEffect/SingleSoundEffectMusic.container'
 import {SoundEffectMusicWithDifferentEditorContainer}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor.container'
-import {FramePerMillisecond as Time}                                       from 'util/sound/time/FramePerMillisecond'
 import type {SoundEffects}                                                 from 'core/soundEffect/SoundEffects'
 import type {Themes}                                                       from 'core/theme/Themes'
 import {Import}                                                            from 'util/DynamicImporter'
+import {FramePerMillisecond as Time}                                       from 'util/file/sound/time/FramePerMillisecond'
 import {ObjectHolders}                                                     from 'util/holder/ObjectHolders'
 import {ObjectHolderContainer}                                             from 'util/holder/ObjectHolder.container'
 

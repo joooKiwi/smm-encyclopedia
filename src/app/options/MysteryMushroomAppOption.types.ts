@@ -14,7 +14,7 @@ enum Enum {
     WALK,
     RUNNING,
     SWIMMING,
-    JUMP, FALLING_AFTER_JUMP, ON_GROUND_AFTER_JUMP,
+    JUMP, FALLING_AFTER_A_JUMP, ON_GROUND_AFTER_A_JUMP,
     TURNING,
     CLIMBING,
     GOAL_POLE,
@@ -34,7 +34,7 @@ export type PossibleMysteryMushroomType =
            | 'walk'
            | 'running'
            | 'swimming'
-           | `${| '' | `${| 'falling' | 'ground'} after `}jump`
+           | `${| '' | `${| 'falling' | 'ground'} after a `}jump`
            | 'turning'
            | 'climbing'
            | 'goal pole'

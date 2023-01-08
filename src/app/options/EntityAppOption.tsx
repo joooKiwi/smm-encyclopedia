@@ -64,7 +64,7 @@ export class EntityAppOption
 
                 return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`unique image (${englishName})`}>{
                     uniqueImage.get(gameStyle).map(image =>
-                        <Image id={`${englishNameInHtml}-image`} className="entity-image" source={image} fallbackName={`${englishName} (${gameStyle.acronym})`}/>)
+                        <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
                 }</Fragment>)
             }
         }
@@ -186,7 +186,7 @@ export class EntityAppOption
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryNameContainer
 
-                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValueByName(categoryName.english).imagePath,)
+                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValueByName(categoryName.english).imageFile,)
             }
         }
 
@@ -231,8 +231,8 @@ export class EntityAppOption
                         key: 'limit-editor', element: gameContentTranslation(EntityLimitTypes.EDITOR.englishCommonText),
                         tooltip: gameContentTranslation('Limit in the editor'),
                         subHeaders: [
-                            {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-                            {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+                            {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
+                            {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
                         ],
                     },
                     {

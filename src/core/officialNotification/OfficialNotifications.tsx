@@ -1,3 +1,5 @@
+import './OfficialNotifications.scss'
+
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {Fragment, lazy}                                                          from 'react'
@@ -10,11 +12,13 @@ import type {ObjectHolder}                                                      
 import type {ReactElement}                                                                                                                                                                                                                                                                                           from 'util/react/ReactProperties'
 import type {Nullable, NullableNumber, NullOr}                                                                                                                                                                                                                                                                       from 'util/types/nullable'
 
-import {BASE_PATH}                    from 'variables'
-import {gameContentTranslation}       from 'lang/components/translationMethods'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
-import {EMPTY_ARRAY, EMPTY_STRING}    from 'util/emptyVariables'
-import {StringContainer}              from 'util/StringContainer'
+import {gameContentTranslation}                                                  from 'lang/components/translationMethods'
+import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                       from 'core/officialNotification/file/generalImageFiles'
+import {BRONZE_MEDAL_IMAGE_FILE, GOLD_MEDAL_IMAGE_FILE, SILVER_MEDAL_IMAGE_FILE} from 'core/officialNotification/file/generalMedalImageFiles'
+import {FIRST_PLACE_IMAGE_FILE, SECOND_PLACE_IMAGE_FILE, THIRD_PLACE_IMAGE_FILE} from 'core/officialNotification/file/positionMedalImageFiles'
+import {DelayedObjectHolderContainer}                                            from 'util/holder/DelayedObjectHolder.container'
+import {EMPTY_ARRAY, EMPTY_STRING}                                               from 'util/emptyVariables'
+import {StringContainer}                                                         from 'util/StringContainer'
 
 //region -------------------- dynamic imports --------------------
 
@@ -383,7 +387,7 @@ export class OfficialNotifications
     public static readonly GOLD_MEDAL_ON_THE_LEADERBOARD =                     new class OfficialNotifications_GoldMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - gold medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_03^u.tiff`} fallbackName="Gold medal image"/>
+            keyMap.medalImage = <Image key={`${key} - gold medal image`} file={GOLD_MEDAL_IMAGE_FILE}/>
             return this._addLeaderboard(key, keyMap,)
         }
 
@@ -391,7 +395,7 @@ export class OfficialNotifications
     public static readonly SILVER_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_SilverMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - silver medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_04^u.tiff`} fallbackName="Silver medal image"/>
+            keyMap.medalImage = <Image key={`${key} - silver medal image`} file={SILVER_MEDAL_IMAGE_FILE}/>
             return this._addLeaderboard(key, keyMap,)
         }
 
@@ -399,7 +403,7 @@ export class OfficialNotifications
     public static readonly BRONZE_MEDAL_ON_THE_LEADERBOARD =                   new class OfficialNotifications_BronzeMedalOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - bronze medal image`} source={`/${BASE_PATH}/others/medal/BadgeS_05^u.tiff`} fallbackName="Bronze medal image"/>
+            keyMap.medalImage = <Image key={`${key} - bronze medal image`} file={BRONZE_MEDAL_IMAGE_FILE}/>
             return this._addLeaderboard(key, keyMap,)
         }
 
@@ -407,7 +411,7 @@ export class OfficialNotifications
     public static readonly FIRST_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_1stPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - gold medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_00^u.tiff`} fallbackName="Gold medal image (position)"/>
+            keyMap.medalImage = <Image key={`${key} - 1st place image (medal)`} file={FIRST_PLACE_IMAGE_FILE}/>
             return super._addLeaderboard(key,
                 this._addPosition(1, 'place', key, keyMap,),)
         }
@@ -416,7 +420,7 @@ export class OfficialNotifications
     public static readonly SECOND_PLACE_ON_THE_LEADERBOARD =                   new class OfficialNotifications_2ndPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - silver medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_01^u.tiff`} fallbackName="Silver medal image (position)"/>
+            keyMap.medalImage = <Image key={`${key} - 2nd place image (medal)`} file={SECOND_PLACE_IMAGE_FILE}/>
             return super._addLeaderboard(key,
                 this._addPosition(2, 'place', key, keyMap,),)
         }
@@ -425,7 +429,7 @@ export class OfficialNotifications
     public static readonly THIRD_PLACE_ON_THE_LEADERBOARD =                    new class OfficialNotifications_3rdPlaceOnTheLeaderboard extends OfficialNotifications {
 
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
-            keyMap.medalImage = <Image key={`${key} - bronze medal image (position)`} source={`/${BASE_PATH}/others/medal/BadgeS_02^u.tiff`} fallbackName="Bronze medal image (position)"/>
+            keyMap.medalImage = <Image key={`${key} - 3rd place image (medal)`} file={THIRD_PLACE_IMAGE_FILE}/>
             return super._addLeaderboard(key,
                 this._addPosition(3, 'place', key, keyMap,),)
         }
@@ -626,7 +630,7 @@ export class OfficialNotifications
 
 
     protected _addLikeImage(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.likeImage = <Image key={`${key} - like image`} className="like-image" source={`/${BASE_PATH}/others/Heart_00^d.tiff`} fallbackName={'Like image'}/>//TODO change color (in css) to match the one in the game
+        keyMap.likeImage = <Image key={`${key} - like image`} className="like-image" file={LIKE_IMAGE_FILE}/>
         return keyMap
     }
 
@@ -636,7 +640,7 @@ export class OfficialNotifications
     }
 
     protected _addStampImage(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.stampImage = <Image key={`${key} - stamp image`} className="stamp-image" source={`/${BASE_PATH}/others/EventClearListIcon_00^s.tiff`} fallbackName={'Stamp image'}/>//TODO change color (in css) to match the one in the game
+        keyMap.stampImage = <Image key={`${key} - stamp image`} className="stamp-image" file={STAMP_IMAGE_FILE}/>
         return keyMap
     }
 

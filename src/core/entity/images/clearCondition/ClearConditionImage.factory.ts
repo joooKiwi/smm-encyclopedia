@@ -1,3 +1,5 @@
+import type {ClassWithEnglishName}           from 'core/ClassWithEnglishName'
+import type {PossibleEnglishName}            from 'core/entity/Entities.types'
 import type {ClearConditionImage}            from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {PossibleImageReceivedOnFactory} from 'core/entity/images/clearCondition/ClearConditionImage.types'
 
@@ -16,13 +18,14 @@ export class ClearConditionImageFactory {
      * Create the {@link ClearConditionImage image}
      * based on the value received.
      *
+     * @param entity The entity to retrieve the name
      * @param builder_or_image the builder, the name or null
      */
-    public static create(builder_or_image: PossibleImageReceivedOnFactory,): ClearConditionImage {
+    public static create(entity: ClassWithEnglishName<PossibleEnglishName>, builder_or_image: PossibleImageReceivedOnFactory,): ClearConditionImage {
         return builder_or_image == null
             ? this.EMPTY_CLEAR_CONDITION_IMAGE
             : typeof builder_or_image == 'string'
-                ? new ClearConditionImageBuilder(builder_or_image).setAllGameStyles().build()
+                ? new ClearConditionImageBuilder(entity, builder_or_image).setAllGameStyles().build()
                 : builder_or_image.build()
     }
 
