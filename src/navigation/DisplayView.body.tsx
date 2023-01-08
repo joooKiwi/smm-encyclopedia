@@ -90,7 +90,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
             </div> : null}
             <div key="button group container (power-up + mountable priority)" id="powerUpAndMountable-buttonGroup-container" className="btn-group-vertical col-12" role="group">
-                <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={<UnfinishedText>{`${unfinishedText('Power-up') & unfinishedText('ride')}`}</UnfinishedText>}
+                <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={<UnfinishedText>{`${unfinishedText('Power-up')} & ${unfinishedText('ride')}`}</UnfinishedText>}
                                         tooltipValue={gameContentTranslation('Display every power-ups & rides priority', {powerUp: unfinishedText('power-up'), powerUps: unfinishedText('power-ups'), rides: unfinishedText('rides'), ride: unfinishedText('ride'),},)}//TODO add Power-ups & rides reference
                                         elementId="displayView-powerUpAndMountable-button" id={id} divId={divId}/>
                 <div key="button group container (power-up + mountable priority separately)" id="powerUpAndMountableSeparately-buttonGroup-container" className="btn-group" role="group">
