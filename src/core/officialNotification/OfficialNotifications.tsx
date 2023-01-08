@@ -12,6 +12,7 @@ import type {ObjectHolder}                                                      
 import type {ReactElement}                                                                                                                                                                                                                                                                                           from 'util/react/ReactProperties'
 import type {Nullable, NullableNumber, NullOr}                                                                                                                                                                                                                                                                       from 'util/types/nullable'
 
+import UnfinishedText                                                            from 'app/tools/text/UnfinishedText'
 import {gameContentTranslation}                                                  from 'lang/components/translationMethods'
 import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                       from 'core/officialNotification/file/generalImageFiles'
 import {BRONZE_MEDAL_IMAGE_FILE, GOLD_MEDAL_IMAGE_FILE, SILVER_MEDAL_IMAGE_FILE} from 'core/officialNotification/file/generalMedalImageFiles'
@@ -551,29 +552,29 @@ export class OfficialNotifications
 
 
     protected _addJob(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.job = <Fragment key={`${key} - job`}>--job--</Fragment>//TODO add job translation
+        keyMap.job = <UnfinishedText key={`${key} - job`}>job</UnfinishedText>//TODO add job translation
         return keyMap
     }
 
     protected _addJobs(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.jobs = <Fragment key={`${key} - job`}>--jobs--</Fragment>//TODO add jobs translation
+        keyMap.jobs = <UnfinishedText key={`${key} - job`}>jobs</UnfinishedText>//TODO add jobs translation
         return keyMap
     }
 
 
     protected _addCourse(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.course = <Fragment key={`${key} - course`}>--course--</Fragment>//TODO add course translation
+        keyMap.course = <UnfinishedText key={`${key} - course`}>course</UnfinishedText>//TODO add course translation
         return keyMap
     }
 
     protected _addCourses(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.courses = <Fragment key={`${key} - course`}>--courses--</Fragment>//TODO add courses translation
+        keyMap.courses = <UnfinishedText key={`${key} - course`}>courses</UnfinishedText>//TODO add courses translation
         return keyMap
     }
 
 
     protected _addWorldRecord(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.worldRecord = <Fragment key={`${key} - world record`}>--world record--</Fragment>//TODO add world record translation
+        keyMap.worldRecord = <UnfinishedText key={`${key} - world record`}>world record</UnfinishedText>//TODO add world record translation
         return keyMap
     }
 
@@ -583,7 +584,7 @@ export class OfficialNotifications
     }
 
     protected _addLeaderboard(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.leaderboard = <Fragment key={`${key} - leaderboard`}>--leaderboard--</Fragment>//TODO add leaderboard translation
+        keyMap.leaderboard = <UnfinishedText key={`${key} - leaderboard`}>leaderboard</UnfinishedText>//TODO add leaderboard translation
         return keyMap
     }
 

@@ -7,6 +7,7 @@ import type {ReactElement, ReactElementOrString} from 'util/react/ReactPropertie
 import type {NullOr}                             from 'util/types/nullable'
 
 import AbstractApp    from 'app/AbstractApp'
+import UnfinishedText from 'app/tools/text/UnfinishedText'
 import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 import {assert}       from 'util/utilitiesMethods'
 
@@ -88,7 +89,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     }
 
     protected _createDescription(): ReactElementOrString {
-        return <>--description--{/*TODO add description*/}</>
+        return <UnfinishedText isHidden>description</UnfinishedText>//TODO add description
     }
 
     protected override _mainContent(): ReactElement {

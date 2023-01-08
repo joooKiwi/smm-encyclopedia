@@ -1,7 +1,5 @@
 import './CourseTagApp.scss'
 
-import {Fragment} from 'react'
-
 import type {CourseTagAppProperties}                               from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList,}                          from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
@@ -9,6 +7,7 @@ import type {NullOr}                                               from 'util/ty
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {CourseTagTypes}         from 'app/property/CourseTagTypes'
+import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {CourseTags}             from 'core/courseTag/CourseTags'
@@ -45,8 +44,8 @@ export default class CourseTagApp
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('Every course tags', {
-            course: <Fragment key="every course tag (lowercase course)">--course--</Fragment>,//TODO add course reference
-            tags: <Fragment key="every course tag (plural lowercase tag)">--tags--</Fragment>,//TODO add tag reference
+            course: <UnfinishedText key="every course tag (lowercase course)">course</UnfinishedText>,//TODO add course reference
+            tags: <UnfinishedText key="every course tag (plural lowercase tag)">tags</UnfinishedText>,//TODO add tag reference
         },)
     }
 

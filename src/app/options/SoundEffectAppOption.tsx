@@ -9,6 +9,7 @@ import type {SingleHeaderContent}                              from 'app/tools/t
 import type {ReactElement}                                     from 'util/react/ReactProperties'
 import type {NullOr}                                           from 'util/types/nullable'
 
+import UnfinishedText                  from 'app/tools/text/UnfinishedText'
 import {CommonOptions}                 from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
@@ -106,7 +107,7 @@ export abstract class SoundEffectAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'sounds', element: '--Sounds--',}//TODO add sounds
+            return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
         }
 
     }()

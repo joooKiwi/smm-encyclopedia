@@ -13,6 +13,7 @@ import type {NullOr}                                           from 'util/types/
 import {CommonOptions}                              from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
+import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import {Themes}                                     from 'core/theme/Themes'
 import {Times}                                      from 'core/time/Times'
 import {ProjectLanguages}                           from 'lang/ProjectLanguages'
@@ -79,7 +80,7 @@ export abstract class GameStyleAppOption
                 key: 'nightDesertWind',
                 element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
                 tooltip: gameContentTranslation('Wind effect (night desert)', {
-                    night: '--night--',//TODO add night reference
+                    night: unfinishedText('night'),//TODO add night reference
                     desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
                 },),
             }

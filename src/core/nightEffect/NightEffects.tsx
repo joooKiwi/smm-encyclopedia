@@ -10,6 +10,7 @@ import type {EveryPossibleRouteNames}              from 'routes/everyRoutes.type
 import type {Nullable}                             from 'util/types/nullable'
 import type {ReactElement}                         from 'util/react/ReactProperties'
 
+import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {Themes}                 from 'core/theme/Themes'
 import {ProjectLanguages}       from 'lang/ProjectLanguages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
@@ -136,12 +137,12 @@ export class NightEffects
 
     protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
         //TODO add entities translation
-        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary">--entities--</Link>
+        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary"><UnfinishedText>entities</UnfinishedText></Link>
     }
 
     protected static _createPlayersLink(instance: NightEffects,): ReactElement {
         //TODO add players translation
-        return <span key={`${instance.englishName} (players)`} className="text-decoration-underline">--players--</span>
+        return <span key={`${instance.englishName} (players)`} className="text-decoration-underline"><UnfinishedText>players</UnfinishedText></span>
     }
 
     protected _createReplaceComponent(): TranslationReplaceKeysMap {

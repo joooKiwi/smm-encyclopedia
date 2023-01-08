@@ -1,6 +1,6 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment, lazy}                                                          from 'react'
+import {lazy}                                                                    from 'react'
 
 import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
@@ -9,6 +9,7 @@ import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/pro
 import type {ReactElement}                            from 'util/react/ReactProperties'
 import type {Nullable}                                from 'util/types/nullable'
 
+import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {assert}                 from 'util/utilitiesMethods'
 
@@ -80,10 +81,10 @@ export class PlayerSoundEffectTriggers
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.mushroomImages = <i key={`${key} (mushroom images)`} className="mushroom-images-container">
                 <Image className="super-mushroom-image" variable="super-mushroom" isSquared/>
-                <>--Weird Mushroom--</>{/*<Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>,*/}
+                <UnfinishedText>Weird Mushroom</UnfinishedText>{/*<Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>,*/}
                 <Image className="mystery-mushroom-image" variable="mystery-mushroom" isSquared/>
-                <>--Big Mushroom--</>{/*<Image className="big-mushroom-image" variable={'big-mushroom'} isSquared/>,*/}
-                <>--Big Mushroom (classic)--</>{/*<Image className="big-mushroom-classic-image" variable={'big-mushroom-classic'} isSquared/>,*/}
+                <UnfinishedText>Big Mushroom</UnfinishedText>{/*<Image className="big-mushroom-image" variable={'big-mushroom'} isSquared/>,*/}
+                <UnfinishedText>Big Mushroom (classic)</UnfinishedText>{/*<Image className="big-mushroom-classic-image" variable={'big-mushroom-classic'} isSquared/>,*/}
             </i>
             keyMap.fireFlowerImages = <i key={`${key} (fire flower images)`} className="fire-flower-images-container">
                 <Image className="fire-flower-image" variable="fire-flower" isSquared/>
@@ -130,14 +131,14 @@ export class PlayerSoundEffectTriggers
             keyMap.lakituCloudImage = <Image key={`${key} (Lakitu's Cloud image)`} className="lakitu-cloud-image" variable="lakitu-cloud" isSquared/>
             keyMap.shoeImages = <i key={`${key} (Shoe images)`} className="shoe-images-container">
                 <Image className="shoe-image" variable="shoe" isSquared/>
-                <>--Stiletto--</>{/*<Image className="stiletto-image" variable="stiletto" isSquared/>*/}
+                <UnfinishedText>Stiletto</UnfinishedText>{/*<Image className="stiletto-image" variable="stiletto" isSquared/>*/}
             </i>
             keyMap.yoshiImages = <i key={`${key} (Yoshi images)`} className="yoshi-images-container smm2-only">
-                <>--Yoshi--</>{/*<Image className="yoshi-image" variable="yoshi" isSquared/>*/}
-                <>--Red Yoshi--</>{/*<Image className="red-yoshi-image" variable="red-yoshi" isSquared/>*/}
+                <UnfinishedText>Yoshi</UnfinishedText>{/*<Image className="yoshi-image" variable="yoshi" isSquared/>*/}
+                <UnfinishedText>Red Yoshi</UnfinishedText>{/*<Image className="red-yoshi-image" variable="red-yoshi" isSquared/>*/}
             </i>
             keyMap.dryBonesShellImage = <Image key={`${key} (Dry Bones Shell image)`} className="dry-bones-shell-image smm2-only" variable="dry-bones-shell" isSquared/>
-            keyMap.swingingClawImage = <Fragment key={`${key} (Swinging Claw image)`}>--Swinging Claw--</Fragment>//<Image key={`${key} (Swinging Claw image)`} className="swinging-claw-image smm2-only" variable="swinging-claw"/>
+            keyMap.swingingClawImage = <UnfinishedText key={`${key} (Swinging Claw image)`}>Swinging Claw</UnfinishedText>//<Image key={`${key} (Swinging Claw image)`} className="swinging-claw-image smm2-only" variable="swinging-claw"/>
             return this._addPlayerLink(key, keyMap,)
         }
 
@@ -276,13 +277,13 @@ export class PlayerSoundEffectTriggers
 
     protected _addPowerUpLink(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
         //TODO add power-up translation
-        keyMap.powerUp = <span key={`${key} - ${this.name} (power-up)`} className="text-decoration-underline">--power-up--</span>
+        keyMap.powerUp = <span key={`${key} - ${this.name} (power-up)`} className="text-decoration-underline"><UnfinishedText>power-up</UnfinishedText></span>
         return keyMap
     }
 
     protected _addPlayerLink(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
         //TODO add players translation
-        keyMap.player = <span key={`${key} - ${this.name} (players)`} className="text-decoration-underline">--player--</span>
+        keyMap.player = <span key={`${key} - ${this.name} (players)`} className="text-decoration-underline"><UnfinishedText>player</UnfinishedText></span>
         return keyMap
     }
 
