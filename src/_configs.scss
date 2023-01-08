@@ -1,7 +1,44 @@
 @import "functions";
 @import 'variables';
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/maps";
+@import "~bootstrap/scss/mixins";
+@import "~bootstrap/scss/utilities";
 
+@import "~bootstrap/scss/root";
+@import "~bootstrap/scss/reboot";
+@import "~bootstrap/scss/type";
+@import "~bootstrap/scss/images";
+@import "~bootstrap/scss/containers";
+@import "~bootstrap/scss/grid";
+@import "~bootstrap/scss/tables";//TODO remove the usage in the page
+//@import "~bootstrap/scss/forms";
+@import "~bootstrap/scss/buttons";
+@import "~bootstrap/scss/transitions";
+//@import "~bootstrap/scss/dropdown";
+@import "~bootstrap/scss/button-group";
+//@import "~bootstrap/scss/nav";
+//@import "~bootstrap/scss/navbar";
+//@import "~bootstrap/scss/card";
+@import "~bootstrap/scss/accordion";
+//@import "~bootstrap/scss/breadcrumb";
+//@import "~bootstrap/scss/pagination";
+//@import "~bootstrap/scss/badge";//TODO add usage on the page
+//@import "~bootstrap/scss/alert";
+//@import "~bootstrap/scss/progress";
+//@import "~bootstrap/scss/list-group";
+@import "~bootstrap/scss/close";
+//@import "~bootstrap/scss/toasts";
+@import "~bootstrap/scss/modal";
+@import "~bootstrap/scss/tooltip";
+@import "~bootstrap/scss/popover";
+//@import "~bootstrap/scss/carousel";
+//@import "~bootstrap/scss/spinners";
+//@import "~bootstrap/scss/offcanvas";
+//@import "~bootstrap/scss/placeholders";
+
+@import "~bootstrap/scss/helpers";
+
+@import "~bootstrap/scss/utilities/api";
 
 :root {
   --entityCategory-terrain-bg-color: var(--bs-blue);
@@ -14,6 +51,39 @@
   --soundEffectCategory-reactions-bg-color:  var(--bs-green);
   --soundEffectCategory-animations-bg-color: var(--bs-pink);
   --soundEffectCategory-music-bg-color:      var(--bs-blue);
+}
+:root {
+  //https://domysee.com/blogposts/coloring-white-images-css-filter
+  //https://isotropic.co/tool/hex-color-to-css-filter/
+  --filter-white-to-red:    invert(75%) sepia(99%) saturate(2970%) hue-rotate(340deg) brightness(93%) contrast(84%);
+  --filter-white-to-orange: invert(46%) sepia(60%) saturate(1713%) hue-rotate(349deg) brightness(98%) contrast(102%);
+  --filter-white-to-yellow: invert(26%) sepia(49%) saturate(1425%) hue-rotate(349deg) brightness(104%) contrast(108%);
+  --filter-white-to-green:  invert(37%) sepia(84%) saturate(396%)  hue-rotate(100deg) brightness(96%) contrast(93%);
+  --filter-white-to-teal:   invert(68%) sepia(19%) saturate(1453%) hue-rotate(111deg) brightness(89%) contrast(100%);
+  --filter-white-to-cyan:   invert(28%) sepia(40%) saturate(5338%) hue-rotate(149deg) brightness(105%) contrast(90%);
+  --filter-white-to-blue:   invert(74%) sepia(90%) saturate(2348%) hue-rotate(209deg) brightness(101%) contrast(99%);
+  --filter-white-to-indigo: invert(85%) sepia(96%) saturate(7434%) hue-rotate(267deg) brightness(92%) contrast(107%);
+  --filter-white-to-purple: invert(69%) sepia(16%) saturate(5821%) hue-rotate(239deg) brightness(91%) contrast(95%);
+  --filter-white-to-pink:   invert(66%) sepia(58%) saturate(4131%) hue-rotate(310deg) brightness(88%) contrast(90%);
+  //--filter-white-to-red:    brightness(50%) sepia(100%) hue-rotate(315deg) saturate(750%);
+  //--filter-white-to-orange: brightness(50%) sepia(100%) hue-rotate(340deg) saturate(750%);
+  //--filter-white-to-yellow: brightness(70%) sepia(100%) hue-rotate(15deg)  saturate(750%);
+  //--filter-white-to-green:  brightness(40%) sepia(100%) hue-rotate(90deg)  saturate(750%);
+  //--filter-white-to-cyan:   brightness(50%) sepia(100%) hue-rotate(135deg) saturate(750%);
+  //--filter-white-to-blue:   brightness(50%) sepia(100%) hue-rotate(180deg) saturate(750%);
+  //--filter-white-to-pink:   brightness(50%) sepia(100%) hue-rotate(255deg) saturate(750%);
+  //--filter-white-to-purple: brightness(50%) sepia(100%) hue-rotate(205deg) saturate(750%);
+
+  --filter-black-to-red:    invert(100%) var(--filter-white-to-red);
+  --filter-black-to-orange: invert(100%) var(--filter-white-to-orange);
+  --filter-black-to-yellow: invert(100%) var(--filter-white-to-yellow);
+  --filter-black-to-green:  invert(100%) var(--filter-white-to-green);
+  --filter-black-to-teal:   invert(100%) var(--filter-white-to-teal);
+  --filter-black-to-cyan:   invert(100%) var(--filter-white-to-cyan);
+  --filter-black-to-blue:   invert(100%) var(--filter-white-to-blue);
+  --filter-black-to-indigo: invert(100%) var(--filter-white-to-indigo);
+  --filter-black-to-purple: invert(100%) var(--filter-white-to-purple);
+  --filter-black-to-pink:   invert(100%) var(--filter-white-to-pink);
 }
 
 :root {
