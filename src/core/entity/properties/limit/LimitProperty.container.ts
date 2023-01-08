@@ -3,7 +3,8 @@ import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimit
 import type {Nullable, NullOr}                                                                                                                                                                from 'util/types/nullable'
 import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                           from 'util/types/variables'
 
-import {EntityLimits} from 'core/entityLimit/EntityLimits'
+import type {EntityLimits} from 'core/entityLimit/EntityLimits'
+import {Import}            from 'util/DynamicImporter'
 
 export class LimitPropertyContainer
     implements LimitProperty {
@@ -138,7 +139,7 @@ export class LimitPropertyContainer
      */
     #newMap(...values: readonly Nullable<EntityLimits>[]): ReadonlyMap<EntityLimits, boolean> {
         const newValues = values.filter(limit => limit != null) as EntityLimits[]
-        return new Map(EntityLimits.values.map(limit => [limit, newValues.includes(limit),]))
+        return new Map(Import.EntityLimits.values.map(limit => [limit, newValues.includes(limit),]))
     }
 
     public toLimitMap(): ReadonlyMap<EntityLimits, boolean> {
@@ -148,18 +149,18 @@ export class LimitPropertyContainer
     public toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean> {
         const editorLimits = [this.editorLimit_smm1And3ds, this.editorLimit_smm2,]
 
-        return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof EntityLimits ? editorLimit : null))
+        return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof Import.EntityLimits ? editorLimit : null))
     }
 
     public toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean> {
         const otherLimitWhilePlaying = this.otherLimitWhilePlaying
 
         return this.#newMap(
-            this.isInGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
-            this.isInGlobalGeneralLimitWhilePlaying === true ? EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
-            this.isInPowerUpLimitWhilePlaying === true ? EntityLimits.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING : null,
-            this.isInProjectileLimitWhilePlaying === true ? EntityLimits.PROJECTILE_LIMIT : null,
-            otherLimitWhilePlaying instanceof EntityLimits ? otherLimitWhilePlaying : null,
+            this.isInGeneralLimitWhilePlaying === true ? Import.EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
+            this.isInGlobalGeneralLimitWhilePlaying === true ? Import.EntityLimits.GENERAL_ENTITY_LIMIT_WHILE_PLAYING : null,
+            this.isInPowerUpLimitWhilePlaying === true ? Import.EntityLimits.POWER_UP_ENTITY_LIMIT_WHILE_PLAYING : null,
+            this.isInProjectileLimitWhilePlaying === true ? Import.EntityLimits.PROJECTILE_LIMIT : null,
+            otherLimitWhilePlaying instanceof Import.EntityLimits ? otherLimitWhilePlaying : null,
         )
     }
 

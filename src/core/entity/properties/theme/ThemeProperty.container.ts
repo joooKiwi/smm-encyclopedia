@@ -1,7 +1,8 @@
 import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 import type {NullOrBoolean} from 'util/types/nullable'
 
-import {Themes} from 'core/theme/Themes'
+import type {Themes} from 'core/theme/Themes'
+import {Import}      from 'util/DynamicImporter'
 
 /**
  * @classWithDynamicImport {@link Themes}
@@ -86,7 +87,7 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
     //region -------------------- Convertor methods --------------------
 
     public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
-        return this.#map ??= new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]))
+        return this.#map ??= new Map(Import.Themes.courseThemes.map(theme => [theme, theme.get(this),]))
     }
 
     //endregion -------------------- Convertor methods --------------------
