@@ -1134,3 +1134,16 @@
 }
 
 //endregion -------------------- Button colors --------------------
+//region -------------------- Accordion --------------------
+
+.accordion {
+  --bs-accordion-color: var(--bs-dark);
+  --bs-accordion-bg: var(--bs-white);
+  --bs-accordion-btn-color: var(--bs-dark);
+  --bs-accordion-btn-focus-border-color: var(--bs-primary-250);
+  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+  --bs-accordion-active-color: var(--bs-primary-550);
+  --bs-accordion-active-bg: var(--bs-primary-050);
+}
+
+//endregion -------------------- Accordion --------------------
