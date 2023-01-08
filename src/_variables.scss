@@ -1,13 +1,12 @@
 //region -------------------- Variables to customize Bootstrap --------------------
 
-$enable-important-utilities: false;
-
-$enable-negative-margins: true;
+//$enable-shadows: true;
 $enable-gradients: true;
+$enable-negative-margins: true;
+$enable-important-utilities: false;
 
 //endregion -------------------- Variables to customize Bootstrap --------------------
 
-@import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
 //region -------------------- Custom variables --------------------
@@ -32,22 +31,31 @@ $border-width-5: #{map-get($border-widths, 5,)};
 //region -------------------- Spacer variables --------------------
 
 $spacers-original: $spacers;
-//$spacers: (
-//  0: var(--bs-spacer-xs),
-//  1: var(--bs-spacer-sm),
-//  2: var(--bs-spacer-md),
-//  3: var(--bs-spacer-lg),
-//  4: var(--bs-spacer-xl),
-//  5: var(--bs-spacer-xxl),
-//);
-//$negative-spacers: (
-//  0: var(--bs-negative-spacer-xs),
-//  1: var(--bs-negative-spacer-sm),
-//  2: var(--bs-negative-spacer-md),
-//  3: var(--bs-negative-spacer-lg),
-//  4: var(--bs-negative-spacer-xl),
-//  5: var(--bs-negative-spacer-xxl),
-//);
+$spacers: (
+  0: var(--bs-spacer-xs),
+  1: var(--bs-spacer-sm),
+  2: var(--bs-spacer-md),
+  3: var(--bs-spacer-lg),
+  4: var(--bs-spacer-xl),
+  5: var(--bs-spacer-xxl),
+);
+$negative-spacers: (
+  0: var(--bs-negative-spacer-xs),
+  n1: var(--bs-negative-spacer-sm),
+  n2: var(--bs-negative-spacer-md),
+  n3: var(--bs-negative-spacer-lg),
+  n4: var(--bs-negative-spacer-xl),
+  n5: var(--bs-negative-spacer-xxl),
+);
+$gutters: (
+  0: var(--bs-gutter-0),
+  1: var(--bs-gutter-1),
+  2: var(--bs-gutter-2),
+  3: var(--bs-gutter-3),
+  4: var(--bs-gutter-4),
+  5: var(--bs-gutter-5),
+);
+
 //endregion -------------------- Spacer variables --------------------
 //region -------------------- Border variables --------------------
 

@@ -13,7 +13,7 @@ import {MiiCostumeCategory}                from 'core/miiCostumeCategory/MiiCost
 import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
 import {Versions}                          from 'core/version/Versions'
 import {DelayedObjectHolderContainer}      from 'util/holder/DelayedObjectHolder.container'
-import {ObjectHolders}                     from 'util/holder/objectHolders'
+import {ObjectHolders}                     from 'util/holder/ObjectHolders'
 
 export class MiiCostumeBuilder
     extends TemplateWithNameBuilder<MiiCostumeTemplate, MiiCostume> {

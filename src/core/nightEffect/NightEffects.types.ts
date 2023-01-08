@@ -1,5 +1,3 @@
-import type {NightEffects} from 'core/nightEffect/NightEffects'
-
 enum Enum {
 
     SPECIAL_EFFECT_ON_ENTITIES,
@@ -22,5 +20,3 @@ export type PossibleEnglishName = | 'Special effect on entities' | 'Screen upsid
                                   | 'Low gravity' | 'Poison liquid' | `${| 'Entities' | 'Characters'} in water`
 
 //endregion -------------------- English name --------------------
-
-export type NightEffectsByName<T extends string, > = T extends PossibleEnglishName ? NightEffects : never

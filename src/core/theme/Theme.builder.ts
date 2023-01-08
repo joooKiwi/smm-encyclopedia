@@ -14,7 +14,6 @@ import type {Builder}                                                           
 
 import {TemplateWithNameBuilder}                  from 'core/_template/TemplateWithName.builder'
 import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {Entities}                                 from 'core/entity/Entities'
 import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
 import {NightEffects}                             from 'core/nightEffect/NightEffects'
 import {CourseThemeContainer}                     from 'core/theme/CourseTheme.container'
@@ -23,6 +22,7 @@ import {CourseOnlyThemeContainer}                 from 'core/theme/CourseOnlyThe
 import {Themes}                                   from 'core/theme/Themes'
 import {WorldThemeContainer}                      from 'core/theme/WorldTheme.container'
 import {WorldOnlyThemeContainer}                  from 'core/theme/WorldOnlyTheme.container'
+import {Import}                                   from 'util/DynamicImporter'
 import {DelayedObjectHolderContainer}             from 'util/holder/DelayedObjectHolder.container'
 
 export class ThemeBuilder
@@ -84,7 +84,7 @@ export class ThemeBuilder
         return new DelayedObjectHolderContainer(() => {
             const theme = Themes.getValueByName(name)
 
-            return Entities.values.map(({reference,}) => reference)
+            return Import.Entities.values.map(({reference,}) => reference)
                 .filter(reference => theme.get(reference))
                 .toArray()
         })

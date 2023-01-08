@@ -7,9 +7,9 @@ import type {Nullable, NullOr}                                                  
 
 import {EveryLanguages}            from 'lang/EveryLanguages'
 import {ProjectLanguages}          from 'lang/ProjectLanguages'
-import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguageContainer'
-import {LanguageContainer}         from 'lang/name/containers/LanguageContainer'
-import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguageContainer'
+import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguage.container'
+import {LanguageContainer}         from 'lang/name/containers/Language.container'
+import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguage.container'
 import {assert}                    from 'util/utilitiesMethods'
 
 //region -------------------- Import from deconstruction --------------------

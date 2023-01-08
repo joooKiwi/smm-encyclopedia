@@ -1,24 +1,25 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                             from 'core/ClassWithEnglishName'
-import type {ClassWithImagePath}                                                               from 'core/ClassWithImagePath'
-import type {PropertyGetter, PropertyReferenceGetter}                                          from 'core/PropertyGetter'
-import type {PossibleOtherEntities}                                                            from 'core/entity/Entity'
-import type {TimeProperty}                                                                     from 'core/entity/properties/time/TimeProperty'
-import type {TimeReferences}                                                                   from 'core/entity/properties/time/TimeReferences'
-import type {Names, Ordinals, PossibleEnglishName, PossibleImagePath, PossibleSimpleImagePath} from 'core/time/Times.types'
-import type {Nullable}                                                                         from 'util/types/nullable'
+import type {ClassWithEnglishName}                                          from 'core/ClassWithEnglishName'
+import type {PropertyGetter, PropertyReferenceGetter}                       from 'core/PropertyGetter'
+import type {PossibleOtherEntities}                                         from 'core/entity/Entity'
+import type {TimeProperty}                                                  from 'core/entity/properties/time/TimeProperty'
+import type {TimeReferences}                                                from 'core/entity/properties/time/TimeReferences'
+import type {Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath} from 'core/time/Times.types'
+import type {TimeImageFile}                                                 from 'core/time/file/TimeImageFile'
+import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
+import type {Nullable}                                                      from 'util/types/nullable'
 
-import {BASE_PATH}             from 'variables'
-import TimeComponent           from 'core/time/Time.component'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
-import {StringContainer}       from 'util/StringContainer'
+import TimeComponent                         from 'core/time/Time.component'
+import {TimeImageFileContainer as ImageFile} from 'core/time/file/TimeImageFile.container'
+import {getValueByEnglishName}               from 'util/utilitiesMethods'
+import {StringContainer}                     from 'util/StringContainer'
 
 export abstract class Times
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImagePath<PossibleImagePath>,
+        ClassWithImageFile<TimeImageFile>,
         PropertyReferenceGetter<TimeReferences, PossibleOtherEntities>,
         PropertyGetter<TimeProperty> {
 
@@ -57,7 +58,7 @@ export abstract class Times
 
     readonly #englishName
     readonly #simpleImagePath: PossibleSimpleImagePath
-    #imagePath?: PossibleImagePath
+    #imageFile?: TimeImageFile
 
     //endregion -------------------- Fields --------------------
 
@@ -77,8 +78,8 @@ export abstract class Times
         return this.#englishName.getInHtml
     }
 
-    public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/${BASE_PATH}/time/${this.#simpleImagePath}.png`
+    public get imageFile(): TimeImageFile {
+        return this.#imageFile ??= new ImageFile(this.englishName, this.#simpleImagePath,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -93,7 +94,6 @@ export abstract class Times
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| Times | T>,) TimesByName<T>
     public static getValueByName(value: Nullable<| Times | string>,): Times {
         return getValueByEnglishName(value, this,)
     }

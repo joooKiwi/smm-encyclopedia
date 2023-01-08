@@ -1,5 +1,4 @@
 import type {InstrumentProperty}                              from 'core/entity/properties/instrument/InstrumentProperty'
-import type {NotApplicableProperty}                           from 'core/_properties/PropertyWithEverything'
 import type {ClassWithNullObjectPattern, EmptyInstrumentName} from 'util/ClassWithNullObjectPattern'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
@@ -9,7 +8,7 @@ import {EMPTY_ARRAY}       from 'util/emptyVariables'
  * @singleton
  */
 export class EmptyInstrumentProperty
-    implements InstrumentProperty<NotApplicableProperty>,
+    implements InstrumentProperty,
         ClassWithNullObjectPattern<EmptyInstrumentName> {
 
     //region -------------------- Singleton usage --------------------

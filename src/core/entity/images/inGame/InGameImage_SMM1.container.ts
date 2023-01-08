@@ -1,3 +1,6 @@
+import type {InGameSMM1ImageFile} from 'core/entity/file/InGameSMM1ImageFile'
+import type {InGameImage_SMM1}    from 'core/entity/images/inGame/InGameImage_SMM1'
+
 import {AbstractImageWithTimesThemesAndGameStyles} from 'core/entity/images/AbstractImageWithTimesThemesAndGameStyles'
 import {GameStyles}                                from 'core/gameStyle/GameStyles'
 import {Themes}                                    from 'core/theme/Themes'
@@ -5,9 +8,10 @@ import {Times}                                     from 'core/time/Times'
 import {assert}                                    from 'util/utilitiesMethods'
 
 export class InGameImage_SMM1Container
-    extends AbstractImageWithTimesThemesAndGameStyles {
+    extends AbstractImageWithTimesThemesAndGameStyles<InGameSMM1ImageFile>
+    implements InGameImage_SMM1 {
 
-    public constructor(map: ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly string[]>>, defaultImages: ReadonlyMap<GameStyles, readonly string[]>,) {
+    public constructor(map: ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly InGameSMM1ImageFile[]>>, defaultImages: ReadonlyMap<GameStyles, readonly InGameSMM1ImageFile[]>,) {
         super(new Map([[Times.DAY, map,]]), defaultImages,)
     }
 
@@ -27,14 +31,14 @@ export class InGameImage_SMM1Container
 
     //endregion -------------------- Getter methods --------------------
 
-    public override get(expectEmpty: boolean, gameStyle: GameStyles,): readonly string[]
-    public override get(expectEmpty: boolean, gameStyle: GameStyles,): readonly string[]
-    public override get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly string[]
-    public override get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly string[]
-    public override get(expectEmpty: boolean, theme: Themes,): readonly string[]
-    public override get(expectEmpty: boolean, theme: Themes,): readonly string[]
-    public override get(expectEmpty: boolean,): readonly string[]
-    public override get(expectEmpty: boolean, gameStyle_or_theme?: | GameStyles | Themes, theme?: | Themes,): readonly string[] {
+    public override get(expectEmpty: boolean, gameStyle: GameStyles,): readonly InGameSMM1ImageFile[]
+    public override get(expectEmpty: boolean, gameStyle: GameStyles,): readonly InGameSMM1ImageFile[]
+    public override get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly InGameSMM1ImageFile[]
+    public override get(expectEmpty: boolean, gameStyle: GameStyles, theme: Themes,): readonly InGameSMM1ImageFile[]
+    public override get(expectEmpty: boolean, theme: Themes,): readonly InGameSMM1ImageFile[]
+    public override get(expectEmpty: boolean, theme: Themes,): readonly InGameSMM1ImageFile[]
+    public override get(expectEmpty: boolean,): readonly InGameSMM1ImageFile[]
+    public override get(expectEmpty: boolean, gameStyle_or_theme?: | GameStyles | Themes, theme?: | Themes,): readonly InGameSMM1ImageFile[] {
         if (gameStyle_or_theme == null)
             return super.get(expectEmpty, Times.DAY,)
         if (theme == null) {

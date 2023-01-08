@@ -17,7 +17,7 @@ export abstract class AbstractGroupWithSingleImage<T extends Exclude<PossibleEle
     protected override _renderElement(element: T, option: GlobalAppOption<U>, [isDisabled,]: readonly [boolean, boolean,], onClickCallback: NullOr<OnClickCallback>,): ReactElement {
         return <Image key={`option input (${element.englishName})`} id={`optionInput-${element.englishNameInHtml}`}
                       className={`btn btn${option.get ? '' : '-outline'}-secondary  ${isDisabled ? 'disabled' : ''}`} data-bs-toggle="button"
-                      source={element.imagePath} fallbackName={`option - ${element.englishName}`}
+                      file={element.imageFile}
                       onClick={() => {
                           option.set(!option.get as U)
                           onClickCallback?.()

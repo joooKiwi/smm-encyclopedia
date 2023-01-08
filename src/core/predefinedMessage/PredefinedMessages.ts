@@ -95,7 +95,6 @@ export class PredefinedMessages
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| PredefinedMessages | T>,): PredefinedMessagesByName<T>
     public static getValueByName(value: Nullable<| PredefinedMessages | string>,): PredefinedMessages {
         return getValueByEnglishName(value, this,)
     }

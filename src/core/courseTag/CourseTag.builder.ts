@@ -10,7 +10,7 @@ import {TemplateWithNameBuilder}      from 'core/_template/TemplateWithName.buil
 import {CourseTagContainer}           from 'core/courseTag/CourseTag.container'
 import {Versions}                     from 'core/version/Versions'
 import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
-import {ObjectHolders}                from 'util/holder/objectHolders'
+import {ObjectHolders}                from 'util/holder/ObjectHolders'
 
 export class CourseTagBuilder
     extends TemplateWithNameBuilder<CourseTagTemplate, CourseTag>

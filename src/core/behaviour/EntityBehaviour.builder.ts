@@ -15,7 +15,7 @@ import {EntityBehaviourIsInOnlyProvider} from 'core/behaviour/properties/EntityB
 import {EntityBehaviourLinkProvider}     from 'core/behaviour/properties/EntityBehaviourLink.provider'
 import {Import}                          from 'util/DynamicImporter'
 import {DelayedObjectHolderContainer}    from 'util/holder/DelayedObjectHolder.container'
-import {ObjectHolders}                   from 'util/holder/objectHolders'
+import {ObjectHolders}                   from 'util/holder/ObjectHolders'
 
 export class EntityBehaviourBuilder
     extends TemplateBuilder<EntityBehaviourTemplate, EntityBehaviour>

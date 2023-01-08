@@ -16,7 +16,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
 
     //region -------------------- Fields --------------------
 
-    readonly #acronym
+    readonly #acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>
     readonly #typeHolder
     readonly #limitHolder
 

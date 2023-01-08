@@ -8,7 +8,7 @@ import type {ProviderWithKey}                           from 'util/provider/Prov
 import type {NullOr}                                    from 'util/types/nullable'
 
 import {EntityBehaviourLinkContainer} from 'core/behaviour/properties/EntityBehaviourLink.container'
-import {ObjectHolders}                from 'util/holder/objectHolders'
+import {ObjectHolders}                from 'util/holder/ObjectHolders'
 import {AbstractProvider}             from 'util/provider/AbstractProvider'
 
 /**

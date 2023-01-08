@@ -1,5 +1,3 @@
-import type {PredefinedConverter} from 'util/loader/converter/PredefinedConverter'
-
 enum Enum {
     NUMBER, NULLABLE_NUMBER,
     BOOLEAN, NULLABLE_BOOLEAN,
@@ -22,6 +20,3 @@ export type EmptyableString = 'emptyable string'
 export type PredefinedConversion = | NullablePredefinedConversion | BasicPredefinedConversion | EmptyableString
 
 //endregion -------------------- Predefined converter texts --------------------
-
-export type PredefinedConverterByName<T extends string, > = T extends PredefinedConversion ? PredefinedConverter : never
-export type HasPredefinedConverterByName<T extends string, > = T extends PredefinedConversion ? true : false

@@ -1,9 +1,11 @@
-import type {ImageRetrieverCallback, ImagesCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
-import type {ClassInAnySuperMarioMakerGame}                                               from 'core/game/ClassInAnySuperMarioMakerGame'
-import type {Name}                                                                        from 'lang/name/Name'
-import type {ObjectHolder}                                                                from 'util/holder/ObjectHolder'
+import type {ImagesCallback, ImagesRetrieverCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
+import type {Entities}                                                                     from 'core/entity/Entities'
+import type {EntityImageFile}                                                              from 'core/entity/file/EntityImageFile'
+import type {EditorImageFile}                                                              from 'core/entity/file/EditorImageFile'
+import type {ClassInAnySuperMarioMakerGame}                                                from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Name}                                                                         from 'lang/name/Name'
+import type {ObjectHolder}                                                                 from 'util/holder/ObjectHolder'
 
-import {Entities}                     from 'core/entity/Entities'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import {Themes}                       from 'core/theme/Themes'
 import {Times}                        from 'core/time/Times'
@@ -39,15 +41,15 @@ export abstract class AbstractPowerUpPriority
     //endregion -------------------- Game styles --------------------
     //region -------------------- Image callbacks --------------------
 
-    public static FIRST_EDITOR_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => [this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)[0],]
-    public static EDITOR_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(false, gameStyle, Themes.GROUND, Times.DAY,)
-    public static IN_GAME_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(false, gameStyle, Themes.GROUND,)
-    public static CLEAR_CONDITION_IMAGE_CALLBACK: ImageRetrieverCallback = (entity, gameStyle,) => entity.clearConditionImage.get(gameStyle,)
+    public static FIRST_EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)[0],]
+    public static EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(false, gameStyle, Themes.GROUND, Times.DAY,)
+    public static IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(false, gameStyle, Themes.GROUND,)
+    public static CLEAR_CONDITION_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.clearConditionImage.get(gameStyle,)
 
     //endregion -------------------- Image callbacks --------------------
 
     readonly #nameHolder: ObjectHolder<Name<string>>
-    readonly #imagesHolder: ObjectHolder<readonly string[]>
+    readonly #imagesHolder: ObjectHolder<readonly EntityImageFile[]>
     readonly #isIn
 
     //endregion -------------------- Fields --------------------
@@ -64,16 +66,16 @@ export abstract class AbstractPowerUpPriority
         return this.#nameHolder.get
     }
 
-    public get images(): readonly string[] {
+    public get images(): readonly EntityImageFile[] {
         return this.#imagesHolder.get
     }
 
-    public get isIn() {
+    public get isIn(): ClassInAnySuperMarioMakerGame {
         return this.#isIn
     }
 
 
-    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): readonly string[] {
+    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): readonly EditorImageFile[] {
         return (gameStyles instanceof Array ? gameStyles : [gameStyles])
             .map(gameStyle => this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
     }

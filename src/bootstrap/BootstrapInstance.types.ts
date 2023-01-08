@@ -17,4 +17,4 @@ export interface StaticBootstrapInstance<OPTION extends ComponentOptions = Compo
 
 }
 
-export type GenericBootstrapInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > = BootstrapInstance<StaticBootstrapInstance<ComponentOptions>, BaseComponent, ComponentOptions, ELEMENT, ID>
+export type GenericBootstrapInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > = BootstrapInstance<StaticBootstrapInstance, BaseComponent, ComponentOptions, ELEMENT, ID>

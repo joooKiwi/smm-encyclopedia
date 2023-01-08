@@ -1,23 +1,24 @@
-import type {GameStyles} from 'core/gameStyle/GameStyles'
+import type {ClearConditionImageFile} from 'core/entity/file/ClearConditionImageFile'
+import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {GameStyles}              from 'core/gameStyle/GameStyles'
 
-import {ClearConditionImage} from 'core/entity/images/clearCondition/ClearConditionImage'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 export class ClearConditionImageContainer
     implements ClearConditionImage {
 
     //region -------------------- Fields --------------------
 
-    static readonly #EMPTY_ARRAY = []
-
     readonly #map
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(map: ReadonlyMap<GameStyles, readonly string[]>,) {
+    public constructor(map: ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]>,) {
         this.#map = map
     }
 
-    public get(gameStyle: GameStyles,): readonly string[] {
-        return this.#map.get(gameStyle) ?? ClearConditionImageContainer.#EMPTY_ARRAY
+    public get(gameStyle: GameStyles,): readonly ClearConditionImageFile[] {
+        return this.#map.get(gameStyle) ?? EMPTY_ARRAY
     }
+
 }

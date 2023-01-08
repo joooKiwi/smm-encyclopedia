@@ -3,20 +3,21 @@ import './PowerUpAndRidePriorityApp.scss'
 import type {PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {ReactElement}                                                                     from 'util/react/ReactProperties'
 
-import AbstractApp               from 'app/AbstractApp'
-import GroupOf2PowerUpPriority   from 'app/powerUp/group/GroupOf2PowerUpPriority'
-import GroupOf3PowerUpPriority   from 'app/powerUp/group/GroupOf3PowerUpPriority'
-import GroupOf4PowerUpPriority   from 'app/powerUp/group/GroupOf4PowerUpPriority'
-import GroupOf5PowerUpPriority   from 'app/powerUp/group/GroupOf5PowerUpPriority'
-import {AbstractPowerUpPriority} from 'app/powerUp/priority/AbstractPowerUpPriority'
-import {AllGamesPowerUpPriority} from 'app/powerUp/priority/AllGamesPowerUpPriority'
-import PowerUpPriorityComponent  from 'app/powerUp/priority/PowerUpPriority.component'
-import {SMM1PowerUpPriority}     from 'app/powerUp/priority/SMM1PowerUpPriority'
-import {SMM2PowerUpPriority}     from 'app/powerUp/priority/SMM2PowerUpPriority'
-import Accordion                 from 'bootstrap/accordion/Accordion'
-import {Entities}                from 'core/entity/Entities'
-import {GameStyles}              from 'core/gameStyle/GameStyles'
-import {gameContentTranslation}  from 'lang/components/translationMethods'
+import AbstractApp                      from 'app/AbstractApp'
+import GroupOf2PowerUpPriority          from 'app/powerUp/group/GroupOf2PowerUpPriority'
+import GroupOf3PowerUpPriority          from 'app/powerUp/group/GroupOf3PowerUpPriority'
+import GroupOf4PowerUpPriority          from 'app/powerUp/group/GroupOf4PowerUpPriority'
+import GroupOf5PowerUpPriority          from 'app/powerUp/group/GroupOf5PowerUpPriority'
+import {AbstractPowerUpPriority}        from 'app/powerUp/priority/AbstractPowerUpPriority'
+import {AllGamesPowerUpPriority}        from 'app/powerUp/priority/AllGamesPowerUpPriority'
+import PowerUpPriorityComponent         from 'app/powerUp/priority/PowerUpPriority.component'
+import {SMM1PowerUpPriority}            from 'app/powerUp/priority/SMM1PowerUpPriority'
+import {SMM2PowerUpPriority}            from 'app/powerUp/priority/SMM2PowerUpPriority'
+import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import Accordion                        from 'bootstrap/accordion/Accordion'
+import {Entities}                       from 'core/entity/Entities'
+import {GameStyles}                     from 'core/gameStyle/GameStyles'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -98,8 +99,8 @@ export default class PowerUpAndRidePriorityApp
 
     protected override _mainContent(): ReactElement {
         return <>
-            <h1>{gameContentTranslation('Every power-ups & rides priority', {powerUps: '--power-up--', rides: '--rides--',},)}</h1>
-            <p>--description--{/*TODO add description*/}</p>
+            <h1>{gameContentTranslation('Every power-ups & rides priority', {powerUps: unfinishedText('power-up'), rides: unfinishedText('rides'),},)}</h1>
+            <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
             {/*TODO add legend for the colors & styles*/}
             <div key="Power-up priority (container)" id="powerUpPriority-container" className="container-fluid">
                 <Accordion alignCenter>

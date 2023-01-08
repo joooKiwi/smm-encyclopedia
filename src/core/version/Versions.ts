@@ -60,8 +60,8 @@ export class Versions
 
     readonly #name
     readonly #game
-    readonly #releaseDate
-    readonly #gameStyle
+    readonly #releaseDate: NullOr<Date>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #gameStyle: NullOr<GameStyles_SM3DW>//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 
@@ -109,7 +109,6 @@ export class Versions
     }
 
 
-    // public static getValueByName<T extends string, >(value: Nullable<| Versions | string>,): VersionsByName<T>
     public static getValueByName(value: Nullable<| Versions | string>,): Versions {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

@@ -35,11 +35,11 @@ export abstract class ThemeAppOption
     public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
         protected override _createContentOption(enumeration: Themes,) {
-            const {endlessMarioImagePath,} = enumeration
+            const {endlessMarioImageFile,} = enumeration
 
             return [
                 enumeration.renderSingleComponent(false),
-                endlessMarioImagePath == null ? null : <Image source={endlessMarioImagePath} fallbackName={`Endless Mario Image (${enumeration.englishName})`}/>,
+                <Image file={endlessMarioImageFile}/>,
             ]
         }
 
@@ -79,7 +79,7 @@ export abstract class ThemeAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'effect', element: <Image source={Times.NIGHT.imagePath} fallbackName={`effect - ${Times.NIGHT.englishName}`}/>,
+                key: 'effect', element: Times.NIGHT.renderSingleComponent,
                 tooltip: gameContentTranslation('Effect (night)', {night: '--night effect name--',},)//TODO add translation for the night effect name
             }
         }

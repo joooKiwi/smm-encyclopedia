@@ -11,7 +11,7 @@ export class ObjectHolderContainer<T>
 
     static #retrieveValue<T, >(value: PossibleValueOnObjectHolder<T>,): T {
         return value == null || value instanceof Map
-            ? value
+            ? value as T
             : value instanceof Function
                 ? value()
                 : typeof value == 'object' && 'get' in value

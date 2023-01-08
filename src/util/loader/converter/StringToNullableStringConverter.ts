@@ -1,4 +1,4 @@
-import type {NullOrString} from 'types/nullable'
+import type {NullOrString} from 'util/types/nullable'
 
 import {AbstractEmptyableStringConverter} from 'util/loader/converter/AbstractEmptyableStringConverter'
 import {ConverterPatterns}                from 'util/loader/converter/ConverterPatterns'

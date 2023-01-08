@@ -2,6 +2,8 @@ import type {Entity, PossibleOtherEntities} from 'core/entity/Entity'
 import type {EntityReferences}              from 'core/entity/properties/EntityReferences'
 import type {Property}                      from 'core/entity/properties/Property'
 import type {EntityCategory}                from 'core/entityCategory/EntityCategory'
+import type {EntityLimits}                  from 'core/entityLimit/EntityLimits'
+import type {Games}                         from 'core/game/Games'
 import type {GameStyles}                    from 'core/gameStyle/GameStyles'
 import type {Themes}                        from 'core/theme/Themes'
 import type {Times}                         from 'core/time/Times'
@@ -326,83 +328,83 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     //endregion -------------------- Properties --------------------
     //region -------------------- References --------------------
 
-    public get referencesContainer() {
+    public get referencesContainer(): EntityReferences {
         return this.#referencesContainer
     }
 
     //region -------------------- Game style references --------------------
 
-    public get referenceInSuperMarioBrosStyle() {
+    public get referenceInSuperMarioBrosStyle(): this['referencesContainer']['referenceInSuperMarioBrosStyle'] {
         return this.referencesContainer.referenceInSuperMarioBrosStyle
     }
 
-    public get referenceInSuperMarioBros3Style() {
+    public get referenceInSuperMarioBros3Style(): this['referencesContainer']['referenceInSuperMarioBros3Style'] {
         return this.referencesContainer.referenceInSuperMarioBros3Style
     }
 
-    public get referenceInSuperMarioWorldStyle() {
+    public get referenceInSuperMarioWorldStyle(): this['referencesContainer']['referenceInSuperMarioWorldStyle'] {
         return this.referencesContainer.referenceInSuperMarioWorldStyle
     }
 
-    public get referenceInNewSuperMarioBrosUStyle() {
+    public get referenceInNewSuperMarioBrosUStyle(): this['referencesContainer']['referenceInNewSuperMarioBrosUStyle'] {
         return this.referencesContainer.referenceInNewSuperMarioBrosUStyle
     }
 
-    public get referenceInSuperMario3DWorldStyle() {
+    public get referenceInSuperMario3DWorldStyle(): this['referencesContainer']['referenceInSuperMario3DWorldStyle'] {
         return this.referencesContainer.referenceInSuperMario3DWorldStyle
     }
 
     //endregion -------------------- Game style references --------------------
     //region -------------------- Theme references --------------------
 
-    public get referenceInGroundTheme() {
+    public get referenceInGroundTheme(): this['referencesContainer']['referenceInGroundTheme'] {
         return this.referencesContainer.referenceInGroundTheme
     }
 
-    public get referenceInUndergroundTheme() {
+    public get referenceInUndergroundTheme(): this['referencesContainer']['referenceInUndergroundTheme'] {
         return this.referencesContainer.referenceInUndergroundTheme
     }
 
-    public get referenceInUnderwaterTheme() {
+    public get referenceInUnderwaterTheme(): this['referencesContainer']['referenceInUnderwaterTheme'] {
         return this.referencesContainer.referenceInUnderwaterTheme
     }
 
-    public get referenceInDesertTheme() {
+    public get referenceInDesertTheme(): this['referencesContainer']['referenceInDesertTheme'] {
         return this.referencesContainer.referenceInDesertTheme
     }
 
-    public get referenceInSnowTheme() {
+    public get referenceInSnowTheme(): this['referencesContainer']['referenceInSnowTheme'] {
         return this.referencesContainer.referenceInSnowTheme
     }
 
-    public get referenceInSkyTheme() {
+    public get referenceInSkyTheme(): this['referencesContainer']['referenceInSkyTheme'] {
         return this.referencesContainer.referenceInSkyTheme
     }
 
-    public get referenceInForestTheme() {
+    public get referenceInForestTheme(): this['referencesContainer']['referenceInForestTheme'] {
         return this.referencesContainer.referenceInForestTheme
     }
 
-    public get referenceInGhostHouseTheme() {
+    public get referenceInGhostHouseTheme(): this['referencesContainer']['referenceInGhostHouseTheme'] {
         return this.referencesContainer.referenceInGhostHouseTheme
     }
 
-    public get referenceInAirshipTheme() {
+    public get referenceInAirshipTheme(): this['referencesContainer']['referenceInAirshipTheme'] {
         return this.referencesContainer.referenceInAirshipTheme
     }
 
-    public get referenceInCastleTheme() {
+    public get referenceInCastleTheme(): this['referencesContainer']['referenceInCastleTheme'] {
         return this.referencesContainer.referenceInCastleTheme
     }
 
     //endregion -------------------- Theme references --------------------
     //region -------------------- Time references --------------------
 
-    public get referenceInDayTheme() {
+    public get referenceInDayTheme(): this['referencesContainer']['referenceInDayTheme'] {
         return this.referencesContainer.referenceInDayTheme
     }
 
-    public get referenceInNightTheme() {
+    public get referenceInNightTheme(): this['referencesContainer']['referenceInNightTheme'] {
         return this.referencesContainer.referenceInNightTheme
     }
 
@@ -412,23 +414,23 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     public getReferenceFrom(time: Times,): PossibleOtherEntities
     public getReferenceFrom(gameStyle: GameStyles,): PossibleOtherEntities
     public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities
-    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,) {
+    public getReferenceFrom(gameStyleOrThemeOrTime: | GameStyles | Themes | Times,): PossibleOtherEntities {
         return this.referencesContainer.getReferenceFrom(gameStyleOrThemeOrTime)
     }
 
-    public get everyGameStyleReferences() {
+    public get everyGameStyleReferences(): readonly Entity[] {
         return this.referencesContainer.everyGameStyleReferences
     }
 
-    public get everyThemeReferences() {
+    public get everyThemeReferences(): readonly Entity[] {
         return this.referencesContainer.everyThemeReferences
     }
 
-    public get everyTimeReferences() {
+    public get everyTimeReferences(): readonly Entity[] {
         return this.referencesContainer.everyTimeReferences
     }
 
-    public get everyReferences() {
+    public get everyReferences(): readonly Entity[] {
         return this.referencesContainer.everyReferences
     }
 
@@ -437,31 +439,31 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap() {
+    public toGameMap(): ReadonlyMap<Games, boolean> {
         return this.propertyContainer.toGameMap()
     }
 
-    public toGameStyleMap() {
+    public toGameStyleMap(): ReadonlyMap<GameStyles, boolean> {
         return this.propertyContainer.toGameStyleMap()
     }
 
-    public toCourseThemeMap() {
+    public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
         return this.themeContainer.toCourseThemeMap()
     }
 
-    public toTimeMap() {
+    public toTimeMap(): ReadonlyMap<Times, boolean> {
         return this.timeContainer.toTimeMap()
     }
 
-    public toLimitMap() {
+    public toLimitMap(): ReadonlyMap<EntityLimits, boolean> {
         return this.limitContainer.toLimitMap()
     }
 
-    public toLimitInTheEditorMap() {
+    public toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean> {
         return this.limitContainer.toLimitInTheEditorMap()
     }
 
-    public toLimitWhilePlayingMap() {
+    public toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean> {
         return this.limitContainer.toLimitWhilePlayingMap()
     }
 

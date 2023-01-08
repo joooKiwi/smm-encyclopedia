@@ -10,11 +10,12 @@ import type {EveryPossibleRouteNames}              from 'routes/everyRoutes.type
 import type {Nullable}                             from 'util/types/nullable'
 import type {ReactElement}                         from 'util/react/ReactProperties'
 
-import {Entities}               from 'core/entity/Entities'
+import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {Themes}                 from 'core/theme/Themes'
 import {ProjectLanguages}       from 'lang/ProjectLanguages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {route}                  from 'routes/route'
+import {Import}                 from 'util/DynamicImporter'
 import {EMPTY_OBJECT}           from 'util/emptyVariables'
 import {getValueByEnglishName}  from 'util/utilitiesMethods'
 import {StringContainer}        from 'util/StringContainer'
@@ -72,8 +73,8 @@ export class NightEffects
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             return {
-                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.WATER.reference)!.toLowerCase()}</span>,
-                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Entities.POISON.reference)!.toLowerCase()}</span>,
+                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Import.Entities.WATER.reference)!.toLowerCase()}</span>,
+                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Import.Entities.POISON.reference)!.toLowerCase()}</span>,
             }
         }
 
@@ -136,12 +137,12 @@ export class NightEffects
 
     protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
         //TODO add entities translation
-        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary">--entities--</Link>
+        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary"><UnfinishedText>entities</UnfinishedText></Link>
     }
 
     protected static _createPlayersLink(instance: NightEffects,): ReactElement {
         //TODO add players translation
-        return <span key={`${instance.englishName} (players)`} className="text-decoration-underline">--players--</span>
+        return <span key={`${instance.englishName} (players)`} className="text-decoration-underline"><UnfinishedText>players</UnfinishedText></span>
     }
 
     protected _createReplaceComponent(): TranslationReplaceKeysMap {
@@ -157,7 +158,6 @@ export class NightEffects
         return this.values.map(it => it.englishName).toArray()
     }
 
-    // public static getValueByName<T extends string, >(value: Nullable| NightEffects | T>,): NightEffectsByName<T>
     public static getValueByName(value: Nullable<| NightEffects | string>,): NightEffects {
         return getValueByEnglishName(value, this,)
     }

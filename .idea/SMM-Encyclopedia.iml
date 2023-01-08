@@ -7,6 +7,7 @@
       <excludeFolder url="file://$MODULE_DIR$/src/resources" />
       <excludeFolder url="file://$MODULE_DIR$/src/lang/locale" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludePattern pattern="*.back.*" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

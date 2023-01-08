@@ -31,7 +31,7 @@ export default class TimeComponent
         const key = identifier == null ? time.englishName : `${identifier} - ${time.englishName}`
         const id = identifier == null ? `${timeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${timeEnglishNameInHtml}-time-image`
 
-        return <Image key={key} id={id} source={time.imagePath} fallbackName={`${time.englishName} - image`} className={`time-image ${timeEnglishNameInHtml}-image`}/>
+        return <Image key={key} id={id} file={time.imageFile} className={`time-image ${timeEnglishNameInHtml}-image`}/>
     }
 
     protected override _renderFirstComponent() {

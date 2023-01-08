@@ -24,14 +24,14 @@ interface NightEffectComponentProperties_Theme
  */
 export default function NightEffectComponent(properties: | NightEffectComponentProperties_GameStyle | NightEffectComponentProperties_Theme,) {
     return 'gameStyle' in properties
-        ? createGameStyleComponent(properties)
-        : createThemeComponent(properties)
+        ? <NightEffectByGameStyle {...properties}/>
+        : <NightEffectByTheme {...properties}/>
 }
 
-function createGameStyleComponent({gameStyle: {nightDesertWindTranslationKey: translationKey,},}: NightEffectComponentProperties_GameStyle,) {
+function NightEffectByGameStyle({gameStyle: {nightDesertWindTranslationKey: translationKey,},}: NightEffectComponentProperties_GameStyle,) {
     return translationKey == null ? null : <>{gameContentTranslation(`nightEffect.nightDesertWindEffect.${translationKey}`)}</>
 }
 
-function createThemeComponent({theme: {effect,},}: NightEffectComponentProperties_Theme,) {
-    return effect?.createNewComponent
+function NightEffectByTheme({theme: {effect,},}: NightEffectComponentProperties_Theme,) {
+    return effect?.createNewComponent ?? null
 }

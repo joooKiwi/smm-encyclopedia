@@ -1,41 +1,40 @@
 import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from 'core/_properties/Property'
 import type {NullOr, NullOrBoolean}                                                                                   from 'util/types/nullable'
+import type {BooleanOrNotApplicable}                                                                                  from 'util/types/variables'
 
-export interface BasicProperty<HAS_A_MUSHROOM_VARIANT extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant,
-    CAN_BE_IN_A_PARACHUTE extends PossibleCanBeInAParachute = PossibleCanBeInAParachute,
-    CAN_HAVE_WINGS extends PossibleCanHaveWings = PossibleCanHaveWings, > {
+export interface BasicProperty {
 
     //region -------------------- Has a mushroom variant --------------------
 
-    get hasAMushroomVariantContainer(): HasAMushroomVariant<HAS_A_MUSHROOM_VARIANT>
+    get hasAMushroomVariantContainer(): HasAMushroomVariant
 
-    get hasAMushroomVariant(): this['hasAMushroomVariantContainer']['value']
+    get hasAMushroomVariant(): BooleanOrNotApplicable
 
     //endregion -------------------- Has a mushroom variant --------------------
     //region -------------------- Can be a in a parachute --------------------
 
-    get canBeInAParachuteContainer(): CanBeInAParachute<CAN_BE_IN_A_PARACHUTE>
+    get canBeInAParachuteContainer(): CanBeInAParachute
 
-    get canBeInAParachute(): this['canBeInAParachuteContainer']['value']
+    get canBeInAParachute(): NullOr<BooleanOrNotApplicable>
 
-    get canBeInAParachuteComment(): this['canBeInAParachuteContainer']['comment']
+    get canBeInAParachuteComment(): NullOr<LCL_whilePlaying>
 
     //endregion -------------------- Can be a in a parachute --------------------
     //region -------------------- Can have wings --------------------
 
-    get canHaveWingsContainer(): CanHaveWings<CAN_HAVE_WINGS>
+    get canHaveWingsContainer(): CanHaveWings
 
-    get canHaveWings(): this['canBeInAParachuteContainer']['value']
+    get canHaveWings(): NullOr<BooleanOrNotApplicable>
 
-    get canHaveWingsComment(): this['canBeInAParachuteContainer']['comment']
+    get canHaveWingsComment(): NullOr<LCL_whilePlaying>
 
     //endregion -------------------- Can have wings --------------------
 
 }
 
-export type HasAMushroomVariant<T extends PossibleHasAMushroomVariant = PossibleHasAMushroomVariant, > = InferredBooleanPropertyThatCanBeNotApplicable<T>
-export type CanBeInAParachute<T extends PossibleCanBeInAParachute = PossibleCanBeInAParachute, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T>
-export type CanHaveWings<T extends PossibleCanHaveWings = PossibleCanHaveWings, > = InferredBooleanPropertyThatCanBeNotApplicableWithComment<T>
+export type HasAMushroomVariant = InferredBooleanPropertyThatCanBeNotApplicable<PossibleHasAMushroomVariant>
+export type CanBeInAParachute = InferredBooleanPropertyThatCanBeNotApplicableWithComment<PossibleCanBeInAParachute>
+export type CanHaveWings = InferredBooleanPropertyThatCanBeNotApplicableWithComment<PossibleCanHaveWings>
 
 export type LCL_whilePlaying = 'While playing → LCL'
 

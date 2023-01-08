@@ -1,16 +1,18 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                            from 'core/ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                              from 'core/ClassWithImagePath'
-import type {ClassWithReference}                                                                              from 'core/ClassWithReference'
-import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber, PossibleImagePath} from 'core/miiCostumeCategory/MiiCostumeCategories.types'
-import type {MiiCostumeCategory}                                                                              from 'core/miiCostumeCategory/MiiCostumeCategory'
-import type {Nullable}                                                                                        from 'util/types/nullable'
+import type {ClassWithEnglishName}                             from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                               from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName}             from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {MiiCostumeCategory}                               from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {MiiCostumeCategoryImageFile, PossibleImageNumber} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile'
+import type {ClassWithImageFile}                               from 'util/file/image/ClassWithImageFile'
+import type {Nullable}                                         from 'util/types/nullable'
 
-import {BASE_PATH}       from 'variables'
-import {Import}          from 'util/DynamicImporter'
-import {StringContainer} from 'util/StringContainer'
+import {MiiCostumeCategoryImageFileContainer as ImageFile} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile.container'
+import {Import}                                            from 'util/DynamicImporter'
+import {StringContainer}                                   from 'util/StringContainer'
+import {getValueByEnglishName}                             from 'util/utilitiesMethods'
 
 /**
  * @recursiveReference {@link MiiCostumeCategoryLoader}
@@ -20,7 +22,7 @@ export class MiiCostumeCategories
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MiiCostumeCategory>,
         ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithImagePath<PossibleImagePath> {
+        ClassWithImageFile<MiiCostumeCategoryImageFile> {
 
     //region -------------------- Enum instances --------------------
 
@@ -40,16 +42,18 @@ export class MiiCostumeCategories
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>
 
     #reference?: MiiCostumeCategory
+
     readonly #englishName: StringContainer<PossibleEnglishName>
-    readonly #imageName: PossibleImageName
-    #imagePath?: PossibleImagePath
+
+    readonly #imageNumber
+    #imageFile?: MiiCostumeCategoryImageFile
 
     //endregion -------------------- Fields --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super()
         this.#englishName = new StringContainer(englishName)
-        this.#imageName = `DressIcon_0${imageNumber}`
+        this.#imageNumber = imageNumber
     }
 
     //region -------------------- Getter methods --------------------
@@ -75,12 +79,13 @@ export class MiiCostumeCategories
         return this.#englishName.getInHtml
     }
 
-    public get imageName(): PossibleImageName {
-        return this.#imageName
+
+    private get __imageNumber(): PossibleImageNumber {
+        return this.#imageNumber
     }
 
-    public get imagePath(): PossibleImagePath {
-        return this.#imagePath ??= `/${BASE_PATH}/category/${this.imageName}^s.tiff`
+    public get imageFile(): MiiCostumeCategoryImageFile {
+        return this.#imageFile ??= new ImageFile(this.__imageNumber, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -90,17 +95,8 @@ export class MiiCostumeCategories
         return this.values.map(it => it.englishName).toArray()
     }
 
-    // public static getValueByName<T extends string, >(value: Nullable<| MiiCostumeCategories | T>,): MiiCostumeCategoriesByName<T>
     public static getValueByName(value: Nullable<| MiiCostumeCategories | string>,): MiiCostumeCategories {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(enumerable => enumerable.englishName === value
-            || enumerable.imageName === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
+        return getValueByEnglishName(value, this,)
     }
 
     //endregion -------------------- Methods --------------------

@@ -1,7 +1,8 @@
 import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 import type {NullOrBoolean} from 'util/types/nullable'
 
-import {Themes} from 'core/theme/Themes'
+import type {Themes} from 'core/theme/Themes'
+import {Import}      from 'util/DynamicImporter'
 
 /**
  * @classWithDynamicImport {@link Themes}
@@ -24,6 +25,7 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
     readonly #isInCastleTheme
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     constructor(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,) {
         this.#isInGroundTheme = isInGroundTheme
@@ -38,45 +40,46 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
         this.#isInCastleTheme = isInCastleTheme
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get isInGroundTheme() {
+    public get isInGroundTheme(): GROUND {
         return this.#isInGroundTheme
     }
 
-    public get isInUndergroundTheme() {
+    public get isInUndergroundTheme(): UNDERGROUND {
         return this.#isInUndergroundTheme
     }
 
-    public get isInUnderwaterTheme() {
+    public get isInUnderwaterTheme(): UNDERWATER {
         return this.#isInUnderwaterTheme
     }
 
-    public get isInDesertTheme() {
+    public get isInDesertTheme(): DESERT {
         return this.#isInDesertTheme
     }
 
-    public get isInSnowTheme() {
+    public get isInSnowTheme(): SNOW {
         return this.#isInSnowTheme
     }
 
-    public get isInSkyTheme() {
+    public get isInSkyTheme(): SKY {
         return this.#isInSkyTheme
     }
 
-    public get isInForestTheme() {
+    public get isInForestTheme(): FOREST {
         return this.#isInForestTheme
     }
 
-    public get isInGhostHouseTheme() {
+    public get isInGhostHouseTheme(): GHOST_HOUSE {
         return this.#isInGhostHouseTheme
     }
 
-    public get isInAirshipTheme() {
+    public get isInAirshipTheme(): AIRSHIP {
         return this.#isInAirshipTheme
     }
 
-    public get isInCastleTheme() {
+    public get isInCastleTheme(): CASTLE {
         return this.#isInCastleTheme
     }
 
@@ -84,7 +87,7 @@ export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUN
     //region -------------------- Convertor methods --------------------
 
     public toCourseThemeMap(): ReadonlyMap<Themes, boolean> {
-        return this.#map ??= new Map(Themes.courseThemes.map(theme => [theme, theme.get(this),]))
+        return this.#map ??= new Map(Import.Themes.courseThemes.map(theme => [theme, theme.get(this),]))
     }
 
     //endregion -------------------- Convertor methods --------------------

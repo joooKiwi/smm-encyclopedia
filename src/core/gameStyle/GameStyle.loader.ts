@@ -5,7 +5,7 @@ import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                    
 import type {GameStyle}                                                          from 'core/gameStyle/GameStyle'
 import type {PossibleAcronym, PossibleEnglishName}                               from 'core/gameStyle/GameStyles.types'
 import type {GameStyleTemplate}                                                  from 'core/gameStyle/GameStyle.template'
-import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/Loader.types'
+import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
 import type {Loader}                                                             from 'util/loader/Loader'
 
 import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'

@@ -4,7 +4,7 @@ import type {NullOr}                                                            
 import type {BooleanOrNotApplicable}                                                                                                                                          from 'util/types/variables'
 
 import {GameReferences}       from 'core/gameReference/GameReferences'
-import {PropertyProvider}     from 'core/_properties/PropertyProvider'
+import {PropertyProvider}     from 'core/_properties/Property.provider'
 import {UNKNOWN_REFERENCE}    from 'util/commonVariables'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 

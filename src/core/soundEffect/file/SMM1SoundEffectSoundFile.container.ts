@@ -2,7 +2,7 @@ import type {SMM1SoundEffectSoundFile, SMM1SoundFilePath} from 'core/soundEffect
 import type {SoundFileExtension}                          from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {PossibleSoundEffectSoundName_SMM1}           from 'core/soundEffect/sound/types'
 
-import {NonRepeatableSoundFileContainer} from 'util/sound/NonRepeatableSoundFile.container'
+import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoundFile.container'
 
 export class SMM1SoundEffectSoundFileContainer<NAME extends PossibleSoundEffectSoundName_SMM1, >
     extends NonRepeatableSoundFileContainer<SMM1SoundFilePath, NAME, SoundFileExtension>

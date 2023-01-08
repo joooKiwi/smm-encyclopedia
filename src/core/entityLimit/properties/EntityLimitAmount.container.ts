@@ -11,7 +11,7 @@ export class EntityLimitAmountContainer
 
     readonly #limitInSMM1AndSMM3DS
     readonly #limitInSMM2
-    readonly #comment
+    readonly #comment: PossibleLimitAmount_Comment//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
 

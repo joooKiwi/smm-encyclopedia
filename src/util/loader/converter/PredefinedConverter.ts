@@ -220,7 +220,7 @@ export abstract class PredefinedConverter
     //region -------------------- Fields --------------------
 
     readonly #simpleName
-    readonly #simpleNameAsNonNullable
+    readonly #simpleNameAsNonNullable: BasicPredefinedConversion
     #parent?: PredefinedConverter
     readonly #parentCallback: () => PredefinedConverter
     readonly #callbackToCreateNewValidationAsNonNullable: (validatingValue: | any | any[],) => ValidationCallback
@@ -282,7 +282,6 @@ export abstract class PredefinedConverter
         return this.#findValueByName(value) != null
     }
 
-    // public static getValueByName<T extends string, >(value: Nullable<| PredefinedConverter | T>,): PredefinedConverterByName<T>
     public static getValueByName(value: Nullable<| PredefinedConverter | string>,): PredefinedConverter {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

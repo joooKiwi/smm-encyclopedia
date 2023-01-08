@@ -2,7 +2,8 @@ import './EditorVoiceSound.scss'
 
 import type {EditorVoiceSound} from 'core/editorVoice/EditorVoiceSound'
 import type {ReactProperties}  from 'util/react/ReactProperties'
-import SimpleSoundComponent    from 'util/sound/component/SimpleSound.component'
+
+import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 
 interface EditorVoiceSoundComponentProperties
     extends ReactProperties {

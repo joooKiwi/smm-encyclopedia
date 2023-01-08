@@ -19,15 +19,15 @@ export class GamePropertyContainer
 
     //region -------------------- Getter methods --------------------
 
-    public get isInSuperMarioMaker1() {
+    public get isInSuperMarioMaker1(): boolean {
         return this.#structure.superMarioMaker
     }
 
-    public get isInSuperMarioMakerFor3DS() {
+    public get isInSuperMarioMakerFor3DS(): boolean {
         return this.#structure.superMarioMakerForNintendo3DS
     }
 
-    public get isInSuperMarioMaker2() {
+    public get isInSuperMarioMaker2(): boolean {
         return this.#structure.superMarioMaker2
     }
 

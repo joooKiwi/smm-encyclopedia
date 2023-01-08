@@ -60,10 +60,10 @@ export default class MiiCostumeApp
                 return 'list'
             }
 
-            public createCardListContent({reference, englishName, imagePath,}: MiiCostumes,) {
+            public createCardListContent({reference, englishName, imageFile,}: MiiCostumes,) {
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
                 return <div className={`${category}`}>
-                    <Image source={imagePath} fallbackName={englishName}/>
+                    <Image file={imageFile}/>
                 </div>
             }
 

@@ -53,17 +53,15 @@ export default class SoundEffectComponent
         const id = isIdentifierNull ? `${themeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${themeEnglishNameInHtml}-soundEffect${isGameNull ? '' : `-${game.acronym}`}-image`
 
         if (game === Games.SUPER_MARIO_MAKER_1) {
-            const [imagePath1, imagePath2,] = soundEffect.SMM1ImagePath!
-            if (imagePath2 == null)
-                return <Image key={key} id={id} source={imagePath1}
-                              fallbackName={soundEffect.englishName} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>
+            const [imageFile1, imageFile2,] = soundEffect.SMM1ImageFiles!
+            if (imageFile2 == null)
+                return <Image key={key} id={id} file={imageFile1} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>
             return <Image partialId={id} images={([
-                {source: imagePath1, fallbackName: `${soundEffect.englishName} #1`, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
-                {source: imagePath2, fallbackName: `${soundEffect.englishName} #2`, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
+                {file: imageFile1, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
+                {file: imageFile2, className: `soundEffect-image ${themeEnglishNameInHtml}-image`,},
             ])} className={`soundEffect-animated-image ${themeEnglishNameInHtml}-image`}/>
         }
-        return <Image key={key} id={id} source={soundEffect.SMM2ImagePath!}
-                      fallbackName={soundEffect.englishName} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>
+        return <Image key={key} id={id} file={soundEffect.SMM2ImageFile} className={`soundEffect-image ${themeEnglishNameInHtml}-image`}/>
     }
 
     public override render(): ReactElement {

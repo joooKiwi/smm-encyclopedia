@@ -25,11 +25,11 @@ export class TimePropertyContainer<DAY extends boolean = boolean, NIGHT extends 
 
     //region -------------------- Getter methods --------------------
 
-    public get isInDayTheme() {
+    public get isInDayTheme(): DAY {
         return this.#isInDayTheme
     }
 
-    public get isInNightTheme() {
+    public get isInNightTheme(): NIGHT {
         return this.#isInNightTheme
     }
 

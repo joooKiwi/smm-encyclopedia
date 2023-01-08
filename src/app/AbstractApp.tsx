@@ -42,7 +42,7 @@ export default abstract class AbstractApp<T extends AppProperties = AppPropertie
         return <GlobalOptionComponent id={AbstractApp.#PARAMETER_DIV_ELEMENT_ID}/>
     }
 
-    public override render(): ReactElement {
+    public override render(): JSX.Element {
         const languageChangerProperties: ModalPropertiesWithDiv = {id: AbstractApp.#LANGUAGE_CHANGER_ELEMENT_ID, divId: AbstractApp.#LANGUAGE_CHANGER_DIV_ELEMENT_ID,}
         const parametersProperties: ModalPropertiesWithContent = {id: AbstractApp.#PARAMETER_ELEMENT_ID, content: this._parameterContent(),}
         const displayViewProperties: ModalPropertiesWithDiv = {id: AbstractApp.#DISPLAY_VIEW_ELEMENT_ID, divId: AbstractApp.#DISPLAY_VIEW_DIV_ELEMENT_ID,}

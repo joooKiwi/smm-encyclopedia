@@ -1,26 +1,33 @@
-import {UnusedImage} from 'core/entity/images/unused/UnusedImage'
-import {Builder}     from 'util/builder/Builder'
+import type {ClassWithEntityEnglishName} from 'core/ClassWithEnglishName'
+import type {UnusedImage}                from 'core/entity/images/unused/UnusedImage'
+import type {Builder}                    from 'util/builder/Builder'
 
-export abstract class UnusedImageBuilder<T extends UnusedImage, N extends string, >
+export abstract class UnusedImageBuilder<T extends UnusedImage, NAME extends string, >
     implements Builder<T> {
 
     //region -------------------- Fields --------------------
 
-    readonly #simpleImageName: N
+    readonly #entity
+    readonly #simpleImageName: NAME
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(name: N,) {
+    protected constructor(entity: ClassWithEntityEnglishName, name: NAME,) {
+        this.#entity = entity
         this.#simpleImageName = name
     }
 
-    //region -------------------- Getter & setter methods --------------------
+    //region -------------------- Getter methods --------------------
 
-    public get simpleImageName(): N {
+    protected get _entity(): ClassWithEntityEnglishName {
+        return this.#entity
+    }
+
+    public get simpleImageName(): NAME {
         return this.#simpleImageName
     }
 
-    //endregion -------------------- Getter & setter methods --------------------
+    //endregion -------------------- Getter methods --------------------
 
     public abstract build(): T
 

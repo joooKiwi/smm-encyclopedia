@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/no-typos
 import 'react'
 
 export type SingleCSSProperty<T extends string = string, > = {

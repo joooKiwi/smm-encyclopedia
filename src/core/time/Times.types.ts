@@ -1,6 +1,3 @@
-import type {BasePath} from 'variables'
-import type {Times}    from 'core/time/Times'
-
 enum Enum {
 
     DAY,
@@ -16,8 +13,5 @@ export type Names = keyof typeof Enum
 export type PossibleEnglishName = | 'Day' | 'Night'
 
 export type PossibleSimpleImagePath = | 'Sun' | 'Moon'
-export type PossibleImagePath = `/${BasePath}/time/${PossibleSimpleImagePath}.png`
 
 //endregion -------------------- Name & image path --------------------
-
-export type TimesByName<T extends string, > = T extends PossibleEnglishName ? Times : never

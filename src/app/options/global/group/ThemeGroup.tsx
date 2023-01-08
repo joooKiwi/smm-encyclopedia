@@ -6,6 +6,7 @@ import type {ReactElement}      from 'util/react/ReactProperties'
 import type {NullOr}            from 'util/types/nullable'
 
 import AbstractGroup from 'app/options/global/group/AbstractGroup'
+import Image         from 'app/tools/images/Image'
 import {Times}       from 'core/time/Times'
 
 /**
@@ -24,9 +25,9 @@ export default class ThemeGroup
 
 
     static #renderThemeImage(element: Themes, value: boolean, isDisabled: boolean, onClickCallback: () => void,): ReactElement {
-        return <img key={`option image (${element.englishName})`} id={`${element.englishNameInHtml}-option-image`}
+        return <Image key={`option image (${element.englishName})`} id={`${element.englishNameInHtml}-option-image`}
                     className={`btn btn${value ? '' : '-outline'}-secondary ${isDisabled ? 'disabled' : ''}`}
-                    src={element.smallImagePath} alt={`option - ${element.englishName}`}
+                    file={element.smallImageFile} alt={`option - ${element.englishName}`}
                     onClick={onClickCallback}/>
     }
 
@@ -50,10 +51,9 @@ export default class ThemeGroup
             {this.#renderThemeImage(element, value, isDisabledNight, () => option.set(optionValue.set(value)),)}
             <div key={`option time image (${element.englishName})`} id={`${element.englishNameInHtml}-option-time-image`} className="btn-group btn-group-sm">{
                 timeValues.map(([time, value, isDisabled, callback,]) =>
-                    <img key={`option image (${element.englishName} - ${time.englishName})`} id={`${element.englishNameInHtml}-${time.englishNameInHtml}-option-image`}
+                    <Image key={`option image (${element.englishName} - ${time.englishName})`} id={`${element.englishNameInHtml}-${time.englishNameInHtml}-option-image`}
                          className={`btn btn${value ? '' : '-outline'}-secondary ${isDisabled ? 'disabled' : ''}`}
-                         src={time.imagePath} alt={`option - ${element.englishName} (${time.englishName})`}
-                         onClick={callback}/>)
+                         file={time.imageFile} onClick={callback}/>)
             }</div>
         </>
     }

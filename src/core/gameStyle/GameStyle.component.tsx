@@ -34,7 +34,7 @@ export default class GameStyleComponent
         const key = identifier == null ? gameStyle.englishName : `${identifier} - ${gameStyle.englishName}`
         const id = identifier == null ? `${gameStyleEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${gameStyleEnglishNameInHtml}-gameStyle-image`
 
-        return <Image key={key} id={id} source={gameStyle.imagePath} fallbackName={gameStyle.englishName} className={`gameStyle-image ${gameStyleEnglishNameInHtml}-image`}/>
+        return <Image key={key} id={id} file={gameStyle.imageFile} className={`gameStyle-image ${gameStyleEnglishNameInHtml}-image`}/>
     }
 
     protected override _renderComponentForAllAsText() {

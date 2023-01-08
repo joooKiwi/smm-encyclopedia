@@ -21,4 +21,4 @@ export type BootstrapWithBasicEventCallback<I extends GenericBootstrapInstanceWi
 export type BootstrapWithBasicEventsReceived<I extends GenericBootstrapInstanceWithEvent = GenericBootstrapInstanceWithEvent, T extends BootstrapWithBasicEvents<I> = BootstrapWithBasicEvents<I>, > = Nullable<Partial<T>>
 export type BootstrapWithBasicEventCallbackReceived<I extends GenericBootstrapInstanceWithEvent = GenericBootstrapInstanceWithEvent, C extends BootstrapWithBasicEventCallback<I> = BootstrapWithBasicEventCallback<I>, > = Nullable<C>
 
-export type GenericBootstrapInstanceWithEvent<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > = BootstrapWithBasicEventsInstance<StaticBootstrapInstance<ComponentOptions>, BaseComponent, ComponentOptions, ELEMENT, ID>
+export type GenericBootstrapInstanceWithEvent<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, > = BootstrapWithBasicEventsInstance<StaticBootstrapInstance, BaseComponent, ComponentOptions, ELEMENT, ID>

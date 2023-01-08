@@ -2,7 +2,6 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
-import type {MiiCostumeAppStates}                              from 'app/AppStates.types'
 import type {Names, Ordinals}                                  from 'app/options/MiiCostumeAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
 import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
@@ -11,7 +10,6 @@ import type {MiiCostumes}                                      from 'core/miiCos
 import type {ReactElement}                                     from 'util/react/ReactProperties'
 import type {NullOr}                                           from 'util/types/nullable'
 
-import {AbstractAppOption}             from 'app/options/AbstractAppOption'
 import {CommonOptions}                 from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
@@ -27,10 +25,10 @@ const Image = lazy(() => import('app/tools/images/Image'))
 
 /**
  * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null
- * @todo Change CATEGORY to use {IMAGE, TEXT or NO} instead of 2 different options.
+ * @todo Change CATEGORY to use {IMAGE, TEXT or NONE} instead of 2 different options.
  */
 export abstract class MiiCostumeAppOption
-    extends AbstractAppOption<boolean, MiiCostumeAppStates, Ordinals, Names> {
+    extends Enum<Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
@@ -40,15 +38,15 @@ export abstract class MiiCostumeAppOption
             return () => {
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
 
-                return <Image source={enumeration.imagePath} fallbackName={`${enumeration.englishName} - image`}/>
+                return <Image file={enumeration.imageFile}/>
             }
         }
 
-        protected override _createTableHeaderOption(): NullOr<SingleHeaderContent> {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             return {key: 'image', element: contentTranslation('Image'),}
         }
 
-    }(true,)
+    }()
     public static readonly NAME =                  new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
         protected override _createContentOption() {
@@ -59,7 +57,7 @@ export abstract class MiiCostumeAppOption
             return CommonOptions.get.nameHeader
         }
 
-    }(true,)
+    }()
     public static readonly OFFICIAL_NOTIFICATION = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
         protected override _createContentOption() {
@@ -71,12 +69,12 @@ export abstract class MiiCostumeAppOption
             }
         }
 
-        protected override _createTableHeaderOption(): NullOr<SingleHeaderContent> {
+        protected override _createTableHeaderOption(): SingleHeaderContent {
             //TODO add new translation to the header value.
             return {key: 'officialNotification', element: '--Official notification--',}
         }
 
-    }(true,)
+    }()
 
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
@@ -85,10 +83,7 @@ export abstract class MiiCostumeAppOption
                 const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
                     categoryName = enumeration.reference.categoryContainer.nameContainer
 
-                return CommonOptions.get.getCategoryContent(enumeration,
-                    () => MiiCostumeAppOption.CATEGORY_AS_TEXT.get
-                        ? categoryName
-                        : MiiCostumeCategories.getValueByName(categoryName.english).imagePath,)
+                return CommonOptions.get.getCategoryContent(enumeration, () => MiiCostumeCategories.getValueByName(categoryName.english).imageFile,)
             }
         }
 
@@ -96,12 +91,12 @@ export abstract class MiiCostumeAppOption
             return CommonOptions.get.categoryHeader
         }
 
-    }(true,)
+    }()
     /**
      * Tell whenever a {@link MiiCostumeAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT =      new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {}(false,)
+    public static readonly CATEGORY_AS_TEXT =      new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {}()
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -123,8 +118,8 @@ export abstract class MiiCostumeAppOption
 
     //endregion -------------------- Fields --------------------
 
-    private constructor(defaultValue: boolean,) {
-        super(defaultValue,)
+    private constructor() {
+        super()
     }
 
     //region -------------------- Getter methods --------------------

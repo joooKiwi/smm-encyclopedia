@@ -1,12 +1,11 @@
 import type {EntityReferences}                                     from 'core/entity/properties/EntityReferences'
 import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from 'util/ClassWithNullObjectPattern'
+import type {EmptyArray}                                           from 'util/types/variables'
 
-import {EmptyEntity} from 'core/entity/EmptyEntity'
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @singleton
- * @recursiveReference<{@link EmptyEntity}>
  */
 export class EmptyEntityReference
     implements EntityReferences, ClassWithNullObjectPattern<EmptyEntityReferenceName> {
@@ -26,79 +25,28 @@ export class EmptyEntityReference
 
     //region -------------------- References methods --------------------
 
-    public get referenceInSuperMarioBrosStyle() {
-        return [EmptyEntity.get] as const
-    }
+    public readonly referenceInSuperMarioBrosStyle = EMPTY_ARRAY
+    public readonly referenceInSuperMarioBros3Style = EMPTY_ARRAY
+    public readonly referenceInSuperMarioWorldStyle = EMPTY_ARRAY
+    public readonly referenceInNewSuperMarioBrosUStyle = EMPTY_ARRAY
+    public readonly referenceInSuperMario3DWorldStyle = EMPTY_ARRAY
 
-    public get referenceInSuperMarioBros3Style() {
-        return [EmptyEntity.get] as const
-    }
+    public readonly referenceInGroundTheme = EMPTY_ARRAY
+    public readonly referenceInUndergroundTheme = EMPTY_ARRAY
+    public readonly referenceInUnderwaterTheme = EMPTY_ARRAY
+    public readonly referenceInDesertTheme = EMPTY_ARRAY
+    public readonly referenceInSnowTheme = EMPTY_ARRAY
+    public readonly referenceInSkyTheme = EMPTY_ARRAY
+    public readonly referenceInForestTheme = EMPTY_ARRAY
+    public readonly referenceInGhostHouseTheme = EMPTY_ARRAY
+    public readonly referenceInAirshipTheme = EMPTY_ARRAY
+    public readonly referenceInCastleTheme = EMPTY_ARRAY
 
-    public get referenceInSuperMarioWorldStyle() {
-        return [EmptyEntity.get] as const
-    }
+    public readonly referenceInDayTheme = EMPTY_ARRAY
+    public readonly referenceInNightTheme = EMPTY_ARRAY
 
-    public get referenceInNewSuperMarioBrosUStyle() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInSuperMario3DWorldStyle() {
-        return [EmptyEntity.get] as const
-    }
-
-
-    public get referenceInGroundTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInUndergroundTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInUnderwaterTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInDesertTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInSnowTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInSkyTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInForestTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInGhostHouseTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInAirshipTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInCastleTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-
-    public get referenceInDayTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-    public get referenceInNightTheme() {
-        return [EmptyEntity.get] as const
-    }
-
-
-    public getReferenceFrom() {
-        return [EmptyEntity.get] as const
+    public getReferenceFrom(): EmptyArray {
+        return EMPTY_ARRAY
     }
 
     public readonly everyGameStyleReferences = EMPTY_ARRAY

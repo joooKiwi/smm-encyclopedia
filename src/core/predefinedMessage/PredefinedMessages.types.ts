@@ -1,5 +1,3 @@
-import type {PredefinedMessages} from 'core/predefinedMessage/PredefinedMessages'
-
 enum Enum {
 
     THANKS, HERE_WE_GO, NICE_WORK,
@@ -27,5 +25,3 @@ export type PossibleEnglishName =
     | 'Juuuuump!' | 'Hop on!' | 'Throw!'
 
 //endregion -------------------- English name --------------------
-
-export type PredefinedMessagesByName<T extends string, > = T extends PossibleEnglishName ? PredefinedMessages : never

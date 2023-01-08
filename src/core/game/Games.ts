@@ -1,23 +1,24 @@
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {ClassWithAcronym}                                                                              from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                          from 'core/ClassWithEnglishName'
-import type {ClassWithImagePath}                                                                            from 'core/ClassWithImagePath'
-import type {PropertyGetter}                                                                                from 'core/PropertyGetter'
-import type {GameProperty}                                                                                  from 'core/entity/properties/game/GameProperty'
-import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleImagePath, PossibleSimpleValue} from 'core/game/Games.types'
-import type {Nullable}                                                                                      from 'util/types/nullable'
+import type {ClassWithAcronym}                                                           from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                       from 'core/ClassWithEnglishName'
+import type {PropertyGetter}                                                             from 'core/PropertyGetter'
+import type {GameProperty}                                                               from 'core/entity/properties/game/GameProperty'
+import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleSimpleValue} from 'core/game/Games.types'
+import type {GameImageFile}                                                              from 'core/game/file/GameImageFile'
+import type {ClassWithImageFile}                                                         from 'util/file/image/ClassWithImageFile'
+import type {Nullable}                                                                   from 'util/types/nullable'
 
-import {BASE_PATH}       from 'variables'
-import GameComponent     from 'core/game/Game.component'
-import {StringContainer} from 'util/StringContainer'
+import GameComponent            from 'core/game/Game.component'
+import {GameImageFileContainer} from 'core/game/file/GameImageFile.container'
+import {StringContainer}        from 'util/StringContainer'
 
 export abstract class Games
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithAcronym<PossibleAcronym>,
-        ClassWithImagePath<PossibleImagePath>,
+        ClassWithImageFile<GameImageFile>,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -55,7 +56,7 @@ export abstract class Games
     readonly #acronym: PossibleAcronym
     readonly #englishName: StringContainer<PossibleEnglishName>
     readonly #simpleValue: PossibleSimpleValue
-    readonly #imagePath: PossibleImagePath
+    #imageFile?: GameImageFile
 
     //endregion -------------------- Fields --------------------
 
@@ -64,7 +65,6 @@ export abstract class Games
         this.#acronym = enumeration_or_acronym
         this.#englishName = new StringContainer(englishName)
         this.#simpleValue = simpleValue
-        this.#imagePath = `/${BASE_PATH}/game/${englishName}.svg`
     }
 
     //region -------------------- Getter methods --------------------
@@ -85,8 +85,9 @@ export abstract class Games
         return this.#simpleValue
     }
 
-    public get imagePath(): PossibleImagePath {
-        return this.#imagePath
+
+    public get imageFile(): GameImageFile {
+        return this.#imageFile ??= new GameImageFileContainer(this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -99,7 +100,6 @@ export abstract class Games
     }
 
 
-    // public static getValueByValue<T extends string, >(value: Nullable<| Games | T>,): GamesByValue<T>
     public static getValueByValue(value: Nullable<| Games | string | number>,): Games {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)

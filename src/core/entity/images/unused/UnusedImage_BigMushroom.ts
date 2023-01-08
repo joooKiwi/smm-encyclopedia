@@ -1,4 +1,5 @@
-import type {UnusedImage} from 'core/entity/images/unused/UnusedImage'
+import type {UnusedSMM1BigMushroomImageFile} from 'core/entity/file/UnusedSMM1BigMushroomImageFile'
+import type {UnusedImage}                    from 'core/entity/images/unused/UnusedImage'
 
 /**
  * An unused {@link Entities.BIG_MUSHROOM_CLASSIC} or {@link Entities.BIG_MUSHROOM_MODERN}
@@ -12,6 +13,6 @@ import type {UnusedImage} from 'core/entity/images/unused/UnusedImage'
 export interface UnusedImage_BigMushroom
     extends UnusedImage {
 
-    get all(): readonly (readonly string[])[]
+    get all(): readonly (readonly UnusedSMM1BigMushroomImageFile[])[]
 
 }

@@ -1,3 +1,6 @@
+import type {Entity}     from 'core/entity/Entity'
+import type {EmptyArray} from 'util/types/variables'
+
 enum Enum {
 
     GENERAL_ENTITY_LIMIT_WHILE_PLAYING, POWER_UP_ENTITY_LIMIT_WHILE_PLAYING,
@@ -69,3 +72,5 @@ export type PossibleAlternativeAcronym = `EL${| 'B' | 'C'}`
 export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit' | 'Object Displayed Limit'
 
 //endregion -------------------- Name / acronym --------------------
+
+export type PossibleEntityLink = | EmptyArray | readonly [Entity,] | readonly [Entity, Entity,]

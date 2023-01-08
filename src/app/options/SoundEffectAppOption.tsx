@@ -9,6 +9,7 @@ import type {SingleHeaderContent}                              from 'app/tools/t
 import type {ReactElement}                                     from 'util/react/ReactProperties'
 import type {NullOr}                                           from 'util/types/nullable'
 
+import UnfinishedText                  from 'app/tools/text/UnfinishedText'
 import {CommonOptions}                 from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
@@ -18,7 +19,7 @@ import {SoundEffectCategories}         from 'core/soundEffectCategory/SoundEffec
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
+const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
 const SoundEffectComponent = lazy(() => import('core/soundEffect/SoundEffect.component'))
 
 //endregion -------------------- dynamic imports --------------------
@@ -59,7 +60,7 @@ export abstract class SoundEffectAppOption
         protected override _createContentOption(enumeration: SoundEffects,) {
             const {reference,} = enumeration
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imagePath,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imageFile,)
         }
 
         protected override _createTableHeaderOption() {
@@ -106,7 +107,7 @@ export abstract class SoundEffectAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'sounds', element: '--Sounds--',}//TODO add sounds
+            return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
         }
 
     }()

@@ -198,7 +198,7 @@ The rest should not be used outside the same package (folder).
 |:--------------------|:----------|:-----------------------------------------------------------------------------------------------------------:|--------------------------------------------:|
 | [name].template.ts  | Template  |                                   The template associated to the CSV file                                   |                                        Type |
 | [name].loader.ts    | Loader    |                                         The file loader (main core)                                         |               Builder<br/>Template<br/>Type |
-| Loader.types.ts     | Type      |                                  Types only applicable to the file loaders                                  |                                             |
+| loader.types.ts     | Type      |                                  Types only applicable to the file loaders                                  |                                             |
 | [name].builder.ts   | Builder   |                                   The builder class that create the class                                   | Template <br/>Class<br/>Enum _(some times)_ |
 | [name].provider.ts  | Provider  | The provider class that will get or create the specific instance<br/>(will never create duplicate instance) |                        Interface <br/>Class |
 | [name].ts           | Interface |                                The class description that is used elsewhere                                 |                                        Type |

@@ -9,12 +9,13 @@ import type {Themes}                                    from 'core/theme/Themes'
 import type {Name}                                      from 'lang/name/Name'
 import type {NameTrait}                                 from 'lang/name/NameTrait'
 import type {NameTraitFromACategory}                    from 'lang/name/NameTraitFromACategory'
+import type {ImageFile}                                 from 'util/file/image/ImageFile'
 import type {ReactElement}                              from 'util/react/ReactProperties'
 
-import {BASE_PATH}                                  from 'variables'
-import {Games}                                      from 'core/game/Games'
-import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {EmptyStringName}                            from 'lang/name/EmptyStringName'
+import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
+import {Games}                                           from 'core/game/Games'
+import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
+import {EmptyStringName}                                 from 'lang/name/EmptyStringName'
 
 //region -------------------- dynamic imports --------------------
 
@@ -64,7 +65,7 @@ export class CommonOptions {
         return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category'),}
     }
 
-    public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | string | Name<string>,): ReactElement {
+    public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | ImageFile | Name<string>,): ReactElement {
         const name = enumeration.reference.categoryNameContainer
         if (name === EmptyStringName.get)
             return null
@@ -72,9 +73,9 @@ export class CommonOptions {
         const imagePath_or_name = imagePath_or_nameCallback()
         const englishName = name.english
         const startingKey = `category name (${englishName})`
-        if (typeof imagePath_or_name == 'string')
-            return <Image key={`${startingKey} image`} source={imagePath_or_name} fallbackName={`${name.english} - image`}/>
-        return <NameComponent key={`${startingKey} name`} id={`category-name-${enumeration.englishNameInHtml}`} name={name} popoverOrientation="left"/>
+        if ('toNameMap' in imagePath_or_name)
+            return <NameComponent key={`${startingKey} name`} id={`category-name-${enumeration.englishNameInHtml}`} name={name} popoverOrientation="left"/>
+        return <Image key={`${startingKey} image`} file={imagePath_or_name}/>
     }
 
 
@@ -92,9 +93,9 @@ export class CommonOptions {
     /**@deprecated Relocate the games in the name content */
     public get gameHeaderWithAllGames(): SingleHeaderContent {
         return this.#gameHeaderWithAllGames ??= this.getGameHeader(
-            {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},
-            {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.englishName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imagePath,},
-            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+            {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
+            {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imageFile.fullName,},
+            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
         )
     }
 
@@ -104,8 +105,8 @@ export class CommonOptions {
 
     public get mainGames(): readonly [SingleHeaderContent, SingleHeaderContent,] {
         return this.#mainGames ??= [
-            {key: 'isInSuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.englishName, path: Games.SUPER_MARIO_MAKER_1.imagePath,},//TODO create a animated image for both games (SMM1 & SMM3DS)
-            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.englishName, path: Games.SUPER_MARIO_MAKER_2.imagePath,},
+            {key: 'isInSuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},//TODO create a animated image for both games (SMM1 & SMM3DS)
+            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
         ]
     }
 
@@ -133,8 +134,8 @@ export class CommonOptions {
         const reference = enumeration.reference
 
         return <div key={`${enumeration.englishName} (theme content images)`} id={`${enumeration.englishNameInHtml}-themeContentImages-container`} className="themeContentImages-container">
-            {reference.isInCourseTheme ? <Image source={`/${BASE_PATH}/theme/Course theme.tiff`} fallbackName="Course theme"/> : null}
-            {reference.isInWorldTheme ? <Image source={`/${BASE_PATH}/theme/World theme.tiff`} fallbackName="World theme"/> : null}
+            {reference.isInCourseTheme ? <Image file={COURSE_THEME_IMAGE_FILE}/> : null}
+            {reference.isInWorldTheme ? <Image file={WORLD_THEME_IMAGE_FILE}/> : null}
         </div>
     }
 

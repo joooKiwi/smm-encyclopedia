@@ -5,12 +5,12 @@ import {lazy}                                                                   
 import type {ClassWithValue}        from 'util/types/ClassWithValue'
 import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
 import type {Nullable}              from 'util/types/nullable'
+import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
 import type {ReactElement}          from 'util/react/ReactProperties'
-import type {SimpleSoundProperties} from 'util/sound/component/property/SimpleSoundProperties'
 
 //region -------------------- dynamic imports --------------------
 
-const SimpleSoundComponent = lazy(() => import('util/sound/component/SimpleSound.component'))
+const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
 
 //endregion -------------------- dynamic imports --------------------
 

@@ -1,5 +1,3 @@
-import type {EntityLimitTypes} from 'core/entityLimit/EntityLimitTypes'
-
 enum Enum {
 
     WHILE_PLAYING,
@@ -18,5 +16,3 @@ export type PossibleEnglishCommonText = | 'While playing' | 'In the editor'
 export type EnglishNames = readonly ['While Playing', 'Editor',]
 
 //endregion -------------------- Name --------------------
-
-export type EntityLimitTypesByName<T extends string, > = T extends (| PossibleEnglishName | PossibleEnglishCommonText) ? EntityLimitTypes : never

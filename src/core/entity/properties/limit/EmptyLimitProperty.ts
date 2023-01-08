@@ -1,6 +1,6 @@
-import type {NotApplicableProperty}                      from 'core/_properties/PropertyWithEverything'
 import type {LimitProperty}                              from 'core/entity/properties/limit/LimitProperty'
 import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
+import type {EmptyMap}                                   from 'util/types/variables'
 
 import {PropertyContainer}     from 'core/_properties/Property.container'
 import {GameStructureProvider} from 'core/game/GameStructure.provider'
@@ -10,7 +10,7 @@ import {EMPTY_MAP}             from 'util/emptyVariables'
  * @singleton
  */
 export class EmptyLimitProperty
-    implements LimitProperty<null, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty, NotApplicableProperty>,
+    implements LimitProperty,
         ClassWithNullObjectPattern<EmptyLimitName> {
 
     //region -------------------- Singleton usage --------------------
@@ -54,15 +54,15 @@ export class EmptyLimitProperty
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toLimitMap() {
+    public toLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitInTheEditorMap() {
+    public toLimitInTheEditorMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitWhilePlayingMap() {
+    public toLimitWhilePlayingMap(): EmptyMap {
         return EMPTY_MAP
     }
 

@@ -44,11 +44,15 @@
 
   "In other languages":          "Dans d'autres langues",
   "Change the language":         "Changer la langue",
+  "Discord server":              "Serveur Discord",
+  "Join the Discord server":     "Rejoindre le serveur Discord",
   "GitHub repository":           "Répertoire GitHub",
   "Go to the GitHub repository": "Aller au répertoire GitHub",
 
+  "Version":                   "Version",
   "Copyright":                 "Droit d'auteur",
   "React application made by": "Application React faite par",
+  "and helped by":             "et aidé par",
   "Last update":               "Dernière mise à jour",
 
   "Home":    "Accueil",

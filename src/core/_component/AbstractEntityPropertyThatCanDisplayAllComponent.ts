@@ -2,7 +2,6 @@ import {PureComponent} from 'react'
 
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {ReactComponent}           from 'util/react/ReactComponent'
-import type {ReactElement}             from 'util/react/ReactProperties'
 
 /**
  * @reactComponent
@@ -26,11 +25,11 @@ export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
 
     protected abstract get _isInAll(): boolean
 
-    protected abstract _renderComponentForAllAsText(): ReactElement
+    protected abstract _renderComponentForAllAsText(): JSX.Element
 
-    protected abstract _renderComponentForAllAsImages(): ReactElement
+    protected abstract _renderComponentForAllAsImages(): JSX.Element
 
-    public override render(): ReactElement {
+    public override render(): JSX.Element {
         if (this._isInAll) {
             if (this.displayAllAsText)
                 return this._renderComponentForAllAsText()
@@ -39,6 +38,6 @@ export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
         return this._render()
     }
 
-    protected abstract _render(): ReactElement
+    protected abstract _render(): JSX.Element
 
 }

@@ -7,7 +7,7 @@ import type {Name} from 'lang/name/Name'
  * </p>
  *
  * <p>
- *  It also add the type of each methods of a {@link Name}
+ *  It also add the type of each method of a {@link Name}
  *  with a reference to the method {@link NameTrait.nameContainer nameContainer(): Name}.
  * </p>
  */

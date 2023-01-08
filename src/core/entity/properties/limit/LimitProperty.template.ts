@@ -1,4 +1,4 @@
-import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType, RenderedObjectLimitType} from 'core/entity/properties/limit/Loader.types'
+import type {EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OtherLimitCommentType, OtherLimitType, PowerUpEntityLimitType, ProjectileEntityLimitType, RenderedObjectLimitType} from 'core/entity/properties/limit/loader.types'
 import type {SimpleGameFrom1And2Template}                                                                                                                                                                                                                from 'core/game/SimpleGame.template'
 
 /**
