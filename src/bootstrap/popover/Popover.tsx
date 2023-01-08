@@ -14,5 +14,5 @@ import {PopoverInstance} from 'bootstrap/popover/PopoverInstance'
  */
 export default function Popover<T extends ReactElement = ReactElement, >({children, option, on: triggers, elementId,}: ReactPropertiesWithOptionalChildren<PopoverConfiguration, T>,) {
     useEffect(() => [elementId].flat().forEach(elementId => new PopoverInstance(elementId, option, triggers,)))
-    return children
+    return children ?? null
 }

@@ -14,5 +14,5 @@ import {OffcanvasInstance} from 'bootstrap/offcanvas/OffcanvasInstance'
  */
 export default function Offcanvas<T extends ReactElement = ReactElement, >({children, on: triggers, elementId,}: ReactPropertiesWithOptionalChildren<OffcanvasConfiguration, T>,) {
     useEffect(() => [elementId].flat().forEach(elementId => new OffcanvasInstance(elementId, triggers,)))
-    return children
+    return children ?? null
 }

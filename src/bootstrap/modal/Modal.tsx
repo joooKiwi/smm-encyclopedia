@@ -12,5 +12,5 @@ import {ModalInstance} from 'bootstrap/modal/ModalInstance'
  */
 export default function Modal<T extends ReactElement = ReactElement, >({children, option, on: triggers, elementId,}: ReactPropertiesWithOptionalChildren<ModalConfiguration, T>,) {
     useEffect(() => [elementId].flat().forEach(elementId => new ModalInstance(elementId, option, triggers,)))
-    return children
+    return children ?? null
 }
