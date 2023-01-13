@@ -9,7 +9,7 @@ export interface TimeProperty<DAY extends boolean = boolean, NIGHT extends NullO
 
     /**
      * Return a {@link Map} based on the enum {@link Times}
-     * with every values stored inside this instance ({@link TimeProperty})
+     * with every value stored inside this instance ({@link TimeProperty})
      * as a boolean only.
      */
     toTimeMap(): ReadonlyMap<Times, boolean>
