@@ -91,24 +91,31 @@ export class EmptyEntity
     public readonly editorLimit_smm2 = this.limitContainer.editorLimit_smm2
     public readonly isUnknown_editorLimit_smm2 = this.limitContainer.isUnknown_editorLimit_smm2
 
-    public readonly isInGeneralLimitWhilePlayingContainer = this.limitContainer.isInGeneralLimitWhilePlayingContainer
-    public readonly isInGeneralLimitWhilePlaying = this.limitContainer.isInGeneralLimitWhilePlaying
-    public readonly isInGeneralLimitWhilePlayingComment = this.limitContainer.isInGeneralLimitWhilePlayingComment
+    public readonly isInGeneralLimitContainer = this.limitContainer.isInGeneralLimitContainer
+    public readonly isInGeneralLimit = this.limitContainer.isInGeneralLimit
+    public readonly isInGeneralLimitComment = this.limitContainer.isInGeneralLimitComment
 
-    public readonly isInGlobalGeneralLimitWhilePlayingContainer = this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer
-    public readonly isInGlobalGeneralLimitWhilePlaying = this.limitContainer.isInGlobalGeneralLimitWhilePlaying
-    public readonly isInGlobalGeneralLimitWhilePlayingComment = this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment
+    public readonly isInGlobalGeneralLimitContainer = this.limitContainer.isInGlobalGeneralLimitContainer
+    public readonly isInGlobalGeneralLimit = this.limitContainer.isInGlobalGeneralLimit
+    public readonly isInGlobalGeneralLimitComment = this.limitContainer.isInGlobalGeneralLimitComment
 
-    public readonly isInPowerUpLimitWhilePlayingContainer = this.limitContainer.isInPowerUpLimitWhilePlayingContainer
-    public readonly isInPowerUpLimitWhilePlaying = this.limitContainer.isInPowerUpLimitWhilePlaying
+    public readonly isInPowerUpLimitContainer = this.limitContainer.isInPowerUpLimitContainer
+    public readonly isInPowerUpLimit = this.limitContainer.isInPowerUpLimit
 
-    public readonly isInProjectileLimitWhilePlayingContainer = this.limitContainer.isInProjectileLimitWhilePlayingContainer
-    public readonly isInProjectileLimitWhilePlaying = this.limitContainer.isInProjectileLimitWhilePlaying
-    public readonly isInProjectileLimitWhilePlayingComment = this.limitContainer.isInProjectileLimitWhilePlayingComment
+    public readonly isInProjectileLimitContainer = this.limitContainer.isInProjectileLimitContainer
+    public readonly isInProjectileLimit = this.limitContainer.isInProjectileLimit
+    public readonly isInProjectileLimitComment = this.limitContainer.isInProjectileLimitComment
 
-    public readonly otherLimitWhilePlayingContainer = this.limitContainer.otherLimitWhilePlayingContainer
-    public readonly otherLimitWhilePlaying = this.limitContainer.otherLimitWhilePlaying
-    public readonly otherLimitWhilePlayingComment = this.limitContainer.otherLimitWhilePlayingComment
+    public readonly isInRenderedObjectLimitContainer = this.limitContainer.isInRenderedObjectLimitContainer
+    public readonly isInRenderedObjectLimit = this.limitContainer.isInRenderedObjectLimit
+    public readonly isInRenderedObjectLimitComment = this.limitContainer.isInRenderedObjectLimitComment
+
+    public readonly isInCollectedCoinLimitContainer = this.limitContainer.isInCollectedCoinLimitContainer
+    public readonly isInCollectedCoinLimit = this.limitContainer.isInCollectedCoinLimit
+
+    public readonly otherLimitContainer = this.limitContainer.otherLimitContainer
+    public readonly otherLimit = this.limitContainer.otherLimit
+    public readonly otherLimitComment = this.limitContainer.otherLimitComment
 
     //endregion -------------------- Limit properties --------------------
     //region -------------------- Instrument properties --------------------

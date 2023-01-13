@@ -1,13 +1,17 @@
-import type {Entity, PossibleOtherEntities} from 'core/entity/Entity'
-import type {EntityReferences}              from 'core/entity/properties/EntityReferences'
-import type {Property}                      from 'core/entity/properties/Property'
-import type {EntityCategory}                from 'core/entityCategory/EntityCategory'
-import type {EntityLimits}                  from 'core/entityLimit/EntityLimits'
-import type {Games}                         from 'core/game/Games'
-import type {GameStyles}                    from 'core/gameStyle/GameStyles'
-import type {Themes}                        from 'core/theme/Themes'
-import type {Times}                         from 'core/time/Times'
-import type {Name}                          from 'lang/name/Name'
+import type {Entity, PossibleOtherEntities}                                                                                                                                                                                                                    from 'core/entity/Entity'
+import type {EntityReferences}                                                                                                                                                                                                                                 from 'core/entity/properties/EntityReferences'
+import type {Property}                                                                                                                                                                                                                                         from 'core/entity/properties/Property'
+import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
+import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                              from 'core/entity/properties/limit/loader.types'
+import type {EntityCategory}                                                                                                                                                                                                                                   from 'core/entityCategory/EntityCategory'
+import type {EntityLimits}                                                                                                                                                                                                                                     from 'core/entityLimit/EntityLimits'
+import type {Games}                                                                                                                                                                                                                                            from 'core/game/Games'
+import type {GameStyles}                                                                                                                                                                                                                                       from 'core/gameStyle/GameStyles'
+import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
+import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
+import type {Name}                                                                                                                                                                                                                                             from 'lang/name/Name'
+import type {NullOr}                                                                                                                                                                                                                                           from 'util/types/nullable'
+import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                                                                                            from 'util/types/variables'
 
 import {isInProduction}                   from 'variables'
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
@@ -16,37 +20,33 @@ import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAn
  * A simple entity implementation, but without any specification.
  *
  * @note It use the generic to have a type based on the property used for each method in {@link Property}.
- *
- * @property CATEGORY the {@link EntityCategory entity category} instance
- * @property PROPERTY the {@link Property property} specific to the current instance
  */
-export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property, >
-    extends ClassContainingANameAndACategory<string, string, CATEGORY>
-    implements Entity<CATEGORY, PROPERTY> {
+export abstract class AbstractEntity
+    extends ClassContainingANameAndACategory<string, string, EntityCategory>
+    implements Entity {
 
     //region -------------------- Fields --------------------
-
-    protected static readonly NOT_APPLICABLE = 'N/A'
 
     readonly #propertyContainer
     readonly #referencesContainer
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
-        super(name, category as CATEGORY,)
+        super(name, category,)
         this.#testCategory(this.categoryContainer)
         this.#propertyContainer = this.#testProperty(property)
         this.#referencesContainer = references
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Tester methods --------------------
 
-    #testCategory(category: EntityCategory,): CATEGORY
-    #testCategory(category: EntityCategory,) {
-        return isInProduction
-            ? category
-            : this._testCategory(category)
+    #testCategory(category: EntityCategory,): EntityCategory {
+        if (!isInProduction)
+            this._testCategory(category)
+        return category
     }
 
     /**
@@ -57,15 +57,13 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testCategory(category: EntityCategory,): EntityCategory {
-        return category
+    protected _testCategory(category: EntityCategory,): void {
     }
 
-    #testProperty(property: Property,): PROPERTY
-    #testProperty(property: Property,) {
-        return isInProduction
-            ? property
-            : this._testProperty(property)
+    #testProperty(property: Property,): Property {
+        if (!isInProduction)
+            this._testProperty(property)
+        return property
     }
 
     /**
@@ -76,8 +74,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testProperty(property: Property,): Property {
-        return property
+    protected _testProperty(property: Property,): void {
     }
 
     //endregion -------------------- Tester methods --------------------
@@ -85,7 +82,7 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
 
     //region -------------------- Properties --------------------
 
-    public get propertyContainer(): PROPERTY {
+    public get propertyContainer(): Property {
         return this.#propertyContainer
     }
 
@@ -199,55 +196,55 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     //endregion -------------------- Time properties --------------------
     //region -------------------- Limit properties --------------------
 
-    public get limitContainer(): this['propertyContainer']['limitContainer'] {
+    public get limitContainer(): LimitProperty {
         return this.propertyContainer.limitContainer
     }
 
     //region -------------------- Editor limit --------------------
 
-    public get editorLimitContainer(): this['limitContainer']['editorLimitContainer'] {
-        return this.limitContainer.editorLimitContainer
+    public get editorLimitContainer(): GameStructureForEditorLimit {
+        return this.propertyContainer.editorLimitContainer
     }
 
-    public get editorLimit_smm1And3ds(): this['limitContainer']['editorLimit_smm1And3ds'] {
-        return this.limitContainer.editorLimit_smm1And3ds
+    public get editorLimit_smm1And3ds(): NullOr<EntityLimits> {
+        return this.propertyContainer.editorLimit_smm1And3ds
     }
 
-    public get editorLimit_smm2(): this['limitContainer']['editorLimit_smm2'] {
-        return this.limitContainer.editorLimit_smm2
+    public get editorLimit_smm2(): NullOr<| EntityLimits | NotApplicable> {
+        return this.propertyContainer.editorLimit_smm2
     }
 
-    public get isUnknown_editorLimit_smm2(): this['limitContainer']['isUnknown_editorLimit_smm2'] {
-        return this.limitContainer.isUnknown_editorLimit_smm2
+    public get isUnknown_editorLimit_smm2(): boolean {
+        return this.propertyContainer.isUnknown_editorLimit_smm2
     }
 
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
 
-    public get isInGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGeneralLimitWhilePlayingContainer'] {
-        return this.limitContainer.isInGeneralLimitWhilePlayingContainer
+    public get isInGeneralLimitContainer(): PossibleIsInGeneralLimit {
+        return this.propertyContainer.isInGeneralLimitContainer
     }
 
-    public get isInGeneralLimitWhilePlaying(): this['limitContainer']['isInGeneralLimitWhilePlaying'] {
-        return this.limitContainer.isInGeneralLimitWhilePlaying
+    public get isInGeneralLimit(): BooleanOrNotApplicable {
+        return this.propertyContainer.isInGeneralLimit
     }
 
-    public get isInGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGeneralLimitWhilePlayingComment'] {
-        return this.limitContainer.isInGeneralLimitWhilePlayingComment
+    public get isInGeneralLimitComment(): NullOr<PossibleGeneralEntityLimitComment> {
+        return this.propertyContainer.isInGeneralLimitComment
     }
 
     //region -------------------- Global general limit --------------------
 
-    public get isInGlobalGeneralLimitWhilePlayingContainer(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingContainer'] {
-        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer
+    public get isInGlobalGeneralLimitContainer(): PossibleIsInGeneralGlobalLimit {
+        return this.propertyContainer.isInGlobalGeneralLimitContainer
     }
 
-    public get isInGlobalGeneralLimitWhilePlaying(): this['limitContainer']['isInGlobalGeneralLimitWhilePlaying'] {
-        return this.limitContainer.isInGlobalGeneralLimitWhilePlaying
+    public get isInGlobalGeneralLimit(): BooleanOrNotApplicable {
+        return this.propertyContainer.isInGlobalGeneralLimit
     }
 
-    public get isInGlobalGeneralLimitWhilePlayingComment(): this['limitContainer']['isInGlobalGeneralLimitWhilePlayingComment'] {
-        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment
+    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalEntityLimitComment> {
+        return this.propertyContainer.isInGlobalGeneralLimitComment
     }
 
     //endregion -------------------- Global general limit --------------------
@@ -255,45 +252,71 @@ export abstract class AbstractEntity<CATEGORY extends EntityCategory = EntityCat
     //endregion -------------------- General limit --------------------
     //region -------------------- Power-up limit --------------------
 
-    public get isInPowerUpLimitWhilePlayingContainer(): this['limitContainer']['isInPowerUpLimitWhilePlayingContainer'] {
-        return this.limitContainer.isInPowerUpLimitWhilePlayingContainer
+    public get isInPowerUpLimitContainer(): PossibleIsInPowerUpLimit {
+        return this.propertyContainer.isInPowerUpLimitContainer
     }
 
-    public get isInPowerUpLimitWhilePlaying(): this['limitContainer']['isInPowerUpLimitWhilePlaying'] {
-        return this.limitContainer.isInPowerUpLimitWhilePlaying
+    public get isInPowerUpLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.propertyContainer.isInPowerUpLimit
     }
 
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
-    public get isInProjectileLimitWhilePlayingContainer(): this['limitContainer']['isInProjectileLimitWhilePlayingContainer'] {
-        return this.limitContainer.isInProjectileLimitWhilePlayingContainer
+    public get isInProjectileLimitContainer(): PossibleIsInProjectileLimit {
+        return this.propertyContainer.isInProjectileLimitContainer
     }
 
-    public get isInProjectileLimitWhilePlaying(): this['limitContainer']['isInProjectileLimitWhilePlaying'] {
-        return this.limitContainer.isInProjectileLimitWhilePlaying
+    public get isInProjectileLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.propertyContainer.isInProjectileLimit
     }
 
-    public get isInProjectileLimitWhilePlayingComment(): this['limitContainer']['isInProjectileLimitWhilePlayingComment'] {
-        return this.limitContainer.isInProjectileLimitWhilePlayingComment
+    public get isInProjectileLimitComment(): NullOr<PossibleProjectileEntityLimitComment> {
+        return this.propertyContainer.isInProjectileLimitComment
     }
 
     //endregion -------------------- Projectile limit --------------------
-    //region -------------------- Custom limit --------------------
+    //region -------------------- Rendered object limit --------------------
 
-    public get otherLimitWhilePlayingContainer(): this['limitContainer']['otherLimitWhilePlayingContainer'] {
-        return this.limitContainer.otherLimitWhilePlayingContainer
+    public get isInRenderedObjectLimitContainer(): PossibleIsInRenderedObjectLimit {
+        return this.propertyContainer.isInRenderedObjectLimitContainer
     }
 
-    public get otherLimitWhilePlaying(): this['limitContainer']['otherLimitWhilePlaying'] {
-        return this.limitContainer.otherLimitWhilePlaying
+    public get isInRenderedObjectLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.propertyContainer.isInRenderedObjectLimit
     }
 
-    public get otherLimitWhilePlayingComment(): this['limitContainer']['otherLimitWhilePlayingComment'] {
-        return this.limitContainer.otherLimitWhilePlayingComment
+    public get isInRenderedObjectLimitComment(): NullOr<PossibleRenderedObjectLimitTypeComment> {
+        return this.propertyContainer.isInRenderedObjectLimitComment
     }
 
-    //endregion -------------------- Custom limit --------------------
+    //endregion -------------------- Rendered object limit --------------------
+    //region -------------------- Collected object limit --------------------
+
+    public get isInCollectedCoinLimitContainer(): PossibleIsInCollectedCoinLimit {
+        return this.propertyContainer.isInCollectedCoinLimitContainer
+    }
+
+    public get isInCollectedCoinLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.propertyContainer.isInCollectedCoinLimit
+    }
+
+    //endregion -------------------- Collected object limit --------------------
+    //region -------------------- Other limit --------------------
+
+    public get otherLimitContainer(): PossibleOtherLimit {
+        return this.propertyContainer.otherLimitContainer
+    }
+
+    public get otherLimit(): | EntityLimits | NotApplicable {
+        return this.propertyContainer.otherLimit
+    }
+
+    public get otherLimitComment(): NullOr<PossibleOtherLimitComment> {
+        return this.propertyContainer.otherLimitComment
+    }
+
+    //endregion -------------------- Other limit --------------------
 
     //endregion -------------------- Limit properties --------------------
     //region -------------------- Instrument properties --------------------

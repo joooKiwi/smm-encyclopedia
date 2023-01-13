@@ -15,15 +15,9 @@ export interface GameStyleProperty<SMB extends boolean = boolean, SMB3 extends b
 
     /**
      * Return a {@link Map} based on the enum {@link GameStyles}
-     * with every values stored inside this instance ({@link GameStyleProperty})
+     * with every value stored inside this instance ({@link GameStyleProperty})
      * as a boolean only.
      */
     toGameStyleMap(): ReadonlyMap<GameStyles, boolean>
 
 }
-
-/**@deprecated*/export type ExclusiveSMM1GameStyleProperty = GameStyleProperty<true, boolean, boolean, boolean, null>
-/**@deprecated*/export type AbstractExclusiveSMM2GameStyleProperty<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends boolean = boolean, >
-    = GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>
-/**@deprecated*/export type ExclusiveSMM2GameStylePropertyInSM3DW = AbstractExclusiveSMM2GameStyleProperty<false, false, false, false, true>
-/**@deprecated*/export type ExclusiveSMM2GameStyleProperty = AbstractExclusiveSMM2GameStyleProperty
