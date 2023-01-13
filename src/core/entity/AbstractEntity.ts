@@ -31,6 +31,7 @@ export abstract class AbstractEntity
     readonly #referencesContainer
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category,)
@@ -39,13 +40,13 @@ export abstract class AbstractEntity
         this.#referencesContainer = references
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Tester methods --------------------
 
-    #testCategory(category: EntityCategory,): CATEGORY
-    #testCategory(category: EntityCategory,) {
-        return isInProduction
-            ? category
-            : this._testCategory(category)
+    #testCategory(category: EntityCategory,): EntityCategory {
+        if (!isInProduction)
+            this._testCategory(category)
+        return category
     }
 
     /**
@@ -56,15 +57,13 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testCategory(category: EntityCategory,): EntityCategory {
-        return category
+    protected _testCategory(category: EntityCategory,): void {
     }
 
-    #testProperty(property: Property,): PROPERTY
-    #testProperty(property: Property,) {
-        return isInProduction
-            ? property
-            : this._testProperty(property)
+    #testProperty(property: Property,): Property {
+        if (!isInProduction)
+            this._testProperty(property)
+        return property
     }
 
     /**
@@ -75,8 +74,7 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testProperty(property: Property,): Property {
-        return property
+    protected _testProperty(property: Property,): void {
     }
 
     //endregion -------------------- Tester methods --------------------

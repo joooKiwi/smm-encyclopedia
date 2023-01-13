@@ -19,13 +19,11 @@ export class ExclusiveSM3DWEntityContainer
         super(name, category, property, references,)
     }
 
-    protected override _testProperty(property: Property,): Property {
-        property = super._testProperty(property)
+    protected override _testProperty(property: Property,): void {
+        super._testProperty(property)
 
         assert(property.isInNightTheme == null, 'The property isInNightTheme should always be set to a null for a SM3DW exclusive property.',)
         // assert(typeof property.isInProjectileLimitWhilePlaying == 'boolean', 'The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.',)
-
-        return property
     }
 
 }

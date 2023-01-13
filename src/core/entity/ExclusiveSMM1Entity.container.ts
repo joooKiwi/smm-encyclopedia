@@ -24,8 +24,8 @@ export class ExclusiveSMM1EntityContainer
         assert(category instanceof EmptyEntityCategory, 'A SMM1 exclusive entity cannot be in a SMM2 category.',)
     }
 
-    protected override _testProperty(property: Property,): Property {
-        property = super._testProperty(property)
+    protected override _testProperty(property: Property,): void {
+        super._testProperty(property)
 
         assert(property.isInSuperMarioMaker1, 'The property isInSMM1 should always be set to true for a SMM1 exclusive property.',)
         assert(!property.isInSuperMarioMaker2, 'The property isInSMM2 should always be set to false for a SMM1 exclusive property.',)
@@ -38,13 +38,11 @@ export class ExclusiveSMM1EntityContainer
 
         assert(property.isInDayTheme && property.isInNightTheme == null, 'A SMM1 entity is never in the night theme, but always in the day theme.',)
 
-        assert(property.editorLimit_smm2 === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
-            && property.isInGeneralLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE && property.isInGlobalGeneralLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
-            && property.isInPowerUpLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
-            && property.isInProjectileLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE
-            && property.otherLimitWhilePlaying === ExclusiveSMM1EntityContainer.NOT_APPLICABLE, 'A SMM1 entity doesn\'t have any limit since it is only applicable to a SMM2 entity.',)
-
-        return property
+        assert(property.editorLimit_smm2 === NOT_APPLICABLE
+            && property.isInGeneralLimit === NOT_APPLICABLE && property.isInGlobalGeneralLimit === NOT_APPLICABLE
+            && property.isInPowerUpLimit === NOT_APPLICABLE
+            && property.isInProjectileLimit === NOT_APPLICABLE
+            && property.otherLimit === NOT_APPLICABLE, 'A SMM1 entity doesn\'t have any limit since it is only applicable to a SMM2 entity.',)
     }
 
 }
