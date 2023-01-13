@@ -8,8 +8,8 @@ import {AbstractEntity} from 'core/entity/AbstractEntity'
 /**
  * An entity that is not exclusive to any {@link GameStyles game style}.
  */
-export class EntityContainer<CATEGORY extends EntityCategory = EntityCategory, PROPERTY extends Property = Property>
-    extends AbstractEntity<CATEGORY, PROPERTY> {
+export class EntityContainer
+    extends AbstractEntity {
 
     public constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category, property, references,)

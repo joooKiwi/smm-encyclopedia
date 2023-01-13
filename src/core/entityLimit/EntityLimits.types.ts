@@ -3,11 +3,11 @@ import type {EmptyArray} from 'util/types/variables'
 
 enum Enum {
 
-    GENERAL_ENTITY_LIMIT_WHILE_PLAYING, POWER_UP_ENTITY_LIMIT_WHILE_PLAYING,
+    GENERAL_ENTITY_LIMIT, POWER_UP_LIMIT,
 
     LOOSE_COIN_LIMIT, SOUND_EFFECT_LIMIT, CORPSE_LIMIT, PROJECTILE_LIMIT, LIGHT_SOURCE_LIMIT,
 
-    GROUND_LIMIT, BLOCK_LIMIT, PLATFORM_OR_SLOPE_OR_CONVEYOR_BELT_OR_PIPE_OR_VINE_LIMIT, CLEAR_PIPE_LIMIT,
+    GROUND_LIMIT, BLOCK_LIMIT, EXTENDABLE_TERRAIN_LIMIT, CLEAR_PIPE_LIMIT,
 
     GROWN_VINE_LIMIT, CHECKPOINT_FLAG_LIMIT, TRACK_LIMIT,
     SNAKE_BLOCK_LIMIT, EXCLAMATION_BLOCK_LIMIT, TRACK_BLOCK_LIMIT,
@@ -16,10 +16,10 @@ enum Enum {
     ENTITY_HELD_BY_A_TWISTER_LIMIT, SNOWBALL_THROWN_BY_A_SPIKE_LIMIT,
     CLEAR_CONDITION_ENTITY_AMOUNT_LIMIT, RENDERED_OBJECT_LIMIT,
 
-    _10_OR_30_OR_50_COIN_LIMIT, PINK_COIN_LIMIT,
-    KEY_COLLECTED_LIMIT,
+    BIG_COIN_LIMIT, PINK_COIN_LIMIT,
+    COLLECTED_COIN_LIMIT, COLLECTED_KEY_LIMIT,
 
-    POWER_UP_ENTITY_LIMIT_EDITOR,
+    POWER_UP_LIMIT_EDITOR,
     PLAYER_FIREBALL, PLAYER_SUPERBALL,
     PLAYER_BOMB, PLAYER_BUILDER_BOX, PLAYER_BOOMERANG, PLAYER_CANNONBALL,
     HATCHED_YOSHI_LIMIT,
@@ -38,14 +38,14 @@ export type Names = keyof typeof Enum
 
 //region -------------------- Name / acronym --------------------
 
-export type PossibleAcronymInBothEditorAndWhilePlaying = `${| 'GE' | 'PE'}L (${| 'WP' | 'E'})`
-export type PossibleStartingEnglishNameInBothEditorAndWhilePlaying = `${| 'General' | 'Power-up'} Entity`
+type PossibleAcronymInBothEditorAndWhilePlaying = `${| 'GE' | 'P'}L${| '' | ' (E)'}`
+type PossibleStartingEnglishNameInBothEditorAndWhilePlaying = | 'General Entity' | 'Power-up'
 
-export type PossibleAcronym = | PossibleAcronymInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'GV' | 'KC' | 'HY'}L`
-export type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
+export type PossibleAcronym = | PossibleAcronymInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'ET' | 'GV' | 'CC' | 'CK' | 'HY'}L`
+type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
     | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile' | 'Light Source'
 
-    | 'Ground' | 'Block' | 'Platform / Slope / Conveyor Belt / Pipe / Vine' | 'Clear Pipe'
+    | 'Ground' | 'Block' | 'Extendable Terrain' | 'Clear Pipe'
 
     | 'Grown Vine' | 'Checkpoint Flag' | 'Track' | `${| 'Snake ' | '! ' | 'Track '}Block`
 
@@ -55,8 +55,8 @@ export type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
     | 'Clear Condition Entity Amount' | 'Rendered Object'
 
 
-    | `${| '[10- / 30- / 50-]' | 'Pink '}Coin`
-    | 'Key Collected'
+    | `${| 'Big' | 'Pink'} Coin`
+    | `Collected ${| 'Key' | 'Coin'}`
 
     | 'Power-up' | `Player's ${| `${| 'Fire' | 'Super'}ball` | 'Bomb' | 'Builder Box' | 'Boomerang' | 'Cannonball'}` | 'Hatched Yoshi'
 
@@ -65,8 +65,7 @@ export type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
     | 'Angry Sun / Moon' | 'Phanto' | 'Koopa Troopa Car'
 
     | `Warp ${| 'Door' | 'Box' | 'Pipe'}`
-export type PossibleStartingEnglishName = | PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying | PossibleStartingEnglishNameInBothEditorAndWhilePlaying
-export type PossibleEnglishName = | `${PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit` | `${PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit (${| 'While Playing' | 'Editor'})`
+export type PossibleEnglishName = | `${PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit` | `${PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit${| '' | ' (Editor)'}`
 
 export type PossibleAlternativeAcronym = `EL${| 'B' | 'C'}`
 export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit' | 'Object Displayed Limit'

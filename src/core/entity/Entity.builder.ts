@@ -1,25 +1,25 @@
-import type {NotApplicableProperty, UnknownProperty}                                          from 'core/_properties/PropertyWithEverything'
-import type {PropertyThatCanBeUnknownWithComment}                                             from 'core/_properties/PropertyThatCanBeUnknownWithComment'
-import type {PossibleEnglishName}                                                             from 'core/entity/Entities.types'
-import type {Entity, PossibleOtherEntities}                                                   from 'core/entity/Entity'
-import type {EntityLink}                                                                      from 'core/entity/loader.types'
-import type {EntityTemplate}                                                                  from 'core/entity/Entity.template'
-import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                       from 'core/entity/properties/instrument/InstrumentProperty'
-import type {InstrumentPropertyTemplate}                                                      from 'core/entity/properties/instrument/InstrumentProperty.template'
-import type {CanMakeASoundOutOfAMusicBlock}                                                   from 'core/entity/properties/instrument/loader.types'
-import type {LimitProperty}                                                                   from 'core/entity/properties/limit/LimitProperty'
-import type {LimitPropertyTemplate}                                                           from 'core/entity/properties/limit/LimitProperty.template'
-import type {GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType} from 'core/entity/properties/limit/loader.types'
-import type {EntityCategory}                                                                  from 'core/entityCategory/EntityCategory'
-import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                          from 'core/entityLimit/EntityLimits.types'
-import type {Instrument}                                                                      from 'core/instrument/Instrument'
-import type {PossibleInstrument}                                                              from 'core/instrument/loader.types'
-import type {Name}                                                                            from 'lang/name/Name'
-import type {PossibleGameReceived as OriginalPossibleGameReceived}                            from 'lang/name/Name.builder.types'
-import type {Builder}                                                                         from 'util/builder/Builder'
-import type {ObjectHolder}                                                                    from 'util/holder/ObjectHolder'
-import type {Nullable, NullOr, NullOrString}                                                  from 'util/types/nullable'
-import type {UnknownCharacter}                                                                from 'util/types/variables'
+import type {NotApplicableProperty, UnknownProperty}                                                                                           from 'core/_properties/PropertyWithEverything'
+import type {PropertyThatCanBeUnknownWithComment}                                                                                              from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PossibleEnglishName}                                                                                                              from 'core/entity/Entities.types'
+import type {Entity, PossibleOtherEntities}                                                                                                    from 'core/entity/Entity'
+import type {EntityLink}                                                                                                                       from 'core/entity/loader.types'
+import type {EntityTemplate}                                                                                                                   from 'core/entity/Entity.template'
+import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                                                                        from 'core/entity/properties/instrument/InstrumentProperty'
+import type {InstrumentPropertyTemplate}                                                                                                       from 'core/entity/properties/instrument/InstrumentProperty.template'
+import type {CanMakeASoundOutOfAMusicBlock}                                                                                                    from 'core/entity/properties/instrument/loader.types'
+import type {LimitProperty}                                                                                                                    from 'core/entity/properties/limit/LimitProperty'
+import type {LimitPropertyTemplate}                                                                                                            from 'core/entity/properties/limit/LimitProperty.template'
+import type {CollectedCoinLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType, RenderedObjectLimitType} from 'core/entity/properties/limit/loader.types'
+import type {EntityCategory}                                                                                                                   from 'core/entityCategory/EntityCategory'
+import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                                                                           from 'core/entityLimit/EntityLimits.types'
+import type {Instrument}                                                                                                                       from 'core/instrument/Instrument'
+import type {PossibleInstrument}                                                                                                               from 'core/instrument/loader.types'
+import type {Name}                                                                                                                             from 'lang/name/Name'
+import type {PossibleGameReceived as OriginalPossibleGameReceived}                                                                             from 'lang/name/Name.builder.types'
+import type {Builder}                                                                                                                          from 'util/builder/Builder'
+import type {ObjectHolder}                                                                                                                     from 'util/holder/ObjectHolder'
+import type {Nullable, NullOr, NullOrString}                                                                                                   from 'util/types/nullable'
+import type {UnknownCharacter}                                                                                                                 from 'util/types/variables'
 
 import {PropertyContainer}                              from 'core/_properties/Property.container'
 import {PropertyProvider}                               from 'core/_properties/Property.provider'
@@ -150,10 +150,12 @@ export class EntityBuilder
                 isInPEL: powerUpLimit,
                 isInPJL: projectileLimit,
                 otherLimit: {value: otherLimit, comment: otherLimitComment,},
+                isInRenderedObjectLimit: renderedObjectLimit,
+                isInCollectedCoinLimit: collectedObjectLimit,
             },
         } = limitTemplate
 
-        return LimitPropertyProvider.get.get([[editorLimit_SMM1And3DS, editorLimit_SMM2,], [generalLimit, superGlobalGeneralLimit,], powerUpLimit, projectileLimit, [otherLimit, otherLimitComment,],],
+        return LimitPropertyProvider.get.get([[editorLimit_SMM1And3DS, editorLimit_SMM2,], [generalLimit, superGlobalGeneralLimit,], powerUpLimit, projectileLimit, renderedObjectLimit, collectedObjectLimit, [otherLimit, otherLimitComment,],],
             GameStructureProvider.get.get(this.#whereEntityLimit(editorLimit_SMM1And3DS), this.#getPropertyWhereEntityLimit(editorLimit_SMM2),),
             [
                 PropertyProvider.newBooleanContainer<GeneralEntityLimitType, true, false, true>(generalLimit, true, false,),
@@ -161,6 +163,8 @@ export class EntityBuilder
             ],
             PropertyProvider.newBooleanContainer(powerUpLimit, true, false,),
             PropertyProvider.newBooleanContainer<ProjectileEntityLimitType, true, false, true>(projectileLimit, true, false,),
+            PropertyProvider.newBooleanContainer<RenderedObjectLimitType, true, false, true>(renderedObjectLimit, true, false,),
+            PropertyProvider.newBooleanContainer<CollectedCoinLimitType, true, false, true>(collectedObjectLimit, true, false,),
             this.#getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
         )
     }
