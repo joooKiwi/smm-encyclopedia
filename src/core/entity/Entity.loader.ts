@@ -807,8 +807,8 @@ class TemplateBuilder
     }
 
     static #convertToBehaviourArray(behaviour: NullableString,): EveryPossibleLinkedBehaviourAcronymArray
-    static #convertToBehaviourArray(behaviour: NullableString,) {
-        return behaviour?.split(this.#SLASH_SEPARATOR) ?? EMPTY_ARRAY
+    static #convertToBehaviourArray(behaviour: NullableString,): readonly PossibleAcronym_Behaviour[] {
+        return behaviour?.split(this.#SLASH_SEPARATOR) as UndefinedOr<PossibleAcronym_Behaviour>[] ?? EMPTY_ARRAY
     }
 
 
