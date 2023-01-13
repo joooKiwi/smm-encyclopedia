@@ -6,6 +6,8 @@ import {EntityLimits}     from 'core/entityLimit/EntityLimits'
 import NameComponent      from 'lang/name/component/Name.component'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import TextComponent      from 'app/tools/text/TextComponent'
+import Tooltip            from 'bootstrap/tooltip/Tooltip'
+import {StringContainer}  from 'util/StringContainer'
 
 type Id = `${| 'editor' | 'whilePlaying'}-${string}`
 
@@ -46,7 +48,11 @@ function createSingleComponent(id: Id, entityLimit: EntityLimits, displayAcronym
         const acronym = entityLimit.acronym
         if (acronym == null)
             return createSingleNameComponent(id, entityLimit,)
-        return <TextComponent key={`${entityLimit.englishName} (acronym) → ${id}`} id={`entityLimit-acronym-${id}`} content={acronym}/>
+        const acronymId = `entityLimit-acronym-${id}-${StringContainer.getInHtml(entityLimit.acronym!)}`
+        //TODO Transform the tooltip to a popover to display every names instead
+        return <Tooltip option={{title: entityLimit.reference.nameContainer.languageValue,}} elementId={acronymId}>
+            <TextComponent key={`${entityLimit.englishName} (acronym) → ${id}`} id={acronymId} content={acronym}/>
+        </Tooltip>
     }
     return createSingleNameComponent(id, entityLimit,)
 }

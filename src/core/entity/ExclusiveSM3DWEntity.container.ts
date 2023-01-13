@@ -1,8 +1,7 @@
-import type {ExclusiveSM3DWEntity}                   from 'core/entity/Entity'
-import type {EntityReferences}                       from 'core/entity/properties/EntityReferences'
-import type {ExclusiveSMM2PropertyInSM3DW, Property} from 'core/entity/properties/Property'
-import type {EntityCategory}                         from 'core/entityCategory/EntityCategory'
-import type {Name}                                   from 'lang/name/Name'
+import type {EntityReferences} from 'core/entity/properties/EntityReferences'
+import type {Property}         from 'core/entity/properties/Property'
+import type {EntityCategory}   from 'core/entityCategory/EntityCategory'
+import type {Name}             from 'lang/name/Name'
 
 import {AbstractExclusiveSMM2Entity} from 'core/entity/AbstractExclusiveSMM2Entity'
 import {assert}                      from 'util/utilitiesMethods'
@@ -13,9 +12,8 @@ import {assert}                      from 'util/utilitiesMethods'
  *
  * @todo change tht exclusive SMM3DW entity to be an interface and separate the Entity projectile & Entity object into their own class.
  */
-export class ExclusiveSM3DWEntityContainer<CATEGORY extends EntityCategory = EntityCategory, >
-    extends AbstractExclusiveSMM2Entity<CATEGORY, ExclusiveSMM2PropertyInSM3DW>
-    implements ExclusiveSM3DWEntity<CATEGORY> {
+export class ExclusiveSM3DWEntityContainer
+    extends AbstractExclusiveSMM2Entity {
 
     public constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category, property, references,)

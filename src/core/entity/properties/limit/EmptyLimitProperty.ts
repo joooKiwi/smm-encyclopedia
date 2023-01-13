@@ -32,24 +32,31 @@ export class EmptyLimitProperty
     public readonly editorLimit_smm2 = this.editorLimitContainer.superMarioMaker2.value
     public readonly isUnknown_editorLimit_smm2 = this.editorLimitContainer.superMarioMaker2.isUnknown
 
-    public readonly isInGeneralLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
-    public readonly isInGeneralLimitWhilePlaying = this.isInGeneralLimitWhilePlayingContainer.value
-    public readonly isInGeneralLimitWhilePlayingComment = this.isInGeneralLimitWhilePlayingContainer.comment
+    public readonly isInGeneralLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
+    public readonly isInGeneralLimit = this.isInGeneralLimitContainer.value
+    public readonly isInGeneralLimitComment = this.isInGeneralLimitContainer.comment
 
-    public readonly isInGlobalGeneralLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
-    public readonly isInGlobalGeneralLimitWhilePlaying = this.isInGlobalGeneralLimitWhilePlayingContainer.value
-    public readonly isInGlobalGeneralLimitWhilePlayingComment = this.isInGlobalGeneralLimitWhilePlayingContainer.comment
+    public readonly isInGlobalGeneralLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
+    public readonly isInGlobalGeneralLimit = this.isInGlobalGeneralLimitContainer.value
+    public readonly isInGlobalGeneralLimitComment = this.isInGlobalGeneralLimitContainer.comment
 
-    public readonly isInPowerUpLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
-    public readonly isInPowerUpLimitWhilePlaying = this.isInPowerUpLimitWhilePlayingContainer.value
+    public readonly isInPowerUpLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
+    public readonly isInPowerUpLimit = this.isInPowerUpLimitContainer.value
 
-    public readonly isInProjectileLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
-    public readonly isInProjectileLimitWhilePlaying = this.isInProjectileLimitWhilePlayingContainer.value
-    public readonly isInProjectileLimitWhilePlayingComment = this.isInProjectileLimitWhilePlayingContainer.comment
+    public readonly isInProjectileLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
+    public readonly isInProjectileLimit = this.isInProjectileLimitContainer.value
+    public readonly isInProjectileLimitComment = this.isInProjectileLimitContainer.comment
 
-    public readonly otherLimitWhilePlayingContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
-    public readonly otherLimitWhilePlaying = this.otherLimitWhilePlayingContainer.value
-    public readonly otherLimitWhilePlayingComment = this.otherLimitWhilePlayingContainer.comment
+    public readonly isInRenderedObjectLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
+    public readonly isInRenderedObjectLimit = this.isInRenderedObjectLimitContainer.value
+    public readonly isInRenderedObjectLimitComment = this.isInRenderedObjectLimitContainer.comment
+
+    public readonly isInCollectedCoinLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
+    public readonly isInCollectedCoinLimit = this.isInCollectedCoinLimitContainer.value
+
+    public readonly otherLimitContainer = PropertyContainer.NOT_APPLICABLE_CONTAINER
+    public readonly otherLimit = this.otherLimitContainer.value
+    public readonly otherLimitComment = this.otherLimitContainer.comment
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------

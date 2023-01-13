@@ -1,21 +1,21 @@
-import type {Property}                                                                                                                                                                        from 'core/entity/properties/Property'
-import type {GameProperty}                                                                                                                                                                    from 'core/entity/properties/game/GameProperty'
-import type {GameStyleProperty}                                                                                                                                                               from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                                                                                                                       from 'core/entity/properties/instrument/InstrumentProperty'
-import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                   from 'core/entity/properties/instrument/loader.types'
-import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment}                                     from 'core/entity/properties/limit/loader.types'
-import type {ThemeProperty}                                                                                                                                                                   from 'core/entity/properties/theme/ThemeProperty'
-import type {TimeProperty}                                                                                                                                                                    from 'core/entity/properties/time/TimeProperty'
-import type {EntityLimits}                                                                                                                                                                    from 'core/entityLimit/EntityLimits'
-import type {Games}                                                                                                                                                                           from 'core/game/Games'
-import type {GameStyles}                                                                                                                                                                      from 'core/gameStyle/GameStyles'
-import type {Instrument}                                                                                                                                                                      from 'core/instrument/Instrument'
-import type {Themes}                                                                                                                                                                          from 'core/theme/Themes'
-import type {Times}                                                                                                                                                                           from 'core/time/Times'
-import type {ObjectHolder}                                                                                                                                                                    from 'util/holder/ObjectHolder'
-import type {NullOr, NullOrBoolean}                                                                                                                                                           from 'util/types/nullable'
-import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                           from 'util/types/variables'
+import type {Property}                                                                                                                                                                                                                                         from 'core/entity/properties/Property'
+import type {GameProperty}                                                                                                                                                                                                                                     from 'core/entity/properties/game/GameProperty'
+import type {GameStyleProperty}                                                                                                                                                                                                                                from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                                                                                                                                                                                        from 'core/entity/properties/instrument/InstrumentProperty'
+import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                    from 'core/entity/properties/instrument/loader.types'
+import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
+import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                              from 'core/entity/properties/limit/loader.types'
+import type {ThemeProperty}                                                                                                                                                                                                                                    from 'core/entity/properties/theme/ThemeProperty'
+import type {TimeProperty}                                                                                                                                                                                                                                     from 'core/entity/properties/time/TimeProperty'
+import type {EntityLimits}                                                                                                                                                                                                                                     from 'core/entityLimit/EntityLimits'
+import type {Games}                                                                                                                                                                                                                                            from 'core/game/Games'
+import type {GameStyles}                                                                                                                                                                                                                                       from 'core/gameStyle/GameStyles'
+import type {Instrument}                                                                                                                                                                                                                                       from 'core/instrument/Instrument'
+import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
+import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
+import type {ObjectHolder}                                                                                                                                                                                                                                     from 'util/holder/ObjectHolder'
+import type {NullOr, NullOrBoolean}                                                                                                                                                                                                                            from 'util/types/nullable'
+import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                                                                                            from 'util/types/variables'
 
 export class PropertyContainer
     implements Property {
@@ -177,76 +177,102 @@ export class PropertyContainer
     //endregion -------------------- Editor limit --------------------
     //region -------------------- General limit --------------------
 
-    public get isInGeneralLimitWhilePlayingContainer(): PossibleIsInGeneralLimit {
-        return this.limitContainer.isInGeneralLimitWhilePlayingContainer
+    public get isInGeneralLimitContainer(): PossibleIsInGeneralLimit {
+        return this.limitContainer.isInGeneralLimitContainer
     }
 
-    public get isInGeneralLimitWhilePlaying(): BooleanOrNotApplicable {
-        return this.limitContainer.isInGeneralLimitWhilePlaying
+    public get isInGeneralLimit(): BooleanOrNotApplicable {
+        return this.limitContainer.isInGeneralLimit
     }
 
-    public get isInGeneralLimitWhilePlayingComment(): NullOr<PossibleGeneralEntityLimitComment> {
-        return this.limitContainer.isInGeneralLimitWhilePlayingComment
+    public get isInGeneralLimitComment(): NullOr<PossibleGeneralEntityLimitComment> {
+        return this.limitContainer.isInGeneralLimitComment
     }
 
+    //endregion -------------------- General limit --------------------
     //region -------------------- Global general limit --------------------
 
-    public get isInGlobalGeneralLimitWhilePlayingContainer(): PossibleIsInGeneralGlobalLimit {
-        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingContainer
+    public get isInGlobalGeneralLimitContainer(): PossibleIsInGeneralGlobalLimit {
+        return this.limitContainer.isInGlobalGeneralLimitContainer
     }
 
-    public get isInGlobalGeneralLimitWhilePlaying(): BooleanOrNotApplicable {
-        return this.limitContainer.isInGlobalGeneralLimitWhilePlaying
+    public get isInGlobalGeneralLimit(): BooleanOrNotApplicable {
+        return this.limitContainer.isInGlobalGeneralLimit
     }
 
-    public get isInGlobalGeneralLimitWhilePlayingComment(): NullOr<PossibleGeneralGlobalEntityLimitComment> {
-        return this.limitContainer.isInGlobalGeneralLimitWhilePlayingComment
+    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalEntityLimitComment> {
+        return this.limitContainer.isInGlobalGeneralLimitComment
     }
 
     //endregion -------------------- Global general limit --------------------
-
-    //endregion -------------------- General limit --------------------
     //region -------------------- Power-up limit --------------------
 
-    public get isInPowerUpLimitWhilePlayingContainer(): PossibleIsInPowerUpLimit {
-        return this.limitContainer.isInPowerUpLimitWhilePlayingContainer
+    public get isInPowerUpLimitContainer(): PossibleIsInPowerUpLimit {
+        return this.limitContainer.isInPowerUpLimitContainer
     }
 
-    public get isInPowerUpLimitWhilePlaying(): NullOr<BooleanOrNotApplicable> {
-        return this.limitContainer.isInPowerUpLimitWhilePlaying
+    public get isInPowerUpLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.limitContainer.isInPowerUpLimit
     }
 
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
-    public get isInProjectileLimitWhilePlayingContainer(): PossibleIsInProjectileLimit {
-        return this.limitContainer.isInProjectileLimitWhilePlayingContainer
+    public get isInProjectileLimitContainer(): PossibleIsInProjectileLimit {
+        return this.limitContainer.isInProjectileLimitContainer
     }
 
-    public get isInProjectileLimitWhilePlaying(): NullOr<BooleanOrNotApplicable> {
-        return this.limitContainer.isInProjectileLimitWhilePlaying
+    public get isInProjectileLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.limitContainer.isInProjectileLimit
     }
 
-    public get isInProjectileLimitWhilePlayingComment(): NullOr<PossibleProjectileEntityLimitComment> {
-        return this.limitContainer.isInProjectileLimitWhilePlayingComment
+    public get isInProjectileLimitComment(): NullOr<PossibleProjectileEntityLimitComment> {
+        return this.limitContainer.isInProjectileLimitComment
     }
 
     //endregion -------------------- Projectile limit --------------------
-    //region -------------------- Custom limit --------------------
+    //region -------------------- Rendered object limit --------------------
 
-    public get otherLimitWhilePlayingContainer(): PossibleOtherLimit {
-        return this.limitContainer.otherLimitWhilePlayingContainer
+    public get isInRenderedObjectLimitContainer(): PossibleIsInRenderedObjectLimit {
+        return this.limitContainer.isInRenderedObjectLimitContainer
     }
 
-    public get otherLimitWhilePlaying(): | EntityLimits | NotApplicable {
-        return this.limitContainer.otherLimitWhilePlaying
+    public get isInRenderedObjectLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.limitContainer.isInRenderedObjectLimit
     }
 
-    public get otherLimitWhilePlayingComment(): NullOr<PossibleOtherLimitComment> {
-        return this.limitContainer.otherLimitWhilePlayingComment
+    public get isInRenderedObjectLimitComment(): NullOr<PossibleRenderedObjectLimitTypeComment> {
+        return this.limitContainer.isInRenderedObjectLimitComment
     }
 
-    //endregion -------------------- Custom limit --------------------
+    //endregion -------------------- Rendered object limit --------------------
+    //region -------------------- Collected object limit --------------------
+
+    public get isInCollectedCoinLimitContainer(): PossibleIsInCollectedCoinLimit {
+        return this.limitContainer.isInCollectedCoinLimitContainer
+    }
+
+    public get isInCollectedCoinLimit(): NullOr<BooleanOrNotApplicable> {
+        return this.limitContainer.isInCollectedCoinLimit
+    }
+
+    //endregion -------------------- Collected object limit --------------------
+    //region -------------------- Other limit --------------------
+
+    public get otherLimitContainer(): PossibleOtherLimit {
+        return this.limitContainer.otherLimitContainer
+    }
+
+    public get otherLimit(): | EntityLimits | NotApplicable {
+        return this.limitContainer.otherLimit
+    }
+
+    public get otherLimitComment(): NullOr<PossibleOtherLimitComment> {
+        return this.limitContainer.otherLimitComment
+    }
+
+    //endregion -------------------- Other limit --------------------
+
     //endregion -------------------- Limit properties --------------------
     //region -------------------- Instrument properties --------------------
 

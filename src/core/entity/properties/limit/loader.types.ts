@@ -29,8 +29,10 @@ export type PowerUpEntityLimitType = NullOrBoolean
 export type PossibleProjectileEntityLimitComment = | 'Temporary as it comes out' | 'Each one separated' | 'Always reserve 1 projectile' | 'By player, can overfill limit' | 'Can only spawn (available) based → limits'
 export type ProjectileEntityLimitType = NullOr<| boolean | UnknownCharacter | PossibleProjectileEntityLimitComment>
 
-export type RenderedObjectLimitTypeComment = | 'Only when not dotted' | `Only if not hit${| '' | UnknownCharacter}`
-export type RenderedObjectLimitType = NullOr<| boolean | RenderedObjectLimitTypeComment>
+export type PossibleRenderedObjectLimitTypeComment = | 'Only when not dotted' | `Only if not hit${| '' | UnknownCharacter}`
+export type RenderedObjectLimitType = NullOr<| boolean | PossibleRenderedObjectLimitTypeComment>
+
+export type CollectedCoinLimitType = NullOrBoolean
 
 export type PossibleOtherLimit = Exclude<PossibleEnglishName, `${`${'General' | 'Power-up'} Entity` | 'Projectile'} Limit`>
 export type OtherLimitType = NullOr<PossibleOtherLimit>
