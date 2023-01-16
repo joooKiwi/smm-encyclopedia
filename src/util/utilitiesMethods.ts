@@ -2,6 +2,7 @@ import type {BasicEnumerableConstructor, CollectionHolder, Enumerable} from '@jo
 import {AssertionError}                                                from 'assert'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
+import type {ClassWithType}        from 'core/ClassWithType'
 import type {Nullable}             from 'util/types/nullable'
 import type {EmptyString}          from 'util/types/variables'
 
@@ -53,9 +54,11 @@ export function assert(condition: boolean, message: string,): asserts condition 
         throw new AssertionError({message: message,})
 }
 
+//region -------------------- get value by … --------------------
+
 export function getValueByEnglishName<T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
     if (value == null)
-        throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null value`)
+        throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null name.`)
     if (value instanceof enumerableConstructor)
         return value as T
     const valueFound = (enumerableConstructor.values as CollectionHolder<T>).find(it => it.englishName === value)
@@ -64,4 +67,18 @@ export function getValueByEnglishName<T extends EnumerableWithEnglishName, >(val
     return valueFound
 }
 
+export function getValueByType<T extends EnumerableWithType, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
+    if (value == null)
+        throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null type.`)
+    if (value instanceof enumerableConstructor)
+        return value as T
+    const valueFound = (enumerableConstructor.values as CollectionHolder<T>).find(it => it.type === value)
+    if (valueFound == null)
+        throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
+    return valueFound
+}
+
 type EnumerableWithEnglishName = & Enumerable & ClassWithEnglishName<string>
+type EnumerableWithType = & Enumerable & ClassWithType<string>
+
+//endregion -------------------- get value by … --------------------
