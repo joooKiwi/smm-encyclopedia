@@ -88,10 +88,10 @@ export const everySimpleRoutes = [
 
     route(    'everyPredefinedMessages',    '/every/predefined-message',    () => <PredefinedMessageApp/>,),
 
-    route(    'everyCourseTags',            'every/course-tag',             () => <CourseTagApp type="all"/>,),
-    route(    'officialCourseTags',         'official/course-tag',          () => <CourseTagApp type="official"/>,),
-    route(    'unofficialCourseTags',       'unofficial/course-tag',        () => <CourseTagApp type="unofficial"/>,),
-    route(    'makerCentralCourseTags',     'maker-central/course-tag',     () => <CourseTagApp type="makerCentral"/>,),
+    route(    'everyCourseTags',            '/every/course-tag',             () => <CourseTagApp type="all"/>,),
+    route(    'officialCourseTags',         '/official/course-tag',          () => <CourseTagApp type="official"/>,),
+    route(    'unofficialCourseTags',       '/unofficial/course-tag',        () => <CourseTagApp type="unofficial"/>,),
+    route(    'makerCentralCourseTags',     '/maker-central/course-tag',     () => <CourseTagApp type="makerCentral"/>,),
 
     route(    'everyInstruments',           '/every/instrument',            () => <InstrumentApp/>,),
 ] as const
