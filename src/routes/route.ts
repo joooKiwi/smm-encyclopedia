@@ -31,7 +31,7 @@ export function route(partialPath_or_name_or_location: PossibleParameterReceived
         return `/${language.projectAcronym}${simpleRoute.path}`
     }
 
-    const {pathname: pathName} = partialPath_or_name_or_location
+    const {pathname: pathName} = partialPath_or_name_or_location as Location
 
     return language.isCurrentLanguage
         ? pathName as EveryPossibleRoutes
