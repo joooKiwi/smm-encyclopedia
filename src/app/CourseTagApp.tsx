@@ -3,6 +3,7 @@ import './CourseTagApp.scss'
 import type {CourseTagAppProperties}                               from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList,}                          from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {NullOr}                                               from 'util/types/nullable'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
@@ -14,7 +15,8 @@ import {CourseTags}             from 'core/courseTag/CourseTags'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class CourseTagApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties> {
+    extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties>
+    implements ClassWithType<CourseTagTypes> {
 
     //region -------------------- Fields --------------------
 
