@@ -25,7 +25,7 @@ export abstract class Arrows
 
     public static readonly UP =                   new class ArrowDirections_Up extends Arrows {
 
-        public override createCardinalArrow(): ReactElement {
+        public override createCardinalArrow(): NonNullable<ReactElement> {
             return <div className="arrow up"/>
         }
 
@@ -36,7 +36,7 @@ export abstract class Arrows
     }('arrow-container', VERTICAL, true,)
     public static readonly DOWN =                 new class ArrowDirections_Down extends Arrows {
 
-        public override createCardinalArrow(): ReactElement {
+        public override createCardinalArrow(): NonNullable<ReactElement> {
             return <div className="arrow down"/>
         }
 
@@ -47,7 +47,7 @@ export abstract class Arrows
     }('arrow-container', VERTICAL, true,)
     public static readonly LEFT =                 new class ArrowDirections_Left extends Arrows {
 
-        public override createCardinalArrow(): ReactElement {
+        public override createCardinalArrow(): NonNullable<ReactElement> {
             return <div className="arrow left"/>
         }
 
@@ -58,7 +58,7 @@ export abstract class Arrows
     }('arrow-container', HORIZONTAL, true,)
     public static readonly RIGHT =                new class ArrowDirections_Right extends Arrows {
 
-        public override createCardinalArrow(): ReactElement {
+        public override createCardinalArrow(): NonNullable<ReactElement> {
             return <div className="arrow right"/>
         }
 
@@ -73,7 +73,7 @@ export abstract class Arrows
             return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),]
         }
 
-    }('arrow-container', VERTICAL, false,)
+    }('arrow-container', VERTICAL, true,)
     public static readonly VERTICAL_SEPARATED =   new class ArrowDirections_VerticalSeparated extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
@@ -145,7 +145,7 @@ export abstract class Arrows
      *
      * @throws EvalError if the arrow contained is not {@link Arrows.UP up}, {@link Arrows.DOWN down}, {@link Arrows.LEFT left} or {@link Arrows.RIGHT right}.
      */
-    public createCardinalArrow(): ReactElement {
+    public createCardinalArrow(): NonNullable<ReactElement> {
         throw new EvalError('This method should never be called from a non-cardinal direction.')
     }
 
@@ -159,7 +159,7 @@ export abstract class Arrows
      * Create an arrow contained in a {@link HTMLDivElement div} having the class "arrow-container" or "arrows-container"
      * combined with the {@link ArrowDirections direction}.
      */
-    public createArrow(): ReactElement {
+    public createArrow(): NonNullable<ReactElement> {
         const [firstArrow, secondArrow,] = this.__arrows
 
         return <div className={`${this.__container} ${this.direction.value}`}>

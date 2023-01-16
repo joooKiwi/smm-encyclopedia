@@ -12,56 +12,57 @@ interface GroupOf5PowerUpPriorityProperties
 
     children: readonly [ReactElement, ReactElement, ReactElement, ReactElement, ReactElement,]
 
+    hasSeparatedLines?: boolean
+
 }
 
 /**
  * @param properties
  * @reactComponent
  */
-export default function GroupOf5PowerUpPriority({id, children,}: GroupOf5PowerUpPriorityProperties,) {
-    const [child1, child2, child3, child4, child5,] = children
+export default function GroupOf5PowerUpPriority({id, children: [child1, child2, child3, child4, child5,], hasSeparatedLines = false,}: GroupOf5PowerUpPriorityProperties,) {
     return <div id={id} className="groupOf5-powerUp-priority">
         <div className="start-container">{child1}</div>
         <div className="first-external-arrows-container">
             <div className="diagonal-arrow-container">
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
             </div>
             <div className="diagonal-arrow-container">
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
             </div>
         </div>
         <div className="middle-container">
             {child2}
             <div className="centered-arrows-container">
                 <div className="horizontal-arrow-container">
-                    <Arrow value={Arrows.HORIZONTAL_SEPARATED}/>
+                    <Arrow value={hasSeparatedLines ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED}/>
                 </div>
                 <div className="diagonal-arrows-container">
                     <div className="diagonal-arrow-container">
-                        <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                        <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
                     </div>
-                    <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                    <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
                 </div>
                 <div className="diagonal-arrows-container">
                     <div className="diagonal-arrow-container">
-                        <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                        <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
                     </div>
-                    <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                    <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
                 </div>
             </div>
             {child3}
         </div>
-        <div className="second-external-arrows-container">
+        <div className="second-external-arrows-container px-3">
             <div className="diagonal-arrow-container">
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
             </div>
             <div className="diagonal-arrow-container">
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                <Arrow value={hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
             </div>
         </div>
         <div className="end-container">
             {child4}
-            <Arrow value={Arrows.HORIZONTAL_SEPARATED}/>
+            <Arrow value={hasSeparatedLines ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED}/>
             {child5}
         </div>
     </div>
