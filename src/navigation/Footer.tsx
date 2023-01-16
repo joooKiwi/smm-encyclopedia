@@ -29,7 +29,7 @@ export default function Footer({languageChanger,}: FooterProperties,) {
             </div>
             <div className="row">
                 <small id="version" className="text-center text-light">
-                    {contentTranslation('Version')} 0.13 <sub className="opacity-50">beta</sub>
+                    {contentTranslation('Version')} 0.14 <sub className="opacity-50">beta</sub>
                 </small>
                 <small id="copyright" className="text-center text-light">
                     {contentTranslation('Copyright')}<sup className="opacity-50">©</sup> Nintendo<span className="opacity-50">™</span>
