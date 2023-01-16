@@ -1,5 +1,3 @@
-import type {CourseTagTypes} from 'app/property/CourseTagTypes'
-
 enum Enum {
 
     ALL,
@@ -12,5 +10,6 @@ enum Enum {
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
-export type PossibleCourseTagType = | 'all' | 'official' | 'unofficial' | 'makerCentral'
-export type CourseTagTypesByType<T, > = T extends PossibleCourseTagType ? CourseTagTypes : never
+export type PossibleType = | 'all' | 'official' | 'unofficial' | 'makerCentral'
+/** A simple type (not forwarded to the {@link EveryPossibleRouteNames} variable) */
+export type PossibleRouteName = `${| 'every' | 'official' | 'unofficial' | 'makerCentral'}CourseTags`
