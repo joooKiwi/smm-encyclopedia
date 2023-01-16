@@ -53,14 +53,14 @@
         position: absolute;
 
         .line {
-          --min-line-size: calc(var(--group-line-size) * 1.75);
+          --min-line-size: calc(var(--group-line-size) * 2);
         }
 
         > .diagonal-arrow-container {
           transform-origin: bottom;
           transform: rotate(30deg);
           position: absolute;
-          margin-top: calc(var(--group-line-size) / 2);
+          margin-top: calc(var(--group-line-size) / 1.5);
 
           .line {
             --min-line-size: calc(var(--group-line-size) * 1.25);
@@ -82,16 +82,7 @@
 
   > .second-external-arrows-container {
     display: flex;
-    justify-content: space-around;
-
-    > :first-child {
-      transform: rotate(-15deg);
-    }
-
-    > :last-child {
-      transform: rotate(15deg);
-    }
-
+    justify-content: space-between;
   }
 
   > .end-container {

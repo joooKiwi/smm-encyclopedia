@@ -1,3 +1,5 @@
+import './EntityLimitAppOption.scss'
+
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
@@ -5,16 +7,21 @@ import type {Names, Ordinals}                                  from 'app/options
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
 import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
 import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {EntityLimit}                                      from 'core/entityLimit/EntityLimit'
 import type {EntityLimits}                                     from 'core/entityLimit/EntityLimits'
 import type {ReactElement}                                     from 'util/react/ReactProperties'
 import type {NullOr}                                           from 'util/types/nullable'
 
-import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
-import TextComponent                                from 'app/tools/text/TextComponent'
-import {Games}                                      from 'core/game/Games'
-import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import NameComponent                                from 'lang/name/component/Name.component'
+import {CommonOptions}                 from 'app/options/CommonOptions'
+import {COURSE_THEME_IMAGE_FILE}       from 'app/options/file/themeImageFiles'
+import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
+import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
+import TextComponent                   from 'app/tools/text/TextComponent'
+import Image                           from 'app/tools/images/Image'
+import {Games}                         from 'core/game/Games'
+import {EmptyEntityLimit}              from 'core/entityLimit/EmptyEntityLimit'
+import {contentTranslation}            from 'lang/components/translationMethods'
+import NameComponent                   from 'lang/name/component/Name.component'
 
 export abstract class EntityLimitAppOption
     extends Enum<Ordinals, Names> {
@@ -24,13 +31,16 @@ export abstract class EntityLimitAppOption
     public static readonly ACRONYM = new class EntityLimitAppOption_Acronym extends EntityLimitAppOption {
 
         protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: EntityLimits,) {
-            const finalAcronym = alternativeAcronym == null
+            return alternativeAcronym == null
                 ? acronym == null
-                    ? ''
-                    : acronym
-                : `${acronym} / ${alternativeAcronym}`
-
-            return <TextComponent content={finalAcronym}/>
+                    ? null
+                    : <TextComponent content={acronym}/>
+                : <div className="acronyms-container d-flex flex-column flex-md-row">
+                    <TextComponent content={acronym}/>
+                    <div className="vertical-separator vr mx-2 d-none d-md-inline-block"/>
+                    <hr className="horizontal-separator my-1 d-block d-md-none"/>
+                    <TextComponent content={alternativeAcronym}/>
+                </div>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -40,21 +50,30 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly NAME = new class EntityLimitAppOption_Name extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference,}: EntityLimits,) {
-            return [
-                <NameComponent id="name" name={reference} popoverOrientation="bottom"/>,
-                <NameComponent id="alternativeName" name={reference.alternativeContainer} popoverOrientation="bottom"/>,
-            ]
+        protected override _createContentOption({reference, isEditorLimit,}: EntityLimits,) {
+            const {alternativeContainer} = reference
+            return alternativeContainer instanceof EmptyEntityLimit
+                ? this.#createNameComponent(reference, isEditorLimit,)
+                : <div className="names-container d-flex flex-column flex-md-row">
+                    {this.#createNameComponent(reference, isEditorLimit,)}
+                    <div className="vertical-separator vr mx-3 d-none d-md-inline-block"/>
+                    <hr className="horizontal-separator my-1 d-block d-md-none"/>
+                    <NameComponent id="alternativeName" name={alternativeContainer} popoverOrientation="bottom"/>
+                </div>
         }
 
+        #createNameComponent(reference: EntityLimit, isEditorLimit: boolean,): ReactElement {
+            return isEditorLimit
+                ? <div className="nameWithImage-container d-flex position-relative">
+                    <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image badge bg-transparent position-absolute top-0 start-0"/>
+                    <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
+                </div>
+                : <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
+        }
+
+
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {
-                key: 'names', element: contentTranslation('Name'),
-                subHeaders: [
-                    {key: 'name', element: null,},
-                    {key: 'alternativeName', element: contentTranslation('Alternative name'),},
-                ],
-            }
+            return CommonOptions.get.nameHeader
         }
 
     }()
@@ -74,17 +93,6 @@ export abstract class EntityLimitAppOption
                     {key: 'limit-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
                 ],
             }
-        }
-
-    }()
-    public static readonly TYPE = new class EntityLimitAppOption_Type extends EntityLimitAppOption {
-
-        protected override _createContentOption({reference: {type,},}: EntityLimits,) {
-            return <TextComponent content={gameContentTranslation(type.englishCommonText)}/>
-        }
-
-        protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'type', element: contentTranslation('Type'),}
         }
 
     }()

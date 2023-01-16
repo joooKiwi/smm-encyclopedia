@@ -1,3 +1,4 @@
+import type {ClassWithType}                            from 'core/ClassWithType'
 import type {Property}                                 from 'core/_properties/Property'
 import type {ClassWithGameReference}                   from 'core/gameReference/ClassWithGameReference'
 import type {GameReferences}                           from 'core/gameReference/GameReferences'
@@ -6,11 +7,12 @@ import type {NullOr}                                   from 'util/types/nullable
 import type {BooleanOrNotApplicable, UnknownReference} from 'util/types/variables'
 
 export interface SoundEffectOnGoalPole
-    extends Property<BooleanOrNotApplicable>, ClassWithGameReference<NullOr<GameReferences>>, ClassWithTranslationKey<PossibleTranslationKeys> {
+    extends Property<BooleanOrNotApplicable>,
+        ClassWithType<PossibleTypes>,
+        ClassWithGameReference<NullOr<GameReferences>>,
+        ClassWithTranslationKey<PossibleTranslationKeys> {
 
     get simpleTranslationKey(): PossibleSimpleTranslationKeys
-
-    get type(): PossibleTypes
 
 }
 

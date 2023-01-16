@@ -1,46 +1,87 @@
 import './EntityLimitApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
+import type {EntityLimitAppProperties}                             from 'app/AppProperties.types'
 import type {EntityLimitAppStates}                                 from 'app/AppStates.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {EntityLimitAppOption}   from 'app/options/EntityLimitAppOption'
-import TextComponent            from 'app/tools/text/TextComponent'
-import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
-import {EntityLimits}           from 'core/entityLimit/EntityLimits'
-import {gameContentTranslation} from 'lang/components/translationMethods'
+import {EntityLimitAppOption}                       from 'app/options/EntityLimitAppOption'
+import {EntityLimitTypes}                           from 'app/property/EntityLimitTypes'
+import LinkButton                                   from 'app/tools/button/LinkButton'
+import TextComponent                                from 'app/tools/text/TextComponent'
+import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
+import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import {EntityLimits}                               from 'core/entityLimit/EntityLimits'
+import {EntityLimitTypes as EntityLimitTypes2}      from 'core/entityLimit/EntityLimitTypes'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import Image                                        from 'app/tools/images/Image'
+import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
+
+//region -------------------- Import from deconstruction --------------------
+
+const {WHILE_PLAYING, EDITOR,} = EntityLimitTypes2
+
+//endregion -------------------- Import from deconstruction --------------------
 
 /**
  * @reactComponent
  */
 export default class EntityLimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, AppProperties, EntityLimitAppStates> {
+    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, EntityLimitAppProperties, EntityLimitAppStates>
+    implements ClassWithType<EntityLimitTypes> {
 
-    public constructor(props: AppProperties,) {
+    //region -------------------- Fields --------------------
+
+    #type?: EntityLimitTypes
+
+    //endregion -------------------- Fields --------------------
+
+    public constructor(props: EntityLimitAppProperties,) {
         super(props,)
         this.state = {
             typeDisplayed: ViewDisplays.TABLE,
         }
     }
 
+    //region -------------------- Getter methods --------------------
+
+    public get type(): EntityLimitTypes {
+        return this.#type ??= EntityLimitTypes.getValueByType(this.props.type)
+    }
+
+    //endregion -------------------- Getter methods --------------------
+
     //region -------------------- Create methods --------------------
 
     protected override _createKey(): string {
-        return 'entityLimit'
+        return 'limit'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('Every entity limits')
     }
 
+    protected override _createAsideContent(): ReactElementOrString {
+        const type = this.type
+
+        return <div id="limit-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
+            <LinkButton partialId="allLimit" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
+                <LinkButton partialId="playLimit" routeName={type.playRouteName} color={type.playColor}>{gameContentTranslation(WHILE_PLAYING.englishCommonText)}</LinkButton>
+                <LinkButton partialId="editorLimit" routeName={type.editorRouteName} color={type.editorColor}>{gameContentTranslation(EDITOR.englishCommonText)}</LinkButton>
+            </div>
+        </div>
+    }
+
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
+        const $this = this
+
         return new class implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
 
             public get iterable() {
-                return EntityLimits[Symbol.iterator]()
+                return $this.type.iterator
             }
 
             //region -------------------- List interpreter --------------------
@@ -62,9 +103,17 @@ export default class EntityLimitApp
 
             public createCardListContent(enumeration: EntityLimits,) {
                 EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration
-                const {reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName, englishNameInHtml,} = enumeration
 
-                return <div className="card-body" id={`entityLimit-${englishNameInHtml}`}>
+                return enumeration.isEditorLimit
+                    ? <div className="card-bodyWithEditor-container">
+                        <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 bottom-0"/>
+                        {this.#createBody(enumeration)}
+                    </div>
+                    : this.#createBody(enumeration)
+            }
+
+            #createBody({reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName, englishNameInHtml,}: EntityLimits,) {
+                return <div className="card-body" id={`limit-${englishNameInHtml}`}>
                     {limitAmountInSMM1AndSMM3DS === limitAmountInSMM2
                         ? <TextComponent key={`${englishName} - card list text component`} content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
                         : EntityLimitAppOption.AMOUNT.renderContent}
@@ -83,7 +132,6 @@ export default class EntityLimitApp
                     EntityLimitAppOption.ACRONYM,
                     EntityLimitAppOption.NAME,
                     EntityLimitAppOption.AMOUNT,
-                    EntityLimitAppOption.TYPE,
                 ]
             }
 

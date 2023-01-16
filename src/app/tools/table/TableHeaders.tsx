@@ -2,6 +2,7 @@ import {PureComponent} from 'react'
 
 import type {SingleHeaderContent, SingleHeadersContent}          from 'app/tools/table/SimpleHeader'
 import type {EveryHeaderHolders, Layout, TableHeadersProperties} from 'app/tools/table/TableHeaders.types'
+import type {ClassWithType}                                      from 'core/ClassWithType'
 import type {ReactComponent}                                     from 'util/react/ReactComponent'
 
 import {HeaderTypes} from 'app/tools/table/header/HeaderTypes'
@@ -14,7 +15,7 @@ import {EMPTY_ARRAY} from 'util/emptyVariables'
  */
 export default class TableHeaders
     extends PureComponent<TableHeadersProperties>
-    implements ReactComponent {
+    implements ReactComponent, ClassWithType<HeaderTypes> {
 
     //region -------------------- Fields --------------------
 

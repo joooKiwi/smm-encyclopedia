@@ -3,7 +3,6 @@ enum Enum {
     ACRONYM,
     NAME,
     AMOUNT,
-    TYPE,
 
 }
 

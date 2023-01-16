@@ -3,6 +3,7 @@ import './CourseTagApp.scss'
 import type {CourseTagAppProperties}                               from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList,}                          from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {NullOr}                                               from 'util/types/nullable'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
@@ -10,11 +11,13 @@ import {CourseTagTypes}         from 'app/property/CourseTagTypes'
 import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
-import {CourseTags}             from 'core/courseTag/CourseTags'
-import {gameContentTranslation} from 'lang/components/translationMethods'
+import {CourseTags}                                 from 'core/courseTag/CourseTags'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import LinkButton                                   from 'app/tools/button/LinkButton'
 
 export default class CourseTagApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties> {
+    extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties>
+    implements ClassWithType<CourseTagTypes> {
 
     //region -------------------- Fields --------------------
 
@@ -53,12 +56,12 @@ export default class CourseTagApp
         const type = this.type
 
         return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
-            {type.createAllLinkButton()}
+            <LinkButton partialId="everyCourseTag" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
-                {type.createOfficialLinkButton()}
-                {type.createUnofficialLinkButton()}
+                <LinkButton partialId="officialCourseTag" routeName={type.officialRouteName} color={type.officialColor}>{contentTranslation('Official.Yes')}</LinkButton>
+                <LinkButton partialId="unofficialCourseTag" routeName={type.unofficialRouteName} color={type.unofficialColor}>{contentTranslation('Official.No')}</LinkButton>
             </div>
-            {type.createMakerCentralLinkButton()}
+            <LinkButton partialId="makerCentralCourseTag" routeName={type.makerCentralRouteName} color={type.makerCentralColor}>Maker Central</LinkButton>
         </div>
     }
 

@@ -1,5 +1,3 @@
-import {CourseTags} from 'core/courseTag/CourseTags'
-
 enum Enum {
 
     NONE,
@@ -65,29 +63,3 @@ export type PossibleMakerCentralName = | 'Standard' | 'Puzzle' | 'Speedrun' | 'A
                                        | 'Music' | 'Pixel Art' | 'Technical' | 'Boss' | 'Link'
 
 //endregion -------------------- Name types --------------------
-//region -------------------- Array types --------------------
-
-export type OfficialCourseTags = readonly [
-    typeof CourseTags['NONE'], typeof CourseTags['STANDARD'], typeof CourseTags['PUZZLE_SOLVING'], typeof CourseTags['SPEEDRUN'],
-    typeof CourseTags['AUTOSCROLL'], typeof CourseTags['AUTO_MARIO'],
-    typeof CourseTags['SHORT_AND_SWEET'], typeof CourseTags['SHOOTER'],
-    typeof CourseTags['SINGLE_PLAYER'], typeof CourseTags['MULTIPLAYER_VERSUS'],
-    typeof CourseTags['THEMED'], typeof CourseTags['MUSIC'], typeof CourseTags['ART'], typeof CourseTags['TECHNICAL'],
-    typeof CourseTags['BOSS_BATTLE'], typeof CourseTags['LINK'],
-]
-export type UnofficialCourseTags = readonly [
-    typeof CourseTags['ONE_SCREEN'], typeof CourseTags['PRECISION'],
-    typeof CourseTags['MULTIPLAYER'], typeof CourseTags['LOCAL_MULTIPLAYER'], typeof CourseTags['ONLINE_MULTIPLAYER'], typeof CourseTags['MULTIPLAYER_COOP'],
-    typeof CourseTags['PIXEL_ART'], typeof CourseTags['SHOWCASE'], typeof CourseTags['STORY'], typeof CourseTags['EXPLORATION'],
-    typeof CourseTags['GLITCH'], typeof CourseTags['TROLL'], typeof CourseTags['KAIZO'],
-]
-export type MakerCentralCourseTags = readonly [
-    typeof CourseTags['STANDARD'], typeof CourseTags['PUZZLE_SOLVING'], typeof CourseTags['SPEEDRUN'],
-    typeof CourseTags['AUTOSCROLL'], typeof CourseTags['AUTO_MARIO'],
-    typeof CourseTags['SHORT_AND_SWEET'], typeof CourseTags['SHOOTER'],
-    typeof CourseTags['SINGLE_PLAYER'], typeof CourseTags['MULTIPLAYER'],
-    typeof CourseTags['THEMED'], typeof CourseTags['MUSIC'], typeof CourseTags['PIXEL_ART'], typeof CourseTags['TECHNICAL'],
-    typeof CourseTags['BOSS_BATTLE'], typeof CourseTags['LINK'],
-]
-
-//endregion -------------------- Array types --------------------

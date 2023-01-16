@@ -17,7 +17,7 @@ export interface BootstrapConfiguration<OPTION extends ComponentOptions, EVENTS,
 
 export type PossibleIds = | string | string[]
 export type BootstrapColor
-    = | 'primary' | 'secondary'
+    = | 'primary' | 'secondary'//|'tertiary'
       | 'light' | 'dark'
       | 'success' | 'info' | 'warning' | 'danger'
       | 'white' | 'gray' | 'gray-dark'

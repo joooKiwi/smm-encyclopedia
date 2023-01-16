@@ -6,12 +6,14 @@ import type {AbstractCardListApp}             from 'app/withInterpreter/Abstract
 import type {AbstractSimpleListApp}           from 'app/withInterpreter/AbstractSimpleListApp'
 import type {AbstractTableApp}                from 'app/withInterpreter/AbstractTableApp'
 import type {HTMLType, Names, Ordinals, Type} from 'app/withInterpreter/ViewDisplays.types'
+import type {ClassWithType}                   from 'core/ClassWithType'
 import type {ReactElement}                    from 'util/react/ReactProperties'
 
 import {assert} from 'util/utilitiesMethods'
 
 export abstract class ViewDisplays
-    extends Enum<Ordinals, Names> {
+    extends Enum<Ordinals, Names>
+    implements ClassWithType<Type> {
 
     //region -------------------- Enum instances --------------------
 
