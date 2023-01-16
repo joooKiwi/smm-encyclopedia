@@ -48,7 +48,7 @@ function createSingleComponent(id: Id, entityLimit: EntityLimits, displayAcronym
         const acronym = entityLimit.acronym
         if (acronym == null)
             return createSingleNameComponent(id, entityLimit,)
-        const acronymId = `entityLimit-acronym-${id}-${StringContainer.getInHtml(entityLimit.acronym!)}`
+        const acronymId = `limit-acronym-${id}-${StringContainer.getInHtml(entityLimit.acronym!)}`
         //TODO Transform the tooltip to a popover to display every names instead
         return <Tooltip option={{title: entityLimit.reference.nameContainer.languageValue,}} elementId={acronymId}>
             <TextComponent key={`${entityLimit.englishName} (acronym) → ${id}`} id={acronymId} content={acronym}/>
@@ -58,5 +58,5 @@ function createSingleComponent(id: Id, entityLimit: EntityLimits, displayAcronym
 }
 
 function createSingleNameComponent(id: Id, entityLimit: EntityLimits,) {
-    return <NameComponent key={`${entityLimit.englishName} (name) → ${id}`} id={`entityLimit-name-${id}`} name={entityLimit.reference}/>
+    return <NameComponent key={`${entityLimit.englishName} (name) → ${id}`} id={`limit-name-${id}`} name={entityLimit.reference}/>
 }

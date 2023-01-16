@@ -12,34 +12,40 @@ interface GroupOf4PowerUpPriorityProperties
 
     children: readonly [ReactElement, ReactElement, ReactElement, ReactElement,]
 
+    isTopArrowSeparated?: boolean
+    isLeftArrowSeparated?: boolean
+    isFirstDiagonalArrowSeparated?: boolean
+    isSecondDiagonalArrowSeparated?: boolean
+    isRightArrowSeparated?: boolean
+    isBottomArrowSeparated?: boolean
+
 }
 
 /**
  * @param properties
  * @reactComponent
  */
-export default function GroupOf4PowerUpPriority({id, children,}: GroupOf4PowerUpPriorityProperties,) {
-    const [child1, child2, child3, child4,] = children
+export default function GroupOf4PowerUpPriority({id, children: [child1, child2, child3, child4,], isTopArrowSeparated = false, isLeftArrowSeparated = false, isFirstDiagonalArrowSeparated = false, isSecondDiagonalArrowSeparated = false, isRightArrowSeparated = false, isBottomArrowSeparated = false,}: GroupOf4PowerUpPriorityProperties,) {
     return <div id={id} className="groupOf4-powerUp-priority">
         <div className="start-container">
             {child1}
-            <Arrow value={Arrows.HORIZONTAL_SEPARATED}/>
+            <Arrow value={isTopArrowSeparated ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED}/>
             {child2}
         </div>
         <div className="arrows-container">
             <div className="vertical-arrow-container">
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/></div>
+                <Arrow value={isLeftArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/></div>
             <div className="diagonal-arrows-container">
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/>
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                <Arrow value={isFirstDiagonalArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
+                <Arrow value={isSecondDiagonalArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
             </div>
             <div className="vertical-arrow-container">
-                <Arrow value={Arrows.VERTICAL_SEPARATED}/>
+                <Arrow value={isRightArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
             </div>
         </div>
         <div className="end-container">
             {child3}
-            <Arrow value={Arrows.HORIZONTAL_SEPARATED}/>
+            <Arrow value={isBottomArrowSeparated ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED}/>
             {child4}
         </div>
     </div>

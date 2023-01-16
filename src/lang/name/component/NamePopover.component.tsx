@@ -1,10 +1,11 @@
 import {Popover}                                       from 'bootstrap'
 import {Component, type Dispatch, type SetStateAction} from 'react'
 
-import type {Name}                                                                         from 'lang/name/Name'
-import type {NamePopoverProperties, NamePopoverStates, NameProperties, PopoverOrientation} from 'lang/name/component/Name.properties'
-import type {ReactComponent}                                                               from 'util/react/ReactComponent'
-import type {ReactElement}                                                                 from 'util/react/ReactProperties'
+import type {PopoverOrientation}                                       from 'bootstrap/popover/Popover.types'
+import type {Name}                                                     from 'lang/name/Name'
+import type {NamePopoverProperties, NamePopoverStates, NameProperties} from 'lang/name/component/Name.properties'
+import type {ReactComponent}                                           from 'util/react/ReactComponent'
+import type {ReactElement}                                             from 'util/react/ReactProperties'
 
 import TextComponent        from 'app/tools/text/TextComponent'
 import TextPopover          from 'bootstrap/popover/TextPopover'
@@ -65,7 +66,7 @@ export default class NamePopoverComponent
         })
     }
 
-    public override render(): ReactElement {
+    public override render(): NonNullable<ReactElement> {
         return this.state.element
     }
 

@@ -4,10 +4,10 @@ import type {PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, Po
 import type {ReactElement}                                                                     from 'util/react/ReactProperties'
 
 import AbstractApp                      from 'app/AbstractApp'
-import GroupOf2PowerUpPriority          from 'app/powerUp/group/GroupOf2PowerUpPriority'
-import GroupOf3PowerUpPriority          from 'app/powerUp/group/GroupOf3PowerUpPriority'
-import GroupOf4PowerUpPriority          from 'app/powerUp/group/GroupOf4PowerUpPriority'
-import GroupOf5PowerUpPriority          from 'app/powerUp/group/GroupOf5PowerUpPriority'
+import {default as GroupOf2}            from 'app/powerUp/group/GroupOf2PowerUpPriority'
+import {default as GroupOf3}            from 'app/powerUp/group/GroupOf3PowerUpPriority'
+import {default as GroupOf4}            from 'app/powerUp/group/GroupOf4PowerUpPriority'
+import {default as GroupOf5}            from 'app/powerUp/group/GroupOf5PowerUpPriority'
 import {AbstractPowerUpPriority}        from 'app/powerUp/priority/AbstractPowerUpPriority'
 import {AllGamesPowerUpPriority}        from 'app/powerUp/priority/AllGamesPowerUpPriority'
 import PowerUpPriorityComponent         from 'app/powerUp/priority/PowerUpPriority.component'
@@ -107,170 +107,170 @@ export default class PowerUpAndRidePriorityApp
                     {[
                         ['Power-up priority group (SMB)', 'powerUpPriority-accordionGroup-smb', false,
                             {buttonContent: GameStyles.SUPER_MARIO_BROS.renderSingleComponent,},
-                            {bodyContent: <GroupOf2PowerUpPriority id="powerUpPriority-group-smb" arrow="UP">
-                                    <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-nonPowerUps">
+                            {bodyContent: <GroupOf2 id="powerUpPriority-group-smb" arrow="UP">
+                                    <GroupOf3 id="powerUpPriority-group-smb-nonPowerUps" isRightArrowSeparated>
                                         <PowerUpPriorityComponent         key="Power-up priority (SMB - Super Star)"                    id="powerUpPriority-smb-superStar"                          value={PowerUpAndRidePriorityApp.#SUPER_STAR}              images={priority => priority.smbImages}/>
-                                        <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-nonPowerUps-mountable">
+                                        <GroupOf3 id="powerUpPriority-group-smb-nonPowerUps-mountable">
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB - Lakitu's Cloud)"                id="powerUpPriority-smb-lakituCloud"                        value={PowerUpAndRidePriorityApp.#LAKITU_CLOUD}            images={priority => priority.smbImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB - Clown Car)"                     id="powerUpPriority-smb-clownCar"                           value={PowerUpAndRidePriorityApp.#KOOPA_CLOWN_CAR}         images={priority => priority.smbImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB - Fire Clown Car)"                id="powerUpPriority-smb-fireClownCar"                       value={PowerUpAndRidePriorityApp.#FIRE_KOOPA_CLOWN_CAR}    images={priority => priority.smbImages}/>
-                                        </GroupOf3PowerUpPriority>
-                                        <GroupOf2PowerUpPriority id="powerUpPriority-group-smb-shells" arrow="VERTICAL_SEPARATED">
-                                            <GroupOf2PowerUpPriority id="powerUpPriority-group-smb-top-shells" arrow="HORIZONTAL_SEPARATED">
+                                        </GroupOf3>
+                                        <GroupOf2 id="powerUpPriority-group-smb-shells" arrow="VERTICAL_JOINED">
+                                            <GroupOf2 id="powerUpPriority-group-smb-top-shells" arrow="HORIZONTAL_JOINED">
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB - Buzzy Shell)"                   id="powerUpPriority-smb-buzzyShell"                         value={PowerUpAndRidePriorityApp.#BUZZY_SHELL}             images={priority => priority.smbImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB - Spiny Shell)"                   id="powerUpPriority-smb-spinyShell"                         value={PowerUpAndRidePriorityApp.#SPINY_SHELL}             images={priority => priority.smbImages}/>
-                                            </GroupOf2PowerUpPriority>
-                                            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb-mountable">
+                                            </GroupOf2>
+                                            <GroupOf3 id="powerUpPriority-group-smb-mountable">
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB - Dry Bones Shell)"               id="powerUpPriority-smb-dryBonesShell"                      value={PowerUpAndRidePriorityApp.#DRY_BONES_SHELL}         images={priority => priority.smbImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB - Shoe)"                          id="powerUpPriority-smb-shoe"                               value={PowerUpAndRidePriorityApp.#SHOE}                    images={priority => priority.smbImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB - Stiletto)"                      id="powerUpPriority-smb-stiletto"                           value={PowerUpAndRidePriorityApp.#STILETTO}                images={priority => priority.smbImages} displayName/>
-                                            </GroupOf3PowerUpPriority>
-                                        </GroupOf2PowerUpPriority>
-                                    </GroupOf3PowerUpPriority>
-                                    <GroupOf2PowerUpPriority id="powerUpPriority-group-smb-simplePowerUps" arrow="RIGHT">
-                                        <GroupOf2PowerUpPriority id="powerUpPriority-group-smb-mushrooms" arrow="DOWN">
+                                            </GroupOf3>
+                                        </GroupOf2>
+                                    </GroupOf3>
+                                    <GroupOf2 id="powerUpPriority-group-smb-simplePowerUps" arrow="RIGHT">
+                                        <GroupOf2 id="powerUpPriority-group-smb-mushrooms" arrow="DOWN">
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB - Super Mushroom)"                id="powerUpPriority-superMushroom"                          value={PowerUpAndRidePriorityApp.#SUPER_MUSHROOM}          images={priority => priority.smbImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Weird Mushroom)"                      id="powerUpPriority-weirdMushroom"                          value={PowerUpAndRidePriorityApp.#WEIRD_MUSHROOM}/>
-                                        </GroupOf2PowerUpPriority>
+                                        </GroupOf2>
                                         <div id="powerUpPriority-group-smb-others">
-                                            <GroupOf4PowerUpPriority id="powerUpPriority-group-smm-smb-others">
+                                            <GroupOf4 id="powerUpPriority-group-smm-smb-others">
                                                 <PowerUpPriorityComponent key="Power-up priority (Mystery Mushroom)"                    id="powerUpPriority-mysteryMushroom"                        value={PowerUpAndRidePriorityApp.#MYSTERY_MUSHROOM}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (Big Mushroom (classic))"              id="powerUpPriority-bigMushroomClassic"                     value={PowerUpAndRidePriorityApp.#BIG_MUSHROOM_CLASSIC}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMM1 - SMB - Fire Flower)"            id="powerUpPriority-smm2-smb-fireFlower"                    value={PowerUpAndRidePriorityApp.#FIRE_FLOWER}             images={priority => priority.smbImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (Big Mushroom (modern))"               id="powerUpPriority-bigMushroomModern"                      value={PowerUpAndRidePriorityApp.#BIG_MUSHROOM_MODERN}/>
-                                            </GroupOf4PowerUpPriority>
-                                            <GroupOf5PowerUpPriority id="powerUpPriority-group-smm2-smb-others">
+                                            </GroupOf4>
+                                            <GroupOf5 id="powerUpPriority-group-smm2-smb-others">
                                                 <PowerUpPriorityComponent key="Power-up priority (Master Sword)"                        id="powerUpPriority-masterSword"                            value={PowerUpAndRidePriorityApp.#MASTER_SWORD}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (Big Mushroom)"                        id="powerUpPriority-bigMushroom"                            value={PowerUpAndRidePriorityApp.#BIG_MUSHROOM}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB2 Mushroom)"                       id="powerUpPriority-smb2Mushroom"                           value={PowerUpAndRidePriorityApp.#SMB2_MUSHROOM}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMM2 - SMB - Fire Flower)"            id="powerUpPriority-smm2-smb-fireFlower"                    value={PowerUpAndRidePriorityApp.#FIRE_FLOWER}             images={priority => priority.smbImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (Superball Flower)"                    id="powerUpPriority-superballFlower"                        value={PowerUpAndRidePriorityApp.#SUPERBALL_FLOWER}/>
-                                            </GroupOf5PowerUpPriority>
+                                            </GroupOf5>
                                         </div>
-                                    </GroupOf2PowerUpPriority>
-                                </GroupOf2PowerUpPriority>},
+                                    </GroupOf2>
+                                </GroupOf2>},
                         ],
                         ['Power-up priority group (SMB3)', 'powerUpPriority-accordionGroup-smb3', false,
                             {buttonContent: GameStyles.SUPER_MARIO_BROS_3.renderSingleComponent,},
-                            {bodyContent: <GroupOf2PowerUpPriority id="powerUpPriority-group-smb3" arrow="UP">
-                                    <GroupOf3PowerUpPriority id="powerUpPriority-group-smb3-nonPowerUps">
+                            {bodyContent: <GroupOf2 id="powerUpPriority-group-smb3" arrow="UP">
+                                    <GroupOf3 id="powerUpPriority-group-smb3-nonPowerUps" isRightArrowSeparated>
                                         <PowerUpPriorityComponent         key="Power-up priority (SMB3 - Super Star)"                   id="powerUpPriority-smb3-superStar"                         value={PowerUpAndRidePriorityApp.#SUPER_STAR}              images={priority => priority.smb3Images}/>
-                                        <GroupOf3PowerUpPriority id="powerUpPriority-group-smb3-nonPowerUps-mountable">
+                                        <GroupOf3 id="powerUpPriority-group-smb3-nonPowerUps-mountable">
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB3 - Lakitu's Cloud)"               id="powerUpPriority-smb3-lakituCloud"                       value={PowerUpAndRidePriorityApp.#LAKITU_CLOUD}            images={priority => priority.smb3Images}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB3 - Clown Car)"                    id="powerUpPriority-smb3-clownCar"                          value={PowerUpAndRidePriorityApp.#KOOPA_CLOWN_CAR}         images={priority => priority.smb3Images}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB3 - Fire Clown Car)"               id="powerUpPriority-smb3-fireClownCar"                      value={PowerUpAndRidePriorityApp.#FIRE_KOOPA_CLOWN_CAR}    images={priority => priority.smb3Images}/>
-                                        </GroupOf3PowerUpPriority>
-                                        <GroupOf2PowerUpPriority id="powerUpPriority-group-smb3-shells" arrow="VERTICAL_SEPARATED">
-                                            <GroupOf2PowerUpPriority id="powerUpPriority-group-smb3-top-shells" arrow="HORIZONTAL_SEPARATED">
+                                        </GroupOf3>
+                                        <GroupOf2 id="powerUpPriority-group-smb3-shells" arrow="VERTICAL_JOINED">
+                                            <GroupOf2 id="powerUpPriority-group-smb3-top-shells" arrow="HORIZONTAL_JOINED">
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB3 - Buzzy Shell)"                  id="powerUpPriority-smb3-buzzyShell"                        value={PowerUpAndRidePriorityApp.#BUZZY_SHELL}             images={priority => priority.smb3Images}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB3 - Spiny Shell)"                  id="powerUpPriority-smb3-spinyShell"                        value={PowerUpAndRidePriorityApp.#SPINY_SHELL}             images={priority => priority.smb3Images}/>
-                                            </GroupOf2PowerUpPriority>
-                                            <GroupOf3PowerUpPriority id="powerUpPriority-group-smb3-mountable">
+                                            </GroupOf2>
+                                            <GroupOf3 id="powerUpPriority-group-smb3-mountable">
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB3 - Dry Bones Shell)"              id="powerUpPriority-smb3-dryBonesShell"                     value={PowerUpAndRidePriorityApp.#DRY_BONES_SHELL}         images={priority => priority.smb3Images}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB3 - Shoe)"                         id="powerUpPriority-smb3-shoe"                              value={PowerUpAndRidePriorityApp.#SHOE}                    images={priority => priority.smb3Images}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMB3 - Stiletto)"                     id="powerUpPriority-smb3-stiletto"                          value={PowerUpAndRidePriorityApp.#STILETTO}                images={priority => priority.smb3Images} displayName/>
-                                            </GroupOf3PowerUpPriority>
-                                        </GroupOf2PowerUpPriority>
-                                    </GroupOf3PowerUpPriority>
-                                    <GroupOf2PowerUpPriority id="powerUpPriority-group-smb3-simplePowerUps" arrow="RIGHT">
+                                            </GroupOf3>
+                                        </GroupOf2>
+                                    </GroupOf3>
+                                    <GroupOf2 id="powerUpPriority-group-smb3-simplePowerUps" arrow="RIGHT">
                                         <PowerUpPriorityComponent         key="Power-up priority (SMB3 - Super Mushroom)"               id="powerUpPriority-smb3-superMushroom"                     value={PowerUpAndRidePriorityApp.#SUPER_MUSHROOM}          images={priority => priority.smb3Images}/>
-                                        <GroupOf3PowerUpPriority id="powerUpPriority-group-smb3-2ndTier">
+                                        <GroupOf3 id="powerUpPriority-group-smb3-2ndTier">
                                             <PowerUpPriorityComponent     key="Power-up priority (SMB3 - Fire Flower)"                  id="powerUpPriority-smb3-fireFlower"                        value={PowerUpAndRidePriorityApp.#FIRE_FLOWER}             images={priority => priority.smb3Images}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Super Leaf)"                          id="powerUpPriority-superLeaf"                              value={PowerUpAndRidePriorityApp.#SUPER_LEAF}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Frog Suit)"                           id="powerUpPriority-frogSuit"                               value={PowerUpAndRidePriorityApp.#FROG_SUIT}/>
-                                        </GroupOf3PowerUpPriority>
-                                    </GroupOf2PowerUpPriority>
-                                </GroupOf2PowerUpPriority>},
+                                        </GroupOf3>
+                                    </GroupOf2>
+                                </GroupOf2>},
                         ],
                         ['Power-up priority group (SMW)', 'powerUpPriority-accordionGroup-smw', false,
                             {buttonContent: GameStyles.SUPER_MARIO_WORLD.renderSingleComponent,},
-                            {bodyContent: <GroupOf2PowerUpPriority id="powerUpPriority-group-smw" arrow="UP">
-                                    <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-nonPowerUps">
+                            {bodyContent: <GroupOf2 id="powerUpPriority-group-smw" arrow="UP">
+                                    <GroupOf3 id="powerUpPriority-group-smw-nonPowerUps" isRightArrowSeparated>
                                         <PowerUpPriorityComponent         key="Power-up priority (SMW - Super Star)"                    id="powerUpPriority-smw-superStar"                          value={PowerUpAndRidePriorityApp.#SUPER_STAR}              images={priority => priority.smwImages}/>
-                                        <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-nonPowerUps-mountable">
+                                        <GroupOf3 id="powerUpPriority-group-smw-nonPowerUps-mountable">
                                             <PowerUpPriorityComponent     key="Power-up priority (SMW - Lakitu's Cloud)"                id="powerUpPriority-smw-lakituCloud"                        value={PowerUpAndRidePriorityApp.#LAKITU_CLOUD}            images={priority => priority.smwImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (SMW - Clown Car)"                     id="powerUpPriority-smw-clownCar"                           value={PowerUpAndRidePriorityApp.#KOOPA_CLOWN_CAR}         images={priority => priority.smwImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (SMW - Fire Clown Car)"                id="powerUpPriority-smw-fireClownCar"                       value={PowerUpAndRidePriorityApp.#FIRE_KOOPA_CLOWN_CAR}    images={priority => priority.smwImages}/>
-                                        </GroupOf3PowerUpPriority>
-                                        <GroupOf2PowerUpPriority id="powerUpPriority-group-smw-shells" arrow="VERTICAL_SEPARATED">
-                                            <GroupOf2PowerUpPriority id="powerUpPriority-group-smw-top-shells" arrow="HORIZONTAL_SEPARATED">
+                                        </GroupOf3>
+                                        <GroupOf2 id="powerUpPriority-group-smw-shells" arrow="VERTICAL_JOINED">
+                                            <GroupOf2 id="powerUpPriority-group-smw-top-shells" arrow="HORIZONTAL_JOINED">
                                                 <PowerUpPriorityComponent key="Power-up priority (SMW - Buzzy Shell)"                   id="powerUpPriority-smw-buzzyShell"                         value={PowerUpAndRidePriorityApp.#BUZZY_SHELL}             images={priority => priority.smwImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMW - Spiny Shell)"                   id="powerUpPriority-smw-spinyShell"                         value={PowerUpAndRidePriorityApp.#SPINY_SHELL}             images={priority => priority.smwImages
                                                 }/>
-                                            </GroupOf2PowerUpPriority>
-                                            <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-mountable">
+                                            </GroupOf2>
+                                            <GroupOf3 id="powerUpPriority-group-smw-mountable">
                                                 <PowerUpPriorityComponent key="Power-up priority (SMW - Dry Bones Shell)"               id="powerUpPriority-smw-dryBonesShell"                      value={PowerUpAndRidePriorityApp.#DRY_BONES_SHELL}         images={priority => priority.smwImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMW - Yoshi)"                         id="powerUpPriority-smw-yoshi"                              value={PowerUpAndRidePriorityApp.#YOSHI}                   images={priority => priority.smwImages} displayName/>
                                                 <PowerUpPriorityComponent key="Power-up priority (SMW - Red Yoshi)"                     id="powerUpPriority-smw-redYoshi"                           value={PowerUpAndRidePriorityApp.#RED_YOSHI}               images={priority => priority.smwImages} displayName/>
-                                            </GroupOf3PowerUpPriority>
-                                        </GroupOf2PowerUpPriority>
-                                    </GroupOf3PowerUpPriority>
-                                    <GroupOf2PowerUpPriority id="powerUpPriority-group-smw-simplePowerUps" arrow="RIGHT">
+                                            </GroupOf3>
+                                        </GroupOf2>
+                                    </GroupOf3>
+                                    <GroupOf2 id="powerUpPriority-group-smw-simplePowerUps" arrow="RIGHT">
                                         <PowerUpPriorityComponent         key="Power-up priority (SMW - Super Mushroom)"                id="powerUpPriority-smw-superMushroom"                      value={PowerUpAndRidePriorityApp.#SUPER_MUSHROOM}          images={priority => priority.smwImages}/>
-                                        <GroupOf3PowerUpPriority id="powerUpPriority-group-smw-2ndTier">
+                                        <GroupOf3 id="powerUpPriority-group-smw-2ndTier">
                                             <PowerUpPriorityComponent     key="Power-up priority (SMW - Fire Flower)"                   id="powerUpPriority-smw-fireFlower"                         value={PowerUpAndRidePriorityApp.#FIRE_FLOWER}             images={priority => priority.smwImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Cape Feather)"                        id="powerUpPriority-capeFeather"                            value={PowerUpAndRidePriorityApp.#CAPE_FEATHER}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Power Balloon)"                        id="powerUpPriority-powerBalloon"                          value={PowerUpAndRidePriorityApp.#POWER_BALLOON}/>
-                                        </GroupOf3PowerUpPriority>
-                                    </GroupOf2PowerUpPriority>
-                                </GroupOf2PowerUpPriority>},
+                                        </GroupOf3>
+                                    </GroupOf2>
+                                </GroupOf2>},
                         ],
                         ['Power-up priority group (NSMBU)', 'powerUpPriority-accordionGroup-nsmbu', false,
                             {buttonContent: GameStyles.NEW_SUPER_MARIO_BROS_U.renderSingleComponent},
-                            {bodyContent: <GroupOf2PowerUpPriority id="powerUpPriority-group-nsmbu" arrow="UP">
-                                    <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-nonPowerUps">
+                            {bodyContent: <GroupOf2 id="powerUpPriority-group-nsmbu" arrow="UP">
+                                    <GroupOf3 id="powerUpPriority-group-nsmbu-nonPowerUps" isRightArrowSeparated>
                                         <PowerUpPriorityComponent         key="Power-up priority (NSMBU - Super Star)"                  id="powerUpPriority-nsmbu-superStar"                        value={PowerUpAndRidePriorityApp.#SUPER_STAR}              images={priority => priority.nsmbuImages}/>
-                                        <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-nonPowerUps-mountable">
+                                        <GroupOf3 id="powerUpPriority-group-nsmbu-nonPowerUps-mountable">
                                             <PowerUpPriorityComponent     key="Power-up priority (NSMBU - Lakitu's Cloud)"              id="powerUpPriority-nsmbu-lakituCloud"                      value={PowerUpAndRidePriorityApp.#LAKITU_CLOUD}            images={priority => priority.nsmbuImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (NSMBU - Clown Car)"                   id="powerUpPriority-nsmbu-clownCar"                         value={PowerUpAndRidePriorityApp.#JUNIOR_CLOWN_CAR}        images={priority => priority.nsmbuImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (NSMBU - Fire Clown Car)"              id="powerUpPriority-nsmbu-fireClownCar"                     value={PowerUpAndRidePriorityApp.#FIRE_JUNIOR_CLOWN_CAR}   images={priority => priority.nsmbuImages}/>
-                                        </GroupOf3PowerUpPriority>
-                                        <GroupOf2PowerUpPriority id="powerUpPriority-group-nsmbu-shells" arrow="VERTICAL_SEPARATED">
-                                            <GroupOf2PowerUpPriority id="powerUpPriority-group-nsmbu-top-shells" arrow="HORIZONTAL_SEPARATED">
+                                        </GroupOf3>
+                                        <GroupOf2 id="powerUpPriority-group-nsmbu-shells" arrow="VERTICAL_JOINED">
+                                            <GroupOf2 id="powerUpPriority-group-nsmbu-top-shells" arrow="HORIZONTAL_JOINED">
                                                 <PowerUpPriorityComponent key="Power-up priority (NSMBU - Buzzy Shell)"                 id="powerUpPriority-nsmbu-buzzyShell"                       value={PowerUpAndRidePriorityApp.#BUZZY_SHELL}             images={priority => priority.nsmbuImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (NSMBU - Spiny Shell)"                 id="powerUpPriority-nsmbu-spinyShell"                       value={PowerUpAndRidePriorityApp.#SPINY_SHELL}             images={priority => priority.nsmbuImages}/>
-                                            </GroupOf2PowerUpPriority>
-                                            <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-mountable">
+                                            </GroupOf2>
+                                            <GroupOf3 id="powerUpPriority-group-nsmbu-mountable">
                                                 <PowerUpPriorityComponent key="Power-up priority (NSMBU - Dry Bones Shell)"             id="powerUpPriority-nsmbu-dryBonesShell"                    value={PowerUpAndRidePriorityApp.#DRY_BONES_SHELL}         images={priority => priority.nsmbuImages}/>
                                                 <PowerUpPriorityComponent key="Power-up priority (NSMBU - Yoshi)"                       id="powerUpPriority-nsmbu-yoshi"                            value={PowerUpAndRidePriorityApp.#YOSHI}                   images={priority => priority.nsmbuImages} displayName/>
                                                 <PowerUpPriorityComponent key="Power-up priority (NSMBU - Red Yoshi)"                   id="powerUpPriority-nsmbu-redYoshi"                         value={PowerUpAndRidePriorityApp.#RED_YOSHI}               images={priority => priority.nsmbuImages} displayName/>
-                                            </GroupOf3PowerUpPriority>
-                                        </GroupOf2PowerUpPriority>
-                                    </GroupOf3PowerUpPriority>
-                                    <GroupOf2PowerUpPriority id="powerUpPriority-group-nsmbu-simplePowerUps" arrow="RIGHT">
+                                            </GroupOf3>
+                                        </GroupOf2>
+                                    </GroupOf3>
+                                    <GroupOf2 id="powerUpPriority-group-nsmbu-simplePowerUps" arrow="RIGHT">
                                         <PowerUpPriorityComponent         key="Power-up priority (NSMBU - Super Mushroom)"              id="powerUpPriority-nsmbu-superMushroom"                    value={PowerUpAndRidePriorityApp.#SUPER_MUSHROOM}          images={priority => priority.nsmbuImages}/>
-                                        <GroupOf3PowerUpPriority id="powerUpPriority-group-nsmbu-2ndTier">
+                                        <GroupOf3 id="powerUpPriority-group-nsmbu-2ndTier">
                                             <PowerUpPriorityComponent     key="Power-up priority (NSMBU - Fire Flower)"                 id="powerUpPriority-nsmbu-fireFlower"                       value={PowerUpAndRidePriorityApp.#FIRE_FLOWER}             images={priority => priority.nsmbuImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Propeller Mushroom)"                  id="powerUpPriority-propellerMushroom"                      value={PowerUpAndRidePriorityApp.#PROPELLER_MUSHROOM}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Super Acorn)"                         id="powerUpPriority-superAcorn"                             value={PowerUpAndRidePriorityApp.#SUPER_ACORN}/>
-                                        </GroupOf3PowerUpPriority>
-                                    </GroupOf2PowerUpPriority>
-                                </GroupOf2PowerUpPriority>},
+                                        </GroupOf3>
+                                    </GroupOf2>
+                                </GroupOf2>},
                         ],
                         ['Power-up priority group (SM3DW)', 'powerUpPriority-accordionGroup-sm3dw', false,
                             {buttonContent: GameStyles.SUPER_MARIO_3D_WORLD.renderSingleComponent,},
-                            {bodyContent: <GroupOf2PowerUpPriority id="powerUpPriority-group-sm3dw" arrow="UP">
-                                    <GroupOf3PowerUpPriority id="powerUpPriority-group-sm3dw-superStarAndWearable">
+                            {bodyContent: <GroupOf2 id="powerUpPriority-group-sm3dw" arrow="UP">
+                                    <GroupOf3 id="powerUpPriority-group-sm3dw-superStarAndWearable">
                                         <PowerUpPriorityComponent         key="Power-up priority (SM3DW - Super Star)"                  id="powerUpPriority-sm3dw-superStar"                        value={PowerUpAndRidePriorityApp.#SUPER_STAR}              images={priority => priority.sm3dwImages}/>
                                         <PowerUpPriorityComponent         key="Power-up priority (Car)"                                 id="powerUpPriority-car"                                    value={PowerUpAndRidePriorityApp.#CAR}/>
-                                        <GroupOf5PowerUpPriority id="powerUpPriority-group-sm3dw-wearable">
+                                        <GroupOf5 id="powerUpPriority-group-sm3dw-wearable">
                                             <PowerUpPriorityComponent     key="Power-up priority (Cannon Box)"                          id="powerUpPriority-cannonBox"                              value={PowerUpAndRidePriorityApp.#CANNON_BOX}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Propeller Box)"                       id="powerUpPriority-propellerBox"                           value={PowerUpAndRidePriorityApp.#PROPELLER_BOX}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Goomba Mask)"                         id="powerUpPriority-goombaMask"                             value={PowerUpAndRidePriorityApp.#GOOMBA_MASK}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Bullet Bill Mask)"                    id="powerUpPriority-bulletBillMask"                         value={PowerUpAndRidePriorityApp.#BULLET_BILL_MASK}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Red POW Box)"                         id="powerUpPriority-redPowBox"                              value={PowerUpAndRidePriorityApp.#RED_POW_BOX}/>
-                                        </GroupOf5PowerUpPriority>
-                                    </GroupOf3PowerUpPriority>
-                                    <GroupOf2PowerUpPriority id="powerUpPriority-group-sm3dw-simplePowerUps" arrow="RIGHT">
+                                        </GroupOf5>
+                                    </GroupOf3>
+                                    <GroupOf2 id="powerUpPriority-group-sm3dw-simplePowerUps" arrow="RIGHT">
                                         <PowerUpPriorityComponent         key="Power-up priority (SM3DW - Super Mushroom)"              id="powerUpPriority-sm3dw-superMushroom"                    value={PowerUpAndRidePriorityApp.#SUPER_MUSHROOM}          images={priority => priority.sm3dwImages}/>
-                                        <GroupOf4PowerUpPriority id="powerUpPriority-group-sm3dw-2ndTier">
+                                        <GroupOf4 id="powerUpPriority-group-sm3dw-2ndTier">
                                             <PowerUpPriorityComponent     key="Power-up priority (SM3DW - Fire Flower)"                 id="powerUpPriority-sm3dw-fireFlower"                       value={PowerUpAndRidePriorityApp.#FIRE_FLOWER}             images={priority => priority.sm3dwImages}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Super Hammer)"                        id="powerUpPriority-superHammer"                            value={PowerUpAndRidePriorityApp.#SUPER_HAMMER}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Super Bell)"                          id="powerUpPriority-superBell"                              value={PowerUpAndRidePriorityApp.#SUPER_BELL}/>
                                             <PowerUpPriorityComponent     key="Power-up priority (Boomerang Flower)"                    id="powerUpPriority-boomerangFlower"                        value={PowerUpAndRidePriorityApp.#BOOMERANG_FLOWER}/>
-                                        </GroupOf4PowerUpPriority>
-                                    </GroupOf2PowerUpPriority>
-                                </GroupOf2PowerUpPriority>,},
+                                        </GroupOf4>
+                                    </GroupOf2>
+                                </GroupOf2>,},
                         ],
                     ]}
                 </Accordion>

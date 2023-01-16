@@ -1,3 +1,4 @@
+import type {ClassWithType}       from 'core/ClassWithType'
 import type {EntityTemplate}      from 'core/entity/Entity.template'
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EntityLink}          from 'core/entity/loader.types'
@@ -33,11 +34,10 @@ interface ReferencesToWatchDefinitionConstructor {
 
 }
 
-interface ReferenceHolderForProduction {
+interface ReferenceHolderForProduction
+    extends ClassWithType<ReferenceType> {
 
     get reference(): EntityTemplate
-
-    get type(): ReferenceType
 
     get value(): PossibleEnglishName
 

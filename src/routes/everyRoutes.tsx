@@ -1,6 +1,7 @@
 import {lazy} from 'react'
 
-import {SimpleRouteContainer} from 'routes/SimpleRoute.container'
+import {RouteGroupContainer}    from 'routes/RouteGroup.container'
+import {SimpleRouteContainer}   from 'routes/SimpleRoute.container'
 
 //region -------------------- Dynamic imports --------------------
 
@@ -25,44 +26,72 @@ const HomeApp =                   lazy(() => import('app/HomeApp'))
 const SourcesApp =                lazy(() => import('app/SourcesApp'))
 
 //endregion -------------------- Dynamic imports --------------------
-//region -------------------- Applications parameter --------------------
+//region -------------------- Deconstruction imports --------------------
 
-const COURSE_TAG_PARAMETERS = [
-    ['every',        'every',         'all',],
-    ['official',     'official',      'official',],
-    ['unofficial',   'unofficial',    'unofficial',],
-    ['makerCentral', 'maker-central', 'makerCentral',],
-] as const
+const {newInstance: route,} = SimpleRouteContainer
+// const {newInstance: redirect,} = RedirectRouteContainer
+const {newInstance: group,} = RouteGroupContainer
 
-//endregion -------------------- Applications parameter --------------------
+//endregion -------------------- Deconstruction imports --------------------
+//region -------------------- Route functions --------------------
+
+/**
+ * Create the redirect paths for 2 different paths.
+ *
+ * One as "entity limit" and the other as "limit".
+ *
+ * @param limits The limit names & paths
+ */
+function createLimitRedirects<NAME extends string, PATH extends string, >(...limits: readonly (readonly [NAME, PATH,])[]): readonly (readonly [`${NAME}${| '' | 'Entity'}Limit`, `/${PATH}/${| '' | 'entity-'}limit`,])[] {
+    return limits.map(([name, path,]) => [
+        [`${name}Limit`, `/${path}/limit`,],
+        [`${name}EntityLimit`, `/${path}/entity-limit`,],
+    ] as const).flat()
+}
+
+//endregion -------------------- Route functions --------------------
 
 export const everySimpleRoutes = [
-    SimpleRouteContainer.newInstance(    'home',                       '/home',                        () => <HomeApp/>,                   ),
-    SimpleRouteContainer.newInstance(    'about',                      '/about',                       () => <AboutApp/>,                  ),
-    SimpleRouteContainer.newInstance(    'sources',                    '/sources',                     () => <SourcesApp/>,                ),
+    route(    'home',                       '/home',                        () => <HomeApp/>,),
+    route(    'about',                      '/about',                       () => <AboutApp/>,),
+    route(    'sources',                    '/sources',                     () => <SourcesApp/>,),
 
-    SimpleRouteContainer.newInstance(    'everyPowerUp&RidePriority',  'every/power-up+ride/priority',  () => <PowerUpAndRidePriorityApp/>, ),
-    SimpleRouteContainer.newInstance(    'everyPowerUpPriority',       'every/power-up/priority',       () => <PowerUpAndRidePriorityApp/>, ),//TODO add EveryPowerUpPriorityApp
-    SimpleRouteContainer.newInstance(    'everyRidePriority',          'every/ride/priority',           () => <PowerUpAndRidePriorityApp/>, ),//TODO add EveryRidePriorityApp
 
-    SimpleRouteContainer.newInstance(    'everyGameReferences',        '/every/game-reference',         () => <GameReferenceApp/>,           ),
-    SimpleRouteContainer.newInstance(    'everyEntities',              '/every/entity',                 () => <EntityApp/>,                  ),
-    SimpleRouteContainer.newInstance(    'everyGameStyles',            '/every/gameStyle',              () => <GameStyleApp/>,               ),
-    SimpleRouteContainer.newInstance(    'everyCategories',            '/every/entity-category',        () => <EntityCategoryApp/>,          ),
-    SimpleRouteContainer.newInstance(    'everyGroups',                '/every/entity-group',           () => <EntityGroupApp/>,             ),
-    SimpleRouteContainer.newInstance(    'everyLimits',                '/every/entity-limit',           () => <EntityLimitApp/>,             ),
-    SimpleRouteContainer.newInstance(    'everyThemes',                '/every/theme',                  () => <ThemeApp/>,                   ),
+    route(    'everyPowerUp&RidePriority',  'every/power-up+ride/priority', () => <PowerUpAndRidePriorityApp/>,),
+    route(    'everyPowerUpPriority',       'every/power-up/priority',      () => <PowerUpAndRidePriorityApp/>,),//TODO add EveryPowerUpPriorityApp
+    route(    'everyRidePriority',          'every/ride/priority',          () => <PowerUpAndRidePriorityApp/>,),//TODO add EveryRidePriorityApp
 
-    SimpleRouteContainer.newInstance(    'everySoundEffects',          '/every/sound-effect',           () => <SoundEffectApp/>,             ),
-    SimpleRouteContainer.newInstance(    'everySoundEffectCategories', '/every/sound-effect-category',  () => <SoundEffectCategoryApp/>,     ),
 
-    SimpleRouteContainer.newInstance(    'everyMiiCostumes',           '/every/mii-costume',            () => <MiiCostumeApp/>,              ),
-    SimpleRouteContainer.newInstance(    'everyMiiCostumeCategories',  '/every/mii-costume-category',   () => <MiiCostumeCategoryApp/>,      ),
+    route(    'everyGameReferences',        '/every/game-reference',        () => <GameReferenceApp/>,),
+    route(    'everyEntities',              '/every/entity',                () => <EntityApp/>,),
+    route(    'everyGameStyles',            '/every/gameStyle',             () => <GameStyleApp/>,),
+    route(    'everyCategories',            '/every/entity-category',       () => <EntityCategoryApp/>,),
+    route(    'everyGroups',                '/every/entity-group',          () => <EntityGroupApp/>,),
 
-    SimpleRouteContainer.newInstance(    'everyMysteryMushrooms',      '/every/mystery-mushroom',       () => <MysteryMushroomApp/>,         ),
+    ...group( 'everyLimits',                '/every/limit',                 () => <EntityLimitApp type="all"/>,    ['everyEntityLimits', '/every/entity-limit',],).all,
+    ...group( 'playLimits',                 '/play/limit',                  () => <EntityLimitApp type="play"/>,   ['playEntityLimits', '/play/entity-limit',], ...createLimitRedirects(['playing', 'playing',], ['whilePlaying', 'while-playing',],),).all,
+    ...group( 'editorLimits',               '/editor/limit',                () => <EntityLimitApp type="editor"/>, ['playEntityLimits', '/play/entity-limit',],...createLimitRedirects(['inEditor', 'in-editor',], ['inTheEditor', 'in-the-editor',],),).all,
 
-    SimpleRouteContainer.newInstance(    'everyPredefinedMessages',    '/every/predefined-message',     () => <PredefinedMessageApp/>,       ),
-    ...COURSE_TAG_PARAMETERS.map(([name, routePath,type,]) =>
-        SimpleRouteContainer.newInstance(`${name}CourseTags`,          `/${routePath}/course-tag`,      () => <CourseTagApp type={type}/>    )),
-    SimpleRouteContainer.newInstance(    'everyInstruments',           '/every/instrument',             () => <InstrumentApp/>,              ),
+    route(    'everyThemes',                '/every/theme',                 () => <ThemeApp/>,),
+
+
+    route(    'everySoundEffects',          '/every/sound-effect',          () => <SoundEffectApp/>,),
+    route(    'everySoundEffectCategories', '/every/sound-effect-category', () => <SoundEffectCategoryApp/>,),
+
+
+    route(    'everyMiiCostumes',           '/every/mii-costume',           () => <MiiCostumeApp/>,),
+    route(    'everyMiiCostumeCategories',  '/every/mii-costume-category',  () => <MiiCostumeCategoryApp/>,),
+
+
+    route(    'everyMysteryMushrooms',      '/every/mystery-mushroom',      () => <MysteryMushroomApp/>,),
+
+
+    route(    'everyPredefinedMessages',    '/every/predefined-message',    () => <PredefinedMessageApp/>,),
+
+    route(    'everyCourseTags',            '/every/course-tag',             () => <CourseTagApp type="all"/>,),
+    route(    'officialCourseTags',         '/official/course-tag',          () => <CourseTagApp type="official"/>,),
+    route(    'unofficialCourseTags',       '/unofficial/course-tag',        () => <CourseTagApp type="unofficial"/>,),
+    route(    'makerCentralCourseTags',     '/maker-central/course-tag',     () => <CourseTagApp type="makerCentral"/>,),
+
+    route(    'everyInstruments',           '/every/instrument',            () => <InstrumentApp/>,),
 ] as const

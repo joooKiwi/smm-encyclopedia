@@ -44,7 +44,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
             <div className="btn-group col-6">
                 <DisplayViewRouteButton routeName="everyLimits" value={gameContentTranslation('Limit')}
                                         tooltipValue={gameContentTranslation('Display every limits')}
-                                        elementId="displayView-entityLimit-button" id={id} divId={divId}/>
+                                        elementId="displayView-limit-button" id={id} divId={divId}/>
             </div>
             <div className="btn-group col-6">
                 <DisplayViewRouteButton routeName="everyThemes" value={unfinishedText('Course & world theme')}//TODO add course & world theme translation

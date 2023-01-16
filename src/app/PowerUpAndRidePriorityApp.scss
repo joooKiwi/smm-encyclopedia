@@ -143,33 +143,33 @@
 #powerUpPriority-group-smw-nonPowerUps, #powerUpPriority-group-nsmbu-nonPowerUps,
 #powerUpPriority-group-sm3dw-superStarAndWearable, {
   border-color: var(--group-no-lag-color);
-  border-width: var(--bs-border-width-1);
   border-style: var(--group-line-style);
+  border-width: var(--bs-border-width-1);
   border-radius: var(--bs-border-radius);
 
   > .start-container {
     border-color: var(--group-no-lag-color);
+    border-style: var(--group-line-style);
     border-width: 0;
     border-bottom-width: var(--bs-border-width-1);
-    border-style: var(--group-line-style);
   }
 
   > .end-container {
     > .left-end-container {
       border-color: var(--group-no-lag-color);
       border-width: 0;
+      border-style: var(--group-line-style);
       border-top-width: var(--bs-border-width-1);
       border-right-width: var(--bs-border-width-1);
-      border-style: var(--group-line-style);
       border-top-right-radius: var(--bs-border-radius);
     }
 
     >.right-end-container {
       border-color: var(--group-no-lag-color);
       border-width: 0;
+      border-style: var(--group-line-style);
       border-top-width: var(--bs-border-width-1);
       border-left-width: var(--bs-border-width-1);
-      border-style: var(--group-line-style);
       border-top-left-radius: var(--bs-border-radius);
     }
   }
@@ -180,8 +180,8 @@
 #powerUpPriority-group-smw-top-shells,
 #powerUpPriority-group-nsmbu-top-shells, {
   border-color: var(--group-no-lag-color);
-  border-width: 0;
   border-style: var(--group-line-style);
+  border-width: 0;
   border-bottom-width: var(--bs-border-width-1);
 }
 
@@ -190,8 +190,8 @@
 #powerUpPriority-group-smw-mountable,
 #powerUpPriority-group-nsmbu-mountable, {
   border-color: var(--group-no-lag-color);
-  border-width: 0;
   border-style: var(--group-line-style);
+  border-width: 0;
   border-top-width: var(--bs-border-width-1);
 }
 
@@ -201,22 +201,22 @@
 #powerUpPriority-group-nsmbu-simplePowerUps,
 #powerUpPriority-group-sm3dw-simplePowerUps, {
   border-color: var(--group-lag-color);
-  border-width: var(--bs-border-width-1);
   border-style: var(--group-line-style);
+  border-width: var(--bs-border-width-1);
   border-radius: var(--bs-border-radius);
 
   > .left-container {
     border-color: var(--group-lag-color);
+    border-style: var(--group-line-style);
     border-width: 0;
     border-right-width: var(--bs-border-width-1);
-    border-style: var(--group-line-style);
   }
 
   > .right-container {
     border-color: var(--group-lag-color);
+    border-style: var(--group-line-style);
     border-width: 0;
     border-left-width: var(--bs-border-width-1);
-    border-style: var(--group-line-style);
   }
 }
 
@@ -251,4 +251,10 @@
   display: flex;
   justify-content: center;
 }
+#powerUpPriority-group-smm-smb-others {
+  .arrow-container {
+    --line-size: 4em;
+  }
+}
+
 //endregion -------------------- Display --------------------

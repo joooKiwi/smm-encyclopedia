@@ -1,11 +1,11 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                  from 'core/ClassWithReference'
-import type {CourseTag}                                                                                                                           from 'core/courseTag/CourseTag'
-import type {MakerCentralCourseTags, Names, OfficialCourseTags, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName, UnofficialCourseTags} from 'core/courseTag/CourseTags.types'
-import type {Nullable}                                                                                                                            from 'util/types/nullable'
+import type {ClassWithEnglishName}                                              from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                from 'core/ClassWithReference'
+import type {CourseTag}                                                         from 'core/courseTag/CourseTag'
+import type {Names, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName} from 'core/courseTag/CourseTags.types'
+import type {Nullable}                                                          from 'util/types/nullable'
 
 import {Import}                from 'util/DynamicImporter'
 import {StringContainer}       from 'util/StringContainer'
@@ -67,20 +67,22 @@ export class CourseTags
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseTag>
-    static #officialCourseTags?: OfficialCourseTags
-    static #unofficialCourseTags?: UnofficialCourseTags
-    static #makerCentralCourseTags?: MakerCentralCourseTags
+    static #officialCourseTags?: readonly CourseTags[]
+    static #unofficialCourseTags?: readonly CourseTags[]
+    static #makerCentralCourseTags?: readonly CourseTags[]
 
     #reference?: CourseTag
     readonly #englishNameContainer
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
         super()
         this.#englishNameContainer = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP() {
@@ -111,7 +113,7 @@ export class CourseTags
     }
 
 
-    public static get officialCourseTags(): OfficialCourseTags {
+    public static get officialCourseTags(): readonly CourseTags[] {
         return this.#officialCourseTags ??= [
             this.NONE, this.STANDARD, this.PUZZLE_SOLVING, this.SPEEDRUN,
             this.AUTOSCROLL, this.AUTO_MARIO,
@@ -122,12 +124,12 @@ export class CourseTags
         ]
     }
 
-    public static get unofficialCourseTags(): UnofficialCourseTags {
-        return this.#unofficialCourseTags ??= this.values.filter(it => !this.officialCourseTags.includes(it)).toArray() as UnofficialCourseTags
+    public static get unofficialCourseTags(): readonly CourseTags[] {
+        return this.#unofficialCourseTags ??= this.values.filter(it => !this.officialCourseTags.includes(it)).toArray()
     }
 
-    public static get makerCentralCourseTags(): MakerCentralCourseTags {
-        return this.#makerCentralCourseTags ??= this.values.filter(it => it.reference.makerCentralName != null).toArray() as MakerCentralCourseTags
+    public static get makerCentralCourseTags(): readonly CourseTags[] {
+        return this.#makerCentralCourseTags ??= this.values.filter(it => it.reference.makerCentralName != null).toArray()
     }
 
     public static getValueByName(value: Nullable<| CourseTags | string>,) {

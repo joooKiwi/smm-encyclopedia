@@ -1,3 +1,4 @@
+import type {ClassWithType}                               from 'core/ClassWithType'
 import type {EntityLimitAmount}                           from 'core/entityLimit/properties/EntityLimitAmount'
 import type {PossibleAcronym, PossibleAlternativeAcronym} from 'core/entityLimit/EntityLimits.types'
 import type {EntityLimitTypes}                            from 'core/entityLimit/EntityLimitTypes'
@@ -10,9 +11,8 @@ export interface EntityLimit<ACRONYM extends NullOr<| PossibleAcronym | Possible
     LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
     extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>/*,
         ClassWithNullableAcronym<PossibleAcronymEntityLimits>,
-        ClassWithEnglishName<PossibleEntityLimits>*/ {
-
-    get type(): TYPE
+        ClassWithEnglishName<PossibleEntityLimits>*/,
+        ClassWithType<TYPE> {
 
     get acronym(): ACRONYM
 

@@ -1,13 +1,68 @@
-.card-body span {
-  &::before {
-    color: var(--bs-body-color);
+@import '../functions';
+@import '../variables';
+@import '../mixin';
+
+.card-body {
+  span {
+    &::before {
+      color: var(--bs-body-color);
+    }
+
+    &:last-child::before {
+      content: ' / '; //TODO replace to text-space-backSlash-space
+    }
+
+    &:first-child::before {
+      content: none;
+    }
+  }
+}
+
+#limit-container {
+  .course-theme-image {
+    background-image: none;
+    padding: 0;
   }
 
-  &:last-child::before {
-    content: ' / '; //TODO replace to text-space-backSlash-space
-  }
+  .cardListElement-container {
+    position: relative;
 
-  &:first-child::before {
-    content: none;
+    .course-theme-image {
+      height: 2cm;
+      width: 2cm;
+      opacity: 20%;
+    }
+  }
+}
+
+//region  -------------------- Link buttons --------------------
+
+#limit-linkButton-playAndEditor-container {
+  margin-left: 0;
+}
+
+#allLimit-button {
+  border: {
+    top-right-radius: vaR(--bs-btn-border-radius);
+    bottom: {
+      left-radius: 0;
+      right-radius: 0;
+    }
+  };
+}
+
+#playLimit-button {
+  border-bottom-left-radius: var(--bs-btn-border-radius);
+}
+
+#editorLimit-button {
+  border-bottom-right-radius: var(--bs-btn-border-radius);
+}
+
+//endregion  -------------------- Link buttons --------------------
+
+@include media-breakpoint-up($grid-breakpoint-md) {
+  #limit-container > p {
+    margin-top: 1.75cm;
   }
 }
