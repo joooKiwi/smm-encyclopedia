@@ -220,6 +220,7 @@ export abstract class AbstractEditorImageBuilder<NAME extends NonNullable<Simple
     }
 
     protected _createImageFile(gameStyle: GameStyles, theme: Nullable<Themes>, time: | Times | boolean, imageNumber: PossibleAmountOfImages,): GenericEditorImageFile {
+        // @ts-ignore
         return new GenericEditorImageFileContainer(
             gameStyle,
             theme,

@@ -12,7 +12,7 @@ export class UnusedSMM1BigMushroomImageFileContainer
     public constructor(entity: ClassWithEntityEnglishName, name: ImageName_BigMushroom_Unused_SMM1, identifier: ImageIdentifier, number: Nullable<ImageNumber> = null,) {
         super(entity, `M1 A - Enemy - ${name}`,
             number == null ? identifier : `${identifier}.${number}`,
-            `Big Mushroom - ${number == null ? identifier : `${identifier} #${number + 1 as PossibleAmountOfImages}` as const}`,
+            `Big Mushroom - ${identifier}${number == null ? '' as const : ` #${number + 1 as PossibleAmountOfImages}` as const}`,
         )
     }
 

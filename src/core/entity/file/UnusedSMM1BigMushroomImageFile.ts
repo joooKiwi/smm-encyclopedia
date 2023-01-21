@@ -11,5 +11,5 @@ export type PossibleUnusedBigMushroomImageFileName = `${ImageIdentifier}${| '' |
 export type ImageIdentifier = | 'anger' | 'blink' | 'weep' | 'damage' | 'kutsu' | 'swim' | 'walk' | 'out' | 'wait' | 'fire' | 'iron_ball' | 'tear' | 'senkan_houdai_ball'
 export type ImageNumber = | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7
 
-export type PossibleUnusedBigMushroomImageFallbackName = `Big Mushroom - ${ImageIdentifier}${| '' | ` #${ImageNumber}`}`
+export type PossibleUnusedBigMushroomImageFallbackName = `Big Mushroom - ${ImageIdentifier}${| '' | ` #${PossibleAmountOfImages}`}`
 export type PossibleAmountOfImages = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8

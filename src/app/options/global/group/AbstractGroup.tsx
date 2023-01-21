@@ -36,9 +36,9 @@ export default abstract class AbstractGroup<T extends PossibleElement, U extends
 
     protected abstract _renderElement(element: T, option: GlobalAppOption<U>, isDisabled: readonly [boolean, boolean,], onClickCallback: NullOr<OnClickCallback>,): ReactElement
 
-    public override render(): ReactElement {
+    public override render(): NonNullable<ReactElement> {
         return this.isHidden
-            ? null
+            ? <></>//TODO replace with empty component
             : <div key={`option container (${this.id})`} id={`${this.id}-option-container`} className="container-fluid">{
                 this.elements.map(([element, option, isDisabled, isHidden, onClickCallback = null,]) =>
                     isHidden
