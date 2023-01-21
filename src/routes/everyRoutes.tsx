@@ -1,7 +1,10 @@
 import {lazy} from 'react'
 
-import {RouteGroupContainer}    from 'routes/RouteGroup.container'
-import {SimpleRouteContainer}   from 'routes/SimpleRoute.container'
+import type {SimpleRouteArgument} from 'routes/SimpleRouteArgument'
+
+import {RouteGroupContainer}          from 'routes/RouteGroup.container'
+import {SimpleRouteArgumentContainer} from 'routes/SimpleRouteArgument.container'
+import {SimpleRouteContainer}         from 'routes/SimpleRoute.container'
 
 //region -------------------- Dynamic imports --------------------
 
@@ -31,6 +34,7 @@ const SourcesApp =                lazy(() => import('app/SourcesApp'))
 const {newInstance: route,} = SimpleRouteContainer
 // const {newInstance: redirect,} = RedirectRouteContainer
 const {newInstance: group,} = RouteGroupContainer
+const {newInstance: argument,} = SimpleRouteArgumentContainer
 
 //endregion -------------------- Deconstruction imports --------------------
 //region -------------------- Route functions --------------------
@@ -42,10 +46,10 @@ const {newInstance: group,} = RouteGroupContainer
  *
  * @param limits The limit names & paths
  */
-function createLimitRedirects<NAME extends string, PATH extends string, >(...limits: readonly (readonly [NAME, PATH,])[]): readonly (readonly [`${NAME}${| '' | 'Entity'}Limit`, `/${PATH}/${| '' | 'entity-'}limit`,])[] {
+function createLimitRedirects<NAME extends string, PATH extends string, >(...limits: readonly (readonly [NAME, PATH,])[]): readonly SimpleRouteArgument<`${NAME}${| '' | 'Entity'}Limit`, `/${PATH}/${| '' | 'entity-'}limit`>[] {
     return limits.map(([name, path,]) => [
-        [`${name}Limit`, `/${path}/limit`,],
-        [`${name}EntityLimit`, `/${path}/entity-limit`,],
+        argument(`${name}Limit`, `/${path}/limit`,),
+        argument(`${name}EntityLimit`, `/${path}/entity-limit`,),
     ] as const).flat()
 }
 
@@ -68,9 +72,9 @@ export const everySimpleRoutes = [
     route(    'everyCategories',            '/every/entity-category',       () => <EntityCategoryApp/>,),
     route(    'everyGroups',                '/every/entity-group',          () => <EntityGroupApp/>,),
 
-    ...group( 'everyLimits',                '/every/limit',                 () => <EntityLimitApp type="all"/>,    ['everyEntityLimits', '/every/entity-limit',],).all,
-    ...group( 'playLimits',                 '/play/limit',                  () => <EntityLimitApp type="play"/>,   ['playEntityLimits', '/play/entity-limit',], ...createLimitRedirects(['playing', 'playing',], ['whilePlaying', 'while-playing',],),).all,
-    ...group( 'editorLimits',               '/editor/limit',                () => <EntityLimitApp type="editor"/>, ['playEntityLimits', '/play/entity-limit',],...createLimitRedirects(['inEditor', 'in-editor',], ['inTheEditor', 'in-the-editor',],),).all,
+    ...group( 'everyLimits',                '/every/limit',                 () => <EntityLimitApp type="all"/>,    argument('everyEntityLimits', '/every/entity-limit',),).all,
+    ...group( 'playLimits',                 '/play/limit',                  () => <EntityLimitApp type="play"/>,   argument('playEntityLimits', '/play/entity-limit',), ...createLimitRedirects(['playing', 'playing',], ['whilePlaying', 'while-playing',],),).all,
+    ...group( 'editorLimits',               '/editor/limit',                () => <EntityLimitApp type="editor"/>, argument('playEntityLimits', '/play/entity-limit',),...createLimitRedirects(['inEditor', 'in-editor',], ['inTheEditor', 'in-the-editor',],),).all,
 
     route(    'everyThemes',                '/every/theme',                 () => <ThemeApp/>,),
 

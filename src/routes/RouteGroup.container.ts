@@ -1,11 +1,12 @@
-import type {RouteGroup}    from 'routes/RouteGroup'
-import type {RedirectRoute} from 'routes/RedirectRoute'
-import type {SimpleRoute}   from 'routes/SimpleRoute'
+import type {RouteGroup}             from 'routes/RouteGroup'
+import type {RedirectRoute}       from 'routes/RedirectRoute'
+import type {SimpleRouteArgument} from 'routes/SimpleRouteArgument'
+import type {SimpleRoute}         from 'routes/SimpleRoute'
 
 import {RedirectRouteContainer} from 'routes/RedirectRoute.container'
 import {SimpleRouteContainer}   from 'routes/SimpleRoute.container'
 
-export class RouteGroupContainer<NAME extends string, PATH extends string, REDIRECTS extends readonly (readonly [string, string,])[], >
+export class RouteGroupContainer<NAME extends string, PATH extends string, REDIRECTS extends readonly SimpleRouteArgument<string, string>[], >
     implements RouteGroup<NAME, PATH, REDIRECTS> {
 
     //region -------------------- Fields --------------------
@@ -13,12 +14,12 @@ export class RouteGroupContainer<NAME extends string, PATH extends string, REDIR
     readonly #name
     readonly #path
     readonly #redirects
-    #redirectNames?: readonly REDIRECTS[0][number][]
-    #redirectPaths?: readonly REDIRECTS[1][number][]
+    #redirectNames?: readonly REDIRECTS[number]['name'][]
+    #redirectPaths?: readonly REDIRECTS[number]['path'][]
 
     readonly #route
     readonly #redirectRoutes
-    #allRoutes?: readonly (SimpleRoute<NAME, PATH> | RedirectRoute<REDIRECTS[0][number], REDIRECTS[1][number], PATH>)[]
+    #allRoutes?: readonly (SimpleRoute<NAME, PATH> | RedirectRoute<REDIRECTS[number]['name'], REDIRECTS[number]['path'], PATH>)[]
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -27,8 +28,8 @@ export class RouteGroupContainer<NAME extends string, PATH extends string, REDIR
         this.#name = name
         this.#path = path
         this.#route = SimpleRouteContainer.newInstance(name, path, renderCallback,)
-        this.#redirectRoutes = (this.#redirects = redirects).map(([name, pathInRedirect,]) =>
-            RedirectRouteContainer.newInstance(name, pathInRedirect, path,))
+        this.#redirectRoutes = (this.#redirects = redirects).map(({name, path:redirectPath,}) =>
+            RedirectRouteContainer.newInstance(name, redirectPath, path,))
     }
 
     //endregion -------------------- Constructor --------------------
@@ -46,12 +47,12 @@ export class RouteGroupContainer<NAME extends string, PATH extends string, REDIR
         return this.#redirects
     }
 
-    public get redirectNames(): readonly REDIRECTS[0][number][] {
-        return this.#redirectNames ??= this.redirects.map(it => it[0])
+    public get redirectNames(): readonly REDIRECTS[number]['name'][] {
+        return this.#redirectNames ??= this.redirects.map(it => it.name)
     }
 
-    public get redirectPaths(): readonly REDIRECTS[1][number][] {
-        return this.#redirectPaths ??= this.redirects.map(it => it[1])
+    public get redirectPaths(): readonly REDIRECTS[number]['path'][] {
+        return this.#redirectPaths ??= this.redirects.map(it => it.path)
     }
 
 
@@ -59,11 +60,11 @@ export class RouteGroupContainer<NAME extends string, PATH extends string, REDIR
         return this.#route
     }
 
-    public get redirectRoutes(): readonly RedirectRoute<REDIRECTS[0][number], REDIRECTS[1][number], PATH>[] {
+    public get redirectRoutes(): readonly RedirectRoute<REDIRECTS[number]['name'], REDIRECTS[number]['path'], PATH>[] {
         return this.#redirectRoutes
     }
 
-    public get all(): readonly (SimpleRoute<NAME, PATH> | RedirectRoute<REDIRECTS[0][number], REDIRECTS[1][number], PATH>)[] {
+    public get all(): readonly (SimpleRoute<NAME, PATH> | RedirectRoute<REDIRECTS[number]['name'], REDIRECTS[number]['path'], PATH>)[] {
         return this.#allRoutes ??= [this.route, ...this.redirectRoutes,]
     }
 
@@ -78,7 +79,7 @@ export class RouteGroupContainer<NAME extends string, PATH extends string, REDIR
      * @param renderCallback The React element to render in the {@link SimpleRoute}
      * @param redirects An array of both name & path for each {@link RedirectRoute}
      */
-    public static newInstance<NAME extends string, PATH extends string, REDIRECTS extends readonly (readonly [string, string,])[], >(name: NAME, path: PATH, renderCallback: () => JSX.Element, ...redirects: REDIRECTS): RouteGroup<NAME, PATH, REDIRECTS> {
+    public static newInstance<NAME extends string, PATH extends string, REDIRECTS extends readonly SimpleRouteArgument<string, string>[], >(name: NAME, path: PATH, renderCallback: () => JSX.Element, ...redirects: REDIRECTS): RouteGroup<NAME, PATH, REDIRECTS> {
         return new RouteGroupContainer(name, path, renderCallback, redirects,)
     }
 
