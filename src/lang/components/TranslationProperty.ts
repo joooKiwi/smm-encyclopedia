@@ -1,4 +1,5 @@
-import type {TFuncKey, TFuncReturn, TFunction} from 'i18next'
+import type {TFunction, TypeOptions} from 'i18next'
+import type {Resources}              from 'react-i18next'
 
 import type {ReactElementOrString} from 'util/react/ReactProperties'
 
@@ -18,14 +19,42 @@ export type TranslationMethod<N extends Namespace, > = TFunction<N, N>
  *
  * @see TranslationMethod
  * @see SingleTranslationKey
+ * @todo possibly add the possible values (if typescript doesn't fail)
  */
-export type TranslationReturnValue<N extends Namespace, V extends string = string, > = TFuncReturn<N, SingleTranslationKey<N, V>, string, undefined, N>
+export type TranslationReturnValue<N extends Namespace, V extends string = string, > = string
 
 /**
  * A single translation key used for a translation
  * on a specific {@link Namespace}.
  */
-export type SingleTranslationKey<N extends Namespace, V extends string = string, > = TFuncKey<N, V>
+export type SingleTranslationKey<N extends Namespace, > = KeyOn<Resources[N]>
+
+/** A simple alias of {@link SingleTranslationKey} but specified to the "language" */
+export type LanguageTranslationKey = KeyOn<Resources['language']>
+/** A simple alias of {@link SingleTranslationKey} but specified to the "content" */
+export type ContentTranslationKey = KeyOn<Resources['content']>
+/** A simple alias of {@link SingleTranslationKey} but specified to the "game content" */
+export type GameContentTranslationKey = KeyOn<Resources['gameContent']>
+/** A simple alias of {@link SingleTranslationKey} but specified to the "entity content" */
+export type EntityContentTranslationKey = KeyOn<Resources['entityContent']>
+/**
+ * The separator of a translation key
+ *
+ * @see TypeOptions.keySeparator
+ */
+type Separator = TypeOptions['keySeparator']
+/**
+ * A simple retriever that only represent the final path of a translation (that returns a {@link String})
+ *
+ * @see https://dev.to/pffigueiredo/typescript-utility-keyof-nested-object-2pa3
+ */
+type KeyOn<T extends object, > = {
+    [KEY in keyof T & string]: T[KEY] extends string
+        ? KEY
+        : T[KEY] extends object
+            ? `${KEY}${Separator}${KeyOn<T[KEY]>}`
+            : never
+}[keyof T & string]
 
 /**
  * A replacement map to replace the selected key
