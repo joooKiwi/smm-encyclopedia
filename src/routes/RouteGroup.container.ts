@@ -1,4 +1,4 @@
-import type {RouteGroup}             from 'routes/RouteGroup'
+import type {RouteGroup}          from 'routes/RouteGroup'
 import type {RedirectRoute}       from 'routes/RedirectRoute'
 import type {SimpleRouteArgument} from 'routes/SimpleRouteArgument'
 import type {SimpleRoute}         from 'routes/SimpleRoute'
@@ -28,7 +28,7 @@ export class RouteGroupContainer<NAME extends string, PATH extends string, REDIR
         this.#name = name
         this.#path = path
         this.#route = SimpleRouteContainer.newInstance(name, path, renderCallback,)
-        this.#redirectRoutes = (this.#redirects = redirects).map(({name, path:redirectPath,}) =>
+        this.#redirectRoutes = (this.#redirects = redirects).map(({name, path: redirectPath,}) =>
             RedirectRouteContainer.newInstance(name, redirectPath, path,))
     }
 

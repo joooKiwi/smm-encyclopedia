@@ -1,6 +1,6 @@
-import type {SimpleRoute}                from 'routes/SimpleRoute'
-import type {RedirectRoute}  from 'routes/RedirectRoute'
-import {SimpleRouteArgument} from 'routes/SimpleRouteArgument'
+import type {SimpleRoute}         from 'routes/SimpleRoute'
+import type {RedirectRoute}       from 'routes/RedirectRoute'
+import type {SimpleRouteArgument} from 'routes/SimpleRouteArgument'
 
 export interface RouteGroup<NAME extends string, PATH extends string, REDIRECTS extends readonly SimpleRouteArgument<string, string>[], > {
 

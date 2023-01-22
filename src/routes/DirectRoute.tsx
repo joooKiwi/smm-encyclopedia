@@ -15,7 +15,7 @@ interface DirectRoutesProperties
 
 /**
  * Render the route received.
- * But, beforehand, it change the current language to be the one received since it is a link.
+ * But, beforehand, it changes the current language to be the one received since it is a link.
  *
  * @reactComponent
  */
