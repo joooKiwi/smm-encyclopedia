@@ -46,7 +46,7 @@ export default class CourseTagApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every course tags', {
+        return gameContentTranslation('course tag.all', {
             course: <UnfinishedText key="every course tag (lowercase course)">course</UnfinishedText>,//TODO add course reference
             tags: <UnfinishedText key="every course tag (plural lowercase tag)">tags</UnfinishedText>,//TODO add tag reference
         },)

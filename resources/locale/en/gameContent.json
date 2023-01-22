@@ -1,54 +1,176 @@
 {
-  "Every entities":                   "Every entities",
-  "Every entity categories":          "Every entity categories",
-  "Every entity limits":              "Every entity limits",
-  "Every themes":                     "Every themes",
-  "Every times":                      "Every times",
-  "Every sound effects":              "Every sound effects",
-  "Every sound effect categories":    "Every sound effect categories",
-  "Every Mii costumes":               "Every {{pluralName}}",
-  "Every Mii costume categories":     "Every {{MiiCostume}} categories",
-  "Every power-ups priority":         "Every {{powerUps}} priority",
-  "Every rides priority":             "Every {{rides}} priority",
-  "Every power-ups & rides priority": "Every {{powerUps}} & {{rides}} priority",
-  "Every Mystery Mushrooms":          "Every {{pluralName}}",
-  "Every game references":            "Every game references",
-  "Every games":                      "Every games",
-  "Every game styles":                "Every game styles",
-  "Every course tags":                "Every {{course}} {{tags}}",
-  "Every predefined messages":        "Every {{predefinedMessages}}",
-  "Every instruments":                "Every instruments",
+  "entity": {
+    "singular": "Entity",
+    "plural":   "Entities",
 
-  "Empty entity":             "Empty entity",
-  "Empty entity category":    "Empty entity category",
-  "Empty game styles":        "Empty entity category",
-  "Empty entity reference":   "Empty entity reference",
-  "Empty course theme":       "Empty course theme",
-  "Empty world theme":        "Empty world theme",
-  "Empty \"is in property\"": "Empty \"is in property\"",
+    "all":         "Every entity",
+    "display all": "Display every entity"
+  },
+  "entity group": {
+    "all":         "Every entity group",
+    "display all": "Display every entity group"
+  },
+  "entity category": {
+    "all":         "Every entity category",
+    "display all": "Display every entity category"
+  },
+  "entity reference": {
+    "all":         "Every entity reference",
+    "display all": "Display every entity reference"
+  },
+  "limit": {
+    "singular": "Limit",
+    "plural":   "Limits",
 
-  "Display every entities":                   "Display every entities",
-  "Display every entity categories":          "Display every entity categories",
-  "Display every entity groups":              "Display every entity groups",
-  "Display every limits":                     "Display every limits",
-  "Display every themes":                     "Display every themes",
-  "Display every sound effects":              "Display every sound effects",
-  "Display every sound effect categories":    "Display every sound effect categories",
-  "Display every Mii costumes":               "Display every {{pluralName}}",
-  "Display every Mii costume categories":     "Display every {{MiiCostume}} categories",
-  "Display every power-ups priority" :        "Display every {{powerUps}} priority",
-  "Display every rides priority":             "Display every {{rides}} priority",
-  "Display every power-ups & rides priority": "Display every {{powerUps}} & {{rides}} priority",
-  "Display every Mystery Mushrooms":          "Display every {{pluralName}}",
-  "Display every game references":            "Display every game references",
-  "Display every games":                      "Display every games",
-  "Display every game styles":                "Display every game styles",
-  "Display every course tags":                "Display every {{course}} {{tags}}",
-  "Display every predefined messages":        "Display every {{predefinedMessages}}",
-  "Display every instruments":                "Display every instruments",
+    "editor": {
+      "value": "In the editor",
+      "limit": "Limit in the editor",
 
+      "all":         "Every limit in the editor",
+      "display all": "Display every limit in the editor"
+    },
+    "play": {
+      "value": "While playing",
+      "limit": "Limit while playing",
+
+      "all":         "Every limit while playing",
+      "display all": "Display every limit while playing"
+    },
+
+    "all":         "Every limit",
+    "display all": "Display every limit"
+  },
+  "theme": {
+    "singular": "Theme",
+    "plural":   "Themes",
+
+    "all": {
+      "all":                      "Every theme",
+      "all (with image)":         "Every {{courseThemeImage}} & {{worldThemeImage}} theme",
+      "display all":              "Display every theme",
+      "display all (with image)": "Display every theme ({{courseThemeImage}} & {{worldThemeImage}})"
+    },
+    "course": {
+      "singular": "Course theme",
+      "plural":   "Course themes",
+
+      "all":                      "Every course theme",
+      "all (with image)":         "Every {{courseThemeImage}} theme",
+      "display all":              "Display every course theme",
+      "display all (with image)": "Display every {{courseThemeImage}} theme"
+    },
+    "world": {
+      "singular": "World theme",
+      "plural":   "World themes",
+
+      "all":                      "Every world theme",
+      "all (with image)":         "Every {{worldThemeImage}} theme",
+      "display all":              "Display every world theme",
+      "display all (with image)": "Display every {{worldThemeImage}} theme"
+    }
+  },
+  "time": {
+    "singular": "Time",
+    "plural":   "Times",
+
+    "day":   "Day",
+    "night": "Night",
+
+    "all":         "Every time",
+    "display all": "Display every time"
+  },
+  "sound effect": {
+    "singular": "Sound effect",
+    "plural":   "Sound effects",
+
+    "all":         "Every sound effect",
+    "display all": "Display every sound effect",
+
+    "trigger": {
+      "After land + jump":                          "After the {{player}} is landing & a jump is made",
+      "Turn after full speed":                      "After the {{player}} is turning around (after being at full speed)",
+      "Crouch":                                     "When a {{player}} is crouching",
+      "After 3 seconds → no movement (continuous)": "After 3 seconds of non-movement (it repeat itself continuously)",
+      "Power-up collected":                         "When a {{powerUp}} is collected ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
+      "Get in entity":                              "When a {{player}} is getting [into / on / grabbed] a {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} or {{swingingClawImage}}",
+      "Spawn":                                      "When a {{player}} is spawning",
+      "Take damage":                                "When a {{player}} is taking damage",
+      "Lose life":                                  "When a {{player}} is losing a life",
+      "Take damage | Lose life":                    "When a {{player}} is taking damage or losing a life"
+    }
+  },
+  "sound effect category": {
+    "all":         "Every sound effect category",
+    "display all": "Display every sound effect category"
+  },
+  "mii costume": {
+    "all":         "Every {{singularName}}",
+    "display all": "Display every {{singularName}}"
+  },
+  "mii costume category": {
+    "all":         "Every {{singularName}} category",
+    "display all": "Display every {{singularName}} category"
+  },
+  "power-up & ride priority": {
+    "power-up": {
+      "all":         "Every {{singularPowerUp}} priority",
+      "display all": "Display every {{singularPowerUp}} priority"
+    },
+    "ride": {
+      "all":         "Every {{singularRide}} priority",
+      "display all": "Display every {{singularRide}} priority"
+    },
+    "all": {
+      "all":         "Every {{singularPowerUp}} & {{singularRide}} priority",
+      "display all": "Display every {{singularPowerUp}} & {{singularRide}} priority"
+    }
+  },
+  "mystery mushroom": {
+    "all":         "Every {{singularName}}",
+    "display all": "Display every {{singularName}}"
+  },
+  "game reference": {
+    "singular": "Game reference",
+    "plural":   "Game references",
+    "others":   "Other game references",
+
+    "all":         "Every game reference",
+    "display all": "Display every game reference"
+  },
+  "game": {
+    "singular": "Game",
+    "plural":   "Games",
+
+    "all":         "Every game",
+    "display all": "Display every game"
+  },
+  "game style": {
+    "singular": "Game style",
+    "plural":   "Game styles",
+
+    "all":         "Every game style",
+    "display all": "Display every game style"
+  },
+  "course tag": {
+    "singular": "{{Course}} {{tag}}",
+    "plural":   "{{Course}} {{tags}}",
+
+    "all":         "Every {{course}} {{tag}}",
+    "display all": "Display every {{course}} {{tag}}"
+  },
+  "predefined message": {
+    "all":         "Every {{singularName}}",
+    "display all": "Display every {{singularName}}"
+  },
+  "instrument": {
+    "all":         "Every instrument",
+    "display all": "Display instrument",
+
+    "Excluding the top 3 notes": "Excluding the top 3 notes"
+  },
 
   "Category": "Category",
+  "Group":    "Group",
 
   "Official notification": {
     "position": {
@@ -119,17 +241,6 @@
     }
   },
 
-  "Limit":               "Limit",
-  "In the editor":       "In the editor",
-  "While playing":       "While playing",
-  "Limit in the editor": "Limit in the editor",
-  "Limit while playing": "Limit while playing",
-
-  "Course theme":           "Course theme",
-  "World theme":            "World theme",
-  "Is in the course theme": "Is in the course theme",
-  "Is in the world theme":  "Is in the world theme",
-
   "nightEffect": {
     "Special effect on entities": "Change the behaviour of some {{entities}}.",
     "Screen upside down":         "Turn the screen upside down.",
@@ -150,39 +261,6 @@
     "Characters in water":        "The {{players}} behave like in the {{underwaterImage}}."
   },
 
-  "Day":   "Day",
-  "Night": "Night",
-  "Time":  "Time",
-
-  "Sound effect":  "Sound effect",
-  "Sound effects": "Sound effects",
-  "soundEffect": {
-    "After land + jump":                          "After the {{player}} is landing & a jump is made",
-    "Turn after full speed":                      "After the {{player}} is turning around (after being at full speed)",
-    "Crouch":                                     "When a {{player}} is crouching",
-    "After 3 seconds → no movement (continuous)": "After 3 seconds of non-movement (it repeat itself continuously)",
-    "Power-up collected":                         "When a {{powerUp}} is collected ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
-    "Get in entity":                              "When a {{player}} is getting [into / on / grabbed] a {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} or {{swingingClawImage}}",
-    "Spawn":                                      "When a {{player}} is spawning",
-    "Take damage":                                "When a {{player}} is taking damage",
-    "Lose life":                                  "When a {{player}} is losing a life",
-    "Take damage | Lose life":                    "When a {{player}} is taking damage or losing a life"
-  },
-
-  "Game":                  "Game",
-  "Games":                 "Games",
-  "Game style":            "Game style",
-  "Game styles":           "Game styles",
-  "Game reference":        "Game reference",
-  "Game references":       "Game references",
-  "Other game references": "Other game references",
-
   "Wind effect (night desert)": "Wind effect ({{night}} {{desert}})",
-  "Effect (night)":             "Effect ({{night}})",
-
-  "Course tag":         "{{Course}} {{tag}}",
-  "Is an official tag": "Is an official {{tag}}",
-  "First appearance":   "First appearance",
-
-  "instrument": {"Excluding the top 3 notes": "Excluding the top 3 notes"}
+  "Effect (night)":             "Effect ({{night}})"
 }

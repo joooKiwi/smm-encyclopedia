@@ -53,7 +53,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
-                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{gameContentTranslation('Game style').toLowerCase()}</Link>,
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
             }
         }
 

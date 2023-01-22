@@ -31,7 +31,7 @@ export default class EntityCategoryApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every entity categories')
+        return gameContentTranslation('entity category.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {

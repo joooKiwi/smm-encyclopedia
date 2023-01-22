@@ -5,12 +5,14 @@ import type {AppInterpreterWithCardList}                           from 'app/int
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumeCategories}   from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-const Image = lazy(() => import('app/tools/images/Image'))
+const Image =         lazy(() => import('app/tools/images/Image'))
+const TextComponent = lazy(() => import('app/tools/text/TextComponent'))
 
 /**
  * @reactComponent
@@ -32,8 +34,9 @@ export default class EveryEntityCategoriesApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every Mii costume categories', {
-            MiiCostume: <span key="miiCostume-singularName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costume reference
+        return gameContentTranslation('mii costume category.all', {
+            singularName: <TextComponent key="miiCostume-singularName" classes={['text-decoration-underline',]} content={unfinishedText('Mii costume')}/>,//TODO add Mii costume (singular form)
+            pluralName: <TextComponent key="miiCostume-pluralName" classes={['text-decoration-underline',]} content={unfinishedText('Mii costumes')}/>,//TODO add Mii costume (plural form)
         },)
     }
 

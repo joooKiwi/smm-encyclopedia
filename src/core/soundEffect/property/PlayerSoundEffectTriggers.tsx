@@ -5,7 +5,7 @@ import {lazy}                                                                   
 import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
 import type {Names, Ordinals, PossibleTranslationKey} from 'core/soundEffect/property/PlayerSoundEffectTriggers.types'
-import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTriggerProperty'
+import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTrigger.property'
 import type {ReactElement}                            from 'util/react/ReactProperties'
 import type {Nullable}                                from 'util/types/nullable'
 
@@ -295,7 +295,7 @@ export class PlayerSoundEffectTriggers
         const keyMap: TranslationReplaceKeysMap = {}
 
         return <TextComponent classes={['playerSoundEffectTrigger-container']}
-                              content={gameContentTranslation(`soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
+                              content={gameContentTranslation(`sound effect.trigger.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
     //endregion -------------------- Component methods --------------------

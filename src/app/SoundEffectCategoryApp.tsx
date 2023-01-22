@@ -31,7 +31,7 @@ export default class SoundEffectCategoryApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every sound effect categories')
+        return gameContentTranslation('sound effect category.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {

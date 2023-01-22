@@ -11,6 +11,7 @@ import type {Nullable}                                                          
 import {AbstractEditorImageFile} from 'core/entity/file/AbstractEditorImageFile'
 
 /** A generic "Editor" image for the {@link Entities} */
+// @ts-ignore
 export class GenericEditorImageFileContainer
     extends AbstractEditorImageFile<PossibleGenericEditorPartialFileName, PossibleGenericEditorPartialFallbackName>
     implements GenericEditorImageFile {

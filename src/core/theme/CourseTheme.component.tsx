@@ -1,8 +1,11 @@
 import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
 
-import {ThemeComponent}         from 'core/theme/Theme.component'
-import {Themes}                 from 'core/theme/Themes'
-import {gameContentTranslation} from 'lang/components/translationMethods'
+import {COURSE_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
+import Image                     from 'app/tools/images/Image'
+import TextComponent             from 'app/tools/text/TextComponent'
+import {ThemeComponent}          from 'core/theme/Theme.component'
+import {Themes}                  from 'core/theme/Themes'
+import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 /**
  * @reactComponent
@@ -33,7 +36,7 @@ export default class CourseThemeComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <span>{gameContentTranslation('Every themes')}</span>
+        return <TextComponent content={gameContentTranslation('theme.course.all', {courseThemeImage:<Image file={COURSE_THEME_IMAGE_FILE}/>,},)}/>
     }
 
     protected override _renderComponentForAllAsImages() {

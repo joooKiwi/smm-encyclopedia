@@ -41,7 +41,7 @@ export default class EntityApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every entities')
+        return gameContentTranslation('entity.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
@@ -100,7 +100,7 @@ export default class EntityApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every entities'),
+                    caption: gameContentTranslation('entity.all'),
                 }
             }
 
