@@ -32,7 +32,7 @@ export default class GameStyleApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every game styles')
+        return gameContentTranslation('game style.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
@@ -82,7 +82,7 @@ export default class GameStyleApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every game styles'),
+                    caption: gameContentTranslation('game style.all'),
                 }
             }
 

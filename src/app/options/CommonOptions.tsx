@@ -80,14 +80,11 @@ export class CommonOptions {
 
 
     public get gameHeader(): SingleHeaderContent {
-        return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('Game'),}
+        return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('game.singular'),}
     }
 
     public getGameHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
-        return {
-            key: 'game', element: gameContentTranslation('Game'),
-            subHeaders: subHeaders,
-        }
+        return {key: 'game', element: gameContentTranslation('game.singular'), subHeaders: subHeaders,}
     }
 
     /**@deprecated Relocate the games in the name content */

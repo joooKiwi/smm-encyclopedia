@@ -1,5 +1,5 @@
 {
-  "Display every course tags": "Afficher tous les {{tags}} de {{course}}",
-
-  "Is an official tag": "Est un {{tag}} officiel"
+  "course tag": {
+    "display all": "Afficher tous les {{pluralTags}} de {{singularCourse}}"
+  }
 }

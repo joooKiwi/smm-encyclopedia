@@ -7,6 +7,7 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/int
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
+import {unfinishedText}           from 'app/tools/text/UnfinishedText'
 import {AbstractTableApp}         from 'app/withInterpreter/AbstractTableApp'
 import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
@@ -32,7 +33,10 @@ export default class MysteryMushroomApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'},)//TODO add Mystery Mushroom (plural)
+        return gameContentTranslation('mystery mushroom.all', {
+            singularName: unfinishedText('Mystery Mushroom'),//TODO add Mystery Mushroom (singular form)
+            pluralName: unfinishedText('Mystery Mushrooms'),//TODO add Mystery Mushroom (plural form)
+        },)
     }
 
     protected override _createUniqueNameOnSimpleList(enumerable: MysteryMushrooms,): string {
@@ -110,7 +114,10 @@ export default class MysteryMushroomApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'},),//TODO add Mystery Mushroom (plural)
+                    caption: gameContentTranslation('mystery mushroom.all', {
+                        singularName: unfinishedText('Mystery Mushroom'),//TODO add Mystery Mushroom (singular form)
+                        pluralName: unfinishedText('Mystery Mushrooms'),//TODO add Mystery Mushroom (plural form)
+                    },),
                 }
             }
 

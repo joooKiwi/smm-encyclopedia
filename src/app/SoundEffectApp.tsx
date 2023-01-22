@@ -32,7 +32,7 @@ export default class SoundEffectApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every sound effects')
+        return gameContentTranslation('sound effect.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -83,7 +83,7 @@ export default class SoundEffectApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every sound effects'),
+                    caption: gameContentTranslation('sound effect.all'),
                 }
             }
 

@@ -8,22 +8,15 @@ import type {ClassWithType}                                        from 'core/Cl
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {EntityLimitAppOption}                       from 'app/options/EntityLimitAppOption'
+import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
 import {EntityLimitTypes}                           from 'app/property/EntityLimitTypes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
+import Image                                        from 'app/tools/images/Image'
 import TextComponent                                from 'app/tools/text/TextComponent'
 import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {EntityLimits}                               from 'core/entityLimit/EntityLimits'
-import {EntityLimitTypes as EntityLimitTypes2}      from 'core/entityLimit/EntityLimitTypes'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import Image                                        from 'app/tools/images/Image'
-import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
-
-//region -------------------- Import from deconstruction --------------------
-
-const {WHILE_PLAYING, EDITOR,} = EntityLimitTypes2
-
-//endregion -------------------- Import from deconstruction --------------------
 
 /**
  * @reactComponent
@@ -60,7 +53,7 @@ export default class EntityLimitApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every entity limits')
+        return gameContentTranslation('limit.all')
     }
 
     protected override _createAsideContent(): ReactElementOrString {
@@ -69,8 +62,8 @@ export default class EntityLimitApp
         return <div id="limit-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
             <LinkButton partialId="allLimit" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="playLimit" routeName={type.playRouteName} color={type.playColor}>{gameContentTranslation(WHILE_PLAYING.englishCommonText)}</LinkButton>
-                <LinkButton partialId="editorLimit" routeName={type.editorRouteName} color={type.editorColor}>{gameContentTranslation(EDITOR.englishCommonText)}</LinkButton>
+                <LinkButton partialId="playLimit" routeName={type.playRouteName} color={type.playColor}>{gameContentTranslation('limit.play.value')}</LinkButton>
+                <LinkButton partialId="editorLimit" routeName={type.editorRouteName} color={type.editorColor}>{gameContentTranslation('limit.editor.value')}</LinkButton>
             </div>
         </div>
     }
@@ -137,7 +130,7 @@ export default class EntityLimitApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every entity limits'),
+                    caption: gameContentTranslation('limit.all'),
                 }
             }
 

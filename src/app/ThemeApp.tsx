@@ -34,7 +34,7 @@ export default class ThemeApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every themes')
+        return gameContentTranslation('theme.all.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Themes, ThemeAppOption> {
@@ -92,7 +92,7 @@ export default class ThemeApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every themes')
+                    caption: gameContentTranslation('theme.all.all')
                 }
             }
 

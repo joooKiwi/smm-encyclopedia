@@ -8,6 +8,8 @@ import type {ReactElementOrString}                                 from 'util/re
 
 import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
 import Image                    from 'app/tools/images/Image'
+import TextComponent            from 'app/tools/text/TextComponent'
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumes}            from 'core/miiCostume/MiiCostumes'
@@ -30,8 +32,9 @@ export default class MiiCostumeApp
     }
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every Mii costumes', {
-            pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
+        return gameContentTranslation('mii costume.all', {
+            singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (singular form)
+            pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (plural form)
         },)
     }
 
@@ -85,8 +88,9 @@ export default class MiiCostumeApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every Mii costumes', {
-                        pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
+                    caption: gameContentTranslation('mii costume.all', {
+                        singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (singular form)
+                        pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (plural form)
                     },),
                 }
             }

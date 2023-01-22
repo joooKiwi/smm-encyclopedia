@@ -17,7 +17,6 @@ import {AppOptionWithTableComponent}                from 'app/options/component/
 import {EmptyAppOption}                             from 'app/options/component/EmptyAppOption'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
-import {EntityLimitTypes}                           from 'core/entityLimit/EntityLimitTypes'
 import {Games}                                      from 'core/game/Games'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {Themes}                                     from 'core/theme/Themes'
@@ -139,7 +138,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'gameStyle', element: gameContentTranslation('Game style'),}
+            return {key: 'gameStyle', element: gameContentTranslation('game style.singular'),}
         }
 
     }()
@@ -156,7 +155,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'courseTheme', element: gameContentTranslation('Course theme'),}
+            return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular'),}
         }
 
     }()
@@ -173,7 +172,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'time', element: gameContentTranslation('Time'),}
+            return {key: 'time', element: gameContentTranslation('time.singular'),}
         }
 
     }()
@@ -225,19 +224,19 @@ export class EntityAppOption
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
             return {
-                key: 'limit', element: gameContentTranslation('Limit'),
+                key: 'limit', element: gameContentTranslation('limit.singular'),
                 subHeaders: [
                     {
-                        key: 'limit-editor', element: gameContentTranslation(EntityLimitTypes.EDITOR.englishCommonText),
-                        tooltip: gameContentTranslation('Limit in the editor'),
+                        key: 'limit-editor', element: gameContentTranslation('limit.editor.value'),
+                        tooltip: gameContentTranslation('limit.editor.limit'),
                         subHeaders: [
                             {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
                             {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
                         ],
                     },
                     {
-                        key: 'limit-whilePlaying', element: gameContentTranslation(EntityLimitTypes.WHILE_PLAYING.englishCommonText),
-                        tooltip: gameContentTranslation('Limit while playing'),
+                        key: 'limit-whilePlaying', element: gameContentTranslation('limit.play.value'),
+                        tooltip: gameContentTranslation('limit.play.limit'),
                     },
                 ],
             }

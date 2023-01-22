@@ -43,7 +43,7 @@ export default class TimeComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <TextComponent content={gameContentTranslation('Every times')}/>
+        return <TextComponent content={gameContentTranslation('time.all')}/>
     }
 
     protected override _renderComponentForAllAsImages() {

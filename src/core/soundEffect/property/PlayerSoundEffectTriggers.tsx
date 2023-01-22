@@ -295,7 +295,7 @@ export class PlayerSoundEffectTriggers
         const keyMap: TranslationReplaceKeysMap = {}
 
         return <TextComponent classes={['playerSoundEffectTrigger-container']}
-                              content={gameContentTranslation(`soundEffect.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
+                              content={gameContentTranslation(`sound effect.trigger.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
     //endregion -------------------- Component methods --------------------

@@ -34,7 +34,7 @@ export default class InstrumentApp
     }
 
     protected _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every instruments')
+        return gameContentTranslation('instrument.all')
     }
 
     protected _createAppOptionInterpreter(): AppInterpreterWithCardList<Instruments> {
