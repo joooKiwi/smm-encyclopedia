@@ -13,9 +13,6 @@ import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
 export default class MysteryMushroomApp
     extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>, AppProperties, MysteryMushroomAppStates> {
 
