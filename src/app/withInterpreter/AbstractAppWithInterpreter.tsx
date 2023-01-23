@@ -56,7 +56,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
      * Get the group key for each {@link ViewDisplays "view display" button}.
      * It is also used for the {@link Table} id.
      *
-     * @see #createViewDisplayGroup
+     * @see DisplayButtonGroup
      */
     protected get _key(): string {
         return this.#key ??= this._createKey()
@@ -75,13 +75,6 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------
 
-    #createViewDisplayGroup(typeDisplayed: ViewDisplays, key: string,): ReactElement {
-        return <div key={`${key} (button group)`} id="btn-viewDisplay-container" className="btn-group">
-            {this.__possibleViewDisplay.map(viewDisplay =>
-                viewDisplay.createButton(typeDisplayed, key, nextValue => this.typeDisplayed = nextValue,))}
-        </div>
-    }
-
     protected abstract _createTitleContent(): ReactElementOrString
 
     protected _createAsideContent(): NullOr<ReactElementOrString> {
@@ -93,14 +86,13 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     }
 
     protected override _mainContent(): ReactElement {
-        const typeDisplayed = this.typeDisplayed
-        const key = this._key
+        const {typeDisplayed, _key: key,} = this
 
         return <div key={`${key} (sub main container)`} id="subMain-container">
             <div id={`${key}-container`} className={`${typeDisplayed.htmlType}-container`}>
                 <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
                 <aside key={`${key} (view changer)`} id="viewChanger-container">
-                    {this.#createViewDisplayGroup(typeDisplayed, key,)}
+                    <DisplayButtonGroup reactKey={key} views={this.__possibleViewDisplay} currentView={typeDisplayed}/>
                     {this._createAsideContent()}
                 </aside>
                 <p key={`${key} (description)`}>{this._createDescription()}</p>
