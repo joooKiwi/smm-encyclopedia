@@ -1,29 +1,16 @@
 import './GameStyleApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
-import type {GameStyleAppStates}                                   from 'app/AppStates.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
 export default class GameStyleApp
-    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, AppProperties, GameStyleAppStates> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
-        }
-    }
+    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>> {
 
     //region -------------------- Create methods --------------------
 

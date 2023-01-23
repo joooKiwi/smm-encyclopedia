@@ -1,7 +1,6 @@
 import './EntityLimitApp.scss'
 
-import type {EntityLimitAppProperties}                             from 'app/AppProperties.types'
-import type {EntityLimitAppStates}                                 from 'app/AppStates.types'
+import type {LimitAppProperties}                                   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ClassWithType}                                        from 'core/ClassWithType'
@@ -14,15 +13,10 @@ import LinkButton                                   from 'app/tools/button/LinkB
 import Image                                        from 'app/tools/images/Image'
 import TextComponent                                from 'app/tools/text/TextComponent'
 import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import {EntityLimits}                               from 'core/entityLimit/EntityLimits'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
-export default class EntityLimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, EntityLimitAppProperties, EntityLimitAppStates>
+export default class LimitApp
+    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, LimitAppProperties>
     implements ClassWithType<EntityLimitTypes> {
 
     //region -------------------- Fields --------------------
@@ -30,14 +24,6 @@ export default class EntityLimitApp
     #type?: EntityLimitTypes
 
     //endregion -------------------- Fields --------------------
-
-    public constructor(props: EntityLimitAppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
-        }
-    }
-
     //region -------------------- Getter methods --------------------
 
     public get type(): EntityLimitTypes {

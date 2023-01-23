@@ -1,28 +1,16 @@
 import './EntityCategoryApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {EntityCategories}       from 'core/entityCategory/EntityCategories'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
 export default class EntityCategoryApp
     extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.CARD_LIST,
-        }
-    }
 
     //region -------------------- Create methods --------------------
 

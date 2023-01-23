@@ -1,13 +1,10 @@
 import {lazy} from 'react'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
-import type {InstrumentAppStates}                                  from 'app/AppStates.types'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Instruments}            from 'core/instrument/Instruments'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
@@ -18,14 +15,7 @@ const SimpleSoundComponent = lazy(() => import('util/file/sound/component/Simple
 //endregion -------------------- dynamic imports --------------------
 
 export default class InstrumentApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>, AppProperties, InstrumentAppStates> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.CARD_LIST,
-        }
-    }
+    extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>> {
 
     //region -------------------- Create methods --------------------
 

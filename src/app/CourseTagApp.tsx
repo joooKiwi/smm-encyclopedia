@@ -24,14 +24,6 @@ export default class CourseTagApp
     #type?: CourseTagTypes
 
     //endregion -------------------- Fields --------------------
-
-    public constructor(props: CourseTagAppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.CARD_LIST,
-        }
-    }
-
     //region -------------------- Getter methods --------------------
 
     public get type(): CourseTagTypes {
