@@ -3,6 +3,7 @@ import './GameReferenceApp.scss'
 import {Fragment} from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
+import type {GameContentTranslationKey} from 'lang/components/TranslationProperty'
 import type {ReactElement}              from 'util/react/ReactProperties'
 
 import AbstractApp              from 'app/AbstractApp'
@@ -61,9 +62,9 @@ export default class GameReferenceApp
     //endregion -------------------- Getter & initialisation methods --------------------
     //region -------------------- Methods --------------------
 
-    protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly (| Games | GameStyles | SoundEffects)[],): ReactElement
-    protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly GameReferences[], returnOfLine: readonly GameReferences[],): ReactElement
-    protected _getContainer(groupId: string, title: PossibleTitle, enumReferences: readonly PossibleGameReference[], returnOfLine?: readonly GameReferences[],) {
+    protected _getContainer(groupId: string, title: GameContentTranslationKey, enumReferences: readonly (| Games | GameStyles | SoundEffects)[],): ReactElement
+    protected _getContainer(groupId: string, title: GameContentTranslationKey, enumReferences: readonly GameReferences[], returnOfLine: readonly GameReferences[],): ReactElement
+    protected _getContainer(groupId: string, title: GameContentTranslationKey, enumReferences: readonly PossibleGameReference[], returnOfLine?: readonly GameReferences[],) {
         return <div key={`names container - ${groupId}`} id={`${groupId}-names-container`} className="names-container">
             <h2 key={`names title - ${groupId}`} id={`${groupId}-names-title`} className="col-12 names-title">{gameContentTranslation(title)}</h2>
             <div key={`name (container) - ${groupId}`} id={`${groupId}-name-container`} className="container-fluid name-container">{
@@ -84,18 +85,15 @@ export default class GameReferenceApp
     //endregion -------------------- Methods --------------------
 
     protected override _mainContent() {
-        return <div className="container-fluid main-container">
-            <h2 id="main-names-title" className="col-12 names-title">{gameContentTranslation('Game references')}</h2>
-            {this._getContainer('game', 'Games', Games.values.toArray(),)}
-            {this._getContainer('gameStyle', 'Game styles', GameStyles.values.toArray(),)}
-            {this._getContainer('soundEffect', 'Sound effects', SoundEffects.soundEffect_games,)}
-            {this._getContainer('otherGameReferences', 'Other game references', GameReferenceApp.__otherGameReferences, GameReferenceApp.RETURN_OF_LINES,)}
+        return <div id="gameReference-container" className="container-fluid main-container">
+            <h2 id="main-names-title" className="col-12 names-title">{gameContentTranslation('game reference.plural')}</h2>
+            {this._getContainer('game', 'game.plural', Games.values.toArray(),)}
+            {this._getContainer('gameStyle', 'game style.plural', GameStyles.values.toArray(),)}
+            {this._getContainer('soundEffect', 'sound effect.plural', SoundEffects.soundEffect_games,)}
+            {this._getContainer('otherGameReferences', 'game reference.others', GameReferenceApp.__otherGameReferences, GameReferenceApp.RETURN_OF_LINES,)}
         </div>
     }
 
 }
 
-type PossibleGameReference = (Games | GameStyles | SoundEffects | GameReferences)
-                             & { renderSingleComponent?: ReactElement }
-//@FIXME this variable should be replaced with SingleTranslationKey<'gameContent'> if possible
-type PossibleTitle = 'Games' | 'Game styles' | 'Sound effects' | 'Other game references'
+type PossibleGameReference = (Games | GameStyles | SoundEffects | GameReferences) & { renderSingleComponent?: ReactElement }

@@ -1,5 +1,6 @@
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
 
+import TextComponent                     from 'app/tools/text/TextComponent'
 import {AbstractEntityPropertyComponent} from 'core/_component/AbstractEntityPropertyComponent'
 import {GameStyles}                      from 'core/gameStyle/GameStyles'
 import Image                             from 'app/tools/images/Image'
@@ -38,7 +39,7 @@ export default class GameStyleComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <span>{gameContentTranslation('Every game styles')}</span>
+        return <TextComponent content={gameContentTranslation('game style.all')}/>
     }
 
     protected override _renderComponentForAllAsImages() {

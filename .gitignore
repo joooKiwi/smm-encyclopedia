@@ -26,3 +26,4 @@ yarn-error.log*
 /src/resources/compiled/
 /src/resources/images/
 /src/lang/locale/
+*.back.*

@@ -1,27 +1,20 @@
 import './MiiCostumeApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
-import type {MiiCostumeAppStates}                                  from 'app/AppStates.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
 import Image                    from 'app/tools/images/Image'
+import TextComponent            from 'app/tools/text/TextComponent'
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumes}            from 'core/miiCostume/MiiCostumes'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class MiiCostumeApp
-    extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>, AppProperties, MiiCostumeAppStates> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
-        }
-    }
+    extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>> {
 
     //region -------------------- Create methods --------------------
 
@@ -29,9 +22,24 @@ export default class MiiCostumeApp
         return 'miiCostume'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyMiiCostumes (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyMiiCostumes (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everyMiiCostumes (table)'
+    }
+
+
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every Mii costumes', {
-            pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
+        return gameContentTranslation('mii costume.all', {
+            singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (singular form)
+            pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (plural form)
         },)
     }
 
@@ -85,8 +93,9 @@ export default class MiiCostumeApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every Mii costumes', {
-                        pluralName: <span key="miiCostume-pluralName" className="text-decoration-underline">--Mii costumes--</span>,//TODO add Mii costumes, but the plural name
+                    caption: gameContentTranslation('mii costume.all', {
+                        singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (singular form)
+                        pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (plural form)
                     },),
                 }
             }

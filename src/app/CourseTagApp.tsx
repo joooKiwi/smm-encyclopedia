@@ -4,14 +4,14 @@ import type {CourseTagAppProperties}                               from 'app/App
 import type {AppInterpreterWithCardList,}                          from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ClassWithType}                                        from 'core/ClassWithType'
+import type {CourseTags}                                           from 'core/courseTag/CourseTags'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {NullOr}                                               from 'util/types/nullable'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {CourseTagTypes}         from 'app/property/CourseTagTypes'
-import UnfinishedText           from 'app/tools/text/UnfinishedText'
-import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
-import {CourseTags}                                 from 'core/courseTag/CourseTags'
+import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
+import UnfinishedText                               from 'app/tools/text/UnfinishedText'
+import {AbstractCardListApp}                        from 'app/withInterpreter/AbstractCardListApp'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 
@@ -24,14 +24,6 @@ export default class CourseTagApp
     #type?: CourseTagTypes
 
     //endregion -------------------- Fields --------------------
-
-    public constructor(props: CourseTagAppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.CARD_LIST,
-        }
-    }
-
     //region -------------------- Getter methods --------------------
 
     public get type(): CourseTagTypes {
@@ -45,23 +37,34 @@ export default class CourseTagApp
         return 'courseTag'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return `${this.type.routeName} (list)`
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return `${this.type.routeName} (card)`
+    }
+
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every course tags', {
-            course: <UnfinishedText key="every course tag (lowercase course)">course</UnfinishedText>,//TODO add course reference
-            tags: <UnfinishedText key="every course tag (plural lowercase tag)">tags</UnfinishedText>,//TODO add tag reference
+        return gameContentTranslation('course tag.all', {
+            course: <UnfinishedText key="every course tag (lowercase course)">course</UnfinishedText>,//TODO add course (singular form)
+            courses: <UnfinishedText key="every course tag (plural lowercase course)">courses</UnfinishedText>,//TODO add course (plural form)
+            tag: <UnfinishedText key="every course tag (singular lowercase tag)">tag</UnfinishedText>,//TODO add tag (singular form)
+            tags: <UnfinishedText key="every course tag (plural lowercase tag)">tags</UnfinishedText>,//TODO add tag (plural form)
         },)
     }
 
     protected override _createAsideContent(): NullOr<ReactElementOrString> {
-        const type = this.type
+        const {type, typeDisplayed,} = this
 
         return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
-            <LinkButton partialId="everyCourseTag" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <LinkButton partialId="everyCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="officialCourseTag" routeName={type.officialRouteName} color={type.officialColor}>{contentTranslation('Official.Yes')}</LinkButton>
-                <LinkButton partialId="unofficialCourseTag" routeName={type.unofficialRouteName} color={type.unofficialColor}>{contentTranslation('Official.No')}</LinkButton>
+                <LinkButton partialId="officialCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.officialRouteName)} color={type.officialColor}>{contentTranslation('Official.Yes')}</LinkButton>
+                <LinkButton partialId="unofficialCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.unofficialRouteName)} color={type.unofficialColor}>{contentTranslation('Official.No')}</LinkButton>
             </div>
-            <LinkButton partialId="makerCentralCourseTag" routeName={type.makerCentralRouteName} color={type.makerCentralColor}>Maker Central</LinkButton>
+            <LinkButton partialId="makerCentralCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.makerCentralRouteName)} color={type.makerCentralColor}>Maker Central</LinkButton>
         </div>
     }
 

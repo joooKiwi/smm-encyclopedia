@@ -1,7 +1,7 @@
 import type {TOptions} from 'i18next'
 
-import type {Namespace, SingleTranslationKey, TranslationMethod, TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
-import type {ReactElement, ReactElementOrString}                                            from 'util/react/ReactProperties'
+import type {TranslationReplaceKeysMap}          from 'lang/components/TranslationProperty'
+import type {ReactElement, ReactElementOrString} from 'util/react/ReactProperties'
 
 import {isInProduction} from 'variables'
 import {assert}         from 'util/utilitiesMethods'
@@ -27,19 +27,6 @@ export class TranslationUtility {
     public static testTranslation<T, >(value: T,): T & string {
         assert(typeof value == 'string', `The translation key ${value} cannot receive a translation that contain a sub value.`,)
         return value
-    }
-
-    /**
-     *
-     * @param translation
-     * @param value
-     * @param keyMap
-     * @deprecated Use {@link translateFromAny}
-     */
-    public static replaceAndInterpretTranslation<N extends Namespace, >(translation: TranslationMethod<N>, value: SingleTranslationKey<N>, keyMap: TranslationReplaceKeysMap,): ReactElement {
-        //FIXME remove the error (if possible) "Type 'string' is not assignable to type '"entityContent"'"
-        // @ts-ignore
-        return this.replaceInTranslation(this.testTranslation(translation(value, this.OPTION_TO_RETURN_OBJECT,)), keyMap,)
     }
 
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<string>,): string

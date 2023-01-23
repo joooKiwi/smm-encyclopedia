@@ -1,29 +1,18 @@
 import './MysteryMushroomApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
-import type {MysteryMushroomAppStates}                             from 'app/AppStates.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
+import {unfinishedText}           from 'app/tools/text/UnfinishedText'
 import {AbstractTableApp}         from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}             from 'app/withInterpreter/ViewDisplays'
 import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
 export default class MysteryMushroomApp
-    extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>, AppProperties, MysteryMushroomAppStates> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.CARD_LIST,
-        }
-    }
+    extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>> {
 
     //region -------------------- Create methods --------------------
 
@@ -31,8 +20,25 @@ export default class MysteryMushroomApp
         return 'mysteryMushroom'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyMysteryMushrooms (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyMysteryMushrooms (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everyMysteryMushrooms (table)'
+    }
+
+
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'},)//TODO add Mystery Mushroom (plural)
+        return gameContentTranslation('mystery mushroom.all', {
+            singularName: unfinishedText('Mystery Mushroom'),//TODO add Mystery Mushroom (singular form)
+            pluralName: unfinishedText('Mystery Mushrooms'),//TODO add Mystery Mushroom (plural form)
+        },)
     }
 
     protected override _createUniqueNameOnSimpleList(enumerable: MysteryMushrooms,): string {
@@ -110,7 +116,10 @@ export default class MysteryMushroomApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every Mystery Mushrooms', {pluralName: '--Mystery Mushrooms--'},),//TODO add Mystery Mushroom (plural)
+                    caption: gameContentTranslation('mystery mushroom.all', {
+                        singularName: unfinishedText('Mystery Mushroom'),//TODO add Mystery Mushroom (singular form)
+                        pluralName: unfinishedText('Mystery Mushrooms'),//TODO add Mystery Mushroom (plural form)
+                    },),
                 }
             }
 

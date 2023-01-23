@@ -1,7 +1,6 @@
 import type {ImagesCallback, ImagesRetrieverCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                                                     from 'core/entity/Entities'
 import type {EntityImageFile}                                                              from 'core/entity/file/EntityImageFile'
-import type {EditorImageFile}                                                              from 'core/entity/file/EditorImageFile'
 import type {ClassInAnySuperMarioMakerGame}                                                from 'core/game/ClassInAnySuperMarioMakerGame'
 import type {Name}                                                                         from 'lang/name/Name'
 import type {ObjectHolder}                                                                 from 'util/holder/ObjectHolder'
@@ -75,7 +74,7 @@ export abstract class AbstractPowerUpPriority
     }
 
 
-    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): readonly EditorImageFile[] {
+    public static getEditorImages(entity: Entities, gameStyles: | GameStyles | PossibleGameStyles,): readonly EntityImageFile[] {
         return (gameStyles instanceof Array ? gameStyles : [gameStyles])
             .map(gameStyle => this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)).flat()
     }

@@ -12,7 +12,7 @@ export class UnusedSMM1RegularImageFileContainer
 
     public constructor(entity: ClassWithEntityEnglishName, gameStyle: GameStyles, name: ImageName_Unused_SMM1, type: ImageType, identifier: ImageIdentifier, number: ImageNumber,) {
         super(entity,
-            `${gameStyle.gameAcronym as PossibleGameAcronym_SMM1} ${type} - ${name}`,
+            `${gameStyle.gameAcronym as PossibleGameAcronym_SMM1} - ${type} - ${name}`,
             `${identifier}.${number}`,
             `${identifier} #${(typeof number == 'string' ? Number(number[2]) : number) + 1 as PossibleAmountOfImages}`,
         )

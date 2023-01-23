@@ -1,29 +1,17 @@
 import './GameStyleApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
-import type {GameStyleAppStates}                                   from 'app/AppStates.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
 export default class GameStyleApp
-    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, AppProperties, GameStyleAppStates> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
-        }
-    }
+    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>> {
 
     //region -------------------- Create methods --------------------
 
@@ -31,8 +19,22 @@ export default class GameStyleApp
         return 'gameStyle'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyGameStyles (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyGameStyles (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everyGameStyles (table)'
+    }
+
+
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every game styles')
+        return gameContentTranslation('game style.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
@@ -82,7 +84,7 @@ export default class GameStyleApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every game styles'),
+                    caption: gameContentTranslation('game style.all'),
                 }
             }
 

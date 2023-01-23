@@ -1,24 +1,15 @@
-import {Fragment} from 'react'
-
-import type {AppProperties}                from 'app/AppProperties.types'
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {PossibleDimensionOnList}      from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}      from 'routes/everyRoutes.types'
 import type {ReactElementOrString}         from 'util/react/ReactProperties'
 
+import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {AbstractSimpleListApp}  from 'app/withInterpreter/AbstractSimpleListApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {PredefinedMessages}     from 'core/predefinedMessage/PredefinedMessages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class PredefinedMessageApp
     extends AbstractSimpleListApp<AppInterpreterWithSimpleList<PredefinedMessages>> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.SIMPLE_LIST,
-        }
-    }
 
     //region -------------------- Create methods --------------------
 
@@ -26,9 +17,16 @@ export default class PredefinedMessageApp
         return 'predefinedMessage'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyPredefinedMessages (list)'
+    }
+
+
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every predefined messages', {
-            predefinedMessages: <Fragment key="predefined message title (plural predefined message)">--predefined messages--</Fragment>,//TODO add predefined message reference
+        return gameContentTranslation('predefined message.all', {
+            singularName: <UnfinishedText key="predefined message (singular name)">predefined message</UnfinishedText>,//TODO add predefined reference (singular form)
+            pluralName: <UnfinishedText key="predefined message (plural name)">predefined messages</UnfinishedText>,//TODO add predefined reference (plural form)
         },)
     }
 

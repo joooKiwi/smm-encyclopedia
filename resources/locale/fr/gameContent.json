@@ -1,53 +1,176 @@
 {
-  "Every entities":                   "Toutes les entités",
-  "Every entity categories":          "Toutes les catégories d'entité",
-  "Every entity limits":              "Toutes les limites d'entité",
-  "Every themes":                     "Tous les décors",
-  "Every times":                      "Tous les temps",
-  "Every sound effects":              "Tous les effets sonores",
-  "Every sound effect categories":    "Toutes les catégories d'effet sonore",
-  "Every Mii costumes":               "Tous les {{pluralName}}",
-  "Every Mii costume categories":     "Toutes les catégories de {{MiiCostume}}",
-  "Every power-ups priority":         "Toutes les priorités d'{{powerUps}}",
-  "Every rides priority":             "Toutes les priorités de {{rides}}",
-  "Every power-ups & rides priority": "Toutes les priorités d'{{powerUps}} & de {{rides}}",
-  "Every Mystery Mushrooms":          "Tous les {{pluralName}}",
-  "Every game references":            "Toutes les références de jeu",
-  "Every games":                      "Tous les jeux",
-  "Every game styles":                "Tous les styles de jeu",
-  "Every course tags":                "Tous les {{tags}} de {{course}}",
-  "Every predefined messages":        "Tous les {{predefinedMessages}}",
-  "Every instruments":                "Tous les instruments",
+  "entity": {
+    "singular": "Entité",
+    "plural":   "Entités",
 
-  "Empty entity":             "Entité vide",
-  "Empty entity category":    "Catégorie d'entité vide",
-  "Empty game styles":        "Style de jeu vide",
-  "Empty entity reference":   "Référence d'entité vide",
-  "Empty course theme":       "Thème de niveau vide",
-  "Empty world theme":        "Thème de monde vide",
-  "Empty \"is in property\"": "«Est dans propriété» vide",
+    "all":         "Toutes les entités",
+    "display all": "Afficher toutes les entités"
+  },
+  "entity group": {
+    "all":         "Tous les groupes d'entité",
+    "display all": "Afficher tous les groupes d'entité"
+  },
+  "entity category": {
+    "all":         "Toutes les catégories d'entité",
+    "display all": "Afficher toutes les catégories d'entité"
+  },
+  "entity reference": {
+    "all":         "Toutes les références d'entité",
+    "display all": "Afficher toutes les références d'entité"
+  },
+  "limit": {
+    "singular": "Limite",
+    "plural":   "Limites",
 
-  "Display every entities":                   "Afficher toutes les entités",
-  "Display every entity categories":          "Afficher toutes les catégories d'entité",
-  "Display every entity groups":              "Afficher tous les groupes d'entité",
-  "Display every limits":                     "Afficher toutes les limites",
-  "Display every themes":                     "Afficher tous les décors",
-  "Display every sound effects":              "Afficher tous les effets sonores",
-  "Display every sound effect categories":    "Afficher toutes les catégories d'effet sonore",
-  "Display every Mii costumes":               "Afficher tous les {{pluralName}}",
-  "Display every Mii costume categories":     "Afficher toutes les catégories de {{MiiCostume}}",
-  "Display every power-ups priority":         "Afficher toutes les priorités d'{{powerUp}}",
-  "Display every rides priority":             "Afficher toutes les priorités de {{ride}}",
-  "Display every power-ups & rides priority": "Afficher toutes les priorités d'{{powerUp}} & de {{ride}}",
-  "Display every Mystery Mushrooms":          "Afficher tous les {{pluralName}}",
-  "Display every game references":            "Afficher toutes les références de jeu",
-  "Display every games":                      "Afficher tous les jeux",
-  "Display every game styles":                "Afficher tous les styles de jeu",
-  "Display every predefined messages":        "Afficher tous les {{predefinedMessages}}",
-  "Display every instruments":                "Afficher tous les instruments",
+    "editor": {
+      "value": "Dans l'éditeur",
+      "limit": "Limite dans l'éditeur",
 
+      "all":         "Toutes les limites dans l'éditeur",
+      "display all": "Afficher toutes les limites dans l'éditeur"
+    },
+    "play": {
+      "value": "En jouant",
+      "limit": "Limite en jouant",
+
+      "all":         "Toutes les limites en jouant",
+      "display all": "Afficher toutes les limites en jouant"
+    },
+
+    "all":         "Toutes les limites",
+    "display all": "Afficher toutes les limites"
+  },
+  "theme": {
+    "singular": "Décor",
+    "plural":   "Décors",
+
+    "all": {
+      "all":                      "Tous les décors",
+      "all (with image)":         "Tous les décors de {{courseThemeImage}} & {{worldThemeImage}}",
+      "display all":              "Afficher tous les décors",
+      "display all (with image)": "Afficher tous les décors ({{courseThemeImage}} & {{worldThemeImage}})"
+    },
+    "course": {
+      "singular": "Décor de niveau",
+      "plural":   "Décors de niveau",
+
+      "all":                      "Tous les décors de niveau",
+      "all (with image)":         "Tous les décors de {{courseThemeImage}}",
+      "display all":              "Afficher tous les décors de niveau",
+      "display all (with image)": "Afficher tous les décors de {{courseThemeImage}}"
+    },
+    "world": {
+      "singular": "Décor de monde",
+      "plural":   "Décors de monde",
+
+      "all":                      "Tous les décors de monde",
+      "all (with image)":         "Tous les décors de {{worldThemeImage}}",
+      "display all":              "Afficher tous les décors de monde",
+      "display all (with image)": "Afficher tous les décors de {{worldThemeImage}}"
+    }
+  },
+  "time": {
+    "singular": "Temps",
+    "plural":   "Temps",
+
+    "day":   "Jour",
+    "night": "Nuit",
+
+    "all":         "Tous les temps",
+    "display all": ""
+  },
+  "sound effect": {
+    "singular": "Effet sonore",
+    "plural":   "Effets sonores",
+
+    "all":         "Tous les effets sonores",
+    "display all": "Afficher tous les effets sonores",
+
+    "trigger": {
+      "After land + jump":                          "Après qu'un {{player}} a atterrit & un saut est effectué",
+      "Turn after full speed":                      "Après qu'un {{player}} est en train de tourner (après avoir été à pleine vitesse)",
+      "Crouch":                                     "Lorsqu'un {{player}} s'accroupit",
+      "After 3 seconds → no movement (continuous)": "Après 3 secondes de non mouvement (se répète continuellement)",
+      "Power-up collected":                         "Lorsqu'une {{powerUp}} est collectée ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
+      "Get in entity":                              "Lorsqu'un {{player}} va [dans / sur / est attrapé par] {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} ou {{swingingClawImage}}",
+      "Spawn":                                      "Lorsqu'un {{player}} apparaît",
+      "Take damage":                                "Lorsqu'un {{player}} reçoit des dégâts",
+      "Lose life":                                  "Lorsqu'un {{player}} perd une vie",
+      "Take damage | Lose life":                    "Lorsqu'un {{player}} reçoit des dégâts ou perd une vie"
+    }
+  },
+  "sound effect category": {
+    "all":         "Toutes les catégories d'effet sonore",
+    "display all": "Afficher toutes les catégories d'effet sonore"
+  },
+  "mii costume": {
+    "all":         "Tous les {{pluralName}}",
+    "display all": "Afficher tous les {{pluralName}}"
+  },
+  "mii costume category": {
+    "all":         "Toutes les catégories de {{pluralName}}",
+    "display all": "Afficher toutes les catégories de {{pluralName}}"
+  },
+  "power-up & ride priority": {
+    "power-up": {
+      "all":         "Toutes les priorités d'{{powerUps}}",
+      "display all": "Afficher toutes les priorités d'{{powerUp}}"
+    },
+    "ride": {
+      "all":         "Toutes les priorités de {{rides}}",
+      "display all": "Afficher toutes les priorités de {{ride}}"
+    },
+    "all": {
+      "all":         "Toutes les priorités d'{{powerUps}} & de {{rides}}",
+      "display all": "Afficher toutes les priorités d'{{powerUp}} & de {{ride}}"
+    }
+  },
+  "mystery mushroom": {
+    "all":         "Tous les {{pluralName}}",
+    "display all": "Afficher tous les {{pluralName}}"
+  },
+  "game reference": {
+    "singular": "Référence de jeu",
+    "plural":   "Références de jeu",
+    "others":   "Autres références de jeu",
+
+    "all":         "Toutes les références de jeu",
+    "display all": "Afficher toutes les références de jeu"
+  },
+  "game": {
+    "singular": "Jeu",
+    "plural":   "Jeux",
+
+    "all":         "Tous les jeux",
+    "display all": "Afficher tous les jeux"
+  },
+  "game style": {
+    "singular": "Style de jeu",
+    "plural":   "Styles de jeu",
+
+    "all":         "Tous les styles de jeu",
+    "display all": "Afficher tous les styles de jeu"
+  },
+  "course tag": {
+    "singular": "{{Tag}} de {{course}}",
+    "plural":   "{{Tags}} de {{course}}",
+
+    "all":         "Tous les {{tags}} de {{course}}"
+
+  },
+  "predefined message": {
+    "all":         "Tous les {{pluralName}}",
+    "display all": "Afficher tous les {{pluralName}}"
+  },
+  "instrument": {
+    "all":         "Tous les instruments",
+    "display all": "Afficher tous les instruments",
+
+    "Excluding the top 3 notes": "Excluant les 3 notes du haut"
+  },
 
   "Category": "Catégorie",
+  "Group":    "Groupe",
 
   "Official notification": {
     "position": {
@@ -118,17 +241,6 @@
     }
   },
 
-  "Limit":               "Limite",
-  "In the editor":       "Dans l'éditeur",
-  "While playing":       "En jouant",
-  "Limit in the editor": "Limite dans l'éditeur",
-  "Limit while playing": "Limite quand est en train de jouer",
-
-  "Course theme":           "Décor de niveau",
-  "World theme":            "Décor de monde" ,
-  "Is in the course theme": "Est dans le décor de niveau",
-  "Is in the world theme":  "Est dans le décor de monde",
-
   "nightEffect": {
     "Special effect on entities": "Change le comportement sur certaines {{entities}}.",
     "Screen upside down":         "Vire l'écran à l'envers.",
@@ -149,38 +261,6 @@
     "Characters in water":        "Les {{players}} se comportent comme dans {{underwaterImage}}."
   },
 
-  "Day":   "Jour",
-  "Night": "Nuit",
-  "Time":  "Temps",
-
-  "Sound effect":  "Effet sonore",
-  "Sound effects": "Effets sonores",
-  "soundEffect": {
-    "After land + jump":                          "Après qu'un {{player}} a atterrit & un saut est effectué",
-    "Turn after full speed":                      "Après qu'un {{player}} est en train de tourner (après avoir été à pleine vitesse)",
-    "Crouch":                                     "Lorsqu'un {{player}} s'accroupit",
-    "After 3 seconds → no movement (continuous)": "Après 3 secondes de non mouvement (se répète continuellement)",
-    "Power-up collected":                         "Lorsqu'une {{powerUp}} est collectée ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
-    "Get in entity":                              "Lorsqu'un {{player}} va [dans / sur / est attrapé par] {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} ou {{swingingClawImage}}",
-    "Spawn":                                      "Lorsqu'un {{player}} apparaît",
-    "Take damage":                                "Lorsqu'un {{player}} reçoit des dégâts",
-    "Lose life":                                  "Lorsqu'un {{player}} perd une vie",
-    "Take damage | Lose life":                    "Lorsqu'un {{player}} reçoit des dégâts ou perd une vie"
-  },
-
-  "Game":                  "Jeu",
-  "Games":                 "Jeux",
-  "Game style":            "Style de jeu",
-  "Game styles":           "Styles de jeu",
-  "Game reference":        "Référence de jeu",
-  "Game references":       "Références de jeu",
-  "Other game references": "Autres références de jeu",
-
   "Wind effect (night desert)": "Effet de vent ({{night}} du {{desert}})",
-  "Effect (night)":             "Effet ({{night}})",
-
-  "Course tag":       "{{Tag}} de {{course}}",
-  "First appearance": "Première apparition",
-
-  "instrument": {"Excluding the top 3 notes": "Excluant les 3 notes du haut"}
+  "Effect (night)":             "Effet ({{night}})"
 }

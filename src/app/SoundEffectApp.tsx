@@ -1,29 +1,17 @@
 import './SoundEffectApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
-import type {SoundEffectAppStates}                                 from 'app/AppStates.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
 export default class SoundEffectApp
-    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, AppProperties, SoundEffectAppStates> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
-        }
-    }
+    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>> {
 
     //region -------------------- Create methods --------------------
 
@@ -31,8 +19,22 @@ export default class SoundEffectApp
         return 'soundEffect'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everySoundEffects (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everySoundEffects (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everySoundEffects (table)'
+    }
+
+
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every sound effects')
+        return gameContentTranslation('sound effect.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -83,7 +85,7 @@ export default class SoundEffectApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('Every sound effects'),
+                    caption: gameContentTranslation('sound effect.all'),
                 }
             }
 

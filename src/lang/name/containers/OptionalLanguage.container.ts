@@ -11,7 +11,7 @@ export class OptionalLanguageContainer<T, S extends T = T, A extends readonly T[
     extends LanguageContainer<T, S, A>
     implements OptionalLanguage<T, S, A, U> {
 
-    readonly #isUsed: U//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #isUsed
 
     public constructor(value: | S | A,) {
         super(value)
@@ -19,7 +19,7 @@ export class OptionalLanguageContainer<T, S extends T = T, A extends readonly T[
     }
 
     public get isUsed(): U {
-        return this.#isUsed
+        return this.#isUsed as U
     }
 
 }

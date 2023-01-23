@@ -157,19 +157,19 @@ export class EntityReferencesContainer
         return gameStyleOrThemeOrTime.getReference(this)
     }
 
-    public get everyGameStyleReferences(): PossibleOtherEntities {
+    public get everyGameStyleReferences(): readonly Entity[] {
         return this.#everyGameStyleReferences.get
     }
 
-    public get everyThemeReferences(): PossibleOtherEntities {
+    public get everyThemeReferences(): readonly Entity[] {
         return this.#everyThemeReferences.get
     }
 
-    public get everyTimeReferences(): PossibleOtherEntities {
+    public get everyTimeReferences(): readonly Entity[] {
         return this.#everyTimeReferences.get
     }
 
-    public get everyReferences(): PossibleOtherEntities {
+    public get everyReferences(): readonly Entity[] {
         return this.#everyReferences.get
     }
 

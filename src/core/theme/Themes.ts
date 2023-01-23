@@ -1,20 +1,20 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                             from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                               from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                          from 'core/PropertyGetter'
-import type {PossibleOtherEntities}                                                                                                                                                                                                            from 'core/entity/Entity'
-import type {ThemeProperty}                                                                                                                                                                                                                    from 'core/entity/properties/theme/ThemeProperty'
-import type {ThemeReferences}                                                                                                                                                                                                                  from 'core/entity/properties/theme/ThemeReferences'
-import type {CourseTheme}                                                                                                                                                                                                                      from 'core/theme/CourseTheme'
-import type {DayGameName, DayOrNightGameName, Names, NightGameName, OnlyCourseThemes, OnlyCourseThemesInSMM1, OnlyWorldThemes, Ordinals, PossibleEnglishName, PossibleEnglishName_CourseTheme, PossibleGameName, PossibleGameName_CourseTheme} from 'core/theme/Themes.types'
-import type {CourseAndWorldTheme}                                                                                                                                                                                                              from 'core/theme/CourseAndWorldTheme'
-import type {WorldTheme}                                                                                                                                                                                                                       from 'core/theme/WorldTheme'
-import type {EndlessMarioThemeImageFile}                                                                                                                                                                                                       from 'core/theme/file/EndlessMarioThemeImageFile'
-import type {LargeThemeImageFile}                                                                                                                                                                                                              from 'core/theme/file/LargeThemeImageFile'
-import type {SmallThemeImageFile}                                                                                                                                                                                                              from 'core/theme/file/SmallThemeImageFile'
-import type {Nullable, NullOr, NullOrBoolean}                                                                                                                                                                                                  from 'util/types/nullable'
+import type {ClassWithEnglishName}                                                                                                                                                  from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                    from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                               from 'core/PropertyGetter'
+import type {PossibleOtherEntities}                                                                                                                                                 from 'core/entity/Entity'
+import type {ThemeProperty}                                                                                                                                                         from 'core/entity/properties/theme/ThemeProperty'
+import type {ThemeReferences}                                                                                                                                                       from 'core/entity/properties/theme/ThemeReferences'
+import type {CourseTheme}                                                                                                                                                           from 'core/theme/CourseTheme'
+import type {DayGameName, DayOrNightGameName, Names, NightGameName, Ordinals, PossibleEnglishName, PossibleEnglishName_CourseTheme, PossibleGameName, PossibleGameName_CourseTheme} from 'core/theme/Themes.types'
+import type {CourseAndWorldTheme}                                                                                                                                                   from 'core/theme/CourseAndWorldTheme'
+import type {WorldTheme}                                                                                                                                                            from 'core/theme/WorldTheme'
+import type {EndlessMarioThemeImageFile}                                                                                                                                            from 'core/theme/file/EndlessMarioThemeImageFile'
+import type {LargeThemeImageFile}                                                                                                                                                   from 'core/theme/file/LargeThemeImageFile'
+import type {SmallThemeImageFile}                                                                                                                                                   from 'core/theme/file/SmallThemeImageFile'
+import type {Nullable, NullOr, NullOrBoolean}                                                                                                                                       from 'util/types/nullable'
 
 import {ThemeComponent}                                               from 'core/theme/Theme.component'
 import {EndlessMarioThemeImageFileContainer as EndlessMarioImageFile} from 'core/theme/file/EndlessMarioThemeImageFile.container'
@@ -175,9 +175,9 @@ export class Themes
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>
-    static #COURSES: OnlyCourseThemes
-    static #COURSES_SMM1: OnlyCourseThemesInSMM1
-    static #WORLDS: OnlyWorldThemes
+    static #COURSES: readonly Themes[]
+    static #COURSES_SMM1: readonly Themes[]
+    static #WORLDS: readonly Themes[]
 
     #reference?: CourseAndWorldTheme
     readonly #englishName
@@ -279,7 +279,7 @@ export class Themes
         return this.values.map(it => it.englishName).toArray()
     }
 
-    public static get courseThemes(): OnlyCourseThemes {
+    public static get courseThemes(): readonly Themes[] {
         return this.#COURSES ??= [
             this.GROUND,
             this.UNDERGROUND,
@@ -294,7 +294,7 @@ export class Themes
         ]
     }
 
-    public static get courseThemes_smm1(): OnlyCourseThemesInSMM1 {
+    public static get courseThemes_smm1(): readonly Themes[] {
         return this.#COURSES_SMM1 ??= [
             this.GROUND,
             this.UNDERGROUND,
@@ -305,7 +305,7 @@ export class Themes
         ]
     }
 
-    public static get worldThemes(): OnlyWorldThemes {
+    public static get worldThemes(): readonly Themes[] {
         return this.#WORLDS ??= [
             this.GROUND,
             this.UNDERGROUND,

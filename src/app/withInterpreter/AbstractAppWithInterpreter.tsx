@@ -1,51 +1,44 @@
 import './AbstractAppWithInterpreter.scss'
 
-import type {AppProperties}                      from 'app/AppProperties.types'
-import type {AppWithVariableDisplayStates}       from 'app/AppStates.types'
+import type {AppWithInterpreterProperties}       from 'app/AppProperties.types'
+import type {AppStates}                          from 'app/AppStates.types'
 import type {AppInterpreter}                     from 'app/interpreter/AppInterpreter'
+import type {ViewAndRouteName}                   from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {ReactElement, ReactElementOrString} from 'util/react/ReactProperties'
 import type {NullOr}                             from 'util/types/nullable'
 
-import AbstractApp    from 'app/AbstractApp'
-import UnfinishedText from 'app/tools/text/UnfinishedText'
-import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
-import {assert}       from 'util/utilitiesMethods'
+import AbstractApp        from 'app/AbstractApp'
+import UnfinishedText     from 'app/tools/text/UnfinishedText'
+import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
+import DisplayButtonGroup from 'app/withInterpreter/DisplayButtonGroup'
 
 export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
-    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractApp<T, S> {
 
     //region -------------------- Fields --------------------
 
-    #possibleViewDisplay?: readonly ViewDisplays[]
+    #typeDisplayed?: ViewDisplays
+    #possibleViewDisplay?: readonly ViewAndRouteName[]
     #key?: string
     #appInterpreter?: APP
 
     //endregion -------------------- Fields --------------------
+
+    public constructor(props: T,) {
+        super(props,)
+    }
+
     //region -------------------- Getter & create methods --------------------
 
-    /**
-     * Get the {@link ViewDisplays view display} state held by this instance.
-     */
+    /** The {@link ViewDisplays view display} property held by this instance */
     public get typeDisplayed(): ViewDisplays {
-        assert(this.state != null, 'The state has not been initialised in the constructor.',)
-        assert(this.state.typeDisplayed != null, 'The state "type displayed" has not been initialised in the constructor.',)
-        return this.state.typeDisplayed
+        return this.#typeDisplayed ??= ViewDisplays.getValue(this.props.typeDisplayed)
     }
 
-    /**
-     * Set the state {@link ViewDisplays view display} to the value received in this instance.
-     *
-     * @param value the new {@link ViewDisplays view display} state
-     */
-    public set typeDisplayed(value: ViewDisplays,) {
-        this.setState({typeDisplayed: value,})
-    }
+    protected abstract _createPossibleViewDisplay(): readonly ViewAndRouteName[]
 
-
-    protected abstract _createPossibleViewDisplay(): readonly ViewDisplays[]
-
-    private get __possibleViewDisplay(): readonly ViewDisplays[] {
+    private get __possibleViewDisplay(): readonly ViewAndRouteName[] {
         return this.#possibleViewDisplay ??= this._createPossibleViewDisplay()
     }
 
@@ -56,7 +49,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
      * Get the group key for each {@link ViewDisplays "view display" button}.
      * It is also used for the {@link Table} id.
      *
-     * @see #createViewDisplayGroup
+     * @see DisplayButtonGroup
      */
     protected get _key(): string {
         return this.#key ??= this._createKey()
@@ -75,13 +68,6 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------
 
-    #createViewDisplayGroup(typeDisplayed: ViewDisplays, key: string,): ReactElement {
-        return <div key={`${key} (button group)`} id="btn-viewDisplay-container" className="btn-group">
-            {this.__possibleViewDisplay.map(viewDisplay =>
-                viewDisplay.createButton(typeDisplayed, key, nextValue => this.typeDisplayed = nextValue,))}
-        </div>
-    }
-
     protected abstract _createTitleContent(): ReactElementOrString
 
     protected _createAsideContent(): NullOr<ReactElementOrString> {
@@ -93,14 +79,13 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     }
 
     protected override _mainContent(): ReactElement {
-        const typeDisplayed = this.typeDisplayed
-        const key = this._key
+        const {typeDisplayed, _key: key,} = this
 
         return <div key={`${key} (sub main container)`} id="subMain-container">
             <div id={`${key}-container`} className={`${typeDisplayed.htmlType}-container`}>
                 <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
                 <aside key={`${key} (view changer)`} id="viewChanger-container">
-                    {this.#createViewDisplayGroup(typeDisplayed, key,)}
+                    <DisplayButtonGroup reactKey={key} views={this.__possibleViewDisplay} currentView={typeDisplayed}/>
                     {this._createAsideContent()}
                 </aside>
                 <p key={`${key} (description)`}>{this._createDescription()}</p>

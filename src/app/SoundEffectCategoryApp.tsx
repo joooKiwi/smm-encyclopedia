@@ -1,28 +1,17 @@
 import './SoundEffectCategoryApp.scss'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {SoundEffectCategories}  from 'core/soundEffectCategory/SoundEffectCategories'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
 export default class SoundEffectCategoryApp
     extends AbstractCardListApp<AppInterpreterWithCardList<SoundEffectCategories>> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.CARD_LIST,
-        }
-    }
 
     //region -------------------- Create methods --------------------
 
@@ -30,8 +19,18 @@ export default class SoundEffectCategoryApp
         return 'soundEffectCategory'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everySoundEffects (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everySoundEffects (card)'
+    }
+
+
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('Every sound effect categories')
+        return gameContentTranslation('sound effect category.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {

@@ -99,7 +99,7 @@ export default class PowerUpAndRidePriorityApp
 
     protected override _mainContent(): ReactElement {
         return <>
-            <h1>{gameContentTranslation('Every power-ups & rides priority', {powerUps: unfinishedText('power-up'), rides: unfinishedText('rides'),},)}</h1>
+            <h1>{gameContentTranslation('power-up & ride priority.all.all', {powerUp: unfinishedText('power-up'), powerUps: unfinishedText('power-ups'), ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}</h1>
             <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
             {/*TODO add legend for the colors & styles*/}
             <div key="Power-up priority (container)" id="powerUpPriority-container" className="container-fluid">

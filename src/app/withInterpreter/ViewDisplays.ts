@@ -9,7 +9,8 @@ import type {HTMLType, Names, Ordinals, Type} from 'app/withInterpreter/ViewDisp
 import type {ClassWithType}                   from 'core/ClassWithType'
 import type {ReactElement}                    from 'util/react/ReactProperties'
 
-import {assert} from 'util/utilitiesMethods'
+import {assert}           from 'util/utilitiesMethods'
+import {Nullable, NullOr} from 'util/types/nullable'
 
 export abstract class ViewDisplays
     extends Enum<Ordinals, Names>
@@ -24,6 +25,10 @@ export abstract class ViewDisplays
             return app.createTable()
         }
 
+        protected override _getRoutePath<PATH extends string, >(path: PATH,) {
+            return `${path} (table)` as const
+        }
+
     }('table', 'table',)
     public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
 
@@ -32,12 +37,20 @@ export abstract class ViewDisplays
             return app.createList()
         }
 
+        protected override _getRoutePath<PATH extends string, >(path: PATH,) {
+            return `${path} (list)` as const
+        }
+
     }('simple-list', 'list',)
     public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
 
         public override createComponent(app: PossibleApp,): ReactElement {
             assert('createCardList' in app, 'The application does not handle a "card list" creation.',)
             return app.createCardList()
+        }
+
+        protected override _getRoutePath<PATH extends string, >(path: PATH,) {
+            return `${path} (card)` as const
         }
 
     }('card-list', 'card-list',)
@@ -77,17 +90,27 @@ export abstract class ViewDisplays
     public abstract createComponent(app: PossibleApp,): ReactElement
 
     /**
-     * Create a button to be used in a "button group" for displaying a specific "view display".
+     * Get a route path with the type in parentheses
      *
-     * @param currentValue the current value selected in the "button group"
-     * @param key the react key
-     * @param callbackOnClick the callback to call when clicking the button (to change the view)
+     * @param path The nullable path to get its types
      */
-    public createButton(currentValue: ViewDisplays, key: string, callbackOnClick: (nextValue: ViewDisplays,) => void,): ReactElement {
-        return this === currentValue
-            ? <button key={`${key} (${this.name})`} className={`btn btn-success bi-${this.htmlType} btn-viewDisplay`} disabled/>
-            : <button key={`${key} (${this.name})`} className={`btn btn-dark bi-${this.htmlType} btn-viewDisplay`} onClick={() => callbackOnClick(this)}/>
+    public getRoutePath<PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleRoutePath<PATH>> {
+        return path == null ? null : this._getRoutePath(path)
     }
+
+    /**
+     * Get a route path with only the {@link ViewDisplays.SIMPLE_LIST} & {@link ViewDisplays.CARD_LIST}.
+     *
+     * @param path The nullable path to get its types
+     * @throws {AssertionError} (only in development) It is the {@link ViewDisplays.TABLE} calling it
+     */
+    public getRoutePathAsListOnly<PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleListRoutePath<PATH>> {
+        // @ts-ignore
+        assert(this !== ViewDisplays.TABLE, 'The view display cannot be retrieved for a list only (simple & card) display',)
+        return this.getRoutePath(path) as NullOr<PossibleListRoutePath<PATH>>
+    }
+
+    protected abstract _getRoutePath<PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
@@ -112,4 +135,6 @@ export abstract class ViewDisplays
 
 }
 
+type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
+type PossibleListRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card'})`
 type PossibleApp = | AbstractAppWithInterpreter<any> | AbstractSimpleListApp<any> | AbstractCardListApp<any> | AbstractTableApp<any>

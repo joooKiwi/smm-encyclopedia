@@ -1,7 +1,9 @@
-import type {AppProperties}                from 'app/AppProperties.types'
-import type {AppWithVariableDisplayStates} from 'app/AppStates.types'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppStates}                    from 'app/AppStates.types'
 import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {EveryPossibleRouteNames}      from 'routes/everyRoutes.types'
 import type {ReactElement}                 from 'util/react/ReactProperties'
 
 import {AbstractSimpleListApp} from 'app/withInterpreter/AbstractSimpleListApp'
@@ -9,26 +11,41 @@ import {ListDimensionCreator}  from 'app/withInterpreter/ListDimension.creator'
 import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
 import NameComponent           from 'lang/name/component/Name.component'
 
+//region -------------------- Import from deconstruction --------------------
+
+const {CARD_LIST,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
+
 export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
-    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractSimpleListApp<APP, T, S> {
 
     //region -------------------- Fields --------------------
 
-    static #APP_OPTION_INTERPRETER: readonly ViewDisplays[] = [ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST,]
+    #routeName?: EveryPossibleRouteNames
 
     //endregion -------------------- Fields --------------------
-    //region -------------------- Create methods --------------------
+    //region -------------------- Getter & create methods --------------------
 
-    protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
-        return AbstractCardListApp.#APP_OPTION_INTERPRETER
+    protected override _createPossibleViewDisplay(): readonly ViewAndRouteName[] {
+        return [
+            ...super._createPossibleViewDisplay(),
+            [CARD_LIST, this.__cardRouteName,],
+        ]
     }
+
+    private get __cardRouteName(): EveryPossibleRouteNames {
+        return this.#routeName ??= this._createCardListRouteName()
+    }
+
+    protected abstract _createCardListRouteName(): EveryPossibleRouteNames
 
     protected _createUniqueNameOnCardList(enumerable: ValueByApp<APP>,): string {
         return enumerable.englishName
     }
 
-    //endregion -------------------- Create methods --------------------
+    //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------
 
     /**

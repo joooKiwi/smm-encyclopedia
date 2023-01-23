@@ -1,5 +1,5 @@
 import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
-import type {PlayerSoundEffectTriggerProperty} from 'core/soundEffect/property/PlayerSoundEffectTriggerProperty'
+import type {PlayerSoundEffectTriggerProperty} from 'core/soundEffect/property/PlayerSoundEffectTrigger.property'
 import type {PlayerSoundEffectTriggers}        from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 
 export interface SoundEffectProperty
