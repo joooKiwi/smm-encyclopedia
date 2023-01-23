@@ -1,5 +1,3 @@
-import type {Themes} from 'core/theme/Themes'
-
 enum Enum {
 
     GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW,
@@ -30,37 +28,3 @@ export type DayOrNightGameName<B extends boolean = boolean, >
         : | DayGameName | NightGameName
 
 //endregion -------------------- Name & image --------------------
-//region -------------------- Array types --------------------
-
-export type OnlyCourseThemes = readonly [
-    typeof Themes['GROUND'],
-    typeof Themes['UNDERGROUND'],
-    typeof Themes['UNDERWATER'],
-    typeof Themes['DESERT'],
-    typeof Themes['SNOW'],
-    typeof Themes['SKY'],
-    typeof Themes['FOREST'],
-    typeof Themes['GHOST_HOUSE'],
-    typeof Themes['AIRSHIP'],
-    typeof Themes['CASTLE'],
-]
-export type OnlyCourseThemesInSMM1 = readonly [
-    typeof Themes['GROUND'],
-    typeof Themes['UNDERGROUND'],
-    typeof Themes['UNDERWATER'],
-    typeof Themes['GHOST_HOUSE'],
-    typeof Themes['AIRSHIP'],
-    typeof Themes['CASTLE'],
-]
-export type OnlyWorldThemes = readonly [
-    typeof Themes['GROUND'],
-    typeof Themes['UNDERGROUND'],
-    typeof Themes['DESERT'],
-    typeof Themes['SNOW'],
-    typeof Themes['SKY'],
-    typeof Themes['FOREST'],
-    typeof Themes['VOLCANO'],
-    typeof Themes['SPACE'],
-]
-
-//endregion -------------------- Array types --------------------
