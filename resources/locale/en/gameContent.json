@@ -113,16 +113,16 @@
   },
   "power-up & ride priority": {
     "power-up": {
-      "all":         "Every {{singularPowerUp}} priority",
-      "display all": "Display every {{singularPowerUp}} priority"
+      "all":         "Every {{powerUp}} priority",
+      "display all": "Display every {{powerUp}} priority"
     },
     "ride": {
-      "all":         "Every {{singularRide}} priority",
-      "display all": "Display every {{singularRide}} priority"
+      "all":         "Every {{ride}} priority",
+      "display all": "Display every {{ride}} priority"
     },
     "all": {
-      "all":         "Every {{singularPowerUp}} & {{singularRide}} priority",
-      "display all": "Display every {{singularPowerUp}} & {{singularRide}} priority"
+      "all":         "Every {{powerUp}} & {{ride}} priority",
+      "display all": "Display every {{powerUp}} & {{ride}} priority"
     }
   },
   "mystery mushroom": {
