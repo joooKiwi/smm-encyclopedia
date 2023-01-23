@@ -1,7 +1,9 @@
-import type {AppProperties}                from 'app/AppProperties.types'
-import type {AppWithVariableDisplayStates} from 'app/AppStates.types'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppStates}                    from 'app/AppStates.types'
 import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {EveryPossibleRouteNames}      from 'routes/everyRoutes.types'
 import type {ReactElement}                 from 'util/react/ReactProperties'
 
 import {AbstractAppWithInterpreter} from 'app/withInterpreter/AbstractAppWithInterpreter'
@@ -9,26 +11,40 @@ import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
 import {ListDimensionCreator}       from 'app/withInterpreter/ListDimension.creator'
 import NameComponent                from 'lang/name/component/Name.component'
 
+//region -------------------- Import from deconstruction --------------------
+
+const {SIMPLE_LIST,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
+
 export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimpleList,
-    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractAppWithInterpreter<APP, T, S> {
 
     //region -------------------- Fields --------------------
 
-    static #APP_OPTION_INTERPRETER: readonly ViewDisplays[] = [ViewDisplays.SIMPLE_LIST,]
+    #routeName?: EveryPossibleRouteNames
 
     //endregion -------------------- Fields --------------------
-    //region -------------------- Create methods --------------------
+    //region -------------------- Getter & create methods --------------------
 
-    protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
-        return AbstractSimpleListApp.#APP_OPTION_INTERPRETER
+    protected override _createPossibleViewDisplay(): readonly ViewAndRouteName[] {
+        return [
+            [SIMPLE_LIST, this.__listRouteName,],
+        ]
     }
+
+    private get __listRouteName(): EveryPossibleRouteNames {
+        return this.#routeName ??= this._createSimpleListRouteName()
+    }
+
+    protected abstract _createSimpleListRouteName(): EveryPossibleRouteNames
 
     protected _createUniqueNameOnSimpleList(enumerable: ValueByApp<APP>,): string {
         return enumerable.englishName
     }
 
-    //endregion -------------------- Create methods --------------------
+    //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------
 
     /**

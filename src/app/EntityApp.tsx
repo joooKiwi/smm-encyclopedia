@@ -3,15 +3,13 @@ import './options/EntityAppOption.scss'
 
 import {lazy} from 'react'
 
-import type {AppProperties}                                        from 'app/AppProperties.types'
-import type {EntityAppStates}                                      from 'app/AppStates.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {EntityAppOption}        from 'app/options/EntityAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Entities}               from 'core/entity/Entities'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
@@ -21,24 +19,28 @@ const SimpleSoundComponent = lazy(() => import('util/file/sound/component/Simple
 
 //endregion -------------------- dynamic imports --------------------
 
-/**
- * @reactComponent
- */
 export default class EntityApp
-    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, AppProperties, EntityAppStates> {
-
-    public constructor(props: AppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
-        }
-    }
+    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>> {
 
     //region -------------------- Create methods --------------------
 
     protected override _createKey() {
         return 'entity'
     }
+
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyEntities (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyEntities (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everyEntities (table)'
+    }
+
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('entity.all')

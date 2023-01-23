@@ -2,6 +2,12 @@
 @import '../variables';
 @import '../mixin';
 
+#theme-container {
+  .theme-button-image {
+    max-height: .75cm;
+  }
+}
+
 #theme-table {
 
   .gameContentImages-container img {
@@ -78,4 +84,36 @@
     max-height: 1cm;
   }
 
+}
+
+//region  -------------------- Link buttons --------------------
+
+#theme-linkButton-courseAndWorld-container {
+  margin-left: 0;
+}
+
+#allTheme-button {
+  border: {
+    top-right-radius: var(--bs-btn-border-radius);
+    bottom: {
+      left-radius: 0;
+      right-radius: 0;
+    }
+  };
+}
+
+#courseTheme-button {
+  border-bottom-left-radius: var(--bs-btn-border-radius);
+}
+
+#worldTheme-button {
+  border-bottom-right-radius: var(--bs-btn-border-radius);
+}
+
+//endregion  -------------------- Link buttons --------------------
+
+@include media-breakpoint-up($grid-breakpoint-md) {
+  #theme-container > p {
+    margin-top: 1.25cm;
+  }
 }

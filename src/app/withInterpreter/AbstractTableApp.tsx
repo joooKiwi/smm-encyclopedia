@@ -1,30 +1,47 @@
-import type {AppProperties}                from 'app/AppProperties.types'
-import type {AppWithVariableDisplayStates} from 'app/AppStates.types'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppStates}                    from 'app/AppStates.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {SingleHeaderContent}          from 'app/tools/table/SimpleHeader'
 import type {SingleTableContent}           from 'app/tools/table/Table.types'
+import type {EveryPossibleRouteNames}      from 'routes/everyRoutes.types'
 import type {ReactElement}                 from 'util/react/ReactProperties'
 
 import Table                 from 'app/tools/table/Table'
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}        from 'app/withInterpreter/ViewDisplays'
 
+//region -------------------- Import from deconstruction --------------------
+
+const {TABLE,} = ViewDisplays
+
+//endregion -------------------- Import from deconstruction --------------------
+
 export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
-    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractCardListApp<APP, T, S> {
 
     //region -------------------- Fields --------------------
 
-    static #APP_OPTION_INTERPRETER: readonly ViewDisplays[] = [ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST, ViewDisplays.TABLE,]
+    #routeName?: EveryPossibleRouteNames
 
     //endregion -------------------- Fields --------------------
-    //region -------------------- Create methods --------------------
+    //region -------------------- Getter & create methods --------------------
 
-    protected override _createPossibleViewDisplay(): readonly ViewDisplays[] {
-        return AbstractTableApp.#APP_OPTION_INTERPRETER
+    protected override _createPossibleViewDisplay(): readonly ViewAndRouteName[] {
+        return [
+            ...super._createPossibleViewDisplay(),
+            [TABLE, this.__tableRouteName,],
+        ]
     }
 
-    //endregion -------------------- Create methods --------------------
+    private get __tableRouteName(): EveryPossibleRouteNames {
+        return this.#routeName ??= this._createTableRouteName()
+    }
+
+    protected abstract _createTableRouteName(): EveryPossibleRouteNames
+
+    //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------
 
     #tableContent(optionInterpreter: APP,): readonly SingleTableContent[] {

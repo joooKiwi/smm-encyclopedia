@@ -1,24 +1,24 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable'
+import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/EntityLimitTypes.types'
-import type {ClassWithType}                                    from 'core/ClassWithType'
+import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
+import type {ClassWithType}                                    from 'core/ClassWithType'
 import type {Nullable, NullOr}                                 from 'util/types/nullable'
 
-import {EntityLimits}   from 'core/entityLimit/EntityLimits'
+import {Themes}         from 'core/theme/Themes'
 import {getValueByType} from 'util/utilitiesMethods'
 
-export abstract class EntityLimitTypes
+export abstract class ThemeTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly ALL =           new class EntityLimitTypes_All extends EntityLimitTypes {
+    public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits[Symbol.iterator]()
+        public override get iterator(): IterableIterator<Themes> {
+            return Themes[Symbol.iterator]()
         }
 
 
@@ -26,11 +26,11 @@ export abstract class EntityLimitTypes
             return null
         }
 
-    }('all', 'everyLimits',)
-    public static readonly WHILE_PLAYING = new class EntityLimitTypes_WhilePlaying extends EntityLimitTypes {
+    }('all', 'everyThemes',)
+    public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits.whilePlayingEntityLimits[Symbol.iterator]()
+        public override get iterator(): IterableIterator<Themes> {
+            return Themes.courseThemes[Symbol.iterator]()
         }
 
 
@@ -38,19 +38,19 @@ export abstract class EntityLimitTypes
             return 'warning'
         }
 
-        public override get playRouteName() {
+        public override get courseRouteName() {
             return null
         }
 
-        public override get editorColor(): PossibleColor {
+        public override get worldColor(): PossibleColor {
             return 'danger'
         }
 
-    }('play', 'playLimits',)
-    public static readonly EDITOR =        new class EntityLimitTypes_Editor extends EntityLimitTypes {
+    }('course', 'courseThemes',)
+    public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits.editorEntityLimits[Symbol.iterator]()
+        public override get iterator(): IterableIterator<Themes> {
+            return Themes.worldThemes[Symbol.iterator]()
         }
 
 
@@ -58,20 +58,20 @@ export abstract class EntityLimitTypes
             return 'warning'
         }
 
-        public override get playColor(): PossibleColor {
+        public override get courseColor(): PossibleColor {
             return 'danger'
         }
 
-        public override get editorRouteName() {
+        public override get worldRouteName() {
             return null
         }
 
-    }('editor', 'editorLimits',)
+    }('world', 'worldThemes',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: EntityLimitTypes
+    static [index: number]: ThemeTypes
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -99,13 +99,13 @@ export abstract class EntityLimitTypes
         return this.#routeName
     }
 
-    public abstract get iterator(): IterableIterator<EntityLimits>
+    public abstract get iterator(): IterableIterator<Themes>
 
     //region -------------------- Link button methods --------------------
 
-    /** The route name for the path with every {@link EntityLimits} */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyLimits'>> {
-        return 'everyLimits'
+    /** The route name for the path with every {@link Themes} */
+    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyThemes'>> {
+        return 'everyThemes'
     }
 
     public get allColor(): PossibleColor {
@@ -114,28 +114,30 @@ export abstract class EntityLimitTypes
 
 
     /**
-     * The route name for the path with only the play {@link EntityLimits}
+     * The route name for the path with only the course {@link Themes}
      *
-     * @see EntityLimits.whilePlayingEntityLimits
+     * @see Themes.courseThemes
+     * @see Themes.courseThemes_smm1
      */
-    public get playRouteName(): NullOr<Extract<PossibleRouteName, 'playLimits'>> {
-        return 'playLimits'
+    public get courseRouteName(): NullOr<Extract<PossibleRouteName, 'courseThemes'>> {
+        return 'courseThemes'
     }
 
-    public get playColor(): PossibleColor {
+    public get courseColor(): PossibleColor {
         return 'success'
     }
 
+
     /**
-     * The route name for the path with only the editor {@link EntityLimits}
+     * The route name for the path with only the world {@link Themes}
      *
-     * @see EntityLimits.editorEntityLimits
+     * @see Themes.worldThemes
      */
-    public get editorRouteName(): NullOr<Extract<PossibleRouteName, 'editorLimits'>> {
-        return 'editorLimits'
+    public get worldRouteName(): NullOr<Extract<PossibleRouteName, 'worldThemes'>> {
+        return 'worldThemes'
     }
 
-    public get editorColor(): PossibleColor {
+    public get worldColor(): PossibleColor {
         return 'success'
     }
 
@@ -144,7 +146,7 @@ export abstract class EntityLimitTypes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static getValueByType(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
+    public static getValueByType(value: Nullable<| ThemeTypes | string>,): ThemeTypes {
         return getValueByType(value, this,)
     }
 
@@ -152,19 +154,19 @@ export abstract class EntityLimitTypes
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityLimitTypes
+        return ThemeTypes
     }
 
-    public static getValue(value: PossibleValueByEnumerable<EntityLimitTypes>,): EntityLimitTypes {
+    public static getValue(value: PossibleValueByEnumerable<ThemeTypes>,): ThemeTypes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): CollectionHolder<EntityLimitTypes> {
+    public static get values(): CollectionHolder<ThemeTypes> {
         return Enum.getValuesOn(this)
     }
 
-    public static* [Symbol.iterator]() {
-        yield* this.values[Symbol.iterator]()
+    public static [Symbol.iterator]() {
+        return this.values[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

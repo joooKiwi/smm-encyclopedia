@@ -1,10 +1,11 @@
-import './EntityLimitApp.scss'
+import './LimitApp.scss'
 
-import type {EntityLimitAppProperties}                             from 'app/AppProperties.types'
-import type {EntityLimitAppStates}                                 from 'app/AppStates.types'
+import type {LimitAppProperties}                                   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ClassWithType}                                        from 'core/ClassWithType'
+import type {EntityLimits}                                         from 'core/entityLimit/EntityLimits'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {EntityLimitAppOption}                       from 'app/options/EntityLimitAppOption'
@@ -14,15 +15,10 @@ import LinkButton                                   from 'app/tools/button/LinkB
 import Image                                        from 'app/tools/images/Image'
 import TextComponent                                from 'app/tools/text/TextComponent'
 import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import {EntityLimits}                               from 'core/entityLimit/EntityLimits'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
-export default class EntityLimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, EntityLimitAppProperties, EntityLimitAppStates>
+export default class LimitApp
+    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, LimitAppProperties>
     implements ClassWithType<EntityLimitTypes> {
 
     //region -------------------- Fields --------------------
@@ -30,14 +26,6 @@ export default class EntityLimitApp
     #type?: EntityLimitTypes
 
     //endregion -------------------- Fields --------------------
-
-    public constructor(props: EntityLimitAppProperties,) {
-        super(props,)
-        this.state = {
-            typeDisplayed: ViewDisplays.TABLE,
-        }
-    }
-
     //region -------------------- Getter methods --------------------
 
     public get type(): EntityLimitTypes {
@@ -45,25 +33,38 @@ export default class EntityLimitApp
     }
 
     //endregion -------------------- Getter methods --------------------
-
     //region -------------------- Create methods --------------------
 
     protected override _createKey(): string {
         return 'limit'
     }
 
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return `${this.type.routeName} (list)`
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return `${this.type.routeName} (card)`
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return `${this.type.routeName} (table)`
+    }
+
+
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('limit.all')
     }
 
     protected override _createAsideContent(): ReactElementOrString {
-        const type = this.type
+        const {type, typeDisplayed,} = this
 
         return <div id="limit-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
-            <LinkButton partialId="allLimit" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <LinkButton partialId="allLimit" routeName={typeDisplayed.getRoutePath(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="playLimit" routeName={type.playRouteName} color={type.playColor}>{gameContentTranslation('limit.play.value')}</LinkButton>
-                <LinkButton partialId="editorLimit" routeName={type.editorRouteName} color={type.editorColor}>{gameContentTranslation('limit.editor.value')}</LinkButton>
+                <LinkButton partialId="playLimit" routeName={typeDisplayed.getRoutePath(type.playRouteName)} color={type.playColor}>{gameContentTranslation('limit.play.value')}</LinkButton>
+                <LinkButton partialId="editorLimit" routeName={typeDisplayed.getRoutePath(type.editorRouteName)} color={type.editorColor}>{gameContentTranslation('limit.editor.value')}</LinkButton>
             </div>
         </div>
     }
