@@ -34,7 +34,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                 {/*TODO add other predefined group of entities*/}
             </div>
             <div key="button group (entity category)" id="entityCategory-buttonGroup" className="btn-group col-6" role="group">
-                <DisplayViewRouteButton routeName="everyCategories" value={gameContentTranslation('Category')}
+                <DisplayViewRouteButton routeName="everyEntityCategories" value={gameContentTranslation('Category')}
                                         tooltipValue={gameContentTranslation('entity category.display all')}
                                         elementId="displayView-entityCategory-button" id={id} divId={divId}/>
             </div>
@@ -61,10 +61,10 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         tooltipValue={gameContentTranslation('theme.all.display all')}
                                         elementId="displayView-theme-button" id={id} divId={divId}/>
                 <div key="button group (specific theme type)" id="specificThemeType-buttonGroup" className="btn-group" role="group">
-                    <DisplayViewRouteButton routeName="everyThemes"/*TODO change to every course theme route*/ value={<Image id="displayView-courseTheme-image" file={COURSE_THEME_IMAGE_FILE} className="displayView-theme-image"/>}
+                    <DisplayViewRouteButton routeName="courseThemes" value={<Image id="displayView-courseTheme-image" file={COURSE_THEME_IMAGE_FILE} className="displayView-theme-image"/>}
                                             tooltipValue={gameContentTranslation('theme.course.display all')}
                                             elementId="displayView-courseTheme-button" id={id} divId={divId}/>
-                    <DisplayViewRouteButton routeName="everyThemes"/*TODO change to every world theme route*/ value={<Image id="displayView-worldTheme-image" file={WORLD_THEME_IMAGE_FILE} className="displayView-theme-image"/>}
+                    <DisplayViewRouteButton routeName="worldThemes" value={<Image id="displayView-worldTheme-image" file={WORLD_THEME_IMAGE_FILE} className="displayView-theme-image"/>}
                                             tooltipValue={gameContentTranslation('theme.world.display all')}
                                             elementId="displayView-worldTheme-button" id={id} divId={divId}/>
                 </div>
