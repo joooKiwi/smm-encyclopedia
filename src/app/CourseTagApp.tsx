@@ -39,8 +39,10 @@ export default class CourseTagApp
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('course tag.all', {
-            course: <UnfinishedText key="every course tag (lowercase course)">course</UnfinishedText>,//TODO add course reference
-            tags: <UnfinishedText key="every course tag (plural lowercase tag)">tags</UnfinishedText>,//TODO add tag reference
+            course: <UnfinishedText key="every course tag (lowercase course)">course</UnfinishedText>,//TODO add course (singular form)
+            courses: <UnfinishedText key="every course tag (plural lowercase course)">courses</UnfinishedText>,//TODO add course (plural form)
+            tag: <UnfinishedText key="every course tag (singular lowercase tag)">tag</UnfinishedText>,//TODO add tag (singular form)
+            tags: <UnfinishedText key="every course tag (plural lowercase tag)">tags</UnfinishedText>,//TODO add tag (plural form)
         },)
     }
 

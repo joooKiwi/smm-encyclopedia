@@ -128,7 +128,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
             </div>/* : null*/}
             {isSMM2Selected ? <div key="button group (course tag - SMM2)" id="courseTag-buttonGroup" className="btn-group col-6" role="group">
                 <DisplayViewRouteButton routeName="officialCourseTags" value={gameContentTranslation('course tag.singular', {Course: unfinishedText('Course'), course: unfinishedText('course'), Tag: unfinishedText('Tag'), tag: unfinishedText('tag'),},)}//TODO add course & tag (capital case & lowercase)
-                                        tooltipValue={gameContentTranslation('course tag.display all', {singularCourse: unfinishedText('course'), pluralCourse: unfinishedText('courses'), singularTag: unfinishedText('tag'), pluralTag: unfinishedText('tags'),})}//TODO add course & tag (singular & plural form)
+                                        tooltipValue={gameContentTranslation('course tag.display all', {course: unfinishedText('course'), courses: unfinishedText('courses'), tag: unfinishedText('tag'), tags: unfinishedText('tags'),})}//TODO add course & tag (singular & plural form)
                                         elementId="displayView-courseTag-button" id={id} divId={divId}/>
             </div> : null}
             {isSMM2Selected ? <div key="button group (predefined message - SMM2)" id="predefinedMessage-buttonGroup" className="btn-group col-6" role="group">
