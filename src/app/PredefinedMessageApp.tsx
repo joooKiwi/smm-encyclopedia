@@ -1,5 +1,6 @@
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {PossibleDimensionOnList}      from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}      from 'routes/everyRoutes.types'
 import type {ReactElementOrString}         from 'util/react/ReactProperties'
 
 import UnfinishedText           from 'app/tools/text/UnfinishedText'
@@ -15,6 +16,12 @@ export default class PredefinedMessageApp
     protected override _createKey() {
         return 'predefinedMessage'
     }
+
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyPredefinedMessages (list)'
+    }
+
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('predefined message.all', {

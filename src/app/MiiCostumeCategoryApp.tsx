@@ -2,6 +2,7 @@ import {lazy} from 'react'
 
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
@@ -24,6 +25,16 @@ export default class EveryEntityCategoriesApp
     protected override _createKey() {
         return 'miiCostumeCategory'
     }
+
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyEntityCategories (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyEntityCategories (card)'
+    }
+
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mii costume category.all', {

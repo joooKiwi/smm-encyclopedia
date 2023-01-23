@@ -2,6 +2,7 @@ import './SoundEffectCategoryApp.scss'
 
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import Image                    from 'app/tools/images/Image'
@@ -17,6 +18,16 @@ export default class SoundEffectCategoryApp
     protected override _createKey() {
         return 'soundEffectCategory'
     }
+
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everySoundEffects (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everySoundEffects (card)'
+    }
+
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('sound effect category.all')

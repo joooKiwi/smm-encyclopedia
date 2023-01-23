@@ -2,6 +2,7 @@ import './MiiCostumeApp.scss'
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
@@ -20,6 +21,20 @@ export default class MiiCostumeApp
     protected override _createKey() {
         return 'miiCostume'
     }
+
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyMiiCostumes (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyMiiCostumes (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everyMiiCostumes (table)'
+    }
+
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mii costume.all', {

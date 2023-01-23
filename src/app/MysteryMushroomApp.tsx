@@ -2,6 +2,7 @@ import './MysteryMushroomApp.scss'
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
@@ -18,6 +19,20 @@ export default class MysteryMushroomApp
     protected override _createKey() {
         return 'mysteryMushroom'
     }
+
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyMysteryMushrooms (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyMysteryMushrooms (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everyMysteryMushrooms (table)'
+    }
+
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mystery mushroom.all', {

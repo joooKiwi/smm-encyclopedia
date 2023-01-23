@@ -26,7 +26,7 @@ export abstract class CourseTagTypes
             return null
         }
 
-    }('all',)
+    }('all', 'everyCourseTags',)
     public static readonly OFFICIAL =         new class CourseTagTypes_Official extends CourseTagTypes {
 
         public override get iterator(): IterableIterator<CourseTags> {
@@ -50,7 +50,7 @@ export abstract class CourseTagTypes
             return 'warning'
         }
 
-    }('official',)
+    }('official', 'officialCourseTags',)
     public static readonly UNOFFICIAL =       new class CourseTagTypes_Unofficial extends CourseTagTypes {
 
         public override get iterator(): IterableIterator<CourseTags> {
@@ -74,7 +74,7 @@ export abstract class CourseTagTypes
             return 'warning'
         }
 
-    }('unofficial',)
+    }('unofficial', 'unofficialCourseTags',)
     public static readonly MAKER_CENTRAL =    new class CourseTagTypes_MakerCentral extends CourseTagTypes {
 
         public override get iterator(): IterableIterator<CourseTags> {
@@ -98,7 +98,7 @@ export abstract class CourseTagTypes
             return null
         }
 
-    }('makerCentral',)
+    }('makerCentral', 'makerCentralCourseTags',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -109,13 +109,15 @@ export abstract class CourseTagTypes
     //region -------------------- Fields --------------------
 
     readonly #type
+    readonly #routeName
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(type: PossibleType,) {
+    private constructor(type: PossibleType, routeName: PossibleRouteName,) {
         super()
         this.#type = type
+        this.#routeName = routeName
     }
 
     //endregion -------------------- Constructor --------------------
@@ -125,14 +127,16 @@ export abstract class CourseTagTypes
         return this.#type
     }
 
-    public abstract get iterator(): IterableIterator<CourseTags>
+    public get routeName(): PossibleRouteName {
+        return this.#routeName
+    }
 
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
+    public abstract get iterator(): IterableIterator<CourseTags>
 
     //region -------------------- Link button methods --------------------
 
-    public get allRouteName(): NullOr<PossibleRouteName> {
+    /** The route name for the path with every course tags */
+    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyCourseTags'>> {
         return 'everyCourseTags'
     }
 
@@ -141,7 +145,12 @@ export abstract class CourseTagTypes
     }
 
 
-    public get officialRouteName(): NullOr<PossibleRouteName> {
+    /**
+     * The route name for the path with only the official {@link CourseTags}
+     *
+     * @see CourseTags.officialCourseTags
+     */
+    public get officialRouteName(): NullOr<Extract<PossibleRouteName, 'officialCourseTags'>> {
         return 'officialCourseTags'
     }
 
@@ -150,7 +159,12 @@ export abstract class CourseTagTypes
     }
 
 
-    public get unofficialRouteName(): NullOr<PossibleRouteName> {
+    /**
+     * The route name for the path with only the unofficial {@link CourseTags}
+     *
+     * @see CourseTags.unofficialCourseTags
+     */
+    public get unofficialRouteName(): NullOr<Extract<PossibleRouteName, 'unofficialCourseTags'>> {
         return 'unofficialCourseTags'
     }
 
@@ -158,7 +172,11 @@ export abstract class CourseTagTypes
         return 'success'
     }
 
-
+    /**
+     * The route name for the path with only the "Maker Central" {@link CourseTags}
+     *
+     * @see CourseTags.makerCentralCourseTags
+     */
     public get makerCentralRouteName(): NullOr<PossibleRouteName> {
         return 'makerCentralCourseTags'
     }
@@ -168,6 +186,9 @@ export abstract class CourseTagTypes
     }
 
     //endregion -------------------- Link button methods --------------------
+
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     public static getValueByType(value: Nullable<| CourseTagTypes | string>,): CourseTagTypes {
         return getValueByType(value, this,)

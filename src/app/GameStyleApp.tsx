@@ -2,6 +2,7 @@ import './GameStyleApp.scss'
 
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
@@ -17,6 +18,20 @@ export default class GameStyleApp
     protected override _createKey(): string {
         return 'gameStyle'
     }
+
+
+    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+        return 'everyGameStyles (list)'
+    }
+
+    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+        return 'everyGameStyles (card)'
+    }
+
+    protected override _createTableRouteName(): EveryPossibleRouteNames {
+        return 'everyGameStyles (table)'
+    }
+
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('game style.all')
