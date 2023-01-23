@@ -1,51 +1,44 @@
 import './AbstractAppWithInterpreter.scss'
 
-import type {AppProperties}                      from 'app/AppProperties.types'
-import type {AppWithVariableDisplayStates}       from 'app/AppStates.types'
+import type {AppWithInterpreterProperties}       from 'app/AppProperties.types'
+import type {AppStates}                          from 'app/AppStates.types'
 import type {AppInterpreter}                     from 'app/interpreter/AppInterpreter'
+import type {ViewAndRouteName}                   from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {ReactElement, ReactElementOrString} from 'util/react/ReactProperties'
 import type {NullOr}                             from 'util/types/nullable'
 
-import AbstractApp    from 'app/AbstractApp'
-import UnfinishedText from 'app/tools/text/UnfinishedText'
-import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
-import {assert}       from 'util/utilitiesMethods'
+import AbstractApp        from 'app/AbstractApp'
+import UnfinishedText     from 'app/tools/text/UnfinishedText'
+import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
+import DisplayButtonGroup from 'app/withInterpreter/DisplayButtonGroup'
 
 export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
-    T extends AppProperties = AppProperties, S extends AppWithVariableDisplayStates = AppWithVariableDisplayStates, >
+    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractApp<T, S> {
 
     //region -------------------- Fields --------------------
 
-    #possibleViewDisplay?: readonly ViewDisplays[]
+    #typeDisplayed?: ViewDisplays
+    #possibleViewDisplay?: readonly ViewAndRouteName[]
     #key?: string
     #appInterpreter?: APP
 
     //endregion -------------------- Fields --------------------
+
+    public constructor(props: T,) {
+        super(props,)
+    }
+
     //region -------------------- Getter & create methods --------------------
 
-    /**
-     * Get the {@link ViewDisplays view display} state held by this instance.
-     */
+    /** The {@link ViewDisplays view display} property held by this instance */
     public get typeDisplayed(): ViewDisplays {
-        assert(this.state != null, 'The state has not been initialised in the constructor.',)
-        assert(this.state.typeDisplayed != null, 'The state "type displayed" has not been initialised in the constructor.',)
-        return this.state.typeDisplayed
+        return this.#typeDisplayed ??= ViewDisplays.getValue(this.props.typeDisplayed)
     }
 
-    /**
-     * Set the state {@link ViewDisplays view display} to the value received in this instance.
-     *
-     * @param value the new {@link ViewDisplays view display} state
-     */
-    public set typeDisplayed(value: ViewDisplays,) {
-        this.setState({typeDisplayed: value,})
-    }
+    protected abstract _createPossibleViewDisplay(): readonly ViewAndRouteName[]
 
-
-    protected abstract _createPossibleViewDisplay(): readonly ViewDisplays[]
-
-    private get __possibleViewDisplay(): readonly ViewDisplays[] {
+    private get __possibleViewDisplay(): readonly ViewAndRouteName[] {
         return this.#possibleViewDisplay ??= this._createPossibleViewDisplay()
     }
 
