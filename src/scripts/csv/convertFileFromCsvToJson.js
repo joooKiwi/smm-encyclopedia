@@ -20,6 +20,7 @@ module.exports = function convertFileFromCsvToJson(fileName, compiledPath,) {
 
     parse(file, {
         complete: result => writeSteam.end(JSON.stringify(result.data)),
+        transform: value => transformValue(value),
     },)
 }
 
@@ -42,4 +43,16 @@ function createWriteStreamFromFileName(startingTime, fileName, compiledPath,) {
             logger.error(error)
         })
     return writeSteam
+}
+
+/**
+ * Transform the value (if it is a string) to remove the \r
+ *
+ * @param {unknown} value The value to transform
+ * @returns {unknown} The transformed value
+ */
+function transformValue(value,){
+    if(typeof value == 'string' && value.includes('\r'))
+        return value.replaceAll('\r', '',).replaceAll('\r\n', '\n',)
+    return value
 }
