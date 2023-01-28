@@ -1,3 +1,4 @@
+/** @type {readonly string[]} */
 module.exports = [
     'Entity',
     'Entity limit',

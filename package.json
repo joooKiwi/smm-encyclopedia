@@ -12,7 +12,7 @@
   },
 
   "scripts": {
-    "csv-to-json-to-src": "node ./src/scripts/CSVToJsonToSrc",
+    "convert-csv-to-json-to-src": "node ./src/scripts/ConvertCSVToJsonToSrc",
     "copy-images-for-css": "node ./src/scripts/CopyImagesForCSS",
     "copy-locale-to-src":  "node ./src/scripts/CopyLocaleToSrc",
     "prepare-project": "npm-run-all -p csv-to-json-to-src copy-locale-to-src copy-images-for-css",
