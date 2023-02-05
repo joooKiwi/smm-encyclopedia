@@ -31,9 +31,9 @@ const logger = Logger.get;
  * @param {string} fileName The file name (without any path & extension)
  */
 function convertFileFromCsvToJson(fileName,) {
-    const startingTime = Date.now()
-    const file = createReadStream(`${__dirname}/../../../resources/csv/${fileName}.csv`,)
-    const writeSteam = createWriteStreamFromFileName(startingTime, fileName,)
+    const startingTime = Date.now(),
+        file = createReadStream(`${__dirname}/../../resources/csv/${fileName}.csv`,),
+        writeSteam = createWriteStreamFromFileName(startingTime, fileName,)
 
     parse(file, {
         dynamicTyping: true,
@@ -52,15 +52,13 @@ function convertFileFromCsvToJson(fileName,) {
  * @returns {module:fs.WriteStream} A new write stream setup with logs
  */
 function createWriteStreamFromFileName(startingTime, fileName,) {
-    const writeSteam = createWriteStream(`${__dirname}/../../resources/compiled/${fileName}.json`,)
-    writeSteam
+    return createWriteStream(`${__dirname}/../../src/resources/compiled/${fileName}.json`,)
         .on('open', () => logger.log(`Reading file "${fileName}".`))
         .on('finish', () => logger.success(`Finished reading file "${fileName}" in ${Date.now() - startingTime} milliseconds.`))
         .on('error', error => {
             logger.warn(`An error happened with the file "${fileName}".`)
             logger.error(error)
         })
-    return writeSteam
 }
 
 /**
