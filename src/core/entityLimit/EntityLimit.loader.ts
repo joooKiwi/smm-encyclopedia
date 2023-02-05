@@ -1,80 +1,19 @@
-import resource from 'resources/compiled/Entity limit.json'
+import file from 'resources/compiled/Entity limit.json'
 
-import type {PossibleGroupName}                                                                                                                                                                   from 'core/entityTypes'
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                   from 'core/entity/Entities.types'
+import type {LanguageContent}                                                                                                                                                                     from 'core/_template/LanguageContent'
 import type {EntityLimit}                                                                                                                                                                         from 'core/entityLimit/EntityLimit'
 import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from 'core/entityLimit/EntityLimit.template'
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from 'core/entityLimit/EntityLimits.types'
 import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from 'core/entityLimit/EntityLimitTypes.types'
-import type {DefaultNonNullablePropertiesArray as LanguagesPropertyArray}                                                                                                                         from 'lang/Loader.types'
 import type {Loader}                                                                                                                                                                              from 'util/loader/Loader'
 import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
 
-import {AbstractTemplateBuilder}           from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor}           from 'core/_util/loader/HeaderTypesForConvertor'
-import {EntityLimitBuilder}                from 'core/entityLimit/EntityLimit.builder'
-import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
-import {CSVLoader}                         from 'util/loader/CSVLoader'
-
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    alternative,
-
-    type,
-    acronym,
-
-    limit_SMM1And3DS, limit_SMM2, limit_comment,
-
-    //region -------------------- Languages --------------------
-
-    english, americanEnglish, europeanEnglish,
-    french, canadianFrench, europeanFrench,
-    german,
-    spanish, americanSpanish, europeanSpanish,
-    italian,
-    dutch,
-    portuguese, americanPortuguese, europeanPortuguese,
-    russian,
-    japanese,
-    chinese, traditionalChinese, simplifiedChinese,
-    korean,
-
-    //endregion -------------------- Languages --------------------
-
-}
-
-//region -------------------- Properties --------------------
-
-type ExclusivePropertyArray = [
-
-    alternative: NullOr<PossibleAlternativeEnglishName>,
-
-    type: NullOr<PossibleEnglishName_LimitType>,
-    acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>,
-
-    limit_SMM1And3DS: PossibleLimitAmount_SMM1And3DS,
-    limit_SMM2: PossibleLimitAmount_SMM2,
-    limit_comment: PossibleLimitAmount_Comment,
-
-    link_group: NullOr<PossibleGroupName>,
-    link_entity: NullOr<PossibleEnglishName_Entity>,
-
-]
-type PropertiesArray = [
-    ...ExclusivePropertyArray,
-    ...LanguagesPropertyArray,
-]
-
-//endregion -------------------- Properties --------------------
-
-//endregion -------------------- CSV array related types --------------------
+import {isInProduction}          from 'variables'
+import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import {EntityLimitCreator}      from 'core/entityLimit/EntityLimit.creator'
 
 /**
  * @singleton
- * @recursiveReferenceVia<{@link EntityLimitBuilder}, {@link EntityLimits}>
- * @recursiveReference<{@link EntityLimits}>
  */
 export class EntityLimitLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, EntityLimit>> {
@@ -100,31 +39,19 @@ export class EntityLimitLoader
 
             //region -------------------- Builder initialisation --------------------
 
-            EntityLimitBuilder.references = references
+            EntityLimitCreator.references = references
 
             //endregion -------------------- Builder initialisation --------------------
-            //region -------------------- CSV Loader --------------------
 
-            new CSVLoader<PropertiesArray, EntityLimit, keyof typeof Headers>(resource, convertedContent => new EntityLimitBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
+            file.map(it => new EntityLimitCreator(new TemplateCreator(it as Content).create()).create())
+                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'alternative',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_limitType, 'type',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_limit, 'acronym',)
-                .convertToNullableNumberAnd([UNKNOWN_CHARACTER, NOT_APPLICABLE,], 'Limit_SMM1And3DS',)
-                .convertToNullableNumberAnd([UNKNOWN_CHARACTER, '10?', '400?', '500?',], 'limit_SMM2',)
-                .convertToEmptyableStringAnd(['Crash online if met', 'Per player', 'Per pair', 'Per section',], 'limit_comment',)
-
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_limit, 'english',)
-
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- "entity limit" has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- "entity limit" has been loaded --------------------')// temporary console.log
+            if (!isInProduction)
+                console.info(
+                    '-------------------- "limit" has been loaded --------------------\n',
+                    references,
+                    '\n-------------------- "limit" has been loaded --------------------',
+                )
 
             this.#map = references
         }
@@ -133,8 +60,23 @@ export class EntityLimitLoader
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateBuilder<| EntityLimitTemplate | AlternativeLimitTemplate, PropertiesArray, typeof Headers> {
+
+interface Content
+    extends LanguageContent {
+
+    alternative: NullOr<PossibleAlternativeEnglishName>
+
+    type: NullOr<PossibleEnglishName_LimitType>
+    acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>
+
+    limit_SMM1And3DS: PossibleLimitAmount_SMM1And3DS
+    limit_SMM2: PossibleLimitAmount_SMM2
+    limit_comment: PossibleLimitAmount_Comment
+
+}
+
+class TemplateCreator
+    extends AbstractTemplateCreator<| EntityLimitTemplate | AlternativeLimitTemplate, Content> {
 
     static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,}
     static readonly #EMPTY_REFERENCES = {
@@ -142,17 +84,14 @@ class TemplateBuilder
         alternative: null,
     }
 
-    public constructor(content: PropertiesArray,) {
-        super(content)
+    public constructor(content: Content,) {
+        super(content,)
     }
 
-    protected override get _headersIndexMap() {
-        return Headers
-    }
-
-    public override build(): | EntityLimitTemplate | AlternativeLimitTemplate {
-        const type = this._getContent(this._headersIndexMap.type)
-        const acronym = this._getContent(this._headersIndexMap.acronym)
+    public override create(): | EntityLimitTemplate | AlternativeLimitTemplate {
+        const content = this._content,
+            type = content.type,
+            acronym = content.acronym
 
         return type == null
             ? this.#createAlternativeLimitTemplate(acronym as NullOr<PossibleAlternativeAcronym>,)
@@ -160,11 +99,12 @@ class TemplateBuilder
     }
 
     #createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: NullOr<PossibleAcronym>,): EntityLimitTemplate {
-        return {
+        const content = this._content
 
+        return {
             references: {
-                regular: this._getContent(this._headersIndexMap.english) as PossibleEnglishName,
-                alternative: this._getContent(this._headersIndexMap.alternative),
+                regular: content.english as PossibleEnglishName,
+                alternative: content.alternative,
             },
 
             type: type,
@@ -174,36 +114,34 @@ class TemplateBuilder
             limit: this.#createLimitAmountTemplate(),
 
             name: this._createNameTemplate(),
-
         }
     }
 
     #createAlternativeLimitTemplate(acronym: NullOr<PossibleAlternativeAcronym>,): AlternativeLimitTemplate {
         return {
-
-            references: TemplateBuilder.#EMPTY_REFERENCES,
+            references: TemplateCreator.#EMPTY_REFERENCES,
 
             type: null,
             acronym: acronym,
 
-            limit: TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
+            limit: TemplateCreator.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
 
             name: this._createNameTemplate(),
-
         }
     }
 
 
     #createLimitAmountTemplate(): LimitAmountTemplate {
-        const limit_SMM1 = this._getContent(this._headersIndexMap.limit_SMM1And3DS)
-        const limit_SMM2 = this._getContent(this._headersIndexMap.limit_SMM2)
+        const content = this._content,
+            limit_SMM1 = content.limit_SMM1And3DS,
+            limit_SMM2 = content.limit_SMM2
 
         return limit_SMM1 == null && limit_SMM2 == null
-            ? TemplateBuilder.#EMPTY_LIMIT_AMOUNT_TEMPLATE
+            ? TemplateCreator.#EMPTY_LIMIT_AMOUNT_TEMPLATE
             : {
                 '1And3DS': limit_SMM1,
                 2: limit_SMM2,
-                comment: this._getContent(this._headersIndexMap.limit_comment),
+                comment: content.limit_comment,
             }
     }
 

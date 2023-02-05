@@ -8,12 +8,8 @@ import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from 'co
 import type {ClassWithTranslationKey}                                   from 'lang/ClassWithTranslationKey'
 import type {Nullable}                                                  from 'util/types/nullable'
 
-import {Import} from 'util/DynamicImporter'
+import {EntityBehaviourLoader} from 'core/behaviour/EntityBehaviour.loader'
 
-/**
- * @recursiveReference {@link EntityBehaviourLoader}
- * @classWithDynamicImport {@link EntityBehaviourLoader}
- */
 export class EntityBehaviours
     extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityBehaviour>,
@@ -24,8 +20,8 @@ export class EntityBehaviours
 
     public static readonly RESPAWN_WITH_VINE =                             new EntityBehaviours('RV',    'Respawn with Vine',)
     public static readonly RESPAWN_AS_QUESTION_MARK_BLOCK =                new EntityBehaviours('RB',    'Respawn as ? Block',)
-    public static readonly ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN =           new EntityBehaviours('AC',    'Always know visually # of Coin',)
-    public static readonly NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN =            new EntityBehaviours('NC',    'Never know visually # of Coin',)
+    public static readonly ALWAYS_KNOW_VISUALLY_AMOUNT_OF_COIN =           new EntityBehaviours('AC',    'Always know visually # of Coins',)
+    public static readonly NEVER_KNOW_VISUALLY_AMOUNT_OF_COIN =            new EntityBehaviours('NC',    'Never know visually # of Coins',)
     public static readonly ONLY_1ST_SOUND_OF_PINK_COIN =                   new EntityBehaviours('O1S',   'Only 1st sound of Pink Coin',)
 
     public static readonly SPAWN_ONLY_1_POWER_UP =                         new EntityBehaviours('S1P',   'Spawn only 1 power-up',)
@@ -52,6 +48,7 @@ export class EntityBehaviours
     readonly #translationKey
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKeys,) {
         super()
@@ -59,10 +56,11 @@ export class EntityBehaviours
         this.#translationKey = translationKey
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP() {
-        return this.#REFERENCE_MAP ??= Import.EntityBehaviourLoader.get.load()
+        return this.#REFERENCE_MAP ??= EntityBehaviourLoader.get.load()
     }
 
     /**
@@ -84,15 +82,6 @@ export class EntityBehaviours
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(it => it.acronym).toArray()
-    }
-
-    public static get everyTranslationKeys(): readonly PossibleTranslationKeys[] {
-        return this.values.map(it => it.translationKey).toArray()
-    }
-
 
     public static getValueByAcronymOrTranslationKey(value: Nullable<| EntityBehaviours | string>,): EntityBehaviours {
         if (value == null)

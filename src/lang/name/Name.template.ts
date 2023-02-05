@@ -3,10 +3,7 @@ import type {NullOrString} from 'util/types/nullable'
 /**
  * @template
  */
-export interface NameTemplate<HEBREW extends NullOrString = null,
-    POLISH extends NullOrString = null,
-    UKRAINIAN extends NullOrString = null,
-    GREEK extends NullOrString = null, > {
+export interface NameTemplate {
 
     english: {
         simple: NullOrString
@@ -50,22 +47,13 @@ export interface NameTemplate<HEBREW extends NullOrString = null,
 
     korean: NullOrString
 
-    hebrew: HEBREW
 
-    polish: POLISH
+    hebrew: NullOrString
 
-    ukrainian: UKRAINIAN
+    polish: NullOrString
 
-    greek: GREEK
+    ukrainian: NullOrString
 
-}
-
-/**
- * @template
- */
-export interface NameTemplateWithOptionalLanguages
-    extends NameTemplate<NullOrString, NullOrString, NullOrString, NullOrString> {
+    greek: NullOrString
 
 }
-
-export type PossibleNameTemplate = | NameTemplate | NameTemplateWithOptionalLanguages

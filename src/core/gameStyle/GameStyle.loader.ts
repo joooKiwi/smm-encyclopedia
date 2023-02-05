@@ -1,60 +1,19 @@
-import resource from 'resources/compiled/Game style.json'
+import file from 'resources/compiled/Game style.json'
 
 import type {PossibleIsAvailableFromTheStart}                                    from 'core/availableFromTheStart/loader.types'
-import type {PropertiesArrayFrom1And2 as GamesPropertyArray}                     from 'core/game/Loader.types'
+import type {GameContentFrom1And2}                                               from 'core/game/Loader.types'
 import type {GameStyle}                                                          from 'core/gameStyle/GameStyle'
 import type {PossibleAcronym, PossibleEnglishName}                               from 'core/gameStyle/GameStyles.types'
 import type {GameStyleTemplate}                                                  from 'core/gameStyle/GameStyle.template'
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
 import type {Loader}                                                             from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
-import {GameStyleBuilder}        from 'core/gameStyle/GameStyle.builder'
-import {CSVLoader}               from 'util/loader/CSVLoader'
-
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    //region -------------------- Games --------------------
-
-    isInSuperMarioMaker1And3DS,
-    isInSuperMarioMaker2,
-
-    //endregion -------------------- Games --------------------
-
-    isAvailableFromTheStart_SMM1,
-
-    reference,
-
-    nightDesertWindDirection,
-    nightDesertWindFrequency,
-
-}
-
-//region -------------------- Properties --------------------
-
-export type ExclusivePropertiesArray = [
-    isAvailableFromTheStart: PossibleIsAvailableFromTheStart,
-    reference: PossibleAcronym,
-    nightDesertWindDirection: PossibleNightDesertWindDirection,
-    nightDesertWindFrequency: PossibleNightDesertWindFrequency,
-]
-
-type PropertiesArray = [
-    ...GamesPropertyArray,
-    ...ExclusivePropertiesArray,
-]
-
-//endregion -------------------- Properties --------------------
-
-//endregion -------------------- CSV array related types --------------------
+import {isInProduction}          from 'variables'
+import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import {GameStyleCreator}        from 'core/gameStyle/GameStyle.creator'
 
 /**
  * @singleton
- * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyles}>
- * @recursiveReference<{@link GameStyles}>
  */
 export class GameStyleLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, GameStyle>> {
@@ -78,27 +37,15 @@ export class GameStyleLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, GameStyle>()
 
-            //region -------------------- CSV Loader --------------------
+            file.map(it => new GameStyleCreator(new TemplateCreator(it as Content).create()).create())
+                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            new CSVLoader<PropertiesArray, GameStyle, keyof typeof Headers>(resource, convertedContent => new GameStyleBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
-
-                .convertToBoolean('isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',)
-                .convertToNullableBoolean('isAvailableFromTheStart_SMM1',)
-
-                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'reference',)
-
-                .convertToEmptyableStringAnd(['←', '↔', '→',], 'nightDesertWindDirection',)
-                .convertToEmptyableStringAnd(['periodic', 'constant',], 'nightDesertWindFrequency',)
-
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- "game style" has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- "game style" has been loaded --------------------')// temporary console.log
+            if (!isInProduction)
+                console.info(
+                    '-------------------- "game style" has been loaded --------------------\n',
+                    references,
+                    '\n-------------------- "game style" has been loaded --------------------',
+                )
 
             this.#map = references
         }
@@ -107,27 +54,36 @@ export class GameStyleLoader
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateBuilder<GameStyleTemplate, PropertiesArray, typeof Headers> {
 
-    public constructor(content: PropertiesArray,) {
-        super(content)
+interface Content
+    extends GameContentFrom1And2 {
+
+    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+    reference: PossibleAcronym
+    nightDesertWindDirection: PossibleNightDesertWindDirection
+    nightDesertWindFrequency: PossibleNightDesertWindFrequency
+
+}
+
+class TemplateCreator
+    extends AbstractTemplateCreator<GameStyleTemplate, Content> {
+
+    public constructor(content: Content,) {
+        super(content,)
     }
 
-    protected override get _headersIndexMap() {
-        return Headers
-    }
+    public override create(): GameStyleTemplate {
+        const content = this._content
 
-    public override build(): GameStyleTemplate {
         return {
             is: {
                 in: {game: this._createGameTemplateFrom1And2(),},
-                availableFromTheStart: this._getContent(this._headersIndexMap.isAvailableFromTheStart_SMM1),
+                availableFromTheStart: content.isAvailableFromTheStart_SMM1,
             },
-            reference: this._getContent(this._headersIndexMap.reference),
+            reference: content.reference,
             nightDesertWind: {
-                direction: this._getContent(this._headersIndexMap.nightDesertWindDirection),
-                frequency: this._getContent(this._headersIndexMap.nightDesertWindFrequency),
+                direction: content.nightDesertWindDirection,
+                frequency: content.nightDesertWindFrequency,
             },
         }
     }

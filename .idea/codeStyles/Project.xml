@@ -8,6 +8,8 @@
       <option name="PREFER_AS_TYPE_CAST" value="true" />
       <option name="USE_DOUBLE_QUOTES" value="false" />
       <option name="FORCE_QUOTE_STYlE" value="true" />
+      <option name="VAR_DECLARATION_WRAP" value="0" />
+      <option name="OBJECT_LITERAL_WRAP" value="0" />
       <option name="IMPORTS_WRAP" value="0" />
       <option name="UNION_TYPES_WRAP" value="0" />
       <option name="ALIGN_IMPORTS" value="true" />

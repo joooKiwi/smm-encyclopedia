@@ -1,52 +1,18 @@
-import resource from 'resources/compiled/Game reference.json'
+import file from 'resources/compiled/Game reference.json'
 
-import type {GameReference}                             from 'core/gameReference/GameReference'
-import type {PossibleAcronym, PossibleEnglishName}      from 'core/gameReference/GameReferences.types'
-import type {GameReferenceTemplate}                     from 'core/gameReference/GameReference.template'
-import type {PropertiesArray as LanguagesPropertyArray} from 'lang/Loader.types'
-import type {Loader}                                    from 'util/loader/Loader'
+import type {LanguageContent}                      from 'core/_template/LanguageContent'
+import type {GameReference}                        from 'core/gameReference/GameReference'
+import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
+import type {GameReferenceTemplate}                from 'core/gameReference/GameReference.template'
+import type {Loader}                               from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
-import {GameReferenceBuilder}    from 'core/gameReference/GameReference.builder'
-import {CSVLoader}               from 'util/loader/CSVLoader'
+import {isInProduction}          from 'variables'
+import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import {GameReferenceCreator}    from 'core/gameReference/GameReference.creator'
 
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    acronym,
-    //region -------------------- Languages --------------------
-
-    english, americanEnglish, europeanEnglish,
-    french, canadianFrench, europeanFrench,
-    german,
-    spanish, americanSpanish, europeanSpanish,
-    italian,
-    dutch,
-    portuguese, americanPortuguese, europeanPortuguese,
-    russian,
-    japanese,
-    chinese, traditionalChinese, simplifiedChinese,
-    korean,
-
-    //endregion -------------------- Languages --------------------
-
-}
-
-type ExclusivePropertiesArray = [
-    acronym: PossibleAcronym,
-]
-type PropertiesArray = [
-    ...ExclusivePropertiesArray,
-    ...LanguagesPropertyArray,
-]
-
-//endregion -------------------- CSV array related types --------------------
 
 /**
  * @singleton
- * @recursiveReference<{@link GameReferences}>
  */
 export class GameReferenceLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, GameReference>> {
@@ -69,23 +35,15 @@ export class GameReferenceLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, GameReference>()
 
+            file.map(it => new GameReferenceCreator(new TemplateCreator(it as Content).create()).create())
+                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            //region -------------------- CSV Loader --------------------
-
-            new CSVLoader<PropertiesArray, GameReference, keyof typeof Headers>(resource, convertedContent => new GameReferenceBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
-
-                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_gameReference, 'acronym',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_gameReference, 'english',)
-
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- "game references" has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- "game references" has been loaded --------------------')// temporary console.log
+            if (!isInProduction)
+                console.info(
+                    '-------------------- "game references" has been loaded (start) --------------------\n',
+                    references,
+                    '\n-------------------- "game references" has been loaded (end) --------------------',
+                )
 
             this.#map = references
         }
@@ -93,22 +51,28 @@ export class GameReferenceLoader
     }
 }
 
-class TemplateBuilder
-    extends AbstractTemplateBuilder<GameReferenceTemplate, PropertiesArray, typeof Headers> {
 
+interface Content
+    extends LanguageContent {
 
-    public constructor(content: PropertiesArray) {
-        super(content)
+    acronym: PossibleAcronym
+
+}
+
+class TemplateCreator
+    extends AbstractTemplateCreator<GameReferenceTemplate, Content> {
+
+    public constructor(content: Content,) {
+        super(content,)
     }
 
-    protected override get _headersIndexMap(): typeof Headers {
-        return Headers
-    }
+    public override create(): GameReferenceTemplate {
+        const content = this._content
 
-    public override build(): GameReferenceTemplate {
         return {
-            acronym: this._getContent(this._headersIndexMap.acronym),
+            acronym: content.acronym,
             name: this._createNameTemplate(),
         }
     }
+
 }

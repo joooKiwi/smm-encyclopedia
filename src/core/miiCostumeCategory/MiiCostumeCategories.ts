@@ -9,15 +9,11 @@ import type {MiiCostumeCategoryImageFile, PossibleImageNumber} from 'core/miiCos
 import type {ClassWithImageFile}                               from 'util/file/image/ClassWithImageFile'
 import type {Nullable}                                         from 'util/types/nullable'
 
+import {MiiCostumeCategoryLoader}                          from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
 import {MiiCostumeCategoryImageFileContainer as ImageFile} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile.container'
-import {Import}                                            from 'util/DynamicImporter'
 import {StringContainer}                                   from 'util/StringContainer'
 import {getValueByEnglishName}                             from 'util/utilitiesMethods'
 
-/**
- * @recursiveReference {@link MiiCostumeCategoryLoader}
- * @classWithDynamicImport {@link MiiCostumeCategoryLoader}
- */
 export class MiiCostumeCategories
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MiiCostumeCategory>,
@@ -49,6 +45,7 @@ export class MiiCostumeCategories
     #imageFile?: MiiCostumeCategoryImageFile
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super()
@@ -56,10 +53,11 @@ export class MiiCostumeCategories
         this.#imageNumber = imageNumber
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, MiiCostumeCategory> {
-        return this.#REFERENCE_MAP ??= Import.MiiCostumeCategoryLoader.get.load()
+        return this.#REFERENCE_MAP ??= MiiCostumeCategoryLoader.get.load()
     }
 
     /**

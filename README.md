@@ -4,6 +4,27 @@
 
 https://joookiwi.github.io/smm-encyclopedia
 
+## Table of content
+* [List of elements to do](#list-of-elements-to-do)
+  * [Sub-page applications](#sub-page-applications)
+    * [Other sub-pages (not directly related to the project)](#other-sub-pages--not-directly-related-to-the-project-)
+* [Development for the web application](#development-for-the-web-application)
+  * [Standard used in the project](#standard-used-in-the-project)
+    * [Imports](#imports)
+    * [Visibility](#visibility)
+    * [Folder structure](#folder-structure)
+    * [File naming](#file-naming)
+    * [Variable / methods / class naming](#variable--methods--class-naming)
+    * [Files using a CSV source](#files-using-a-csv-source)
+    * [Dependencies](#dependencies)
+  * [NPM commands](#npm-commands)
+    * [Prerequisites](#prerequisites)
+    * [Run the project locally (desktop and mobile)](#run-the-project-locally--desktop-and-mobile-)
+    * [Running tests](#running-tests) 
+    * [Running testing tools](#running-testing-tool)
+    * [Deploying the changes to the server](#deploying-the-changes-to-the-server)
+---
+
 A simple project made to retrieve most (if not every)
 information in all 3 Super Mario Maker games. It contains:
  - Super Mario Maker (WiiU) ![~ SMM1](.github/styles/smm1-alias.svg)
@@ -36,9 +57,6 @@ The languages supported by the project are the ones available in the games:
 
 The other languages seen in the project can include Hebrew, Polish, Ukrainian & Greek.
 Although, they are only there for some names.
-
-<details>
-<summary>List of elements to to</summary>
 
 ## List of elements to do
 
@@ -91,14 +109,7 @@ Although, they are only there for some names.
 - [ ] ![In progress](.github/styles/in-progress.svg)         Power-up priority
 - [ ] ![Not completed](.github/styles/not-completed.svg)     Secret pages (by URL, by key combination & maybe other ones)
 
-</details>
-<details>
-<summary>Development for the web application</summary>
-
 ## Development for the web application
-
-<details>
-<summary>Files & folders</summary>
 
 ### Standard used in the project
 
@@ -115,7 +126,6 @@ They are separated in different sections
  - Spacing for the import is aligned for better readability
  - Ordered alphabetically by group
 
-
 #### Visibility
 
 Since some visibilities are present in other languages (like Kotlin, Java, PHP or C#),
@@ -130,7 +140,6 @@ Then, for those that are not in the system, it uses somme pattern for it.
 | [name]               |  package   |     public      |            public             |                                                     <pre>anExample<br/>anExample() |
 | _[name]              | protected  |    protected    |            public             |                               <pre>protected _anExample<br/>protected _anExample() |
 | __[name]<br/>#[name] |  private   |     private     | __ -> public<br/># -> private | <pre>#anExample<br/>#anExample()<br/>private __anExample<br/>private __anExample() |
-
 
 #### Folder structure
 
@@ -199,7 +208,8 @@ The rest should not be used outside the same package (folder).
 | [name].template.ts  | Template  |                                   The template associated to the CSV file                                   |                                        Type |
 | [name].loader.ts    | Loader    |                                         The file loader (main core)                                         |               Builder<br/>Template<br/>Type |
 | loader.types.ts     | Type      |                                  Types only applicable to the file loaders                                  |                                             |
-| [name].builder.ts   | Builder   |                                   The builder class that create the class                                   | Template <br/>Class<br/>Enum _(some times)_ |
+| [name].builder.ts   | Builder   |                        The class that create the class with builder pattern methods                         | Template <br/>Class<br/>Enum _(some times)_ |
+| [name].creator.ts   | Creator   |                        A class that create the class with a singular `create` method                        | Template <br/>Class<br/>Enum _(some times)_ |
 | [name].provider.ts  | Provider  | The provider class that will get or create the specific instance<br/>(will never create duplicate instance) |                        Interface <br/>Class |
 | [name].ts           | Interface |                                The class description that is used elsewhere                                 |                                        Type |
 | Empty[name].ts      | Singleton |                                          The empty class instance                                           |                                   Interface |
@@ -217,59 +227,53 @@ The types used in the interface:
 | object      |                                              Properties |
 | enumeration |                Properties use other `scr/core` elements |
 
-</details>
-
 #### Dependencies
 
 <details>
 <summary>Grid</summary>
 
-##### Grid dependencies
-
-| Name                                        |                                                                                   Direct dependency                                                                                   |       Indirect dependency        |
-|:--------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:--------------------------------:|
-| Entity                                      | Clear condition<br/>Entity limit<br/>Entity category<br/>Theme<br/>Time<br/>Game<br/>Game style<br/>Mystery Mushroom<br/>Entity behaviour<br/>Editor voice<br/>Instrument<br/>Version |  Entity group<br/>Night effect   |
-| Character name                              |                                                                                     Editor voice                                                                                      |                                  |
-| Clear condition <sup>(SMM2)                 |                                                                               Clear condition category                                                                                |              Entity              |
-| Clear condition category <sup>(SMM2)        |                                                                                                                                                                                       |         Clear condition          |
-| Entity limit                                |                                                                                                                                                                                       |              Entity              |
-| Entity projectile                           |                                                                                                                                                                                       |              Entity              |
-| Entity object                               |                                                                                                                                                                                       |              Entity              |
-| Entity category                             |                                                                                                                                                                                       |              Entity              |
-| Entity group                                |                                                                                        Entity                                                                                         |                                  |
-| Theme                                       |                                                                                                                                                                                       |          Time<br/>Game           |
-| Time                                        |                                                                                                                                                                                       |                                  |
-| Game reference                              |                                                                                                                                                                                       |       Game<br/>Game style        |
-| Game                                        |                                                                                    Game reference                                                                                     |                                  |
-| Game style                                  |                                                                            Game reference<br/>Night effect                                                                            |                                  |
-| Entity behaviour                            |                                                                                                                                                                                       |              Entity              |
-| Sound effect                                |                                                                                 Sound effect category                                                                                 | Entity<br/>Entity group<br/>Game |
-| Sound effect category                       |                                                                                                                                                                                       |           Sound effect           |
-| Course tag <sup>(SMM2)                      |                                                                                                                                                                                       |                                  |
-| Predefined message <sup>(SMM2)              |                                                                                                                                                                                       |                                  |
-| Sample courses <sup>(SMM2)                  |                                                                                                                                                                                       |                                  |
-| Medals <sup>(SMM1)                          |                                                                                                                                                                                       |    Entity<br/>Character name     |
-| Super Mario Challenges levels <sup>(SMM3DW) |                                                                                                                                                                                       |                                  |
-| Job <sup>(SMM2)                             |                                                                                                                                                                                       |              Entity              |
-| Official notification <sup>(SMM2)           |                                                                                                                                                                                       |      Entity<br/>Mii costume      |
-| Ninji speedrun <sup>(SMM2)                  |                                                                                                                                                                                       |                                  |
-| Mystery Mushroom <sup>(SMM1)                |                                                                                                                                                                                       |                                  |
-| Mii costume <sup>(SMM2)                     |                                                                                 Mii costume category                                                                                  |              Entity              |
-| Mii costume category <sup>(SMM2)            |                                                                                                                                                                                       |           Mii costume            |
-| Editor voice                                |                                                                                                                                                                                       |    Entity<br/>Character name     |
-| Instrument                                  |                                                                                                                                                                                       |              Entity              |
-| Version                                     |                                                                                      Game style                                                                                       |                                  |
+| Name                                        |                                                                                     Direct dependency                                                                                     |        Indirect dependency         |
+|:--------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------:|
+| Entity                                      | Clear condition,<br/>Limit,<br/>Entity category,<br/>Theme,<br/>Time,<br/>Game,<br/>Game style,<br/>Mystery Mushroom,<br/>Entity behaviour,<br/>Editor voice,<br/>Instrument,<br/>Version |   Entity group,<br/>Night effect   |
+| Character name                              |                                                                                       Editor voice                                                                                        |                                    |
+| Clear condition <sup>(SMM2)                 |                                                                                 Clear condition category                                                                                  |               Entity               |
+| Clear condition category <sup>(SMM2)        |                                                                                                                                                                                           |          Clear condition           |
+| Limit                                       |                                                                                                                                                                                           |               Entity               |
+| Entity projectile                           |                                                                                                                                                                                           |               Entity               |
+| Entity object                               |                                                                                                                                                                                           |               Entity               |
+| Entity category                             |                                                                                                                                                                                           |               Entity               |
+| Entity group                                |                                                                                          Entity                                                                                           |                                    |
+| Theme                                       |                                                                                                                                                                                           |           Time,<br/>Game           |
+| Time                                        |                                                                                                                                                                                           |                                    |
+| Game reference                              |                                                                                                                                                                                           |        Game,<br/>Game style        |
+| Game                                        |                                                                                      Game reference                                                                                       |                                    |
+| Game style                                  |                                                                             Game reference,<br/>Night effect                                                                              |                                    |
+| Entity behaviour                            |                                                                                                                                                                                           |               Entity               |
+| Sound effect                                |                                                                                   Sound effect category                                                                                   | Entity,<br/>Entity group,<br/>Game |
+| Sound effect category                       |                                                                                                                                                                                           |            Sound effect            |
+| Course tag <sup>(SMM2)                      |                                                                                                                                                                                           |                                    |
+| Predefined message <sup>(SMM2)              |                                                                                                                                                                                           |                                    |
+| Sample courses <sup>(SMM2)                  |                                                                                                                                                                                           |                                    |
+| Medals <sup>(SMM1)                          |                                                                                                                                                                                           |     Entity,<br/>Character name     |
+| Super Mario Challenges levels <sup>(SMM3DW) |                                                                                                                                                                                           |                                    |
+| Job <sup>(SMM2)                             |                                                                                                                                                                                           |               Entity               |
+| Official notification <sup>(SMM2)           |                                                                                                                                                                                           |      Entity,<br/>Mii costume       |
+| Ninji speedrun <sup>(SMM2)                  |                                                                                                                                                                                           |                                    |
+| Mystery Mushroom <sup>(SMM1)                |                                                                                                                                                                                           |                                    |
+| Mii costume <sup>(SMM2)                     |                                                                                   Mii costume category                                                                                    |               Entity               |
+| Mii costume category <sup>(SMM2)            |                                                                                                                                                                                           |            Mii costume             |
+| Editor voice                                |                                                                                                                                                                                           |     Entity,<br/>Character name     |
+| Instrument                                  |                                                                                                                                                                                           |               Entity               |
+| Version                                     |                                                                                        Game style                                                                                         |                                    |
 
 </details>
 <details>
 <summary>Flowchart (does not work on the mobile app)</summary>
 
-<details>
-<summary>Legends</summary>
-
-##### Flowchart dependencies
-
 ```mermaid
+---
+title: Legends
+---
 flowchart TB
   E(("General<br/>dependency"))
   subgraph Exclusive to...
@@ -282,8 +286,6 @@ flowchart TB
     C -. "Indirect (via the DynamicImporter)" .-> D
   end
 ```
-
-</details>
 
 The dependencies imply that the entity uses almost everything in the project.<br/>
 So, some recursive dependencies are in place to make the project compile.
@@ -392,9 +394,6 @@ flowchart LR
 
 </details>
 
-<details>
-<summary>NPM commands</summary>
-
 ### NPM commands
 
 #### Prerequisites
@@ -426,7 +425,16 @@ An example could be [192.168.4.20:3000/smm-encyclopedia](http://192.168.4.20:300
 
 #### Running tests
 
-The command to execute the tests is `npm run test`.
+The tests are not part of the validations on the server.
+They are only done locally.
+
+It has:
+ - Testing the CSV files `npm run test-file`
+ - Testing the entity types (upcoming tests)
+
+#### Running testing tool
+
+The command to execute the test command tool is `npm run test`.
 
 Then, from  that, it will start an interactive watch mode.
 For more details, see [how to run the tests](https://facebook.github.io/create-react-app/docs/running-tests).
@@ -445,6 +453,3 @@ With the deployment, it will automatically call `npm run build` and will:
 See [the application's deployment](https://facebook.github.io/create-react-app/docs/deployment) to know in details how the **React build** is done.
 
 The code will be pushed in the branch [github-pages branch](https://github.com/joooKiwi/smm-encyclopedia/tree/gh-pages) by the workflow.
-
-</details>
-</details>

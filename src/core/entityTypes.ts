@@ -12,7 +12,7 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type CanContainOrSpawnAKey = NullOrBoolean
 
-/** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = NullOrBoolean
+/** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = NullOrBoolean | 'Only some variants'
 
 /** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
 
@@ -29,7 +29,7 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type CanBePutInABlock = NullOrBoolean
 
-/** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | UnknownCharacter>
+/** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | '1 per segment (1 to 8)' | '2 (any height)' | UnknownCharacter>
 /** @temporaryLocation */export type CanBePutInATree = NullOrBoolean
 
 /** @temporaryLocation */export type HasALightSourceEmittedInSMB = NullOrBoolean
@@ -59,12 +59,12 @@ export type PossibleGroupName = string
 //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 
 /** @temporaryLocation */export type CanBeThrownByBowserInClownCar = NullOr<| boolean | 'Bob-omb clear condition'>
-/** @temporaryLocation */export type CanBeThrownByBowserJr = NullOr<| boolean | '3rd phase'>
+/** @temporaryLocation */export type CanBeThrownByBowserJr = NullOr<| false | '3rd phase'>
 /** @temporaryLocation */export type CanBeThrownByBowserJrInClownCar = NullOr<| boolean | 'Koopa Troopa clear condition'>
 
 /** @temporaryLocation */export type CanBeTransformedByMagikoopa = NullOr<| boolean | UnknownCharacter>
 /** @temporaryLocation */export type CanBeSpawnedByMagikoopa = NullOrBoolean
-/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = NullOr<| false | 'winged' | 'Green Winged Koopa Troopa' | UnknownCharacter>
+/** @temporaryLocation */export type CanBeSpawnedByWingedMagikoopa = NullOr<| boolean | 'winged' | UnknownCharacter>
 
 //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 //region -------------------- Dimension properties --------------------

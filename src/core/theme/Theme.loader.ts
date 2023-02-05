@@ -1,79 +1,19 @@
-import resource from 'resources/compiled/Theme.json'
+import file from 'resources/compiled/Theme.json'
 
-import type {PossibleIsAvailableFromTheStart}                from 'core/availableFromTheStart/loader.types'
-import type {PropertiesArrayFrom1And2 as GamesPropertyArray} from 'core/game/Loader.types'
-import type {CourseAndWorldTheme}                            from 'core/theme/CourseAndWorldTheme'
-import type {PossibleEnglishName}                            from 'core/theme/Themes.types'
-import type {PossibleEffectInNightTheme, ThemeTemplate}      from 'core/theme/Theme.template'
-import type {PropertiesArray as LanguagesPropertyArray}      from 'lang/Loader.types'
-import type {Loader}                                         from 'util/loader/Loader'
+import type {LanguageContent}                           from 'core/_template/LanguageContent'
+import type {PossibleIsAvailableFromTheStart}           from 'core/availableFromTheStart/loader.types'
+import type {GameContentFrom1And2}                      from 'core/game/Loader.types'
+import type {CourseAndWorldTheme}                       from 'core/theme/CourseAndWorldTheme'
+import type {PossibleEnglishName}                       from 'core/theme/Themes.types'
+import type {PossibleEffectInNightTheme, ThemeTemplate} from 'core/theme/Theme.template'
+import type {Loader}                                    from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
-import {ThemeBuilder}            from 'core/theme/Theme.builder'
-import {CSVLoader}               from 'util/loader/CSVLoader'
-
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    isInCourseTheme,
-    isInWorldTheme,
-
-    //region -------------------- Games --------------------
-
-    isInSuperMarioMaker1And3DS,
-    isInSuperMarioMaker2,
-
-    //endregion -------------------- Games --------------------
-
-    isAvailableFromTheStart_SMM1,
-    effectInNightTheme,
-
-    //region -------------------- Languages --------------------
-
-    english, americanEnglish, europeanEnglish,
-    french, canadianFrench, europeanFrench,
-    german,
-    spanish, americanSpanish, europeanSpanish,
-    italian,
-    dutch,
-    portuguese, americanPortuguese, europeanPortuguese,
-    russian,
-    japanese,
-    chinese, traditionalChinese, simplifiedChinese,
-    korean,
-    greek,
-
-    //endregion -------------------- Languages --------------------
-
-}
-
-//region -------------------- Properties --------------------
-
-type ExclusivePropertiesArray1 = [
-    isInCourseTheme: boolean,
-    isInWorldTheme: boolean,
-]
-type ExclusivePropertiesArray2 = [
-    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart,
-    effectInNightTheme: PossibleEffectInNightTheme,
-]
-type PropertiesArray = [
-    ...ExclusivePropertiesArray1,
-    ...GamesPropertyArray,
-    ...ExclusivePropertiesArray2,
-    ...LanguagesPropertyArray,
-]
-
-//endregion -------------------- Properties --------------------
-
-//endregion -------------------- CSV array related types --------------------
+import {isInProduction}          from 'variables'
+import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import {ThemeCreator}            from 'core/theme/Theme.creator'
 
 /**
  * @singleton
- * @recursiveReferenceVia<{@link ThemeBuilder}, {@link Themes}>
- * @recursiveReference<{@link Themes}>
  */
 export class ThemeLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>> {
@@ -97,26 +37,15 @@ export class ThemeLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
 
-            //region -------------------- CSV Loader --------------------
+            file.map(it => new ThemeCreator(new TemplateCreator(it as Content).create()).create())
+                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            new CSVLoader<PropertiesArray, CourseAndWorldTheme, keyof typeof Headers>(resource, convertedContent => new ThemeBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
-
-                .convertToBoolean(
-                    'isInCourseTheme', 'isInWorldTheme',
-                    'isInSuperMarioMaker1And3DS', 'isInSuperMarioMaker2',
+            if (!isInProduction)
+                console.info(
+                    '-------------------- theme has been loaded --------------------\n',
+                    references,
+                    '\n-------------------- theme has been loaded --------------------',
                 )
-                .convertToNullableBoolean('isAvailableFromTheStart_SMM1',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_themeNightEffect, 'effectInNightTheme')
-
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- theme has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- theme has been loaded --------------------')// temporary console.log
 
             this.#map = references
         }
@@ -125,30 +54,43 @@ export class ThemeLoader
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateBuilder<ThemeTemplate, PropertiesArray, typeof Headers> {
 
-    public constructor(content: PropertiesArray,) {
-        super(content)
+interface Content
+    extends LanguageContent, GameContentFrom1And2 {
+
+    isInCourseTheme: boolean
+
+    isInWorldTheme: boolean
+
+
+    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+
+    effectInNightTheme: PossibleEffectInNightTheme
+
+}
+
+class TemplateCreator
+    extends AbstractTemplateCreator<ThemeTemplate, Content> {
+
+    public constructor(content: Content,) {
+        super(content,)
     }
 
-    protected override get _headersIndexMap() {
-        return Headers
-    }
+    public override create(): ThemeTemplate {
+        const content = this._content
 
-    public override build(): ThemeTemplate {
         return {
             is: {
                 in: {
                     game: this._createGameTemplateFrom1And2(),
                     theme: {
-                        course: this._getContent(this._headersIndexMap.isInCourseTheme),
-                        world: this._getContent(this._headersIndexMap.isInWorldTheme),
+                        course: content.isInCourseTheme,
+                        world: content.isInWorldTheme,
                     },
                 },
-                availableFromTheStart: this._getContent(this._headersIndexMap.isAvailableFromTheStart_SMM1),
+                availableFromTheStart: content.isAvailableFromTheStart_SMM1,
             },
-            effect: this._getContent(this._headersIndexMap.effectInNightTheme),
+            effect: content.effectInNightTheme,
             name: this._createNameTemplate(),
         }
     }

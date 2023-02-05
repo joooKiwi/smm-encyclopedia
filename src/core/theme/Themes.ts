@@ -17,20 +17,16 @@ import type {SmallThemeImageFile}                                               
 import type {Nullable, NullOr, NullOrBoolean}                                                                                                                                       from 'util/types/nullable'
 
 import {ThemeComponent}                                               from 'core/theme/Theme.component'
+import {ThemeLoader}                                                  from 'core/theme/Theme.loader'
 import {EndlessMarioThemeImageFileContainer as EndlessMarioImageFile} from 'core/theme/file/EndlessMarioThemeImageFile.container'
 import {LargeThemeImageFileContainer as LargeImageFile}               from 'core/theme/file/LargeThemeImageFile.container'
 import {SmallThemeImageFileContainer as SmallImageFile}               from 'core/theme/file/SmallThemeImageFile.container'
-import {getValueByEnglishName}                                        from 'util/utilitiesMethods'
-import {Import}                                                       from 'util/DynamicImporter'
 import type {Times}                                                   from 'core/time/Times'
-import {StringContainer}                                              from 'util/StringContainer'
 import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
+import {Import}                                                       from 'util/DynamicImporter'
+import {StringContainer}                                              from 'util/StringContainer'
+import {getValueByEnglishName}                                        from 'util/utilitiesMethods'
 
-/**
- * @recursiveReferenceVia {@link ThemeBuilder} → {@link ThemeLoader}
- * @recursiveReference {@link ThemeLoader}
- * @classWithDynamicImport {@link ThemeLoader}
- */
 export class Themes
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CourseAndWorldTheme>,
@@ -199,7 +195,7 @@ export class Themes
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
-        return this.#REFERENCE_MAP ??= Import.ThemeLoader.get.load()
+        return this.#REFERENCE_MAP ??= ThemeLoader.get.load()
     }
 
     /**
@@ -274,10 +270,6 @@ export class Themes
         return ThemeComponent.renderSingleComponent(this, isSmallPath,)
     }
 
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
 
     public static get courseThemes(): readonly Themes[] {
         return this.#COURSES ??= [

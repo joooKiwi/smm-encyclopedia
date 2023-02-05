@@ -1,63 +1,18 @@
-import resource from 'resources/compiled/Course tag (SMM2).json'
+import file from 'resources/compiled/Course tag (SMM2).json'
 
+import type {LanguageContent}                                        from 'core/_template/LanguageContent'
 import type {CourseTag}                                              from 'core/courseTag/CourseTag'
 import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/CourseTag.template'
 import type {PossibleEnglishName, PossibleMakerCentralName}          from 'core/courseTag/CourseTags.types'
-import type {PropertiesArray as LanguagesPropertyArray}              from 'lang/Loader.types'
 import type {Loader}                                                 from 'util/loader/Loader'
 import type {NullOr}                                                 from 'util/types/nullable'
 
-import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
-import {CourseTagBuilder}        from 'core/courseTag/CourseTag.builder'
-import {CSVLoader}               from 'util/loader/CSVLoader'
-
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    isAnOfficialTag,
-    makerCentralName,
-    firstAppearanceInMarioMaker,
-
-    //region -------------------- Languages --------------------
-
-    english, americanEnglish, europeanEnglish,
-    french, canadianFrench, europeanFrench,
-    german,
-    spanish, americanSpanish, europeanSpanish,
-    italian,
-    dutch,
-    portuguese, americanPortuguese, europeanPortuguese,
-    russian,
-    japanese,
-    chinese, traditionalChinese, simplifiedChinese,
-    korean,
-
-    //endregion -------------------- Languages --------------------
-
-}
-
-//region -------------------- Properties --------------------
-
-type ExclusivePropertiesArray = [
-    isAnOfficialTag: boolean,
-    makerCentralName: NullOr<PossibleMakerCentralName>,
-    firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker,
-]
-
-type PropertiesArray = [
-    ...ExclusivePropertiesArray,
-    ...LanguagesPropertyArray,
-]
-
-//endregion -------------------- Properties --------------------
-
-//endregion -------------------- CSV array related types --------------------
+import {isInProduction}          from 'variables'
+import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import {CourseTagCreator}        from 'core/courseTag/CourseTag.creator'
 
 /**
  * @singleton
- * @recursiveReference<{@link CourseTags}>
  */
 export class CourseTagLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, CourseTag>> {
@@ -81,23 +36,15 @@ export class CourseTagLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, CourseTag>()
 
-            //region -------------------- CSV Loader --------------------
+            file.map(it => new CourseTagCreator(new TemplateCreator(it as Content).create()).create())
+                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            new CSVLoader<PropertiesArray, CourseTag, keyof typeof Headers>(resource, convertedContent => new CourseTagBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
-
-                .convertToBoolean('isAnOfficialTag',)
-                .convertToEmptyableString('makerCentralName',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_version, 'firstAppearanceInMarioMaker',)
-
-                .onAfterFinalObjectCreated(finalContent => references.set((finalContent.english ?? finalContent.americanEnglish) as PossibleEnglishName, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- "course tag" has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- "course tag" has been loaded --------------------')// temporary console.log
+            if (!isInProduction)
+                console.info(
+                    '-------------------- "course tag" has been loaded --------------------\n',
+                    references,
+                    '\n-------------------- "course tag" has been loaded --------------------',
+                )
 
             this.#map = references
         }
@@ -106,25 +53,33 @@ export class CourseTagLoader
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateBuilder<CourseTagTemplate, PropertiesArray, typeof Headers> {
 
-    public constructor(content: PropertiesArray,) {
-        super(content)
+interface Content
+    extends LanguageContent {
+
+    isAnOfficialTag: boolean
+    makerCentralName: NullOr<PossibleMakerCentralName>
+    firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
+
+}
+
+class TemplateCreator
+    extends AbstractTemplateCreator<CourseTagTemplate, Content> {
+
+    public constructor(content: Content,) {
+        super(content,)
     }
 
-    protected override get _headersIndexMap() {
-        return Headers
-    }
+    public override create(): CourseTagTemplate {
+        const content = this._content
 
-    public override build(): CourseTagTemplate {
         return {
             name: {
                 ...this._createNameTemplate(),
-                makerCentral: this._getContent(this._headersIndexMap.makerCentralName),
+                makerCentral: content.makerCentralName,
             },
-            isOfficial: this._getContent(this._headersIndexMap.isAnOfficialTag),
-            firstAppearance: this._getContent(this._headersIndexMap.firstAppearanceInMarioMaker),
+            isOfficial: content.isAnOfficialTag,
+            firstAppearance: content.firstAppearanceInMarioMaker,
         }
     }
 
