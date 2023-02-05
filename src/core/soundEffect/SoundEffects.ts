@@ -1,26 +1,27 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                 from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                   from 'core/ClassWithReference'
-import type {MusicSoundFile}                                                                                                                                       from 'core/music/file/MusicSoundFile'
-import type {PossibleSoundEffectMusicEditorName}                                                                                                                   from 'core/music/soundEffect/SoundEffectMusic'
-import type {SoundEffect}                                                                                                                                          from 'core/soundEffect/SoundEffect'
-import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectGames, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
-import type {SMM1SoundEffectSoundFile}                                                                                                                             from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
-import type {SMM2SoundEffectImageFile}                                                                                                                             from 'core/soundEffect/file/SMM2SoundEffectImageFile'
-import type {SMM2SoundEffectSoundFile}                                                                                                                             from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
-import type {SoundEffectSoundFile}                                                                                                                                 from 'core/soundEffect/file/SoundEffectSoundFile'
-import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                                            from 'core/soundEffect/sound/SMM2SoundEffectSound'
-import type {SMM1ExclusiveSoundEffectSound}                                                                                                                        from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
-import type {SMM1StandaloneSoundEffectSound}                                                                                                                       from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
-import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                                          from 'core/soundEffect/sound/types'
-import type {Builder}                                                                                                                                              from 'util/builder/Builder'
-import type {Nullable, NullOr}                                                                                                                                     from 'util/types/nullable'
+import type {ClassWithEnglishName}                                                                                                                   from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                     from 'core/ClassWithReference'
+import type {MusicSoundFile}                                                                                                                         from 'core/music/file/MusicSoundFile'
+import type {PossibleSoundEffectMusicEditorName}                                                                                                     from 'core/music/soundEffect/SoundEffectMusic'
+import type {SoundEffect}                                                                                                                            from 'core/soundEffect/SoundEffect'
+import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectGames, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
+import type {SMM1SoundEffectSoundFile}                                                                                                               from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
+import type {SMM2SoundEffectImageFile}                                                                                                               from 'core/soundEffect/file/SMM2SoundEffectImageFile'
+import type {SMM2SoundEffectSoundFile}                                                                                                               from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
+import type {SoundEffectSoundFile}                                                                                                                   from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                              from 'core/soundEffect/sound/SMM2SoundEffectSound'
+import type {SMM1ExclusiveSoundEffectSound}                                                                                                          from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
+import type {SMM1StandaloneSoundEffectSound}                                                                                                         from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
+import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                            from 'core/soundEffect/sound/types'
+import type {Builder}                                                                                                                                from 'util/builder/Builder'
+import type {Nullable, NullOr}                                                                                                                       from 'util/types/nullable'
 
 import type {Musics}                                        from 'core/music/Musics'
 import SoundEffectComponent                                 from 'core/soundEffect/SoundEffect.component'
 import {SoundEffectFromMusicAdaptor}                        from 'core/soundEffect/SoundEffectFromMusicAdaptor'
+import {SoundEffectLoader}                                  from 'core/soundEffect/SoundEffect.loader'
 import {SMM1SoundEffectImageFileContainer as SMM1ImageFile} from 'core/soundEffect/file/SMM1SoundEffectImageFile.container'
 import {SMM2SoundEffectImageFileContainer as SMM2ImageFile} from 'core/soundEffect/file/SMM2SoundEffectImageFile.container'
 import {EmptySMMSoundEffectSound}                           from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
@@ -33,8 +34,7 @@ import {getValueByEnglishName}                              from 'util/utilities
 
 /**
  * @todo move the images in a delayed method instead of in the constructor.
- * @recursiveReference {@link SoundEffectLoader}, {@link Musics}
- * @classWithDynamicImport {@link SoundEffectLoader}
+ * @recursiveReference {@link Musics}
  */
 export abstract class SoundEffects
     extends Enum<Ordinals, Names>
@@ -1050,7 +1050,7 @@ export abstract class SoundEffects
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, SoundEffect> {
-        return this.#REFERENCE_MAP ??= Import.SoundEffectLoader.get.load()
+        return this.#REFERENCE_MAP ??= SoundEffectLoader.get.load()
     }
 
     /**
@@ -1213,10 +1213,6 @@ export abstract class SoundEffects
 
     public get renderSingleComponent() {
         return SoundEffectComponent.render(this)
-    }
-
-    public static get everyEnglishNames(): EnglishNames {
-        return this.values.map(it => it.englishName).toArray() as EnglishNames
     }
 
 

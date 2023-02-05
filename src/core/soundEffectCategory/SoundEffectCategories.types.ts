@@ -12,7 +12,6 @@ export type Names = keyof typeof Enum
 //region -------------------- Name --------------------
 
 export type PossibleEnglishName = | 'Feelings' | 'Stingers' | 'Reactions' | 'Animations' | 'Music'
-export type EnglishNames = readonly ['Feelings', 'Stingers', 'Reactions', 'Animations', 'Music',]
 
 //endregion -------------------- Name --------------------
 //region -------------------- Image --------------------

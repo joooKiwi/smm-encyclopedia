@@ -1,20 +1,16 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                              from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                from 'core/ClassWithReference'
-import type {CourseTag}                                                         from 'core/courseTag/CourseTag'
-import type {Names, Ordinals, PossibleEnglishName, PossibleOfficialEnglishName} from 'core/courseTag/CourseTags.types'
-import type {Nullable}                                                          from 'util/types/nullable'
+import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                   from 'core/ClassWithReference'
+import type {CourseTag}                            from 'core/courseTag/CourseTag'
+import type {Names, Ordinals, PossibleEnglishName} from 'core/courseTag/CourseTags.types'
+import type {Nullable}                             from 'util/types/nullable'
 
-import {Import}                from 'util/DynamicImporter'
+import {CourseTagLoader}       from 'core/courseTag/CourseTag.loader'
 import {StringContainer}       from 'util/StringContainer'
 import {getValueByEnglishName} from 'util/utilitiesMethods'
 
-/**
- * @recursiveReference {@link CourseTagLoader}
- * @classWithDynamicImport {@link CourseTagLoader}
- */
 export class CourseTags
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CourseTag>,
@@ -86,7 +82,7 @@ export class CourseTags
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP() {
-        return this.#REFERENCE_MAP ??= Import.CourseTagLoader.get.load()
+        return this.#REFERENCE_MAP ??= CourseTagLoader.get.load()
     }
 
     /**
@@ -107,11 +103,6 @@ export class CourseTags
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyOfficialEnglishName(): readonly PossibleOfficialEnglishName[] {
-        return this.officialCourseTags.map(limit => limit.englishName as PossibleOfficialEnglishName)
-    }
-
 
     public static get officialCourseTags(): readonly CourseTags[] {
         return this.#officialCourseTags ??= [

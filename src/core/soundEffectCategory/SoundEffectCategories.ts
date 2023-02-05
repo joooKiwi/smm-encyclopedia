@@ -1,23 +1,19 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                       from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                         from 'core/ClassWithReference'
-import type {EnglishNames, Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber} from 'core/soundEffectCategory/SoundEffectCategories.types'
-import type {SoundEffectCategory}                                                                        from 'core/soundEffectCategory/SoundEffectCategory'
-import type {SoundEffectCategoryImageFile}                                                               from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
-import type {ClassWithImageFile}                                                                         from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                                                   from 'util/types/nullable'
+import type {ClassWithEnglishName}                                                         from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                           from 'core/ClassWithReference'
+import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber} from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {SoundEffectCategory}                                                          from 'core/soundEffectCategory/SoundEffectCategory'
+import type {SoundEffectCategoryImageFile}                                                 from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
+import type {ClassWithImageFile}                                                           from 'util/file/image/ClassWithImageFile'
+import type {Nullable}                                                                     from 'util/types/nullable'
 
+import {SoundEffectCategoryLoader}                          from 'core/soundEffectCategory/SoundEffectCategory.loader'
 import {SoundEffectCategoryImageFileContainer as ImageFile} from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile.container'
 import {getValueByEnglishName}                              from 'util/utilitiesMethods'
-import {Import}                                             from 'util/DynamicImporter'
 import {StringContainer}                                    from 'util/StringContainer'
 
-/**
- * @recursiveReference {@link SoundEffectCategoryLoader}
- * @classWithDynamicImport {@link SoundEffectCategoryLoader}
- */
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
     implements ClassWithReference<SoundEffectCategory>,
@@ -48,6 +44,7 @@ export class SoundEffectCategories
     #imageFile?: SoundEffectCategoryImageFile
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super()
@@ -55,10 +52,11 @@ export class SoundEffectCategories
         this.#imageName = `CategoryIcon_0${imageNumber}`
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, SoundEffectCategory> {
-        return this.#REFERENCE_MAP ??= Import.SoundEffectCategoryLoader.get.load()
+        return this.#REFERENCE_MAP ??= SoundEffectCategoryLoader.get.load()
     }
 
     /**
@@ -88,10 +86,6 @@ export class SoundEffectCategories
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyEnglishNames(): EnglishNames {
-        return this.values.map(soundEffectCategory => soundEffectCategory.englishName).toArray() as EnglishNames
-    }
 
     public static getValueByName(value: Nullable<| SoundEffectCategories | string>,): SoundEffectCategories {
         return getValueByEnglishName(value, this,)

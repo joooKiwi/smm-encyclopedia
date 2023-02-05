@@ -26,6 +26,7 @@ import type {WalkImageFile}                                                     
 import type {FileName, PossibleImageFileNames}                                                  from 'core/mysteryMushroom/file/name/FileName'
 import type {Nullable, NullOr}                                                                  from 'util/types/nullable'
 
+import {MysteryMushroomLoader}                                           from 'core/mysteryMushroom/MysteryMushroom.loader'
 import {ClimbingImageFileContainer as ClimbingImage}                     from 'core/mysteryMushroom/file/ClimbingImageFile.container'
 import {FallingAfterAJumpImageFileContainer as FallingAfterAJumpImage}   from 'core/mysteryMushroom/file/FallingAfterAJumpImageFile.container'
 import {GoalPoleImageFileContainer as GoalPoleImage}                     from 'core/mysteryMushroom/file/GoalPoleImageFile.container'
@@ -47,14 +48,11 @@ import {WalkImageFileContainer as WalkImage}                             from 'c
 import {DualFileNameContainer as DualFile}                               from 'core/mysteryMushroom/file/name/DualFileName.container'
 import {EmptyFileName as EmptyFile}                                      from 'core/mysteryMushroom/file/name/EmptyFileName'
 import {SingleFileNameContainer as SingleFile}                           from 'core/mysteryMushroom/file/name/SingleFileName.container'
-import {Import}                                                          from 'util/DynamicImporter'
 import {EMPTY_ARRAY}                                                     from 'util/emptyVariables'
 import {StringContainer}                                                 from 'util/StringContainer'
 
 /**
  * @todo Change the path to be like in the game instead of the mystery mushroom name
- * @recursiveReference {@link MysteryMushroomLoader}
- * @classWithDynamicImport {@link MysteryMushroomLoader}
  */
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
@@ -783,7 +781,7 @@ export class MysteryMushrooms
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom> {
-        return this.#REFERENCE_MAP ??= Import.MysteryMushroomLoader.get.load()
+        return this.#REFERENCE_MAP ??= MysteryMushroomLoader.get.load()
     }
 
     /**
@@ -953,10 +951,6 @@ export class MysteryMushrooms
     #createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): T[] {
         const englishName = this.englishName
         return this.__fileName.imageFileNames.map(it => callback(englishName, it,))
-    }
-
-    public static get everyUniqueEnglishNames(): readonly PossibleUniqueEnglishName[] {
-        return this.values.map(it => it.uniqueEnglishName).toArray()
     }
 
     public static getValueByName(value: Nullable<| MysteryMushrooms | string>,): MysteryMushrooms {

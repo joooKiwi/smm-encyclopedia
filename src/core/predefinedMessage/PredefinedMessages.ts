@@ -7,14 +7,10 @@ import type {Names, Ordinals, PossibleEnglishName} from 'core/predefinedMessage/
 import type {PredefinedMessage}                    from 'core/predefinedMessage/PredefinedMessage'
 import type {Nullable}                             from 'util/types/nullable'
 
-import {Import}                from 'util/DynamicImporter'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {PredefinedMessageLoader} from 'core/predefinedMessage/PredefinedMessage.loader'
+import {StringContainer}         from 'util/StringContainer'
+import {getValueByEnglishName}   from 'util/utilitiesMethods'
 
-/**
- * @recursiveReference {@link PredefinedMessageLoader}
- * @classWithDynamicImport {@link PredefinedMessageLoader}
- */
 export class PredefinedMessages
     extends Enum<Ordinals, Names>
     implements ClassWithReference<PredefinedMessage>,
@@ -58,16 +54,18 @@ export class PredefinedMessages
     readonly #englishName: StringContainer<PossibleEnglishName>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
         super()
         this.#englishName = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, PredefinedMessage> {
-        return this.#REFERENCE_MAP ??= Import.PredefinedMessageLoader.get.load()
+        return this.#REFERENCE_MAP ??= PredefinedMessageLoader.get.load()
     }
 
     /**
@@ -89,11 +87,6 @@ export class PredefinedMessages
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
-
 
     public static getValueByName(value: Nullable<| PredefinedMessages | string>,): PredefinedMessages {
         return getValueByEnglishName(value, this,)

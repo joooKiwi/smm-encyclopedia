@@ -7,8 +7,8 @@ import type {InstrumentSoundFile}                                               
 import type {Instrument}                                                                                                                                                                                                                               from 'core/instrument/Instrument'
 import type {Nullable}                                                                                                                                                                                                                                 from 'util/types/nullable'
 
+import {InstrumentLoader}                          from 'core/instrument/Instrument.loader'
 import {InstrumentSoundFileContainer as SoundFile} from 'core/instrument/file/InstrumentSoundFile.container'
-import {Import}                                    from 'util/DynamicImporter'
 import {StringContainer}                           from 'util/StringContainer'
 import {getValueByEnglishName}                     from 'util/utilitiesMethods'
 
@@ -124,6 +124,7 @@ export class Instruments
     #sounds?: readonly InstrumentSoundFile[]
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, fileName: PossibleFileName_Single,)
     private constructor(englishName: PossibleEnglishName, ...reverbCowbell: PossibleFileName_ReverbCowbell)
@@ -136,10 +137,11 @@ export class Instruments
         this.#fileNames = fileNames
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, Instrument> {
-        return this.#REFERENCE_MAP ??= Import.InstrumentLoader.get.load()
+        return this.#REFERENCE_MAP ??= InstrumentLoader.get.load()
     }
 
     /**
@@ -169,10 +171,6 @@ export class Instruments
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
 
     public static getValueByName(value: Nullable<| Instruments | string>,): Instruments {
         return getValueByEnglishName(value, this,)

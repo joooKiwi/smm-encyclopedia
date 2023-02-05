@@ -9,15 +9,11 @@ import type {EntityCategoryImageFile, PossibleImageNumber} from 'core/entityCate
 import type {ClassWithImageFile}                           from 'util/file/image/ClassWithImageFile'
 import type {Nullable}                                     from 'util/types/nullable'
 
+import {EntityCategoryLoader}                          from 'core/entityCategory/EntityCategory.loader'
 import {EntityCategoryImageFileContainer as ImageFile} from 'core/entityCategory/file/EntityCategoryImageFile.container'
-import {Import}                                        from 'util/DynamicImporter'
 import {StringContainer}                               from 'util/StringContainer'
 import {getValueByEnglishName}                         from 'util/utilitiesMethods'
 
-/**
- * @recursiveReference {@link EntityCategoryLoader}
- * @classWithDynamicImport {@link EntityCategoryLoader}
- */
 export class EntityCategories
     extends Enum<Ordinals, Names>
     implements ClassWithReference<EntityCategory>,
@@ -47,6 +43,7 @@ export class EntityCategories
     #imageFile?: EntityCategoryImageFile
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, imageNumber: PossibleImageNumber,) {
         super()
@@ -54,10 +51,11 @@ export class EntityCategories
         this.#imageNumber = imageNumber
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, EntityCategory> {
-        return this.#REFERENCE_MAP ??= Import.EntityCategoryLoader.get.load()
+        return this.#REFERENCE_MAP ??= EntityCategoryLoader.get.load()
     }
 
     /**
@@ -88,10 +86,6 @@ export class EntityCategories
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
 
     public static getValueByName(value: Nullable<| EntityCategories | string>,): EntityCategories {
         return getValueByEnglishName(value, this,)

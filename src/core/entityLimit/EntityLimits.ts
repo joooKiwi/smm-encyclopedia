@@ -9,14 +9,13 @@ import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, Possi
 import type {Nullable, NullOr}                                                                                                                      from 'util/types/nullable'
 
 import type {Entities}             from 'core/entity/Entities'
+import {EntityLimitLoader}         from 'core/entityLimit/EntityLimit.loader'
 import {Import}                    from 'util/DynamicImporter'
 import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
 import {StringContainer}           from 'util/StringContainer'
 
 /**
- * @recursiveReferenceVia {@link EntityLimitBuilder} → {@link EntityLimitLoader}
- * @recursiveReference {@link EntityLimitLoader}
- * @classWithDynamicImport {@link EntityLimitLoader}, {@link Entities}
+ * @classWithDynamicImport {@link Entities}
  */
 export class EntityLimits
     extends Enum<Ordinals, Names>
@@ -59,13 +58,13 @@ export class EntityLimits
     public static readonly PROJECTILE_LIMIT =                               new EntityLimits.WhilePlayingEntityLimits(['Projectile Limit', 'PJL',],)
     public static readonly LIGHT_SOURCE_LIMIT =                             new EntityLimits.WhilePlayingEntityLimits(['Light Source Limit', 'LSL',],)
 
-    public static readonly GROUND_LIMIT =                                   new class EntityLimits_GroundLimit extends EntityLimits {
+    public static readonly GROUND_LIMIT =                                   new class EntityLimits_GroundLimit extends EntityLimits.EditorEntityLimits {
 
         protected override get _entityLink() {
             return Import.Entities.GROUND
         }
 
-    }(false, ['Ground Limit',], ['Ground Limit 1',],)
+    }(['Ground Limit',], ['Ground Limit 1',],)
     public static readonly BLOCK_LIMIT =                                    new EntityLimits.EditorEntityLimits(['Block Limit',], ['Ground Limit 2',],)
     public static readonly EXTENDABLE_TERRAIN_LIMIT =                       new class EntityLimits_ExtensibleTerrainLimit extends EntityLimits.EditorEntityLimits {
 
@@ -360,7 +359,7 @@ export class EntityLimits
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, EntityLimit> {
-        return this.#REFERENCE_MAP ??= Import.EntityLimitLoader.get.load()
+        return this.#REFERENCE_MAP ??= EntityLimitLoader.get.load()
     }
 
     /**
@@ -448,23 +447,6 @@ export class EntityLimits
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(it => it.acronym).filterNonNull().toArray()
-    }
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
-
-    public static get everyAlternativeAcronyms(): readonly PossibleAlternativeAcronym[] {
-        return this.values.map(it => it.alternativeAcronym).filterNonNull().toArray()
-    }
-
-    public static get everyAlternativeEnglishNames(): readonly PossibleAlternativeEnglishName[] {
-        return this.values.map(it => it.alternativeEnglishName).filterNonNull().toArray()
-    }
-
 
     public static get whilePlayingEntityLimits(): readonly EntityLimits[] {
         return this.#whilePlayingEntityLimits ??= this.values.filter(it => !it.isEditorLimit).toArray()
