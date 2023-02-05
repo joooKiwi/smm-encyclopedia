@@ -12,10 +12,10 @@
   },
 
   "scripts": {
-    "convert-csv-to-json-to-src": "node ./src/scripts/ConvertCSVToJsonToSrc",
+    "convert-csv-to-json": "node ./src/scripts/ConvertCSVToJson",
     "copy-images-for-css": "node ./src/scripts/CopyImagesForCSS",
     "copy-locale-to-src":  "node ./src/scripts/CopyLocaleToSrc",
-    "prepare-project": "npm-run-all -p csv-to-json-to-src copy-locale-to-src copy-images-for-css",
+    "prepare-project": "npm-run-all -p csv-to-json copy-locale-to-src copy-images-for-css",
 
     "prestart": "npm run prepare-project",
     "start": "react-scripts start",
