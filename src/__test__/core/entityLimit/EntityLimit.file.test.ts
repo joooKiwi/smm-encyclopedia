@@ -4,7 +4,7 @@ import {EveryTypes}                                                from '__test_
 import {getEnglishName, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test__/helperMethods'
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER}                         from 'util/commonVariables'
 
-describe('Entity limit (file test)', () => {
+describe('Limit (file test)', () => {
     const types = EveryTypes.get,
         everyNames = types.everyPossibleName_limit,
         everyAlternativeNames = types.everyPossibleAlternativeName_limit,

@@ -6,7 +6,7 @@ import {EveryTypes}                                 from '__test__/EveryTypes'
 import {getEnglishName, testEnglish, testLanguages} from '__test__/helperMethods'
 import {UNKNOWN_REFERENCE}                          from 'util/commonVariables'
 
-describe('Game reference (file test)', () => {
+describe('Mystery Mushroom (file test)', () => {
     const convertor = EveryTypes.get,
         everyConditionToUnlock = convertor.everyPossibleConditionToUnlockIt_mysteryMushroom,
         everyVersion = convertor.everyPossibleName_version_smm,
