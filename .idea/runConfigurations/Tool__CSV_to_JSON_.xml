@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Tool (CSV to JSON to \src)" type="js.build_tools.npm" folderName="Tools">
+  <configuration default="false" name="Tool (CSV to JSON)" type="js.build_tools.npm" folderName="Tools">
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
