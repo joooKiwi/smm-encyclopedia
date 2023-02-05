@@ -22,6 +22,7 @@
     "fast-start": "react-scripts start",
 
     "test": "react-scripts test",
+    "test-file": "react-scripts test --testNamePattern=\"(file test)\" --watchAll=false",
 
     "prebuild": "npm run prepare-project",
     "build": "react-scripts build",

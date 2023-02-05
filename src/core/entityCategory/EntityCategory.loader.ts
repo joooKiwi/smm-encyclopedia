@@ -1,53 +1,20 @@
-import resource from 'resources/compiled/Entity category.json'
+import file from 'resources/compiled/Entity category.json'
 
-import type {PossibleEnglishName}                       from 'core/entityCategory/EntityCategories.types'
-import type {EntityCategory}                            from 'core/entityCategory/EntityCategory'
-import type {EntityCategoryTemplate}                    from 'core/entityCategory/EntityCategory.template'
-import type {PropertiesArray as LanguagesPropertyArray} from 'lang/Loader.types'
-import type {Loader}                                    from 'util/loader/Loader'
+import type {LanguageContent}        from 'core/_template/LanguageContent'
+import type {PossibleEnglishName}    from 'core/entityCategory/EntityCategories.types'
+import type {EntityCategory}         from 'core/entityCategory/EntityCategory'
+import type {EntityCategoryTemplate} from 'core/entityCategory/EntityCategory.template'
+import type {Loader}                 from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
-import {EntityCategoryBuilder}   from 'core/entityCategory/EntityCategory.builder'
-import {CSVLoader}               from 'util/loader/CSVLoader'
-
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    //region -------------------- Languages --------------------
-
-    english, americanEnglish, europeanEnglish,
-    french, canadianFrench, europeanFrench,
-    german,
-    spanish, americanSpanish, europeanSpanish,
-    italian,
-    dutch,
-    portuguese, americanPortuguese, europeanPortuguese,
-    russian,
-    japanese,
-    chinese, traditionalChinese, simplifiedChinese,
-    korean,
-
-    //endregion -------------------- Languages --------------------
-
-}
-
-//region -------------------- Properties --------------------
-
-type PropertiesArray = [
-    ...LanguagesPropertyArray,
-]
-
-//endregion -------------------- Properties --------------------
-
-//endregion -------------------- CSV array related types --------------------
+import {isInProduction}          from 'variables'
+import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import {EntityCategoryCreator}   from 'core/entityCategory/EntityCategory.creator'
 
 /**
  * A single class made to handle the loading
- * and the unique creation of every categories.
+ * and the unique creation of every {@link EntityCategory category}.
  *
  * @singleton
- * @recursiveReference<{@link EntityCategories}>
  */
 export class EntityCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, EntityCategory>> {
@@ -71,19 +38,15 @@ export class EntityCategoryLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, EntityCategory>()
 
-            //region -------------------- CSV Loader --------------------
+            file.map(it => new EntityCategoryCreator(new TemplateCreator(it).create()).create())
+                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            new CSVLoader<PropertiesArray, EntityCategory, keyof typeof Headers>(resource, convertedContent => new EntityCategoryBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
-
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- "entity category" has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- "entity category" has been loaded --------------------')// temporary console.log
+            if (!isInProduction)
+                console.info(
+                    '-------------------- "entity category" has been loaded --------------------\n',
+                    references,
+                    '\n-------------------- "entity category" has been loaded --------------------',
+                )
 
             this.#map = references
         }
@@ -92,18 +55,19 @@ export class EntityCategoryLoader
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateBuilder<EntityCategoryTemplate, PropertiesArray, typeof Headers> {
 
-    public constructor(content: PropertiesArray,) {
-        super(content)
+interface Content
+    extends LanguageContent {
+}
+
+class TemplateCreator
+    extends AbstractTemplateCreator<EntityCategoryTemplate, Content> {
+
+    public constructor(content: Content,) {
+        super(content,)
     }
 
-    protected override get _headersIndexMap() {
-        return Headers
-    }
-
-    public override build(): EntityCategoryTemplate {
+    public override create(): EntityCategoryTemplate {
         return {
             entities: null,
             name: this._createNameTemplate(),

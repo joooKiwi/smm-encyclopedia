@@ -1,52 +1,17 @@
-import resource from 'resources/compiled/Sound effect category.json'
+import file from 'resources/compiled/Sound effect category.json'
 
-import type {PossibleEnglishName}                       from 'core/soundEffectCategory/SoundEffectCategories.types'
-import type {SoundEffectCategory}                       from 'core/soundEffectCategory/SoundEffectCategory'
-import type {SoundEffectCategoryTemplate}               from 'core/soundEffectCategory/SoundEffectCategory.template'
-import type {PropertiesArray as LanguagesPropertyArray} from 'lang/Loader.types'
-import type {Loader}                                    from 'util/loader/Loader'
+import type {LanguageContent}             from 'core/_template/LanguageContent'
+import type {PossibleEnglishName}         from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {SoundEffectCategory}         from 'core/soundEffectCategory/SoundEffectCategory'
+import type {SoundEffectCategoryTemplate} from 'core/soundEffectCategory/SoundEffectCategory.template'
+import type {Loader}                      from 'util/loader/Loader'
 
-import {AbstractTemplateBuilder}    from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor}    from 'core/_util/loader/HeaderTypesForConvertor'
-import {SoundEffectCategoryBuilder} from 'core/soundEffectCategory/SoundEffectCategory.builder'
-import {CSVLoader}                  from 'util/loader/CSVLoader'
-
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    //region -------------------- Languages --------------------
-
-    english, americanEnglish, europeanEnglish,
-    french, canadianFrench, europeanFrench,
-    german,
-    spanish, americanSpanish, europeanSpanish,
-    italian,
-    dutch,
-    portuguese, americanPortuguese, europeanPortuguese,
-    russian,
-    japanese,
-    chinese, traditionalChinese, simplifiedChinese,
-    korean,
-    greek,
-
-    //endregion -------------------- Languages --------------------
-
-}
-
-//region -------------------- Properties --------------------
-
-type PropertiesArray = [
-    ...LanguagesPropertyArray,
-]
-
-//endregion -------------------- Properties --------------------
-
-//endregion -------------------- CSV array related types --------------------
+import {isInProduction}             from 'variables'
+import {AbstractTemplateCreator}    from 'core/_template/AbstractTemplate.creator'
+import {SoundEffectCategoryCreator} from 'core/soundEffectCategory/SoundEffectCategory.creator'
 
 /**
  * @singleton
- * @recursiveReference<{@link SoundEffectCategories}>
  */
 export class SoundEffectCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, SoundEffectCategory>> {
@@ -70,21 +35,15 @@ export class SoundEffectCategoryLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, SoundEffectCategory>()
 
-            //region -------------------- CSV Loader --------------------
+            file.map(it => new SoundEffectCategoryCreator(new TemplateCreator(it as Content).create()).create())
+                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            new CSVLoader<PropertiesArray, SoundEffectCategory, keyof typeof Headers>(resource, convertedContent => new SoundEffectCategoryBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
-
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_soundEffectCategory, 'english',)
-
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.english as PossibleEnglishName, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- "sound effect category" has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- "sound effect category" has been loaded --------------------')// temporary console.log
+            if (!isInProduction)
+                console.info(
+                    '-------------------- "sound effect category" has been loaded --------------------\n',
+                    references,
+                    '\n-------------------- "sound effect category" has been loaded --------------------'
+                )
 
             this.#map = references
         }
@@ -93,18 +52,19 @@ export class SoundEffectCategoryLoader
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateBuilder<SoundEffectCategoryTemplate, PropertiesArray, typeof Headers> {
 
-    public constructor(content: PropertiesArray,) {
+interface Content
+    extends LanguageContent {
+}
+
+class TemplateCreator
+    extends AbstractTemplateCreator<SoundEffectCategoryTemplate, Content> {
+
+    public constructor(content: Content,) {
         super(content,)
     }
 
-    protected override get _headersIndexMap() {
-        return Headers
-    }
-
-    public override build(): SoundEffectCategoryTemplate {
+    public override create(): SoundEffectCategoryTemplate {
         return {
             name: this._createNameTemplate(),
         }

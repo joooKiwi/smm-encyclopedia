@@ -23,7 +23,7 @@ export type GeneralEntityLimitType = NullOr<| boolean | PossibleGeneralEntityLim
 export type PossibleGeneralGlobalEntityLimitComment = | 'Not on track' | 'While holding an entity'
 export type GeneralGlobalEntityLimitType = NullOr<| boolean | PossibleGeneralGlobalEntityLimitComment>
 
-export type PowerUpEntityLimitType = NullOrBoolean
+export type PowerUpLimitType = NullOrBoolean
 
 
 export type PossibleProjectileEntityLimitComment = | 'Temporary as it comes out' | 'Each one separated' | 'Always reserve 1 projectile' | 'By player, can overfill limit' | 'Can only spawn (available) based → limits'
@@ -34,7 +34,7 @@ export type RenderedObjectLimitType = NullOr<| boolean | PossibleRenderedObjectL
 
 export type CollectedCoinLimitType = NullOrBoolean
 
-export type PossibleOtherLimit = Exclude<PossibleEnglishName, `${`${'General' | 'Power-up'} Entity` | 'Projectile'} Limit`>
+export type PossibleOtherLimit = Exclude<PossibleEnglishName, `${`${'General' | 'Power-up'} Entity` | 'Projectile' | 'Rendered Object'} Limit`>
 export type OtherLimitType = NullOr<PossibleOtherLimit>
 export type PossibleOtherLimitComment = 'Only falling coin'
 export type OtherLimitCommentType = NullOr<PossibleOtherLimitComment>
@@ -42,7 +42,7 @@ export type OtherLimitCommentType = NullOr<PossibleOtherLimitComment>
 //endregion -------------------- Entity limit --------------------
 //region -------------------- Spawning / Despawning range --------------------
 
-export type OffscreenSpawningAndDespawningReferencePoint = NullOr<| 'Center' | 'Edge' | 'Head' | Infinity | UnknownCharacter>
+export type OffscreenSpawningAndDespawningReferencePoint = NullOr<| `${| 'Center' | 'Anything'}${| '' | '\n(excluding path)'}` | 'Edge' | Infinity | UnknownCharacter>
 
 export type OffscreenSpawningHorizontalRangeLimitType = NullOr<| number | `${number} / ${number}` | 'Variable' | Infinity | UnknownCharacter>
 export type OffscreenDespawningHorizontalRangeLimitType = NullOr<| number | `${number} / ${number}` | 'Variable' | UnknownCharacter>

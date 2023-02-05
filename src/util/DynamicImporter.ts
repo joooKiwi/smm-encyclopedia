@@ -68,28 +68,28 @@ export class DynamicImporter {
 
     //region -------------------- Entity fields --------------------
 
-    #EntityLoader?: typeof EntityLoader
     #Entities?: typeof Entities
+    #EntityLoader?: typeof EntityLoader
 
     //endregion -------------------- Entity fields --------------------
     //region -------------------- "Entity limit" fields --------------------
 
-    #EntityLimitLoader?: typeof EntityLimitLoader
     #EntityLimits?: typeof EntityLimits
+    #EntityLimitLoader?: typeof EntityLimitLoader
 
     #EntityLimitTypes?: typeof EntityLimitTypes
 
     //endregion -------------------- "Entity limit" fields --------------------
     //region -------------------- "Entity category" fields --------------------
 
-    #EntityCategoryLoader?: typeof EntityCategoryLoader
     #EntityCategories?: typeof EntityCategories
+    #EntityCategoryLoader?: typeof EntityCategoryLoader
 
     //endregion -------------------- "Entity category" fields --------------------
     //region -------------------- Theme fields --------------------
 
-    #ThemeLoader?: typeof ThemeLoader
     #Themes?: typeof Themes
+    #ThemeLoader?: typeof ThemeLoader
 
     #NightEffects?: typeof NightEffects
 
@@ -101,44 +101,44 @@ export class DynamicImporter {
     //endregion -------------------- Time fields --------------------
     //region -------------------- "Game reference" fields --------------------
 
-    #GameReferenceLoader?: typeof GameReferenceLoader
     #GameReferences?: typeof GameReferences
+    #GameReferenceLoader?: typeof GameReferenceLoader
 
     //endregion -------------------- "Game reference" fields --------------------
     //region -------------------- "Game style" fields --------------------
 
-    #GameStyleLoader?: typeof GameStyleLoader
     #GameStyles?: typeof GameStyles
+    #GameStyleLoader?: typeof GameStyleLoader
 
     //endregion -------------------- "Game style" fields --------------------
     //region -------------------- "Entity behaviour" fields --------------------
 
-    #EntityBehaviourLoader?: typeof EntityBehaviourLoader
     #EntityBehaviours?: typeof EntityBehaviours
+    #EntityBehaviourLoader?: typeof EntityBehaviourLoader
 
     //endregion -------------------- "Entity behaviour" fields --------------------
     //region -------------------- "Sound effect" fields --------------------
 
-    #SoundEffectLoader?: typeof SoundEffectLoader
     #SoundEffects?: typeof SoundEffects
+    #SoundEffectLoader?: typeof SoundEffectLoader
 
-    #SoundEffectCategoryLoader?: typeof SoundEffectCategoryLoader
     #SoundEffectCategories?: typeof SoundEffectCategories
+    #SoundEffectCategoryLoader?: typeof SoundEffectCategoryLoader
 
     //endregion -------------------- "Sound effect" fields --------------------
     //region -------------------- "Mystery Mushroom" fields --------------------
 
-    #MysteryMushroomLoader?: typeof MysteryMushroomLoader
     #MysteryMushrooms?: typeof MysteryMushrooms
+    #MysteryMushroomLoader?: typeof MysteryMushroomLoader
 
     //endregion -------------------- "Sound effect" fields --------------------
     //region -------------------- "Mii costume" fields --------------------
 
-    #MiiCostumeLoader?: typeof MiiCostumeLoader
     #MiiCostumes?: typeof MiiCostumes
+    #MiiCostumeLoader?: typeof MiiCostumeLoader
 
-    #MiiCostumeCategoryLoader?: typeof MiiCostumeCategoryLoader
     #MiiCostumeCategories?: typeof MiiCostumeCategories
+    #MiiCostumeCategoryLoader?: typeof MiiCostumeCategoryLoader
 
     //endregion -------------------- "Mii costume" fields --------------------
     //region -------------------- "Official notification" fields --------------------
