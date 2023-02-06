@@ -9,44 +9,44 @@ import type {NullOr} from 'util/types/nullable'
  */
 export interface LanguageContent {
 
-    english: NullOr<string>
-    americanEnglish: NullOr<string>
-    europeanEnglish: NullOr<string>
+    readonly english: NullOr<string>
+    readonly americanEnglish: NullOr<string>
+    readonly europeanEnglish: NullOr<string>
 
-    french: NullOr<string>
-    canadianFrench: NullOr<string>
-    europeanFrench: NullOr<string>
+    readonly french: NullOr<string>
+    readonly canadianFrench: NullOr<string>
+    readonly europeanFrench: NullOr<string>
 
-    german: NullOr<string>
+    readonly german: NullOr<string>
 
-    spanish: NullOr<string>
-    americanSpanish: NullOr<string>
-    europeanSpanish: NullOr<string>
+    readonly spanish: NullOr<string>
+    readonly americanSpanish: NullOr<string>
+    readonly europeanSpanish: NullOr<string>
 
-    italian: NullOr<string>
+    readonly italian: NullOr<string>
 
-    dutch: NullOr<string>
+    readonly dutch: NullOr<string>
 
-    portuguese: NullOr<string>
-    americanPortuguese: NullOr<string>
-    europeanPortuguese: NullOr<string>
+    readonly portuguese: NullOr<string>
+    readonly americanPortuguese: NullOr<string>
+    readonly europeanPortuguese: NullOr<string>
 
-    russian: NullOr<string>
+    readonly russian: NullOr<string>
 
-    japanese: NullOr<string>
+    readonly japanese: NullOr<string>
 
-    chinese: NullOr<string>
-    traditionalChinese: NullOr<string>
-    simplifiedChinese: NullOr<string>
+    readonly chinese: NullOr<string>
+    readonly traditionalChinese: NullOr<string>
+    readonly simplifiedChinese: NullOr<string>
 
-    korean: NullOr<string>
+    readonly korean: NullOr<string>
 
-    hebrew?: NullOr<string>
+    readonly hebrew?: NullOr<string>
 
-    polish?: NullOr<string>
+    readonly polish?: NullOr<string>
 
-    ukrainian?: NullOr<string>
+    readonly ukrainian?: NullOr<string>
 
-    greek?: NullOr<string>
+    readonly greek?: NullOr<string>
 
 }
