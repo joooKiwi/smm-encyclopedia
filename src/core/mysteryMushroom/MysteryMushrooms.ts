@@ -768,9 +768,9 @@ export class MysteryMushrooms
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(fileName: FileName, englishName: PossibleEnglishName,)
-    protected constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName,)
-    protected constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName = englishName,) {
+    private constructor(fileName: FileName, englishName: PossibleEnglishName,)
+    private constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName,)
+    private constructor(fileName: FileName, englishName: PossibleEnglishName, uniqueEnglishName: PossibleUniqueEnglishName = englishName,) {
         super()
         this.#englishName = new StringContainer(englishName)
         this.#uniqueEnglishName = uniqueEnglishName
