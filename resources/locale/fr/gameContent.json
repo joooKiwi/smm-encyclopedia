@@ -6,6 +6,13 @@
     "all":         "Toutes les entités",
     "display all": "Afficher toutes les entités"
   },
+  "character name": {
+    "singular": "Nom de personnage",
+    "plural":   "Noms de personnage",
+
+    "all":         "Tous les noms de personnage",
+    "display all": "Afficher tous les noms de personnage"
+  },
   "entity group": {
     "all":         "Tous les groupes d'entité",
     "display all": "Afficher tous les groupes d'entité"

@@ -6,6 +6,7 @@ const logger = Logger.get;
 
 [
     'Entity',
+    'Character name',
     'Entity limit',
     'Entity category',
     'Theme',

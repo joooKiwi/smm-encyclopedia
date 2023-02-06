@@ -9,6 +9,7 @@ import {SimpleRouteContainer}         from 'routes/SimpleRoute.container'
 
 const AboutApp =                  lazy(() => import('app/AboutApp'))
 const PredefinedMessageApp =      lazy(() => import('app/PredefinedMessageApp'))
+const CharacterNameApp =          lazy(() => import('app/CharacterNameApp'))
 const CourseTagApp =              lazy(() => import('app/CourseTagApp'))
 const EntityApp =                 lazy(() => import('app/EntityApp'))
 const EntityCategoryApp =         lazy(() => import('app/EntityCategoryApp'))
@@ -114,6 +115,8 @@ export const everySimpleRoutes = [
     route(          'everyPowerUpPriority',       '/every/power-up/priority',      () =>   <PowerUpAndRidePriorityApp/>,),//TODO add EveryPowerUpPriorityApp
     route(          'everyRidePriority',          '/every/ride/priority',          () =>   <PowerUpAndRidePriorityApp/>,),//TODO add EveryRidePriorityApp
 
+
+    cardListRoute(  'everyCharacterNames',        '/every/character-name',         type => <CharacterNameApp typeDisplayed={type}/>,                         'CARD_LIST',),
 
     route(          'everyGameReferences',        '/every/game-reference',         () =>   <GameReferenceApp/>,),
     tableRoute(     'everyEntities',              '/every/entity',                 type => <EntityApp              typeDisplayed={type}/>,                     'TABLE',),

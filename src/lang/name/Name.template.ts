@@ -5,55 +5,55 @@ import type {NullOrString} from 'util/types/nullable'
  */
 export interface NameTemplate {
 
-    english: {
-        simple: NullOrString
-        american: NullOrString
-        european: NullOrString
+    readonly english: {
+        readonly simple: NullOrString
+        readonly american: NullOrString
+        readonly european: NullOrString
     }
 
-    german: NullOrString
+    readonly german: NullOrString
 
-    french: {
-        simple: NullOrString
-        canadian: NullOrString
-        european: NullOrString
+    readonly french: {
+        readonly simple: NullOrString
+        readonly canadian: NullOrString
+        readonly european: NullOrString
     }
 
-    spanish: {
-        simple: NullOrString
-        american: NullOrString
-        european: NullOrString
+    readonly spanish: {
+        readonly simple: NullOrString
+        readonly american: NullOrString
+        readonly european: NullOrString
     }
 
-    italian: NullOrString
+    readonly italian: NullOrString
 
-    dutch: NullOrString
+    readonly dutch: NullOrString
 
-    portuguese: {
-        simple: NullOrString
-        american: NullOrString
-        european: NullOrString
+    readonly portuguese: {
+        readonly simple: NullOrString
+        readonly american: NullOrString
+        readonly european: NullOrString
     }
 
-    russian: NullOrString
+    readonly russian: NullOrString
 
-    chinese: {
-        simple: NullOrString
-        traditional: NullOrString
-        simplified: NullOrString
+    readonly chinese: {
+        readonly simple: NullOrString
+        readonly traditional: NullOrString
+        readonly simplified: NullOrString
     }
 
-    japanese: NullOrString
+    readonly japanese: NullOrString
 
-    korean: NullOrString
+    readonly korean: NullOrString
 
 
-    hebrew: NullOrString
+    readonly hebrew: NullOrString
 
-    polish: NullOrString
+    readonly polish: NullOrString
 
-    ukrainian: NullOrString
+    readonly ukrainian: NullOrString
 
-    greek: NullOrString
+    readonly greek: NullOrString
 
 }

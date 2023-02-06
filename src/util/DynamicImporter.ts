@@ -1,7 +1,8 @@
 import type {ClassThatIsAvailableFromTheStartContainer} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container'
 import type {ClassThatIsAvailableFromTheStartProvider}  from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import type {CourseTags}                                from 'core/courseTag/CourseTags'
 import type {EntityBehaviours}                          from 'core/behaviour/EntityBehaviours'
+import type {CharacterNames}                            from 'core/characterName/CharacterNames'
+import type {CourseTags}                                from 'core/courseTag/CourseTags'
 import type {EntityCategories}                          from 'core/entityCategory/EntityCategories'
 import type {EntityLimits}                              from 'core/entityLimit/EntityLimits'
 import type {EntityLimitTypes}                          from 'core/entityLimit/EntityLimitTypes'
@@ -51,6 +52,11 @@ export class DynamicImporter {
 
     //region -------------------- Fields --------------------
 
+    //region -------------------- "Character name" fields --------------------
+
+    #CharacterNames?: typeof CharacterNames
+
+    //endregion -------------------- "Character name" fields --------------------
     //region -------------------- Entity fields --------------------
 
     #Entities?: typeof Entities
@@ -154,6 +160,13 @@ export class DynamicImporter {
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
+    //region -------------------- Character name getter methods --------------------
+
+    public get CharacterNames(): typeof CharacterNames {
+        return this.#CharacterNames ??= require('../core/characterName/CharacterNames').CharacterNames
+    }
+
+    //endregion -------------------- Character name getter methods --------------------
     //region -------------------- Entity getter methods --------------------
 
     public get Entities(): typeof Entities {

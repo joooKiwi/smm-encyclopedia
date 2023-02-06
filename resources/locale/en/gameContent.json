@@ -6,6 +6,13 @@
     "all":         "Every entity",
     "display all": "Display every entity"
   },
+  "character name": {
+    "singular": "Character name",
+    "plural":   "Character names",
+
+    "all":         "Every character name",
+    "display all": "Display every character name"
+  },
   "entity group": {
     "all":         "Every entity group",
     "display all": "Display every entity group"

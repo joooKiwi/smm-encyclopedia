@@ -18,12 +18,6 @@ const {POKEMON_RED, POKEMON_GREEN, POKEMON_BLUE, POKEMON_YELLOW, POKEMON_DIAMOND
 export class MysteryMushroomCreator
     extends TemplateWithNameCreator<MysteryMushroomTemplate, MysteryMushroom> {
 
-    //region -------------------- External object references --------------------
-
-    public static gameReferencesMap: ReadonlyMap<string, GameReferences>
-
-    //endregion -------------------- External object references --------------------
-
     public constructor(template: MysteryMushroomTemplate,) {
         super(template, 1, false,)//TODO change the false to true since it is a complete SMM1 name
     }

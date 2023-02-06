@@ -7,7 +7,7 @@ import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/
 import {GlobalAppOption}                                 from 'app/options/global/GlobalAppOption'
 import Image                                             from 'app/tools/images/Image'
 import UnfinishedText, {unfinishedText}                  from 'app/tools/text/UnfinishedText'
-import {gameContentTranslation}                          from 'lang/components/translationMethods'
+import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
 
 interface DisplayViewBodyProperties
@@ -97,6 +97,24 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         elementId="displayView-instrument-button" id={id} divId={divId}/>
             </div>
         </div>
+        <div id="display-nameOrWord-container" className="container">
+            <h3 className="text-center text-decoration-underline pb-2">{contentTranslation('Name or word')}</h3>
+            <div key="button group (character name)" id="characterName-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everyCharacterNames" value={gameContentTranslation('character name.singular')}
+                                        tooltipValue={gameContentTranslation('character name.display all')}
+                                        elementId="displayView-characterName-button" id={id} divId={divId}/>
+            </div>
+            {isSMM2Selected ? <div key="button group (course tag - SMM2)" id="courseTag-buttonGroup" className="btn-group col-6" role="group">
+                <DisplayViewRouteButton routeName="officialCourseTags" value={gameContentTranslation('course tag.singular', {Course: unfinishedText('Course'), course: unfinishedText('course'), Tag: unfinishedText('Tag'), tag: unfinishedText('tag'),},)}//TODO add course & tag (capital case & lowercase)
+                                        tooltipValue={gameContentTranslation('course tag.display all', {course: unfinishedText('course'), courses: unfinishedText('courses'), tag: unfinishedText('tag'), tags: unfinishedText('tags'),})}//TODO add course & tag (singular & plural form)
+                                        elementId="displayView-courseTag-button" id={id} divId={divId}/>
+            </div> : null}
+            {isSMM2Selected ? <div key="button group (predefined message - SMM2)" id="predefinedMessage-buttonGroup" className="btn-group col-6" role="group">
+                <DisplayViewRouteButton routeName="everyPredefinedMessages" value={unfinishedText('predefined message')}//TODO add predefined message reference
+                                        tooltipValue={gameContentTranslation('predefined message.display all', {singularName: unfinishedText('predefined message'), pluralName: unfinishedText('predefined messages'),},)}//TODO add predefined message (singular & plural)
+                                        elementId="displayView-predefinedMessage-button" id={id} divId={divId}/>
+            </div> : null}
+        </div>
         <div id="display-other-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Other</UnfinishedText></h3>
             {isSMM2Selected ? <div key="button group (mii costume)" id="miiCostume-buttonGroup" className="btn-group col-12" role="group">
@@ -126,16 +144,6 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         elementId="displayView-mysteryMushroom-button" id={id} divId={divId}/>
                 {/*TODO add other options for the Mystery Mushroom*/}
             </div>/* : null*/}
-            {isSMM2Selected ? <div key="button group (course tag - SMM2)" id="courseTag-buttonGroup" className="btn-group col-6" role="group">
-                <DisplayViewRouteButton routeName="officialCourseTags" value={gameContentTranslation('course tag.singular', {Course: unfinishedText('Course'), course: unfinishedText('course'), Tag: unfinishedText('Tag'), tag: unfinishedText('tag'),},)}//TODO add course & tag (capital case & lowercase)
-                                        tooltipValue={gameContentTranslation('course tag.display all', {course: unfinishedText('course'), courses: unfinishedText('courses'), tag: unfinishedText('tag'), tags: unfinishedText('tags'),})}//TODO add course & tag (singular & plural form)
-                                        elementId="displayView-courseTag-button" id={id} divId={divId}/>
-            </div> : null}
-            {isSMM2Selected ? <div key="button group (predefined message - SMM2)" id="predefinedMessage-buttonGroup" className="btn-group col-6" role="group">
-                <DisplayViewRouteButton routeName="everyPredefinedMessages" value={unfinishedText('predefined message')}//TODO add predefined message reference
-                                        tooltipValue={gameContentTranslation('predefined message.display all', {singularName: unfinishedText('predefined message'), pluralName: unfinishedText('predefined messages'),},)}//TODO add predefined message (singular & plural)
-                                        elementId="displayView-predefinedMessage-button" id={id} divId={divId}/>
-            </div> : null}
         </div>
     </div>
 }

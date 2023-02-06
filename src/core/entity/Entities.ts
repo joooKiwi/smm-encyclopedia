@@ -2785,6 +2785,7 @@ export class Entities
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Entity>
+    static #everyEnglishNames?: readonly PossibleEnglishName[]
 
     #reference?: Entity
     readonly #englishNameContainer
@@ -3005,7 +3006,7 @@ export class Entities
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
+        return this.#everyEnglishNames ??= this.values.map(it => it.englishName).toArray()
     }
 
     public static getValueByName(value: Nullable<| Entities | string>,): Entities {

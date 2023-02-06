@@ -7,6 +7,6 @@ import type {NameTemplate} from 'lang/name/Name.template'
  */
 export interface TemplateWithNameTemplate<NAME extends NameTemplate = NameTemplate, > {
 
-    name: NAME
+    readonly name: NAME
 
 }

@@ -1,5 +1,6 @@
 import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                                        from 'core/entityTypes'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from 'core/behaviour/EntityBehaviours.types'
+import type {PossibleEnglishName as PossibleEnglishName_CharacterName, PossibleUniqueEnglishName as PossibleUniqueEnglishName_CharacterName}                                                                                                                             from 'core/characterName/CharacterNames.types'
 import type {PossibleEnglishName as PossibleEnglishName_CourseTag, PossibleMakerCentralName}                                                                                                                                                                             from 'core/courseTag/CourseTags.types'
 import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from 'core/entity/Entities.types'
 import type {LimitAmountType, PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                       from 'core/entity/properties/limit/loader.types'
@@ -30,6 +31,7 @@ import type {NullOr}                                                            
 
 import {INFINITY, UNKNOWN_REFERENCE} from 'util/commonVariables'
 import {EntityBehaviours}            from 'core/behaviour/EntityBehaviours'
+import {CharacterNames}              from 'core/characterName/CharacterNames'
 import {Entities}                    from 'core/entity/Entities'
 import {EntityCategories}            from 'core/entityCategory/EntityCategories'
 import {EntityLimitTypes}            from 'core/entityLimit/EntityLimitTypes'
@@ -89,6 +91,9 @@ export class EveryTypes {
     #everyPossibleName_gameReference?: readonly PossibleEnglishName_GameReference[]
 
     #everyPossibleAcronym_gameStyle?: readonly PossibleAcronym_GameStyle[]
+
+    #everyPossibleName_characterName?: readonly PossibleEnglishName_CharacterName[]
+    #everyPossibleUniqueName_characterName?: readonly PossibleUniqueEnglishName_CharacterName[]
 
     #everyPossibleName_entity?: readonly PossibleEnglishName_Entity[]
     #everyPossibleWeight_entity?: readonly NonNullable<Exclude<PossibleWeight, UnknownCharacter>>[]
@@ -172,6 +177,17 @@ export class EveryTypes {
     }
 
     //endregion -------------------- Game style --------------------
+    //region -------------------- Character name --------------------
+
+    public get everyPossibleName_characterName() {
+        return this.#everyPossibleName_characterName ??= CharacterNames.values.map(it => it.englishName).toArray()
+    }
+
+    public get everyPossibleUniqueName_characterName() {
+        return this.#everyPossibleUniqueName_characterName ??= CharacterNames.values.map(it => it.uniqueEnglishName).toArray()
+    }
+
+    //endregion -------------------- Character name --------------------
     //region -------------------- Entity --------------------
 
     public get everyPossibleName_entity() {
