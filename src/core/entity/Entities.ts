@@ -23,6 +23,7 @@ import type {Nullable, NullOr}                                                  
 
 import {EditorVoices}                   from 'core/editorVoice/EditorVoices'
 import {EmptyEditorVoiceSound}          from 'core/editorVoice/EmptyEditorVoiceSound'
+import {EntityLoader}                   from 'core/entity/Entity.loader'
 import {ClearConditionImageBuilder}     from 'core/entity/images/clearCondition/ClearConditionImage.builder'
 import {ClearConditionImageFactory}     from 'core/entity/images/clearCondition/ClearConditionImage.factory'
 import {EditorImageFactory}             from 'core/entity/images/editor/EditorImage.factory'
@@ -41,7 +42,6 @@ import {UnusedImage_RegularFactory}     from 'core/entity/images/unused/UnusedIm
 import {GameStyles}                     from 'core/gameStyle/GameStyles'
 import {Themes}                         from 'core/theme/Themes'
 import {Times}                          from 'core/time/Times'
-import {Import}                         from 'util/DynamicImporter'
 import {StringContainer}                from 'util/StringContainer'
 import {getValueByEnglishName}          from 'util/utilitiesMethods'
 
@@ -83,9 +83,7 @@ function __setOnGround(builder: UniqueImageBuilder,): UniqueImageBuilder {
 //endregion -------------------- Utility methods (applicable only to Entities) --------------------
 
 /**
- * @recursiveReferenceVia {@link EntityBuilder} → {@link EntityLoader}
- * @recursiveReference {@link EntityLoader}, {@link EditorVoices}
- * @classWithDynamicImport {@link EntityLoader}
+ * @recursiveReference {@link EditorVoices}
  */
 export class Entities
     extends Enum<Ordinals, Names>
@@ -2787,6 +2785,7 @@ export class Entities
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Entity>
+    static #everyEnglishNames?: readonly PossibleEnglishName[]
 
     #reference?: Entity
     readonly #englishNameContainer
@@ -2811,7 +2810,7 @@ export class Entities
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, Entity> {
-        return this.#REFERENCE_MAP ??= Import.EntityLoader.get.load()
+        return this.#REFERENCE_MAP ??= EntityLoader.get.load()
     }
 
     /**
@@ -3007,7 +3006,7 @@ export class Entities
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
+        return this.#everyEnglishNames ??= this.values.map(it => it.englishName).toArray()
     }
 
     public static getValueByName(value: Nullable<| Entities | string>,): Entities {

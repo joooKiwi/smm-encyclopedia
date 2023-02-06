@@ -24,7 +24,7 @@ export type Names = keyof typeof Enum
 
 export type PossibleTranslationKeys =
     | `Respawn ${'with Vine' | 'as ? Block'}`
-    | `${'Always' | 'Never'} know visually # of Coin` | 'Only 1st sound of Pink Coin'
+    | `${'Always' | 'Never'} know visually # of Coins` | 'Only 1st sound of Pink Coin'
 
     | `Spawn ${'only 1 power-up' | '(1-4) power-up(s) from # of players'}`
     | 'Expelled power-up from Block' | 'Always final power-up'

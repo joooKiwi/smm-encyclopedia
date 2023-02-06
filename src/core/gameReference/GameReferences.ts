@@ -8,13 +8,9 @@ import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from 'core/g
 import type {GameReference}                                         from 'core/gameReference/GameReference'
 import type {Nullable}                                              from 'util/types/nullable'
 
-import {Import}          from 'util/DynamicImporter'
-import {StringContainer} from 'util/StringContainer'
+import {GameReferenceLoader} from 'core/gameReference/GameReference.loader'
+import {StringContainer}     from 'util/StringContainer'
 
-/**
- * @recursiveReference {@link GameReferenceLoader}
- * @classWithDynamicImport {@link GameReferenceLoader}
- */
 export class GameReferences
     extends Enum<Ordinals, Names>
     implements ClassWithReference<GameReference>,
@@ -201,13 +197,9 @@ export class GameReferences
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, GameReference> {
-        return this.#REFERENCE_MAP ??= Import.GameReferenceLoader.get.load()
+        return this.#REFERENCE_MAP ??= GameReferenceLoader.get.load()
     }
 
-    /**
-     * {@inheritDoc}
-     * @semiAsynchronously
-     */
     public get reference(): GameReference {
         return this.#reference ??= GameReferences.REFERENCE_MAP.get(this.englishName)!
     }
@@ -226,14 +218,6 @@ export class GameReferences
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(it => it.acronym).toArray()
-    }
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
 
     public static getValueByNameOrAcronym(value: Nullable<| GameReferences | string>,): GameReferences {
         if (value == null)

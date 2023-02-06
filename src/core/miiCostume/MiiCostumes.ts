@@ -9,8 +9,8 @@ import type {MiiCostumeImageFile, PossibleImageFileName} from 'core/miiCostume/f
 import type {ClassWithImageFile}                         from 'util/file/image/ClassWithImageFile'
 import type {Nullable}                                   from 'util/types/nullable'
 
+import {MiiCostumeLoader}                          from 'core/miiCostume/MiiCostume.loader'
 import {MiiCostumeImageFileContainer as ImageFile} from 'core/miiCostume/file/MiiCostumeImageFile.container'
-import {Import}                                    from 'util/DynamicImporter'
 import {StringContainer}                           from 'util/StringContainer'
 
 /**
@@ -176,6 +176,7 @@ export class MiiCostumes
     #imageFile?: MiiCostumeImageFile
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, imageName: PossibleImageFileName,) {
         super()
@@ -183,10 +184,11 @@ export class MiiCostumes
         this.#imageName = imageName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, MiiCostume> {
-        return this.#REFERENCE_MAP ??= Import.MiiCostumeLoader.get.load()
+        return this.#REFERENCE_MAP ??= MiiCostumeLoader.get.load()
     }
 
     /**

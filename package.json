@@ -1,6 +1,6 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.15.0-beta",
+  "version": "0.16.0-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "repository": {
@@ -12,21 +12,22 @@
   },
 
   "scripts": {
-    "csv-to-json": "node ./src/scripts/CSVToJson",
+    "convert-csv-to-json": "node ./src/scripts/ConvertCSVToJson",
     "copy-images-for-css": "node ./src/scripts/CopyImagesForCSS",
     "copy-locale-to-src":  "node ./src/scripts/CopyLocaleToSrc",
-    "prepare-project": "npm-run-all -p csv-to-json copy-locale-to-src copy-images-for-css",
+    "prepare-project": "npm-run-all -p convert-csv-to-json copy-locale-to-src copy-images-for-css",
 
     "prestart": "npm run prepare-project",
     "start": "react-scripts start",
     "fast-start": "react-scripts start",
 
     "test": "react-scripts test",
+    "test-file": "react-scripts test --testNamePattern=\"(file test)\" --watchAll=false",
 
     "prebuild": "npm run prepare-project",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -m \"Deployment of the version 0.15 (beta)\" -d build"
+    "deploy": "gh-pages -m \"Deployment of the version 0.16 (beta)\" -d build"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
@@ -85,6 +86,7 @@
     "@types/react-router-dom": "^5.3.3",
     "fs-extra": "^11.1.0",
     "gh-pages": "^4.0.0",
+    "jest-extended": "^3.2.3",
     "npm-run-all": "^4.1.5",
     "papaparse": "^5.3.2",
     "typescript": "^4.9.4"

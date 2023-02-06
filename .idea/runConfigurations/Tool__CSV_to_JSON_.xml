@@ -3,7 +3,7 @@
     <package-json value="$PROJECT_DIR$/package.json" />
     <command value="run" />
     <scripts>
-      <script value="csv-to-json" />
+      <script value="convert-csv-to-json" />
     </scripts>
     <node-interpreter value="project" />
     <envs />

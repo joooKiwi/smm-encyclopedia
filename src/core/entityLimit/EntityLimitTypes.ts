@@ -1,8 +1,8 @@
 import {Enum}                                                                    from '@joookiwi/enumerable'
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {EnglishNames, Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
-import type {Nullable}                                                                      from 'util/types/nullable'
+import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
+import type {Nullable}                                                        from 'util/types/nullable'
 
 export class EntityLimitTypes
     extends Enum<Ordinals, Names> {
@@ -43,10 +43,6 @@ export class EntityLimitTypes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyEnglishNames(): EnglishNames {
-        return this.values.map(type => type.englishName).toArray() as EnglishNames
-    }
 
     public static getValueByName(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
         if (value == null)

@@ -1,4 +1,4 @@
-import resource from 'resources/compiled/Entity behaviour.json'
+import file from 'resources/compiled/Entity behaviour.json'
 
 import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
 import type {EntityBehaviourTemplate}                  from 'core/behaviour/EntityBehaviour.template'
@@ -8,46 +8,12 @@ import type {PossibleEnglishName as EntityName}        from 'core/entity/Entitie
 import type {Loader}                                   from 'util/loader/Loader'
 import type {NullOr}                                   from 'util/types/nullable'
 
-import {AbstractTemplateBuilder} from 'core/_template/AbstractTemplate.builder'
-import {HeaderTypesForConvertor} from 'core/_util/loader/HeaderTypesForConvertor'
-import {EntityBehaviourBuilder}  from 'core/behaviour/EntityBehaviour.builder'
-import {CSVLoader}               from 'util/loader/CSVLoader'
-
-//region -------------------- CSV array related types --------------------
-
-enum Headers {
-
-    acronym,
-    translationKey,
-
-    isOnlineOnly,
-    isMultiplayerOnly,
-
-    link_group,
-    link_entity,
-
-}
-
-//region -------------------- Properties --------------------
-
-type PropertiesArray = [
-    acronym: PossibleAcronym,
-    translationKey: PossibleTranslationKeys,
-
-    isOnlineOnly: boolean,
-    isMultiplayerOnly: boolean,
-
-    link_group: NullOr<PossibleGroupName>,
-    link_entity: NullOr<EntityName>,
-]
-
-//endregion -------------------- Properties --------------------
-
-//endregion -------------------- CSV array related types --------------------
+import {isInProduction}          from 'variables'
+import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import {EntityBehaviourCreator}  from 'core/behaviour/EntityBehaviour.creator'
 
 /**
  * @singleton
- * @recursiveReference<{@link EntityBehaviours}>
  */
 export class EntityBehaviourLoader
     implements Loader<ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>> {
@@ -71,27 +37,15 @@ export class EntityBehaviourLoader
         if (this.#map == null) {
             const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
 
-            //region -------------------- CSV Loader --------------------
+            file.map(it => new EntityBehaviourCreator(new TemplateBuilder(it as Content).create()).create())
+                .forEach(it => references.set(it.translationKey, it,))
 
-            new CSVLoader<PropertiesArray, EntityBehaviour, keyof typeof Headers>(resource, convertedContent => new EntityBehaviourBuilder(new TemplateBuilder(convertedContent)).build())
-                .setDefaultConversion('emptyable string')
-
-                .convertTo(HeaderTypesForConvertor.everyPossibleAcronym_entityBehaviour, 'acronym',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleTranslationKey_entityBehaviour, 'translationKey',)
-
-                .convertToBoolean('isOnlineOnly', 'isMultiplayerOnly',)
-
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_entityGroup, 'link_group',)
-                .convertTo(HeaderTypesForConvertor.everyPossibleName_entity, 'link_entity',)
-
-                .onAfterFinalObjectCreated(finalContent => references.set(finalContent.translationKey, finalContent,))
-                .load()
-
-            //endregion -------------------- CSV Loader --------------------
-
-            console.log('-------------------- "game style" has been loaded --------------------')// temporary console.log
-            console.log(references)// temporary console.log
-            console.log('-------------------- "game style" has been loaded --------------------')// temporary console.log
+            if (!isInProduction)
+                console.info(
+                    '-------------------- "game style" has been loaded --------------------\n',
+                    references,
+                    '\n-------------------- "game style" has been loaded --------------------',
+                )// temporary console.lo
 
             this.#map = references
         }
@@ -100,28 +54,40 @@ export class EntityBehaviourLoader
 
 }
 
+
+interface Content {
+
+    acronym: PossibleAcronym
+    translationKey: PossibleTranslationKeys
+
+    isOnlineOnly: boolean
+    isMultiplayerOnly: boolean
+
+    link_group: NullOr<PossibleGroupName>
+    link_entity: NullOr<EntityName>
+
+}
+
 class TemplateBuilder
-    extends AbstractTemplateBuilder<EntityBehaviourTemplate, PropertiesArray, typeof Headers> {
+    extends AbstractTemplateCreator<EntityBehaviourTemplate, Content> {
 
-    public constructor(content: PropertiesArray,) {
-        super(content)
+    public constructor(content: Content,) {
+        super(content,)
     }
 
-    protected get _headersIndexMap() {
-        return Headers
-    }
+    public create(): EntityBehaviourTemplate {
+        const content = this._content
 
-    public build(): EntityBehaviourTemplate {
         return {
-            acronym: this._getContent(this._headersIndexMap.acronym),
-            translationKey: this._getContent(this._headersIndexMap.translationKey),
+            acronym: content.acronym,
+            translationKey: content.translationKey,
             isOnly: {
-                online: this._getContent(this._headersIndexMap.isOnlineOnly),
-                multiplayer: this._getContent(this._headersIndexMap.isMultiplayerOnly),
+                online: content.isOnlineOnly,
+                multiplayer: content.isMultiplayerOnly,
             },
             links: {
-                group: this._getContent(this._headersIndexMap.link_group),
-                entity: this._getContent(this._headersIndexMap.link_entity),
+                group: content.link_group,
+                entity: content.link_entity,
             },
         }
     }

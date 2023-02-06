@@ -15,15 +15,11 @@ import type {ClassWithImageFile}                                                
 import type {Nullable}                                                                                                             from 'util/types/nullable'
 
 import GameStyleComponent            from 'core/gameStyle/GameStyle.component'
+import {GameStyleLoader}             from 'core/gameStyle/GameStyle.loader'
 import {GameStyleImageFileContainer} from 'core/gameStyle/file/GameStyleImageFile.container'
-import {Import}                      from 'util/DynamicImporter'
 import {StringContainer}             from 'util/StringContainer'
 import {getValueByEnglishName}       from 'util/utilitiesMethods'
 
-/**
- * @recursiveReferenceVia<{@link GameStyleBuilder}, {@link GameStyleLoader}>
- * @recursiveReference<{@link GameStyleLoader}>
- */
 export abstract class GameStyles
     extends Enum<Ordinals, Names>
     implements ClassWithReference<GameStyle>,
@@ -121,7 +117,7 @@ export abstract class GameStyles
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, GameStyle> {
-        return this.#REFERENCE_MAP ??= Import.GameStyleLoader.get.load()
+        return this.#REFERENCE_MAP ??= GameStyleLoader.get.load()
     }
 
     /**
@@ -168,10 +164,6 @@ export abstract class GameStyles
         return GameStyleComponent.renderSingleComponent(this)
     }
 
-
-    public static get everyAcronyms(): readonly PossibleAcronym[] {
-        return this.values.map(limit => limit.acronym).toArray()
-    }
 
     public static get gameStyles_smm1(): GameStylesInSMM1 {
         return this.#GAME_STYLES_SMM1 ??= [this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U,]

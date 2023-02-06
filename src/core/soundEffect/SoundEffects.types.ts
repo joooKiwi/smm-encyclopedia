@@ -115,26 +115,4 @@ export type SoundEffectGames = readonly [
     typeof SoundEffects['SUPER_MARIO_GALAXY_MUSIC'],
 ]
 
-export type EnglishNames = readonly [
-    'Shock', 'Scream', 'Laughter', 'Guffaw', 'Booo!',
-    'Cheer', 'Baby', 'Party Popper', 'Applause', 'Near Miss',
-
-    'Clatter', 'Drama!', 'Kick', 'Jump', 'Honk Honk',
-    'Punch', 'Oink', 'Kuh-thunk!', 'Beep!', 'Ninja Attack!',
-    'Zap!',
-
-    'Ding Dong', 'Bzzzt!', 'Glory', 'Doom', 'Yeah!',
-    'Aww...',
-
-    'Fireworks', 'Audience', 'Scatting', 'Bird\'s Chirping', 'Spark',
-    'Traditional', 'Electric Guitar', 'Distortion', 'Twisty Turny', 'Woozy',
-    'Telephone', 'Flash',
-
-    'Peaceful', 'Horror', 'Festive Music', 'Rave Music',
-    'Heartbeat', 'Silence', 'Bird\'s Tweeting Noise', 'Chicken\'s Clucking Noise',
-
-    'Bonus Music', 'Boss Music', 'Final Boss',
-    'Super Mario Kart', 'Super Mario 64', 'Super Mario Sunshine', 'Super Mario Galaxy',
-]
-
 //endregion -------------------- Array types --------------------

@@ -112,12 +112,14 @@ export class NightEffects
     readonly #englishName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName,) {
         super()
         this.#englishName = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {
@@ -153,10 +155,6 @@ export class NightEffects
         return gameContentTranslation(`nightEffect.${this.englishName}`, this._createReplaceComponent(),)
     }
 
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
 
     public static getValueByName(value: Nullable<| NightEffects | string>,): NightEffects {
         return getValueByEnglishName(value, this,)

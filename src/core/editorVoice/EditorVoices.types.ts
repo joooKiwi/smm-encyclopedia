@@ -1,3 +1,4 @@
+import type {PossibleEnglishName_PlayableCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/characterName/CharacterNames.types'
 import type {PossibleEnglishName as PossibleEnglishName_Entity, PossibleEnglishName_BanzaiBill, PossibleEnglishName_BeachKoopa, PossibleEnglishName_BigMushroom, PossibleEnglishName_Block, PossibleEnglishName_BulletBill, PossibleEnglishName_BuzzyBeetleAndShell, PossibleEnglishName_DryBones, PossibleEnglishName_Goals, PossibleEnglishName_HardBlock, PossibleEnglishName_KoopaShell, PossibleEnglishName_KoopaTroopa, PossibleEnglishName_Shoe, PossibleEnglishName_SpikeTop, PossibleEnglishName_SpinyAndShell, PossibleEnglishName_Yoshi} from 'core/entity/Entities.types'
 
 enum Enum {
@@ -50,7 +51,7 @@ enum Enum {
     LINK,
 
     BIG_MUSHROOM_SMM1, BIG_MUSHROOM_SMM2,
-    BIG_MARIO, BIG_LUIGI, BIG_TOAD, BIG_TOADETTE,
+    GIANT_MARIO, GIANT_LUIGI, GIANT_TOAD, GIANT_TOADETTE,
 
     SMB2_MUSHROOM,
     SMB2_MARIO, SMB2_LUIGI, SMB2_TOAD, SMB2_TOADETTE,
@@ -195,15 +196,6 @@ export type Names = keyof typeof Enum
 
 type PossibleEnglishName_Projectile = ''//TODO change to every projectile name
 type PossibleEnglishName_Object = ''//TODO change to every object name
-type PossibleEnglishName_Character =
-    | `${| 'Costume' | 'Weird'} Mario`
-    | 'Link'
-    | `${| 'Super' | 'Fire'
-         | 'Superball' | 'Big' | 'SMB2'
-         | 'Raccoon' | 'Frog'
-         | 'Cape' | 'Balloon'
-         | 'Propeller' | 'Flying Squirrel'
-         | 'Cat' | 'Builder' | 'Boomerang'} ${| 'Mario' | 'Luigi' | 'Toad' | 'Toadette'}`//TODO change to every character name
 export type PossibleEnglishName_OnlyEntity =
     Exclude<PossibleEnglishName_Entity,
         | PossibleEnglishName_BigMushroom | PossibleEnglishName_Shoe | PossibleEnglishName_Yoshi
@@ -214,9 +206,9 @@ export type PossibleEnglishName_OnlyEntity =
         | PossibleEnglishName_BulletBill | Extract<PossibleEnglishName_BanzaiBill, 'Cat Banzai Bill'>
         | 'Empty Block' | 'Chain Chomp\'s Stump' | 'Angry Sun'
         | PossibleEnglishName_Goals | 'Phanto' | 'Stone' | 'Parachute' | 'Bubble'
-        | PossibleEnglishName_Projectile | PossibleEnglishName_Object>
+        | PossibleEnglishName_Projectile | PossibleEnglishName_Object>//TODO create a type in "Entities.types" to have the possible name with editor voice instead
 export type PossibleEnglishName = | PossibleEnglishName_OnlyEntity
-                                  | PossibleEnglishName_Character
-                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| 1 | 2})` | 'Sun'
+                                  | PossibleEnglishName_PlayableCharacter
+                                  | 'Koopa Troopa' | 'Block' | `Big Mushroom (SMM${| '' | 2})` | 'Sun'
 
 //endregion -------------------- English name --------------------

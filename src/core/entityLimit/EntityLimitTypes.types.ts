@@ -13,6 +13,4 @@ export type Names = keyof typeof Enum
 export type PossibleEnglishName = | 'While Playing' | 'Editor'
 export type PossibleEnglishCommonText = | 'While playing' | 'In the editor'
 
-export type EnglishNames = readonly ['While Playing', 'Editor',]
-
 //endregion -------------------- Name --------------------

@@ -1,10 +1,12 @@
-import type {PossibleNameTemplate} from 'lang/name/Name.template'
+import type {NameTemplate} from 'lang/name/Name.template'
 
 /**
+ * A template containing a {@link NameTemplate}
+ *
  * @template
  */
-export interface TemplateWithNameTemplate<NAME extends PossibleNameTemplate = PossibleNameTemplate, > {
+export interface TemplateWithNameTemplate<NAME extends NameTemplate = NameTemplate, > {
 
-    name: NAME
+    readonly name: NAME
 
 }

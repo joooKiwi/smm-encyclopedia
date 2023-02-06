@@ -1,7 +1,7 @@
 import type {Name}                                                                    from 'lang/name/Name'
 import type {NameBuilder}                                                             from 'lang/name/Name.builder'
 import type {IsACompleteNameCallback, PossibleGameReceived}                           from 'lang/name/Name.builder.types'
-import type {PossibleNameTemplate}                                                    from 'lang/name/Name.template'
+import type {NameTemplate}                                      from 'lang/name/Name.template'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
 import type {Nullable, NullableString, NullOr, NullOrString}                          from 'util/types/nullable'
 
@@ -11,7 +11,7 @@ import {EveryLanguages} from 'lang/EveryLanguages'
 import {NameContainer}  from 'lang/name/Name.container'
 import {assert}         from 'util/utilitiesMethods'
 
-export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
+export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
     implements NameBuilder<string, TEMPLATE> {
 
     //region -------------------- Fields --------------------
@@ -64,7 +64,7 @@ export class NameBuilderContainer<TEMPLATE extends PossibleNameTemplate, >
     /**
      * Create a new {@link Builder builder} instance to create a {@link Name}.
      *
-     * @param template the {@link PossibleNameTemplate name template}
+     * @param template the {@link NameTemplate name template}
      * @param game the game received
      * @param isACompleteName tell whenever it is a complete name
      *

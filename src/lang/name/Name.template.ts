@@ -3,69 +3,57 @@ import type {NullOrString} from 'util/types/nullable'
 /**
  * @template
  */
-export interface NameTemplate<HEBREW extends NullOrString = null,
-    POLISH extends NullOrString = null,
-    UKRAINIAN extends NullOrString = null,
-    GREEK extends NullOrString = null, > {
+export interface NameTemplate {
 
-    english: {
-        simple: NullOrString
-        american: NullOrString
-        european: NullOrString
+    readonly english: {
+        readonly simple: NullOrString
+        readonly american: NullOrString
+        readonly european: NullOrString
     }
 
-    german: NullOrString
+    readonly german: NullOrString
 
-    french: {
-        simple: NullOrString
-        canadian: NullOrString
-        european: NullOrString
+    readonly french: {
+        readonly simple: NullOrString
+        readonly canadian: NullOrString
+        readonly european: NullOrString
     }
 
-    spanish: {
-        simple: NullOrString
-        american: NullOrString
-        european: NullOrString
+    readonly spanish: {
+        readonly simple: NullOrString
+        readonly american: NullOrString
+        readonly european: NullOrString
     }
 
-    italian: NullOrString
+    readonly italian: NullOrString
 
-    dutch: NullOrString
+    readonly dutch: NullOrString
 
-    portuguese: {
-        simple: NullOrString
-        american: NullOrString
-        european: NullOrString
+    readonly portuguese: {
+        readonly simple: NullOrString
+        readonly american: NullOrString
+        readonly european: NullOrString
     }
 
-    russian: NullOrString
+    readonly russian: NullOrString
 
-    chinese: {
-        simple: NullOrString
-        traditional: NullOrString
-        simplified: NullOrString
+    readonly chinese: {
+        readonly simple: NullOrString
+        readonly traditional: NullOrString
+        readonly simplified: NullOrString
     }
 
-    japanese: NullOrString
+    readonly japanese: NullOrString
 
-    korean: NullOrString
+    readonly korean: NullOrString
 
-    hebrew: HEBREW
 
-    polish: POLISH
+    readonly hebrew: NullOrString
 
-    ukrainian: UKRAINIAN
+    readonly polish: NullOrString
 
-    greek: GREEK
+    readonly ukrainian: NullOrString
+
+    readonly greek: NullOrString
 
 }
-
-/**
- * @template
- */
-export interface NameTemplateWithOptionalLanguages
-    extends NameTemplate<NullOrString, NullOrString, NullOrString, NullOrString> {
-
-}
-
-export type PossibleNameTemplate = | NameTemplate | NameTemplateWithOptionalLanguages

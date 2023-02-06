@@ -1,8 +1,9 @@
-import type {EntityReferenceHolder, PossibleEntityReferences, PossibleEntityReferences_Received} from 'core/editorVoice/holder/EntityReferenceHolder'
-import type {ObjectHolder}                                                                       from 'util/holder/ObjectHolder'
+import type {EntityReferenceHolder, PossibleEntityReferences_Received} from 'core/editorVoice/holder/EntityReferenceHolder'
+import type {ObjectHolder}                                             from 'util/holder/ObjectHolder'
 
 import {Import}                       from 'util/DynamicImporter'
 import {EMPTY_ARRAY}                  from 'util/emptyVariables'
+import type {Entities}                from 'core/entity/Entities'
 import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 import {ObjectHolderContainer}        from 'util/holder/ObjectHolder.container'
 
@@ -14,14 +15,14 @@ export class EntityReferenceHolderContainer
 
     //region -------------------- Fields --------------------
 
-    readonly #references: ObjectHolder<PossibleEntityReferences>
+    readonly #references: ObjectHolder<readonly Entities[]>
 
     //endregion -------------------- Fields --------------------
 
     public constructor(references: PossibleEntityReferences_Received,) {
-        this.#references = references.length === 1
+        this.#references = typeof references == 'string'
             ? new DelayedObjectHolderContainer(() => {
-                const reference = references[0]
+                const reference = references
                 return Import.Entities.hasValueByName(reference)
                     ? [Import.Entities.getValueByName(reference),]
                     : EMPTY_ARRAY
@@ -32,7 +33,7 @@ export class EntityReferenceHolderContainer
     //region -------------------- Getter methods --------------------
 
 
-    public get references(): PossibleEntityReferences {
+    public get references(): readonly Entities[] {
         return this.#references.get
     }
 
