@@ -11,7 +11,6 @@ import {ModalInstance}      from 'bootstrap/modal/ModalInstance'
 import {contentTranslation} from 'lang/components/translationMethods'
 import DisplayViewBody      from 'navigation/DisplayView.body'
 import LanguageChangerBody  from 'navigation/LanguageChanger.body'
-import SearchBody           from 'navigation/Search.body'
 
 interface ModalContainersProperties
     extends ReactProperties {
@@ -53,9 +52,9 @@ export default function ModalContainers({
         </ModalContainer>
 
         <ModalContainer key="modal - parameter (container)" id={parameterId} verticallyCentered modalSize="xl">
-            <ModalHeader key="modal - parameter (header)" modalTitle={contentTranslation('Options')}/>
-            <ModalBody key="modal - parameter (body)">{parameterContent}</ModalBody>
-            <ModalFooter key="modal - parameter (footer)" successButton={({children: contentTranslation('Confirm'),})}/>
+        {/*    <ModalHeader key="modal - parameter (header)" modalTitle={contentTranslation('Options')}/>*/}
+        {/*    <ModalBody key="modal - parameter (body)">{parameterContent}</ModalBody>*/}
+        {/*    <ModalFooter key="modal - parameter (footer)" successButton={({children: contentTranslation('Confirm'),})}/>*/}
         </ModalContainer>
 
         <ModalContainer key="modal - display view (container)" id={displayViewId} verticallyCentered modalSize="lg">
@@ -67,11 +66,11 @@ export default function ModalContainers({
         </ModalContainer>
 
         <ModalContainer key="modal - search (container)" id={searchId} verticallyCentered modalSize="lg">
-            <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search')}…`}/>
-            <ModalBody key="modal - search (body)">
-                <SearchBody id={searchId} divId={searchDivId}/>
-            </ModalBody>
-            <ModalFooter key="modal - search (footer)" successButton={({children: contentTranslation('Search')})}/>
+        {/*    <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search')}…`}/>*/}
+        {/*    <ModalBody key="modal - search (body)">*/}
+        {/*        <SearchBody id={searchId} divId={searchDivId}/>*/}
+        {/*    </ModalBody>*/}
+        {/*    <ModalFooter key="modal - search (footer)" successButton={({children: contentTranslation('Search')})}/>*/}
         </ModalContainer>
     </aside>
 }
