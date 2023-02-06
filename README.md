@@ -74,7 +74,7 @@ Although, they are only there for some names.
 
 ### Sub-page applications
 - [ ] ![In progress](.github/styles/in-progress.svg)         Entity
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Character name
+- [ ] ![Partially done](.github/styles/partially-done.svg)   Character name
 - [ ] ![Not completed](.github/styles/not-completed.svg)     Clear condition ![ (SMM3DS)](.github/styles/smm2-sub-page.svg)
     - [ ] ![Not completed](.github/styles/not-completed.svg) Clear condition category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
 - [x] ![Completed](.github/styles/completed.svg)             Entity limit
