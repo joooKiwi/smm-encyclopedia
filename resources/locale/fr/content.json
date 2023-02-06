@@ -16,6 +16,8 @@
   "Acronym":             "Acronyme",
   "Acronym(s)":          "Acronyme(s)",
   "Alternative acronym": "Acronyme alternatif",
+  "Word":                "Mot",
+  "Name or word":        "Nom ou mot",
 
   "Minimum": { "m": "Minimum", "f": "Minimum" },
   "Maximum": { "m": "Maximum", "f": "Maximum" },

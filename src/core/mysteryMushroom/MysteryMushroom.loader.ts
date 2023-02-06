@@ -1,6 +1,7 @@
 import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
 import type {LanguageContent}                                                                                                                                                                                                    from 'core/_template/LanguageContent'
+import type {UniqueNameContent}                                                                                                                                                                                                  from 'core/_template/UniqueNameContent'
 import type {PossibleEnglishName as PossibleGameReference}                                                                                                                                                                       from 'core/gameReference/GameReferences.types'
 import type {MysteryMushroom}                                                                                                                                                                                                    from 'core/mysteryMushroom/MysteryMushroom'
 import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from 'core/mysteryMushroom/MysteryMushrooms.types'
@@ -67,7 +68,7 @@ export class MysteryMushroomLoader
 
 
 interface Content
-    extends LanguageContent {
+    extends LanguageContent, UniqueNameContent<PossibleUniqueEnglishName> {
 
     conditionToUnlockIt: PossibleConditionToUnlockIt
     canBeUnlockedByAnAmiibo: boolean
@@ -75,8 +76,6 @@ interface Content
     firstAppearanceInMarioMaker: PossibleVersionNameInSMM
 
     reference: | PossibleGameReference | PokemonGeneration
-
-    uniqueName: PossibleUniqueEnglishName
 
 
     haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected
