@@ -100,7 +100,7 @@ export type PossibleStartingName_WithSingingPartBefore =
     | 'MasterSword' | 'Link'
     | ItemWithPlayer_NotMario<'Big', 'Mushroom'>
     | ItemWithPlayer<'SMB2', 'Mushroom'>
-    | ItemWithPlayer_NotMario<'Raccoon'>
+    | ItemWithPlayer_NotMario<'Racoon'>
     | ItemWithPlayer<'Frog', 'Suit'>
     | ItemWithPlayer_NotMario<'Cape'>
     | 'PowerBalloon' | ItemWithPlayer<'Balloon'>
