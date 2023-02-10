@@ -185,9 +185,9 @@ export class EditorVoices
 
     public static readonly SUPER_LEAF =               new EditorVoices.EntityEditorVoices('Super Leaf',                      () => new EditorVoiceSoundHolderWithVoiceBefore('superleaf',),)
     public static readonly RACCOON_MARIO =            new EditorVoices.CharacterNameEditorVoices('Raccoon Mario',            () => new EditorVoiceSoundHolderWithVoiceBefore('lacoonmario',),)
-    public static readonly RACCOON_LUIGI =            new EditorVoices.CharacterNameEditorVoices('Raccoon Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonLuigi',),)
-    public static readonly RACCOON_TOAD =             new EditorVoices.CharacterNameEditorVoices('Raccoon Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonToad',),)
-    public static readonly RACCOON_TOADETTE =         new EditorVoices.CharacterNameEditorVoices('Raccoon Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('RaccoonToadette',),)
+    public static readonly RACCOON_LUIGI =            new EditorVoices.CharacterNameEditorVoices('Raccoon Luigi',            () => new EditorVoiceSoundHolderWithSingingPartBefore('RacoonLuigi',),)
+    public static readonly RACCOON_TOAD =             new EditorVoices.CharacterNameEditorVoices('Raccoon Toad',             () => new EditorVoiceSoundHolderWithSingingPartBefore('RacoonToad',),)
+    public static readonly RACCOON_TOADETTE =         new EditorVoices.CharacterNameEditorVoices('Raccoon Toadette',         () => new EditorVoiceSoundHolderWithSingingPartBefore('RacoonToadette',),)
 
     public static readonly FROG_SUIT =                new EditorVoices.EntityEditorVoices('Frog Suit',                       () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogSuit',),)
     public static readonly FROG_MARIO =               new EditorVoices.CharacterNameEditorVoices('Frog Mario',               () => new EditorVoiceSoundHolderWithSingingPartBefore('FrogMario',),)
