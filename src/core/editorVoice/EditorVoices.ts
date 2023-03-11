@@ -653,4 +653,5 @@ export class EditorVoices
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }
