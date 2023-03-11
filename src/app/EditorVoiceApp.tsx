@@ -1,47 +1,40 @@
+import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
+
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
+import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 
-import {AbstractCardListApp}     from 'app/withInterpreter/AbstractCardListApp'
-import {CharacterNames}          from 'core/characterName/CharacterNames'
+import {EditorVoices}            from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
-import {gameContentTranslation}  from 'lang/components/translationMethods'
 
-export default class CharacterNameApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<CharacterNames>> {
+export default class EditorVoiceApp
+    extends AbstractCardListApp<AppInterpreterWithCardList<EditorVoices>> {
 
     //region -------------------- Create methods --------------------
 
-    protected override _createKey() {
-        return 'characterName'
+    protected override _createKey(): string {
+        return 'editorVoice'
     }
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyCharacterNames (list)'
+        return 'everyEditorVoice (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyCharacterNames (card)'
+        return 'everyEditorVoice (card)'
     }
+
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('character name.all',)
+        return <>Every editor voice</>
     }
 
-    protected override _createUniqueNameOnSimpleList(enumerable: CharacterNames,): string {
-        return enumerable.uniqueEnglishName
-    }
-
-    protected override _createUniqueNameOnCardList(enumerable: CharacterNames,): string {
-        return enumerable.uniqueEnglishName
-    }
-
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<CharacterNames> {
-        return new class implements AppInterpreterWithCardList<CharacterNames> {
+    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EditorVoices> {
+        return new class implements AppInterpreterWithCardList<EditorVoices> {
 
             public get iterable() {
-                return CharacterNames[Symbol.iterator]()
+                return EditorVoices[Symbol.iterator]()
             }
 
             //region -------------------- List interpreter --------------------
@@ -54,11 +47,11 @@ export default class CharacterNameApp
             //region -------------------- Card list interpreter --------------------
 
             public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+                return null
             }
 
-            public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {
-                return <div className="card-body">
+            public createCardListContent({englishName: name, editorVoiceSoundFileHolder,}: EditorVoices,) {
+                return <div className="editorVoices-container">
                     <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
                 </div>
             }
@@ -69,6 +62,5 @@ export default class CharacterNameApp
     }
 
     //endregion -------------------- Create methods --------------------
-
 
 }

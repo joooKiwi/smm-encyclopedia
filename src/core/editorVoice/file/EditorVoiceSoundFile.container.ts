@@ -1,5 +1,5 @@
-import type {PossibleFileName}                                            from 'core/editorVoice/EditorVoiceSound'
 import type {EditorVoiceExtension, EditorVoicePath, EditorVoiceSoundFile} from 'core/editorVoice/file/EditorVoiceSoundFile'
+import type {PossibleFileName}                                            from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder.types'
 
 import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoundFile.container'
 

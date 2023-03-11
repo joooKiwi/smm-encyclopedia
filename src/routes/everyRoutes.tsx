@@ -11,6 +11,7 @@ const AboutApp =                  lazy(() => import('app/AboutApp'))
 const PredefinedMessageApp =      lazy(() => import('app/PredefinedMessageApp'))
 const CharacterNameApp =          lazy(() => import('app/CharacterNameApp'))
 const CourseTagApp =              lazy(() => import('app/CourseTagApp'))
+const EditorVoiceApp =            lazy(() => import('app/EditorVoiceApp'))
 const EntityApp =                 lazy(() => import('app/EntityApp'))
 const EntityCategoryApp =         lazy(() => import('app/EntityCategoryApp'))
 const EntityGroupApp =            lazy(() => import('app/EntityGroupApp'))
@@ -152,4 +153,6 @@ export const everySimpleRoutes = [
     cardListRoute(  'makerCentralCourseTags',     '/maker-central/course-tag',     type => <CourseTagApp           typeDisplayed={type} type="makerCentral"/>, 'CARD_LIST',),
 
     cardListRoute(  'everyInstruments',           '/every/instrument',             type => <InstrumentApp          typeDisplayed={type}/>,                     'CARD_LIST',),
+
+    cardListRoute(  'everyEditorVoice',           '/every/editor-voice',           type => <EditorVoiceApp         typeDisplayed={type}/>,                     'CARD_LIST',),
 ].flat()
