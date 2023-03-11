@@ -160,11 +160,11 @@ export abstract class EntityLimitTypes
     }
 
     public static get values(): CollectionHolder<EntityLimitTypes> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static* [Symbol.iterator]() {
-        yield* this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<EntityLimitTypes> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

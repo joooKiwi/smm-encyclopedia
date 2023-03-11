@@ -103,11 +103,11 @@ export class SoundEffectCategories
     }
 
     public static get values(): CollectionHolder<SoundEffectCategories> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<SoundEffectCategories> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

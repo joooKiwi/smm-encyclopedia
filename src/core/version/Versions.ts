@@ -132,11 +132,11 @@ export class Versions
     }
 
     public static get values(): CollectionHolder<Versions> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<Versions> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

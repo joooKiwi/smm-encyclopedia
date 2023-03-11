@@ -386,11 +386,11 @@ export class ProjectLanguages
     }
 
     public static get values(): CollectionHolder<ProjectLanguages> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<ProjectLanguages> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

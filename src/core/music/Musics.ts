@@ -480,15 +480,15 @@ export class Musics
     }
 
     public static getValue(value: PossibleValueByEnumerable<Musics>,): Musics {
-        return Enum.getValueOn<Musics>(this, value,)
+        return Enum.getValueOn(this, value,)
     }
 
     public static get values(): CollectionHolder<Musics> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<Musics> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

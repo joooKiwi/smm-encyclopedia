@@ -244,11 +244,11 @@ export class MiiCostumes
     }
 
     public static get values(): CollectionHolder<MiiCostumes> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<MiiCostumes> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

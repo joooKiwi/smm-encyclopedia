@@ -104,11 +104,11 @@ export class PredefinedMessages
     }
 
     public static get values(): CollectionHolder<PredefinedMessages> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<PredefinedMessages> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

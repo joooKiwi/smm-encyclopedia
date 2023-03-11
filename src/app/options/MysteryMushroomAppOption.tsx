@@ -507,11 +507,11 @@ export abstract class MysteryMushroomAppOption
     }
 
     public static get values(): CollectionHolder<MysteryMushroomAppOption> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<MysteryMushroomAppOption> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -842,11 +842,11 @@ export abstract class EveryLanguages
     }
 
     public static get values(): CollectionHolder<EveryLanguages> {
-        return Enum.getValuesOn(EveryLanguages)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<EveryLanguages> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

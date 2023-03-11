@@ -172,11 +172,11 @@ export class NightEffects
     }
 
     public static get values(): CollectionHolder<NightEffects> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<NightEffects> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

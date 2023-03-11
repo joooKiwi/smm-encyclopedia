@@ -82,11 +82,11 @@ export abstract class HeaderTypes
     }
 
     public static get values(): CollectionHolder<HeaderTypes> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<HeaderTypes> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

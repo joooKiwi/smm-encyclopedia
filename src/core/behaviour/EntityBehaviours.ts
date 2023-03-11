@@ -107,11 +107,11 @@ export class EntityBehaviours
     }
 
     public static get values(): CollectionHolder<EntityBehaviours> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<EntityBehaviours> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------
