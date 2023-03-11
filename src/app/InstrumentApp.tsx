@@ -1,5 +1,3 @@
-import {lazy} from 'react'
-
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
@@ -8,12 +6,7 @@ import type {ReactElementOrString}                                 from 'util/re
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {Instruments}            from 'core/instrument/Instruments'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-
-//region -------------------- dynamic imports --------------------
-
-const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
-
-//endregion -------------------- dynamic imports --------------------
+import SimpleSoundComponent     from 'util/file/sound/component/SimpleSound.component'
 
 export default class InstrumentApp
     extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>> {

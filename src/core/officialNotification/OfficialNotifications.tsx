@@ -2,7 +2,7 @@ import './OfficialNotifications.scss'
 
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment, lazy}                                                          from 'react'
+import {Fragment}                                                                from 'react'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
@@ -12,6 +12,8 @@ import type {ObjectHolder}                                                      
 import type {ReactElement}                                                                                                                                                                                                                                                                                           from 'util/react/ReactProperties'
 import type {Nullable, NullableNumber, NullOr}                                                                                                                                                                                                                                                                       from 'util/types/nullable'
 
+import Image                                                                     from 'app/tools/images/Image'
+import TextComponent                                                             from 'app/tools/text/TextComponent'
 import UnfinishedText                                                            from 'app/tools/text/UnfinishedText'
 import {gameContentTranslation}                                                  from 'lang/components/translationMethods'
 import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                       from 'core/officialNotification/file/generalImageFiles'
@@ -21,12 +23,6 @@ import {DelayedObjectHolderContainer}                                           
 import {EMPTY_ARRAY, EMPTY_STRING}                                               from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
 
-//region -------------------- dynamic imports --------------------
-
-const TextComponent = lazy(() => import('app/tools/text/TextComponent'))
-const Image =         lazy(() => import('app/tools/images/Image'))
-
-//endregion -------------------- dynamic imports --------------------
 //region -------------------- Constructor constants --------------------
 
 const translationKey_finishAllCharacterJob: PossibleTranslationKey = 'finish all 3 job (character)'

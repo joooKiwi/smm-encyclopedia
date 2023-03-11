@@ -1,8 +1,6 @@
 import './EntityApp.scss'
 import './options/EntityAppOption.scss'
 
-import {lazy} from 'react'
-
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
@@ -12,12 +10,6 @@ import {EntityAppOption}        from 'app/options/EntityAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {Entities}               from 'core/entity/Entities'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-
-//region -------------------- dynamic imports --------------------
-
-const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
-
-//endregion -------------------- dynamic imports --------------------
 
 export default class EntityApp
     extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>> {
