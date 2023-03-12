@@ -1,3 +1,46 @@
 {
+  "English":           "英語",
+  "English (America)": "英語（アメリカ）",
+  "English (Europe)":  "英語（ヨーロッパ）",
 
+  "French":          "フランス語",
+  "French (Canada)": "フランス語（カナダ）",
+  "French (Europe)": "フランス語（ヨーロッパ）",
+
+  "German": "ドイツ人",
+
+  "Spanish":           "スペイン語",
+  "Spanish (America)": "スペイン語（アメリカ）",
+  "Spanish (Europe)":  "スペイン語（ヨーロッパ）",
+
+  "Italian": "イタリア語",
+
+  "Dutch": "オランダ語",
+
+  "Russian": "ロシア語",
+
+  "Japanese": "日本語",
+
+  "Chinese":             "中国語",
+  "Simplified chinese":  "簡体字中国語",
+  "Traditional chinese": "繁体字中国語",
+
+  "Korean":  "韓国語",
+
+  "Portuguese":           "ポルトガル語",
+  "Portuguese (America)": "ポルトガル語（アメリカ）",
+  "Portuguese (Europe)":  "ポルトガル語（ヨーロッパ）",
+
+  "Hebrew":    "ヘブライ語",
+  "Polish":    "ポーランド語",
+  "Ukrainian": "ウクライナ語",
+  "Greek":     "ギリシャ語",
+
+
+  "America": "アメリカ",
+  "Europe":  "ヨーロッパ",
+  "Canada":  "カナダ",
+
+  "Simplified":  "簡素化",
+  "Traditional": "伝統的"
 }
