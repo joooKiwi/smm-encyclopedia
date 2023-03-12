@@ -31,6 +31,7 @@ FALSE,FALSE,TRUE,,Stamp,,,,Étampe,Tampon,Stempel,Sello,,,Timbro,Stempel,,,,Пе
 FALSE,FALSE,TRUE,Stamp,Stamps,,,,Étampes,Tampons,,,,,,,,,,,スタンプ,印章,,,
 FALSE,FALSE,TRUE,,Stamp Card,,,,Carton,Tampons,Stempelkarte,Tarjeta de sellos,,,Timbri,Stempelkaart,,,,Все печати,スタンプカード,印章收集卡,,,스탬프 카드
 FALSE,FALSE,TRUE,,Tag,,,,Étiquette,Tag,Schlagwort,Etiquetas,,,Tag,Label,,,,Теги,タグ,,標籤,标签,태그
+FALSE,FALSE,TRUE,Tag,Tags,,,,Étiquettes,Tags,,,,,,,,,,,タグ,,標籤,标签,
 FALSE,FALSE,FALSE,,Liquid,,,Liquide,,,,,,,,,,,,,,,,,
 FALSE,FALSE,FALSE,Liquid,Liquids,,,Liquides,,,,,,,,,,,,,,,,,
 FALSE,FALSE,TRUE,,Water Level,,,Niveau de l'eau,,,Wasserpegel,Nivel del agua,,,Livello dell'acqua,Waterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
@@ -62,6 +63,8 @@ TRUE,FALSE,FALSE,,Mystery Mushroom,,,,Champignon mystère,Champignon ?,?-Pilz,Ch
 TRUE,TRUE,FALSE,Mystery Mushroom,Mystery Mushrooms,,,,Champignons mystères,Champignons ?,,,,,,,,,,,ハテナキノコ,,,,
 FALSE,FALSE,TRUE,,Mii costume,,,Costume de Mii,,,,,,,,,,,,,,,,,
 FALSE,FALSE,TRUE,Mii costume,Mii costumes,,,Costumes de Mii,,,,,,,,,,,,,,,,,
+TRUE,TRUE,TRUE,,Mii,,,Mii,,,Mii,Mii,,,Mii,,Mii,,,Mii,Ｍｉｉ,Ｍｉｉ,,,Ｍｉｉ
+TRUE,TRUE,TRUE,Mii,Miis,,,Miis,,,,,,,,,,,,,Ｍｉｉ,Ｍｉｉ,,,
 FALSE,FALSE,TRUE,,Koopaling,,,,Koopaling,Terreur de Bowser,Koopaling,Koopaline,,,???,Koopaling,???,???,???,???,クッパの手下,,庫巴7人幫,酷霸王７人帮,쿠파7인조
 FALSE,FALSE,TRUE,Koopaling,Koopalings,,,,Koopalings,Terreurs de Bowser,Koopalinge,Koopalines,,,,Koopalings,,,,,クッパの手下,,庫巴7人幫,酷霸王７人帮,
 FALSE,FALSE,FALSE,,Entity,,,Entité,,,,,,,,,,,,,,,,,

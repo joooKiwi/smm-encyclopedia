@@ -41,7 +41,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     public static readonly VIEW_MODE =             new OtherWordInTheGames('View Mode',)
     public static readonly STAMP =                 new OtherWordInTheGames('Stamp', 'Stamps',)
     public static readonly STAMP_CARD =            new OtherWordInTheGames('Stamp Card',)
-    public static readonly TAG =                   new OtherWordInTheGames('Tag',)
+    public static readonly TAG =                   new OtherWordInTheGames('Tag', 'Tags',)
 
     public static readonly LIQUID =                new OtherWordInTheGames('Liquid', 'Liquids',)
     public static readonly WATER_LEVEL =           new OtherWordInTheGames('Water Level',)
@@ -74,6 +74,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
 
     public static readonly MYSTERY_MUSHROOM =      new OtherWordInTheGames('Mystery Mushroom', 'Mystery Mushrooms',)
     public static readonly MII_COSTUME =           new OtherWordInTheGames('Mii costume', 'Mii costumes',)
+    public static readonly MII =                   new OtherWordInTheGames('Mii', 'Miis',)
     public static readonly KOOPALING =             new OtherWordInTheGames('Koopaling', 'Koopalings',)
     public static readonly ENTITY =                new OtherWordInTheGames('Entity', 'Entities',)
     public static readonly PLAYER =                new OtherWordInTheGames('Player', 'Players',)
