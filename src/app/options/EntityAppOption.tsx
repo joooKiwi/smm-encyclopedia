@@ -99,7 +99,7 @@ export class EntityAppOption
                     <div className="properties">
                         <InstrumentPropertyComponent value={enumeration}/>
                     </div>
-                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
+                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
                 </div>
             }
         }

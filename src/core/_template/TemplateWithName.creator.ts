@@ -38,8 +38,30 @@ export abstract class TemplateWithNameCreator<TEMPLATE extends TemplateWithNameT
         return this.#game.get
     }
 
+
+    /**
+     * Create a {@link Name} from a {@link TemplateWithNameTemplate template}, {@link OriginalPossibleGameReceived game} & a boolean to tell if it is a complete name
+     *
+     * @param template The template to retrieve its {@link NameTemplate name template}
+     * @param game The game value
+     * @param isACompleteName It is a complete name
+     */
+    protected static _createName(template: TemplateWithNameTemplate, game: OriginalPossibleGameReceived, isACompleteName: boolean,): Name<string> {
+        return new NameBuilderContainer(template.name, game, isACompleteName,).build()
+    }
+
+    /**
+     * Create a {@link Name} from a {@link TemplateWithNameTemplate template} using the current instance (this) as the base
+     * for the {@link __game game} & the field "{@link isACompleteName}"
+     *
+     * @param template The template to retrieve its {@link NameTemplate name template} to create its name instance
+     */
+    protected _createName(template: TemplateWithNameTemplate,): Name<string> {
+        return TemplateWithNameCreator._createName(template, this.__game, this.isACompleteName,)
+    }
+
     public create(): OBJECT {
-        return this._create(new NameBuilderContainer(this.template.name, this.__game, this.isACompleteName,).build())
+        return this._create(this._createName(this.template,))
     }
 
     protected abstract _create(name: Name<string>,): OBJECT

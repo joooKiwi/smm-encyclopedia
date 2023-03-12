@@ -21,8 +21,6 @@ export type EmptyInGameImageName = 'Empty "in game" image'
 export type EmptyUnusedImageName = 'Empty unused image'
 export type EmptyUniqueImageName = 'Empty unique image'
 
-export type EmptyEditorVoiceSoundName = 'Empty "editor voice" sound'
-
 //endregion -------------------- Entity types --------------------
 //region -------------------- Entity category types --------------------
 
@@ -105,7 +103,6 @@ export type EmptySingleBackgroundMusicName = 'Empty single "background music"'
 export type EveryPossibleEmptyName =
     | EmptyEntityName
     | EmptyEditorImageName | EmptyClearConditionImageName | EmptyInGameImageName | EmptyUnusedImageName | EmptyUniqueImageName
-    | EmptyEditorVoiceSoundName
 
     | EmptyEntityCategoryName
 

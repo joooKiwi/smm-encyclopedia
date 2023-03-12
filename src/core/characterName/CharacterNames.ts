@@ -5,15 +5,14 @@ import type {ClassWithReference}                                              fr
 import type {CharacterName}                                                   from 'core/characterName/CharacterName'
 import type {ClassWithEnglishName}                                            from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
-import type {ClassWithEditorVoiceSound}                                       from 'core/editorVoice/ClassWithEditorVoiceSound'
-import type {Nullable}                                                        from 'util/types/nullable'
+import type {ClassWithNullableEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
+import type {EditorVoiceSoundFileHolder}                                      from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
+import type {Nullable, NullOr}                                                from 'util/types/nullable'
 
 import {CharacterNameLoader}   from 'core/characterName/CharacterName.loader'
+import {EditorVoices}          from 'core/editorVoice/EditorVoices'
 import {StringContainer}       from 'util/StringContainer'
 import {getValueByEnglishName} from 'util/utilitiesMethods'
-import {EditorVoiceSound}      from 'core/editorVoice/EditorVoiceSound'
-import {EditorVoices}          from 'core/editorVoice/EditorVoices'
-import {EmptyEditorVoiceSound} from 'core/editorVoice/EmptyEditorVoiceSound'
 
 /**
  * @recursiveReference {@link EditorVoices}
@@ -22,7 +21,7 @@ export class CharacterNames
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CharacterName>,
         ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithEditorVoiceSound {
+        ClassWithNullableEditorVoiceSoundFileHolder {
 
     //region -------------------- Enum instances --------------------
 
@@ -186,7 +185,7 @@ export class CharacterNames
     #reference?: CharacterName
     readonly #englishName
     readonly #uniqueEnglishName
-    #editorVoiceSound?: EditorVoiceSound
+    #editorVoiceSound?: NullOr<EditorVoiceSoundFileHolder>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -229,10 +228,10 @@ export class CharacterNames
 
     //region -------------------- editor sound --------------------
 
-    public get editorVoiceSound(): EditorVoiceSound {
-        return this.#editorVoiceSound ??= EditorVoices.hasReference(this)
-            ? EditorVoices.getValueByCharacterName(this).editorVoiceSound
-            : EmptyEditorVoiceSound.get
+    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSoundFileHolder> {
+        if (this.#editorVoiceSound === undefined)
+            this.#editorVoiceSound = EditorVoices.hasReference(this) ? EditorVoices.getValueByCharacterName(this).editorVoiceSoundFileHolder : null
+        return this.#editorVoiceSound
     }
 
     //endregion -------------------- editor sound --------------------

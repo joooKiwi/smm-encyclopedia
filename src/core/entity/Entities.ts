@@ -3,8 +3,8 @@ import {Enum}                                                                   
 
 import type {ClassWithEnglishName}                                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                   from 'core/ClassWithReference'
-import type {ClassWithEditorVoiceSound}                                                            from 'core/editorVoice/ClassWithEditorVoiceSound'
-import type {EditorVoiceSound}                                                                     from 'core/editorVoice/EditorVoiceSound'
+import type {ClassWithNullableEditorVoiceSoundFileHolder}                                          from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
+import type {EditorVoiceSoundFileHolder}                                                           from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
 import type {Names, Ordinals, PossibleEnglishName}                                                 from 'core/entity/Entities.types'
 import type {Entity}                                                                               from 'core/entity/Entity'
 import type {ClearConditionImage}                                                                  from 'core/entity/images/clearCondition/ClearConditionImage'
@@ -22,7 +22,6 @@ import type {Builder}                                                           
 import type {Nullable, NullOr}                                                                     from 'util/types/nullable'
 
 import {EditorVoices}                   from 'core/editorVoice/EditorVoices'
-import {EmptyEditorVoiceSound}          from 'core/editorVoice/EmptyEditorVoiceSound'
 import {EntityLoader}                   from 'core/entity/Entity.loader'
 import {ClearConditionImageBuilder}     from 'core/entity/images/clearCondition/ClearConditionImage.builder'
 import {ClearConditionImageFactory}     from 'core/entity/images/clearCondition/ClearConditionImage.factory'
@@ -89,7 +88,7 @@ export class Entities
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithReference<Entity>,
-        ClassWithEditorVoiceSound {
+        ClassWithNullableEditorVoiceSoundFileHolder {
 
     //region -------------------- Enum instances --------------------
 
@@ -2796,7 +2795,7 @@ export class Entities
     #inGameImage?: InGameImage_SMM1
     #unusedRegularImage?: UnusedImage_Regular
     #unusedBigMushroomImage?: UnusedImage_BigMushroom
-    #editorVoiceSound?: EditorVoiceSound
+    #editorVoiceSound?: NullOr<EditorVoiceSoundFileHolder>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -2900,10 +2899,10 @@ export class Entities
     //endregion -------------------- editor image --------------------
     //region -------------------- editor sound --------------------
 
-    public get editorVoiceSound(): EditorVoiceSound {
-        return this.#editorVoiceSound ??= EditorVoices.hasReference(this)
-            ? EditorVoices.getValueByEntity(this).editorVoiceSound
-            : EmptyEditorVoiceSound.get
+    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSoundFileHolder> {
+        if (this.#editorVoiceSound === undefined)
+            this.#editorVoiceSound = EditorVoices.hasReference(this) ? EditorVoices.getValueByEntity(this).editorVoiceSoundFileHolder : null
+        return this.#editorVoiceSound
     }
 
     //endregion -------------------- editor sound --------------------
