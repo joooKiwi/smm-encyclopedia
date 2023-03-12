@@ -1,4 +1,4 @@
-import file                                                                                 from 'resources/compiled/Other word in the game.json'
+import file from 'resources/compiled/Other word in the game.json'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {GameContentFromAllGames}                                                       from 'core/game/Loader.types'
@@ -8,7 +8,7 @@ import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishNam
 import type {Loader}                                                                        from 'util/loader/Loader'
 import type {NullOr}                                                                        from 'util/types/nullable'
 
-import {isInProduction}            from 'variables'
+import {isInProduction}                    from 'variables'
 import {AbstractTemplateCreator}           from 'core/_template/AbstractTemplate.creator'
 import {OtherSingularWordInTheGameCreator} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.creator'
 
@@ -38,7 +38,8 @@ export class OtherWordInTheGameLoader
     public load(): ReadonlyMap<PossibleEnglishName_Singular, OtherSingularWordInTheGame> {
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName_Singular, OtherSingularWordInTheGame>(),
-                templateReferences = new Map<PossibleEnglishName, OtherWordInTheGameTemplate>()
+                templateReferences = new Map<PossibleEnglishName, OtherWordInTheGameTemplate>(),
+                templateReferencesToFollow = new Map<PossibleEnglishName_Singular, OtherWordInTheGameTemplate>()
 
             file.map(it => {
                 const template = new TemplateCreator(it as Content).create(),
@@ -46,18 +47,16 @@ export class OtherWordInTheGameLoader
 
                 templateReferences.set(englishName, template,)
 
-                return [englishName, template,] as const
-            }).forEach(it => {
-                const [name, template,] = it
-
-                if (template.properties.pluralForm != null)
-                    templateReferences.get(name)!.properties.pluralForm = template
-                return it
+                return [englishName, template, it as Content,] as const
+            }).forEach(([name, template, content,]) => {
+                if (content.pluralFormOf == null) {
+                    templateReferencesToFollow.set(name as PossibleEnglishName_Singular, template,)
+                    return
+                }
+                templateReferences.get(content.pluralFormOf)!.properties.pluralForm = template
             });
 
-            ([...templateReferences.entries()]
-                .filter(([, template,]) => template.properties.pluralForm == null) as [PossibleEnglishName_Singular, OtherWordInTheGameTemplate][])
-                .forEach(([name, template,]) => references.set(name, new OtherSingularWordInTheGameCreator(template).create(),))
+            templateReferencesToFollow.forEach((template, name,) => references.set(name, new OtherSingularWordInTheGameCreator(template).create(),))
 
             if (!isInProduction)
                 console.info(
