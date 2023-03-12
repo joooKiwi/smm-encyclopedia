@@ -1134,6 +1134,33 @@
 }
 
 //endregion -------------------- Button colors --------------------
+//region -------------------- Text space --------------------
+
+.space-normal {
+  white-space: normal;
+}
+
+.space-nowrap {
+  white-space: nowrap;
+}
+
+.space-pre {
+  white-space: pre;
+}
+
+.space-pre-wrap {
+  white-space: pre-wrap;
+}
+
+.space-pre-line {
+  white-space: pre-line;
+}
+
+.space-break-spaces {
+  white-space: break-spaces;
+}
+
+//endregion -------------------- Text space --------------------
 //region -------------------- Accordion --------------------
 
 .accordion {
