@@ -27,7 +27,8 @@ enum Enum {
 
     KOOPA_TROOPA, BEACH_KOOPA, KOOPA_SHELL,
 
-    MYSTERY_MUSHROOM, MII_COSTUME,
+    MYSTERY_MUSHROOM,
+    MII_COSTUME, MII,
     KOOPALING,
     ENTITY, PLAYER,
     COURSE, WORLD_RECORD,
@@ -91,6 +92,7 @@ export type PossibleEnglishName_Singular =
     | 'Koopa Shell'
     | 'Mystery Mushroom'
     | 'Mii costume'
+    | 'Mii'
     | 'Koopaling'
     | 'Entity'
     | 'Player'
@@ -100,10 +102,12 @@ export type PossibleEnglishName_Singular =
 
 export type PossibleEnglishName_Plural =
     | 'Stamps'
+    | 'Tags'
     | 'Liquids'
     | 'Super Worlds'
     | 'Mystery Mushrooms'
     | 'Mii costumes'
+    | 'Miis'
     | 'Koopalings'
     | 'Entities'
     | 'Players'
