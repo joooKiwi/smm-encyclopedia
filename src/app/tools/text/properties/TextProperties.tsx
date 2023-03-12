@@ -4,7 +4,7 @@ import type {Nullable}                        from 'util/types/nullable'
 import type {NotApplicable, UnknownReference} from 'util/types/variables'
 
 export interface TextProperties<T extends PossibleTextContent = PossibleTextContent, >
-    extends ReactProperties, Omit<HTMLSpanProperties, | 'content' | 'className'> {
+    extends ReactProperties, Omit<HTMLSpanProperties, | 'content'> {
 
     /**
      * The content used for the {@link TextComponent}
@@ -19,9 +19,6 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
      * @see DEFAULT_IS_UNKNOWN
      */
     isUnknown?: Nullable<boolean>
-
-    /** The classes used for the text component*/
-    classes?: Nullable<string[]>
 
 }
 

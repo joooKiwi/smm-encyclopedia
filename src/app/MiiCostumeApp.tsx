@@ -38,8 +38,8 @@ export default class MiiCostumeApp
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mii costume.all', {
-            singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (singular form)
-            pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (plural form)
+            singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} className="text-decoration-underline"/>,//TODO add Mii costume (singular form)
+            pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} className="text-decoration-underline"/>,//TODO add Mii costume (plural form)
         },)
     }
 
@@ -94,8 +94,8 @@ export default class MiiCostumeApp
             public get tableProperties(): SimplifiedTableProperties {
                 return {
                     caption: gameContentTranslation('mii costume.all', {
-                        singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (singular form)
-                        pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} classes={['text-decoration-underline']}/>,//TODO add Mii costume (plural form)
+                        singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} className="text-decoration-underline"/>,//TODO add Mii costume (singular form)
+                        pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} className="text-decoration-underline"/>,//TODO add Mii costume (plural form)
                     },),
                 }
             }
