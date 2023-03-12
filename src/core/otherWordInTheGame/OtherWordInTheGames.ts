@@ -138,8 +138,8 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
         return this.englishNameInHtml
     }
 
-    public get pluralEnglishName(): NullOr<PLURAL> {
-        return this.#pluralEnglishName?.get ?? null
+    public get pluralEnglishName(): PLURAL {
+        return this.#pluralEnglishName?.get ?? null as PLURAL
     }
 
     public get pluralEnglishNameInHtml(): NullOr<string> {
