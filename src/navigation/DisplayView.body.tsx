@@ -4,11 +4,17 @@ import type {ModalPropertiesWithDiv} from 'navigation/ModalContainers.types'
 import type {ReactProperties}        from 'util/react/ReactProperties'
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
-import {GlobalAppOption}                                 from 'app/options/global/GlobalAppOption'
 import Image                                             from 'app/tools/images/Image'
 import UnfinishedText, {unfinishedText}                  from 'app/tools/text/UnfinishedText'
+import {OtherWordInTheGames}                             from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
+
+//region -------------------- Deconstruction imports --------------------
+
+const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, MII, ENTITY, COURSE, POWER_UP,} = OtherWordInTheGames
+
+//endregion -------------------- Deconstruction imports --------------------
 
 interface DisplayViewBodyProperties
     extends ReactProperties, ModalPropertiesWithDiv {
@@ -20,13 +26,26 @@ interface DisplayViewBodyProperties
  * @reactComponent
  */
 export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,) {
-    // const isSMM1Selected = GlobalAppOption.SMM1.get
-    // const isSMM3DSSelected = GlobalAppOption.SMM3DS.get
-    const isSMM2Selected = GlobalAppOption.SMM2.get
+    const isSMM1Selected = true,
+        // isSMM3DSSelected = true,
+        isSMM2Selected = true,
+        singularTagName = TAG.singularNameOnReferenceOrNull ?? unfinishedText(TAG.singularEnglishName), singularTagLowerCaseName = singularTagName.toLowerCase(),
+        pluralTagName = TAG.pluralNameOnReferenceOrNull ?? unfinishedText(TAG.pluralEnglishName), pluralTagLowerCaseName = pluralTagName.toLowerCase(),
+        singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName), singularMysteryMushroomLowerCaseName = singularMysteryMushroomName.toLowerCase(),
+        pluralMysteryMushroomName = MYSTERY_MUSHROOM.pluralNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName), pluralMysteryMushroomLowerCaseName = pluralMysteryMushroomName.toLowerCase(),
+        lowerCaseMii = MII.singularEnglishName.toLowerCase(), lowerCaseSpaceEvenMii = MII.reference.japanese!.toLowerCase(),
+        capitalCaseMii = MII.singularEnglishName, capitalCaseSpaceEvenMii = MII.reference.japanese!,
+        singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = singularMiiCostumeName.toLowerCase().replace(lowerCaseMii, capitalCaseMii,).replace(lowerCaseSpaceEvenMii, capitalCaseSpaceEvenMii,),
+        pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName), pluralMiiCostumeLowerCaseName = pluralMiiCostumeName.toLowerCase().replace(lowerCaseMii, capitalCaseMii,).replace(lowerCaseSpaceEvenMii, capitalCaseSpaceEvenMii,),
+        singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName),
+        singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = singularCourseName.toLowerCase(),
+        pluralCourseName = COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName), pluralCourseLowerCaseName = pluralCourseName.toLowerCase(),
+        singularPowerUpName = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName), singularPowerUpLowerCaseName = singularPowerUpName.toLowerCase(),
+        pluralPowerUpName = POWER_UP.pluralNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralEnglishName), pluralPowerUpLowerCaseName = pluralPowerUpName.toLowerCase()
 
     return <div id="display-modal-body-container" className="container">
         <div id="display-entity-container" className="container">
-            <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Entity</UnfinishedText></h3>{/*TODO add entity translation*/}
+            <h3 className="text-center text-decoration-underline pb-2">{singularEntityName}</h3>
             <div key="button group (entity)" id="entity-buttonGroup" className="btn-group col-12" role="group">
                 <DisplayViewRouteButton routeName="everyEntities" value={gameContentTranslation('entity.singular')}
                                         tooltipValue={gameContentTranslation('entity.display all')}
@@ -105,8 +124,8 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         elementId="displayView-characterName-button" id={id} divId={divId}/>
             </div>
             {isSMM2Selected ? <div key="button group (course tag - SMM2)" id="courseTag-buttonGroup" className="btn-group col-6" role="group">
-                <DisplayViewRouteButton routeName="officialCourseTags" value={gameContentTranslation('course tag.singular', {Course: unfinishedText('Course'), course: unfinishedText('course'), Tag: unfinishedText('Tag'), tag: unfinishedText('tag'),},)}//TODO add course & tag (capital case & lowercase)
-                                        tooltipValue={gameContentTranslation('course tag.display all', {course: unfinishedText('course'), courses: unfinishedText('courses'), tag: unfinishedText('tag'), tags: unfinishedText('tags'),})}//TODO add course & tag (singular & plural form)
+                <DisplayViewRouteButton routeName="officialCourseTags" value={gameContentTranslation('course tag.singular', {Course: singularCourseName, course: singularCourseLowerCaseName, Tag: singularTagName, tag: singularTagLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('course tag.display all', {course: singularCourseLowerCaseName, courses: pluralCourseLowerCaseName, tag: singularTagLowerCaseName, tags: pluralTagLowerCaseName,})}
                                         elementId="displayView-courseTag-button" id={id} divId={divId}/>
             </div> : null}
             {isSMM2Selected ? <div key="button group (predefined message - SMM2)" id="predefinedMessage-buttonGroup" className="btn-group col-6" role="group">
@@ -118,32 +137,32 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
         <div id="display-other-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Other</UnfinishedText></h3>
             {isSMM2Selected ? <div key="button group (mii costume)" id="miiCostume-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyMiiCostumes" value={unfinishedText('Mii costume')}//TODO add Mii costume reference
-                                        tooltipValue={gameContentTranslation('mii costume.display all', {singularName: unfinishedText('Mii costume'), pluralName: unfinishedText('Mii costumes'),},)}//TODO add Mii costume (singular & plural form)
+                <DisplayViewRouteButton routeName="everyMiiCostumes" value={singularMiiCostumeName}
+                                        tooltipValue={gameContentTranslation('mii costume.display all', {singularName: singularMiiCostumeLowerCaseName, pluralName: pluralMiiCostumeLowerCaseName,},)}
                                         elementId="displayView-miiCostume-button" id={id} divId={divId}/>
                 <DisplayViewRouteButton routeName="everyMiiCostumeCategories" value={gameContentTranslation('Category')}
-                                        tooltipValue={gameContentTranslation('mii costume category.display all', {singularName: unfinishedText('Mii costume'), pluralName: unfinishedText('Mii costume'),},)}//TODO add Mii costume (singular & plural form)
+                                        tooltipValue={gameContentTranslation('mii costume category.display all', {singularName: singularMiiCostumeLowerCaseName, pluralName: pluralMiiCostumeLowerCaseName,},)}
                                         elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
             </div> : null}
             <div key="button group (power-up & ride priority)" id="powerUpAndRide-buttonGroup" className="btn-group-vertical col-12" role="group">
-                <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={<UnfinishedText>{`${unfinishedText('Power-up')} & ${unfinishedText('ride')}`}</UnfinishedText>}
-                                        tooltipValue={gameContentTranslation('power-up & ride priority.all.all', {powerUp: unfinishedText('power-up'), powerUps: unfinishedText('power-ups'), ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}//TODO add Power-ups & rides (plural & singular form)
+                <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={<UnfinishedText>{`${singularPowerUpName} & ${unfinishedText('ride')}`}</UnfinishedText>}
+                                        tooltipValue={gameContentTranslation('power-up & ride priority.all.all', {powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName, ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}//TODO add Ride (plural & singular form)
                                         elementId="displayView-powerUpAndRide-button" id={id} divId={divId}/>
                 <div key="button group (power-up & ride priority separately)" id="powerUpAndRideSeparately-buttonGroup" className="btn-group" role="group">
-                    <DisplayViewRouteButton routeName="everyPowerUpPriority" value={<UnfinishedText>Power-up</UnfinishedText>}
-                                            tooltipValue={gameContentTranslation('power-up & ride priority.power-up.display all', {powerUp: unfinishedText('power-up'), powerUps: unfinishedText('power-ups'),},)}//TODO add Power-up (singular & plural form)
+                    <DisplayViewRouteButton routeName="everyPowerUpPriority" value={singularPowerUpName}
+                                            tooltipValue={gameContentTranslation('power-up & ride priority.power-up.display all', {powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,},)}
                                             elementId="displayView-powerUp-button" id={id} divId={divId}/>
                     <DisplayViewRouteButton routeName="everyRidePriority" value={<UnfinishedText>Ride</UnfinishedText>}
-                                            tooltipValue={gameContentTranslation('power-up & ride priority.ride.display all', {ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}//TODO add Rides (singular & plural form)
+                                            tooltipValue={gameContentTranslation('power-up & ride priority.ride.display all', {ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}//TODO add Ride (singular & plural form)
                                             elementId="displayView-ride-button" id={id} divId={divId}/>
                 </div>
             </div>
-            {/*isSMM1Selected ? */<div key="button group (mystery mushroom - SMM1)" id="mysteryMushroom-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyMysteryMushrooms" value={<span className="mystery-mushroom-image"><UnfinishedText>Mystery Mushroom</UnfinishedText></span>}//TODO add Mystery Mushroom reference
-                                        tooltipValue={gameContentTranslation('mystery mushroom.display all', {singularName: unfinishedText('Mystery Mushrooms'), pluralName: unfinishedText('Mystery Mushrooms'),},)}//TODO add Mystery Mushroom (singular & plural form)
+            {isSMM1Selected ? <div key="button group (mystery mushroom - SMM1)" id="mysteryMushroom-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everyMysteryMushrooms" value={<span className="mystery-mushroom-image">{singularMysteryMushroomName}</span>}
+                                        tooltipValue={gameContentTranslation('mystery mushroom.display all', {singularName: singularMysteryMushroomLowerCaseName, pluralName: pluralMysteryMushroomLowerCaseName,},)}
                                         elementId="displayView-mysteryMushroom-button" id={id} divId={divId}/>
                 {/*TODO add other options for the Mystery Mushroom*/}
-            </div>/* : null*/}
+            </div> : null}
         </div>
     </div>
 }

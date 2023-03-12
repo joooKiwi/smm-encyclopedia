@@ -9,6 +9,7 @@ import type {Nullable, NullOr}                                                  
 
 import {OtherWordInTheGameLoader} from 'core/otherWordInTheGame/OtherWordInTheGame.loader'
 import {StringContainer}          from 'util/StringContainer'
+import {EveryLanguages}           from 'lang/EveryLanguages'
 
 export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>,>
     extends Enum<Ordinals, Names>
@@ -118,6 +119,22 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
      */
     public get reference(): OtherWordInTheGame {
         return this.#reference ??= OtherWordInTheGames.REFERENCE_MAP.get(this.englishName)!
+    }
+
+    /** Get the {@link singularEnglishName} (dependent on the {@link LanguageEnumerable.isCurrentLanguage current language}) or <b>null</b> (if there is none) */
+    public get singularNameOnReferenceOrNull(): NullOr<string> {
+        const value = this.reference.languageValue
+        if (EveryLanguages.ENGLISH.isCurrentLanguage || EveryLanguages.FRENCH.isCurrentLanguage)
+            return value
+        return value === this.singularEnglishName ? null : value
+    }
+
+    /** Get the {@link pluralEnglishName} (dependent on the {@link LanguageEnumerable.isCurrentLanguage current language}) or <b>null</b> (if there is none) */
+    public get pluralNameOnReferenceOrNull(): NullOr<string> {
+        const value = this.reference.pluralForm?.languageValue ?? null
+        if (EveryLanguages.ENGLISH.isCurrentLanguage || EveryLanguages.FRENCH.isCurrentLanguage)
+            return value
+        return value === this.pluralEnglishName ? null : value
     }
 
     //region -------------------- Getter methods (english name) --------------------
