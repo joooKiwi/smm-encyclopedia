@@ -101,9 +101,9 @@ Although, they are only there for some names.
 - [ ] ![In progress](.github/styles/in-progress.svg)         Mystery Mushroom ![ (SMM1)](.github/styles/smm1-sub-page.svg)
 - [x] ![Completed](.github/styles/completed.svg)             Mii costume ![ (SMM2)](.github/styles/smm2-sub-page.svg)
     - [x] ![Completed](.github/styles/completed.svg)         Mii costume category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Editor voice
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Instrument
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Version
+- [ ] ![Partially done](.github/styles/partially-done.svg)   Editor voice
+- [ ] ![Partially done](.github/styles/partially-done.svg)   Instrument
+- [ ] ![In progress](.github/styles/in-progress.svg)         Version
 
 #### Other sub-pages (not directly related to the project)
 - [ ] ![In progress](.github/styles/in-progress.svg)         Power-up priority
