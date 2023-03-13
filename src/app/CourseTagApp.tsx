@@ -10,10 +10,17 @@ import type {NullOr}                                               from 'util/ty
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
-import UnfinishedText                               from 'app/tools/text/UnfinishedText'
-import {AbstractCardListApp}                        from 'app/withInterpreter/AbstractCardListApp'
-import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'
+import {AbstractCardListApp}                        from 'app/withInterpreter/AbstractCardListApp'
+import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+
+//region -------------------- Import from deconstruction --------------------
+
+const {TAG, COURSE,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
 
 export default class CourseTagApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties>
@@ -48,10 +55,10 @@ export default class CourseTagApp
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('course tag.all', {
-            course: <UnfinishedText key="every course tag (lowercase course)">course</UnfinishedText>,//TODO add course (singular form)
-            courses: <UnfinishedText key="every course tag (plural lowercase course)">courses</UnfinishedText>,//TODO add course (plural form)
-            tag: <UnfinishedText key="every course tag (singular lowercase tag)">tag</UnfinishedText>,//TODO add tag (singular form)
-            tags: <UnfinishedText key="every course tag (plural lowercase tag)">tags</UnfinishedText>,//TODO add tag (plural form)
+            course: (COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName)).toLowerCase(),
+            courses: (COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName)).toLowerCase(),
+            tag: TAG.singularNameOnReference.toLowerCase(),
+            tags: TAG.pluralNameOnReference.toLowerCase(),
         },)
     }
 

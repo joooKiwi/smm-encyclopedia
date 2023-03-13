@@ -11,7 +11,14 @@ import TextComponent            from 'app/tools/text/TextComponent'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {MiiCostumes}            from 'core/miiCostume/MiiCostumes'
+import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+
+//region -------------------- Import from deconstruction --------------------
+
+const {MII_COSTUME,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
 
 export default class MiiCostumeApp
     extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>> {
@@ -38,8 +45,8 @@ export default class MiiCostumeApp
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mii costume.all', {
-            singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} className="text-decoration-underline"/>,//TODO add Mii costume (singular form)
-            pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} className="text-decoration-underline"/>,//TODO add Mii costume (plural form)
+            singularName: MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName),
+            pluralName: MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName),
         },)
     }
 
@@ -94,8 +101,8 @@ export default class MiiCostumeApp
             public get tableProperties(): SimplifiedTableProperties {
                 return {
                     caption: gameContentTranslation('mii costume.all', {
-                        singularName: <TextComponent key="miiCostume-singularName" content={unfinishedText('Mii costume')} className="text-decoration-underline"/>,//TODO add Mii costume (singular form)
-                        pluralName: <TextComponent key="miiCostume-pluralName" content={unfinishedText('Mii costumes')} className="text-decoration-underline"/>,//TODO add Mii costume (plural form)
+                        singularName: <TextComponent key="miiCostume-singularName" content={MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)} className="text-decoration-underline"/>,
+                        pluralName: <TextComponent key="miiCostume-pluralName" content={MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName)} className="text-decoration-underline"/>,
                     },),
                 }
             }

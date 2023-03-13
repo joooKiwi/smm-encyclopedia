@@ -12,7 +12,7 @@ import DisplayViewRouteButton                            from 'navigation/Displa
 
 //region -------------------- Deconstruction imports --------------------
 
-const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, MII, ENTITY, COURSE, POWER_UP,} = OtherWordInTheGames
+const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWordInTheGames
 
 //endregion -------------------- Deconstruction imports --------------------
 
@@ -29,14 +29,12 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
     const isSMM1Selected = true,
         // isSMM3DSSelected = true,
         isSMM2Selected = true,
-        singularTagName = TAG.singularNameOnReferenceOrNull ?? unfinishedText(TAG.singularEnglishName), singularTagLowerCaseName = singularTagName.toLowerCase(),
-        pluralTagName = TAG.pluralNameOnReferenceOrNull ?? unfinishedText(TAG.pluralEnglishName), pluralTagLowerCaseName = pluralTagName.toLowerCase(),
+        singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = singularTagName.toLowerCase(),
+        pluralTagName = TAG.pluralNameOnReference, pluralTagLowerCaseName = pluralTagName.toLowerCase(),
         singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName), singularMysteryMushroomLowerCaseName = singularMysteryMushroomName.toLowerCase(),
         pluralMysteryMushroomName = MYSTERY_MUSHROOM.pluralNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName), pluralMysteryMushroomLowerCaseName = pluralMysteryMushroomName.toLowerCase(),
-        lowerCaseMii = MII.singularEnglishName.toLowerCase(), lowerCaseSpaceEvenMii = MII.reference.japanese!.toLowerCase(),
-        capitalCaseMii = MII.singularEnglishName, capitalCaseSpaceEvenMii = MII.reference.japanese!,
-        singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = singularMiiCostumeName.toLowerCase().replace(lowerCaseMii, capitalCaseMii,).replace(lowerCaseSpaceEvenMii, capitalCaseSpaceEvenMii,),
-        pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName), pluralMiiCostumeLowerCaseName = pluralMiiCostumeName.toLowerCase().replace(lowerCaseMii, capitalCaseMii,).replace(lowerCaseSpaceEvenMii, capitalCaseSpaceEvenMii,),
+        singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName),
+        /*pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!), */pluralMiiCostumeLowerCaseName = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!),
         singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName),
         singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = singularCourseName.toLowerCase(),
         pluralCourseName = COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName), pluralCourseLowerCaseName = pluralCourseName.toLowerCase(),
