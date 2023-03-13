@@ -1,3 +1,46 @@
 {
+  "English":           "영어",
+  "English (America)": "영어(미국)",
+  "English (Europe)":  "영어(유럽)",
 
+  "French":          "프랑스 국민",
+  "French (Canada)": "프랑스어(캐나다)",
+  "French (Europe)": "프랑스어(유럽)",
+
+  "German": "독일 사람",
+
+  "Spanish":           "스페인의",
+  "Spanish (America)": "스페인어(미국)",
+  "Spanish (Europe)":  "스페인어(유럽)",
+
+  "Italian": "이탈리아 사람",
+
+  "Dutch": "네덜란드 사람",
+
+  "Russian": "러시아인",
+
+  "Japanese": "일본어",
+
+  "Chinese":             "중국인",
+  "Simplified chinese":  "중국어 간체",
+  "Traditional chinese": "중국어 번체",
+
+  "Korean":  "한국인",
+
+  "Portuguese":           "포르투갈 인",
+  "Portuguese (America)": "포르투갈어(미국)",
+  "Portuguese (Europe)":  "포르투갈어(유럽)",
+
+  "Hebrew":    "헤브라이 사람",
+  "Polish":    "광택",
+  "Ukrainian": "우크라이나 인",
+  "Greek":     "그리스 어",
+
+
+  "America": "미국",
+  "Europe":  "유럽",
+  "Canada":  "캐나다",
+
+  "Simplified":  "쉽게 한",
+  "Traditional": "전통적인"
 }

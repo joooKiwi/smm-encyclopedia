@@ -2,31 +2,31 @@ import './TextComponent.scss'
 
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 
-import {NOT_APPLICABLE, SPACE, UNKNOWN_REFERENCE} from 'util/commonVariables'
+import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
 
 /**
  *
  * @param properties
  * @reactComponent
  */
-export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown, classes, ...otherProperties}: TextProperties<T>,) {
+export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown, className, ...otherProperties}: TextProperties<T>,) {
     if (isUnknown === true)
-        (classes ??= []).push('is-unknown')
+        (className ??= "").concat(' is-unknown')
 
     switch (content) {
         case null:
-            if (Object.getOwnPropertyNames(otherProperties).length === 0 && classes == null)
+            if (Object.getOwnPropertyNames(otherProperties).length === 0 && className == null)
                 return null
-            if (classes == null)
+            if (className == null)
                 return <span {...otherProperties}/>
-            return <span className={classes.join(SPACE)} {...otherProperties}/>
+            return <span className={className} {...otherProperties}/>
         case NOT_APPLICABLE:
             return <span className="not-applicable" {...otherProperties}/>
         case UNKNOWN_REFERENCE:
             return <span className="unknown-reference" {...otherProperties}/>
     }
 
-    if (classes == null)
+    if (className == null)
         return <span {...otherProperties}>{content}</span>
-    return <span className={classes.join(SPACE)} {...otherProperties}>{content}</span>
+    return <span className={className} {...otherProperties}>{content}</span>
 }

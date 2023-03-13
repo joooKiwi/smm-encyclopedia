@@ -50,14 +50,14 @@ import chineseLanguage                 from 'lang/locale/zh/language.json'
 import chineseContent                  from 'lang/locale/zh/content.json'
 import chineseGameContent              from 'lang/locale/zh/gameContent.json'
 import chineseEntityContent            from 'lang/locale/zh/entityContent.json'
-import traditionalChineseLanguage      from 'lang/locale/zh/zh-T/language.json'
-import traditionalChineseContent       from 'lang/locale/zh/zh-T/content.json'
-import traditionalChineseGameContent   from 'lang/locale/zh/zh-T/gameContent.json'
-import traditionalChineseEntityContent from 'lang/locale/zh/zh-T/entityContent.json'
-import simplifiedChineseLanguage       from 'lang/locale/zh/zh-S/language.json'
-import simplifiedChineseContent        from 'lang/locale/zh/zh-S/content.json'
-import simplifiedChineseGameContent    from 'lang/locale/zh/zh-S/gameContent.json'
-import simplifiedChineseEntityContent  from 'lang/locale/zh/zh-S/entityContent.json'
+import traditionalChineseLanguage      from 'lang/locale/zh/zh-tw/language.json'
+import traditionalChineseContent       from 'lang/locale/zh/zh-tw/content.json'
+import traditionalChineseGameContent   from 'lang/locale/zh/zh-tw/gameContent.json'
+import traditionalChineseEntityContent from 'lang/locale/zh/zh-tw/entityContent.json'
+import simplifiedChineseLanguage       from 'lang/locale/zh/zh-cn/language.json'
+import simplifiedChineseContent        from 'lang/locale/zh/zh-cn/content.json'
+import simplifiedChineseGameContent    from 'lang/locale/zh/zh-cn/gameContent.json'
+import simplifiedChineseEntityContent  from 'lang/locale/zh/zh-cn/entityContent.json'
 import koreanLanguage                  from 'lang/locale/ko/language.json'
 import koreanContent                   from 'lang/locale/ko/content.json'
 import koreanGameContent               from 'lang/locale/ko/gameContent.json'
@@ -205,13 +205,13 @@ const resources: Resource = {
         gameContent: chineseGameContent,
         entityContent: chineseEntityContent,
     },
-    'zh-T': {
+    'zh-tw': {
         content: traditionalChineseContent,
         language: traditionalChineseLanguage,
         gameContent: traditionalChineseGameContent,
         entityContent: traditionalChineseEntityContent,
     },
-    'zh-S': {
+    'zh-cn': {
         content: simplifiedChineseContent,
         language: simplifiedChineseLanguage,
         gameContent: simplifiedChineseGameContent,

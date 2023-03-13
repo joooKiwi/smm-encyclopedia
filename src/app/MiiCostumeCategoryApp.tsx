@@ -35,8 +35,8 @@ export default class EveryEntityCategoriesApp
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mii costume category.all', {
-            singularName: <TextComponent key="miiCostume-singularName" classes={['text-decoration-underline',]} content={unfinishedText('Mii costume')}/>,//TODO add Mii costume (singular form)
-            pluralName: <TextComponent key="miiCostume-pluralName" classes={['text-decoration-underline',]} content={unfinishedText('Mii costumes')}/>,//TODO add Mii costume (plural form)
+            singularName: <TextComponent key="miiCostume-singularName" className="text-decoration-underline" content={unfinishedText('Mii costume')}/>,//TODO add Mii costume (singular form)
+            pluralName: <TextComponent key="miiCostume-pluralName" className="text-decoration-underline" content={unfinishedText('Mii costumes')}/>,//TODO add Mii costume (plural form)
         },)
     }
 

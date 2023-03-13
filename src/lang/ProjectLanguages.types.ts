@@ -30,7 +30,7 @@ export type PossibleAcronym =
     | 'it' | 'nl'
     | `pt-${| 'AM' | 'EU'}`
     | 'ru' | 'ja'
-    | `zh-${| 'T' | 'S'}`
+    | `zh-${| 'tw' | 'cn'}`
     | 'ko'
 
 export type PossibleInternationalAcronym =
