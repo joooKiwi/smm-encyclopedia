@@ -113,6 +113,11 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         tooltipValue={gameContentTranslation('instrument.display all')}
                                         elementId="displayView-instrument-button" id={id} divId={divId}/>
             </div>
+            <div key="button group (editor voice)" id="editorVoice-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everyEditorVoice" value={gameContentTranslation('editor voice.singular')}
+                                        tooltipValue={gameContentTranslation('editor voice.display all')}
+                                        elementId="displayView-editorVoice-button" id={id} divId={divId}/>
+            </div>
         </div>
         <div id="display-nameOrWord-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2">{contentTranslation('Name or word')}</h3>

@@ -169,6 +169,13 @@
     "all":         "Every {{singularName}}",
     "display all": "Display every {{singularName}}"
   },
+  "editor voice": {
+    "singular": "Editor voice",
+    "plural":   "Editor voices",
+
+    "all":         "Every editor voice",
+    "display all": "Display every editor voice"
+  },
   "instrument": {
     "all":         "Every instrument",
     "display all": "Display instrument",

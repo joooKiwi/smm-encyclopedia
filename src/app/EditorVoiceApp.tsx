@@ -7,6 +7,7 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/int
 
 import {EditorVoices}            from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
+import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 export default class EditorVoiceApp
     extends AbstractCardListApp<AppInterpreterWithCardList<EditorVoices>> {
@@ -27,7 +28,7 @@ export default class EditorVoiceApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        return <>Every editor voice</>
+        return gameContentTranslation('editor voice.all')
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EditorVoices> {
