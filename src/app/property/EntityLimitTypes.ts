@@ -26,7 +26,7 @@ export abstract class EntityLimitTypes
             return null
         }
 
-    }('all', 'everyLimits',)
+    }('all', 'everyLimit',)
     public static readonly WHILE_PLAYING = new class EntityLimitTypes_WhilePlaying extends EntityLimitTypes {
 
         public override get iterator(): IterableIterator<EntityLimits> {
@@ -46,7 +46,7 @@ export abstract class EntityLimitTypes
             return 'danger'
         }
 
-    }('play', 'playLimits',)
+    }('play', 'playLimit',)
     public static readonly EDITOR =        new class EntityLimitTypes_Editor extends EntityLimitTypes {
 
         public override get iterator(): IterableIterator<EntityLimits> {
@@ -66,7 +66,7 @@ export abstract class EntityLimitTypes
             return null
         }
 
-    }('editor', 'editorLimits',)
+    }('editor', 'editorLimit',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -104,8 +104,8 @@ export abstract class EntityLimitTypes
     //region -------------------- Link button methods --------------------
 
     /** The route name for the path with every {@link EntityLimits} */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyLimits'>> {
-        return 'everyLimits'
+    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyLimit'>> {
+        return 'everyLimit'
     }
 
     public get allColor(): PossibleColor {
@@ -118,8 +118,8 @@ export abstract class EntityLimitTypes
      *
      * @see EntityLimits.whilePlayingEntityLimits
      */
-    public get playRouteName(): NullOr<Extract<PossibleRouteName, 'playLimits'>> {
-        return 'playLimits'
+    public get playRouteName(): NullOr<Extract<PossibleRouteName, 'playLimit'>> {
+        return 'playLimit'
     }
 
     public get playColor(): PossibleColor {
@@ -131,8 +131,8 @@ export abstract class EntityLimitTypes
      *
      * @see EntityLimits.editorEntityLimits
      */
-    public get editorRouteName(): NullOr<Extract<PossibleRouteName, 'editorLimits'>> {
-        return 'editorLimits'
+    public get editorRouteName(): NullOr<Extract<PossibleRouteName, 'editorLimit'>> {
+        return 'editorLimit'
     }
 
     public get editorColor(): PossibleColor {

@@ -26,7 +26,7 @@ export abstract class ThemeTypes
             return null
         }
 
-    }('all', 'everyThemes',)
+    }('all', 'everyTheme',)
     public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
         public override get iterator(): IterableIterator<Themes> {
@@ -46,7 +46,7 @@ export abstract class ThemeTypes
             return 'danger'
         }
 
-    }('course', 'courseThemes',)
+    }('course', 'courseTheme',)
     public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
         public override get iterator(): IterableIterator<Themes> {
@@ -66,7 +66,7 @@ export abstract class ThemeTypes
             return null
         }
 
-    }('world', 'worldThemes',)
+    }('world', 'worldTheme',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -104,8 +104,8 @@ export abstract class ThemeTypes
     //region -------------------- Link button methods --------------------
 
     /** The route name for the path with every {@link Themes} */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyThemes'>> {
-        return 'everyThemes'
+    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyTheme'>> {
+        return 'everyTheme'
     }
 
     public get allColor(): PossibleColor {
@@ -119,8 +119,8 @@ export abstract class ThemeTypes
      * @see Themes.courseThemes
      * @see Themes.courseThemes_smm1
      */
-    public get courseRouteName(): NullOr<Extract<PossibleRouteName, 'courseThemes'>> {
-        return 'courseThemes'
+    public get courseRouteName(): NullOr<Extract<PossibleRouteName, 'courseTheme'>> {
+        return 'courseTheme'
     }
 
     public get courseColor(): PossibleColor {
@@ -133,8 +133,8 @@ export abstract class ThemeTypes
      *
      * @see Themes.worldThemes
      */
-    public get worldRouteName(): NullOr<Extract<PossibleRouteName, 'worldThemes'>> {
-        return 'worldThemes'
+    public get worldRouteName(): NullOr<Extract<PossibleRouteName, 'worldTheme'>> {
+        return 'worldTheme'
     }
 
     public get worldColor(): PossibleColor {

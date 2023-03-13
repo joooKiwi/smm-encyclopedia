@@ -16,7 +16,7 @@ const {MII_COSTUME,} = OtherWordInTheGames
 
 //endregion -------------------- Import from deconstruction --------------------
 
-export default class EveryEntityCategoriesApp
+export default class MiiCostumeCategoryApp
     extends AbstractCardListApp<AppInterpreterWithCardList<MiiCostumeCategories>> {
 
     //region -------------------- Create methods --------------------
@@ -27,11 +27,11 @@ export default class EveryEntityCategoriesApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyMiiCostumeCategories (list)'
+        return 'everyMiiCostumeCategory (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyMiiCostumeCategories (card)'
+        return 'everyMiiCostumeCategory (card)'
     }
 
 

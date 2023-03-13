@@ -21,11 +21,11 @@ export default class EntityCategoryApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntityCategories (list)'
+        return 'everyEntityCategory (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntityCategories (card)'
+        return 'everyEntityCategory (card)'
     }
 
 

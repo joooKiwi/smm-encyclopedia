@@ -19,11 +19,11 @@ export default class InstrumentApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyInstruments (list)'
+        return 'everyInstrument (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyInstruments (card)'
+        return 'everyInstrument (card)'
     }
 
 
