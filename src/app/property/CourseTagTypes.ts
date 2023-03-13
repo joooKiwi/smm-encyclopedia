@@ -26,7 +26,7 @@ export abstract class CourseTagTypes
             return null
         }
 
-    }('all', 'everyCourseTags',)
+    }('all', 'everyCourseTag',)
     public static readonly OFFICIAL =         new class CourseTagTypes_Official extends CourseTagTypes {
 
         public override get iterator(): IterableIterator<CourseTags> {
@@ -50,7 +50,7 @@ export abstract class CourseTagTypes
             return 'warning'
         }
 
-    }('official', 'officialCourseTags',)
+    }('official', 'officialCourseTag',)
     public static readonly UNOFFICIAL =       new class CourseTagTypes_Unofficial extends CourseTagTypes {
 
         public override get iterator(): IterableIterator<CourseTags> {
@@ -74,7 +74,7 @@ export abstract class CourseTagTypes
             return 'warning'
         }
 
-    }('unofficial', 'unofficialCourseTags',)
+    }('unofficial', 'unofficialCourseTag',)
     public static readonly MAKER_CENTRAL =    new class CourseTagTypes_MakerCentral extends CourseTagTypes {
 
         public override get iterator(): IterableIterator<CourseTags> {
@@ -98,7 +98,7 @@ export abstract class CourseTagTypes
             return null
         }
 
-    }('makerCentral', 'makerCentralCourseTags',)
+    }('makerCentral', 'makerCentralCourseTag',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -136,8 +136,8 @@ export abstract class CourseTagTypes
     //region -------------------- Link button methods --------------------
 
     /** The route name for the path with every course tags */
-    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyCourseTags'>> {
-        return 'everyCourseTags'
+    public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyCourseTag'>> {
+        return 'everyCourseTag'
     }
 
     public get allColor(): PossibleColor {
@@ -150,8 +150,8 @@ export abstract class CourseTagTypes
      *
      * @see CourseTags.officialCourseTags
      */
-    public get officialRouteName(): NullOr<Extract<PossibleRouteName, 'officialCourseTags'>> {
-        return 'officialCourseTags'
+    public get officialRouteName(): NullOr<Extract<PossibleRouteName, 'officialCourseTag'>> {
+        return 'officialCourseTag'
     }
 
     public get officialColor(): PossibleColor {
@@ -164,8 +164,8 @@ export abstract class CourseTagTypes
      *
      * @see CourseTags.unofficialCourseTags
      */
-    public get unofficialRouteName(): NullOr<Extract<PossibleRouteName, 'unofficialCourseTags'>> {
-        return 'unofficialCourseTags'
+    public get unofficialRouteName(): NullOr<Extract<PossibleRouteName, 'unofficialCourseTag'>> {
+        return 'unofficialCourseTag'
     }
 
     public get unofficialColor(): PossibleColor {
@@ -177,8 +177,8 @@ export abstract class CourseTagTypes
      *
      * @see CourseTags.makerCentralCourseTags
      */
-    public get makerCentralRouteName(): NullOr<PossibleRouteName> {
-        return 'makerCentralCourseTags'
+    public get makerCentralRouteName(): NullOr<Extract<PossibleRouteName, 'makerCentralCourseTag'>> {
+        return 'makerCentralCourseTag'
     }
 
     public get makerCentralColor(): PossibleColor {

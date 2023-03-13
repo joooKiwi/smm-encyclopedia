@@ -23,15 +23,15 @@ export default class EntityApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntities (list)'
+        return 'everyEntity (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntities (card)'
+        return 'everyEntity (card)'
     }
 
     protected override _createTableRouteName(): EveryPossibleRouteNames {
-        return 'everyEntities (table)'
+        return 'everyEntity (table)'
     }
 
 

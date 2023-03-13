@@ -31,15 +31,15 @@ export default class MiiCostumeApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyMiiCostumes (list)'
+        return 'everyMiiCostume (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyMiiCostumes (card)'
+        return 'everyMiiCostume (card)'
     }
 
     protected override _createTableRouteName(): EveryPossibleRouteNames {
-        return 'everyMiiCostumes (table)'
+        return 'everyMiiCostume (table)'
     }
 
 

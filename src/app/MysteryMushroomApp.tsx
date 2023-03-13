@@ -28,15 +28,15 @@ export default class MysteryMushroomApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyMysteryMushrooms (list)'
+        return 'everyMysteryMushroom (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyMysteryMushrooms (card)'
+        return 'everyMysteryMushroom (card)'
     }
 
     protected override _createTableRouteName(): EveryPossibleRouteNames {
-        return 'everyMysteryMushrooms (table)'
+        return 'everyMysteryMushroom (table)'
     }
 
 

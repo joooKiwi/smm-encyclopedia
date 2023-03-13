@@ -11,4 +11,4 @@ export type Names = keyof typeof Enum
 
 export type PossibleType = | 'all' | 'play' | 'editor'
 /** A simple type (not forwarded to the {@link EveryPossibleRouteNames} variable) */
-export type PossibleRouteName = `${| 'every' | 'play' | 'editor'}Limits`
+export type PossibleRouteName = `${| 'every' | 'play' | 'editor'}Limit`

@@ -18,11 +18,11 @@ export default class CharacterNameApp
     }
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyCharacterNames (list)'
+        return 'everyCharacterName (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyCharacterNames (card)'
+        return 'everyCharacterName (card)'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
