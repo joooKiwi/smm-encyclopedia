@@ -21,15 +21,15 @@ export default class SoundEffectApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everySoundEffects (list)'
+        return 'everySoundEffect (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everySoundEffects (card)'
+        return 'everySoundEffect (card)'
     }
 
     protected override _createTableRouteName(): EveryPossibleRouteNames {
-        return 'everySoundEffects (table)'
+        return 'everySoundEffect (table)'
     }
 
 

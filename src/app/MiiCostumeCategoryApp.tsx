@@ -1,23 +1,22 @@
-import {lazy} from 'react'
-
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
+import Image                    from 'app/tools/images/Image'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {MiiCostumeCategories}   from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-//region -------------------- dynamic imports --------------------
+//region -------------------- Import from deconstruction --------------------
 
-const Image =         lazy(() => import('app/tools/images/Image'))
-const TextComponent = lazy(() => import('app/tools/text/TextComponent'))
+const {MII_COSTUME,} = OtherWordInTheGames
 
-//endregion -------------------- dynamic imports --------------------
+//endregion -------------------- Import from deconstruction --------------------
 
-export default class EveryEntityCategoriesApp
+export default class MiiCostumeCategoryApp
     extends AbstractCardListApp<AppInterpreterWithCardList<MiiCostumeCategories>> {
 
     //region -------------------- Create methods --------------------
@@ -28,18 +27,18 @@ export default class EveryEntityCategoriesApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntityCategories (list)'
+        return 'everyMiiCostumeCategory (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntityCategories (card)'
+        return 'everyMiiCostumeCategory (card)'
     }
 
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mii costume category.all', {
-            singularName: <TextComponent key="miiCostume-singularName" classes={['text-decoration-underline',]} content={unfinishedText('Mii costume')}/>,//TODO add Mii costume (singular form)
-            pluralName: <TextComponent key="miiCostume-pluralName" classes={['text-decoration-underline',]} content={unfinishedText('Mii costumes')}/>,//TODO add Mii costume (plural form)
+            singularName: MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName),
+            pluralName: MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName),
         },)
     }
 

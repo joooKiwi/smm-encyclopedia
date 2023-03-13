@@ -1,0 +1,43 @@
+.language-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.singleLanguage-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  //region -------------------- Language text sizing --------------------
+
+  html[lang*=en] &,
+  html[lang*=fr] &,
+  html[lang*=es] &,
+  html[lang*=it] &,
+  html[lang*=ko] &, { //English, French, Spanish, Italian, Korean
+    .language-text {
+      min-width: 3cm;
+    }
+  }
+
+  html[lang*=nl] &,
+  html[lang*=pt] &, { //Dutch, Portuguese
+    .language-text {
+      min-width: 3.5cm;
+    }
+  }
+
+  html[lang*=de] &,
+  html[lang*=ru] &,
+  html[lang*=ja] &, { //German, Russian, Japanese
+    .language-text {
+      min-width: 4cm;
+    }
+  }
+
+  //TODO add language text sizing (chinese)
+
+  //endregion -------------------- Language text sizing --------------------
+
+}
+

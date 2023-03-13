@@ -169,6 +169,13 @@
     "all":         "Tous les {{pluralName}}",
     "display all": "Afficher tous les {{pluralName}}"
   },
+  "editor voice": {
+    "singular": "Voix de l'éditeur",
+    "plural":   "Voix de l'éditeur",
+
+    "all":         "Toutes les voix de l'éditeur",
+    "display all": "Afficher toutes les voix de l'éditeur"
+  },
   "instrument": {
     "all":         "Tous les instruments",
     "display all": "Afficher tous les instruments",

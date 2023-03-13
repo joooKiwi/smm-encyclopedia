@@ -488,10 +488,10 @@ export class EntityLimits
     }
 
     public static get values(): CollectionHolder<EntityLimits> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static* [Symbol.iterator]() {
+    public static* [Symbol.iterator](): IterableIterator<EntityLimits> {
         yield* this.values
     }
 

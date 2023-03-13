@@ -1,23 +1,16 @@
 import './EntityApp.scss'
 import './options/EntityAppOption.scss'
 
-import {lazy} from 'react'
-
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
-import {EntityAppOption}        from 'app/options/EntityAppOption'
-import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
-import {Entities}               from 'core/entity/Entities'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-
-//region -------------------- dynamic imports --------------------
-
-const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
-
-//endregion -------------------- dynamic imports --------------------
+import {EntityAppOption}         from 'app/options/EntityAppOption'
+import {AbstractTableApp}        from 'app/withInterpreter/AbstractTableApp'
+import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
+import {Entities}                from 'core/entity/Entities'
+import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 export default class EntityApp
     extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>> {
@@ -30,15 +23,15 @@ export default class EntityApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntities (list)'
+        return 'everyEntity (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntities (card)'
+        return 'everyEntity (card)'
     }
 
     protected override _createTableRouteName(): EveryPossibleRouteNames {
-        return 'everyEntities (table)'
+        return 'everyEntity (table)'
     }
 
 
@@ -71,12 +64,11 @@ export default class EntityApp
                 return 'list'
             }
 
-            public createCardListContent({englishNameInHtml: htmlName, reference, editorVoiceSound: {file: editorVoice1, europeanFile: editorVoice2,},}: Entities,) {
+            public createCardListContent({englishName: name, reference, editorVoiceSoundFileHolder,}: Entities,) {
                 //TODO encapsulate the voiceSound into a sound interpreter.
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
                 return <div className={`${category}`}>
-                    {editorVoice1 == null ? null : <SimpleSoundComponent file={editorVoice1} title={`${htmlName} - editor voice`}/>}
-                    {editorVoice2 == null ? null : <SimpleSoundComponent file={editorVoice2} title={`${htmlName} - editor voice (european)`}/>}
+                    <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
                 </div>
             }
 

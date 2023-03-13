@@ -19,7 +19,7 @@ export default class PredefinedMessageApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyPredefinedMessages (list)'
+        return 'everyPredefinedMessage (list)'
     }
 
 

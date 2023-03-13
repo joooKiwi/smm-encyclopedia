@@ -99,7 +99,7 @@ export class EntityAppOption
                     <div className="properties">
                         <InstrumentPropertyComponent value={enumeration}/>
                     </div>
-                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSound} name={enumeration.englishName}/>
+                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
                 </div>
             }
         }
@@ -348,11 +348,11 @@ export class EntityAppOption
     }
 
     public static get values(): CollectionHolder<EntityAppOption> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<EntityAppOption> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

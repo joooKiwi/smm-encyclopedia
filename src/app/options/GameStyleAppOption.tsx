@@ -155,11 +155,11 @@ export abstract class GameStyleAppOption
     }
 
     public static get values(): CollectionHolder<GameStyleAppOption> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<GameStyleAppOption> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

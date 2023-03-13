@@ -60,8 +60,8 @@ export class Versions
 
     readonly #name
     readonly #game
-    readonly #releaseDate: NullOr<Date>//FIXME this type is only there to help typescript (it's not the standard)
-    readonly #gameStyle: NullOr<GameStyles_SM3DW>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #releaseDate
+    readonly #gameStyle
 
     //endregion -------------------- Fields --------------------
 
@@ -132,11 +132,11 @@ export class Versions
     }
 
     public static get values(): CollectionHolder<Versions> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<Versions> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

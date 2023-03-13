@@ -12,4 +12,4 @@ export type Names = keyof typeof Enum
 
 export type PossibleType = | 'all' | 'official' | 'unofficial' | 'makerCentral'
 /** A simple type (not forwarded to the {@link EveryPossibleRouteNames} variable) */
-export type PossibleRouteName = `${| 'every' | 'official' | 'unofficial' | 'makerCentral'}CourseTags`
+export type PossibleRouteName = `${| 'every' | 'official' | 'unofficial' | 'makerCentral'}CourseTag`

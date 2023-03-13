@@ -74,11 +74,11 @@ export class ImageAnimations
     }
 
     public static get values(): CollectionHolder<ImageAnimations> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<ImageAnimations> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

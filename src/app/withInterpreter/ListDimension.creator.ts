@@ -24,7 +24,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
         extraExtraLarge: null,
     }
 
-    readonly #dimension: NullOr<Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>>>//FIXME this type is only there to help typescript (it's not the standard)
+    readonly #dimension
     #smallHolder: ObjectHolder<| SMALL | DefaultSmallDimension>
     #mediumHolder: ObjectHolder<| MEDIUM | DefaultMediumDimension>
     #largeHolder: ObjectHolder<| LARGE | DefaultLargeDimension>

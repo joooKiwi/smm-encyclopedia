@@ -31,7 +31,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the link to be only for the entities with special effects on ground night
             return {
-                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
             }
         }
 
@@ -42,7 +42,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the entities to be only for the entities with dark light
             return {
-                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
                 players: NightEffects._createPlayersLink(this),
             }
         }
@@ -53,7 +53,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
-                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyles')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyle')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
             }
         }
 
@@ -64,7 +64,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
             }
         }
 
@@ -85,7 +85,7 @@ export class NightEffects
             //TODO change the link to be only for the entities with the underwater behaviour on the sky night theme
             return {
                 underwaterImage: NightEffects._createUnderwaterImage(this),
-                entities: NightEffects._createEntitiesLink(this, 'everyEntities',),
+                entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
             }
         }
 
@@ -172,11 +172,11 @@ export class NightEffects
     }
 
     public static get values(): CollectionHolder<NightEffects> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<NightEffects> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

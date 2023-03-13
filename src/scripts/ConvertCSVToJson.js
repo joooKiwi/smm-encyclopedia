@@ -21,6 +21,7 @@ const logger = Logger.get;
     'Mii Costume (SMM2)',
     'Mii Costume category (SMM2)',
     'Instrument',
+    'Other word in the game',
 ].forEach(it => convertFileFromCsvToJson(it,))
 
 /**

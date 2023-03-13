@@ -294,7 +294,7 @@ export class PlayerSoundEffectTriggers
     public createNewComponent(key: string,): ReactElement {
         const keyMap: TranslationReplaceKeysMap = {}
 
-        return <TextComponent classes={['playerSoundEffectTrigger-container']}
+        return <TextComponent className="playerSoundEffectTrigger-container"
                               content={gameContentTranslation(`sound effect.trigger.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
@@ -366,11 +366,11 @@ export class PlayerSoundEffectTriggers
     }
 
     public static get values(): CollectionHolder<PlayerSoundEffectTriggers> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<PlayerSoundEffectTriggers> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

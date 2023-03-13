@@ -414,11 +414,11 @@ export class Characters
     }
 
     public static get values(): CollectionHolder<Characters> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<Characters> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -199,11 +199,11 @@ export abstract class DateDayLanguages
     }
 
     public static override get values(): CollectionHolder<DateDayLanguages> {
-        return Enum.getValuesOn(this)
+        return Enum.getValuesOn(this,)
     }
 
-    public static override [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static override* [Symbol.iterator](): IterableIterator<DateDayLanguages> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -40,12 +40,16 @@ export interface NamePopoverStates
 export interface NameListProperties
     extends ReactProperties {
 
+    /** The key applicable to every component */
     id: string
 
+    /** The container ID */
     listId: string
 
+    /** The class having a {@link Name} to retrieve its languages values */
     name: Name<string>
 
+    /** The popover is displayed */
     doesDisplayPopover: boolean
 
 }

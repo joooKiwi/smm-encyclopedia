@@ -5,8 +5,8 @@ import type {ReactElementOrString}                                 from 'util/re
 
 import {AbstractCardListApp}     from 'app/withInterpreter/AbstractCardListApp'
 import {CharacterNames}          from 'core/characterName/CharacterNames'
-import {gameContentTranslation}  from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
+import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 export default class CharacterNameApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CharacterNames>> {
@@ -18,11 +18,11 @@ export default class CharacterNameApp
     }
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyCharacterNames (list)'
+        return 'everyCharacterName (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyCharacterNames (card)'
+        return 'everyCharacterName (card)'
     }
 
     protected override _createTitleContent(): ReactElementOrString {
@@ -57,9 +57,9 @@ export default class CharacterNameApp
                 return 'list'
             }
 
-            public createCardListContent({reference: characterName, uniqueEnglishName: name, editorVoiceSound,}: CharacterNames,) {
+            public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {
                 return <div className="card-body">
-                    <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSound} name={name}/>
+                    <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
                 </div>
             }
 

@@ -1,19 +1,13 @@
-import type {EditorVoiceSoundFile}   from 'core/editorVoice/file/EditorVoiceSoundFile'
-import type {EditorVoiceSoundHolder} from 'core/editorVoice/holder/EditorVoiceSoundHolder'
-import type {NullOr}                 from 'util/types/nullable'
-
-export interface EditorVoiceSound<T extends NullOr<EditorVoiceSoundFile<PossibleFileName>> = NullOr<EditorVoiceSoundFile<PossibleFileName>>, U extends NullOr<EditorVoiceSoundFile<PossibleFileName>> = NullOr<EditorVoiceSoundFile<PossibleFileName>>, > {
-
-    get file(): T
-
-    get europeanFile(): U
-
-}
-
 //region -------------------- Starting name --------------------
 
 //region -------------------- Starting name (voice before) --------------------
 
+/**
+ * Every possible starting file name (with "voice" before its file name) for an {@link EditorVoices}
+ *
+ * @see PossibleStartingName_WithEuropeanAlternative
+ * @see PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative
+ */
 export type PossibleStartingName_WithVoiceBefore =
     | `${| '' | 'start' | 'goal'}ground`
     | 'pipe'
@@ -83,6 +77,7 @@ export type PossibleStartingName_WithVoiceBefore =
 //endregion -------------------- Starting name (voice before) --------------------
 //region -------------------- Starting name (singing part before) --------------------
 
+/** Every possible starting file name (with "singing part" before its file name) for an {@link EditorVoices} */
 export type PossibleStartingName_WithSingingPartBefore =
     | `${| 'gentle' | 'steep'}slope`
     | 'ClearPipe'
@@ -175,16 +170,22 @@ type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, 
 
 //endregion -------------------- Starting name --------------------
 
-export type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, >
-    = | `voice_${T}`
-export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_Regular = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[0]>
-export type PossibleFileName_WithVoiceBefore_WithEuropeanAlternative_European = PossibleFileName_WithVoiceBefore<PossibleStartingName_WithEuropeanAlternative[1]>
-export type PossibleFileName_WithSingingPartBefore<T extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
-    = | `se_ui_singingparts_${T}`
-export type PossibleFileName<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, U extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, >
-    = | PossibleFileName_WithVoiceBefore<T> | PossibleFileName_WithSingingPartBefore<U>
-
-
-export type PossibleSoundReceivedOnFactory = NullOr<| EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithVoiceBefore_WithoutEuropeanAlternative, never>>
-                                                    | EditorVoiceSoundHolder<PossibleFileName<never>>
-                                                    | readonly [EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[0], never>>, EditorVoiceSoundHolder<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[1], never>>,]>
+/**
+ * A simple string type {@link EditorVoices} sound file path with "voice" before its name
+ *
+ * @see PossibleFileName
+ */
+type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, > = `voice_${T}`
+/**
+ * A simple string type {@link EditorVoices} sound file with "signing part" before its name
+ *
+ * @see PossibleFileName
+ */
+type PossibleFileName_WithSingingPartBefore<T extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, > = `se_ui_singingparts_${T}`
+/**
+ * Every possible {@link EditorVoices} sound file with either "voice" or "singing part" before their its name
+ *
+ * @see PossibleFileName_WithVoiceBefore
+ * @see PossibleFileName_WithSingingPartBefore
+ */
+export type PossibleFileName<FILE_NAME_WITH_VOICE_BEFORE extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, FILE_NAME_WITH_SINGING_PART_BEFORE extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, > = | PossibleFileName_WithVoiceBefore<FILE_NAME_WITH_VOICE_BEFORE> | PossibleFileName_WithSingingPartBefore<FILE_NAME_WITH_SINGING_PART_BEFORE>

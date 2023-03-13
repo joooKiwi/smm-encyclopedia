@@ -1,4 +1,6 @@
+import type {CharacterName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/characterName/CharacterName'
 import type {PossibleEnglishName_PlayableCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/characterName/CharacterNames.types'
+import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/Entity'
 import type {PossibleEnglishName as PossibleEnglishName_Entity, PossibleEnglishName_BanzaiBill, PossibleEnglishName_BeachKoopa, PossibleEnglishName_BigMushroom, PossibleEnglishName_Block, PossibleEnglishName_BulletBill, PossibleEnglishName_BuzzyBeetleAndShell, PossibleEnglishName_DryBones, PossibleEnglishName_Goals, PossibleEnglishName_HardBlock, PossibleEnglishName_KoopaShell, PossibleEnglishName_KoopaTroopa, PossibleEnglishName_Shoe, PossibleEnglishName_SpikeTop, PossibleEnglishName_SpinyAndShell, PossibleEnglishName_Yoshi} from 'core/entity/Entities.types'
 
 enum Enum {
@@ -191,6 +193,9 @@ enum Enum {
 
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
+
+/** A possible reference for an {@link EditorVoices} (either an {@link Entity} or a {@link CharacterName}) */
+export type PossibleReference = | Entity | CharacterName
 
 //region -------------------- English name --------------------
 

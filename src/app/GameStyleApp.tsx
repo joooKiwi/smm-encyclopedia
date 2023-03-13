@@ -21,15 +21,15 @@ export default class GameStyleApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyGameStyles (list)'
+        return 'everyGameStyle (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyGameStyles (card)'
+        return 'everyGameStyle (card)'
     }
 
     protected override _createTableRouteName(): EveryPossibleRouteNames {
-        return 'everyGameStyles (table)'
+        return 'everyGameStyle (table)'
     }
 
 

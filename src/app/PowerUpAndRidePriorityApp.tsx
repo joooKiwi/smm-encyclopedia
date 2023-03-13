@@ -1,7 +1,7 @@
 import './PowerUpAndRidePriorityApp.scss'
 
 import type {PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
-import type {ReactElement}                                                                     from 'util/react/ReactProperties'
+import type {ReactElement, ReactElementOrString}                                               from 'util/react/ReactProperties'
 
 import AbstractApp                      from 'app/AbstractApp'
 import {default as GroupOf2}            from 'app/powerUp/group/GroupOf2PowerUpPriority'
@@ -17,6 +17,7 @@ import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import Accordion                        from 'bootstrap/accordion/Accordion'
 import {Entities}                       from 'core/entity/Entities'
 import {GameStyles}                     from 'core/gameStyle/GameStyles'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 
 //region -------------------- Import from deconstruction --------------------
@@ -24,6 +25,7 @@ import {gameContentTranslation}         from 'lang/components/translationMethods
 const {SMB_AND_SMB3, SMW_AND_NSMBU, SMB_SMB3_AND_SMW, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK, FIRST_EDITOR_IMAGE_CALLBACK, IN_GAME_IMAGE_CALLBACK, CLEAR_CONDITION_IMAGE_CALLBACK} = AbstractPowerUpPriority
 const {FIRE_FLOWER, BIG_MUSHROOM_MODERN, RED_YOSHI, BUZZY_SHELL, PROPELLER_BOX, RED_POW_BOX, MASTER_SWORD, BIG_MUSHROOM_CLASSIC, CANNON_BOX, SUPER_ACORN, CAR, SUPER_LEAF, SUPER_HAMMER, JUNIOR_CLOWN_CAR, SUPERBALL_FLOWER, FROG_SUIT, FIRE_JUNIOR_CLOWN_CAR, BOOMERANG_FLOWER, SHOE, BIG_MUSHROOM, KOOPA_CLOWN_CAR, KOOPA_TROOPA_CAR, BULLET_BILL_MASK, SPINY_SHELL, SMB2_MUSHROOM, FIRE_KOOPA_CLOWN_CAR, YOSHI, DRY_BONES_SHELL, STILETTO, POWER_BALLOON, LAKITU_CLOUD, MYSTERY_MUSHROOM, GOOMBA_MASK, SUPER_MUSHROOM, CAPE_FEATHER, SUPER_BELL, SUPER_STAR, PROPELLER_MUSHROOM, WEIRD_MUSHROOM} = Entities
 const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD} = GameStyles
+const {POWER_UP,} = OtherWordInTheGames
 
 //endregion -------------------- Import from deconstruction --------------------
 
@@ -97,9 +99,19 @@ export default class PowerUpAndRidePriorityApp
 
     //endregion -------------------- Power-up priority holders --------------------
 
+    #createTitleContent(): ReactElementOrString {
+        return <h1 key="title (power-up & ride priority)">{gameContentTranslation('power-up & ride priority.all.all', {
+            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName).toLowerCase(),
+            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference).toLowerCase(),
+            ride: unfinishedText('ride'),
+            rides: unfinishedText('rides'),
+        },)
+        }</h1>
+    }
+
     protected override _mainContent(): ReactElement {
         return <>
-            <h1>{gameContentTranslation('power-up & ride priority.all.all', {powerUp: unfinishedText('power-up'), powerUps: unfinishedText('power-ups'), ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}</h1>
+            {this.#createTitleContent()}
             <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
             {/*TODO add legend for the colors & styles*/}
             <div key="Power-up priority (container)" id="powerUpPriority-container" className="container-fluid">

@@ -11,6 +11,7 @@ const AboutApp =                  lazy(() => import('app/AboutApp'))
 const PredefinedMessageApp =      lazy(() => import('app/PredefinedMessageApp'))
 const CharacterNameApp =          lazy(() => import('app/CharacterNameApp'))
 const CourseTagApp =              lazy(() => import('app/CourseTagApp'))
+const EditorVoiceApp =            lazy(() => import('app/EditorVoiceApp'))
 const EntityApp =                 lazy(() => import('app/EntityApp'))
 const EntityCategoryApp =         lazy(() => import('app/EntityCategoryApp'))
 const EntityGroupApp =            lazy(() => import('app/EntityGroupApp'))
@@ -116,40 +117,42 @@ export const everySimpleRoutes = [
     route(          'everyRidePriority',          '/every/ride/priority',          () =>   <PowerUpAndRidePriorityApp/>,),//TODO add EveryRidePriorityApp
 
 
-    cardListRoute(  'everyCharacterNames',        '/every/character-name',         type => <CharacterNameApp typeDisplayed={type}/>,                         'CARD_LIST',),
+    cardListRoute(  'everyCharacterName',         '/every/character-name',         type => <CharacterNameApp typeDisplayed={type}/>,                         'CARD_LIST',),
 
-    route(          'everyGameReferences',        '/every/game-reference',         () =>   <GameReferenceApp/>,),
-    tableRoute(     'everyEntities',              '/every/entity',                 type => <EntityApp              typeDisplayed={type}/>,                     'TABLE',),
-    tableRoute(     'everyGameStyles',            '/every/game-style',             type => <GameStyleApp           typeDisplayed={type}/>,                     'TABLE',),
-    cardListRoute(  'everyEntityCategories',      '/every/entity-category',        type => <EntityCategoryApp      typeDisplayed={type}/>,                     'CARD_LIST',),
-    route(          'everyGroups',                '/every/entity-group',           () =>   <EntityGroupApp/>,),
+    route(          'everyGameReference',         '/every/game-reference',         () =>   <GameReferenceApp/>,),
+    tableRoute(     'everyEntity',                '/every/entity',                 type => <EntityApp              typeDisplayed={type}/>,                     'TABLE',),
+    tableRoute(     'everyGameStyle',             '/every/game-style',             type => <GameStyleApp           typeDisplayed={type}/>,                     'TABLE',),
+    cardListRoute(  'everyEntityCategory',        '/every/entity-category',        type => <EntityCategoryApp      typeDisplayed={type}/>,                     'CARD_LIST',),
+    route(          'everyGroup',                 '/every/entity-group',           () =>   <EntityGroupApp/>,),
 
-    tableRoute(     'everyLimits',                '/every/limit',                  type => <LimitApp               typeDisplayed={type} type="all"/>,          'TABLE',),//argument('everyEntityLimits', '/entity-limit',)
-    tableRoute(     'playLimits',                 '/play/limit',                   type => <LimitApp               typeDisplayed={type} type="play"/>,         'TABLE',),//argument('playEntityLimits', '/play/entity-limit',), ...createLimitRedirects(['playing', 'playing',], ['whilePlaying', 'while-playing',],)
-    tableRoute(     'editorLimits',               '/editor/limit',                 type => <LimitApp               typeDisplayed={type} type="editor"/>,       'TABLE',),//argument('playEntityLimits', '/play/entity-limit',),...createLimitRedirects(['inEditor', 'in-editor',], ['inTheEditor', 'in-the-editor',],)
+    tableRoute(     'everyLimit',                 '/every/limit',                  type => <LimitApp               typeDisplayed={type} type="all"/>,          'TABLE',),//argument('everyEntityLimits', '/entity-limit',)
+    tableRoute(     'playLimit',                  '/play/limit',                   type => <LimitApp               typeDisplayed={type} type="play"/>,         'TABLE',),//argument('playEntityLimits', '/play/entity-limit',), ...createLimitRedirects(['playing', 'playing',], ['whilePlaying', 'while-playing',],)
+    tableRoute(     'editorLimit',                '/editor/limit',                 type => <LimitApp               typeDisplayed={type} type="editor"/>,       'TABLE',),//argument('playEntityLimits', '/play/entity-limit',),...createLimitRedirects(['inEditor', 'in-editor',], ['inTheEditor', 'in-the-editor',],)
 
-    tableRoute(     'everyThemes',                '/every/theme',                  type => <ThemeApp               typeDisplayed={type} type="all"/>,          'CARD_LIST',),
-    tableRoute(     'courseThemes',               '/course/theme',                 type => <ThemeApp               typeDisplayed={type} type="course"/>,       'CARD_LIST',),
-    tableRoute(     'worldThemes',                '/world/theme',                  type => <ThemeApp               typeDisplayed={type} type="world"/>,        'CARD_LIST',),
-
-
-    tableRoute(     'everySoundEffects',          '/every/sound-effect',           type => <SoundEffectApp         typeDisplayed={type}/>,                     'TABLE',),
-    cardListRoute(  'everySoundEffectCategories', '/every/sound-effect-category',  type => <SoundEffectCategoryApp typeDisplayed={type}/>,                     'CARD_LIST',),
+    tableRoute(     'everyTheme',                 '/every/theme',                  type => <ThemeApp               typeDisplayed={type} type="all"/>,          'CARD_LIST',),
+    tableRoute(     'courseTheme',                '/course/theme',                 type => <ThemeApp               typeDisplayed={type} type="course"/>,       'CARD_LIST',),
+    tableRoute(     'worldTheme',                 '/world/theme',                  type => <ThemeApp               typeDisplayed={type} type="world"/>,        'CARD_LIST',),
 
 
-    tableRoute(     'everyMiiCostumes',           '/every/mii-costume',            type => <MiiCostumeApp          typeDisplayed={type}/>,                     'TABLE',),
-    cardListRoute(  'everyMiiCostumeCategories',  '/every/mii-costume-category',   type => <MiiCostumeCategoryApp  typeDisplayed={type}/>,                     'CARD_LIST',),
+    tableRoute(     'everySoundEffect',           '/every/sound-effect',           type => <SoundEffectApp         typeDisplayed={type}/>,                     'TABLE',),
+    cardListRoute(  'everySoundEffectCategory',   '/every/sound-effect-category',  type => <SoundEffectCategoryApp typeDisplayed={type}/>,                     'CARD_LIST',),
 
 
-    tableRoute(     'everyMysteryMushrooms',      '/every/mystery-mushroom',       type => <MysteryMushroomApp     typeDisplayed={type}/>,                     'CARD_LIST',),
+    tableRoute(     'everyMiiCostume',            '/every/mii-costume',            type => <MiiCostumeApp          typeDisplayed={type}/>,                     'TABLE',),
+    cardListRoute(  'everyMiiCostumeCategory',    '/every/mii-costume-category',   type => <MiiCostumeCategoryApp  typeDisplayed={type}/>,                     'CARD_LIST',),
 
 
-    simpleListRoute('everyPredefinedMessages',    '/every/predefined-message',     type => <PredefinedMessageApp   typeDisplayed={type}/>,                     'SIMPLE_LIST',),
+    tableRoute(     'everyMysteryMushroom',       '/every/mystery-mushroom',       type => <MysteryMushroomApp     typeDisplayed={type}/>,                     'CARD_LIST',),
 
-    cardListRoute(  'everyCourseTags',            '/every/course-tag',             type => <CourseTagApp           typeDisplayed={type} type="all"/>,          'CARD_LIST',),
-    cardListRoute(  'officialCourseTags',         '/official/course-tag',          type => <CourseTagApp           typeDisplayed={type} type="official"/>,     'CARD_LIST',),
-    cardListRoute(  'unofficialCourseTags',       '/unofficial/course-tag',        type => <CourseTagApp           typeDisplayed={type} type="unofficial"/>,   'CARD_LIST',),
-    cardListRoute(  'makerCentralCourseTags',     '/maker-central/course-tag',     type => <CourseTagApp           typeDisplayed={type} type="makerCentral"/>, 'CARD_LIST',),
 
-    cardListRoute(  'everyInstruments',           '/every/instrument',             type => <InstrumentApp          typeDisplayed={type}/>,                     'CARD_LIST',),
+    simpleListRoute('everyPredefinedMessage',     '/every/predefined-message',     type => <PredefinedMessageApp   typeDisplayed={type}/>,                     'SIMPLE_LIST',),
+
+    cardListRoute(  'everyCourseTag',             '/every/course-tag',             type => <CourseTagApp           typeDisplayed={type} type="all"/>,          'CARD_LIST',),
+    cardListRoute(  'officialCourseTag',          '/official/course-tag',          type => <CourseTagApp           typeDisplayed={type} type="official"/>,     'CARD_LIST',),
+    cardListRoute(  'unofficialCourseTag',        '/unofficial/course-tag',        type => <CourseTagApp           typeDisplayed={type} type="unofficial"/>,   'CARD_LIST',),
+    cardListRoute(  'makerCentralCourseTag',      '/maker-central/course-tag',     type => <CourseTagApp           typeDisplayed={type} type="makerCentral"/>, 'CARD_LIST',),
+
+    cardListRoute(  'everyInstrument',            '/every/instrument',             type => <InstrumentApp          typeDisplayed={type}/>,                     'CARD_LIST',),
+
+    cardListRoute(  'everyEditorVoice',           '/every/editor-voice',           type => <EditorVoiceApp         typeDisplayed={type}/>,                     'CARD_LIST',),
 ].flat()

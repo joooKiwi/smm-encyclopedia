@@ -9,8 +9,14 @@ import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
 import {unfinishedText}           from 'app/tools/text/UnfinishedText'
 import {AbstractTableApp}         from 'app/withInterpreter/AbstractTableApp'
 import {MysteryMushrooms}         from 'core/mysteryMushroom/MysteryMushrooms'
+import {OtherWordInTheGames}      from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}   from 'lang/components/translationMethods'
 
+//region -------------------- Import from deconstruction --------------------
+
+const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
 export default class MysteryMushroomApp
     extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>> {
 
@@ -22,22 +28,22 @@ export default class MysteryMushroomApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyMysteryMushrooms (list)'
+        return 'everyMysteryMushroom (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyMysteryMushrooms (card)'
+        return 'everyMysteryMushroom (card)'
     }
 
     protected override _createTableRouteName(): EveryPossibleRouteNames {
-        return 'everyMysteryMushrooms (table)'
+        return 'everyMysteryMushroom (table)'
     }
 
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('mystery mushroom.all', {
-            singularName: unfinishedText('Mystery Mushroom'),//TODO add Mystery Mushroom (singular form)
-            pluralName: unfinishedText('Mystery Mushrooms'),//TODO add Mystery Mushroom (plural form)
+            singularName: MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName).toLowerCase(),
+            pluralName: MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName).toLowerCase(),
         },)
     }
 
@@ -117,8 +123,8 @@ export default class MysteryMushroomApp
             public get tableProperties(): SimplifiedTableProperties {
                 return {
                     caption: gameContentTranslation('mystery mushroom.all', {
-                        singularName: unfinishedText('Mystery Mushroom'),//TODO add Mystery Mushroom (singular form)
-                        pluralName: unfinishedText('Mystery Mushrooms'),//TODO add Mystery Mushroom (plural form)
+                        singularName: MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName).toLowerCase(),
+                        pluralName: MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName).toLowerCase(),
                     },),
                 }
             }

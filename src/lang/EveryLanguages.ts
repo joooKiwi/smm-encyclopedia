@@ -384,7 +384,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.traditionalChinese
         }
 
-    }(false, 'zh-T',  'zh-TW', 'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,)
+    }(false, 'zh-tw', 'zh-TW', 'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,)
     public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
 
         public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
@@ -396,7 +396,7 @@ export abstract class EveryLanguages
             return classWithEveryLanguages.simplifiedChinese
         }
 
-    } (false, 'zh-S',  'zh-CN', 'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,)
+    } (false, 'zh-cn', 'zh-CN', 'Simplified chinese',   '简体中文',              'Simplified',  EveryLanguages.CHINESE,)
     public static readonly KOREAN =              new class EveryLanguages_Korean extends EveryLanguages {
 
         //region -------------------- Space getter methods --------------------
@@ -842,11 +842,11 @@ export abstract class EveryLanguages
     }
 
     public static get values(): CollectionHolder<EveryLanguages> {
-        return Enum.getValuesOn(EveryLanguages)
+        return Enum.getValuesOn(this,)
     }
 
-    public static [Symbol.iterator]() {
-        return this.values[Symbol.iterator]()
+    public static* [Symbol.iterator](): IterableIterator<EveryLanguages> {
+        yield* this.values
     }
 
     //endregion -------------------- Enum methods --------------------

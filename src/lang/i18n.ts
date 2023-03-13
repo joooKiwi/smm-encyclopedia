@@ -2,16 +2,16 @@ import englishLanguage                 from 'lang/locale/en/language.json'
 import englishContent                  from 'lang/locale/en/content.json'
 import englishGameContent              from 'lang/locale/en/gameContent.json'
 import englishEntityContent            from 'lang/locale/en/entityContent.json'
-import americanEnglishContent          from 'lang/locale/en/en_AM/content.json'
-import europeanEnglishContent          from 'lang/locale/en/en_EU/content.json'
+import americanEnglishContent          from 'lang/locale/en/en-AM/content.json'
+import europeanEnglishContent          from 'lang/locale/en/en-EU/content.json'
 import frenchLanguage                  from 'lang/locale/fr/language.json'
 import frenchContent                   from 'lang/locale/fr/content.json'
 import frenchGameContent               from 'lang/locale/fr/gameContent.json'
 import frenchEntityContent             from 'lang/locale/fr/entityContent.json'
-import canadianFrenchContent           from 'lang/locale/fr/fr_CA/content.json'
-import canadianFrenchGameContent       from 'lang/locale/fr/fr_CA/gameContent.json'
-import europeanFrenchContent           from 'lang/locale/fr/fr_EU/content.json'
-import europeanFrenchGameContent       from 'lang/locale/fr/fr_EU/gameContent.json'
+import canadianFrenchContent           from 'lang/locale/fr/fr-CA/content.json'
+import canadianFrenchGameContent       from 'lang/locale/fr/fr-CA/gameContent.json'
+import europeanFrenchContent           from 'lang/locale/fr/fr-EU/content.json'
+import europeanFrenchGameContent       from 'lang/locale/fr/fr-EU/gameContent.json'
 import germanLanguage                  from 'lang/locale/de/language.json'
 import germanContent                   from 'lang/locale/de/content.json'
 import germanGameContent               from 'lang/locale/de/gameContent.json'
@@ -20,10 +20,10 @@ import spanishLanguage                 from 'lang/locale/es/language.json'
 import spanishContent                  from 'lang/locale/es/content.json'
 import spanishGameContent              from 'lang/locale/es/gameContent.json'
 import spanishEntityContent            from 'lang/locale/es/entityContent.json'
-import americanSpanishContent          from 'lang/locale/es/es_AM/content.json'
-import americanSpanishEntityContent    from 'lang/locale/es/es_AM/entityContent.json'
-import europeanSpanishContent          from 'lang/locale/es/es_EU/content.json'
-import europeanSpanishEntityContent    from 'lang/locale/es/es_EU/entityContent.json'
+import americanSpanishContent          from 'lang/locale/es/es-AM/content.json'
+import americanSpanishEntityContent    from 'lang/locale/es/es-AM/entityContent.json'
+import europeanSpanishContent          from 'lang/locale/es/es-EU/content.json'
+import europeanSpanishEntityContent    from 'lang/locale/es/es-EU/entityContent.json'
 import italianLanguage                 from 'lang/locale/it/language.json'
 import italianContent                  from 'lang/locale/it/content.json'
 import italianGameContent              from 'lang/locale/it/gameContent.json'
@@ -36,8 +36,8 @@ import portugueseLanguage              from 'lang/locale/pt/language.json'
 import portugueseContent               from 'lang/locale/pt/content.json'
 import portugueseGameContent           from 'lang/locale/pt/gameContent.json'
 import portugueseEntityContent         from 'lang/locale/pt/entityContent.json'
-import americanPortugueseContent       from 'lang/locale/pt/pt_AM/content.json'
-import europeanPortugueseContent       from 'lang/locale/pt/pt_EU/content.json'
+import americanPortugueseContent       from 'lang/locale/pt/pt-AM/content.json'
+import europeanPortugueseContent       from 'lang/locale/pt/pt-EU/content.json'
 import russianLanguage                 from 'lang/locale/ru/language.json'
 import russianContent                  from 'lang/locale/ru/content.json'
 import russianGameContent              from 'lang/locale/ru/gameContent.json'
@@ -50,14 +50,14 @@ import chineseLanguage                 from 'lang/locale/zh/language.json'
 import chineseContent                  from 'lang/locale/zh/content.json'
 import chineseGameContent              from 'lang/locale/zh/gameContent.json'
 import chineseEntityContent            from 'lang/locale/zh/entityContent.json'
-import traditionalChineseLanguage      from 'lang/locale/zh/zh_T/language.json'
-import traditionalChineseContent       from 'lang/locale/zh/zh_T/content.json'
-import traditionalChineseGameContent   from 'lang/locale/zh/zh_T/gameContent.json'
-import traditionalChineseEntityContent from 'lang/locale/zh/zh_T/entityContent.json'
-import simplifiedChineseLanguage       from 'lang/locale/zh/zh_S/language.json'
-import simplifiedChineseContent        from 'lang/locale/zh/zh_S/content.json'
-import simplifiedChineseGameContent    from 'lang/locale/zh/zh_S/gameContent.json'
-import simplifiedChineseEntityContent  from 'lang/locale/zh/zh_S/entityContent.json'
+import traditionalChineseLanguage      from 'lang/locale/zh/zh-tw/language.json'
+import traditionalChineseContent       from 'lang/locale/zh/zh-tw/content.json'
+import traditionalChineseGameContent   from 'lang/locale/zh/zh-tw/gameContent.json'
+import traditionalChineseEntityContent from 'lang/locale/zh/zh-tw/entityContent.json'
+import simplifiedChineseLanguage       from 'lang/locale/zh/zh-cn/language.json'
+import simplifiedChineseContent        from 'lang/locale/zh/zh-cn/content.json'
+import simplifiedChineseGameContent    from 'lang/locale/zh/zh-cn/gameContent.json'
+import simplifiedChineseEntityContent  from 'lang/locale/zh/zh-cn/entityContent.json'
 import koreanLanguage                  from 'lang/locale/ko/language.json'
 import koreanContent                   from 'lang/locale/ko/content.json'
 import koreanGameContent               from 'lang/locale/ko/gameContent.json'
@@ -87,10 +87,10 @@ const resources: Resource = {
         gameContent: englishGameContent,
         entityContent: englishEntityContent,
     },
-    en_AM: {
+    'en-AM': {
         content: americanEnglishContent,
     },
-    en_EU: {
+    'en-EU': {
         content: europeanEnglishContent,
     },
 
@@ -103,11 +103,11 @@ const resources: Resource = {
         gameContent: frenchGameContent,
         entityContent: frenchEntityContent,
     },
-    fr_CA: {
+    'fr-CA': {
         content: canadianFrenchContent,
         gameContent: canadianFrenchGameContent,
     },
-    fr_EU: {
+    'fr-EU': {
         content: europeanFrenchContent,
         gameContent: europeanFrenchGameContent,
     },
@@ -131,11 +131,11 @@ const resources: Resource = {
         gameContent: spanishGameContent,
         entityContent: spanishEntityContent,
     },
-    es_AM: {
+    'es-AM': {
         content: americanSpanishContent,
         entityContent: americanSpanishEntityContent,
     },
-    es_EU: {
+    'es-EU': {
         content: europeanSpanishContent,
         entityContent: europeanSpanishEntityContent,
     },
@@ -169,10 +169,10 @@ const resources: Resource = {
         gameContent: portugueseGameContent,
         entityContent: portugueseEntityContent,
     },
-    pt_AM: {
+    'pt-AM': {
         content: americanPortugueseContent,
     },
-    pt_EU: {
+    'pt-EU': {
         content: europeanPortugueseContent,
     },
 
@@ -205,13 +205,13 @@ const resources: Resource = {
         gameContent: chineseGameContent,
         entityContent: chineseEntityContent,
     },
-    zh_T: {
+    'zh-tw': {
         content: traditionalChineseContent,
         language: traditionalChineseLanguage,
         gameContent: traditionalChineseGameContent,
         entityContent: traditionalChineseEntityContent,
     },
-    zh_S: {
+    'zh-cn': {
         content: simplifiedChineseContent,
         language: simplifiedChineseLanguage,
         gameContent: simplifiedChineseGameContent,

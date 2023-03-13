@@ -1,5 +1,3 @@
-import './Name.component.scss'
-
 import {useState} from 'react'
 
 import type {NameProperties} from 'lang/name/component/Name.properties'

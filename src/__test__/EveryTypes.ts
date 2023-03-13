@@ -21,6 +21,7 @@ import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoal
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from 'core/nightEffect/NightEffects.types'
 import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from 'core/officialNotification/OfficialNotifications.types'
+import type {PossibleEnglishName as PossibleEnglishName_OtherWordInTheGame, PossibleEnglishName_Plural as PossiblePluralEnglishName_OtherWordInTheGame, PossibleEnglishName_Singular as PossibleSingularEnglishName_OtherWordInTheGame}                                  from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from 'core/predefinedMessage/PredefinedMessages.types'
 import type {PossibleEnglishName as PossibleEnglishName_SoundEffect}                                                                                                                                                                                                     from 'core/soundEffect/SoundEffects.types'
 import type {PossibleEnglishName as PossibleEnglishName_SoundEffectCategory}                                                                                                                                                                                             from 'core/soundEffectCategory/SoundEffectCategories.types'
@@ -44,6 +45,7 @@ import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCat
 import {MiiCostumes}                 from 'core/miiCostume/MiiCostumes'
 import {MysteryMushrooms}            from 'core/mysteryMushroom/MysteryMushrooms'
 import {OfficialNotifications}       from 'core/officialNotification/OfficialNotifications'
+import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {PredefinedMessages}          from 'core/predefinedMessage/PredefinedMessages'
 import {SoundEffects}                from 'core/soundEffect/SoundEffects'
 import {SoundEffectCategories}       from 'core/soundEffectCategory/SoundEffectCategories'
@@ -152,6 +154,10 @@ export class EveryTypes {
     #everyPossibleName_version_smm?: readonly PossibleName_Version_SMM[]
     #everyPossibleName_version_smm3ds?: readonly PossibleName_Version_SMM3DS[]
     #everyPossibleName_version_smm2?: readonly PossibleName_Version_SMM2[]
+
+    #everyPossibleName_otherWordInTheGame?: readonly PossibleEnglishName_OtherWordInTheGame[]
+    #everyPossibleSingularName_otherWordInTheGame?: readonly PossibleSingularEnglishName_OtherWordInTheGame[]
+    #everyPossiblePluralName_otherWordInTheGame?: readonly PossiblePluralEnglishName_OtherWordInTheGame[]
 
     //endregion -------------------- Fields --------------------
 
@@ -469,6 +475,21 @@ export class EveryTypes {
     }
 
     //endregion -------------------- Version --------------------
+    //region -------------------- Other word in the game --------------------
+
+    public get everyPossibleName_otherWordInTheGame() {
+        return this.#everyPossibleName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => [it.singularEnglishName, it.pluralEnglishName,]).toArray().flat().filter((it): it is PossibleEnglishName_OtherWordInTheGame => it != null)
+    }
+
+    public get everyPossibleSingularName_otherWordInTheGame() {
+        return this.#everyPossibleSingularName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => it.singularEnglishName).toArray()
+    }
+
+    public get everyPossiblePluralName_otherWordInTheGame() {
+        return this.#everyPossiblePluralName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => it.pluralEnglishName).filterNonNull().toArray()
+    }
+
+    //endregion -------------------- Other word in the game --------------------
 
 }
 
