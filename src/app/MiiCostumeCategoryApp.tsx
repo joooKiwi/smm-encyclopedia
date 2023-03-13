@@ -4,7 +4,6 @@ import type {EveryPossibleRouteNames}                              from 'routes/
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import Image                    from 'app/tools/images/Image'
-import TextComponent            from 'app/tools/text/TextComponent'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {MiiCostumeCategories}   from 'core/miiCostumeCategory/MiiCostumeCategories'
@@ -28,11 +27,11 @@ export default class EveryEntityCategoriesApp
 
 
     protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntityCategories (list)'
+        return 'everyMiiCostumeCategories (list)'
     }
 
     protected override _createCardListRouteName(): EveryPossibleRouteNames {
-        return 'everyEntityCategories (card)'
+        return 'everyMiiCostumeCategories (card)'
     }
 
 
