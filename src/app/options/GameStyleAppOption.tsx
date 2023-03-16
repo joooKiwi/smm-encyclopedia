@@ -1,6 +1,5 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/GameStyleAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -14,17 +13,12 @@ import {CommonOptions}                              from 'app/options/CommonOpti
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import YesOrNoResultTextComponent                   from 'app/tools/text/YesOrNoResultTextComponent'
+import NightEffectComponent                         from 'core/nightEffect/NightEffect.component'
 import {Themes}                                     from 'core/theme/Themes'
 import {Times}                                      from 'core/time/Times'
 import {ProjectLanguages}                           from 'lang/ProjectLanguages'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-
-//region -------------------- dynamic imports --------------------
-
-const NightEffectComponent =       lazy(() => import('core/nightEffect/NightEffect.component'))
-const YesOrNoResultTextComponent = lazy(() => import('app/tools/text/YesOrNoResultTextComponent'))
-
-//endregion -------------------- dynamic imports --------------------
 
 export abstract class GameStyleAppOption
     extends Enum<Ordinals, Names>

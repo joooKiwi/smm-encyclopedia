@@ -1,6 +1,5 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/SoundEffectAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -14,15 +13,10 @@ import {CommonOptions}                 from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
 import {Games}                         from 'core/game/Games'
+import SoundEffectComponent            from 'core/soundEffect/SoundEffect.component'
 import {SoundEffects}                  from 'core/soundEffect/SoundEffects'
 import {SoundEffectCategories}         from 'core/soundEffectCategory/SoundEffectCategories'
-
-//region -------------------- dynamic imports --------------------
-
-const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
-const SoundEffectComponent = lazy(() => import('core/soundEffect/SoundEffect.component'))
-
-//endregion -------------------- dynamic imports --------------------
+import SimpleSoundComponent            from 'util/file/sound/component/SimpleSound.component'
 
 export abstract class SoundEffectAppOption
     extends Enum<Ordinals, Names>

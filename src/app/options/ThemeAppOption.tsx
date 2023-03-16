@@ -1,6 +1,5 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/ThemeAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -12,16 +11,11 @@ import type {NullOr}                                           from 'util/types/
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
 import {CommonOptions}                              from 'app/options/CommonOptions'
-import {Themes}                                           from 'core/theme/Themes'
+import Image                                        from 'app/tools/images/Image'
+import NightEffectComponent                         from 'core/nightEffect/NightEffect.component'
+import {Themes}                                     from 'core/theme/Themes'
 import {Times}                                      from 'core/time/Times'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-
-//region -------------------- dynamic imports --------------------
-
-const Image =                lazy(() => import('app/tools/images/Image'))
-const NightEffectComponent = lazy(() => import('core/nightEffect/NightEffect.component'))
-
-//endregion -------------------- dynamic imports --------------------
 
 /**
  * @todo change the SMM1 & SMM2 yes/no result into something different like the sounds or other things

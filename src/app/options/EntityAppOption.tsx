@@ -1,6 +1,6 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment, lazy}                                                          from 'react'
+import {Fragment}                                                                from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -15,26 +15,21 @@ import {CommonOptions}                              from 'app/options/CommonOpti
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
 import {EmptyAppOption}                             from 'app/options/component/EmptyAppOption'
+import Image                                        from 'app/tools/images/Image'
+import TextComponent                                from 'app/tools/text/TextComponent'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import InstrumentPropertyComponent                  from 'core/entity/properties/instrument/InstrumentProperty.component'
 import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
+import LimitComponent                               from 'core/entityLimit/Limit.component'
 import {Games}                                      from 'core/game/Games'
+import GameComponent                                from 'core/game/Game.component'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
+import GameStyleComponent                           from 'core/gameStyle/GameStyle.component'
+import CourseThemeComponent                         from 'core/theme/CourseTheme.component'
 import {Themes}                                     from 'core/theme/Themes'
 import {Times}                                      from 'core/time/Times'
-
-//region -------------------- dynamic imports --------------------
-
-const CourseThemeComponent =        lazy(() => import('core/theme/CourseTheme.component'))
-const EditorVoiceSoundComponent =   lazy(() => import('core/editorVoice/EditorVoiceSound.component'))
-const Image =                       lazy(() => import('app/tools/images/Image'))
-const InstrumentPropertyComponent = lazy(() => import('core/entity/properties/instrument/InstrumentProperty.component'))
-const GameComponent =               lazy(() => import('core/game/Game.component'))
-const GameStyleComponent =          lazy(() => import('core/gameStyle/GameStyle.component'))
-const LimitComponent =              lazy(() => import('core/entityLimit/Limit.component'))
-const TimeComponent =               lazy(() => import('core/time/Time.component'))
-const TextComponent =               lazy(() => import('app/tools/text/TextComponent'))
-
-//endregion -------------------- dynamic imports --------------------
+import TimeComponent                                from 'core/time/Time.component'
 
 /**
  * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null

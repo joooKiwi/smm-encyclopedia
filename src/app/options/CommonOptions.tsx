@@ -1,5 +1,4 @@
 import type {Enum} from '@joookiwi/enumerable/dist/types'
-import {lazy}      from 'react'
 
 import type {SingleHeaderContent, SingleHeadersContent} from 'app/tools/table/SimpleHeader'
 import type {ClassWithEnglishName}                      from 'core/ClassWithEnglishName'
@@ -13,16 +12,11 @@ import type {ImageFile}                                 from 'util/file/image/Im
 import type {ReactElement}                              from 'util/react/ReactProperties'
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
+import Image                                             from 'app/tools/images/Image'
 import {Games}                                           from 'core/game/Games'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {EmptyStringName}                                 from 'lang/name/EmptyStringName'
-
-//region -------------------- dynamic imports --------------------
-
-const Image =         lazy(() => import('app/tools/images/Image'))
-const NameComponent = lazy(() => import('lang/name/component/Name.component'))
-
-//endregion -------------------- dynamic imports --------------------
+import NameComponent                                     from 'lang/name/component/Name.component'
 
 /**
  * @singleton

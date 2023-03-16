@@ -1,6 +1,5 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/MiiCostumeAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -14,14 +13,9 @@ import {CommonOptions}                 from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
 import {EmptyAppOption}                from 'app/options/component/EmptyAppOption'
+import Image                           from 'app/tools/images/Image'
 import {MiiCostumeCategories}          from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {contentTranslation}            from 'lang/components/translationMethods'
-
-//region -------------------- dynamic imports --------------------
-
-const Image = lazy(() => import('app/tools/images/Image'))
-
-//endregion -------------------- dynamic imports --------------------
 
 /**
  * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null

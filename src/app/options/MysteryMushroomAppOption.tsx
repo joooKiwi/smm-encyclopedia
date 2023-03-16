@@ -1,32 +1,27 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment, lazy}                                                          from 'react'
+import {Fragment}                                                                from 'react'
 
-import type {Names, Ordinals, PossibleMysteryMushroomType}            from 'app/options/MysteryMushroomAppOption.types'
-import type {AppOptionWithContent, PossibleRenderReactElement}        from 'app/options/component/AppOptionWithContent'
-import type {AppOptionWithTable}                                      from 'app/options/component/AppOptionWithTable'
-import type {SingleHeaderContent}                                     from 'app/tools/table/SimpleHeader'
-import type {MysteryMushroom}                                         from 'core/mysteryMushroom/MysteryMushroom'
-import type {MysteryMushroomImageFile as ImageFile}                   from 'core/mysteryMushroom/file/MysteryMushroomImageFile'
-import type {MysteryMushroomSoundFile as SoundFile}                   from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
-import type {ReactElement}                                            from 'util/react/ReactProperties'
-import type {Nullable, NullOr}                                        from 'util/types/nullable'
-import type {NotApplicable}                                           from 'util/types/variables'
+import type {Names, Ordinals, PossibleMysteryMushroomType}     from 'app/options/MysteryMushroomAppOption.types'
+import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
+import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
+import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
+import type {MysteryMushroom}                                  from 'core/mysteryMushroom/MysteryMushroom'
+import type {MysteryMushroomImageFile as ImageFile}            from 'core/mysteryMushroom/file/MysteryMushroomImageFile'
+import type {MysteryMushroomSoundFile as SoundFile}            from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {ReactElement}                                     from 'util/react/ReactProperties'
+import type {Nullable, NullOr}                                 from 'util/types/nullable'
+import type {NotApplicable}                                    from 'util/types/variables'
 
-import {MysteryMushrooms}              from 'core/mysteryMushroom/MysteryMushrooms'
 import {CommonOptions}                 from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
+import Image                           from 'app/tools/images/Image'
 import TextComponent                   from 'app/tools/text/TextComponent'
+import {MysteryMushrooms}              from 'core/mysteryMushroom/MysteryMushrooms'
 import {ProjectLanguages}              from 'lang/ProjectLanguages'
-
-//region -------------------- dynamic imports --------------------
-
-const NameComponent =        lazy(() => import('lang/name/component/Name.component'))
-const Image =                lazy(() => import('app/tools/images/Image'))
-const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
-
-//endregion -------------------- dynamic imports --------------------
+import NameComponent                   from 'lang/name/component/Name.component'
+import SimpleSoundComponent            from 'util/file/sound/component/SimpleSound.component'
 
 export abstract class MysteryMushroomAppOption
     extends Enum<Ordinals, Names> {

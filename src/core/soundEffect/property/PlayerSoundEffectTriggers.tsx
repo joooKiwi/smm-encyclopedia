@@ -1,6 +1,5 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
@@ -10,15 +9,10 @@ import type {ReactElement}                            from 'util/react/ReactProp
 import type {Nullable}                                from 'util/types/nullable'
 
 import UnfinishedText           from 'app/tools/text/UnfinishedText'
+import Image                    from 'app/tools/images/Image'
+import TextComponent            from 'app/tools/text/TextComponent'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {assert}                 from 'util/utilitiesMethods'
-
-//region -------------------- dynamic imports --------------------
-
-const Image =         lazy(() => import('app/tools/images/Image'))
-const TextComponent = lazy(() => import('app/tools/text/TextComponent'))
-
-//endregion -------------------- dynamic imports --------------------
 
 export class PlayerSoundEffectTriggers
     extends Enum<Ordinals, Names>
