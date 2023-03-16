@@ -569,23 +569,23 @@ export class OfficialNotifications
 
 
     protected _addCourse(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.course = (COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName)).toLowerCase()
+        keyMap.course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName).toLowerCase()
         return keyMap
     }
 
     protected _addCourses(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.courses = (COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName)).toLowerCase()
+        keyMap.courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName).toLowerCase()
         return keyMap
     }
 
 
     protected _addWorldRecord(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.worldRecord = (WORLD_RECORD.singularNameOnReferenceOrNull ?? unfinishedText(WORLD_RECORD.singularEnglishName)).toLowerCase()
+        keyMap.worldRecord = WORLD_RECORD.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(WORLD_RECORD.singularEnglishName).toLowerCase()
         return keyMap
     }
 
     protected _addWorldRecords(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.worldRecords = (WORLD_RECORD.pluralNameOnReferenceOrNull ?? unfinishedText(WORLD_RECORD.pluralEnglishName)).toLowerCase()
+        keyMap.worldRecords = WORLD_RECORD.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(WORLD_RECORD.pluralEnglishName).toLowerCase()
         return keyMap
     }
 

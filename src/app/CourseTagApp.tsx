@@ -55,10 +55,10 @@ export default class CourseTagApp
 
     protected override _createTitleContent(): ReactElementOrString {
         return gameContentTranslation('course tag.all', {
-            course: (COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName)).toLowerCase(),
-            courses: (COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName)).toLowerCase(),
-            tag: TAG.singularNameOnReference.toLowerCase(),
-            tags: TAG.pluralNameOnReference.toLowerCase(),
+            course: COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName).toLowerCase(),
+            courses: COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName).toLowerCase(),
+            tag: TAG.singularLowerCaseNameOnReference,
+            tags: TAG.pluralLowerCaseNameOnReference,
         },)
     }
 
