@@ -32,6 +32,19 @@
     text-align: center;
   }
 
+  .nightDesert-header-image-container {
+    width: fit-content;
+
+    .night-image {
+      position: absolute;
+      top: 0;
+      right: 0;
+      max-height: calc(.75cm / 1.5);
+      background-color: rgba(var(--bs-dark-300-rgb), .5,)
+    }
+
+  }
+
 }
 
 .images-container, .gameContentImages-container, .themeContentImages-container {
