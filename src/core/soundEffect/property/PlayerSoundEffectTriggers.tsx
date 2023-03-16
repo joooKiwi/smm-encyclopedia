@@ -8,11 +8,18 @@ import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/pro
 import type {ReactElement}                            from 'util/react/ReactProperties'
 import type {Nullable}                                from 'util/types/nullable'
 
-import UnfinishedText           from 'app/tools/text/UnfinishedText'
-import Image                    from 'app/tools/images/Image'
-import TextComponent            from 'app/tools/text/TextComponent'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-import {assert}                 from 'util/utilitiesMethods'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
+import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import Image                            from 'app/tools/images/Image'
+import TextComponent                    from 'app/tools/text/TextComponent'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import {assert}                         from 'util/utilitiesMethods'
+
+//region -------------------- Import from deconstruction --------------------
+
+const {PLAYER, POWER_UP,} = OtherWordInTheGames
+
+//endregion -------------------- Import from deconstruction --------------------
 
 export class PlayerSoundEffectTriggers
     extends Enum<Ordinals, Names>
@@ -270,14 +277,16 @@ export class PlayerSoundEffectTriggers
     //region -------------------- Component methods --------------------
 
     protected _addPowerUpLink(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        //TODO add power-up translation
-        keyMap.powerUp = <span key={`${key} - ${this.name} (power-up)`} className="text-decoration-underline"><UnfinishedText>power-up</UnfinishedText></span>
+        keyMap.powerUp = <span key={`${key} - ${this.name} (power-up)`} className="text-decoration-underline">{
+            POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName).toLowerCase()
+        }</span>
         return keyMap
     }
 
     protected _addPlayerLink(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        //TODO add players translation
-        keyMap.player = <span key={`${key} - ${this.name} (players)`} className="text-decoration-underline"><UnfinishedText>player</UnfinishedText></span>
+        keyMap.player = <span key={`${key} - ${this.name} (players)`} className="text-decoration-underline">{
+            PLAYER.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(PLAYER.singularEnglishName).toLowerCase()
+        }</span>
         return keyMap
     }
 
