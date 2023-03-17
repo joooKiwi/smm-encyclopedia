@@ -1,2 +1,0 @@
-.music-block,.music-block-with-comment{display:flex;position:relative}.music-block-with-comment:before,.music-block:before{background-image:var(--music-block-image);background-size:100%;content:"";display:inline-block;height:.5cm;width:.5cm}.music-block-with-comment:after{background-color:rgba(var(--bs-red-500-rgb),50%);border-radius:var(--bs-border-circle-radius);color:var(--bs-black);content:"!";font-size:.4rem;font-weight:var(--bs-font-weight-bold);position:absolute;right:-2px;text-align:center;top:-2px;width:.25cm}
-/*# sourceMappingURL=861.3bc3ed79.chunk.css.map*/
