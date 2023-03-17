@@ -1,6 +1,6 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.17.0-beta",
+  "version": "0.17.1-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "repository": {
@@ -27,7 +27,7 @@
     "prebuild": "npm run prepare-project",
     "build": "react-scripts build",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -m \"Deployment of the version 0.17 (beta)\" -d build"
+    "deploy": "gh-pages -m \"Deployment of the version 0.17.1 (beta)\" -d build"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
