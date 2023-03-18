@@ -21,19 +21,19 @@ jobs:
         node-version: [18.x]
 
     steps:
-      - name: Repository checkout
+      - name: Checkout of the repository
         uses: actions/checkout@v3
 
-      - name: Node.js (v${{matrix.node-version}}) configuration
+      - name: Configuration of the Node v${{matrix.node-version}} setup
         uses: actions/setup-node@v3
         with:
           node-version: ${{matrix.node-version}}
           cache: 'npm'
 
-      - name: Dependencies installation
+      - name: Installation of the dependencies (for NPM)
         run: npm ci
 
-      - name: Application deployment
+      - name: Deployment of the application
         run: |
           git config --global user.name $user_name
           git config --global user.email $user_email
