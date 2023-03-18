@@ -6,7 +6,7 @@ import type {ReactState}                   from 'util/react/ReactState'
 
 import {EveryLanguages}   from 'lang/EveryLanguages'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
-import Routes             from 'routes/Routes'
+import Routes             from 'route/Routes'
 
 /**
  *

@@ -1,9 +1,9 @@
 import type {Location} from 'history'
 
-import type {EveryPossibleRouteNames, EveryPossibleRoutePartialPaths, EveryPossibleRoutes} from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames, EveryPossibleRoutePartialPaths, EveryPossibleRoutes} from 'route/everyRoutes.types'
 
 import {ProjectLanguages}  from 'lang/ProjectLanguages'
-import {everySimpleRoutes} from 'routes/everyRoutes'
+import {everySimpleRoutes} from 'route/everyRoutes'
 import {assert}            from 'util/utilitiesMethods'
 
 export function route(partialPath: EveryPossibleRoutePartialPaths, language?: ProjectLanguages,): EveryPossibleRoutes

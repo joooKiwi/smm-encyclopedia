@@ -1,4 +1,4 @@
-import type {SimpleRoute} from 'routes/SimpleRoute'
+import type {SimpleRoute} from 'route/SimpleRoute'
 
 /**
  * @provider

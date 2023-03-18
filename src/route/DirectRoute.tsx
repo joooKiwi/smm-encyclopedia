@@ -1,6 +1,6 @@
 import {Fragment} from 'react'
 
-import type {EveryPossibleRouteInstance} from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
 import type {ReactProperties}            from 'util/react/ReactProperties'
 
 import {ProjectLanguages} from 'lang/ProjectLanguages'

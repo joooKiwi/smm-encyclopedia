@@ -1,10 +1,10 @@
-import type {RouteGroup}          from 'routes/RouteGroup'
-import type {RedirectRoute}       from 'routes/RedirectRoute'
-import type {SimpleRouteArgument} from 'routes/SimpleRouteArgument'
-import type {SimpleRoute}         from 'routes/SimpleRoute'
+import type {RouteGroup}          from 'route/RouteGroup'
+import type {RedirectRoute}       from 'route/RedirectRoute'
+import type {SimpleRouteArgument} from 'route/SimpleRouteArgument'
+import type {SimpleRoute}         from 'route/SimpleRoute'
 
-import {RedirectRouteContainer} from 'routes/RedirectRoute.container'
-import {SimpleRouteContainer}   from 'routes/SimpleRoute.container'
+import {RedirectRouteContainer} from 'route/RedirectRoute.container'
+import {SimpleRouteContainer}   from 'route/SimpleRoute.container'
 
 export class RouteGroupContainer<NAME extends string, PATH extends string, REDIRECTS extends readonly SimpleRouteArgument<string, string>[], >
     implements RouteGroup<NAME, PATH, REDIRECTS> {

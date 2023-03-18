@@ -4,7 +4,7 @@ import type {ThemeAppProperties}                                   from 'app/App
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {Themes}                                               from 'core/theme/Themes'
-import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'

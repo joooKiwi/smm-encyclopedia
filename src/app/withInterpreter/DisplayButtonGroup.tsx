@@ -2,7 +2,7 @@ import {Link, useLocation} from 'react-router-dom'
 
 import type {DisplayButtonGroupProperties, DisplayButtonProperties} from 'app/withInterpreter/DisplayButtonGroup.properties'
 
-import {route} from 'routes/route'
+import {route} from 'route/route'
 
 /**
  * Create a button to be used in a "button group" for displaying a specific "view display".

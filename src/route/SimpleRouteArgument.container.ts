@@ -1,4 +1,4 @@
-import type {SimpleRouteArgument} from 'routes/SimpleRouteArgument'
+import type {SimpleRouteArgument} from 'route/SimpleRouteArgument'
 
 export class SimpleRouteArgumentContainer<NAME extends string, REDIRECT_PATH extends string, >
     implements SimpleRouteArgument<NAME, REDIRECT_PATH> {

@@ -5,7 +5,7 @@ import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/int
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {EntityLimits}                                         from 'core/entityLimit/EntityLimits'
-import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {EntityLimitAppOption}                       from 'app/options/EntityLimitAppOption'

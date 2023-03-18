@@ -6,7 +6,7 @@ import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 import Tooltip               from 'bootstrap/tooltip/Tooltip'
 import {languageTranslation} from 'lang/components/translationMethods'
 import {ProjectLanguages}    from 'lang/ProjectLanguages'
-import {route}               from 'routes/route'
+import {route}               from 'route/route'
 import {StringContainer}     from 'util/StringContainer'
 
 export interface SingleLanguageChangerLinkProperties

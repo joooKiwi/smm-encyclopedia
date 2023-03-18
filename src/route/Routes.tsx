@@ -3,9 +3,9 @@ import {Suspense}                                           from 'react'
 
 import LoadingApp          from 'app/LoadingApp'
 import {ProjectLanguages}  from 'lang/ProjectLanguages'
-import DirectRoute         from 'routes/DirectRoute'
-import {everySimpleRoutes} from 'routes/everyRoutes'
-import {redirectToHome}    from 'routes/redirectToHome'
+import DirectRoute         from 'route/DirectRoute'
+import {everySimpleRoutes} from 'route/everyRoutes'
+import {redirectToHome}    from 'route/redirectToHome'
 
 /**
  *

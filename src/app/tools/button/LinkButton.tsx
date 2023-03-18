@@ -1,11 +1,11 @@
 import {Link} from 'react-router-dom'
 
 import type {BootstrapColor}                                                     from 'bootstrap/Bootstrap.types'
-import type {EveryPossibleRouteNames}                                            from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames}                                            from 'route/everyRoutes.types'
 import type {ReactElementOrString, ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 import type {Nullable}                                                           from 'util/types/nullable'
 
-import {route} from 'routes/route'
+import {route} from 'route/route'
 
 interface LinkButtonsProperties
     extends ReactProperties {

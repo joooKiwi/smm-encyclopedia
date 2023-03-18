@@ -1,9 +1,9 @@
 import {Navigate} from 'react-router-dom'
 
-import type {RedirectRoute} from 'routes/RedirectRoute'
+import type {RedirectRoute} from 'route/RedirectRoute'
 
 import {ProjectLanguages}     from 'lang/ProjectLanguages'
-import {SimpleRouteContainer} from 'routes/SimpleRoute.container'
+import {SimpleRouteContainer} from 'route/SimpleRoute.container'
 import {assert}               from 'util/utilitiesMethods'
 
 export class RedirectRouteContainer<NAME extends string, PATH extends string, REDIRECT_PATH extends string, >

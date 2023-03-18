@@ -1,9 +1,9 @@
 import {lazy} from 'react'
 
 import type {Names as ViewDisplayName} from 'app/withInterpreter/ViewDisplays.types'
-import type {SimpleRoute}              from 'routes/SimpleRoute'
+import type {SimpleRoute}              from 'route/SimpleRoute'
 
-import {SimpleRouteContainer}         from 'routes/SimpleRoute.container'
+import {SimpleRouteContainer} from 'route/SimpleRoute.container'
 
 //region -------------------- Dynamic imports --------------------
 

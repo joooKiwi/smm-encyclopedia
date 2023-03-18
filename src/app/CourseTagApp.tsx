@@ -5,9 +5,9 @@ import type {AppInterpreterWithCardList,}                          from 'app/int
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {CourseTags}                                           from 'core/courseTag/CourseTags'
-import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
-import type {NullOr}                                               from 'util/types/nullable'
+import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
+import type {NullOr}                                               from 'util/types/nullable'
 
 import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
