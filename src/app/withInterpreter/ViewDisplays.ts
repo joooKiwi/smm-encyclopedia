@@ -29,7 +29,7 @@ export abstract class ViewDisplays
             return `${path} (table)` as const
         }
 
-    }('table', 'table',)
+    }('table', 'table', 'table',)
     public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
 
         public override createComponent(app: PossibleApp,): ReactElement {
@@ -41,7 +41,7 @@ export abstract class ViewDisplays
             return `${path} (list)` as const
         }
 
-    }('simple-list', 'list',)
+    }('simple-list', 'list', 'list',)
     public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
 
         public override createComponent(app: PossibleApp,): ReactElement {
@@ -53,7 +53,7 @@ export abstract class ViewDisplays
             return `${path} (card)` as const
         }
 
-    }('card-list', 'card-list',)
+    }('card-list', 'card', 'card-list',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -64,20 +64,28 @@ export abstract class ViewDisplays
     //region -------------------- Fields --------------------
 
     readonly #type
+    readonly #routeType
     readonly #htmlType
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    private constructor(type: Type, htmlType: HTMLType,) {
+    private constructor(type: Type, routeType: RouteType, htmlType: HTMLType,) {
         super()
         this.#type = type
+        this.#routeType = routeType
         this.#htmlType = htmlType
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get type(): Type {
         return this.#type
+    }
+
+    public get routeType(): RouteType {
+        return this.#routeType
     }
 
     public get htmlType(): HTMLType {
