@@ -17,7 +17,7 @@ export class RedirectRouteContainer<NAME extends string, PATH extends string, RE
     //endregion -------------------- Fields --------------------
 
     private constructor(name: NAME, path: PATH, redirectPath: REDIRECT_PATH,) {
-        super(name, path, () => <Navigate replace to={`/${ProjectLanguages.currentLanguage.projectAcronym}${redirectPath}`}/>,)
+        super(name, path, () => <Navigate replace to={`/${ProjectLanguages.current.projectAcronym}${redirectPath}`}/>,)
         this.#redirectPath = redirectPath
     }
 

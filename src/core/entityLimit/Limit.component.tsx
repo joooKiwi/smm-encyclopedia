@@ -40,7 +40,7 @@ export default function LimitComponent({id, limits, displayAcronymIfApplicable,}
 }
 
 function createReturnOfLine(selectedLimits: readonly EntityLimits[], index: number,) {
-    return index === selectedLimits.length - 1 ? <></> : <>{ProjectLanguages.currentLanguage.comma}<br/></>
+    return index === selectedLimits.length - 1 ? <></> : <>{ProjectLanguages.current.comma}<br/></>
 }
 
 function createSingleComponent(id: Id, entityLimit: EntityLimits, displayAcronymIfApplicable: boolean,) {

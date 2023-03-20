@@ -9,16 +9,19 @@ import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, B
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/LanguageEnumerable'
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'lang/ProjectLanguages.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
+import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
 import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/types/nullable'
 import type {EmptyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'util/types/variables'
 
-import {Characters}   from 'lang/Characters'
-import {SPACE}        from 'util/commonVariables'
-import {EMPTY_STRING} from 'util/emptyVariables'
+import {Characters}                             from 'lang/Characters'
+import {SPACE}                                  from 'util/commonVariables'
+import {EMPTY_STRING}                           from 'util/emptyVariables'
+import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
-    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, NullOr<PossibleDifferentWord>> {
+    implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, NullOr<PossibleDifferentWord>>,
+        ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
 
@@ -32,8 +35,8 @@ export abstract class EveryLanguages
 
         //endregion -------------------- Space getter methods --------------------
 
-        public override get isCurrentLanguage(): boolean {
-            return EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage || EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage
+        public override get isCurrent(): boolean {
+            return EveryLanguages.AMERICAN_ENGLISH.isCurrent || EveryLanguages.EUROPEAN_ENGLISH.isCurrent
         }
 
         public override get isDefaultLanguage(): boolean {
@@ -58,8 +61,8 @@ export abstract class EveryLanguages
     }           (true,  'en',    'en',    'English',              'English',)
     public static readonly AMERICAN_ENGLISH =    new class EveryLanguages_AmericanEnglish extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.EUROPEAN_ENGLISH.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.EUROPEAN_ENGLISH.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanEnglish']
@@ -75,8 +78,8 @@ export abstract class EveryLanguages
     }   (true,  'en-AM', 'en-US', 'English (America)',    'English (America)',   'America',      EveryLanguages.ENGLISH,)
     public static readonly EUROPEAN_ENGLISH =    new class EveryLanguages_EuropeanEnglish extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.AMERICAN_ENGLISH.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.AMERICAN_ENGLISH.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanEnglish']
@@ -100,8 +103,8 @@ export abstract class EveryLanguages
 
         //endregion -------------------- Space getter methods --------------------
 
-        public override get isCurrentLanguage(): boolean {
-            return EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage || EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage
+        public override get isCurrent(): boolean {
+            return EveryLanguages.CANADIAN_FRENCH.isCurrent || EveryLanguages.EUROPEAN_FRENCH.isCurrent
         }
 
         public override get isDefaultLanguage(): boolean {
@@ -126,8 +129,8 @@ export abstract class EveryLanguages
     }            (true,  'fr',    'fr',    'French',               'Français',)
     public static readonly CANADIAN_FRENCH =     new class EveryLanguages_CanadianFrench extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.EUROPEAN_FRENCH.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.EUROPEAN_FRENCH.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['canadianFrench']
@@ -143,8 +146,8 @@ export abstract class EveryLanguages
     }    (true,  'fr-CA', 'fr-CA', 'French (Canada)',      'Français (Canada)',   'Canada',       EveryLanguages.FRENCH,)
     public static readonly EUROPEAN_FRENCH =     new class EveryLanguages_EuropeanFrench extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.CANADIAN_FRENCH.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.CANADIAN_FRENCH.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanFrench']
@@ -184,8 +187,8 @@ export abstract class EveryLanguages
 
         //endregion -------------------- Space getter methods --------------------
 
-        public override get isCurrentLanguage(): boolean {
-            return EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage || EveryLanguages.EUROPEAN_SPANISH.isCurrentLanguage
+        public override get isCurrent(): boolean {
+            return EveryLanguages.AMERICAN_SPANISH.isCurrent || EveryLanguages.EUROPEAN_SPANISH.isCurrent
         }
 
         public override get isDefaultLanguage(): boolean {
@@ -205,8 +208,8 @@ export abstract class EveryLanguages
     }           (false, 'es',    'es',    'Spanish',              'Español',)
     public static readonly AMERICAN_SPANISH =    new class EveryLanguages_AmericanSpanish extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.AMERICAN_SPANISH.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanSpanish']
@@ -217,8 +220,8 @@ export abstract class EveryLanguages
     }   (false, 'es-AM', 'es-US', 'Spanish (America)',    'Español (America)',   'America',      EveryLanguages.SPANISH,)
     public static readonly EUROPEAN_SPANISH =    new class EveryLanguages_EuropeanSpanish extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.AMERICAN_SPANISH.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.AMERICAN_SPANISH.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanSpanish']
@@ -269,8 +272,8 @@ export abstract class EveryLanguages
 
         //endregion -------------------- Space getter methods --------------------
 
-        public override get isCurrentLanguage(): boolean {
-            return EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage
+        public override get isCurrent(): boolean {
+            return EveryLanguages.AMERICAN_PORTUGUESE.isCurrent || EveryLanguages.EUROPEAN_PORTUGUESE.isCurrent
         }
 
         public override get isDefaultLanguage(): boolean {
@@ -290,8 +293,8 @@ export abstract class EveryLanguages
     }        (false, 'pt',    'pt',    'Portuguese',           'Português',)
     public static readonly AMERICAN_PORTUGUESE = new class EveryLanguages_AmericanPortuguese extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.EUROPEAN_PORTUGUESE.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.EUROPEAN_PORTUGUESE.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['americanPortuguese']
@@ -302,8 +305,8 @@ export abstract class EveryLanguages
     }(false, 'pt-AM', 'pt-US', 'Portuguese (America)', 'Português (América)', 'America',      EveryLanguages.PORTUGUESE,)
     public static readonly EUROPEAN_PORTUGUESE = new class EveryLanguages_EuropeanPortuguese extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.AMERICAN_PORTUGUESE.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.AMERICAN_PORTUGUESE.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['europeanPortuguese']
@@ -354,8 +357,8 @@ export abstract class EveryLanguages
 
         //endregion -------------------- Space getter methods --------------------
 
-        public override get isCurrentLanguage(): boolean {
-            return EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage || EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage
+        public override get isCurrent(): boolean {
+            return EveryLanguages.TRADITIONAL_CHINESE.isCurrent || EveryLanguages.SIMPLIFIED_CHINESE.isCurrent
         }
 
         public override get isDefaultLanguage(): boolean {
@@ -375,8 +378,8 @@ export abstract class EveryLanguages
     }           (false, 'zh',    'zh',    'Chinese',              '中国人',)
     public static readonly TRADITIONAL_CHINESE = new class EveryLanguages_TraditionalChinese extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.SIMPLIFIED_CHINESE.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.SIMPLIFIED_CHINESE.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['traditionalChinese']
@@ -387,8 +390,8 @@ export abstract class EveryLanguages
     }(false, 'zh-tw', 'zh-TW', 'Traditional chinese',  '繁體中文',              'Traditional', EveryLanguages.CHINESE,)
     public static readonly SIMPLIFIED_CHINESE =  new class EveryLanguages_SimplifiedChinese extends EveryLanguages {
 
-        public override get isCurrentLanguageOrAssociatedWithIt(): boolean {
-            return this.isCurrentLanguage && EveryLanguages.TRADITIONAL_CHINESE.isCurrentLanguage
+        public override get isCurrentOrAssociatedWithIt(): boolean {
+            return this.isCurrent && EveryLanguages.TRADITIONAL_CHINESE.isCurrent
         }
 
         protected override _get<T, U extends AnyClassWithEveryLanguages<T> = AnyClassWithEveryLanguages<T>, >(classWithEveryLanguages: U,): U['simplifiedChinese']
@@ -487,10 +490,40 @@ export abstract class EveryLanguages
     static [index: number]: EveryLanguages
 
     //endregion -------------------- Enum fields --------------------
+    //region -------------------- Companion --------------------
+
+    /**
+     * The reference of the static methods applicable to the class {@link EveryLanguages}
+     *
+     * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
+     * @singleton
+     */
+    public static readonly Companion = class Companion_EveryLanguages extends ClassWithCurrentAndEventImplementation<EveryLanguages> {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: Companion_EveryLanguages
+
+        private constructor() {
+            super(EveryLanguages,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new this()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+        protected override _onSetCurrent(value: EveryLanguages,) {
+            super._onSetCurrent(value)
+            void i18n.changeLanguage(value.projectAcronym)
+        }
+
+    }
+
+    //endregion -------------------- Companion --------------------
     //region -------------------- Fields --------------------
 
-    static #CURRENT_LANGUAGE: EveryLanguages
-    public static INTERNATIONALISATION_SET_CURRENT_LANGUAGE: NullOr<Dispatch<SetStateAction<PossibleInternationalAcronym_Project>>> = null
     protected static readonly _SPACE_EVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, true, false,]
     protected static readonly _SPACE_EVEN_LANGUAGE_WITHOUT_SPACE: SpaceParameterReceived = [false, true,]
     protected static readonly _SPACE_UNEVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, false,]
@@ -522,6 +555,7 @@ export abstract class EveryLanguages
     #numbers?: PossibleNumbers_Array
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(isACompleteLanguage: boolean, projectAcronym: BasicAcronym, internationalAcronym: BasicAcronym, englishName: BasicEnglishName, originalName: BasicOriginalName,)
     private constructor(isACompleteLanguage: boolean, projectAcronym: AdditionalAcronym, internationalAcronym: AdditionalAcronym, englishName: AdditionalEnglishName, originalName: AdditionalOriginalName,)
@@ -538,7 +572,8 @@ export abstract class EveryLanguages
         this.#parent = parent
     }
 
-    //region -------------------- Getter methods --------------------
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter & setter methods --------------------
 
     public get isACompleteLanguage(): boolean {
         return this.#isACompleteLanguage
@@ -608,14 +643,6 @@ export abstract class EveryLanguages
             .filter(it => it !== this)
             .filter(it => it.parent === this)
             .toArray() as PossibleChildrenLanguages
-    }
-
-    public get isCurrentLanguage(): boolean {
-        return this === EveryLanguages.currentLanguage
-    }
-
-    public get isCurrentLanguageOrAssociatedWithIt(): boolean {
-        return this.isCurrentLanguage
     }
 
     public get isDefaultLanguage(): boolean {
@@ -737,8 +764,68 @@ export abstract class EveryLanguages
     }
 
     //endregion -------------------- Characters getter methods --------------------
+    //region -------------------- Getter & setter methods (current) --------------------
 
-    //endregion -------------------- Getter methods --------------------
+    public get isCurrent(): boolean {
+        return this === EveryLanguages.currentOrNull
+    }
+
+    public get isCurrentOrAssociatedWithIt(): boolean {
+        return this.isCurrent
+    }
+
+
+    /** Get the current {@link EveryLanguages language} that may be initialized */
+    public static get currentOrNull(): NullOr<EveryLanguages> {
+        return this.Companion.get.currentOrNull
+    }
+
+    /**
+     * Get the non-nullable current {@link EveryLanguages language}
+     *
+     * @throws ReferenceError The current {@link EveryLanguages language} has not been initialized yet
+     */
+    public static get current(): EveryLanguages {
+        return this.Companion.get.current
+    }
+
+    /**
+     * Set the current {@link EveryLanguages language} held in the {@link EveryLanguages.Companion}
+     *
+     * @param value The {@link EveryLanguages language} to set as the current one
+     */
+    public static set current(value: PossibleValueByEnumerable<EveryLanguages>,) {
+        this.Companion.get.current = value
+    }
+
+
+    /** Get the current {@link EveryLanguages language} event listener or <b>null</b> if it has not been initialized */
+    public static get onSetCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<EveryLanguages>>>> {
+        return this.Companion.get.onSetCurrentEventOrNull
+    }
+
+    /**
+     * Get the non-nullable current {@link EveryLanguages language} event listener
+     *
+     * @throws {ReferenceError} The event listener has not been initialized
+     */
+    public static get onSetCurrentEvent(): Dispatch<SetStateAction<NullOr<EveryLanguages>>> {
+        return this.Companion.get.onSetCurrentEvent
+    }
+
+    /**
+     * Initialize the event listener on the setting of the current {@link EveryLanguages language}
+     *
+     * @param value The event listener to set
+     * @shouldOnlyBeCalledOnce
+     */
+    public static set onSetCurrentEvent(value: Dispatch<SetStateAction<NullOr<EveryLanguages>>>,) {
+        this.Companion.get.onSetCurrentEvent = value
+    }
+
+    //endregion -------------------- Getter & setter methods (current) --------------------
+
+    //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------
 
     protected abstract _get<T, >(classWithEveryLanguages: CompleteClassWithEveryLanguages<T>,): T
@@ -780,25 +867,6 @@ export abstract class EveryLanguages
      */
     #setLanguageToHTML(): this {
         document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.projectAcronym))
-        return this
-    }
-
-    public static get currentLanguage(): EveryLanguages {
-        return this.#CURRENT_LANGUAGE
-    }
-
-    public static set currentLanguage(value: PossibleValueByEnumerable<EveryLanguages>,) {
-        this.setCurrentLanguage(value,)
-    }
-
-    public static setCurrentLanguage(value: PossibleValueByEnumerable<EveryLanguages>,): typeof EveryLanguages {
-        let selectedLanguage = this.getValueByLanguage(value,)
-        if (selectedLanguage.isCurrentLanguage)
-            return this
-
-        const currentLanguage = (this.#CURRENT_LANGUAGE = selectedLanguage.#setLanguageToHTML())
-        i18n.changeLanguage(currentLanguage.projectAcronym)
-        this.INTERNATIONALISATION_SET_CURRENT_LANGUAGE?.(currentLanguage.internationalAcronym as PossibleInternationalAcronym_Project)
         return this
     }
 

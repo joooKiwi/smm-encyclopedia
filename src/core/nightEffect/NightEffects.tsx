@@ -80,8 +80,8 @@ export class NightEffects
 
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             return {
-                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Import.Entities.WATER.reference)!.toLowerCase()}</span>,
-                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.currentLanguage.get(Import.Entities.POISON.reference)!.toLowerCase()}</span>,
+                water: <span key={`${this.englishName} (water)`} className="text-decoration-underline">{ProjectLanguages.current.get(Import.Entities.WATER.reference)!.toLowerCase()}</span>,
+                poison: <span key={`${this.englishName} (poison)`} className="text-decoration-underline">{ProjectLanguages.current.get(Import.Entities.POISON.reference)!.toLowerCase()}</span>,
             }
         }
 

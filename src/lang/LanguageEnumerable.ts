@@ -3,6 +3,7 @@ import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassW
 import type {PossibleAcronym as PossibleAcronym_All, PossibleEnglishName as PossibleEnglishName_All, PossibleInternationalAcronym as PossibleInternationalAcronym_All, PossibleOriginalName as PossibleOriginalName_All, PossibleSpaceCharacter}                from 'lang/EveryLanguages.types'
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from 'lang/ProjectLanguages.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                           from 'lang/name/containers/Language'
+import type {ClassWithIsCurrent}                                                                                                                                                                                                                                from 'util/enumerable/ClassWithIsCurrent'
 import type {NullOr}                                                                                                                                                                                                                                            from 'util/types/nullable'
 
 export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_All | PossibleAcronym_Project,
@@ -10,7 +11,8 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
     ENGLISH_NAME extends | PossibleEnglishName_All | PossibleEnglishName_Project,
     ORIGINAL_NAME extends | PossibleOriginalName_All | PossibleOriginalName_Project,
     DIFFERENT_WORDS extends NullOr<PossibleDifferentWord>, >
-    extends CharactersTrait {
+    extends CharactersTrait,
+        ClassWithIsCurrent {
 
     //region -------------------- Getter methods --------------------
 
@@ -38,9 +40,7 @@ export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_Al
 
     get differentWords(): DIFFERENT_WORDS
 
-    get isCurrentLanguage(): boolean
-
-    get isCurrentLanguageOrAssociatedWithIt(): boolean
+    get isCurrentOrAssociatedWithIt(): boolean
 
     get isDefaultLanguage(): boolean
 

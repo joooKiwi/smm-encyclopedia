@@ -21,9 +21,9 @@ export function route({pathname,}: Location, languageToReplace?: ProjectLanguage
  * </p>
  *
  * @param partialPath_or_name_or_location the {@link Location location} or the {@link EveryPossibleRoutePartialPaths partial path (EveryPossibleRoutePartialPaths)} or the {@link EveryPossibleRouteNames name (EveryPossibleRouteNames)}
- * @param language the language used (or by default {@link ProjectLanguages.currentLanguage the current language})
+ * @param language the language used (or by default {@link ProjectLanguages.current the current language})
  */
-export function route(partialPath_or_name_or_location: PossibleParameterReceived, language: ProjectLanguages = ProjectLanguages.currentLanguage,): EveryPossibleRoutes {
+export function route(partialPath_or_name_or_location: PossibleParameterReceived, language: ProjectLanguages = ProjectLanguages.current,): EveryPossibleRoutes {
     if (typeof partialPath_or_name_or_location === 'string') {
         const simpleRoute = everySimpleRoutes.find(simpleRoute => simpleRoute.path === partialPath_or_name_or_location || simpleRoute.name === partialPath_or_name_or_location)
 
@@ -33,9 +33,9 @@ export function route(partialPath_or_name_or_location: PossibleParameterReceived
 
     const {pathname: pathName} = partialPath_or_name_or_location as Location
 
-    return language.isCurrentLanguage
+    return language.isCurrent
         ? pathName as EveryPossibleRoutes
-        : pathName.replace(ProjectLanguages.currentLanguage.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
+        : pathName.replace(ProjectLanguages.current.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
 }
 
 type PossibleParameterReceived = | EveryPossibleRoutePartialPaths | EveryPossibleRouteNames | Location

@@ -11,8 +11,8 @@ import {route}        from 'route/route'
  * @reactComponent
  */
 export default function DisplayButtonGroup({reactKey: key, views, currentView,}: DisplayButtonGroupProperties,) {
-    return <div key={`${key} (button group)`} id="btn-viewDisplay-container" className="btn-group">{views.map(([view, name,]) =>
-        <DisplayButton reactKey={key} view={view} routeName={name} currentView={currentView}/>
+    return <div key={`${key} (button group container)`} id="btn-viewDisplay-container" className="btn-group">{views.map(([view, name,]) =>
+        <DisplayButton key={`${key} (button group content - ${view})`} reactKey={key} view={view} routeName={name} currentView={currentView}/>
     )}</div>
 }
 

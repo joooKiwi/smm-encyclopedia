@@ -1,20 +1,27 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import type {Dispatch, SetStateAction}                                           from 'react'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {AbstractAppWithInterpreter}      from 'app/withInterpreter/AbstractAppWithInterpreter'
-import type {AbstractCardListApp}             from 'app/withInterpreter/AbstractCardListApp'
-import type {AbstractSimpleListApp}           from 'app/withInterpreter/AbstractSimpleListApp'
-import type {AbstractTableApp}                from 'app/withInterpreter/AbstractTableApp'
-import type {HTMLType, Names, Ordinals, Type} from 'app/withInterpreter/ViewDisplays.types'
-import type {ClassWithType}                   from 'core/ClassWithType'
-import type {ReactElement}                    from 'util/react/ReactProperties'
+import type {AbstractAppWithInterpreter}                 from 'app/withInterpreter/AbstractAppWithInterpreter'
+import type {AbstractCardListApp}                        from 'app/withInterpreter/AbstractCardListApp'
+import type {AbstractSimpleListApp}                      from 'app/withInterpreter/AbstractSimpleListApp'
+import type {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
+import type {HTMLType, Names, Ordinals, RouteType, Type} from 'app/withInterpreter/ViewDisplays.types'
+import type {ClassWithType}                              from 'core/ClassWithType'
+import type {ClassWithIsCurrent}                         from 'util/enumerable/ClassWithIsCurrent'
+import type {ReactElement}                               from 'util/react/ReactProperties'
+import type {Nullable, NullOr}                           from 'util/types/nullable'
 
-import {assert}           from 'util/utilitiesMethods'
-import {Nullable, NullOr} from 'util/types/nullable'
+import {assert}                                 from 'util/utilitiesMethods'
+import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'
 
+/**
+ * @usedByTheRouting
+ */
 export abstract class ViewDisplays
     extends Enum<Ordinals, Names>
-    implements ClassWithType<Type> {
+    implements ClassWithType<Type>,
+        ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
 
@@ -61,6 +68,33 @@ export abstract class ViewDisplays
     static [index: number]: ViewDisplays
 
     //endregion -------------------- Enum fields --------------------
+    //region -------------------- Companion --------------------
+
+    /**
+     * The reference of the static methods applicable to the class {@link ViewDisplays}
+     *
+     * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
+     * @singleton
+     */
+    public static readonly Companion = class Companion_ViewDisplays extends ClassWithCurrentAndEventImplementation<ViewDisplays> {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: Companion_ViewDisplays
+
+        private constructor() {
+            super(ViewDisplays,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new this()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion --------------------
     //region -------------------- Fields --------------------
 
     readonly #type
@@ -91,6 +125,64 @@ export abstract class ViewDisplays
     public get htmlType(): HTMLType {
         return this.#htmlType
     }
+
+    //region -------------------- Getter & setter methods (current) --------------------
+
+    /** The current instance is the current one selected in the application */
+    public get isCurrent(): boolean {
+        return this === ViewDisplays.currentOrNull
+    }
+
+
+    /** Get the current {@link ViewDisplays view display} that may be initialized */
+    public static get currentOrNull(): NullOr<ViewDisplays> {
+        return this.Companion.get.currentOrNull
+    }
+
+    /**
+     * Get the non-nullable current {@link ViewDisplays view display}
+     *
+     * @throws ReferenceError The current {@link ViewDisplays view display} has not been initialized yet
+     */
+    public static get current(): ViewDisplays {
+        return this.Companion.get.current
+    }
+
+    /**
+     * Set the current {@link ViewDisplays view display} held in the {@link ViewDisplays.Companion}
+     *
+     * @param value The {@link ViewDisplays view display} to set as the current one
+     */
+    public static set current(value: PossibleValueByEnumerable<ViewDisplays>,) {
+        this.Companion.get.current = value
+    }
+
+
+    /** Get the current {@link ViewDisplays view display} event listener or <b>null</b> if it has not been initialized */
+    public static get setCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<ViewDisplays>>>> {
+        return this.Companion.get.onSetCurrentEventOrNull
+    }
+
+    /**
+     * Get the non-nullable current {@link ViewDisplays view display} event listener
+     *
+     * @throws {ReferenceError} The event listener has not been initialized
+     */
+    public static get setCurrentEvent(): Dispatch<SetStateAction<NullOr<ViewDisplays>>> {
+        return this.Companion.get.onSetCurrentEvent
+    }
+
+    /**
+     * Initialize the event listener on the setting of the current {@link ViewDisplays view display}
+     *
+     * @param value The event listener to set
+     * @shouldOnlyBeCalledOnce
+     */
+    public static set setCurrentEvent(value: Dispatch<SetStateAction<NullOr<ViewDisplays>>>,) {
+        this.Companion.get.onSetCurrentEvent = value
+    }
+
+    //endregion -------------------- Getter & setter methods (current) --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
