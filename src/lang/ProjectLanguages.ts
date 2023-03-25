@@ -9,11 +9,14 @@ import type {LanguageEnumerable}                                                
 import type {Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/ProjectLanguages.types'
 import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/game/ClassInAnySuperMarioMakerGame'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
+import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'route/ClassUsedInRoute'
 import type {ClassWithCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/enumerable/ClassWithCurrent'
 import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
 import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/types/nullable'
+import type {SingleRetrievableByUrl}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'util/enumerable/SingleRetrievableByUrl'
 
-import {EveryLanguages} from 'lang/EveryLanguages'
+import {EveryLanguages}                       from 'lang/EveryLanguages'
+import {SingleRetrievableByUrlImplementation} from 'util/enumerable/SingleRetrievableByUrl.implementation'
 
 /**
  * <p>
@@ -53,6 +56,7 @@ export class ProjectLanguages
     extends Enum<Ordinals, Names>
     implements LanguageEnumerable<PossibleAcronym, PossibleInternationalAcronym, PossibleEnglishName, PossibleOriginalName, PossibleDifferentWord>,
         ClassWithIsCurrent,
+        ClassUsedInRoute<PossibleAcronym>,
         ClassInAnySuperMarioMakerGame {
 
     //region -------------------- Enum instances --------------------
@@ -90,7 +94,7 @@ export class ProjectLanguages
      * @singleton
      */
     public static readonly Companion = class Companion_ProjectLanguages
-        implements ClassWithCurrent<ProjectLanguages> {
+        implements ClassWithCurrent<ProjectLanguages>, SingleRetrievableByUrl<ProjectLanguages> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -104,6 +108,12 @@ export class ProjectLanguages
         }
 
         //endregion -------------------- Singleton usage --------------------
+        //region -------------------- Fields --------------------
+
+        /** A {@link RegExp regex} to identify the possible {@link ProjectLanguages} in an url */
+        public readonly URL_REGEX = ProjectLanguages.#SingleRetrievableByUrl.get.URL_REGEX
+
+        //endregion -------------------- Fields --------------------
 
         public get currentOrNull(): NullOr<ProjectLanguages> {
             const value = EveryLanguages.currentOrNull
@@ -117,6 +127,38 @@ export class ProjectLanguages
         public set current(value: PossibleValueByEnumerable<ProjectLanguages>,) {
             EveryLanguages.current = ProjectLanguages.getValue(value).language
         }
+
+
+        /**
+         * Get a {@link ProjectLanguages} from an url found or null if there is none
+         *
+         * @param url The url to find the {@link ProjectLanguages language} (if it is found)
+         * @throws {ReferenceError} A fail-safe error on a {@link ProjectLanguages} that was not found
+         */
+        public getInUrl = (url: string,) => ProjectLanguages.#SingleRetrievableByUrl.get.getInUrl(url)
+
+
+    }
+
+    static readonly #SingleRetrievableByUrl = class SingleRetrievableByUrl_ProjectLanguages
+        extends SingleRetrievableByUrlImplementation<ProjectLanguages> {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: SingleRetrievableByUrl_ProjectLanguages
+
+        private constructor() {
+            super()
+        }
+
+        public static get get() {
+            return this.#instance ??= new this()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+        override readonly URL_REGEX = /\/(((en|es|pt)-(AM|EU))|(fr-(CA|EU))|(zh-(tw|cn))|de|it|nl|ru|ja|ko)\//i
+        override readonly _enumerableConstructor = ProjectLanguages
 
     }
 
@@ -170,6 +212,10 @@ export class ProjectLanguages
     }
 
     //endregion -------------------- Space getter methods --------------------
+
+    public get urlValue(): PossibleAcronym {
+        return this.projectAcronym
+    }
 
     public get projectAcronym(): PossibleAcronym {
         return this.language.projectAcronym as PossibleAcronym
@@ -410,6 +456,17 @@ export class ProjectLanguages
     public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
     public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
         return this.language.original<T>(classWithEveryLanguages)
+    }
+
+
+    /**
+     * A simple intermediate method to retrieve a {@link ProjectLanguages} by an url
+     *
+     * @param url The url to retrieve the {@link ProjectLanguages language} (if it is present)
+     * @see ProjectLanguages.Companion.getInUrl
+     */
+    public static getInUrl(url: string,): NullOr<ProjectLanguages> {
+        return this.Companion.get.getInUrl(url,)
     }
 
     //region -------------------- Transformation methods --------------------

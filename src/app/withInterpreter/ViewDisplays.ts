@@ -2,18 +2,21 @@ import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable}
 import type {Dispatch, SetStateAction}                                           from 'react'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {AbstractAppWithInterpreter}                 from 'app/withInterpreter/AbstractAppWithInterpreter'
-import type {AbstractCardListApp}                        from 'app/withInterpreter/AbstractCardListApp'
-import type {AbstractSimpleListApp}                      from 'app/withInterpreter/AbstractSimpleListApp'
-import type {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
-import type {HTMLType, Names, Ordinals, RouteType, Type} from 'app/withInterpreter/ViewDisplays.types'
-import type {ClassWithType}                              from 'core/ClassWithType'
-import type {ClassWithIsCurrent}                         from 'util/enumerable/ClassWithIsCurrent'
-import type {ReactElement}                               from 'util/react/ReactProperties'
-import type {Nullable, NullOr}                           from 'util/types/nullable'
+import type {AbstractAppWithInterpreter}                        from 'app/withInterpreter/AbstractAppWithInterpreter'
+import type {AbstractCardListApp}                               from 'app/withInterpreter/AbstractCardListApp'
+import type {AbstractSimpleListApp}                             from 'app/withInterpreter/AbstractSimpleListApp'
+import type {AbstractTableApp}                                  from 'app/withInterpreter/AbstractTableApp'
+import type {HTMLType, Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
+import type {ClassWithType}                                     from 'core/ClassWithType'
+import type {ClassUsedInRoute}                                  from 'route/ClassUsedInRoute'
+import type {ClassWithIsCurrent}                                from 'util/enumerable/ClassWithIsCurrent'
+import type {SingleRetrievableByUrl}                            from 'util/enumerable/SingleRetrievableByUrl'
+import type {ReactElement}                                      from 'util/react/ReactProperties'
+import type {Nullable, NullOr}                                  from 'util/types/nullable'
 
 import {assert}                                 from 'util/utilitiesMethods'
 import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'
+import {SingleRetrievableByUrlImplementation}   from 'util/enumerable/SingleRetrievableByUrl.implementation'
 
 /**
  * @usedByTheRouting
@@ -21,6 +24,7 @@ import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithC
 export abstract class ViewDisplays
     extends Enum<Ordinals, Names>
     implements ClassWithType<Type>,
+        ClassUsedInRoute<PossibleUrlValue>,
         ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
@@ -76,7 +80,9 @@ export abstract class ViewDisplays
      * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
      * @singleton
      */
-    public static readonly Companion = class Companion_ViewDisplays extends ClassWithCurrentAndEventImplementation<ViewDisplays> {
+    public static readonly Companion = class Companion_ViewDisplays
+        extends ClassWithCurrentAndEventImplementation<ViewDisplays>
+        implements SingleRetrievableByUrl<ViewDisplays> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -91,6 +97,42 @@ export abstract class ViewDisplays
         }
 
         //endregion -------------------- Singleton usage --------------------
+        //region -------------------- Fields --------------------
+
+        /** A {@link RegExp regex} to identify the current {@link ViewDisplays} in an url */
+        public readonly URL_REGEX = ViewDisplays.#SingleRetrievableByUrl.get.URL_REGEX
+
+        //endregion -------------------- Fields --------------------
+
+        /**
+         * Get a {@link ViewDisplays} from an url found or null if there is none
+         *
+         * @param url The url to find the {@link ViewDisplays view display} (if it is found)
+         * @throws {ReferenceError} A fail-safe error on a {@link ViewDisplays} that was not found
+         */
+        public getInUrl = (url: string,) => ViewDisplays.#SingleRetrievableByUrl.get.getInUrl(url)
+
+    }
+
+    static readonly #SingleRetrievableByUrl = class SingleRetrievableByUrl_ViewDisplays
+        extends SingleRetrievableByUrlImplementation<ViewDisplays> {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: SingleRetrievableByUrl_ViewDisplays
+
+        private constructor() {
+            super()
+        }
+
+        public static get get() {
+            return this.#instance ??= new this()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+        override readonly URL_REGEX = /\/(table|list|card)\//i
+        override readonly _enumerableConstructor = ViewDisplays
 
     }
 
@@ -98,16 +140,16 @@ export abstract class ViewDisplays
     //region -------------------- Fields --------------------
 
     readonly #type
-    readonly #routeType
+    readonly #urlValue
     readonly #htmlType
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(type: Type, routeType: RouteType, htmlType: HTMLType,) {
+    private constructor(type: Type, urlValue: PossibleUrlValue, htmlType: HTMLType,) {
         super()
         this.#type = type
-        this.#routeType = routeType
+        this.#urlValue = urlValue
         this.#htmlType = htmlType
     }
 
@@ -118,8 +160,8 @@ export abstract class ViewDisplays
         return this.#type
     }
 
-    public get routeType(): RouteType {
-        return this.#routeType
+    public get urlValue(): PossibleUrlValue {
+        return this.#urlValue
     }
 
     public get htmlType(): HTMLType {
@@ -211,6 +253,17 @@ export abstract class ViewDisplays
     }
 
     protected abstract _getRoutePath<PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
+
+
+    /**
+     * A simple intermediate method to retrieve a {@link ViewDisplays} by an url
+     *
+     * @param url The url to retrieve the {@link ViewDisplays view display} (if it is present)
+     * @see ViewDisplays.Companion.getInUrl
+     */
+    public static getInUrl(url: string,): NullOr<ViewDisplays> {
+        return this.Companion.get.getInUrl(url)
+    }
 
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
