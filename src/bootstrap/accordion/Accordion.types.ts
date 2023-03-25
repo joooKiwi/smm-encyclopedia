@@ -1,6 +1,7 @@
 import type {HTMLDivProperties}                     from 'util/react/html/HTMLDivProperties'
 import type {HTMLHeadingProperties}                 from 'util/react/html/HTMLHeadingProperties'
 import type {ReactElementOrString, ReactProperties} from 'util/react/ReactProperties'
+import type {Nullable}                              from 'util/types/nullable'
 
 export interface AccordionProperties
     extends ReactProperties, Omit<HTMLDivProperties, 'children'> {
@@ -10,9 +11,11 @@ export interface AccordionProperties
      */
     alignCenter?: boolean
 
-    children: readonly (readonly [partialKey: string, id: string, isDisplayed: boolean, header: HeaderProperties, body: BodyProperties,])[]
+    children: readonly Nullable<SingleAccordionProperties>[]
 
 }
+
+export type SingleAccordionProperties = readonly [partialKey: string, id: string, isDisplayed: boolean, header: HeaderProperties, body: BodyProperties,]
 
 export interface HeaderProperties
     extends ReactProperties, HTMLHeadingProperties {

@@ -2,6 +2,8 @@ import './Accordion.scss'
 
 import type {AccordionProperties} from 'bootstrap/accordion/Accordion.types'
 
+import {nonNull} from 'util/utilitiesMethods'
+
 /**
  * @param properties
  * @reactComponent
@@ -9,7 +11,7 @@ import type {AccordionProperties} from 'bootstrap/accordion/Accordion.types'
 export default function Accordion({alignCenter: alignHeadersCenter = false, children, ...htmlProperties}: AccordionProperties,) {
     htmlProperties.className = `accordion ${htmlProperties.className ?? ''}`
     return <div {...htmlProperties}>
-        {children.map(([partialKey, id, isDisplayed, {buttonContent, alignCenter = alignHeadersCenter, ...headerProperties}, {bodyContent, ...bodyProperties},]) => {
+        {nonNull(children).map(([partialKey, id, isDisplayed, {buttonContent, alignCenter = alignHeadersCenter, ...headerProperties}, {bodyContent, ...bodyProperties},]) => {
             headerProperties.className = `accordion-header ${headerProperties.className ?? ''}`
             bodyProperties.className = `accordion-body ${headerProperties.className ?? ''} w-100`
 
