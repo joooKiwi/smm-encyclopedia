@@ -1,7 +1,7 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/EntityLimitTypes.types'
+import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
 import type {Nullable, NullOr}                                 from 'util/types/nullable'
@@ -9,13 +9,16 @@ import type {Nullable, NullOr}                                 from 'util/types/
 import {EntityLimits}   from 'core/entityLimit/EntityLimits'
 import {getValueByType} from 'util/utilitiesMethods'
 
-export abstract class EntityLimitTypes
+/**
+ * @usedByTheRouting
+ */
+export abstract class LimitTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly ALL =           new class EntityLimitTypes_All extends EntityLimitTypes {
+    public static readonly ALL =           new class EntityLimitTypes_All extends LimitTypes {
 
         public override get iterator(): IterableIterator<EntityLimits> {
             return EntityLimits[Symbol.iterator]()
@@ -27,7 +30,7 @@ export abstract class EntityLimitTypes
         }
 
     }('all', 'everyLimit',)
-    public static readonly WHILE_PLAYING = new class EntityLimitTypes_WhilePlaying extends EntityLimitTypes {
+    public static readonly PLAY = new class EntityLimitTypes_WhilePlaying extends LimitTypes {
 
         public override get iterator(): IterableIterator<EntityLimits> {
             return EntityLimits.whilePlayingEntityLimits[Symbol.iterator]()
@@ -47,7 +50,7 @@ export abstract class EntityLimitTypes
         }
 
     }('play', 'playLimit',)
-    public static readonly EDITOR =        new class EntityLimitTypes_Editor extends EntityLimitTypes {
+    public static readonly EDITOR =        new class EntityLimitTypes_Editor extends LimitTypes {
 
         public override get iterator(): IterableIterator<EntityLimits> {
             return EntityLimits.editorEntityLimits[Symbol.iterator]()
@@ -71,7 +74,7 @@ export abstract class EntityLimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: EntityLimitTypes
+    static [index: number]: LimitTypes
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -144,7 +147,7 @@ export abstract class EntityLimitTypes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static getValueByType(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
+    public static getValueByType(value: Nullable<| LimitTypes | string>,): LimitTypes {
         return getValueByType(value, this,)
     }
 
@@ -152,18 +155,18 @@ export abstract class EntityLimitTypes
     //region -------------------- Enum methods --------------------
 
     protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityLimitTypes
+        return LimitTypes
     }
 
-    public static getValue(value: PossibleValueByEnumerable<EntityLimitTypes>,): EntityLimitTypes {
+    public static getValue(value: PossibleValueByEnumerable<LimitTypes>,): LimitTypes {
         return Enum.getValueOn(this, value,)
     }
 
-    public static get values(): CollectionHolder<EntityLimitTypes> {
+    public static get values(): CollectionHolder<LimitTypes> {
         return Enum.getValuesOn(this,)
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityLimitTypes> {
+    public static* [Symbol.iterator](): IterableIterator<LimitTypes> {
         yield* this.values
     }
 

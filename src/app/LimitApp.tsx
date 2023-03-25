@@ -3,6 +3,7 @@ import './LimitApp.scss'
 import type {LimitAppProperties}                                   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {LimitTypes}                                           from 'app/property/LimitTypes'
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {EntityLimits}                                         from 'core/entityLimit/EntityLimits'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
@@ -10,7 +11,6 @@ import type {ReactElementOrString}                                 from 'util/re
 
 import {EntityLimitAppOption}                       from 'app/options/EntityLimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
-import {EntityLimitTypes}                           from 'app/property/EntityLimitTypes'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Image                                        from 'app/tools/images/Image'
 import TextComponent                                from 'app/tools/text/TextComponent'
@@ -19,17 +19,12 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 
 export default class LimitApp
     extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, LimitAppProperties>
-    implements ClassWithType<EntityLimitTypes> {
+    implements ClassWithType<LimitTypes> {
 
-    //region -------------------- Fields --------------------
-
-    #type?: EntityLimitTypes
-
-    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
-    public get type(): EntityLimitTypes {
-        return this.#type ??= EntityLimitTypes.getValueByType(this.props.type)
+    public get type(): LimitTypes {
+        return this.props.type
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -58,13 +53,13 @@ export default class LimitApp
     }
 
     protected override _createAsideContent(): ReactElementOrString {
-        const {type, typeDisplayed,} = this
+        const {type, viewDisplay,} = this
 
         return <div id="limit-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
-            <LinkButton partialId="allLimit" routeName={typeDisplayed.getRoutePath(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <LinkButton partialId="allLimit" routeName={viewDisplay.getRoutePath(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="playLimit" routeName={typeDisplayed.getRoutePath(type.playRouteName)} color={type.playColor}>{gameContentTranslation('limit.play.value')}</LinkButton>
-                <LinkButton partialId="editorLimit" routeName={typeDisplayed.getRoutePath(type.editorRouteName)} color={type.editorColor}>{gameContentTranslation('limit.editor.value')}</LinkButton>
+                <LinkButton partialId="playLimit" routeName={viewDisplay.getRoutePath(type.playRouteName)} color={type.playColor}>{gameContentTranslation('limit.play.value')}</LinkButton>
+                <LinkButton partialId="editorLimit" routeName={viewDisplay.getRoutePath(type.editorRouteName)} color={type.editorColor}>{gameContentTranslation('limit.editor.value')}</LinkButton>
             </div>
         </div>
     }

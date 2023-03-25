@@ -1,7 +1,7 @@
 enum Enum {
 
     ALL,
-    WHILE_PLAYING,
+    PLAY,
     EDITOR,
 
 }
