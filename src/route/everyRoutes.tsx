@@ -1,9 +1,10 @@
 import {lazy} from 'react'
 
-import type {Names as ViewDisplayName} from 'app/withInterpreter/ViewDisplays.types'
-import type {SimpleRoute}              from 'route/SimpleRoute'
-
-import {SimpleRouteContainer} from 'route/SimpleRoute.container'
+import {CourseTagTypes} from 'app/property/CourseTagTypes'
+import {LimitTypes}     from 'app/property/LimitTypes'
+import {ThemeTypes}     from 'app/property/ThemeTypes'
+import {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
+import {RoutesCreator} from 'route/creator/Routes.creator'
 
 //region -------------------- Dynamic imports --------------------
 
@@ -30,129 +31,66 @@ const HomeApp =                   lazy(() => import('app/HomeApp'))
 const SourcesApp =                lazy(() => import('app/SourcesApp'))
 
 //endregion -------------------- Dynamic imports --------------------
-//region -------------------- Deconstruction imports --------------------
+//region -------------------- Import from deconstruction --------------------
 
-const {newInstance: route,} = SimpleRouteContainer
-// const {newInstance: redirect,} = RedirectRouteContainer
-// const {newInstance: group,} = RouteGroupContainer
-// const {newInstance: argument,} = SimpleRouteArgumentContainer
+const {ALL: ALL_COURSE_TAG, OFFICIAL, UNOFFICIAL, MAKER_CENTRAL,} = CourseTagTypes
+const {ALL: ALL_LIMIT, PLAY, EDITOR,} = LimitTypes
+const {ALL: ALL_THEME, COURSE, WORLD,} = ThemeTypes
+const {CARD_LIST,} = ViewDisplays
 
-//endregion -------------------- Deconstruction imports --------------------
-//region -------------------- Route functions --------------------
-
-/**
- * Create the redirect paths for 2 different paths.
- *
- * One as "entity limit" and the other as "limit".
- *
- * @param limits The limit names & paths
- */
-// function createLimitRedirects<NAME extends string, PATH extends string, >(...limits: readonly (readonly [NAME, PATH,])[]): readonly SimpleRouteArgument<`${NAME}${| '' | 'Entity'}Limit`, `/${PATH}/${| '' | 'entity-'}limit`>[] {
-//     return limits.map(([name, path,]) => [
-//         argument(`${name}Limit`, `/${path}/limit`,),
-//         argument(`${name}EntityLimit`, `/${path}/entity-limit`,),
-//     ] as const).flat()
-// }
-
-//region -------------------- Route with different types functions --------------------
-
-/** Get a name with "list" in parentheses */
-const nameAsList = <NAME extends string, >(name: NAME,) => `${name} (list)` as const
-/** Get a name with "card" in parentheses */
-const nameAsCard = <NAME extends string, >(name: NAME,) => `${name} (card)` as const
-/** Get a name with "table" in parentheses */
-const nameAsTable = <NAME extends string, >(name: NAME,) => `${name} (table)` as const
-
-/** Get a path with "list" before its path */
-const pathAsList = <PATH extends string, >(path: PATH,) => `/list${path}` as const
-/** Get a path with "card" before its path */
-const pathAsCard = <PATH extends string, >(path: PATH,) => `/card${path}` as const
-/** Get a path with "table" before its path */
-const pathAsTable = <PATH extends string, >(path: PATH,) => `/table${path}` as const
-
-
-function simpleListRoute<NAME extends string, PATH extends string, >(name: NAME, path: PATH, renderCallback: RenderCallback, defaultType: Extract<ViewDisplayName, 'SIMPLE_LIST'>,): readonly SimpleRoute<RouteName<NAME, SimpleListTypes>, RoutePath<PATH, SimpleListTypes>>[] {
-    return [
-        route(name, path, () => renderCallback(defaultType,),),
-        route(nameAsList(name), pathAsList(path), () => renderCallback('SIMPLE_LIST',),),
-    ]
-}
-
-function cardListRoute<NAME extends string, PATH extends string, >(name: NAME, path: PATH, renderCallback: RenderCallback, defaultType: Exclude<ViewDisplayName, 'TABLE'>,): readonly SimpleRoute<RouteName<NAME, CardListTypes>, RoutePath<PATH, CardListTypes>>[] {
-    return [
-        route(name, path, () => renderCallback(defaultType,),),
-        route(nameAsList(name), pathAsList(path), () => renderCallback('SIMPLE_LIST',),),
-        route(nameAsCard(name), pathAsCard(path), () => renderCallback('CARD_LIST',),),
-    ]
-}
-
-function tableRoute<NAME extends string, PATH extends string, >(name: NAME, path: PATH, renderCallback: RenderCallback, defaultType: ViewDisplayName,): readonly SimpleRoute<RouteName<NAME, TableTypes>, RoutePath<PATH, TableTypes>>[] {
-    return [
-        route(name, path, () => renderCallback(defaultType,),),
-        route(nameAsList(name), pathAsList(path), () => renderCallback('SIMPLE_LIST',),),
-        route(nameAsCard(name), pathAsCard(path), () => renderCallback('CARD_LIST',),),
-        route(nameAsTable(name), pathAsTable(path), () => renderCallback('TABLE',),),
-    ]
-}
-
-
-type RouteName<NAME extends string, TYPE extends string, > = | NAME | `${NAME} (${TYPE})`
-type RoutePath<PATH extends string, TYPE extends string, > = | PATH | `/${TYPE}${PATH}`
-type SimpleListTypes = 'list'
-type CardListTypes = | SimpleListTypes | 'card'
-type TableTypes = | CardListTypes | 'table'
-type RenderCallback = (type: ViewDisplayName,) => JSX.Element
-
-//endregion -------------------- Route with different types functions --------------------
-//endregion -------------------- Route functions --------------------
+//endregion -------------------- Import from deconstruction --------------------
 
 export const everySimpleRoutes = [
-    route(          'home',                       '/home',                         () =>   <HomeApp/>,),
-    route(          'about',                      '/about',                        () =>   <AboutApp/>,),
-    route(          'sources',                    '/source',                       () =>   <SourcesApp/>,),
+    new RoutesCreator('home',                       '/home',).asAnyGame().create(() =>                                                                     <HomeApp/>,),
+    new RoutesCreator('about',                      '/about',).asAnyGame().create(() =>                                                                    <AboutApp/>,),
+    new RoutesCreator('sources',                    '/source',).asAnyGame().create(() =>                                                                   <SourcesApp/>,),
 
 
-    route(          'everyPowerUp&RidePriority',  '/every/power-up+ride/priority', () =>   <PowerUpAndRidePriorityApp/>,),
-    route(          'everyPowerUpPriority',       '/every/power-up/priority',      () =>   <PowerUpAndRidePriorityApp/>,),//TODO add EveryPowerUpPriorityApp
-    route(          'everyRidePriority',          '/every/ride/priority',          () =>   <PowerUpAndRidePriorityApp/>,),//TODO add EveryRidePriorityApp
+    new RoutesCreator('everyPowerUp&RidePriority',  '/every/power-up+ride/priority',).asAnyGame().create(games =>                                          <PowerUpAndRidePriorityApp games={games}/>,),
+    new RoutesCreator('everyPowerUpPriority',       '/every/power-up/priority',).asAnyGame().create(games =>                                               <PowerUpAndRidePriorityApp games={games}/>,),//TODO add EveryPowerUpPriorityApp
+    new RoutesCreator('everyRidePriority',          '/every/ride/priority',).asAnyGame().create(games =>                                                   <PowerUpAndRidePriorityApp games={games}/>,),//TODO add EveryRidePriorityApp
 
 
-    cardListRoute(  'everyCharacterName',         '/every/character-name',         type => <CharacterNameApp typeDisplayed={type}/>,                         'CARD_LIST',),
+    new RoutesCreator('everyCharacterName',         '/every/character-name',).asCardList().asAnyGame().create(viewDisplay =>                               <CharacterNameApp                        viewDisplay={viewDisplay}/>,),
 
-    route(          'everyGameReference',         '/every/game-reference',         () =>   <GameReferenceApp/>,),
-    tableRoute(     'everyEntity',                '/every/entity',                 type => <EntityApp              typeDisplayed={type}/>,                     'TABLE',),
-    tableRoute(     'everyGameStyle',             '/every/game-style',             type => <GameStyleApp           typeDisplayed={type}/>,                     'TABLE',),
-    cardListRoute(  'everyEntityCategory',        '/every/entity-category',        type => <EntityCategoryApp      typeDisplayed={type}/>,                     'CARD_LIST',),
-    route(          'everyGroup',                 '/every/entity-group',           () =>   <EntityGroupApp/>,),
+    new RoutesCreator('everyGameReference',         '/every/game-reference',).asAnyGame().create(() =>                                                     <GameReferenceApp/>,),
+    new RoutesCreator('everyGameStyle',             '/every/game-style',).asTable().asAnyGame().create((viewDisplay, games,) => <GameStyleApp             games={games} viewDisplay={viewDisplay}/>,),
 
-    tableRoute(     'everyLimit',                 '/every/limit',                  type => <LimitApp               typeDisplayed={type} type="all"/>,          'TABLE',),//argument('everyEntityLimits', '/entity-limit',)
-    tableRoute(     'playLimit',                  '/play/limit',                   type => <LimitApp               typeDisplayed={type} type="play"/>,         'TABLE',),//argument('playEntityLimits', '/play/entity-limit',), ...createLimitRedirects(['playing', 'playing',], ['whilePlaying', 'while-playing',],)
-    tableRoute(     'editorLimit',                '/editor/limit',                 type => <LimitApp               typeDisplayed={type} type="editor"/>,       'TABLE',),//argument('playEntityLimits', '/play/entity-limit',),...createLimitRedirects(['inEditor', 'in-editor',], ['inTheEditor', 'in-the-editor',],)
+    new RoutesCreator('everyEntity',                '/every/entity',).asTable().asAnyGame().create(viewDisplay =>                                          <EntityApp                              viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everyEntityCategory',        '/every/entity-category',).asCardList().asAnyGame().create(viewDisplay =>                              <EntityCategoryApp                      viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everyGroup',                 '/every/entity-group',).asAnyGame().create(() =>                                                       <EntityGroupApp/>,),
 
-    tableRoute(     'everyTheme',                 '/every/theme',                  type => <ThemeApp               typeDisplayed={type} type="all"/>,          'CARD_LIST',),
-    tableRoute(     'courseTheme',                '/course/theme',                 type => <ThemeApp               typeDisplayed={type} type="course"/>,       'CARD_LIST',),
-    tableRoute(     'worldTheme',                 '/world/theme',                  type => <ThemeApp               typeDisplayed={type} type="world"/>,        'CARD_LIST',),
+    new RoutesCreator('everyLimit',                 '/every/limit',).asTable().asAnyGame().create(viewDisplay =>                                           <LimitApp                               viewDisplay={viewDisplay} type={ALL_LIMIT}/>,),
+    new RoutesCreator('playLimit',                  '/play/limit',).asTable().asAnyGame().create(viewDisplay =>                                            <LimitApp                               viewDisplay={viewDisplay} type={PLAY}/>,),
+    new RoutesCreator('editorLimit',                '/editor/limit',).asTable().asAnyGame().create(viewDisplay =>                                          <LimitApp                               viewDisplay={viewDisplay} type={EDITOR}/>,),
 
-
-    tableRoute(     'everySoundEffect',           '/every/sound-effect',           type => <SoundEffectApp         typeDisplayed={type}/>,                     'TABLE',),
-    cardListRoute(  'everySoundEffectCategory',   '/every/sound-effect-category',  type => <SoundEffectCategoryApp typeDisplayed={type}/>,                     'CARD_LIST',),
+    new RoutesCreator('everyTheme',                 '/every/theme',).asTable(CARD_LIST,).asAnyGame().create(viewDisplay =>                                 <ThemeApp                               viewDisplay={viewDisplay} type={ALL_THEME}/>,),
+    new RoutesCreator('courseTheme',                '/course/theme',).asTable(CARD_LIST,).asAnyGame().create(viewDisplay =>                                <ThemeApp                               viewDisplay={viewDisplay} type={COURSE}/>,),
+    new RoutesCreator('worldTheme',                 '/world/theme',).asTable(CARD_LIST,).asAnyGame().create(viewDisplay =>                                 <ThemeApp                               viewDisplay={viewDisplay} type={WORLD}/>,),
 
 
-    tableRoute(     'everyMiiCostume',            '/every/mii-costume',            type => <MiiCostumeApp          typeDisplayed={type}/>,                     'TABLE',),
-    cardListRoute(  'everyMiiCostumeCategory',    '/every/mii-costume-category',   type => <MiiCostumeCategoryApp  typeDisplayed={type}/>,                     'CARD_LIST',),
+    new RoutesCreator('everySoundEffect',           '/every/sound-effect',).asTable().asSMM2Game().create(viewDisplay =>                                   <SoundEffectApp                         viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everySoundEffectCategory',   '/every/sound-effect-category',).asCardList().asSMM2Game().create(viewDisplay =>                       <SoundEffectCategoryApp                 viewDisplay={viewDisplay}/>,),
 
 
-    tableRoute(     'everyMysteryMushroom',       '/every/mystery-mushroom',       type => <MysteryMushroomApp     typeDisplayed={type}/>,                     'CARD_LIST',),
+    new RoutesCreator('everyMiiCostume',            '/every/mii-costume',).asTable().asSMM2Game().create(viewDisplay =>                                    <MiiCostumeApp                          viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everyMiiCostumeCategory',    '/every/mii-costume-category',).asCardList().asSMM2Game().create(viewDisplay =>                        <MiiCostumeCategoryApp                  viewDisplay={viewDisplay}/>,),
 
 
-    simpleListRoute('everyPredefinedMessage',     '/every/predefined-message',     type => <PredefinedMessageApp   typeDisplayed={type}/>,                     'SIMPLE_LIST',),
+    new RoutesCreator('everyMysteryMushroom',       '/every/mystery-mushroom',).asTable(CARD_LIST,).asSMM1Game().create(viewDisplay =>                     <MysteryMushroomApp                     viewDisplay={viewDisplay}/>,),
 
-    cardListRoute(  'everyCourseTag',             '/every/course-tag',             type => <CourseTagApp           typeDisplayed={type} type="all"/>,          'CARD_LIST',),
-    cardListRoute(  'officialCourseTag',          '/official/course-tag',          type => <CourseTagApp           typeDisplayed={type} type="official"/>,     'CARD_LIST',),
-    cardListRoute(  'unofficialCourseTag',        '/unofficial/course-tag',        type => <CourseTagApp           typeDisplayed={type} type="unofficial"/>,   'CARD_LIST',),
-    cardListRoute(  'makerCentralCourseTag',      '/maker-central/course-tag',     type => <CourseTagApp           typeDisplayed={type} type="makerCentral"/>, 'CARD_LIST',),
 
-    cardListRoute(  'everyInstrument',            '/every/instrument',             type => <InstrumentApp          typeDisplayed={type}/>,                     'CARD_LIST',),
+    new RoutesCreator('everyPredefinedMessage',     '/every/predefined-message',).asSimpleList().asSMM2Game().create(viewDisplay =>                        <PredefinedMessageApp                   viewDisplay={viewDisplay}/>,),
 
-    cardListRoute(  'everyEditorVoice',           '/every/editor-voice',           type => <EditorVoiceApp         typeDisplayed={type}/>,                     'CARD_LIST',),
+    new RoutesCreator('everyCourseTag',             '/every/course-tag',).asCardList().asSMM2Game().create(viewDisplay =>                                  <CourseTagApp                           viewDisplay={viewDisplay} type={ALL_COURSE_TAG}/>,),
+    new RoutesCreator('officialCourseTag',          '/official/course-tag',).asCardList().asSMM2Game().create(viewDisplay =>                               <CourseTagApp                           viewDisplay={viewDisplay} type={OFFICIAL}/>,),
+    new RoutesCreator('unofficialCourseTag',        '/unofficial/course-tag',).asCardList().asSMM2Game().create(viewDisplay =>                             <CourseTagApp                           viewDisplay={viewDisplay} type={UNOFFICIAL}/>,),
+    new RoutesCreator('makerCentralCourseTag',      '/maker-central/course-tag',).asCardList().asSMM2Game().create(viewDisplay =>                          <CourseTagApp                           viewDisplay={viewDisplay} type={MAKER_CENTRAL}/>,),
+
+    new RoutesCreator('everyInstrument',            '/every/instrument',).asCardList().asAnyGame().create(viewDisplay =>                                  <InstrumentApp                           viewDisplay={viewDisplay}/>,),
+
+    new RoutesCreator('everyEditorVoice',           '/every/editor-voice',).asCardList().asAnyGame().create(viewDisplay =>                                <EditorVoiceApp                          viewDisplay={viewDisplay}/>,),
 ].flat()
+
+// @ts-ignore
+console.table(everySimpleRoutes.map(it => ({name:it.name,path:it.path,redirection:it.redirectPath,})))

@@ -1,6 +1,6 @@
 import type {PossibleAcronym}   from 'lang/ProjectLanguages.types'
 import type {everySimpleRoutes} from 'route/everyRoutes'
-import type {SimpleRoute}       from 'route/SimpleRoute'
+import type {Route}             from 'route/instance/Route'
 
 export type EveryPossibleRoutes = `/${PossibleAcronym}${EveryPossibleRoutePartialPaths}`
 
@@ -9,4 +9,4 @@ export type EveryPossibleRoutePartialPaths = typeof everySimpleRoutes[number]['p
 /** Every possible route name applicable to the project */
 export type EveryPossibleRouteNames = typeof everySimpleRoutes[number]['name']
 
-export type EveryPossibleRouteInstance = SimpleRoute<EveryPossibleRouteNames, EveryPossibleRoutePartialPaths>
+export type EveryPossibleRouteInstance = Route<EveryPossibleRouteNames, EveryPossibleRoutePartialPaths>
