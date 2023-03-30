@@ -2,7 +2,7 @@ import type {CourseTagTypes}  from 'app/property/CourseTagTypes'
 import type {LimitTypes}      from 'app/property/LimitTypes'
 import type {ThemeTypes}      from 'app/property/ThemeTypes'
 import type {ViewDisplays}    from 'app/withInterpreter/ViewDisplays'
-import type {Games}           from 'core/game/Games'
+import type {GameCollection}  from 'util/collection/GameCollection'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 export interface AppProperties
@@ -20,7 +20,7 @@ export interface AppWithInterpreterProperties
 export interface AppWithGamesProperties
     extends AppProperties {
 
-    readonly games: readonly Games[]
+    readonly games: GameCollection
 
 }
 
