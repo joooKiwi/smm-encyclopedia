@@ -1,8 +1,7 @@
 import {Fragment} from 'react'
 
-import type {PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
-import type {EntityImageFile} from 'core/entity/file/EntityImageFile'
-import type {ReactProperties} from 'util/react/ReactProperties'
+import type {ImagesCallbackByPriority, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
+import type {ReactProperties}                           from 'util/react/ReactProperties'
 
 import NameComponent from 'lang/name/component/Name.component'
 import Image         from 'app/tools/images/Image'
@@ -14,7 +13,7 @@ interface PowerUpPriorityProperties<T extends PowerUpPriority, >
 
     value: | T | readonly T[]
 
-    images?: (priority: T,) => readonly EntityImageFile[]
+    images?: ImagesCallbackByPriority<T>
 
     /**
      * @temporaryProperty
