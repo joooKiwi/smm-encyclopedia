@@ -118,7 +118,7 @@
     "all":         "Toutes les catégories de {{pluralName}}",
     "display all": "Afficher toutes les catégories de {{pluralName}}"
   },
-  "power-up & ride priority": {
+  "power-up, ride & hat priority": {
     "power-up": {
       "all":         "Toutes les priorités d'{{powerUps}}",
       "display all": "Afficher toutes les priorités d'{{powerUp}}"
@@ -127,9 +127,14 @@
       "all":         "Toutes les priorités de {{rides}}",
       "display all": "Afficher toutes les priorités de {{ride}}"
     },
+    "hat": {
+      "all":         "Toutes les priorités de {{hats}}",
+      "display all": "Afficher toutes les priorités de {{hats}}"
+    },
     "all": {
-      "all":         "Toutes les priorités d'{{powerUps}} & de {{rides}}",
-      "display all": "Afficher toutes les priorités d'{{powerUp}} & de {{ride}}"
+      "all":         "Toutes les priorités d'{{powerUps}}, de {{rides}} & de {{hats}}",
+      "button":      "{{PowerUps}}, {{rides}} & {{hats}}",
+      "display all": "Afficher toutes les priorités d'{{powerUp}}, de {{ride}} & de {{hats}}"
     }
   },
   "mystery mushroom": {
@@ -185,6 +190,10 @@
 
   "Category": "Catégorie",
   "Group":    "Groupe",
+
+  "power-up": {"singular": "Amélioration", "plural": "Améliorations" },
+  "ride":     {"singular": "Monture",      "plural": "Montures" },
+  "hat":      {"singular": "Chapeau",      "plural": "Chapeaux" },
 
   "Official notification": {
     "position": {

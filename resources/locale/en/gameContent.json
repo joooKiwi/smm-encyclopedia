@@ -118,7 +118,7 @@
     "all":         "Every {{singularName}} category",
     "display all": "Display every {{singularName}} category"
   },
-  "power-up & ride priority": {
+  "power-up, ride & hat priority": {
     "power-up": {
       "all":         "Every {{powerUp}} priority",
       "display all": "Display every {{powerUp}} priority"
@@ -127,9 +127,14 @@
       "all":         "Every {{ride}} priority",
       "display all": "Display every {{ride}} priority"
     },
+    "hat": {
+      "all":         "Every {{hat}} priority",
+      "display all": "Display every {{hat}} priority"
+    },
     "all": {
-      "all":         "Every {{powerUp}} & {{ride}} priority",
-      "display all": "Display every {{powerUp}} & {{ride}} priority"
+      "all":         "Every {{powerUp}}, {{ride}} & {{hat}} priority",
+      "button":      "{{PowerUps}}, {{rides}} & {{hats}}",
+      "display all": "Display every {{powerUp}}, {{ride}} & {{hat}} priority"
     }
   },
   "mystery mushroom": {
@@ -185,6 +190,10 @@
 
   "Category": "Category",
   "Group":    "Group",
+
+  "power-up": {"singular": "Power-up", "plural": "Power-ups" },
+  "ride":     {"singular": "Ride",     "plural": "Rides" },
+  "hat":      {"singular": "Hat",      "plural": "Hats" },
 
   "Official notification": {
     "position": {

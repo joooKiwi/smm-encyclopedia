@@ -147,17 +147,28 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         tooltipValue={gameContentTranslation('mii costume category.display all', {singularName: singularMiiCostumeLowerCaseName, pluralName: pluralMiiCostumeLowerCaseName,},)}
                                         elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
             </div> : null}
-            <div key="button group (power-up & ride priority)" id="powerUpAndRide-buttonGroup" className="btn-group-vertical col-12" role="group">
-                <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={<UnfinishedText>{`${singularPowerUpName} & ${unfinishedText('ride')}`}</UnfinishedText>}
-                                        tooltipValue={gameContentTranslation('power-up & ride priority.all.all', {powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName, ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}//TODO add Ride (plural & singular form)
+            <div key="button group (power-up, ride & hat priority)" id="powerUpRideAndHat-buttonGroup" className="btn-group-vertical col-12" role="group">
+                <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={gameContentTranslation('power-up, ride & hat priority.all.button', {
+                    PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName, PowerUps: pluralPowerUpName, powerUps: pluralPowerUpLowerCaseName,
+                    Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Rides: gameContentTranslation('ride.plural'), rides: gameContentTranslation('ride.plural').toLowerCase(),
+                    Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(), Hats: gameContentTranslation('hat.plural'), hats: gameContentTranslation('hat.plural').toLowerCase(),
+                },)}
+                                        tooltipValue={gameContentTranslation('power-up, ride & hat priority.all.all', {
+                                            powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,
+                                            ride: gameContentTranslation('ride.singular').toLowerCase(), rides: gameContentTranslation('ride.plural').toLowerCase(),
+                                            hat: gameContentTranslation('hat.singular').toLowerCase(), hats: gameContentTranslation('hat.plural').toLowerCase(),
+                                        },)}
                                         elementId="displayView-powerUpAndRide-button" id={id} divId={divId}/>
                 <div key="button group (power-up & ride priority separately)" id="powerUpAndRideSeparately-buttonGroup" className="btn-group" role="group">
                     <DisplayViewRouteButton routeName="everyPowerUpPriority" value={singularPowerUpName}
-                                            tooltipValue={gameContentTranslation('power-up & ride priority.power-up.display all', {powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,},)}
+                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.power-up.display all', {powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,},)}
                                             elementId="displayView-powerUp-button" id={id} divId={divId}/>
-                    <DisplayViewRouteButton routeName="everyRidePriority" value={<UnfinishedText>Ride</UnfinishedText>}
-                                            tooltipValue={gameContentTranslation('power-up & ride priority.ride.display all', {ride: unfinishedText('ride'), rides: unfinishedText('rides'),},)}//TODO add Ride (singular & plural form)
+                    <DisplayViewRouteButton routeName="everyRidePriority" value={gameContentTranslation('ride.singular')}
+                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.ride.display all', {ride: gameContentTranslation('ride.singular').toLowerCase(), rides: gameContentTranslation('ride.plural').toLowerCase(),},)}
                                             elementId="displayView-ride-button" id={id} divId={divId}/>
+                    <DisplayViewRouteButton routeName="everyHatPriority" value={gameContentTranslation('hat.singular')}
+                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.hat.display all', {hat: gameContentTranslation('hat.singular').toLowerCase(), hats: gameContentTranslation('hat.plural').toLowerCase(),},)}
+                                            elementId="displayView-hat-button" id={id} divId={divId}/>
                 </div>
             </div>
             {isSMM1Selected ? <div key="button group (mystery mushroom - SMM1)" id="mysteryMushroom-buttonGroup" className="btn-group col-12" role="group">
