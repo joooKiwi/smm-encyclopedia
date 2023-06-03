@@ -5,7 +5,7 @@ import type {Content}                    from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
 import type {TableProperties}            from 'app/tools/table/Table.types'
 import type {ReactElement}               from 'util/react/ReactProperties'
-import type {NullOr}                     from 'util/types/nullable'
+import type {Nullable, NullOr}           from 'util/types/nullable'
 
 /**
  * An application interpreter when using {@link AbstractTableApp}
@@ -24,12 +24,12 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
 
     /**
      * Get every option for the {@link Table table react element}.
+     *
+     * Any {@link Nullable nullable value} will be ignored in the final content.
      */
-    get tableOptions(): readonly OPTION[]
+    get tableOptions(): readonly Nullable<OPTION>[]
 
-    /**
-     * Get the {@link TableProperties table properties} with some arguments (key, id, headers, content) removed.
-     */
+    /** Get the {@link TableProperties table properties} with some arguments (key, id, headers, content) removed */
     get tableProperties(): SimplifiedTableProperties
 
 
