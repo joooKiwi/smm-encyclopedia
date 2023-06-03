@@ -10,19 +10,19 @@ export interface ModalEvents<I extends ModalInstance = ModalInstance, >
     extends BootstrapWithBasicEvents<I> {
 
     /** @see Modal.Events.show */
-    show: ModalEventCallback<I>
+    readonly show: ModalEventCallback<I>
 
     /** @see Modal.Events.shown */
-    shown: ModalEventCallback<I>
+    readonly shown: ModalEventCallback<I>
 
     /** @see Modal.Events.hide */
-    hide: ModalEventCallback<I>
+    readonly hide: ModalEventCallback<I>
 
     /** @see Modal.Events.hidden */
-    hidden: ModalEventCallback<I>
+    readonly hidden: ModalEventCallback<I>
 
     /** @see Modal.Events.hidePrevented */
-    hidePrevented: ModalEventCallback<I>
+    readonly hidePrevented: ModalEventCallback<I>
 
 }
 

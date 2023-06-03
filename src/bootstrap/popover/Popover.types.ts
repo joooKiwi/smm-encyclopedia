@@ -14,19 +14,19 @@ export interface PopoverEvents<I extends PopoverInstance = PopoverInstance, >
     extends BootstrapWithBasicEvents<I> {
 
     /** @see Popover.Events.show*/
-    show: PopoverEventCallback<I>
+    readonly show: PopoverEventCallback<I>
 
     /** @see Popover.Events.shown */
-    shown: PopoverEventCallback<I>
+    readonly shown: PopoverEventCallback<I>
 
     /** @see Popover.Events.hide */
-    hide: PopoverEventCallback<I>
+    readonly hide: PopoverEventCallback<I>
 
     /** @see Popover.Events.hidden */
-    hidden: PopoverEventCallback<I>
+    readonly hidden: PopoverEventCallback<I>
 
     /** @see Popover.Events.inserted */
-    inserted: PopoverEventCallback<I>
+    readonly inserted: PopoverEventCallback<I>
 
 }
 

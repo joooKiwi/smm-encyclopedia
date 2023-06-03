@@ -13,19 +13,19 @@ export interface TooltipEvents<I extends TooltipInstance = TooltipInstance, >
     extends BootstrapWithBasicEvents<I> {
 
     /** @see Tooltip.Events.show */
-    show: TooltipEventCallback<I>
+    readonly show: TooltipEventCallback<I>
 
     /** @see Tooltip.Events.shown */
-    shown: TooltipEventCallback<I>
+    readonly shown: TooltipEventCallback<I>
 
     /** @see Tooltip.Events.hide */
-    hide: TooltipEventCallback<I>
+    readonly hide: TooltipEventCallback<I>
 
     /** @see Tooltip.Events.hidden */
-    hidden: TooltipEventCallback<I>
+    readonly hidden: TooltipEventCallback<I>
 
     /** @see Tooltip.Events.inserted */
-    inserted: TooltipEventCallback<I>
+    readonly inserted: TooltipEventCallback<I>
 
 }
 
