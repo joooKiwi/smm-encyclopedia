@@ -1,8 +1,8 @@
 import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
-import type {Nullable}                      from 'util/types/nullable'
+import type {Names, Ordinals, PossibleDirection, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
+import type {Nullable}                                         from 'util/types/nullable'
 
 /**
  * The arrow direction.<br/>
@@ -16,8 +16,8 @@ export class ArrowDirections
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly HORIZONTAL = new ArrowDirections('horizontal',)
-    public static readonly VERTICAL =   new ArrowDirections('vertical',)
+    public static readonly HORIZONTAL = new ArrowDirections('horizontal', 'row',)
+    public static readonly VERTICAL =   new ArrowDirections('vertical', 'column',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
@@ -28,18 +28,28 @@ export class ArrowDirections
     //region -------------------- Fields --------------------
 
     readonly #value
+    readonly #direction
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    private constructor(value: PossibleName,) {
+    private constructor(value: PossibleName, direction: PossibleDirection,) {
         super()
         this.#value = value
+        this.#direction = direction
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
+    /** The basic name of an arrow direction */
     public get value(): PossibleName {
         return this.#value
+    }
+
+    /** The flex direction of a container */
+    public get direction(): PossibleDirection {
+        return this.#direction
     }
 
     //endregion -------------------- Getter methods --------------------
