@@ -148,7 +148,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
             </div> : null}
             <div key="button group (power-up, ride & hat priority)" id="powerUpRideAndHat-buttonGroup" className="btn-group-vertical col-12" role="group">
-                <DisplayViewRouteButton routeName="everyPowerUp&RidePriority" value={gameContentTranslation('power-up, ride & hat priority.all.button', {
+                <DisplayViewRouteButton routeName="everyPowerUp&Ride&HatPriority" value={gameContentTranslation('power-up, ride & hat priority.all.button', {
                     PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName, PowerUps: pluralPowerUpName, powerUps: pluralPowerUpLowerCaseName,
                     Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Rides: gameContentTranslation('ride.plural'), rides: gameContentTranslation('ride.plural').toLowerCase(),
                     Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(), Hats: gameContentTranslation('hat.plural'), hats: gameContentTranslation('hat.plural').toLowerCase(),
