@@ -265,7 +265,7 @@
       "→ periodic":               "The wind blows to the right periodically",
       "← periodic":               "The wind blows to the left periodically",
       "↔ periodic":               "The wind blows from left and right alternately periodically",
-      "← constant":               "The wind blows to the left constantly"
+      "→ constant":               "The wind blows to the right constantly"
     },
 
     "Slippery":                   "Has a slippery floor.",

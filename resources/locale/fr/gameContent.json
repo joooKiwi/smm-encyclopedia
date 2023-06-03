@@ -265,7 +265,7 @@
       "→ periodic":               "Le vent souffle à droite périodiquement",
       "← periodic":               "Le vent souffle à gauche périodiquement",
       "↔ periodic":               "Le vent souffle de gauche à droite en alternance périodiquement",
-      "← constant":               "Le vent souffle à gauche constamment"
+      "→ constant":               "Le vent souffle à droite constamment"
     },
 
     "Slippery":                   "A un sol glissant.",
