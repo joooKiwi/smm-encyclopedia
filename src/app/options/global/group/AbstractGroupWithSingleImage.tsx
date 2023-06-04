@@ -9,6 +9,7 @@ import AbstractGroup from 'app/options/global/group/AbstractGroup'
 import Image         from 'app/tools/images/Image'
 
 /**
+ * @deprecated Relocate the content in the inheritor implementation
  * @reactComponent
  */
 export abstract class AbstractGroupWithSingleImage<T extends Exclude<PossibleElement, Themes>, U extends Exclude<PossibleOptionValue, GlobalThemeOption>, >
