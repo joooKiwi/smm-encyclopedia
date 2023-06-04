@@ -17,6 +17,7 @@ https://joookiwi.github.io/smm-encyclopedia
     * [Variable / methods / class naming](#variable--methods--class-naming)
     * [Files using a CSV source](#files-using-a-csv-source)
     * [Dependencies](#dependencies)
+    * [Routes](#routes)
   * [NPM commands](#npm-commands)
     * [Prerequisites](#prerequisites)
     * [Run the project locally (desktop and mobile)](#run-the-project-locally--desktop-and-mobile-)
@@ -393,6 +394,41 @@ flowchart LR
 ```
 
 </details>
+
+#### Routes
+
+Every route in the project has a reason to exist.
+It can either be to have a default value or to be accessible by the URL directly.
+
+So far, the paths are separated by multiple parts:
+ 1. The optional language (`en-AM`, `en-EU`, `fr-CA`, `fr-EU`, `de`, `es-AM`, `es-EU`, `it`, `nl`, `pt-AM`, `pt-EU`, `ru`, `ja`, `zh-tw`, `zh-cn` or `ko`)
+ 2. The game (`game-` + `1`, `3ds` and/or `2`) with its default `game-2`
+ 3. The display option (`list`, `card` or `table`)
+ 4. The ending paths:
+
+| Path (in the URL)                                                                                                | Small description                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| `home`                                                                                                           |                                                                                    |
+| `about`                                                                                                          | A small description about this application and its purpose                         |
+| `source`                                                                                                         | Those who helped and the tools used to make this application                       |
+| `every/`<br/>\[`power-up`&#124;`ride`&#124;`hat`](`+`\[`power-up`&#124;`ride`&#124;`hat`]{0,2}?)<br/>`/priority` | A visualisation of the priority about the power-ups, rides and hats                |
+| `every/character-name`                                                                                           | The character name told in the editor                                              |
+| `every/game-reference`                                                                                           | Every game referenced in any games                                                 |
+| `every/game-style`                                                                                               | The game style used in the games                                                   |
+| `every/entity`                                                                                                   | The entities only used in the games                                                |
+| `every/entity-category`                                                                                          | The category made to group the entity (from the `Super Mario Maker 2` game)        |
+| `every/entity-group`                                                                                             | A group of entity associated by relation, color or other kind of attributes        |
+| \[`every`&#124;`play`&#124;`editor`]<br/>`/limit`                                                                | The limit applicable and usable in the games                                       |
+| \[`every`&#124;`course`&#124;`world`]<br/>`/theme`                                                               | The theme (in a level or a world)                                                  |
+| `every/sound-effect`                                                                                             | The sound effect placeable on any surface or entity                                |
+| `every/sound-effect-category`                                                                                    | The category (from the `Super Mario Maker 2` game) of the sound effect             |
+| `every/mii-costume`                                                                                              | The costume applicable to a Mii online only in `Super Mario Maker 2`               |
+| `every/mii-costume-category`                                                                                     | The type of Mii costume that can be used only in `Super Mario Maker 2`             |
+| `every-mystery-mushroom`                                                                                         | The Mystery Mushrooms usable only in `Super Mario Maker`                           |
+| `every/predefined-message`                                                                                       | The predefined message used online                                                 |
+| \[`every`&#124;`official`&#124;`unofficial`&#124;`maker-central`]<br/>`course-tag`                               | The course tags used online or by the community                                    |
+| `every/instrument`                                                                                               | The instrument applicable to anything that can make a sound out of a `Music Block` |
+| `every-editor-voice`                                                                                             | The voices applicable to anything placed in the editor                             |
 
 ### NPM commands
 
