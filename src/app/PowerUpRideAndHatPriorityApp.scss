@@ -11,13 +11,15 @@
   --group-indirect-line-style: dashed;
   width: fit-content;
 
-  :where(.arrow-container, .color) {
-    width: 3cm;
+  :where(.arrow-container),
+  :where(.color), {
+    min-width: 1cm;
     max-width: 3cm;
     margin-right: var(--bs-spacer-md);
   }
   :where(.color) {
-    height: 5px
+    height: 7.5px;
+    flex-grow: 1;
   }
 
   :where(#example-indirect .arrow-container) {
@@ -42,7 +44,12 @@
   --group-indirect-line-style: dashed;
   --group-line-style: solid;
 
-  width: 20cm;
+  overflow-x: auto;
+  > * {
+    width: 15cm;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   img {
     height: var(--image-height)
@@ -376,16 +383,16 @@
   //region -------------------- Specific sizing adjustment --------------------
 
   :where(#powerUpPriority-group-smb > .arrow-group-container > :nth-child(2)) {
-    --angle: -80deg;
+    --angle: -72.5deg;
     .arrow-container {
-      --line-size: 10.5cm;
+      --line-size: 5.75cm;
     }
   }
 
   :where(#powerUpPriority-group-smb > .arrow-group-container > :nth-child(3)) {
-    --angle: 80deg;
+    --angle: 70.5deg;
     .arrow-container {
-      --line-size: 9.5cm;
+      --line-size: 4.75cm;
     }
   }
 
@@ -393,33 +400,33 @@
   :where(#powerUpPriority-group-smb3 > .arrow-group-container > :nth-child(2)),
   :where(#powerUpPriority-group-smw > .arrow-group-container > :nth-child(2)),
   :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :nth-child(2)), {
-    --angle: -80deg;
+    --angle: -72.5deg;
     .arrow-container {
-      --line-size: 10.5cm;
+      --line-size: 5.75cm;
     }
   }
 
   :where(#powerUpPriority-group-smb3 > .arrow-group-container > :nth-child(3)),
   :where(#powerUpPriority-group-smw > .arrow-group-container > :nth-child(3)),
   :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :nth-child(3)), {
-    --angle: 82.5deg;
+    --angle: 77.5deg;
     .arrow-container {
-      --line-size: 12.5cm;
+      --line-size: 7.75cm;
     }
   }
 
 
   :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container > :first-child) {
-    --angle: 60deg;
+    --angle: 20deg;
     .arrow-container {
-      --line-size: 3cm;
+      --line-size: 1.25cm;
     }
   }
 
   :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container > :last-child) {
-    --angle: -65deg;
+    --angle: -35deg;
     .arrow-container {
-      --line-size: 4cm;
+      --line-size: 2cm;
     }
   }
 

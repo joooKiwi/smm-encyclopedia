@@ -226,15 +226,15 @@ export default class PowerUpRideAndHatPriorityApp
         const gameStyle = this.__gameStyle
 
         //TODO replace the div by links (when changed from state to property)
-        return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="btn-group-vertical" role="group">
-            <div className="btn-group" role="group">
-                <div className={`btn ${gameStyle === SUPER_MARIO_BROS ? 'btn-dark disabled' : 'btn-outline-dark'}`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS}>{SUPER_MARIO_BROS.renderSingleComponent}</div>
-                <div className={`btn ${gameStyle === SUPER_MARIO_BROS_3 ? 'btn-dark disabled' : 'btn-outline-dark'}`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>{SUPER_MARIO_BROS_3.renderSingleComponent}</div>
-                <div className={`btn ${gameStyle === SUPER_MARIO_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'}`} onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>{SUPER_MARIO_WORLD.renderSingleComponent}</div>
-                <div className={`btn ${gameStyle === NEW_SUPER_MARIO_BROS_U ? 'btn-dark disabled' : 'btn-outline-dark'}`} onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>{NEW_SUPER_MARIO_BROS_U.renderSingleComponent}</div>
-                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'}`} onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>{SUPER_MARIO_3D_WORLD.renderSingleComponent}</div> : null}
+        return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
+            <div className="d-flex flex-wrap justify-content-center">
+                <div className={`btn ${this.hasSMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS}>{SUPER_MARIO_BROS.renderSingleComponent}</div>
+                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>{SUPER_MARIO_BROS_3.renderSingleComponent}</div>
+                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>{SUPER_MARIO_WORLD.renderSingleComponent}</div>
+                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>{NEW_SUPER_MARIO_BROS_U.renderSingleComponent}</div>
+                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>{SUPER_MARIO_3D_WORLD.renderSingleComponent}</div> : null}
             </div>
-            <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom`} onClick={() => this.__gameStyle = null}>{unfinishedText('None')}</div>
+            <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom w-100`} onClick={() => this.__gameStyle = null}>{unfinishedText('None')}</div>
         </div>
     }
 
@@ -256,7 +256,7 @@ export default class PowerUpRideAndHatPriorityApp
     #createLegend(): NonNullable<ReactElement> {
         return <div id="powerUpRideAndHatPriority-legend-container" className="border rounded border-dark border-opacity-25 ms-auto">
             <h3 className="text-center border border-0 border-bottom border-dark border-opacity-25 pb-1 mb-0">{unfinishedText('Can be obtained …')}</h3>
-            <div id="powerUpRideAndHatPriority-information-container" className="px-3 d-flex flex-column flex-sm-row">
+            <div id="powerUpRideAndHatPriority-information-container" className="px-3 d-flex flex-column flex-sm-row flex-lg-column flex-xl-row">
                 <ul className="list-unstyled m-0">
                     <li id="example-indirect" className="d-flex"><Arrow value={Arrows.RIGHT}/><UnfinishedText>Indirectly</UnfinishedText></li>
                     <li id="example-direct" className="d-flex"><Arrow value={Arrows.RIGHT}/><UnfinishedText>Directly</UnfinishedText></li>
@@ -275,15 +275,15 @@ export default class PowerUpRideAndHatPriorityApp
         return <>
             {this.#createTitleContent()}
             <nav id="navigationButtonGroup-container">
-                <div className="d-flex justify-content-around align-items-center mb-2">
-                    {this.#createGameStyleContent()}
-                    {this.#createOtherPathsContent()}
+                <div className="d-flex flex-wrap justify-content-around align-items-center">
+                    <div>{this.#createGameStyleContent()}</div>
+                    <div className="mt-2 mt-md-0">{this.#createOtherPathsContent()}</div>
+                    <div className="mt-2 mt-lg-0">{this.#createLegend()}</div>
                 </div>
-                {this.#createLegend()}
             </nav>
             <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
             {/*TODO add legend for the colors & styles*/}
-            <div id="displayed-powerUpPriorityGroup" className="mx-auto">
+            <div id="displayed-powerUpPriorityGroup">
                 {this.hasSMB ? <PowerUpPriorityInSMB games={games}>{PowerUpRideAndHatPriorityApp.#SMB_POWER_UPS}</PowerUpPriorityInSMB> : null}
                 {this.hasSMB3 ? <PowerUpPriorityInSMB3 games={games}>{PowerUpRideAndHatPriorityApp.#SMB3_POWER_UPS}</PowerUpPriorityInSMB3> : null}
                 {this.hasSMW ? <PowerUpPriorityInSMW games={games}>{PowerUpRideAndHatPriorityApp.#SMW_POWER_UPS}</PowerUpPriorityInSMW> : null}
