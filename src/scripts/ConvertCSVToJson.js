@@ -2,7 +2,14 @@ const {createReadStream, createWriteStream} = require("fs")
 const {parse} =                               require("papaparse")
 const Logger =                                require('./console/Logger')
 
-const logger = Logger.get;
+const logger = Logger.get
+
+/**
+ * The stream option (x4 the original buffer) for the file reading
+ *
+ * @type ReadStreamOptions
+ */
+const largeBufferSize = {highWaterMark: 256 * 1024,};
 
 [
     'Entity',
@@ -23,7 +30,6 @@ const logger = Logger.get;
     'Instrument',
     'Other word in the game',
 ].forEach(it => convertFileFromCsvToJson(it,))
-
 /**
  * Copy the file from CSV to Json.
  *
@@ -34,7 +40,8 @@ const logger = Logger.get;
  */
 function convertFileFromCsvToJson(fileName,) {
     const startingTime = Date.now(),
-        file = createReadStream(`${__dirname}/../../resources/csv/${fileName}.csv`,),
+        path = `${__dirname}/../../resources/csv/${fileName}.csv`,
+        file = fileName === 'Entity' ? createReadStream(path, largeBufferSize,) : createReadStream(path,),
         writeSteam = createWriteStreamFromFileName(startingTime, fileName,)
 
     parse(file, {
@@ -63,6 +70,8 @@ function createWriteStreamFromFileName(startingTime, fileName,) {
         })
 }
 
+/** A simple invalid case for strings that has <i>(for some reason)</i> "_${number}" after its content */
+const invalidStringRegex = /_(\d+)/
 /**
  * Transform the value (if it is a string) to remove the \r
  *
@@ -70,7 +79,12 @@ function createWriteStreamFromFileName(startingTime, fileName,) {
  * @returns {unknown} The transformed value
  */
 function transformValue(value,) {
-    if (typeof value == 'string' && value.includes('\r'))
-        return value.replaceAll('\r', '',).replaceAll('\r\n', '\n',)
+    if (typeof value == 'string') {
+        if (value.includes('\r'))
+            return value.replaceAll('\r', '',).replaceAll('\r\n', '\n',)
+        if (invalidStringRegex.test(value)) {
+            return value.substring(0, value.indexOf('_'))
+        }
+    }
     return value
 }
