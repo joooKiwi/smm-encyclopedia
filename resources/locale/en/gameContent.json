@@ -131,6 +131,21 @@
       "all":         "Every {{hat}} priority",
       "display all": "Display every {{hat}} priority"
     },
+    "power-up & ride": {
+      "all":         "Every {{powerUp}} & {{ride}} priority",
+      "button":      "{{PowerUps}} & {{rides}}",
+      "display all": "Display every {{powerUp}} & {{ride}} priority"
+    },
+    "power-up & hat": {
+      "all":         "Every {{powerUp}} & {{hat}} priority",
+      "button":      "{{PowerUps}} & {{hats}}",
+      "display all": "Display every {{powerUp}} & {{hat}} priority"
+    },
+    "ride & hat": {
+      "all":         "Every {{ride}} & {{hat}} priority",
+      "button":      "{{Rides}} & {{hats}}",
+      "display all": "Display every {{ride}} & {{hat}} priority"
+    },
     "all": {
       "all":         "Every {{powerUp}}, {{ride}} & {{hat}} priority",
       "button":      "{{PowerUps}}, {{rides}} & {{hats}}",

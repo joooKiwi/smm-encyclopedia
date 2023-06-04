@@ -131,6 +131,21 @@
       "all":         "Toutes les priorités de {{hats}}",
       "display all": "Afficher toutes les priorités de {{hats}}"
     },
+    "power-up & ride": {
+      "all":         "Toutes les priorités d'{{powerUps}} & de {{rides}}",
+      "button":      "{{PowerUps}} & {{rides}}",
+      "display all": "Afficher toutes les priorités d'{{powerUp}} & de {{ride}}"
+    },
+    "power-up & hat": {
+      "all":         "Toutes les priorités d'{{powerUps}} & de {{hats}}",
+      "button":      "{{PowerUps}} & {{hats}}",
+      "display all": "Afficher toutes les priorités d'{{powerUp}} & de {{hats}}"
+    },
+    "ride & hat": {
+      "all":         "Toutes les priorités de {{rides}} & de {{hats}}",
+      "button":      "{{Rides}} & {{hats}}",
+      "display all": "Afficher toutes les priorités de {{ride}} & de {{hats}}"
+    },
     "all": {
       "all":         "Toutes les priorités d'{{powerUps}}, de {{rides}} & de {{hats}}",
       "button":      "{{PowerUps}}, {{rides}} & {{hats}}",
