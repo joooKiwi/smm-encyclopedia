@@ -1,3 +1,4 @@
+import './GroupOfPowerUpPriority.scss'
 import './GroupOf4PowerUpPriority.scss'
 
 import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
@@ -12,11 +13,22 @@ interface GroupOf4PowerUpPriorityProperties
 
     children: readonly [ReactElement, ReactElement, ReactElement, ReactElement,]
 
+    topArrow?: Arrows
     isTopArrowSeparated?: boolean
+
+    leftArrow?: Arrows
     isLeftArrowSeparated?: boolean
+
+    firstDiagonalArrow?: Arrows
     isFirstDiagonalArrowSeparated?: boolean
+
+    secondDiagonalArrow?: Arrows
     isSecondDiagonalArrowSeparated?: boolean
+
+    rightArrow?: Arrows
     isRightArrowSeparated?: boolean
+
+    bottomArrow?: Arrows
     isBottomArrowSeparated?: boolean
 
 }
@@ -25,27 +37,30 @@ interface GroupOf4PowerUpPriorityProperties
  * @param properties
  * @reactComponent
  */
-export default function GroupOf4PowerUpPriority({id, children: [child1, child2, child3, child4,], isTopArrowSeparated = false, isLeftArrowSeparated = false, isFirstDiagonalArrowSeparated = false, isSecondDiagonalArrowSeparated = false, isRightArrowSeparated = false, isBottomArrowSeparated = false,}: GroupOf4PowerUpPriorityProperties,) {
-    return <div id={id} className="groupOf4-powerUp-priority">
-        <div className="start-container">
+export default function GroupOf4PowerUpPriority({id, children: [child1, child2, child3, child4,], topArrow, isTopArrowSeparated = false, leftArrow, isLeftArrowSeparated = false, firstDiagonalArrow, isFirstDiagonalArrowSeparated = false, secondDiagonalArrow, isSecondDiagonalArrowSeparated = false, rightArrow, isRightArrowSeparated = false, bottomArrow, isBottomArrowSeparated = false,}: GroupOf4PowerUpPriorityProperties,) {
+    return <div id={id} className="groupOf4-powerUp-priority powerUp-group-priority d-flex flex-column justify-content-between">
+        <div className="start-container d-flex justify-content-center">
             {child1}
-            <Arrow value={isTopArrowSeparated ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED}/>
+            <Arrow value={topArrow ?? (isTopArrowSeparated ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED)}/>
             {child2}
         </div>
-        <div className="arrows-container">
-            <div className="vertical-arrow-container">
-                <Arrow value={isLeftArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/></div>
-            <div className="diagonal-arrows-container">
-                <Arrow value={isFirstDiagonalArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
-                <Arrow value={isSecondDiagonalArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
+        <div className="arrow-group-container center-arrow-group-container d-flex justify-content-between position-relative">
+            <div className="vertical-arrow-container external-arrow-container d-flex">
+                <Arrow value={leftArrow ?? (isLeftArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED)}/>
             </div>
-            <div className="vertical-arrow-container">
-                <Arrow value={isRightArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED}/>
+            <div className="diagonal-arrow-container internal-arrow-container d-flex angle angle-minus-45 angle-origin-top position-absolute">
+                <Arrow value={firstDiagonalArrow ?? (isFirstDiagonalArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED)}/>
+            </div>
+            <div className="diagonal-arrow-container internal-arrow-container d-flex angle angle-45 angle-origin-top position-absolute">
+                <Arrow value={secondDiagonalArrow ?? (isSecondDiagonalArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED)}/>
+            </div>
+            <div className="vertical-arrow-container external-arrow-container d-flex">
+                <Arrow value={rightArrow ?? (isRightArrowSeparated ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED)}/>
             </div>
         </div>
-        <div className="end-container">
+        <div className="end-container d-flex justify-content-center">
             {child3}
-            <Arrow value={isBottomArrowSeparated ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED}/>
+            <Arrow value={bottomArrow ?? (isBottomArrowSeparated ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED)}/>
             {child4}
         </div>
     </div>

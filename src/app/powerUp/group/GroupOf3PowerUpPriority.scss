@@ -1,66 +1,29 @@
+@use "sass:math";
+
 .groupOf3-powerUp-priority {
-  --group-line-size: 1.5cm;
 
-  flex-direction: column;
-  align-items: initial;
-  justify-content: initial;
+  --group-size: var(--group-size-on-3);
+  --group-line-size: var(--group-line-size-on-3);
 
+  min-width: var(--group-size);
+  min-height: var(--group-size);
 
-  > .start-container {
-    display: flex;
-    justify-content: center;
-  }
+  > .diagonal-arrow-group-container {
+    > .diagonal-arrow-container > * {
+      --line-size: var(--group-line-size)
+    }
 
-  > .diagonal-arrows-container {
-    display: flex;
-    justify-content: space-evenly;
+    > .diagonal-arrow-container {
+      top: calc(var(--group-size) / -4)
+    }
 
     > :first-child {
-      transform: rotate(45deg);
+      left: 50%
     }
 
     > :last-child {
-      transform: rotate(-45deg);
+      left: 50%
     }
-
-  }
-
-  > .end-container {
-    display: flex;
-    justify-content: center;
-    margin: 0;
-
-    > .left-end-container, > .right-end-container, {
-      display: flex;
-      align-items: center;
-      width: calc(100% / 3);
-
-      > * {
-        height: auto;
-        width: 100%;
-      }
-
-      > .groupOf4-powerUp-priority {
-        height: 100%;
-      }
-      > .groupOf5-powerUp-priority {
-        width: auto;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-    }
-
-    > .middle-end-container {
-      flex-basis: 0;
-      flex-grow: 1;
-
-      margin-top: auto;
-      margin-bottom: auto;
-
-      min-width: var(--group-line-size);
-    }
-
   }
 
 }

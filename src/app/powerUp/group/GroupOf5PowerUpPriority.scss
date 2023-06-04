@@ -1,98 +1,87 @@
+@use "sass:math";
+
 .groupOf5-powerUp-priority {
-  --group-line-size: 2cm;
 
-  flex-direction: column;
-  align-items: initial;
-  justify-content: initial;
+  --group-spacer: var(--group-spacer-on-5);
+  --group-size: var(--group-size-on-5);
 
-  > .start-container {
-    display: flex;
-    justify-content: center;
-  }
+  min-width: var(--group-size);
+  min-height: var(--group-size);
+  padding-left: var(--group-spacer);
+  padding-right: var(--group-spacer);
 
-  > .first-external-arrows-container {
-    display: flex;
-    justify-content: space-evenly;
+  .top-center-top-arrow-group-container {
 
-    > :first-child {
-      transform: rotate(45deg);
+    .external-arrow-container > * {
+      --line-height: calc(var(--group-size) - 4 * var(--image-height) + 2 * var(--arrow-size));
+      --line-size: calc(var(--line-height) * #{math.cos(45deg)}); //calc(var(--line-height) / cos(var(--calculated-angle)));
     }
 
-    > :last-child {
-      transform: rotate(-45deg);
+    .internal-arrow-container > * {
+      --line-height: calc(var(--group-size) - 2 * var(--image-height) - var(--arrow-size));
+      --line-size: calc(var(--line-height) * #{math.cos(15deg)}); //calc(var(--line-height) / cos(var(--calculated-angle)));
     }
-  }
 
-  > .middle-container {
-    min-width: var(--group-line-size);
+    .diagonal-arrow-container {
+      top: calc((var(--image-height)) * -1); //calc((var(--image-height)) * -1);
+      margin-top: calc(7px * 1.5); //var(--arrow-size) * 1.5
+    }
 
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
+    & > :first-child {
+      left: calc(50% - var(--image-height) / 2)
+    }
 
-    > .centered-arrows-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-grow: 1;
+    & > :nth-child(2) {
+      left: calc(50%)
+    }
 
-      position: relative;
+    & > :nth-child(3) {
+      right: calc(50%)
+    }
 
-      > .diagonal-arrows-container {
-        transform-origin: top;
-        transform: rotate(12.5deg);
-
-        &:last-child {
-          transform: rotate(-12.5deg);
-
-          > .diagonal-arrow-container {
-            transform: rotate(-30deg);
-          }
-        }
-
-        position: absolute;
-
-        .line {
-          --min-line-size: calc(var(--group-line-size) * 2);
-        }
-
-        > .diagonal-arrow-container {
-          transform-origin: bottom;
-          transform: rotate(30deg);
-          position: absolute;
-          margin-top: calc(var(--group-line-size) / 1.5);
-
-          .line {
-            --min-line-size: calc(var(--group-line-size) * 1.25);
-          }
-
-        }
-
-      }
-
-      > .horizontal-arrow-container {
-        padding: 0;
-        min-width: var(--group-line-size);
-        width: auto;
-      }
-
+    & > :last-child {
+      right: calc(50% - var(--image-height) / 2)
     }
 
   }
 
-  > .second-external-arrows-container {
-    display: flex;
-    justify-content: space-between;
+  .middle-container {
+    margin-left: calc(var(--group-spacer) * -1);
+    margin-right: calc(var(--group-spacer) * -1);
   }
 
-  > .end-container {
-    display: flex;
-    justify-content: center;
-    margin: 0;
+  .bottom-arrow-group-container {
 
-    .arrows-container {
-      min-width: calc(var(--group-line-size) / 2);
+    .external-arrow-container > * {
+      --line-height: calc((var(--group-size) - 3 * var(--image-height) + 2 * var(--arrow-size)) / 2);
+      --line-size: calc(var(--line-height) * #{math.cos(35deg)}); //calc(var(--line-height) / cos(var(--calculated-angle)));
     }
+
+    .internal-arrow-container > * {
+      --line-height: calc(var(--group-size) - 2 * var(--image-height) + 4 * var(--arrow-size));
+      --line-size: calc(var(--line-height) * #{math.cos(60deg)}); //calc(var(--line-height) / cos(var(--calculated-angle)));
+    }
+
+    .diagonal-arrow-container {
+      margin-top: calc((var(--image-height)) * -.75); //calc((var(--image-height)) * -.75);
+    }
+
+    & > :first-child {
+      left: calc(var(--image-height) * -1)
+    }
+
+    & > :nth-child(2) {
+      left: calc(var(--image-height) / 2 * -1)
+    }
+
+    & > :nth-child(3) {
+      right: calc(var(--image-height) / 2 * -1)
+    }
+
+    & > :last-child {
+      right: calc(var(--image-height) * -1)
+    }
+
   }
 
 }

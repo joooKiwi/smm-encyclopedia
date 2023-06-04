@@ -1,0 +1,59 @@
+.debug .powerUp-group-priority {
+  img {
+    background-color: var(--bs-blue);
+  }
+
+  .arrow-container {
+    background-color: var(--bs-red);
+  }
+}
+.powerUp-group-priority{
+  --group-size-on-2: 3cm;
+  --group-size-on-3: 3cm;
+  --group-size-on-4: 4cm;
+  --group-size-on-5: 6cm;
+  --group-size-on-6: 7cm;
+
+  --group-spacer-on-5: 1.5cm;
+  --group-spacer-on-6: 1.5cm;
+
+  --group-line-size-on-3: calc(var(--group-size-on-3) - 2 * var(--image-height));
+}
+
+.angle-origin-start         { transform-origin: left          }
+.angle-origin-end           { transform-origin: right         }
+.angle-origin-center        { transform-origin: center        }
+.angle-origin-center-start  { transform-origin: center left   }
+.angle-origin-center-end    { transform-origin: center right  }
+.angle-origin-center-center { transform-origin: center center }
+.angle-origin-top           { transform-origin: top           }
+.angle-origin-top-start     { transform-origin: top left      }
+.angle-origin-top-end       { transform-origin: top right     }
+.angle-origin-top-center    { transform-origin: top center    }
+.angle-origin-bottom        { transform-origin: bottom        }
+.angle-origin-bottom-start  { transform-origin: bottom left   }
+.angle-origin-bottom-end    { transform-origin: bottom right  }
+.angle-origin-bottom-center { transform-origin: bottom center }
+
+
+.angle {
+  // https://developer.mozilla.org/en-US/docs/Web/CSS/abs#backwards_compatible_fallback
+  // https://stackoverflow.com/questions/34435330/using-modulus-in-css-calc-function
+  --calculated-angle: max(
+          calc(var(--angle) - (180 * (var(--angle) / 180))),
+          calc(-(var(--angle) - (180 * (var(--angle) / 180))))
+  ); //--calculated-angle: abs(mod(var(--angle), 180deg));
+  transform: rotate(var(--angle));
+}
+
+@for $i from 1 through 71 { //from 5deg to 355deg (plus or minus)
+  $angle: $i * 5;
+
+  .angle-#{$angle} {
+    --angle: #{$angle}deg
+  }
+  .angle-minus-#{$angle} {
+    --angle: -#{$angle}deg
+  }
+
+}
