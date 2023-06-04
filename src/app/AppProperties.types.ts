@@ -1,9 +1,10 @@
-import type {CourseTagTypes}  from 'app/property/CourseTagTypes'
-import type {LimitTypes}      from 'app/property/LimitTypes'
-import type {ThemeTypes}      from 'app/property/ThemeTypes'
-import type {ViewDisplays}    from 'app/withInterpreter/ViewDisplays'
-import type {GameCollection}  from 'util/collection/GameCollection'
-import type {ReactProperties} from 'util/react/ReactProperties'
+import type {CourseTagTypes}       from 'app/property/CourseTagTypes'
+import type {LimitTypes}           from 'app/property/LimitTypes'
+import type {PowerUpPriorityTypes} from 'app/property/PowerUpPriorityTypes'
+import type {ThemeTypes}           from 'app/property/ThemeTypes'
+import type {ViewDisplays}         from 'app/withInterpreter/ViewDisplays'
+import type {GameCollection}       from 'util/collection/GameCollection'
+import type {ReactProperties}      from 'util/react/ReactProperties'
 
 export interface AppProperties
     extends ReactProperties {
@@ -28,6 +29,9 @@ export interface AppWithGamesProperties
 
 export interface PowerUpAndRidePriorityProperties
     extends AppWithGamesProperties {
+
+    readonly type: PowerUpPriorityTypes
+
 }
 
 //character name
