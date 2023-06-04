@@ -26,7 +26,6 @@
 
   &.horizontal {
     display: flex;
-    flex-grow: 1;
     --line-size: 100%;
   }
 
@@ -43,6 +42,7 @@
 .arrow-container, .arrows-container, {
 
   &.horizontal {
+    flex-grow: 1;
     margin-top: auto;
     margin-bottom: auto;
   }
