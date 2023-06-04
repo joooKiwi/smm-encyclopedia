@@ -1,4 +1,4 @@
-import {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import {ReactProperties} from 'util/react/ReactProperties'
 
 export interface ModalProperties
     extends ReactProperties {
@@ -11,12 +11,5 @@ export interface ModalPropertiesWithDiv
     extends ModalProperties {
 
     divId: string
-
-}
-
-export interface ModalPropertiesWithContent
-    extends ModalProperties {
-
-    content: ReactElement
 
 }

@@ -11,8 +11,6 @@ import SearchButton      from 'navigation/button/Search.button'
 export interface NavigationProperties
     extends ReactProperties {
 
-    parameter: ModalProperties
-
     displayView: ModalPropertiesWithDiv
 
     search: ModalProperties
@@ -23,13 +21,13 @@ export interface NavigationProperties
 /**
  * @reactComponent
  */
-export default function Navigation({parameter, displayView, search,}: NavigationProperties,) {
+export default function Navigation({displayView, search,}: NavigationProperties,) {
     return <nav id="navigation-container" className="container-fluid bg-light bg-gradient">
         <div id="navigation-sub-container" className="position-relative">
             <HomeButton/>
             <DisplayViewButton {...displayView}/>
             <SearchButton {...search}/>
-            <ParameterButton {...parameter}/>
+            <ParameterButton/>
         </div>
     </nav>
 }
