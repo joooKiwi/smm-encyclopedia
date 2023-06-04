@@ -17,6 +17,7 @@ import GameComponent            from 'core/game/Game.component'
 import {GameImageFileContainer} from 'core/game/file/GameImageFile.container'
 import {StringContainer}        from 'util/StringContainer'
 import {EMPTY_ARRAY}            from 'util/emptyVariables'
+import {GameCollection}         from 'util/collection/GameCollection'
 
 /**
  * @usedByTheRouting
@@ -213,12 +214,15 @@ export abstract class Games
         return [...gamesFiltered,].map(it => it.urlValue).join(',') as GroupUrlValue
     }
 
-    public static get selectedGames(): CollectionHolder<Games> {
-        return this.values.filter(it => it.isSelected)
+    public static get selectedGames(): GameCollection {
+        return new GameCollection(this.values.filter(it => it.isSelected))
     }
 
     public static get selectedGamesAsUrlValue(): FullValidUrlValue {
-        return `game-${this.selectedGames.map(it => it.urlValue).join(',')}` as FullValidUrlValue
+        const selectedGames = this.selectedGames
+        return selectedGames.hasAllGames
+            ? 'game-all'
+            : `game-${selectedGames.map(it => it.urlValue).join(',')}` as FullValidUrlValue
     }
 
 
