@@ -14,7 +14,7 @@ export interface AppProperties
 export interface AppWithInterpreterProperties
     extends AppProperties {
 
-    viewDisplay: ViewDisplays
+    readonly viewDisplay: ViewDisplays
 
 }
 
@@ -51,14 +51,14 @@ export interface GameStyleProperties
 export interface LimitAppProperties
     extends AppWithInterpreterProperties {
 
-    type: LimitTypes
+    readonly type: LimitTypes
 
 }
 
 export interface ThemeAppProperties
     extends AppWithInterpreterProperties {
 
-    type: ThemeTypes
+    readonly type: ThemeTypes
 
 }
 
@@ -75,7 +75,7 @@ export interface ThemeAppProperties
 export interface CourseTagAppProperties
     extends AppWithInterpreterProperties {
 
-    type: CourseTagTypes
+    readonly type: CourseTagTypes
 
 }
 

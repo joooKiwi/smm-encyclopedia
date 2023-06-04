@@ -129,6 +129,7 @@ export abstract class LimitTypes
         return 'success'
     }
 
+
     /**
      * The route name for the path with only the editor {@link EntityLimits}
      *

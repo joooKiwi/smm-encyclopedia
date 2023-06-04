@@ -135,7 +135,7 @@ export abstract class CourseTagTypes
 
     //region -------------------- Link button methods --------------------
 
-    /** The route name for the path with every course tags */
+    /** The route name for the path with every {@link CourseTags} */
     public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyCourseTag'>> {
         return 'everyCourseTag'
     }
@@ -171,6 +171,7 @@ export abstract class CourseTagTypes
     public get unofficialColor(): PossibleColor {
         return 'success'
     }
+
 
     /**
      * The route name for the path with only the "Maker Central" {@link CourseTags}
