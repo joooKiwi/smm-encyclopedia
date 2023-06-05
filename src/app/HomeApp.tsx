@@ -59,7 +59,7 @@ export default class HomeApp
             </div>
             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 justify-content-center px-0 px-sm-5 px-md-3 px-lg-2 px-xl-4 px-xxl-5 gx-2 gy-1">
                 <PageProgress progress="page in progress" link={route('everyEntity')}                   content={singularEntityName}/>
-                <PageProgress progress="page almost done" link={route('everyCharacterName')}            content={gameContentTranslation('character name.singular')}/>
+                <PageProgress progress="page in progress" link={route('everyCharacterName')}            content={gameContentTranslation('character name.singular')}/>
                 <PageProgress progress="data in progress"                                                     content={unfinishedText('Clear condition')} exclusiveGame="SMM2"/>
                 <PageProgress progress="data done"                                                            content={unfinishedText('Clear condition category')} exclusiveGame="SMM2"/>
                 <PageProgress progress="completed"        link={route('everyLimit')}                    content={gameContentTranslation('limit.singular')}/>
@@ -87,8 +87,8 @@ export default class HomeApp
                 <PageProgress progress="completed"        link={route('everyMiiCostume')}               content={singularMiiCostumeName} exclusiveGame="SMM2"/>
                 <PageProgress progress="completed"        link={route('everyMiiCostumeCategory')}       content={gameContentTranslation('mii costume category.singular', {SingularName: singularMiiCostumeName, singularName: singularMiiCostumeLowerCaseName, PluralName: pluralMiiCostumeName, pluralName: pluralMiiCostumeLowerCaseName,},)} exclusiveGame="SMM2"/>
                 <PageProgress progress="page in progress" link={route('everyEditorVoice')}              content={gameContentTranslation('editor voice.singular')}/>
-                <PageProgress progress="page almost done" link={route('everyInstrument')}               content={gameContentTranslation('instrument.singular')}/>
-                <PageProgress progress="page in progress"                                                     content={unfinishedText('Game version history')}/>
+                <PageProgress progress="page in progress" link={route('everyInstrument')}               content={gameContentTranslation('instrument.singular')}/>
+                <PageProgress progress="page in progress" link={route('everyGameReference')}            content={gameContentTranslation('game reference.singular')}/>
                 <PageProgress progress="page in progress" link={route('everyPowerUp&Ride&HatPriority')} content={gameContentTranslation('power-up, ride & hat priority.all.singular', {PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName, Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),},)}/>
             </div>
         </>
