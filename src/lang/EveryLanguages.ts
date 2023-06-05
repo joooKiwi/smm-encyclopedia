@@ -517,8 +517,17 @@ export abstract class EveryLanguages
         protected override _onSetCurrent(value: EveryLanguages,) {
             super._onSetCurrent(value)
             void i18n.changeLanguage(value.projectAcronym)
+            this.#setLanguageToHTML(value,)
         }
 
+        /**
+         * Set the language into the dom elements using a <b>lang</b> value
+         * to change it to the current instance.
+         */
+        #setLanguageToHTML(value: EveryLanguages,): this {
+            document.querySelector('html[lang]')?.setAttribute('lang', value.projectAcronym)
+            return this
+        }
     }
 
     //endregion -------------------- Companion --------------------
@@ -860,15 +869,6 @@ export abstract class EveryLanguages
     }
 
     //endregion -------------------- Transformation methods --------------------
-
-    /**
-     * Set the language into the dom elements using a <b>lang</b> value
-     * to change it to the current instance.
-     */
-    #setLanguageToHTML(): this {
-        document.querySelectorAll('[lang]').forEach(element => element.setAttribute('lang', this.projectAcronym))
-        return this
-    }
 
     // public static getValueByLanguage<T, >(value: T,): EveryLanguagesByLanguage<T>
     public static getValueByLanguage(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
