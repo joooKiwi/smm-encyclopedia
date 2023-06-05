@@ -1,4 +1,43 @@
 {
+  "home": {
+    "title": "Encyclopédie sur «Super Mario Maker»",
+    "warning": {
+      "in construction":       "Ce site web est en construction. ",
+      "more details":          "Ce qui veut dire qu'il se peut qu'il y ait des pages non terminés ou simplement non faite. ",
+      "links may be unstable": "Aussi, certains liens sur les pages peuvent être instable. ",
+      "words are in English":  "Et, il se peut aussi que des mots soient en anglais puisqu'ils n'ont pas été encore traduits."
+    },
+    "description": {
+      "first":     "Cette page a comme but d'agglomérer les informations de plusieurs sources.",
+      "community": "C'est pour et par la communauté de «Super Mario Maker» que cette page a été créé.",
+      "wiki":      "En plus, plusieurs sources sont utilisés: {{marioWikiLink}}, {{marioFandomLink}}, {{theCuttingFloorLink}}.",
+      "name": {
+        "mario wiki": "Super Mario Wiki",
+        "mario fandom": "Super Mario Maker fandom",
+        "the cutting floor": "«The cutting floor»"
+      }
+    },
+    "progress": {
+      "title":       "Progrès sur les pages",
+      "description": "Les pages varient de «complété» à «non créé». Éventuellement, toutes les pages seront ajoutés.",
+      "list to do": {
+        "description": "Il y a aussi des éléments à ajouter sur la page.",
+
+        "automatic language": "Une détection automatique de langue",
+        "font family":        "La police de texte de «Super Mario Maker»",
+        "color mode":         "Un mode de couleur obscure et daltonien",
+        "more info":          "Pour plus d'informations, se référer au {{gitHubLink}}."
+      },
+
+      "Completed":        "Complété",
+      "Page in progress": "Page en progrès",
+      "Page almost done": "Page presque terminé",
+      "Data in progress": "Données en progrès",
+      "Data done":        "Données terminé",
+      "Not created":      "Non créé"
+    }
+  },
+
   "Yes": "Oui",
   "No":  "Non",
 
