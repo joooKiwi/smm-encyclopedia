@@ -72,43 +72,10 @@ Although, they are only there for some names.
 - [ ] Search engine.
 - [ ] Options that would change the URL based on the application loaded.
 - [ ] Sub-pages with reactive URL.
-
-### Sub-page applications
-- [ ] ![In progress](.github/styles/in-progress.svg)         Entity
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Character name
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Clear condition ![ (SMM3DS)](.github/styles/smm2-sub-page.svg)
-    - [ ] ![Not completed](.github/styles/not-completed.svg) Clear condition category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [x] ![Completed](.github/styles/completed.svg)             Entity limit
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity projectile
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity object
-- [x] ![Completed](.github/styles/completed.svg)             Entity category
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity group
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Theme
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Time
-- [x] ![Completed](.github/styles/completed.svg)             Game reference
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Game
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Game style</span>
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity behaviour
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Sound effect
-    - [ ] ![Not completed](.github/styles/not-completed.svg) Sound effect category
-- [x] ![Completed](.github/styles/completed.svg)             Course tag ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Predefined message ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Sample courses ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Medals ![ (SMM1)](.github/styles/smm1-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Job ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Official notification ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Ninji speedrun ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![In progress](.github/styles/in-progress.svg)         Mystery Mushroom ![ (SMM1)](.github/styles/smm1-sub-page.svg)
-- [x] ![Completed](.github/styles/completed.svg)             Mii costume ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-    - [x] ![Completed](.github/styles/completed.svg)         Mii costume category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Editor voice
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Instrument
-- [ ] ![In progress](.github/styles/in-progress.svg)         Version
-
-#### Other sub-pages (not directly related to the project)
-- [ ] ![In progress](.github/styles/in-progress.svg)         Power-up priority
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Secret pages (by URL, by key combination & maybe other ones)
+- [ ] Secret pages
+  - [ ] by URL
+  - [ ] by key combination
+  - [ ] maybe other ways to create them
 
 ## Development for the web application
 
