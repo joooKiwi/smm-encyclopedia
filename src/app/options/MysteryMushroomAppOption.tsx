@@ -47,7 +47,7 @@ export abstract class MysteryMushroomAppOption
             return <div key={`games - ${uniqueEnglishName}`} id={`games-${englishNameInHtml}`}>{
                 reference.games.map((game, index, games,) => <Fragment key={`game (${index + 1}) - ${uniqueEnglishName}`}>
                     <NameComponent id={`game_${index + 1}_${englishNameInHtml}`} name={game.reference} popoverOrientation="right"/>
-                    {index === games.length - 1 ? null : <>{ProjectLanguages.currentLanguage.comma}<br/></>}
+                    {index === games.length - 1 ? null : <>{ProjectLanguages.current.comma}<br/></>}
                 </Fragment>)
             }</div>
         }

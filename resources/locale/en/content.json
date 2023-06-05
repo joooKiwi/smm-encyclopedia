@@ -1,4 +1,42 @@
 {
+  "home": {
+    "title": "Encyclopedia on \"Super Mario Maker\"",
+    "warning": {
+      "in construction":       "This website is in construction. ",
+      "more details":          "Meaning that some page can be unfinished or simply not created. ",
+      "links may be unstable": "Also, some links on the pages may be unstable. ",
+      "words are in English":  "And, some words may be in English due to them not being translated yet."
+    },
+    "description": {
+      "first":     "This page is meant to agglomerate the information from multiple sources.",
+      "community": "It is from and by the \"Super Mario Maker\" community that this page was made.",
+      "wiki":      "Also, multiple sources are used: {{marioWikiLink}}, {{marioFandomLink}}, {{theCuttingFloorLink}}.",
+      "name": {
+        "mario wiki": "Super Mario Wiki",
+        "mario fandom": "Super Mario Maker fandom",
+        "the cutting floor": "The cutting floor"
+      }
+    },
+    "progress": {
+      "title":       "Progress on the pages",
+      "description": "The pages varies from \"complete\" to \"not created\". Eventually, every page will be added.",
+      "list to do": {
+        "description": "There are also elements to add to the page.",
+
+        "automatic language": "An automatic language detection",
+        "font family":        "A \"Super Mario Maker\" font family",
+        "color mode":         "A dark & color-blind mode",
+        "more info":          "More informations are shown on the {{gitHubLink}}."
+      },
+      "Completed":        "Completed",
+      "Page in progress": "Page in progress",
+      "Page almost done": "Page almost done",
+      "Data in progress": "Data in progress",
+      "Data done":        "Data done",
+      "Not created":      "Not created"
+    }
+  },
+
   "Yes": "Yes",
   "No":  "No",
 

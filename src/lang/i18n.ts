@@ -235,14 +235,14 @@ i18n
     .use(initReactI18next)
     .init({
         fallbackLng: {
-            fr_CA: ['fr'],
-            fr_EU: ['fr'],
-            es_AM: ['es'],
-            es_EU: ['es'],
-            pt_AM: ['pt'],
-            pt_EU: ['pt'],
-            zh_S: ['zh'],
-            zh_T: ['zh'],
+            'fr-CA': ['fr'],
+            'fr-EU': ['fr'],
+            'es-AM': ['es'],
+            'es-EU': ['es'],
+            'pt-AM': ['pt'],
+            'pt-EU': ['pt'],
+            'zh-S': ['zh'],
+            'zh-T': ['zh'],
             default: ['en'],
         },
         ns: ['language', 'content', 'gameContent', 'entityContent',],

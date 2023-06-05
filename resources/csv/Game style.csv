@@ -2,5 +2,5 @@ isInSuperMarioMaker1And3DS,isInSuperMarioMaker2,isAvailableFromTheStart_SMM1,ref
 TRUE,TRUE,TRUE,SMB,←,periodic
 TRUE,TRUE,FALSE,SMB3,→,periodic
 TRUE,TRUE,FALSE,SMW,↔,periodic
-TRUE,TRUE,TRUE,NSMBU,←,constant
+TRUE,TRUE,TRUE,NSMBU,→,constant
 FALSE,TRUE,,SM3DW,,

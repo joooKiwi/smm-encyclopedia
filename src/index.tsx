@@ -8,8 +8,8 @@ import reportWebVitals from 'reportWebVitals'
 import IndexComponent   from 'IndexComponent'
 import {isInProduction} from 'variables'
 
-const root = createRoot(document.getElementById('root')!)
-root.render(<IndexComponent/>)
+createRoot(document.getElementById('root')!)
+    .render(<IndexComponent/>)
 
 if (isInProduction) {
     // If you want to start measuring performance in your app, pass a function

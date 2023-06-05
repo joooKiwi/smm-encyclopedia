@@ -1,23 +1,24 @@
 import {useEffect} from 'react'
 
-import type {ModalPropertiesWithContent, ModalPropertiesWithDiv} from 'navigation/ModalContainers.types'
-import type {ReactProperties}                                    from 'util/react/ReactProperties'
+import type {ModalPropertiesWithDiv}        from 'navigation/ModalContainers.types'
+import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 
-import ModalBody            from 'bootstrap/modal/element/ModalBody'
-import ModalContainer       from 'bootstrap/modal/element/ModalContainer'
-import ModalFooter          from 'bootstrap/modal/element/ModalFooter'
-import ModalHeader          from 'bootstrap/modal/element/ModalHeader'
-import {ModalInstance}      from 'bootstrap/modal/ModalInstance'
-import {contentTranslation} from 'lang/components/translationMethods'
-import DisplayViewBody      from 'navigation/DisplayView.body'
-import LanguageChangerBody  from 'navigation/LanguageChanger.body'
+import ModalBody                        from 'bootstrap/modal/element/ModalBody'
+import ModalContainer                   from 'bootstrap/modal/element/ModalContainer'
+import ModalFooter                      from 'bootstrap/modal/element/ModalFooter'
+import ModalHeader                      from 'bootstrap/modal/element/ModalHeader'
+import {ModalInstance}                  from 'bootstrap/modal/ModalInstance'
+import {contentTranslation}             from 'lang/components/translationMethods'
+import DisplayViewBody                  from 'navigation/DisplayView.body'
+import LanguageChangerBody              from 'navigation/LanguageChanger.body'
+import {MODAL_ID as PARAMETER_MODAL_ID} from 'navigation/button/Parameter.button'
 
 interface ModalContainersProperties
     extends ReactProperties {
 
     languageChanger: ModalPropertiesWithDiv
 
-    parameter: ModalPropertiesWithContent
+    parameter: NonNullable<ReactElement>
 
     displayView: ModalPropertiesWithDiv
 
@@ -31,13 +32,13 @@ interface ModalContainersProperties
  */
 export default function ModalContainers({
                                             languageChanger: {id: languageId, divId: languageDivId,},
-                                            parameter: {id: parameterId, content: parameterContent,},
+                                            parameter,
                                             displayView: {id: displayViewId, divId: displayViewDivId,},
                                             search: {id: searchId, divId: searchDivId,},
                                         }: ModalContainersProperties,) {
     useEffect(() => {
         new ModalInstance(languageId,)
-        new ModalInstance(parameterId,)
+        new ModalInstance(PARAMETER_MODAL_ID,)
         new ModalInstance(displayViewId,)
         new ModalInstance(searchId,)
     })
@@ -51,10 +52,10 @@ export default function ModalContainers({
             <ModalFooter key="modal - language changer (footer)"/>
         </ModalContainer>
 
-        <ModalContainer key="modal - parameter (container)" id={parameterId} verticallyCentered modalSize="xl">
-        {/*    <ModalHeader key="modal - parameter (header)" modalTitle={contentTranslation('Options')}/>*/}
-        {/*    <ModalBody key="modal - parameter (body)">{parameterContent}</ModalBody>*/}
-        {/*    <ModalFooter key="modal - parameter (footer)" successButton={({children: contentTranslation('Confirm'),})}/>*/}
+        <ModalContainer key="modal - parameter (container)" id={PARAMETER_MODAL_ID} verticallyCentered modalSize="xl">
+            <ModalHeader key="modal - parameter (header)" modalTitle={contentTranslation('Options')}/>
+            <ModalBody key="modal - parameter (body)">{parameter}</ModalBody>
+            {/*<ModalFooter key="modal - parameter (footer)" successButton={({children: contentTranslation('Confirm'),})}/>*/}
         </ModalContainer>
 
         <ModalContainer key="modal - display view (container)" id={displayViewId} verticallyCentered modalSize="lg">

@@ -1,15 +1,12 @@
 import './Arrow.scss'
 
-import type {PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-
+import type {Arrows}          from 'app/tools/arrow/Arrows'
 import type {ReactProperties} from 'util/react/ReactProperties'
-
-import {Arrows} from 'app/tools/arrow/Arrows'
 
 interface SingleArrowProperties
     extends ReactProperties {
 
-    value: PossibleValueByEnumerable<Arrows>
+    value: Arrows
 
 }
 
@@ -17,5 +14,5 @@ interface SingleArrowProperties
  * @reactComponent
  */
 export default function Arrow({value,}: SingleArrowProperties,) {
-    return Arrows.getValue(value).createArrow()
+    return value.createArrow()
 }

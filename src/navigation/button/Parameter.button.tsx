@@ -1,39 +1,17 @@
-import type {PossibleTooltipPlacement} from 'bootstrap/Bootstrap.types'
-import type {PossibleContent}          from 'navigation/button/AbstractNavigationButton.types'
-
+import ModalButton                from 'bootstrap/modal/element/ModalButton'
+import Tooltip                    from 'bootstrap/tooltip/Tooltip'
 import {contentTranslation}       from 'lang/components/translationMethods'
-import {AbstractNavigationButton} from 'navigation/button/AbstractNavigationButton'
+
+const ID = "parameter-button"
+export const MODAL_ID = "parameter-modal-container"
 
 /**
  * @reactComponent
  */
-export default class ParameterButton
-    extends AbstractNavigationButton {
-
-    static readonly #ID = 'parameter-button'
-
-    protected override get _isTopButton() {
-        return true
-    }
-
-    protected override get _id() {
-        return ParameterButton.#ID
-    }
-
-    protected override get _tooltipPlacement(): PossibleTooltipPlacement {
-        return 'left'
-    }
-
-    protected override get _addedClass() {
-        return 'bi-gear-fill'
-    }
-
-    protected override get _isDisabled(): boolean {
-        return true
-    }
-
-    protected override _getContent(): PossibleContent {
-        return [contentTranslation('Options'), 'lg',]
-    }
-
+export default function ParameterButton() {
+    return <Tooltip elementId={ID} option={({title: contentTranslation('Options'), placement: 'left',})}>
+        <ModalButton key={`navigation button (parameter)`} id={ID} elementToShow={MODAL_ID} className="btn btn-lg btn-outline-primary btn-navigation rounded-pill bi bi-gear-fill">
+                <span key={`navigation text button (parameter)`} className={`btn-navigation-text d-none d-lg-inline-block`}>{contentTranslation('Options')}</span>
+        </ModalButton>
+    </Tooltip>
 }

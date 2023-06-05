@@ -1,5 +1,6 @@
 import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
+import {nonNull}                      from 'util/utilitiesMethods'
 import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
@@ -28,8 +29,7 @@ export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_
         this.#nsmbu = nsmbu
         this.#sm3dw = sm3dw
 
-        this.#allHolder = new DelayedObjectHolderContainer(() => [this.smb, this.smb3, this.smw, this.nsmbu, this.sm3dw,]
-            .filter(music => music != null) as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]>)
+        this.#allHolder = new DelayedObjectHolderContainer(() => nonNull([this.smb, this.smb3, this.smw, this.nsmbu, this.sm3dw,]) as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]>)
     }
 
     //region -------------------- Getter methods --------------------

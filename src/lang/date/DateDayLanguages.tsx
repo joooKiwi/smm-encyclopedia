@@ -1,10 +1,11 @@
 import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
 import {Enum}                                                                               from '@joookiwi/enumerable'
 
-import type {DayNumber}       from 'lang/date/types'
-import type {EveryLanguages}  from 'lang/EveryLanguages'
-import type {Names, Ordinals} from 'lang/ProjectLanguages.types'
-import type {Nullable}        from 'util/types/nullable'
+import type {DayNumber}        from 'lang/date/types'
+import type {EveryLanguages}   from 'lang/EveryLanguages'
+import type {Names, Ordinals}  from 'lang/ProjectLanguages.types'
+import type {ClassWithCurrent} from 'util/enumerable/ClassWithCurrent'
+import type {Nullable, NullOr} from 'util/types/nullable'
 
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
@@ -140,35 +141,110 @@ export abstract class DateDayLanguages
     //region -------------------- Enum fields --------------------
 
     static [index: number]: DateDayLanguages
-    protected static override readonly _DEFAULT = this.getValueByLanguage(ProjectLanguages._DEFAULT)
+    protected static override readonly _DEFAULT = this.getValueByLanguage(ProjectLanguages.default)
 
     //endregion -------------------- Enum fields --------------------
-    //region -------------------- Fields --------------------
+    //region -------------------- Companion --------------------
 
-    readonly #reference
+    /**
+     * The reference of the static methods applicable to the class {@link DateDayLanguages}
+     *
+     * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
+     * @singleton
+     */
+    public static readonly Companion2 = class Companion_DateDayLanguages
+        implements ClassWithCurrent<DateDayLanguages> {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: Companion_DateDayLanguages
+
+        private constructor() {
+        }
+
+        public static get get() {
+            return this.#instance ??= new this()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+        public get currentOrNull(): NullOr<DateDayLanguages> {
+            const value = ProjectLanguages.currentOrNull
+            return value == null ? null : DateDayLanguages.getValueByLanguage(value)
+        }
+
+        public get current(): DateDayLanguages {
+            return DateDayLanguages.getValueByLanguage(ProjectLanguages.current)
+        }
+
+        public set current(value: PossibleValueByEnumerable<DateDayLanguages>,) {
+            ProjectLanguages.current = DateDayLanguages.getValue(value).language2
+        }
+
+    }
+
+    //endregion -------------------- Companion --------------------
+    //region -------------------- Fields --------------------
+    readonly #language
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(language: ProjectLanguages,) {
-        super(language)
-        this.#reference = language
+        super(language.language, language.isInSuperMarioMaker1, language.isInSuperMarioMakerFor3DS, language.isInSuperMarioMaker2,)
+        this.#language = language
     }
 
-    //region -------------------- Getter methods --------------------
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter & setter methods --------------------
 
-    public get reference() {
-        return this.#reference
+    public get language2() {
+        return this.#language
     }
 
-    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Getter & setter methods (current) --------------------
+
+    public override get isCurrent(): boolean {
+        return this === DateDayLanguages.currentOrNull
+    }
+
+
+    /**
+     * Get the current {@link ProjectLanguages language} that may be initialized
+     *
+     * @see EveryLanguages.currentOrNull
+     */
+    public static override get currentOrNull(): NullOr<DateDayLanguages> {
+        return DateDayLanguages.Companion2.get.currentOrNull
+    }
+
+    /**
+     * Get the non-nullable current {@link DateDayLanguages language}
+     *
+     * @throws ReferenceError The current {@link DateDayLanguages language} has not been initialized yet
+     * @see ProjectLanguages.current
+     */
+    public static override get current(): DateDayLanguages {
+        return this.Companion2.get.current
+    }
+
+    /**
+     * Set the current {@link DateDayLanguages language} held in the {@link DateDayLanguages.Companion2}
+     *
+     * @param value The {@link DateDayLanguages language} to set as the current one
+     * @see ProjectLanguages.current
+     */
+    public static override set current(value: PossibleValueByEnumerable<| EveryLanguages | ProjectLanguages | DateDayLanguages>,) {
+        this.Companion2.get.current = value
+    }
+
+    //endregion -------------------- Getter & setter methods (current) --------------------
+
+    //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------
 
     public abstract newDayComponent(day: DayNumber,): JSX.Element
 
-
-    public static override get currentLanguage(): DateDayLanguages {
-        return this.getValue(ProjectLanguages.currentLanguage)
-    }
 
     // public static override getValueByLanguage<T,>(value: T,): DateDayLanguagesByLanguage<T>
     public static override getValueByLanguage(value: Nullable<| DateDayLanguages | ProjectLanguages | EveryLanguages | string>,): DateDayLanguages {
@@ -176,8 +252,8 @@ export abstract class DateDayLanguages
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof DateDayLanguages)
             return value
-        const languageFound = super.getValueByLanguage(value),
-            valueFound = this.values.find(it => it.reference === languageFound)
+        const languageFound = ProjectLanguages.getValueByLanguage(value),
+            valueFound = this.values.find(it => it.language2 === languageFound)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
         return valueFound
@@ -194,7 +270,7 @@ export abstract class DateDayLanguages
         return this.getValueByLanguage(ProjectLanguages.default)
     }
 
-    public static override getValue(value: PossibleValueByEnumerable<| ProjectLanguages | DateDayLanguages>,) {
+    public static override getValue(value: PossibleValueByEnumerable<| ProjectLanguages | DateDayLanguages>,): DateDayLanguages {
         return Enum.getValueOn<DateDayLanguages>(this, value,)
     }
 

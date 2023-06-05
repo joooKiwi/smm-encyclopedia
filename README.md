@@ -6,8 +6,6 @@ https://joookiwi.github.io/smm-encyclopedia
 
 ## Table of content
 * [List of elements to do](#list-of-elements-to-do)
-  * [Sub-page applications](#sub-page-applications)
-    * [Other sub-pages (not directly related to the project)](#other-sub-pages--not-directly-related-to-the-project-)
 * [Development for the web application](#development-for-the-web-application)
   * [Standard used in the project](#standard-used-in-the-project)
     * [Imports](#imports)
@@ -17,6 +15,7 @@ https://joookiwi.github.io/smm-encyclopedia
     * [Variable / methods / class naming](#variable--methods--class-naming)
     * [Files using a CSV source](#files-using-a-csv-source)
     * [Dependencies](#dependencies)
+    * [Routes](#routes)
   * [NPM commands](#npm-commands)
     * [Prerequisites](#prerequisites)
     * [Run the project locally (desktop and mobile)](#run-the-project-locally--desktop-and-mobile-)
@@ -65,55 +64,23 @@ Although, they are only there for some names.
 - [ ] Font family
   - [ ] from the Super Mario Maker games
   - [ ] from SMB, SMB3, SMW, NSMBU & SM3DW specifically
-- [ ] Color mode implementation (independent of each and another)
+- [ ] Colour mode implementation (independent of each and another)
   - [ ] Dark mode
   - [ ] Colour-blind mode
 - [ ] Search engine.
 - [ ] Options that would change the URL based on the application loaded.
 - [ ] Sub-pages with reactive URL.
-
-### Sub-page applications
-- [ ] ![In progress](.github/styles/in-progress.svg)         Entity
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Character name
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Clear condition ![ (SMM3DS)](.github/styles/smm2-sub-page.svg)
-    - [ ] ![Not completed](.github/styles/not-completed.svg) Clear condition category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [x] ![Completed](.github/styles/completed.svg)             Entity limit
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity projectile
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity object
-- [x] ![Completed](.github/styles/completed.svg)             Entity category
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity group
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Theme
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Time
-- [x] ![Completed](.github/styles/completed.svg)             Game reference
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Game
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Game style</span>
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Entity behaviour
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Sound effect
-    - [ ] ![Not completed](.github/styles/not-completed.svg) Sound effect category
-- [x] ![Completed](.github/styles/completed.svg)             Course tag ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Predefined message ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Sample courses ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Medals ![ (SMM1)](.github/styles/smm1-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Super Mario Challenges levels ![ (SMM3DS)](.github/styles/smm3ds-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Job ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Official notification ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Ninji speedrun ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![In progress](.github/styles/in-progress.svg)         Mystery Mushroom ![ (SMM1)](.github/styles/smm1-sub-page.svg)
-- [x] ![Completed](.github/styles/completed.svg)             Mii costume ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-    - [x] ![Completed](.github/styles/completed.svg)         Mii costume category ![ (SMM2)](.github/styles/smm2-sub-page.svg)
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Editor voice
-- [ ] ![Partially done](.github/styles/partially-done.svg)   Instrument
-- [ ] ![In progress](.github/styles/in-progress.svg)         Version
-
-#### Other sub-pages (not directly related to the project)
-- [ ] ![In progress](.github/styles/in-progress.svg)         Power-up priority
-- [ ] ![Not completed](.github/styles/not-completed.svg)     Secret pages (by URL, by key combination & maybe other ones)
+- [ ] Secret pages
+  - [ ] by URL
+  - [ ] by key combination
+  - [ ] maybe other ways to create them
 
 ## Development for the web application
 
 ### Standard used in the project
 
-In order to have a clean way to navigate on the project, multiple standard have been made.
+In order to have a clean way to navigate to the project,
+multiple standards have been made.
 
 #### Imports
 
@@ -129,9 +96,9 @@ They are separated in different sections
 #### Visibility
 
 Since some visibilities are present in other languages (like Kotlin, Java, PHP or C#),
-the project utilise some standard on the visibilities.
+the project utilizes some standard on the visibilities.
 
-It utilises the Typescript system for the pre-established visibilities.
+It utilizes the Typescript system for the pre-established visibilities.
 Then, for those that are not in the system, it uses somme pattern for it.
 
 | Syntax               | in project |  in Typescript  |         in Javascript         |                                                                            Example |
@@ -143,7 +110,7 @@ Then, for those that are not in the system, it uses somme pattern for it.
 
 #### Folder structure
 
-The files are structured by folder.
+Folder structures the files.
 Most of them are self-explanatory.
 
 | Path                   | Meaning                                                                  |                                    Things to do | 
@@ -162,7 +129,7 @@ Most of them are self-explanatory.
 #### File naming
 
 The names of the files are important since some of them are for Typescript
-and others gives meaning to them.
+and others give meaning to them.
 
 | Syntax                                                                                                              | Type of file                                                                        |         Javascript         |         Typescript          |
 |:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|:--------------------------:|:---------------------------:|
@@ -281,7 +248,7 @@ flowchart TB
     SMM3DS>"Super Mario Maker for Nintendo 3DS (3DS)"]
     SMM2[\"Super Mario Maker 2 (Switch)"\]
   end
-  subgraph Depencencies to...
+  subgraph Dependencies to...
     A -- Direct --> B
     C -. "Indirect (via the DynamicImporter)" .-> D
   end
@@ -290,7 +257,7 @@ flowchart TB
 The dependencies imply that the entity uses almost everything in the project.<br/>
 So, some recursive dependencies are in place to make the project compile.
 
-To simplify the diagram, the entity dependencies has been removed to help readability.<br>
+To simplify the diagram, the entity dependencies have been removed to help readability.<br>
 And the dependencies used in the Entity are:<br/>
 1. Clear condition
 2. Editor voice
@@ -345,7 +312,7 @@ flowchart LR
   V((Version))
   
 
-  subgraph Independant
+  subgraph Independent
     CT & J & M & NS & ON & PM & SC & SMCL
   end
   subgraph Entity
@@ -394,6 +361,41 @@ flowchart LR
 
 </details>
 
+#### Routes
+
+Every route in the project has a reason to exist.
+It can either be to have a default value or to be accessible by the URL directly.
+
+So far, the paths are separated by multiple parts:
+ 1. The optional language (`en-AM`, `en-EU`, `fr-CA`, `fr-EU`, `de`, `es-AM`, `es-EU`, `it`, `nl`, `pt-AM`, `pt-EU`, `ru`, `ja`, `zh-tw`, `zh-cn` or `ko`)
+ 2. The game (`game-` + `1`, `3ds` and/or `2`) with its default `game-2`
+ 3. The display option (`list`, `card` or `table`)
+ 4. The ending paths:
+
+| Path (in the URL)                                                                                                | Small description                                                                  |
+|:-----------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| `home`                                                                                                           |                                                                                    |
+| `about`                                                                                                          | A small description about this application and its purpose                         |
+| `source`                                                                                                         | Those who helped and the tools used to make this application                       |
+| `every/`<br/>\[`power-up`&#124;`ride`&#124;`hat`](`+`\[`power-up`&#124;`ride`&#124;`hat`]{0,2}?)<br/>`/priority` | A visualisation of the priority about the power-ups, rides and hats                |
+| `every/character-name`                                                                                           | The character name told in the editor                                              |
+| `every/game-reference`                                                                                           | Every game referenced in any games                                                 |
+| `every/game-style`                                                                                               | The game style used in the games                                                   |
+| `every/entity`                                                                                                   | The entities only used in the games                                                |
+| `every/entity-category`                                                                                          | The category made to group the entity (from the `Super Mario Maker 2` game)        |
+| `every/entity-group`                                                                                             | A group of entity associated by relation, color or other kind of attributes        |
+| \[`every`&#124;`play`&#124;`editor`]<br/>`/limit`                                                                | The limit applicable and usable in the games                                       |
+| \[`every`&#124;`course`&#124;`world`]<br/>`/theme`                                                               | The theme (in a level or a world)                                                  |
+| `every/sound-effect`                                                                                             | The sound effect placeable on any surface or entity                                |
+| `every/sound-effect-category`                                                                                    | The category (from the `Super Mario Maker 2` game) of the sound effect             |
+| `every/mii-costume`                                                                                              | The costume applicable to a Mii online only in `Super Mario Maker 2`               |
+| `every/mii-costume-category`                                                                                     | The type of Mii costume that can be used only in `Super Mario Maker 2`             |
+| `every-mystery-mushroom`                                                                                         | The Mystery Mushrooms usable only in `Super Mario Maker`                           |
+| `every/predefined-message`                                                                                       | The predefined message used online                                                 |
+| \[`every`&#124;`official`&#124;`unofficial`&#124;`maker-central`]<br/>`course-tag`                               | The course tags used online or by the community                                    |
+| `every/instrument`                                                                                               | The instrument applicable to anything that can make a sound out of a `Music Block` |
+| `every-editor-voice`                                                                                             | The voices applicable to anything placed in the editor                             |
+
 ### NPM commands
 
 #### Prerequisites
@@ -418,7 +420,7 @@ The project could also be run with `npm run fast-start` to omit:
  - (Other things in the future)
 
 By default, it will open it in the default browser automatically.
-If it has not worked, then, open [localhost:3000/smm-encyclopedia](http://localhost:3000/smm-encyclopedia) to display the application.
+If it has not worked, then open [localhost:3000/smm-encyclopedia](http://localhost:3000/smm-encyclopedia) to display the application.
 
 If it needs to be tested on other devices than the local machine, there will be another address.
 An example could be [192.168.4.20:3000/smm-encyclopedia](http://192.168.4.20:3000/smm-encyclopedia).
@@ -436,7 +438,7 @@ It has:
 
 The command to execute the test command tool is `npm run test`.
 
-Then, from  that, it will start an interactive watch mode.
+Then, from that, it will start an interactive watch mode.
 For more details, see [how to run the tests](https://facebook.github.io/create-react-app/docs/running-tests).
 
 #### Deploying the changes to the server

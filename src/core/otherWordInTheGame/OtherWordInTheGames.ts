@@ -70,23 +70,23 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     private static readonly CompleteInSMM1OtherWordInTheGame = class CompleteInSMM1OtherWordInTheGame<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, > extends OtherWordInTheGames.CompleteOtherWordInTheGame<SINGULAR, PLURAL> {
 
         /**
-         * Get the {@link singularEnglishName} (on the {@link LanguageEnumerable.isCurrentLanguage current language})
+         * Get the {@link singularEnglishName} (on the {@link EveryLanguages.current current language})
          * or the  {@link ProjectLanguages.AMERICAN_ENGLISH american english} value if it is
          * chinese ({@link ProjectLanguages.SIMPLIFIED_CHINESE simplified} or {@link ProjectLanguages.TRADITIONAL_CHINESE traditional}) or {@link ProjectLanguages.KOREAN korean}
          */
         public override get singularNameOnReference(): string {
-            return CHINESE.isCurrentLanguage || KOREAN.isCurrentLanguage ? this.reference.english : super.singularNameOnReference
+            return CHINESE.isCurrent || KOREAN.isCurrent ? this.reference.english : super.singularNameOnReference
         }
 
         /**
-         * Get the {@link pluralEnglishName} (on the {@link LanguageEnumerable.isCurrentLanguage current language})
+         * Get the {@link pluralEnglishName} (on the {@link EveryLanguages.current current language})
          * or the {@link ProjectLanguages.AMERICAN_ENGLISH american english} value if it is
          * chinese ({@link ProjectLanguages.SIMPLIFIED_CHINESE simplified} or {@link ProjectLanguages.TRADITIONAL_CHINESE traditional}) or {@link ProjectLanguages.KOREAN korean}
          *
          * @throws {ReferenceError} There is no plural value
          */
         public override get pluralNameOnReference(): string {
-            if (CHINESE.isCurrentLanguage || KOREAN.isCurrentLanguage) {
+            if (CHINESE.isCurrent || KOREAN.isCurrent) {
                 const pluralForm = this.reference.pluralForm
                 if (pluralForm == null)
                     throw new ReferenceError(`There is no plural value on the ${this.englishName}.`)
@@ -105,17 +105,17 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     private static readonly CompleteInSMM2OtherWordInTheGame = class CompleteInSMM2OtherWordInTheGame<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, > extends OtherWordInTheGames.CompleteOtherWordInTheGame<SINGULAR, PLURAL> {
 
         /**
-         * Get the {@link singularEnglishName} (on the {@link LanguageEnumerable.isCurrentLanguage current language})
+         * Get the {@link singularEnglishName} (on the {@link EveryLanguages.current current language})
          * or the {@link EveryLanguages.ENGLISH english} if it is {@link EveryLanguages.PORTUGUESE portuguese}
          * ({@link ProjectLanguages.AMERICAN_PORTUGUESE american} to {@link ProjectLanguages.AMERICAN_ENGLISH american}
          * & {@link ProjectLanguages.EUROPEAN_PORTUGUESE european} to {@link ProjectLanguages.EUROPEAN_ENGLISH european})
          */
         public override get singularNameOnReference(): string {
-            return AMERICAN_PORTUGUESE.isCurrentLanguage ? this.reference.americanEnglish : EUROPEAN_PORTUGUESE.isCurrentLanguage ? this.reference.europeanEnglish : super.singularNameOnReference
+            return AMERICAN_PORTUGUESE.isCurrent ? this.reference.americanEnglish : EUROPEAN_PORTUGUESE.isCurrent ? this.reference.europeanEnglish : super.singularNameOnReference
         }
 
         /**
-         * Get the {@link singularEnglishName} (on the {@link LanguageEnumerable.isCurrentLanguage current language})
+         * Get the {@link singularEnglishName} (on the {@link EveryLanguages.current current language})
          * or the {@link EveryLanguages.ENGLISH english} if it is {@link EveryLanguages.PORTUGUESE portuguese}
          * ({@link ProjectLanguages.AMERICAN_PORTUGUESE american} to {@link ProjectLanguages.AMERICAN_ENGLISH american}
          * & {@link ProjectLanguages.EUROPEAN_PORTUGUESE european} to {@link ProjectLanguages.EUROPEAN_ENGLISH european})
@@ -123,11 +123,11 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
          * @throws {ReferenceError} There is no plural value
          */
         public override get pluralNameOnReference(): string {
-            if (PORTUGUESE.isCurrentLanguage) {
+            if (PORTUGUESE.isCurrent) {
                 const pluralForm = this.reference.pluralForm
                 if (pluralForm == null)
                     throw new ReferenceError(`There is no plural value on the ${this.englishName}.`)
-                return AMERICAN_PORTUGUESE.isCurrentLanguage ? pluralForm.americanEnglish : pluralForm.europeanEnglish
+                return AMERICAN_PORTUGUESE.isCurrent ? pluralForm.americanEnglish : pluralForm.europeanEnglish
             }
             return super.pluralNameOnReference
         }
@@ -305,14 +305,14 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
 
 
     /**
-     * Get the {@link singularEnglishName} (dependant on the {@link LanguageEnumerable.isCurrentLanguage current language})
+     * Get the {@link singularEnglishName} (dependant on the {@link EveryLanguages.current current language})
      *
-     * @throws {ReferenceError} The value (on the {@link LanguageEnumerable.isCurrentLanguage current language}) has never been initialized
+     * @throws {ReferenceError} The value (on the {@link EveryLanguages.current current language}) has never been initialized
      */
     public get singularNameOnReference(): string {
         const value = this.reference.languageValue
         if (value == null)
-            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${EveryLanguages.currentLanguage.englishName} language.`)
+            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${EveryLanguages.current.englishName} language.`)
         return value
     }
 
@@ -321,10 +321,10 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
         return this.singularNameOnReference.toLowerCase()
     }
 
-    /** Get the {@link singularEnglishName} (dependent on the {@link LanguageEnumerable.isCurrentLanguage current language}) or <b>null</b> (if there is none) */
+    /** Get the {@link singularEnglishName} (dependent on the {@link EveryLanguages.current current language}) or <b>null</b> (if there is none) */
     public get singularNameOnReferenceOrNull(): NullOr<string> {
         const value = this.reference.languageValue
-        if (EveryLanguages.ENGLISH.isCurrentLanguage || EveryLanguages.FRENCH.isCurrentLanguage)
+        if (EveryLanguages.ENGLISH.isCurrent || EveryLanguages.FRENCH.isCurrent)
             return value
         return value === this.singularEnglishName ? null : value
     }
@@ -336,10 +336,10 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
 
 
     /**
-     * Get the {@link pluralEnglishName} (dependant on the {@link LanguageEnumerable.isCurrentLanguage current language})
+     * Get the {@link pluralEnglishName} (dependant on the {@link EveryLanguages.current current language})
      *
      * @throws {ReferenceError} There is no plural value
-     * @throws {ReferenceError} The value (on the {@link LanguageEnumerable.isCurrentLanguage current language}) has never been initialized
+     * @throws {ReferenceError} The value (on the {@link EveryLanguages.current current language}) has never been initialized
      */
     public get pluralNameOnReference(): string {
         const pluralForm = this.reference.pluralForm
@@ -347,7 +347,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
             throw ReferenceError(`There is no plural value on the ${this.englishName}.`)
         const value = pluralForm.languageValue
         if (value == null)
-            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${EveryLanguages.currentLanguage.englishName} language.`)
+            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${EveryLanguages.current.englishName} language.`)
         return value
     }
 
@@ -356,10 +356,10 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
         return this.pluralNameOnReference.toLowerCase()
     }
 
-    /** Get the {@link pluralEnglishName} (dependent on the {@link LanguageEnumerable.isCurrentLanguage current language}) or <b>null</b> (if there is none) */
+    /** Get the {@link pluralEnglishName} (dependent on the {@link EveryLanguages.current current language}) or <b>null</b> (if there is none) */
     public get pluralNameOnReferenceOrNull(): NullOr<string> {
         const value = this.reference.pluralForm?.languageValue ?? null
-        if (EveryLanguages.ENGLISH.isCurrentLanguage || EveryLanguages.FRENCH.isCurrentLanguage)
+        if (EveryLanguages.ENGLISH.isCurrent || EveryLanguages.FRENCH.isCurrent)
             return value
         return value === this.pluralEnglishName ? null : value
     }

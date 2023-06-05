@@ -3,8 +3,9 @@ import './ThemeApp.scss'
 import type {ThemeAppProperties}                                   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {ThemeTypes}                                           from 'app/property/ThemeTypes'
 import type {Themes}                                               from 'core/theme/Themes'
-import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'
@@ -12,7 +13,6 @@ import {ThemeAppOption}                                  from 'app/options/Theme
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
-import {ThemeTypes}                                      from 'app/property/ThemeTypes'
 import {AbstractTableApp}                                from 'app/withInterpreter/AbstractTableApp'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 
@@ -22,16 +22,11 @@ import {contentTranslation, gameContentTranslation}      from 'lang/components/t
 export default class ThemeApp
     extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
 
-    //region -------------------- Fields --------------------
-
-    #type?: ThemeTypes
-
-    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
 
     public get type(): ThemeTypes {
-        return this.#type ??= ThemeTypes.getValueByType(this.props.type)
+        return this.props.type
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -60,15 +55,15 @@ export default class ThemeApp
     }
 
     protected override _createAsideContent(): ReactElementOrString {
-        const {type, typeDisplayed,} = this
+        const {type, viewDisplay,} = this
 
         return <div id="theme-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
-            <LinkButton partialId="allTheme" routeName={typeDisplayed.getRoutePath(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <LinkButton partialId="allTheme" routeName={viewDisplay.getRoutePath(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="theme-linkButton-courseAndWorld-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="courseTheme" routeName={typeDisplayed.getRoutePath(type.courseRouteName)} color={type.courseColor}>
+                <LinkButton partialId="courseTheme" routeName={viewDisplay.getRoutePath(type.courseRouteName)} color={type.courseColor}>
                     <Image id="courseTheme-button-image" file={COURSE_THEME_IMAGE_FILE} className="theme-button-image"/>
                 </LinkButton>
-                <LinkButton partialId="worldTheme" routeName={typeDisplayed.getRoutePath(type.worldRouteName)} color={type.worldColor}>
+                <LinkButton partialId="worldTheme" routeName={viewDisplay.getRoutePath(type.worldRouteName)} color={type.worldColor}>
                     <Image id="worldTheme-button-image" file={WORLD_THEME_IMAGE_FILE} className="theme-button-image"/>
                 </LinkButton>
             </div>

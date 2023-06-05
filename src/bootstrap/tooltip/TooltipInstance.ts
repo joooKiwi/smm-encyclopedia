@@ -9,15 +9,15 @@ export class TooltipInstance<ELEMENT extends HTMLElement = HTMLElement, ID exten
     extends BootstrapWithBasicEventsInstance<typeof TooltipInstance, Tooltip, Tooltip.Options, ELEMENT, ID> {
 
     public static DEFAULT_OPTIONS: Partial<Tooltip.Options> = {}
-    /** @see Popover.Events.show */
+    /** @see Tooltip.Events.show */
     public static readonly SHOW_EVENT = `show${Tooltip.EVENT_KEY}` as Tooltip.Events.show
-    /** @see Popover.Events.shown */
+    /** @see Tooltip.Events.shown */
     public static readonly SHOWN_EVENT = `shown${Tooltip.EVENT_KEY}` as Tooltip.Events.shown
-    /** @see Popover.Events.hide */
+    /** @see Tooltip.Events.hide */
     public static readonly HIDE_EVENT = `hide${Tooltip.EVENT_KEY}` as Tooltip.Events.hide
-    /** @see Popover.Events.hidden */
+    /** @see Tooltip.Events.hidden */
     public static readonly HIDDEN_EVENT = `hidden${Tooltip.EVENT_KEY}` as Tooltip.Events.hidden
-    /** @see Popover.Events.inserted */
+    /** @see Tooltip.Events.inserted */
     public static readonly INSERTED_EVENT = `inserted${Tooltip.EVENT_KEY}` as Tooltip.Events.inserted
 
     public constructor(element: | ID | ELEMENT, options: Partial<Tooltip.Options> = TooltipInstance.DEFAULT_OPTIONS, callbacks: TooltipEventsReceived = null,) {

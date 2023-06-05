@@ -1,5 +1,5 @@
 import type {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
-import type {EveryPossibleRouteNames} from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames} from 'route/everyRoutes.types'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 
 export interface DisplayButtonGroupProperties

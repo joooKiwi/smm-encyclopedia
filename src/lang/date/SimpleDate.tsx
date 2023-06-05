@@ -19,7 +19,7 @@ export interface DateTimeFormatProperties
 
 /**
  * A simple date component that return a date
- * from the {@link DateDayLanguages.currentLanguage current language}.
+ * from the {@link DateDayLanguages.current current language}.
  *
  * @reactComponent
  * @see https://formatjs.io/docs/react-intl/components#formatteddate
@@ -32,7 +32,7 @@ export default function SimpleDate({year, month, day,}: DateTimeFormatProperties
         year="numeric"
         month="long"
         day="numeric">
-        {parts => <>{parts.map(({type, value,}) => type === 'day' ? <Fragment key={`${date} - ${type}`}>{DateDayLanguages.currentLanguage.newDayComponent(Number(value) as DayNumber)}</Fragment> : value)}</>}
+        {parts => <>{parts.map(({type, value,}) => type === 'day' ? <Fragment key={`${date} - ${type}`}>{DateDayLanguages.current.newDayComponent(Number(value) as DayNumber)}</Fragment> : value)}</>}
     </FormattedDateParts>
 }
 

@@ -1,7 +1,7 @@
 import type {Name}                                                                    from 'lang/name/Name'
 import type {NameBuilder}                                                             from 'lang/name/Name.builder'
 import type {IsACompleteNameCallback, PossibleGameReceived}                           from 'lang/name/Name.builder.types'
-import type {NameTemplate}                                      from 'lang/name/Name.template'
+import type {NameTemplate}                                                            from 'lang/name/Name.template'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
 import type {Nullable, NullableString, NullOr, NullOrString}                          from 'util/types/nullable'
 

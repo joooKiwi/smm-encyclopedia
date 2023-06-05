@@ -6,7 +6,7 @@ import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 import Tooltip               from 'bootstrap/tooltip/Tooltip'
 import {languageTranslation} from 'lang/components/translationMethods'
 import {ProjectLanguages}    from 'lang/ProjectLanguages'
-import {route}               from 'routes/route'
+import {route}               from 'route/route'
 import {StringContainer}     from 'util/StringContainer'
 
 export interface SingleLanguageChangerLinkProperties
@@ -23,7 +23,7 @@ export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: Si
         buttonId = `single-languageChanger-${englishNameAsId}`
 
     return createTooltip(language, buttonId,
-        language.isCurrentLanguage
+        language.isCurrent
             ? <button key={key} id={buttonId} className="btn btn-lg btn-outline-primary active">{language.originalName}</button>
             : <Link key={key} id={buttonId} to={route(location, language,)} className="btn btn-lg btn-outline-primary"
                     onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>,

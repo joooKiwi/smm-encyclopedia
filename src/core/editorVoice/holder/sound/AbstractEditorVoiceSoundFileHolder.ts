@@ -3,6 +3,8 @@ import type {EditorVoiceSoundFileHolder}                                     fro
 import type {PossibleFileName, PossibleStartingName_WithEuropeanAlternative} from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder.types'
 import type {NullOr}                                                         from 'util/types/nullable'
 
+import {nonNull} from 'util/utilitiesMethods'
+
 export abstract class AbstractEditorVoiceSoundFileHolder<REGULAR_SOUND_FILE extends EditorVoiceSoundFile<PossibleFileName>,
     EUROPEAN_SOUND_FILE extends NullOr<EditorVoiceSoundFile<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[1], never>>>, >
     implements EditorVoiceSoundFileHolder {
@@ -19,7 +21,7 @@ export abstract class AbstractEditorVoiceSoundFileHolder<REGULAR_SOUND_FILE exte
     protected constructor(regularSoundFile: REGULAR_SOUND_FILE, europeanSoundFile: EUROPEAN_SOUND_FILE,) {
         this.#regularSoundFile = regularSoundFile
         this.#europeanSoundFile = europeanSoundFile
-        this.#soundFiles = [regularSoundFile, europeanSoundFile,].filter((it): it is NonNullable<| REGULAR_SOUND_FILE | EUROPEAN_SOUND_FILE> => it != null)
+        this.#soundFiles = nonNull([regularSoundFile, europeanSoundFile,])
     }
 
     //endregion -------------------- Constructor --------------------

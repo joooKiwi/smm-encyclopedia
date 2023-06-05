@@ -18,7 +18,6 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
 
     //region -------------------- Fields --------------------
 
-    #typeDisplayed?: ViewDisplays
     #possibleViewDisplay?: readonly ViewAndRouteName[]
     #key?: string
     #appInterpreter?: APP
@@ -32,8 +31,8 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     //region -------------------- Getter & create methods --------------------
 
     /** The {@link ViewDisplays view display} property held by this instance */
-    public get typeDisplayed(): ViewDisplays {
-        return this.#typeDisplayed ??= ViewDisplays.getValue(this.props.typeDisplayed)
+    public get viewDisplay(): ViewDisplays {
+        return this.props.viewDisplay
     }
 
     protected abstract _createPossibleViewDisplay(): readonly ViewAndRouteName[]
@@ -79,17 +78,17 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     }
 
     protected override _mainContent(): ReactElement {
-        const {typeDisplayed, _key: key,} = this
+        const {viewDisplay, _key: key,} = this
 
         return <div key={`${key} (sub main container)`} id="subMain-container">
-            <div id={`${key}-container`} className={`${typeDisplayed.htmlType}-container`}>
+            <div id={`${key}-container`} className={`${viewDisplay.htmlType}-container`}>
                 <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
                 <aside key={`${key} (view changer)`} id="viewChanger-container">
-                    <DisplayButtonGroup reactKey={key} views={this.__possibleViewDisplay} currentView={typeDisplayed}/>
+                    <DisplayButtonGroup reactKey={key} views={this.__possibleViewDisplay} currentView={viewDisplay}/>
                     {this._createAsideContent()}
                 </aside>
                 <p key={`${key} (description)`}>{this._createDescription()}</p>
-                <div key={`${key} (${typeDisplayed.type})`} className="app-content">{typeDisplayed.createComponent(this,)}</div>
+                <div key={`${key} (${viewDisplay.type})`} className="app-content">{viewDisplay.createComponent(this,)}</div>
             </div>
         </div>
     }

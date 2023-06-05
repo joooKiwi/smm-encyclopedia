@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import Tooltip              from 'bootstrap/tooltip/Tooltip'
 import {TooltipInstance}    from 'bootstrap/tooltip/TooltipInstance'
 import {contentTranslation} from 'lang/components/translationMethods'
-import {route}              from 'routes/route'
+import {route}              from 'route/route'
 
 const HOME_ID = 'home-link'
 

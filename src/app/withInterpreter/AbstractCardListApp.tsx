@@ -3,7 +3,7 @@ import type {AppStates}                    from 'app/AppStates.types'
 import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {EveryPossibleRouteNames}      from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
 import type {ReactElement}                 from 'util/react/ReactProperties'
 
 import {AbstractSimpleListApp} from 'app/withInterpreter/AbstractSimpleListApp'

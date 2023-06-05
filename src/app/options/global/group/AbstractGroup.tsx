@@ -7,6 +7,7 @@ import type {ReactElement}                                                      
 import type {NullOr}                                                                                            from 'util/types/nullable'
 
 /**
+ * @deprecated Relocate the content in the inheritor implementation
  * @reactComponent
  */
 export default abstract class AbstractGroup<T extends PossibleElement, U extends PossibleOptionValue, >

@@ -5,9 +5,9 @@ import type {BootstrapInstance} from 'bootstrap/BootstapInstance'
 
 export interface Template<INSTANCE extends GenericBootstrapInstance = GenericBootstrapInstance, > {
 
-    id: Map<string, INSTANCE>
+    readonly id: Map<string, INSTANCE>
 
-    element: Map<HTMLElement, INSTANCE>
+    readonly element: Map<HTMLElement, INSTANCE>
 
 }
 

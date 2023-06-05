@@ -1,8 +1,10 @@
-import type {PossibleType as PossibleType_CourseTag}   from 'app/property/CourseTagTypes.types'
-import type {PossibleType as PossibleType_EntityLimit} from 'app/property/EntityLimitTypes.types'
-import type {PossibleType as PossibleType_Theme}       from 'app/property/ThemeTypes.types'
-import type {Names as ViewDisplayName}                 from 'app/withInterpreter/ViewDisplays.types'
-import type {ReactProperties}                          from 'util/react/ReactProperties'
+import type {CourseTagTypes}       from 'app/property/CourseTagTypes'
+import type {LimitTypes}           from 'app/property/LimitTypes'
+import type {PowerUpPriorityTypes} from 'app/property/PowerUpPriorityTypes'
+import type {ThemeTypes}           from 'app/property/ThemeTypes'
+import type {ViewDisplays}         from 'app/withInterpreter/ViewDisplays'
+import type {GameCollection}       from 'util/collection/GameCollection'
+import type {ReactProperties}      from 'util/react/ReactProperties'
 
 export interface AppProperties
     extends ReactProperties {
@@ -12,32 +14,74 @@ export interface AppProperties
 export interface AppWithInterpreterProperties
     extends AppProperties {
 
-    typeDisplayed: ViewDisplayName
+    readonly viewDisplay: ViewDisplays
+
+}
+
+export interface AppWithGamesProperties
+    extends AppProperties {
+
+    readonly games: GameCollection
 
 }
 
 //region -------------------- Specific properties --------------------
 
-export interface ThemeAppProperties
-    extends AppWithInterpreterProperties {
+export interface PowerUpAndRidePriorityProperties
+    extends AppWithGamesProperties {
 
-    type: PossibleType_Theme
+    readonly type: PowerUpPriorityTypes
 
 }
+
+//character name
+
+//game reference
+
+export interface GameStyleProperties
+    extends AppWithGamesProperties, AppWithInterpreterProperties {
+}
+
+//entity
+
+//entity category
+
+//entity group
 
 export interface LimitAppProperties
     extends AppWithInterpreterProperties {
 
-    type: PossibleType_EntityLimit
+    readonly type: LimitTypes
 
 }
+
+export interface ThemeAppProperties
+    extends AppWithInterpreterProperties {
+
+    readonly type: ThemeTypes
+
+}
+
+//sound effect
+
+//sound effect category
+
+//mii costume
+
+//mii costume category
+
+//mystery mushroom
 
 export interface CourseTagAppProperties
     extends AppWithInterpreterProperties {
 
-    type: PossibleType_CourseTag
+    readonly type: CourseTagTypes
 
 }
+
+//instrument
+
+//editor voice
 
 
 //endregion -------------------- Specific properties --------------------

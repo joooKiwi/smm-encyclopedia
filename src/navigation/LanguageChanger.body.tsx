@@ -24,7 +24,7 @@ interface LanguageChangerBodyProperties
  * @reactComponent
  */
 export default function LanguageChangerBody({containerId, divContainerId,}: LanguageChangerBodyProperties,) {
-    const [, setCurrentLanguage,] = useState(ProjectLanguages.currentLanguage)
+    const [, setCurrentLanguage,] = useState(ProjectLanguages.current)
 
     const everyLanguagesShown: EveryLanguages[] = []
 
@@ -37,7 +37,7 @@ export default function LanguageChangerBody({containerId, divContainerId,}: Lang
 
                     everyLanguagesShown.push(language.language.parent ?? language.language)
                     return <LanguageChangerLink key={key} language={language} callbackToSetLanguage={language => {
-                        setCurrentLanguage(ProjectLanguages.currentLanguage = language)
+                        setCurrentLanguage(ProjectLanguages.current = language)
                         ModalInstance.getInstance(containerId).instance.hide()
                         TooltipInstance.getInstance(divContainerId).instance.hide()
                     }}/>

@@ -18,4 +18,4 @@ export interface GameStyle
 
 }
 
-export type PossibleNightDesertWindTranslationKey = NullOr<| `${| '→' | '←' | '↔'} periodic` | '← constant'>
+export type PossibleNightDesertWindTranslationKey = NullOr<| `${| '→' | '←' | '↔'} periodic` | '→ constant'>

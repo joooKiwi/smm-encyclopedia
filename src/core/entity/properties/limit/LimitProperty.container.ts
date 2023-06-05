@@ -5,6 +5,7 @@ import type {BooleanOrNotApplicable, NotApplicable}                             
 
 import type {EntityLimits} from 'core/entityLimit/EntityLimits'
 import {Import}            from 'util/DynamicImporter'
+import {nonNull}           from 'util/utilitiesMethods'
 
 export class LimitPropertyContainer
     implements LimitProperty {
@@ -169,7 +170,7 @@ export class LimitPropertyContainer
      * @param values the values (null are ignored)
      */
     #newMap(...values: readonly Nullable<EntityLimits>[]): ReadonlyMap<EntityLimits, boolean> {
-        const newValues = values.filter((limit): limit is NonNullable<EntityLimits> => limit != null)
+        const newValues = nonNull(values)
         return new Map(Import.EntityLimits.values.map(limit => [limit, newValues.includes(limit),]))
     }
 

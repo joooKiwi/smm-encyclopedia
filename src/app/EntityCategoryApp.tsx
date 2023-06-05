@@ -2,7 +2,7 @@ import './EntityCategoryApp.scss'
 
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import Image                    from 'app/tools/images/Image'

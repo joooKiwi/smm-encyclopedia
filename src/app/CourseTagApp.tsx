@@ -3,13 +3,13 @@ import './CourseTagApp.scss'
 import type {CourseTagAppProperties}                               from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList,}                          from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {CourseTagTypes}                                       from 'app/property/CourseTagTypes'
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {CourseTags}                                           from 'core/courseTag/CourseTags'
-import type {EveryPossibleRouteNames}                              from 'routes/everyRoutes.types'
-import type {NullOr}                                               from 'util/types/nullable'
+import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
+import type {NullOr}                                               from 'util/types/nullable'
 
-import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import {AbstractCardListApp}                        from 'app/withInterpreter/AbstractCardListApp'
@@ -26,15 +26,10 @@ export default class CourseTagApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties>
     implements ClassWithType<CourseTagTypes> {
 
-    //region -------------------- Fields --------------------
-
-    #type?: CourseTagTypes
-
-    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
     public get type(): CourseTagTypes {
-        return this.#type ??= CourseTagTypes.getValueByType(this.props.type)
+        return this.props.type
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -63,15 +58,15 @@ export default class CourseTagApp
     }
 
     protected override _createAsideContent(): NullOr<ReactElementOrString> {
-        const {type, typeDisplayed,} = this
+        const {type, viewDisplay,} = this
 
         return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
-            <LinkButton partialId="everyCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <LinkButton partialId="everyCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="officialCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.officialRouteName)} color={type.officialColor}>{contentTranslation('Official.Yes')}</LinkButton>
-                <LinkButton partialId="unofficialCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.unofficialRouteName)} color={type.unofficialColor}>{contentTranslation('Official.No')}</LinkButton>
+                <LinkButton partialId="officialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.officialRouteName)} color={type.officialColor}>{contentTranslation('Official.Yes')}</LinkButton>
+                <LinkButton partialId="unofficialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.unofficialRouteName)} color={type.unofficialColor}>{contentTranslation('Official.No')}</LinkButton>
             </div>
-            <LinkButton partialId="makerCentralCourseTag" routeName={typeDisplayed.getRoutePathAsListOnly(type.makerCentralRouteName)} color={type.makerCentralColor}>Maker Central</LinkButton>
+            <LinkButton partialId="makerCentralCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName)} color={type.makerCentralColor}>Maker Central</LinkButton>
         </div>
     }
 

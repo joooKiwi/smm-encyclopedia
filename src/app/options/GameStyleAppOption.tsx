@@ -75,7 +75,7 @@ export abstract class GameStyleAppOption
                 element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
                 tooltip: gameContentTranslation('Wind effect (night desert)', {
                     night: unfinishedText('night'),//TODO add night reference
-                    desert: ProjectLanguages.currentLanguage.get(Themes.DESERT.reference)!.toLowerCase(),
+                    desert: ProjectLanguages.current.get(Themes.DESERT.reference)!.toLowerCase(),
                 },),
             }
         }

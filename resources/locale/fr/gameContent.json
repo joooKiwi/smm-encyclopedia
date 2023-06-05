@@ -1,10 +1,7 @@
 {
   "entity": {
-    "singular": "Entité",
-    "plural":   "Entités",
-
-    "all":         "Toutes les entités",
-    "display all": "Afficher toutes les entités"
+    "all":         "Toutes les {{entities}}",
+    "display all": "Afficher toutes les {{entities}}"
   },
   "character name": {
     "singular": "Nom de personnage",
@@ -14,16 +11,22 @@
     "display all": "Afficher tous les noms de personnage"
   },
   "entity group": {
-    "all":         "Tous les groupes d'entité",
-    "display all": "Afficher tous les groupes d'entité"
+    "singular": "Groupe d'{{entity}}",
+    "plural":   "Groupes d'{{entity}}",
+
+    "all":         "Tous les groupes d'{{entity}}",
+    "display all": "Afficher tous les groupes d'{{entity}}"
   },
   "entity category": {
-    "all":         "Toutes les catégories d'entité",
-    "display all": "Afficher toutes les catégories d'entité"
+    "singular": "Catégorie d'{{entity}}",
+    "plural":   "Catégories d'{{entity}}",
+
+    "all":         "Toutes les catégories d'{{entity}}",
+    "display all": "Afficher toutes les catégories d'{{entity}}"
   },
   "entity reference": {
-    "all":         "Toutes les références d'entité",
-    "display all": "Afficher toutes les références d'entité"
+    "all":         "Toutes les références d'{{entity}}",
+    "display all": "Afficher toutes les références d'{{entity}}"
   },
   "limit": {
     "singular": "Limite",
@@ -107,6 +110,9 @@
     }
   },
   "sound effect category": {
+    "singular": "Catégorie d'effet sonore",
+    "plural":   "Catégories d'effet sonore",
+
     "all":         "Toutes les catégories d'effet sonore",
     "display all": "Afficher toutes les catégories d'effet sonore"
   },
@@ -115,21 +121,52 @@
     "display all": "Afficher tous les {{pluralName}}"
   },
   "mii costume category": {
-    "all":         "Toutes les catégories de {{pluralName}}",
-    "display all": "Afficher toutes les catégories de {{pluralName}}"
+    "singular": "Catégorie de {{singularName}}",
+    "plural":   "Catégories de {{singularName}}",
+
+    "all":         "Toutes les catégories de {{singularName}}",
+    "display all": "Afficher toutes les catégories de {{singularName}}"
   },
-  "power-up & ride priority": {
+  "power-up, ride & hat priority": {
     "power-up": {
       "all":         "Toutes les priorités d'{{powerUps}}",
-      "display all": "Afficher toutes les priorités d'{{powerUp}}"
+      "display all": "Afficher toutes les priorités d'{{powerUps}}"
     },
     "ride": {
       "all":         "Toutes les priorités de {{rides}}",
-      "display all": "Afficher toutes les priorités de {{ride}}"
+      "display all": "Afficher toutes les priorités de {{rides}}"
+    },
+    "hat": {
+      "all":         "Toutes les priorités de {{hats}}",
+      "display all": "Afficher toutes les priorités de {{hats}}"
+    },
+    "power-up & ride": {
+      "singular": "{{PowerUp}} & {{ride}}",
+      "plural":   "{{PowerUps}} & {{rides}}",
+
+      "all":         "Toutes les priorités d'{{powerUps}} & de {{rides}}",
+      "display all": "Afficher toutes les priorités d'{{powerUps}} & de {{rides}}"
+    },
+    "power-up & hat": {
+      "singular": "{{PowerUp}} & {{hat}}",
+      "plural":   "{{PowerUps}} & {{hats}}",
+
+      "all":         "Toutes les priorités d'{{powerUps}} & de {{hats}}",
+      "display all": "Afficher toutes les priorités d'{{powerUps}} & de {{hats}}"
+    },
+    "ride & hat": {
+      "singular": "{{Ride}} & {{hat}}",
+      "plural":   "{{Rides}} & {{hats}}",
+
+      "all":         "Toutes les priorités de {{rides}} & de {{hats}}",
+      "display all": "Afficher toutes les priorités de {{rides}} & de {{hats}}"
     },
     "all": {
-      "all":         "Toutes les priorités d'{{powerUps}} & de {{rides}}",
-      "display all": "Afficher toutes les priorités d'{{powerUp}} & de {{ride}}"
+      "singular": "{{PowerUp}}, {{ride}} & {{hat}}",
+      "plural":   "{{PowerUps}}, {{rides}} & {{hats}}",
+
+      "all":         "Toutes les priorités d'{{powerUps}}, de {{rides}} & de {{hats}}",
+      "display all": "Afficher toutes les priorités d'{{powerUps}}, de {{rides}} & de {{hats}}"
     }
   },
   "mystery mushroom": {
@@ -177,6 +214,9 @@
     "display all": "Afficher toutes les voix de l'éditeur"
   },
   "instrument": {
+    "singular": "Instrument",
+    "plural":   "Instruments",
+
     "all":         "Tous les instruments",
     "display all": "Afficher tous les instruments",
 
@@ -185,6 +225,10 @@
 
   "Category": "Catégorie",
   "Group":    "Groupe",
+
+  "power-up": {"singular": "Amélioration", "plural": "Améliorations" },
+  "ride":     {"singular": "Monture",      "plural": "Montures" },
+  "hat":      {"singular": "Chapeau",      "plural": "Chapeaux" },
 
   "Official notification": {
     "position": {
@@ -265,7 +309,7 @@
       "→ periodic":               "Le vent souffle à droite périodiquement",
       "← periodic":               "Le vent souffle à gauche périodiquement",
       "↔ periodic":               "Le vent souffle de gauche à droite en alternance périodiquement",
-      "← constant":               "Le vent souffle à gauche constamment"
+      "→ constant":               "Le vent souffle à droite constamment"
     },
 
     "Slippery":                   "A un sol glissant.",
