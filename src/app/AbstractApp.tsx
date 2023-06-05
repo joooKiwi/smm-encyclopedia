@@ -22,9 +22,6 @@ export default abstract class AbstractApp<T extends AppProperties = AppPropertie
 
     //region -------------------- Fields --------------------
 
-    static readonly #LANGUAGE_CHANGER_ELEMENT_ID = 'languageChanger-modal-container'
-    static readonly #LANGUAGE_CHANGER_DIV_ELEMENT_ID = 'languageChanger-container'
-
     static readonly #DISPLAY_VIEW_ELEMENT_ID = 'displayView-modal-container'
     static readonly #DISPLAY_VIEW_DIV_ELEMENT_ID = 'displayView-container'
 
@@ -40,17 +37,16 @@ export default abstract class AbstractApp<T extends AppProperties = AppPropertie
     }
 
     public override render(): JSX.Element {
-        const languageChangerProperties: ModalPropertiesWithDiv = {id: AbstractApp.#LANGUAGE_CHANGER_ELEMENT_ID, divId: AbstractApp.#LANGUAGE_CHANGER_DIV_ELEMENT_ID,}
         const displayViewProperties: ModalPropertiesWithDiv = {id: AbstractApp.#DISPLAY_VIEW_ELEMENT_ID, divId: AbstractApp.#DISPLAY_VIEW_DIV_ELEMENT_ID,}
         const searchProperties: ModalPropertiesWithDiv = {id: AbstractApp.#SEARCH_ELEMENT_ID, divId: AbstractApp.#SEARCH_DIV_ELEMENT_ID,}
 
         return <>
-            <ModalContainers languageChanger={languageChangerProperties} parameter={this._parameterContent()} displayView={displayViewProperties} search={searchProperties}/>
+            <ModalContainers parameter={this._parameterContent()} displayView={displayViewProperties} search={searchProperties}/>
             <Navigation displayView={(displayViewProperties)} search={searchProperties}/>
             <main id="main-container" className="pt-3 pb-5 align-bottom container-fluid">
                 {this._mainContent()}
             </main>
-            <Footer languageChanger={languageChangerProperties}/>
+            <Footer/>
         </>
     }
 

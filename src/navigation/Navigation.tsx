@@ -3,10 +3,11 @@ import './Navigation.scss'
 import type {ModalProperties, ModalPropertiesWithDiv} from 'navigation/ModalContainers.types'
 import type {ReactProperties}                         from 'util/react/ReactProperties'
 
-import DisplayViewButton from 'navigation/button/DisplayView.button'
-import HomeButton        from 'navigation/button/Home.button'
-import ParameterButton   from 'navigation/button/Parameter.button'
-import SearchButton      from 'navigation/button/Search.button'
+import DisplayViewButton        from 'navigation/button/DisplayView.button'
+import HomeButton               from 'navigation/button/Home.button'
+import ParameterButton          from 'navigation/button/Parameter.button'
+import SearchButton             from 'navigation/button/Search.button'
+import TopLanguageChangerButton from 'navigation/button/TopLanguageChanger.button'
 
 export interface NavigationProperties
     extends ReactProperties {
@@ -27,7 +28,10 @@ export default function Navigation({displayView, search,}: NavigationProperties,
             <HomeButton/>
             <DisplayViewButton {...displayView}/>
             <SearchButton {...search}/>
-            <ParameterButton/>
+            <div className="btn-group btn-group-lg">
+                <TopLanguageChangerButton/>
+                <ParameterButton/>
+            </div>
         </div>
     </nav>
 }
