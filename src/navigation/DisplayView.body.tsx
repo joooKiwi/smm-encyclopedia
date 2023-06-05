@@ -29,15 +29,16 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
     const isSMM1Selected = true,
         // isSMM3DSSelected = true,
         isSMM2Selected = true,
-        singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = singularTagName.toLowerCase(),
-        pluralTagName = TAG.pluralNameOnReference, pluralTagLowerCaseName = pluralTagName.toLowerCase(),
+        singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference,
+        /*pluralTagName = TAG.pluralNameOnReference, */pluralTagLowerCaseName = TAG.pluralLowerCaseNameOnReference,
         singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName), singularMysteryMushroomLowerCaseName = singularMysteryMushroomName.toLowerCase(),
         pluralMysteryMushroomName = MYSTERY_MUSHROOM.pluralNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName), pluralMysteryMushroomLowerCaseName = pluralMysteryMushroomName.toLowerCase(),
         singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName),
         /*pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!), */pluralMiiCostumeLowerCaseName = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!),
-        singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName),
-        singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = singularCourseName.toLowerCase(),
-        pluralCourseName = COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName), pluralCourseLowerCaseName = pluralCourseName.toLowerCase(),
+        singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase(),
+        pluralEntityName = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName), pluralEntityLowerCaseName = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? pluralEntityName.toLowerCase(),
+        singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = COURSE.singularLowerCaseNameOnReference,
+        pluralCourseName = COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName), pluralCourseLowerCaseName = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? pluralCourseName.toLowerCase(),
         singularPowerUpName = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName), singularPowerUpLowerCaseName = singularPowerUpName.toLowerCase(),
         pluralPowerUpName = POWER_UP.pluralNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralEnglishName), pluralPowerUpLowerCaseName = pluralPowerUpName.toLowerCase()
 
@@ -45,19 +46,19 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
         <div id="display-entity-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2">{singularEntityName}</h3>
             <div key="button group (entity)" id="entity-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyEntity" value={gameContentTranslation('entity.singular')}
-                                        tooltipValue={gameContentTranslation('entity.display all')}
+                <DisplayViewRouteButton routeName="everyEntity" value={singularEntityName}
+                                        tooltipValue={gameContentTranslation('entity.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
                                         elementId="displayView-entity-button" id={id} divId={divId}/>
                 {/*TODO add other predefined group of entities*/}
             </div>
             <div key="button group (entity category)" id="entityCategory-buttonGroup" className="btn-group col-6" role="group">
                 <DisplayViewRouteButton routeName="everyEntityCategory" value={gameContentTranslation('Category')}
-                                        tooltipValue={gameContentTranslation('entity category.display all')}
+                                        tooltipValue={gameContentTranslation('entity category.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
                                         elementId="displayView-entityCategory-button" id={id} divId={divId}/>
             </div>
             <div key="button group (entity group)" id="entityGroup-buttonGroup" className="btn-group col-6" role="group">
                 <DisplayViewRouteButton routeName="everyGroup" value={gameContentTranslation('Group')}
-                                        tooltipValue={gameContentTranslation('entity group.display all')}
+                                        tooltipValue={gameContentTranslation('entity group.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
                                         elementId="displayView-entityGroup-button" id={id} divId={divId}/>
             </div>
             <div key="button group (limit)" id="limit-buttonGroup" className="btn-group-vertical col-6" role="group">
@@ -109,7 +110,7 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                                           elementId="displayView-soundEffectCategory-button" id={id} divId={divId}/> : null}
             </div>
             <div key="button group (instrument)" id="instrument-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyInstrument" value={unfinishedText('Instrument')}
+                <DisplayViewRouteButton routeName="everyInstrument" value={gameContentTranslation('instrument.singular')}
                                         tooltipValue={gameContentTranslation('instrument.display all')}
                                         elementId="displayView-instrument-button" id={id} divId={divId}/>
             </div>
@@ -148,12 +149,12 @@ export default function DisplayViewBody({id, divId,}: DisplayViewBodyProperties,
                                         elementId="displayView-miiCostumeCategory-button" id={id} divId={divId}/>
             </div> : null}
             <div key="button group (power-up, ride & hat priority)" id="powerUpRideAndHat-buttonGroup" className="btn-group-vertical col-12" role="group">
-                <DisplayViewRouteButton routeName="everyPowerUp&Ride&HatPriority" value={gameContentTranslation('power-up, ride & hat priority.all.button', {
-                    PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName, PowerUps: pluralPowerUpName, powerUps: pluralPowerUpLowerCaseName,
-                    Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Rides: gameContentTranslation('ride.plural'), rides: gameContentTranslation('ride.plural').toLowerCase(),
-                    Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(), Hats: gameContentTranslation('hat.plural'), hats: gameContentTranslation('hat.plural').toLowerCase(),
+                <DisplayViewRouteButton routeName="everyPowerUp&Ride&HatPriority" value={gameContentTranslation('power-up, ride & hat priority.all.singular', {
+                    PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName,
+                    Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(),
+                    Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),
                 },)}
-                                        tooltipValue={gameContentTranslation('power-up, ride & hat priority.all.all', {
+                                        tooltipValue={gameContentTranslation('power-up, ride & hat priority.all.display all', {
                                             powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,
                                             ride: gameContentTranslation('ride.singular').toLowerCase(), rides: gameContentTranslation('ride.plural').toLowerCase(),
                                             hat: gameContentTranslation('hat.singular').toLowerCase(), hats: gameContentTranslation('hat.plural').toLowerCase(),
