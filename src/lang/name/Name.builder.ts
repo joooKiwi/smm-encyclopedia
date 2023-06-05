@@ -5,6 +5,7 @@ import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOrig
 import type {Builder}                                                                 from 'util/builder/Builder'
 import type {Nullable, NullOr, UndefinedOr}                                           from 'util/types/nullable'
 
+//TODO rename this file to NameBuilderFromTemplate
 export interface NameBuilder<T, TEMPLATE, >
     extends Builder<Name<T>> {
 

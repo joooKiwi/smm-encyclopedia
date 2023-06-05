@@ -300,6 +300,7 @@ export class NameContainer<T, >
     }
 
     //endregion -------------------- Name properties --------------------
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
