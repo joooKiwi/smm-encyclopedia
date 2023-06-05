@@ -6,8 +6,6 @@ https://joookiwi.github.io/smm-encyclopedia
 
 ## Table of content
 * [List of elements to do](#list-of-elements-to-do)
-  * [Sub-page applications](#sub-page-applications)
-    * [Other sub-pages (not directly related to the project)](#other-sub-pages--not-directly-related-to-the-project-)
 * [Development for the web application](#development-for-the-web-application)
   * [Standard used in the project](#standard-used-in-the-project)
     * [Imports](#imports)
@@ -66,7 +64,7 @@ Although, they are only there for some names.
 - [ ] Font family
   - [ ] from the Super Mario Maker games
   - [ ] from SMB, SMB3, SMW, NSMBU & SM3DW specifically
-- [ ] Color mode implementation (independent of each and another)
+- [ ] Colour mode implementation (independent of each and another)
   - [ ] Dark mode
   - [ ] Colour-blind mode
 - [ ] Search engine.
@@ -81,7 +79,8 @@ Although, they are only there for some names.
 
 ### Standard used in the project
 
-In order to have a clean way to navigate on the project, multiple standard have been made.
+In order to have a clean way to navigate to the project,
+multiple standards have been made.
 
 #### Imports
 
@@ -97,9 +96,9 @@ They are separated in different sections
 #### Visibility
 
 Since some visibilities are present in other languages (like Kotlin, Java, PHP or C#),
-the project utilise some standard on the visibilities.
+the project utilizes some standard on the visibilities.
 
-It utilises the Typescript system for the pre-established visibilities.
+It utilizes the Typescript system for the pre-established visibilities.
 Then, for those that are not in the system, it uses somme pattern for it.
 
 | Syntax               | in project |  in Typescript  |         in Javascript         |                                                                            Example |
@@ -111,7 +110,7 @@ Then, for those that are not in the system, it uses somme pattern for it.
 
 #### Folder structure
 
-The files are structured by folder.
+Folder structures the files.
 Most of them are self-explanatory.
 
 | Path                   | Meaning                                                                  |                                    Things to do | 
@@ -130,7 +129,7 @@ Most of them are self-explanatory.
 #### File naming
 
 The names of the files are important since some of them are for Typescript
-and others gives meaning to them.
+and others give meaning to them.
 
 | Syntax                                                                                                              | Type of file                                                                        |         Javascript         |         Typescript          |
 |:--------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------|:--------------------------:|:---------------------------:|
@@ -249,7 +248,7 @@ flowchart TB
     SMM3DS>"Super Mario Maker for Nintendo 3DS (3DS)"]
     SMM2[\"Super Mario Maker 2 (Switch)"\]
   end
-  subgraph Depencencies to...
+  subgraph Dependencies to...
     A -- Direct --> B
     C -. "Indirect (via the DynamicImporter)" .-> D
   end
@@ -258,7 +257,7 @@ flowchart TB
 The dependencies imply that the entity uses almost everything in the project.<br/>
 So, some recursive dependencies are in place to make the project compile.
 
-To simplify the diagram, the entity dependencies has been removed to help readability.<br>
+To simplify the diagram, the entity dependencies have been removed to help readability.<br>
 And the dependencies used in the Entity are:<br/>
 1. Clear condition
 2. Editor voice
@@ -313,7 +312,7 @@ flowchart LR
   V((Version))
   
 
-  subgraph Independant
+  subgraph Independent
     CT & J & M & NS & ON & PM & SC & SMCL
   end
   subgraph Entity
@@ -421,7 +420,7 @@ The project could also be run with `npm run fast-start` to omit:
  - (Other things in the future)
 
 By default, it will open it in the default browser automatically.
-If it has not worked, then, open [localhost:3000/smm-encyclopedia](http://localhost:3000/smm-encyclopedia) to display the application.
+If it has not worked, then open [localhost:3000/smm-encyclopedia](http://localhost:3000/smm-encyclopedia) to display the application.
 
 If it needs to be tested on other devices than the local machine, there will be another address.
 An example could be [192.168.4.20:3000/smm-encyclopedia](http://192.168.4.20:3000/smm-encyclopedia).
@@ -439,7 +438,7 @@ It has:
 
 The command to execute the test command tool is `npm run test`.
 
-Then, from  that, it will start an interactive watch mode.
+Then, from that, it will start an interactive watch mode.
 For more details, see [how to run the tests](https://facebook.github.io/create-react-app/docs/running-tests).
 
 #### Deploying the changes to the server
