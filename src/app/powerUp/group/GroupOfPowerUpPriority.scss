@@ -39,10 +39,7 @@
 .angle {
   // https://developer.mozilla.org/en-US/docs/Web/CSS/abs#backwards_compatible_fallback
   // https://stackoverflow.com/questions/34435330/using-modulus-in-css-calc-function
-  --calculated-angle: max(
-          calc(var(--angle) - (180 * (var(--angle) / 180))),
-          calc(-(var(--angle) - (180 * (var(--angle) / 180))))
-  ); /*--calculated-angle: abs(mod(var(--angle), 180deg));*/
+  --calculated-angle: max(calc(var(--angle) - (180 * (var(--angle) / 180))), calc(-(var(--angle) - (180 * (var(--angle) / 180)))));
   transform: rotate(var(--angle));
 }
 
