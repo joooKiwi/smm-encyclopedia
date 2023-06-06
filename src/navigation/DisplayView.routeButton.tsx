@@ -1,24 +1,23 @@
 import {Link, useLocation} from 'react-router-dom'
 
-import type {ModalPropertiesWithDiv}        from 'navigation/ModalContainers.types'
-import type {EveryPossibleRouteNames}       from 'route/everyRoutes.types'
-import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import type {EveryPossibleRouteNames}               from 'route/everyRoutes.types'
+import type {ReactElementOrString, ReactProperties} from 'util/react/ReactProperties'
 
-import {ModalInstance}   from 'bootstrap/modal/ModalInstance'
-import Tooltip           from 'bootstrap/tooltip/Tooltip'
-import {TooltipInstance} from 'bootstrap/tooltip/TooltipInstance'
-import {route}           from 'route/route'
+import {ModalInstance}         from 'bootstrap/modal/ModalInstance'
+import Tooltip                 from 'bootstrap/tooltip/Tooltip'
+import {DISPLAY_VIEW_MODAL_ID} from 'navigation/button/modalIds'
+import {route}                 from 'route/route'
 
 interface DisplayViewRouteButtonProperty
-    extends ReactProperties, ModalPropertiesWithDiv {
+    extends ReactProperties {
 
-    elementId: string
+    readonly elementId: string
 
-    routeName: EveryPossibleRouteNames
+    readonly routeName: EveryPossibleRouteNames
 
-    value: | string | ReactElement
+    readonly value: ReactElementOrString
 
-    tooltipValue: string
+    readonly tooltipValue: string
 
 }
 
@@ -26,20 +25,17 @@ interface DisplayViewRouteButtonProperty
  * @param properties
  * @reactComponent
  */
-export default function DisplayViewRouteButton({routeName, value, tooltipValue, elementId, id, divId,}: DisplayViewRouteButtonProperty,) {
-    const {pathname: pathName,} = useLocation()
+export default function DisplayViewRouteButton({routeName, value, tooltipValue, elementId,}: DisplayViewRouteButtonProperty,) {
+    const {pathname,} = useLocation()
 
-    const key = `route button (${routeName})`
-    const routeValue = route(routeName)
-    const isRouteSameFromPathName = routeValue === pathName
+    const key = `route button (${routeName})`,
+        routeValue = route(routeName),
+        isRouteSameFromPathName = routeValue === pathname
 
     return isRouteSameFromPathName
         ? <button key={key} id={elementId} className="btn btn-primary" disabled>{value}</button>
         : <Tooltip option={{placement: 'top', title: tooltipValue,}} elementId={elementId}>
             <Link key={key} id={elementId} to={routeValue} className="btn btn-outline-primary"
-                  onClick={() => {
-                      ModalInstance.getInstance(id).instance.hide()
-                      TooltipInstance.getInstance(divId).instance.hide()//FIXME, this throws an assertion error once the link is clicked.
-                  }}>{value}</Link>
+                  onClick={() => ModalInstance.getInstance(DISPLAY_VIEW_MODAL_ID).instance.hide()}>{value}</Link>
         </Tooltip>
 }

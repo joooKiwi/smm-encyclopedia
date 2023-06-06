@@ -1,43 +1,33 @@
 import {useEffect} from 'react'
 
-import type {ModalPropertiesWithDiv}        from 'navigation/ModalContainers.types'
 import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
 
-import ModalBody                                       from 'bootstrap/modal/element/ModalBody'
-import ModalContainer                                  from 'bootstrap/modal/element/ModalContainer'
-import ModalFooter                                     from 'bootstrap/modal/element/ModalFooter'
-import ModalHeader                                     from 'bootstrap/modal/element/ModalHeader'
-import {ModalInstance}                                 from 'bootstrap/modal/ModalInstance'
-import {contentTranslation}                            from 'lang/components/translationMethods'
-import DisplayViewBody                                 from 'navigation/DisplayView.body'
-import LanguageChangerBody                             from 'navigation/LanguageChanger.body'
-import {LANGUAGE_CHANGER_MODAL_ID, PARAMETER_MODAL_ID} from 'navigation/button/modalIds'
+import ModalBody                                                                               from 'bootstrap/modal/element/ModalBody'
+import ModalContainer                                                                          from 'bootstrap/modal/element/ModalContainer'
+import ModalFooter                                                                             from 'bootstrap/modal/element/ModalFooter'
+import ModalHeader                                                                             from 'bootstrap/modal/element/ModalHeader'
+import {ModalInstance}                                                                         from 'bootstrap/modal/ModalInstance'
+import {contentTranslation}                                                                    from 'lang/components/translationMethods'
+import DisplayViewBody                                                                         from 'navigation/DisplayView.body'
+import LanguageChangerBody                                                                     from 'navigation/LanguageChanger.body'
+import {DISPLAY_VIEW_MODAL_ID, LANGUAGE_CHANGER_MODAL_ID, PARAMETER_MODAL_ID, SEARCH_MODAL_ID} from 'navigation/button/modalIds'
 
 interface ModalContainersProperties
     extends ReactProperties {
 
     parameter: NonNullable<ReactElement>
 
-    displayView: ModalPropertiesWithDiv
-
-    search: ModalPropertiesWithDiv
-
 }
 
 /**
- * @param properties
  * @reactComponent
  */
-export default function ModalContainers({
-                                            parameter,
-                                            displayView: {id: displayViewId, divId: displayViewDivId,},
-                                            search: {id: searchId, divId: searchDivId,},
-                                        }: ModalContainersProperties,) {
+export default function ModalContainers({parameter,}:ModalContainersProperties,) {
     useEffect(() => {
         new ModalInstance(LANGUAGE_CHANGER_MODAL_ID,)
         new ModalInstance(PARAMETER_MODAL_ID,)
-        new ModalInstance(displayViewId,)
-        new ModalInstance(searchId,)
+        new ModalInstance(DISPLAY_VIEW_MODAL_ID,)
+        new ModalInstance(SEARCH_MODAL_ID,)
     })
 
     return <aside key="modal container" id="modal-container">
@@ -53,18 +43,18 @@ export default function ModalContainers({
             {/*<ModalFooter key="modal - parameter (footer)" successButton={({children: contentTranslation('Confirm'),})}/>*/}
         </ModalContainer>
 
-        <ModalContainer key="modal - display view (container)" id={displayViewId} verticallyCentered modalSize="lg">
+        <ModalContainer key="modal - display view (container)" id={DISPLAY_VIEW_MODAL_ID} verticallyCentered modalSize="lg">
             <ModalHeader key="modal - display view (header)" modalTitle={`${contentTranslation('Display')}…`}/>
             <ModalBody key="modal - display view (body)">
-                <DisplayViewBody id={displayViewId} divId={displayViewDivId}/>
+                <DisplayViewBody/>
             </ModalBody>
             <ModalFooter key="modal - display view (footer)"/>
         </ModalContainer>
 
-        <ModalContainer key="modal - search (container)" id={searchId} verticallyCentered modalSize="lg">
+        <ModalContainer key="modal - search (container)" id={SEARCH_MODAL_ID} verticallyCentered modalSize="lg">
         {/*    <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search')}…`}/>*/}
         {/*    <ModalBody key="modal - search (body)">*/}
-        {/*        <SearchBody id={searchId} divId={searchDivId}/>*/}
+        {/*        <SearchBody/>*/}
         {/*    </ModalBody>*/}
         {/*    <ModalFooter key="modal - search (footer)" successButton={({children: contentTranslation('Search')})}/>*/}
         </ModalContainer>

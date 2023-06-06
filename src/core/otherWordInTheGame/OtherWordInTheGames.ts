@@ -230,7 +230,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
             return this.#miiSpaceEvenLowerCase ??= OtherWordInTheGames.MII.reference.japanese!.toLowerCase()
         }
 
-//endregion -------------------- Getter methods --------------------
+        //endregion -------------------- Getter methods --------------------
 
         /** Get the {@link singularNameOnReferenceOrNull} in lower case, but keep the {@link OtherWordInTheGames.MII Mii} as a noun */
         public override get singularLowerCaseNameOnReferenceOrNull(): NullOr<string> {
@@ -404,7 +404,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
 
     //endregion -------------------- Getter methods (english name) --------------------
 
-    //region -------------------- Getter methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public static getValueByName(value: Nullable<| OtherWordInTheGames | string>,): OtherWordInTheGames {
