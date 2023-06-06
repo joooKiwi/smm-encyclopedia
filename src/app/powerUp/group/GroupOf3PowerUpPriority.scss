@@ -10,11 +10,11 @@
 
   > .diagonal-arrow-group-container {
     > .diagonal-arrow-container > * {
-      --line-size: var(--group-line-size)
+      --line-size: var(--group-line-size);
     }
 
     > .diagonal-arrow-container {
-      top: calc(var(--group-size) / -4)
+      top: calc(var(--group-size) / -4);
     }
 
     > :first-child {

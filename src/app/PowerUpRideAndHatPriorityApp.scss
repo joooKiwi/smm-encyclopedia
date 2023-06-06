@@ -23,16 +23,16 @@
   }
 
   :where(#example-indirect .arrow-container) {
-    --line-style: var(--group-indirect-line-style)
+    --line-style: var(--group-indirect-line-style);
   }
   :where(#example-direct .arrow-container) {
-    --line-style: var(--group-direct-line-style)
+    --line-style: var(--group-direct-line-style);
   }
   :where(#example-withLag .color) {
-    background-color: var(--group-lag-color)
+    background-color: var(--group-lag-color);
   }
   :where(#example-withoutLag .color) {
-    background-color: var(--group-no-lag-color)
+    background-color: var(--group-no-lag-color);
   }
 }
 
@@ -52,7 +52,7 @@
   }
 
   img {
-    height: var(--image-height)
+    height: var(--image-height);
   }
 
   //region -------------------- Color --------------------
@@ -121,7 +121,7 @@
   :where(#powerUpPriority-group-smb3 > .arrow-group-container),
   :where(#powerUpPriority-group-smw > .arrow-group-container),
   :where(#powerUpPriority-group-nsmbu > .arrow-group-container), { .arrow-container {
-    --group-color: var(--group-no-lag-color)
+    --group-color: var(--group-no-lag-color);
   } }
 
   :where(#powerUpPriority-group-smb > .start-container > .arrows-container) .arrow-container:where(:last-child),
@@ -136,12 +136,12 @@
   :where(#powerUpPriority-group-smw > .arrow-group-container > :last-child) .arrow-container:where(:first-child),
   :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :nth-child(3)) .arrow-container:where(:first-child),
   :where(#powerUpPriority-group-nsmbu > .arrow-group-container > :last-child) .arrow-container:where(:first-child), {
-    --group-color: var(--group-lag-color)
+    --group-color: var(--group-lag-color);
   }
 
 
   :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container, #powerUpPriority-group-sm3dw > .end-container > .arrows-container) .arrow-container {
-    --group-color: var(--group-no-lag-color)
+    --group-color: var(--group-no-lag-color);
   }
 
 
@@ -316,7 +316,7 @@
   //region -------------------- Arrow style --------------------
 
   :where(.powerUp-group-priority) .arrow-container {
-    --line-style: var(--group-line-style)
+    --line-style: var(--group-line-style);
   }
 
 
@@ -328,7 +328,7 @@
   :where(#powerUpPriority-group-smb3-nonPowerUps-mountable),
   :where(#powerUpPriority-group-smw-nonPowerUps-mountable),
   :where(#powerUpPriority-group-nsmbu-nonPowerUps-mountable), {
-    --group-line-style: var(--group-indirect-line-style)
+    --group-line-style: var(--group-indirect-line-style);
   }
 
 
@@ -336,7 +336,7 @@
   :where(#powerUpPriority-group-smb3-shellAndMountable),
   :where(#powerUpPriority-group-smw-shellAndMountable),
   :where(#powerUpPriority-group-nsmbu-shellAndMountable), {
-    --group-line-style: var(--group-direct-line-style)
+    --group-line-style: var(--group-direct-line-style);
   }
 
   :where(#powerUpPriority-group-smb-shellAndMountable > :nth-child(2) > .internal-arrow-container),
@@ -353,7 +353,7 @@
   :where(#powerUpPriority-group-smw-shellAndMountable > .end-container),
   :where(#powerUpPriority-group-nsmbu-shellAndMountable > .middle-container),
   :where(#powerUpPriority-group-nsmbu-shellAndMountable > .end-container), {
-    --group-line-style: var(--group-indirect-line-style)
+    --group-line-style: var(--group-indirect-line-style);
   }
 
   //endregion -------------------- Arrow style --------------------

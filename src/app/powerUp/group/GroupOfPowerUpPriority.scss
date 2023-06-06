@@ -20,29 +20,29 @@
   --group-line-size-on-3: calc(var(--group-size-on-3) - 2 * var(--image-height));
 }
 
-.angle-origin-start         { transform-origin: left          }
-.angle-origin-end           { transform-origin: right         }
-.angle-origin-center        { transform-origin: center        }
-.angle-origin-center-start  { transform-origin: center left   }
-.angle-origin-center-end    { transform-origin: center right  }
-.angle-origin-center-center { transform-origin: center center }
-.angle-origin-top           { transform-origin: top           }
-.angle-origin-top-start     { transform-origin: top left      }
-.angle-origin-top-end       { transform-origin: top right     }
-.angle-origin-top-center    { transform-origin: top center    }
-.angle-origin-bottom        { transform-origin: bottom        }
-.angle-origin-bottom-start  { transform-origin: bottom left   }
-.angle-origin-bottom-end    { transform-origin: bottom right  }
-.angle-origin-bottom-center { transform-origin: bottom center }
+.angle-origin-start         { transform-origin: left;          }
+.angle-origin-end           { transform-origin: right;         }
+.angle-origin-center        { transform-origin: center;        }
+.angle-origin-center-start  { transform-origin: center left;   }
+.angle-origin-center-end    { transform-origin: center right;  }
+.angle-origin-center-center { transform-origin: center center; }
+.angle-origin-top           { transform-origin: top;           }
+.angle-origin-top-start     { transform-origin: top left;      }
+.angle-origin-top-end       { transform-origin: top right;     }
+.angle-origin-top-center    { transform-origin: top center;    }
+.angle-origin-bottom        { transform-origin: bottom;        }
+.angle-origin-bottom-start  { transform-origin: bottom left;   }
+.angle-origin-bottom-end    { transform-origin: bottom right;  }
+.angle-origin-bottom-center { transform-origin: bottom center; }
 
 
 .angle {
   // https://developer.mozilla.org/en-US/docs/Web/CSS/abs#backwards_compatible_fallback
   // https://stackoverflow.com/questions/34435330/using-modulus-in-css-calc-function
   --calculated-angle: max(
-          calc(var(--angle) - (180 * (var(--angle) / 180))),
-          calc(-(var(--angle) - (180 * (var(--angle) / 180))))
-  ); //--calculated-angle: abs(mod(var(--angle), 180deg));
+    calc(var(--angle) - (180 * (var(--angle) / 180))),
+    calc((var(--angle) - (180 * (var(--angle) / 180))) * -1)
+  );
   transform: rotate(var(--angle));
 }
 
@@ -50,10 +50,10 @@
   $angle: $i * 5;
 
   .angle-#{$angle} {
-    --angle: #{$angle}deg
+    --angle: #{$angle}deg;
   }
   .angle-minus-#{$angle} {
-    --angle: -#{$angle}deg
+    --angle: -#{$angle}deg;
   }
 
 }

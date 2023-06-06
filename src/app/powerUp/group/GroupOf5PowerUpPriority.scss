@@ -28,19 +28,19 @@
     }
 
     & > :first-child {
-      left: calc(50% - var(--image-height) / 2)
+      left: calc(50% - var(--image-height) / 2);
     }
 
     & > :nth-child(2) {
-      left: calc(50%)
+      left: calc(50%);
     }
 
     & > :nth-child(3) {
-      right: calc(50%)
+      right: calc(50%);
     }
 
     & > :last-child {
-      right: calc(50% - var(--image-height) / 2)
+      right: calc(50% - var(--image-height) / 2);
     }
 
   }
@@ -67,19 +67,19 @@
     }
 
     & > :first-child {
-      left: calc(var(--image-height) * -1)
+      left: calc(var(--image-height) * -1);
     }
 
     & > :nth-child(2) {
-      left: calc(var(--image-height) / 2 * -1)
+      left: calc(var(--image-height) / 2 * -1);
     }
 
     & > :nth-child(3) {
-      right: calc(var(--image-height) / 2 * -1)
+      right: calc(var(--image-height) / 2 * -1);
     }
 
     & > :last-child {
-      right: calc(var(--image-height) * -1)
+      right: calc(var(--image-height) * -1);
     }
 
   }
