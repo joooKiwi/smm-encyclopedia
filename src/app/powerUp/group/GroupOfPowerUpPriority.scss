@@ -42,7 +42,7 @@
   --calculated-angle: max(
     calc(var(--angle) - (180 * (var(--angle) / 180))),
     calc((var(--angle) - (180 * (var(--angle) / 180))) * -1)
-  );
+  ); //--calculated-angle: abs(mod(var(--angle), 180deg));
   transform: rotate(var(--angle));
 }
 
