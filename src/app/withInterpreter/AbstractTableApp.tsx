@@ -2,14 +2,14 @@ import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppStates}                    from 'app/AppStates.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {SingleHeaderContent}          from 'app/tools/table/SimpleHeader'
 import type {SingleTableContent}           from 'app/tools/table/Table.types'
-import type {EveryPossibleRouteNames}      from 'routes/everyRoutes.types'
+import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
 import type {ReactElement}                 from 'util/react/ReactProperties'
 
 import Table                 from 'app/tools/table/Table'
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}        from 'app/withInterpreter/ViewDisplays'
+import {nonNull}             from 'util/utilitiesMethods'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -53,7 +53,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
             content.push([
                 enumerable.englishName,
                 ...[<>{index}</>,
-                    optionInterpreter.tableOptions.map(tableHeader => optionInterpreter.createTableContent(tableHeader))
+                    nonNull(optionInterpreter.tableOptions).map(tableHeader => optionInterpreter.createTableContent(tableHeader))
                 ].flat(2)
             ])
             index++
@@ -76,9 +76,8 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
                       content={this.#tableContent(optionInterpreter)}
                       headers={[
                           {key: 'originalOrder', element: '#',},
-                          ...(optionInterpreter.tableOptions
-                              .map(tableHeader => optionInterpreter.createTableHeader(tableHeader))
-                              .filter(header => header != null) as SingleHeaderContent[])
+                          ...nonNull(nonNull(optionInterpreter.tableOptions)
+                              .map(tableHeader => optionInterpreter.createTableHeader(tableHeader)))
                       ]}/>
     }
 

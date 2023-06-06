@@ -9,6 +9,9 @@ import type {Nullable, NullOr}                                 from 'util/types/
 import {Themes}         from 'core/theme/Themes'
 import {getValueByType} from 'util/utilitiesMethods'
 
+/**
+ * @usedByTheRouting
+ */
 export abstract class ThemeTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {

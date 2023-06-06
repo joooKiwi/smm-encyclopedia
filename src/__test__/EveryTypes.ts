@@ -30,7 +30,6 @@ import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as Possible
 import type {UnknownCharacter, UnknownReference}                                                                                                                                                                                                                         from 'util/types/variables'
 import type {NullOr}                                                                                                                                                                                                                                                     from 'util/types/nullable'
 
-import {INFINITY, UNKNOWN_REFERENCE} from 'util/commonVariables'
 import {EntityBehaviours}            from 'core/behaviour/EntityBehaviours'
 import {CharacterNames}              from 'core/characterName/CharacterNames'
 import {Entities}                    from 'core/entity/Entities'
@@ -52,6 +51,8 @@ import {SoundEffectCategories}       from 'core/soundEffectCategory/SoundEffectC
 import {Themes}                      from 'core/theme/Themes'
 import {Versions}                    from 'core/version/Versions'
 import {CourseTags}                  from 'core/courseTag/CourseTags'
+import {INFINITY, UNKNOWN_REFERENCE} from 'util/commonVariables'
+import {nonNull}                     from 'util/utilitiesMethods'
 
 /**
  * @singleton
@@ -478,7 +479,7 @@ export class EveryTypes {
     //region -------------------- Other word in the game --------------------
 
     public get everyPossibleName_otherWordInTheGame() {
-        return this.#everyPossibleName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => [it.singularEnglishName, it.pluralEnglishName,]).toArray().flat().filter((it): it is PossibleEnglishName_OtherWordInTheGame => it != null)
+        return this.#everyPossibleName_otherWordInTheGame ??= nonNull(OtherWordInTheGames.values.map(it => [it.singularEnglishName, it.pluralEnglishName,]).toArray().flat())
     }
 
     public get everyPossibleSingularName_otherWordInTheGame() {

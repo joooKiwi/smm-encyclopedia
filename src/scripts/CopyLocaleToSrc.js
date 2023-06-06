@@ -24,7 +24,7 @@ async function copyLocaleFiles(source, destination,) {
     const files = (await readdir(source))
     for (const name of files) {
         if ((await lstat(`${source}/${name}`)).isDirectory()) {
-            copyLocaleFiles(`${source}/${name}`, `${destination}/${name}`,)
+            void copyLocaleFiles(`${source}/${name}`, `${destination}/${name}`,)
             continue
         }
         copyLocalFile(name, source, destination,)

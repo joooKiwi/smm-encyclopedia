@@ -7,13 +7,13 @@ import type {Nullable}                         from 'util/types/nullable'
 
 export interface BootstrapWithBasicEvents<I extends GenericBootstrapInstanceWithEvent = GenericBootstrapInstanceWithEvent, > {
 
-    show: BootstrapWithBasicEventCallback<I>
+    readonly show: BootstrapWithBasicEventCallback<I>
 
-    shown: BootstrapWithBasicEventCallback<I>
+    readonly shown: BootstrapWithBasicEventCallback<I>
 
-    hide: BootstrapWithBasicEventCallback<I>
+    readonly hide: BootstrapWithBasicEventCallback<I>
 
-    hidden: BootstrapWithBasicEventCallback<I>
+    readonly hidden: BootstrapWithBasicEventCallback<I>
 
 }
 

@@ -110,7 +110,7 @@ export class NameContainer<T, >
     }
 
     public get languageValue(): T {
-        return ProjectLanguages.currentLanguage.get<T>(this)
+        return ProjectLanguages.current.get<T>(this)
     }
 
     //region -------------------- English properties --------------------
@@ -300,6 +300,7 @@ export class NameContainer<T, >
     }
 
     //endregion -------------------- Name properties --------------------
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 

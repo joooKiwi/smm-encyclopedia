@@ -1,39 +1,19 @@
-import type {PossibleTooltipPlacement} from 'bootstrap/Bootstrap.types'
-import type {PossibleContent}          from 'navigation/button/AbstractNavigationButton.types'
+import Tooltip              from 'bootstrap/tooltip/Tooltip'
+import ModalButton          from 'bootstrap/modal/element/ModalButton'
+import {contentTranslation} from 'lang/components/translationMethods'
+import {SEARCH_MODAL_ID}    from 'navigation/button/modalIds'
 
-import {contentTranslation}       from 'lang/components/translationMethods'
-import {AbstractNavigationButton} from 'navigation/button/AbstractNavigationButton'
+const ID = 'search-button'
 
 /**
  * @reactComponent
  */
-export default class SearchButton
-    extends AbstractNavigationButton {
+export default function SearchButton() {
+    const content = `${contentTranslation('Search')}…`
 
-    static readonly #ID = 'search-button'
-
-    protected override get _isTopButton() {
-        return true
-    }
-
-    protected override get _id() {
-        return SearchButton.#ID
-    }
-
-    protected override get _tooltipPlacement(): PossibleTooltipPlacement {
-        return 'bottom'
-    }
-
-    protected override get _addedClass() {
-        return 'bi-search'
-    }
-
-    protected override get _isDisabled(): boolean {
-        return true
-    }
-
-    protected override _getContent(): PossibleContent {
-        return [`${contentTranslation('Search')}…`, 'md',]
-    }
-
+    return <Tooltip elementId={ID} option={({title: content, placement: 'bottom',})}>
+        <ModalButton key={`navigation button (search)`} id={ID} elementToShow={SEARCH_MODAL_ID} className="btn btn-lg btn-outline-primary btn-navigation rounded-pill bi bi-search" disabled>
+            <span key={`navigation text button (search)`} className="btn-navigation-text d-none d-md-inline-block">{content}</span>
+        </ModalButton>
+    </Tooltip>
 }

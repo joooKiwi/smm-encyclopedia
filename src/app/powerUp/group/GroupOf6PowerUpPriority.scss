@@ -1,0 +1,108 @@
+@use "sass:math";
+
+.groupOf6-powerUp-priority {
+
+  --group-spacer: var(--group-spacer-on-6);
+  --group-size: var(--group-size-on-6);
+
+  width: var(--group-size);
+  height: var(--group-size);
+  padding-left: var(--group-spacer);
+  padding-right: var(--group-spacer);
+
+  .top-bottom-arrow-group-container {
+    margin-top: calc(var(--image-height) * -2);
+
+    > * > * {
+      --line-height: calc(var(--group-size) - 3 * var(--image-height) + 2 * var(--arrow-size));
+    }
+
+    .vertical-arrow-container {
+      margin-top: calc(7px / 2); // = calc(var(--arrow-size) / 2)
+
+      > * {
+        --line-size: var(--line-height)
+      }
+
+    }
+
+    .diagonal-arrow-container {
+      margin-top: calc(7px / 2); // = calc(var(--arrow-size) / 2)
+
+      > * {
+        --line-size: calc(var(--line-height) / #{math.cos(30deg)}); //calc(var(--line-height) / cos(var(--calculated-angle)));
+      }
+    }
+
+    & > :first-child {
+      left: calc(var(--image-height) / 2 - 7px) // = calc(var(--image-height) / 2 - var(--arrow-size))
+    }
+
+    & > :nth-child(2) {
+      left: calc(var(--image-height) / 2)
+    }
+
+    & > :nth-child(3) {
+      right: calc(var(--image-height) / 2)
+    }
+
+    & > :last-child {
+      right: calc(var(--image-height) / 2 - 7px) // = calc(var(--image-height) / 2 + var(--arrow-size))
+    }
+
+  }
+
+  .center-top-arrow-group-container {
+    margin-top: calc(var(--image-height) * -2);
+
+    .external-arrow-container {
+      margin-top: 7px; // = var(--arrow-size)
+    }
+
+  }
+
+  .center-bottom-arrow-group-container {
+    margin-bottom: calc(var(--image-height) * -2);
+
+    .external-arrow-container {
+      margin-top: calc(7px * -1); // = calc(var(--arrow-size) * -1)
+    }
+
+  }
+
+  .diagonal-arrow-group-container {
+
+    .internal-arrow-container > * {
+      --line-height: calc(((var(--group-size) - 3 * var(--image-height) + 2 * var(--arrow-size)) / 2) - (.5 * var(--image-height) + 2 * var(--arrow-size)));
+      --line-size: calc(var(--line-height) / #{math.cos(55deg)} + 1.25cm); //calc(var(--line-height) / cos(var(--calculated-angle)) + 1.25cm);
+    }
+
+    .external-arrow-container > * {
+      --line-height: calc(((var(--group-size) - 3 * var(--image-height) + 2 * var(--arrow-size)) / 2) - (.5 * var(--image-height) + 2 * var(--arrow-size)));
+      --line-size: calc(var(--line-height) / #{math.cos(30deg)}); //calc(var(--line-height) / cos(var(--calculated-angle)));
+    }
+
+    & > :first-child {
+      left: 0
+    }
+
+    & > :nth-child(2) {
+      left: calc(var(--image-height))
+    }
+
+    & > :nth-child(3) {
+      right: calc(var(--image-height))
+    }
+
+    & > :last-child {
+      right: 0
+    }
+
+  }
+
+  .middle-container {
+    margin-right: calc(var(--group-spacer) * -1);
+    margin-left: calc(var(--group-spacer) * -1);
+  }
+
+}

@@ -1,0 +1,44 @@
+.pageProgress-container {
+  display: flex;
+  align-items: center;
+
+}
+
+.pageProgress {
+  --page-progress-bg: var(--bs-body-bg);
+  --page-progress-color: var(--bs-body-color);
+
+  background-color: var(--page-progress-bg);
+  color: var(--page-progress-color);
+  width: 3cm;
+
+  [lang='fr'] &, [lang='fr-CA'] &, [lang='fr-EU'] &, {
+    width: 4cm;
+  }
+}
+
+.pageProgress-completed {
+  --page-progress-bg: var(--bs-green);
+  --page-progress-color: var(--bs-light);
+}
+
+.pageProgress-pageAlmostDone {
+  --page-progress-bg: var(--bs-teal)
+}
+
+.pageProgress-pageInProgress {
+  --page-progress-bg: var(--bs-cyan)
+}
+
+.pageProgress-dataDone {
+  --page-progress-bg: var(--bs-yellow)
+}
+
+.pageProgress-dataInProgress {
+  --page-progress-bg: var(--bs-orange)
+}
+
+.pageProgress-notCreated {
+  --page-progress-bg: var(--bs-red);
+  --page-progress-color: var(--bs-light);
+}

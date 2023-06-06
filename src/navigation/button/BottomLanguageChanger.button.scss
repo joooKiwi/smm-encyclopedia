@@ -1,0 +1,11 @@
+@import '../../functions';
+@import '../../variables';
+@import '../../mixin';
+
+@include media-breakpoint-up($grid-breakpoint-sm) {
+  #bottomLanguageChanger-button {
+    position: absolute;
+    right: var(--bs-spacer-md);
+    bottom: var(--bs-spacer-lg);
+  }
+}

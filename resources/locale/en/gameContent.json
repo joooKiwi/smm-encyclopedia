@@ -1,10 +1,7 @@
 {
   "entity": {
-    "singular": "Entity",
-    "plural":   "Entities",
-
-    "all":         "Every entity",
-    "display all": "Display every entity"
+    "all":         "Every {{entity}}",
+    "display all": "Display every {{entity}}"
   },
   "character name": {
     "singular": "Character name",
@@ -14,16 +11,22 @@
     "display all": "Display every character name"
   },
   "entity group": {
-    "all":         "Every entity group",
-    "display all": "Display every entity group"
+    "singular": "{{Entity}} group",
+    "plural":   "{{Entity}} groups",
+
+    "all":         "Every {{entity}} group",
+    "display all": "Display every {{entity}} group"
   },
   "entity category": {
-    "all":         "Every entity category",
-    "display all": "Display every entity category"
+    "singular": "{{Entity}} category",
+    "plural":   "{{Entity}} categories",
+
+    "all":         "Every {{entity}} category",
+    "display all": "Display every {{entity}} category"
   },
   "entity reference": {
-    "all":         "Every entity reference",
-    "display all": "Display every entity reference"
+    "all":         "Every {{entity}} reference",
+    "display all": "Display every {{entity}} reference"
   },
   "limit": {
     "singular": "Limit",
@@ -107,6 +110,9 @@
     }
   },
   "sound effect category": {
+    "singular": "Sound effect category",
+    "plural":   "Sound effect categories",
+
     "all":         "Every sound effect category",
     "display all": "Display every sound effect category"
   },
@@ -115,10 +121,13 @@
     "display all": "Display every {{singularName}}"
   },
   "mii costume category": {
+    "singular": "{{SingularName}} category",
+    "plural":   "{{SingularName}} categories",
+
     "all":         "Every {{singularName}} category",
     "display all": "Display every {{singularName}} category"
   },
-  "power-up & ride priority": {
+  "power-up, ride & hat priority": {
     "power-up": {
       "all":         "Every {{powerUp}} priority",
       "display all": "Display every {{powerUp}} priority"
@@ -127,9 +136,37 @@
       "all":         "Every {{ride}} priority",
       "display all": "Display every {{ride}} priority"
     },
-    "all": {
+    "hat": {
+      "all":         "Every {{hat}} priority",
+      "display all": "Display every {{hat}} priority"
+    },
+    "power-up & ride": {
+      "singular": "{{PowerUp}} & {{ride}}",
+      "plural":   "{{PowerUps}} & {{rides}}",
+
       "all":         "Every {{powerUp}} & {{ride}} priority",
       "display all": "Display every {{powerUp}} & {{ride}} priority"
+    },
+    "power-up & hat": {
+      "singular": "{{PowerUp}} & {{hat}}",
+      "plural":   "{{PowerUps}} & {{hats}}",
+
+      "all":         "Every {{powerUp}} & {{hat}} priority",
+      "display all": "Display every {{powerUp}} & {{hat}} priority"
+    },
+    "ride & hat": {
+      "singular": "{{Ride}} & {{hat}}",
+      "plural":   "{{Rides}} & {{hats}}",
+
+      "all":         "Every {{ride}} & {{hat}} priority",
+      "display all": "Display every {{ride}} & {{hat}} priority"
+    },
+    "all": {
+      "singular": "{{PowerUp}}, {{ride}} & {{hat}}",
+      "plural":   "{{PowerUps}}, {{rides}} & {{hats}}",
+
+      "all":         "Every {{powerUp}}, {{ride}} & {{hat}} priority",
+      "display all": "Display every {{powerUp}}, {{ride}} & {{hat}} priority"
     }
   },
   "mystery mushroom": {
@@ -177,6 +214,9 @@
     "display all": "Display every editor voice"
   },
   "instrument": {
+    "singular": "Instrument",
+    "plural":   "Instruments",
+
     "all":         "Every instrument",
     "display all": "Display instrument",
 
@@ -185,6 +225,10 @@
 
   "Category": "Category",
   "Group":    "Group",
+
+  "power-up": {"singular": "Power-up", "plural": "Power-ups" },
+  "ride":     {"singular": "Ride",     "plural": "Rides" },
+  "hat":      {"singular": "Hat",      "plural": "Hats" },
 
   "Official notification": {
     "position": {
@@ -265,7 +309,7 @@
       "→ periodic":               "The wind blows to the right periodically",
       "← periodic":               "The wind blows to the left periodically",
       "↔ periodic":               "The wind blows from left and right alternately periodically",
-      "← constant":               "The wind blows to the left constantly"
+      "→ constant":               "The wind blows to the right constantly"
     },
 
     "Slippery":                   "Has a slippery floor.",

@@ -1,31 +1,18 @@
-import type {PossibleTooltipPlacement} from 'bootstrap/Bootstrap.types'
-import type {PossibleContent}          from 'navigation/button/AbstractNavigationButton.types'
+import {contentTranslation}    from 'lang/components/translationMethods'
+import ModalButton             from 'bootstrap/modal/element/ModalButton'
+import Tooltip                 from 'bootstrap/tooltip/Tooltip'
+import {DISPLAY_VIEW_MODAL_ID} from 'navigation/button/modalIds'
 
-import {contentTranslation}       from 'lang/components/translationMethods'
-import {AbstractNavigationButton} from 'navigation/button/AbstractNavigationButton'
-
+const ID = 'displayView-button'
 /**
  * @reactComponent
  */
-export default class DisplayViewButton
-    extends AbstractNavigationButton {
+export default function DisplayViewButton() {
+    const content = `${contentTranslation('Display')}…`
 
-    static readonly #ID = 'displayView-button'
-
-    protected override get _isTopButton() {
-        return true
-    }
-
-    protected override get _id() {
-        return DisplayViewButton.#ID
-    }
-
-    protected override get _tooltipPlacement(): PossibleTooltipPlacement {
-        return 'bottom'
-    }
-
-    protected override _getContent(): PossibleContent {
-        return `${contentTranslation('Display')}…`
-    }
-
+    return <Tooltip elementId={ID} option={({title: content, placement: 'bottom',})}>
+        <ModalButton key={`navigation button (display view)`} id={ID} elementToShow={DISPLAY_VIEW_MODAL_ID} className="btn btn-lg btn-outline-primary btn-navigation rounded-pill">
+            <span key={`navigation text button (display view)`} className={`btn-navigation-text d-none d-md-inline-block`}>{content}</span>
+        </ModalButton>
+    </Tooltip>
 }

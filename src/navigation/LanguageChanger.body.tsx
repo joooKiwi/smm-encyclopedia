@@ -2,29 +2,18 @@ import './LanguageChanger.body.scss'
 
 import {Fragment, useState} from 'react'
 
-import type {ReactProperties} from 'util/react/ReactProperties'
-
-import {ModalInstance}     from 'bootstrap/modal/ModalInstance'
-import {TooltipInstance}   from 'bootstrap/tooltip/TooltipInstance'
-import {EveryLanguages}    from 'lang/EveryLanguages'
-import {ProjectLanguages}  from 'lang/ProjectLanguages'
-import LanguageChangerLink from 'navigation/LanguageChanger.link'
-import {StringContainer}   from 'util/StringContainer'
-
-interface LanguageChangerBodyProperties
-    extends ReactProperties {
-
-    containerId: string
-
-    divContainerId: string
-
-}
+import {ModalInstance}             from 'bootstrap/modal/ModalInstance'
+import {EveryLanguages}            from 'lang/EveryLanguages'
+import {ProjectLanguages}          from 'lang/ProjectLanguages'
+import LanguageChangerLink         from 'navigation/LanguageChanger.link'
+import {LANGUAGE_CHANGER_MODAL_ID} from 'navigation/button/modalIds'
+import {StringContainer}           from 'util/StringContainer'
 
 /**
  * @reactComponent
  */
-export default function LanguageChangerBody({containerId, divContainerId,}: LanguageChangerBodyProperties,) {
-    const [, setCurrentLanguage,] = useState(ProjectLanguages.currentLanguage)
+export default function LanguageChangerBody() {
+    const [, setCurrentLanguage,] = useState(ProjectLanguages.current)
 
     const everyLanguagesShown: EveryLanguages[] = []
 
@@ -37,9 +26,8 @@ export default function LanguageChangerBody({containerId, divContainerId,}: Lang
 
                     everyLanguagesShown.push(language.language.parent ?? language.language)
                     return <LanguageChangerLink key={key} language={language} callbackToSetLanguage={language => {
-                        setCurrentLanguage(ProjectLanguages.currentLanguage = language)
-                        ModalInstance.getInstance(containerId).instance.hide()
-                        TooltipInstance.getInstance(divContainerId).instance.hide()
+                        setCurrentLanguage(ProjectLanguages.current = language)
+                        ModalInstance.getInstance(LANGUAGE_CHANGER_MODAL_ID).instance.hide()
                     }}/>
                 }
             )

@@ -23,7 +23,7 @@ export default class NamePopoverComponent
 
     constructor(props: NamePopoverProperties,) {
         super(props,)
-        this.#currentLanguageTextContent = ProjectLanguages.currentLanguage.get<string>(this.otherProperties.name)
+        this.#currentLanguageTextContent = ProjectLanguages.current.get<string>(this.otherProperties.name)
         this.state = {
             element: <TextComponent key={`${this.id} - temporary`} content={this.#currentLanguageTextContent}/>,
         }

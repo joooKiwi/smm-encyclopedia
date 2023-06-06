@@ -1,33 +1,15 @@
 .groupOf2-powerUp-priority {
 
-  display: flex;
-
-  &.horizontal-group {
-    flex-direction: row;
-  }
+  --group-size: var(--group-size-on-2);
 
   &.vertical-group {
-    flex-direction: column;
+    min-width: var(--image-height);
+    min-height: var(--group-size);
   }
 
-  align-items: initial;
-  justify-content: initial;
-
-  > .arrow-container.horizontal, > .arrows-container.horizontal {
-    flex-basis: 0;
-    flex-grow: 1;
-  }
-
-  > .left-container, > .right-container {
-    display: flex;
-    align-items: center;
-    width: calc(100% / 3);
-
-    > * {
-      height: auto;
-      width: 100%;
-    }
-
+  &.horizontal-group {
+    min-width: var(--group-size);
+    min-height: var(--image-height);
   }
 
 }
