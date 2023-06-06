@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunksmm_encyclopedia=self.webpackChunksmm_encyclopedia||[]).push([[875],{5875:function(e,n,t){t.r(n),t.d(n,{default:function(){return r}});var u=t(1413),a=t(4925),c=t(7118),l=t(184),o=["boolean","true","false"];function r(e){var n=e.boolean,t=e.true,r=e.false,s=(0,a.Z)(e,o);return(0,l.jsx)(c.default,(0,u.Z)({content:n?t:r},s))}}}]);
-//# sourceMappingURL=875.5d88f60e.chunk.js.map

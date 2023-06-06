@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/257.e8444ebb.chunk.css","mappings":"AAAA,UACE,sBAGF,SACE","sources":["app/tools/text/YesOrNoResultTextComponent.scss"],"sourcesContent":[".text-yes {\n  color: var(--bs-green);\n}\n\n.text-no {\n  color: var(--bs-red);\n}\n"],"names":[],"sourceRoot":""}
