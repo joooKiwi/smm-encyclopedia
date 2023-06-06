@@ -31,7 +31,7 @@ export default function Footer() {
                     Geitje
                 </span>
                 <small id="copyright_lastEdited" className="text-center text-light">
-                    {contentTranslation('Last update')}: <i><SimpleDate day={16} month={3} year={2023}/></i>
+                    {contentTranslation('Last update')}: <i><SimpleDate day={5} month={6} year={2023}/></i>
                 </small>
             </div>
         </div>
