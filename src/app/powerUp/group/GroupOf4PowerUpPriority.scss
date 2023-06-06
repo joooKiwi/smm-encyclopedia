@@ -16,26 +16,26 @@
 
     .internal-arrow-container {
       > .arrow-container,
-      > .arrows-container > .arrow-container {
+      > .arrows-container > .arrow-container, {
         --line-size: calc(var(--group-height) - (var(--group-top-height) + var(--group-bottom-height)) * #{math.cos(45deg)} - 2 * var(--arrow-size));
         //--line-size: calc(var(--group-height) - (var(--group-top-size) + var(--group-bottom-size)) * cos(45deg) - 2 * var(--arrow-size))
       }
     }
 
     > :first-child {
-      margin-left: calc(var(--group-start-width) / 2)
+      margin-left: calc(var(--group-start-width) / 2);
     }
 
     > :nth-child(2) {
-      left: var(--group-start-width)
+      left: var(--group-start-width);
     }
 
     > :nth-child(3) {
-      right: var(--group-end-width)
+      right: var(--group-end-width);
     }
 
     > :last-child {
-      margin-right: calc(var(--group-end-width) / 2)
+      margin-right: calc(var(--group-end-width) / 2);
     }
   }
 
