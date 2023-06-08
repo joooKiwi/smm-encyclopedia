@@ -55,6 +55,8 @@ export function route(partialPath_or_name_or_location: | EveryPossibleRouteParti
         const simpleRoute = everySimpleRoutes.find(it => it.path === partialPath_or_name_or_location || it.name === partialPath_or_name_or_location)
         if (simpleRoute == null)
             throw new ReferenceError(`The route could not be found with the value "${partialPath_or_name_or_location}".`)
+        if ('redirectPath' in simpleRoute)
+            return simpleRoute.redirectPath as EveryPossibleRoutes
 
         if (Games.selectedGames.hasAll(...simpleRoute.games,))
             return `/${language.projectAcronym}${simpleRoute.path}`
