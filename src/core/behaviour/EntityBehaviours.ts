@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                          from 'core/ClassWithAcronym'
 import type {ClassWithReference}                                        from 'core/ClassWithReference'
@@ -34,11 +34,28 @@ export class EntityBehaviours
     public static readonly RESPAWN_IN_BLOCK_IF_PLAYER_DIE =                new EntityBehaviours('RBD',   'Respawn in Block (if player die)',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EntityBehaviours
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityBehaviours, typeof EntityBehaviours>> = class CompanionEnum_EntityBehaviours
+        extends BasicCompanionEnum<EntityBehaviours, typeof EntityBehaviours> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityBehaviours
+
+        private constructor() {
+            super(EntityBehaviours,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EntityBehaviours()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>
@@ -98,20 +115,16 @@ export class EntityBehaviours
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityBehaviours
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityBehaviours>,): EntityBehaviours {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityBehaviours>,): EntityBehaviours {
+        return EntityBehaviours.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityBehaviours> {
-        return Enum.getValuesOn(this,)
+        return EntityBehaviours.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityBehaviours> {
-        yield* this.values
+        yield* EntityBehaviours.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

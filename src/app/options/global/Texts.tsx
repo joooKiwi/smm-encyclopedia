@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
 import type {Names, Ordinals}                     from 'app/options/global/Texts.types'
@@ -89,11 +89,28 @@ export abstract class Texts
     }(false,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Texts
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Texts, typeof Texts>> = class CompanionEnum_Texts
+        extends BasicCompanionEnum<Texts, typeof Texts> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Texts
+
+        private constructor() {
+            super(Texts,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Texts()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #value
@@ -140,20 +157,16 @@ export abstract class Texts
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Texts
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Texts>,): Texts {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Texts>,): Texts {
+        return Texts.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Texts> {
-        return Enum.getValuesOn(this,)
+        return Texts.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Texts> {
-        yield* this.values
+        yield* Texts.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                   from 'core/ClassWithReference'
@@ -2776,11 +2776,28 @@ export class Entities
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Entities
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Entities, typeof Entities>> = class CompanionEnum_Entities
+        extends BasicCompanionEnum<Entities, typeof Entities> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Entities
+
+        private constructor() {
+            super(Entities,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Entities()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Entity>
@@ -3019,20 +3036,16 @@ export class Entities
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Entities
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Entities>,): Entities {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Entities>,): Entities {
+        return Entities.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Entities> {
-        return Enum.getValuesOn(this,)
+        return Entities.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Entities> {
-        yield* this.values
+        yield* Entities.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

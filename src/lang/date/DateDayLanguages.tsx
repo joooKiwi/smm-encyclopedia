@@ -1,20 +1,21 @@
-import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                               from '@joookiwi/enumerable'
+import type {CollectionHolder, CompanionEnumWithParentDeclaration, EnumerableWithParent, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {CompanionEnumWithParent, Enum}                                                                                         from '@joookiwi/enumerable'
 
 import type {DayNumber}        from 'lang/date/types'
-import type {EveryLanguages}   from 'lang/EveryLanguages'
 import type {Names, Ordinals}  from 'lang/ProjectLanguages.types'
 import type {ClassWithCurrent} from 'util/enumerable/ClassWithCurrent'
 import type {Nullable, NullOr} from 'util/types/nullable'
 
+import {EveryLanguages}   from 'lang/EveryLanguages'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
 export abstract class DateDayLanguages
-    extends ProjectLanguages {
+    extends Enum<Ordinals, Names>
+    implements EnumerableWithParent<Ordinals, Names, ProjectLanguages> {
 
     //region -------------------- Enum instances --------------------
 
-    public static override readonly AMERICAN_ENGLISH =    new class DateDayLanguages_AmericanEnglish extends DateDayLanguages {
+    public static readonly AMERICAN_ENGLISH =    new class DateDayLanguages_AmericanEnglish extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return day === 1 || day === 21 || day === 31
@@ -27,14 +28,14 @@ export abstract class DateDayLanguages
         }
 
     }   (ProjectLanguages.AMERICAN_ENGLISH,   )
-    public static override readonly EUROPEAN_ENGLISH =    new class DateDayLanguages_EuropeanEnglish extends DateDayLanguages {
+    public static readonly EUROPEAN_ENGLISH =    new class DateDayLanguages_EuropeanEnglish extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return DateDayLanguages.AMERICAN_ENGLISH.newDayComponent(day)
         }
 
     }   (ProjectLanguages.EUROPEAN_ENGLISH,   )
-    public static override readonly CANADIAN_FRENCH =     new class DateDayLanguages_CanadianFrench extends DateDayLanguages {
+    public static readonly CANADIAN_FRENCH =     new class DateDayLanguages_CanadianFrench extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return day === 1
@@ -43,14 +44,14 @@ export abstract class DateDayLanguages
         }
 
     }    (ProjectLanguages.CANADIAN_FRENCH,    )
-    public static override readonly EUROPEAN_FRENCH =     new class DateDayLanguages_EuropeanFrench extends DateDayLanguages {
+    public static readonly EUROPEAN_FRENCH =     new class DateDayLanguages_EuropeanFrench extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return DateDayLanguages.CANADIAN_FRENCH.newDayComponent(day)
         }
 
     }    (ProjectLanguages.EUROPEAN_FRENCH,    )
-    public static override readonly GERMAN =              new class DateDayLanguages_German extends DateDayLanguages {
+    public static readonly GERMAN =              new class DateDayLanguages_German extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day === 1
@@ -59,77 +60,77 @@ export abstract class DateDayLanguages
         }
 
     }            (ProjectLanguages.GERMAN,             )
-    public static override readonly AMERICAN_SPANISH =    new class DateDayLanguages_AmericanSpanish extends DateDayLanguages {
+    public static readonly AMERICAN_SPANISH =    new class DateDayLanguages_AmericanSpanish extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day}</>
         }
 
     }   (ProjectLanguages.AMERICAN_SPANISH,   )
-    public static override readonly EUROPEAN_SPANISH =    new class DateDayLanguages_EuropeanSpanish extends DateDayLanguages {
+    public static readonly EUROPEAN_SPANISH =    new class DateDayLanguages_EuropeanSpanish extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return DateDayLanguages.AMERICAN_SPANISH.newDayComponent(day)
         }
 
     }   (ProjectLanguages.EUROPEAN_SPANISH,   )
-    public static override readonly ITALIAN =             new class DateDayLanguages_Italian extends DateDayLanguages {
+    public static readonly ITALIAN =             new class DateDayLanguages_Italian extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day === 1 ? 'il' : day}</>
         }
 
     }           (ProjectLanguages.ITALIAN,            )
-    public static override readonly DUTCH =               new class DateDayLanguages_Dutch extends DateDayLanguages {
+    public static readonly DUTCH =               new class DateDayLanguages_Dutch extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day}</>
         }
 
     }             (ProjectLanguages.DUTCH,              )
-    public static override readonly AMERICAN_PORTUGUESE = new class DateDayLanguages_AmericanPortuguese extends DateDayLanguages {
+    public static readonly AMERICAN_PORTUGUESE = new class DateDayLanguages_AmericanPortuguese extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day}</>
         }
 
     }(ProjectLanguages.AMERICAN_PORTUGUESE,)
-    public static override readonly EUROPEAN_PORTUGUESE = new class DateDayLanguages_EuropeanPortuguese extends DateDayLanguages {
+    public static readonly EUROPEAN_PORTUGUESE = new class DateDayLanguages_EuropeanPortuguese extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return DateDayLanguages.AMERICAN_PORTUGUESE.newDayComponent(day)
         }
 
     }(ProjectLanguages.EUROPEAN_PORTUGUESE,)
-    public static override readonly RUSSIAN =             new class DateDayLanguages_Russian extends DateDayLanguages {
+    public static readonly RUSSIAN =             new class DateDayLanguages_Russian extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day}</>
         }
 
     }           (ProjectLanguages.RUSSIAN,            )
-    public static override readonly JAPANESE =            new class DateDayLanguages_Japanese extends DateDayLanguages {
+    public static readonly JAPANESE =            new class DateDayLanguages_Japanese extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day}</>
         }
 
     }          (ProjectLanguages.JAPANESE,           )
-    public static override readonly TRADITIONAL_CHINESE = new class DateDayLanguages_TraditionalChinese extends DateDayLanguages {
+    public static readonly TRADITIONAL_CHINESE = new class DateDayLanguages_TraditionalChinese extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return DateDayLanguages.JAPANESE.newDayComponent(day)
         }
 
     }(ProjectLanguages.TRADITIONAL_CHINESE,)
-    public static override readonly SIMPLIFIED_CHINESE =  new class DateDayLanguages_SimplifiedChinese extends DateDayLanguages {
+    public static readonly SIMPLIFIED_CHINESE =  new class DateDayLanguages_SimplifiedChinese extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return DateDayLanguages.JAPANESE.newDayComponent(day)
         }
 
     } (ProjectLanguages.SIMPLIFIED_CHINESE, )
-    public static override readonly KOREAN =              new class DateDayLanguages_Korean extends DateDayLanguages {
+    public static readonly KOREAN =              new class DateDayLanguages_Korean extends DateDayLanguages {
 
         public override newDayComponent(day: DayNumber,) {
             return <>{day}</>
@@ -138,12 +139,28 @@ export abstract class DateDayLanguages
     }            (ProjectLanguages.KOREAN,             )
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: DateDayLanguages
-    protected static override readonly _DEFAULT = this.getValueByLanguage(ProjectLanguages.default)
+    public static readonly CompanionEnum: Singleton<CompanionEnumWithParentDeclaration<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages>> = class CompanionEnum_DateDayLanguages
+        extends CompanionEnumWithParent<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_DateDayLanguages
+
+        private constructor() {
+            super(DateDayLanguages, ProjectLanguages,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_DateDayLanguages()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Companion --------------------
 
     /**
@@ -177,34 +194,35 @@ export abstract class DateDayLanguages
             return DateDayLanguages.getValueByLanguage(ProjectLanguages.current)
         }
 
-        public set current(value: PossibleValueByEnumerable<DateDayLanguages>,) {
-            ProjectLanguages.current = DateDayLanguages.getValue(value).language2
+        public set current(value: PossibleEnumerableValueBy<| DateDayLanguages | ProjectLanguages | EveryLanguages>,) {
+            ProjectLanguages.current = DateDayLanguages.getValue(value).parent
         }
 
     }
 
     //endregion -------------------- Companion --------------------
     //region -------------------- Fields --------------------
-    readonly #language
+
+    readonly #parent
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(language: ProjectLanguages,) {
-        super(language.language, language.isInSuperMarioMaker1, language.isInSuperMarioMakerFor3DS, language.isInSuperMarioMaker2,)
-        this.#language = language
+    private constructor(parent: ProjectLanguages,) {
+        super()
+        this.#parent = parent
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter & setter methods --------------------
 
-    public get language2() {
-        return this.#language
+    public get parent() {
+        return this.#parent
     }
 
     //region -------------------- Getter & setter methods (current) --------------------
 
-    public override get isCurrent(): boolean {
+    public get isCurrent(): boolean {
         return this === DateDayLanguages.currentOrNull
     }
 
@@ -214,7 +232,7 @@ export abstract class DateDayLanguages
      *
      * @see EveryLanguages.currentOrNull
      */
-    public static override get currentOrNull(): NullOr<DateDayLanguages> {
+    public static get currentOrNull(): NullOr<DateDayLanguages> {
         return DateDayLanguages.Companion2.get.currentOrNull
     }
 
@@ -224,7 +242,7 @@ export abstract class DateDayLanguages
      * @throws ReferenceError The current {@link DateDayLanguages language} has not been initialized yet
      * @see ProjectLanguages.current
      */
-    public static override get current(): DateDayLanguages {
+    public static get current(): DateDayLanguages {
         return this.Companion2.get.current
     }
 
@@ -234,7 +252,7 @@ export abstract class DateDayLanguages
      * @param value The {@link DateDayLanguages language} to set as the current one
      * @see ProjectLanguages.current
      */
-    public static override set current(value: PossibleValueByEnumerable<| EveryLanguages | ProjectLanguages | DateDayLanguages>,) {
+    public static set current(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages | DateDayLanguages>,) {
         this.Companion2.get.current = value
     }
 
@@ -247,13 +265,13 @@ export abstract class DateDayLanguages
 
 
     // public static override getValueByLanguage<T,>(value: T,): DateDayLanguagesByLanguage<T>
-    public static override getValueByLanguage(value: Nullable<| DateDayLanguages | ProjectLanguages | EveryLanguages | string>,): DateDayLanguages {
+    public static getValueByLanguage(value: Nullable<| DateDayLanguages | ProjectLanguages | EveryLanguages | string>,): DateDayLanguages {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof DateDayLanguages)
             return value
         const languageFound = ProjectLanguages.getValueByLanguage(value),
-            valueFound = this.values.find(it => it.language2 === languageFound)
+            valueFound = this.values.find(it => it.parent === languageFound)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
         return valueFound
@@ -262,24 +280,22 @@ export abstract class DateDayLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructorWithDefault<Ordinals, Names> {
-        return DateDayLanguages
+    public static get default(): DateDayLanguages {
+        return DateDayLanguages.getValue(ProjectLanguages.default)
     }
 
-    public static override get default(): DateDayLanguages {
-        return this.getValueByLanguage(ProjectLanguages.default)
+    public static getValue(value: PossibleEnumerableValueBy<| ProjectLanguages | DateDayLanguages | EveryLanguages>,): DateDayLanguages {
+        return value instanceof EveryLanguages
+            ? DateDayLanguages.CompanionEnum.get.getValue(DateDayLanguages.getValueByLanguage(value,),)
+            : DateDayLanguages.CompanionEnum.get.getValue(value,)
     }
 
-    public static override getValue(value: PossibleValueByEnumerable<| ProjectLanguages | DateDayLanguages>,): DateDayLanguages {
-        return Enum.getValueOn<DateDayLanguages>(this, value,)
-    }
-
-    public static override get values(): CollectionHolder<DateDayLanguages> {
-        return Enum.getValuesOn(this,)
+    public static get values(): CollectionHolder<DateDayLanguages> {
+        return DateDayLanguages.CompanionEnum.get.values
     }
 
     public static override* [Symbol.iterator](): IterableIterator<DateDayLanguages> {
-        yield* this.values
+        yield* DateDayLanguages.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

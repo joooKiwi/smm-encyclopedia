@@ -1,4 +1,4 @@
-import type {Enum} from '@joookiwi/enumerable/dist/types'
+import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 
 import type {SingleHeaderContent, SingleHeadersContent} from 'app/tools/table/SimpleHeader'
 import type {ClassWithEnglishName}                      from 'core/ClassWithEnglishName'
@@ -132,6 +132,6 @@ export class CommonOptions {
 
 }
 
-type EnumerationWithReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<Name<string>>
-type EnumerationWithCategoryReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<NameTraitFromACategory<string, NameTrait<string>>>
-type EnumerationWithInSuperMarioMakerGameReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<ClassInAnySuperMarioMakerGame>
+type EnumerationWithReference = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<Name<string>>
+type EnumerationWithCategoryReference = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<NameTraitFromACategory<string, NameTrait<string>>>
+type EnumerationWithInSuperMarioMakerGameReference = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<ClassInAnySuperMarioMakerGame>

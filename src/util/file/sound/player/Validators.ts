@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                               from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                from 'core/ClassWithEnglishName'
 import type {EnglishName, IsSourceFoundCallback, Names, Ordinals} from 'util/file/sound/player/Validators.types'
@@ -79,12 +79,30 @@ export abstract class Validators
     }('on create only',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Validators
-    protected static readonly _DEFAULT = Validators.ON_PLAY_ONLY
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Validators, typeof Validators>> = class CompanionEnum_Validators
+        extends BasicCompanionEnum<Validators, typeof Validators> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Validators
+
+        private constructor() {
+            super(Validators,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Validators()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+        protected override readonly _DEFAULT = Validators.ON_PLAY_ONLY
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #englishName
@@ -134,32 +152,29 @@ export abstract class Validators
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructorWithDefault<Ordinals, Names> {
+    public static get default(): Validators {
+        return Validators.CompanionEnum.get.default
+    }
+
+    public static set default(value: PossibleEnumerableValueBy<Validators>,) {
+        Validators.CompanionEnum.get.default = value
+    }
+
+    public static setDefault(value: PossibleEnumerableValueBy<Validators>,): typeof Validators {
+        Validators.CompanionEnum.get.setDefault(value,)
         return Validators
     }
 
-    public static get default(): Validators {
-        return Enum.getDefaultOn(this,)
-    }
-
-    public static set default(value: PossibleValueByEnumerable<Validators>,) {
-        this.setDefault(value,)
-    }
-
-    public static setDefault(value: PossibleValueByEnumerable<Validators>,): typeof Validators {
-        return Enum.setDefaultOn(this, value,)
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Validators>,): Validators {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Validators>,): Validators {
+        return Validators.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Validators> {
-        return Enum.getValuesOn(this,)
+        return Validators.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Validators> {
-        yield* this.values
+        yield* Validators.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

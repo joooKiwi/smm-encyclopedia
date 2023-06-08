@@ -1,7 +1,7 @@
 import './EntityLimitAppOption.scss'
 
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityLimitAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -98,11 +98,28 @@ export abstract class EntityLimitAppOption
     }()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EntityLimitAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimitAppOption, typeof EntityLimitAppOption>> = class CompanionEnum_EntityLimitAppOption
+        extends BasicCompanionEnum<EntityLimitAppOption, typeof EntityLimitAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityLimitAppOption
+
+        private constructor() {
+            super(EntityLimitAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EntityLimitAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -155,20 +172,16 @@ export abstract class EntityLimitAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityLimitAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityLimitAppOption>,): EntityLimitAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityLimitAppOption>,): EntityLimitAppOption {
+        return EntityLimitAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityLimitAppOption> {
-        return Enum.getValuesOn(this,)
+        return EntityLimitAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityLimitAppOption> {
-        yield* this.values
+        yield* EntityLimitAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

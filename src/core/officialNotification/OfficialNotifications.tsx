@@ -1,8 +1,8 @@
 import './OfficialNotifications.scss'
 
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment}                                                                from 'react'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import {Fragment}                                                                                   from 'react'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
@@ -483,11 +483,28 @@ export class OfficialNotifications
     }('Clear # Super World', 'super world.clear', 2, 3, 4, 5, 10,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: OfficialNotifications
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<OfficialNotifications, typeof OfficialNotifications>> = class CompanionEnum_OfficialNotifications
+        extends BasicCompanionEnum<OfficialNotifications, typeof OfficialNotifications> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_OfficialNotifications
+
+        private constructor() {
+            super(OfficialNotifications,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_OfficialNotifications()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #englishName
@@ -711,20 +728,16 @@ export class OfficialNotifications
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return OfficialNotifications
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<OfficialNotifications>,): OfficialNotifications {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<OfficialNotifications>,): OfficialNotifications {
+        return OfficialNotifications.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<OfficialNotifications> {
-        return Enum.getValuesOn(this,)
+        return OfficialNotifications.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<OfficialNotifications> {
-        yield* this.values
+        yield* OfficialNotifications.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

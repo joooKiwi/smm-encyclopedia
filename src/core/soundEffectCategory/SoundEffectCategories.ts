@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                         from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                           from 'core/ClassWithReference'
@@ -29,11 +29,28 @@ export class SoundEffectCategories
     public static readonly MUSIC =      new SoundEffectCategories('Music',      8,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: SoundEffectCategories
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<SoundEffectCategories, typeof SoundEffectCategories>> = class CompanionEnum_SoundEffectCategories
+        extends BasicCompanionEnum<SoundEffectCategories, typeof SoundEffectCategories> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_SoundEffectCategories
+
+        private constructor() {
+            super(SoundEffectCategories,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_SoundEffectCategories()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, SoundEffectCategory>
@@ -94,20 +111,16 @@ export class SoundEffectCategories
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return SoundEffectCategories
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<SoundEffectCategories>,): SoundEffectCategories {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<SoundEffectCategories>,): SoundEffectCategories {
+        return SoundEffectCategories.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<SoundEffectCategories> {
-        return Enum.getValuesOn(this,)
+        return SoundEffectCategories.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<SoundEffectCategories> {
-        yield* this.values
+        yield* SoundEffectCategories.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

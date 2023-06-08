@@ -1,6 +1,6 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import type {Dispatch, SetStateAction}                                           from 'react'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import type {Dispatch, SetStateAction}                                                              from 'react'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {AbstractAppWithInterpreter}                        from 'app/withInterpreter/AbstractAppWithInterpreter'
 import type {AbstractCardListApp}                               from 'app/withInterpreter/AbstractCardListApp'
@@ -67,11 +67,28 @@ export abstract class ViewDisplays
     }('card-list', 'card', 'card-list',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: ViewDisplays
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ViewDisplays, typeof ViewDisplays>> = class CompanionEnum_ViewDisplays
+        extends BasicCompanionEnum<ViewDisplays, typeof ViewDisplays> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_ViewDisplays
+
+        private constructor() {
+            super(ViewDisplays,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_ViewDisplays()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Companion --------------------
 
     /**
@@ -195,7 +212,7 @@ export abstract class ViewDisplays
      *
      * @param value The {@link ViewDisplays view display} to set as the current one
      */
-    public static set current(value: PossibleValueByEnumerable<ViewDisplays>,) {
+    public static set current(value: PossibleEnumerableValueBy<ViewDisplays>,) {
         this.Companion.get.current = value
     }
 
@@ -268,20 +285,16 @@ export abstract class ViewDisplays
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return ViewDisplays
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<ViewDisplays>,): ViewDisplays {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<ViewDisplays>,): ViewDisplays {
+        return ViewDisplays.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<ViewDisplays> {
-        return Enum.getValuesOn(this,)
+        return ViewDisplays.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<ViewDisplays> {
-        yield* this.values
+        yield* ViewDisplays.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

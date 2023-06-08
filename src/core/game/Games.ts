@@ -1,5 +1,5 @@
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                   from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                               from 'core/ClassWithEnglishName'
@@ -56,11 +56,28 @@ export abstract class Games
     }('SMM2', '2', '2', 'Super Mario Maker 2', true,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Games
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Games, typeof Games>> = class CompanionEnum_Games
+        extends BasicCompanionEnum<Games, typeof Games> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Games
+
+        private constructor() {
+            super(Games,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Games()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Companion --------------------
 
     /**
@@ -264,20 +281,16 @@ export abstract class Games
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Games
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Games>,): Games {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Games>,): Games {
+        return Games.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Games> {
-        return Enum.getValuesOn(this,)
+        return Games.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Games> {
-        yield* this.values
+        yield* Games.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

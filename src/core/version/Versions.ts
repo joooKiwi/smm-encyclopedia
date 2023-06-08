@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from 'core/version/Versions.types'
 import type {Nullable, NullOr}                                                                         from 'util/types/nullable'
@@ -51,11 +51,28 @@ export class Versions
     public static readonly SMM2_V3_0_2 =       new Versions('v3.0.2',       2,     new Date(2022, 11, 23,),)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Versions
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Versions, typeof Versions>> = class CompanionEnum_Versions
+        extends BasicCompanionEnum<Versions, typeof Versions> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Versions
+
+        private constructor() {
+            super(Versions,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Versions()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #name
@@ -123,20 +140,16 @@ export class Versions
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Versions
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Versions>,): Versions {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Versions>,): Versions {
+        return Versions.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Versions> {
-        return Enum.getValuesOn(this,)
+        return Versions.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Versions> {
-        yield* this.values
+        yield* Versions.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

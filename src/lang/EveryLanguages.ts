@@ -1,7 +1,7 @@
-import type {CollectionHolder, EnumerableConstructorWithDefault, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import type {Dispatch, SetStateAction}                                                      from 'react'
-import {Enum}                                                                               from '@joookiwi/enumerable'
-import i18n                                                                                 from 'i18next'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import type {Dispatch, SetStateAction}                                                              from 'react'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import i18n                                                                                         from 'i18next'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
@@ -482,14 +482,31 @@ export abstract class EveryLanguages
 
     }             (false, 'el',    'el',    'Greek',                'ελληνικά',)
 
-    protected static readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH
-
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EveryLanguages
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EveryLanguages, typeof EveryLanguages>> = class CompanionEnum_EveryLanguages
+        extends BasicCompanionEnum<EveryLanguages, typeof EveryLanguages> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EveryLanguages
+
+        private constructor() {
+            super(EveryLanguages,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EveryLanguages()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+        protected override readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Companion --------------------
 
     /**
@@ -803,7 +820,7 @@ export abstract class EveryLanguages
      *
      * @param value The {@link EveryLanguages language} to set as the current one
      */
-    public static set current(value: PossibleValueByEnumerable<EveryLanguages>,) {
+    public static set current(value: PossibleEnumerableValueBy<EveryLanguages>,) {
         this.Companion.get.current = value
     }
 
@@ -874,7 +891,7 @@ export abstract class EveryLanguages
     public static getValueByLanguage(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof EveryLanguages && value._static === EveryLanguages)
+        if (value instanceof EveryLanguages)
             return value
         const valueFound = this.values.find(enumerable =>
             enumerable.projectAcronym === value
@@ -889,32 +906,29 @@ export abstract class EveryLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructorWithDefault<Ordinals, Names> {
+    public static get default(): EveryLanguages {
+        return EveryLanguages.CompanionEnum.get.default
+    }
+
+    public static set default(value: PossibleEnumerableValueBy<EveryLanguages>,) {
+        EveryLanguages.CompanionEnum.get.default = value
+    }
+
+    public static setDefault(value: PossibleEnumerableValueBy<EveryLanguages>,): typeof EveryLanguages {
+        EveryLanguages.CompanionEnum.get.setDefault(value,)
         return EveryLanguages
     }
 
-    public static get default(): EveryLanguages {
-        return Enum.getDefaultOn(this,)
-    }
-
-    public static set default(value: PossibleValueByEnumerable<EveryLanguages>,) {
-        Enum.setDefaultOn(this, value,)
-    }
-
-    public static setDefault(value: PossibleValueByEnumerable<EveryLanguages>,): typeof EveryLanguages {
-        return Enum.setDefaultOn(this, value,)
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EveryLanguages>,): EveryLanguages {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EveryLanguages>,): EveryLanguages {
+        return EveryLanguages.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EveryLanguages> {
-        return Enum.getValuesOn(this,)
+        return EveryLanguages.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EveryLanguages> {
-        yield* this.values
+        yield* EveryLanguages.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

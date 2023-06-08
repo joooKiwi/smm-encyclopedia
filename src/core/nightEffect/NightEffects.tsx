@@ -1,7 +1,7 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment}                                                                from 'react'
-import {Link}                                                                    from 'react-router-dom'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import {Fragment}                                                                                   from 'react'
+import {Link}                                                                                       from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
@@ -109,11 +109,28 @@ export class NightEffects
     }('Characters in water',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: NightEffects
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<NightEffects, typeof NightEffects>> = class CompanionEnum_NightEffects
+        extends BasicCompanionEnum<NightEffects, typeof NightEffects> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_NightEffects
+
+        private constructor() {
+            super(NightEffects,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_NightEffects()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #englishName
@@ -172,20 +189,16 @@ export class NightEffects
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return NightEffects
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<NightEffects>,): NightEffects {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<NightEffects>,): NightEffects {
+        return NightEffects.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<NightEffects> {
-        return Enum.getValuesOn(this,)
+        return NightEffects.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<NightEffects> {
-        yield* this.values
+        yield* NightEffects.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

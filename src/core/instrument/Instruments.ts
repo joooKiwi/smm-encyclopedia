@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                     from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from 'core/instrument/Instruments.types'
@@ -109,11 +109,28 @@ export class Instruments
     public static readonly BOMB =                   new Instruments('Bomb', 'INST_SE5_Bomb',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Instruments
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Instruments, typeof Instruments>> = class CompanionEnum_Instruments
+        extends BasicCompanionEnum<Instruments, typeof Instruments> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Instruments
+
+        private constructor() {
+            super(Instruments,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Instruments()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Instrument>
@@ -179,20 +196,16 @@ export class Instruments
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Instruments
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Instruments>,) {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Instruments>,): Instruments {
+        return Instruments.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Instruments> {
-        return Enum.getValuesOn(this,)
+        return Instruments.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Instruments> {
-        yield* this.values
+        yield* Instruments.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

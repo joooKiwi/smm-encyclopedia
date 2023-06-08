@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
@@ -72,11 +72,28 @@ export abstract class ThemeTypes
     }('world', 'worldTheme',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: ThemeTypes
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ThemeTypes, typeof ThemeTypes>> = class CompanionEnum_ThemeTypes
+        extends BasicCompanionEnum<ThemeTypes, typeof ThemeTypes> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_ThemeTypes
+
+        private constructor() {
+            super(ThemeTypes,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_ThemeTypes()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #type
@@ -156,20 +173,16 @@ export abstract class ThemeTypes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return ThemeTypes
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<ThemeTypes>,): ThemeTypes {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<ThemeTypes>,): ThemeTypes {
+        return ThemeTypes.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<ThemeTypes> {
-        return Enum.getValuesOn(this,)
+        return ThemeTypes.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<ThemeTypes> {
-        yield* this.values
+        yield* ThemeTypes.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

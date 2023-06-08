@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
 import type {ReactElement}                       from 'util/react/ReactProperties'
@@ -97,11 +97,28 @@ export abstract class Arrows
     }('arrows-container', HORIZONTAL, false,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Arrows
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Arrows, typeof Arrows>> = class CompanionEnum_Arrows
+        extends BasicCompanionEnum<Arrows, typeof Arrows> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Arrows
+
+        private constructor() {
+            super(Arrows,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Arrows()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #container
@@ -172,20 +189,16 @@ export abstract class Arrows
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Arrows
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Arrows>,): Arrows {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Arrows>,): Arrows {
+        return Arrows.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Arrows> {
-        return Enum.getValuesOn(this,)
+        return Arrows.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Arrows> {
-        yield* this.values
+        yield* Arrows.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

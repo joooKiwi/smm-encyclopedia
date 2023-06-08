@@ -1,6 +1,6 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment}                                                                from 'react'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import {Fragment}                                                                                   from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -241,11 +241,28 @@ export class EntityAppOption
     public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new EntityAppOption()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EntityAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityAppOption, typeof EntityAppOption>> = class CompanionEnum_EntityAppOption
+        extends BasicCompanionEnum<EntityAppOption, typeof EntityAppOption>{
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityAppOption
+
+        private constructor() {
+            super(EntityAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new this()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -334,20 +351,16 @@ export class EntityAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityAppOption>,): EntityAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityAppOption>,): EntityAppOption {
+        return EntityAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityAppOption> {
-        return Enum.getValuesOn(this,)
+        return EntityAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityAppOption> {
-        yield* this.values
+        yield* EntityAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

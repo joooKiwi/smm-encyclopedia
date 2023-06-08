@@ -1,5 +1,6 @@
-import type {BasicEnumerableConstructor, CollectionHolder, Enumerable} from '@joookiwi/enumerable/dist/types'
-import {AssertionError}                                                from 'assert'
+import type {CollectionHolder, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable/dist/types'
+import {EnumHelper}                                               from '@joookiwi/enumerable'
+import {AssertionError}                                           from 'assert'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
 import type {ClassWithType}        from 'core/ClassWithType'
@@ -92,23 +93,27 @@ export function assert(condition: boolean, message: string,): asserts condition 
 
 //region -------------------- get value by … --------------------
 
-export function getValueByEnglishName<T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
+function getValues<const T extends Enumerable, >(enumerableConstructor: Nullable<EnumerableConstructor<T, any>>,): CollectionHolder<T> {
+    return EnumHelper.getCompanion(enumerableConstructor).values
+}
+
+export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null name.`)
     if (value instanceof enumerableConstructor)
         return value as T
-    const valueFound = (enumerableConstructor.values as CollectionHolder<T>).find(it => it.englishName === value)
+    const valueFound = getValues(enumerableConstructor).find(it => it.englishName === value)
     if (valueFound == null)
         throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
     return valueFound
 }
 
-export function getValueByType<T extends EnumerableWithType, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
+export function getValueByType<const T extends EnumerableWithType, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null type.`)
     if (value instanceof enumerableConstructor)
         return value as T
-    const valueFound = (enumerableConstructor.values as CollectionHolder<T>).find(it => it.type === value)
+    const valueFound = getValues(enumerableConstructor).find(it => it.type === value)
     if (valueFound == null)
         throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
     return valueFound

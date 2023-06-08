@@ -1,6 +1,6 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment}                                                                from 'react'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import {Fragment}                                                                                   from 'react'
 
 import type {Names, Ordinals, PossibleMysteryMushroomType}     from 'app/options/MysteryMushroomAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -327,11 +327,28 @@ export abstract class MysteryMushroomAppOption
     }('lost a life',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: MysteryMushroomAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<MysteryMushroomAppOption, typeof MysteryMushroomAppOption>> = class CompanionEnum_MysteryMushroomAppOption
+        extends BasicCompanionEnum<MysteryMushroomAppOption, typeof MysteryMushroomAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_MysteryMushroomAppOption
+
+        private constructor() {
+            super(MysteryMushroomAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_MysteryMushroomAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #imagesAndSounds?: readonly MysteryMushroomAppOption[]
@@ -493,20 +510,16 @@ export abstract class MysteryMushroomAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return MysteryMushroomAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<MysteryMushroomAppOption>,): MysteryMushroomAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<MysteryMushroomAppOption>,): MysteryMushroomAppOption {
+        return MysteryMushroomAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<MysteryMushroomAppOption> {
-        return Enum.getValuesOn(this,)
+        return MysteryMushroomAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<MysteryMushroomAppOption> {
-        yield* this.values
+        yield* MysteryMushroomAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

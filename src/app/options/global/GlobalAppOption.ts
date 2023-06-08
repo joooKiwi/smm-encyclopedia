@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {GlobalAppState}                          from 'app/AppStates.types'
 import type {Names, Ordinals, PossibleAppOptionValue} from 'app/options/global/GlobalAppOption.types'
@@ -49,11 +49,28 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     public static readonly NIGHT =            new class GlobalAppOption_Night extends GlobalAppOption<boolean> {}(true,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: GlobalAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GlobalAppOption, typeof GlobalAppOption>> = class CompanionEnum_GlobalAppOption
+        extends BasicCompanionEnum<GlobalAppOption, typeof GlobalAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_GlobalAppOption
+
+        private constructor() {
+            super(GlobalAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_GlobalAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     //endregion -------------------- Fields --------------------
@@ -68,20 +85,16 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return GlobalAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<GlobalAppOption>,): GlobalAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<GlobalAppOption>,): GlobalAppOption {
+        return GlobalAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<GlobalAppOption> {
-        return Enum.getValuesOn(this,)
+        return GlobalAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<GlobalAppOption> {
-        yield* this.values
+        yield* GlobalAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

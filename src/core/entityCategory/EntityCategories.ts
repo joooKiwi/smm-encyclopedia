@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                         from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                           from 'core/ClassWithReference'
@@ -30,7 +30,24 @@ export class EntityCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: EntityCategories
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityCategories, typeof EntityCategories>> = class CompanionEnum_EntityCategories
+        extends BasicCompanionEnum<EntityCategories, typeof EntityCategories> {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityCategories
+
+        private constructor() {
+            super(EntityCategories,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EntityCategories()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -94,20 +111,16 @@ export class EntityCategories
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityCategories
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityCategories>,): EntityCategories {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityCategories>,): EntityCategories {
+        return EntityCategories.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityCategories> {
-        return Enum.getValuesOn(this,)
+        return EntityCategories.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityCategories> {
-        yield* this.values
+        yield* EntityCategories.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

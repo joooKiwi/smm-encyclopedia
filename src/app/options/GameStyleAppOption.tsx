@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/GameStyleAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -83,11 +83,28 @@ export abstract class GameStyleAppOption
     }()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: GameStyleAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GameStyleAppOption, typeof GameStyleAppOption>> = class CompanionEnum_GameStyleAppOption
+        extends BasicCompanionEnum<GameStyleAppOption, typeof GameStyleAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_GameStyleAppOption
+
+        private constructor() {
+            super(GameStyleAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_GameStyleAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -140,20 +157,16 @@ export abstract class GameStyleAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return GameStyleAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<GameStyleAppOption>,): GameStyleAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<GameStyleAppOption>,): GameStyleAppOption {
+        return GameStyleAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<GameStyleAppOption> {
-        return Enum.getValuesOn(this,)
+        return GameStyleAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<GameStyleAppOption> {
-        yield* this.values
+        yield* GameStyleAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

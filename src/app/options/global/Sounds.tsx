@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 import {lazy}                                                                    from 'react'
 
 import type {ClassWithValue}        from 'util/types/ClassWithValue'
@@ -46,11 +46,28 @@ export abstract class Sounds
     }(false,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Sounds
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Sounds, typeof Sounds>> = class CompanionEnum_Sounds
+        extends BasicCompanionEnum<Sounds, typeof Sounds> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Sounds
+
+        private constructor() {
+            super(Sounds,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Sounds()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #value
@@ -89,20 +106,16 @@ export abstract class Sounds
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Sounds
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Sounds>,): Sounds {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Sounds>,): Sounds {
+        return Sounds.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Sounds> {
-        return Enum.getValuesOn(this,)
+        return Sounds.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Sounds> {
-        yield* this.values
+        yield* Sounds.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

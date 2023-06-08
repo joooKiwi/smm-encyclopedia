@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
@@ -41,11 +41,28 @@ export class PredefinedMessages
     public static readonly THROW =          new PredefinedMessages('Throw!',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: PredefinedMessages
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<PredefinedMessages, typeof PredefinedMessages>> = class CompanionEnum_PredefinedMessages
+        extends BasicCompanionEnum<PredefinedMessages, typeof PredefinedMessages> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_PredefinedMessages
+
+        private constructor() {
+            super(PredefinedMessages,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_PredefinedMessages()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, PredefinedMessage>
@@ -95,20 +112,16 @@ export class PredefinedMessages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return PredefinedMessages
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<PredefinedMessages>,): PredefinedMessages {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<PredefinedMessages>,): PredefinedMessages {
+        return PredefinedMessages.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<PredefinedMessages> {
-        return Enum.getValuesOn(this,)
+        return PredefinedMessages.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<PredefinedMessages> {
-        yield* this.values
+        yield* PredefinedMessages.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

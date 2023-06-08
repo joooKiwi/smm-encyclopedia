@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithNullableAcronym}                                                                                                              from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                  from 'core/ClassWithEnglishName'
@@ -318,7 +318,24 @@ export class EntityLimits
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    static [index: number]: EntityLimits
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimits, typeof EntityLimits>> = class CompanionEnum_EntityLimits
+        extends BasicCompanionEnum<EntityLimits, typeof EntityLimits> {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityLimits
+
+        private constructor() {
+            super(EntityLimits,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EntityLimits()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
 
     //endregion -------------------- Enum fields --------------------
     //region -------------------- Fields --------------------
@@ -479,20 +496,16 @@ export class EntityLimits
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityLimits
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityLimits>,): EntityLimits {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityLimits>,): EntityLimits {
+        return EntityLimits.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityLimits> {
-        return Enum.getValuesOn(this,)
+        return EntityLimits.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityLimits> {
-        yield* this.values
+        yield* EntityLimits.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

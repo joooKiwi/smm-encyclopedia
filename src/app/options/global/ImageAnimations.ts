@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleImageAnimation} from 'app/options/global/ImageAnimations.types'
 import type {ClassWithValue}                          from 'util/types/ClassWithValue'
@@ -25,11 +25,28 @@ export class ImageAnimations
     public static readonly NO =        new ImageAnimations(false,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: ImageAnimations
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ImageAnimations, typeof ImageAnimations>> = class CompanionEnum_ImageAnimations
+        extends BasicCompanionEnum<ImageAnimations, typeof ImageAnimations> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_ImageAnimations
+
+        private constructor() {
+            super(ImageAnimations,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_ImageAnimations()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #value
@@ -65,20 +82,16 @@ export class ImageAnimations
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return ImageAnimations
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<ImageAnimations>,): ImageAnimations {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<ImageAnimations>,): ImageAnimations {
+        return ImageAnimations.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<ImageAnimations> {
-        return Enum.getValuesOn(this,)
+        return ImageAnimations.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<ImageAnimations> {
-        yield* this.values
+        yield* ImageAnimations.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.10",
-    "@joookiwi/enumerable": "^1.2.0",
+    "@joookiwi/enumerable": "^2.1.1",
     "assert": "^2.0.0",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.5",

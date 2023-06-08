@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                          from 'core/ClassWithEnglishName'
 import type {PropertyGetter, PropertyReferenceGetter}                       from 'core/PropertyGetter'
@@ -49,11 +49,28 @@ export abstract class Times
     }('Night', 'Moon',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Times
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Times, typeof Times>> = class CompanionEnum_Times
+        extends BasicCompanionEnum<Times, typeof Times> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Times
+
+        private constructor() {
+            super(Times,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Times()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #englishName
@@ -101,20 +118,16 @@ export abstract class Times
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Times
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Times>,): Times {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Times>,): Times {
+        return Times.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Times> {
-        return Enum.getValuesOn(this,)
+        return Times.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Times> {
-        yield* this.values
+        yield* Times.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------
