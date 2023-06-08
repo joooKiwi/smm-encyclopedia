@@ -12,7 +12,7 @@ export default function DisplayViewButton() {
 
     return <Tooltip elementId={ID} option={({title: content, placement: 'bottom',})}>
         <ModalButton key={`navigation button (display view)`} id={ID} elementToShow={DISPLAY_VIEW_MODAL_ID} className="btn btn-lg btn-outline-primary btn-navigation rounded-pill">
-            <span key={`navigation text button (display view)`} className={`btn-navigation-text d-none d-md-inline-block`}>{content}</span>
+            <span key={`navigation text button (display view)`} className="btn-navigation-text">{content}</span>
         </ModalButton>
     </Tooltip>
 }
