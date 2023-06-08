@@ -13,12 +13,14 @@ export abstract class AbstractAppOption<T, S extends ReactState, O extends numbe
     readonly #defaultValue: T
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(defaultValue: T,) {
         super()
         this.#defaultValue = defaultValue
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter & setter methods --------------------
 
     /**@deprecated The method should no longer be used*/public get get(): T {

@@ -71,12 +71,14 @@ export abstract class Images
     readonly #value
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(value: boolean,) {
         super()
         this.#value = value
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): boolean {

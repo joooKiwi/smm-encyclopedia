@@ -79,12 +79,14 @@ export abstract class SoundStates
     readonly #englishName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: EnglishName,) {
         super()
         this.#englishName = englishName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get englishName(): EnglishName {
@@ -121,4 +123,5 @@ export abstract class SoundStates
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

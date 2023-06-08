@@ -81,6 +81,7 @@ export class Versions
     readonly #gameStyle
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>,)
     private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle: GameStyles_SM3DW,)
@@ -92,6 +93,7 @@ export class Versions
         this.#gameStyle = gameStyle ?? null
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get simpleName(): PossibleName {

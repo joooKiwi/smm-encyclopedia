@@ -226,12 +226,14 @@ export class PlayerSoundEffectTriggers
     readonly #translationKey
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(translationKey: PossibleTranslationKey,) {
         super()
         this.#translationKey = translationKey
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get translationKey(): PossibleTranslationKey {

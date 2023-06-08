@@ -9,6 +9,9 @@ import type {Nullable, NullOr}                                 from 'util/types/
 import {CourseTags}     from 'core/courseTag/CourseTags'
 import {getValueByType} from 'util/utilitiesMethods'
 
+/**
+ * @usedByTheRouting
+ */
 export abstract class CourseTagTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {

@@ -204,6 +204,7 @@ export class GameReferences
     readonly #englishName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super()
@@ -211,6 +212,7 @@ export class GameReferences
         this.#englishName = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, GameReference> {

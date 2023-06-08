@@ -123,6 +123,7 @@ export abstract class GameStyles
     #shortImagePath?: PossibleShortImagePath
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(acronym: PossibleAcronym, gameAcronym: PossibleGameAcronym, englishName: PossibleEnglishName,) {
         super()
@@ -131,6 +132,7 @@ export abstract class GameStyles
         this.#englishNameContainer = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, GameStyle> {

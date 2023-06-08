@@ -410,11 +410,13 @@ export class Musics
     #music?: ObjectHolder<NullOr<PossibleMusic>>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Other reference methods --------------------

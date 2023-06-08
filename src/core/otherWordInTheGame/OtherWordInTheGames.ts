@@ -453,5 +453,4 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
 
     //endregion -------------------- Enum methods --------------------
 
-
 }

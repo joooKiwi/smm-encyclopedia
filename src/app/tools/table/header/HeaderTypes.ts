@@ -53,6 +53,7 @@ export abstract class HeaderTypes
     readonly #placement
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(name: PossibleName, placement: PossiblePlacement,) {
         super()
@@ -60,6 +61,7 @@ export abstract class HeaderTypes
         this.#placement = placement
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get simpleName(): PossibleName {

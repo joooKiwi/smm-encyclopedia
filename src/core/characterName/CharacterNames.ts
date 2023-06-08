@@ -284,4 +284,5 @@ export class CharacterNames
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

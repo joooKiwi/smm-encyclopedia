@@ -52,12 +52,14 @@ export class ImageAnimations
     readonly #value
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(value: PossibleImageAnimation,) {
         super()
         this.#value = value
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): PossibleImageAnimation {

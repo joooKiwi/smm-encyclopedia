@@ -74,11 +74,13 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     //region -------------------- Fields --------------------
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(defaultValue: T,) {
         super(defaultValue,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------

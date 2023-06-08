@@ -78,6 +78,7 @@ export abstract class Times
     #imageFile?: TimeImageFile
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, imagePath: PossibleSimpleImagePath,) {
         super()
@@ -85,6 +86,7 @@ export abstract class Times
         this.#simpleImagePath = imagePath
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {

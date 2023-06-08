@@ -127,6 +127,7 @@ export abstract class Arrows
     #arrows?: PossibleArrowCreation
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(container: PossibleContainer, direction: ArrowDirections, doesDisplayLine: boolean,) {
         super()
@@ -135,6 +136,7 @@ export abstract class Arrows
         this.#doesDisplayLine = doesDisplayLine
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     private get __container(): PossibleContainer {

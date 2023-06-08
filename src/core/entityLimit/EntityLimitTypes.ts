@@ -41,6 +41,7 @@ export class EntityLimitTypes
     readonly #englishCommonText
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, englishCommonText: PossibleEnglishCommonText,) {
         super()
@@ -48,6 +49,7 @@ export class EntityLimitTypes
         this.#englishCommonText = englishCommonText
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {

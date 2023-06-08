@@ -128,11 +128,13 @@ export abstract class MiiCostumeAppOption
     #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -194,4 +196,5 @@ export abstract class MiiCostumeAppOption
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

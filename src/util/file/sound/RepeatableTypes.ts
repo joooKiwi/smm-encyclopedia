@@ -45,6 +45,7 @@ export abstract class RepeatableTypes
     readonly #simpleName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(doesLoopAtTheEnd: boolean, simpleName: PossibleRepeatableName,) {
         super()
@@ -52,6 +53,7 @@ export abstract class RepeatableTypes
         this.#simpleName = simpleName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get doesLoopAtTheEnd(): boolean {

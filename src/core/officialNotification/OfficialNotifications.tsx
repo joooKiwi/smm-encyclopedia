@@ -514,6 +514,7 @@ export class OfficialNotifications
     #additionalTranslationKeyHolder: ObjectHolder<NullOr<PossibleAdditionalTranslationKey>>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: Exclude<PossibleEnglishName, PossibleEnglishNameWithAmount>, translationKey: PossibleTranslationKey,)
     private constructor(englishName: PossibleEnglishNameWithAmount<'#'>, translationKey: PossibleTranslationKey, ...amount: readonly PossibleAmount[])
@@ -526,6 +527,7 @@ export class OfficialNotifications
         this.#additionalTranslationKeyHolder = new DelayedObjectHolderContainer(() => this._createAdditionalTranslationKey)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Getter methods (english name) --------------------

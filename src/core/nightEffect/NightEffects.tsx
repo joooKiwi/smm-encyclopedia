@@ -202,4 +202,5 @@ export class NightEffects
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

@@ -361,12 +361,14 @@ export abstract class MysteryMushroomAppOption
     #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(type: PossibleMysteryMushroomType,) {
         super()
         this.#type = type
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     protected get _mysteryMushroomType(): PossibleMysteryMushroomType {
