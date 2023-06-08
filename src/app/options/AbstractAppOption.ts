@@ -25,7 +25,7 @@ export abstract class AbstractAppOption<T, S extends ReactState, O extends numbe
 
     /**@deprecated The method should no longer be used*/public get get(): T {
         if (!isInProduction)
-            console.warn(`The get method in "${this._static.name}" is deprecated.`)
+            console.warn(`The get method in "${this.constructor.name}" is deprecated.`)
         return this.#defaultValue
     }
 
@@ -34,7 +34,7 @@ export abstract class AbstractAppOption<T, S extends ReactState, O extends numbe
     /**@deprecated The method should no longer be used*/public set(value: T, nextState: S,): this
     public set(): this {
         if (!isInProduction)
-            console.warn(`The set value in "${this._static.name}" is deprecated, a new method will be under its way!`)
+            console.warn(`The set value in "${this.constructor.name}" is deprecated, a new method will be under its way!`)
         return this
     }
 

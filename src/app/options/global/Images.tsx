@@ -1,6 +1,5 @@
 import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
 import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {ClassWithValue}  from 'util/types/ClassWithValue'
 import type {ImageProperties} from 'app/tools/images/properties/ImageProperties'
@@ -8,11 +7,7 @@ import type {Names, Ordinals} from 'app/options/global/Images.types'
 import type {Nullable}        from 'util/types/nullable'
 import type {ReactElement}    from 'util/react/ReactProperties'
 
-//region -------------------- dynamic imports --------------------
-
-const Image = lazy(() => import('app/tools/images/Image'))
-
-//endregion -------------------- dynamic imports --------------------
+import Image from 'app/tools/images/Image'
 
 /**
  * The possible image as either
@@ -88,7 +83,7 @@ export abstract class Images
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract renderComponent(properties: _ImageProperties,): ReactElement
+    public abstract renderComponent(properties: ImageProperties,): ReactElement
 
 
     // public static getValueByValue<T, >(value: T,): ImagesByValue<T>
@@ -119,12 +114,5 @@ export abstract class Images
     }
 
     //endregion -------------------- Enum methods --------------------
-
-}
-
-interface _ImageProperties
-    extends Omit<ImageProperties, 'ref'> {
-
-    ref?: Exclude<ImageProperties['ref'], string>
 
 }

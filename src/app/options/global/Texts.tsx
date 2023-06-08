@@ -1,6 +1,5 @@
 import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
 import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {Names, Ordinals}                     from 'app/options/global/Texts.types'
 import type {BooleanResultTextProperties}         from 'app/tools/text/properties/BooleanResultTextProperties'
@@ -12,15 +11,11 @@ import type {ReactElement}                        from 'util/react/ReactProperti
 import type {ClassWithValue}                      from 'util/types/ClassWithValue'
 import type {Nullable}                            from 'util/types/nullable'
 
-//region -------------------- dynamic imports --------------------
-
-const TextComponent =              lazy(() => import('app/tools/text/TextComponent'))
-const NameComponent =              lazy(() => import('lang/name/component/Name.component'))
-const YesOrNoResultTextComponent = lazy(() => import('app/tools/text/YesOrNoResultTextComponent'))
-const BooleanTextComponent =       lazy(() => import('app/tools/text/BooleanTextComponent'))
-const BooleanResultTextComponent = lazy(() => import('app/tools/text/BooleanResultTextComponent'))
-
-//endregion -------------------- dynamic imports --------------------
+import TextComponent              from 'app/tools/text/TextComponent'
+import NameComponent              from 'lang/name/component/Name.component'
+import YesOrNoResultTextComponent from 'app/tools/text/YesOrNoResultTextComponent'
+import BooleanTextComponent       from 'app/tools/text/BooleanTextComponent'
+import BooleanResultTextComponent from 'app/tools/text/BooleanResultTextComponent'
 
 /**
  * The possible text as either
@@ -43,23 +38,23 @@ export abstract class Texts
 
     public static readonly YES = new class Texts_Yes extends Texts {
 
-        public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,) {
+        public override renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: TextProperties<T>,) {
             return <TextComponent {...properties}/>
         }
 
-        public override renderNameComponent(properties: _NameProperties,) {
+        public override renderNameComponent(properties: NameProperties,) {
             return <NameComponent {...properties}/>
         }
 
-        public override renderYesNoComponent(properties: _YesOrNoTextProperties,) {
+        public override renderYesNoComponent(properties: YesOrNoTextProperties,) {
             return <YesOrNoResultTextComponent {...properties}/>
         }
 
-        public override renderBooleanComponent(properties: _BooleanTextProperties,) {
+        public override renderBooleanComponent(properties: BooleanTextProperties,) {
             return <BooleanTextComponent {...properties}/>
         }
 
-        public override renderBooleanResultComponent(properties: _BooleanResultTextProperties,) {
+        public override renderBooleanResultComponent(properties: BooleanResultTextProperties,) {
             return <BooleanResultTextComponent {...properties}/>
         }
 
@@ -133,15 +128,15 @@ export abstract class Texts
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: _TextProperties<T>,): ReactElement
+    public abstract renderTextComponent<T extends PossibleTextContent = PossibleTextContent, >(properties: TextProperties<T>,): ReactElement
 
-    public abstract renderNameComponent(properties: _NameProperties,): ReactElement
+    public abstract renderNameComponent(properties: NameProperties,): ReactElement
 
-    public abstract renderYesNoComponent(properties: _YesOrNoTextProperties,): ReactElement
+    public abstract renderYesNoComponent(properties: YesOrNoTextProperties,): ReactElement
 
-    public abstract renderBooleanComponent(properties: _BooleanTextProperties,): ReactElement
+    public abstract renderBooleanComponent(properties: BooleanTextProperties,): ReactElement
 
-    public abstract renderBooleanResultComponent(properties: _BooleanResultTextProperties,): ReactElement
+    public abstract renderBooleanResultComponent(properties: BooleanResultTextProperties,): ReactElement
 
 
     // public static getValueByValue<T, >(value: T,): TextsByValue<T>
@@ -172,40 +167,5 @@ export abstract class Texts
     }
 
     //endregion -------------------- Enum methods --------------------
-
-}
-
-interface _TextProperties<T extends PossibleTextContent = PossibleTextContent, >
-    extends Omit<TextProperties<T>, 'ref'> {
-
-    ref?: Exclude<TextProperties<T>['ref'], string>
-
-}
-
-interface _NameProperties
-    extends Omit<NameProperties, 'ref'> {
-
-    ref?: Exclude<NameProperties['ref'], string>
-
-}
-
-interface _YesOrNoTextProperties
-    extends Omit<YesOrNoTextProperties, 'ref'> {
-
-    ref?: Exclude<YesOrNoTextProperties['ref'], string>
-
-}
-
-interface _BooleanTextProperties
-    extends Omit<BooleanTextProperties, 'ref'> {
-
-    ref?: Exclude<BooleanTextProperties['ref'], string>
-
-}
-
-interface _BooleanResultTextProperties
-    extends Omit<BooleanResultTextProperties, 'ref'> {
-
-    ref?: Exclude<BooleanResultTextProperties['ref'], string>
 
 }

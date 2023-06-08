@@ -1,6 +1,5 @@
 import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
 import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
 
 import type {ClassWithValue}        from 'util/types/ClassWithValue'
 import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
@@ -8,11 +7,7 @@ import type {Nullable}              from 'util/types/nullable'
 import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
 import type {ReactElement}          from 'util/react/ReactProperties'
 
-//region -------------------- dynamic imports --------------------
-
-const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
-
-//endregion -------------------- dynamic imports --------------------
+import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 
 /**
  * The possible sound as either
