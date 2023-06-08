@@ -69,9 +69,9 @@ export function route(partialPath_or_name_or_location: | EveryPossibleRouteParti
         return `/${language.projectAcronym}${routeWithGames.path}`
     }
 
-    const {pathname: pathName} = partialPath_or_name_or_location as Location
+    const {pathname} = partialPath_or_name_or_location
 
     return language.isCurrent
-        ? pathName as EveryPossibleRoutes
-        : pathName.replace(ProjectLanguages.current.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
+        ? pathname as EveryPossibleRoutes
+        : pathname.replace(ProjectLanguages.current.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
 }
