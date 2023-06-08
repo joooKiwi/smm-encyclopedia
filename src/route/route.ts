@@ -4,7 +4,6 @@ import type {EveryPossibleRouteNames, EveryPossibleRoutePartialPaths, EveryPossi
 
 import {ProjectLanguages}  from 'lang/ProjectLanguages'
 import {everySimpleRoutes} from 'route/everyRoutes'
-import {isArrayEquals}     from 'util/utilitiesMethods'
 import {Games}             from 'core/game/Games'
 
 /**
@@ -57,7 +56,7 @@ export function route(partialPath_or_name_or_location: | EveryPossibleRouteParti
         if (simpleRoute == null)
             throw new ReferenceError(`The route could not be found with the value "${partialPath_or_name_or_location}".`)
 
-        if (isArrayEquals(Games.selectedGames.toArray(), simpleRoute.games,))
+        if (Games.selectedGames.hasAll(...simpleRoute.games,))
             return `/${language.projectAcronym}${simpleRoute.path}`
 
         const expectedPath = `/${Games.selectedGamesAsUrlValue}${simpleRoute.path}`,

@@ -10,7 +10,6 @@ import {Games}             from 'core/game/Games'
 import {ProjectLanguages}  from 'lang/ProjectLanguages'
 import {everySimpleRoutes} from 'route/everyRoutes'
 import {route}             from 'route/route'
-import {isArrayEquals}     from 'util/utilitiesMethods'
 
 const /** Every {@link ProjectLanguages project language} as an {@link Array} */
     languages = ProjectLanguages.values.toArray(),
@@ -132,7 +131,7 @@ function redirectToPathWithDefaultLanguage({name,}: EveryPossibleRouteInstance,)
  * @param route The {@link Route} to retrieve its {@link Route.path path} & {@link Route.games games}
  */
 function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
-    if (path.includes('/game-') && games.length !== 0 && !isArrayEquals(Games.selectedGames.toArray(), games,))
+    if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(...games,))
         Games.setSelected(games)
     return null
 }
