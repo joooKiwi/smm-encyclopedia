@@ -48,16 +48,16 @@ export default function PageProgress({progress, link, content, exclusiveGame,}: 
 function createPageProgressType(type: PageProgressType,) {
     switch (type) {
         case 'completed':
-            return <small className="pageProgress pageProgress-completed d-block text-center bg-gradient rounded px-1 me-1">{contentTranslation('home.progress.Completed')}</small>
+            return <small className="pageProgress pageProgress-completed d-block text-center text-light bg-green-blue rounded px-1 me-1">{contentTranslation('home.progress.Completed')}</small>
         case 'page almost done':
-            return <small className="pageProgress pageProgress-pageAlmostDone d-block text-center bg-gradient rounded px-1 me-1">{contentTranslation('home.progress.Page almost done')}</small>
+            return <small className="pageProgress pageProgress-pageAlmostDone d-block text-center text-light bg-green-yellow rounded px-1 me-1">{contentTranslation('home.progress.Page almost done')}</small>
         case 'page in progress':
-            return <small className="pageProgress pageProgress-pageInProgress d-block text-center bg-gradient rounded px-1 me-1">{contentTranslation('home.progress.Page in progress')}</small>
+            return <small className="pageProgress pageProgress-pageInProgress d-block text-center bg-yellow-orange rounded px-1 me-1">{contentTranslation('home.progress.Page in progress')}</small>
         case 'data done':
-            return <small className="pageProgress pageProgress-dataDone d-block text-center bg-gradient rounded px-1 me-1">{contentTranslation('home.progress.Data done')}</small>
+            return <small className="pageProgress pageProgress-dataDone d-block text-center bg-orange-yellow rounded px-1 me-1">{contentTranslation('home.progress.Data done')}</small>
         case 'data in progress':
-            return <small className="pageProgress pageProgress-dataInProgress d-block text-center bg-gradient rounded px-1 me-1">{contentTranslation('home.progress.Data in progress')}</small>
+            return <small className="pageProgress pageProgress-dataInProgress d-block text-center text-light bg-red-orange rounded px-1 me-1">{contentTranslation('home.progress.Data in progress')}</small>
         case 'not created':
-            return <small className="pageProgress pageProgress-notCreated d-block text-center bg-gradient rounded px-1 me-1">{contentTranslation('home.progress.Not created')}</small>
+            return <small className="pageProgress pageProgress-notCreated d-block text-center text-light bg-red-purple rounded px-1 me-1">{contentTranslation('home.progress.Not created')}</small>
     }
 }
