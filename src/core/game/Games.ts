@@ -121,7 +121,7 @@ export abstract class Games
                 return EMPTY_ARRAY
 
             if (this.ALL_URL_REGEX.test(url))
-                return [...Games,]
+                return Games.values.toArray()
 
             const lowerCasedUrl = url.toLowerCase()
             if (this.SINGLE_URL_REGEX.test(url)) {
