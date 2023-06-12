@@ -46,10 +46,11 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
  * @param condition A callback that will only yield the value if met
  */
 export function newIterator<const T, >(collection: CollectionHolder<T>, condition: (value: T,) => boolean): Iterable<T> {
+    const size = collection.size
     return {
         * [Symbol.iterator]() {
-            let index = collection.size
-            while (--index < 0) {
+            let index = -1
+            while (++index < size) {
                 const value = collection[index]!
                 if (condition(value))
                     yield value
