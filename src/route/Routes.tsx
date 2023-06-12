@@ -49,7 +49,7 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         loader: loaderArguments => redirectToPathIfFound(loaderArguments),
     },], {basename: '/',},)
 
-console.log(router.routes[0].children)
+// console.log(router.routes[0].children)
 
 /** @reactComponent */
 export default function Routes() {
@@ -131,7 +131,7 @@ function redirectToPathWithDefaultLanguage({name,}: EveryPossibleRouteInstance,)
  * @param route The {@link Route} to retrieve its {@link Route.path path} & {@link Route.games games}
  */
 function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
-    if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(...games,))
+    if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(games,))
         Games.setSelected(games)
     return null
 }
