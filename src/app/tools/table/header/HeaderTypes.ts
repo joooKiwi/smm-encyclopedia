@@ -3,6 +3,7 @@ import {BasicCompanionEnum, Enum}                                               
 
 import type {Names, Ordinals, PossibleName, PossiblePlacement} from 'app/tools/table/header/HeaderTypes.types'
 import type {Nullable}                                         from 'util/types/nullable'
+import {reverse}                                               from 'util/utilitiesMethods'
 
 export abstract class HeaderTypes
     extends Enum<Ordinals, Names> {
@@ -11,15 +12,15 @@ export abstract class HeaderTypes
 
     public static readonly HEAD = new class HeaderTypes_Head extends HeaderTypes {
 
-        public override getLayout(layout: readonly string[][],) {
+        public override getLayout(layout: readonly (readonly string[])[],) {
             return layout
         }
 
     }('head', 'top',)
     public static readonly FOOT = new class HeaderTypes_Foot extends HeaderTypes {
 
-        public override getLayout(layout: readonly string[][],) {
-            return [...layout].reverse()
+        public override getLayout(layout: readonly (readonly string[])[],) {
+            return reverse(layout,)
         }
 
     }('foot', 'bottom',)
@@ -75,7 +76,7 @@ export abstract class HeaderTypes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract getLayout(layout: readonly string[][],): readonly string[][]
+    public abstract getLayout(layout: readonly (readonly string[])[],): readonly (readonly string[])[]
 
 
     public static getValueByName(value: Nullable<| HeaderTypes | string>,): HeaderTypes {

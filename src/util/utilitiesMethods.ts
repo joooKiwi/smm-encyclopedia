@@ -59,6 +59,22 @@ export function newIterator<const T, >(collection: CollectionHolder<T>, conditio
 }
 
 /**
+ * Reverse the array fields
+ *
+ * @param array The array reference to reverse
+ * @returns A new reversed array
+ */
+export function reverse<const T, >(array: readonly T[],): T[] {
+    return Array.from({
+        * [Symbol.iterator]() {
+            let index = array.length
+            while (--index >= 0)
+                yield array[index]
+        },
+    },)
+}
+
+/**
  * Convert the mutable {@link Array} to a non-null mutable {@link Array}
  *
  * @param mutableArray The mutable array to remove its <b>null</b> values
