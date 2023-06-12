@@ -240,7 +240,7 @@ export abstract class Games
         const selectedGames = this.selectedGames
         return selectedGames.hasAllGames
             ? 'game-all'
-            : `game-${selectedGames.map(it => it.urlValue).join(',')}` as FullValidUrlValue
+            : `game-${selectedGames.join(',', '', '', null, null, it => it.urlValue,)}` as FullValidUrlValue
     }
 
 
