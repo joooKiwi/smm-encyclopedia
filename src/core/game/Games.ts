@@ -271,9 +271,9 @@ export abstract class Games
         if (value instanceof this)
             return value
         const stringValue = `${value}`,
-            valueFound = this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.acronym === value
-                || enumerable.simpleValue === stringValue)
+            valueFound = this.values.find(it => it.englishName === value
+                || it.acronym === value
+                || it.simpleValue === stringValue)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
         return valueFound
