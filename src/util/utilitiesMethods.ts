@@ -40,6 +40,25 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
 }
 
 /**
+ * Create a new {@link Iterator} based on a {@link CollectionHolder} and a condition
+ *
+ * @param collection The collection to loop over
+ * @param condition A callback that will only yield the value if met
+ */
+export function newIterator<const T, >(collection: CollectionHolder<T>, condition: (value: T,) => boolean): Iterable<T> {
+    return {
+        * [Symbol.iterator]() {
+            let index = collection.size
+            while (--index < 0) {
+                const value = collection[index]!
+                if (condition(value))
+                    yield value
+            }
+        }
+    }
+}
+
+/**
  * Convert the mutable {@link Array} to a non-null mutable {@link Array}
  *
  * @param mutableArray The mutable array to remove its <b>null</b> values

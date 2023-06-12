@@ -18,6 +18,7 @@ import {GameImageFileContainer} from 'core/game/file/GameImageFile.container'
 import {StringContainer}        from 'util/StringContainer'
 import {EMPTY_ARRAY}            from 'util/emptyVariables'
 import {GameCollection}         from 'util/collection/GameCollection'
+import {newIterator}            from 'util/utilitiesMethods'
 
 /**
  * @usedByTheRouting
@@ -232,7 +233,7 @@ export abstract class Games
     }
 
     public static get selectedGames(): GameCollection {
-        return new GameCollection(this.values.filter(it => it.isSelected))
+        return new GameCollection(newIterator(this.values, it => it.isSelected,),)
     }
 
     public static get selectedGamesAsUrlValue(): FullValidUrlValue {
