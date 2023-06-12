@@ -51,27 +51,27 @@ export function route({pathname,}: Location, languageToReplace?: ProjectLanguage
  * @throws {ReferenceError} The route could not be found with the games
  */
 export function route(partialPath_or_name_or_location: | EveryPossibleRoutePartialPaths | EveryPossibleRouteNames | Location, language: ProjectLanguages = ProjectLanguages.current,): EveryPossibleRoutes {
-    if (typeof partialPath_or_name_or_location === 'string') {
-        const simpleRoute = everySimpleRoutes.find(it => it.path === partialPath_or_name_or_location || it.name === partialPath_or_name_or_location)
-        if (simpleRoute == null)
-            throw new ReferenceError(`The route could not be found with the value "${partialPath_or_name_or_location}".`)
-        if ('redirectPath' in simpleRoute)
-            return simpleRoute.redirectPath as EveryPossibleRoutes
+    if (typeof partialPath_or_name_or_location !== 'string') {
+        const {pathname} = partialPath_or_name_or_location
 
-        if (Games.selectedGames.hasAll(...simpleRoute.games,))
-            return `/${language.projectAcronym}${simpleRoute.path}`
-
-        const expectedPath = `/${Games.selectedGamesAsUrlValue}${simpleRoute.path}`,
-            routeWithGames = everySimpleRoutes.find(it => it.path === expectedPath)
-        if (routeWithGames == null)
-            throw new ReferenceError(`The route could not be found by the url "${expectedPath}".`)
-
-        return `/${language.projectAcronym}${routeWithGames.path}`
+        return language.isCurrent
+            ? pathname as EveryPossibleRoutes
+            : pathname.replace(ProjectLanguages.current.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
     }
 
-    const {pathname} = partialPath_or_name_or_location
+    const simpleRoute = everySimpleRoutes.find(it => it.path === partialPath_or_name_or_location || it.name === partialPath_or_name_or_location)
+    if (simpleRoute == null)
+        throw new ReferenceError(`The route could not be found with the value "${partialPath_or_name_or_location}".`)
+    if ('redirectPath' in simpleRoute)
+        return simpleRoute.redirectPath as EveryPossibleRoutes
 
-    return language.isCurrent
-        ? pathname as EveryPossibleRoutes
-        : pathname.replace(ProjectLanguages.current.projectAcronym, language.projectAcronym,) as EveryPossibleRoutes
+    if (Games.selectedGames.hasAll(simpleRoute.games,))
+        return `/${language.projectAcronym}${simpleRoute.path}`
+
+    const expectedPath = `/${Games.selectedGamesAsUrlValue}${simpleRoute.path}`,
+        routeWithGames = everySimpleRoutes.find(it => it.path === expectedPath)
+    if (routeWithGames == null)
+        throw new ReferenceError(`The route could not be found by the url "${expectedPath}".`)
+
+    return `/${language.projectAcronym}${routeWithGames.path}`
 }
