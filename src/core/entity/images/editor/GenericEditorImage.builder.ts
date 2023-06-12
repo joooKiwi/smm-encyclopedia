@@ -151,8 +151,7 @@ export class GenericEditorImageBuilder<NAME extends NonNullable<SimpleImageName>
             if (amount != null)
                 return [amount,]
         }
-        return [...new Array(this._overrideDefaultAmounts.get(gameStyle) ?? amountOfImages)]
-            .map((_, index,) => index + 1 as PossibleAmountOfImages)
+        return Array.from({length: this._overrideDefaultAmounts.get(gameStyle) ?? amountOfImages,}, (_, index,) => index + 1 as PossibleAmountOfImages,)
     }
 
     protected _createDefaultImages(): ReadonlyMap<GameStyles, readonly EditorImageFile[]> {

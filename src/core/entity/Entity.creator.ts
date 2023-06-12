@@ -307,7 +307,7 @@ export class EntityCreator
     #createGroupReference(set: Nullable<Set<EntityTemplate>>,): ObjectHolder<readonly Entity[]> {
         return set == null
             ? ObjectHolders.EMPTY_ARRAY
-            : new DelayedObjectHolderContainer(() => Array.from(set).map(reference => Entities.getValueByName(reference.name.english.simple ?? reference.name.english.american).reference))
+            : new DelayedObjectHolderContainer(() => Array.from(set, it => Entities.getValueByName(it.name.english.simple ?? it.name.english.american).reference,),)
     }
 
     /**

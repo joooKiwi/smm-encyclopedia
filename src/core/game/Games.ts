@@ -229,7 +229,7 @@ export abstract class Games
         const gamesFiltered = new Set(games)
         if (gamesFiltered.size === 3)
             return 'all'
-        return [...gamesFiltered,].map(it => it.urlValue).join(',') as GroupUrlValue
+        return Array.from(gamesFiltered, it => it.urlValue,).join(',') as GroupUrlValue
     }
 
     public static get selectedGames(): GameCollection {
