@@ -3,12 +3,6 @@ import {AbstractCollectionHolder, GenericCollectionHolder} from '@joookiwi/enume
 
 import {Games} from 'core/game/Games'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {SUPER_MARIO_MAKER_1: SMM1, SUPER_MARIO_MAKER_FOR_NINTENDO_3DS: SMM3DS, SUPER_MARIO_MAKER_2: SMM2,} = Games
-
-//endregion -------------------- Import from deconstruction --------------------
-
 export class GameCollection<const T extends Games = Games, >
     extends AbstractCollectionHolder<T> {
 
@@ -31,22 +25,22 @@ export class GameCollection<const T extends Games = Games, >
      * {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} & {@link Games.SUPER_MARIO_MAKER_2 SMM2}) type in its values
      */
     public get hasAllGames(): & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T> {
-        return this.#hasAllGames = this.hasAll(SMM1, SMM3DS, SMM2,) as & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
+        return this.#hasAllGames = this.hasAll(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,) as & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} type in its values */
     public get hasSMM1(): GameWithSMM1<T> {
-        return this.#hasSMM1 ??= this.hasOne(SMM1) as GameWithSMM1<T>
+        return this.#hasSMM1 ??= this.hasOne(Games.SUPER_MARIO_MAKER_1) as GameWithSMM1<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
     public get hasSMM3DS(): GameWithSMM3DS<T> {
-        return this.#hasSMM3DS ??= this.hasOne(SMM3DS) as GameWithSMM3DS<T>
+        return this.#hasSMM3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS) as GameWithSMM3DS<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_2 SMM2} type in its values */
     public get hasSMM2(): GameWithSMM2<T> {
-        return this.#hasSMM2 ??= this.hasOne(SMM2) as GameWithSMM2<T>
+        return this.#hasSMM2 ??= this.hasOne(Games.SUPER_MARIO_MAKER_2) as GameWithSMM2<T>
     }
 
 }
