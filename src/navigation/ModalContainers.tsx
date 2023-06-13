@@ -11,6 +11,7 @@ import {contentTranslation}                                                     
 import DisplayViewBody                                                                         from 'navigation/DisplayView.body'
 import LanguageChangerBody                                                                     from 'navigation/LanguageChanger.body'
 import {DISPLAY_VIEW_MODAL_ID, LANGUAGE_CHANGER_MODAL_ID, PARAMETER_MODAL_ID, SEARCH_MODAL_ID} from 'navigation/button/modalIds'
+import {SUSPENSION_POINT}                                                                      from 'util/commonVariables'
 
 interface ModalContainersProperties
     extends ReactProperties {
@@ -44,7 +45,7 @@ export default function ModalContainers({parameter,}:ModalContainersProperties,)
         </ModalContainer>
 
         <ModalContainer key="modal - display view (container)" id={DISPLAY_VIEW_MODAL_ID} verticallyCentered modalSize="lg">
-            <ModalHeader key="modal - display view (header)" modalTitle={`${contentTranslation('Display')}…`}/>
+            <ModalHeader key="modal - display view (header)" modalTitle={`${contentTranslation('Display')}${SUSPENSION_POINT}`}/>
             <ModalBody key="modal - display view (body)">
                 <DisplayViewBody/>
             </ModalBody>
@@ -52,7 +53,7 @@ export default function ModalContainers({parameter,}:ModalContainersProperties,)
         </ModalContainer>
 
         <ModalContainer key="modal - search (container)" id={SEARCH_MODAL_ID} verticallyCentered modalSize="lg">
-        {/*    <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search')}…`}/>*/}
+        {/*    <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search')}${SUSPENSION_POINT}`}/>*/}
         {/*    <ModalBody key="modal - search (body)">*/}
         {/*        <SearchBody/>*/}
         {/*    </ModalBody>*/}

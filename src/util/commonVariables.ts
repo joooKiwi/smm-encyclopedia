@@ -6,3 +6,4 @@ export const COMMA_SPACE = ', '
 
 export const NOT_APPLICABLE = 'N/A'
 export const INFINITY = '∞'
+export const SUSPENSION_POINT = '…'
