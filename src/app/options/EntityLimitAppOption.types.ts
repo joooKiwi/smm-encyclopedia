@@ -3,6 +3,8 @@ enum Enum {
     ACRONYM,
     NAME,
     AMOUNT,
+    AMOUNT_IN_SMM1_AND_3DS,
+    AMOUNT_IN_SMM2,
 
 }
 

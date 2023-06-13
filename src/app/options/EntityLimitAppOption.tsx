@@ -79,20 +79,40 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference, englishName,}: EntityLimits,) {
+        protected override _createContentOption(enumeration: EntityLimits,) {
             return [
-                <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
-                <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
+                EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS._createContentOption(enumeration,),
+                EntityLimitAppOption.AMOUNT_IN_SMM2._createContentOption(enumeration,),
             ]
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {
-                key: 'limit', element: contentTranslation('Limit'), subHeaders: [
+            return CommonOptions.get.getLimitHeader(
                     {key: 'limit-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
                     {key: 'limit-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-                ],
-            }
+            )
+        }
+
+    }()
+    public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class EntityLimitAppOption_AmountInSMM1AndSMM3DS extends EntityLimitAppOption {
+
+        public override _createContentOption({reference, englishName,}: EntityLimits,) {
+            return <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return CommonOptions.get.limitHeader
+        }
+
+    }()
+    public static readonly AMOUNT_IN_SMM2 = new class EntityLimitAppOption_AmountInSMM2 extends EntityLimitAppOption {
+
+        public override _createContentOption({reference, englishName,}: EntityLimits,) {
+            return <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return CommonOptions.get.limitHeader
         }
 
     }()
