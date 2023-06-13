@@ -1,14 +1,14 @@
 import type {GameProperty}  from 'core/entity/properties/game/GameProperty'
 import type {GameStructure} from 'core/game/GameStructure'
 
-import {Games} from 'core/game/Games'
+import {GameMap} from 'util/collection/GameMap'
 
 export class GamePropertyContainer
     implements GameProperty {
 
     //region -------------------- Fields --------------------
 
-    #map?: ReadonlyMap<Games, boolean>
+    #map?: GameMap
     readonly #structure
 
     //endregion -------------------- Fields --------------------
@@ -34,8 +34,8 @@ export class GamePropertyContainer
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap(): ReadonlyMap<Games, boolean> {
-        return this.#map ??= new Map(Games.values.map(game => [game, game.get(this),]))
+    public toGameMap(): GameMap {
+        return this.#map ??= new GameMap(this,)
     }
 
     //endregion -------------------- Convertor methods --------------------
