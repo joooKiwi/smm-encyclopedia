@@ -118,10 +118,14 @@ export default class LimitApp
             }
 
             public get tableOptions(): readonly EntityLimitAppOption[] {
+                const games = $this.props.games
+
                 return [
                     EntityLimitAppOption.ACRONYM,
                     EntityLimitAppOption.NAME,
-                    EntityLimitAppOption.AMOUNT,
+                    games.hasAllGames ? EntityLimitAppOption.AMOUNT
+                        : games.hasSMM1Or3DS ? EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
+                            : EntityLimitAppOption.AMOUNT_IN_SMM2,
                 ]
             }
 
