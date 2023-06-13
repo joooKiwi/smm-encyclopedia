@@ -67,6 +67,7 @@ export default function Routes() {
  *
  * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
  *
+ * @canSetSelectedGames
  * @note If the {@link ProjectLanguages.current current language} has been set or the path of the url is the <b>home page</b>, then, no redirection is necessary
  * @throws {TypeError} The route (with a default path & a {@link ViewDisplays} is not present <i>(this should never happen)</i>
  * @throws {Response} The route encapsulated in a response
@@ -118,9 +119,13 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
  * Redirect to the {@link Route.path route path} with the {@link ProjectLanguages.default default language}
  *
  * @param route The route instance to retrieve its {@link Route.name name}
+ *
+ * @canSetSelectedGames
  * @throws {Response} The route path encapsulated in a response
  */
-function redirectToPathWithDefaultLanguage({name,}: EveryPossibleRouteInstance,): never {
+function redirectToPathWithDefaultLanguage({name, games,}: EveryPossibleRouteInstance,): never {
+    if (!Games.selectedGames.hasAll(games,))
+        Games.setSelected(games,)
     throw redirect(route(name, ProjectLanguages.default,))
 }
 
@@ -129,6 +134,8 @@ function redirectToPathWithDefaultLanguage({name,}: EveryPossibleRouteInstance,)
  * for the {@link Games}
  *
  * @param route The {@link Route} to retrieve its {@link Route.path path} & {@link Route.games games}
+ *
+ * @canSetSelectedGames
  */
 function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
     if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(games,))
