@@ -16,6 +16,7 @@ import Image                                        from 'app/tools/images/Image
 import TextComponent                                from 'app/tools/text/TextComponent'
 import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {newIterableIterator}                        from 'util/utilitiesMethods'
 
 export default class LimitApp
     extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, LimitAppProperties>
@@ -70,7 +71,7 @@ export default class LimitApp
         return new class implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
 
             public get iterable() {
-                return $this.type.iterator
+                return newIterableIterator($this.props.games, $this.type.iterator,)
             }
 
             //region -------------------- List interpreter --------------------

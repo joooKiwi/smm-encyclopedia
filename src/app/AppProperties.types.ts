@@ -49,7 +49,7 @@ export interface GameStyleProperties
 //entity group
 
 export interface LimitAppProperties
-    extends AppWithInterpreterProperties {
+    extends AppWithInterpreterProperties, AppWithGamesProperties {
 
     readonly type: LimitTypes
 

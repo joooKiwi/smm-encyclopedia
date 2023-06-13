@@ -43,33 +43,33 @@ const {CARD_LIST,} = ViewDisplays
 //endregion -------------------- Import from deconstruction --------------------
 
 export const everySimpleRoutes = [
-    new RoutesCreator('home',                          '/home',).asAnyGame().create(() =>                                                                    <HomeApp/>,),
-    new RoutesCreator('about',                         '/about',).asAnyGame().create(() =>                                                                   <AboutApp/>,),
-    new RoutesCreator('sources',                       '/source',).asAnyGame().create(() =>                                                                  <SourcesApp/>,),
+    new RoutesCreator('home',                          '/home',).asAnyGame().create(() =>                                                                                 <HomeApp/>,),
+    new RoutesCreator('about',                         '/about',).asAnyGame().create(() =>                                                                                <AboutApp/>,),
+    new RoutesCreator('sources',                       '/source',).asAnyGame().create(() =>                                                                               <SourcesApp/>,),
 
 
-    new RoutesCreator('everyPowerUp&Ride&HatPriority', '/every/power-up+ride+hat/priority',).asAnyGame().create(games =>                                     <PowerUpRideAndHatPriorityApp games={games} type={ALL_POWER_UP_PRIORITY}/>,),
-    new RoutesCreator('everyPowerUp&RidePriority',     '/every/power-up+ride/priority',).asAnyGame().create(games =>                                         <PowerUpRideAndHatPriorityApp games={games} type={POWER_UP_AND_RIDE}/>,),
-    new RoutesCreator('everyPowerUp&HatPriority',      '/every/power-up+hat/priority',).asAnyGame().create(games =>                                          <PowerUpRideAndHatPriorityApp games={games} type={POWER_UP_AND_HAT}/>,),
-    new RoutesCreator('everyRide&HatPriority',         '/every/ride+hat/priority',).asAnyGame().create(games =>                                              <PowerUpRideAndHatPriorityApp games={games} type={RIDE_AND_HAT}/>,),
-    new RoutesCreator('everyPowerUpPriority',          '/every/power-up/priority',).asAnyGame().create(games =>                                              <PowerUpRideAndHatPriorityApp games={games} type={POWER_UP}/>,),
-    new RoutesCreator('everyRidePriority',             '/every/ride/priority',).asAnyGame().create(games =>                                                  <PowerUpRideAndHatPriorityApp games={games} type={RIDE}/>,),
-    new RoutesCreator('everyHatPriority',              '/every/hat/priority',).asAnyGame().create(games =>                                                   <PowerUpRideAndHatPriorityApp games={games} type={HAT}/>,),
-    new RoutesCreator('noPriority',                    '/no/priority',).asAnyGame().create(games =>                                                          <PowerUpRideAndHatPriorityApp games={games} type={NO_POWER_UP_PRIORITY}/>,),
+    new RoutesCreator('everyPowerUp&Ride&HatPriority', '/every/power-up+ride+hat/priority',).asAnyGame().create(games =>                           <PowerUpRideAndHatPriorityApp games={games} type={ALL_POWER_UP_PRIORITY}/>,),
+    new RoutesCreator('everyPowerUp&RidePriority',     '/every/power-up+ride/priority',).asAnyGame().create(games =>                               <PowerUpRideAndHatPriorityApp games={games} type={POWER_UP_AND_RIDE}/>,),
+    new RoutesCreator('everyPowerUp&HatPriority',      '/every/power-up+hat/priority',).asAnyGame().create(games =>                                <PowerUpRideAndHatPriorityApp games={games} type={POWER_UP_AND_HAT}/>,),
+    new RoutesCreator('everyRide&HatPriority',         '/every/ride+hat/priority',).asAnyGame().create(games =>                                    <PowerUpRideAndHatPriorityApp games={games} type={RIDE_AND_HAT}/>,),
+    new RoutesCreator('everyPowerUpPriority',          '/every/power-up/priority',).asAnyGame().create(games =>                                    <PowerUpRideAndHatPriorityApp games={games} type={POWER_UP}/>,),
+    new RoutesCreator('everyRidePriority',             '/every/ride/priority',).asAnyGame().create(games =>                                        <PowerUpRideAndHatPriorityApp games={games} type={RIDE}/>,),
+    new RoutesCreator('everyHatPriority',              '/every/hat/priority',).asAnyGame().create(games =>                                         <PowerUpRideAndHatPriorityApp games={games} type={HAT}/>,),
+    new RoutesCreator('noPriority',                    '/no/priority',).asAnyGame().create(games =>                                                <PowerUpRideAndHatPriorityApp games={games} type={NO_POWER_UP_PRIORITY}/>,),
 
 
     new RoutesCreator('everyCharacterName',            '/every/character-name',).asCardList().asAnyGame().create(viewDisplay =>                              <CharacterNameApp                           viewDisplay={viewDisplay}/>,),
 
-    new RoutesCreator('everyGameReference',            '/every/game-reference',).asAnyGame().create(() =>                                                    <GameReferenceApp/>,),
-    new RoutesCreator('everyGameStyle',                '/every/game-style',).asTable().asAnyGame().create((viewDisplay, games,) => <GameStyleApp                 games={games} viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everyGameReference',            '/every/game-reference',).asAnyGame().create(() =>                                                                 <GameReferenceApp/>,),
+    new RoutesCreator('everyGameStyle',                '/every/game-style',).asTable().asAnyGame().create((viewDisplay, games,) =>    <GameStyleApp                 games={games} viewDisplay={viewDisplay}/>,),
 
     new RoutesCreator('everyEntity',                   '/every/entity',).asTable().asAnyGame().create(viewDisplay =>                                         <EntityApp                                  viewDisplay={viewDisplay}/>,),
     new RoutesCreator('everyEntityCategory',           '/every/entity-category',).asCardList().asAnyGame().create(viewDisplay =>                             <EntityCategoryApp                          viewDisplay={viewDisplay}/>,),
-    new RoutesCreator('everyGroup',                    '/every/entity-group',).asAnyGame().create(() =>                                                      <EntityGroupApp/>,),
+    new RoutesCreator('everyGroup',                    '/every/entity-group',).asAnyGame().create(() =>                                                                   <EntityGroupApp/>,),
 
-    new RoutesCreator('everyLimit',                    '/every/limit',).asTable().asAnyGame().create(viewDisplay =>                                          <LimitApp                                   viewDisplay={viewDisplay} type={ALL_LIMIT}/>,),
-    new RoutesCreator('playLimit',                     '/play/limit',).asTable().asAnyGame().create(viewDisplay =>                                           <LimitApp                                   viewDisplay={viewDisplay} type={PLAY}/>,),
-    new RoutesCreator('editorLimit',                   '/editor/limit',).asTable().asAnyGame().create(viewDisplay =>                                         <LimitApp                                   viewDisplay={viewDisplay} type={EDITOR}/>,),
+    new RoutesCreator('everyLimit',                    '/every/limit',).asTable().asAnyGame().create((viewDisplay, games,) =>         <LimitApp                     games={games} viewDisplay={viewDisplay} type={ALL_LIMIT}/>,),
+    new RoutesCreator('playLimit',                     '/play/limit',).asTable().asAnyGame().create((viewDisplay, games,) =>          <LimitApp                     games={games} viewDisplay={viewDisplay} type={PLAY}/>,),
+    new RoutesCreator('editorLimit',                   '/editor/limit',).asTable().asAnyGame().create((viewDisplay, games,) =>        <LimitApp                     games={games} viewDisplay={viewDisplay} type={EDITOR}/>,),
 
     new RoutesCreator('everyTheme',                    '/every/theme',).asTable(CARD_LIST,).asAnyGame().create(viewDisplay =>                                <ThemeApp                                   viewDisplay={viewDisplay} type={ALL_THEME}/>,),
     new RoutesCreator('courseTheme',                   '/course/theme',).asTable(CARD_LIST,).asAnyGame().create(viewDisplay =>                               <ThemeApp                                   viewDisplay={viewDisplay} type={COURSE}/>,),

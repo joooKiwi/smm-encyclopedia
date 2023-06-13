@@ -4,6 +4,9 @@ import {AssertionError}                                           from 'assert'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
 import type {ClassWithType}        from 'core/ClassWithType'
+import type {ClassWithReference}   from 'core/ClassWithReference'
+import type {GameProperty}         from 'core/entity/properties/game/GameProperty'
+import type {GameCollection}       from 'util/collection/GameCollection'
 import type {Nullable}             from 'util/types/nullable'
 import type {EmptyString}          from 'util/types/variables'
 
@@ -56,6 +59,27 @@ export function newIterator<const T, >(collection: CollectionHolder<T>, conditio
                     yield value
             }
         }
+    }
+}
+
+/**
+ * Create a new {@link IterableIterator} for the type specified that are in the {@link Games} in the {@link games collection}
+ *
+ * @param games The {@link GameCollection collection} of game to get if they can be used
+ * @param iterator The {@link IterableIterator} to loop over and retrieve them in the {@link Games.get}
+ */
+export function* newIterableIterator<const T extends ClassWithReference<GameProperty>, >(games: GameCollection, iterator: IterableIterator<T>,): IterableIterator<T> {
+    const gameSize = games.size
+
+    let value = iterator.next() as IteratorResult<T, T>
+    while (!value.done) {
+        let gameIndex = -1
+        while (++gameIndex < gameSize)
+            if (games[gameIndex]!.get(value.value.reference,)) {
+                yield value.value
+                break
+            }
+        value = iterator.next()
     }
 }
 
