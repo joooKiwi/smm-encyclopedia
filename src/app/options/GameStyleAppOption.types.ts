@@ -2,7 +2,6 @@ enum Enum {
 
     IMAGE,
     NAME,
-    GAME,
     NIGHT_DESERT_WIND,
 
 }

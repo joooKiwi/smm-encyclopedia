@@ -13,7 +13,6 @@ import {CommonOptions}                              from 'app/options/CommonOpti
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
-import YesOrNoResultTextComponent                   from 'app/tools/text/YesOrNoResultTextComponent'
 import NightEffectComponent                         from 'core/nightEffect/NightEffect.component'
 import {Themes}                                     from 'core/theme/Themes'
 import {Times}                                      from 'core/time/Times'
@@ -45,21 +44,6 @@ export abstract class GameStyleAppOption
 
         protected override _createTableHeaderOption() {
             return CommonOptions.get.nameHeader
-        }
-
-    }()
-    public static readonly GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
-
-        protected override _createContentOption({reference,}: GameStyles,) {
-            return [
-                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker1}/>,
-                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMakerFor3DS}/>,
-                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker2}/>,
-            ]
-        }
-
-        protected override _createTableHeaderOption() {
-            return CommonOptions.get.gameHeaderWithAllGames
         }
 
     }()

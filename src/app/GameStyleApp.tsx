@@ -1,11 +1,8 @@
 import './GameStyleApp.scss'
 
-import type {CollectionHolder} from '@joookiwi/enumerable/dist/types'
-
 import type {GameStyleProperties}                                  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {Games}                                                from 'core/game/Games'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
@@ -13,6 +10,7 @@ import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+import {newIterableIterator}    from 'util/utilitiesMethods'
 
 export default class GameStyleApp
     extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
@@ -95,7 +93,6 @@ export default class GameStyleApp
                 return [
                     GameStyleAppOption.IMAGE,
                     GameStyleAppOption.NAME,
-                    GameStyleAppOption.GAME,
                     GameStyleAppOption.NIGHT_DESERT_WIND,
                 ]
             }
