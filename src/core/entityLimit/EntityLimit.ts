@@ -1,5 +1,6 @@
 import type {ClassWithNullableAcronym}                                                                            from 'core/ClassWithAcronym'
 import type {ClassWithType}                                                                                       from 'core/ClassWithType'
+import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
 import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
 import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
 import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/EntityLimit.template'
@@ -13,7 +14,8 @@ export interface EntityLimit
     extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>,
         ClassWithNullableAcronym<| PossibleAcronym | PossibleAlternativeAcronym>/*,
         ClassWithEnglishName<PossibleEntityLimits>*/,
-        ClassWithType<EntityLimitTypes> {
+        ClassWithType<EntityLimitTypes>,
+        GameProperty {
 
     //region -------------------- Alternative entity limit --------------------
 

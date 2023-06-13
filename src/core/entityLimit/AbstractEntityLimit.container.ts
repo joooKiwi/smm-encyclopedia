@@ -1,12 +1,16 @@
-import type {AlternativeEntityLimit, EntityLimit}         from 'core/entityLimit/EntityLimit'
-import type {EntityLimitTypes}                            from 'core/entityLimit/EntityLimitTypes'
-import type {PossibleAcronym, PossibleAlternativeAcronym} from 'core/entityLimit/EntityLimits.types'
-import type {EntityLimitAmount}                           from 'core/entityLimit/properties/EntityLimitAmount'
-import type {Name}                                        from 'lang/name/Name'
-import type {NullOr}                                      from 'util/types/nullable'
-import type {ObjectHolder, PossibleValueOnObjectHolder}   from 'util/holder/ObjectHolder'
+import type {AlternativeEntityLimit, EntityLimit}                                                                 from 'core/entityLimit/EntityLimit'
+import type {EntityLimitTypes}                                                                                    from 'core/entityLimit/EntityLimitTypes'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/EntityLimit.template'
+import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
+import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
+import type {Name}                                                                                                from 'lang/name/Name'
+import type {NullOr}                                                                                              from 'util/types/nullable'
+import type {NotApplicable}                                                                                       from 'util/types/variables'
+import type {ObjectHolder, PossibleValueOnObjectHolder}                                                           from 'util/holder/ObjectHolder'
 
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
+import {NOT_APPLICABLE}                       from 'util/commonVariables'
+import {GameMap}                              from 'util/collection/GameMap'
 
 export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| PossibleAcronym | PossibleAlternativeAcronym>, >
     extends ClassContainingANameAndAnAlternative<string, string, AlternativeEntityLimit>
@@ -17,6 +21,9 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
     readonly #acronym: ACRONYM
     readonly #typeHolder
     readonly #limitHolder
+
+    #isInSMM1OrSMM3DS?: boolean
+    #gameMap?: GameMap<boolean, EntityLimit>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -139,5 +146,28 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
     }
 
     //endregion -------------------- Limit amount --------------------
+    //region -------------------- Game properties --------------------
+
+    private get __isInSMM1OrSMM3DS() {
+        return this.#isInSMM1OrSMM3DS ??= this.limitContainer.limitAmountInSMM1AndSMM3DS !== NOT_APPLICABLE
+    }
+
+    public get isInSuperMarioMaker1(): boolean {
+        return this.__isInSMM1OrSMM3DS
+    }
+
+    public get isInSuperMarioMakerFor3DS(): boolean {
+        return this.__isInSMM1OrSMM3DS
+    }
+
+    public get isInSuperMarioMaker2(): true {
+        return true
+    }
+
+    public toGameMap(): GameMap<boolean, EntityLimit> {
+        return this.#gameMap ??= new GameMap(this,)
+    }
+
+    //endregion -------------------- Game properties --------------------
 
 }
