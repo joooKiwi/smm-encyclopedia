@@ -4,7 +4,7 @@ import type {BooleanPropertyWithComment, PropertyWithComment}                   
 import type {NotApplicableProperty, UnknownProperty}                                                                                                                                              from 'core/_properties/PropertyWithEverything'
 import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
 import type {EntityLimits}                                                                                                                                                                        from 'core/entityLimit/EntityLimits'
-import type {GameStructure}                                                                                                                                                                       from 'core/game/GameStructure'
+import type {GameStructureFrom2Games}                                                                                                                                                             from 'core/game/GameStructure'
 import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
 import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                               from 'util/types/variables'
 import type {BooleanPropertyThatCanBeUnknownWithComment}                                                                                                                                          from 'core/_properties/PropertyThatCanBeUnknownWithComment'
@@ -110,7 +110,7 @@ export interface LimitProperty {
 }
 
 /** The game structure for the <u>editor {@link EntityLimits limit}</u> */
-export type GameStructureForEditorLimit = GameStructure<NullOr<EntityLimits>, NullOr<EntityLimits>, PossibleEditorLimit_SMM2>
+export type GameStructureForEditorLimit = GameStructureFrom2Games<NullOr<EntityLimits>, PossibleEditorLimit_SMM2>
 
 //region -------------------- Single entity limit --------------------
 

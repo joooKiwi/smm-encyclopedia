@@ -1,5 +1,5 @@
-import type {GameStructure}      from 'core/game/GameStructure'
-import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
+import type {GameStructure, GameStructureFrom2Games} from 'core/game/GameStructure'
+import type {ProviderWithoutKey}                     from 'util/provider/ProviderWithoutKey'
 
 import {GameStructureContainer} from 'core/game/GameStructure.container'
 import {AbstractProvider}       from 'util/provider/AbstractProvider'
@@ -31,7 +31,7 @@ export class GameStructureProvider
      * @param superMarioMaker1And3DS The {@link Games.SUPER_MARIO_MAKER_1 SMM1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} games
      * @param superMarioMaker2 The {@link Games.SUPER_MARIO_MAKER_2 SMM2} game
      */
-    public get<SMM1AND3DS, SMM2, >(superMarioMaker1And3DS: SMM1AND3DS, superMarioMaker2: SMM2,): GameStructure<SMM1AND3DS, SMM1AND3DS, SMM2>
+    public get<SMM1AND3DS, SMM2, >(superMarioMaker1And3DS: SMM1AND3DS, superMarioMaker2: SMM2,): GameStructureFrom2Games<SMM1AND3DS, SMM2>
     /**
      * Get (or create) a game structure based on each {@link Games}.
      *
