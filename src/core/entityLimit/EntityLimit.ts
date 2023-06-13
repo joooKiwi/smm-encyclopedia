@@ -76,6 +76,8 @@ export interface EntityLimit
 
     //endregion -------------------- Limit amount --------------------
 
+    get isInSuperMarioMaker1Or3DS(): boolean
+
 }
 
 export interface EntityLimitWithPossibleAlternativeEntityLimit

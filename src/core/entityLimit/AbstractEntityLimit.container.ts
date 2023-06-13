@@ -148,16 +148,16 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
     //endregion -------------------- Limit amount --------------------
     //region -------------------- Game properties --------------------
 
-    private get __isInSMM1OrSMM3DS() {
+    public get isInSuperMarioMaker1Or3DS() {
         return this.#isInSMM1OrSMM3DS ??= this.limitContainer.limitAmountInSMM1AndSMM3DS !== NOT_APPLICABLE
     }
 
     public get isInSuperMarioMaker1(): boolean {
-        return this.__isInSMM1OrSMM3DS
+        return this.isInSuperMarioMaker1Or3DS
     }
 
     public get isInSuperMarioMakerFor3DS(): boolean {
-        return this.__isInSMM1OrSMM3DS
+        return this.isInSuperMarioMaker1Or3DS
     }
 
     public get isInSuperMarioMaker2(): true {

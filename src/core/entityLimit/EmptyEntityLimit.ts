@@ -78,6 +78,7 @@ export class EmptyEntityLimit
     //endregion -------------------- Limit amount --------------------
     //region -------------------- Game properties --------------------
 
+    public readonly isInSuperMarioMaker1Or3DS = false
     public readonly isInSuperMarioMaker1 = false
     public readonly isInSuperMarioMakerFor3DS = false
     public readonly isInSuperMarioMaker2 = false
