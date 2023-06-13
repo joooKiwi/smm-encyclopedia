@@ -8,50 +8,54 @@ import type {ObjectHolder, PossibleValueOnObjectHolder}   from 'util/holder/Obje
 
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 
-export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| PossibleAcronym | PossibleAlternativeAcronym> = NullOr<| PossibleAcronym | PossibleAlternativeAcronym>,
-    TYPE extends EntityLimitTypes = EntityLimitTypes,
-    LIMIT_AMOUNT extends EntityLimitAmount = EntityLimitAmount, >
+export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| PossibleAcronym | PossibleAlternativeAcronym>, >
     extends ClassContainingANameAndAnAlternative<string, string, AlternativeEntityLimit>
-    implements EntityLimit<ACRONYM, TYPE, LIMIT_AMOUNT> {
+    implements EntityLimit {
 
     //region -------------------- Fields --------------------
 
-    readonly #acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>
+    readonly #acronym: ACRONYM
     readonly #typeHolder
     readonly #limitHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    protected constructor(name: Name<string>, acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>, alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>, type: ObjectHolder<EntityLimitTypes>, limitAmount: ObjectHolder<EntityLimitAmount>,) {
+    protected constructor(name: Name<string>,
+                          acronym: ACRONYM,
+                          alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>,
+                          type: ObjectHolder<EntityLimitTypes>,
+                          limitAmount: ObjectHolder<EntityLimitAmount>,) {
         super(name, alternative,)
         this.#acronym = acronym
         this.#typeHolder = type
         this.#limitHolder = limitAmount
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Type --------------------
 
-    public get type(): TYPE {
-        return this.#typeHolder.get as TYPE
+    public get type(): EntityLimitTypes {
+        return this.#typeHolder.get
     }
 
     //endregion -------------------- Type --------------------
     //region -------------------- Acronym --------------------
 
     public get acronym(): ACRONYM {
-        return this.#acronym as ACRONYM
+        return this.#acronym
     }
 
     //endregion -------------------- Acronym --------------------
     //region -------------------- Alternative entity limit --------------------
 
-    public get alternativeAcronym(): this['alternativeContainer']['acronym'] {
+    public get alternativeAcronym(): NullOr<PossibleAlternativeAcronym> {
         return this.alternativeContainer.acronym
     }
 
     //region -------------------- Limit amount --------------------
 
-    public get alternativeLimitContainer(): this['alternativeContainer']['limitContainer'] {
+    public get alternativeLimitContainer(): EntityLimitAmount {
         return this.alternativeContainer.limitContainer
     }
 
@@ -61,11 +65,11 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
         return this.alternativeLimitContainer.limitContainerInSMM1AndSMM3DS
     }
 
-    public get alternativeLimitAmountInSMM1AndSMM3DS(): this['alternativeLimitContainerInSMM1AndSMM3DS']['value'] {
+    public get alternativeLimitAmountInSMM1AndSMM3DS(): | NullOr<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicable {
         return this.alternativeLimitContainerInSMM1AndSMM3DS.value
     }
 
-    public get isUnknownAlternativeLimitInSMM1AndSMM3DS(): this['alternativeLimitContainerInSMM1AndSMM3DS']['isUnknown'] {
+    public get isUnknownAlternativeLimitInSMM1AndSMM3DS(): boolean {
         return this.alternativeLimitContainerInSMM1AndSMM3DS.isUnknown
     }
 
@@ -76,17 +80,17 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
         return this.alternativeLimitContainer.limitContainerInSMM2
     }
 
-    public get alternativeLimitAmountInSMM2(): this['alternativeLimitContainerInSMM2']['value'] {
+    public get alternativeLimitAmountInSMM2(): NullOr<PossibleLimitAmount_SMM2_Amount> {
         return this.alternativeLimitContainerInSMM2.value
     }
 
-    public get isUnknownAlternativeLimitInSMM2(): this['alternativeLimitContainerInSMM2']['isUnknown'] {
+    public get isUnknownAlternativeLimitInSMM2(): boolean {
         return this.alternativeLimitContainerInSMM2.isUnknown
     }
 
     //endregion -------------------- SMM2 limit --------------------
 
-    public get alternativeAmountComment(): this['alternativeLimitContainer']['comment'] {
+    public get alternativeAmountComment(): PossibleLimitAmount_Comment {
         return this.alternativeLimitContainer.comment
     }
 
@@ -95,8 +99,8 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
 
-    public get limitContainer(): LIMIT_AMOUNT {
-        return this.#limitHolder.get as LIMIT_AMOUNT
+    public get limitContainer(): EntityLimitAmount {
+        return this.#limitHolder.get
     }
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
@@ -105,11 +109,11 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
         return this.limitContainer.limitContainerInSMM1AndSMM3DS
     }
 
-    public get limitAmountInSMM1AndSMM3DS(): this['limitContainerInSMM1AndSMM3DS']['value'] {
+    public get limitAmountInSMM1AndSMM3DS(): | NullOr<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicable {
         return this.limitContainerInSMM1AndSMM3DS.value
     }
 
-    public get isUnknownLimitInSMM1AndSMM3DS(): this['limitContainerInSMM1AndSMM3DS']['isUnknown'] {
+    public get isUnknownLimitInSMM1AndSMM3DS(): boolean {
         return this.limitContainerInSMM1AndSMM3DS.isUnknown
     }
 
@@ -120,17 +124,17 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
         return this.limitContainer.limitContainerInSMM2
     }
 
-    public get limitAmountInSMM2(): this['limitContainerInSMM2']['value'] {
+    public get limitAmountInSMM2(): NullOr<PossibleLimitAmount_SMM2_Amount> {
         return this.limitContainerInSMM2.value
     }
 
-    public get isUnknownLimitInSMM2(): this['limitContainerInSMM2']['isUnknown'] {
+    public get isUnknownLimitInSMM2(): boolean {
         return this.limitContainerInSMM2.isUnknown
     }
 
     //endregion -------------------- SMM2 limit --------------------
 
-    public get amountComment(): this['limitContainer']['comment'] {
+    public get amountComment(): PossibleLimitAmount_Comment {
         return this.limitContainer.comment
     }
 
