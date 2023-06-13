@@ -1,7 +1,10 @@
-import type {SoundEffect}         from 'core/soundEffect/SoundEffect'
-import type {SoundEffectProperty} from 'core/soundEffect/property/SoundEffectProperty'
-import type {SoundEffectCategory} from 'core/soundEffectCategory/SoundEffectCategory'
-import type {Name}                from 'lang/name/Name'
+import type {GameProperty}              from 'core/entity/properties/game/GameProperty'
+import type {SoundEffect}               from 'core/soundEffect/SoundEffect'
+import type {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import type {PossibleTranslationKey}    from 'core/soundEffect/property/PlayerSoundEffectTriggers.types'
+import type {SoundEffectProperty}       from 'core/soundEffect/property/SoundEffectProperty'
+import type {SoundEffectCategory}       from 'core/soundEffectCategory/SoundEffectCategory'
+import type {Name}                      from 'lang/name/Name'
 
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 
@@ -30,74 +33,74 @@ export class SoundEffectContainer
 
     //region -------------------- Game properties --------------------
 
-    public get gameContainer(): this['propertyContainer']['gameContainer'] {
+    public get gameContainer(): GameProperty {
         return this.propertyContainer.gameContainer
     }
 
-    public get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1'] {
+    public get isInSuperMarioMaker1(): boolean {
         return this.gameContainer.isInSuperMarioMaker1
     }
 
-    public get isInSuperMarioMakerFor3DS(): this['gameContainer']['isInSuperMarioMakerFor3DS'] {
+    public get isInSuperMarioMakerFor3DS(): boolean {
         return this.gameContainer.isInSuperMarioMakerFor3DS
     }
 
-    public get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2'] {
+    public get isInSuperMarioMaker2(): boolean {
         return this.gameContainer.isInSuperMarioMaker2
     }
 
     //endregion -------------------- Game properties --------------------
     //region -------------------- Player sound effect trigger properties --------------------
 
-    public get playerSoundEffectTriggerContainer(): this['propertyContainer']['playerSoundEffectTriggerContainer'] {
+    public get playerSoundEffectTriggerContainer(): PlayerSoundEffectTriggers {
         return this.propertyContainer.playerSoundEffectTriggerContainer
     }
 
-    public get translationKey(): this['playerSoundEffectTriggerContainer']['translationKey'] {
+    public get translationKey(): PossibleTranslationKey {
         return this.playerSoundEffectTriggerContainer.translationKey
     }
 
     //region -------------------- Movement triggers --------------------
 
-    public get doesTriggerOnPlayerWhenJumpingAfterLanding(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenJumpingAfterLanding'] {
+    public get doesTriggerOnPlayerWhenJumpingAfterLanding(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenJumpingAfterLanding
     }
 
-    public get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed'] {
+    public get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed
     }
 
-    public get doesTriggerOnPlayerWhenCrouching(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCrouching'] {
+    public get doesTriggerOnPlayerWhenCrouching(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenCrouching
     }
 
-    public get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly'] {
+    public get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly
     }
 
     //endregion -------------------- Movement triggers --------------------
     //region -------------------- Interaction triggers --------------------
 
-    public get doesTriggerOnPlayerWhenCollectingAPowerUp(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCollectingAPowerUp'] {
+    public get doesTriggerOnPlayerWhenCollectingAPowerUp(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenCollectingAPowerUp
     }
 
-    public get doesTriggerOnPlayerWhenGettingIntoAEntity(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenGettingIntoAEntity'] {
+    public get doesTriggerOnPlayerWhenGettingIntoAEntity(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenGettingIntoAEntity
     }
 
     //endregion -------------------- Interaction triggers --------------------
     //region -------------------- Environment triggers --------------------
 
-    public get doesTriggerOnPlayerAtSpawn(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAtSpawn'] {
+    public get doesTriggerOnPlayerAtSpawn(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerAtSpawn
     }
 
-    public get doesTriggerOnPlayerWhenTakingDamage(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTakingDamage'] {
+    public get doesTriggerOnPlayerWhenTakingDamage(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenTakingDamage
     }
 
-    public get doesTriggerOnPlayerWhenLosingALife(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenLosingALife'] {
+    public get doesTriggerOnPlayerWhenLosingALife(): boolean {
         return this.playerSoundEffectTriggerContainer.doesTriggerOnPlayerWhenLosingALife
     }
 
