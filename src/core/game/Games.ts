@@ -111,7 +111,7 @@ export abstract class Games
         //endregion -------------------- Fields --------------------
 
         /**
-         * Get the {@link Games games} from an url found or null if there is none
+         * Get the {@link Games games} from an url found or an {@link EMPTY_ARRAY []} if there is none
          *
          * @param url The url to find the {@link Games games} (if they are found)
          * @throws {ReferenceError} A fail-safe error on {@link Games} that were not found
