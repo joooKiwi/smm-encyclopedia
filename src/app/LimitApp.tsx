@@ -50,7 +50,7 @@ export default class LimitApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('limit.all')
+        return gameContentTranslation(`limit.${this.type.type}.all`)
     }
 
     protected override _createAsideContent(): ReactElementOrString {
@@ -127,7 +127,7 @@ export default class LimitApp
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('limit.all'),
+                    caption: gameContentTranslation(`limit.${$this.type.type}.all`),
                 }
             }
 

@@ -53,7 +53,7 @@ export default function DisplayViewBody() {
             </div>
             <div key="button group (limit)" id="limit-buttonGroup" className="btn-group-vertical col-6" role="group">
                 <DisplayViewRouteButton routeName="everyLimit" value={gameContentTranslation('limit.singular')}
-                                        tooltipValue={gameContentTranslation('limit.display all')}
+                                        tooltipValue={gameContentTranslation('limit.all.display all')}
                                         elementId="displayView-limit-button"/>
                 <div key="button group (specific limit in group)" id="specificLimitInGroup-buttonGroup" className="btn-group" role="group">
                     <DisplayViewRouteButton routeName="playLimit" value={gameContentTranslation('limit.play.value')}

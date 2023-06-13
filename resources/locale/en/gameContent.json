@@ -32,6 +32,10 @@
     "singular": "Limit",
     "plural":   "Limits",
 
+    "all": {
+      "all":         "Every limit",
+      "display all": "Display every limit"
+    },
     "editor": {
       "value": "In the editor",
       "limit": "Limit in the editor",
@@ -45,10 +49,7 @@
 
       "all":         "Every limit while playing",
       "display all": "Display every limit while playing"
-    },
-
-    "all":         "Every limit",
-    "display all": "Display every limit"
+    }
   },
   "theme": {
     "singular": "Theme",
