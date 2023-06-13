@@ -41,6 +41,7 @@ export default class GameStyleApp
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
         const $this = this
+
         return new class implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
             public get iterable() {

@@ -7,9 +7,7 @@ import type {GameCollection}       from 'util/collection/GameCollection'
 import type {ReactProperties}      from 'util/react/ReactProperties'
 
 export interface AppProperties
-    extends ReactProperties {
-
-}
+    extends ReactProperties {}
 
 export interface AppWithInterpreterProperties
     extends AppProperties {
@@ -39,8 +37,7 @@ export interface PowerUpAndRidePriorityProperties
 //game reference
 
 export interface GameStyleProperties
-    extends AppWithGamesProperties, AppWithInterpreterProperties {
-}
+    extends AppWithGamesProperties, AppWithInterpreterProperties {}
 
 //entity
 
