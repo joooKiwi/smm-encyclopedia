@@ -62,7 +62,8 @@ export interface ThemeAppProperties
 
 }
 
-//sound effect
+export interface SoundEffectProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 //sound effect category
 

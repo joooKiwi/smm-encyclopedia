@@ -76,7 +76,7 @@ export const everySimpleRoutes = [
     new RoutesCreator('worldTheme',                    '/world/theme',).asTable(CARD_LIST,).asAnyGame().create((viewDisplay, games,) =>  <ThemeApp                     games={games} viewDisplay={viewDisplay} type={WORLD}/>,),
 
 
-    new RoutesCreator('everySoundEffect',              '/every/sound-effect',).asTable().asSMM2Game().create(viewDisplay =>                                     <SoundEffectApp                             viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everySoundEffect',              '/every/sound-effect',).asTable().asAnyGame().create((viewDisplay, games,) =>     <SoundEffectApp               games={games} viewDisplay={viewDisplay}/>,),
     new RoutesCreator('everySoundEffectCategory',      '/every/sound-effect-category',).asCardList().asSMM2Game().create(viewDisplay =>                         <SoundEffectCategoryApp                     viewDisplay={viewDisplay}/>,),
 
 
