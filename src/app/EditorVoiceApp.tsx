@@ -1,5 +1,6 @@
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
 
+import type {EditorVoiceProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
@@ -8,9 +9,10 @@ import type {ReactElementOrString}                                 from 'util/re
 import {EditorVoices}            from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
+import {newIterableIterator}     from 'util/utilitiesMethods'
 
 export default class EditorVoiceApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<EditorVoices>> {
+    extends AbstractCardListApp<AppInterpreterWithCardList<EditorVoices>, EditorVoiceProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -32,10 +34,12 @@ export default class EditorVoiceApp
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EditorVoices> {
+        const $this = this
+
         return new class implements AppInterpreterWithCardList<EditorVoices> {
 
             public get iterable() {
-                return EditorVoices[Symbol.iterator]()
+                return newIterableIterator($this.props.games, EditorVoices[Symbol.iterator](),)
             }
 
             //region -------------------- List interpreter --------------------

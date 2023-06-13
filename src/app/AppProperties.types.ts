@@ -79,7 +79,8 @@ export interface CourseTagAppProperties
 
 //instrument
 
-//editor voice
+export interface EditorVoiceProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 
 //endregion -------------------- Specific properties --------------------

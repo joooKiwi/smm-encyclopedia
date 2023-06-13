@@ -96,7 +96,7 @@ export const everySimpleRoutes = [
 
     new RoutesCreator('everyInstrument',               '/every/instrument',).asCardList().asAnyGame().create(viewDisplay =>                                     <InstrumentApp                              viewDisplay={viewDisplay}/>,),
 
-    new RoutesCreator('everyEditorVoice',              '/every/editor-voice',).asCardList().asAnyGame().create(viewDisplay =>                                   <EditorVoiceApp                             viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everyEditorVoice',              '/every/editor-voice',).asCardList().asAnyGame().create((viewDisplay, games,) =>  <EditorVoiceApp               games={games} viewDisplay={viewDisplay}/>,),
 ].flat()
 
 // @ts-ignore
