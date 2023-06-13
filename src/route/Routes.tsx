@@ -1,4 +1,5 @@
 import type {LoaderFunctionArgs}                    from 'react-router-dom/dist'
+import type {RouteObject}                           from 'react-router/dist'
 import {createHashRouter, redirect, RouterProvider} from 'react-router-dom/dist'
 import {Suspense}                                   from 'react'
 
@@ -31,14 +32,14 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         caseSensitive: false,
         path: '/',
         children: [
-            everySimpleRoutes.map(route => ({
+            everySimpleRoutes.map<RouteObject>(route => ({
                 path: route.path,
                 loader: () => redirectToPathWithDefaultLanguage(route),
             })),
 
-            languages.map(language => ({
+            languages.map<RouteObject>(language => ({
                 path: `/${language.projectAcronym}` as const,
-                children: everySimpleRoutes.map(route => ({
+                children: everySimpleRoutes.map<RouteObject>(route => ({
                     path: `/${language.projectAcronym}${route.path}` as const,
                     element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
                     loader: () => setDefaultValues(route,)
