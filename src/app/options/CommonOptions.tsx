@@ -43,6 +43,7 @@ export class CommonOptions {
     #gameHeaderWithMainGames?: SingleHeaderContent
     #mainGames?: readonly [SingleHeaderContent, SingleHeaderContent,]
     #categoryHeader?: SingleHeaderContent
+    #limitHeader?: SingleHeaderContent
 
     //endregion -------------------- Fields --------------------
 
@@ -128,6 +129,15 @@ export class CommonOptions {
             {reference.isInCourseTheme ? <Image file={COURSE_THEME_IMAGE_FILE}/> : null}
             {reference.isInWorldTheme ? <Image file={WORLD_THEME_IMAGE_FILE}/> : null}
         </div>
+    }
+
+
+    public get limitHeader(): SingleHeaderContent {
+        return this.#limitHeader ??= {key: 'limit', element: contentTranslation('Limit'),}
+    }
+
+    public getLimitHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
+        return {key: 'limit', element: contentTranslation('Limit'), subHeaders: subHeaders,}
     }
 
 }
