@@ -10,7 +10,15 @@ import {EntityAppOption}         from 'app/options/EntityAppOption'
 import {AbstractTableApp}        from 'app/withInterpreter/AbstractTableApp'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {Entities}                from 'core/entity/Entities'
+import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
+import {unfinishedText}          from 'app/tools/text/UnfinishedText'
+
+//region -------------------- Deconstruction imports --------------------
+
+const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Deconstruction imports --------------------
 
 export default class EntityApp
     extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>> {
@@ -36,7 +44,8 @@ export default class EntityApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('entity.all')
+        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
+        return gameContentTranslation('entity.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
