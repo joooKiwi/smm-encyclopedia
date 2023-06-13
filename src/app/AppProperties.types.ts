@@ -38,9 +38,10 @@ export interface CharacterNameProperties
 //game reference
 
 export interface GameStyleProperties
-    extends AppWithGamesProperties, AppWithInterpreterProperties {}
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
-//entity
+export interface EntityProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 //entity category
 

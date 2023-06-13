@@ -1,6 +1,7 @@
 import './EntityApp.scss'
 import './options/EntityAppOption.scss'
 
+import type {EntityProperties}                                     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
@@ -13,6 +14,7 @@ import {Entities}                from 'core/entity/Entities'
 import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 import {unfinishedText}          from 'app/tools/text/UnfinishedText'
+import {newIterableIterator}     from 'util/utilitiesMethods'
 
 //region -------------------- Deconstruction imports --------------------
 
@@ -21,7 +23,7 @@ const {ENTITY,} = OtherWordInTheGames
 //endregion -------------------- Deconstruction imports --------------------
 
 export default class EntityApp
-    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>> {
+    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, EntityProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -49,10 +51,12 @@ export default class EntityApp
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
+        const $this = this
+
         return new class implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
             public get iterable() {
-                return Entities[Symbol.iterator]()
+                return newIterableIterator($this.props.games, Entities[Symbol.iterator](),)
             }
 
             //region -------------------- List interpreter --------------------

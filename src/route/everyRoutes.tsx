@@ -63,7 +63,7 @@ export const everySimpleRoutes = [
     new RoutesCreator('everyGameReference',            '/every/game-reference',).asAnyGame().create(() =>                                                                     <GameReferenceApp/>,),
     new RoutesCreator('everyGameStyle',                '/every/game-style',).asTable().asAnyGame().create((viewDisplay, games,) =>        <GameStyleApp                 games={games} viewDisplay={viewDisplay}/>,),
 
-    new RoutesCreator('everyEntity',                   '/every/entity',).asTable().asAnyGame().create(viewDisplay =>                                             <EntityApp                                  viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everyEntity',                   '/every/entity',).asTable().asAnyGame().create((viewDisplay, games,) =>            <EntityApp                    games={games} viewDisplay={viewDisplay}/>,),
     new RoutesCreator('everyEntityCategory',           '/every/entity-category',).asCardList().asAnyGame().create(viewDisplay =>                                 <EntityCategoryApp                          viewDisplay={viewDisplay}/>,),
     new RoutesCreator('everyGroup',                    '/every/entity-group',).asAnyGame().create(() =>                                                                       <EntityGroupApp/>,),
 
