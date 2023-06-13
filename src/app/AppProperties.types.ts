@@ -32,7 +32,8 @@ export interface PowerUpAndRidePriorityProperties
 
 }
 
-//character name
+export interface CharacterNameProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 //game reference
 
