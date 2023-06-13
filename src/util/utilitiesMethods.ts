@@ -100,30 +100,18 @@ export function reverse<const T, >(array: readonly T[],): T[] {
 }
 
 /**
- * Convert the mutable {@link Array} to a non-null mutable {@link Array}
- *
- * @param mutableArray The mutable array to remove its <b>null</b> values
- */
-export function nonNull<const T, >(mutableArray: T[],): NonNullable<T>[]
-/**
  * Convert the {@link Array} to a non-null {@link Array}
  *
  * @param array The array to remove its <b>null</b> values
  */
-export function nonNull<const T, >(array: readonly T[],): readonly NonNullable<T>[]
-/**
- * Convert the mutable {@link Set} to a non-null mutable {@link Set}
- *
- * @param mutableset The mutable set to remove its <b>null</b> values
- */
-export function nonNull<const T, >(mutableSet: Set<T>,): Set<NonNullable<T>>
+export function nonNull<const T, >(array: readonly T[],): NonNullable<T>[]
 /**
  * Convert the {@link Set} to a non-null {@link Set}
  *
  * @param set The set to remove its <b>null</b> values
  */
-export function nonNull<const T, >(set: ReadonlySet<T>,): ReadonlySet<NonNullable<T>>
-export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): | ReadonlySet<NonNullable<T>> | readonly T[] {
+export function nonNull<const T, >(set: ReadonlySet<T>,): Set<NonNullable<T>>
+export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): | Set<NonNullable<T>> | NonNullable<T>[] {
     if (setOrArray instanceof Array)
         return setOrArray.filter((it): it is NonNullable<T> => it != null)
 
