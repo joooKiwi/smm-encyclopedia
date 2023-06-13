@@ -9,6 +9,7 @@ export class GameCollection<const T extends Games = Games, >
     #hasAllGames?: & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
     #hasSMM1?: GameWithSMM1<T>
     #hasSMM3DS?: GameWithSMM3DS<T>
+    #hasSMM1Or3DS?: & GameWithSMM1<T> & GameWithSMM3DS<T>
     #hasSMM2?: GameWithSMM2<T>
 
     public constructor(iterable: Iterable<T>,) {
@@ -50,6 +51,11 @@ export class GameCollection<const T extends Games = Games, >
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
     public get hasSMM3DS(): GameWithSMM3DS<T> {
         return this.#hasSMM3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS) as GameWithSMM3DS<T>
+    }
+
+    /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
+    public get hasSMM1Or3DS(): & GameWithSMM1<T> & GameWithSMM3DS<T> {
+        return this.#hasSMM1Or3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,) as & GameWithSMM1<T> & GameWithSMM3DS<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_2 SMM2} type in its values */
