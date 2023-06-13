@@ -46,17 +46,13 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
 
     #tableContent(optionInterpreter: APP,): readonly SingleTableContent[] {
         const content = [] as SingleTableContent[]
-        let index = 1
         for (const enumerable of optionInterpreter.iterable) {
             optionInterpreter.callbackToGetEnumerable = () => enumerable
 
             content.push([
                 enumerable.englishName,
-                ...[<>{index}</>,
-                    nonNull(optionInterpreter.tableOptions).map(tableHeader => optionInterpreter.createTableContent(tableHeader))
-                ].flat(2)
+                ...nonNull(optionInterpreter.tableOptions).map(it => optionInterpreter.createTableContent(it)).flat(),
             ])
-            index++
         }
         return content
     }
@@ -74,11 +70,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
                       {...optionInterpreter.tableProperties}
                       id={`${key}-table`}
                       content={this.#tableContent(optionInterpreter)}
-                      headers={[
-                          {key: 'originalOrder', element: '#',},
-                          ...nonNull(nonNull(optionInterpreter.tableOptions)
-                              .map(tableHeader => optionInterpreter.createTableHeader(tableHeader)))
-                      ]}/>
+                      headers={nonNull(nonNull(optionInterpreter.tableOptions).map(it => optionInterpreter.createTableHeader(it)))}/>
     }
 
     //endregion -------------------- Render methods --------------------

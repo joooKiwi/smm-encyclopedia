@@ -19,21 +19,6 @@ table[id$="-table"] {
   }
 
 
-  tbody tr > {
-    //region -------------------- 1 - # --------------------
-
-    :nth-child(1) {
-      width: 1cm;
-      text-align: left;
-
-      &:after {
-        content: '.';
-      }
-    }
-
-    //endregion -------------------- 1 - # --------------------
-  }
-
   thead {
     position: sticky;
     top: 0;
