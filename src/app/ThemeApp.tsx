@@ -15,6 +15,7 @@ import LinkButton                                        from 'app/tools/button/
 import Image                                             from 'app/tools/images/Image'
 import {AbstractTableApp}                                from 'app/withInterpreter/AbstractTableApp'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
+import {newIterableIterator}                             from 'util/utilitiesMethods'
 
 /**
  * @reactComponent
@@ -75,8 +76,8 @@ export default class ThemeApp
 
         return new class implements AppInterpreterWithTable<Themes, ThemeAppOption> {
 
-            public get iterable() {
-                return $this.type.iterator
+            public get iterable(): IterableIterator<Themes> {
+                return newIterableIterator($this.props.games, $this.type.iterator,)
             }
 
             //region -------------------- List interpreter --------------------

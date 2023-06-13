@@ -56,7 +56,7 @@ export interface LimitAppProperties
 }
 
 export interface ThemeAppProperties
-    extends AppWithInterpreterProperties {
+    extends AppWithInterpreterProperties, AppWithGamesProperties {
 
     readonly type: ThemeTypes
 
