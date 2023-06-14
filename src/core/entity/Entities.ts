@@ -2897,7 +2897,7 @@ export class Entities
             case 'clear condition':
                 this.clearConditionImage
                 return builder
-            case 'while playing':
+            case 'play':
                 this.inGameImage
                 return builder
             case null:
