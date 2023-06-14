@@ -3,8 +3,8 @@ import type {Route}     from 'route/instance/Route'
 import {GameCollection} from 'util/collection/GameCollection'
 
 /** A route specialized to only have {@link Games} */
-export interface RouteByGames<NAME extends string, PATH extends string, GAMES extends readonly Games[] = readonly Games[], >
-    extends Route<NAME, PATH, null, GAMES> {
+export interface RouteByGames<SIMPLE_NAME extends string, NAME extends string, PATH extends string, GAMES extends readonly Games[] = readonly Games[], >
+    extends Route<SIMPLE_NAME, NAME, PATH, null, GAMES> {
 }
 
 /**

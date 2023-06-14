@@ -7,7 +7,9 @@ import type {NullOr}       from 'util/types/nullable'
  *
  * @see everySimpleRoutes
  */
-export interface Route<NAME extends string, PATH extends string, VIEW_DISPLAY extends NullOr<ViewDisplays> = NullOr<ViewDisplays>, GAMES extends readonly Games[] = readonly Games[], > {
+export interface Route<SIMPLE_NAME extends string, NAME extends string, PATH extends string, VIEW_DISPLAY extends NullOr<ViewDisplays> = NullOr<ViewDisplays>, GAMES extends readonly Games[] = readonly Games[], > {
+
+    get simpleName(): SIMPLE_NAME
 
     get name(): NAME//TODO change to simple name and divide it to includes other possible names
 

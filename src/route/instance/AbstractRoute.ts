@@ -7,17 +7,20 @@ import type {NullOr}       from 'util/types/nullable'
  * A simple {@link Route} with nothing specified,
  * but nothing specified
  *
- * @see SimpleRoute
  * @see SimpleRedirectRoute
  * @see SimpleRouteByViewDisplay
  * @see SimpleRouteByGames
  * @see SimpleRouteByViewDisplayAndGames
  */
-export abstract class AbstractRoute<NAME extends string, PATH extends string, VIEW_DISPLAY extends NullOr<ViewDisplays> = NullOr<ViewDisplays>, GAMES extends readonly Games[] = readonly Games[], >
-    implements Route<NAME, PATH, VIEW_DISPLAY, GAMES> {
+export abstract class AbstractRoute<const SIMPLE_NAME extends string, const NAME extends string,
+    const PATH extends string,
+    const VIEW_DISPLAY extends NullOr<ViewDisplays> = NullOr<ViewDisplays>,
+    const GAMES extends readonly Games[] = readonly Games[], >
+    implements Route<SIMPLE_NAME, NAME, PATH, VIEW_DISPLAY, GAMES> {
 
     //region -------------------- Fields --------------------
 
+    readonly #simpleName
     readonly #name
     readonly #path
     readonly #viewDisplay: VIEW_DISPLAY//FIXME this type is only there to help typescript (it's not the standard)
@@ -27,7 +30,8 @@ export abstract class AbstractRoute<NAME extends string, PATH extends string, VI
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(name: NAME, path: PATH, viewDisplay: VIEW_DISPLAY, games: GAMES, renderCallback: () => JSX.Element,) {
+    protected constructor(simpleName: SIMPLE_NAME, name: NAME, path: PATH, viewDisplay: VIEW_DISPLAY, games: GAMES, renderCallback: () => JSX.Element,) {
+        this.#simpleName = simpleName
         this.#name = name
         this.#path = path
         this.#viewDisplay = viewDisplay
@@ -37,6 +41,10 @@ export abstract class AbstractRoute<NAME extends string, PATH extends string, VI
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
+
+    public get simpleName(): SIMPLE_NAME {
+        return this.#simpleName
+    }
 
     public get name(): NAME {
         return this.#name

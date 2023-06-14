@@ -2,8 +2,8 @@ import type {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 import type {Route}        from 'route/instance/Route'
 
 /** A route specialized to only have {@link ViewDisplays} */
-export interface RouteByViewDisplay<NAME extends string, PATH extends string, VIEW_DISPLAY extends ViewDisplays = ViewDisplays, >
-    extends Route<NAME, PATH, VIEW_DISPLAY, readonly[]> {
+export interface RouteByViewDisplay<SIMPLE_NAME extends string, NAME extends string, PATH extends string, VIEW_DISPLAY extends ViewDisplays = ViewDisplays, >
+    extends Route<SIMPLE_NAME, NAME, PATH, VIEW_DISPLAY, readonly[]> {
 }
 
 /**

@@ -18,7 +18,7 @@ import {SimpleRouteByViewDisplayAndGames} from 'route/instance/SimpleRouteByView
  * @chainOfResponsibility
  * @endingChain
  */
-export class RoutesAsSimpleListAndSMM2Creator<PARENT_NAME extends string, PARENT_PATH extends string, > {
+export class RoutesAsSimpleListAndSMM2Creator<const PARENT_NAME extends string, const PARENT_PATH extends string, > {
 
     //region -------------------- Fields --------------------
 
@@ -50,46 +50,46 @@ export class RoutesAsSimpleListAndSMM2Creator<PARENT_NAME extends string, PARENT
      * @param renderCallback The callback to render the selected application
      * @todo Simplify the creation of the games urls with view display
      */
-    public create(renderCallback: RenderCallbackByViewDisplayAndGames,): readonly Route<PossibleSimpleListAndGameRouteName<PARENT_NAME>, PossibleGameRoutePath<PossibleSimpleListRoutePath<PARENT_PATH>>>[] {
+    public create(renderCallback: RenderCallbackByViewDisplayAndGames,): readonly Route<PARENT_NAME, PossibleSimpleListAndGameRouteName<PARENT_NAME>, PossibleGameRoutePath<PossibleSimpleListRoutePath<PARENT_PATH>>>[] {
         const {parentRoute: {name, path,}, defaultViewDisplay,} = this.parentRoute,
             finalPath = `/game-2/${RoutesCreator.getUrlAsSimpleList(defaultViewDisplay)}${path}` as const
 
         return [
-            new SimpleRedirectRoute(name, path, finalPath,),
+            new SimpleRedirectRoute(name, name, path, finalPath,),
 
-            new SimpleRedirectRoute(             `${name} (Game=1)`,            `/game-1${path}`,             finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=3DS)`,          `/game-3ds${path}`,           finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=2)`,            `/game-2${path}`,             finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=all)`,          `/game-all${path}`,           finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=1&3DS)`,        `/game-1,3ds${path}`,         finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=1&2)`,          `/game-1,2${path}`,           finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=3DS&2)`,        `/game-3ds,2${path}`,         finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=1)`,            `/game-1${path}`,             finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=3DS)`,          `/game-3ds${path}`,           finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=2)`,            `/game-2${path}`,             finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=all)`,          `/game-all${path}`,           finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=1&3DS)`,        `/game-1,3ds${path}`,         finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=1&2)`,          `/game-1,2${path}`,           finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=3DS&2)`,        `/game-3ds,2${path}`,         finalPath,),
 
-            new SimpleRedirectRoute(             `${name} (Game=1&1)`,          `/game-1,1${path}`,           finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=3DS&3DS)`,      `/game-3ds,3ds${path}`,       finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=2&2)`,          `/game-2,2${path}`,           finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=1&1)`,          `/game-1,1${path}`,           finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=3DS&3DS)`,      `/game-3ds,3ds${path}`,       finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=2&2)`,          `/game-2,2${path}`,           finalPath,),
 
-            new SimpleRedirectRoute(             `${name} (Game=3DS&1)`,        `/game-3ds,1${path}`,         finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=2&1)`,          `/game-2,1${path}`,           finalPath,),
-            new SimpleRedirectRoute(             `${name} (Game=2&3DS)`,        `/game-2,3ds${path}`,         finalPath),
+            new SimpleRedirectRoute(name,              `${name} (Game=3DS&1)`,        `/game-3ds,1${path}`,         finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=2&1)`,          `/game-2,1${path}`,           finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (Game=2&3DS)`,        `/game-2,3ds${path}`,         finalPath),
 
 
-            new SimpleRedirectRoute(             `${name} (list Game=1)`,       `/game-1/list${path}`,        finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=3DS)`,     `/game-3ds/list${path}`,      finalPath,),
-            new SimpleRouteByViewDisplayAndGames(`${name} (list Game=2)`,       `/game-2/list${path}`,        ViewDisplays.SIMPLE_LIST, RoutesCreator.SMM2_ONLY_GAMES, renderCallback,),
-            new SimpleRedirectRoute(             `${name} (list Game=all)`,     `/game-all/list${path}`,      finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=1&3DS)`,   `/game-1,3ds/list${path}`,    finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=1&2)`,     `/game-1,2/list${path}`,      finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=3DS&2)`,   `/game-3ds,2/list${path}`,    finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=1)`,       `/game-1/list${path}`,        finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=3DS)`,     `/game-3ds/list${path}`,      finalPath,),
+            new SimpleRouteByViewDisplayAndGames(name, `${name} (list Game=2)`,       `/game-2/list${path}`,        ViewDisplays.SIMPLE_LIST, RoutesCreator.SMM2_ONLY_GAMES, renderCallback,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=all)`,     `/game-all/list${path}`,      finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=1&3DS)`,   `/game-1,3ds/list${path}`,    finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=1&2)`,     `/game-1,2/list${path}`,      finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=3DS&2)`,   `/game-3ds,2/list${path}`,    finalPath,),
 
-            new SimpleRedirectRoute(             `${name} (list)`,              `/list${path}`,               finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=1&1)`,     `/game-1,1/list${path}`,      finalPath),
-            new SimpleRedirectRoute(             `${name} (list Game=3DS&3DS)`, `/game-3ds,3ds/list${path}`,  finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=2&2)`,     `/game-2,2/list${path}`,      finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list)`,              `/list${path}`,               finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=1&1)`,     `/game-1,1/list${path}`,      finalPath),
+            new SimpleRedirectRoute(name,              `${name} (list Game=3DS&3DS)`, `/game-3ds,3ds/list${path}`,  finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=2&2)`,     `/game-2,2/list${path}`,      finalPath,),
 
-            new SimpleRedirectRoute(             `${name} (list Game=3DS&1)`,   `/game-3ds,1/list${path}`,    finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=2&1)`,     `/game-2,1/list${path}`,      finalPath,),
-            new SimpleRedirectRoute(             `${name} (list Game=2&3DS)`,   `/game-2,3ds/list${path}`,    finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=3DS&1)`,   `/game-3ds,1/list${path}`,    finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=2&1)`,     `/game-2,1/list${path}`,      finalPath,),
+            new SimpleRedirectRoute(name,              `${name} (list Game=2&3DS)`,   `/game-2,3ds/list${path}`,    finalPath,),
         ]
     }
 

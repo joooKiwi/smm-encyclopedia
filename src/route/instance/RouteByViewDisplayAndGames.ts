@@ -9,8 +9,8 @@ import type {GameCollection} from 'util/collection/GameCollection'
  * @see RouteByViewDisplay
  * @see RouteByGames
  */
-export interface RouteByViewDisplayAndGames<NAME extends string, PATH extends string, VIEW_DISPLAY extends ViewDisplays = ViewDisplays, GAMES extends readonly Games[] = readonly Games[], >
-    extends Route<NAME, PATH, VIEW_DISPLAY, GAMES> {
+export interface RouteByViewDisplayAndGames<SIMPLE_NAME extends string, NAME extends string, PATH extends string, VIEW_DISPLAY extends ViewDisplays = ViewDisplays, GAMES extends readonly Games[] = readonly Games[], >
+    extends Route<SIMPLE_NAME, NAME, PATH, VIEW_DISPLAY, GAMES> {
 }
 
 /**

@@ -28,7 +28,7 @@ const {SUPER_MARIO_MAKER_1: SMM1, SUPER_MARIO_MAKER_FOR_NINTENDO_3DS: SMM3DS, SU
  * @chainOfResponsibility
  * @startingChain
  */
-export class RoutesCreator<NAME extends string, PATH extends string, > {
+export class RoutesCreator<const NAME extends string, const PATH extends string, > {
 
     //region -------------------- Fields --------------------
 
