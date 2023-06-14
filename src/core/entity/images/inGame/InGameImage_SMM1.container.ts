@@ -5,14 +5,15 @@ import {AbstractImageWithTimesThemesAndGameStyles} from 'core/entity/images/Abst
 import {GameStyles}                                from 'core/gameStyle/GameStyles'
 import {Themes}                                    from 'core/theme/Themes'
 import {Times}                                     from 'core/time/Times'
+import {EMPTY_MAP}                                 from 'util/emptyVariables'
 import {assert}                                    from 'util/utilitiesMethods'
 
 export class InGameImage_SMM1Container
     extends AbstractImageWithTimesThemesAndGameStyles<InGameSMM1ImageFile>
     implements InGameImage_SMM1 {
 
-    public constructor(map: ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly InGameSMM1ImageFile[]>>, defaultImages: ReadonlyMap<GameStyles, readonly InGameSMM1ImageFile[]>,) {
-        super(new Map([[Times.DAY, map,]]), defaultImages,)
+    public constructor(images: ReadonlyMap<GameStyles, readonly InGameSMM1ImageFile[]>,) {
+        super(new Map([[Times.DAY, EMPTY_MAP,]]), images,)
     }
 
     //region -------------------- Getter methods --------------------
