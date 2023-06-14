@@ -6,7 +6,7 @@ import type {ReactElementOrString, ReactProperties} from 'util/react/ReactProper
 import {ModalInstance}         from 'bootstrap/modal/ModalInstance'
 import Tooltip                 from 'bootstrap/tooltip/Tooltip'
 import {DISPLAY_VIEW_MODAL_ID} from 'navigation/button/modalIds'
-import {route}                 from 'route/route'
+import {routeFromName}         from 'route/route'
 
 interface DisplayViewRouteButtonProperty
     extends ReactProperties {
@@ -29,7 +29,7 @@ export default function DisplayViewRouteButton({routeName, value, tooltipValue, 
     const {pathname,} = useLocation()
 
     const key = `route button (${routeName})`,
-        routeValue = route(routeName),
+        routeValue = routeFromName(routeName),
         isRouteSameFromPathName = routeValue === pathname
 
     return isRouteSameFromPathName

@@ -15,7 +15,7 @@ import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {Themes}                 from 'core/theme/Themes'
 import {ProjectLanguages}       from 'lang/ProjectLanguages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {route}                  from 'route/route'
+import {routeFromName}          from 'route/route'
 import {Import}                 from 'util/DynamicImporter'
 import {EMPTY_OBJECT}           from 'util/emptyVariables'
 import {getValueByEnglishName}  from 'util/utilitiesMethods'
@@ -60,7 +60,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
-                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyle')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={routeFromName('everyGameStyle')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
             }
         }
 
@@ -162,7 +162,7 @@ export class NightEffects
     }
 
     protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
-        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary">{
+        return <Link key={`${instance.englishName} (entities)`} to={routeFromName(routeName)} className="link-primary">{
             ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName).toLowerCase()
         }</Link>
     }

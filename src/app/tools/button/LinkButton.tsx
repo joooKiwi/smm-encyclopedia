@@ -5,7 +5,7 @@ import type {EveryPossibleRouteNames}                                           
 import type {ReactElementOrString, ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 import type {Nullable}                                                           from 'util/types/nullable'
 
-import {route} from 'route/route'
+import {routeFromName} from 'route/route'
 
 interface LinkButtonsProperties
     extends ReactProperties {
@@ -27,7 +27,7 @@ export default function LinkButton({partialId, routeName, color, children,}: Rea
 
     return routeName == null
         ? <button type="button" id={id} className={className} disabled>{children}</button>
-        : <Link type="button" id={id} className={className} to={route(routeName)}>{children}</Link>
+        : <Link type="button" id={id} className={className} to={routeFromName(routeName)}>{children}</Link>
 }
 
 /**

@@ -2,8 +2,8 @@ import {Link, useLocation} from 'react-router-dom'
 
 import type {DisplayButtonGroupProperties, DisplayButtonProperties} from 'app/withInterpreter/DisplayButtonGroup.properties'
 
-import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
-import {route}        from 'route/route'
+import {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
+import {routeFromName} from 'route/route'
 
 /**
  * Create a button to be used in a "button group" for displaying a specific "view display".
@@ -18,7 +18,7 @@ export default function DisplayButtonGroup({reactKey: key, views, currentView,}:
 
 function DisplayButton({reactKey: key, view, currentView, routeName,}: DisplayButtonProperties,) {
     const {pathname: currentPath,} = useLocation(),
-        path = route(routeName)
+        path = routeFromName(routeName)
 
     return currentPath === path || view === currentView
         ? <button key={`${key} (${view.name})`} className={`btn btn-success bi-${view.htmlType} btn-viewDisplay`} type="button" disabled/>

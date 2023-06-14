@@ -10,7 +10,7 @@ import {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
 import {Games}             from 'core/game/Games'
 import {ProjectLanguages}  from 'lang/ProjectLanguages'
 import {everySimpleRoutes} from 'route/everyRoutes'
-import {route}             from 'route/route'
+import {routeFromName}     from 'route/route'
 
 const /** Every {@link ProjectLanguages project language} as an {@link Array} */
     languages = ProjectLanguages.values.toArray(),
@@ -81,7 +81,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 
     const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path))
     if (routeFoundByBasicPath == null)
-        throw redirect(route('home', ProjectLanguages.default,))
+        throw redirect(routeFromName('home', ProjectLanguages.default,))
 
     const languageFound = ProjectLanguages.getInUrl(url)
     if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.default)
@@ -92,7 +92,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
     const viewDisplayFound = ViewDisplays.getInUrl(url),
         gamesFound = Games.getInUrl(url)
     if (viewDisplayFound == null && gamesFound.length === 0)
-        throw redirect(route(routeFoundByBasicPath.name, ProjectLanguages.current,))
+        throw redirect(routeFromName(routeFoundByBasicPath.name, ProjectLanguages.current,))
 
     const expectedViewDisplayPath = viewDisplayFound == null ? '' : `/${(ViewDisplays.current = viewDisplayFound).urlValue}` as const,
         expectedGamesPath = gamesFound.length === 0 ? '' : `/${Games.setSelected(gamesFound).selectedGamesAsUrlValue}` as const,
@@ -100,7 +100,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
         routeFoundByArguments = everySimpleRoutes.find(it => it.path === expectedPath)
     if (routeFoundByArguments == null)
         throw new TypeError(`A route should be findable when trying to retrieve from the url "${expectedPath}".`)
-    throw redirect(route(routeFoundByArguments.name, ProjectLanguages.current,))
+    throw redirect(routeFromName(routeFoundByArguments.name, ProjectLanguages.current,))
 }
 
 /**
@@ -113,7 +113,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
     if (language.isCurrent)
         return null
-    throw redirect(route('home', ProjectLanguages.current = language,))
+    throw redirect(routeFromName('home', ProjectLanguages.current = language,))
 }
 
 /**
@@ -127,7 +127,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 function redirectToPathWithDefaultLanguage({name, games,}: EveryPossibleRouteInstance,): never {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
-    throw redirect(route(name, ProjectLanguages.default,))
+    throw redirect(routeFromName(name, ProjectLanguages.default,))
 }
 
 /**
