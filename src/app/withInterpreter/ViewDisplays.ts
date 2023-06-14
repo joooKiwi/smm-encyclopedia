@@ -36,7 +36,7 @@ export abstract class ViewDisplays
             return app.createTable()
         }
 
-        protected override _getRoutePath<PATH extends string, >(path: PATH,) {
+        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (table)` as const
         }
 
@@ -48,7 +48,7 @@ export abstract class ViewDisplays
             return app.createList()
         }
 
-        protected override _getRoutePath<PATH extends string, >(path: PATH,) {
+        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (list)` as const
         }
 
@@ -60,7 +60,7 @@ export abstract class ViewDisplays
             return app.createCardList()
         }
 
-        protected override _getRoutePath<PATH extends string, >(path: PATH,) {
+        protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (card)` as const
         }
 
@@ -253,7 +253,7 @@ export abstract class ViewDisplays
      *
      * @param path The nullable path to get its types
      */
-    public getRoutePath<PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleRoutePath<PATH>> {
+    public getRoutePath<const PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleRoutePath<PATH>> {
         return path == null ? null : this._getRoutePath(path)
     }
 
@@ -263,13 +263,14 @@ export abstract class ViewDisplays
      * @param path The nullable path to get its types
      * @throws {AssertionError} (only in development) It is the {@link ViewDisplays.TABLE} calling it
      */
-    public getRoutePathAsListOnly<PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleListRoutePath<PATH>> {
+    public getRoutePathAsListOnly<const PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleListRoutePath<PATH>>
+    public getRoutePathAsListOnly(path: Nullable<string>,) {
         // @ts-ignore
         assert(this !== ViewDisplays.TABLE, 'The view display cannot be retrieved for a list only (simple & card) display',)
-        return this.getRoutePath(path) as NullOr<PossibleListRoutePath<PATH>>
+        return this.getRoutePath(path,)
     }
 
-    protected abstract _getRoutePath<PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
+    protected abstract _getRoutePath<const PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
 
 
     /**
