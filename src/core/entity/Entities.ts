@@ -7,6 +7,7 @@ import type {ClassWithNullableEditorVoiceSoundFileHolder}                       
 import type {EditorVoiceSoundFileHolder}                                                           from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
 import type {Names, Ordinals, PossibleEnglishName}                                                 from 'core/entity/Entities.types'
 import type {Entity}                                                                               from 'core/entity/Entity'
+import type {ImageName_SMM2, PossibleInGameSMM2ImageFileName}                                      from 'core/entity/file/InGameSMM2ImageFile'
 import type {ClearConditionImage}                                                                  from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {PossibleImageReceivedOnFactory as PossibleClearConditionImage}                        from 'core/entity/images/clearCondition/ClearConditionImage.types'
 import type {SimpleImageName as ClearConditionImageName}                                           from 'core/entity/images/clearCondition/ClearConditionImage.types'
@@ -14,7 +15,9 @@ import type {EditorImage}                                                       
 import type {PossibleImageReceivedOnFactory as PossibleEditorImage, SimpleImageName_GroundOrSlope} from 'core/entity/images/editor/EditorImage.types'
 import type {SimpleImageName as EditorImageName}                                                   from 'core/entity/images/editor/EditorImage.types'
 import type {PowerUpEditorImage}                                                                   from 'core/entity/images/editor/PowerUpEditorImage'
+import type {InGameImage}                                                                          from 'core/entity/images/inGame/InGameImage'
 import type {InGameImage_SMM1}                                                                     from 'core/entity/images/inGame/InGameImage_SMM1'
+import type {InGameImage_SMM2}                                                                     from 'core/entity/images/inGame/InGameImage_SMM2'
 import type {UniqueImage}                                                                          from 'core/entity/images/unique/UniqueImage'
 import type {UnusedImage_BigMushroom}                                                              from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                                                                  from 'core/entity/images/unused/UnusedImage_Regular'
@@ -23,6 +26,7 @@ import type {Nullable, NullOr}                                                  
 
 import {EditorVoices}                   from 'core/editorVoice/EditorVoices'
 import {EntityLoader}                   from 'core/entity/Entity.loader'
+import {InGameSMM2ImageFileContainer}   from 'core/entity/file/InGameSMM2ImageFile.container'
 import {ClearConditionImageBuilder}     from 'core/entity/images/clearCondition/ClearConditionImage.builder'
 import {ClearConditionImageFactory}     from 'core/entity/images/clearCondition/ClearConditionImage.factory'
 import {EditorImageFactory}             from 'core/entity/images/editor/EditorImage.factory'
@@ -31,8 +35,9 @@ import {GenericSubEditorImageBuilder}   from 'core/entity/images/editor/GenericS
 import {PowerUpEditorImageBuilder}      from 'core/entity/images/editor/PowerUpEditorImage.builder'
 import {SpecificEditorImageBuilder}     from 'core/entity/images/editor/SpecificEditorImage.builder'
 import {SpecificSnowEditorImageBuilder} from 'core/entity/images/editor/SpecificSnowEditorImage.builder'
-import {InGameImage_SMM1Factory}        from 'core/entity/images/inGame/InGameImage_SMM1.factory'
+import {InGameImageFactory}             from 'core/entity/images/inGame/InGameImage.factory'
 import {InGameImage_SMM1Builder}        from 'core/entity/images/inGame/InGameImage_SMM1.builder'
+import {InGameImage_SMM2Container}      from 'core/entity/images/inGame/InGameImage_SMM2.container'
 import {UniqueImageBuilder}             from 'core/entity/images/unique/UniqueImage.builder'
 import {UnusedImage_BigMushroomBuilder} from 'core/entity/images/unused/UnusedImage_BigMushroom.builder'
 import {UnusedImage_BigMushroomFactory} from 'core/entity/images/unused/UnusedImage_BigMushroom.factory'
@@ -119,7 +124,22 @@ export class Entities
 
     }('Gentle Slope',)
 
-    public static readonly START_BLOCK =                                   new Entities('Start Block',)
+    public static readonly START_BLOCK =                                   new class Entities_StartBlock extends Entities {
+
+        protected override _createInGameImage(): InGameImage_SMM2 {
+            //TODO relocate this into a proper builder class
+            const name:PossibleInGameSMM2ImageFileName = 'startblock',
+                imageName: ImageName_SMM2 = 'StartBlock'
+
+            return new InGameImage_SMM2Container(new Map([
+                [SUPER_MARIO_BROS, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS, this, name, imageName,)],],
+                [SUPER_MARIO_BROS_3, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS_3, this, name, imageName,)],],
+                [SUPER_MARIO_WORLD, [new InGameSMM2ImageFileContainer(SUPER_MARIO_WORLD, this, name, imageName,)],],
+                [NEW_SUPER_MARIO_BROS_U, [new InGameSMM2ImageFileContainer(NEW_SUPER_MARIO_BROS_U, this, name, imageName,)],],
+            ]),)
+        }
+
+    }('Start Block',)
     public static readonly OCCLUDE_BLOCK =                                 new Entities('Occlude Block',)
 
     public static readonly WATER =                                         new Entities('Water',)
@@ -2771,7 +2791,25 @@ export class Entities
     public static readonly TOAD =                                          new Entities('Toad',)
     public static readonly CAGED_TOADETTE =                                new Entities('Caged Toadette',)//A background entity
 
-    public static readonly BUBBLE =                                        new Entities('Bubble',)//An interactable entity
+    public static readonly BUBBLE =                                        new class Entities_Bubble extends Entities {
+
+        protected override _createInGameImage(): InGameImage_SMM2 {
+            //TODO relocate this into a proper builder class
+            const imageName: ImageName_SMM2 = 'Balloon'
+
+            return new InGameImage_SMM2Container(new Map([
+                [SUPER_MARIO_BROS, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS, this, 'balloon.0', imageName,),],],
+                [SUPER_MARIO_BROS_3, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS_3, this, 'balloon.0', imageName,),],],
+                [SUPER_MARIO_WORLD, [new InGameSMM2ImageFileContainer(SUPER_MARIO_WORLD, this, 'balloon.0', imageName,),],],
+                [NEW_SUPER_MARIO_BROS_U, [
+                    new InGameSMM2ImageFileContainer(NEW_SUPER_MARIO_BROS_U, this, 'balloon.0', imageName,),
+                    new InGameSMM2ImageFileContainer(NEW_SUPER_MARIO_BROS_U, this, 'balloon2.0', imageName,),
+                ],],
+                [SUPER_MARIO_3D_WORLD, [new InGameSMM2ImageFileContainer(SUPER_MARIO_3D_WORLD, this, 'TractorBubble_Alb', imageName,),],],
+            ],),)
+        }
+
+    }('Bubble',)//An interactable entity
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -2809,7 +2847,7 @@ export class Entities
     #uniqueImageBuilder?: UniqueImageBuilder
     #editorImage?: EditorImage
     #clearConditionImage?: ClearConditionImage
-    #inGameImage?: InGameImage_SMM1
+    #inGameImage?: InGameImage
     #unusedRegularImage?: UnusedImage_Regular
     #unusedBigMushroomImage?: UnusedImage_BigMushroom
     #editorVoiceSound?: NullOr<EditorVoiceSoundFileHolder>
@@ -2960,25 +2998,25 @@ export class Entities
      *
      * @onlyCalledOnce
      */
-    protected _createInGameImage(): NullOr<Builder<InGameImage_SMM1>> {
+    protected _createInGameImage(): NullOr<| InGameImage | Builder<InGameImage>> {
         return null
     }
 
     /**
-     * Create the "in game" image from its {@link InGameImage_SMM1Factory factory}.
+     * Create the "in game" image from its {@link InGameImageFactory factory}.
      * It also store it in the {@link UniqueImageBuilder} if the value created is not null.
      *
      * @onlyCalledOnce
      */
     #createInGameImage() {
         const createValue = this._createInGameImage(),
-            value = InGameImage_SMM1Factory.create(createValue)
+            value = InGameImageFactory.create(createValue)
         if (createValue != null)
             this.__uniqueImageBuilder.setWhilePlaying(value)
         return value
     }
 
-    public get inGameImage(): InGameImage_SMM1 {
+    public get inGameImage(): InGameImage {
         return this.#inGameImage ??= this.#createInGameImage()
     }
 
