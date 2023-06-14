@@ -112,8 +112,9 @@ export default class EntityApp
             }
 
             public get tableProperties(): SimplifiedTableProperties {
+                const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
                 return {
-                    caption: gameContentTranslation('entity.all'),
+                    caption: gameContentTranslation('entity.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},),
                 }
             }
 
