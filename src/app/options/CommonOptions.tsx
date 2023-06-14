@@ -43,7 +43,11 @@ export class CommonOptions {
     #gameHeaderWithMainGames?: SingleHeaderContent
     #mainGames?: readonly [SingleHeaderContent, SingleHeaderContent,]
     #categoryHeader?: SingleHeaderContent
+
     #limitHeader?: SingleHeaderContent
+    #playLimitHeader?: SingleHeaderContent
+    #editorLimitHeader?: SingleHeaderContent
+    #limitWithSubHeaders?: SingleHeaderContent
 
     //endregion -------------------- Fields --------------------
 
@@ -133,12 +137,29 @@ export class CommonOptions {
 
 
     public get limitHeader(): SingleHeaderContent {
-        return this.#limitHeader ??= {key: 'limit', element: contentTranslation('Limit'),}
+        return this.#limitHeader ??= {key: 'limit', element: gameContentTranslation('limit.singular'),}
     }
 
     public getLimitHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
-        return {key: 'limit', element: contentTranslation('Limit'), subHeaders: subHeaders,}
+        return {key: 'limit', element: gameContentTranslation('limit.singular'), subHeaders: subHeaders,}
     }
+
+    public get playLimitHeader(): SingleHeaderContent {
+        return this.#playLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.simple'), tooltip: gameContentTranslation('limit.play.tooltip'),}
+    }
+
+    public getPlayLimitHeader(...subHeaders: SingleHeadersContent) {
+        return {key: 'limit-play', element: gameContentTranslation('limit.play.simple'), tooltip: gameContentTranslation('limit.play.tooltip'), subHeaders: subHeaders,}
+    }
+
+    public get editorLimitHeader(): SingleHeaderContent {
+        return this.#editorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.simple'), tooltip: gameContentTranslation('limit.editor.tooltip'),}
+    }
+
+    public get limitWithSubHeaders(): SingleHeaderContent {
+        return this.#limitWithSubHeaders ??= this.getLimitHeader(this.editorLimitHeader, this.playLimitHeader,)
+    }
+
 
 }
 
