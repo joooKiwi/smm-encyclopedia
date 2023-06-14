@@ -93,6 +93,10 @@ export default class EntityApp
             }
 
             public get tableOptions(): readonly EntityAppOption[] {
+                const games = $this.props.games,
+                    hasSMM1Or3DSGames = games.hasSMM1Or3DS,
+                    hasSMM2Games = games.hasSMM2
+
                 return [
                     EntityAppOption.IMAGES,
                     EntityAppOption.NAME,
@@ -101,7 +105,9 @@ export default class EntityApp
                     // EntityAppOption.COURSE_THEME,
                     // EntityAppOption.TIME,
                     EntityAppOption.CATEGORY,
-                    EntityAppOption.LIMIT,
+                    hasSMM1Or3DSGames && hasSMM2Games ? EntityAppOption.LIMIT
+                        : hasSMM1Or3DSGames ? EntityAppOption.LIMIT_IN_SMM1_AND_3DS
+                            : EntityAppOption.LIMIT_IN_SMM2,
                 ]
             }
 

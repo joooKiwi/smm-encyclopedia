@@ -16,12 +16,13 @@ import {AppOptionWithContentComponent}              from 'app/options/component/
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
 import {EmptyAppOption}                             from 'app/options/component/EmptyAppOption'
 import Image                                        from 'app/tools/images/Image'
-import TextComponent                                from 'app/tools/text/TextComponent'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import InstrumentPropertyComponent                  from 'core/entity/properties/instrument/InstrumentProperty.component'
 import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
-import LimitComponent                               from 'core/entityLimit/Limit.component'
+import PlayLimitComponent                           from 'core/entityLimit/PlayLimit.component'
+import SMM1And3DSEditorLimitComponent               from 'core/entityLimit/SMM1And3DSEditorLimit.component'
+import SMM2EditorLimitComponent                     from 'core/entityLimit/SMM2EditorLimit.component'
 import {Games}                                      from 'core/game/Games'
 import GameComponent                                from 'core/game/Game.component'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
@@ -162,7 +163,7 @@ export class EntityAppOption
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
-                return <TimeComponent reference={entity} name={entity} displayAllAsText/>
+                return <TimeComponent reference={entity} name={entity} displayAllAsText={false}/>
             }
         }
 
@@ -200,45 +201,62 @@ export class EntityAppOption
         protected override _createContentOption() {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
-                const entity = enumeration.reference
-
-                const editorLimit_SMM1And3DS = entity.editorLimit_smm1And3ds
-                const editorLimit_SMM2 = entity.editorLimit_smm2
 
                 return [
-                    editorLimit_SMM1And3DS == null
-                        ? <TextComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} content={'N/A'}/>
-                        : <LimitComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM1And3DS} displayAcronymIfApplicable/>,
-                    editorLimit_SMM2 == null || editorLimit_SMM2 === 'N/A'
-                        ? <TextComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} content={editorLimit_SMM2} isUnknown={entity.isUnknown_editorLimit_smm2}/>
-                        : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2} displayAcronymIfApplicable/>,
-                    <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()} displayAcronymIfApplicable/>,
+                    <SMM1And3DSEditorLimitComponent reference={enumeration}/>,
+                    <SMM2EditorLimitComponent reference={enumeration}/>,
+                    <PlayLimitComponent reference={enumeration}/>,
                 ]
             }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'limit', element: gameContentTranslation('limit.singular'),
-                subHeaders: [
-                    {
-                        key: 'limit-editor', element: gameContentTranslation('limit.editor.value'),
-                        tooltip: gameContentTranslation('limit.editor.limit'),
-                        subHeaders: [
-                            {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
-                            {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-                        ],
-                    },
-                    {
-                        key: 'limit-whilePlaying', element: gameContentTranslation('limit.play.value'),
-                        tooltip: gameContentTranslation('limit.play.limit'),
-                    },
-                ],
-            }
+            return CommonOptions.get.getLimitHeader(
+                CommonOptions.get.getPlayLimitHeader(
+                    {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
+                    {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
+                ),
+                CommonOptions.get.editorLimitHeader,
+            )
         }
 
     }()
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new EntityAppOption()
+    public static readonly LIMIT_IN_SMM1_AND_3DS = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
+
+        protected override _createContentOption() {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
+
+                return [
+                    <SMM1And3DSEditorLimitComponent reference={enumeration}/>,
+                    <PlayLimitComponent reference={enumeration}/>,
+                ]
+            }
+        }
+
+        protected override _createTableHeaderOption() {
+            return CommonOptions.get.limitWithSubHeaders
+        }
+
+    }()
+    public static readonly LIMIT_IN_SMM2 = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+
+        protected override _createContentOption() {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
+
+                return [
+                    <SMM2EditorLimitComponent reference={enumeration}/>,
+                    <PlayLimitComponent reference={enumeration}/>,
+                ]
+            }
+        }
+
+        protected override _createTableHeaderOption() {
+            return CommonOptions.get.limitWithSubHeaders
+        }
+
+    }()
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------

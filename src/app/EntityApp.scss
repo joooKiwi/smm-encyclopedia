@@ -114,15 +114,15 @@
       }
 
       //endregion -------------------- entity category --------------------
-      //region -------------------- limit (editor) --------------------
-      $index: $index + 1;
-
-      :nth-child(#{$index}) {
-        min-width: 5cm;
-        max-width: 7.5cm;
-      }
-
-      //endregion -------------------- limit (editor) --------------------
+      ////region -------------------- limit (editor) --------------------
+      //$index: $index + 1;
+      //
+      //:nth-child(#{$index}) {
+      //  min-width: 5cm;
+      //  max-width: 7.5cm;
+      //}
+      //
+      ////endregion -------------------- limit (editor) --------------------
 
     }
 
