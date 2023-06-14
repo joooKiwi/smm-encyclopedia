@@ -7,6 +7,7 @@ import {RoutesAsSimpleListAndSMM2Creator} from 'route/creator/RoutesAsSimpleList
 import {RoutesCreator}                    from 'route/creator/Routes.creator'
 import {SimpleRedirectRoute}              from 'route/instance/SimpleRedirectRoute'
 import {SimpleRouteByViewDisplay}         from 'route/instance/SimpleRouteByViewDisplay'
+import {EMPTY_ARRAY}                      from 'util/emptyVariables'
 
 /**
  * Set a route to be applicable to a "{@link ViewDisplays.SIMPLE_LIST simple list}" in its url
@@ -66,7 +67,7 @@ export class RoutesAsSimpleListCreator<const PARENT_NAME extends string, const P
             finalPath = `/${RoutesCreator.getUrlAsSimpleList(this.defaultViewDisplay)}${path}` as const
 
         return [
-            new SimpleRedirectRoute(name, name, path, finalPath,),
+            new SimpleRedirectRoute(name, name, path, finalPath, EMPTY_ARRAY,),
             new SimpleRouteByViewDisplay(name, `${name} (list)`, finalPath, ViewDisplays.SIMPLE_LIST, renderCallback,),
         ]
     }

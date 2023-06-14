@@ -140,6 +140,143 @@ export abstract class Games
 
     }
 
+    /**
+     * A simple companion class to the {@link Games} but for the game possibilities (in stored {@link Array}).
+     *
+     * This class is mostly used in the {@link RoutesCreator} chain of operation.
+     */
+    public static readonly GamePossibilitiesCompanion = class Companion_GamePossibilities {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: Companion_GamePossibilities
+
+        private constructor() {
+        }
+
+        public static get get() {
+            return Companion_GamePossibilities.#instance ??= new Companion_GamePossibilities()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+        //region -------------------- Fields --------------------
+
+        #everySingleFields?: readonly (readonly [Games,])[]
+        #everyDoubleFields?: readonly (readonly [Games, Games,])[]
+
+        //region -------------------- Array fields --------------------
+
+        //region -------------------- Non-redirection array fields --------------------
+
+        /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
+        public readonly SMM1_ONLY = [Games.SUPER_MARIO_MAKER_1,] as const
+        /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} */
+        public readonly SMM3DS_ONLY = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+        /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
+        public readonly SMM2_ONLY = [Games.SUPER_MARIO_MAKER_2,] as const
+        /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} */
+        public readonly SMM1_AND_3DS = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+        /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+        public readonly SMM1_AND_2 = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_2,] as const
+        /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+        public readonly SMM3DS_AND_2 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+        /**
+         * An array representing the games with every SMM games
+         * ({@link Games.SUPER_MARIO_MAKER_1 1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2})
+         */
+        public readonly ALL_GAMES = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
+        //endregion -------------------- Non-redirection array fields --------------------
+        //region -------------------- Redirection (x2) array fields --------------------
+
+        /**
+         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} (x2)
+         * @inRedirectionOnly
+         * @see SMM1_ONLY
+         */
+        public readonly SMM1_2X = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_1,] as const
+        /**
+         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} (x2)
+         * @inRedirectionOnly
+         * @see SMM3DS_ONLY
+         */
+        public readonly SMM3DS_2X = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+        /**
+         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} (x2)
+         * @inRedirectionOnly
+         * @see SMM2_ONLY
+         */
+        public readonly SMM2_2X = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_2,] as const
+
+        //endregion -------------------- Redirection (x2) array fields --------------------
+        //region -------------------- Redirection (reverse order) array fields --------------------
+
+        /**
+         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS},
+         * but in a reverse order
+         * @inRedirectionOnly
+         * @see SMM1_AND_3DS
+         */
+        public readonly SMM3DS_AND_1 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_1,] as const
+        /**
+         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2},
+         * but in a reverse order
+         * @inRedirectionOnly
+         * @see SMM1_AND_2
+         */
+        public readonly SMM2_AND_1 = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_1,] as const
+        /**
+         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2},
+         * but in a reverse order
+         * @inRedirectionOnly
+         * @see SMM3DS_AND_2
+         */
+        public readonly SMM2_AND_3DS = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+
+        //endregion -------------------- Redirection (reverse order) array fields --------------------
+
+        //endregion -------------------- Array fields --------------------
+
+        //endregion -------------------- Fields --------------------
+        //region -------------------- Getter methods --------------------
+
+        /** Every single {@link Games} fields in the {@link Companion_GamePossibilities current instance} */
+        private get __everySingleGameFields(): readonly (readonly [Games,])[] {
+            return this.#everySingleFields ??= [this.SMM1_ONLY, this.SMM3DS_ONLY, this.SMM2_ONLY,]
+        }
+
+        /** Every double {@link Games} fields in the {@link Companion_GamePossibilities current instance} */
+        private get __everyDoubleGameFields(): readonly (readonly [Games, Games,])[] {
+            return this.#everyDoubleFields ??= [this.SMM1_AND_3DS, this.SMM1_AND_2, this.SMM3DS_AND_2,
+                this.SMM1_2X, this.SMM3DS_2X, this.SMM2_2X,
+                this.SMM3DS_AND_1, this.SMM2_AND_1, this.SMM2_AND_3DS,]
+        }
+
+        //endregion -------------------- Getter methods --------------------
+        //region -------------------- Methods --------------------
+
+        public getFromPath(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
+            if (path === 'game-all' || path === 'all')
+                return this.ALL_GAMES
+            const pathFiltered = path.replace('game-', '',) as GroupUrlValue,
+                gamesFound = pathFiltered.split(',',),
+                gamesFoundSize = gamesFound.length
+
+            const gameFound1 = Games.getValueByUrlValue(gamesFound[0],)
+            if (gamesFoundSize === 1)
+                return this.__everySingleGameFields.find(it => it[0] === gameFound1)!
+
+            const gameFound2 = Games.getValueByUrlValue(gamesFound[1],)
+            if (gamesFoundSize === 2)
+                return this.__everyDoubleGameFields.find(it => it[0] === gameFound1 && it[1] === gameFound2)!
+
+            throw new ReferenceError(`No games could be found using the path "${path}"`,)
+        }
+
+        //endregion -------------------- Methods --------------------
+
+    }
+
     //endregion -------------------- Companion --------------------
     //region -------------------- Fields --------------------
 
@@ -211,12 +348,8 @@ export abstract class Games
     }
 
 
-    public static getUniqueSelected(path: | FullUrlValue | GroupUrlValue,): ReadonlySet<Games> {
-        return path === 'game-all' || path === 'all' ? this.values.toSet() : new Set(this.getSelected(path))
-    }
-
-    public static getSelected(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
-        return path === 'game-all' || path === 'all' ? this.values.toArray() : path.replace('game-', '',).split(',').map(it => this.getValueByUrlValue(it))
+    public static getFromPath(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
+        return Games.GamePossibilitiesCompanion.get.getFromPath(path,)
     }
 
     public static setSelected(games: readonly Games[],): typeof Games {
