@@ -37,18 +37,18 @@
       "display all": "Display every limit"
     },
     "editor": {
-      "value": "In the editor",
-      "limit": "Limit in the editor",
+      "simple":  "Editor",
+      "tooltip": "Limit in the editor",
 
-      "all":         "Every limit in the editor",
-      "display all": "Display every limit in the editor"
+      "all":         "Every editor limit",
+      "display all": "Display every editor limit"
     },
     "play": {
-      "value": "While playing",
-      "limit": "Limit while playing",
+      "simple":  "Play",
+      "tooltip": "Limit while playing",
 
-      "all":         "Every limit while playing",
-      "display all": "Display every limit while playing"
+      "all":         "Every play limit",
+      "display all": "Display every play limit"
     }
   },
   "theme": {
