@@ -1079,6 +1079,10 @@ export class Entities
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',)
     public static readonly RED_YOSHI_EGG =                                 new class Entities_RedYoshiEgg extends Entities {
 
+        protected override _createUniqueImage(builder: UniqueImageBuilder,) {
+            return builder.forceEditor()
+        }
+
         protected override _createEditorImage(): Builder<EditorImage> {
             return new GenericEditorImageBuilder(this, 'YosshiEggRed',).setOnlySMWAndNSMBU()
         }
