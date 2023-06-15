@@ -5,13 +5,13 @@ import {Suspense}                                   from 'react'
 
 import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
 
-import LoadingApp          from 'app/LoadingApp'
-import {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
-import {Games}             from 'core/game/Games'
-import {ProjectLanguages}  from 'lang/ProjectLanguages'
-import {everySimpleRoutes} from 'route/everyRoutes'
-import {routeFromName}     from 'route/route'
+import LoadingApp           from 'app/LoadingApp'
+import {ViewDisplays}       from 'app/withInterpreter/ViewDisplays'
+import {Games}              from 'core/game/Games'
 import {getCurrentLanguage} from 'lang/getCurrentLanguage'
+import {ProjectLanguages}   from 'lang/ProjectLanguages'
+import {everySimpleRoutes}  from 'route/everyRoutes'
+import {routeFromName}      from 'route/route'
 
 const /** Every {@link ProjectLanguages project language} as an {@link Array} */
     languages = ProjectLanguages.values.toArray(),
