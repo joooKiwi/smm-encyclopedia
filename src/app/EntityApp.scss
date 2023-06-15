@@ -160,6 +160,10 @@
 
   img {
 
+    &.entity-image {
+      min-height: .5cm;
+    }
+
     &[alt="Terrain"] {
       filter: var(--filter-white-to-cyan);
     }
