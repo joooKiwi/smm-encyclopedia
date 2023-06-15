@@ -3,6 +3,7 @@ import './DisplayView.scss'
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
 import UnfinishedText, {unfinishedText}                  from 'app/tools/text/UnfinishedText'
+import {Games}                                           from 'core/game/Games'
 import {OtherWordInTheGames}                             from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
@@ -16,9 +17,9 @@ const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWor
  * @reactComponent
  */
 export default function DisplayViewBody() {
-    const isSMM1Selected = true,
+    const isSMM1Selected = Games.SUPER_MARIO_MAKER_1.isSelected,
         // isSMM3DSSelected = true,
-        isSMM2Selected = true,
+        isSMM2Selected = Games.SUPER_MARIO_MAKER_2.isSelected,
         singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference,
         /*pluralTagName = TAG.pluralNameOnReference, */pluralTagLowerCaseName = TAG.pluralLowerCaseNameOnReference,
         singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName), singularMysteryMushroomLowerCaseName = singularMysteryMushroomName.toLowerCase(),
