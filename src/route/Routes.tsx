@@ -11,6 +11,7 @@ import {Games}             from 'core/game/Games'
 import {ProjectLanguages}  from 'lang/ProjectLanguages'
 import {everySimpleRoutes} from 'route/everyRoutes'
 import {routeFromName}     from 'route/route'
+import {getCurrentLanguage} from 'lang/getCurrentLanguage'
 
 const /** Every {@link ProjectLanguages project language} as an {@link Array} */
     languages = ProjectLanguages.values.toArray(),
@@ -34,7 +35,8 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         children: [
             everySimpleRoutes.map<RouteObject>(route => ({
                 path: route.path,
-                loader: () => redirectToPathWithDefaultLanguage(route),
+                element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
+                loader: () => setToCurrentLanguage(route),
             })),
 
             languages.map<RouteObject>(language => ({
@@ -117,17 +119,17 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 }
 
 /**
- * Redirect to the {@link Route.path route path} with the {@link ProjectLanguages.default default language}
+ * Set the {@link ProjectLanguages.current current language}
  *
  * @param route The route instance to retrieve its {@link Route.name name}
  *
  * @canSetSelectedGames
- * @throws {Response} The route path encapsulated in a response
  */
-function redirectToPathWithDefaultLanguage({name, games,}: EveryPossibleRouteInstance,): never {
+function setToCurrentLanguage({games,}: EveryPossibleRouteInstance,): null {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
-    throw redirect(routeFromName(name, ProjectLanguages.default,))
+    ProjectLanguages.default = ProjectLanguages.current = getCurrentLanguage()
+    return null
 }
 
 /**
