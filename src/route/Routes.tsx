@@ -83,13 +83,13 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 
     const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path))
     if (routeFoundByBasicPath == null)
-        throw redirect(routeFromName('home', ProjectLanguages.default,))
+        throw redirect(routeFromName('home', getCurrentLanguage(),))
 
     const languageFound = ProjectLanguages.getInUrl(url)
-    if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.default)
-        return null // The path is "en-AM/home" without setting the current language (by an url redirection)
+    if (routeFoundByBasicPath.name === 'home')
+        return null // The path is "home" without setting the current language (by an url redirection)
 
-    ProjectLanguages.current = languageFound ?? ProjectLanguages.default
+    ProjectLanguages.current = languageFound ?? getCurrentLanguage()
 
     const viewDisplayFound = ViewDisplays.getInUrl(url),
         gamesFound = Games.getInUrl(url)
@@ -128,7 +128,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 function setToCurrentLanguage({games,}: EveryPossibleRouteInstance,): null {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
-    ProjectLanguages.default = ProjectLanguages.current = getCurrentLanguage()
+    ProjectLanguages.current = getCurrentLanguage()
     return null
 }
 
