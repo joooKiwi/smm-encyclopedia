@@ -41,7 +41,7 @@
   "Yes": "Oui",
   "No":  "Non",
 
-  "color": { "singular": "Couleur", "plural": "Colours" },
+  "color": { "singular": "Couleur", "plural": "Couleurs" },
   "White":  { "m": "Blanc",  "f": "Blanche" },
   "Black":  { "m": "Noir",   "f": "Noire" },
   "Red":    { "m": "Rouge",  "f": "Rouge" },
