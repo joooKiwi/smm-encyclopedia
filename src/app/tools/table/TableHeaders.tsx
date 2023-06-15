@@ -17,12 +17,6 @@ export default class TableHeaders
     extends PureComponent<TableHeadersProperties>
     implements ReactComponent, ClassWithType<HeaderTypes> {
 
-    //region -------------------- Fields --------------------
-
-    #everyHeaderHolders?: EveryHeaderHolders
-    #layout?: Layout
-
-    //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
 
     public get id(): string {
@@ -38,11 +32,11 @@ export default class TableHeaders
     }
 
     public get everyHeaderHolders(): EveryHeaderHolders {
-        return this.#everyHeaderHolders ??= this.props.everyHeadersHolder()
+        return this.props.everyHeadersHolder
     }
 
     public get layout(): Layout {
-        return this.#layout ??= this.props.layout()
+        return this.props.layout
     }
 
     //endregion -------------------- Getter methods --------------------

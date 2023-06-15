@@ -1,11 +1,8 @@
 import './GameStyleApp.scss'
 
-import type {CollectionHolder} from '@joookiwi/enumerable/dist/types'
-
 import type {GameStyleProperties}                                  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {Games}                                                from 'core/game/Games'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
@@ -13,23 +10,11 @@ import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+import {newIterableIterator}    from 'util/utilitiesMethods'
 
 export default class GameStyleApp
     extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
 
-    //region -------------------- Getter methods --------------------
-
-    /**
-     * Get the {@link GameStyles} that are in the {@link Games} received in the constructor
-     *
-     * @computedAtEachCall
-     */
-    public get gameStyles(): CollectionHolder<GameStyles> {
-        const games = this.props.games
-        return GameStyles.values.filter(({reference,}) => games.find((it: Games) => it.get(reference)) != null)
-    }
-
-    //endregion -------------------- Getter methods --------------------
     //region -------------------- Create methods --------------------
 
     protected override _createKey(): string {
@@ -56,10 +41,11 @@ export default class GameStyleApp
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
         const $this = this
+
         return new class implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
             public get iterable() {
-                return $this.gameStyles[Symbol.iterator]()
+                return newIterableIterator($this.props.games, GameStyles[Symbol.iterator](),)
             }
 
             //region -------------------- List interpreter --------------------
@@ -95,7 +81,6 @@ export default class GameStyleApp
                 return [
                     GameStyleAppOption.IMAGE,
                     GameStyleAppOption.NAME,
-                    GameStyleAppOption.GAME,
                     GameStyleAppOption.NIGHT_DESERT_WIND,
                 ]
             }

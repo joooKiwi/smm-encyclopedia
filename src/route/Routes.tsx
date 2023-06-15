@@ -1,16 +1,17 @@
 import type {LoaderFunctionArgs}                    from 'react-router-dom/dist'
+import type {RouteObject}                           from 'react-router/dist'
 import {createHashRouter, redirect, RouterProvider} from 'react-router-dom/dist'
 import {Suspense}                                   from 'react'
 
 import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
 
-import LoadingApp          from 'app/LoadingApp'
-import {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
-import {Games}             from 'core/game/Games'
-import {ProjectLanguages}  from 'lang/ProjectLanguages'
-import {everySimpleRoutes} from 'route/everyRoutes'
-import {route}             from 'route/route'
-import {isArrayEquals}     from 'util/utilitiesMethods'
+import LoadingApp           from 'app/LoadingApp'
+import {ViewDisplays}       from 'app/withInterpreter/ViewDisplays'
+import {Games}              from 'core/game/Games'
+import {getCurrentLanguage} from 'lang/getCurrentLanguage'
+import {ProjectLanguages}   from 'lang/ProjectLanguages'
+import {everySimpleRoutes}  from 'route/everyRoutes'
+import {routeFromName}      from 'route/route'
 
 const /** Every {@link ProjectLanguages project language} as an {@link Array} */
     languages = ProjectLanguages.values.toArray(),
@@ -32,14 +33,15 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         caseSensitive: false,
         path: '/',
         children: [
-            everySimpleRoutes.map(route => ({
+            everySimpleRoutes.map<RouteObject>(route => ({
                 path: route.path,
-                loader: () => redirectToPathWithDefaultLanguage(route),
+                element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
+                loader: () => setToCurrentLanguage(route),
             })),
 
-            languages.map(language => ({
+            languages.map<RouteObject>(language => ({
                 path: `/${language.projectAcronym}` as const,
-                children: everySimpleRoutes.map(route => ({
+                children: everySimpleRoutes.map<RouteObject>(route => ({
                     path: `/${language.projectAcronym}${route.path}` as const,
                     element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
                     loader: () => setDefaultValues(route,)
@@ -50,7 +52,7 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         loader: loaderArguments => redirectToPathIfFound(loaderArguments),
     },], {basename: '/',},)
 
-console.log(router.routes[0].children)
+// console.log(router.routes[0].children)
 
 /** @reactComponent */
 export default function Routes() {
@@ -68,6 +70,7 @@ export default function Routes() {
  *
  * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
  *
+ * @canSetSelectedGames
  * @note If the {@link ProjectLanguages.current current language} has been set or the path of the url is the <b>home page</b>, then, no redirection is necessary
  * @throws {TypeError} The route (with a default path & a {@link ViewDisplays} is not present <i>(this should never happen)</i>
  * @throws {Response} The route encapsulated in a response
@@ -80,18 +83,18 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 
     const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path))
     if (routeFoundByBasicPath == null)
-        throw redirect(route('home', ProjectLanguages.default,))
+        throw redirect(routeFromName('home', getCurrentLanguage(),))
 
     const languageFound = ProjectLanguages.getInUrl(url)
-    if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.default)
-        return null // The path is "en-AM/home" without setting the current language (by an url redirection)
+    if (routeFoundByBasicPath.name === 'home')
+        return null // The path is "home" without setting the current language (by an url redirection)
 
-    ProjectLanguages.current = languageFound ?? ProjectLanguages.default
+    ProjectLanguages.current = languageFound ?? getCurrentLanguage()
 
     const viewDisplayFound = ViewDisplays.getInUrl(url),
         gamesFound = Games.getInUrl(url)
     if (viewDisplayFound == null && gamesFound.length === 0)
-        throw redirect(route(routeFoundByBasicPath.name, ProjectLanguages.current,))
+        throw redirect(routeFromName(routeFoundByBasicPath.name, ProjectLanguages.current,))
 
     const expectedViewDisplayPath = viewDisplayFound == null ? '' : `/${(ViewDisplays.current = viewDisplayFound).urlValue}` as const,
         expectedGamesPath = gamesFound.length === 0 ? '' : `/${Games.setSelected(gamesFound).selectedGamesAsUrlValue}` as const,
@@ -99,7 +102,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
         routeFoundByArguments = everySimpleRoutes.find(it => it.path === expectedPath)
     if (routeFoundByArguments == null)
         throw new TypeError(`A route should be findable when trying to retrieve from the url "${expectedPath}".`)
-    throw redirect(route(routeFoundByArguments.name, ProjectLanguages.current,))
+    throw redirect(routeFromName(routeFoundByArguments.name, ProjectLanguages.current,))
 }
 
 /**
@@ -112,17 +115,21 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
     if (language.isCurrent)
         return null
-    throw redirect(route('home', ProjectLanguages.current = language,))
+    throw redirect(routeFromName('home', ProjectLanguages.current = language,))
 }
 
 /**
- * Redirect to the {@link Route.path route path} with the {@link ProjectLanguages.default default language}
+ * Set the {@link ProjectLanguages.current current language}
  *
  * @param route The route instance to retrieve its {@link Route.name name}
- * @throws {Response} The route path encapsulated in a response
+ *
+ * @canSetSelectedGames
  */
-function redirectToPathWithDefaultLanguage({name,}: EveryPossibleRouteInstance,): never {
-    throw redirect(route(name, ProjectLanguages.default,))
+function setToCurrentLanguage({games,}: EveryPossibleRouteInstance,): null {
+    if (!Games.selectedGames.hasAll(games,))
+        Games.setSelected(games,)
+    ProjectLanguages.current = getCurrentLanguage()
+    return null
 }
 
 /**
@@ -130,9 +137,11 @@ function redirectToPathWithDefaultLanguage({name,}: EveryPossibleRouteInstance,)
  * for the {@link Games}
  *
  * @param route The {@link Route} to retrieve its {@link Route.path path} & {@link Route.games games}
+ *
+ * @canSetSelectedGames
  */
 function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
-    if (path.includes('/game-') && games.length !== 0 && !isArrayEquals(Games.selectedGames.toArray(), games,))
+    if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(games,))
         Games.setSelected(games)
     return null
 }

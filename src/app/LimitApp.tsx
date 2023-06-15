@@ -16,6 +16,7 @@ import Image                                        from 'app/tools/images/Image
 import TextComponent                                from 'app/tools/text/TextComponent'
 import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {newIterableIterator}                        from 'util/utilitiesMethods'
 
 export default class LimitApp
     extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, LimitAppProperties>
@@ -49,7 +50,7 @@ export default class LimitApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('limit.all')
+        return gameContentTranslation(`limit.${this.type.type}.all`)
     }
 
     protected override _createAsideContent(): ReactElementOrString {
@@ -58,8 +59,8 @@ export default class LimitApp
         return <div id="limit-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
             <LinkButton partialId="allLimit" routeName={viewDisplay.getRoutePath(type.allRouteName)} color={type.allColor}>{contentTranslation('All')}</LinkButton>
             <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
-                <LinkButton partialId="playLimit" routeName={viewDisplay.getRoutePath(type.playRouteName)} color={type.playColor}>{gameContentTranslation('limit.play.value')}</LinkButton>
-                <LinkButton partialId="editorLimit" routeName={viewDisplay.getRoutePath(type.editorRouteName)} color={type.editorColor}>{gameContentTranslation('limit.editor.value')}</LinkButton>
+                <LinkButton partialId="playLimit" routeName={viewDisplay.getRoutePath(type.playRouteName)} color={type.playColor}>{gameContentTranslation('limit.play.simple')}</LinkButton>
+                <LinkButton partialId="editorLimit" routeName={viewDisplay.getRoutePath(type.editorRouteName)} color={type.editorColor}>{gameContentTranslation('limit.editor.simple')}</LinkButton>
             </div>
         </div>
     }
@@ -70,7 +71,7 @@ export default class LimitApp
         return new class implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
 
             public get iterable() {
-                return $this.type.iterator
+                return newIterableIterator($this.props.games, $this.type.iterator,)
             }
 
             //region -------------------- List interpreter --------------------
@@ -117,16 +118,22 @@ export default class LimitApp
             }
 
             public get tableOptions(): readonly EntityLimitAppOption[] {
+                const games = $this.props.games,
+                    hasSMM1Or3DSGames = games.hasSMM1Or3DS,
+                    hasSMM2Games = games.hasSMM2
+
                 return [
                     EntityLimitAppOption.ACRONYM,
                     EntityLimitAppOption.NAME,
-                    EntityLimitAppOption.AMOUNT,
+                    hasSMM1Or3DSGames && hasSMM2Games ? EntityLimitAppOption.AMOUNT
+                        : hasSMM1Or3DSGames ? EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
+                            : EntityLimitAppOption.AMOUNT_IN_SMM2,
                 ]
             }
 
             public get tableProperties(): SimplifiedTableProperties {
                 return {
-                    caption: gameContentTranslation('limit.all'),
+                    caption: gameContentTranslation(`limit.${$this.type.type}.all`),
                 }
             }
 

@@ -1,7 +1,7 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment}                                                                from 'react'
-import {Link}                                                                    from 'react-router-dom'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import {Fragment}                                                                                   from 'react'
+import {Link}                                                                                       from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
@@ -15,7 +15,7 @@ import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import {Themes}                 from 'core/theme/Themes'
 import {ProjectLanguages}       from 'lang/ProjectLanguages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {route}                  from 'route/route'
+import {routeFromName}          from 'route/route'
 import {Import}                 from 'util/DynamicImporter'
 import {EMPTY_OBJECT}           from 'util/emptyVariables'
 import {getValueByEnglishName}  from 'util/utilitiesMethods'
@@ -60,7 +60,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
-                gameStyle: <Link key={`${this.englishName} (game style)`} to={route('everyGameStyle')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={routeFromName('everyGameStyle')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
             }
         }
 
@@ -109,11 +109,28 @@ export class NightEffects
     }('Characters in water',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: NightEffects
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<NightEffects, typeof NightEffects>> = class CompanionEnum_NightEffects
+        extends BasicCompanionEnum<NightEffects, typeof NightEffects> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_NightEffects
+
+        private constructor() {
+            super(NightEffects,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_NightEffects()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #englishName
@@ -145,7 +162,7 @@ export class NightEffects
     }
 
     protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
-        return <Link key={`${instance.englishName} (entities)`} to={route(routeName)} className="link-primary">{
+        return <Link key={`${instance.englishName} (entities)`} to={routeFromName(routeName)} className="link-primary">{
             ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName).toLowerCase()
         }</Link>
     }
@@ -172,21 +189,18 @@ export class NightEffects
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return NightEffects
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<NightEffects>,): NightEffects {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<NightEffects>,): NightEffects {
+        return NightEffects.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<NightEffects> {
-        return Enum.getValuesOn(this,)
+        return NightEffects.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<NightEffects> {
-        yield* this.values
+        yield* NightEffects.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

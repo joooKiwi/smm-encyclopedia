@@ -1,5 +1,5 @@
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                   from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                               from 'core/ClassWithEnglishName'
@@ -18,6 +18,7 @@ import {GameImageFileContainer} from 'core/game/file/GameImageFile.container'
 import {StringContainer}        from 'util/StringContainer'
 import {EMPTY_ARRAY}            from 'util/emptyVariables'
 import {GameCollection}         from 'util/collection/GameCollection'
+import {newIterator}            from 'util/utilitiesMethods'
 
 /**
  * @usedByTheRouting
@@ -56,11 +57,28 @@ export abstract class Games
     }('SMM2', '2', '2', 'Super Mario Maker 2', true,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Games
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Games, typeof Games>> = class CompanionEnum_Games
+        extends BasicCompanionEnum<Games, typeof Games> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Games
+
+        private constructor() {
+            super(Games,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Games()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Companion --------------------
 
     /**
@@ -93,7 +111,7 @@ export abstract class Games
         //endregion -------------------- Fields --------------------
 
         /**
-         * Get the {@link Games games} from an url found or null if there is none
+         * Get the {@link Games games} from an url found or an {@link EMPTY_ARRAY []} if there is none
          *
          * @param url The url to find the {@link Games games} (if they are found)
          * @throws {ReferenceError} A fail-safe error on {@link Games} that were not found
@@ -103,7 +121,7 @@ export abstract class Games
                 return EMPTY_ARRAY
 
             if (this.ALL_URL_REGEX.test(url))
-                return [...Games,]
+                return Games.values.toArray()
 
             const lowerCasedUrl = url.toLowerCase()
             if (this.SINGLE_URL_REGEX.test(url)) {
@@ -119,6 +137,143 @@ export abstract class Games
 
             throw new ReferenceError(`No "${Games.name}" was found by the url "${url}".`)
         }
+
+    }
+
+    /**
+     * A simple companion class to the {@link Games} but for the game possibilities (in stored {@link Array}).
+     *
+     * This class is mostly used in the {@link RoutesCreator} chain of operation.
+     */
+    public static readonly GamePossibilitiesCompanion = class Companion_GamePossibilities {
+
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: Companion_GamePossibilities
+
+        private constructor() {
+        }
+
+        public static get get() {
+            return Companion_GamePossibilities.#instance ??= new Companion_GamePossibilities()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+        //region -------------------- Fields --------------------
+
+        #everySingleFields?: readonly (readonly [Games,])[]
+        #everyDoubleFields?: readonly (readonly [Games, Games,])[]
+
+        //region -------------------- Array fields --------------------
+
+        //region -------------------- Non-redirection array fields --------------------
+
+        /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
+        public readonly SMM1_ONLY = [Games.SUPER_MARIO_MAKER_1,] as const
+        /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} */
+        public readonly SMM3DS_ONLY = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+        /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
+        public readonly SMM2_ONLY = [Games.SUPER_MARIO_MAKER_2,] as const
+        /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} */
+        public readonly SMM1_AND_3DS = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+        /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+        public readonly SMM1_AND_2 = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_2,] as const
+        /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2} */
+        public readonly SMM3DS_AND_2 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+        /**
+         * An array representing the games with every SMM games
+         * ({@link Games.SUPER_MARIO_MAKER_1 1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2})
+         */
+        public readonly ALL_GAMES = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
+        //endregion -------------------- Non-redirection array fields --------------------
+        //region -------------------- Redirection (x2) array fields --------------------
+
+        /**
+         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} (x2)
+         * @inRedirectionOnly
+         * @see SMM1_ONLY
+         */
+        public readonly SMM1_2X = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_1,] as const
+        /**
+         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} (x2)
+         * @inRedirectionOnly
+         * @see SMM3DS_ONLY
+         */
+        public readonly SMM3DS_2X = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+        /**
+         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} (x2)
+         * @inRedirectionOnly
+         * @see SMM2_ONLY
+         */
+        public readonly SMM2_2X = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_2,] as const
+
+        //endregion -------------------- Redirection (x2) array fields --------------------
+        //region -------------------- Redirection (reverse order) array fields --------------------
+
+        /**
+         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS},
+         * but in a reverse order
+         * @inRedirectionOnly
+         * @see SMM1_AND_3DS
+         */
+        public readonly SMM3DS_AND_1 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_1,] as const
+        /**
+         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2},
+         * but in a reverse order
+         * @inRedirectionOnly
+         * @see SMM1_AND_2
+         */
+        public readonly SMM2_AND_1 = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_1,] as const
+        /**
+         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2},
+         * but in a reverse order
+         * @inRedirectionOnly
+         * @see SMM3DS_AND_2
+         */
+        public readonly SMM2_AND_3DS = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
+
+        //endregion -------------------- Redirection (reverse order) array fields --------------------
+
+        //endregion -------------------- Array fields --------------------
+
+        //endregion -------------------- Fields --------------------
+        //region -------------------- Getter methods --------------------
+
+        /** Every single {@link Games} fields in the {@link Companion_GamePossibilities current instance} */
+        private get __everySingleGameFields(): readonly (readonly [Games,])[] {
+            return this.#everySingleFields ??= [this.SMM1_ONLY, this.SMM3DS_ONLY, this.SMM2_ONLY,]
+        }
+
+        /** Every double {@link Games} fields in the {@link Companion_GamePossibilities current instance} */
+        private get __everyDoubleGameFields(): readonly (readonly [Games, Games,])[] {
+            return this.#everyDoubleFields ??= [this.SMM1_AND_3DS, this.SMM1_AND_2, this.SMM3DS_AND_2,
+                this.SMM1_2X, this.SMM3DS_2X, this.SMM2_2X,
+                this.SMM3DS_AND_1, this.SMM2_AND_1, this.SMM2_AND_3DS,]
+        }
+
+        //endregion -------------------- Getter methods --------------------
+        //region -------------------- Methods --------------------
+
+        public getFromPath(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
+            if (path === 'game-all' || path === 'all')
+                return this.ALL_GAMES
+            const pathFiltered = path.replace('game-', '',) as GroupUrlValue,
+                gamesFound = pathFiltered.split(',',),
+                gamesFoundSize = gamesFound.length
+
+            const gameFound1 = Games.getValueByUrlValue(gamesFound[0],)
+            if (gamesFoundSize === 1)
+                return this.__everySingleGameFields.find(it => it[0] === gameFound1)!
+
+            const gameFound2 = Games.getValueByUrlValue(gamesFound[1],)
+            if (gamesFoundSize === 2)
+                return this.__everyDoubleGameFields.find(it => it[0] === gameFound1 && it[1] === gameFound2)!
+
+            throw new ReferenceError(`No games could be found using the path "${path}"`,)
+        }
+
+        //endregion -------------------- Methods --------------------
 
     }
 
@@ -193,12 +348,8 @@ export abstract class Games
     }
 
 
-    public static getUniqueSelected(path: | FullUrlValue | GroupUrlValue,): ReadonlySet<Games> {
-        return path === 'game-all' || path === 'all' ? this.values.toSet() : new Set(this.getSelected(path))
-    }
-
-    public static getSelected(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
-        return path === 'game-all' || path === 'all' ? this.values.toArray() : path.replace('game-', '',).split(',').map(it => this.getValueByUrlValue(it))
+    public static getFromPath(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
+        return Games.GamePossibilitiesCompanion.get.getFromPath(path,)
     }
 
     public static setSelected(games: readonly Games[],): typeof Games {
@@ -211,18 +362,18 @@ export abstract class Games
         const gamesFiltered = new Set(games)
         if (gamesFiltered.size === 3)
             return 'all'
-        return [...gamesFiltered,].map(it => it.urlValue).join(',') as GroupUrlValue
+        return Array.from(gamesFiltered, it => it.urlValue,).join(',') as GroupUrlValue
     }
 
     public static get selectedGames(): GameCollection {
-        return new GameCollection(this.values.filter(it => it.isSelected))
+        return new GameCollection(newIterator(this.values, it => it.isSelected,),)
     }
 
     public static get selectedGamesAsUrlValue(): FullValidUrlValue {
         const selectedGames = this.selectedGames
         return selectedGames.hasAllGames
             ? 'game-all'
-            : `game-${selectedGames.map(it => it.urlValue).join(',')}` as FullValidUrlValue
+            : `game-${selectedGames.join(',', '', '', null, null, it => it.urlValue,)}` as FullValidUrlValue
     }
 
 
@@ -253,9 +404,9 @@ export abstract class Games
         if (value instanceof this)
             return value
         const stringValue = `${value}`,
-            valueFound = this.values.find(enumerable => enumerable.englishName === value
-                || enumerable.acronym === value
-                || enumerable.simpleValue === stringValue)
+            valueFound = this.values.find(it => it.englishName === value
+                || it.acronym === value
+                || it.simpleValue === stringValue)
         if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
         return valueFound
@@ -264,20 +415,16 @@ export abstract class Games
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Games
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Games>,): Games {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Games>,): Games {
+        return Games.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Games> {
-        return Enum.getValuesOn(this,)
+        return Games.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Games> {
-        yield* this.values
+        yield* Games.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

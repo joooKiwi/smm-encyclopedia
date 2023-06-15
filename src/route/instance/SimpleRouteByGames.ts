@@ -5,14 +5,16 @@ import {AbstractRoute}  from 'route/instance/AbstractRoute'
 import {GameCollection} from 'util/collection/GameCollection'
 
 /** A simple route with only {@link Games games} */
-export class SimpleRouteByGames<NAME extends string, PATH extends string, GAMES extends readonly Games[] = readonly Games[], >
-    extends AbstractRoute<NAME, PATH, null, GAMES>
-    implements RouteByGames<NAME, PATH, GAMES> {
+export class SimpleRouteByGames<const SIMPLE_NAME extends string, const NAME extends string,
+    const PATH extends string,
+    const GAMES extends readonly Games[] = readonly Games[], >
+    extends AbstractRoute<SIMPLE_NAME, NAME, PATH, null, GAMES>
+    implements RouteByGames<SIMPLE_NAME, NAME, PATH, GAMES> {
 
     #games?: GameCollection<GAMES[number]>
 
-    public constructor(name: NAME, path: PATH, games: GAMES, renderCallback: RenderCallbackByGames<GameCollection<GAMES[number]>>,) {
-        super(name, path, null, games, () => renderCallback(this.gamesAsCollection),)
+    public constructor(simpleName: SIMPLE_NAME, name: NAME, path: PATH, games: GAMES, renderCallback: RenderCallbackByGames<GameCollection<GAMES[number]>>,) {
+        super(simpleName, name, path, null, games, () => renderCallback(this.gamesAsCollection),)
     }
 
     public get gamesAsCollection(): GameCollection<GAMES[number]> {

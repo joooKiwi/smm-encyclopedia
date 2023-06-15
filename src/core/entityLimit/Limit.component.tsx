@@ -9,16 +9,16 @@ import TextComponent      from 'app/tools/text/TextComponent'
 import Tooltip            from 'bootstrap/tooltip/Tooltip'
 import {StringContainer}  from 'util/StringContainer'
 
-type Id = `${| 'editor' | 'whilePlaying'}-${string}`
+type Id = `${| 'editor' | 'play'}-${string}`
 
 interface EditorLimitProperties
     extends ReactProperties {
 
-    id: Id
+    readonly id: Id
 
-    limits: | EntityLimits | ReadonlyMap<EntityLimits, boolean>
+    readonly limits: | EntityLimits | ReadonlyMap<EntityLimits, boolean>
 
-    displayAcronymIfApplicable: boolean
+    readonly displayAcronymIfApplicable: boolean
 
 }
 

@@ -1,48 +1,66 @@
-import type {BooleanCallback, CollectionHolder, MapCallback, MapIndexCallback, RestrainedBooleanCallback} from '@joookiwi/enumerable/dist/types'
-import {AbstractCollectionHolder, GenericCollectionHolder}                                                from '@joookiwi/enumerable'
+import type {CollectionHolder}                             from '@joookiwi/enumerable/dist/types'
+import {AbstractCollectionHolder, GenericCollectionHolder} from '@joookiwi/enumerable'
 
 import {Games} from 'core/game/Games'
 
-export class GameCollection<T extends Games = Games, >
+export class GameCollection<const T extends Games = Games, >
     extends AbstractCollectionHolder<T> {
+
+    #hasAllGames?: & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
+    #hasSMM1?: GameWithSMM1<T>
+    #hasSMM3DS?: GameWithSMM3DS<T>
+    #hasSMM1Or3DS?: & GameWithSMM1<T> & GameWithSMM3DS<T>
+    #hasSMM2?: GameWithSMM2<T>
 
     public constructor(iterable: Iterable<T>,) {
         super(iterable,)
     }
 
-    public override filter<S extends T, >(callback: RestrainedBooleanCallback<T, S>,): GameCollection<S>
-    public override filter(callback: BooleanCallback<T>,): GameCollection<T>
-    public override filter<S extends T, >(callback: | BooleanCallback<T> | RestrainedBooleanCallback<T, S>,) {
-        return new GameCollection(this._array.filter(callback,),)
+
+    override _new<const U, >(iterable: Iterable<U>,): CollectionHolder<U> {
+        return new GenericCollectionHolder(iterable,)
     }
 
 
-    public override map<U, >(callback: MapCallback<T, U>,): CollectionHolder<U> {
-        return new GenericCollectionHolder(this._array.map((value, index,) => callback(value, index,),),)
+    public override hasAll(...values: readonly unknown[]): boolean {
+        return super.hasAll(...values.flat(),)
     }
 
-    public override mapIndex<U, >(callback: MapIndexCallback<U>,): CollectionHolder<U> {
-        return new GenericCollectionHolder(this._array.map((_, index,) => callback(index,),),)
+    public override includesAll(...values: readonly unknown[]): boolean {
+        return super.includesAll(...values.flat(),);
+    }
+
+    public override containsAll(...values: readonly unknown[]): boolean {
+        return super.containsAll(...values.flat(),);
     }
 
 
+    /**
+     * The collection has every game ({@link Games.SUPER_MARIO_MAKER_1 SMM1},
+     * {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} & {@link Games.SUPER_MARIO_MAKER_2 SMM2}) type in its values
+     */
     public get hasAllGames(): & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T> {
-        return this.hasSMM1 && this.hasSMM3DS && this.hasSMM2
+        return this.#hasAllGames = super.hasAll(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,) as & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} type in its values */
     public get hasSMM1(): GameWithSMM1<T> {
-        return this.hasOne(Games.SUPER_MARIO_MAKER_1) as GameWithSMM1<T>
+        return this.#hasSMM1 ??= this.hasOne(Games.SUPER_MARIO_MAKER_1) as GameWithSMM1<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
     public get hasSMM3DS(): GameWithSMM3DS<T> {
-        return this.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS) as GameWithSMM3DS<T>
+        return this.#hasSMM3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS) as GameWithSMM3DS<T>
+    }
+
+    /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
+    public get hasSMM1Or3DS(): & GameWithSMM1<T> & GameWithSMM3DS<T> {
+        return this.#hasSMM1Or3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,) as & GameWithSMM1<T> & GameWithSMM3DS<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_2 SMM2} type in its values */
     public get hasSMM2(): GameWithSMM2<T> {
-        return this.hasOne(Games.SUPER_MARIO_MAKER_2) as GameWithSMM2<T>
+        return this.#hasSMM2 ??= this.hasOne(Games.SUPER_MARIO_MAKER_2) as GameWithSMM2<T>
     }
 
 }

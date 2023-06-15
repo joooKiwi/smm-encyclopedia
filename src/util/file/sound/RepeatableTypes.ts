@@ -1,5 +1,5 @@
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRepeatableName} from 'util/file/sound/RepeatableTypes.types'
 import type {Nullable}                                from 'util/types/nullable'
@@ -17,17 +17,35 @@ export abstract class RepeatableTypes
     public static readonly DURING_THE_PLAY = new class RepeatableTypes_DuringThePlay extends RepeatableTypes {}(false, 'repeatable (during the play)',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: RepeatableTypes
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<RepeatableTypes, typeof RepeatableTypes>> = class CompanionEnum_RepeatableTypes
+        extends BasicCompanionEnum<RepeatableTypes, typeof RepeatableTypes> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_RepeatableTypes
+
+        private constructor() {
+            super(RepeatableTypes,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_RepeatableTypes()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #doesLoopAtTheEnd
     readonly #simpleName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(doesLoopAtTheEnd: boolean, simpleName: PossibleRepeatableName,) {
         super()
@@ -35,6 +53,7 @@ export abstract class RepeatableTypes
         this.#simpleName = simpleName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get doesLoopAtTheEnd(): boolean {
@@ -68,20 +87,16 @@ export abstract class RepeatableTypes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return RepeatableTypes
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<RepeatableTypes>,): RepeatableTypes {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<RepeatableTypes>,): RepeatableTypes {
+        return RepeatableTypes.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<RepeatableTypes> {
-        return Enum.getValuesOn(this,)
+        return RepeatableTypes.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<RepeatableTypes> {
-        yield* this.values
+        yield* RepeatableTypes.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,6 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithValue}        from 'util/types/ClassWithValue'
 import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
@@ -8,11 +7,7 @@ import type {Nullable}              from 'util/types/nullable'
 import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
 import type {ReactElement}          from 'util/react/ReactProperties'
 
-//region -------------------- dynamic imports --------------------
-
-const SimpleSoundComponent = lazy(() => import('util/file/sound/component/SimpleSound.component'))
-
-//endregion -------------------- dynamic imports --------------------
+import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 
 /**
  * The possible sound as either
@@ -46,22 +41,41 @@ export abstract class Sounds
     }(false,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Sounds
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Sounds, typeof Sounds>> = class CompanionEnum_Sounds
+        extends BasicCompanionEnum<Sounds, typeof Sounds> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Sounds
+
+        private constructor() {
+            super(Sounds,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Sounds()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #value
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(value: boolean,) {
         super()
         this.#value = value
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): boolean {
@@ -89,20 +103,16 @@ export abstract class Sounds
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Sounds
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Sounds>,): Sounds {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Sounds>,): Sounds {
+        return Sounds.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Sounds> {
-        return Enum.getValuesOn(this,)
+        return Sounds.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Sounds> {
-        yield* this.values
+        yield* Sounds.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -3,6 +3,7 @@ import './DisplayView.scss'
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
 import UnfinishedText, {unfinishedText}                  from 'app/tools/text/UnfinishedText'
+import {Games}                                           from 'core/game/Games'
 import {OtherWordInTheGames}                             from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
@@ -16,9 +17,9 @@ const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWor
  * @reactComponent
  */
 export default function DisplayViewBody() {
-    const isSMM1Selected = true,
+    const isSMM1Selected = Games.SUPER_MARIO_MAKER_1.isSelected,
         // isSMM3DSSelected = true,
-        isSMM2Selected = true,
+        isSMM2Selected = Games.SUPER_MARIO_MAKER_2.isSelected,
         singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference,
         /*pluralTagName = TAG.pluralNameOnReference, */pluralTagLowerCaseName = TAG.pluralLowerCaseNameOnReference,
         singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName), singularMysteryMushroomLowerCaseName = singularMysteryMushroomName.toLowerCase(),
@@ -53,13 +54,13 @@ export default function DisplayViewBody() {
             </div>
             <div key="button group (limit)" id="limit-buttonGroup" className="btn-group-vertical col-6" role="group">
                 <DisplayViewRouteButton routeName="everyLimit" value={gameContentTranslation('limit.singular')}
-                                        tooltipValue={gameContentTranslation('limit.display all')}
+                                        tooltipValue={gameContentTranslation('limit.all.display all')}
                                         elementId="displayView-limit-button"/>
                 <div key="button group (specific limit in group)" id="specificLimitInGroup-buttonGroup" className="btn-group" role="group">
-                    <DisplayViewRouteButton routeName="playLimit" value={gameContentTranslation('limit.play.value')}
+                    <DisplayViewRouteButton routeName="playLimit" value={gameContentTranslation('limit.play.simple')}
                                             tooltipValue={gameContentTranslation('limit.play.display all')}
                                             elementId="displayView-playLimit-button"/>
-                    <DisplayViewRouteButton routeName="editorLimit" value={gameContentTranslation('limit.editor.value')}
+                    <DisplayViewRouteButton routeName="editorLimit" value={gameContentTranslation('limit.editor.simple')}
                                             tooltipValue={gameContentTranslation('limit.editor.display all')}
                                             elementId="displayView-editorLimit-button"/>
                 </div>

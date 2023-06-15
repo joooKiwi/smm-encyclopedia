@@ -1,6 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {lazy}                                                                    from 'react'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithValue}  from 'util/types/ClassWithValue'
 import type {ImageProperties} from 'app/tools/images/properties/ImageProperties'
@@ -8,11 +7,7 @@ import type {Names, Ordinals} from 'app/options/global/Images.types'
 import type {Nullable}        from 'util/types/nullable'
 import type {ReactElement}    from 'util/react/ReactProperties'
 
-//region -------------------- dynamic imports --------------------
-
-const Image = lazy(() => import('app/tools/images/Image'))
-
-//endregion -------------------- dynamic imports --------------------
+import Image from 'app/tools/images/Image'
 
 /**
  * The possible image as either
@@ -30,7 +25,7 @@ export abstract class Images
 
     public static readonly YES = new class Images_Yes extends Images {
 
-        public override renderComponent(properties: _ImageProperties,) {
+        public override renderComponent(properties: ImageProperties,) {
             return <Image {...properties}/>
         }
 
@@ -44,22 +39,41 @@ export abstract class Images
     }(false,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Images
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Images, typeof Images>> = class CompanionEnum_Images
+        extends BasicCompanionEnum<Images, typeof Images> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Images
+
+        private constructor() {
+            super(Images,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Images()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #value
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(value: boolean,) {
         super()
         this.#value = value
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): boolean {
@@ -69,7 +83,7 @@ export abstract class Images
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract renderComponent(properties: _ImageProperties,): ReactElement
+    public abstract renderComponent(properties: ImageProperties,): ReactElement
 
 
     // public static getValueByValue<T, >(value: T,): ImagesByValue<T>
@@ -87,29 +101,18 @@ export abstract class Images
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Images
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Images>,): Images {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Images>,): Images {
+        return Images.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Images> {
-        return Enum.getValuesOn(this,)
+        return Images.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Images> {
-        yield* this.values
+        yield* Images.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------
-
-}
-
-interface _ImageProperties
-    extends Omit<ImageProperties, 'ref'> {
-
-    ref?: Exclude<ImageProperties['ref'], string>
 
 }

@@ -1,4 +1,4 @@
-import type {Enum} from '@joookiwi/enumerable/dist/types'
+import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 
 import type {SingleHeaderContent, SingleHeadersContent} from 'app/tools/table/SimpleHeader'
 import type {ClassWithEnglishName}                      from 'core/ClassWithEnglishName'
@@ -43,6 +43,11 @@ export class CommonOptions {
     #gameHeaderWithMainGames?: SingleHeaderContent
     #mainGames?: readonly [SingleHeaderContent, SingleHeaderContent,]
     #categoryHeader?: SingleHeaderContent
+
+    #limitHeader?: SingleHeaderContent
+    #playLimitHeader?: SingleHeaderContent
+    #editorLimitHeader?: SingleHeaderContent
+    #limitWithSubHeaders?: SingleHeaderContent
 
     //endregion -------------------- Fields --------------------
 
@@ -130,8 +135,34 @@ export class CommonOptions {
         </div>
     }
 
+
+    public get limitHeader(): SingleHeaderContent {
+        return this.#limitHeader ??= {key: 'limit', element: gameContentTranslation('limit.singular'),}
+    }
+
+    public getLimitHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
+        return {key: 'limit', element: gameContentTranslation('limit.singular'), subHeaders: subHeaders,}
+    }
+
+    public get playLimitHeader(): SingleHeaderContent {
+        return this.#playLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.simple'), tooltip: gameContentTranslation('limit.play.tooltip'),}
+    }
+
+    public getPlayLimitHeader(...subHeaders: SingleHeadersContent) {
+        return {key: 'limit-play', element: gameContentTranslation('limit.play.simple'), tooltip: gameContentTranslation('limit.play.tooltip'), subHeaders: subHeaders,}
+    }
+
+    public get editorLimitHeader(): SingleHeaderContent {
+        return this.#editorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.simple'), tooltip: gameContentTranslation('limit.editor.tooltip'),}
+    }
+
+    public get limitWithSubHeaders(): SingleHeaderContent {
+        return this.#limitWithSubHeaders ??= this.getLimitHeader(this.editorLimitHeader, this.playLimitHeader,)
+    }
+
+
 }
 
-type EnumerationWithReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<Name<string>>
-type EnumerationWithCategoryReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<NameTraitFromACategory<string, NameTrait<string>>>
-type EnumerationWithInSuperMarioMakerGameReference = Enum<any, any> & ClassWithEnglishName<string> & ClassWithReference<ClassInAnySuperMarioMakerGame>
+type EnumerationWithReference = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<Name<string>>
+type EnumerationWithCategoryReference = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<NameTraitFromACategory<string, NameTrait<string>>>
+type EnumerationWithInSuperMarioMakerGameReference = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<ClassInAnySuperMarioMakerGame>

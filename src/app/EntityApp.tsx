@@ -1,6 +1,7 @@
 import './EntityApp.scss'
 import './options/EntityAppOption.scss'
 
+import type {EntityProperties}                                     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
@@ -10,10 +11,19 @@ import {EntityAppOption}         from 'app/options/EntityAppOption'
 import {AbstractTableApp}        from 'app/withInterpreter/AbstractTableApp'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {Entities}                from 'core/entity/Entities'
+import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
+import {unfinishedText}          from 'app/tools/text/UnfinishedText'
+import {newIterableIterator}     from 'util/utilitiesMethods'
+
+//region -------------------- Deconstruction imports --------------------
+
+const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Deconstruction imports --------------------
 
 export default class EntityApp
-    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>> {
+    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, EntityProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -36,14 +46,17 @@ export default class EntityApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('entity.all')
+        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
+        return gameContentTranslation('entity.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
+        const $this = this
+
         return new class implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
             public get iterable() {
-                return Entities[Symbol.iterator]()
+                return newIterableIterator($this.props.games, Entities[Symbol.iterator](),)
             }
 
             //region -------------------- List interpreter --------------------
@@ -80,6 +93,10 @@ export default class EntityApp
             }
 
             public get tableOptions(): readonly EntityAppOption[] {
+                const games = $this.props.games,
+                    hasSMM1Or3DSGames = games.hasSMM1Or3DS,
+                    hasSMM2Games = games.hasSMM2
+
                 return [
                     EntityAppOption.IMAGES,
                     EntityAppOption.NAME,
@@ -88,13 +105,16 @@ export default class EntityApp
                     // EntityAppOption.COURSE_THEME,
                     // EntityAppOption.TIME,
                     EntityAppOption.CATEGORY,
-                    EntityAppOption.LIMIT,
+                    hasSMM1Or3DSGames && hasSMM2Games ? EntityAppOption.LIMIT
+                        : hasSMM1Or3DSGames ? EntityAppOption.LIMIT_IN_SMM1_AND_3DS
+                            : EntityAppOption.LIMIT_IN_SMM2,
                 ]
             }
 
             public get tableProperties(): SimplifiedTableProperties {
+                const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
                 return {
-                    caption: gameContentTranslation('entity.all'),
+                    caption: gameContentTranslation('entity.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},),
                 }
             }
 

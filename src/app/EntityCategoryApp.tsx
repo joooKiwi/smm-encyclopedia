@@ -8,7 +8,15 @@ import type {ReactElementOrString}                                 from 'util/re
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {EntityCategories}       from 'core/entityCategory/EntityCategories'
+import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
+
+//region -------------------- Deconstruction imports --------------------
+
+const {ENTITY,} = OtherWordInTheGames
+
+//endregion -------------------- Deconstruction imports --------------------
 
 export default class EntityCategoryApp
     extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
@@ -30,7 +38,8 @@ export default class EntityCategoryApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('entity category.all')
+        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
+        return gameContentTranslation('entity category.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {

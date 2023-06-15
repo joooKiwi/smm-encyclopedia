@@ -3,19 +3,11 @@ import type {GroupValidUrlValue as PossibleValidGroupUrlValue_Game} from 'core/g
 import type {PossibleUrlValue as PossibleUrl_ViewDisplay}           from 'app/withInterpreter/ViewDisplays.types'
 
 import {ViewDisplays}              from 'app/withInterpreter/ViewDisplays'
-import {Games}                     from 'core/game/Games'
-import {SimpleRoute}               from 'route/instance/SimpleRoute'
 import {RoutesAsAnyGameCreator}    from 'route/creator/RoutesAsAnyGame.creator'
 import {RoutesAsCardListCreator}   from 'route/creator/RoutesAsCardList.creator'
 import {RoutesAsSimpleListCreator} from 'route/creator/RoutesAsSimpleList.creator'
 import {RoutesAsTableCreator}      from 'route/creator/RoutesAsTable.creator'
 import {assert}                    from 'util/utilitiesMethods'
-
-//region -------------------- Import from deconstruction --------------------
-
-const {SUPER_MARIO_MAKER_1: SMM1, SUPER_MARIO_MAKER_FOR_NINTENDO_3DS: SMM3DS, SUPER_MARIO_MAKER_2: SMM2,} = Games
-
-//endregion -------------------- Import from deconstruction --------------------
 
 /**
  * The first chain of the {@link Route} creation.
@@ -28,17 +20,9 @@ const {SUPER_MARIO_MAKER_1: SMM1, SUPER_MARIO_MAKER_FOR_NINTENDO_3DS: SMM3DS, SU
  * @chainOfResponsibility
  * @startingChain
  */
-export class RoutesCreator<NAME extends string, PATH extends string, > {
+export class RoutesCreator<const NAME extends string, const PATH extends string, > {
 
     //region -------------------- Fields --------------------
-
-    public static readonly SMM1_ONLY_GAMES = [SMM1,] as const
-    public static readonly SMM3DS_ONLY_GAMES = [SMM3DS,] as const
-    public static readonly SMM2_ONLY_GAMES = [SMM2,] as const
-    public static readonly SMM1_AND_SMM3DS_GAMES = [SMM1, SMM3DS,] as const
-    public static readonly SMM1_AND_SMM2_GAMES = [SMM1, SMM2,] as const
-    public static readonly SMM3DS_AND_SMM2_GAMES = [SMM3DS, SMM2,] as const
-    public static readonly ALL_GAMES = [SMM1, SMM3DS, SMM2,] as const
 
     public static readonly DEFAULT_GAME_PATH = '2'
 
@@ -135,16 +119,6 @@ export class RoutesCreator<NAME extends string, PATH extends string, > {
      */
     public asAnyGame(defaultRoutePath?: PossibleValidGroupUrlValue_Game,): RoutesAsAnyGameCreator<NAME, PATH> {
         return new RoutesAsAnyGameCreator(this, defaultRoutePath,)
-    }
-
-
-    /**
-     * Create a single route encapsulated in an {@link Array}
-     *
-     * @param renderCallback The callback to render the selected application
-     */
-    public create(renderCallback: () => JSX.Element,): readonly [Route<NAME, PATH>,] {
-        return [new SimpleRoute(this.name, this.path, renderCallback,),]
     }
 
     //endregion -------------------- Methods --------------------

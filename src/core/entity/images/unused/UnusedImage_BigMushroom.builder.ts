@@ -36,12 +36,15 @@ export class UnusedImage_BigMushroomBuilder
     public setImage(identifier: ImageIdentifier, amount: PossibleAmountOfImages,): this
     public setImage(identifier: ImageIdentifier,): this
     public setImage(identifier: ImageIdentifier, amount_or_images?: | PossibleAmountOfImages | readonly ImageNumber[],): this {
-        if (amount_or_images == null)
+        if (amount_or_images == null) {
             this.#identifierMap.set(identifier, null,)
-        else if (typeof amount_or_images == 'number')
-            this.#identifierMap.set(identifier, [...new Array(amount_or_images)].map((_, index,) => index as ImageNumber),)
-        else
-            this.#identifierMap.set(identifier, amount_or_images,)
+            return this
+        }
+        if (typeof amount_or_images == 'number') {
+            this.#identifierMap.set(identifier, Array.from({length: amount_or_images,}, (_, index,) => index as ImageNumber,),)
+            return this
+        }
+        this.#identifierMap.set(identifier, amount_or_images,)
         return this
     }
 

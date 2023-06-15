@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/MiiCostumeAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -93,11 +93,28 @@ export abstract class MiiCostumeAppOption
     public static readonly CATEGORY_AS_TEXT =      new class MiiCostumeAppOption_CategoryAsText extends MiiCostumeAppOption {}()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: MiiCostumeAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<MiiCostumeAppOption, typeof MiiCostumeAppOption>> = class CompanionEnum_MiiCostumeAppOption
+        extends BasicCompanionEnum<MiiCostumeAppOption, typeof MiiCostumeAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_MiiCostumeAppOption
+
+        private constructor() {
+            super(MiiCostumeAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_MiiCostumeAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -111,11 +128,13 @@ export abstract class MiiCostumeAppOption
     #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -164,21 +183,18 @@ export abstract class MiiCostumeAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return MiiCostumeAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<MiiCostumeAppOption>,): MiiCostumeAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<MiiCostumeAppOption>,): MiiCostumeAppOption {
+        return MiiCostumeAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<MiiCostumeAppOption> {
-        return Enum.getValuesOn(this,)
+        return MiiCostumeAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<MiiCostumeAppOption> {
-        yield* this.values
+        yield* MiiCostumeAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------
+
 }

@@ -1,17 +1,17 @@
 import type {ClearConditionImageFile} from 'core/entity/file/ClearConditionImageFile'
 import type {EditorImageFile}         from 'core/entity/file/EditorImageFile'
 import type {EntityImageFile}         from 'core/entity/file/EntityImageFile'
-import type {InGameSMM1ImageFile}     from 'core/entity/file/InGameSMM1ImageFile'
+import type {InGameImageFile}         from 'core/entity/file/InGameImageFile'
 import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {EditorImage}             from 'core/entity/images/editor/EditorImage'
-import type {InGameImage_SMM1}        from 'core/entity/images/inGame/InGameImage_SMM1'
+import type {InGameImage}             from 'core/entity/images/inGame/InGameImage'
 import type {UniqueImage}             from 'core/entity/images/unique/UniqueImage'
 import type {Builder}                 from 'util/builder/Builder'
 import type {Nullable, NullOr}        from 'util/types/nullable'
 
 import {ClearConditionImageFactory} from 'core/entity/images/clearCondition/ClearConditionImage.factory'
 import {EditorImageFactory}         from 'core/entity/images/editor/EditorImage.factory'
-import {InGameImage_SMM1Factory}    from 'core/entity/images/inGame/InGameImage_SMM1.factory'
+import {InGameImageFactory}         from 'core/entity/images/inGame/InGameImage.factory'
 import {UniqueImageContainer}       from 'core/entity/images/unique/UniqueImage.container'
 import {GameStyles}                 from 'core/gameStyle/GameStyles'
 import {Themes}                     from 'core/theme/Themes'
@@ -33,7 +33,7 @@ export class UniqueImageBuilder
 
     #editorImage?: EditorImage
     #clearConditionImage?: ClearConditionImage
-    #whilePlayingImage?: InGameImage_SMM1
+    #inGameImage?: InGameImage
 
     #referenceType?: NullOr<ReferenceType>
 
@@ -52,8 +52,8 @@ export class UniqueImageBuilder
         return this.#clearConditionImage ?? null
     }
 
-    private get __whilePlayingImage(): NullOr<InGameImage_SMM1> {
-        return this.#whilePlayingImage ?? null
+    private get __inGameImage(): NullOr<InGameImage> {
+        return this.#inGameImage ?? null
     }
 
 
@@ -100,8 +100,8 @@ export class UniqueImageBuilder
         return this
     }
 
-    public setWhilePlaying(image: InGameImage_SMM1,): this {
-        this.#whilePlayingImage = image
+    public setWhilePlaying(image: InGameImage,): this {
+        this.#inGameImage = image
         return this
     }
 
@@ -119,8 +119,8 @@ export class UniqueImageBuilder
         return this.__forceType('clear condition')
     }
 
-    public forceWhilePlaying(): this {
-        return this.__forceType('while playing')
+    public forcePlay(): this {
+        return this.__forceType('play')
     }
 
 
@@ -274,28 +274,28 @@ export class UniqueImageBuilder
         )
     }
 
-    #createWhilePlayingImageMap(image: InGameImage_SMM1,): ReadonlyMap<GameStyles, readonly InGameSMM1ImageFile[]> {
+    #createInGameImageMap(image: InGameImage,): ReadonlyMap<GameStyles, readonly InGameImageFile[]> {
         return new Map(
             this._gameStyles.map(gameStyle => [gameStyle, image.get(false, gameStyle, GROUND,),] as const)
                 .filter(([, images,]) => images.length !== 0)
         )
     }
 
-    #createMap(editorImage: Nullable<EditorImage>, clearConditionImage: Nullable<ClearConditionImage>, whilePlayingImage: Nullable<InGameImage_SMM1>,): ReadonlyMap<GameStyles, readonly EntityImageFile[]> {
+    #createMap(editorImage: Nullable<EditorImage>, clearConditionImage: Nullable<ClearConditionImage>, inGameImage: Nullable<InGameImage>,): ReadonlyMap<GameStyles, readonly EntityImageFile[]> {
         const type = this.__referenceType
 
-        if (type === 'editor' || (editorImage != null && clearConditionImage == null && whilePlayingImage == null)) {
+        if (type === 'editor' || (editorImage != null && clearConditionImage == null && inGameImage == null)) {
             assert(editorImage != null, 'The editor image cannot be null when being forced.',)
             return this.#createEditorImageMap(editorImage)
-        } else if (type === 'clear condition' || (editorImage == null && clearConditionImage != null && whilePlayingImage == null)) {
+        } else if (type === 'clear condition' || (editorImage == null && clearConditionImage != null && inGameImage == null)) {
             assert(clearConditionImage != null, 'The "clear condition" image cannot be null when being forced.',)
             return this.#createClearConditionImageMap(clearConditionImage)
-        } else if (type === 'while playing' || (editorImage == null && clearConditionImage == null && whilePlayingImage != null)) {
-            assert(whilePlayingImage != null, 'The "while playing" image cannot be null when being forced.',)
-            return this.#createWhilePlayingImageMap(whilePlayingImage)
+        } else if (type === 'play' || (editorImage == null && clearConditionImage == null && inGameImage != null)) {
+            assert(inGameImage != null, 'The "in game" image cannot be null when being forced.',)
+            return this.#createInGameImageMap(inGameImage)
         }
 
-        assert(true, `More than one image is being set, the builder cannot determine between (${editorImage == null ? '' : 'editor,'}${clearConditionImage == null ? '' : 'clear condition,'}${whilePlayingImage == null ? '' : 'while playing,'})`,)
+        assert(true, `More than one image is being set, the builder cannot determine between (${editorImage == null ? '' : 'editor,'}${clearConditionImage == null ? '' : 'clear condition,'}${inGameImage == null ? '' : 'in game,'})`,)
         return EMPTY_MAP
     }
 
@@ -304,17 +304,17 @@ export class UniqueImageBuilder
     public build(): UniqueImage {
         const editorImage = this.__editorImage
         const clearConditionImage = this.__clearConditionImage
-        const whilePlayingImage = this.__whilePlayingImage
-        const map = this.#createMap(editorImage, clearConditionImage, whilePlayingImage,)
+        const inGameImage = this.__inGameImage
+        const map = this.#createMap(editorImage, clearConditionImage, inGameImage,)
 
         return new UniqueImageContainer(
             editorImage ?? EditorImageFactory.EMPTY_EDITOR_IMAGE,
             clearConditionImage ?? ClearConditionImageFactory.EMPTY_CLEAR_CONDITION_IMAGE,
-            whilePlayingImage ?? InGameImage_SMM1Factory.EMPTY_IN_GAME_IMAGE,
+            inGameImage ?? InGameImageFactory.EMPTY_IN_GAME_IMAGE,
             map.size === 0 ? EMPTY_MAP : map,
         )
     }
 
 }
 
-type ReferenceType = | 'editor' | 'clear condition' | 'while playing'
+type ReferenceType = | 'editor' | 'clear condition' | 'play'

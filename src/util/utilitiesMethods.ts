@@ -1,8 +1,12 @@
-import type {BasicEnumerableConstructor, CollectionHolder, Enumerable} from '@joookiwi/enumerable/dist/types'
-import {AssertionError}                                                from 'assert'
+import type {CollectionHolder, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable/dist/types'
+import {EnumHelper}                                               from '@joookiwi/enumerable'
+import {AssertionError}                                           from 'assert'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
 import type {ClassWithType}        from 'core/ClassWithType'
+import type {ClassWithReference}   from 'core/ClassWithReference'
+import type {GameProperty}         from 'core/entity/properties/game/GameProperty'
+import type {GameCollection}       from 'util/collection/GameCollection'
 import type {Nullable}             from 'util/types/nullable'
 import type {EmptyString}          from 'util/types/variables'
 
@@ -39,30 +43,75 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
 }
 
 /**
- * Convert the mutable {@link Array} to a non-null mutable {@link Array}
+ * Create a new {@link Iterator} based on a {@link CollectionHolder} and a condition
  *
- * @param mutableArray The mutable array to remove its <b>null</b> values
+ * @param collection The collection to loop over
+ * @param condition A callback that will only yield the value if met
  */
-export function nonNull<T, >(mutableArray: T[],): NonNullable<T>[]
+export function newIterator<const T, >(collection: CollectionHolder<T>, condition: (value: T,) => boolean): Iterable<T> {
+    const size = collection.size
+    return {
+        * [Symbol.iterator]() {
+            let index = -1
+            while (++index < size) {
+                const value = collection[index]!
+                if (condition(value))
+                    yield value
+            }
+        }
+    }
+}
+
+/**
+ * Create a new {@link IterableIterator} for the type specified that are in the {@link Games} in the {@link games collection}
+ *
+ * @param games The {@link GameCollection collection} of game to get if they can be used
+ * @param iterator The {@link IterableIterator} to loop over and retrieve them in the {@link Games.get}
+ */
+export function* newIterableIterator<const T extends ClassWithReference<GameProperty>, >(games: GameCollection, iterator: IterableIterator<T>,): IterableIterator<T> {
+    const gameSize = games.size
+
+    let value = iterator.next() as IteratorResult<T, T>
+    while (!value.done) {
+        let gameIndex = -1
+        while (++gameIndex < gameSize)
+            if (games[gameIndex]!.get(value.value.reference,)) {
+                yield value.value
+                break
+            }
+        value = iterator.next()
+    }
+}
+
+/**
+ * Reverse the array fields
+ *
+ * @param array The array reference to reverse
+ * @returns A new reversed array
+ */
+export function reverse<const T, >(array: readonly T[],): T[] {
+    return Array.from({
+        * [Symbol.iterator]() {
+            let index = array.length
+            while (--index >= 0)
+                yield array[index]
+        },
+    },)
+}
+
 /**
  * Convert the {@link Array} to a non-null {@link Array}
  *
  * @param array The array to remove its <b>null</b> values
  */
-export function nonNull<T, >(array: readonly T[],): readonly NonNullable<T>[]
-/**
- * Convert the mutable {@link Set} to a non-null mutable {@link Set}
- *
- * @param mutableset The mutable set to remove its <b>null</b> values
- */
-export function nonNull<T, >(mutableSet: Set<T>,): Set<NonNullable<T>>
+export function nonNull<const T, >(array: readonly T[],): NonNullable<T>[]
 /**
  * Convert the {@link Set} to a non-null {@link Set}
  *
  * @param set The set to remove its <b>null</b> values
  */
-export function nonNull<T, >(set: ReadonlySet<T>,): ReadonlySet<NonNullable<T>>
-export function nonNull<T, >(setOrArray: ReadonlySet<T> | readonly T[],): | ReadonlySet<NonNullable<T>> | readonly T[] {
+export function nonNull<const T, >(set: ReadonlySet<T>,): Set<NonNullable<T>>
+export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): | Set<NonNullable<T>> | NonNullable<T>[] {
     if (setOrArray instanceof Array)
         return setOrArray.filter((it): it is NonNullable<T> => it != null)
 
@@ -92,23 +141,27 @@ export function assert(condition: boolean, message: string,): asserts condition 
 
 //region -------------------- get value by … --------------------
 
-export function getValueByEnglishName<T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
+function getValues<const T extends Enumerable, >(enumerableConstructor: Nullable<EnumerableConstructor<T, any>>,): CollectionHolder<T> {
+    return EnumHelper.getCompanion(enumerableConstructor).values
+}
+
+export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null name.`)
     if (value instanceof enumerableConstructor)
         return value as T
-    const valueFound = (enumerableConstructor.values as CollectionHolder<T>).find(it => it.englishName === value)
+    const valueFound = getValues(enumerableConstructor).find(it => it.englishName === value)
     if (valueFound == null)
         throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
     return valueFound
 }
 
-export function getValueByType<T extends EnumerableWithType, >(value: Nullable<| T | string>, enumerableConstructor: BasicEnumerableConstructor<any, any, T>,): T {
+export function getValueByType<const T extends EnumerableWithType, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null type.`)
     if (value instanceof enumerableConstructor)
         return value as T
-    const valueFound = (enumerableConstructor.values as CollectionHolder<T>).find(it => it.type === value)
+    const valueFound = getValues(enumerableConstructor).find(it => it.type === value)
     if (valueFound == null)
         throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
     return valueFound

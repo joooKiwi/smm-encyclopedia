@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/CourseTagTypes.types'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
@@ -9,6 +9,9 @@ import type {Nullable, NullOr}                                 from 'util/types/
 import {CourseTags}     from 'core/courseTag/CourseTags'
 import {getValueByType} from 'util/utilitiesMethods'
 
+/**
+ * @usedByTheRouting
+ */
 export abstract class CourseTagTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {
@@ -101,11 +104,28 @@ export abstract class CourseTagTypes
     }('makerCentral', 'makerCentralCourseTag',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: CourseTagTypes
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<CourseTagTypes, typeof CourseTagTypes>> = class CompanionEnum_CourseTagTypes
+        extends BasicCompanionEnum<CourseTagTypes, typeof CourseTagTypes> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_CourseTagTypes
+
+        private constructor() {
+            super(CourseTagTypes,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_CourseTagTypes()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #type
@@ -198,20 +218,16 @@ export abstract class CourseTagTypes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return CourseTagTypes
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<CourseTagTypes>,): CourseTagTypes {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<CourseTagTypes>,): CourseTagTypes {
+        return CourseTagTypes.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<CourseTagTypes> {
-        return Enum.getValuesOn(this,)
+        return CourseTagTypes.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<CourseTagTypes> {
-        yield* this.values
+        yield* CourseTagTypes.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

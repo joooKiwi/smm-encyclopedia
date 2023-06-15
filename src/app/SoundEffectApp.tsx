@@ -1,5 +1,6 @@
 import './SoundEffectApp.scss'
 
+import type {SoundEffectProperties}                                from 'app/AppProperties.types'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
@@ -9,9 +10,10 @@ import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+import {newIterableIterator}    from 'util/utilitiesMethods'
 
 export default class SoundEffectApp
-    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>> {
+    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -38,10 +40,12 @@ export default class SoundEffectApp
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
+        const $this = this
+
         return new class implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
             public get iterable() {
-                return SoundEffects[Symbol.iterator]()
+                return newIterableIterator($this.props.games, SoundEffects[Symbol.iterator](),)
             }
 
             //region -------------------- List interpreter --------------------

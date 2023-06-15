@@ -32,23 +32,24 @@
     "singular": "Limite",
     "plural":   "Limites",
 
+    "all": {
+      "all":         "Toutes les limites",
+      "display all": "Afficher toutes les limites"
+    },
     "editor": {
-      "value": "Dans l'éditeur",
-      "limit": "Limite dans l'éditeur",
+      "simple":  "Éditeur",
+      "tooltip": "Limite dans l'éditeur",
 
       "all":         "Toutes les limites dans l'éditeur",
       "display all": "Afficher toutes les limites dans l'éditeur"
     },
     "play": {
-      "value": "En jouant",
-      "limit": "Limite en jouant",
+      "simple":  "En jouant",
+      "tooltip": "Limite en jouant",
 
       "all":         "Toutes les limites en jouant",
       "display all": "Afficher toutes les limites en jouant"
-    },
-
-    "all":         "Toutes les limites",
-    "display all": "Afficher toutes les limites"
+    }
   },
   "theme": {
     "singular": "Décor",

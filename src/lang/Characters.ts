@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, Braces, Brackets, Numbers, Parentheses, Points, RomainAlphabet, Slashes, Letters_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleBraces_Array, PossibleBrackets_Array, PossibleLowercaseRomainAlphabet_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoints_Array, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSlashes_Array, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleUppercaseRomainAlphabet_Array, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean, VariableValueByBoolean} from 'lang/Characters.types'
 
@@ -67,11 +67,28 @@ export class Characters
     public static readonly NUMBER_9 =             new Characters('9',  '９',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Characters
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Characters, typeof Characters>> = class CompanionEnum_Characters
+        extends BasicCompanionEnum<Characters, typeof Characters> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Characters
+
+        private constructor() {
+            super(Characters,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Characters()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static readonly #POINTS: Points = [this.POINT, this.INTERROGATION_POINT, this.EXCLAMATION_POINT, this.COLON, this.SEMICOLON,]
@@ -133,6 +150,7 @@ export class Characters
     readonly #spaceUnevenCharacters: PossibleSpaceUnevenCharacters
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(spaceUnevenCharacter: PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, spaceEvenCharacter: PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet,)
     private constructor(spaceUnevenCharacters: PossibleMixedSpaceUnevenCharacter_RomainAlphabet, spaceEvenCharacters: PossibleMixedSpaceEvenCharacter_RomainAlphabet,)
@@ -147,6 +165,7 @@ export class Characters
         }
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get spaceEvenCharacters(): PossibleSpaceEvenCharacters {
@@ -405,20 +424,16 @@ export class Characters
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Characters
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Characters>,): Characters {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Characters>,): Characters {
+        return Characters.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Characters> {
-        return Enum.getValuesOn(this,)
+        return Characters.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Characters> {
-        yield* this.values
+        yield* Characters.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

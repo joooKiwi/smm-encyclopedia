@@ -7,6 +7,7 @@ import {RoutesAsSimpleListAndSMM2Creator} from 'route/creator/RoutesAsSimpleList
 import {RoutesCreator}                    from 'route/creator/Routes.creator'
 import {SimpleRedirectRoute}              from 'route/instance/SimpleRedirectRoute'
 import {SimpleRouteByViewDisplay}         from 'route/instance/SimpleRouteByViewDisplay'
+import {EMPTY_ARRAY}                      from 'util/emptyVariables'
 
 /**
  * Set a route to be applicable to a "{@link ViewDisplays.SIMPLE_LIST simple list}" in its url
@@ -15,7 +16,7 @@ import {SimpleRouteByViewDisplay}         from 'route/instance/SimpleRouteByView
  * @intermediateChain
  * @see RoutesAsSimpleListAndSMM2Creator
  */
-export class RoutesAsSimpleListCreator<PARENT_NAME extends string, PARENT_PATH extends string, > {
+export class RoutesAsSimpleListCreator<const PARENT_NAME extends string, const PARENT_PATH extends string, > {
 
     //region -------------------- Fields --------------------
 
@@ -59,13 +60,15 @@ export class RoutesAsSimpleListCreator<PARENT_NAME extends string, PARENT_PATH e
      *
      * @param renderCallback The callback to render the element with a {@link ViewDisplays}
      */
-    public create(renderCallback: RenderCallbackByViewDisplay,): readonly [RedirectRoute<PARENT_NAME, PARENT_PATH, SimpleListRoutePath<PARENT_PATH>>, RouteByViewDisplay<SimpleListRouteName<PARENT_NAME>, SimpleListRoutePath<PARENT_PATH>>,] {
+    public create(renderCallback: RenderCallbackByViewDisplay,): readonly [
+        redirection: RedirectRoute<PARENT_NAME, PARENT_NAME, PARENT_PATH, SimpleListRoutePath<PARENT_PATH>>,
+        simpleList: RouteByViewDisplay<PARENT_NAME, SimpleListRouteName<PARENT_NAME>, SimpleListRoutePath<PARENT_PATH>>,] {
         const {name, path,} = this.parentRoute,
             finalPath = `/${RoutesCreator.getUrlAsSimpleList(this.defaultViewDisplay)}${path}` as const
 
         return [
-            new SimpleRedirectRoute(name, path, finalPath,),
-            new SimpleRouteByViewDisplay(`${name} (list)`, finalPath, ViewDisplays.SIMPLE_LIST, renderCallback,),
+            new SimpleRedirectRoute(name, name, path, finalPath, EMPTY_ARRAY,),
+            new SimpleRouteByViewDisplay(name, `${name} (list)`, finalPath, ViewDisplays.SIMPLE_LIST, renderCallback,),
         ]
     }
 

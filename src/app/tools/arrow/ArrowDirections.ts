@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleDirection, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
 import type {Nullable}                                         from 'util/types/nullable'
@@ -20,11 +20,28 @@ export class ArrowDirections
     public static readonly VERTICAL =   new ArrowDirections('vertical', 'column',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: ArrowDirections
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ArrowDirections, typeof ArrowDirections>> = class CompanionEnum_ArrowDirections
+        extends BasicCompanionEnum<ArrowDirections, typeof ArrowDirections> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_ArrowDirections
+
+        private constructor() {
+            super(ArrowDirections,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_ArrowDirections()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #value
@@ -70,20 +87,16 @@ export class ArrowDirections
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return ArrowDirections
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<ArrowDirections>,): ArrowDirections {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<ArrowDirections>,): ArrowDirections {
+        return ArrowDirections.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<ArrowDirections> {
-        return Enum.getValuesOn(this,)
+        return ArrowDirections.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<ArrowDirections> {
-        yield* this.values
+        yield* ArrowDirections.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

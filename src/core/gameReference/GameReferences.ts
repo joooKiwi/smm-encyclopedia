@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                      from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                  from 'core/ClassWithEnglishName'
@@ -173,11 +173,28 @@ export class GameReferences
     public static readonly BRAIN_AGE_TRAIN_YOUR_BRAIN_IN_MINUTES_A_DAY = new GameReferences('BA:TYBMD', 'Brain Age: Train Your Brain in Minutes a Day!',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: GameReferences
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GameReferences, typeof GameReferences>> = class CompanionEnum_GameReferences
+        extends BasicCompanionEnum<GameReferences, typeof GameReferences> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_GameReferences
+
+        private constructor() {
+            super(GameReferences,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_GameReferences()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameReference>
@@ -187,6 +204,7 @@ export class GameReferences
     readonly #englishName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(acronym: PossibleAcronym, englishName: PossibleEnglishName,) {
         super()
@@ -194,6 +212,7 @@ export class GameReferences
         this.#englishName = new StringContainer(englishName)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, GameReference> {
@@ -234,20 +253,16 @@ export class GameReferences
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return GameReferences
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<GameReferences>,) {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<GameReferences>,): GameReferences {
+        return GameReferences.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<GameReferences> {
-        return Enum.getValuesOn(this,)
+        return GameReferences.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<GameReferences> {
-        yield* this.values
+        yield* GameReferences.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

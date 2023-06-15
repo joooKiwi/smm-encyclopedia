@@ -1,13 +1,13 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                   from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                     from 'core/ClassWithReference'
 import type {ClassWithEditorVoiceSoundFileHolder}                                    from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
 import type {Names, Ordinals, PossibleEnglishName, PossibleReference}                from 'core/editorVoice/EditorVoices.types'
 import type {CharacterNameReferenceHolder, PossibleCharacterNameReferences_Received} from 'core/editorVoice/holder/CharacterNameReferenceHolder'
-import type {EntityReferenceHolder, PossibleEntityReferences_Received}       from 'core/editorVoice/holder/EntityReferenceHolder'
-import type {EditorVoiceSoundFileHolder} from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
+import type {EntityReferenceHolder, PossibleEntityReferences_Received}               from 'core/editorVoice/holder/EntityReferenceHolder'
+import type {EditorVoiceSoundFileHolder}                                             from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
 import type {Nullable, NullOr}                                                       from 'util/types/nullable'
 
 import type {CharacterNames}                                                                     from 'core/characterName/CharacterNames'
@@ -516,11 +516,28 @@ export abstract class EditorVoices
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EditorVoices
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EditorVoices, typeof EditorVoices>> = class CompanionEnum_EditorVoices
+        extends BasicCompanionEnum<EditorVoices, typeof EditorVoices> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EditorVoices
+
+        private constructor() {
+            super(EditorVoices,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EditorVoices()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>
@@ -620,7 +637,7 @@ export abstract class EditorVoices
         return getValueByEnglishName(value, this,)
     }
 
-    public static getValueByCharacterName(value: PossibleValueByEnumerable<| EditorVoices | CharacterNames>,): EditorVoices {
+    public static getValueByCharacterName(value: PossibleEnumerableValueBy<| EditorVoices | CharacterNames>,): EditorVoices {
         if (value instanceof this)
             return value
         const characterNameValue = value instanceof Import.CharacterNames ? value : Import.CharacterNames.getValue(value),
@@ -630,7 +647,7 @@ export abstract class EditorVoices
         return valueFound
     }
 
-    public static getValueByEntity(value: PossibleValueByEnumerable<| EditorVoices | Entities>,): EditorVoices {
+    public static getValueByEntity(value: PossibleEnumerableValueBy<| EditorVoices | Entities>,): EditorVoices {
         if (value instanceof this)
             return value
         const entityValue = value instanceof Import.Entities ? value : Import.Entities.getValue(value),
@@ -657,20 +674,16 @@ export abstract class EditorVoices
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EditorVoices
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EditorVoices>,): EditorVoices {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EditorVoices>,): EditorVoices {
+        return EditorVoices.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EditorVoices> {
-        return Enum.getValuesOn(this,)
+        return EditorVoices.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EditorVoices> {
-        yield* this.values
+        yield* EditorVoices.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

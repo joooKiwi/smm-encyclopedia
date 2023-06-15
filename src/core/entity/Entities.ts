@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                   from 'core/ClassWithReference'
@@ -7,6 +7,7 @@ import type {ClassWithNullableEditorVoiceSoundFileHolder}                       
 import type {EditorVoiceSoundFileHolder}                                                           from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
 import type {Names, Ordinals, PossibleEnglishName}                                                 from 'core/entity/Entities.types'
 import type {Entity}                                                                               from 'core/entity/Entity'
+import type {ImageName_SMM2, ImageType, PossibleInGameSMM2ImageFileName}                           from 'core/entity/file/InGameSMM2ImageFile'
 import type {ClearConditionImage}                                                                  from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {PossibleImageReceivedOnFactory as PossibleClearConditionImage}                        from 'core/entity/images/clearCondition/ClearConditionImage.types'
 import type {SimpleImageName as ClearConditionImageName}                                           from 'core/entity/images/clearCondition/ClearConditionImage.types'
@@ -14,35 +15,50 @@ import type {EditorImage}                                                       
 import type {PossibleImageReceivedOnFactory as PossibleEditorImage, SimpleImageName_GroundOrSlope} from 'core/entity/images/editor/EditorImage.types'
 import type {SimpleImageName as EditorImageName}                                                   from 'core/entity/images/editor/EditorImage.types'
 import type {PowerUpEditorImage}                                                                   from 'core/entity/images/editor/PowerUpEditorImage'
+import type {InGameImage}                                                                          from 'core/entity/images/inGame/InGameImage'
 import type {InGameImage_SMM1}                                                                     from 'core/entity/images/inGame/InGameImage_SMM1'
+import type {InGameImage_SMM2}                                                                     from 'core/entity/images/inGame/InGameImage_SMM2'
 import type {UniqueImage}                                                                          from 'core/entity/images/unique/UniqueImage'
 import type {UnusedImage_BigMushroom}                                                              from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                                                                  from 'core/entity/images/unused/UnusedImage_Regular'
 import type {Builder}                                                                              from 'util/builder/Builder'
 import type {Nullable, NullOr}                                                                     from 'util/types/nullable'
 
-import {EditorVoices}                   from 'core/editorVoice/EditorVoices'
-import {EntityLoader}                   from 'core/entity/Entity.loader'
-import {ClearConditionImageBuilder}     from 'core/entity/images/clearCondition/ClearConditionImage.builder'
-import {ClearConditionImageFactory}     from 'core/entity/images/clearCondition/ClearConditionImage.factory'
-import {EditorImageFactory}             from 'core/entity/images/editor/EditorImage.factory'
-import {GenericEditorImageBuilder}      from 'core/entity/images/editor/GenericEditorImage.builder'
-import {GenericSubEditorImageBuilder}   from 'core/entity/images/editor/GenericSubEditorImage.builder'
-import {PowerUpEditorImageBuilder}      from 'core/entity/images/editor/PowerUpEditorImage.builder'
-import {SpecificEditorImageBuilder}     from 'core/entity/images/editor/SpecificEditorImage.builder'
-import {SpecificSnowEditorImageBuilder} from 'core/entity/images/editor/SpecificSnowEditorImage.builder'
-import {InGameImage_SMM1Factory}        from 'core/entity/images/inGame/InGameImage_SMM1.factory'
-import {InGameImage_SMM1Builder}        from 'core/entity/images/inGame/InGameImage_SMM1.builder'
-import {UniqueImageBuilder}             from 'core/entity/images/unique/UniqueImage.builder'
-import {UnusedImage_BigMushroomBuilder} from 'core/entity/images/unused/UnusedImage_BigMushroom.builder'
-import {UnusedImage_BigMushroomFactory} from 'core/entity/images/unused/UnusedImage_BigMushroom.factory'
-import {UnusedImage_RegularBuilder}     from 'core/entity/images/unused/UnusedImage_Regular.builder'
-import {UnusedImage_RegularFactory}     from 'core/entity/images/unused/UnusedImage_Regular.factory'
-import {GameStyles}                     from 'core/gameStyle/GameStyles'
-import {Themes}                         from 'core/theme/Themes'
-import {Times}                          from 'core/time/Times'
-import {StringContainer}                from 'util/StringContainer'
-import {getValueByEnglishName}          from 'util/utilitiesMethods'
+import {EditorVoices}                                     from 'core/editorVoice/EditorVoices'
+import {EntityLoader}                                     from 'core/entity/Entity.loader'
+import {InGameSMM2ImageFileContainer}                     from 'core/entity/file/InGameSMM2ImageFile.container'
+import {ClearConditionImageBuilder}                       from 'core/entity/images/clearCondition/ClearConditionImage.builder'
+import {ClearConditionImageFactory}                       from 'core/entity/images/clearCondition/ClearConditionImage.factory'
+import {EditorImageFactory}                               from 'core/entity/images/editor/EditorImage.factory'
+import {GenericEditorImageBuilder}                        from 'core/entity/images/editor/GenericEditorImage.builder'
+import {GenericSubEditorImageBuilder}                     from 'core/entity/images/editor/GenericSubEditorImage.builder'
+import {PowerUpEditorImageBuilder}                        from 'core/entity/images/editor/PowerUpEditorImage.builder'
+import {SpecificEditorImageBuilder}                       from 'core/entity/images/editor/SpecificEditorImage.builder'
+import {SpecificSnowEditorImageBuilder}                   from 'core/entity/images/editor/SpecificSnowEditorImage.builder'
+import {InGameImageFactory}                               from 'core/entity/images/inGame/InGameImage.factory'
+import {InGameImage_CandyRing}                            from 'core/entity/images/inGame/InGameImage_CandyRing'
+import {InGameImage_DangerousLiquid}                      from 'core/entity/images/inGame/InGameImage_DangerousLiquid'
+import {InGameImage_KoopalingProjectile}                  from 'core/entity/images/inGame/InGameImage_KoopalingProjectile'
+import {InGameImage_KoopalingWand}                        from 'core/entity/images/inGame/InGameImage_KoopalingWand'
+import {InGameImage_MagicBall}                            from 'core/entity/images/inGame/InGameImage_MagicBall'
+import {InGameImage_MortonFire}                           from 'core/entity/images/inGame/InGameImage_MortonFire'
+import {InGameImage_SMM1Builder}                          from 'core/entity/images/inGame/InGameImage_SMM1.builder'
+import {InGameImage_SMM2Container}                        from 'core/entity/images/inGame/InGameImage_SMM2.container'
+import {InGameImage_Water}                                from 'core/entity/images/inGame/InGameImage_Water'
+import {MultipleImageInMultipleGameStyleInGameImage_SMM2} from 'core/entity/images/inGame/MultipleImageInMultipleGameStyleInGameImage_SMM2'
+import {MultipleImageInSingleGameStyleInGameImage_SMM2}   from 'core/entity/images/inGame/MultipleImageInSingleGameStyleInGameImage_SMM2'
+import {SingleImageIn2DStyleInGameImage_SMM2}             from 'core/entity/images/inGame/SingleImageIn2DStyleInGameImage_SMM2'
+import {SingleImageInSingleGameStyleInGameImage_SMM2}     from 'core/entity/images/inGame/SingleImageInSingleGameStyleInGameImage_SMM2'
+import {UniqueImageBuilder}                               from 'core/entity/images/unique/UniqueImage.builder'
+import {UnusedImage_BigMushroomBuilder}                   from 'core/entity/images/unused/UnusedImage_BigMushroom.builder'
+import {UnusedImage_BigMushroomFactory}                   from 'core/entity/images/unused/UnusedImage_BigMushroom.factory'
+import {UnusedImage_RegularBuilder}                       from 'core/entity/images/unused/UnusedImage_Regular.builder'
+import {UnusedImage_RegularFactory}                       from 'core/entity/images/unused/UnusedImage_Regular.factory'
+import {GameStyles}                                       from 'core/gameStyle/GameStyles'
+import {Themes}                                           from 'core/theme/Themes'
+import {Times}                                            from 'core/time/Times'
+import {StringContainer}                                  from 'util/StringContainer'
+import {getValueByEnglishName}                            from 'util/utilitiesMethods'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -119,12 +135,46 @@ export class Entities
 
     }('Gentle Slope',)
 
-    public static readonly START_BLOCK =                                   new Entities('Start Block',)
+    public static readonly START_BLOCK =                                   new class Entities_StartBlock extends Entities {
+
+        protected override _createInGameImage(): InGameImage_SMM2 {
+            //TODO relocate this into a proper builder class
+            const fileType: ImageType = 'Object',
+                name: PossibleInGameSMM2ImageFileName = 'startblock',
+                imageName: ImageName_SMM2 = 'StartBlock'
+
+            return new InGameImage_SMM2Container(new Map([
+                [SUPER_MARIO_BROS, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS, this, fileType, name, imageName,)],],
+                [SUPER_MARIO_BROS_3, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS_3, this, fileType, name, imageName,)],],
+                [SUPER_MARIO_WORLD, [new InGameSMM2ImageFileContainer(SUPER_MARIO_WORLD, this, fileType, name, imageName,)],],
+                [NEW_SUPER_MARIO_BROS_U, [new InGameSMM2ImageFileContainer(NEW_SUPER_MARIO_BROS_U, this, fileType, name, imageName,)],],
+            ]),)
+        }
+
+    }('Start Block',)
     public static readonly OCCLUDE_BLOCK =                                 new Entities('Occlude Block',)
 
-    public static readonly WATER =                                         new Entities('Water',)
-    public static readonly LAVA =                                          new Entities('Lava',)
-    public static readonly POISON =                                        new Entities('Poison',)
+    public static readonly WATER =                                         new class Entities_Water extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_Water(this,)
+        }
+
+    }('Water',)
+    public static readonly LAVA =                                          new class Entities_Lava extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_DangerousLiquid(this, 'MagmaHalf',)
+        }
+
+    }('Lava',)
+    public static readonly POISON =                                        new class Entities_Poison extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_DangerousLiquid(this, 'PoisonHalf',)
+        }
+
+    }('Poison',)
 
     public static readonly PIPE =                                          new class Entities_Pipe extends Entities {
 
@@ -345,7 +395,13 @@ export class Entities
         }
 
     }('Hidden Block',)
-    public static readonly EMPTY_BLOCK =                                   new Entities('Empty Block',)
+    public static readonly EMPTY_BLOCK =                                   new class Entities_EmptyBlock extends Entities {
+
+        protected override _createInGameImage() {
+            return new SingleImageIn2DStyleInGameImage_SMM2(this, 'Object', 'wait.0', 'BlockKara',)
+        }
+
+    }('Empty Block',)
 
     public static readonly EXCLAMATION_MARK_BLOCK =                        new class Entities_ExclamationMarkBlock extends Entities {
 
@@ -583,7 +639,13 @@ export class Entities
         }
 
     }('Superball Flower',)
-    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',)
+    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new class Entities_SuperballThrownByAPlayer extends Entities {
+
+        protected override _createInGameImage() {
+            return new SingleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_BROS, this, 'Object', 'superball', 'Superball',)
+        }
+
+    }('Superball thrown by a player',)
 
     public static readonly MYSTERY_MUSHROOM =                              new class Entities_MysteryMushroom extends Entities {
 
@@ -615,8 +677,20 @@ export class Entities
         }
 
     }('Master Sword',)
-    public static readonly BOMB_THROWN_BY_A_LINK =                         new Entities('Bomb thrown by a Link',)
-    public static readonly ARROW_THROWN_BY_A_LINK =                        new Entities('Arrow thrown by a Link',)
+    public static readonly BOMB_THROWN_BY_A_LINK =                         new class Entities_BombThrownByALink extends Entities {
+
+        protected override _createInGameImage() {
+            return new MultipleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_BROS, this, 'Enemy', ['wait.0', 'walk.0', 'walk.1',], 'LinkBomb',)
+        }
+
+    }('Bomb thrown by a Link',)
+    public static readonly ARROW_THROWN_BY_A_LINK =                        new class Entities_ArrowThrownByALink extends Entities {
+
+        protected override _createInGameImage() {
+            return new SingleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_BROS, this, 'Object', 'arrow', 'Arrow',)
+        }
+
+    }('Arrow thrown by a Link',)
 
     public static readonly BIG_MUSHROOM =                                  new class Entities_BigMushroom extends Entities {
 
@@ -939,8 +1013,16 @@ export class Entities
     }('Shoe Goomba',)
     public static readonly SHOE =                                          new class Entities_Shoe extends Entities {
 
+        protected override _createUniqueImage(builder: UniqueImageBuilder,) {
+            return builder.forceClearCondition()
+        }
+
         protected override _createClearConditionImage(): Builder<ClearConditionImage> {
             return new ClearConditionImageBuilder(this, 'KutsuKuribo',).setOnlySMBAndSMB3()
+        }
+
+        protected override _createInGameImage() {
+            return new MultipleImageInMultipleGameStyleInGameImage_SMM2([SUPER_MARIO_BROS, SUPER_MARIO_BROS_3,], this, 'Enemy', ['wait.0', 'wait.1',], 'KutsuKuriboA',)
         }
 
     }('Shoe',)
@@ -951,7 +1033,13 @@ export class Entities
         }
 
     }('Stiletto Goomba',)
-    public static readonly STILETTO =                                      new Entities('Stiletto',)
+    public static readonly STILETTO =                                      new class Entities_Stiletto extends Entities {
+
+        protected override _createInGameImage() {
+            return new MultipleImageInMultipleGameStyleInGameImage_SMM2([SUPER_MARIO_BROS, SUPER_MARIO_BROS_3,], this, 'Enemy', ['wait.0', 'wait.1',], 'KutsuKuriboB',)
+        }
+
+    }('Stiletto',)
     public static readonly YOSHI_EGG =                                     new class Entities_YoshiEgg extends Entities {
 
         protected override _createUniqueImage(builder: UniqueImageBuilder,) {
@@ -966,17 +1054,41 @@ export class Entities
             return new ClearConditionImageBuilder(this, 'YosshiEgg',).setOnlySMWAndNSMBU()
         }
 
+        protected override _createInGameImage() {
+            return new MultipleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_WORLD, this, 'Enemy', ['wait.0', 'wait.1',], 'KutsuKuriboA',)//TODO add NSMBU yoshi egg (if present)
+        }
+
     }('Yoshi\'s Egg',)
     public static readonly YOSHI =                                         new Entities('Yoshi',)
-    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new Entities('Fire thrown by a Yoshi',)
-    public static readonly POISON_THROWN_BY_A_YOSHI =                      new Entities('Poison thrown by a Yoshi',)
+    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new class Entities_FireThrownByAYoshi extends Entities {
+
+        protected override _createInGameImage() {
+            return new MultipleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_WORLD, this, 'Player', ['wait.0', 'wait.1',], 'YoshiFire',)//TODO add NSMBU "Yoshi fire thrown" if present
+        }
+
+    }('Fire thrown by a Yoshi',)
+    public static readonly POISON_THROWN_BY_A_YOSHI =                      new class Entities_PoisonThrownByAYoshi extends Entities {
+
+        protected override _createInGameImage() {
+            return new MultipleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_WORLD, this, 'Player', ['wait.0', 'wait.1',], 'YoshiPoison',)//TODO add NSMBU "Yoshi poison thrown" if present
+        }
+
+    }('Poison thrown by a Yoshi',)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new Entities('Bone thrown by a Yoshi',)
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new Entities('Wrench thrown by a Yoshi',)
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',)
     public static readonly RED_YOSHI_EGG =                                 new class Entities_RedYoshiEgg extends Entities {
 
+        protected override _createUniqueImage(builder: UniqueImageBuilder,) {
+            return builder.forceEditor()
+        }
+
         protected override _createEditorImage(): Builder<EditorImage> {
             return new GenericEditorImageBuilder(this, 'YosshiEggRed',).setOnlySMWAndNSMBU()
+        }
+
+        protected override _createInGameImage() {
+            return new MultipleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_WORLD, this, 'Enemy', ['wait.0', 'wait.1',], 'KutsuKuriboB',)//TODO add NSMBU yoshi egg (if present)
         }
 
     }('Red Yoshi\'s Egg',)
@@ -1369,7 +1481,13 @@ export class Entities
         }
 
     }('Blooper Nanny',)
-    public static readonly BABY_BLOOPER =                                  new Entities('Baby Blooper',)
+    public static readonly BABY_BLOOPER =                                  new class Entities_BabyBlooper extends Entities {
+
+        protected override _createInGameImage() {
+            return new MultipleImageInMultipleGameStyleInGameImage_SMM2([SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD,], this, 'Enemy', ['wait.0', 'wait.1',], 'GessoMini',)//TODO add NSMBU "mini blooper"
+        }
+
+    }('Baby Blooper',)
 
     public static readonly PORCUPUFFER =                                   new class Entities_Porcupuffer extends Entities {
 
@@ -2234,8 +2352,20 @@ export class Entities
         }
 
     }('Larry',)
-    public static readonly LARRY_WAND =                                    new Entities('Larry\'s Wand',)
-    public static readonly LARRY_PROJECTILE =                              new Entities('(Larry\'s projectile)',)
+    public static readonly LARRY_WAND =                                    new class Entities_LarryWand extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingWand(this, 'Larry',)
+        }
+
+    }('Larry\'s Wand',)
+    public static readonly LARRY_PROJECTILE =                              new class Entities_LarryProjectile extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingProjectile(this, 'Larry',)
+        }
+
+    }('(Larry\'s projectile)',)
 
     public static readonly IGGY =                                          new class Entities_Iggy extends Entities {
 
@@ -2252,8 +2382,20 @@ export class Entities
         }
 
     }('Iggy',)
-    public static readonly IGGY_WAND =                                     new Entities('Iggy\'s Wand',)
-    public static readonly IGGY_PROJECTILE =                               new Entities('(Iggy\'s projectile)',)
+    public static readonly IGGY_WAND =                                     new class Entities_IggyWand extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingWand(this, 'Iggy',)
+        }
+
+    }('Iggy\'s Wand',)
+    public static readonly IGGY_PROJECTILE =                               new class Entities_IggyProjectile extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingProjectile(this, 'Iggy',)
+        }
+
+    }('(Iggy\'s projectile)',)
 
     public static readonly WENDY =                                         new class Entities_Wendy extends Entities {
 
@@ -2270,8 +2412,21 @@ export class Entities
         }
 
     }('Wendy',)
-    public static readonly WENDY_WAND =                                    new Entities('Wendy\'s Wand',)
-    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new Entities('Candy Ring thrown by a Wendy',)
+    public static readonly WENDY_WAND =                                    new class Entities_WendyWand extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingWand(this, 'Wendy',)
+        }
+
+    }('Wendy\'s Wand',)
+    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new class Entities_CandyRingThrownByAWendy extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_CandyRing(this,)
+        }
+
+    }('Candy Ring thrown by a Wendy',)
+    //TODO add unused Wendy projectile (SMB, SMB3, SMW)
 
     public static readonly LEMMY =                                         new class Entities_Lemmy extends Entities {
 
@@ -2288,8 +2443,21 @@ export class Entities
         }
 
     }('Lemmy',)
-    public static readonly LEMMY_WAND =                                    new Entities('Lemmy\'s Wand',)
-    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new Entities('Magic Ball thrown by a Lemmy',)
+    public static readonly LEMMY_WAND =                                    new class Entities_LemmyWand extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingWand(this, 'Lemmy',)
+        }
+
+    }('Lemmy\'s Wand',)
+    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new class Entities_MagicBallThrownByALemmy extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_MagicBall(this,)
+        }
+
+    }('Magic Ball thrown by a Lemmy',)
+    //TODO add unused Lemmy projectile (SMB)
 
     public static readonly ROY =                                           new class Entities_Roy extends Entities {
 
@@ -2306,8 +2474,20 @@ export class Entities
         }
 
     }('Roy',)
-    public static readonly ROY_WAND =                                      new Entities('Roy\'s Wand',)
-    public static readonly ROY_PROJECTILE =                                new Entities('(Roy\'s projectile)',)
+    public static readonly ROY_WAND =                                      new class Entities_RoyWand extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingWand(this, 'Roy',)
+        }
+
+    }('Roy\'s Wand',)
+    public static readonly ROY_PROJECTILE =                                new class Entities_RoyProjectile extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingProjectile(this, 'Roy',)
+        }
+
+    }('(Roy\'s projectile)',)
 
     public static readonly MORTON =                                        new class Entities_Morton extends Entities {
 
@@ -2324,9 +2504,28 @@ export class Entities
         }
 
     }('Morton',)
-    public static readonly MORTON_WAND =                                   new Entities('Morton\'s Wand',)
-    public static readonly MORTON_THROWN_PROJECTILE =                      new Entities('(Morton\'s Thrown projectile)',)
-    public static readonly MORTON_GROUND_PROJECTILE =                      new Entities('(Morton\'s Ground projectile)',)
+    public static readonly MORTON_WAND =                                   new class MortonWand extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingWand(this, 'Morton',)
+        }
+
+    }('Morton\'s Wand',)
+    public static readonly MORTON_THROWN_PROJECTILE =                      new class Entities_MortonThrownProjectile extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingProjectile(this, 'Morton',)
+        }
+
+    }('(Morton\'s Thrown projectile)',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new class Entities_MortonGroundProjectile extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_MortonFire(this,)
+        }
+        //TODO add unused morton fire.2 in SMB3
+
+    }('(Morton\'s Ground projectile)',)
 
     public static readonly LUDWIG =                                        new class Entities_Ludwig extends Entities {
 
@@ -2343,8 +2542,20 @@ export class Entities
         }
 
     }('Ludwig',)
-    public static readonly LUDWIG_WAND =                                   new Entities('Ludwig\'s Wand',)
-    public static readonly LUDWIG_PROJECTILE =                             new Entities('(Ludwig\'s projectile)',)
+    public static readonly LUDWIG_WAND =                                   new class Entities_LudwigWand extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingWand(this, 'Ludwig',)
+        }
+
+    }('Ludwig\'s Wand',)
+    public static readonly LUDWIG_PROJECTILE =                             new class Entities_LudwigProjectile extends Entities {
+
+        protected override _createInGameImage() {
+            return new InGameImage_KoopalingProjectile(this, 'Ludwig',)
+        }
+
+    }('(Ludwig\'s projectile)',)
 
     //endregion -------------------- Bosses + projectiles --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
@@ -2617,7 +2828,13 @@ export class Entities
         }
 
     }('Cursed Key',)
-    public static readonly PHANTO =                                        new Entities('Phanto',)
+    public static readonly PHANTO =                                        new class Entities_Phanto extends Entities {
+
+        protected override _createInGameImage() {
+            return new MultipleImageInSingleGameStyleInGameImage_SMM2(SUPER_MARIO_BROS, this, 'Object', ['wait.0', 'wait.1', 'wait.2', 'wait.3',], 'Phanto',)
+        }
+
+    }('Phanto',)
 
     public static readonly TRAMPOLINE =                                    new class Entities_Trampoline extends Entities {
 
@@ -2771,16 +2988,52 @@ export class Entities
     public static readonly TOAD =                                          new Entities('Toad',)
     public static readonly CAGED_TOADETTE =                                new Entities('Caged Toadette',)//A background entity
 
-    public static readonly BUBBLE =                                        new Entities('Bubble',)//An interactable entity
+    public static readonly BUBBLE =                                        new class Entities_Bubble extends Entities {
+
+        protected override _createInGameImage(): InGameImage_SMM2 {
+            //TODO relocate this into a proper builder class
+            const fileType: ImageType = 'Object',
+                imageName: ImageName_SMM2 = 'Balloon'
+
+            return new InGameImage_SMM2Container(new Map([
+                [SUPER_MARIO_BROS, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS, this, fileType, 'balloon.0', imageName,),],],
+                [SUPER_MARIO_BROS_3, [new InGameSMM2ImageFileContainer(SUPER_MARIO_BROS_3, this, fileType, 'balloon.0', imageName,),],],
+                [SUPER_MARIO_WORLD, [new InGameSMM2ImageFileContainer(SUPER_MARIO_WORLD, this, fileType, 'balloon.0', imageName,),],],
+                [NEW_SUPER_MARIO_BROS_U, [
+                    new InGameSMM2ImageFileContainer(NEW_SUPER_MARIO_BROS_U, this, fileType, 'balloon.0', imageName,),
+                    new InGameSMM2ImageFileContainer(NEW_SUPER_MARIO_BROS_U, this, fileType, 'balloon2.0', imageName,),
+                ],],
+                [SUPER_MARIO_3D_WORLD, [new InGameSMM2ImageFileContainer(SUPER_MARIO_3D_WORLD, this, fileType, 'TractorBubble_Alb', imageName,),],],
+            ],),)
+        }
+
+    }('Bubble',)//An interactable entity
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Entities
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Entities, typeof Entities>> = class CompanionEnum_Entities
+        extends BasicCompanionEnum<Entities, typeof Entities> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Entities
+
+        private constructor() {
+            super(Entities,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Entities()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Entity>
@@ -2792,7 +3045,7 @@ export class Entities
     #uniqueImageBuilder?: UniqueImageBuilder
     #editorImage?: EditorImage
     #clearConditionImage?: ClearConditionImage
-    #inGameImage?: InGameImage_SMM1
+    #inGameImage?: InGameImage
     #unusedRegularImage?: UnusedImage_Regular
     #unusedBigMushroomImage?: UnusedImage_BigMushroom
     #editorVoiceSound?: NullOr<EditorVoiceSoundFileHolder>
@@ -2842,7 +3095,7 @@ export class Entities
             case 'clear condition':
                 this.clearConditionImage
                 return builder
-            case 'while playing':
+            case 'play':
                 this.inGameImage
                 return builder
             case null:
@@ -2943,25 +3196,25 @@ export class Entities
      *
      * @onlyCalledOnce
      */
-    protected _createInGameImage(): NullOr<Builder<InGameImage_SMM1>> {
+    protected _createInGameImage(): NullOr<| InGameImage | Builder<InGameImage>> {
         return null
     }
 
     /**
-     * Create the "in game" image from its {@link InGameImage_SMM1Factory factory}.
+     * Create the "in game" image from its {@link InGameImageFactory factory}.
      * It also store it in the {@link UniqueImageBuilder} if the value created is not null.
      *
      * @onlyCalledOnce
      */
     #createInGameImage() {
         const createValue = this._createInGameImage(),
-            value = InGameImage_SMM1Factory.create(createValue)
+            value = InGameImageFactory.create(createValue)
         if (createValue != null)
             this.__uniqueImageBuilder.setWhilePlaying(value)
         return value
     }
 
-    public get inGameImage(): InGameImage_SMM1 {
+    public get inGameImage(): InGameImage {
         return this.#inGameImage ??= this.#createInGameImage()
     }
 
@@ -3019,20 +3272,16 @@ export class Entities
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Entities
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Entities>,): Entities {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Entities>,): Entities {
+        return Entities.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Entities> {
-        return Enum.getValuesOn(this,)
+        return Entities.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Entities> {
-        yield* this.values
+        yield* Entities.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

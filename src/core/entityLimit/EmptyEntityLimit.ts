@@ -4,6 +4,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from 'util/ClassW
 import {EmptyEntityLimitAmount}               from 'core/entityLimit/properties/EmptyEntityLimitAmount'
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {EmptyStringName}                      from 'lang/name/EmptyStringName'
+import {EMPTY_MAP}                            from 'util/emptyVariables'
 import {assert}                               from 'util/utilitiesMethods'
 
 /**
@@ -75,6 +76,18 @@ export class EmptyEntityLimit
     public readonly amountComment = this.limitContainer.comment
 
     //endregion -------------------- Limit amount --------------------
+    //region -------------------- Game properties --------------------
+
+    public readonly isInSuperMarioMaker1Or3DS = false
+    public readonly isInSuperMarioMaker1 = false
+    public readonly isInSuperMarioMakerFor3DS = false
+    public readonly isInSuperMarioMaker2 = false
+
+    public toGameMap() {
+        return EMPTY_MAP
+    }
+
+    //endregion -------------------- Game properties --------------------
 
     public override toString(): EmptyEntityLimitName {
         return 'Empty entity limit'

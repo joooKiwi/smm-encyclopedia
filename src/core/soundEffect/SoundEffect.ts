@@ -1,7 +1,9 @@
-import type {SoundEffectProperty}    from 'core/soundEffect/property/SoundEffectProperty'
-import type {SoundEffectCategory}    from 'core/soundEffectCategory/SoundEffectCategory'
-import type {NameTrait}              from 'lang/name/NameTrait'
-import type {NameTraitFromACategory} from 'lang/name/NameTraitFromACategory'
+import type {GameProperty}              from 'core/entity/properties/game/GameProperty'
+import type {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import type {SoundEffectProperty}       from 'core/soundEffect/property/SoundEffectProperty'
+import type {SoundEffectCategory}       from 'core/soundEffectCategory/SoundEffectCategory'
+import type {NameTrait}                 from 'lang/name/NameTrait'
+import type {NameTraitFromACategory}    from 'lang/name/NameTraitFromACategory'
 
 export interface SoundEffect
     extends NameTrait<string>, NameTraitFromACategory<string, SoundEffectCategory>,
@@ -13,44 +15,44 @@ export interface SoundEffect
 
     //region -------------------- Game properties --------------------
 
-    get gameContainer(): this['propertyContainer']['gameContainer']
+    get gameContainer(): GameProperty
 
-    get isInSuperMarioMaker1(): this['gameContainer']['isInSuperMarioMaker1']
+    get isInSuperMarioMaker1(): boolean
 
-    get isInSuperMarioMakerFor3DS(): this['gameContainer']['isInSuperMarioMakerFor3DS']
+    get isInSuperMarioMakerFor3DS(): boolean
 
-    get isInSuperMarioMaker2(): this['gameContainer']['isInSuperMarioMaker2']
+    get isInSuperMarioMaker2(): boolean
 
     //endregion -------------------- Game properties --------------------
     //region -------------------- Player sound effect trigger properties --------------------
 
-    get playerSoundEffectTriggerContainer(): this['propertyContainer']['playerSoundEffectTriggerContainer']
+    get playerSoundEffectTriggerContainer(): PlayerSoundEffectTriggers
 
     //region -------------------- Movement triggers --------------------
 
-    get doesTriggerOnPlayerWhenJumpingAfterLanding(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenJumpingAfterLanding']
+    get doesTriggerOnPlayerWhenJumpingAfterLanding(): boolean
 
-    get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed']
+    get doesTriggerOnPlayerWhenTurningAroundAfterBeingAtFullSpeed(): boolean
 
-    get doesTriggerOnPlayerWhenCrouching(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCrouching']
+    get doesTriggerOnPlayerWhenCrouching(): boolean
 
-    get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly']
+    get doesTriggerOnPlayerAfter3SecondsOfNonMovementRepeatedly(): boolean
 
     //endregion -------------------- Movement triggers --------------------
     //region -------------------- Interaction triggers --------------------
 
-    get doesTriggerOnPlayerWhenCollectingAPowerUp(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenCollectingAPowerUp']
+    get doesTriggerOnPlayerWhenCollectingAPowerUp(): boolean
 
-    get doesTriggerOnPlayerWhenGettingIntoAEntity(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenGettingIntoAEntity']
+    get doesTriggerOnPlayerWhenGettingIntoAEntity(): boolean
 
     //endregion -------------------- Interaction triggers --------------------
     //region -------------------- Environment triggers --------------------
 
-    get doesTriggerOnPlayerAtSpawn(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerAtSpawn']
+    get doesTriggerOnPlayerAtSpawn(): boolean
 
-    get doesTriggerOnPlayerWhenTakingDamage(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenTakingDamage']
+    get doesTriggerOnPlayerWhenTakingDamage(): boolean
 
-    get doesTriggerOnPlayerWhenLosingALife(): this['playerSoundEffectTriggerContainer']['doesTriggerOnPlayerWhenLosingALife']
+    get doesTriggerOnPlayerWhenLosingALife(): boolean
 
     //endregion -------------------- Environment triggers --------------------
 

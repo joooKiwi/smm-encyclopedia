@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/SoundEffectAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -107,11 +107,28 @@ export abstract class SoundEffectAppOption
     }()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: SoundEffectAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<SoundEffectAppOption, typeof SoundEffectAppOption>> = class CompanionEnum_SoundEffectAppOption
+        extends BasicCompanionEnum<SoundEffectAppOption, typeof SoundEffectAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_SoundEffectAppOption
+
+        private constructor() {
+            super(SoundEffectAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_SoundEffectAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -125,11 +142,13 @@ export abstract class SoundEffectAppOption
     #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -176,20 +195,16 @@ export abstract class SoundEffectAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return SoundEffectAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<SoundEffectAppOption>,): SoundEffectAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<SoundEffectAppOption>,): SoundEffectAppOption {
+        return SoundEffectAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<SoundEffectAppOption> {
-        return Enum.getValuesOn(this,)
+        return SoundEffectAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<SoundEffectAppOption> {
-        yield* this.values
+        yield* SoundEffectAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

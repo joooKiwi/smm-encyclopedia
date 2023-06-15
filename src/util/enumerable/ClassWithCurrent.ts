@@ -1,4 +1,4 @@
-import type {Enumerable, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import type {Enumerable, PossibleEnumerableValueBy} from '@joookiwi/enumerable/dist/types'
 
 import type {NullOr} from 'util/types/nullable'
 
@@ -21,7 +21,7 @@ export interface ClassWithCurrent<T extends Enumerable, > {
      * @param value The value to set
      * @see Enum.getValueOn
      */
-    set current(value: PossibleValueByEnumerable<T>,)
+    set current(value: PossibleEnumerableValueBy<T>,)
 
 }
 

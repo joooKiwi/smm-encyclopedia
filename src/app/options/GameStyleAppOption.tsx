@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/GameStyleAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -13,7 +13,6 @@ import {CommonOptions}                              from 'app/options/CommonOpti
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
-import YesOrNoResultTextComponent                   from 'app/tools/text/YesOrNoResultTextComponent'
 import NightEffectComponent                         from 'core/nightEffect/NightEffect.component'
 import {Themes}                                     from 'core/theme/Themes'
 import {Times}                                      from 'core/time/Times'
@@ -48,21 +47,6 @@ export abstract class GameStyleAppOption
         }
 
     }()
-    public static readonly GAME =              new class GameStyleAppOption_Game extends GameStyleAppOption {
-
-        protected override _createContentOption({reference,}: GameStyles,) {
-            return [
-                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker1}/>,
-                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMakerFor3DS}/>,
-                <YesOrNoResultTextComponent boolean={reference.isInSuperMarioMaker2}/>,
-            ]
-        }
-
-        protected override _createTableHeaderOption() {
-            return CommonOptions.get.gameHeaderWithAllGames
-        }
-
-    }()
     public static readonly NIGHT_DESERT_WIND = new class GameStyleAppOption_NightDesertWind extends GameStyleAppOption {
 
         protected override _createContentOption({reference,}: GameStyles,) {
@@ -83,11 +67,28 @@ export abstract class GameStyleAppOption
     }()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: GameStyleAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GameStyleAppOption, typeof GameStyleAppOption>> = class CompanionEnum_GameStyleAppOption
+        extends BasicCompanionEnum<GameStyleAppOption, typeof GameStyleAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_GameStyleAppOption
+
+        private constructor() {
+            super(GameStyleAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_GameStyleAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -101,11 +102,13 @@ export abstract class GameStyleAppOption
     #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -140,20 +143,16 @@ export abstract class GameStyleAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return GameStyleAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<GameStyleAppOption>,): GameStyleAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<GameStyleAppOption>,): GameStyleAppOption {
+        return GameStyleAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<GameStyleAppOption> {
-        return Enum.getValuesOn(this,)
+        return GameStyleAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<GameStyleAppOption> {
-        yield* this.values
+        yield* GameStyleAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1134,6 +1134,42 @@
 }
 
 //endregion -------------------- Button colors --------------------
+//region -------------------- Dual colors --------------------
+
+//@each $color1, $value1 in $colors {
+//  @each $color2, $value2 in $colors {
+//    @if($color1 != $color2) {
+//      .text-#{$color1}-#{$color2} {
+//        --bs-text-opacity: 1;
+//
+//        background-image: linear-gradient(
+//          135deg,
+//          rgba(var(--bs-#{$color1}-rgb), var(--bs-text-opacity)),
+//          rgba(var(--bs-#{$color2}-rgb), var(--bs-text-opacity))
+//        );
+//      }
+//    }
+//  }
+//}
+
+@each $color1, $value1 in $colors {
+  @each $color2, $value2 in $colors {
+    @if($color1 != $color2) {
+      .bg-#{$color1}-#{$color2} {
+        --bs-bg-opacity: 1;
+
+        background-image: linear-gradient(
+          135deg,
+          rgba(var(--bs-#{$color1}-rgb), var(--bs-bg-opacity)) 50%,
+          rgba(var(--bs-#{$color2}-rgb), var(--bs-bg-opacity))
+        );
+      }
+    }
+  }
+}
+
+
+//endregion -------------------- Dual colors --------------------
 //region -------------------- Text space --------------------
 
 .space-normal {

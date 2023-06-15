@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/PowerUpPriorityTypes.types'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
@@ -280,11 +280,28 @@ export class PowerUpPriorityTypes
     }('all', 'noPriority',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: PowerUpPriorityTypes
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<PowerUpPriorityTypes, typeof PowerUpPriorityTypes>> = class CompanionEnum_PowerUpPriorityTypes
+        extends BasicCompanionEnum<PowerUpPriorityTypes, typeof PowerUpPriorityTypes> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_PowerUpPriorityTypes
+
+        private constructor() {
+            super(PowerUpPriorityTypes,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_PowerUpPriorityTypes()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #type
@@ -383,20 +400,16 @@ export class PowerUpPriorityTypes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return PowerUpPriorityTypes
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<PowerUpPriorityTypes>,): PowerUpPriorityTypes {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<PowerUpPriorityTypes>,): PowerUpPriorityTypes {
+        return PowerUpPriorityTypes.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<PowerUpPriorityTypes> {
-        return Enum.getValuesOn(this,)
+        return PowerUpPriorityTypes.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<PowerUpPriorityTypes> {
-        yield* this.values
+        yield* PowerUpPriorityTypes.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

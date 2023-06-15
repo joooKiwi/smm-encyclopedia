@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                          from 'core/music/Musics.types'
 import type {BackgroundMusic}                                          from 'core/music/backgroundMusic/BackgroundMusic'
@@ -380,11 +380,28 @@ export class Musics
     }()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: Musics
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Musics, typeof Musics>> = class CompanionEnum_Musics
+        extends BasicCompanionEnum<Musics, typeof Musics> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_Musics
+
+        private constructor() {
+            super(Musics,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_Musics()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     #gameStyleHolder?: ObjectHolder<NullOr<Themes>>
@@ -393,11 +410,13 @@ export class Musics
     #music?: ObjectHolder<NullOr<PossibleMusic>>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Other reference methods --------------------
@@ -475,20 +494,16 @@ export class Musics
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return Musics
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<Musics>,): Musics {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<Musics>,): Musics {
+        return Musics.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<Musics> {
-        return Enum.getValuesOn(this,)
+        return Musics.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<Musics> {
-        yield* this.values
+        yield* Musics.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

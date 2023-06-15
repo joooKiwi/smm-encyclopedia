@@ -41,9 +41,10 @@ export abstract class AbstractPowerUpPriority
     //region -------------------- Image callbacks --------------------
 
     public static FIRST_EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)[0],]
+    public static FIRST_IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [this.IN_GAME_IMAGE_CALLBACK(entity, gameStyle,)[0],]
     public static EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(false, gameStyle, Themes.GROUND, Times.DAY,)
     public static IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(false, gameStyle, Themes.GROUND,)
-    public static CLEAR_CONDITION_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.clearConditionImage.get(gameStyle,)
+    public static FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle) => gameStyle === GameStyles.NEW_SUPER_MARIO_BROS_U ? this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,) : this.FIRST_IN_GAME_IMAGE_CALLBACK(entity, gameStyle,)
 
     //endregion -------------------- Image callbacks --------------------
 

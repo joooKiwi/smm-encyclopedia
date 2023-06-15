@@ -10,6 +10,7 @@ import {RoutesAsTableAndSMM2Creator}    from 'route/creator/RoutesAsTableAndSMM2
 import {RoutesCreator}                  from 'route/creator/Routes.creator'
 import {SimpleRedirectRoute}            from 'route/instance/SimpleRedirectRoute'
 import {SimpleRouteByViewDisplay}       from 'route/instance/SimpleRouteByViewDisplay'
+import {EMPTY_ARRAY}                    from 'util/emptyVariables'
 
 /**
  * Set a route to be applicable to a {@link ViewDisplays view display} ("{@link ViewDisplays.SIMPLE_LIST simple list}",
@@ -21,7 +22,7 @@ import {SimpleRouteByViewDisplay}       from 'route/instance/SimpleRouteByViewDi
  * @see RoutesAsTableAndSMM1Creator
  * @see RoutesAsTableAndSMM2Creator
  */
-export class RoutesAsTableCreator<PARENT_NAME extends string, PARENT_PATH extends string, > {
+export class RoutesAsTableCreator<const PARENT_NAME extends string, const PARENT_PATH extends string, > {
 
     //region -------------------- Fields --------------------
 
@@ -85,14 +86,18 @@ export class RoutesAsTableCreator<PARENT_NAME extends string, PARENT_PATH extend
      *
      * @param renderCallback The callback to render the element with a {@link ViewDisplays}
      */
-    public create(renderCallback: RenderCallbackByViewDisplay,): readonly [RedirectRoute<PARENT_NAME, PARENT_PATH, | SimpleListRoutePath<PARENT_PATH> | CardListRoutePath<PARENT_PATH> | TableRoutePath<PARENT_PATH>>, RouteByViewDisplay<SimpleListRouteName<PARENT_NAME>, SimpleListRoutePath<PARENT_PATH>>, RouteByViewDisplay<CardListRouteName<PARENT_NAME>, CardListRoutePath<PARENT_PATH>>, RouteByViewDisplay<TableRouteName<PARENT_NAME>, TableRoutePath<PARENT_PATH>>,] {
+    public create(renderCallback: RenderCallbackByViewDisplay,): readonly [
+        redirection: RedirectRoute<PARENT_NAME, PARENT_NAME, PARENT_PATH, | SimpleListRoutePath<PARENT_PATH> | CardListRoutePath<PARENT_PATH> | TableRoutePath<PARENT_PATH>>,
+        simpleList: RouteByViewDisplay<PARENT_NAME, SimpleListRouteName<PARENT_NAME>, SimpleListRoutePath<PARENT_PATH>>,
+        cardList: RouteByViewDisplay<PARENT_NAME, CardListRouteName<PARENT_NAME>, CardListRoutePath<PARENT_PATH>>,
+        table: RouteByViewDisplay<PARENT_NAME, TableRouteName<PARENT_NAME>, TableRoutePath<PARENT_PATH>>,] {
         const {name, path,} = this.parentRoute
 
         return [
-            new SimpleRedirectRoute(name, path, `/${RoutesCreator.getUrlAsTable(this.defaultViewDisplay)}${path}`,),
-            new SimpleRouteByViewDisplay(`${name} (list)`, `/list${path}`, ViewDisplays.SIMPLE_LIST, renderCallback,),
-            new SimpleRouteByViewDisplay(`${name} (card)`, `/card${path}`, ViewDisplays.CARD_LIST, renderCallback,),
-            new SimpleRouteByViewDisplay(`${name} (table)`, `/table${path}`, ViewDisplays.TABLE, renderCallback,),
+            new SimpleRedirectRoute(name, name, path, `/${RoutesCreator.getUrlAsTable(this.defaultViewDisplay)}${path}`, EMPTY_ARRAY,),
+            new SimpleRouteByViewDisplay(name, `${name} (list)`, `/list${path}`, ViewDisplays.SIMPLE_LIST, renderCallback,),
+            new SimpleRouteByViewDisplay(name, `${name} (card)`, `/card${path}`, ViewDisplays.CARD_LIST, renderCallback,),
+            new SimpleRouteByViewDisplay(name, `${name} (table)`, `/table${path}`, ViewDisplays.TABLE, renderCallback,),
         ]
     }
 

@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
@@ -199,22 +199,41 @@ export class PlayerSoundEffectTriggers
     }('Take damage | Lose life',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: PlayerSoundEffectTriggers
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers>> = class CompanionEnum_PlayerSoundEffectTriggers
+        extends BasicCompanionEnum<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_PlayerSoundEffectTriggers
+
+        private constructor() {
+            super(PlayerSoundEffectTriggers,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_PlayerSoundEffectTriggers()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #translationKey
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(translationKey: PossibleTranslationKey,) {
         super()
         this.#translationKey = translationKey
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get translationKey(): PossibleTranslationKey {
@@ -360,20 +379,16 @@ export class PlayerSoundEffectTriggers
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return PlayerSoundEffectTriggers
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<PlayerSoundEffectTriggers>,): PlayerSoundEffectTriggers {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<PlayerSoundEffectTriggers>,): PlayerSoundEffectTriggers {
+        return PlayerSoundEffectTriggers.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<PlayerSoundEffectTriggers> {
-        return Enum.getValuesOn(this,)
+        return PlayerSoundEffectTriggers.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<PlayerSoundEffectTriggers> {
-        yield* this.values
+        yield* PlayerSoundEffectTriggers.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

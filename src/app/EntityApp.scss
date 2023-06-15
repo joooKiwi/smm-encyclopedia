@@ -24,9 +24,9 @@
     //}
 
     tr > {
-      $index: 1;
+      $index: 0;
       //region -------------------- image - SMB --------------------
-      $index: $index+1;
+      $index: $index + 1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
@@ -34,7 +34,7 @@
 
       //endregion -------------------- image - SMB --------------------
       //region -------------------- image - SMB3 --------------------
-      $index: $index+1;
+      $index: $index + 1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
@@ -42,7 +42,7 @@
 
       //endregion -------------------- image - SMB3 --------------------
       //region -------------------- image - SMW --------------------
-      $index: $index+1;
+      $index: $index + 1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
@@ -50,7 +50,7 @@
 
       //endregion -------------------- image - SMW --------------------
       //region -------------------- image - NSMBU --------------------
-      $index: $index+1;
+      $index: $index + 1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
@@ -58,7 +58,7 @@
 
       //endregion -------------------- image - NSMBU --------------------
       //region -------------------- image - SM3DW --------------------
-      $index: $index+1;
+      $index: $index + 1;
 
       :nth-child(#{$index}) {
         max-width: 2cm;
@@ -66,7 +66,7 @@
 
       //endregion -------------------- image - SM3DW --------------------
       //region -------------------- name --------------------
-      $index: $index+1;
+      $index: $index + 1;
 
       :nth-child(#{$index}) {
         min-width: 5cm;
@@ -74,7 +74,7 @@
 
       //endregion -------------------- name --------------------
       ////region -------------------- game --------------------
-      //$index: $index+1;
+      //$index: $index + 1;
       //
       //:nth-child(#{$index}) {
       //  min-width: 2.5cm;
@@ -82,7 +82,7 @@
       //
       ////endregion -------------------- game --------------------
       ////region -------------------- game style --------------------
-      //$index: $index+1;
+      //$index: $index + 1;
       //
       //:nth-child(#{$index}) {
       //  max-width: 4cm;
@@ -90,7 +90,7 @@
       //
       ////endregion -------------------- game style --------------------
       ////region -------------------- course theme --------------------
-      //$index: $index+1;
+      //$index: $index + 1;
       //
       //:nth-child(#{$index}) {
       //  min-width: 4cm;
@@ -99,7 +99,7 @@
       //
       ////endregion -------------------- course theme --------------------
       ////region -------------------- time --------------------
-      //$index: $index+1;
+      //$index: $index + 1;
       //
       //:nth-child(#{$index}) {
       //  min-width: 1.5cm;
@@ -107,22 +107,22 @@
       //
       ////endregion -------------------- time --------------------
       //region -------------------- entity category --------------------
-      $index: $index+1;
+      $index: $index + 1;
 
       :nth-child(#{$index}) {
         min-width: 3cm;
       }
 
       //endregion -------------------- entity category --------------------
-      //region -------------------- limit (editor) --------------------
-      $index: $index+1;
-
-      :nth-child(#{$index}) {
-        min-width: 5cm;
-        max-width: 7.5cm;
-      }
-
-      //endregion -------------------- limit (editor) --------------------
+      ////region -------------------- limit (editor) --------------------
+      //$index: $index + 1;
+      //
+      //:nth-child(#{$index}) {
+      //  min-width: 5cm;
+      //  max-width: 7.5cm;
+      //}
+      //
+      ////endregion -------------------- limit (editor) --------------------
 
     }
 
@@ -159,6 +159,10 @@
   //endregion -------------------- Helper guide for the user to distinguish the group by game style --------------------
 
   img {
+
+    &.entity-image {
+      min-height: .5cm;
+    }
 
     &[alt="Terrain"] {
       filter: var(--filter-white-to-cyan);

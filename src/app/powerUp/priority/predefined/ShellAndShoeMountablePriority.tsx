@@ -38,12 +38,12 @@ export default function ShellAndShoeMountablePriority<T extends PowerUpPriority,
                 <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Buzzy Shell)`}     id={`powerUpPriority-${lowerCaseAcronym}-buzzyShell`}    value={buzzyShell} images={images}/>
                 <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Spiny Shell)`}     id={`powerUpPriority-${lowerCaseAcronym}-spinyShell`}    value={spinyShell} images={images}/>
                 <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Shoe)`}            id={`powerUpPriority-${lowerCaseAcronym}-shoe`}          value={shoe}          images={images}/>
-                <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Stiletto)`}        id={`powerUpPriority-${lowerCaseAcronym}-stiletto`}      value={stiletto}      images={images} displayName/>
+                <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Stiletto)`}        id={`powerUpPriority-${lowerCaseAcronym}-stiletto`}      value={stiletto}      images={images}/>
             </GroupOf5PowerUpPriority>
         : <GroupOf4PowerUpPriority id={`powerUpPriority-group-${lowerCaseAcronym}-shellAndMountable`}>
                 <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Buzzy Shell)`}     id={`powerUpPriority-${lowerCaseAcronym}-buzzyShell`}    value={buzzyShell} images={images}/>
                 <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Spiny Shell)`}     id={`powerUpPriority-${lowerCaseAcronym}-spinyShell`}    value={spinyShell} images={images}/>
                 <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Shoe)`}            id={`powerUpPriority-${lowerCaseAcronym}-shoe`}          value={shoe}          images={images}/>
-                <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Stiletto)`}        id={`powerUpPriority-${lowerCaseAcronym}-stiletto`}      value={stiletto}      images={images} displayName/>
+                <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Stiletto)`}        id={`powerUpPriority-${lowerCaseAcronym}-stiletto`}      value={stiletto}      images={images}/>
             </GroupOf4PowerUpPriority>
 }

@@ -7,9 +7,7 @@ import type {GameCollection}       from 'util/collection/GameCollection'
 import type {ReactProperties}      from 'util/react/ReactProperties'
 
 export interface AppProperties
-    extends ReactProperties {
-
-}
+    extends ReactProperties {}
 
 export interface AppWithInterpreterProperties
     extends AppProperties {
@@ -34,35 +32,37 @@ export interface PowerUpAndRidePriorityProperties
 
 }
 
-//character name
+export interface CharacterNameProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 //game reference
 
 export interface GameStyleProperties
-    extends AppWithGamesProperties, AppWithInterpreterProperties {
-}
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
-//entity
+export interface EntityProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 //entity category
 
 //entity group
 
 export interface LimitAppProperties
-    extends AppWithInterpreterProperties {
+    extends AppWithInterpreterProperties, AppWithGamesProperties {
 
     readonly type: LimitTypes
 
 }
 
 export interface ThemeAppProperties
-    extends AppWithInterpreterProperties {
+    extends AppWithInterpreterProperties, AppWithGamesProperties {
 
     readonly type: ThemeTypes
 
 }
 
-//sound effect
+export interface SoundEffectProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 //sound effect category
 
@@ -81,7 +81,8 @@ export interface CourseTagAppProperties
 
 //instrument
 
-//editor voice
+export interface EditorVoiceProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 
 //endregion -------------------- Specific properties --------------------

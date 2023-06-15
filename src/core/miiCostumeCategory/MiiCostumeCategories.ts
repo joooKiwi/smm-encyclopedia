@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                             from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                               from 'core/ClassWithReference'
@@ -28,11 +28,28 @@ export class MiiCostumeCategories
     public static readonly BOTTOM =   new MiiCostumeCategories('Bottom', 2,)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: MiiCostumeCategories
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<MiiCostumeCategories, typeof MiiCostumeCategories>> = class CompanionEnum_MiiCostumeCategories
+        extends BasicCompanionEnum<MiiCostumeCategories, typeof MiiCostumeCategories> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_MiiCostumeCategories
+
+        private constructor() {
+            super(MiiCostumeCategories,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_MiiCostumeCategories()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>
@@ -100,20 +117,16 @@ export class MiiCostumeCategories
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return MiiCostumeCategories
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<MiiCostumeCategories>,): MiiCostumeCategories {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<MiiCostumeCategories>,): MiiCostumeCategories {
+        return MiiCostumeCategories.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<MiiCostumeCategories> {
-        return Enum.getValuesOn(this,)
+        return MiiCostumeCategories.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<MiiCostumeCategories> {
-        yield* this.values
+        yield* MiiCostumeCategories.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

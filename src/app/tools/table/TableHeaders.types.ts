@@ -5,19 +5,19 @@ import type {ReactProperties}      from 'util/react/ReactProperties'
 
 
 export type EveryHeaderHolders = ReadonlyMap<string, HeaderHolder>
-export type Layout = readonly string[][]
+export type Layout = readonly (readonly string[])[]
 
 export interface TableHeadersProperties
     extends ReactProperties {
 
-    id: string
+    readonly id: string
 
-    type: HeaderTypes
+    readonly type: HeaderTypes
 
-    headers: SingleHeadersContent
+    readonly headers: SingleHeadersContent
 
-    layout: () => Layout
+    readonly layout: Layout
 
-    everyHeadersHolder: () => EveryHeaderHolders
+    readonly everyHeadersHolder: EveryHeaderHolders
 
 }

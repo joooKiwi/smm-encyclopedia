@@ -5,14 +5,12 @@ import type {EveryHeaderHolders, Layout} from 'app/tools/table/TableHeaders.type
 import type {TableProperties}            from 'app/tools/table/Table.types'
 import type {HeaderHolder}               from 'app/tools/table/header/HeaderHolder'
 import type {BootstrapColor}             from 'bootstrap/Bootstrap.types'
-import type {ObjectHolder}               from 'util/holder/ObjectHolder'
 import type {ReactComponent}             from 'util/react/ReactComponent'
 
-import TableContent                   from 'app/tools/table/TableContent'
-import TableHeaders                   from 'app/tools/table/TableHeaders'
-import {HeaderHolderContainer}        from 'app/tools/table/header/HeaderHolder.container'
-import {HeaderTypes}                  from 'app/tools/table/header/HeaderTypes'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import TableContent            from 'app/tools/table/TableContent'
+import TableHeaders            from 'app/tools/table/TableHeaders'
+import {HeaderHolderContainer} from 'app/tools/table/header/HeaderHolder.container'
+import {HeaderTypes}           from 'app/tools/table/header/HeaderTypes'
 
 /**
  * @reactComponent
@@ -101,22 +99,22 @@ export default class Table
     //endregion -------------------- Getter methods --------------------
 
     public override render(): JSX.Element {
-        const caption = this.caption
-        const headers = this.headers
-        const isHeaderNull = headers == null
-        const everyHeadersHolder: ObjectHolder<EveryHeaderHolders> = new DelayedObjectHolderContainer(() => this.#getEveryHeaderHolders(this.#getEveryHeaders()))
-        const layoutHolder: ObjectHolder<Layout> = new DelayedObjectHolderContainer(() => this.#getLayout(everyHeadersHolder.get))
+        const caption = this.caption,
+            headers = this.headers,
+            isHeaderNull = headers == null,
+            everyHeadersHolder = this.#getEveryHeaderHolders(this.#getEveryHeaders(),),
+            layoutHolder = this.#getLayout(everyHeadersHolder,)
 
         return <table key={this.id} id={this.id} className={`table table-${this.tableColor} table-bordered table-striped`}>
             {caption == null ? null : <caption>{caption}</caption>}
             {isHeaderNull ? null : <thead className={`table-${this.headersColor} table-borderless`}>
             <TableHeaders id={this.id} type={HeaderTypes.HEAD} headers={headers}
-                          everyHeadersHolder={() => everyHeadersHolder.get} layout={() => layoutHolder.get}/>
+                          everyHeadersHolder={everyHeadersHolder} layout={layoutHolder}/>
             </thead>}
             <tbody><TableContent content={this.content}/></tbody>
             {isHeaderNull ? null : <tfoot className={`table-${this.headersColor} table-borderless`}>
             <TableHeaders id={this.id} type={HeaderTypes.FOOT} headers={headers}
-                          everyHeadersHolder={() => everyHeadersHolder.get} layout={() => layoutHolder.get}/>
+                          everyHeadersHolder={everyHeadersHolder} layout={layoutHolder}/>
             </tfoot>}
         </table>
     }

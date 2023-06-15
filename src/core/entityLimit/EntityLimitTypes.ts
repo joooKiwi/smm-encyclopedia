@@ -1,5 +1,5 @@
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
 import type {Nullable}                                                        from 'util/types/nullable'
@@ -13,17 +13,35 @@ export class EntityLimitTypes
     public static readonly EDITOR =        new EntityLimitTypes('Editor',        'In the editor',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EntityLimitTypes
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimitTypes, typeof EntityLimitTypes>> = class CompanionEnum_EntityLimitTypes
+        extends BasicCompanionEnum<EntityLimitTypes, typeof EntityLimitTypes> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityLimitTypes
+
+        private constructor() {
+            super(EntityLimitTypes,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EntityLimitTypes()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #englishName
     readonly #englishCommonText
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(englishName: PossibleEnglishName, englishCommonText: PossibleEnglishCommonText,) {
         super()
@@ -31,6 +49,7 @@ export class EntityLimitTypes
         this.#englishCommonText = englishCommonText
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {
@@ -59,20 +78,16 @@ export class EntityLimitTypes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityLimitTypes
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityLimitTypes>,): EntityLimitTypes {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityLimitTypes>,): EntityLimitTypes {
+        return EntityLimitTypes.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityLimitTypes> {
-        return Enum.getValuesOn(this,)
+        return EntityLimitTypes.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityLimitTypes> {
-        yield* this.values
+        yield* EntityLimitTypes.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

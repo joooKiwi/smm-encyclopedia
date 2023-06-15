@@ -41,6 +41,7 @@
   "Yes": "Oui",
   "No":  "Non",
 
+  "color": { "singular": "Couleur", "plural": "Couleurs" },
   "White":  { "m": "Blanc",  "f": "Blanche" },
   "Black":  { "m": "Noir",   "f": "Noire" },
   "Red":    { "m": "Rouge",  "f": "Rouge" },
@@ -72,9 +73,6 @@
   "Options":          "Options",
 
   "Image": "Image",
-
-  "Limit":      "Limite",
-  "Instrument": "Instrument",
 
   "Type":  "Type",
   "All":   "Tout",

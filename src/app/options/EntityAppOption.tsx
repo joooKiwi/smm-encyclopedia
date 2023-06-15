@@ -1,6 +1,6 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
-import {Fragment}                                                                from 'react'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import {Fragment}                                                                                   from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -16,12 +16,13 @@ import {AppOptionWithContentComponent}              from 'app/options/component/
 import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
 import {EmptyAppOption}                             from 'app/options/component/EmptyAppOption'
 import Image                                        from 'app/tools/images/Image'
-import TextComponent                                from 'app/tools/text/TextComponent'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import InstrumentPropertyComponent                  from 'core/entity/properties/instrument/InstrumentProperty.component'
 import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
-import LimitComponent                               from 'core/entityLimit/Limit.component'
+import PlayLimitComponent                           from 'core/entityLimit/PlayLimit.component'
+import SMM1And3DSEditorLimitComponent               from 'core/entityLimit/SMM1And3DSEditorLimit.component'
+import SMM2EditorLimitComponent                     from 'core/entityLimit/SMM2EditorLimit.component'
 import {Games}                                      from 'core/game/Games'
 import GameComponent                                from 'core/game/Game.component'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
@@ -162,7 +163,7 @@ export class EntityAppOption
             return () => {
                 const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
 
-                return <TimeComponent reference={entity} name={entity} displayAllAsText/>
+                return <TimeComponent reference={entity} name={entity} displayAllAsText={false}/>
             }
         }
 
@@ -200,52 +201,86 @@ export class EntityAppOption
         protected override _createContentOption() {
             return () => {
                 const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
-                const entity = enumeration.reference
-
-                const editorLimit_SMM1And3DS = entity.editorLimit_smm1And3ds
-                const editorLimit_SMM2 = entity.editorLimit_smm2
 
                 return [
-                    editorLimit_SMM1And3DS == null
-                        ? <TextComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} content={'N/A'}/>
-                        : <LimitComponent id={`editor-SuperMarioMaker1And3DS-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM1And3DS} displayAcronymIfApplicable/>,
-                    editorLimit_SMM2 == null || editorLimit_SMM2 === 'N/A'
-                        ? <TextComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} content={editorLimit_SMM2} isUnknown={entity.isUnknown_editorLimit_smm2}/>
-                        : <LimitComponent id={`editor-SuperMarioMaker2-${enumeration.englishNameInHtml}`} limits={editorLimit_SMM2} displayAcronymIfApplicable/>,
-                    <LimitComponent id={`whilePlaying-${enumeration.englishNameInHtml}`} limits={entity.toLimitWhilePlayingMap()} displayAcronymIfApplicable/>,
+                    <SMM1And3DSEditorLimitComponent reference={enumeration}/>,
+                    <SMM2EditorLimitComponent reference={enumeration}/>,
+                    <PlayLimitComponent reference={enumeration}/>,
                 ]
             }
         }
 
         protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'limit', element: gameContentTranslation('limit.singular'),
-                subHeaders: [
-                    {
-                        key: 'limit-editor', element: gameContentTranslation('limit.editor.value'),
-                        tooltip: gameContentTranslation('limit.editor.limit'),
-                        subHeaders: [
-                            {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
-                            {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-                        ],
-                    },
-                    {
-                        key: 'limit-whilePlaying', element: gameContentTranslation('limit.play.value'),
-                        tooltip: gameContentTranslation('limit.play.limit'),
-                    },
-                ],
-            }
+            return CommonOptions.get.getLimitHeader(
+                CommonOptions.get.getPlayLimitHeader(
+                    {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
+                    {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
+                ),
+                CommonOptions.get.editorLimitHeader,
+            )
         }
 
     }()
-    public static readonly IF_APPLICABLE_ACRONYM_ON_LIMIT_AS_TEXT = new EntityAppOption()
+    public static readonly LIMIT_IN_SMM1_AND_3DS = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
+
+        protected override _createContentOption() {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
+
+                return [
+                    <SMM1And3DSEditorLimitComponent reference={enumeration}/>,
+                    <PlayLimitComponent reference={enumeration}/>,
+                ]
+            }
+        }
+
+        protected override _createTableHeaderOption() {
+            return CommonOptions.get.limitWithSubHeaders
+        }
+
+    }()
+    public static readonly LIMIT_IN_SMM2 = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+
+        protected override _createContentOption() {
+            return () => {
+                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
+
+                return [
+                    <SMM2EditorLimitComponent reference={enumeration}/>,
+                    <PlayLimitComponent reference={enumeration}/>,
+                ]
+            }
+        }
+
+        protected override _createTableHeaderOption() {
+            return CommonOptions.get.limitWithSubHeaders
+        }
+
+    }()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EntityAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityAppOption, typeof EntityAppOption>> = class CompanionEnum_EntityAppOption
+        extends BasicCompanionEnum<EntityAppOption, typeof EntityAppOption>{
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityAppOption
+
+        private constructor() {
+            super(EntityAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new this()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -264,11 +299,13 @@ export class EntityAppOption
     #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     protected static get _gameStyles(): readonly GameStyles[] {
@@ -334,20 +371,16 @@ export class EntityAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityAppOption>,): EntityAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityAppOption>,): EntityAppOption {
+        return EntityAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityAppOption> {
-        return Enum.getValuesOn(this,)
+        return EntityAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityAppOption> {
-        yield* this.values
+        yield* EntityAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

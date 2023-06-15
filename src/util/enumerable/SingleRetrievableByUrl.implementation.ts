@@ -1,4 +1,4 @@
-import type {BasicEnumerableConstructor, Enumerable} from '@joookiwi/enumerable/dist/types'
+import type {BasicCompanionEnumDeclaration, EnumerableConstructor, Enumerable} from '@joookiwi/enumerable'
 
 import type {ClassUsedInRoute}       from 'route/ClassUsedInRoute'
 import type {SingleRetrievableByUrl} from 'util/enumerable/SingleRetrievableByUrl'
@@ -6,15 +6,15 @@ import type {NullOr}                 from 'util/types/nullable'
 
 /**
  * A basic implementation of the {@link SingleRetrievableByUrl} with only the regex
- * and a way to retrieve the {@link BasicEnumerableConstructor} to do operations on it
+ * and a way to retrieve the {@link EnumerableConstructor} to do operations on it
  */
-export abstract class SingleRetrievableByUrlImplementation<T extends Enumerable & ClassUsedInRoute, >
+export abstract class SingleRetrievableByUrlImplementation<const T extends Enumerable & ClassUsedInRoute, >
     implements SingleRetrievableByUrl<T> {
 
     //region -------------------- Fields --------------------
 
     public abstract readonly URL_REGEX: RegExp
-    protected abstract readonly _enumerableConstructor: BasicEnumerableConstructor<T['ordinal'], T['name'], T>
+    protected abstract readonly _enumerableConstructor: EnumerableConstructor<T, BasicCompanionEnumDeclaration<T, any>> & Iterable<T>
     protected readonly _prefix: NullOr<string> = null
     #values?: readonly T[]
     #prefix?: string

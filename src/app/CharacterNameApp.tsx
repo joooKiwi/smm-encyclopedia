@@ -1,3 +1,4 @@
+import type {CharacterNameProperties}                              from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
@@ -7,9 +8,10 @@ import {AbstractCardListApp}     from 'app/withInterpreter/AbstractCardListApp'
 import {CharacterNames}          from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
+import {newIterableIterator}     from 'util/utilitiesMethods'
 
 export default class CharacterNameApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<CharacterNames>> {
+    extends AbstractCardListApp<AppInterpreterWithCardList<CharacterNames>, CharacterNameProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -38,10 +40,12 @@ export default class CharacterNameApp
     }
 
     protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<CharacterNames> {
+        const $this = this
+
         return new class implements AppInterpreterWithCardList<CharacterNames> {
 
             public get iterable() {
-                return CharacterNames[Symbol.iterator]()
+                return newIterableIterator($this.props.games, CharacterNames[Symbol.iterator](),)
             }
 
             //region -------------------- List interpreter --------------------

@@ -11,7 +11,7 @@ import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
  */
 export default function TextComponent<T extends PossibleTextContent = PossibleTextContent, >({content, isUnknown, className, ...otherProperties}: TextProperties<T>,) {
     if (isUnknown === true)
-        (className ??= "").concat(' is-unknown')
+        className = (className ??= '').concat(' is-unknown')
 
     switch (content) {
         case null:

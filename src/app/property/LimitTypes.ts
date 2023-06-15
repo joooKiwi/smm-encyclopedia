@@ -1,5 +1,5 @@
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -72,11 +72,28 @@ export abstract class LimitTypes
     }('editor', 'editorLimit',)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: LimitTypes
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<LimitTypes, typeof LimitTypes>> = class CompanionEnum_LimitTypes
+        extends BasicCompanionEnum<LimitTypes, typeof LimitTypes> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_LimitTypes
+
+        private constructor() {
+            super(LimitTypes,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_LimitTypes()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #type
@@ -155,20 +172,16 @@ export abstract class LimitTypes
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return LimitTypes
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<LimitTypes>,): LimitTypes {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<LimitTypes>,): LimitTypes {
+        return LimitTypes.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<LimitTypes> {
-        return Enum.getValuesOn(this,)
+        return LimitTypes.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<LimitTypes> {
-        yield* this.values
+        yield* LimitTypes.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,7 +1,7 @@
 import './EntityLimitAppOption.scss'
 
-import type {CollectionHolder, EnumerableConstructor, PossibleValueByEnumerable} from '@joookiwi/enumerable/dist/types'
-import {Enum}                                                                    from '@joookiwi/enumerable'
+import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
+import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityLimitAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -79,30 +79,67 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
-        protected override _createContentOption({reference, englishName,}: EntityLimits,) {
+        protected override _createContentOption(enumeration: EntityLimits,) {
             return [
-                <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>,
-                <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>,
+                EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS._createContentOption(enumeration,),
+                EntityLimitAppOption.AMOUNT_IN_SMM2._createContentOption(enumeration,),
             ]
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {
-                key: 'limit', element: contentTranslation('Limit'), subHeaders: [
+            return CommonOptions.get.getLimitHeader(
                     {key: 'limit-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
                     {key: 'limit-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-                ],
-            }
+            )
+        }
+
+    }()
+    public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class EntityLimitAppOption_AmountInSMM1AndSMM3DS extends EntityLimitAppOption {
+
+        public override _createContentOption({reference, englishName,}: EntityLimits,) {
+            return <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return CommonOptions.get.limitHeader
+        }
+
+    }()
+    public static readonly AMOUNT_IN_SMM2 = new class EntityLimitAppOption_AmountInSMM2 extends EntityLimitAppOption {
+
+        public override _createContentOption({reference, englishName,}: EntityLimits,) {
+            return <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return CommonOptions.get.limitHeader
         }
 
     }()
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    static [index: number]: EntityLimitAppOption
+    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimitAppOption, typeof EntityLimitAppOption>> = class CompanionEnum_EntityLimitAppOption
+        extends BasicCompanionEnum<EntityLimitAppOption, typeof EntityLimitAppOption> {
 
-    //endregion -------------------- Enum fields --------------------
+        //region -------------------- Singleton usage --------------------
+
+        static #instance?: CompanionEnum_EntityLimitAppOption
+
+        private constructor() {
+            super(EntityLimitAppOption,)
+        }
+
+        public static get get() {
+            return this.#instance ??= new CompanionEnum_EntityLimitAppOption()
+        }
+
+        //endregion -------------------- Singleton usage --------------------
+
+    }
+
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     /**
@@ -116,11 +153,13 @@ export abstract class EntityLimitAppOption
     #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor() {
         super()
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -155,20 +194,16 @@ export abstract class EntityLimitAppOption
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    protected override get _static(): EnumerableConstructor<Ordinals, Names> {
-        return EntityLimitAppOption
-    }
-
-    public static getValue(value: PossibleValueByEnumerable<EntityLimitAppOption>,): EntityLimitAppOption {
-        return Enum.getValueOn(this, value,)
+    public static getValue(value: PossibleEnumerableValueBy<EntityLimitAppOption>,): EntityLimitAppOption {
+        return EntityLimitAppOption.CompanionEnum.get.getValue(value,)
     }
 
     public static get values(): CollectionHolder<EntityLimitAppOption> {
-        return Enum.getValuesOn(this,)
+        return EntityLimitAppOption.CompanionEnum.get.values
     }
 
     public static* [Symbol.iterator](): IterableIterator<EntityLimitAppOption> {
-        yield* this.values
+        yield* EntityLimitAppOption.CompanionEnum.get
     }
 
     //endregion -------------------- Enum methods --------------------
