@@ -29,8 +29,23 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 
 //region -------------------- Import from deconstruction --------------------
 
-const {SMB_AND_SMB3, SMW_AND_NSMBU, SMB_SMB3_AND_SMW, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK, FIRST_EDITOR_IMAGE_CALLBACK, IN_GAME_IMAGE_CALLBACK, CLEAR_CONDITION_IMAGE_CALLBACK} = AbstractPowerUpPriority
-const {FIRE_FLOWER, BIG_MUSHROOM_MODERN, RED_YOSHI, BUZZY_SHELL, PROPELLER_BOX, RED_POW_BOX, MASTER_SWORD, BIG_MUSHROOM_CLASSIC, CANNON_BOX, SUPER_ACORN, CAR, SUPER_LEAF, SUPER_HAMMER, JUNIOR_CLOWN_CAR, SUPERBALL_FLOWER, FROG_SUIT, FIRE_JUNIOR_CLOWN_CAR, BOOMERANG_FLOWER, SHOE, BIG_MUSHROOM, KOOPA_CLOWN_CAR, KOOPA_TROOPA_CAR, BULLET_BILL_MASK, SPINY_SHELL, SMB2_MUSHROOM, FIRE_KOOPA_CLOWN_CAR, YOSHI, DRY_BONES_SHELL, STILETTO, POWER_BALLOON, LAKITU_CLOUD, MYSTERY_MUSHROOM, GOOMBA_MASK, SUPER_MUSHROOM, CAPE_FEATHER, SUPER_BELL, SUPER_STAR, PROPELLER_MUSHROOM, WEIRD_MUSHROOM} = Entities
+const {SMB_AND_SMB3, SMW_AND_NSMBU, SMB_SMB3_AND_SMW, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK, FIRST_EDITOR_IMAGE_CALLBACK, IN_GAME_IMAGE_CALLBACK, FIRST_IN_GAME_IMAGE_CALLBACK, FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK,} = AbstractPowerUpPriority
+const {SUPER_MUSHROOM, FIRE_FLOWER, SUPERBALL_FLOWER,
+    MYSTERY_MUSHROOM, WEIRD_MUSHROOM,
+    MASTER_SWORD, BIG_MUSHROOM, BIG_MUSHROOM_CLASSIC, BIG_MUSHROOM_MODERN, SMB2_MUSHROOM,
+    SUPER_LEAF, FROG_SUIT,
+    CAPE_FEATHER, POWER_BALLOON,
+    PROPELLER_MUSHROOM, SUPER_ACORN,
+    SUPER_BELL, SUPER_HAMMER, BOOMERANG_FLOWER,
+    CANNON_BOX, PROPELLER_BOX, GOOMBA_MASK, BULLET_BILL_MASK, RED_POW_BOX,
+    SUPER_STAR,
+    SHOE, STILETTO,
+    YOSHI, YOSHI_EGG, RED_YOSHI, RED_YOSHI_EGG,
+    KOOPA_CLOWN_CAR, JUNIOR_CLOWN_CAR, FIRE_KOOPA_CLOWN_CAR, FIRE_JUNIOR_CLOWN_CAR,
+    KOOPA_TROOPA_CAR, CAR,
+    BUZZY_SHELL, SPINY_SHELL, DRY_BONES_SHELL,
+    LAKITU_CLOUD,
+} = Entities
 const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD} = GameStyles
 const {POWER_UP,} = OtherWordInTheGames
 
@@ -77,11 +92,11 @@ export default class PowerUpRideAndHatPriorityApp
 
     static readonly #SUPER_STAR: PowerUpByAllGameStylesPriority =                   new AllGamesPowerUpPriority(SUPER_STAR,             SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #SHOE: PowerUpByAllGameStylesPriority =                         new AllGamesPowerUpPriority(SHOE,                   SMB_AND_SMB3,           CLEAR_CONDITION_IMAGE_CALLBACK,)
-    static readonly #STILETTO: PowerUpByAllGameStylesPriority =                     new AllGamesPowerUpPriority(STILETTO,               SMB_AND_SMB3,           () => [],)//TODO add stiletto images
+    static readonly #SHOE: PowerUpByAllGameStylesPriority =                         new AllGamesPowerUpPriority(SHOE,                   SMB_AND_SMB3,           FIRST_IN_GAME_IMAGE_CALLBACK,)
+    static readonly #STILETTO: PowerUpByAllGameStylesPriority =                     new AllGamesPowerUpPriority(STILETTO,               SMB_AND_SMB3,           FIRST_IN_GAME_IMAGE_CALLBACK,)
 
-    static readonly #YOSHI: PowerUpByAllGameStylesPriority =                        new AllGamesPowerUpPriority(YOSHI,                  SMW_AND_NSMBU,          () => [],)//TODO add yoshi image (SMW) & change to yoshi egg image (NSMBU)
-    static readonly #RED_YOSHI: PowerUpByAllGameStylesPriority =                    new SMM2PowerUpPriority(RED_YOSHI,                  SMW_AND_NSMBU,          () => [],)//TODO add yoshi image (SMW) & change to yoshi egg image (NSMBU)
+    static readonly #YOSHI: PowerUpByAllGameStylesPriority =                        new AllGamesPowerUpPriority(YOSHI,                  SMW_AND_NSMBU,          (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(YOSHI_EGG, gameStyle,),)
+    static readonly #RED_YOSHI: PowerUpByAllGameStylesPriority =                    new SMM2PowerUpPriority(RED_YOSHI,                  SMW_AND_NSMBU,          (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(RED_YOSHI_EGG, gameStyle,),)
 
     static readonly #BUZZY_SHELL: PowerUpByAllGameStylesPriority =                  new AllGamesPowerUpPriority(BUZZY_SHELL,            SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
     static readonly #SPINY_SHELL: PowerUpByAllGameStylesPriority =                  new AllGamesPowerUpPriority(SPINY_SHELL,            SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
@@ -102,8 +117,7 @@ export default class PowerUpRideAndHatPriorityApp
     static readonly #FIRE_KOOPA_CLOWN_CAR: PowerUpBySMM1GameStylesPriority =        new AllGamesPowerUpPriority(FIRE_KOOPA_CLOWN_CAR,   SMB_SMB3_AND_SMW,       EDITOR_IMAGE_CALLBACK,)
     static readonly #FIRE_JUNIOR_CLOWN_CAR: NSMBUPowerUpPriority =                  new AllGamesPowerUpPriority(FIRE_JUNIOR_CLOWN_CAR,  NEW_SUPER_MARIO_BROS_U, EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #CAR: SM3DWPowerUpPriority =                                    new SMM2PowerUpPriority(CAR,                        SUPER_MARIO_3D_WORLD,   (_, gameStyle,) =>
-        AbstractPowerUpPriority.getEditorImages(KOOPA_TROOPA_CAR, gameStyle,),)
+    static readonly #CAR: SM3DWPowerUpPriority =                                    new SMM2PowerUpPriority(CAR,                        SUPER_MARIO_3D_WORLD,   (_, gameStyle,) => EDITOR_IMAGE_CALLBACK(KOOPA_TROOPA_CAR, gameStyle,),)
     static readonly #LAKITU_CLOUD: PowerUpBySMM1GameStylesPriority =                new SMM2PowerUpPriority(LAKITU_CLOUD,               SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
 
 
