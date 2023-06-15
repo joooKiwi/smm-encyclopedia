@@ -416,6 +416,19 @@
   }
 
 
+  :where(#powerUpPriority-group-smb3-shellAndMountable > .top-center-top-arrow-group-container > .internal-arrow-container),{ .arrow-container {
+    --line-size: 3.25cm;
+  } }
+
+  :where(#powerUpPriority-group-smw-shellAndMountable > .top-center-top-arrow-group-container > .internal-arrow-container),{ .arrow-container {
+    --line-size: 2.85cm;
+  } }
+
+  :where(#powerUpPriority-group-nsmbu-shellAndMountable > .top-center-top-arrow-group-container > .internal-arrow-container), { .arrow-container {
+      --line-size: 3cm;
+  } }
+
+
   :where(#powerUpPriority-group-sm3dw > .diagonal-arrow-group-container > :first-child) {
     --angle: 20deg;
     .arrow-container {
