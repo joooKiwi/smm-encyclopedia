@@ -1,5 +1,6 @@
 import './Navigation.scss'
 
+import ColorButton              from 'navigation/button/Color.button'
 import DisplayViewButton        from 'navigation/button/DisplayView.button'
 import HomeButton               from 'navigation/button/Home.button'
 import ParameterButton          from 'navigation/button/Parameter.button'
@@ -15,7 +16,8 @@ export default function Navigation() {
             <HomeButton/>
             <DisplayViewButton/>
             <SearchButton/>
-            <div className="btn-group btn-group-lg">
+            <div className="btn-group">
+                <ColorButton/>
                 <TopLanguageChangerButton/>
                 <ParameterButton/>
             </div>

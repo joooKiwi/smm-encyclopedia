@@ -59,5 +59,9 @@ export default function ModalContainers({parameter,}:ModalContainersProperties,)
         {/*    </ModalBody>*/}
         {/*    <ModalFooter key="modal - search (footer)" successButton={({children: contentTranslation('Search')})}/>*/}
         </ModalContainer>
+
+        <ModalContainer key="modal - color (container)" id={SEARCH_MODAL_ID} verticallyCentered modalSize="sm">
+
+        </ModalContainer>
     </aside>
 }

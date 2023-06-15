@@ -40,6 +40,7 @@
   "Yes": "Yes",
   "No":  "No",
 
+  "color": { "singular": "Color", "plural": "Colors" },
   "White":  { "m": "White",  "f": "White" },
   "Black":  { "m": "Black",  "f": "Black" },
   "Red":    { "m": "Red",    "f": "Red" },
