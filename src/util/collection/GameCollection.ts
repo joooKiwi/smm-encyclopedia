@@ -17,30 +17,16 @@ export class GameCollection<const T extends Games = Games, >
     }
 
 
-    override _new<const U, >(iterable: Iterable<U>,): CollectionHolder<U> {
+    protected override _new<const U, >(iterable: Iterable<U>,): CollectionHolder<U> {
         return new GenericCollectionHolder(iterable,)
     }
-
-
-    public override hasAll(...values: readonly unknown[]): boolean {
-        return super.hasAll(...values.flat(),)
-    }
-
-    public override includesAll(...values: readonly unknown[]): boolean {
-        return super.includesAll(...values.flat(),);
-    }
-
-    public override containsAll(...values: readonly unknown[]): boolean {
-        return super.containsAll(...values.flat(),);
-    }
-
 
     /**
      * The collection has every game ({@link Games.SUPER_MARIO_MAKER_1 SMM1},
      * {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} & {@link Games.SUPER_MARIO_MAKER_2 SMM2}) type in its values
      */
     public get hasAllGames(): & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T> {
-        return this.#hasAllGames = super.hasAll(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,) as & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
+        return this.#hasAllGames = this.hasAll(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,) as & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} type in its values */

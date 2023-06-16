@@ -126,7 +126,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
  * @throws {Response} The route path encapsulated in a response
  */
 function redirectToPathWithDefaultLanguage({name, games,}: EveryPossibleRouteInstance,): never {
-    if (!Games.selectedGames.hasAll(games,))
+    if (!Games.selectedGames.hasAll(...games,))
         Games.setSelected(games,)
     throw redirect(routeFromName(name, ProjectLanguages.default,))
 }
@@ -140,7 +140,7 @@ function redirectToPathWithDefaultLanguage({name, games,}: EveryPossibleRouteIns
  * @canSetSelectedGames
  */
 function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
-    if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(games,))
+    if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(...games,))
         Games.setSelected(games)
     return null
 }
