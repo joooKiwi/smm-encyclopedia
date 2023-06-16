@@ -36,7 +36,7 @@ export function routeFromName(name: EveryPossibleRouteNames, language?: Nullable
                 return `/${language.projectAcronym}${routeWithSelectedGames.redirectionPath as EveryPossibleRoutePartialPaths}`
             return `/${language.projectAcronym}${routeWithSelectedGames.path}`
         }
-        if (selectedGames.hasAll(simpleRouteGames))
+        if (selectedGames.hasAll(...simpleRouteGames,))
             return `/${language.projectAcronym}${simpleRoute.path}`
     }
     throw new ReferenceError(`No route could be found with the name "${name}".`)
@@ -66,7 +66,7 @@ function getRouteWithSelectedGames(routes: readonly EveryPossibleRouteInstance[]
         const games = route.games
         if (selectedGames.size !== games.length)
             continue
-        if (!selectedGames.hasAll(games,))
+        if (!selectedGames.hasAll(...games,))
             continue
         return route
     }
@@ -79,7 +79,7 @@ function getRouteWithSelectedGames(routes: readonly EveryPossibleRouteInstance[]
         const games = route.games
         if (selectedGames.size !== games.length)
             continue
-        if (!selectedGames.hasAll(games,))
+        if (!selectedGames.hasAll(...games,))
             continue
         return route
     }
