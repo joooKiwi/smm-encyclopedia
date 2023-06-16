@@ -82,14 +82,13 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 
     const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path))
     if (routeFoundByBasicPath == null)
-        throw redirect(routeFromName('home', getUserLanguage(),))
+        throw redirect(routeFromName('home', ProjectLanguages.default,))
 
-    const languageFound = ProjectLanguages.getInUrl(url),
-        userLanguage = getUserLanguage()
-    if (routeFoundByBasicPath.name === 'home' && languageFound === userLanguage)
+    const languageFound = ProjectLanguages.getInUrl(url)
+    if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.default)
         return null // The path is "USER_LANGUAGE/home" without setting the current language (by an url redirection)
 
-    ProjectLanguages.current = languageFound ?? userLanguage
+    ProjectLanguages.current = languageFound ?? ProjectLanguages.default
 
     const viewDisplayFound = ViewDisplays.getInUrl(url),
         gamesFound = Games.getInUrl(url)
