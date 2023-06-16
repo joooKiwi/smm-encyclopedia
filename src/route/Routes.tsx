@@ -1,7 +1,7 @@
-import type {LoaderFunctionArgs}                    from 'react-router-dom/dist'
-import type {RouteObject}                           from 'react-router/dist'
-import {createHashRouter, redirect, RouterProvider} from 'react-router-dom/dist'
-import {Suspense}                                   from 'react'
+import type {LoaderFunctionArgs, RouteObject} from 'react-router/dist'
+import {RouterProvider, redirect}             from 'react-router/dist'
+import {createHashRouter}                     from 'react-router-dom/dist'
+import {Suspense}                             from 'react'
 
 import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
 
