@@ -35,7 +35,6 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         children: [
             everySimpleRoutes.map<RouteObject>(route => ({
                 path: route.path,
-                element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
                 loader: () => redirectToPathWithUserLanguage(route),
             })),
 
