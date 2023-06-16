@@ -29,7 +29,7 @@ export class SimpleRedirectRoute<const SIMPLE_NAME extends string, const NAME ex
 
 }
 
-interface RedirectionComponent
+interface RedirectionComponentProperties
     extends ReactProperties {
 
     readonly redirectPath: string
@@ -42,7 +42,7 @@ interface RedirectionComponent
  * @param redirectPath The redirect path received in the {@link SimpleRedirectRoute} constructor
  * @reactComponent
  */
-function RedirectionComponent({redirectPath,}: RedirectionComponent,) {
+function RedirectionComponent({redirectPath,}: RedirectionComponentProperties,) {
     const language = useCallback(() => ProjectLanguages.currentOrNull ?? ProjectLanguages.default, [],)
     return <Navigate replace to={`/${language().projectAcronym}${redirectPath}`}/>
 }
