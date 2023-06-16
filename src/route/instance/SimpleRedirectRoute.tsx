@@ -4,7 +4,6 @@ import type {Games}         from 'core/game/Games'
 import type {RedirectRoute} from 'route/instance/RedirectRoute'
 
 import {ProjectLanguages} from 'lang/ProjectLanguages'
-import {getUserLanguage}  from 'lang/getUserLanguage'
 import {AbstractRoute}    from 'route/instance/AbstractRoute'
 
 /** A simple redirection route with a relocation to the path on its {@link Route.renderCallback render callback} */
@@ -18,7 +17,7 @@ export class SimpleRedirectRoute<const SIMPLE_NAME extends string, const NAME ex
     readonly #redirectPath
 
     public constructor(simpleName: SIMPLE_NAME, name: NAME, path: PATH, redirectPath: REDIRECT_PATH, games: GAMES,) {
-        super(simpleName, name, path, null, games, () => <Navigate replace to={`/${(ProjectLanguages.currentOrNull ?? getUserLanguage()).projectAcronym}${redirectPath}`}/>,)
+        super(simpleName, name, path, null, games, () => <Navigate replace to={`/${(ProjectLanguages.currentOrNull ?? ProjectLanguages.default).projectAcronym}${redirectPath}`}/>,)
         this.#redirectPath = redirectPath
     }
 
