@@ -127,7 +127,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
  * @canSetSelectedGames
  * @throws {Response} The route path encapsulated in a response
  */
-function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): null {
+function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): never {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
     throw redirect(routeFromName(name, ProjectLanguages.current = ProjectLanguages.default = getUserLanguage(),))
