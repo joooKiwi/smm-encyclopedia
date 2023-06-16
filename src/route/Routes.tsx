@@ -5,13 +5,13 @@ import {Suspense}                             from 'react'
 
 import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
 
-import LoadingApp           from 'app/LoadingApp'
-import {ViewDisplays}       from 'app/withInterpreter/ViewDisplays'
-import {Games}              from 'core/game/Games'
-import {getCurrentLanguage} from 'lang/getCurrentLanguage'
-import {ProjectLanguages}   from 'lang/ProjectLanguages'
-import {everySimpleRoutes}  from 'route/everyRoutes'
-import {routeFromName}      from 'route/route'
+import LoadingApp          from 'app/LoadingApp'
+import {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
+import {Games}             from 'core/game/Games'
+import {getUserLanguage}   from 'lang/getUserLanguage'
+import {ProjectLanguages}  from 'lang/ProjectLanguages'
+import {everySimpleRoutes} from 'route/everyRoutes'
+import {routeFromName}     from 'route/route'
 
 const /** Every {@link ProjectLanguages project language} as an {@link Array} */
     languages = ProjectLanguages.values.toArray(),
@@ -83,13 +83,14 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 
     const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path))
     if (routeFoundByBasicPath == null)
-        throw redirect(routeFromName('home', getCurrentLanguage(),))
+        throw redirect(routeFromName('home', getUserLanguage(),))
 
-    const languageFound = ProjectLanguages.getInUrl(url)
-    if (routeFoundByBasicPath.name === 'home')
-        return null // The path is "home" without setting the current language (by an url redirection)
+    const languageFound = ProjectLanguages.getInUrl(url),
+        userLanguage = getUserLanguage()
+    if (routeFoundByBasicPath.name === 'home' && languageFound === userLanguage)
+        return null // The path is "USER_LANGUAGE/home" without setting the current language (by an url redirection)
 
-    ProjectLanguages.current = languageFound ?? getCurrentLanguage()
+    ProjectLanguages.current = languageFound ?? userLanguage
 
     const viewDisplayFound = ViewDisplays.getInUrl(url),
         gamesFound = Games.getInUrl(url)
@@ -119,7 +120,8 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 }
 
 /**
- * Redirect to the {@link Route.path route path} with the {@link ProjectLanguages.current current language} using the {@link getCurrentLanguage}
+ * Redirect to the {@link Route.path route path} with
+ * the {@link ProjectLanguages.current current language} using the {@link getUserLanguage}
  *
  * @param route The route instance to retrieve its {@link Route.name name}
  *
@@ -129,7 +131,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): null {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
-    throw redirect(routeFromName(name, ProjectLanguages.current = ProjectLanguages.default = getCurrentLanguage(),))
+    throw redirect(routeFromName(name, ProjectLanguages.current = ProjectLanguages.default = getUserLanguage(),))
 }
 
 /**
