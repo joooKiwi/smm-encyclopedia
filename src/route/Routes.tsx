@@ -1,7 +1,7 @@
-import type {LoaderFunctionArgs}                    from 'react-router-dom/dist'
-import type {RouteObject}                           from 'react-router/dist'
-import {createHashRouter, redirect, RouterProvider} from 'react-router-dom/dist'
-import {Suspense}                                   from 'react'
+import type {LoaderFunctionArgs, RouteObject} from 'react-router/dist'
+import {RouterProvider, redirect}             from 'react-router/dist'
+import {createHashRouter}                     from 'react-router-dom/dist'
+import {Suspense}                             from 'react'
 
 import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
 
@@ -36,7 +36,7 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
             everySimpleRoutes.map<RouteObject>(route => ({
                 path: route.path,
                 element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
-                loader: () => setToCurrentLanguage(route),
+                loader: () => redirectToPathWithUserLanguage(route),
             })),
 
             languages.map<RouteObject>(language => ({
@@ -119,17 +119,17 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 }
 
 /**
- * Set the {@link ProjectLanguages.current current language}
+ * Redirect to the {@link Route.path route path} with the {@link ProjectLanguages.current current language} using the {@link getCurrentLanguage}
  *
  * @param route The route instance to retrieve its {@link Route.name name}
  *
  * @canSetSelectedGames
+ * @throws {Response} The route path encapsulated in a response
  */
-function setToCurrentLanguage({games,}: EveryPossibleRouteInstance,): null {
+function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): null {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
-    ProjectLanguages.current = getCurrentLanguage()
-    return null
+    throw redirect(routeFromName(name, ProjectLanguages.current = getCurrentLanguage(),))
 }
 
 /**
