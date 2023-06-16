@@ -50,7 +50,7 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         loader: loaderArguments => redirectToPathIfFound(loaderArguments),
     },], {basename: '/',},)
 
-// console.log(router.routes[0].children)
+console.debug(router.routes[0].children)
 
 /** @reactComponent */
 export default function Routes() {
