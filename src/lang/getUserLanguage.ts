@@ -11,7 +11,7 @@ let userLanguage: ProjectLanguages
  *
  * @see https://phrase.com/blog/posts/detecting-a-users-locale/
  */
-export function getCurrentLanguage(): ProjectLanguages {
+export function getUserLanguage(): ProjectLanguages {
     if (userLanguage != null)
         return userLanguage
 
