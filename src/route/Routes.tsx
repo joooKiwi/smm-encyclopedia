@@ -129,7 +129,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): null {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
-    throw redirect(routeFromName(name, ProjectLanguages.current = getCurrentLanguage(),))
+    throw redirect(routeFromName(name, ProjectLanguages.current = ProjectLanguages.default = getCurrentLanguage(),))
 }
 
 /**
