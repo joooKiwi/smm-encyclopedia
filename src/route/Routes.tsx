@@ -8,7 +8,6 @@ import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
 import LoadingApp          from 'app/LoadingApp'
 import {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
 import {Games}             from 'core/game/Games'
-import {getUserLanguage}   from 'lang/getUserLanguage'
 import {ProjectLanguages}  from 'lang/ProjectLanguages'
 import {everySimpleRoutes} from 'route/everyRoutes'
 import {routeFromName}     from 'route/route'
@@ -35,7 +34,7 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         children: [
             everySimpleRoutes.map<RouteObject>(route => ({
                 path: route.path,
-                loader: () => redirectToPathWithUserLanguage(route),
+                loader: () => redirectToPathWithDefaultLanguage(route),
             })),
 
             languages.map<RouteObject>(language => ({
@@ -86,7 +85,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 
     const languageFound = ProjectLanguages.getInUrl(url)
     if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.default)
-        return null // The path is "USER_LANGUAGE/home" without setting the current language (by an url redirection)
+        return null // The path is "en-AM/home" without setting the current language (by an url redirection)
 
     ProjectLanguages.current = languageFound ?? ProjectLanguages.default
 
@@ -119,17 +118,17 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 
 /**
  * Redirect to the {@link Route.path route path} with
- * the {@link ProjectLanguages.current current language} using the {@link getUserLanguage}
+ * the {@link ProjectLanguages.default default language}
  *
  * @param route The route instance to retrieve its {@link Route.name name}
  *
  * @canSetSelectedGames
  * @throws {Response} The route path encapsulated in a response
  */
-function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): never {
+function redirectToPathWithDefaultLanguage({name, games,}: EveryPossibleRouteInstance,): never {
     if (!Games.selectedGames.hasAll(games,))
         Games.setSelected(games,)
-    throw redirect(routeFromName(name, ProjectLanguages.current = ProjectLanguages.default = getUserLanguage(),))
+    throw redirect(routeFromName(name, ProjectLanguages.default,))
 }
 
 /**
