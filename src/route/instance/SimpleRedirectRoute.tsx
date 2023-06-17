@@ -1,7 +1,9 @@
-import {Navigate} from 'react-router-dom'
+import {useCallback} from 'react'
+import {Navigate}    from 'react-router-dom'
 
-import type {Games}         from 'core/game/Games'
-import type {RedirectRoute} from 'route/instance/RedirectRoute'
+import type {Games}           from 'core/game/Games'
+import type {RedirectRoute}   from 'route/instance/RedirectRoute'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import {AbstractRoute}    from 'route/instance/AbstractRoute'
@@ -17,7 +19,7 @@ export class SimpleRedirectRoute<const SIMPLE_NAME extends string, const NAME ex
     readonly #redirectPath
 
     public constructor(simpleName: SIMPLE_NAME, name: NAME, path: PATH, redirectPath: REDIRECT_PATH, games: GAMES,) {
-        super(simpleName, name, path, null, games, () => <Navigate replace to={`/${(ProjectLanguages.currentOrNull ?? ProjectLanguages.default).projectAcronym}${redirectPath}`}/>,)
+        super(simpleName, name, path, null, games, () => <RedirectionComponent redirectPath={redirectPath}/>,)
         this.#redirectPath = redirectPath
     }
 
@@ -25,4 +27,22 @@ export class SimpleRedirectRoute<const SIMPLE_NAME extends string, const NAME ex
         return this.#redirectPath
     }
 
+}
+
+interface RedirectionComponentProperties
+    extends ReactProperties {
+
+    readonly redirectPath: string
+
+}
+
+/**
+ * A simple component made to do a redirection to the pages
+ *
+ * @param redirectPath The redirect path received in the {@link SimpleRedirectRoute} constructor
+ * @reactComponent
+ */
+function RedirectionComponent({redirectPath,}: RedirectionComponentProperties,) {
+    const language = useCallback(() => ProjectLanguages.currentOrNull ?? ProjectLanguages.default, [],)
+    return <Navigate replace to={`/${language().projectAcronym}${redirectPath}`}/>
 }
