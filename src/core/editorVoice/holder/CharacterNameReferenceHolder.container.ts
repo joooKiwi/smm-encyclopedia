@@ -26,13 +26,8 @@ export class CharacterNameReferenceHolderContainer
             : lazyOf(references,)
     }
 
-    //region -------------------- Getter methods --------------------
-
-
     public get references(): readonly CharacterNames[] {
         return this.#references.value
     }
-
-    //endregion -------------------- Getter methods --------------------
 
 }

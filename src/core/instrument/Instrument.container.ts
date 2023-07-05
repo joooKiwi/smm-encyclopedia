@@ -18,12 +18,8 @@ export class InstrumentContainer
         this.#entitiesHolder = entities
     }
 
-    //region -------------------- Getter methods --------------------
-
     public get entities(): readonly Entity[] {
         return this.#entitiesHolder.value
     }
-
-    //endregion -------------------- Getter methods --------------------
 
 }

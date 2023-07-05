@@ -26,13 +26,8 @@ export class EntityReferenceHolderContainer
             : lazyOf(references,)
     }
 
-    //region -------------------- Getter methods --------------------
-
-
     public get references(): readonly Entities[] {
         return this.#references.value
     }
-
-    //endregion -------------------- Getter methods --------------------
 
 }

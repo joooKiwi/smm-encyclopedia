@@ -9,14 +9,10 @@ export abstract class AbstractMusic<ALL extends readonly MusicSoundFile[] = read
     protected constructor() {
     }
 
-    //region -------------------- Getter methods --------------------
-
     protected abstract _createEveryMusics(): ALL
 
     public get everyMusics(): ALL {
         return this.#everyMusicsHolder ??= this._createEveryMusics()
     }
-
-    //endregion -------------------- Getter methods --------------------
 
 }
