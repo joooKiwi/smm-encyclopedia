@@ -20,6 +20,7 @@ export class MiiCostumeContainer
     readonly #version
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: ValueOrCallback<Name<string>>,
                        officialNotification: Lazy<OfficialNotificationHolder>,
@@ -30,6 +31,7 @@ export class MiiCostumeContainer
         this.#version = version
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Official notification --------------------

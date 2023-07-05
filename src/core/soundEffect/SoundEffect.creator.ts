@@ -17,10 +17,13 @@ import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffect
 export class SoundEffectCreator
     extends TemplateWithNameCreator<SoundEffectTemplate, SoundEffect> {
 
+    //region -------------------- Constructor --------------------
+
     public constructor(template: SoundEffectTemplate,) {
         super(template, 2, false,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Build helper methods --------------------
 
     #createCategory() {

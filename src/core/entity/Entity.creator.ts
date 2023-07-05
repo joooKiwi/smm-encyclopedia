@@ -74,6 +74,7 @@ export class EntityCreator
     readonly #SELF = lazy(() => [this.create(),] as const,)
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(template: EntityTemplate,) {
         super(template, (template,) => EntityCreator.#getGames(template,), false,)
@@ -96,6 +97,8 @@ export class EntityCreator
                 ? 1
                 : 2
     }
+
+    //endregion -------------------- Constructor --------------------
 
     //region -------------------- Build helper methods --------------------
 

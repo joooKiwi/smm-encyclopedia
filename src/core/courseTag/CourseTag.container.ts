@@ -19,6 +19,7 @@ export class CourseTagContainer
     readonly #firstAppearanceHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
                        isAnOfficialTag: boolean,
@@ -30,6 +31,7 @@ export class CourseTagContainer
         this.#firstAppearanceHolder = firstAppearance
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get isAnOfficialTag(): boolean {

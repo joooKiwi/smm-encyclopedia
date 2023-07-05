@@ -17,6 +17,7 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     readonly #isAvailableFromTheStartHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(name: Name<string>,
                           isInProperty: PROPERTY,
@@ -26,6 +27,7 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------

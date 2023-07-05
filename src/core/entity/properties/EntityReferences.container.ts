@@ -37,6 +37,7 @@ export class EntityReferencesContainer
     readonly #everyReferences
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     //TODO change the singular references to a GameStyle, Theme & Time structure based objects.
     public constructor(referenceInSuperMarioBrosStyle: Lazy<PossibleOtherEntities>,
@@ -89,7 +90,7 @@ export class EntityReferencesContainer
         this.#everyReferences = everyReferences
     }
 
-
+    //endregion -------------------- Constructor --------------------
     //region -------------------- References methods --------------------
 
     //region -------------------- Game style references --------------------

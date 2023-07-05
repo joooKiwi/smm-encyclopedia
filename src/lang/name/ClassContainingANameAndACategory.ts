@@ -18,12 +18,14 @@ export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U
     readonly #categoryContainer: Lazy<CATEGORY>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: ValueOrCallback<Name<T>>, category: ValueOrCallback<CATEGORY>,) {
         super(name,)
         this.#categoryContainer = ObjectHolders.getLazyOn(category,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get categoryContainer(): CATEGORY {

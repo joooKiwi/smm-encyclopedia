@@ -19,11 +19,13 @@ export class ClassContainingAName<T, >
     readonly #nameContainer: Lazy<Name<T>>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: ValueOrCallback<Name<T>>,) {
         this.#nameContainer = ObjectHolders.getLazyOn(name,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get nameContainer(): Name<T> {

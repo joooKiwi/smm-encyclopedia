@@ -16,11 +16,13 @@ export abstract class AbstractExclusiveSoundEffectSoundBuilder<T extends SoundEf
     #editorSoundIndex?: SingleIndex
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(sounds: readonly SOUND[],) {
         this.#sounds = sounds
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     protected get _sounds(): readonly SOUND[] {

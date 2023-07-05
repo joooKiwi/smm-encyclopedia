@@ -40,6 +40,7 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown,
     readonly #comment: COMMENT
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(value: ValueOrCallback<T>,)
     protected constructor(value: ValueOrCallback<T>, isUnknown: IS_UNKNOWN,)
@@ -88,6 +89,7 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown,
         }
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value() {

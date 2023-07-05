@@ -25,6 +25,7 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
     readonly #sm3dwImagesHolder: Lazy<readonly EntityImageFile[]>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(entity: Entities,
                           gameStylesDisplayed: | GameStyles | PossibleGameStyles,
@@ -34,6 +35,7 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
         this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? lazy(() => callback(entity, SUPER_MARIO_3D_WORLD)) : ObjectHolders.EMPTY_ARRAY
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get sm3dwImages(): readonly EntityImageFile[] {

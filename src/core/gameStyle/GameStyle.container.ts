@@ -21,6 +21,7 @@ export class GameStyleContainer
     readonly #nightDesertWindTranslationKey
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: ValueOrCallback<Name<string>>,
                        isInProperty: Lazy<GameProperty>,

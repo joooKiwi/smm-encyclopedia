@@ -54,6 +54,7 @@ export abstract class AbstractPowerUpPriority
     readonly #isIn
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(nameCallback: () => Name<string>,
                           imagesCallback: ImagesCallback,
@@ -63,6 +64,7 @@ export abstract class AbstractPowerUpPriority
         this.#isIn = isIn
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get name(): Name<string> {

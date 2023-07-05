@@ -23,6 +23,7 @@ export abstract class TemplateWithNameCreator<TEMPLATE extends TemplateWithNameT
     readonly #game: Lazy<OriginalPossibleGameReceived>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(template: TEMPLATE, game: PossibleGameReceived<TEMPLATE>, isACompleteName: boolean,) {
         super(template)
@@ -30,6 +31,8 @@ export abstract class TemplateWithNameCreator<TEMPLATE extends TemplateWithNameT
         this.#isACompleteName = isACompleteName
     }
 
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter methods --------------------
 
     public get isACompleteName() {
         return this.#isACompleteName
@@ -39,6 +42,7 @@ export abstract class TemplateWithNameCreator<TEMPLATE extends TemplateWithNameT
         return this.#game.value
     }
 
+    //endregion -------------------- Getter methods --------------------
 
     /**
      * Create a {@link Name} from a {@link TemplateWithNameTemplate template}, {@link OriginalPossibleGameReceived game} & a boolean to tell if it is a complete name

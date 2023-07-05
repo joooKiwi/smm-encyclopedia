@@ -13,6 +13,7 @@ export class EntityBehaviourLinkContainer<GROUP extends PossibleGroup = Possible
     readonly #entityLinkHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     constructor(groupLink: Lazy<GROUP>, entityLink: Lazy<ENTITY>,) {
         this.#groupLinkHolder = groupLink

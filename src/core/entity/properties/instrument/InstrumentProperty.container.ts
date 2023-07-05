@@ -15,6 +15,7 @@ export class InstrumentPropertyContainer
     readonly #canMakeASoundOutOfAMusicBlock
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     constructor(instruments: Lazy<readonly Instrument[]>,
                 canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlockProperty,) {
@@ -22,6 +23,7 @@ export class InstrumentPropertyContainer
         this.#canMakeASoundOutOfAMusicBlock = canMakeASoundOutOfAMusicBlock
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get instruments(): readonly Instrument[] {

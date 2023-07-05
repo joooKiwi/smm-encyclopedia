@@ -39,11 +39,13 @@ export class EntityLimitCreator
     static readonly #EMPTY_ENTITY_LIMIT_AMOUNT = lazy(() => EmptyEntityLimitAmount.get,)
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(template: EntityLimitTemplate | AlternativeLimitTemplate,) {
         super(template, 2, false,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Build helper methods --------------------
 
     /**

@@ -18,12 +18,14 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
     readonly #alternativeContainer: Lazy<ALTERNATIVE>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: ValueOrCallback<Name<T>>, alternative: ValueOrCallback<ALTERNATIVE>,) {
         super(name,)
         this.#alternativeContainer = ObjectHolders.getLazyOn(alternative,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get alternativeContainer(): ALTERNATIVE {

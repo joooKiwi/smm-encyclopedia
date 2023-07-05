@@ -28,6 +28,7 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
     readonly #nsmbuImagesHolder: Lazy<readonly EntityImageFile[]>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(entity: Entities,
                           gameStylesDisplayed: | GameStyles | PossibleGameStyles,
@@ -42,6 +43,7 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
         this.#nsmbuImagesHolder = entity.reference.isInNewSuperMarioBrosUStyle ? lazy(() => callback(entity, NEW_SUPER_MARIO_BROS_U,),) : ObjectHolders.EMPTY_ARRAY
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get smbImages(): readonly EntityImageFile[] {

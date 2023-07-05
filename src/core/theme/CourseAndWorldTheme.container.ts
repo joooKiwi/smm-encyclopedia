@@ -17,6 +17,7 @@ export class CourseAndWorldThemeContainer
     readonly #isAvailableFromTheStartHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
                        gameProperty: Lazy<GameProperty>,
@@ -28,6 +29,7 @@ export class CourseAndWorldThemeContainer
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Theme properties --------------------

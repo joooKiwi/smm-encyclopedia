@@ -11,12 +11,14 @@ export class ConditionalIntermediate<T, >
     readonly #conditionCallbackHolder: Lazy<boolean>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(reference: T, conditionCallback: () => boolean,) {
         super(reference)
         this.#conditionCallbackHolder = lazy(conditionCallback,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     protected get _conditionCallbackResult(): boolean {

@@ -31,11 +31,13 @@ export class GameStyleCreator
     static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => Import.ClassThatIsAvailableFromTheStartProvider.get.get(false,),)
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(template: GameStyleTemplate,) {
         super(template,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Builder helper methods --------------------
 
     static #getNameBy(reference: PossibleAcronym,): () => Name<string> {

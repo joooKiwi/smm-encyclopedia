@@ -31,6 +31,7 @@ export class PropertyContainer
     readonly #instrumentHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(game: Lazy<GameProperty>,
                        gameStyle: Lazy<GameStyleProperty>,
@@ -46,6 +47,7 @@ export class PropertyContainer
         this.#instrumentHolder = instrument
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------

@@ -15,6 +15,7 @@ export class EntityLimitAmountContainer
     readonly #comment
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(limitInSMM1AndSMM3DS: Lazy<| NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicableProperty | UnknownProperty>,
                        limitInSMM2: Lazy<| NumberPropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | UnknownProperty>,
@@ -24,6 +25,7 @@ export class EntityLimitAmountContainer
         this.#comment = comment
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- SMM1 & SMM3DS limit --------------------

@@ -19,6 +19,7 @@ export class CourseThemeContainer
     readonly #effectHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
                        isInProperty: GameProperty,
@@ -30,6 +31,7 @@ export class CourseThemeContainer
         this.#effectHolder = effect
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get entities() {

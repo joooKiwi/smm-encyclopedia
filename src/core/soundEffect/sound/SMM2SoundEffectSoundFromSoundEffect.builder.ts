@@ -20,6 +20,7 @@ export class SMM2SoundEffectSoundFromSoundEffectBuilder
     #smb2SoundsIndex?: SingleIndex[]
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(sounds: readonly PossibleSoundEffectSoundName_SMM2[],)
     public constructor(...sounds: readonly PossibleSoundEffectSoundName_SMM2[])
@@ -27,6 +28,7 @@ export class SMM2SoundEffectSoundFromSoundEffectBuilder
         super(sounds[0] instanceof Array ? sounds[0] : sounds.flat(),)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     private get __linkSounds(): OriginalValuesOnLinkOrSMB2Value {

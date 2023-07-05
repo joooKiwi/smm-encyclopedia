@@ -13,6 +13,7 @@ export class SoundEffectPropertyContainer
     readonly #playerSoundEffectTriggerHolder
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(game: GameProperty,
                        playerSoundEffectTrigger: Lazy<PlayerSoundEffectTriggers>,) {
@@ -20,6 +21,7 @@ export class SoundEffectPropertyContainer
         this.#playerSoundEffectTriggerHolder = playerSoundEffectTrigger
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
