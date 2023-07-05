@@ -1,7 +1,8 @@
 import './EntityLimitAppOption.scss'
 
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder}                                                    from '@joookiwi/collection'
+import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityLimitAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'

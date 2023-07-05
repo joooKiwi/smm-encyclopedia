@@ -1,7 +1,8 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
-import {Fragment}                                                                                   from 'react'
-import {Link}                                                                                       from 'react-router-dom'
+import type {CollectionHolder}                                                    from '@joookiwi/collection'
+import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import {Fragment}                                                                 from 'react'
+import {Link}                                                                     from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'

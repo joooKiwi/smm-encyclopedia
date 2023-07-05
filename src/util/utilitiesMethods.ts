@@ -1,6 +1,7 @@
-import type {CollectionHolder, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable/dist/types'
-import {EnumHelper}                                               from '@joookiwi/enumerable'
-import {AssertionError}                                           from 'assert'
+import type {CollectionHolder}                  from '@joookiwi/collection'
+import type {Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
+import {EnumHelper}                             from '@joookiwi/enumerable'
+import {AssertionError}                         from 'assert'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
 import type {ClassWithType}        from 'core/ClassWithType'

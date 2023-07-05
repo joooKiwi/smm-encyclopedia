@@ -1,5 +1,6 @@
-import type {CollectionHolder, CompanionEnumWithParentDeclaration, EnumerableWithParent, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {CompanionEnumWithParent, Enum}                                                                                         from '@joookiwi/enumerable'
+import type {CollectionHolder}                                                                               from '@joookiwi/collection'
+import type {CompanionEnumWithParentDeclaration, EnumerableWithParent, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, Enum}                                                                       from '@joookiwi/enumerable'
 
 import type {DayNumber}        from 'lang/date/types'
 import type {Names, Ordinals}  from 'lang/ProjectLanguages.types'

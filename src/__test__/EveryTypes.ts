@@ -294,11 +294,11 @@ export class EveryTypes {
     //region -------------------- Entity limit --------------------
 
     public get everyPossibleAcronym_limit() {
-        return this.#everyPossibleAcronym_limit ??= [...EntityLimits.values.map(it => it.acronym).filterNonNull().toSet(),]
+        return this.#everyPossibleAcronym_limit ??= [...EntityLimits.values.map(it => it.acronym).filterNotNull().toSet(),]
     }
 
     public get everyPossibleAlternativeAcronym_limit() {
-        return this.#everyPossibleAlternativeAcronym_limit ??= [...EntityLimits.values.map(it => it.alternativeAcronym).filterNonNull().toSet(),]
+        return this.#everyPossibleAlternativeAcronym_limit ??= [...EntityLimits.values.map(it => it.alternativeAcronym).filterNotNull().toSet(),]
     }
 
 
@@ -315,7 +315,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleAlternativeName_limit() {
-        return this.#everyPossibleAlternativeName_limit ??= EntityLimits.values.map(it => it.alternativeEnglishName).filterNonNull().toArray()
+        return this.#everyPossibleAlternativeName_limit ??= EntityLimits.values.map(it => it.alternativeEnglishName).filterNotNull().toArray()
     }
 
 
@@ -487,7 +487,7 @@ export class EveryTypes {
     }
 
     public get everyPossiblePluralName_otherWordInTheGame() {
-        return this.#everyPossiblePluralName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => it.pluralEnglishName).filterNonNull().toArray()
+        return this.#everyPossiblePluralName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => it.pluralEnglishName).filterNotNull().toArray()
     }
 
     //endregion -------------------- Other word in the game --------------------

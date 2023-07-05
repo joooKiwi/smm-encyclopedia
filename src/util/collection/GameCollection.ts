@@ -1,10 +1,9 @@
-import type {CollectionHolder}                             from '@joookiwi/enumerable/dist/types'
-import {AbstractCollectionHolder, GenericCollectionHolder} from '@joookiwi/enumerable'
+import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
 
 export class GameCollection<const T extends Games = Games, >
-    extends AbstractCollectionHolder<T> {
+    extends GenericCollectionHolder<T> {
 
     #hasAllGames?: & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
     #hasSMM1?: GameWithSMM1<T>
@@ -16,10 +15,6 @@ export class GameCollection<const T extends Games = Games, >
         super(iterable,)
     }
 
-
-    protected override _new<const U, >(iterable: Iterable<U>,): CollectionHolder<U> {
-        return new GenericCollectionHolder(iterable,)
-    }
 
     /**
      * The collection has every game ({@link Games.SUPER_MARIO_MAKER_1 SMM1},
