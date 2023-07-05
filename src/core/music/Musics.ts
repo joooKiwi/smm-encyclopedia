@@ -1,3 +1,6 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazyOf}    from '@joookiwi/lazy'
+
 import type {CollectionHolder}                                                    from '@joookiwi/collection'
 import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
 import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
@@ -9,7 +12,6 @@ import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from 'cor
 import type {SingleSoundEffectMusic}                                   from 'core/music/soundEffect/SingleSoundEffectMusic'
 import type {SoundEffectMusicWithDifferentEditor}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 import type {Nullable, NullOr}                                         from 'util/types/nullable'
-import type {ObjectHolder}                                             from 'util/holder/ObjectHolder'
 
 import {BackgroundMusicContainer}                                          from 'core/music/backgroundMusic/BackgroundMusic.container'
 import {NonChangeableSoundEffectBackgroundMusicContainer}                  from 'core/music/backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container'
@@ -24,7 +26,6 @@ import type {Themes}                                                       from 
 import {Import}                                                            from 'util/DynamicImporter'
 import {FramePerMillisecond as Time}                                       from 'util/file/sound/time/FramePerMillisecond'
 import {ObjectHolders}                                                     from 'util/holder/ObjectHolders'
-import {ObjectHolderContainer}                                             from 'util/holder/ObjectHolder.container'
 
 /**
  * @todo add other musics (from title screen, theme, star, p-switch)
@@ -405,10 +406,10 @@ export class Musics
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    #gameStyleHolder?: ObjectHolder<NullOr<Themes>>
-    #soundEffectHolder?: ObjectHolder<NullOr<SoundEffects>>
+    #gameStyleHolder?: Lazy<NullOr<Themes>>
+    #soundEffectHolder?: Lazy<NullOr<SoundEffects>>
 
-    #music?: ObjectHolder<NullOr<PossibleMusic>>
+    #music?: Lazy<NullOr<PossibleMusic>>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -426,16 +427,16 @@ export class Musics
         return null
     }
 
-    private get __themeReference(): ObjectHolder<NullOr<Themes>> {
+    private get __themeReference(): Lazy<NullOr<Themes>> {
         if (this.#gameStyleHolder == null) {
             const value = this._createThemeReference()
-            this.#gameStyleHolder = value == null ? ObjectHolders.NULL : new ObjectHolderContainer<Themes>(value)
+            this.#gameStyleHolder = value == null ? ObjectHolders.NULL : lazyOf(value,)
         }
         return this.#gameStyleHolder
     }
 
     public get themeReference(): NullOr<Themes> {
-        return this.__themeReference.get
+        return this.__themeReference.value
     }
 
 
@@ -443,16 +444,16 @@ export class Musics
         return null
     }
 
-    private get __soundEffectReference(): ObjectHolder<NullOr<SoundEffects>> {
+    private get __soundEffectReference(): Lazy<NullOr<SoundEffects>> {
         if (this.#soundEffectHolder == null) {
             const value = this._createSoundEffectReference()
-            this.#soundEffectHolder = value == null ? ObjectHolders.NULL : new ObjectHolderContainer(value)
+            this.#soundEffectHolder = value == null ? ObjectHolders.NULL : lazyOf(value,)
         }
         return this.#soundEffectHolder
     }
 
     public get soundEffectReference(): NullOr<SoundEffects> {
-        return this.__soundEffectReference.get
+        return this.__soundEffectReference.value
     }
 
     //endregion -------------------- Other reference methods --------------------
@@ -462,16 +463,16 @@ export class Musics
         return null
     }
 
-    private get __music(): ObjectHolder<NullOr<PossibleMusic>> {
+    private get __music(): Lazy<NullOr<PossibleMusic>> {
         if (this.#music == null) {
             const value = this._createMusic()
-            this.#music = value == null ? ObjectHolders.NULL : new ObjectHolderContainer(value)
+            this.#music = value == null ? ObjectHolders.NULL : lazyOf(value,)
         }
         return this.#music
     }
 
     public get music(): NullOr<PossibleMusic> {
-        return this.__music.get
+        return this.__music.value
     }
 
     //endregion -------------------- Music methods --------------------

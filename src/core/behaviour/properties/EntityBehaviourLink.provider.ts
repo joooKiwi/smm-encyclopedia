@@ -1,8 +1,9 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {PossibleGroupName}                         from 'core/entityTypes'
 import type {EntityBehaviourLink, PossibleGroup}        from 'core/behaviour/properties/EntityBehaviourLink'
 import type {PossibleEnglishName as PossibleEntityName} from 'core/entity/Entities.types'
 import type {Entity}                                    from 'core/entity/Entity'
-import type {ObjectHolder}                              from 'util/holder/ObjectHolder'
 import type {ProviderForNullable}                       from 'util/provider/ProviderForNullable'
 import type {ProviderWithKey}                           from 'util/provider/ProviderWithKey'
 import type {NullOr}                                    from 'util/types/nullable'
@@ -94,6 +95,6 @@ type Key<GROUP extends NullOr<PossibleGroupName> = NullOr<PossibleGroupName>, EN
     entityLink: ENTITY,
 ]
 type ArgumentsReceived<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends NullOr<Entity> = NullOr<Entity>, > = readonly [
-    groupLink: ObjectHolder<GROUP>,
-    entityLink: ObjectHolder<ENTITY>,
+    groupLink: Lazy<GROUP>,
+    entityLink: Lazy<ENTITY>,
 ]

@@ -1,9 +1,11 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {ClassThatIsAvailableFromTheStart}                 from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
 import type {Entity}                                           from 'core/entity/Entity'
 import type {GameProperty}                                     from 'core/entity/properties/game/GameProperty'
 import type {GameStyle, PossibleNightDesertWindTranslationKey} from 'core/gameStyle/GameStyle'
 import type {Name}                                             from 'lang/name/Name'
-import type {ObjectHolder, PossibleValueOnObjectHolder}        from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}                                  from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
@@ -20,7 +22,11 @@ export class GameStyleContainer
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: PossibleValueOnObjectHolder<Name<string>>, isInProperty: ObjectHolder<GameProperty>, isAvailableFromTheStart: ObjectHolder<ClassThatIsAvailableFromTheStart>, entities: ObjectHolder<readonly Entity[]>, nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
+    public constructor(name: ValueOrCallback<Name<string>>,
+                       isInProperty: Lazy<GameProperty>,
+                       isAvailableFromTheStart: Lazy<ClassThatIsAvailableFromTheStart>,
+                       entities: Lazy<readonly Entity[]>,
+                       nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,)
         this.#isInPropertyHolder = isInProperty
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart
@@ -28,12 +34,13 @@ export class GameStyleContainer
         this.#nightDesertWindTranslationKey = nightDesertWindTranslationKey
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Game properties --------------------
 
     public get isInProperty() {
-        return this.#isInPropertyHolder.get
+        return this.#isInPropertyHolder.value
     }
 
     public get isInSuperMarioMaker1() {
@@ -52,7 +59,7 @@ export class GameStyleContainer
     //region -------------------- "Is available from the start" properties --------------------
 
     public get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart {
-        return this.#isAvailableFromTheStartHolder.get
+        return this.#isAvailableFromTheStartHolder.value
     }
 
     public get isAvailableFromTheStartInSMM1() {
@@ -70,7 +77,7 @@ export class GameStyleContainer
     //endregion -------------------- "Is available from the start" properties --------------------
 
     public get entities() {
-        return this.#entitiesHolder.get
+        return this.#entitiesHolder.value
     }
 
     public get nightDesertWindTranslationKey() {

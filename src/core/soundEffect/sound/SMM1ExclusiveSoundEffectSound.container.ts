@@ -1,6 +1,7 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {PossibleEditorValue_SMM1, SMM1ExclusiveSoundEffectSound} from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
 import type {SMM1SoundEffectSoundFile}                                from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
-import type {ObjectHolder}                                            from 'util/holder/ObjectHolder'
 import type {EmptyArray}                                              from 'util/types/variables'
 
 import {AbstractSoundEffectSound} from 'core/soundEffect/sound/AbstractSoundEffectSound'
@@ -10,7 +11,7 @@ export class SMM1ExclusiveSoundEffectSoundContainer<SOUNDS extends readonly SMM1
     extends AbstractSoundEffectSound<SOUNDS, EDITOR_SOUNDS, EmptyArray, EmptyArray>
     implements SMM1ExclusiveSoundEffectSound<SOUNDS, EDITOR_SOUNDS> {
 
-    public constructor(sounds: ObjectHolder<SOUNDS>, editorSound: ObjectHolder<EDITOR_SOUNDS>,) {
+    public constructor(sounds: Lazy<SOUNDS>, editorSound: Lazy<EDITOR_SOUNDS>,) {
         super(sounds, editorSound,)
     }
 

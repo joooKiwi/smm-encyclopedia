@@ -1,6 +1,6 @@
-import type {NumberPropertyWithAmount}    from 'core/_properties/PropertyWithAmount'
-import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
-import type {NullOrNumber}                from 'util/types/nullable'
+import type {NumberPropertyWithAmount} from 'core/_properties/PropertyWithAmount'
+import type {ValueOrCallback}          from 'util/holder/ObjectHolder.types'
+import type {NullOrNumber}             from 'util/types/nullable'
 
 import {PropertyWithAmountContainer} from 'core/_properties/PropertyWithAmount.container'
 
@@ -8,7 +8,7 @@ export class NumberPropertyWithAmountContainer<N extends NullOrNumber = NullOrNu
     extends PropertyWithAmountContainer<N, AMOUNT>
     implements NumberPropertyWithAmount<N, AMOUNT> {
 
-    public constructor(value: PossibleValueOnObjectHolder<N>, comment: AMOUNT,) {
+    public constructor(value: ValueOrCallback<N>, comment: AMOUNT,) {
         super(value, comment,)
     }
 

@@ -1,5 +1,5 @@
 import type {BooleanPropertyWithComment}  from 'core/_properties/PropertyWithComment'
-import type {PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}             from 'util/holder/ObjectHolder.types'
 import type {NullOrBoolean, NullOrString} from 'util/types/nullable'
 
 import {PropertyWithCommentContainer} from 'core/_properties/PropertyWithComment.container'
@@ -8,7 +8,7 @@ export class BooleanPropertyWithCommentContainer<B extends NullOrBoolean = NullO
     extends PropertyWithCommentContainer<B, COMMENT>
     implements BooleanPropertyWithComment<B, COMMENT> {
 
-    public constructor(value: PossibleValueOnObjectHolder<B>, comment: COMMENT,) {
+    public constructor(value: ValueOrCallback<B>, comment: COMMENT,) {
         super(value, comment,)
     }
 

@@ -1,11 +1,13 @@
-import type {EveryLanguages}                            from 'lang/EveryLanguages'
-import type {Name}                                      from 'lang/name/Name'
-import type {NameTrait}                                 from 'lang/name/NameTrait'
-import type {NameTraitFromACategory}                    from 'lang/name/NameTraitFromACategory'
-import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {Lazy} from '@joookiwi/lazy'
 
-import {ClassContainingAName}         from 'lang/name/ClassContainingAName'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import type {EveryLanguages}         from 'lang/EveryLanguages'
+import type {Name}                   from 'lang/name/Name'
+import type {NameTrait}              from 'lang/name/NameTrait'
+import type {NameTraitFromACategory} from 'lang/name/NameTraitFromACategory'
+import type {ValueOrCallback}        from 'util/holder/ObjectHolder.types'
+
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {ObjectHolders}        from 'util/holder/ObjectHolders'
 
 export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U>, >
     extends ClassContainingAName<T>
@@ -13,19 +15,19 @@ export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U
 
     //region -------------------- Fields --------------------
 
-    readonly #categoryContainer: ObjectHolder<CATEGORY>
+    readonly #categoryContainer: Lazy<CATEGORY>
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: PossibleValueOnObjectHolder<Name<T>>, category: PossibleValueOnObjectHolder<CATEGORY>,) {
+    public constructor(name: ValueOrCallback<Name<T>>, category: ValueOrCallback<CATEGORY>,) {
         super(name,)
-        this.#categoryContainer = new DelayedObjectHolderContainer(category)
+        this.#categoryContainer = ObjectHolders.getLazyOn(category,)
     }
 
     //region -------------------- Getter methods --------------------
 
     public get categoryContainer(): CATEGORY {
-        return this.#categoryContainer.get
+        return this.#categoryContainer.value
     }
 
     public get categoryNameContainer(): this['categoryContainer']['nameContainer'] {

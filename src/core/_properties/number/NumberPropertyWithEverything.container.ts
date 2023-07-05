@@ -1,5 +1,5 @@
 import type {NumberPropertyWithEverything} from 'core/_properties/PropertyWithEverything'
-import type {PossibleValueOnObjectHolder}  from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}              from 'util/holder/ObjectHolder.types'
 import type {NullOrNumber, NullOrString}   from 'util/types/nullable'
 
 import {PropertyWithEverythingContainer} from 'core/_properties/PropertyWithEverything.container'
@@ -8,7 +8,7 @@ export class NumberPropertyWithEverythingContainer<N extends NullOrNumber = Null
     extends PropertyWithEverythingContainer<N, IS_UNKNOWN, AMOUNT, COMMENT>
     implements NumberPropertyWithEverything<N, IS_UNKNOWN, AMOUNT, COMMENT> {
 
-    public constructor(value: PossibleValueOnObjectHolder<N>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
+    public constructor(value: ValueOrCallback<N>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
         super(value, isUnknown, amount, comment,)
     }
 

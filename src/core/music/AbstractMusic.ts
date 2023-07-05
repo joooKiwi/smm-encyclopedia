@@ -1,17 +1,10 @@
 import type {Music}          from 'core/music/Music'
 import type {MusicSoundFile} from 'core/music/file/MusicSoundFile'
-import type {ObjectHolder}   from 'util/holder/ObjectHolder'
-
-import {ObjectHolderContainer} from 'util/holder/ObjectHolder.container'
 
 export abstract class AbstractMusic<ALL extends readonly MusicSoundFile[] = readonly MusicSoundFile[], >
     implements Music<ALL> {
 
-    //region -------------------- Fields --------------------
-
-    #everyMusicsHolder?: ObjectHolder<ALL>
-
-    //endregion -------------------- Fields --------------------
+    #everyMusicsHolder?: ALL
 
     protected constructor() {
     }
@@ -21,7 +14,7 @@ export abstract class AbstractMusic<ALL extends readonly MusicSoundFile[] = read
     protected abstract _createEveryMusics(): ALL
 
     public get everyMusics(): ALL {
-        return (this.#everyMusicsHolder ?? new ObjectHolderContainer(this._createEveryMusics())).get
+        return this.#everyMusicsHolder ??= this._createEveryMusics()
     }
 
     //endregion -------------------- Getter methods --------------------

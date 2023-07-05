@@ -1,9 +1,11 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {DefaultAmount, DefaultComment, DefaultIsUnknown}                                                           from 'core/_properties/Property'
 import type {FalseProperty, NotApplicableProperty, NullProperty, PropertyWithEverything, TrueProperty, UnknownProperty} from 'core/_properties/PropertyWithEverything'
-import type {ObjectHolder, PossibleValueOnObjectHolder}                                                                 from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}                                                                                           from 'util/holder/ObjectHolder.types'
 import type {NullOrNumber, NullOrString}                                                                                from 'util/types/nullable'
 
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {ObjectHolders} from 'util/holder/ObjectHolders'
 
 export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown, AMOUNT extends NullOrNumber = DefaultAmount, COMMENT extends NullOrString = DefaultComment, >
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
@@ -32,23 +34,23 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown,
     //endregion -------------------- Predefined properties --------------------
     //region -------------------- Fields --------------------
 
-    readonly #value: ObjectHolder<T>
+    readonly #value: Lazy<T>
     readonly #isUnknown: IS_UNKNOWN
     readonly #amount: AMOUNT
     readonly #comment: COMMENT
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(value: PossibleValueOnObjectHolder<T>,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown_or_amount_or_comment?: | IS_UNKNOWN | AMOUNT | COMMENT, comment_or_amount?: | AMOUNT | COMMENT, comment?: COMMENT,) {
-        this.#value = new DelayedObjectHolderContainer<T>(value)
+    protected constructor(value: ValueOrCallback<T>,)
+    protected constructor(value: ValueOrCallback<T>, isUnknown: IS_UNKNOWN,)
+    protected constructor(value: ValueOrCallback<T>, amount: AMOUNT,)
+    protected constructor(value: ValueOrCallback<T>, comment: COMMENT,)
+    protected constructor(value: ValueOrCallback<T>, amount: AMOUNT, comment: COMMENT,)
+    protected constructor(value: ValueOrCallback<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
+    protected constructor(value: ValueOrCallback<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT,)
+    protected constructor(value: ValueOrCallback<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,)
+    protected constructor(value: ValueOrCallback<T>, isUnknown_or_amount_or_comment?: | IS_UNKNOWN | AMOUNT | COMMENT, comment_or_amount?: | AMOUNT | COMMENT, comment?: COMMENT,) {
+        this.#value = ObjectHolders.getLazyOn(value,)
 
         switch (typeof isUnknown_or_amount_or_comment) {
             default://Everything can only be null.
@@ -89,7 +91,7 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown,
     //region -------------------- Getter methods --------------------
 
     public get value() {
-        return this.#value.get
+        return this.#value.value
     }
 
     public get isUnknown() {

@@ -1,5 +1,5 @@
 import type {BooleanPropertyWithEverything}             from 'core/_properties/PropertyWithEverything'
-import type {PossibleValueOnObjectHolder}               from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}                           from 'util/holder/ObjectHolder.types'
 import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
 
 import {PropertyWithEverythingContainer} from 'core/_properties/PropertyWithEverything.container'
@@ -8,7 +8,7 @@ export class BooleanPropertyWithEverythingContainer<B extends NullOrBoolean = Nu
     extends PropertyWithEverythingContainer<B, IS_UNKNOWN, AMOUNT, COMMENT>
     implements BooleanPropertyWithEverything<B, IS_UNKNOWN, AMOUNT, COMMENT> {
 
-    public constructor(value: PossibleValueOnObjectHolder<B>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
+    public constructor(value: ValueOrCallback<B>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,) {
         super(value, isUnknown, amount, comment,)
     }
 

@@ -1,3 +1,5 @@
+import {lazy} from '@joookiwi/lazy'
+
 import type {SoundEffectSoundFile}           from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {SingleIndex}                    from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'
 import type {SMM1StandaloneSoundEffectSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
@@ -8,7 +10,6 @@ import type {NullOr}                         from 'util/types/nullable'
 
 import {EmptySMMSoundEffectSound}                from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
 import {SMM1StandaloneSoundEffectSoundContainer} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.container'
-import {ObjectHolderContainer}                   from 'util/holder/ObjectHolder.container'
 import {assert}                                  from 'util/utilitiesMethods'
 
 export class SMM1StandaloneSoundEffectSoundBuilder
@@ -111,14 +112,14 @@ export class SMM1StandaloneSoundEffectSoundBuilder
 
         return smm2 == null
             ? new SMM1StandaloneSoundEffectSoundContainer(
-                new ObjectHolderContainer(() => smm1.sounds),
-                new ObjectHolderContainer(() => this._getSMM1EditorSound(smm1)),
+                lazy(() => smm1.sounds,),
+                lazy(() => this._getSMM1EditorSound(smm1,),),
                 smm1,
                 EmptySMMSoundEffectSound.get,
             )
             : new SMM1StandaloneSoundEffectSoundContainer(
-                new ObjectHolderContainer(() => this._getSounds(smm1, smm2,)),
-                new ObjectHolderContainer(() => this._getEditorSound(smm1, smm2,)),
+                lazy(() => this._getSounds(smm1, smm2,),),
+                lazy(() => this._getEditorSound(smm1, smm2,),),
                 smm1,
                 smm2,
             )

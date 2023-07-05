@@ -1,26 +1,26 @@
-import type {ObjectHolder} from 'util/holder/ObjectHolder'
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
 
-import {AbstractIntermediate}         from 'util/extended/tools/AbstractIntermediate'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {AbstractIntermediate} from 'util/extended/tools/AbstractIntermediate'
 
 export class ConditionalIntermediate<T, >
     extends AbstractIntermediate<T> {
 
     //region -------------------- Fields --------------------
 
-    readonly #conditionCallbackHolder: ObjectHolder<boolean>
+    readonly #conditionCallbackHolder: Lazy<boolean>
 
     //endregion -------------------- Fields --------------------
 
     public constructor(reference: T, conditionCallback: () => boolean,) {
         super(reference)
-        this.#conditionCallbackHolder = new DelayedObjectHolderContainer(conditionCallback)
+        this.#conditionCallbackHolder = lazy(conditionCallback,)
     }
 
     //region -------------------- Getter methods --------------------
 
     protected get _conditionCallbackResult(): boolean {
-        return this.#conditionCallbackHolder.get
+        return this.#conditionCallbackHolder.value
     }
 
     //endregion -------------------- Getter methods --------------------

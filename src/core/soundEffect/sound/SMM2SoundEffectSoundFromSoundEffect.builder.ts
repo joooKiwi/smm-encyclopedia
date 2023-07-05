@@ -1,14 +1,15 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {SMM2SoundEffectSoundFile}                                  from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
 import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {PossibleSoundEffectSoundName_SMM2}                         from 'core/soundEffect/sound/types'
-import type {ObjectHolder}                                              from 'util/holder/ObjectHolder'
 import type {EmptyArray}                                                from 'util/types/variables'
 
 import {SMM2SoundEffectSoundFileContainer}                          from 'core/soundEffect/file/SMM2SoundEffectSoundFile.container'
 import {AbstractExclusiveSoundEffectSoundBuilder, type SingleIndex} from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'
 import {SMM2SoundEffectSoundContainer}                              from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
 import {EMPTY_ARRAY}                                                from 'util/emptyVariables'
-import {DelayedObjectHolderContainer}                               from 'util/holder/DelayedObjectHolder.container'
 
 export class SMM2SoundEffectSoundFromSoundEffectBuilder
     extends AbstractExclusiveSoundEffectSoundBuilder<SMM2SoundEffectSound, PossibleSoundEffectSoundName_SMM2, SMM2SoundEffectSoundFile> {
@@ -71,12 +72,12 @@ export class SMM2SoundEffectSoundFromSoundEffectBuilder
 
     //endregion -------------------- Builder helper methods --------------------
 
-    protected override _build(sounds: ObjectHolder<readonly SMM2SoundEffectSoundFile[]>, editorSound: ObjectHolder<SMM2SoundEffectSoundFile>,): SMM2SoundEffectSound {
+    protected override _build(sounds: Lazy<readonly SMM2SoundEffectSoundFile[]>, editorSound: Lazy<SMM2SoundEffectSoundFile>,): SMM2SoundEffectSound {
         return new SMM2SoundEffectSoundContainer(
             sounds,
             editorSound,
-            new DelayedObjectHolderContainer(() => this._createSounds(this.__linkSounds,)),
-            new DelayedObjectHolderContainer(() => this._createSounds(this.__smb2Sounds,)),
+            lazy(() => this._createSounds(this.__linkSounds,),),
+            lazy(() => this._createSounds(this.__smb2Sounds,),),
         )
     }
 

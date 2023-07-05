@@ -1,3 +1,5 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {Property}                                                                                                                                                                                                                                         from 'core/entity/properties/Property'
 import type {GameProperty}                                                                                                                                                                                                                                     from 'core/entity/properties/game/GameProperty'
 import type {GameStyleProperty}                                                                                                                                                                                                                                from 'core/entity/properties/gameStyle/GameStyleProperty'
@@ -13,7 +15,6 @@ import type {GameStyles}                                                        
 import type {Instrument}                                                                                                                                                                                                                                       from 'core/instrument/Instrument'
 import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
 import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
-import type {ObjectHolder}                                                                                                                                                                                                                                     from 'util/holder/ObjectHolder'
 import type {NullOr, NullOrBoolean}                                                                                                                                                                                                                            from 'util/types/nullable'
 import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                                                                                            from 'util/types/variables'
 
@@ -31,7 +32,12 @@ export class PropertyContainer
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(game: ObjectHolder<GameProperty>, gameStyle: ObjectHolder<GameStyleProperty>, theme: ObjectHolder<ThemeProperty>, time: ObjectHolder<TimeProperty>, limit: ObjectHolder<LimitProperty>, instrument: ObjectHolder<InstrumentProperty>,) {
+    public constructor(game: Lazy<GameProperty>,
+                       gameStyle: Lazy<GameStyleProperty>,
+                       theme: Lazy<ThemeProperty>,
+                       time: Lazy<TimeProperty>,
+                       limit: Lazy<LimitProperty>,
+                       instrument: Lazy<InstrumentProperty>,) {
         this.#gameContainer = game
         this.#gameStyleContainer = gameStyle
         this.#themeContainer = theme
@@ -45,7 +51,7 @@ export class PropertyContainer
     //region -------------------- Game properties --------------------
 
     public get gameContainer(): GameProperty {
-        return this.#gameContainer.get
+        return this.#gameContainer.value
     }
 
     public get isInSuperMarioMaker1(): boolean {
@@ -64,7 +70,7 @@ export class PropertyContainer
     //region -------------------- Game style properties --------------------
 
     public get gameStyleContainer(): GameStyleProperty {
-        return this.#gameStyleContainer.get
+        return this.#gameStyleContainer.value
     }
 
     public get isInSuperMarioBrosStyle(): boolean {
@@ -91,7 +97,7 @@ export class PropertyContainer
     //region -------------------- Theme properties --------------------
 
     public get themeContainer(): ThemeProperty {
-        return this.#themeContainer.get
+        return this.#themeContainer.value
     }
 
     public get isInGroundTheme(): boolean {
@@ -138,7 +144,7 @@ export class PropertyContainer
     //region -------------------- Time properties --------------------
 
     public get timeContainer(): TimeProperty {
-        return this.#timeContainer.get
+        return this.#timeContainer.value
     }
 
     public get isInDayTheme(): boolean {
@@ -153,7 +159,7 @@ export class PropertyContainer
     //region -------------------- Limit properties --------------------
 
     public get limitContainer(): LimitProperty {
-        return this.#limitContainer.get
+        return this.#limitContainer.value
     }
 
     //region -------------------- Editor limit --------------------
@@ -277,7 +283,7 @@ export class PropertyContainer
     //region -------------------- Instrument properties --------------------
 
     public get instrumentContainer(): InstrumentProperty {
-        return this.#instrumentHolder.get
+        return this.#instrumentHolder.value
     }
 
 

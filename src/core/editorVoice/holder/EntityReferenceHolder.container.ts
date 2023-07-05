@@ -1,11 +1,11 @@
-import type {EntityReferenceHolder, PossibleEntityReferences_Received} from 'core/editorVoice/holder/EntityReferenceHolder'
-import type {ObjectHolder}                                             from 'util/holder/ObjectHolder'
+import type {Lazy}    from '@joookiwi/lazy'
+import {lazy, lazyOf} from '@joookiwi/lazy'
 
-import {Import}                       from 'util/DynamicImporter'
-import {EMPTY_ARRAY}                  from 'util/emptyVariables'
-import type {Entities}                from 'core/entity/Entities'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
-import {ObjectHolderContainer}        from 'util/holder/ObjectHolder.container'
+import type {EntityReferenceHolder, PossibleEntityReferences_Received} from 'core/editorVoice/holder/EntityReferenceHolder'
+
+import type {Entities} from 'core/entity/Entities'
+import {Import}        from 'util/DynamicImporter'
+import {EMPTY_ARRAY}   from 'util/emptyVariables'
 
 /**
  * @classWithDynamicImport {@link Entities}
@@ -13,28 +13,24 @@ import {ObjectHolderContainer}        from 'util/holder/ObjectHolder.container'
 export class EntityReferenceHolderContainer
     implements EntityReferenceHolder {
 
-    //region -------------------- Fields --------------------
-
-    readonly #references: ObjectHolder<readonly Entities[]>
-
-    //endregion -------------------- Fields --------------------
+    readonly #references: Lazy<readonly Entities[]>
 
     public constructor(references: PossibleEntityReferences_Received,) {
         this.#references = typeof references == 'string'
-            ? new DelayedObjectHolderContainer(() => {
+            ? lazy(() => {
                 const reference = references
-                return Import.Entities.hasValueByName(reference)
+                return Import.Entities.hasValueByName(reference,)
                     ? [Import.Entities.getValueByName(reference),]
                     : EMPTY_ARRAY
-            })
-            : new ObjectHolderContainer(references)
+            },)
+            : lazyOf(references,)
     }
 
     //region -------------------- Getter methods --------------------
 
 
     public get references(): readonly Entities[] {
-        return this.#references.get
+        return this.#references.value
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -1,17 +1,18 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {MiiCostume}                 from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeTemplate}         from 'core/miiCostume/MiiCostume.template'
 import type {Name}                       from 'lang/name/Name'
 import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
-import type {ObjectHolder}               from 'util/holder/ObjectHolder'
 import type {NullOr}                     from 'util/types/nullable'
 
-import {TemplateWithNameCreator} from 'core/_template/TemplateWithName.creator'
-import {MiiCostumeContainer}     from 'core/miiCostume/MiiCostume.container'
+import {TemplateWithNameCreator}           from 'core/_template/TemplateWithName.creator'
+import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'
 import {MiiCostumeCategories}              from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {MiiCostumeCategory}                from 'core/miiCostumeCategory/MiiCostumeCategory'
 import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
 import {Versions}                          from 'core/version/Versions'
-import {DelayedObjectHolderContainer}      from 'util/holder/DelayedObjectHolder.container'
 import {ObjectHolders}                     from 'util/holder/ObjectHolders'
 
 export class MiiCostumeCreator
@@ -23,18 +24,18 @@ export class MiiCostumeCreator
 
     //region -------------------- Build helper methods --------------------
 
-    static #createOfficialNotification({officialNotification: officialNotificationName,}: MiiCostumeTemplate,): ObjectHolder<OfficialNotificationHolder> {
-        return new DelayedObjectHolderContainer(() => new OfficialNotificationHolderBuilder(officialNotificationName).build())
+    static #createOfficialNotification({officialNotification: officialNotificationName,}: MiiCostumeTemplate,): Lazy<OfficialNotificationHolder> {
+        return lazy(() => new OfficialNotificationHolderBuilder(officialNotificationName,).build(),)
     }
 
-    static #createVersion({version,}: MiiCostumeTemplate,): ObjectHolder<NullOr<Versions>> {
+    static #createVersion({version,}: MiiCostumeTemplate,): Lazy<NullOr<Versions>> {
         return version == null
             ? ObjectHolders.NULL
-            : new DelayedObjectHolderContainer(() => Versions.getValueByName(version))
+            : lazy(() => Versions.getValueByName(version,),)
     }
 
-    static #createCategory({category,}: MiiCostumeTemplate,): ObjectHolder<MiiCostumeCategory> {
-        return new DelayedObjectHolderContainer(() => MiiCostumeCategories.getValueByName(category).reference)
+    static #createCategory({category,}: MiiCostumeTemplate,): Lazy<MiiCostumeCategory> {
+        return lazy(() => MiiCostumeCategories.getValueByName(category,).reference,)
     }
 
     //endregion -------------------- Build helper methods --------------------
@@ -45,7 +46,7 @@ export class MiiCostumeCreator
         return new MiiCostumeContainer(name,
             MiiCostumeCreator.#createOfficialNotification(template,),
             MiiCostumeCreator.#createVersion(template,),
-            MiiCostumeCreator.#createCategory(template,)
+            () => MiiCostumeCreator.#createCategory(template,).value,//FIXME replace with a Lazy instance
         )
     }
 

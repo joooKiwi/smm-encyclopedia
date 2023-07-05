@@ -1,6 +1,7 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {SoundEffectSoundFile}                                                  from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {PossibleEditorValue, PossibleValueOnLinkOrSMB2Value, SoundEffectSound} from 'core/soundEffect/sound/SoundEffectSound'
-import type {ObjectHolder}                                                          from 'util/holder/ObjectHolder'
 
 export abstract class AbstractSoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[], EDITOR_SOUND extends PossibleEditorValue<SOUNDS>,
     LINK_SOUNDS extends PossibleValueOnLinkOrSMB2Value<SOUNDS>,
@@ -14,7 +15,7 @@ export abstract class AbstractSoundEffectSound<SOUNDS extends readonly SoundEffe
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(sounds: ObjectHolder<SOUNDS>, editorSound: ObjectHolder<EDITOR_SOUND>,) {
+    protected constructor(sounds: Lazy<SOUNDS>, editorSound: Lazy<EDITOR_SOUND>,) {
         this.#sounds = sounds
         this.#editorSounds = editorSound
     }
@@ -22,11 +23,11 @@ export abstract class AbstractSoundEffectSound<SOUNDS extends readonly SoundEffe
     //region -------------------- Getter methods --------------------
 
     public get sounds(): SOUNDS {
-        return this.#sounds.get
+        return this.#sounds.value
     }
 
     public get editorSound(): EDITOR_SOUND {
-        return this.#editorSounds.get
+        return this.#editorSounds.value
     }
 
     public abstract get linkSounds(): LINK_SOUNDS

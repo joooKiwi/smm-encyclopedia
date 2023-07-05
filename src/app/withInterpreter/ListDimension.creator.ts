@@ -1,9 +1,9 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {DimensionOnList}                                                                                                                                                                                           from 'app/interpreter/DimensionOnList'
 import type {DefaultDefaultDimension, DefaultDimensionOnCardList, DefaultExtraExtraLargeDimension, DefaultExtraLargeDimension, DefaultLargeDimension, DefaultMediumDimension, DefaultSmallDimension, PossibleDimension} from 'app/withInterpreter/ListDimension.creator.types'
-import type {ObjectHolder}                                                                                                                                                                                              from 'util/holder/ObjectHolder'
 import type {NullOr}                                                                                                                                                                                                    from 'util/types/nullable'
-
-import {ObjectHolderContainer} from 'util/holder/ObjectHolder.container'
 
 export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDimension,
     SMALL extends PossibleDimension = PossibleDimension,
@@ -25,38 +25,40 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
     }
 
     readonly #dimension
-    #smallHolder: ObjectHolder<| SMALL | DefaultSmallDimension>
-    #mediumHolder: ObjectHolder<| MEDIUM | DefaultMediumDimension>
-    #largeHolder: ObjectHolder<| LARGE | DefaultLargeDimension>
-    #extraLargeHolder: ObjectHolder<| EXTRA_LARGE | DefaultExtraLargeDimension>
-    #extraExtraLargeHolder: ObjectHolder<| EXTRA_EXTRA_LARGE | DefaultExtraExtraLargeDimension>
+    #smallHolder: Lazy<| SMALL | DefaultSmallDimension>
+    #mediumHolder: Lazy<| MEDIUM | DefaultMediumDimension>
+    #largeHolder: Lazy<| LARGE | DefaultLargeDimension>
+    #extraLargeHolder: Lazy<| EXTRA_LARGE | DefaultExtraLargeDimension>
+    #extraExtraLargeHolder: Lazy<| EXTRA_EXTRA_LARGE | DefaultExtraExtraLargeDimension>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(dimension: NullOr<Partial<DimensionOnList<DEFAULT, SMALL, MEDIUM, LARGE, EXTRA_LARGE, EXTRA_EXTRA_LARGE>>>,) {
         this.#dimension = dimension
-        this.#smallHolder = new ObjectHolderContainer(() => {
+        this.#smallHolder = lazy(() => {
             const value = this.dimensionOrDefault.small
             return value === undefined ? this.defaultSmall : value
-        })
-        this.#mediumHolder = new ObjectHolderContainer(() => {
+        },)
+        this.#mediumHolder = lazy(() => {
             const value = this.dimensionOrDefault.medium
             return value === undefined ? ListDimensionCreator.defaultMedium : value
-        })
-        this.#largeHolder = new ObjectHolderContainer(() => {
+        },)
+        this.#largeHolder = lazy(() => {
             const value = this.dimensionOrDefault.large
             return value === undefined ? this.defaultLarge : value
-        })
-        this.#extraLargeHolder = new ObjectHolderContainer(() => {
+        },)
+        this.#extraLargeHolder = lazy(() => {
             const value = this.dimensionOrDefault.extraLarge
             return value === undefined ? this.defaultExtraLarge : value
-        })
-        this.#extraExtraLargeHolder = new ObjectHolderContainer(() => {
+        },)
+        this.#extraExtraLargeHolder = lazy(() => {
             const value = this.dimensionOrDefault.extraExtraLarge
             return value === undefined ? this.defaultExtraExtraLarge : value
-        })
+        },)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     /** The dimension to interpret */
@@ -87,7 +89,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
     //region -------------------- Small dimension --------------------
 
     public get small(): | SMALL | DefaultSmallDimension {
-        return this.#smallHolder.get
+        return this.#smallHolder.value
     }
 
     public static get defaultSmall(): DefaultSmallDimension {
@@ -102,7 +104,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
     //region -------------------- Medium dimension --------------------
 
     public get medium(): | MEDIUM | DefaultMediumDimension {
-        return this.#mediumHolder.get
+        return this.#mediumHolder.value
     }
 
     public static get defaultMedium(): DefaultMediumDimension {
@@ -117,7 +119,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
     //region -------------------- Large dimension --------------------
 
     public get large(): | LARGE | DefaultLargeDimension {
-        return this.#largeHolder.get
+        return this.#largeHolder.value
     }
 
     public static get defaultLarge(): DefaultLargeDimension {
@@ -132,7 +134,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
     //region -------------------- Extra large dimension --------------------
 
     public get extraLarge(): | EXTRA_LARGE | DefaultExtraLargeDimension {
-        return this.#extraLargeHolder.get
+        return this.#extraLargeHolder.value
     }
 
     public static get defaultExtraLarge(): DefaultExtraLargeDimension {
@@ -147,7 +149,7 @@ export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDi
     //region -------------------- Extra extra large dimension --------------------
 
     public get extraExtraLarge(): | EXTRA_EXTRA_LARGE | DefaultExtraExtraLargeDimension {
-        return this.#extraExtraLargeHolder.get
+        return this.#extraExtraLargeHolder.value
     }
 
     public static get defaultExtraExtraLarge(): DefaultExtraExtraLargeDimension {

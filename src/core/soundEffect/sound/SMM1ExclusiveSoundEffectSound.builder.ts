@@ -1,7 +1,8 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {SMM1SoundEffectSoundFile}          from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
 import type {SMM1ExclusiveSoundEffectSound}     from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
 import type {PossibleSoundEffectSoundName_SMM1} from 'core/soundEffect/sound/types'
-import type {ObjectHolder}                      from 'util/holder/ObjectHolder'
 
 import {SMM1SoundEffectSoundFileContainer}        from 'core/soundEffect/file/SMM1SoundEffectSoundFile.container'
 import {AbstractExclusiveSoundEffectSoundBuilder} from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'
@@ -24,7 +25,7 @@ export class SMM1ExclusiveSoundEffectSoundBuilder
 
     //endregion -------------------- Builder helper methods --------------------
 
-    protected override _build(sounds: ObjectHolder<readonly SMM1SoundEffectSoundFile[]>, editorSound: ObjectHolder<SMM1SoundEffectSoundFile>,): SMM1ExclusiveSoundEffectSound {
+    protected override _build(sounds: Lazy<readonly SMM1SoundEffectSoundFile[]>, editorSound: Lazy<SMM1SoundEffectSoundFile>,): SMM1ExclusiveSoundEffectSound {
         return new SMM1ExclusiveSoundEffectSoundContainer(sounds, editorSound,)
     }
 

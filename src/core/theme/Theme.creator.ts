@@ -1,3 +1,6 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
 import type {Entity}                                                            from 'core/entity/Entity'
 import type {GameProperty}                                                      from 'core/entity/properties/game/GameProperty'
@@ -9,7 +12,6 @@ import type {PossibleEnglishName}                                               
 import type {ThemeTemplate}                                                     from 'core/theme/Theme.template'
 import type {WorldTheme}                                                        from 'core/theme/WorldTheme'
 import type {Name}                                                              from 'lang/name/Name'
-import type {ObjectHolder}                                                      from 'util/holder/ObjectHolder'
 
 import {TemplateWithNameCreator}                  from 'core/_template/TemplateWithName.creator'
 import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
@@ -22,7 +24,6 @@ import {Themes}                                   from 'core/theme/Themes'
 import {WorldThemeContainer}                      from 'core/theme/WorldTheme.container'
 import {WorldOnlyThemeContainer}                  from 'core/theme/WorldOnlyTheme.container'
 import {Import}                                   from 'util/DynamicImporter'
-import {DelayedObjectHolderContainer}             from 'util/holder/DelayedObjectHolder.container'
 
 export class ThemeCreator
     extends TemplateWithNameCreator<ThemeTemplate, CourseAndWorldTheme> {
@@ -31,9 +32,9 @@ export class ThemeCreator
 
     static readonly #WORLD_THEME_PROPERTY = GamePropertyProvider.get.smm2Only
 
-    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<null, null, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartProvider.get.get(null,))
-    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<true, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartProvider.get.get(true,))
-    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1: ObjectHolder<ClassThatIsAvailableFromTheStart<false, true, true>> = new DelayedObjectHolderContainer(() => ClassThatIsAvailableFromTheStartProvider.get.get(false,))
+    static readonly #IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => ClassThatIsAvailableFromTheStartProvider.get.get(null,),)
+    static readonly #IS_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => ClassThatIsAvailableFromTheStartProvider.get.get(true,),)
+    static readonly #IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => ClassThatIsAvailableFromTheStartProvider.get.get(false,),)
 
     //endregion -------------------- Fields --------------------
 
@@ -59,7 +60,7 @@ export class ThemeCreator
         return GamePropertyProvider.get.get(gameTemplate['1And3DS'], gameTemplate['2'],)
     }
 
-    static #getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
+    static #getIsAvailableFromTheStart(value: PossibleIsAvailableFromTheStart,): Lazy<ClassThatIsAvailableFromTheStart> {
         //TODO move this code elsewhere to remove duplicate code
         return value == null
             ? this.#IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1
@@ -74,8 +75,8 @@ export class ThemeCreator
      * @param name the english name to retrieve the {@link Themes}
      * @see Themes.get
      */
-    static #getWhereEntityIs(name: PossibleEnglishName,): ObjectHolder<readonly Entity[]> {
-        return new DelayedObjectHolderContainer(() => {
+    static #getWhereEntityIs(name: PossibleEnglishName,): Lazy<readonly Entity[]> {
+        return lazy(() => {
             const theme = Themes.getValueByName(name)
 
             return Import.Entities.values.map(({reference,}) => reference)
@@ -89,8 +90,8 @@ export class ThemeCreator
      *
      * @param name the night effect
      */
-    static #getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): ObjectHolder<NightEffects> {
-        return new DelayedObjectHolderContainer(() => NightEffects.getValueByName(name))
+    static #getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): Lazy<NightEffects> {
+        return lazy(() => NightEffects.getValueByName(name,),)
     }
 
     //endregion -------------------- Course theme builder helper methods --------------------
@@ -119,14 +120,14 @@ export class ThemeCreator
         )
     }
 
-    static #getGameProperty2(courseTheme: CourseTheme, worldTheme: WorldTheme,): ObjectHolder<GameProperty> {
-        return new DelayedObjectHolderContainer(() => GamePropertyProvider.get.get(
+    static #getGameProperty2(courseTheme: CourseTheme, worldTheme: WorldTheme,): Lazy<GameProperty> {
+        return lazy(() => GamePropertyProvider.get.get(
             courseTheme.isInSuperMarioMaker1 || worldTheme.isInSuperMarioMaker1,
             courseTheme.isInSuperMarioMaker2 || worldTheme.isInSuperMarioMaker2,
-        ))
+        ),)
     }
 
-    static #getIsAvailableFromTheStart2(template: ThemeTemplate,): ObjectHolder<ClassThatIsAvailableFromTheStart> {
+    static #getIsAvailableFromTheStart2(template: ThemeTemplate,): Lazy<ClassThatIsAvailableFromTheStart> {
         //TODO since getIsAvailableFromTheStart needs to be moved, this one ("getIsAvailableFromTheStart2") too
         return this.#getIsAvailableFromTheStart(template.is.availableFromTheStart)
     }

@@ -1,10 +1,10 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {PossibleSoundEffectSoundName} from 'core/soundEffect/sound/types'
 import type {SoundEffectSound}             from 'core/soundEffect/sound/SoundEffectSound'
 import type {SoundEffectSoundFile}         from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {Builder}                      from 'util/builder/Builder'
-import type {ObjectHolder}                 from 'util/holder/ObjectHolder'
-
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 export abstract class AbstractExclusiveSoundEffectSoundBuilder<T extends SoundEffectSound, SOUND extends PossibleSoundEffectSoundName, FILE_SOUND extends SoundEffectSoundFile, >
     implements Builder<T> {
@@ -17,7 +17,7 @@ export abstract class AbstractExclusiveSoundEffectSoundBuilder<T extends SoundEf
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(sounds: readonly SOUND[]) {
+    protected constructor(sounds: readonly SOUND[],) {
         this.#sounds = sounds
     }
 
@@ -50,12 +50,12 @@ export abstract class AbstractExclusiveSoundEffectSoundBuilder<T extends SoundEf
 
     //endregion -------------------- Builder helper methods --------------------
 
-    protected abstract _build(sounds: ObjectHolder<readonly FILE_SOUND[]>, editorSound: ObjectHolder<FILE_SOUND>,): T
+    protected abstract _build(sounds: Lazy<readonly FILE_SOUND[]>, editorSound: Lazy<FILE_SOUND>,): T
 
     public build(): T {
         return this._build(
-            new DelayedObjectHolderContainer(() => this._createSounds(this._sounds)),
-            new DelayedObjectHolderContainer(() => this._createSound(this.__editorSound)),
+            lazy(() => this._createSounds(this._sounds,),),
+            lazy(() => this._createSound(this.__editorSound,),),
         )
     }
 

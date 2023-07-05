@@ -1,5 +1,5 @@
 import type {NumberPropertyThatCanBeUnknownWithAmount} from 'core/_properties/PropertyThatCanBeUnknownWithAmount'
-import type {PossibleValueOnObjectHolder}              from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}                          from 'util/holder/ObjectHolder.types'
 import type {NullOrNumber}                             from 'util/types/nullable'
 
 import {PropertyThatCanBeUnknownWithAmountContainer} from 'core/_properties/PropertyThatCanBeUnknownWithAmount.container'
@@ -8,7 +8,7 @@ export class NumberPropertyThatCanBeUnknownWithAmountContainer<N extends NullOrN
     extends PropertyThatCanBeUnknownWithAmountContainer<N, IS_UNKNOWN, AMOUNT>
     implements NumberPropertyThatCanBeUnknownWithAmount<N, IS_UNKNOWN, AMOUNT> {
 
-    public constructor(value: PossibleValueOnObjectHolder<N>, isUnknown: IS_UNKNOWN, amount: AMOUNT,) {
+    public constructor(value: ValueOrCallback<N>, isUnknown: IS_UNKNOWN, amount: AMOUNT,) {
         super(value, isUnknown, amount,)
     }
 

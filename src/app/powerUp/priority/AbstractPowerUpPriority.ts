@@ -1,15 +1,16 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {ImagesCallback, ImagesRetrieverCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                                                     from 'core/entity/Entities'
 import type {EntityImageFile}                                                              from 'core/entity/file/EntityImageFile'
 import type {ClassInAnySuperMarioMakerGame}                                                from 'core/game/ClassInAnySuperMarioMakerGame'
 import type {Name}                                                                         from 'lang/name/Name'
-import type {ObjectHolder}                                                                 from 'util/holder/ObjectHolder'
 
-import {GameStyles}                   from 'core/gameStyle/GameStyles'
-import {Themes}                       from 'core/theme/Themes'
-import {Times}                        from 'core/time/Times'
-import {EMPTY_ARRAY}                  from 'util/emptyVariables'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {GameStyles}  from 'core/gameStyle/GameStyles'
+import {Themes}      from 'core/theme/Themes'
+import {Times}       from 'core/time/Times'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -48,26 +49,28 @@ export abstract class AbstractPowerUpPriority
 
     //endregion -------------------- Image callbacks --------------------
 
-    readonly #nameHolder: ObjectHolder<Name<string>>
-    readonly #imagesHolder: ObjectHolder<readonly EntityImageFile[]>
+    readonly #nameHolder: Lazy<Name<string>>
+    readonly #imagesHolder: Lazy<readonly EntityImageFile[]>
     readonly #isIn
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor(nameCallback: () => Name<string>, imagesCallback: ImagesCallback, isIn: ClassInAnySuperMarioMakerGame,) {
-        this.#nameHolder = new DelayedObjectHolderContainer(nameCallback)
-        this.#imagesHolder = new DelayedObjectHolderContainer(imagesCallback)
+    protected constructor(nameCallback: () => Name<string>,
+                          imagesCallback: ImagesCallback,
+                          isIn: ClassInAnySuperMarioMakerGame,) {
+        this.#nameHolder = lazy(nameCallback,)
+        this.#imagesHolder = lazy(imagesCallback,)
         this.#isIn = isIn
     }
 
     //region -------------------- Getter methods --------------------
 
     public get name(): Name<string> {
-        return this.#nameHolder.get
+        return this.#nameHolder.value
     }
 
     public get images(): readonly EntityImageFile[] {
-        return this.#imagesHolder.get
+        return this.#imagesHolder.value
     }
 
     public get isIn(): ClassInAnySuperMarioMakerGame {

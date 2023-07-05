@@ -1,5 +1,5 @@
 import type {NumberPropertyThatCanBeUnknown} from 'core/_properties/PropertyThatCanBeUnknown'
-import type {PossibleValueOnObjectHolder}    from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}                from 'util/holder/ObjectHolder.types'
 import type {NullOrNumber}                   from 'util/types/nullable'
 
 import {PropertyThatCanBeUnknownContainer} from 'core/_properties/PropertyThatCanBeUnknown.container'
@@ -8,7 +8,7 @@ export class NumberPropertyThatCanBeUnknownContainer<N extends NullOrNumber = Nu
     extends PropertyThatCanBeUnknownContainer<N, IS_UNKNOWN>
     implements NumberPropertyThatCanBeUnknown<N, IS_UNKNOWN> {
 
-    public constructor(value: PossibleValueOnObjectHolder<N>, isUnknown: IS_UNKNOWN,) {
+    public constructor(value: ValueOrCallback<N>, isUnknown: IS_UNKNOWN,) {
         super(value, isUnknown,)
     }
 

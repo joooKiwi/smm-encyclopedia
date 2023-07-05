@@ -1,7 +1,9 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
-import {nonNull}                      from 'util/utilitiesMethods'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {nonNull} from 'util/utilitiesMethods'
 
 export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
     SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,
@@ -12,7 +14,7 @@ export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_
 
     //region -------------------- Fields --------------------
 
-    readonly #allHolder
+    readonly #allHolder: Lazy<PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>>
 
     readonly #smb: SMB_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
     readonly #smb3: SMB3_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
@@ -29,13 +31,13 @@ export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_
         this.#nsmbu = nsmbu
         this.#sm3dw = sm3dw
 
-        this.#allHolder = new DelayedObjectHolderContainer(() => nonNull([this.smb, this.smb3, this.smw, this.nsmbu, this.sm3dw,]) as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]>)
+        this.#allHolder = lazy(() => nonNull([this.smb, this.smb3, this.smw, this.nsmbu, this.sm3dw,]) as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>,)
     }
 
     //region -------------------- Getter methods --------------------
 
     public get all(): PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]> {
-        return this.#allHolder.get
+        return this.#allHolder.value
     }
 
 

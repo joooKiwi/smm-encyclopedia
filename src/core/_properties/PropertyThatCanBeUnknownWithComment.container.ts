@@ -1,6 +1,6 @@
 import type {DefaultAmount}                       from 'core/_properties/Property'
 import type {PropertyThatCanBeUnknownWithComment} from 'core/_properties/PropertyThatCanBeUnknownWithComment'
-import type {PossibleValueOnObjectHolder}         from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}                     from 'util/holder/ObjectHolder.types'
 import type {NullOrString}                        from 'util/types/nullable'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
@@ -9,7 +9,7 @@ export class PropertyThatCanBeUnknownWithCommentContainer<T, IS_UNKNOWN extends 
     extends PropertyContainer<T, IS_UNKNOWN, DefaultAmount, COMMENT>
     implements PropertyThatCanBeUnknownWithComment<T, IS_UNKNOWN, COMMENT> {
 
-    public constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
+    public constructor(value: ValueOrCallback<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,) {
         super(value, isUnknown, comment,)
     }
 

@@ -1,6 +1,6 @@
 import type {DefaultIsUnknown}             from 'core/_properties/Property'
 import type {PropertyWithAmountAndComment} from 'core/_properties/PropertyWithAmountAndComment'
-import type {PossibleValueOnObjectHolder}  from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}              from 'util/holder/ObjectHolder.types'
 import type {NullOrNumber, NullOrString}   from 'util/types/nullable'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
@@ -9,7 +9,7 @@ export class PropertyWithAmountAndCommentContainer<T, AMOUNT extends NullOrNumbe
     extends PropertyContainer<T, DefaultIsUnknown, AMOUNT, COMMENT>
     implements PropertyWithAmountAndComment<T, AMOUNT, COMMENT> {
 
-    public constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT, comment: COMMENT,) {
+    public constructor(value: ValueOrCallback<T>, amount: AMOUNT, comment: COMMENT,) {
         super(value, amount, comment,)
     }
 

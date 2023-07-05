@@ -1,8 +1,9 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {CourseTag}                from 'core/courseTag/CourseTag'
 import type {PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
 import type {Versions}                 from 'core/version/Versions'
 import type {Name}                     from 'lang/name/Name'
-import type {ObjectHolder}             from 'util/holder/ObjectHolder'
 import type {NullOr}                   from 'util/types/nullable'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
@@ -19,7 +20,10 @@ export class CourseTagContainer
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: Name<string>, isAnOfficialTag: boolean, makerCentralName: ObjectHolder<NullOr<PossibleMakerCentralName>>, firstAppearance: ObjectHolder<NullOr<Versions>>,) {
+    public constructor(name: Name<string>,
+                       isAnOfficialTag: boolean,
+                       makerCentralName: Lazy<NullOr<PossibleMakerCentralName>>,
+                       firstAppearance: Lazy<NullOr<Versions>>,) {
         super(name)
         this.#isAnOfficialTag = isAnOfficialTag
         this.#makerCentralNameHolder = makerCentralName
@@ -33,11 +37,11 @@ export class CourseTagContainer
     }
 
     public get makerCentralName(): NullOr<PossibleMakerCentralName> {
-        return this.#makerCentralNameHolder.get
+        return this.#makerCentralNameHolder.value
     }
 
     public get firstAppearance(): NullOr<Versions> {
-        return this.#firstAppearanceHolder.get
+        return this.#firstAppearanceHolder.value
     }
 
     //endregion -------------------- Getter methods --------------------

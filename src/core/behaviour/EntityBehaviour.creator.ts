@@ -1,3 +1,5 @@
+import {lazy} from '@joookiwi/lazy'
+
 import type {PossibleGroupName}                         from 'core/entityTypes'
 import type {EntityBehaviour}                           from 'core/behaviour/EntityBehaviour'
 import type {EntityBehaviourTemplate}                   from 'core/behaviour/EntityBehaviour.template'
@@ -8,12 +10,11 @@ import type {IsInOnlyTemplate}                          from 'core/behaviour/pro
 import type {PossibleEnglishName as PossibleEntityName} from 'core/entity/Entities.types'
 import type {Entity}                                    from 'core/entity/Entity'
 
-import {TemplateCreator}          from 'core/_template/Template.creator'
-import {EntityBehaviourContainer} from 'core/behaviour/EntityBehaviour.container'
+import {TemplateCreator}                 from 'core/_template/Template.creator'
+import {EntityBehaviourContainer}        from 'core/behaviour/EntityBehaviour.container'
 import {EntityBehaviourIsInOnlyProvider} from 'core/behaviour/properties/EntityBehaviourIsInOnly.provider'
 import {EntityBehaviourLinkProvider}     from 'core/behaviour/properties/EntityBehaviourLink.provider'
 import {Import}                          from 'util/DynamicImporter'
-import {DelayedObjectHolderContainer}    from 'util/holder/DelayedObjectHolder.container'
 import {ObjectHolders}                   from 'util/holder/ObjectHolders'
 
 export class EntityBehaviourCreator
@@ -46,8 +47,8 @@ export class EntityBehaviourCreator
         if (isGroupNull && isEntityNull)
             return EntityBehaviourLinkProvider.get.null
         return EntityBehaviourLinkProvider.get.get([group, entity,],
-            isGroupNull ? ObjectHolders.NULL : new DelayedObjectHolderContainer(() => EntityBehaviourCreator.#getEntityGroupByName(group)),
-            isEntityNull ? ObjectHolders.NULL : new DelayedObjectHolderContainer(() => this.#getEntityByName(entity)),
+            isGroupNull ? ObjectHolders.NULL : lazy(() => EntityBehaviourCreator.#getEntityGroupByName(group,),),
+            isEntityNull ? ObjectHolders.NULL : lazy(() => this.#getEntityByName(entity,),),
         )
     }
 

@@ -1,8 +1,9 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {CanMakeASoundOutOfAMusicBlock}                             from 'core/entity/properties/instrument/loader.types'
 import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from 'core/entity/properties/instrument/InstrumentProperty'
 import type {Instrument}                                                from 'core/instrument/Instrument'
 import type {PossibleInstrument}                                        from 'core/instrument/loader.types'
-import type {ObjectHolder}                                              from 'util/holder/ObjectHolder'
 import type {ProviderWithKey}                                           from 'util/provider/ProviderWithKey'
 
 import {InstrumentPropertyContainer} from 'core/entity/properties/instrument/InstrumentProperty.container'
@@ -42,6 +43,6 @@ type Key = readonly [
     canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,
 ]
 type ArgumentsReceived = readonly [
-    intruments: ObjectHolder<readonly Instrument[]>,
+    intruments: Lazy<readonly Instrument[]>,
     canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlockProperty,
 ]
