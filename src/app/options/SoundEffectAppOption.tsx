@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/SoundEffectAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -110,7 +110,7 @@ export abstract class SoundEffectAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<SoundEffectAppOption, typeof SoundEffectAppOption>> = class CompanionEnum_SoundEffectAppOption
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<SoundEffectAppOption, typeof SoundEffectAppOption> = class CompanionEnum_SoundEffectAppOption
         extends BasicCompanionEnum<SoundEffectAppOption, typeof SoundEffectAppOption> {
 
         //region -------------------- Singleton usage --------------------

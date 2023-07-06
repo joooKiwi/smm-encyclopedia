@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/PowerUpPriorityTypes.types'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
@@ -283,7 +283,7 @@ export class PowerUpPriorityTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<PowerUpPriorityTypes, typeof PowerUpPriorityTypes>> = class CompanionEnum_PowerUpPriorityTypes
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<PowerUpPriorityTypes, typeof PowerUpPriorityTypes> = class CompanionEnum_PowerUpPriorityTypes
         extends BasicCompanionEnum<PowerUpPriorityTypes, typeof PowerUpPriorityTypes> {
 
         //region -------------------- Singleton usage --------------------

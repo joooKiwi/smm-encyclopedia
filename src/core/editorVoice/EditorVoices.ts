@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                   from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                     from 'core/ClassWithReference'
@@ -519,7 +519,7 @@ export abstract class EditorVoices
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EditorVoices, typeof EditorVoices>> = class CompanionEnum_EditorVoices
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<EditorVoices, typeof EditorVoices> = class CompanionEnum_EditorVoices
         extends BasicCompanionEnum<EditorVoices, typeof EditorVoices> {
 
         //region -------------------- Singleton usage --------------------

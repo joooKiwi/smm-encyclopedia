@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossiblePlacement} from 'app/tools/table/header/HeaderTypes.types'
 import type {Nullable}                                         from 'util/types/nullable'
@@ -29,7 +29,7 @@ export abstract class HeaderTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<HeaderTypes, typeof HeaderTypes>> = class CompanionEnum_HeaderTypes
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<HeaderTypes, typeof HeaderTypes> = class CompanionEnum_HeaderTypes
         extends BasicCompanionEnum<HeaderTypes, typeof HeaderTypes> {
 
         //region -------------------- Singleton usage --------------------

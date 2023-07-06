@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
 import type {ReactElement}                       from 'util/react/ReactProperties'
@@ -100,7 +100,7 @@ export abstract class Arrows
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Arrows, typeof Arrows>> = class CompanionEnum_Arrows
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<Arrows, typeof Arrows> = class CompanionEnum_Arrows
         extends BasicCompanionEnum<Arrows, typeof Arrows> {
 
         //region -------------------- Singleton usage --------------------

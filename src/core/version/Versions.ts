@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from 'core/version/Versions.types'
 import type {Nullable, NullOr}                                                                         from 'util/types/nullable'
@@ -54,7 +54,7 @@ export class Versions
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Versions, typeof Versions>> = class CompanionEnum_Versions
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<Versions, typeof Versions> = class CompanionEnum_Versions
         extends BasicCompanionEnum<Versions, typeof Versions> {
 
         //region -------------------- Singleton usage --------------------

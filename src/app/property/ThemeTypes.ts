@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
@@ -75,7 +75,7 @@ export abstract class ThemeTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ThemeTypes, typeof ThemeTypes>> = class CompanionEnum_ThemeTypes
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<ThemeTypes, typeof ThemeTypes> = class CompanionEnum_ThemeTypes
         extends BasicCompanionEnum<ThemeTypes, typeof ThemeTypes> {
 
         //region -------------------- Singleton usage --------------------

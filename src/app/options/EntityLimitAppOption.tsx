@@ -1,8 +1,8 @@
 import './EntityLimitAppOption.scss'
 
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityLimitAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -121,7 +121,7 @@ export abstract class EntityLimitAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimitAppOption, typeof EntityLimitAppOption>> = class CompanionEnum_EntityLimitAppOption
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<EntityLimitAppOption, typeof EntityLimitAppOption> = class CompanionEnum_EntityLimitAppOption
         extends BasicCompanionEnum<EntityLimitAppOption, typeof EntityLimitAppOption> {
 
         //region -------------------- Singleton usage --------------------

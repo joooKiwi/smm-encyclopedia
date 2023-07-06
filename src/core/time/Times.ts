@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                          from 'core/ClassWithEnglishName'
 import type {PropertyGetter, PropertyReferenceGetter}                       from 'core/PropertyGetter'
@@ -52,7 +52,7 @@ export abstract class Times
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Times, typeof Times>> = class CompanionEnum_Times
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<Times, typeof Times> = class CompanionEnum_Times
         extends BasicCompanionEnum<Times, typeof Times> {
 
         //region -------------------- Singleton usage --------------------

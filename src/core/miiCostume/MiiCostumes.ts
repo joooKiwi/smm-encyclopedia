@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                       from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                         from 'core/ClassWithReference'
@@ -162,7 +162,7 @@ export class MiiCostumes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<MiiCostumes, typeof MiiCostumes>> = class CompanionEnum_MiiCostumes
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<MiiCostumes, typeof MiiCostumes> = class CompanionEnum_MiiCostumes
         extends BasicCompanionEnum<MiiCostumes, typeof MiiCostumes> {
 
         //region -------------------- Singleton usage --------------------

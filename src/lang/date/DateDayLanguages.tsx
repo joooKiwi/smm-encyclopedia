@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                                               from '@joookiwi/collection'
-import type {CompanionEnumWithParentDeclaration, EnumerableWithParent, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {CompanionEnumWithParent, Enum}                                                                       from '@joookiwi/enumerable'
+import type {CollectionHolder}                                                                  from '@joookiwi/collection'
+import type {CompanionEnumWithParentSingleton, EnumerableWithParent, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, Enum}                                                          from '@joookiwi/enumerable'
 
 import type {DayNumber}        from 'lang/date/types'
 import type {Names, Ordinals}  from 'lang/ProjectLanguages.types'
@@ -142,7 +142,7 @@ export abstract class DateDayLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<CompanionEnumWithParentDeclaration<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages>> = class CompanionEnum_DateDayLanguages
+    public static readonly CompanionEnum: CompanionEnumWithParentSingleton<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages> = class CompanionEnum_DateDayLanguages
         extends CompanionEnumWithParent<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages> {
 
         //region -------------------- Singleton usage --------------------

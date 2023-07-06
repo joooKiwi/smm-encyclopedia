@@ -1,11 +1,11 @@
 import './OfficialNotifications.scss'
 
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import type {Lazy}                                                                from '@joookiwi/lazy'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
-import {lazy}                                                                     from '@joookiwi/lazy'
-import {Fragment}                                                                 from 'react'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Lazy}                                                   from '@joookiwi/lazy'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {lazy}                                                        from '@joookiwi/lazy'
+import {Fragment}                                                    from 'react'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
@@ -486,7 +486,7 @@ export class OfficialNotifications
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<OfficialNotifications, typeof OfficialNotifications>> = class CompanionEnum_OfficialNotifications
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<OfficialNotifications, typeof OfficialNotifications> = class CompanionEnum_OfficialNotifications
         extends BasicCompanionEnum<OfficialNotifications, typeof OfficialNotifications> {
 
         //region -------------------- Singleton usage --------------------

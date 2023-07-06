@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                                    from '@joookiwi/collection'
-import type {BasicCompanionEnumDeclaration, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                                 from '@joookiwi/enumerable'
+import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                          from 'core/ClassWithAcronym'
 import type {ClassWithReference}                                        from 'core/ClassWithReference'
@@ -37,7 +37,7 @@ export class EntityBehaviours
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityBehaviours, typeof EntityBehaviours>> = class CompanionEnum_EntityBehaviours
+    public static readonly CompanionEnum: BasicCompanionEnumSingleton<EntityBehaviours, typeof EntityBehaviours> = class CompanionEnum_EntityBehaviours
         extends BasicCompanionEnum<EntityBehaviours, typeof EntityBehaviours> {
 
         //region -------------------- Singleton usage --------------------
