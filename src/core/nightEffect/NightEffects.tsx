@@ -1,8 +1,8 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                                    from 'react'
-import {Link}                                                        from 'react-router-dom'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Fragment}                                               from 'react'
+import {Link}                                                   from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
@@ -112,8 +112,8 @@ export class NightEffects
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<NightEffects, typeof NightEffects> = class CompanionEnum_NightEffects
-        extends BasicCompanionEnum<NightEffects, typeof NightEffects> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<NightEffects, typeof NightEffects> = class CompanionEnum_NightEffects
+        extends CompanionEnum<NightEffects, typeof NightEffects> {
 
         //region -------------------- Singleton usage --------------------
 

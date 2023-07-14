@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
@@ -202,8 +202,8 @@ export class PlayerSoundEffectTriggers
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> = class CompanionEnum_PlayerSoundEffectTriggers
-        extends BasicCompanionEnum<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> = class CompanionEnum_PlayerSoundEffectTriggers
+        extends CompanionEnum<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> {
 
         //region -------------------- Singleton usage --------------------
 

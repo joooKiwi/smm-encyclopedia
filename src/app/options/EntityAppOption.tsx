@@ -1,7 +1,7 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                                    from 'react'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Fragment}                                               from 'react'
 
 import type {Names, Ordinals}                                  from 'app/options/EntityAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -262,8 +262,8 @@ export class EntityAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<EntityAppOption, typeof EntityAppOption> = class CompanionEnum_EntityAppOption
-        extends BasicCompanionEnum<EntityAppOption, typeof EntityAppOption>{
+    public static readonly CompanionEnum: CompanionEnumSingleton<EntityAppOption, typeof EntityAppOption> = class CompanionEnum_EntityAppOption
+        extends CompanionEnum<EntityAppOption, typeof EntityAppOption>{
 
         //region -------------------- Singleton usage --------------------
 

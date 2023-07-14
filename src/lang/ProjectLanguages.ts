@@ -1,7 +1,7 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import type {Dispatch, SetStateAction}                               from 'react'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Dispatch, SetStateAction}                          from 'react'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
@@ -82,8 +82,8 @@ export class ProjectLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<ProjectLanguages, typeof ProjectLanguages> = class CompanionEnum_ProjectLanguages
-        extends BasicCompanionEnum<ProjectLanguages, typeof ProjectLanguages> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ProjectLanguages, typeof ProjectLanguages> = class CompanionEnum_ProjectLanguages
+        extends CompanionEnum<ProjectLanguages, typeof ProjectLanguages> {
 
         //region -------------------- Singleton usage --------------------
 

@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}         from 'core/ClassWithEnglishName'
 import type {ReactElement}                 from 'util/react/ReactProperties'
@@ -55,8 +55,8 @@ export abstract class SoundStates
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<SoundStates, typeof SoundStates> = class CompanionEnum_SoundStates
-        extends BasicCompanionEnum<SoundStates, typeof SoundStates> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<SoundStates, typeof SoundStates> = class CompanionEnum_SoundStates
+        extends CompanionEnum<SoundStates, typeof SoundStates> {
 
         //region -------------------- Singleton usage --------------------
 

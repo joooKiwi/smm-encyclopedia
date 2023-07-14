@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/CourseTagTypes.types'
 import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
@@ -107,8 +107,8 @@ export abstract class CourseTagTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<CourseTagTypes, typeof CourseTagTypes> = class CompanionEnum_CourseTagTypes
-        extends BasicCompanionEnum<CourseTagTypes, typeof CourseTagTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<CourseTagTypes, typeof CourseTagTypes> = class CompanionEnum_CourseTagTypes
+        extends CompanionEnum<CourseTagTypes, typeof CourseTagTypes> {
 
         //region -------------------- Singleton usage --------------------
 

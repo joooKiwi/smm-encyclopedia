@@ -1,8 +1,8 @@
-import type {Lazy}                                                   from '@joookiwi/lazy'
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {lazyOf}                                                      from '@joookiwi/lazy'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {Lazy}                                              from '@joookiwi/lazy'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {lazyOf}                                                 from '@joookiwi/lazy'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                          from 'core/music/Musics.types'
 import type {BackgroundMusic}                                          from 'core/music/backgroundMusic/BackgroundMusic'
@@ -383,8 +383,8 @@ export class Musics
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<Musics, typeof Musics> = class CompanionEnum_Musics
-        extends BasicCompanionEnum<Musics, typeof Musics> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Musics, typeof Musics> = class CompanionEnum_Musics
+        extends CompanionEnum<Musics, typeof Musics> {
 
         //region -------------------- Singleton usage --------------------
 

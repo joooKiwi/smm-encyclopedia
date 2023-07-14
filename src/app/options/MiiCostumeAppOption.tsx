@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                  from 'app/options/MiiCostumeAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -96,8 +96,8 @@ export abstract class MiiCostumeAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<MiiCostumeAppOption, typeof MiiCostumeAppOption> = class CompanionEnum_MiiCostumeAppOption
-        extends BasicCompanionEnum<MiiCostumeAppOption, typeof MiiCostumeAppOption> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<MiiCostumeAppOption, typeof MiiCostumeAppOption> = class CompanionEnum_MiiCostumeAppOption
+        extends CompanionEnum<MiiCostumeAppOption, typeof MiiCostumeAppOption> {
 
         //region -------------------- Singleton usage --------------------
 

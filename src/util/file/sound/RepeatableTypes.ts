@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRepeatableName} from 'util/file/sound/RepeatableTypes.types'
 import type {Nullable}                                from 'util/types/nullable'
@@ -20,8 +20,8 @@ export abstract class RepeatableTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<RepeatableTypes, typeof RepeatableTypes> = class CompanionEnum_RepeatableTypes
-        extends BasicCompanionEnum<RepeatableTypes, typeof RepeatableTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<RepeatableTypes, typeof RepeatableTypes> = class CompanionEnum_RepeatableTypes
+        extends CompanionEnum<RepeatableTypes, typeof RepeatableTypes> {
 
         //region -------------------- Singleton usage --------------------
 

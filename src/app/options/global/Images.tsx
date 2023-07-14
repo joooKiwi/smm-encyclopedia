@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithValue}  from 'util/types/ClassWithValue'
 import type {ImageProperties} from 'app/tools/images/properties/ImageProperties'
@@ -42,8 +42,8 @@ export abstract class Images
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<Images, typeof Images> = class CompanionEnum_Images
-        extends BasicCompanionEnum<Images, typeof Images> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Images, typeof Images> = class CompanionEnum_Images
+        extends CompanionEnum<Images, typeof Images> {
 
         //region -------------------- Singleton usage --------------------
 

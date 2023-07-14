@@ -1,7 +1,7 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                                    from 'react'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Fragment}                                               from 'react'
 
 import type {Names, Ordinals, PossibleMysteryMushroomType}     from 'app/options/MysteryMushroomAppOption.types'
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
@@ -330,8 +330,8 @@ export abstract class MysteryMushroomAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<MysteryMushroomAppOption, typeof MysteryMushroomAppOption> = class CompanionEnum_MysteryMushroomAppOption
-        extends BasicCompanionEnum<MysteryMushroomAppOption, typeof MysteryMushroomAppOption> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<MysteryMushroomAppOption, typeof MysteryMushroomAppOption> = class CompanionEnum_MysteryMushroomAppOption
+        extends CompanionEnum<MysteryMushroomAppOption, typeof MysteryMushroomAppOption> {
 
         //region -------------------- Singleton usage --------------------
 

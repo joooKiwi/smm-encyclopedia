@@ -1,6 +1,6 @@
 import type {CollectionHolder}                  from '@joookiwi/collection'
 import type {Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
-import {EnumHelper}                             from '@joookiwi/enumerable'
+import {getCompanion}                           from '@joookiwi/enumerable'
 import {AssertionError}                         from 'assert'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
@@ -92,7 +92,7 @@ export function* newIterableIterator<const T extends ClassWithReference<GameProp
  */
 export function reverse<const T, >(array: readonly T[],): T[] {
     const size = array.length,
-     newArray = new Array(size,)
+        newArray = new Array(size,)
 
     let index = array.length
     while (--index >= 0)
@@ -155,7 +155,7 @@ export function assert(condition: boolean, message: string,): asserts condition 
 //region -------------------- get value by … --------------------
 
 function getValues<const T extends Enumerable, >(enumerableConstructor: Nullable<EnumerableConstructor<T, any>>,): CollectionHolder<T> {
-    return EnumHelper.getCompanion(enumerableConstructor).values
+    return getCompanion(enumerableConstructor).values
 }
 
 export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {

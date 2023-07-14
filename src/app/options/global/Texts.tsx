@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                     from 'app/options/global/Texts.types'
 import type {BooleanResultTextProperties}         from 'app/tools/text/properties/BooleanResultTextProperties'
@@ -87,8 +87,8 @@ export abstract class Texts
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<Texts, typeof Texts> = class CompanionEnum_Texts
-        extends BasicCompanionEnum<Texts, typeof Texts> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Texts, typeof Texts> = class CompanionEnum_Texts
+        extends CompanionEnum<Texts, typeof Texts> {
 
         //region -------------------- Singleton usage --------------------
 

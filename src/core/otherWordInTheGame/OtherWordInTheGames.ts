@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {ClassWithReference}                                                        from 'core/ClassWithReference'
@@ -265,8 +265,8 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<OtherWordInTheGames, typeof OtherWordInTheGames> = class CompanionEnum_OtherWordInTheGames
-        extends BasicCompanionEnum<OtherWordInTheGames, typeof OtherWordInTheGames> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<OtherWordInTheGames, typeof OtherWordInTheGames> = class CompanionEnum_OtherWordInTheGames
+        extends CompanionEnum<OtherWordInTheGames, typeof OtherWordInTheGames> {
 
         //region -------------------- Singleton usage --------------------
 

@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleImageAnimation} from 'app/options/global/ImageAnimations.types'
 import type {ClassWithValue}                          from 'util/types/ClassWithValue'
@@ -28,8 +28,8 @@ export class ImageAnimations
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<ImageAnimations, typeof ImageAnimations> = class CompanionEnum_ImageAnimations
-        extends BasicCompanionEnum<ImageAnimations, typeof ImageAnimations> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ImageAnimations, typeof ImageAnimations> = class CompanionEnum_ImageAnimations
+        extends CompanionEnum<ImageAnimations, typeof ImageAnimations> {
 
         //region -------------------- Singleton usage --------------------
 

@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum}                                          from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum}                                          from '@joookiwi/enumerable'
 
 import type {GlobalAppState}                          from 'app/AppStates.types'
 import type {Names, Ordinals, PossibleAppOptionValue} from 'app/options/global/GlobalAppOption.types'
@@ -52,8 +52,8 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<GlobalAppOption, typeof GlobalAppOption> = class CompanionEnum_GlobalAppOption
-        extends BasicCompanionEnum<GlobalAppOption, typeof GlobalAppOption> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<GlobalAppOption, typeof GlobalAppOption> = class CompanionEnum_GlobalAppOption
+        extends CompanionEnum<GlobalAppOption, typeof GlobalAppOption> {
 
         //region -------------------- Singleton usage --------------------
 

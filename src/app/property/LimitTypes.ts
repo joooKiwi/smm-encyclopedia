@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
@@ -75,8 +75,8 @@ export abstract class LimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
-        extends BasicCompanionEnum<LimitTypes, typeof LimitTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
+        extends CompanionEnum<LimitTypes, typeof LimitTypes> {
 
         //region -------------------- Singleton usage --------------------
 

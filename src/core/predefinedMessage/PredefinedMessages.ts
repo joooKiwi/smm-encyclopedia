@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
@@ -44,8 +44,8 @@ export class PredefinedMessages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<PredefinedMessages, typeof PredefinedMessages> = class CompanionEnum_PredefinedMessages
-        extends BasicCompanionEnum<PredefinedMessages, typeof PredefinedMessages> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<PredefinedMessages, typeof PredefinedMessages> = class CompanionEnum_PredefinedMessages
+        extends CompanionEnum<PredefinedMessages, typeof PredefinedMessages> {
 
         //region -------------------- Singleton usage --------------------
 

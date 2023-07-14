@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithValue}        from 'util/types/ClassWithValue'
 import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
@@ -44,8 +44,8 @@ export abstract class Sounds
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<Sounds, typeof Sounds> = class CompanionEnum_Sounds
-        extends BasicCompanionEnum<Sounds, typeof Sounds> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Sounds, typeof Sounds> = class CompanionEnum_Sounds
+        extends CompanionEnum<Sounds, typeof Sounds> {
 
         //region -------------------- Singleton usage --------------------
 

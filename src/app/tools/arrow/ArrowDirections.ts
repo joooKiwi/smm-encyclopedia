@@ -1,6 +1,6 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleDirection, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
 import type {Nullable}                                         from 'util/types/nullable'
@@ -23,8 +23,8 @@ export class ArrowDirections
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<ArrowDirections, typeof ArrowDirections> = class CompanionEnum_ArrowDirections
-        extends BasicCompanionEnum<ArrowDirections, typeof ArrowDirections> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ArrowDirections, typeof ArrowDirections> = class CompanionEnum_ArrowDirections
+        extends CompanionEnum<ArrowDirections, typeof ArrowDirections> {
 
         //region -------------------- Singleton usage --------------------
 

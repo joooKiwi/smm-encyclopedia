@@ -1,7 +1,7 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
-import type {BasicCompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import type {Dispatch, SetStateAction}                               from 'react'
-import {BasicCompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Dispatch, SetStateAction}                          from 'react'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {AbstractAppWithInterpreter}                        from 'app/withInterpreter/AbstractAppWithInterpreter'
 import type {AbstractCardListApp}                               from 'app/withInterpreter/AbstractCardListApp'
@@ -70,8 +70,8 @@ export abstract class ViewDisplays
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: BasicCompanionEnumSingleton<ViewDisplays, typeof ViewDisplays> = class CompanionEnum_ViewDisplays
-        extends BasicCompanionEnum<ViewDisplays, typeof ViewDisplays> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ViewDisplays, typeof ViewDisplays> = class CompanionEnum_ViewDisplays
+        extends CompanionEnum<ViewDisplays, typeof ViewDisplays> {
 
         //region -------------------- Singleton usage --------------------
 
