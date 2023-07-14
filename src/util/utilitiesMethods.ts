@@ -113,8 +113,20 @@ export function nonNull<const T, >(array: readonly T[],): NonNullable<T>[]
  */
 export function nonNull<const T, >(set: ReadonlySet<T>,): Set<NonNullable<T>>
 export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): | Set<NonNullable<T>> | NonNullable<T>[] {
-    if (setOrArray instanceof Array)
-        return setOrArray.filter((it): it is NonNullable<T> => it != null)
+    if (setOrArray instanceof Array) {
+        const size = setOrArray.length,
+            newArray = [] as NonNullable<T>[]
+
+        let index = -1
+        while (index++ < size) {
+            const value = setOrArray[index]
+            if (value != null)
+                newArray.push(value,)
+        }
+        if (size === newArray.length)
+            return setOrArray as NonNullable<T>[]
+        return newArray
+    }
 
     const newSet = new Set<NonNullable<T>>()
     setOrArray.forEach(it => {
