@@ -1,9 +1,12 @@
+import type {CollectionHolder}   from '@joookiwi/collection'
 import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
 
-export class GameCollection<const T extends Games = Games, >
-    extends GenericCollectionHolder<T> {
+export class GameCollection<const T extends Games = Games, const REFERENCE extends Iterable<T> = Iterable<T>, >
+    extends GenericCollectionHolder<T, REFERENCE> {
+
+    //region -------------------- Fields --------------------
 
     #hasAllGames?: & GameWithSMM1<T> & GameWithSMM3DS<T> & GameWithSMM2<T>
     #hasSMM1?: GameWithSMM1<T>
@@ -11,10 +14,26 @@ export class GameCollection<const T extends Games = Games, >
     #hasSMM1Or3DS?: & GameWithSMM1<T> & GameWithSMM3DS<T>
     #hasSMM2?: GameWithSMM2<T>
 
-    public constructor(iterable: Iterable<T>,) {
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(array: readonly T[],)
+    public constructor(lateArray: () => readonly T[],)
+    public constructor(set: ReadonlySet<T>,)
+    public constructor(lateSet: () => ReadonlySet<T>,)
+    public constructor(iterable: Iterable<T>,)
+    public constructor(lateIterable: () => Iterable<T>,)
+    public constructor(collectionHolder: CollectionHolder<T>,)
+    public constructor(lateCollectionHolder: () => CollectionHolder<T>,)
+    public constructor(reference: REFERENCE,)
+    public constructor(lateReference: () => REFERENCE,)
+    public constructor(reference: | REFERENCE | (() => REFERENCE),)
+    public constructor(iterable: | REFERENCE | (() => REFERENCE),) {
         super(iterable,)
     }
 
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter methods --------------------
 
     /**
      * The collection has every game ({@link Games.SUPER_MARIO_MAKER_1 SMM1},
@@ -43,6 +62,8 @@ export class GameCollection<const T extends Games = Games, >
     public get hasSMM2(): GameWithSMM2<T> {
         return this.#hasSMM2 ??= this.hasOne(Games.SUPER_MARIO_MAKER_2) as GameWithSMM2<T>
     }
+
+    //endregion -------------------- Getter methods --------------------
 
 }
 
