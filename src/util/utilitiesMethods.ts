@@ -91,13 +91,13 @@ export function* newIterableIterator<const T extends ClassWithReference<GameProp
  * @returns A new reversed array
  */
 export function reverse<const T, >(array: readonly T[],): T[] {
-    return Array.from({
-        * [Symbol.iterator]() {
-            let index = array.length
-            while (--index >= 0)
-                yield array[index]
-        },
-    },)
+    const size = array.length,
+     newArray = new Array(size,)
+
+    let index = array.length
+    while (--index >= 0)
+        newArray.push(array[index],)
+    return newArray
 }
 
 /**
@@ -120,7 +120,7 @@ export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): 
     setOrArray.forEach(it => {
         if (it == null) return
         newSet.add(it)
-    })
+    },)
     return newSet
 }
 
