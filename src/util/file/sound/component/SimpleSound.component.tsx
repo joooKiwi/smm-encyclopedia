@@ -8,7 +8,6 @@ import type {SimpleSoundProperties} from 'util/file/sound/component/property/Sim
 import type {SimpleSoundState}      from 'util/file/sound/component/state/SimpleSound.state'
 import type {SimpleSoundPlayer}     from 'util/file/sound/player/SimpleSoundPlayer'
 import type {IsSourceFoundCallback} from 'util/file/sound/player/Validators.types'
-import type {ReactJSXElement}       from 'util/react/ReactProperties'
 
 import {HistoryState}           from 'util/file/sound/history/HistoryState'
 import {SoundSubElementsHolder} from 'util/file/sound/holder/SoundSubElementsHolder'

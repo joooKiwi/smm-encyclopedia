@@ -6,7 +6,6 @@ import type {EntityLimitTypes}                                                  
 import type {EntityLimitAmount}                                                     from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                  from 'lang/name/Name'
 import type {ValueOrCallback}                                                       from 'util/holder/ObjectHolder.types'
-import type {NullOr}                                                                from 'util/types/nullable'
 
 import {AbstractEntityLimitContainer} from 'core/entityLimit/AbstractEntityLimit.container'
 

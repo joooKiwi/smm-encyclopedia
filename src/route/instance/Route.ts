@@ -1,7 +1,5 @@
-import type {ViewDisplays}    from 'app/withInterpreter/ViewDisplays'
-import type {Games}           from 'core/game/Games'
-import type {ReactJSXElement} from 'util/react/ReactProperties'
-import type {NullOr}          from 'util/types/nullable'
+import type {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import type {Games}        from 'core/game/Games'
 
 /**
  * The base of a path to be used in the application holding the arguments to redirect specifically to the path needed

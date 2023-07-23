@@ -1,6 +1,5 @@
 import type {PossibleTranslationKeys, PossibleValuesReceived, SoundEffectOnMovement} from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
 import type {ExtendedMap}                                                            from 'util/extended/ExtendedMap'
-import type {BooleanOrNotApplicable}                                                 from 'util/types/variables'
 
 import {PropertyProvider}     from 'core/_properties/Property.provider'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'

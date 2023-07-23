@@ -4,8 +4,6 @@ import {CompanionEnum, Enum}                                    from '@joookiwi/
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
-import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
-import type {Nullable, NullOr}                                 from 'util/types/nullable'
 
 import {EntityLimits}   from 'core/entityLimit/EntityLimits'
 import {getValueByType} from 'util/utilitiesMethods'

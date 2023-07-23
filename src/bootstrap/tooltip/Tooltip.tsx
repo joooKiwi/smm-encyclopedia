@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 
-import type {TooltipConfiguration}                              from 'bootstrap/tooltip/Tooltip.types'
-import type {ReactElement, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import type {TooltipConfiguration}                from 'bootstrap/tooltip/Tooltip.types'
+import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
 import {TooltipInstance} from 'bootstrap/tooltip/TooltipInstance'
 

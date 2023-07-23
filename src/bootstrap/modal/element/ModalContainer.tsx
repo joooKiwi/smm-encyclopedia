@@ -1,6 +1,6 @@
-import type {PossibleModalSize}                                                  from 'bootstrap/modal/Modal.types'
-import type {HTMLDivProperties}                                                  from 'util/react/html/HTMLDivProperties'
-import type {ReactElement, ReactProperties, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
+import type {PossibleModalSize}                                    from 'bootstrap/modal/Modal.types'
+import type {HTMLDivProperties}                                    from 'util/react/html/HTMLDivProperties'
+import type {ReactProperties, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
 import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
 

@@ -5,7 +5,6 @@ import type {PossibleAlternativeAcronym} from 'core/entityLimit/EntityLimits.typ
 import type {EntityLimitTypes}           from 'core/entityLimit/EntityLimitTypes'
 import type {EntityLimitAmount}          from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                       from 'lang/name/Name'
-import type {NullOr}                     from 'util/types/nullable'
 
 import {AbstractEntityLimitContainer} from 'core/entityLimit/AbstractEntityLimit.container'
 

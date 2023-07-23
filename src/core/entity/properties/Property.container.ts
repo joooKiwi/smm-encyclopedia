@@ -15,8 +15,6 @@ import type {GameStyles}                                                        
 import type {Instrument}                                                                                                                                                                                                                                       from 'core/instrument/Instrument'
 import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
 import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
-import type {NullOr, NullOrBoolean}                                                                                                                                                                                                                            from 'util/types/nullable'
-import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                                                                                            from 'util/types/variables'
 
 export class PropertyContainer
     implements Property {

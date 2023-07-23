@@ -1,6 +1,5 @@
-import type {BooleanPropertyWithComment}  from 'core/_properties/PropertyWithComment'
-import type {ValueOrCallback}             from 'util/holder/ObjectHolder.types'
-import type {NullOrBoolean, NullOrString} from 'util/types/nullable'
+import type {BooleanPropertyWithComment} from 'core/_properties/PropertyWithComment'
+import type {ValueOrCallback}            from 'util/holder/ObjectHolder.types'
 
 import {PropertyWithCommentContainer} from 'core/_properties/PropertyWithComment.container'
 

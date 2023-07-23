@@ -1,5 +1,3 @@
-import type {NullOr} from 'util/types/nullable'
-
 /**
  * A content that has every possible languages
  * with optional languages (Hebrew, Polish, Ukrainian & Greek)

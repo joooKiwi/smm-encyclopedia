@@ -8,7 +8,6 @@ import type {EntityCategory}                               from 'core/entityCate
 import type {Names, Ordinals, PossibleEnglishName}         from 'core/entityCategory/EntityCategories.types'
 import type {EntityCategoryImageFile, PossibleImageNumber} from 'core/entityCategory/file/EntityCategoryImageFile'
 import type {ClassWithImageFile}                           from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                     from 'util/types/nullable'
 
 import {EntityCategoryLoader}                          from 'core/entityCategory/EntityCategory.loader'
 import {EntityCategoryImageFileContainer as ImageFile} from 'core/entityCategory/file/EntityCategoryImageFile.container'

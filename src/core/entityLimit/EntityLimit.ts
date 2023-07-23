@@ -7,8 +7,6 @@ import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount,
 import type {EntityLimitTypes}                                                                                    from 'core/entityLimit/EntityLimitTypes'
 import type {NameTrait}                                                                                           from 'lang/name/NameTrait'
 import type {NameTraitFromAnAlternativeContainer}                                                                 from 'lang/name/NameTraitFromAnAlternativeContainer'
-import type {NullOr}                                                                                              from 'util/types/nullable'
-import type {NotApplicable}                                                                                       from 'util/types/variables'
 
 export interface EntityLimit
     extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>,

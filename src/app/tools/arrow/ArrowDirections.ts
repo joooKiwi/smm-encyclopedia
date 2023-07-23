@@ -3,7 +3,6 @@ import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleDirection, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
-import type {Nullable}                                         from 'util/types/nullable'
 
 /**
  * The arrow direction.<br/>

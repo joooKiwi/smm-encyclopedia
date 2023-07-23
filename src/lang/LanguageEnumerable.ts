@@ -4,7 +4,6 @@ import type {PossibleAcronym as PossibleAcronym_All, PossibleEnglishName as Poss
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from 'lang/ProjectLanguages.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                           from 'lang/name/containers/Language'
 import type {ClassWithIsCurrent}                                                                                                                                                                                                                                from 'util/enumerable/ClassWithIsCurrent'
-import type {NullOr}                                                                                                                                                                                                                                            from 'util/types/nullable'
 
 export interface LanguageEnumerable<PROJECT_ACRONYM extends | PossibleAcronym_All | PossibleAcronym_Project,
     INTERNATIONAL_ACRONYM extends | PossibleInternationalAcronym_All | PossibleInternationalAcronym_Project,

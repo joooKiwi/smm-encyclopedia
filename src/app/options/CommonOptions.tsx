@@ -9,7 +9,6 @@ import type {Name}                                      from 'lang/name/Name'
 import type {NameTrait}                                 from 'lang/name/NameTrait'
 import type {NameTraitFromACategory}                    from 'lang/name/NameTraitFromACategory'
 import type {ImageFile}                                 from 'util/file/image/ImageFile'
-import type {ReactElement}                              from 'util/react/ReactProperties'
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'

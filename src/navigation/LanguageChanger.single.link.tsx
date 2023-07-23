@@ -1,7 +1,7 @@
 import {Link, useLocation} from 'react-router-dom'
 
 import type {LanguageChangerLinkProperties} from 'navigation/LanguageChanger.link'
-import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import type {ReactProperties}               from 'util/react/ReactProperties'
 
 import Tooltip               from 'bootstrap/tooltip/Tooltip'
 import {languageTranslation} from 'lang/components/translationMethods'

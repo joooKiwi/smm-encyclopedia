@@ -3,7 +3,6 @@ import type {Lazy} from '@joookiwi/lazy'
 import type {DefaultAmount, DefaultComment, DefaultIsUnknown}                                                           from 'core/_properties/Property'
 import type {FalseProperty, NotApplicableProperty, NullProperty, PropertyWithEverything, TrueProperty, UnknownProperty} from 'core/_properties/PropertyWithEverything'
 import type {ValueOrCallback}                                                                                           from 'util/holder/ObjectHolder.types'
-import type {NullOrNumber, NullOrString}                                                                                from 'util/types/nullable'
 
 import {ObjectHolders} from 'util/holder/ObjectHolders'
 

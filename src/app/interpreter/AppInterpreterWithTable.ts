@@ -4,8 +4,6 @@ import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWit
 import type {Content}                    from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
 import type {TableProperties}            from 'app/tools/table/Table.types'
-import type {ReactElement}               from 'util/react/ReactProperties'
-import type {Nullable, NullOr}           from 'util/types/nullable'
 
 /**
  * An application interpreter when using {@link AbstractTableApp}

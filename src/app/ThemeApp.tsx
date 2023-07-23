@@ -6,7 +6,6 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/int
 import type {ThemeTypes}                                           from 'app/property/ThemeTypes'
 import type {Themes}                                               from 'core/theme/Themes'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'

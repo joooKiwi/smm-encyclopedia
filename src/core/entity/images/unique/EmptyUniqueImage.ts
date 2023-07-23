@@ -1,6 +1,5 @@
 import type {UniqueImage}                                      from 'core/entity/images/unique/UniqueImage'
 import type {ClassWithNullObjectPattern, EmptyUniqueImageName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyArray}                                       from 'util/types/variables'
 
 import {ClearConditionImageFactory} from 'core/entity/images/clearCondition/ClearConditionImage.factory'
 import {EditorImageFactory}         from 'core/entity/images/editor/EditorImage.factory'

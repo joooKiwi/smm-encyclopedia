@@ -1,5 +1,4 @@
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
 
 import {AbstractAppOptionWithSomething} from 'app/options/component/AbstractAppOptionWithSomething'
 

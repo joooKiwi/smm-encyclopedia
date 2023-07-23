@@ -5,7 +5,6 @@ import type {CourseTag}                       from 'core/courseTag/CourseTag'
 import type {CourseTagTemplate, NameTemplate} from 'core/courseTag/CourseTag.template'
 import type {PossibleMakerCentralName}        from 'core/courseTag/CourseTags.types'
 import type {Name}                            from 'lang/name/Name'
-import type {NullOr}                          from 'util/types/nullable'
 
 import {TemplateWithNameCreator} from 'core/_template/TemplateWithName.creator'
 import {CourseTagContainer}      from 'core/courseTag/CourseTag.container'

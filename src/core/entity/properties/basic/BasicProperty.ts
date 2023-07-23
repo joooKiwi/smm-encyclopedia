@@ -1,6 +1,4 @@
 import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from 'core/_properties/Property'
-import type {NullOr, NullOrBoolean}                                                                                   from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                                                  from 'util/types/variables'
 
 export interface BasicProperty {
 

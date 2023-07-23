@@ -4,7 +4,6 @@ import type {CourseTag}                from 'core/courseTag/CourseTag'
 import type {PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
 import type {Versions}                 from 'core/version/Versions'
 import type {Name}                     from 'lang/name/Name'
-import type {NullOr}                   from 'util/types/nullable'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 

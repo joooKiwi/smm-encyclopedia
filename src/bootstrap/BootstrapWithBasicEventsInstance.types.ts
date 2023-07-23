@@ -3,7 +3,6 @@ import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
 import type {StaticBootstrapInstance}          from 'bootstrap/BootstrapInstance.types'
 import type {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
-import type {Nullable}                         from 'util/types/nullable'
 
 export interface BootstrapWithBasicEvents<I extends GenericBootstrapInstanceWithEvent = GenericBootstrapInstanceWithEvent, > {
 

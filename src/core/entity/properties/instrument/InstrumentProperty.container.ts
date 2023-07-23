@@ -3,8 +3,6 @@ import type {Lazy} from '@joookiwi/lazy'
 import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from 'core/entity/properties/instrument/InstrumentProperty'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}             from 'core/entity/properties/instrument/loader.types'
 import type {Instrument}                                                from 'core/instrument/Instrument'
-import type {NullOr}                                                    from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                    from 'util/types/variables'
 
 export class InstrumentPropertyContainer
     implements InstrumentProperty {

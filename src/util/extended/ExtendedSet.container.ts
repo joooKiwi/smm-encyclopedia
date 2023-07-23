@@ -2,7 +2,6 @@ import type {DefaultIndexIfNotFound, DefaultValueIfNotFound} from 'util/extended
 import type {VariableReturnValue}                            from 'util/extended/ClassThatCanSearchItems'
 import type {ExtendedSet}                                    from 'util/extended/ExtendedSet'
 import type {ExtendedMap}                                    from 'util/extended/ExtendedMap'
-import type {Nullable}                                       from 'util/types/nullable'
 
 import {ConditionalIntermediate} from 'util/extended/tools/ConditionalIntermediate'
 import {ExtendedMapContainer}    from 'util/extended/ExtendedMap.container'

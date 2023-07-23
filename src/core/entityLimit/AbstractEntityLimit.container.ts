@@ -6,8 +6,6 @@ import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount,
 import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
 import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                                                from 'lang/name/Name'
-import type {NullOr}                                                                                              from 'util/types/nullable'
-import type {NotApplicable}                                                                                       from 'util/types/variables'
 import type {ValueOrCallback}                                                                                     from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'

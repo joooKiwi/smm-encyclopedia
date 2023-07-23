@@ -1,5 +1,4 @@
-import type {FileName}   from 'core/mysteryMushroom/file/name/FileName'
-import type {EmptyArray} from 'util/types/variables'
+import type {FileName} from 'core/mysteryMushroom/file/name/FileName'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 

@@ -4,7 +4,6 @@ import type {ClearConditionImageFile}                              from 'core/en
 import type {ClearConditionImage}                                  from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName} from 'core/entity/images/clearCondition/ClearConditionImage.types'
 import type {GameStyles}                                           from 'core/gameStyle/GameStyles'
-import type {Nullable}                                             from 'util/types/nullable'
 
 import {AbstractImageBuilder}                           from 'core/entity/images/AbstractImage.builder'
 import {ClearConditionImageContainer as ImageContainer} from 'core/entity/images/clearCondition/ClearConditionImage.container'

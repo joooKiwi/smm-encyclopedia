@@ -1,7 +1,6 @@
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {PossibleDimensionOnList}      from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
-import type {ReactElementOrString}         from 'util/react/ReactProperties'
 
 import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {AbstractSimpleListApp}  from 'app/withInterpreter/AbstractSimpleListApp'

@@ -6,7 +6,6 @@ import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishNa
 import type {ClassWithReference}                   from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
 import type {PredefinedMessage}                    from 'core/predefinedMessage/PredefinedMessage'
-import type {Nullable}                             from 'util/types/nullable'
 
 import {PredefinedMessageLoader} from 'core/predefinedMessage/PredefinedMessage.loader'
 import {StringContainer}         from 'util/StringContainer'

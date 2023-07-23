@@ -2,7 +2,6 @@ import type {ClassWithEntityEnglishName}              from 'core/ClassWithEnglis
 import type {EditorImageFile}                         from 'core/entity/file/EditorImageFile'
 import type {PossibleAmountOfImages, SimpleImageName} from 'core/entity/images/editor/EditorImage.types'
 import type {GameStyles}                              from 'core/gameStyle/GameStyles'
-import type {Nullable}                                from 'util/types/nullable'
 
 import {Times}                      from 'core/time/Times'
 import {AbstractEditorImageBuilder} from 'core/entity/images/editor/AbstractEditorImage.builder'

@@ -1,7 +1,6 @@
 import type {Image}        from 'core/entity/images/Image'
 import type {ExtendedList} from 'util/extended/ExtendedList'
 import type {Builder}      from 'util/builder/Builder'
-import type {NullOr}       from 'util/types/nullable'
 
 import {GameStyles}           from 'core/gameStyle/GameStyles'
 import {ExtendedSetContainer} from 'util/extended/ExtendedSet.container'

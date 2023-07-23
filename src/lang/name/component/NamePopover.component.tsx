@@ -5,7 +5,6 @@ import type {PopoverOrientation}                                       from 'boo
 import type {Name}                                                     from 'lang/name/Name'
 import type {NamePopoverProperties, NamePopoverStates, NameProperties} from 'lang/name/component/Name.properties'
 import type {ReactComponent}                                           from 'util/react/ReactComponent'
-import type {ReactElement}                                             from 'util/react/ReactProperties'
 
 import TextComponent        from 'app/tools/text/TextComponent'
 import TextPopover          from 'bootstrap/popover/TextPopover'

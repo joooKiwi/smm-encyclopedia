@@ -8,9 +8,7 @@ import type {BooleanTextProperties}               from 'app/tools/text/propertie
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 import type {YesOrNoTextProperties}               from 'app/tools/text/properties/YesOrNoTextProperties'
 import type {NameProperties}                      from 'lang/name/component/Name.properties'
-import type {ReactElement}                        from 'util/react/ReactProperties'
 import type {ClassWithValue}                      from 'util/types/ClassWithValue'
-import type {Nullable}                            from 'util/types/nullable'
 
 import TextComponent              from 'app/tools/text/TextComponent'
 import NameComponent              from 'lang/name/component/Name.component'

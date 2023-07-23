@@ -1,7 +1,6 @@
 import type {TemplateWithNameTemplate}             from 'core/_template/TemplateWithName.template'
 import type {PossibleMakerCentralName}             from 'core/courseTag/CourseTags.types'
 import type {NameTemplate as OriginalNameTemplate} from 'lang/name/Name.template'
-import type {NullOr}                               from 'util/types/nullable'
 
 export interface CourseTagTemplate
     extends TemplateWithNameTemplate<NameTemplate> {

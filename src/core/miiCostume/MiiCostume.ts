@@ -4,7 +4,6 @@ import type {OfficialNotificationHolder} from 'core/officialNotification/holder/
 import type {Versions}                   from 'core/version/Versions'
 import type {NameTrait}                  from 'lang/name/NameTrait'
 import type {NameTraitFromACategory}     from 'lang/name/NameTraitFromACategory'
-import type {NullOr, NullOrNumber}       from 'util/types/nullable'
 
 export interface MiiCostume
     extends NameTrait<string>, NameTraitFromACategory<string, MiiCostumeCategory> {

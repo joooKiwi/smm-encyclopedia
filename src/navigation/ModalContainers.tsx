@@ -1,6 +1,6 @@
 import {useEffect} from 'react'
 
-import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import ModalBody                                                                               from 'bootstrap/modal/element/ModalBody'
 import ModalContainer                                                                          from 'bootstrap/modal/element/ModalContainer'

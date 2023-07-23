@@ -1,6 +1,5 @@
 import type {EveryLanguages}                                                                                                                                                                                                             from 'lang/EveryLanguages'
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project} from 'lang/ProjectLanguages.types'
-import type {EmptyString, Space}                                                                                                                                                                                                         from 'util/types/variables'
 
 enum Enum {
 

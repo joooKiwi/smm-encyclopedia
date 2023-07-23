@@ -6,8 +6,6 @@ import type {BooleanPropertyWithAmountAndComment}                               
 import type {BooleanPropertyWithComment, NumberPropertyWithComment, StringPropertyWithComment}                                                 from 'core/_properties/PropertyWithComment'
 import type {BooleanPropertyWithEverything, NotApplicableProperty, NullProperty, NumberPropertyWithEverything}                                 from 'core/_properties/PropertyWithEverything'
 import type {PropertyWithNoValues}                                                                                                             from 'core/_properties/PropertyWithNoValues'
-import type {NullOr, NullOrBoolean, NullOrNumber, NullOrString}                                                                                from 'util/types/nullable'
-import type {EmptyString, UnknownCharacter}                                                                                                    from 'util/types/variables'
 
 /**
  * A generic property with a value contained in it.

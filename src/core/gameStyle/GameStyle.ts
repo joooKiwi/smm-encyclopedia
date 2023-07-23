@@ -2,7 +2,6 @@ import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/
 import type {Entity}                           from 'core/entity/Entity'
 import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
 import type {NameTrait}                        from 'lang/name/NameTrait'
-import type {NullOr}                           from 'util/types/nullable'
 
 export interface GameStyle
     extends NameTrait<string>, GameProperty,

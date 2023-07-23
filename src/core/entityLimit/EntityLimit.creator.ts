@@ -7,7 +7,6 @@ import type {AlternativeLimitTemplate, EntityLimitTemplate, LimitAmountTemplate,
 import type {PossibleEnglishName as PossibleEnglishName_EntityLimitType}                                                                                                                  from 'core/entityLimit/EntityLimitTypes.types'
 import type {EntityLimitAmount}                                                                                                                                                           from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                                                                                                                        from 'lang/name/Name'
-import type {Nullable}                                                                                                                                                                    from 'util/types/nullable'
 
 import {PropertyProvider}                        from 'core/_properties/Property.provider'
 import {PropertyContainer}                       from 'core/_properties/Property.container'

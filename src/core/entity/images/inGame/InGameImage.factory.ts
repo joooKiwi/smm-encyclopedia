@@ -1,6 +1,5 @@
 import type {InGameImage} from 'core/entity/images/inGame/InGameImage'
 import type {Builder}     from 'util/builder/Builder'
-import type {NullOr}      from 'util/types/nullable'
 
 import {EmptyInGameImage} from 'core/entity/images/inGame/EmptyInGameImage'
 

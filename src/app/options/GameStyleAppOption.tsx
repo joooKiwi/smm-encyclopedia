@@ -7,8 +7,6 @@ import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options
 import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
 import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
 import type {GameStyles}                                       from 'core/gameStyle/GameStyles'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
-import type {NullOr}                                           from 'util/types/nullable'
 
 import {CommonOptions}                              from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'

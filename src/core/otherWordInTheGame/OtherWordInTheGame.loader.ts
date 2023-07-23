@@ -6,7 +6,6 @@ import type {OtherSingularWordInTheGame}                                        
 import type {OtherWordInTheGameTemplate}                                                    from 'core/otherWordInTheGame/OtherWordInTheGame.template'
 import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
-import type {NullOr}                                                                        from 'util/types/nullable'
 
 import {isInProduction}                    from 'variables'
 import {AbstractTemplateCreator}           from 'core/_template/AbstractTemplate.creator'

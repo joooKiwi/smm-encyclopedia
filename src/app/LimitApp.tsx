@@ -7,7 +7,6 @@ import type {LimitTypes}                                           from 'app/pro
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {EntityLimits}                                         from 'core/entityLimit/EntityLimits'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {EntityLimitAppOption}                       from 'app/options/EntityLimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'

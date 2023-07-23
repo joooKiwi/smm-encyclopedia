@@ -7,8 +7,6 @@ import type {CourseTagTypes}                                       from 'app/pro
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {CourseTags}                                           from 'core/courseTag/CourseTags'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
-import type {NullOr}                                               from 'util/types/nullable'
 
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'

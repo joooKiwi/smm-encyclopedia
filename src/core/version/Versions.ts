@@ -3,7 +3,6 @@ import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from 'core/version/Versions.types'
-import type {Nullable, NullOr}                                                                         from 'util/types/nullable'
 
 import {Games}      from 'core/game/Games'
 import {GameStyles} from 'core/gameStyle/GameStyles'

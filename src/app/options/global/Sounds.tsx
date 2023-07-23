@@ -4,9 +4,7 @@ import {CompanionEnum, Enum}                                    from '@joookiwi/
 
 import type {ClassWithValue}        from 'util/types/ClassWithValue'
 import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
-import type {Nullable}              from 'util/types/nullable'
 import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
-import type {ReactElement}          from 'util/react/ReactProperties'
 
 import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 

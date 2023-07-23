@@ -1,6 +1,5 @@
 import type {BooleanProperty} from 'core/_properties/Property'
 import type {ValueOrCallback} from 'util/holder/ObjectHolder.types'
-import type {NullOrBoolean}   from 'util/types/nullable'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 

@@ -7,7 +7,6 @@ import type {ClassWithEnglishName}                                              
 import type {ClassWithReference}                                                                                                                    from 'core/ClassWithReference'
 import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                            from 'core/entityLimit/EntityLimit'
 import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleEntityLink} from 'core/entityLimit/EntityLimits.types'
-import type {Nullable, NullOr}                                                                                                                      from 'util/types/nullable'
 
 import type {Entities}             from 'core/entity/Entities'
 import {EntityLimitLoader}         from 'core/entityLimit/EntityLimit.loader'

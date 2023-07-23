@@ -2,7 +2,6 @@ import './YesOrNoResultTextComponent.scss'
 
 import type {TextColor}             from 'app/tools/text/properties/BooleanResultTextProperties'
 import type {YesOrNoTextProperties} from 'app/tools/text/properties/YesOrNoTextProperties'
-import type {ReactJSXElement}       from 'util/react/ReactProperties'
 
 import BooleanResultTextComponent from 'app/tools/text/BooleanResultTextComponent'
 import {contentTranslation}       from 'lang/components/translationMethods'

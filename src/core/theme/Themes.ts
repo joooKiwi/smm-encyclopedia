@@ -15,7 +15,6 @@ import type {WorldTheme}                                                        
 import type {EndlessMarioThemeImageFile}                                                                                                                                            from 'core/theme/file/EndlessMarioThemeImageFile'
 import type {LargeThemeImageFile}                                                                                                                                                   from 'core/theme/file/LargeThemeImageFile'
 import type {SmallThemeImageFile}                                                                                                                                                   from 'core/theme/file/SmallThemeImageFile'
-import type {Nullable, NullOr, NullOrBoolean}                                                                                                                                       from 'util/types/nullable'
 
 import {ThemeComponent}                                               from 'core/theme/Theme.component'
 import {ThemeLoader}                                                  from 'core/theme/Theme.loader'

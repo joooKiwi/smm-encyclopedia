@@ -1,9 +1,7 @@
 import {Link} from 'react-router-dom'
 
-import type {BootstrapColor}                                                     from 'bootstrap/Bootstrap.types'
-import type {EveryPossibleRouteNames}                                            from 'route/everyRoutes.types'
-import type {ReactElementOrString, ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
-import type {Nullable}                                                           from 'util/types/nullable'
+import type {EveryPossibleRouteNames}                      from 'route/everyRoutes.types'
+import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {routeFromName} from 'route/route'
 

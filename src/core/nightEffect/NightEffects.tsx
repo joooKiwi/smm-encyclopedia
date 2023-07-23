@@ -8,8 +8,6 @@ import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishNa
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
 import type {TranslationReplaceKeysMap}            from 'lang/components/TranslationProperty'
 import type {EveryPossibleRouteNames}              from 'route/everyRoutes.types'
-import type {Nullable}                             from 'util/types/nullable'
-import type {ReactElement}                         from 'util/react/ReactProperties'
 
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'

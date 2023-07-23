@@ -6,7 +6,6 @@ import type {GameStyles}                                                        
 import type {Themes}                                                                                                 from 'core/theme/Themes'
 import type {PossibleEnglishName_CourseTheme}                                                                        from 'core/theme/Themes.types'
 import type {Times}                                                                                                  from 'core/time/Times'
-import type {Nullable}                                                                                               from 'util/types/nullable'
 
 import {AbstractEditorImageFile} from 'core/entity/file/AbstractEditorImageFile'
 

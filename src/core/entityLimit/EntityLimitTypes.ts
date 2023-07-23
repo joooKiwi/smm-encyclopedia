@@ -3,7 +3,6 @@ import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
-import type {Nullable}                                                        from 'util/types/nullable'
 
 export class EntityLimitTypes
     extends Enum<Ordinals, Names> {

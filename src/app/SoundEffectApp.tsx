@@ -4,7 +4,6 @@ import type {SoundEffectProperties}                                from 'app/App
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'

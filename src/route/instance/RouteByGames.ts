@@ -1,7 +1,6 @@
-import type {Games}           from 'core/game/Games'
-import type {Route}           from 'route/instance/Route'
-import type {GameCollection}  from 'util/collection/GameCollection'
-import type {ReactJSXElement} from 'util/react/ReactProperties'
+import type {Games}          from 'core/game/Games'
+import type {Route}          from 'route/instance/Route'
+import type {GameCollection} from 'util/collection/GameCollection'
 
 /** A route specialized to only have {@link Games} */
 export interface RouteByGames<SIMPLE_NAME extends string, NAME extends string, PATH extends string, GAMES extends readonly Games[] = readonly Games[], >

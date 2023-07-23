@@ -1,5 +1,4 @@
 import type {Entity} from 'core/entity/Entity'
-import type {NullOr} from 'util/types/nullable'
 
 export interface EntityBehaviourLink<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends NullOr<Entity> = NullOr<Entity>, > {
 

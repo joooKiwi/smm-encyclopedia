@@ -3,7 +3,6 @@ import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
-import type {ReactElement}                       from 'util/react/ReactProperties'
 
 import {ArrowDirections} from 'app/tools/arrow/ArrowDirections'
 

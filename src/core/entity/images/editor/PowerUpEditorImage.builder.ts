@@ -4,7 +4,6 @@ import type {PossiblePowerUpAmountOfImages, PowerUpImageNumber, SimpleImageName}
 import type {PowerUpEditorImage}                                                 from 'core/entity/images/editor/PowerUpEditorImage'
 import type {GameStyles}                                                         from 'core/gameStyle/GameStyles'
 import type {Builder}                                                            from 'util/builder/Builder'
-import type {Nullable}                                                           from 'util/types/nullable'
 
 import {AbstractImageBuilder}                         from 'core/entity/images/AbstractImage.builder'
 import {PowerUpEditorImageContainer}                  from 'core/entity/images/editor/PowerUpEditorImage.container'

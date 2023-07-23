@@ -10,8 +10,6 @@ import type {GameStyles}                                                        
 import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
 import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
 import type {Name}                                                                                                                                                                                                                                             from 'lang/name/Name'
-import type {NullOr}                                                                                                                                                                                                                                           from 'util/types/nullable'
-import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                                                                                            from 'util/types/variables'
 
 import {isInProduction}                   from 'variables'
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'

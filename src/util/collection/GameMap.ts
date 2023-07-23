@@ -1,5 +1,4 @@
 import type {GameProperty} from 'core/entity/properties/game/GameProperty'
-import type {UndefinedOr}  from 'util/types/nullable'
 
 import {Games} from 'core/game/Games'
 

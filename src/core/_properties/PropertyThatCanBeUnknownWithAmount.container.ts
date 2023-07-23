@@ -1,6 +1,5 @@
 import type {PropertyThatCanBeUnknownWithAmount} from 'core/_properties/PropertyThatCanBeUnknownWithAmount'
 import type {ValueOrCallback}                    from 'util/holder/ObjectHolder.types'
-import type {NullOrNumber}                       from 'util/types/nullable'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 

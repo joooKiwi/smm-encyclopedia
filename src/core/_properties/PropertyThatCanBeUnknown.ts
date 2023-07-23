@@ -1,6 +1,5 @@
-import type {ClassThatCanBeUnknown}                     from 'core/_properties/ClassThatCanBeUnknown'
-import type {Property}                                  from 'core/_properties/Property'
-import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
+import type {ClassThatCanBeUnknown} from 'core/_properties/ClassThatCanBeUnknown'
+import type {Property}              from 'core/_properties/Property'
 
 /**
  * A generic property with a value

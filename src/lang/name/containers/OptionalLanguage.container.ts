@@ -1,5 +1,4 @@
 import type {OptionalLanguage} from 'lang/name/containers/OptionalLanguage'
-import type {EmptyArray}       from 'util/types/variables'
 
 import {LanguageContainer}     from 'lang/name/containers/Language.container'
 import {isNullableEmptyString} from 'util/utilitiesMethods'

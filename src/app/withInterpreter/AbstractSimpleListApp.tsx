@@ -4,7 +4,6 @@ import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
-import type {ReactElement}                 from 'util/react/ReactProperties'
 
 import {AbstractAppWithInterpreter} from 'app/withInterpreter/AbstractAppWithInterpreter'
 import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'

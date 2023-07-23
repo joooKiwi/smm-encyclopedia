@@ -1,7 +1,6 @@
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {ClearConditionImage} from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {Builder}             from 'util/builder/Builder'
-import type {NullOr}              from 'util/types/nullable'
 
 interface ImageNameMap {
 

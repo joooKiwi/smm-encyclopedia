@@ -7,7 +7,6 @@ import type {PossibleEnglishName}                                           from
 import type {SoundEffectTemplate}                                           from 'core/soundEffect/SoundEffect.template'
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {Loader}                                                        from 'util/loader/Loader'
-import type {NullOr}                                                        from 'util/types/nullable'
 
 import {isInProduction}           from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'

@@ -2,7 +2,6 @@ import type {ClassWithEntityEnglishName}                                        
 import type {ClearConditionImageFile, ImageFilePath, PossibleClearConditionImageFallbackName, PossibleClearConditionImageFileName} from 'core/entity/file/ClearConditionImageFile'
 import type {ImageNumber, PossibleAmountOfImages, SimpleImageName}                                                                 from 'core/entity/images/clearCondition/ClearConditionImage.types'
 import type {GameStyles}                                                                                                           from 'core/gameStyle/GameStyles'
-import type {Nullable}                                                                                                             from 'util/types/nullable'
 
 import {AbstractEntityImageFile} from 'core/entity/file/AbstractEntityImageFile'
 

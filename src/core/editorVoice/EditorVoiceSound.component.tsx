@@ -2,7 +2,6 @@ import './EditorVoiceSound.component.scss'
 
 import type {EditorVoiceSoundFileHolder} from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
 import type {ReactProperties}            from 'util/react/ReactProperties'
-import type {Nullable}                   from 'util/types/nullable'
 
 import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 

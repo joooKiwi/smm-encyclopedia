@@ -1,6 +1,5 @@
 import type {BooleanPropertyThatCanBeUnknown} from 'core/_properties/PropertyThatCanBeUnknown'
 import type {ValueOrCallback}                 from 'util/holder/ObjectHolder.types'
-import type {NullOrBoolean}                   from 'util/types/nullable'
 
 import {PropertyThatCanBeUnknownContainer} from 'core/_properties/PropertyThatCanBeUnknown.container'
 

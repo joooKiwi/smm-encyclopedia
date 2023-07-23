@@ -1,5 +1,4 @@
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {NullOrBoolean}     from 'util/types/nullable'
 
 import type {GameStyles} from 'core/gameStyle/GameStyles'
 import {Import}          from 'util/DynamicImporter'

@@ -1,8 +1,6 @@
 import type {Enumerable}               from '@joookiwi/enumerable/dist/types'
 import type {Dispatch, SetStateAction} from 'react'
 
-import type {NullOr} from 'util/types/nullable'
-
 /** A simple class made to handle the event when a {@link ClassWithCurrent.current} is being set */
 export interface ClassWithSetCurrentEvent<T extends Enumerable, > {
 

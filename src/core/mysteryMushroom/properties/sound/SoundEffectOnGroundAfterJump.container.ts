@@ -1,7 +1,5 @@
 import type {PossibleGamesReceived, PossibleValuesReceived, SoundEffectOnGroundAfterJump} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump'
 import type {ExtendedMap}                                                                 from 'util/extended/ExtendedMap'
-import type {NullOr}                                                                      from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                      from 'util/types/variables'
 
 import {PropertyProvider}     from 'core/_properties/Property.provider'
 import {GameReferences}       from 'core/gameReference/GameReferences'

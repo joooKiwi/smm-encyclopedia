@@ -1,6 +1,5 @@
 import type {GameStyleProperty}  from 'core/entity/properties/gameStyle/GameStyleProperty'
 import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
-import type {NullOrBoolean}      from 'util/types/nullable'
 
 import {GameStylePropertyContainer} from 'core/entity/properties/gameStyle/GameStyleProperty.container'
 import {AbstractProvider}           from 'util/provider/AbstractProvider'

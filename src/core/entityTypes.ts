@@ -1,6 +1,3 @@
-import type {NullOr, NullOrBoolean} from 'util/types/nullable'
-import type {UnknownCharacter}      from 'util/types/variables'
-
 /** @temporaryVariable */
 export type PossibleGroupName = string
 

@@ -6,7 +6,6 @@ import type {SMM1StandaloneSoundEffectSound} from 'core/soundEffect/sound/SMM1St
 import type {SMM1ExclusiveSoundEffectSound}  from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
 import type {SMM2SoundEffectSound}           from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {Builder}                        from 'util/builder/Builder'
-import type {NullOr}                         from 'util/types/nullable'
 
 import {EmptySMMSoundEffectSound}                from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
 import {SMM1StandaloneSoundEffectSoundContainer} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.container'

@@ -5,8 +5,6 @@ import type {PropertyThatCanBeUnknownWithComment}                             fr
 import type {PossibleAmountOnFalse, PossibleAmountOnTrue, PropertyWithAmount} from 'core/_properties/PropertyWithAmount'
 import type {PropertyWithAmountAndComment}                                    from 'core/_properties/PropertyWithAmountAndComment'
 import type {PropertyWithComment}                                             from 'core/_properties/PropertyWithComment'
-import type {NullOrBoolean, NullOrNumber, NullOrString}                       from 'util/types/nullable'
-import type {NotApplicable}                                                   from 'util/types/variables'
 
 export interface PropertyWithEverything<T, CAN_BE_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
     extends Property<T>,

@@ -8,7 +8,6 @@ import type {ClassWithEnglishName}                                            fr
 import type {Names, Ordinals, PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {ClassWithNullableEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
 import type {EditorVoiceSoundFileHolder}                                      from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
-import type {Nullable, NullOr}                                                from 'util/types/nullable'
 
 import {CharacterNameLoader}   from 'core/characterName/CharacterName.loader'
 import {EditorVoices}          from 'core/editorVoice/EditorVoices'

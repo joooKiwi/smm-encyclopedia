@@ -1,6 +1,4 @@
 import type {SoundEffectSoundFile} from 'core/soundEffect/file/SoundEffectSoundFile'
-import type {NullOr}               from 'util/types/nullable'
-import type {EmptyArray}           from 'util/types/variables'
 
 export interface SoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[],
     EDITOR_SOUND extends PossibleEditorValue<SOUNDS> = PossibleEditorValue<SOUNDS>,

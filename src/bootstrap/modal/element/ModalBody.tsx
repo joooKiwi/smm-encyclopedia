@@ -1,5 +1,5 @@
-import type {ReactElement, ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
-import type {HTMLDivProperties}                                          from 'util/react/html/HTMLDivProperties'
+import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {HTMLDivProperties}                            from 'util/react/html/HTMLDivProperties'
 
 interface ModalBodyProperties
     extends ReactProperties, HTMLDivProperties {

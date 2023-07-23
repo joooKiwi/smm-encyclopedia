@@ -5,7 +5,6 @@ import type {EditorImage}                             from 'core/entity/images/e
 import type {PossibleAmountOfImages, SimpleImageName} from 'core/entity/images/editor/EditorImage.types'
 import type {Builder}                                 from 'util/builder/Builder'
 import type {ExtendedList}                            from 'util/extended/ExtendedList'
-import type {Nullable}                                from 'util/types/nullable'
 
 import {GenericEditorImageFileContainer} from 'core/entity/file/GenericEditorImageFile.container'
 import {AbstractImageBuilder}            from 'core/entity/images/AbstractImage.builder'

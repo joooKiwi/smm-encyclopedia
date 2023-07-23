@@ -12,8 +12,6 @@ import type {ClassWithType}                                     from 'core/Class
 import type {ClassUsedInRoute}                                  from 'route/ClassUsedInRoute'
 import type {ClassWithIsCurrent}                                from 'util/enumerable/ClassWithIsCurrent'
 import type {SingleRetrievableByUrl}                            from 'util/enumerable/SingleRetrievableByUrl'
-import type {ReactElement}                                      from 'util/react/ReactProperties'
-import type {Nullable, NullOr}                                  from 'util/types/nullable'
 
 import {assert}                                 from 'util/utilitiesMethods'
 import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'

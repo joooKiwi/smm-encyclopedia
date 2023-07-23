@@ -2,7 +2,6 @@ import type {CharacterNameProperties}                              from 'app/App
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {AbstractCardListApp}     from 'app/withInterpreter/AbstractCardListApp'
 import {CharacterNames}          from 'core/characterName/CharacterNames'

@@ -1,5 +1,4 @@
 import type {SoundFile} from 'util/file/sound/SoundFile'
-import type {Nullable}  from 'util/types/nullable'
 
 import {AbstractSoundPlayer} from 'util/file/sound/player/AbstractSoundPlayer'
 import {SimpleSoundPlayer}   from 'util/file/sound/player/SimpleSoundPlayer'

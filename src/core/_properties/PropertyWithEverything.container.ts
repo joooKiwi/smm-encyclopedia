@@ -1,6 +1,5 @@
-import type {PropertyWithEverything}     from 'core/_properties/PropertyWithEverything'
-import type {ValueOrCallback}            from 'util/holder/ObjectHolder.types'
-import type {NullOrNumber, NullOrString} from 'util/types/nullable'
+import type {PropertyWithEverything} from 'core/_properties/PropertyWithEverything'
+import type {ValueOrCallback}        from 'util/holder/ObjectHolder.types'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 

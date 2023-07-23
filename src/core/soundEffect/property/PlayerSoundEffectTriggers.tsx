@@ -6,8 +6,6 @@ import type {ClassWithTranslationKey}                 from 'lang/ClassWithTransl
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
 import type {Names, Ordinals, PossibleTranslationKey} from 'core/soundEffect/property/PlayerSoundEffectTriggers.types'
 import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTrigger.property'
-import type {ReactElement}                            from 'util/react/ReactProperties'
-import type {Nullable}                                from 'util/types/nullable'
 
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'

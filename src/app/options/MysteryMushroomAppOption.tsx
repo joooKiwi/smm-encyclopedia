@@ -10,9 +10,6 @@ import type {SingleHeaderContent}                              from 'app/tools/t
 import type {MysteryMushroom}                                  from 'core/mysteryMushroom/MysteryMushroom'
 import type {MysteryMushroomImageFile as ImageFile}            from 'core/mysteryMushroom/file/MysteryMushroomImageFile'
 import type {MysteryMushroomSoundFile as SoundFile}            from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
-import type {Nullable, NullOr}                                 from 'util/types/nullable'
-import type {NotApplicable}                                    from 'util/types/variables'
 
 import {CommonOptions}                 from 'app/options/CommonOptions'
 import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'

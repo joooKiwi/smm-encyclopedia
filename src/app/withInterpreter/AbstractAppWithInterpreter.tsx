@@ -1,11 +1,9 @@
 import './AbstractAppWithInterpreter.scss'
 
-import type {AppWithInterpreterProperties}       from 'app/AppProperties.types'
-import type {AppStates}                          from 'app/AppStates.types'
-import type {AppInterpreter}                     from 'app/interpreter/AppInterpreter'
-import type {ViewAndRouteName}                   from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {ReactElement, ReactElementOrString} from 'util/react/ReactProperties'
-import type {NullOr}                             from 'util/types/nullable'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppStates}                    from 'app/AppStates.types'
+import type {AppInterpreter}               from 'app/interpreter/AppInterpreter'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 
 import AbstractApp        from 'app/AbstractApp'
 import UnfinishedText     from 'app/tools/text/UnfinishedText'

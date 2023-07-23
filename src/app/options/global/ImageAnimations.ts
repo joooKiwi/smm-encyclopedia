@@ -4,7 +4,6 @@ import {CompanionEnum, Enum}                                    from '@joookiwi/
 
 import type {Names, Ordinals, PossibleImageAnimation} from 'app/options/global/ImageAnimations.types'
 import type {ClassWithValue}                          from 'util/types/ClassWithValue'
-import type {Nullable}                                from 'util/types/nullable'
 
 /**
  * The possible image animation as either

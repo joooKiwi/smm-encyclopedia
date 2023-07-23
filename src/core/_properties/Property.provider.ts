@@ -1,7 +1,6 @@
 import type {BooleanPropertyWithAmountAndComment}                                                                                                                                                                              from 'core/_properties/PropertyWithAmountAndComment'
 import type {BooleanPropertyWithAmount}                                                                                                                                                                                        from 'core/_properties/PropertyWithAmount'
 import type {BooleanPropertyWithComment, NumberPropertyWithComment}                                                                                                                                                            from 'core/_properties/PropertyWithComment'
-import type {Nullable, NullableString, NullOr, NullOrNumber, NullOrString}                                                                                                                                                     from 'util/types/nullable'
 import type {NumberProperty, PossibleBooleanValuesByInferredProperty, PossibleInferredBooleanProperty, PossibleInferredNumberProperty, PossibleInferredStringProperty, PossibleNumberValuesByInferredProperty, StringProperty} from 'core/_properties/Property'
 
 import {PropertyContainer}                            from 'core/_properties/Property.container'

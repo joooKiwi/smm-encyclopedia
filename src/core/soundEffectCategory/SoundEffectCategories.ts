@@ -8,7 +8,6 @@ import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleIm
 import type {SoundEffectCategory}                                                          from 'core/soundEffectCategory/SoundEffectCategory'
 import type {SoundEffectCategoryImageFile}                                                 from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
 import type {ClassWithImageFile}                                                           from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                                     from 'util/types/nullable'
 
 import {SoundEffectCategoryLoader}                          from 'core/soundEffectCategory/SoundEffectCategory.loader'
 import {SoundEffectCategoryImageFileContainer as ImageFile} from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile.container'

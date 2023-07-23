@@ -6,7 +6,6 @@ import type {PossibleEnglishName as PossibleEntityName} from 'core/entity/Entiti
 import type {Entity}                                    from 'core/entity/Entity'
 import type {ProviderForNullable}                       from 'util/provider/ProviderForNullable'
 import type {ProviderWithKey}                           from 'util/provider/ProviderWithKey'
-import type {NullOr}                                    from 'util/types/nullable'
 
 import {EntityBehaviourLinkContainer} from 'core/behaviour/properties/EntityBehaviourLink.container'
 import {ObjectHolders}                from 'util/holder/ObjectHolders'

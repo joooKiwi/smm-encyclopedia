@@ -1,6 +1,5 @@
-import type {SingleHeadersContent}          from 'app/tools/table/SimpleHeader'
-import type {BootstrapColor}                from 'bootstrap/Bootstrap.types'
-import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import type {SingleHeadersContent} from 'app/tools/table/SimpleHeader'
+import type {ReactProperties}      from 'util/react/ReactProperties'
 
 export type SingleCaptionContent = | string | ReactElement
 export type SingleTableContent = [key: string, ...content: ReactElement[],]

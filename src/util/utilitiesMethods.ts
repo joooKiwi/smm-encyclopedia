@@ -8,8 +8,6 @@ import type {ClassWithType}        from 'core/ClassWithType'
 import type {ClassWithReference}   from 'core/ClassWithReference'
 import type {GameProperty}         from 'core/entity/properties/game/GameProperty'
 import type {GameCollection}       from 'util/collection/GameCollection'
-import type {Nullable}             from 'util/types/nullable'
-import type {EmptyString}          from 'util/types/variables'
 
 import {isInProduction} from 'variables'
 import {EMPTY_STRING}   from 'util/emptyVariables'

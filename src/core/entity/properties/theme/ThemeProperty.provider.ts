@@ -1,5 +1,4 @@
 import type {ThemeProperty}      from 'core/entity/properties/theme/ThemeProperty'
-import type {NullOrBoolean}      from 'util/types/nullable'
 import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
 
 import {ThemePropertyContainer} from 'core/entity/properties/theme/ThemeProperty.container'

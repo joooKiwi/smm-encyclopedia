@@ -1,7 +1,5 @@
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {HeaderHolder}        from 'app/tools/table/header/HeaderHolder'
-import type {ReactElement}        from 'util/react/ReactProperties'
-import type {Nullable, NullOr}    from 'util/types/nullable'
 
 import {assert} from 'util/utilitiesMethods'
 

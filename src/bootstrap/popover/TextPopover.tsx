@@ -1,5 +1,5 @@
-import type {SpanPopoverConfiguration}                          from 'bootstrap/popover/Popover.types'
-import type {ReactElementOrString, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
+import type {SpanPopoverConfiguration}    from 'bootstrap/popover/Popover.types'
+import type {ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import Popover       from 'bootstrap/popover/Popover'
 import TextComponent from 'app/tools/text/TextComponent'

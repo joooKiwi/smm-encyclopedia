@@ -7,7 +7,6 @@ import type {EditorImage}             from 'core/entity/images/editor/EditorImag
 import type {InGameImage}             from 'core/entity/images/inGame/InGameImage'
 import type {UniqueImage}             from 'core/entity/images/unique/UniqueImage'
 import type {Builder}                 from 'util/builder/Builder'
-import type {Nullable, NullOr}        from 'util/types/nullable'
 
 import {ClearConditionImageFactory} from 'core/entity/images/clearCondition/ClearConditionImage.factory'
 import {EditorImageFactory}         from 'core/entity/images/editor/EditorImage.factory'

@@ -1,7 +1,6 @@
 import type {DefaultAmount, DefaultIsUnknown} from 'core/_properties/Property'
 import type {PropertyWithComment} from 'core/_properties/PropertyWithComment'
 import type {ValueOrCallback}     from 'util/holder/ObjectHolder.types'
-import type {NullOrString}        from 'util/types/nullable'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 

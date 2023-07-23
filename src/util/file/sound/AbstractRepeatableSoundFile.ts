@@ -1,7 +1,6 @@
 import type {PossibleSoundFileExtension} from 'util/file/sound/SoundFile'
 import type {RepeatableSoundFile}        from 'util/file/sound/RepeatableSoundFile'
-import type {Time}                from 'util/file/sound/time/Time'
-import type {NullOr}              from 'util/types/nullable'
+import type {Time}                       from 'util/file/sound/time/Time'
 
 import {AbstractSoundFile} from 'util/file/sound/AbstractSoundFile'
 

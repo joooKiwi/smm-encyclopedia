@@ -6,8 +6,6 @@ import type {Names, Ordinals}                                  from 'app/options
 import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
 import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
 import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
-import type {NullOr}                                           from 'util/types/nullable'
 
 import UnfinishedText                  from 'app/tools/text/UnfinishedText'
 import {CommonOptions}                 from 'app/options/CommonOptions'

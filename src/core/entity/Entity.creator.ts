@@ -19,8 +19,6 @@ import type {Instrument}                                                        
 import type {PossibleInstrument}                                                                                                               from 'core/instrument/loader.types'
 import type {Name}                                                                                                                             from 'lang/name/Name'
 import type {PossibleGameReceived as OriginalPossibleGameReceived}                                                                             from 'lang/name/Name.builder.types'
-import type {Nullable, NullOr, NullOrString}                                                                                                   from 'util/types/nullable'
-import type {UnknownCharacter}                                                                                                                 from 'util/types/variables'
 
 import {PropertyContainer}                              from 'core/_properties/Property.container'
 import {PropertyProvider}                               from 'core/_properties/Property.provider'

@@ -5,8 +5,6 @@ import type {NotApplicableProperty, UnknownProperty}                            
 import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
 import type {EntityLimits}                                                                                                                                                                        from 'core/entityLimit/EntityLimits'
 import type {GameStructureFrom2Games}                                                                                                                                                             from 'core/game/GameStructure'
-import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
-import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                               from 'util/types/variables'
 import type {BooleanPropertyThatCanBeUnknownWithComment}                                                                                                                                          from 'core/_properties/PropertyThatCanBeUnknownWithComment'
 
 export interface LimitProperty {

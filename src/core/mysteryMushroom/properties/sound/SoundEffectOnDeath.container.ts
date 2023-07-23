@@ -1,7 +1,5 @@
 import type {PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValuesReceived, SoundEffectOnDeath} from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
 import type {ExtendedMap}                                                                                                                                                     from 'util/extended/ExtendedMap'
-import type {NullOr}                                                                                                                                                          from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                                                                                                          from 'util/types/variables'
 
 import {GameReferences}       from 'core/gameReference/GameReferences'
 import {PropertyProvider}     from 'core/_properties/Property.provider'

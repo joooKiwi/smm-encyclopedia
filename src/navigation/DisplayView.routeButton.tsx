@@ -1,7 +1,7 @@
 import {Link, useLocation} from 'react-router-dom'
 
-import type {EveryPossibleRouteNames}               from 'route/everyRoutes.types'
-import type {ReactElementOrString, ReactProperties} from 'util/react/ReactProperties'
+import type {EveryPossibleRouteNames} from 'route/everyRoutes.types'
+import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import {ModalInstance}         from 'bootstrap/modal/ModalInstance'
 import Tooltip                 from 'bootstrap/tooltip/Tooltip'

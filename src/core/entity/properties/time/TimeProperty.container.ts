@@ -1,5 +1,4 @@
-import type {TimeProperty}  from 'core/entity/properties/time/TimeProperty'
-import type {NullOrBoolean} from 'util/types/nullable'
+import type {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
 import type {Times} from 'core/time/Times'
 import {Import}     from 'util/DynamicImporter'

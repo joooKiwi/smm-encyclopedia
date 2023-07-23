@@ -9,7 +9,6 @@ import type {Names, Ordinals, PossibleEnglishName, PossibleReference}           
 import type {CharacterNameReferenceHolder, PossibleCharacterNameReferences_Received} from 'core/editorVoice/holder/CharacterNameReferenceHolder'
 import type {EntityReferenceHolder, PossibleEntityReferences_Received}               from 'core/editorVoice/holder/EntityReferenceHolder'
 import type {EditorVoiceSoundFileHolder}                                             from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
-import type {Nullable, NullOr}                                                       from 'util/types/nullable'
 
 import type {CharacterNames}                                                                     from 'core/characterName/CharacterNames'
 import {CharacterNameReferenceHolderContainer}                                                   from 'core/editorVoice/holder/CharacterNameReferenceHolder.container'

@@ -3,7 +3,6 @@ import type {PossibleOther_RegularMusic, PossibleSMB_EditorMusic, PossibleSMB_Re
 import type {MusicSoundFile}                                                                from 'core/music/file/MusicSoundFile'
 import type {PossibleSoundEffectEditorOnly_EditorName, PossibleSoundEffectEditorOnly_Name}  from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 import type {PossibleSoundEffectName}                                                       from 'core/music/soundEffect/SingleSoundEffectMusic'
-import type {NullOr}                                                                        from 'util/types/nullable'
 
 export interface SoundEffectMusic<ALL extends PossibleSoundEffectMusicFileName = PossibleSoundEffectMusicFileName, SOUND_EFFECT extends PossibleSoundEffectMusicName = PossibleSoundEffectMusicName, EDITOR_SOUND_EFFECT extends PossibleSoundEffectMusicEditorName = PossibleSoundEffectMusicEditorName, >
     extends Music<ALL> {

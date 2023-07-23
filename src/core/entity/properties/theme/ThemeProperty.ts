@@ -1,5 +1,4 @@
-import type {Themes}        from 'core/theme/Themes'
-import type {NullOrBoolean} from 'util/types/nullable'
+import type {Themes} from 'core/theme/Themes'
 
 export interface ThemeProperty<GROUND extends boolean = boolean,
     UNDERGROUND extends boolean = boolean,

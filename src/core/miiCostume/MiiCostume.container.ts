@@ -5,7 +5,6 @@ import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostum
 import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
 import type {Versions}                   from 'core/version/Versions'
 import type {Name}                       from 'lang/name/Name'
-import type {NullOr}                     from 'util/types/nullable'
 import type {ValueOrCallback}            from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'

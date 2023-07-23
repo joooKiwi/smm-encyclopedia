@@ -1,8 +1,6 @@
 import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment} from 'core/_properties/Property'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}            from 'core/entity/properties/instrument/loader.types'
 import type {Instrument}                                               from 'core/instrument/Instrument'
-import type {NullOr, NullOrBoolean}                                    from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                   from 'util/types/variables'
 
 export interface InstrumentProperty {
 

@@ -1,10 +1,8 @@
-import type {ClassWithType}                            from 'core/ClassWithType'
-import type {Property}                                 from 'core/_properties/Property'
-import type {ClassWithGameReference}                   from 'core/gameReference/ClassWithGameReference'
-import type {GameReferences}                           from 'core/gameReference/GameReferences'
-import type {ClassWithTranslationKey}                  from 'lang/ClassWithTranslationKey'
-import type {NullOr}                                   from 'util/types/nullable'
-import type {BooleanOrNotApplicable, UnknownReference} from 'util/types/variables'
+import type {ClassWithType}           from 'core/ClassWithType'
+import type {Property}                from 'core/_properties/Property'
+import type {ClassWithGameReference}  from 'core/gameReference/ClassWithGameReference'
+import type {GameReferences}          from 'core/gameReference/GameReferences'
+import type {ClassWithTranslationKey} from 'lang/ClassWithTranslationKey'
 
 export interface SoundEffectOnDeath
     extends Property<BooleanOrNotApplicable>,

@@ -1,5 +1,3 @@
-import type {NullOr} from 'util/types/nullable'
-
 /**
  * <p>
  *     A class with every language used in the project.

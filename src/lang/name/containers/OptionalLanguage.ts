@@ -1,6 +1,5 @@
 import type {EmptyableOptionalLanguage} from 'lang/name/containers/EmptyableOptionalLanguage'
 import type {Language}                  from 'lang/name/containers/Language'
-import type {EmptyArray}                from 'util/types/variables'
 
 export interface OptionalLanguage<T, S extends T = T, A extends readonly T[] = EmptyArray, U extends boolean = boolean, >
     extends Language<T, S, A>, EmptyableOptionalLanguage<T, S, A, U> {

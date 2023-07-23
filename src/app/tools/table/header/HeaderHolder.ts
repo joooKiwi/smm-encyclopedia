@@ -1,6 +1,4 @@
-import type {ReactElement}        from 'util/react/ReactProperties'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import type {Nullable, NullOr}    from 'util/types/nullable'
 
 export interface HeaderHolder {
 

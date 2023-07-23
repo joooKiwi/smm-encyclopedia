@@ -8,7 +8,6 @@ import type {Names, Ordinals, PossibleEnglishName}       from 'core/miiCostume/M
 import type {MiiCostume}                                 from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeImageFile, PossibleImageFileName} from 'core/miiCostume/file/MiiCostumeImageFile'
 import type {ClassWithImageFile}                         from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                   from 'util/types/nullable'
 
 import {MiiCostumeLoader}                          from 'core/miiCostume/MiiCostume.loader'
 import {MiiCostumeImageFileContainer as ImageFile} from 'core/miiCostume/file/MiiCostumeImageFile.container'

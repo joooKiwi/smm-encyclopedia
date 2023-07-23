@@ -7,7 +7,6 @@ import type {TimeProperty}           from 'core/entity/properties/time/TimePrope
 import type {EntityCategory}         from 'core/entityCategory/EntityCategory'
 import type {NameTrait}              from 'lang/name/NameTrait'
 import type {NameTraitFromACategory} from 'lang/name/NameTraitFromACategory'
-import type {EmptyArray}             from 'util/types/variables'
 
 export interface Entity
     extends NameTrait<string>, NameTraitFromACategory<string, EntityCategory>,

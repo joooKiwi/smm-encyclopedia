@@ -1,8 +1,6 @@
 import i18next from 'i18next'
 
 import type {ContentTranslationKey, EntityContentTranslationKey, GameContentTranslationKey, LanguageTranslationKey, Namespace, SingleTranslationKey, TranslationReplaceKeysMap, TranslationReturnValue} from 'lang/components/TranslationProperty'
-import type {Nullable}                                                                                                                                                                                  from 'util/types/nullable'
-import type {ReactElement, ReactElementOrString}                                                                                                                                                        from 'util/react/ReactProperties'
 
 import {TranslationUtility} from 'lang/components/TranslationUtility'
 

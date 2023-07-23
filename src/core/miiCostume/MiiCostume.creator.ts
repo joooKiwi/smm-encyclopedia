@@ -5,7 +5,6 @@ import type {MiiCostume}                 from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeTemplate}         from 'core/miiCostume/MiiCostume.template'
 import type {Name}                       from 'lang/name/Name'
 import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
-import type {NullOr}                     from 'util/types/nullable'
 
 import {TemplateWithNameCreator}           from 'core/_template/TemplateWithName.creator'
 import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'

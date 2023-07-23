@@ -1,5 +1,4 @@
 import type {EntityImageFile} from 'core/entity/file/EntityImageFile'
-import type {Nullable}        from 'util/types/nullable'
 
 import {ImageWithTimesThemesAndGameStyles} from 'core/entity/images/ImageWithTimesThemesAndGameStyles'
 import {GameStyles}                        from 'core/gameStyle/GameStyles'

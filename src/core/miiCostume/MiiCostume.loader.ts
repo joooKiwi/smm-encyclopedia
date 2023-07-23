@@ -8,7 +8,6 @@ import type {PossibleEnglishName as PossibleEnglishName_Category}               
 import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
 import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from 'core/version/Versions.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
-import type {NullOr}                                                                        from 'util/types/nullable'
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'

@@ -6,7 +6,6 @@ import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemp
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from 'core/entityLimit/EntityLimits.types'
 import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from 'core/entityLimit/EntityLimitTypes.types'
 import type {Loader}                                                                                                                                                                              from 'util/loader/Loader'
-import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'

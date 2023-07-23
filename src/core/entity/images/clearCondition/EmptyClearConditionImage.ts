@@ -1,6 +1,5 @@
 import type {ClearConditionImage}                                      from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {ClassWithNullObjectPattern, EmptyClearConditionImageName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyArray}                                               from 'util/types/variables'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 

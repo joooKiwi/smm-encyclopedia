@@ -1,6 +1,5 @@
 import type {PossibleExcludedLanguages} from '__test__/helperMethods.types'
 import type {LanguageContent}           from 'core/_template/LanguageContent'
-import type {Nullable}                  from 'util/types/nullable'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 

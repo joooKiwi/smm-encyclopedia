@@ -4,7 +4,6 @@ import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterW
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {SingleTableContent}           from 'app/tools/table/Table.types'
 import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
-import type {ReactElement}                 from 'util/react/ReactProperties'
 
 import Table                 from 'app/tools/table/Table'
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'

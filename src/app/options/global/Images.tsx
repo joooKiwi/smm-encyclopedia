@@ -5,8 +5,6 @@ import {CompanionEnum, Enum}                                    from '@joookiwi/
 import type {ClassWithValue}  from 'util/types/ClassWithValue'
 import type {ImageProperties} from 'app/tools/images/properties/ImageProperties'
 import type {Names, Ordinals} from 'app/options/global/Images.types'
-import type {Nullable}        from 'util/types/nullable'
-import type {ReactElement}    from 'util/react/ReactProperties'
 
 import Image from 'app/tools/images/Image'
 

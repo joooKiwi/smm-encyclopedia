@@ -1,5 +1,4 @@
 import type {ThemeProperty} from 'core/entity/properties/theme/ThemeProperty'
-import type {NullOrBoolean} from 'util/types/nullable'
 
 import type {Themes} from 'core/theme/Themes'
 import {Import}      from 'util/DynamicImporter'

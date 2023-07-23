@@ -1,6 +1,4 @@
-import type {Language}   from 'lang/name/containers/Language'
-import type {NullOr}     from 'util/types/nullable'
-import type {EmptyArray} from 'util/types/variables'
+import type {Language} from 'lang/name/containers/Language'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 

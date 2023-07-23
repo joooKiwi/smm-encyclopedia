@@ -3,7 +3,6 @@ import type {Dispatch, SetStateAction}                                          
 
 import type {ClassWithCurrent}         from 'util/enumerable/ClassWithCurrent'
 import type {ClassWithSetCurrentEvent} from 'util/enumerable/ClassWithSetCurrentEvent'
-import type {NullOr}                   from 'util/types/nullable'
 
 /**
  * A simple implementation of the {@link ClassWithCurrent} using the {@link Enumerable} as the type validation

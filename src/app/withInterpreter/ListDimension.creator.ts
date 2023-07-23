@@ -3,7 +3,6 @@ import {lazy}      from '@joookiwi/lazy'
 
 import type {DimensionOnList}                                                                                                                                                                                           from 'app/interpreter/DimensionOnList'
 import type {DefaultDefaultDimension, DefaultDimensionOnCardList, DefaultExtraExtraLargeDimension, DefaultExtraLargeDimension, DefaultLargeDimension, DefaultMediumDimension, DefaultSmallDimension, PossibleDimension} from 'app/withInterpreter/ListDimension.creator.types'
-import type {NullOr}                                                                                                                                                                                                    from 'util/types/nullable'
 
 export class ListDimensionCreator<DEFAULT extends PossibleDimension = PossibleDimension,
     SMALL extends PossibleDimension = PossibleDimension,

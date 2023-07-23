@@ -6,7 +6,6 @@ import type {Names, Ordinals, PossibleEnglishName_Plural, PossibleEnglishName_Si
 import type {ClassWithReference}                                                        from 'core/ClassWithReference'
 import type {OtherWordInTheGame}                                                        from 'core/otherWordInTheGame/OtherWordInTheGame'
 import type {ClassWithEnglishName}                                                      from 'core/ClassWithEnglishName'
-import type {Nullable, NullOr}                                                          from 'util/types/nullable'
 
 import {isInProduction}           from 'variables'
 import {OtherWordInTheGameLoader} from 'core/otherWordInTheGame/OtherWordInTheGame.loader'

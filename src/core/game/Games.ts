@@ -11,7 +11,6 @@ import type {GameImageFile}                                                     
 import type {ClassUsedInRoute}                                                                                                                                   from 'route/ClassUsedInRoute'
 import type {MultipleRetrievableByUrl}                                                                                                                           from 'util/enumerable/MultipleRetrievableByUrl'
 import type {ClassWithImageFile}                                                                                                                                 from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                                                                                                           from 'util/types/nullable'
 import type {Selectable}                                                                                                                                         from 'util/types/Selectable'
 
 import GameComponent            from 'core/game/Game.component'

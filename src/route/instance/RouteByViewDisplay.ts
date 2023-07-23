@@ -1,6 +1,5 @@
-import type {ViewDisplays}    from 'app/withInterpreter/ViewDisplays'
-import type {Route}           from 'route/instance/Route'
-import type {ReactJSXElement} from 'util/react/ReactProperties'
+import type {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import type {Route}        from 'route/instance/Route'
 
 /** A route specialized to only have {@link ViewDisplays} */
 export interface RouteByViewDisplay<SIMPLE_NAME extends string, NAME extends string, PATH extends string, VIEW_DISPLAY extends ViewDisplays = ViewDisplays, >

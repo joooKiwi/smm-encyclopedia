@@ -1,5 +1,3 @@
-import type {NullOr} from 'util/types/nullable'
-
 /** A simple class with an "acronym" on the getter method */
 export interface ClassWithAcronym<ACRONYM extends string, >
     extends ClassWithNullableAcronym<ACRONYM> {

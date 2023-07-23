@@ -1,8 +1,8 @@
 import './GroupOfPowerUpPriority.scss'
 import './GroupOf2PowerUpPriority.scss'
 
-import type {Arrows}                        from 'app/tools/arrow/Arrows'
-import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import type {Arrows}          from 'app/tools/arrow/Arrows'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import Arrow from 'app/tools/arrow/Arrow'
 

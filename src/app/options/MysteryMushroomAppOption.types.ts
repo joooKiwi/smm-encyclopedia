@@ -1,5 +1,3 @@
-import type {NullOr} from 'util/types/nullable'
-
 enum Enum {
 
     CONDITION_TO_UNLOCK_IT,

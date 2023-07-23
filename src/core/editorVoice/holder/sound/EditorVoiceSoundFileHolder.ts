@@ -1,5 +1,4 @@
 import type {EditorVoiceSoundFile}                                           from 'core/editorVoice/file/EditorVoiceSoundFile'
-import type {NullOr}                                                         from 'util/types/nullable'
 import type {PossibleFileName, PossibleStartingName_WithEuropeanAlternative} from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder.types'
 
 export interface EditorVoiceSoundFileHolder {

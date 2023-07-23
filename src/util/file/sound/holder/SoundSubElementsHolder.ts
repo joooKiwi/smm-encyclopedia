@@ -1,5 +1,3 @@
-import type {ReactElement} from 'util/react/ReactProperties'
-
 export class SoundSubElementsHolder {
 
     //region -------------------- Fields --------------------

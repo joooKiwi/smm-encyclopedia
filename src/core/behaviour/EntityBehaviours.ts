@@ -7,7 +7,6 @@ import type {ClassWithReference}                                        from 'co
 import type {EntityBehaviour}                                           from 'core/behaviour/EntityBehaviour'
 import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
 import type {ClassWithTranslationKey}                                   from 'lang/ClassWithTranslationKey'
-import type {Nullable}                                                  from 'util/types/nullable'
 
 import {EntityBehaviourLoader} from 'core/behaviour/EntityBehaviour.loader'
 

@@ -2,10 +2,9 @@ import './AbstractApp.scss'
 
 import {Component} from 'react'
 
-import type {AppProperties}                 from 'app/AppProperties.types'
-import type {AppStates}                     from 'app/AppStates.types'
-import type {ReactComponent}                from 'util/react/ReactComponent'
-import type {ReactElement, ReactJSXElement} from 'util/react/ReactProperties'
+import type {AppProperties}  from 'app/AppProperties.types'
+import type {AppStates}      from 'app/AppStates.types'
+import type {ReactComponent} from 'util/react/ReactComponent'
 
 import GlobalOptionComponent from 'app/options/global/GlobalOption.component'
 import Footer                from 'navigation/Footer'

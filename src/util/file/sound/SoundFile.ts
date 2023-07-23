@@ -1,7 +1,6 @@
 import type {File}            from 'util/file/File'
 import type {RepeatableTypes} from 'util/file/sound/RepeatableTypes'
 import type {Time}            from 'util/file/sound/time/Time'
-import type {NullOr}          from 'util/types/nullable'
 
 export interface SoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension, REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
     extends File<PATH, NAME, EXTENSION> {

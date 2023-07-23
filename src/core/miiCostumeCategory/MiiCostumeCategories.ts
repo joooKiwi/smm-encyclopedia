@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                       from '@joookiwi/collection'
+import type {CollectionHolder}                                  from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
@@ -8,7 +8,6 @@ import type {Names, Ordinals, PossibleEnglishName}             from 'core/miiCos
 import type {MiiCostumeCategory}                               from 'core/miiCostumeCategory/MiiCostumeCategory'
 import type {MiiCostumeCategoryImageFile, PossibleImageNumber} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile'
 import type {ClassWithImageFile}                               from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                         from 'util/types/nullable'
 
 import {MiiCostumeCategoryLoader}                          from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
 import {MiiCostumeCategoryImageFileContainer as ImageFile} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile.container'

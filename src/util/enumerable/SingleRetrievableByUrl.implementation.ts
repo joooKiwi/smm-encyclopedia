@@ -2,7 +2,6 @@ import type {CompanionEnumDeclaration, EnumerableConstructor, Enumerable} from '
 
 import type {ClassUsedInRoute}       from 'route/ClassUsedInRoute'
 import type {SingleRetrievableByUrl} from 'util/enumerable/SingleRetrievableByUrl'
-import type {NullOr}                 from 'util/types/nullable'
 
 /**
  * A basic implementation of the {@link SingleRetrievableByUrl} with only the regex

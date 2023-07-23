@@ -1,5 +1,4 @@
-import type {Times}         from 'core/time/Times'
-import type {NullOrBoolean} from 'util/types/nullable'
+import type {Times} from 'core/time/Times'
 
 export interface TimeProperty<DAY extends boolean = boolean, NIGHT extends NullOrBoolean = NullOrBoolean, > {
 

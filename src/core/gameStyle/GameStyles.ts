@@ -13,7 +13,6 @@ import type {PossibleOtherEntities}                                             
 import type {GameStyleProperty}                                                                                                    from 'core/entity/properties/gameStyle/GameStyleProperty'
 import type {GameStyleReferences}                                                                                                  from 'core/entity/properties/gameStyle/GameStyleReferences'
 import type {ClassWithImageFile}                                                                                                   from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                                                                             from 'util/types/nullable'
 
 import GameStyleComponent            from 'core/gameStyle/GameStyle.component'
 import {GameStyleLoader}             from 'core/gameStyle/GameStyle.loader'

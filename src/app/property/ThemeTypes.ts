@@ -3,9 +3,7 @@ import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
-import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
-import type {Nullable, NullOr}                                 from 'util/types/nullable'
 
 import {Themes}         from 'core/theme/Themes'
 import {getValueByType} from 'util/utilitiesMethods'

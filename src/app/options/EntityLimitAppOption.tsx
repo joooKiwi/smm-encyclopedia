@@ -10,8 +10,6 @@ import type {AppOptionWithTable}                               from 'app/options
 import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
 import type {EntityLimit}                                      from 'core/entityLimit/EntityLimit'
 import type {EntityLimits}                                     from 'core/entityLimit/EntityLimits'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
-import type {NullOr}                                           from 'util/types/nullable'
 
 import {CommonOptions}                 from 'app/options/CommonOptions'
 import {COURSE_THEME_IMAGE_FILE}       from 'app/options/file/themeImageFiles'

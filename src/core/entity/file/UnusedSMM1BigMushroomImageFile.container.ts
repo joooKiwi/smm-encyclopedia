@@ -1,7 +1,6 @@
 import type {ClassWithEntityEnglishName}                                                                                                                                                              from 'core/ClassWithEnglishName'
 import type {ImageFilePath, ImageIdentifier, ImageNumber, PossibleAmountOfImages, PossibleUnusedBigMushroomImageFallbackName, PossibleUnusedBigMushroomImageFileName, UnusedSMM1BigMushroomImageFile} from 'core/entity/file/UnusedSMM1BigMushroomImageFile'
 import type {ImageName_BigMushroom_Unused_SMM1}                                                                                                                                                       from 'core/entity/images/unused/UnusedImage'
-import type {Nullable}                                                                                                                                                                                from 'util/types/nullable'
 
 import {AbstractUnusedSMM1ImageFile} from 'core/entity/file/AbstractUnusedSMM1ImageFile'
 

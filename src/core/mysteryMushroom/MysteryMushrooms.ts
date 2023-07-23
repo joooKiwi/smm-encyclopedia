@@ -25,7 +25,6 @@ import type {TurningSoundFile}                                                  
 import type {WaitingImageFile}                                                                  from 'core/mysteryMushroom/file/WaitingImageFile'
 import type {WalkImageFile}                                                                     from 'core/mysteryMushroom/file/WalkImageFile'
 import type {FileName, PossibleImageFileNames}                                                  from 'core/mysteryMushroom/file/name/FileName'
-import type {Nullable, NullOr}                                                                  from 'util/types/nullable'
 
 import {MysteryMushroomLoader}                                           from 'core/mysteryMushroom/MysteryMushroom.loader'
 import {ClimbingImageFileContainer as ClimbingImage}                     from 'core/mysteryMushroom/file/ClimbingImageFile.container'

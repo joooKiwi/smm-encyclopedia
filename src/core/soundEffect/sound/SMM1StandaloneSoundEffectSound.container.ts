@@ -5,7 +5,6 @@ import type {SMM1ExclusiveSoundEffectSound}  from 'core/soundEffect/sound/SMM1Ex
 import type {SMM1StandaloneSoundEffectSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
 import type {SMM2SoundEffectSound}           from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {PossibleEditorValue}            from 'core/soundEffect/sound/SoundEffectSound'
-import type {EmptyArray}                     from 'util/types/variables'
 
 import {AbstractSoundEffectSound} from 'core/soundEffect/sound/AbstractSoundEffectSound'
 import {EMPTY_ARRAY}              from 'util/emptyVariables'

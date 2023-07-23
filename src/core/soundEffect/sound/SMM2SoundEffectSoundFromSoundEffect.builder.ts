@@ -4,7 +4,6 @@ import {lazy}      from '@joookiwi/lazy'
 import type {SMM2SoundEffectSoundFile}                                  from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
 import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound} from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {PossibleSoundEffectSoundName_SMM2}                         from 'core/soundEffect/sound/types'
-import type {EmptyArray}                                                from 'util/types/variables'
 
 import {SMM2SoundEffectSoundFileContainer}                          from 'core/soundEffect/file/SMM2SoundEffectSoundFile.container'
 import {AbstractExclusiveSoundEffectSoundBuilder, type SingleIndex} from 'core/soundEffect/sound/AbstractExclusiveSoundEffectSound.builder'

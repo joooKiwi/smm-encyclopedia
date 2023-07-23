@@ -1,10 +1,9 @@
-import type {StringPropertyWithAmount}   from 'core/_properties/PropertyWithAmount'
-import type {ValueOrCallback}            from 'util/holder/ObjectHolder.types'
-import type {NullOrNumber, NullOrString} from 'util/types/nullable'
+import type {StringPropertyWithAmount} from 'core/_properties/PropertyWithAmount'
+import type {ValueOrCallback}          from 'util/holder/ObjectHolder.types'
 
 import {PropertyWithAmountContainer} from 'core/_properties/PropertyWithAmount.container'
 
-export class StringPropertyWithAmountContainer<S extends NullOrString = NullOrString, AMOUNT extends NullOrNumber = NullOrNumber, >
+export class StringPropertyWithAmountContainer<const S extends NullOrString = NullOrString, const AMOUNT extends NullOrNumber = NullOrNumber, >
     extends PropertyWithAmountContainer<S, AMOUNT>
     implements StringPropertyWithAmount<S, AMOUNT> {
 

@@ -10,7 +10,6 @@ import type {NonChangeableSoundEffectBackgroundMusic}                  from 'cor
 import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect'
 import type {SingleSoundEffectMusic}                                   from 'core/music/soundEffect/SingleSoundEffectMusic'
 import type {SoundEffectMusicWithDifferentEditor}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
-import type {Nullable, NullOr}                                         from 'util/types/nullable'
 
 import {BackgroundMusicContainer}                                          from 'core/music/backgroundMusic/BackgroundMusic.container'
 import {NonChangeableSoundEffectBackgroundMusicContainer}                  from 'core/music/backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container'

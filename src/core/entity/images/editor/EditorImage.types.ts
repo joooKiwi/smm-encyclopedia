@@ -2,7 +2,6 @@ import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EditorImage}         from 'core/entity/images/editor/EditorImage'
 import type {PossibleGameName}    from 'core/theme/Themes.types'
 import type {Builder}             from 'util/builder/Builder'
-import type {NullOr}              from 'util/types/nullable'
 
 interface ImageNameMap {
 

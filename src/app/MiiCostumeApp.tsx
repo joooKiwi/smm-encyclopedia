@@ -3,7 +3,6 @@ import './MiiCostumeApp.scss'
 import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
 import Image                    from 'app/tools/images/Image'

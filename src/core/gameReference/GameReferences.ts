@@ -7,7 +7,6 @@ import type {ClassWithEnglishName}                                  from 'core/C
 import type {ClassWithReference}                                    from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
 import type {GameReference}                                         from 'core/gameReference/GameReference'
-import type {Nullable}                                              from 'util/types/nullable'
 
 import {GameReferenceLoader} from 'core/gameReference/GameReference.loader'
 import {StringContainer}     from 'util/StringContainer'

@@ -6,7 +6,6 @@ import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishNa
 import type {ClassWithReference}                   from 'core/ClassWithReference'
 import type {CourseTag}                            from 'core/courseTag/CourseTag'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/courseTag/CourseTags.types'
-import type {Nullable}                             from 'util/types/nullable'
 
 import {CourseTagLoader}       from 'core/courseTag/CourseTag.loader'
 import {StringContainer}       from 'util/StringContainer'

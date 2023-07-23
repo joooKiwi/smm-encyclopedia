@@ -3,7 +3,6 @@ import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossiblePlacement} from 'app/tools/table/header/HeaderTypes.types'
-import type {Nullable}                                         from 'util/types/nullable'
 import {reverse}                                               from 'util/utilitiesMethods'
 
 export abstract class HeaderTypes

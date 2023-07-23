@@ -1,6 +1,5 @@
 import type {TemplateWithNameTemplate}       from 'core/_template/TemplateWithName.template'
 import type {SimpleGameFromAllGamesTemplate} from 'core/game/SimpleGame.template'
-import type {NullOr}                         from 'util/types/nullable'
 
 /**
  * @template

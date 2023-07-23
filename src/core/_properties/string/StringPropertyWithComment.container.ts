@@ -1,6 +1,5 @@
 import type {StringPropertyWithComment} from 'core/_properties/PropertyWithComment'
 import type {ValueOrCallback}           from 'util/holder/ObjectHolder.types'
-import type {NullOrString}              from 'util/types/nullable'
 
 import {PropertyWithCommentContainer} from 'core/_properties/PropertyWithComment.container'
 

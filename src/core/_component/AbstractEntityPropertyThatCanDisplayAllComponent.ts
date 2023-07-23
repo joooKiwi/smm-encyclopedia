@@ -2,7 +2,6 @@ import {PureComponent} from 'react'
 
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {ReactComponent}           from 'util/react/ReactComponent'
-import type {ReactJSXElement}          from 'util/react/ReactProperties'
 
 /**
  * @reactComponent

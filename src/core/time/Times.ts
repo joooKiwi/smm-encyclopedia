@@ -10,7 +10,6 @@ import type {TimeReferences}                                                from
 import type {Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath} from 'core/time/Times.types'
 import type {TimeImageFile}                                                 from 'core/time/file/TimeImageFile'
 import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                      from 'util/types/nullable'
 
 import TimeComponent                         from 'core/time/Time.component'
 import {TimeImageFileContainer as ImageFile} from 'core/time/file/TimeImageFile.container'

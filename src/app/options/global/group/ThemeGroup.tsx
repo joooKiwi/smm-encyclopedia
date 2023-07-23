@@ -2,8 +2,6 @@ import type {GlobalAppOption}   from 'app/options/global/GlobalAppOption'
 import type {GlobalThemeOption} from 'app/options/global/GlobalThemeOption'
 import type {OnClickCallback}   from 'app/options/global/group/Group.types'
 import type {Themes}            from 'core/theme/Themes'
-import type {ReactElement}      from 'util/react/ReactProperties'
-import type {NullOr}            from 'util/types/nullable'
 
 import AbstractGroup from 'app/options/global/group/AbstractGroup'
 import Image         from 'app/tools/images/Image'

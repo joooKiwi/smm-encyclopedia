@@ -1,8 +1,6 @@
 import type {ReactNode} from 'react'
 
-import type {ReactJSXElement} from 'util/react/ReactProperties'
-import type {ReactState}      from 'util/react/ReactState'
-import type {NullOr}          from 'util/types/nullable'
+import type {ReactState} from 'util/react/ReactState'
 
 /**
  * A simplified React component class with a render method.

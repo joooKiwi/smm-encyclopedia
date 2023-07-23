@@ -1,6 +1,5 @@
 import type {NumberPropertyWithAmount} from 'core/_properties/PropertyWithAmount'
 import type {ValueOrCallback}          from 'util/holder/ObjectHolder.types'
-import type {NullOrNumber}             from 'util/types/nullable'
 
 import {PropertyWithAmountContainer} from 'core/_properties/PropertyWithAmount.container'
 

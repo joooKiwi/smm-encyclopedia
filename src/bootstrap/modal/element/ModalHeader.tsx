@@ -1,7 +1,7 @@
-import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
-import type {HTMLDivProperties}             from 'util/react/html/HTMLDivProperties'
-import type {HTMLButtonProperties}          from 'util/react/html/HTMLButtonProperties'
-import type {HTMLHeadingProperties}         from 'util/react/html/HTMLHeadingProperties'
+import type {ReactProperties}       from 'util/react/ReactProperties'
+import type {HTMLDivProperties}     from 'util/react/html/HTMLDivProperties'
+import type {HTMLButtonProperties}  from 'util/react/html/HTMLButtonProperties'
+import type {HTMLHeadingProperties} from 'util/react/html/HTMLHeadingProperties'
 
 import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
 

@@ -2,7 +2,6 @@ import type {GameProperty}               from 'core/entity/properties/game/GameP
 import type {OtherPluralWordInTheGame}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
 import type {OtherSingularWordInTheGame} from 'core/otherWordInTheGame/OtherSingularWordInTheGame'
 import type {Name}                       from 'lang/name/Name'
-import type {NullOr}                     from 'util/types/nullable'
 
 import {AbstractOtherWordInTheGame} from 'core/otherWordInTheGame/AbstractOtherWordInTheGame'
 

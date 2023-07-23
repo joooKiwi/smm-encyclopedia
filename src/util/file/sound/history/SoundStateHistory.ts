@@ -1,5 +1,3 @@
-import type {Nullable} from 'util/types/nullable'
-
 import {HistoryState} from 'util/file/sound/history/HistoryState'
 import {SoundStates}  from 'util/file/sound/player/SoundStates'
 

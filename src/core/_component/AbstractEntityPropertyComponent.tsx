@@ -1,5 +1,3 @@
-import type {ReactJSXElement} from 'util/react/ReactProperties'
-
 import {AbstractEntityPropertyThatCanDisplayAllComponent} from 'core/_component/AbstractEntityPropertyThatCanDisplayAllComponent'
 
 /**
