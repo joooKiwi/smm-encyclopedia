@@ -58,7 +58,7 @@ export abstract class Texts
         }
 
     }(true,)
-    public static readonly NO = new class Texts_No extends Texts {
+    public static readonly NO =  new class Texts_No extends Texts {
 
         public override renderTextComponent() {
             return null

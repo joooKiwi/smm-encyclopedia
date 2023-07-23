@@ -444,7 +444,7 @@ export abstract class MysteryMushroomAppOption
         },)
     }
 
-    protected _createAnimatedImages(callback: (enumeration: MysteryMushrooms,) => readonly (| readonly ImageFile[] )[], renderDiv: boolean,): ReactElement {
+    protected _createAnimatedImages(callback: (enumeration: MysteryMushrooms,) => readonly (| readonly ImageFile[])[], renderDiv: boolean,): ReactElement {
         return this.#createSingleImageAndSoundContainer(renderDiv, enumeration => {
             const uniqueEnglishName = enumeration.uniqueEnglishName
             const englishNameInHtml = enumeration.englishNameInHtml

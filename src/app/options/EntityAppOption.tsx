@@ -260,7 +260,7 @@ export class EntityAppOption
     //region -------------------- Companion enum --------------------
 
     public static readonly CompanionEnum: CompanionEnumSingleton<EntityAppOption, typeof EntityAppOption> = class CompanionEnum_EntityAppOption
-        extends CompanionEnum<EntityAppOption, typeof EntityAppOption>{
+        extends CompanionEnum<EntityAppOption, typeof EntityAppOption> {
 
         //region -------------------- Singleton usage --------------------
 

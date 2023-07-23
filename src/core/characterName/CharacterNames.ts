@@ -197,7 +197,7 @@ export class CharacterNames
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleUniqueEnglishName, CharacterName>
-    static #everyEnglishNames?:readonly PossibleEnglishName[]
+    static #everyEnglishNames?: readonly PossibleEnglishName[]
 
     #reference?: CharacterName
     readonly #englishName
