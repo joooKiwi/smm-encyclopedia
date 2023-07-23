@@ -5,6 +5,7 @@ import {CompanionEnumWithParent, EnumWithParent}                          from '
 import type {DayNumber}        from 'lang/date/types'
 import type {Names, Ordinals}  from 'lang/ProjectLanguages.types'
 import type {ClassWithCurrent} from 'util/enumerable/ClassWithCurrent'
+import type {ReactJSXElement}  from 'util/react/ReactProperties'
 import type {Nullable, NullOr} from 'util/types/nullable'
 
 import {EveryLanguages}   from 'lang/EveryLanguages'
@@ -251,7 +252,7 @@ export abstract class DateDayLanguages
     //endregion -------------------- Getter & setter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract newDayComponent(day: DayNumber,): JSX.Element
+    public abstract newDayComponent(day: DayNumber,): ReactJSXElement
 
 
     // public static override getValueByLanguage<T,>(value: T,): DateDayLanguagesByLanguage<T>

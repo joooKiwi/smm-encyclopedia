@@ -1,7 +1,8 @@
-import type {ViewDisplays}   from 'app/withInterpreter/ViewDisplays'
-import type {Games}          from 'core/game/Games'
-import type {Route}          from 'route/instance/Route'
-import type {GameCollection} from 'util/collection/GameCollection'
+import type {ViewDisplays}    from 'app/withInterpreter/ViewDisplays'
+import type {Games}           from 'core/game/Games'
+import type {Route}           from 'route/instance/Route'
+import type {GameCollection}  from 'util/collection/GameCollection'
+import type {ReactJSXElement} from 'util/react/ReactProperties'
 
 /**
  * A route specialized with both {@link ViewDisplays} and {@link Games}
@@ -20,4 +21,4 @@ export interface RouteByViewDisplayAndGames<SIMPLE_NAME extends string, NAME ext
  * @see RenderCallbackByViewDisplay
  * @see RenderCallbackByGames
  */
-export type RenderCallbackByViewDisplayAndGames<VIEW_DISPLAY extends ViewDisplays = ViewDisplays, GAMES extends GameCollection = GameCollection, > = (viewDisplay: VIEW_DISPLAY, games: GAMES,) => JSX.Element
+export type RenderCallbackByViewDisplayAndGames<VIEW_DISPLAY extends ViewDisplays = ViewDisplays, GAMES extends GameCollection = GameCollection, > = (viewDisplay: VIEW_DISPLAY, games: GAMES,) => ReactJSXElement

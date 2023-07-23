@@ -1,13 +1,14 @@
 import type {ReactNode} from 'react'
 
-import type {ReactState} from 'util/react/ReactState'
-import type {NullOr}     from 'util/types/nullable'
+import type {ReactJSXElement} from 'util/react/ReactProperties'
+import type {ReactState}      from 'util/react/ReactState'
+import type {NullOr}          from 'util/types/nullable'
 
 /**
  * A simplified React component class with a render method.
  * This interface is used to determine each class component easily by using inheritance reference.
  */
-export interface ReactComponent<T extends ReactNode = JSX.Element, > {
+export interface ReactComponent<T extends ReactNode = ReactJSXElement, > {
 
     render(): T
 

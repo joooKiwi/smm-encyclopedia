@@ -8,6 +8,7 @@ import type {SimpleSoundProperties} from 'util/file/sound/component/property/Sim
 import type {SimpleSoundState}      from 'util/file/sound/component/state/SimpleSound.state'
 import type {SimpleSoundPlayer}     from 'util/file/sound/player/SimpleSoundPlayer'
 import type {IsSourceFoundCallback} from 'util/file/sound/player/Validators.types'
+import type {ReactJSXElement}       from 'util/react/ReactProperties'
 
 import {HistoryState}           from 'util/file/sound/history/HistoryState'
 import {SoundSubElementsHolder} from 'util/file/sound/holder/SoundSubElementsHolder'
@@ -114,7 +115,7 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
         AbstractSoundPlayer.map.remove(audio.source.key)
     }
 
-    public override render(): JSX.Element {
+    public override render(): ReactJSXElement {
         const elementsHolder = new SoundSubElementsHolder(
                 () => <div key={`${this.title} - play`} className={SimpleSoundComponent.#PLAY_CLASSES} onClick={() => this._audio.play()}/>,
                 () => <div key={`${this.title} - pause`} className={SimpleSoundComponent.#PAUSE_CLASSES} onClick={() => this._audio.pause()}/>,

@@ -1,3 +1,4 @@
+import type React                                from 'react'
 import type {ReactElement as SourceReactElement} from 'react'
 import type {Nullable}                           from 'util/types/nullable'
 
@@ -34,5 +35,7 @@ export interface SimpleReactPropertiesWithOptionalChildren<T, >
 
 }
 
+/** A simple alias of the {@link React}.{@link React.JSX JSX}.{@link React.JSX.Element Element} */
+export type ReactJSXElement = React.JSX.Element
 export type ReactElement = Nullable<SourceReactElement>
 export type ReactElementOrString = | ReactElement | string

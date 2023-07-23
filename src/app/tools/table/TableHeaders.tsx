@@ -4,6 +4,7 @@ import type {SingleHeaderContent, SingleHeadersContent}          from 'app/tools
 import type {EveryHeaderHolders, Layout, TableHeadersProperties} from 'app/tools/table/TableHeaders.types'
 import type {ClassWithType}                                      from 'core/ClassWithType'
 import type {ReactComponent}                                     from 'util/react/ReactComponent'
+import type {ReactJSXElement}                                    from 'util/react/ReactProperties'
 
 import {HeaderTypes} from 'app/tools/table/header/HeaderTypes'
 import Image         from 'app/tools/images/Image'
@@ -78,7 +79,7 @@ export default class TableHeaders
     }
 
 
-    public override render(): JSX.Element {
+    public override render(): ReactJSXElement {
         const headers = this.headers
 
         //region -------------------- If headers has only 1 column, return simple headers --------------------

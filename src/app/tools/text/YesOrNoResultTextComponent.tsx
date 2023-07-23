@@ -2,6 +2,7 @@ import './YesOrNoResultTextComponent.scss'
 
 import type {TextColor}             from 'app/tools/text/properties/BooleanResultTextProperties'
 import type {YesOrNoTextProperties} from 'app/tools/text/properties/YesOrNoTextProperties'
+import type {ReactJSXElement}       from 'util/react/ReactProperties'
 
 import BooleanResultTextComponent from 'app/tools/text/BooleanResultTextComponent'
 import {contentTranslation}       from 'lang/components/translationMethods'
@@ -15,7 +16,7 @@ const NO_COLOR: TextColor = 'text-no'
  * @return {@link BooleanResultContainer}
  * @reactComponent
  */
-export default function YesOrNoResultTextComponent(properties: YesOrNoTextProperties,): JSX.Element {
+export default function YesOrNoResultTextComponent(properties: YesOrNoTextProperties,): ReactJSXElement {
     return <BooleanResultTextComponent
         true={[contentTranslation('Yes'), YES_COLOR,]}
         false={[contentTranslation('No'), NO_COLOR,]}
