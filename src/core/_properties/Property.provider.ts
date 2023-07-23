@@ -32,21 +32,21 @@ export class PropertyProvider {
         throw new EvalError('This class cannot be created')
     }
 
-    public static newNumberContainer<T extends PossibleNumberValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
-    public static newNumberContainer<T extends NullOrNumber, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
+    public static newNumberContainer<const T extends PossibleNumberValuesByInferredProperty, const CAN_BE_NOT_APPLICABLE extends boolean = boolean, const HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
+    public static newNumberContainer<const T extends NullOrNumber, const CAN_BE_NOT_APPLICABLE extends boolean = boolean, const COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredNumberProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
     public static newNumberContainer(value: PossibleNumberValuesByInferredProperty, canBeNotApplicable: boolean, comment?: NullOrString,) {
         return this.#newContainer('number', value, canBeNotApplicable, false, comment,)
     }
 
-    public static newStringContainer<T extends NullOrString, CAN_BE_NOT_APPLICABLE extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
-    public static newStringContainer<T extends NullOrString, CAN_BE_NOT_APPLICABLE extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
+    public static newStringContainer<const T extends NullOrString, const CAN_BE_NOT_APPLICABLE extends boolean = boolean, const HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, HAVE_A_COMMENT, null>
+    public static newStringContainer<const T extends NullOrString, const CAN_BE_NOT_APPLICABLE extends boolean = boolean, const COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, comment: COMMENT,): PossibleInferredStringProperty<T, CAN_BE_NOT_APPLICABLE, true, COMMENT>
     public static newStringContainer(value: NullOrString, canBeNotApplicable: boolean, comment?: NullOrString,) {
         return this.#newContainer('string', value, canBeNotApplicable, false, comment,)
     }
 
-    public static newBooleanContainer<T extends PossibleBooleanValuesByInferredProperty, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, HAVE_A_COMMENT, null>
+    public static newBooleanContainer<const T extends PossibleBooleanValuesByInferredProperty, const CAN_BE_NOT_APPLICABLE extends boolean = boolean, const DOES_HAVE_AN_AMOUNT extends boolean = boolean, const HAVE_A_COMMENT extends boolean = boolean, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, HAVE_A_COMMENT, null>
     // @ts-ignore
-    public static newBooleanContainer<T extends NullOr<| boolean | number>, CAN_BE_NOT_APPLICABLE extends boolean = boolean, DOES_HAVE_AN_AMOUNT extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT, comment: COMMENT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, true, COMMENT>
+    public static newBooleanContainer<const T extends NullOr<| boolean | number>, const CAN_BE_NOT_APPLICABLE extends boolean = boolean, const DOES_HAVE_AN_AMOUNT extends boolean = boolean, const COMMENT extends NullOrString = NullOrString, >(value: T, canBeNotApplicable: CAN_BE_NOT_APPLICABLE, doesHaveAnAmount: DOES_HAVE_AN_AMOUNT, comment: COMMENT,): PossibleInferredBooleanProperty<T, CAN_BE_NOT_APPLICABLE, DOES_HAVE_AN_AMOUNT, true, COMMENT>
     public static newBooleanContainer(value: PossibleBooleanValuesByInferredProperty, canBeNotApplicable: boolean, doesHaveAnAmount: boolean, comment?: NullOrString,) {
         return this.#newContainer('boolean', value, canBeNotApplicable, doesHaveAnAmount, comment,)
     }
@@ -104,7 +104,7 @@ export class PropertyProvider {
         throw new TypeError(`The ${type} container could not be created with the value "${value}".`)
     }
 
-    static #getOrSetMap<K, V, MAP extends Map<K, V> = Map<K, V>, >(key: K, map: MAP, callbackToCreateNew: (key: K,) => V,): V {
+    static #getOrSetMap<const K, const V, const MAP extends Map<K, V> = Map<K, V>, >(key: K, map: MAP, callbackToCreateNew: (key: K,) => V,): V {
         if (!map.has(key))
             map.set(key, callbackToCreateNew(key))
         return map.get(key)!

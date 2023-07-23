@@ -6,7 +6,7 @@ import type {ValueOrCallback}                                                   
 
 import {ObjectHolders} from 'util/holder/ObjectHolders'
 
-export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown, AMOUNT extends NullOrNumber = DefaultAmount, COMMENT extends NullOrString = DefaultComment, >
+export class PropertyContainer<const T, const IS_UNKNOWN extends boolean = DefaultIsUnknown, const AMOUNT extends NullOrNumber = DefaultAmount, const COMMENT extends NullOrString = DefaultComment, >
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
 
     //region -------------------- Constants --------------------

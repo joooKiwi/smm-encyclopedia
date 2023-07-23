@@ -6,7 +6,7 @@ import {Themes}                            from 'core/theme/Themes'
 import {Times}                             from 'core/time/Times'
 import {EMPTY_ARRAY}                       from 'util/emptyVariables'
 
-export abstract class AbstractImageWithTimesThemesAndGameStyles<T extends EntityImageFile, >
+export abstract class AbstractImageWithTimesThemesAndGameStyles<const T extends EntityImageFile, >
     implements ImageWithTimesThemesAndGameStyles<T> {
 
     //region -------------------- Fields --------------------

@@ -3,7 +3,7 @@ import type {ValueOrCallback}                    from 'util/holder/ObjectHolder.
 
 import {PropertyWithAmountAndCommentContainer} from 'core/_properties/PropertyWithAmountAndComment.container'
 
-export class NumberPropertyWithAmountAndCommentContainer<N extends NullOrNumber = NullOrNumber, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
+export class NumberPropertyWithAmountAndCommentContainer<const N extends NullOrNumber = NullOrNumber, const AMOUNT extends NullOrNumber = NullOrNumber, const COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithAmountAndCommentContainer<N, AMOUNT, COMMENT>
     implements NumberPropertyWithAmountAndComment<N, AMOUNT, COMMENT> {
 

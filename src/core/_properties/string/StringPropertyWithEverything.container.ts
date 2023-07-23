@@ -3,7 +3,7 @@ import type {ValueOrCallback}              from 'util/holder/ObjectHolder.types'
 
 import {PropertyWithEverythingContainer} from 'core/_properties/PropertyWithEverything.container'
 
-export class StringPropertyWithEverythingContainer<S extends NullOrString = NullOrString, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
+export class StringPropertyWithEverythingContainer<const S extends NullOrString = NullOrString, const IS_UNKNOWN extends boolean = boolean, const AMOUNT extends NullOrNumber = NullOrNumber, const COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithEverythingContainer<S, IS_UNKNOWN, AMOUNT, COMMENT>
     implements StringPropertyWithEverything<S, IS_UNKNOWN, AMOUNT, COMMENT> {
 

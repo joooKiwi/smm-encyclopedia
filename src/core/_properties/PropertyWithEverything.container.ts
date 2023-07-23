@@ -3,7 +3,7 @@ import type {ValueOrCallback}        from 'util/holder/ObjectHolder.types'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 
-export class PropertyWithEverythingContainer<T, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
+export class PropertyWithEverythingContainer<const T, const IS_UNKNOWN extends boolean = boolean, const AMOUNT extends NullOrNumber = NullOrNumber, const COMMENT extends NullOrString = NullOrString, >
     extends PropertyContainer<T, IS_UNKNOWN, AMOUNT, COMMENT>
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
 

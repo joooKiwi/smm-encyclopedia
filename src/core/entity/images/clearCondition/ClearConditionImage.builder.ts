@@ -9,7 +9,7 @@ import {AbstractImageBuilder}                           from 'core/entity/images
 import {ClearConditionImageContainer as ImageContainer} from 'core/entity/images/clearCondition/ClearConditionImage.container'
 import {ClearConditionImageFileContainer as ImageFile}  from 'core/entity/file/ClearConditionImageFile.container'
 
-export class ClearConditionImageBuilder<NAME extends NonNullable<SimpleImageName> = NonNullable<SimpleImageName>, >
+export class ClearConditionImageBuilder<const NAME extends NonNullable<SimpleImageName> = NonNullable<SimpleImageName>, >
     extends AbstractImageBuilder<NAME, PossibleAmountOfImages> {
 
     //region -------------------- Fields --------------------

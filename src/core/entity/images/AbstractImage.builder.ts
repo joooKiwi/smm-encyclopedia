@@ -11,7 +11,7 @@ const {SUPER_MARIO_BROS, SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_
 
 //endregion -------------------- Import from deconstruction --------------------
 
-export abstract class AbstractImageBuilder<NAME extends string = string, AMOUNT extends number = number, >
+export abstract class AbstractImageBuilder<const NAME extends string = string, const AMOUNT extends number = number, >
     implements Builder<Image> {
 
     //region -------------------- Fields --------------------

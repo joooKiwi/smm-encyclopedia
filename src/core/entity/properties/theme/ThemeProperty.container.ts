@@ -6,7 +6,16 @@ import {Import}      from 'util/DynamicImporter'
 /**
  * @classWithDynamicImport {@link Themes}
  */
-export class ThemePropertyContainer<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean, UNDERWATER extends boolean = boolean, DESERT extends NullOrBoolean = NullOrBoolean, SNOW extends NullOrBoolean = NullOrBoolean, SKY extends NullOrBoolean = NullOrBoolean, FOREST extends NullOrBoolean = NullOrBoolean, GHOST_HOUSE extends boolean = boolean, AIRSHIP extends boolean = boolean, CASTLE extends boolean = boolean, >
+export class ThemePropertyContainer<const GROUND extends boolean = boolean,
+    const UNDERGROUND extends boolean = boolean,
+    const UNDERWATER extends boolean = boolean,
+    const DESERT extends NullOrBoolean = NullOrBoolean,
+    const SNOW extends NullOrBoolean = NullOrBoolean,
+    const SKY extends NullOrBoolean = NullOrBoolean,
+    const FOREST extends NullOrBoolean = NullOrBoolean,
+    const GHOST_HOUSE extends boolean = boolean,
+    const AIRSHIP extends boolean = boolean,
+    const CASTLE extends boolean = boolean, >
     implements ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE> {
 
     //region -------------------- Fields --------------------

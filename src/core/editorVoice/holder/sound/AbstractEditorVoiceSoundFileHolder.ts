@@ -4,8 +4,8 @@ import type {PossibleFileName, PossibleStartingName_WithEuropeanAlternative} fro
 
 import {nonNull} from 'util/utilitiesMethods'
 
-export abstract class AbstractEditorVoiceSoundFileHolder<REGULAR_SOUND_FILE extends EditorVoiceSoundFile<PossibleFileName>,
-    EUROPEAN_SOUND_FILE extends NullOr<EditorVoiceSoundFile<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[1], never>>>, >
+export abstract class AbstractEditorVoiceSoundFileHolder<const REGULAR_SOUND_FILE extends EditorVoiceSoundFile<PossibleFileName>,
+    const EUROPEAN_SOUND_FILE extends NullOr<EditorVoiceSoundFile<PossibleFileName<PossibleStartingName_WithEuropeanAlternative[1], never>>>, >
     implements EditorVoiceSoundFileHolder {
 
     //region -------------------- Fields --------------------

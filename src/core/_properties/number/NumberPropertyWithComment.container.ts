@@ -3,7 +3,7 @@ import type {ValueOrCallback}           from 'util/holder/ObjectHolder.types'
 
 import {PropertyWithCommentContainer} from 'core/_properties/PropertyWithComment.container'
 
-export class NumberPropertyWithCommentContainer<N extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
+export class NumberPropertyWithCommentContainer<const N extends NullOrNumber = NullOrNumber, const COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithCommentContainer<N, COMMENT>
     implements NumberPropertyWithComment<N, COMMENT> {
 

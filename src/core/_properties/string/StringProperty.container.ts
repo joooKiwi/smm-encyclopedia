@@ -3,7 +3,7 @@ import type {ValueOrCallback} from 'util/holder/ObjectHolder.types'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 
-export class StringPropertyContainer<S extends NullOrString = NullOrString, >
+export class StringPropertyContainer<const S extends NullOrString = NullOrString, >
     extends PropertyContainer<S>
     implements StringProperty<S> {
 

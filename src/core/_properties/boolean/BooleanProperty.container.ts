@@ -3,7 +3,7 @@ import type {ValueOrCallback} from 'util/holder/ObjectHolder.types'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 
-export class BooleanPropertyContainer<B extends NullOrBoolean = NullOrBoolean, >
+export class BooleanPropertyContainer<const B extends NullOrBoolean = NullOrBoolean, >
     extends PropertyContainer<B>
     implements BooleanProperty<B> {
 

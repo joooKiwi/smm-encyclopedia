@@ -3,7 +3,7 @@ import type {ValueOrCallback}                           from 'util/holder/Object
 
 import {PropertyThatCanBeUnknownWithCommentContainer} from 'core/_properties/PropertyThatCanBeUnknownWithComment.container'
 
-export class StringPropertyThatCanBeUnknownWithCommentContainer<S extends NullOrString = NullOrString, IS_UNKNOWN extends boolean = boolean, COMMENT extends NullOrString = NullOrString, >
+export class StringPropertyThatCanBeUnknownWithCommentContainer<const S extends NullOrString = NullOrString, const IS_UNKNOWN extends boolean = boolean, const COMMENT extends NullOrString = NullOrString, >
     extends PropertyThatCanBeUnknownWithCommentContainer<S, IS_UNKNOWN, COMMENT>
     implements StringPropertyThatCanBeUnknownWithComment<S, IS_UNKNOWN, COMMENT> {
 

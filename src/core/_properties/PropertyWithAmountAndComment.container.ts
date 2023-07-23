@@ -4,7 +4,7 @@ import type {ValueOrCallback}              from 'util/holder/ObjectHolder.types'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 
-export class PropertyWithAmountAndCommentContainer<T, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
+export class PropertyWithAmountAndCommentContainer<const T, const AMOUNT extends NullOrNumber = NullOrNumber, const COMMENT extends NullOrString = NullOrString, >
     extends PropertyContainer<T, DefaultIsUnknown, AMOUNT, COMMENT>
     implements PropertyWithAmountAndComment<T, AMOUNT, COMMENT> {
 

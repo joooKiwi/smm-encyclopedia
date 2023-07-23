@@ -3,7 +3,7 @@ import type {ValueOrCallback}                           from 'util/holder/Object
 
 import {PropertyThatCanBeUnknownWithAmountContainer} from 'core/_properties/PropertyThatCanBeUnknownWithAmount.container'
 
-export class BooleanPropertyThatCanBeUnknownWithAmountContainer<B extends NullOrBoolean = NullOrBoolean, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, >
+export class BooleanPropertyThatCanBeUnknownWithAmountContainer<const B extends NullOrBoolean = NullOrBoolean, const IS_UNKNOWN extends boolean = boolean, const AMOUNT extends NullOrNumber = NullOrNumber, >
     extends PropertyThatCanBeUnknownWithAmountContainer<B, IS_UNKNOWN, AMOUNT>
     implements BooleanPropertyThatCanBeUnknownWithAmount<B, IS_UNKNOWN, AMOUNT> {
 

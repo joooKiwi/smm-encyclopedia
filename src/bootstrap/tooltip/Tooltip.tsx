@@ -12,7 +12,7 @@ import {TooltipInstance} from 'bootstrap/tooltip/TooltipInstance'
  * @reactComponent
  * @see https://getbootstrap.com/docs/5.1/components/tooltips/
  */
-export default function Tooltip<T extends ReactElement = ReactElement, >({children, option, on: triggers, elementId,}: ReactPropertiesWithOptionalChildren<TooltipConfiguration, T>) {
+export default function Tooltip<const T extends ReactElement = ReactElement, >({children, option, on: triggers, elementId,}: ReactPropertiesWithOptionalChildren<TooltipConfiguration, T>) {
     useEffect(() => [elementId].flat().forEach(elementId => new TooltipInstance(elementId, option, triggers,)))
     return children ?? null
 }

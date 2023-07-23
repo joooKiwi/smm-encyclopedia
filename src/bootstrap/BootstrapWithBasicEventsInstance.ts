@@ -6,7 +6,11 @@ import type {BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEvents} 
 
 import {BootstrapInstance} from 'bootstrap/BootstapInstance'
 
-export abstract class BootstrapWithBasicEventsInstance<STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>, INSTANCE extends BaseComponent, OPTION extends ComponentOptions, ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
+export abstract class BootstrapWithBasicEventsInstance<const STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>,
+    const INSTANCE extends BaseComponent,
+    const OPTION extends ComponentOptions,
+    const ELEMENT extends HTMLElement = HTMLElement,
+    const ID extends string = string, >
     extends BootstrapInstance<STATIC_INSTANCE, INSTANCE, OPTION, ELEMENT, ID> {
 
     protected constructor(instance: STATIC_INSTANCE, element: ID | ELEMENT, options: Partial<OPTION>) {

@@ -3,7 +3,7 @@ import type {ValueOrCallback}                     from 'util/holder/ObjectHolder
 
 import {PropertyWithAmountAndCommentContainer} from 'core/_properties/PropertyWithAmountAndComment.container'
 
-export class BooleanPropertyWithAmountAndCommentContainer<B extends NullOrBoolean = NullOrBoolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
+export class BooleanPropertyWithAmountAndCommentContainer<const B extends NullOrBoolean = NullOrBoolean, const AMOUNT extends NullOrNumber = NullOrNumber, const COMMENT extends NullOrString = NullOrString, >
     extends PropertyWithAmountAndCommentContainer<B, AMOUNT, COMMENT>
     implements BooleanPropertyWithAmountAndComment<B, AMOUNT, COMMENT> {
 

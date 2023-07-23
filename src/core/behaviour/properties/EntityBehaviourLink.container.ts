@@ -3,7 +3,7 @@ import type {Lazy} from '@joookiwi/lazy'
 import type {EntityBehaviourLink, PossibleGroup} from 'core/behaviour/properties/EntityBehaviourLink'
 import type {Entity}                             from 'core/entity/Entity'
 
-export class EntityBehaviourLinkContainer<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends NullOr<Entity> = NullOr<Entity>, >
+export class EntityBehaviourLinkContainer<const GROUP extends PossibleGroup = PossibleGroup, const ENTITY extends NullOr<Entity> = NullOr<Entity>, >
     implements EntityBehaviourLink<GROUP, ENTITY> {
 
     //region -------------------- Fields --------------------

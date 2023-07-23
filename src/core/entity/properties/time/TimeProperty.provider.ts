@@ -31,7 +31,7 @@ export class TimePropertyProvider
      * @param isInDayTime Is in the {@link Times.DAY day time}
      * @param isInNightTime Is in the {@link Times.NIGHT night time}
      */
-    public get<DAY extends boolean = boolean, NIGHT extends NullOrBoolean = NullOrBoolean, >(isInDayTime: DAY, isInNightTime: NIGHT,): TimeProperty<DAY, NIGHT>
+    public get<const DAY extends boolean = boolean, const NIGHT extends NullOrBoolean = NullOrBoolean, >(isInDayTime: DAY, isInNightTime: NIGHT,): TimeProperty<DAY, NIGHT>
     public get(...argumentsReceived: ArgumentsReceived): TimeProperty {
         return this.everyContainers.if(map => map.has(argumentsReceived))
             .isNotMet(map => map.set(argumentsReceived, new TimePropertyContainer(...argumentsReceived,),))
