@@ -1,6 +1,7 @@
-import type {InferredBooleanPropertyThatCanBeNotApplicableWithComment} from 'core/_properties/Property'
-import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}            from 'core/entity/properties/instrument/loader.types'
-import type {Instrument}                                               from 'core/instrument/Instrument'
+import type {NotApplicableProperty}                         from 'core/_properties/PropertyWithEverything'
+import type {PropertyThatCanBeUnknownWithComment}           from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment} from 'core/entity/properties/instrument/loader.types'
+import type {Instrument}                                    from 'core/instrument/Instrument'
 
 export interface InstrumentProperty {
 
@@ -48,4 +49,4 @@ export interface InstrumentProperty {
  * @see PossibleCanMakeASoundOutOfAMusicBlock_Comment
  */
 export type CanMakeASoundOutOfAMusicBlockProperty<COMMENT extends NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment> = NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>, >
-    = InferredBooleanPropertyThatCanBeNotApplicableWithComment<NullOrBoolean, COMMENT>
+    = | NotApplicableProperty | PropertyThatCanBeUnknownWithComment<boolean, false, COMMENT>

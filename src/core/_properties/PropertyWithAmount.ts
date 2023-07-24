@@ -7,13 +7,7 @@ import type {Property}        from 'core/_properties/Property'
  * contained in it.
  */
 export interface PropertyWithAmount<T, AMOUNT extends NullOrNumber = NullOrNumber, >
-    extends Property<T>, ClassWithAmount<AMOUNT> {
-
-}
-
-export type BooleanPropertyWithAmount<B extends NullOrBoolean = NullOrBoolean, AMOUNT extends NullOrNumber = NullOrNumber, > = PropertyWithAmount<B, AMOUNT>
-export type NumberPropertyWithAmount<N extends NullOrNumber = NullOrNumber, AMOUNT extends NullOrNumber = NullOrNumber, > = PropertyWithAmount<N, AMOUNT>
-export type StringPropertyWithAmount<S extends NullOrString = NullOrString, AMOUNT extends NullOrNumber = NullOrNumber, > = PropertyWithAmount<S, AMOUNT>
+    extends Property<T>, ClassWithAmount<AMOUNT> {}
 
 export type PossibleAmountOnFalse = NullOr<0>
 export type PossibleAmountOnTrue = NullOr<1>

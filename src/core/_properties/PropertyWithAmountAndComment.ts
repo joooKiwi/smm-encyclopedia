@@ -8,10 +8,4 @@ import type {PropertyWithComment} from 'core/_properties/PropertyWithComment'
  * contained in it.
  */
 export interface PropertyWithAmountAndComment<T, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
-    extends PropertyWithAmount<T, AMOUNT>, PropertyWithComment<T, COMMENT> {
-
-}
-
-export type BooleanPropertyWithAmountAndComment<B extends NullOrBoolean = NullOrBoolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, > = PropertyWithAmountAndComment<B, AMOUNT, COMMENT>
-export type NumberPropertyWithAmountAndComment<N extends NullOrNumber = NullOrNumber, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, > = PropertyWithAmountAndComment<N, AMOUNT, COMMENT>
-export type StringPropertyWithAmountAndComment<S extends NullOrString = NullOrString, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, > = PropertyWithAmountAndComment<S, AMOUNT, COMMENT>
+    extends PropertyWithAmount<T, AMOUNT>, PropertyWithComment<T, COMMENT> {}

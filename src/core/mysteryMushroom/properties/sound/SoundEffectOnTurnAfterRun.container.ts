@@ -1,7 +1,7 @@
 import type {PossibleValuesReceived, SoundEffectOnTurnAfterRun} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
 import type {ExtendedMap}                                       from 'util/extended/ExtendedMap'
 
-import {PropertyProvider}     from 'core/_properties/Property.provider'
+import {NOT_APPLICABLE}       from 'util/commonVariables'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
@@ -16,18 +16,20 @@ export class SoundEffectOnTurnAfterRunContainer
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<NullOrBoolean, SoundEffectOnTurnAfterRun> = new ExtendedMapContainer()
 
-    readonly #property
+    readonly #value
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(value: PossibleValuesReceived,) {
-        this.#property = PropertyProvider.newBooleanContainer(value, true, false,)
+        this.#value = value ?? NOT_APPLICABLE as NotApplicable
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): BooleanOrNotApplicable {
-        return this.#property.value
+        return this.#value
     }
 
     //endregion -------------------- Getter methods --------------------

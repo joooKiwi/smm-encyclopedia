@@ -1,8 +1,8 @@
 import type {PossibleGamesReceived, PossibleValuesReceived, SoundEffectWhenCollected} from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
 import type {ExtendedMap}                                                             from 'util/extended/ExtendedMap'
 
-import {PropertyProvider}     from 'core/_properties/Property.provider'
 import {GameReferences}       from 'core/gameReference/GameReferences'
+import {NOT_APPLICABLE}       from 'util/commonVariables'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
@@ -17,20 +17,22 @@ export class SoundEffectWhenCollectedContainer
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, SoundEffectWhenCollectedContainer> = new ExtendedMapContainer()
 
-    readonly #property
+    readonly #value
     readonly #game
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor([value, game,]: ArgumentsReceived,) {
-        this.#property = PropertyProvider.newBooleanContainer(value, true, false,)
+        this.#value = value ?? NOT_APPLICABLE as NotApplicable
         this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): BooleanOrNotApplicable {
-        return this.#property.value
+        return this.#value
     }
 
     public get gameReference(): NullOr<GameReferences> {

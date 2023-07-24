@@ -8,9 +8,7 @@ import type {PossibleEnglishName as PossibleEnglishName_EntityLimitType}        
 import type {EntityLimitAmount}                                                                                                                                                           from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                                                                                                                        from 'lang/name/Name'
 
-import {PropertyProvider}                        from 'core/_properties/Property.provider'
 import {PropertyContainer}                       from 'core/_properties/Property.container'
-import {NumberPropertyThatCanBeUnknownContainer} from 'core/_properties/number/NumberPropertyThatCanBeUnknown.container'
 import {TemplateWithNameCreator}                 from 'core/_template/TemplateWithName.creator'
 import {AlternativeEntityLimitContainer}         from 'core/entityLimit/AlternativeEntityLimit.container'
 import {EmptyEntityLimit}                        from 'core/entityLimit/EmptyEntityLimit'
@@ -76,7 +74,9 @@ export class EntityLimitCreator
     #createLimitTemplateInSMM1And3DS(amount: NonNullable<PossibleLimitAmount_SMM1And3DS>,) {
         return amount === NOT_APPLICABLE
             ? EntityLimitCreator.#NOT_APPLICABLE_CONTAINER
-            : lazy(() => PropertyProvider.newNumberContainer(amount, true,),)
+            : amount === UNKNOWN_CHARACTER
+                ? EntityLimitCreator.#UNKNOWN_CONTAINER
+                : lazy(() => new PropertyContainer(amount,),)
     }
 
     #createLimitTemplateInSMM2(amount: NonNullable<PossibleLimitAmount_SMM2>,) {
@@ -84,8 +84,8 @@ export class EntityLimitCreator
             ? EntityLimitCreator.#UNKNOWN_CONTAINER
             : lazy(() =>
                 typeof amount == 'number'
-                    ? PropertyProvider.newNumberContainer(amount, true,)
-                    : new NumberPropertyThatCanBeUnknownContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,),)
+                    ? new PropertyContainer(amount,)
+                    : new PropertyContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,),)
     }
 
     /**

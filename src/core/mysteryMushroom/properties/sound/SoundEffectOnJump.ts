@@ -5,11 +5,11 @@ import type {GameReferences}         from 'core/gameReference/GameReferences'
 export interface SoundEffectOnJump
     extends PropertyWithAmount<BooleanOrNotApplicable, PossibleAmount>, ClassWithGameReference<NullOr<GameReferences>> {
 
-    get haveMultipleImages(): boolean
+    /**@deprecated This field is not useful anymore */get haveMultipleImages(): boolean
 
 }
 
 export type PossibleGamesReceived = NullOr<string>
 export type PossibleValuesReceived = NullOr<| boolean | 2 | '3 images'>
 
-export type PossibleAmount = NullOr<| 0 | 1 | 2>
+export type PossibleAmount = NullOr<| 0 | 1 | 2 | 3>

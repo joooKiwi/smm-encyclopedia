@@ -1,51 +1,48 @@
 import type {Lazy}    from '@joookiwi/lazy'
 import {lazy, lazyOf} from '@joookiwi/lazy'
 
-import type {NotApplicableProperty, UnknownProperty}                                                                                           from 'core/_properties/PropertyWithEverything'
-import type {PropertyThatCanBeUnknownWithComment}                                                                                              from 'core/_properties/PropertyThatCanBeUnknownWithComment'
-import type {PossibleEnglishName}                                                                                                              from 'core/entity/Entities.types'
-import type {Entity, PossibleOtherEntities}                                                                                                    from 'core/entity/Entity'
-import type {EntityLink}                                                                                                                       from 'core/entity/loader.types'
-import type {EntityTemplate}                                                                                                                   from 'core/entity/Entity.template'
-import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                                                                        from 'core/entity/properties/instrument/InstrumentProperty'
-import type {InstrumentPropertyTemplate}                                                                                                       from 'core/entity/properties/instrument/InstrumentProperty.template'
-import type {CanMakeASoundOutOfAMusicBlock}                                                                                                    from 'core/entity/properties/instrument/loader.types'
-import type {LimitProperty}                                                                                                                    from 'core/entity/properties/limit/LimitProperty'
-import type {LimitPropertyTemplate}                                                                                                            from 'core/entity/properties/limit/LimitProperty.template'
-import type {CollectedCoinLimitType, GeneralEntityLimitType, GeneralGlobalEntityLimitType, ProjectileEntityLimitType, RenderedObjectLimitType} from 'core/entity/properties/limit/loader.types'
-import type {EntityCategory}                                                                                                                   from 'core/entityCategory/EntityCategory'
-import type {PossibleEnglishName as PossibleEnglishName_EntityLimit}                                                                           from 'core/entityLimit/EntityLimits.types'
-import type {Instrument}                                                                                                                       from 'core/instrument/Instrument'
-import type {PossibleInstrument}                                                                                                               from 'core/instrument/loader.types'
-import type {Name}                                                                                                                             from 'lang/name/Name'
-import type {PossibleGameReceived as OriginalPossibleGameReceived}                                                                             from 'lang/name/Name.builder.types'
+import type {NotApplicableProperty, UnknownProperty}                 from 'core/_properties/PropertyWithEverything'
+import type {PropertyThatCanBeUnknownWithComment}                    from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PossibleEnglishName}                                    from 'core/entity/Entities.types'
+import type {Entity, PossibleOtherEntities}                          from 'core/entity/Entity'
+import type {EntityLink}                                             from 'core/entity/loader.types'
+import type {EntityTemplate}                                         from 'core/entity/Entity.template'
+import type {InstrumentProperty}                                     from 'core/entity/properties/instrument/InstrumentProperty'
+import type {InstrumentPropertyTemplate}                             from 'core/entity/properties/instrument/InstrumentProperty.template'
+import type {LimitProperty}                                          from 'core/entity/properties/limit/LimitProperty'
+import type {LimitPropertyTemplate}                                  from 'core/entity/properties/limit/LimitProperty.template'
+import type {EntityCategory}                                         from 'core/entityCategory/EntityCategory'
+import type {PossibleEnglishName as PossibleEnglishName_EntityLimit} from 'core/entityLimit/EntityLimits.types'
+import type {Instrument}                                             from 'core/instrument/Instrument'
+import type {PossibleInstrument}                                     from 'core/instrument/loader.types'
+import type {Name}                                                   from 'lang/name/Name'
+import type {PossibleGameReceived as OriginalPossibleGameReceived}   from 'lang/name/Name.builder.types'
 
-import {PropertyContainer}                              from 'core/_properties/Property.container'
-import {PropertyProvider}                               from 'core/_properties/Property.provider'
-import {PropertyThatCanBeUnknownWithCommentContainer}   from 'core/_properties/PropertyThatCanBeUnknownWithComment.container'
-import {TemplateWithNameCreator}                        from 'core/_template/TemplateWithName.creator'
-import {EmptyEntity}                                    from 'core/entity/EmptyEntity'
-import {EntityContainer}                                from 'core/entity/Entity.container'
-import {Entities}                                       from 'core/entity/Entities'
-import {ExclusiveSM3DWEntityContainer}                  from 'core/entity/ExclusiveSM3DWEntity.container'
-import {ExclusiveSMM1EntityContainer}                   from 'core/entity/ExclusiveSMM1Entity.container'
-import {ExclusiveSMM2EntityContainer}                   from 'core/entity/ExclusiveSMM2Entity.container'
-import {EntityReferencesContainer}                      from 'core/entity/properties/EntityReferences.container'
-import {EmptyInstrumentProperty}                        from 'core/entity/properties/instrument/EmptyInstrumentProperty'
-import {GamePropertyProvider}                           from 'core/entity/properties/game/GameProperty.provider'
-import {GameStylePropertyProvider}                      from 'core/entity/properties/gameStyle/GameStyleProperty.provider'
-import {InstrumentPropertyProvider}                     from 'core/entity/properties/instrument/InstrumentProperty.provider'
-import {LimitPropertyProvider}                          from 'core/entity/properties/limit/LimitProperty.provider'
-import {PropertyContainer as PropertyInstanceContainer} from 'core/entity/properties/Property.container'
-import {ThemePropertyProvider}                          from 'core/entity/properties/theme/ThemeProperty.provider'
-import {TimePropertyProvider}                           from 'core/entity/properties/time/TimeProperty.provider'
-import {EmptyEntityCategory}                            from 'core/entityCategory/EmptyEntityCategory'
-import {EntityCategories}                               from 'core/entityCategory/EntityCategories'
-import {EntityLimits}                                   from 'core/entityLimit/EntityLimits'
-import {GameStructureProvider}                          from 'core/game/GameStructure.provider'
-import {Instruments}                                    from 'core/instrument/Instruments'
-import {UNKNOWN_CHARACTER}                              from 'util/commonVariables'
-import {ObjectHolders}                                  from 'util/holder/ObjectHolders'
+import {PropertyContainer}                                                                                          from 'core/_properties/Property.container'
+import {newBooleanContainer, newBooleanWithCommentCommentContainer, newBooleanWithCommentThatCanBeUnknownContainer} from 'core/_properties/propertyCreator'
+import {TemplateWithNameCreator}                                                                                    from 'core/_template/TemplateWithName.creator'
+import {EmptyEntity}                                                                                                from 'core/entity/EmptyEntity'
+import {EntityContainer}                                                                                            from 'core/entity/Entity.container'
+import {Entities}                                                                                                   from 'core/entity/Entities'
+import {ExclusiveSM3DWEntityContainer}                                                                              from 'core/entity/ExclusiveSM3DWEntity.container'
+import {ExclusiveSMM1EntityContainer}                                                                               from 'core/entity/ExclusiveSMM1Entity.container'
+import {ExclusiveSMM2EntityContainer}                                                                               from 'core/entity/ExclusiveSMM2Entity.container'
+import {EntityReferencesContainer}                                                                                  from 'core/entity/properties/EntityReferences.container'
+import {EmptyInstrumentProperty}                                                                                    from 'core/entity/properties/instrument/EmptyInstrumentProperty'
+import {GamePropertyProvider}                                                                                       from 'core/entity/properties/game/GameProperty.provider'
+import {GameStylePropertyProvider}                                                                                  from 'core/entity/properties/gameStyle/GameStyleProperty.provider'
+import {InstrumentPropertyProvider}                                                                                 from 'core/entity/properties/instrument/InstrumentProperty.provider'
+import {LimitPropertyProvider}                                                                                      from 'core/entity/properties/limit/LimitProperty.provider'
+import {PropertyContainer as PropertyInstanceContainer}                                                             from 'core/entity/properties/Property.container'
+import {ThemePropertyProvider}                                                                                      from 'core/entity/properties/theme/ThemeProperty.provider'
+import {TimePropertyProvider}                                                                                       from 'core/entity/properties/time/TimeProperty.provider'
+import {EmptyEntityCategory}                                                                                        from 'core/entityCategory/EmptyEntityCategory'
+import {EntityCategories}                                                                                           from 'core/entityCategory/EntityCategories'
+import {EntityLimits}                                                                                               from 'core/entityLimit/EntityLimits'
+import {GameStructureProvider}                                                                                      from 'core/game/GameStructure.provider'
+import {Instruments}                                                                                                from 'core/instrument/Instruments'
+import {UNKNOWN_CHARACTER}                                                                                          from 'util/commonVariables'
+import {ObjectHolders}                                                                                              from 'util/holder/ObjectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -116,20 +113,18 @@ export class EntityCreator
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
-    static #whereEntityLimit(entityLimit: PossibleEnglishName_EntityLimit,): EntityLimits
-    static #whereEntityLimit(entityLimit: Nullable<PossibleEnglishName_EntityLimit>,): NullOr<EntityLimits>
-    static #whereEntityLimit(entityLimit: Nullable<PossibleEnglishName_EntityLimit>,) {
+    static #getEntityLimitByNameOrAcronymOrNull(entityLimit: Nullable<PossibleEnglishName_EntityLimit>,): NullOr<EntityLimits> {
         return entityLimit == null ? null : EntityLimits.getValueByNameOrAcronym(entityLimit)
     }
 
-    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
-    static #getPropertyWhereEntityLimit<COMMENT extends NullOrString, >(entityLimit: Nullable<PossibleEnglishName_EntityLimit>, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
-    static #getPropertyWhereEntityLimit(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>, comment: NullOrString = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
+    static #getEntityLimitProperty(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
+    static #getEntityLimitProperty<COMMENT extends NullOrString, >(entityLimit: Nullable<PossibleEnglishName_EntityLimit>, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
+    static #getEntityLimitProperty(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>, comment: NullOrString = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
         return entityLimit == null
             ? NOT_APPLICABLE_CONTAINER
             : entityLimit === UNKNOWN_CHARACTER
                 ? UNKNOWN_CONTAINER
-                : new PropertyThatCanBeUnknownWithCommentContainer(this.#whereEntityLimit(entityLimit), false, comment,)
+                : new PropertyContainer(EntityLimits.getValueByNameOrAcronym(entityLimit), false, null, comment,)
     }
 
     /**
@@ -151,18 +146,19 @@ export class EntityCreator
         } = limitTemplate
 
         return LimitPropertyProvider.get.get([[editorLimit_SMM1And3DS, editorLimit_SMM2,], [generalLimit, superGlobalGeneralLimit,], powerUpLimit, projectileLimit, renderedObjectLimit, collectedObjectLimit, [otherLimit, otherLimitComment,],],
-            GameStructureProvider.get.get(this.#whereEntityLimit(editorLimit_SMM1And3DS), this.#getPropertyWhereEntityLimit(editorLimit_SMM2),),
+            GameStructureProvider.get.get(this.#getEntityLimitByNameOrAcronymOrNull(editorLimit_SMM1And3DS), this.#getEntityLimitProperty(editorLimit_SMM2),),
             [
-                PropertyProvider.newBooleanContainer<GeneralEntityLimitType, true, false, true>(generalLimit, true, false,),
-                PropertyProvider.newBooleanContainer<GeneralGlobalEntityLimitType, true, false, true>(superGlobalGeneralLimit, true, false,),
+                newBooleanWithCommentCommentContainer(generalLimit,),
+                newBooleanWithCommentCommentContainer(superGlobalGeneralLimit,),
             ],
-            PropertyProvider.newBooleanContainer(powerUpLimit, true, false,),
-            PropertyProvider.newBooleanContainer<ProjectileEntityLimitType, true, false, true>(projectileLimit, true, false,),
-            PropertyProvider.newBooleanContainer<RenderedObjectLimitType, true, false, true>(renderedObjectLimit, true, false,),
-            PropertyProvider.newBooleanContainer<CollectedCoinLimitType, true, false, true>(collectedObjectLimit, true, false,),
-            this.#getPropertyWhereEntityLimit(otherLimit, otherLimitComment,),
+            newBooleanContainer(powerUpLimit,),
+            newBooleanWithCommentThatCanBeUnknownContainer(projectileLimit,),
+            newBooleanWithCommentCommentContainer(renderedObjectLimit,),
+            newBooleanContainer(collectedObjectLimit,),
+            this.#getEntityLimitProperty(otherLimit, otherLimitComment,),
         )
     }
+
 
     //region -------------------- Property helper methods (instrument) --------------------
 
@@ -198,19 +194,6 @@ export class EntityCreator
     }
 
     /**
-     * Get the property to tell if the {@link Entity current entity} (by its {@link EntityTemplate template})
-     * can make a sound out of a {@link Entities.MUSIC_BLOCK music block}.
-     *
-     * @param canMakeASoundOutOfAMusicBlock can make a sound out of a {@link Entities.MUSIC_BLOCK music block entity}
-     * @returns {@link NotApplicableProperty N/A} or [boolean & {@link PossibleCanMakeASoundOutOfAMusicBlock_Comment nullable comment}]
-     */
-    static #getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock,): CanMakeASoundOutOfAMusicBlockProperty {
-        return canMakeASoundOutOfAMusicBlock == null
-            ? NOT_APPLICABLE_CONTAINER
-            : PropertyProvider.newBooleanContainer<CanMakeASoundOutOfAMusicBlock, true, false, true>(canMakeASoundOutOfAMusicBlock, true, false,)
-    }
-
-    /**
      * Get the instrument properties of an {@link Entity entity}
      *
      * @param instrumentTemplate the instrument template
@@ -223,7 +206,7 @@ export class EntityCreator
             ? this.#EMPTY_INSTRUMENT_OBJECT
             : lazy(() => InstrumentPropertyProvider.get.get([instrument, canMakeASoundOutOfAMusicBlock,],
                 lazy(() => this.#whereInstrument(instrument),),
-                this.#getPropertyWhereCanMakeASoundOutOfAMusicBlock(canMakeASoundOutOfAMusicBlock,),
+                newBooleanWithCommentCommentContainer(canMakeASoundOutOfAMusicBlock,),
             ),)
     }
 

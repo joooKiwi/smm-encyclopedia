@@ -8,10 +8,4 @@ import type {PropertyWithAmount}       from 'core/_properties/PropertyWithAmount
  * contained in it.
  */
 export interface PropertyThatCanBeUnknownWithAmount<T, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, >
-    extends PropertyWithAmount<T, AMOUNT>, PropertyThatCanBeUnknown<T, IS_UNKNOWN> {
-
-}
-
-export type BooleanPropertyThatCanBeUnknownWithAmount<B extends NullOrBoolean = NullOrBoolean, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, > = PropertyThatCanBeUnknownWithAmount<B, IS_UNKNOWN, AMOUNT>
-export type NumberPropertyThatCanBeUnknownWithAmount<N extends NullOrNumber = NullOrNumber, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, > = PropertyThatCanBeUnknownWithAmount<N, IS_UNKNOWN, AMOUNT>
-export type StringPropertyThatCanBeUnknownWithAmount<S extends NullOrString = NullOrString, IS_UNKNOWN extends boolean = boolean, AMOUNT extends NullOrNumber = NullOrNumber, > = PropertyThatCanBeUnknownWithAmount<S, IS_UNKNOWN, AMOUNT>
+    extends PropertyWithAmount<T, AMOUNT>, PropertyThatCanBeUnknown<T, IS_UNKNOWN> {}

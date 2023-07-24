@@ -1,7 +1,7 @@
 import type {PossibleTranslationKeys, PossibleValuesReceived, SoundEffectOnMovement} from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
 import type {ExtendedMap}                                                            from 'util/extended/ExtendedMap'
 
-import {PropertyProvider}     from 'core/_properties/Property.provider'
+import {NOT_APPLICABLE}       from 'util/commonVariables'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
@@ -16,22 +16,34 @@ export class SoundEffectOnMovementContainer
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<PossibleValuesReceived, SoundEffectOnMovement> = new ExtendedMapContainer()
 
-    readonly #property
+    readonly #value
+    readonly #translationKey
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor(value: PossibleValuesReceived,) {
-        this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,)
+        if (value == null) {
+            this.#value = NOT_APPLICABLE as NotApplicable
+            this.#translationKey = null
+        } else if (typeof value == 'boolean') {
+            this.#value = value
+            this.#translationKey = null
+        } else {
+            this.#value = true
+            this.#translationKey = value
+        }
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): BooleanOrNotApplicable {
-        return this.#property.value
+        return this.#value
     }
 
     public get translationKey(): PossibleTranslationKeys {
-        return this.#property.comment
+        return this.#translationKey
     }
 
     //endregion -------------------- Getter methods --------------------
