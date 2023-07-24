@@ -1,5 +1,5 @@
-import type {ClassThatCanBeUnknown} from 'core/_properties/ClassThatCanBeUnknown'
 import type {Property}              from 'core/_properties/Property'
+import type {ClassThatCanBeUnknown} from 'util/ClassThatCanBeUnknown'
 
 /**
  * A generic property with a value

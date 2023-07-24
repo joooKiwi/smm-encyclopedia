@@ -1,5 +1,5 @@
-import type {ClassWithAmount} from 'core/_properties/ClassWithAmount'
 import type {Property}        from 'core/_properties/Property'
+import type {ClassWithAmount} from 'util/ClassWithAmount'
 
 /**
  * A generic property with a value

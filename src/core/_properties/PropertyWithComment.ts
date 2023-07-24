@@ -1,5 +1,5 @@
-import type {ClassWithComment} from 'core/_properties/ClassWithComment'
 import type {Property}         from 'core/_properties/Property'
+import type {ClassWithComment} from 'util/ClassWithComment'
 
 /**
  * A generic property with a value
