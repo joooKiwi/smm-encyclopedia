@@ -45,13 +45,17 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
 
     #tableContent(optionInterpreter: APP,): readonly SingleTableContent[] {
         const content = [] as SingleTableContent[]
-        for (const enumerable of optionInterpreter.iterable) {
+        const iterator = optionInterpreter.iterable[Symbol.iterator]()
+        let enumerableIterator = iterator.next()
+        while (!enumerableIterator.done) {
+            const enumerable = enumerableIterator.value
             optionInterpreter.callbackToGetEnumerable = () => enumerable
 
             content.push([
                 enumerable.englishName,
                 ...nonNull(optionInterpreter.tableOptions).map(it => optionInterpreter.createTableContent(it)).flat(),
             ])
+            enumerableIterator = iterator.next()
         }
         return content
     }
