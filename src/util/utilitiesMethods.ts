@@ -67,7 +67,7 @@ export function newIterator<const T, >(collection: CollectionHolder<T>, conditio
  * @param games The {@link GameCollection collection} of game to get if they can be used
  * @param iterator The {@link IterableIterator} to loop over and retrieve them in the {@link Games.get}
  */
-export function* newIterableIterator<const T extends ClassWithReference<GameProperty>, >(games: GameCollection, iterator: IterableIterator<T>,): IterableIterator<T> {
+export function* newIterableIterator<const T extends ClassWithReference<GameProperty>, >(games: GameCollection, iterator: IterableIterator<T>,): Generator<T, never, T> {
     const gameSize = games.size
 
     let value = iterator.next() as IteratorResult<T, T>
@@ -80,6 +80,7 @@ export function* newIterableIterator<const T extends ClassWithReference<GameProp
             }
         value = iterator.next()
     }
+    throw new ReferenceError('The iterable has reached its end point and no longer have values.',)
 }
 
 /**
