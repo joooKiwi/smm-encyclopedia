@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="File test (Other word in the game)" type="JavaScriptTestRunnerJest" folderName="File">
+    <node-interpreter value="project" />
+    <node-options value="" />
+    <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+    <working-dir value="$PROJECT_DIR$" />
+    <envs />
+    <scope-kind value="SUITE" />
+    <test-file value="$PROJECT_DIR$/src/__test__/core/otherWordInTheGame/OtherWordInTheGame.file.test.ts" />
+    <test-names>
+      <test-name value="Other word in the game (file test)" />
+    </test-names>
+    <method v="2" />
+  </configuration>
+</component>
