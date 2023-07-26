@@ -96,8 +96,8 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
         return GlobalAppOption.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<GlobalAppOption> {
-        yield* GlobalAppOption.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<GlobalAppOption> {
+        return GlobalAppOption.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

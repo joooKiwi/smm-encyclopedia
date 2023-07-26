@@ -1,6 +1,6 @@
 import './EntityLimitAppOption.scss'
 
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
@@ -201,8 +201,8 @@ export abstract class EntityLimitAppOption
         return EntityLimitAppOption.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityLimitAppOption> {
-        yield* EntityLimitAppOption.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EntityLimitAppOption> {
+        return EntityLimitAppOption.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
@@ -447,8 +447,8 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
         return OtherWordInTheGames.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<OtherWordInTheGames> {
-        yield* OtherWordInTheGames.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<OtherWordInTheGames> {
+        return OtherWordInTheGames.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

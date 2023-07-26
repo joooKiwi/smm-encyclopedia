@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import type {Dispatch, SetStateAction}                          from 'react'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
@@ -293,8 +293,8 @@ export abstract class ViewDisplays
         return ViewDisplays.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<ViewDisplays> {
-        yield* ViewDisplays.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<ViewDisplays> {
+        return ViewDisplays.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

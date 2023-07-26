@@ -1,6 +1,6 @@
 import './OfficialNotifications.scss'
 
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import type {Lazy}                                              from '@joookiwi/lazy'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
@@ -737,8 +737,8 @@ export class OfficialNotifications
         return OfficialNotifications.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<OfficialNotifications> {
-        yield* OfficialNotifications.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<OfficialNotifications> {
+        return OfficialNotifications.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 import {Fragment}                                               from 'react'
@@ -377,8 +377,8 @@ export class EntityAppOption
         return EntityAppOption.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityAppOption> {
-        yield* EntityAppOption.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EntityAppOption> {
+        return EntityAppOption.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

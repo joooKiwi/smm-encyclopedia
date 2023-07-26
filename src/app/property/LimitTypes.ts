@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
@@ -19,7 +19,7 @@ export abstract class LimitTypes
 
     public static readonly ALL =           new class EntityLimitTypes_All extends LimitTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
+        public override get iterator(): CollectionIterator<EntityLimits> {
             return EntityLimits[Symbol.iterator]()
         }
 
@@ -179,8 +179,8 @@ export abstract class LimitTypes
         return LimitTypes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<LimitTypes> {
-        yield* LimitTypes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<LimitTypes> {
+        return LimitTypes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

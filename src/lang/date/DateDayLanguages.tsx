@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                            from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}                        from '@joookiwi/collection'
 import type {CompanionEnumWithParentSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnumWithParent, EnumWithParent}                          from '@joookiwi/enumerable'
 
@@ -282,8 +282,8 @@ export abstract class DateDayLanguages
         return DateDayLanguages.CompanionEnum.get.values
     }
 
-    public static override* [Symbol.iterator](): IterableIterator<DateDayLanguages> {
-        yield* DateDayLanguages.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<DateDayLanguages> {
+        return DateDayLanguages.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

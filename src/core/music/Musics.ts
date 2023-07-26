@@ -1,5 +1,5 @@
 import type {Lazy}                                              from '@joookiwi/lazy'
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {lazyOf}                                                 from '@joookiwi/lazy'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
@@ -502,8 +502,8 @@ export class Musics
         return Musics.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Musics> {
-        yield* Musics.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Musics> {
+        return Musics.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

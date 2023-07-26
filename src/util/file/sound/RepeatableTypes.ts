@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
@@ -95,8 +95,8 @@ export abstract class RepeatableTypes
         return RepeatableTypes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<RepeatableTypes> {
-        yield* RepeatableTypes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<RepeatableTypes> {
+        return RepeatableTypes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------
