@@ -1,4 +1,4 @@
-import type {PossibleModalSize}                                    from 'bootstrap/modal/Modal.types'
+import type {PossibleModalSize}                                    from 'bootstrap/modal/ModalInstance.declaration'
 import type {HTMLDivProperties}                                    from 'util/react/html/HTMLDivProperties'
 import type {ReactProperties, ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
@@ -20,7 +20,7 @@ interface ModalContainerProperties
 }
 
 const DEFAULT_VERTICALLY_CENTERED = false
-const DEFAULT_SIZE: PossibleModalSize = 'md'
+const DEFAULT_SIZE = 'md' satisfies PossibleModalSize
 
 /**
  *

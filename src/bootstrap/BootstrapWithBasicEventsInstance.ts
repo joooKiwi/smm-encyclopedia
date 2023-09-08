@@ -1,47 +1,59 @@
 import type BaseComponent      from 'bootstrap/js/dist/base-component'
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
-import type {StaticBootstrapInstance}                                           from 'bootstrap/BootstrapInstance.types'
-import type {BootstrapWithBasicEventCallbackReceived, BootstrapWithBasicEvents} from 'bootstrap/BootstrapWithBasicEventsInstance.types'
+import type {BootstrapWithBasicEventInstanceDeclaration, InstanceWithEventCallback} from 'bootstrap/BootstrapWithBasicEventInstance.declaration'
+import type {EventHolder}                                                           from 'bootstrap/event/EventHolder'
 
 import {BootstrapInstance} from 'bootstrap/BootstapInstance'
 
-export abstract class BootstrapWithBasicEventsInstance<const STATIC_INSTANCE extends StaticBootstrapInstance<OPTION>,
-    const INSTANCE extends BaseComponent,
-    const OPTION extends ComponentOptions,
+export abstract class BootstrapWithBasicEventsInstance<const out INSTANCE extends BaseComponent,
+    const out OPTION extends ComponentOptions,
     const ELEMENT extends HTMLElement = HTMLElement,
-    const ID extends string = string, >
-    extends BootstrapInstance<STATIC_INSTANCE, INSTANCE, OPTION, ELEMENT, ID> {
+    const out ID extends string = string,
+    SHOW_EVENT_TYPE extends string = string,
+    SHOWN_EVENT_TYPE extends string = string,
+    HIDE_EVENT_TYPE extends string = string,
+    HIDDEN_EVENT_TYPE extends string = string, >
+    extends BootstrapInstance<INSTANCE, OPTION, ELEMENT, ID>
+    implements BootstrapWithBasicEventInstanceDeclaration<INSTANCE, ELEMENT, ID, SHOW_EVENT_TYPE, SHOWN_EVENT_TYPE, HIDE_EVENT_TYPE, HIDDEN_EVENT_TYPE> {
 
-    protected constructor(instance: STATIC_INSTANCE, element: ID | ELEMENT, options: Partial<OPTION>) {
-        super(instance, element, options)
+    protected constructor(element: ID | ELEMENT, options: Partial<OPTION>,) {
+        super(element, options,)
+    }
+
+    public abstract get onShowEvent(): NullOr<EventHolder<ELEMENT, SHOW_EVENT_TYPE>>
+    public abstract set onShowEvent(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, SHOW_EVENT_TYPE>>,)
+
+    public onShow(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, SHOW_EVENT_TYPE>>,): this {
+        this.onShowEvent = value
+        return this
     }
 
 
-    public on(callbacks: Nullable<Partial<BootstrapWithBasicEvents<this>>>,): this {
-        if (callbacks == null)
-            return this
+    public abstract get onShownEvent(): NullOr<EventHolder<ELEMENT, SHOWN_EVENT_TYPE>>
+    public abstract set onShownEvent(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, SHOWN_EVENT_TYPE>>,)
 
-        if (callbacks.show != null)
-            this.onShow(callbacks.show)
-        if (callbacks.shown != null)
-            this.onShown(callbacks.shown)
-        if (callbacks.hide != null)
-            this.onHide(callbacks.hide)
-        if (callbacks.hidden != null)
-            this.onHidden(callbacks.hidden)
-        return this._on(callbacks)
+    public onShown(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, SHOWN_EVENT_TYPE>>,): this {
+        this.onShownEvent = value
+        return this
     }
 
-    protected abstract _on(callbacks: Partial<BootstrapWithBasicEvents<this>>,): this
+
+    public abstract get onHideEvent(): NullOr<EventHolder<ELEMENT, HIDE_EVENT_TYPE>>
+    public abstract set onHideEvent(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, HIDE_EVENT_TYPE>>,)
+
+    public onHide(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, HIDE_EVENT_TYPE>>,): this {
+        this.onHideEvent = value
+        return this
+    }
 
 
-    public abstract onShow(callback: BootstrapWithBasicEventCallbackReceived<this>,): this
+    public abstract get onHiddenEvent(): NullOr<EventHolder<ELEMENT, HIDDEN_EVENT_TYPE>>
+    public abstract set onHiddenEvent(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, HIDDEN_EVENT_TYPE>>,)
 
-    public abstract onShown(callback: BootstrapWithBasicEventCallbackReceived<this>,): this
-
-    public abstract onHide(callback: BootstrapWithBasicEventCallbackReceived<this>,): this
-
-    public abstract onHidden(callback: BootstrapWithBasicEventCallbackReceived<this>,): this
+    public onHidden(value: Nullable<| InstanceWithEventCallback<this> | EventHolder<ELEMENT, HIDDEN_EVENT_TYPE>>,): this {
+        this.onHiddenEvent = value
+        return this
+    }
 
 }

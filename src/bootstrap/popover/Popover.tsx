@@ -3,16 +3,20 @@ import {useEffect} from 'react'
 import type {PopoverConfiguration}                from 'bootstrap/popover/Popover.types'
 import type {ReactPropertiesWithOptionalChildren} from 'util/react/ReactProperties'
 
-import {PopoverInstance} from 'bootstrap/popover/PopoverInstance'
+import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
+import {PopoverInstance}          from 'bootstrap/popover/PopoverInstance'
 
 /**
- * Create a new {@link bootstrap.Popover Popover} instance once the element is rendered
+ * Create a new {@link bootstrap.Popover Popover} instance
  *
  * @param properties the properties received (containing the content, the option & the id)
  * @reactComponent
- * @see https://getbootstrap.com/docs/5.1/components/popovers/
+ * @see https://getbootstrap.com/docs/5.2/components/popovers
  */
 export default function Popover<const T extends ReactElement = ReactElement, >({children, option, on: triggers, elementId,}: ReactPropertiesWithOptionalChildren<PopoverConfiguration, T>,) {
-    useEffect(() => [elementId].flat().forEach(elementId => new PopoverInstance(elementId, option, triggers,)))
+    useEffect(() => {
+        const instance = BootstrapInstanceHandler.get.add(elementId, new PopoverInstance(elementId, option, triggers,),)
+        return () => BootstrapInstanceHandler.get.remove(instance,).destroy()
+    },)
     return children ?? null
 }

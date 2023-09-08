@@ -1,12 +1,18 @@
 import {Modal} from 'bootstrap'
 
-import type {ModalEventCallbackReceived, ModalEvents, ModalEventsReceived} from 'bootstrap/modal/Modal.types'
+import type {EventHolder}                                  from 'bootstrap/event/EventHolder'
+import type {ModalEventCallback, ModalInstanceDeclaration} from 'bootstrap/modal/ModalInstance.declaration'
+import type {ModalEvents}                                  from 'bootstrap/modal/ModalEvents'
 
-import {BootstrapInstance}                from 'bootstrap/BootstapInstance'
 import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEventsInstance'
+import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
 
-export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >
-    extends BootstrapWithBasicEventsInstance<typeof ModalInstance, Modal, Modal.Options, ELEMENT, ID> {
+export class ModalInstance<const ELEMENT extends HTMLElement = HTMLElement,
+    const out ID extends string = string, >
+    extends BootstrapWithBasicEventsInstance<Modal, Modal.Options, ELEMENT, ID, Modal.Events.show, Modal.Events.shown, Modal.Events.hide, Modal.Events.hidden>
+    implements ModalInstanceDeclaration<ELEMENT, ID> {
+
+    //region -------------------- Fields --------------------
 
     public static DEFAULT_OPTIONS: Modal.Options = Modal.Default
     /** @see Modal.Events.show */
@@ -20,75 +26,138 @@ export class ModalInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends
     /** @see Modal.Events.hidePrevented */
     public static readonly HIDE_PREVENTED_EVENT = 'hidePrevented.bs.modal' as Modal.Events.hidePrevented
 
-    public constructor(element: | ID | ELEMENT, options: Partial<Modal.Options> = ModalInstance.DEFAULT_OPTIONS, callbacks: ModalEventsReceived = null,) {
-        super(ModalInstance, element, options,)
-        this.on(callbacks)
+    #onShowEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.show>>
+    #onShownEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.shown>>
+    #onHideEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.hide>>
+    #onHiddenEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.hidden>>
+    #onHidePreventedEvent?: NullOr<EventHolder<ELEMENT, Modal.Events.hidePrevented>>
+
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(element: | ID | ELEMENT, options: Partial<Modal.Options> = ModalInstance.DEFAULT_OPTIONS, callbacks: Nullable<Partial<ModalEvents<ModalInstance<ELEMENT, ID>>>> = null,) {
+        super(element, options,)
+
+        if (callbacks == null)
+            return
+        this.onShow(callbacks.show,)
+            .onShown(callbacks.shown,)
+            .onHide(callbacks.hide,)
+            .onHidden(callbacks.hidden,)
+            .onHidePrevented(callbacks.hidden,)
     }
+
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter & setter methods --------------------
+
+    public override get onShowEvent(): NullOr<EventHolder<ELEMENT, Modal.Events.show>> {
+        return this.#onShowEvent ?? null
+    }
+
+    public override set onShowEvent(value: Nullable<| ModalEventCallback<this> | EventHolder<ELEMENT, Modal.Events.show>>,) {
+        if (value == null) {
+            this.onShowEvent?.destroy()
+            this.#onShowEvent = null
+            return
+        }
+        if (value instanceof Function) {
+            this.#onShowEvent = new PassiveEventHolder(this.element, ModalInstance.SHOW_EVENT, event => value(this, event,),)
+            return
+        }
+        this.#onShowEvent = value
+    }
+
+
+    public override get onShownEvent(): NullOr<EventHolder<ELEMENT, Modal.Events.shown>> {
+        return this.#onShownEvent ?? null
+    }
+
+    public override set onShownEvent(value: Nullable<| ModalEventCallback<this> | EventHolder<ELEMENT, Modal.Events.shown>>,) {
+        if (value == null) {
+            this.onShownEvent?.destroy()
+            this.#onShownEvent = null
+            return
+        }
+        if (value instanceof Function) {
+            this.#onShownEvent = new PassiveEventHolder(this.element, ModalInstance.SHOWN_EVENT, event => value(this, event,),)
+            return
+        }
+        this.#onShownEvent = value
+    }
+
+
+    public override get onHideEvent(): NullOr<EventHolder<ELEMENT, Modal.Events.hide>> {
+        return this.#onHideEvent ?? null
+    }
+
+    public override set onHideEvent(value: Nullable<| ModalEventCallback<this> | EventHolder<ELEMENT, Modal.Events.hide>>,) {
+        if (value == null) {
+            this.onHideEvent?.destroy()
+            this.#onHideEvent = null
+            return
+        }
+        if (value instanceof Function) {
+            this.#onHideEvent = new PassiveEventHolder(this.element, ModalInstance.HIDE_EVENT, event => value(this, event,),)
+            return
+        }
+        this.#onHideEvent = value
+    }
+
+
+    public override get onHiddenEvent(): NullOr<EventHolder<ELEMENT, Modal.Events.hidden>> {
+        return this.#onHiddenEvent ?? null
+    }
+
+    public override set onHiddenEvent(value: Nullable<| ModalEventCallback<this> | EventHolder<ELEMENT, Modal.Events.hidden>>,) {
+        if (value == null) {
+            this.onHiddenEvent?.destroy()
+            this.#onHiddenEvent = null
+            return
+        }
+        if (value instanceof Function) {
+            this.#onHiddenEvent = new PassiveEventHolder(this.element, ModalInstance.HIDDEN_EVENT, event => value(this, event,),)
+            return
+        }
+        this.#onHiddenEvent = value
+    }
+
+
+    public get onHidePreventedEvent(): NullOr<EventHolder<ELEMENT, Modal.Events.hidePrevented>> {
+        return this.#onHidePreventedEvent ?? null
+    }
+
+    public set onHidePreventedEvent(value: Nullable<| ModalEventCallback<this> | EventHolder<ELEMENT, Modal.Events.hidePrevented>>,) {
+        if (value == null) {
+            this.onHidePreventedEvent?.destroy()
+            this.#onHidePreventedEvent = null
+            return
+        }
+        if (value instanceof Function) {
+            this.#onHidePreventedEvent = new PassiveEventHolder(this.element, ModalInstance.HIDE_PREVENTED_EVENT, event => value(this, event,),)
+            return
+        }
+        this.#onHidePreventedEvent = value
+    }
+
+    public onHidePrevented(value: Nullable<| ModalEventCallback<this> | EventHolder<ELEMENT, Modal.Events.hidePrevented>>,): this {
+        this.onHidePreventedEvent = value
+        return this
+    }
+
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
 
     protected override _createInstance(options: Partial<Modal.Options>,): Modal {
         return Modal.getOrCreateInstance(this.element, options,)
     }
 
+    public override destroy(): void {
+        this.onShowEvent = this.onShownEvent = this.onHideEvent = this.onHiddenEvent = this.onHidePreventedEvent = null
 
-    #addEventListener(type: string, callback: ModalEventCallbackReceived<this>,): this {
-        if (callback != null)
-            this.element.addEventListener(type, event => callback(this, event,))
-        return this
+        // const element = this.element
+        // element.addEventListener(ModalInstance.HIDDEN_EVENT, () => Modal.getInstance(element,)?.dispose(), {once: true, passive: true,},)
     }
 
-    /**
-     * @param callbacks
-     * @see https://getbootstrap.com/docs/5.1/components/modal/#events
-     */
-    protected override _on(callbacks: Partial<ModalEvents<this>>,): this {
-        if (callbacks.hidePrevented != null)
-            this.onHidePrevented(callbacks.hidePrevented)
-        return this
-    }
-
-    /**
-     * @param callback
-     * @see Modal.Events.show
-     */
-    public override onShow(callback: ModalEventCallbackReceived<this>,): this {
-        return this.#addEventListener(ModalInstance.SHOW_EVENT, callback,)
-    }
-
-    /**
-     * @param callback
-     * @see Modal.Events.shown
-     */
-    public override onShown(callback: ModalEventCallbackReceived<this>,): this {
-        return this.#addEventListener(ModalInstance.SHOWN_EVENT, callback,)
-    }
-
-    /**
-     * @param callback
-     * @see Modal.Events.hide
-     */
-    public override onHide(callback: ModalEventCallbackReceived<this>): this {
-        return this.#addEventListener(ModalInstance.HIDE_EVENT, callback,)
-    }
-
-    /**
-     * @param callback
-     * @see Modal.Events.hidden
-     */
-    public override onHidden(callback: ModalEventCallbackReceived<this>,): this {
-        return this.#addEventListener(ModalInstance.HIDDEN_EVENT, callback,)
-    }
-
-    /**
-     * @param callback
-     * @see Modal.Events.hidePrevented
-     */
-    public onHidePrevented(callback: ModalEventCallbackReceived<this>,): this {
-        return this.#addEventListener(ModalInstance.HIDE_PREVENTED_EVENT, callback,)
-    }
-
-
-    public static getInstance<ELEMENT extends HTMLElement = HTMLElement, ID extends string = string, >(element: | ELEMENT | ID,): ModalInstance<ELEMENT, ID> {
-        return BootstrapInstance._getInstance(ModalInstance, element)
-    }
+    //endregion -------------------- Methods --------------------
 
 }

@@ -1,6 +1,6 @@
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
-export interface BootstrapConfigurationWithNoOption<EVENTS, ID extends PossibleIds = PossibleIds, > {
+export interface BootstrapConfigurationWithNoOption<EVENTS, ID extends string = string, > {
 
     readonly elementId: ID
 
@@ -8,11 +8,9 @@ export interface BootstrapConfigurationWithNoOption<EVENTS, ID extends PossibleI
 
 }
 
-export interface BootstrapConfiguration<OPTION extends ComponentOptions, EVENTS, ID extends PossibleIds = PossibleIds, >
+export interface BootstrapConfiguration<OPTION extends ComponentOptions, EVENTS, ID extends string = string, >
     extends BootstrapConfigurationWithNoOption<EVENTS, ID> {
 
-    readonly option: Partial<OPTION>
+    readonly option?: Partial<OPTION>
 
 }
-
-export type PossibleIds = | string | string[]

@@ -1,6 +1,6 @@
 import type {Dispatch, SetStateAction} from 'react'
 
-import type {PopoverOrientation} from 'bootstrap/popover/Popover.types'
+import type {PopoverOrientation} from 'bootstrap/popover/PopoverInstance.declaration'
 import type {Name}               from 'lang/name/Name'
 import type {ReactProperties}    from 'util/react/ReactProperties'
 import type {ReactState}         from 'util/react/ReactState'

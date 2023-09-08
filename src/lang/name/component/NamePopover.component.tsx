@@ -1,7 +1,7 @@
 import {Popover}                                       from 'bootstrap'
 import {Component, type Dispatch, type SetStateAction} from 'react'
 
-import type {PopoverOrientation}                                       from 'bootstrap/popover/Popover.types'
+import type {PopoverOrientation}                                       from 'bootstrap/popover/PopoverInstance.declaration'
 import type {Name}                                                     from 'lang/name/Name'
 import type {NamePopoverProperties, NamePopoverStates, NameProperties} from 'lang/name/component/Name.properties'
 import type {ReactComponent}                                           from 'util/react/ReactComponent'
