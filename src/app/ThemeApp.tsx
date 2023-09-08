@@ -75,7 +75,7 @@ export default class ThemeApp
 
         return new class implements AppInterpreterWithTable<Themes, ThemeAppOption> {
 
-            public get iterable(): IterableIterator<Themes> {
+            public get iterable() {
                 return newIterableIterator($this.props.games, $this.type.iterator,)
             }
 
