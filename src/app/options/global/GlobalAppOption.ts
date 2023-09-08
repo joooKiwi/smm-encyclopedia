@@ -1,4 +1,4 @@
-import type {CollectionHolder}                                  from '@joookiwi/collection'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum}                                          from '@joookiwi/enumerable'
 
