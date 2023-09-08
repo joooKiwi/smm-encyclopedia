@@ -1,4 +1,4 @@
-import type {Popover} from 'bootstrap'
+import type Popover from 'bootstrap/js/dist/popover'
 
 import type {BootstrapConfiguration} from 'bootstrap/Bootstrap.types'
 import type {PopoverEvents}          from 'bootstrap/popover/PopoverEvents'

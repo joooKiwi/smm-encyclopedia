@@ -1,4 +1,4 @@
-import {Tooltip} from 'bootstrap'
+import Tooltip from 'bootstrap/js/dist/tooltip'
 
 import type {EventHolder}                                      from 'bootstrap/event/EventHolder'
 import type {TooltipEvents}                                    from 'bootstrap/tooltip/TooltipEvents'

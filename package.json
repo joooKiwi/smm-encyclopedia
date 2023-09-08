@@ -65,7 +65,7 @@
     "@joookiwi/enumerable": "^3.1.0",
     "@joookiwi/lazy": "^1.1.1",
     "assert": "^2.1.0",
-    "bootstrap": "^5.2.3",
+    "bootstrap": "^5.3.1",
     "bootstrap-icons": "^1.10.5",
     "i18next": "^23.5.1",
     "react": "^18.2.0",

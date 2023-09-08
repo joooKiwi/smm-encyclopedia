@@ -1,5 +1,5 @@
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
-import {Offcanvas}             from 'bootstrap'
+import Offcanvas               from 'bootstrap/js/dist/offcanvas'
 
 import type {OffcanvasEvents}                                      from 'bootstrap/offcanvas/OffcanvasEvents'
 import type {OffcanvasEventCallback, OffcanvasInstanceDeclaration} from 'bootstrap/offcanvas/OffcanvasInstance.declaration'

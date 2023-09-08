@@ -1,5 +1,6 @@
-import {Popover}                                       from 'bootstrap'
-import {Component, type Dispatch, type SetStateAction} from 'react'
+import type {Dispatch, SetStateAction} from 'react'
+import Popover                         from 'bootstrap/js/dist/popover'
+import {Component}                     from 'react'
 
 import type {PopoverOrientation}                                       from 'bootstrap/popover/PopoverInstance.declaration'
 import type {Name}                                                     from 'lang/name/Name'

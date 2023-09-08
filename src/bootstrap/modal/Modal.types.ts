@@ -1,4 +1,4 @@
-import type {Modal} from 'bootstrap'
+import type Modal from 'bootstrap/js/dist/modal'
 
 import type {BootstrapConfiguration} from 'bootstrap/Bootstrap.types'
 import type {ModalEvents}            from 'bootstrap/modal/ModalEvents'
