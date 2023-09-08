@@ -18,5 +18,5 @@ export function getUserLanguage(): ProjectLanguages {
     const locale = (navigator.languages?.[0] ?? navigator.language).trim().toLowerCase()
 
     return userLanguage = ProjectLanguages.values.find(it => locale.includes(it.projectAcronym.toLowerCase()))
-        ?? ProjectLanguages.default
+        ?? ProjectLanguages.defaultValue
 }

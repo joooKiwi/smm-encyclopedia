@@ -671,7 +671,7 @@ export abstract class EveryLanguages
     }
 
     public get isDefaultLanguage(): boolean {
-        return this === EveryLanguages.default
+        return this === EveryLanguages.defaultValue
     }
 
     //region -------------------- Characters getter methods --------------------
@@ -905,16 +905,16 @@ export abstract class EveryLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    public static get default(): EveryLanguages {
-        return EveryLanguages.CompanionEnum.get.default
+    public static get defaultValue(): EveryLanguages {
+        return EveryLanguages.CompanionEnum.get.defaultValue
     }
 
-    public static set default(value: PossibleEnumerableValueBy<EveryLanguages>,) {
-        EveryLanguages.CompanionEnum.get.default = value
+    public static set defaultValue(value: PossibleEnumerableValueBy<EveryLanguages>,) {
+        EveryLanguages.CompanionEnum.get.defaultValue = value
     }
 
-    public static setDefault(value: PossibleEnumerableValueBy<EveryLanguages>,): typeof EveryLanguages {
-        EveryLanguages.CompanionEnum.get.setDefault(value,)
+    public static setDefaultValue(value: PossibleEnumerableValueBy<EveryLanguages>,): typeof EveryLanguages {
+        EveryLanguages.CompanionEnum.get.setDefaultValue(value,)
         return EveryLanguages
     }
 

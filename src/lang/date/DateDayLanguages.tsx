@@ -9,7 +9,7 @@ import {EveryLanguages}   from 'lang/EveryLanguages'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
 export abstract class DateDayLanguages
-    extends EnumWithParent<Ordinals, Names, ProjectLanguages> {
+    extends EnumWithParent<ProjectLanguages, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
@@ -269,7 +269,7 @@ export abstract class DateDayLanguages
     //region -------------------- Enum methods --------------------
 
     public static get default(): DateDayLanguages {
-        return DateDayLanguages.getValue(ProjectLanguages.default)
+        return DateDayLanguages.getValue(ProjectLanguages.defaultValue)
     }
 
     public static getValue(value: PossibleEnumerableValueBy<| ProjectLanguages | DateDayLanguages | EveryLanguages>,): DateDayLanguages {

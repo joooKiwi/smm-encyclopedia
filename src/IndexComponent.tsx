@@ -17,7 +17,7 @@ function FunctionIndexComponent() {
     ProjectLanguages.onSetCurrentEvent = setCurrentLanguage
     ViewDisplays.setCurrentEvent = setViewDisplay
 
-    return <IntlProvider locale={(currentLanguage ?? EveryLanguages.default).internationalAcronym}
+    return <IntlProvider locale={(currentLanguage ?? EveryLanguages.defaultValue).internationalAcronym}
                          key={`reactLanguageProvider (${currentLanguage} - ${viewDisplayName ?? 'default view display'})`}>
         <React.StrictMode>
             <Routes/>

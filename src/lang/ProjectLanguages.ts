@@ -521,16 +521,16 @@ export class ProjectLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    public static get default(): ProjectLanguages {
-        return ProjectLanguages.getValueByLanguage(EveryLanguages.default)
+    public static get defaultValue(): ProjectLanguages {
+        return ProjectLanguages.getValueByLanguage(EveryLanguages.defaultValue)
     }
 
-    public static set default(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,) {
-        ProjectLanguages.setDefault(value)
+    public static set defaultValue(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,) {
+        ProjectLanguages.setDefaultValue(value)
     }
 
-    public static setDefault(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): typeof ProjectLanguages {
-        EveryLanguages.CompanionEnum.get.setDefault(value instanceof ProjectLanguages ? value.language : value)
+    public static setDefaultValue(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): typeof ProjectLanguages {
+        EveryLanguages.CompanionEnum.get.setDefaultValue(value instanceof ProjectLanguages ? value.language : value)
         return ProjectLanguages
     }
 

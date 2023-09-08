@@ -154,16 +154,16 @@ export abstract class Validators
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    public static get default(): Validators {
-        return Validators.CompanionEnum.get.default
+    public static get defaultValue(): Validators {
+        return Validators.CompanionEnum.get.defaultValue
     }
 
-    public static set default(value: PossibleEnumerableValueBy<Validators>,) {
-        Validators.CompanionEnum.get.default = value
+    public static set defaultValue(value: PossibleEnumerableValueBy<Validators>,) {
+        Validators.CompanionEnum.get.defaultValue = value
     }
 
-    public static setDefault(value: PossibleEnumerableValueBy<Validators>,): typeof Validators {
-        Validators.CompanionEnum.get.setDefault(value,)
+    public static setDefaultValue(value: PossibleEnumerableValueBy<Validators>,): typeof Validators {
+        Validators.CompanionEnum.get.setDefaultValue(value,)
         return Validators
     }
 
