@@ -2,37 +2,30 @@ import type {CollectionHolder, CollectionIterator}              from '@joookiwi/
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}                                  from 'app/options/MiiCostumeAppOption.types'
-import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
-import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
-import type {MiiCostumes}                                      from 'core/miiCostume/MiiCostumes'
+import type {AppOption}           from 'app/options/AppOption'
+import type {Names, Ordinals}     from 'app/options/MiiCostumeAppOption.types'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {MiiCostumes}         from 'core/miiCostume/MiiCostumes'
 
-import {CommonOptions}                 from 'app/options/CommonOptions'
-import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
-import {EmptyAppOption}                from 'app/options/component/EmptyAppOption'
-import Image                           from 'app/tools/images/Image'
-import {MiiCostumeCategories}          from 'core/miiCostumeCategory/MiiCostumeCategories'
-import {contentTranslation}            from 'lang/components/translationMethods'
+import {CommonOptions}        from 'app/options/CommonOptions'
+import Image                  from 'app/tools/images/Image'
+import {MiiCostumeCategories} from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {contentTranslation}   from 'lang/components/translationMethods'
 
 /**
  * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null
  * @todo Change CATEGORY to use {IMAGE, TEXT or NONE} instead of 2 different options.
  */
 export abstract class MiiCostumeAppOption
-    extends Enum<Ordinals, Names> {
+    extends Enum<Ordinals, Names>
+    implements AppOption<MiiCostumes> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly IMAGE =                 new class MiiCostumeAppOption_Image extends MiiCostumeAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
-
-                return <Image file={enumeration.imageFile}/>
-            }
+        protected override _createContentOption(enumeration: MiiCostumes,) {
+            return <Image file={enumeration.imageFile}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -42,8 +35,8 @@ export abstract class MiiCostumeAppOption
     }()
     public static readonly NAME =                  new class MiiCostumeAppOption_Name extends MiiCostumeAppOption {
 
-        protected override _createContentOption() {
-            return () => CommonOptions.get.getNameContent(MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION())
+        protected override _createContentOption(enumeration: MiiCostumes,) {
+            return CommonOptions.get.getNameContent(enumeration,)
         }
 
         protected override _createTableHeaderOption() {
@@ -53,13 +46,9 @@ export abstract class MiiCostumeAppOption
     }()
     public static readonly OFFICIAL_NOTIFICATION = new class MiiCostumeAppOption_ConditionToUnlockIt extends MiiCostumeAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION()
-                const miiCostume = enumeration.reference
-
-                return miiCostume.officialNotification?.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,)
-            }
+        protected override _createContentOption(enumeration: MiiCostumes,) {
+            const miiCostume = enumeration.reference
+            return miiCostume.officialNotification?.createSimpleTranslationComponent(miiCostume.english, miiCostume.officialNotificationAmount,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -71,13 +60,9 @@ export abstract class MiiCostumeAppOption
 
     public static readonly CATEGORY =              new class MiiCostumeAppOption_Category extends MiiCostumeAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    categoryName = enumeration.reference.categoryContainer.nameContainer
-
-                return CommonOptions.get.getCategoryContent(enumeration, () => MiiCostumeCategories.getValueByName(categoryName.english).imageFile,)
-            }
+        protected override _createContentOption(enumeration: MiiCostumes,) {
+            const categoryName = enumeration.reference.categoryContainer.nameContainer
+            return CommonOptions.get.getCategoryContent(enumeration, () => MiiCostumeCategories.getValueByName(categoryName.english).imageFile,)
         }
 
         protected override _createTableHeaderOption() {
@@ -115,17 +100,6 @@ export abstract class MiiCostumeAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    /**
-     * The callback to get the enumeration based for each option.
-     *
-     * @note It should only be set by {@link MiiCostumeApp} and get by {@link MiiCostumeAppOption}.
-     */
-    public static CALLBACK_TO_GET_ENUMERATION: () => MiiCostumes
-
-    #appOptionWithContent?: AppOptionWithContent
-    #appOptionWithTable?: AppOptionWithTable
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
@@ -140,41 +114,26 @@ export abstract class MiiCostumeAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected _createContentOption(): NullOr<() => PossibleRenderReactElement> {
-        return null
+    protected _createContentOption(enumeration: MiiCostumes,): ReactElement {
+        throw new ReferenceError(`The MiiCostumeAppOption.${this.name} cannot create a content option`,)
     }
 
-    private get __appOptionWithContent(): AppOptionWithContent {
-        if (this.#appOptionWithContent == null) {
-            const content = this._createContentOption()
-            this.#appOptionWithContent = content == null
-                ? EmptyAppOption.get
-                : new AppOptionWithContentComponent(content,)
-        }
-        return this.#appOptionWithContent
-    }
-
-    public get renderContent(): readonly ReactElement[] {
-        return this.__appOptionWithContent.renderContent
+    public renderContent(enumeration: MiiCostumes,): readonly [ReactElement,] {
+        return [this._createContentOption(enumeration,),]
     }
 
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
     protected _createTableHeaderOption(): NullOr<SingleHeaderContent> {
-        return null
+        throw new ReferenceError(`The MiiCostumeAppOption.${this.name} cannot create a table header option`,)
     }
 
-    protected get __appOptionWithTable(): AppOptionWithTable {
-        if (this.#appOptionWithTable == null) {
-            const content = this._createTableHeaderOption()
-            this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,)
-        }
-        return this.#appOptionWithTable
-    }
-
-    public get renderTableHeader(): NullOr<SingleHeaderContent> {
-        return this.__appOptionWithTable.renderTableHeader
+    public renderTableHeader(): NullOr<SingleHeaderContent> {
+        const content = this._createTableHeaderOption()
+        if(content == null)
+            return null
+        return content
     }
 
     //endregion -------------------- App option - table --------------------

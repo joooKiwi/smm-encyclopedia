@@ -4,7 +4,6 @@ enum Enum {
     GAME,
     NAME,
 
-    IMAGES_AND_SOUNDS,
     POWER_UP_COLLECTED,
     WAITING,
     TAUNT,

@@ -1,6 +1,6 @@
 import './MiiCostumeApp.scss'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 
@@ -49,8 +49,8 @@ export default class MiiCostumeApp
         },)
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
-        return new class implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
+    protected override _createAppOptionInterpreter() {
+        return new class MiiCostumeAppInterpreter implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
             public get iterable() {
                 return MiiCostumes[Symbol.iterator]()
@@ -74,7 +74,7 @@ export default class MiiCostumeApp
                 return 'list'
             }
 
-            public createCardListContent({reference, englishName, imageFile,}: MiiCostumes,) {
+            public createCardListContent({reference, imageFile,}: MiiCostumes,) {
                 const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
                 return <div className={`${category}`}>
                     <Image file={imageFile}/>
@@ -84,9 +84,12 @@ export default class MiiCostumeApp
             //endregion -------------------- Card list interpreter --------------------
             //region -------------------- Table interpreter --------------------
 
-            public set callbackToGetEnumerable(value: () => MiiCostumes,) {
-                MiiCostumeAppOption.CALLBACK_TO_GET_ENUMERATION = value
-            }
+            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+            public readonly tableCaption = gameContentTranslation('mii costume.all', {
+                singularName: <TextComponent key="miiCostume-singularName" content={MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)} className="text-decoration-underline"/>,
+                pluralName: <TextComponent key="miiCostume-pluralName" content={MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName)} className="text-decoration-underline"/>,
+            },) satisfies ReactElementOrString
 
             public get tableOptions(): readonly MiiCostumeAppOption[] {
                 return [
@@ -97,22 +100,13 @@ export default class MiiCostumeApp
                 ]
             }
 
-            public get tableProperties(): SimplifiedTableProperties {
-                return {
-                    caption: gameContentTranslation('mii costume.all', {
-                        singularName: <TextComponent key="miiCostume-singularName" content={MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)} className="text-decoration-underline"/>,
-                        pluralName: <TextComponent key="miiCostume-pluralName" content={MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName)} className="text-decoration-underline"/>,
-                    },),
-                }
-            }
 
-
-            public createTableContent(option: MiiCostumeAppOption,) {
-                return option.renderContent
+            public createNewTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
+                return option.renderContent(content,)
             }
 
             public createTableHeader(option: MiiCostumeAppOption,) {
-                return option.renderTableHeader
+                return option.renderTableHeader()
             }
 
             //endregion -------------------- Table interpreter --------------------

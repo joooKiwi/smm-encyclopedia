@@ -1,0 +1,160 @@
+.table-container {
+  --table-content-color:            var(--bs-body-color);
+  --table-header-border-color:      var(--bs-secondary-border-subtle);
+  --table-footer-border-color:      var(--bs-secondary-border-subtle);
+  --table-content-border-color:     var(--bs-border-color);
+  --table-headers-bg:               transparent;
+  --table-content-bg:               transparent;
+  --table-content-bg-rgb:           0, 0, 0;
+  --table-content-striped-bg:       rgba(var(--table-content-bg-rgb), 0.05);
+  --table-content-striped-hover-bg: rgba(var(--table-content-bg-rgb), 0.15);//0.05 + 0.1
+  --table-content-hover-bg:         rgba(var(--table-content-bg-rgb), 0.1);
+  //border-collapse: collapse;
+}
+
+//region -------------------- Display type --------------------
+
+//.table-container { display: table }
+.table-caption-container { display: table-caption }
+.table-header-container {  display: table-header-group }
+.table-footer-container {  display: table-footer-group }
+.table-content-container { display: table-row-group }
+
+.table-row-container {     display: table-row }
+.table-cell-container {    display: table-cell }
+
+//endregion -------------------- Display type --------------------
+//region -------------------- Border --------------------
+
+.table-primary {   --table-content-border-color: var(--bs-primary-border-subtle) }
+.table-secondary { --table-content-border-color: var(--bs-secondary-border-subtle) }
+.table-success {   --table-content-border-color: var(--bs-success-border-subtle) }
+.table-info {      --table-content-border-color: var(--bs-info-border-subtle) }
+.table-warning {   --table-content-border-color: var(--bs-warning-border-subtle) }
+.table-danger {    --table-content-border-color: var(--bs-danger-border-subtle) }
+.table-light {     --table-content-border-color: var(--bs-light-border-subtle) }
+.table-dark {      --table-content-border-color: var(--bs-dark-border-subtle) }
+
+.table-header-container > *,
+.table-footer-container > *,
+.table-content-container > * > *, {
+  border-width: var(--bs-border-width);
+  border-style: var(--bs-border-style);
+}
+.table-header-container > * {      border-color: var(--table-header-border-color) }
+.table-footer-container > * {      border-color: var(--table-footer-border-color) }
+.table-content-container > * > * { border-color: var(--table-content-border-color) }
+
+
+.table-header-container > :not(:first-child),
+.table-footer-container > :not(:first-child), { border-left-style: none }
+
+.table-header-container > :first-child { border-top-left-radius: var(--bs-border-radius) }
+.table-header-container > :last-child {  border-top-right-radius: var(--bs-border-radius) }
+.table-footer-container > :first-child { border-bottom-left-radius: var(--bs-border-radius) }
+.table-footer-container > :last-child {  border-bottom-right-radius: var(--bs-border-radius) }
+
+.table-content-container {
+  border-top: none;
+  border-bottom: none;
+}
+.table-content-container > * > :not(:first-child) { border-left-style: none }
+.table-content-container > * > * { border-top: none }
+.table-content-container > :last-child > * { border-bottom: none }
+
+//endregion -------------------- Border --------------------
+//region -------------------- Background --------------------
+
+.table-primary {   --table-content-bg: var(--bs-primary-100) }
+.table-secondary { --table-content-bg: var(--bs-secondary-100) }
+.table-success {   --table-content-bg: var(--bs-success-100) }
+.table-info {      --table-content-bg: var(--bs-info-100) }
+.table-warning {   --table-content-bg: var(--bs-warning-100) }
+.table-danger {    --table-content-bg: var(--bs-danger-100) }
+.table-light {     --table-content-bg: var(--bs-light) }
+.table-dark {      --table-content-bg: var(--bs-dark) }
+
+.table-headers-primary {   --table-headers-bg: var(--bs-primary-100) }
+.table-headers-secondary { --table-headers-bg: var(--bs-secondary-100) }
+.table-headers-success {   --table-headers-bg: var(--bs-success-100) }
+.table-headers-info {      --table-headers-bg: var(--bs-info-100) }
+.table-headers-warning {   --table-headers-bg: var(--bs-warning-100) }
+.table-headers-danger {    --table-headers-bg: var(--bs-danger-100) }
+.table-headers-light {     --table-headers-bg: var(--bs-light) }
+.table-headers-dark {      --table-headers-bg: var(--bs-dark) }
+
+.table-header-container {  background-color: var(--table-headers-bg) }
+.table-footer-container {  background-color: var(--table-headers-bg) }
+.table-content-container { background-color: var(--table-content-bg) }
+.table-content-container > :hover { background-color: var(--table-content-hover-bg) }
+.table-content-container > :nth-of-type(odd) { background-color: var(--table-content-striped-bg) }
+.table-content-container > :nth-of-type(odd):hover { background-color: var(--table-content-striped-hover-bg) }
+
+//endregion -------------------- Background --------------------
+//region -------------------- Text --------------------
+
+.table-dark {      --table-content-color: var(--bs-light) }
+
+
+.table-container { color: var(--table-content-color) }
+
+.table-header-container,
+.table-footer-container, { color: var(--bs-body-color) }
+
+
+.table-header-container,
+.table-footer-container, {
+  font-weight: var(--bs-font-weight-bold);
+}
+
+//endregion -------------------- Text --------------------
+//region -------------------- Placement --------------------
+
+.table-caption-container {
+  margin-top: var(--bs-alert-margin-bottom);
+  margin-bottom: unset;
+}
+
+.table-header-container > .table-cell-container,
+.table-footer-container > .table-cell-container, {
+  padding: var(--bs-spacer-sm) var(--bs-spacer-md)
+}
+
+.table-cell-container { padding: var(--bs-spacer-md) }
+
+
+.table-caption-container {
+  caption-side: bottom;
+}
+
+
+.table-header-container,
+.table-footer-container, {
+  text-align: center;
+}
+
+
+.table-header-container > * {
+  vertical-align: bottom;
+}
+
+.table-footer-container > * {
+  vertical-align: top;
+}
+
+
+.table-header-container {
+  position: sticky;
+  top: 0;
+  z-index: var(--bs-z-index-sticky);
+}
+
+//endregion -------------------- Placement --------------------
+//region -------------------- Image --------------------
+
+.table-container img { max-height: 1cm }
+
+.table-header-container img,
+.table-footer-container img, { max-height: .75cm }
+
+//endregion -------------------- Image --------------------

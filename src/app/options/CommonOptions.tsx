@@ -1,14 +1,14 @@
 import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 
-import type {SingleHeaderContent, SingleHeadersContent} from 'app/tools/table/SimpleHeader'
-import type {ClassWithEnglishName}                      from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                        from 'core/ClassWithReference'
-import type {ClassInAnySuperMarioMakerGame}             from 'core/game/ClassInAnySuperMarioMakerGame'
-import type {Themes}                                    from 'core/theme/Themes'
-import type {Name}                                      from 'lang/name/Name'
-import type {NameTrait}                                 from 'lang/name/NameTrait'
-import type {NameTraitFromACategory}                    from 'lang/name/NameTraitFromACategory'
-import type {ImageFile}                                 from 'util/file/image/ImageFile'
+import type {SimpleImageHeader, SimpleReactHeader, SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {ClassWithEnglishName}                                      from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                        from 'core/ClassWithReference'
+import type {ClassInAnySuperMarioMakerGame}                             from 'core/game/ClassInAnySuperMarioMakerGame'
+import type {Themes}                                                    from 'core/theme/Themes'
+import type {Name}                                                      from 'lang/name/Name'
+import type {NameTrait}                                                 from 'lang/name/NameTrait'
+import type {NameTraitFromACategory}                                    from 'lang/name/NameTraitFromACategory'
+import type {ImageFile}                                                 from 'util/file/image/ImageFile'
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
@@ -36,21 +36,21 @@ export class CommonOptions {
     //endregion -------------------- Singleton usage --------------------
     //region -------------------- Fields --------------------
 
-    #nameHeader?: SingleHeaderContent
-    #gameHeader?: SingleHeaderContent
-    #gameHeaderWithAllGames?: SingleHeaderContent
-    #gameHeaderWithMainGames?: SingleHeaderContent
-    #mainGames?: readonly [SingleHeaderContent, SingleHeaderContent,]
-    #categoryHeader?: SingleHeaderContent
+    #nameHeader?: SimpleReactHeader
+    #smm1And3DSGameHeader?: SimpleImageHeader
+    #smm2GameHeader?: SimpleImageHeader
+    #gameHeader?: SimpleReactHeader
+    #categoryHeader?: SimpleReactHeader
 
-    #limitHeader?: SingleHeaderContent
-    #playLimitHeader?: SingleHeaderContent
-    #editorLimitHeader?: SingleHeaderContent
-    #limitWithSubHeaders?: SingleHeaderContent
+    #limitHeader?: SimpleReactHeader
+    #completePlayLimitHeader?: SimpleReactHeader
+    #completeEditorLimitHeader?: SimpleReactHeader
+    #completeEditorLimitInSmm1And3dsHeader?: SingleHeaderContent
+    #completeEditorLimitInSmm2Header?: SingleHeaderContent
 
     //endregion -------------------- Fields --------------------
 
-    public get nameHeader(): SingleHeaderContent {
+    public get nameHeader(): SimpleReactHeader {
         return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name'),}
     }
 
@@ -59,7 +59,7 @@ export class CommonOptions {
     }
 
 
-    public get categoryHeader(): SingleHeaderContent {
+    public get categoryHeader(): SimpleReactHeader {
         return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category'),}
     }
 
@@ -77,32 +77,15 @@ export class CommonOptions {
     }
 
 
-    public get gameHeader(): SingleHeaderContent {
+    public get gameHeader(): SimpleReactHeader {
         return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('game.singular'),}
     }
 
-    public getGameHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
-        return {key: 'game', element: gameContentTranslation('game.singular'), subHeaders: subHeaders,}
+    public get smm1And3dsGameHeader(): SimpleImageHeader {
+        return this.#smm1And3DSGameHeader ??= {key: 'isInSuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,}//TODO create a animated image for both games (SMM1 & SMM3DS)
     }
-
-    /**@deprecated Relocate the games in the name content */
-    public get gameHeaderWithAllGames(): SingleHeaderContent {
-        return this.#gameHeaderWithAllGames ??= this.getGameHeader(
-            {key: 'isInSuperMarioMaker1', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
-            {key: 'isInSuperMarioMakerFor3DS', alt: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.imageFile.fullName,},
-            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-        )
-    }
-
-    public get gameHeaderWithMainGames(): SingleHeaderContent {
-        return this.#gameHeaderWithMainGames ??= this.getGameHeader(...this.mainGames)
-    }
-
-    public get mainGames(): readonly [SingleHeaderContent, SingleHeaderContent,] {
-        return this.#mainGames ??= [
-            {key: 'isInSuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},//TODO create a animated image for both games (SMM1 & SMM3DS)
-            {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-        ]
+    public get smm2GameHeader(): SimpleImageHeader {
+        return this.#smm2GameHeader ??= {key: 'isInSuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,}
     }
 
     /**
@@ -135,30 +118,33 @@ export class CommonOptions {
     }
 
 
-    public get limitHeader(): SingleHeaderContent {
+    public get limitHeader(): SimpleReactHeader {
         return this.#limitHeader ??= {key: 'limit', element: gameContentTranslation('limit.singular'),}
     }
 
-    public getLimitHeader(...subHeaders: SingleHeadersContent): SingleHeaderContent {
-        return {key: 'limit', element: gameContentTranslation('limit.singular'), subHeaders: subHeaders,}
+    public get completePlayLimitHeader(): SimpleReactHeader {
+        return this.#completePlayLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.complete'),}
+    }
+    public get completeEditorLimitHeader(): SimpleReactHeader {
+        return this.#completeEditorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.complete'),}
     }
 
-    public get playLimitHeader(): SingleHeaderContent {
-        return this.#playLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.simple'), tooltip: gameContentTranslation('limit.play.tooltip'),}
+    public get completeEditorLimitInSmm1And3dsHeader(): SingleHeaderContent {
+        return this.#completeEditorLimitInSmm1And3dsHeader ??= {
+            key: 'limit-editor-smm1-and-smm3ds', element: gameContentTranslation('limit.editor.complete in SMM1&3DS', {
+                Name1: Games.SUPER_MARIO_MAKER_1.acronym,
+                Name3ds: Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.acronym,
+            }),
+        }
     }
 
-    public getPlayLimitHeader(...subHeaders: SingleHeadersContent) {
-        return {key: 'limit-play', element: gameContentTranslation('limit.play.simple'), tooltip: gameContentTranslation('limit.play.tooltip'), subHeaders: subHeaders,}
+    public get completeEditorLimitInSmm2Header(): SingleHeaderContent {
+        return this.#completeEditorLimitInSmm2Header ??= {
+            key: 'limit-editor-smm2', element: gameContentTranslation('limit.editor.complete in SMM2', {
+                Name: Games.SUPER_MARIO_MAKER_2.acronym,
+            }),
+        }
     }
-
-    public get editorLimitHeader(): SingleHeaderContent {
-        return this.#editorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.simple'), tooltip: gameContentTranslation('limit.editor.tooltip'),}
-    }
-
-    public get limitWithSubHeaders(): SingleHeaderContent {
-        return this.#limitWithSubHeaders ??= this.getLimitHeader(this.editorLimitHeader, this.playLimitHeader,)
-    }
-
 
 }
 

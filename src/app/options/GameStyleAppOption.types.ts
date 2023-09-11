@@ -1,6 +1,6 @@
 enum Enum {
 
-    IMAGE,
+    ICON,
     NAME,
     NIGHT_DESERT_WIND,
 

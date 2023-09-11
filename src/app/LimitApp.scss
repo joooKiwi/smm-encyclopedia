@@ -8,10 +8,6 @@
       color: var(--bs-body-color);
     }
 
-    &:last-child::before {
-      content: ' / '; //TODO replace to text-space-backSlash-space
-    }
-
     &:first-child::before {
       content: none;
     }

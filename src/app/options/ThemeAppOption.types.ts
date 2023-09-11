@@ -1,6 +1,7 @@
 enum Enum {
 
-    IMAGE,
+    ICON,
+    ENDLESS_MARIO_ICON,
     NAME,
     NIGHT_EFFECT,
 

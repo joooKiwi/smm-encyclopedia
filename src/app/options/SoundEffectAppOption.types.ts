@@ -1,6 +1,7 @@
 enum Enum {
 
-    GAME,
+    SMM1_AND_SMM3DS_ICON,
+    SMM2_ICON,
     NAME,
     CATEGORY,
     PLAYER_BEHAVIOUR,

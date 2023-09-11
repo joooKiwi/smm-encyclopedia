@@ -1,7 +1,7 @@
 import './LimitApp.scss'
 
 import type {LimitAppProperties}                                   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {LimitTypes}                                           from 'app/property/LimitTypes'
 import type {ClassWithType}                                        from 'core/ClassWithType'
@@ -12,7 +12,6 @@ import {EntityLimitAppOption}                       from 'app/options/EntityLimi
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Image                                        from 'app/tools/images/Image'
-import TextComponent                                from 'app/tools/text/TextComponent'
 import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {newIterableIterator}                        from 'util/utilitiesMethods'
@@ -64,10 +63,10 @@ export default class LimitApp
         </div>
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
+        return new class LimitAppInterpreter implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
 
             public get iterable() {
                 return newIterableIterator($this.props.games, $this.type.iterator,)
@@ -91,8 +90,6 @@ export default class LimitApp
             }
 
             public createCardListContent(enumeration: EntityLimits,) {
-                EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION = () => enumeration
-
                 return enumeration.isEditorLimit
                     ? <div className="card-bodyWithEditor-container">
                         <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 bottom-0"/>
@@ -101,48 +98,46 @@ export default class LimitApp
                     : this.#createBody(enumeration)
             }
 
-            #createBody({reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName, englishNameInHtml,}: EntityLimits,) {
-                return <div className="card-body" id={`limit-${englishNameInHtml}`}>
-                    {limitAmountInSMM1AndSMM3DS === limitAmountInSMM2
-                        ? <TextComponent key={`${englishName} - card list text component`} content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
-                        : EntityLimitAppOption.AMOUNT.renderContent}
+            #createBody(enumeration: EntityLimits,) {
+                return <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
+                    {EntityLimitAppOption.AMOUNT_IN_ALL_GAMES.renderContent(enumeration,)}
                 </div>
             }
 
             //endregion -------------------- Card list interpreter --------------------
             //region -------------------- Table interpreter --------------------
 
-            public set callbackToGetEnumerable(value: () => EntityLimits,) {
-                EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION = value
-            }
+            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+            public readonly tableCaption = gameContentTranslation(`limit.${$this.type.type}.all`) satisfies ReactElementOrString
 
             public get tableOptions(): readonly EntityLimitAppOption[] {
                 const games = $this.props.games,
                     hasSMM1Or3DSGames = games.hasSMM1Or3DS,
                     hasSMM2Games = games.hasSMM2
 
-                return [
+                const options: EntityLimitAppOption[] = [
                     EntityLimitAppOption.ACRONYM,
                     EntityLimitAppOption.NAME,
-                    hasSMM1Or3DSGames && hasSMM2Games ? EntityLimitAppOption.AMOUNT
-                        : hasSMM1Or3DSGames ? EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
-                            : EntityLimitAppOption.AMOUNT_IN_SMM2,
                 ]
-            }
-
-            public get tableProperties(): SimplifiedTableProperties {
-                return {
-                    caption: gameContentTranslation(`limit.${$this.type.type}.all`),
+                if (hasSMM1Or3DSGames && hasSMM2Games)
+                   options.push(EntityLimitAppOption.AMOUNT_IN_ALL_GAMES,)
+                else {
+                    if (hasSMM1Or3DSGames)
+                        options.push(EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
+                    if (hasSMM2Games)
+                        options.push(EntityLimitAppOption.AMOUNT_IN_SMM2,)
                 }
+                return options
             }
 
 
-            public createTableContent(option: EntityLimitAppOption,) {
-                return option.renderContent
+            public createNewTableContent(content: EntityLimits, option: EntityLimitAppOption,) {
+                return option.renderContent(content,)
             }
 
             public createTableHeader(option: EntityLimitAppOption,) {
-                return option.renderTableHeader
+                return option.renderTableHeader()
             }
 
             //endregion -------------------- Table interpreter --------------------

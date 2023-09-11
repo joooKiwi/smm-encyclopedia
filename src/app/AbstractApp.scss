@@ -11,30 +11,6 @@
   }
 }
 
-//Every table ending with table
-table[id$="-table"] {
-
-  thead, tfoot, {
-    text-align: center;
-  }
-
-
-  thead {
-    position: sticky;
-    top: 0;
-    z-index: var(--bs-z-index-sticky);
-  }
-
-  th img {
-    max-height: .75cm;
-  }
-
-  img {
-    max-height: 1cm;
-  }
-
-}
-
 .listElement-container, .cardListElement-container, {
 
   .name-container {

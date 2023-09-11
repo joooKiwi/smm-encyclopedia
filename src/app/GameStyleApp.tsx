@@ -1,7 +1,7 @@
 import './GameStyleApp.scss'
 
 import type {GameStyleProperties}                                  from 'app/AppProperties.types'
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 
@@ -38,10 +38,10 @@ export default class GameStyleApp
         return gameContentTranslation('game style.all')
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
+        return new class GameStyleAppInterpreter implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
             public get iterable() {
                 return newIterableIterator($this.props.games, GameStyles[Symbol.iterator](),)
@@ -72,31 +72,25 @@ export default class GameStyleApp
 
             //endregion -------------------- Card list interpreter --------------------
 
-            public set callbackToGetEnumerable(value: () => GameStyles,) {
-                GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION = value
-            }
+            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+            public readonly tableCaption = gameContentTranslation('game style.all') satisfies ReactElementOrString
 
             public get tableOptions(): readonly GameStyleAppOption[] {
                 return [
-                    GameStyleAppOption.IMAGE,
+                    GameStyleAppOption.ICON,
                     GameStyleAppOption.NAME,
                     GameStyleAppOption.NIGHT_DESERT_WIND,
                 ]
             }
 
-            public get tableProperties(): SimplifiedTableProperties {
-                return {
-                    caption: gameContentTranslation('game style.all'),
-                }
-            }
 
-
-            public createTableContent(option: GameStyleAppOption,) {
-                return option.renderContent
+            public createNewTableContent(content: GameStyles, option: GameStyleAppOption,) {
+                return option.renderContent(content,)
             }
 
             public createTableHeader(option: GameStyleAppOption,) {
-                return option.renderTableHeader
+                return option.renderTableHeader()
             }
 
         }()

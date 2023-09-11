@@ -3,71 +3,115 @@ import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 import {Fragment}                                               from 'react'
 
-import type {Names, Ordinals}                                  from 'app/options/EntityAppOption.types'
-import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
-import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
-import type {Entities}                                         from 'core/entity/Entities'
+import type {AppOption}           from 'app/options/AppOption'
+import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {Entities}            from 'core/entity/Entities'
 
-import {CommonOptions}                              from 'app/options/CommonOptions'
-import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
-import {EmptyAppOption}                             from 'app/options/component/EmptyAppOption'
-import Image                                        from 'app/tools/images/Image'
-import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
-import InstrumentPropertyComponent                  from 'core/entity/properties/instrument/InstrumentProperty.component'
-import {EntityCategories}                           from 'core/entityCategory/EntityCategories'
-import PlayLimitComponent                           from 'core/entityLimit/PlayLimit.component'
-import SMM1And3DSEditorLimitComponent               from 'core/entityLimit/SMM1And3DSEditorLimit.component'
-import SMM2EditorLimitComponent                     from 'core/entityLimit/SMM2EditorLimit.component'
-import {Games}                                      from 'core/game/Games'
-import GameComponent                                from 'core/game/Game.component'
-import {GameStyles}                                 from 'core/gameStyle/GameStyles'
-import GameStyleComponent                           from 'core/gameStyle/GameStyle.component'
-import CourseThemeComponent                         from 'core/theme/CourseTheme.component'
-import {Themes}                                     from 'core/theme/Themes'
-import {Times}                                      from 'core/time/Times'
-import TimeComponent                                from 'core/time/Time.component'
+import {CommonOptions}                from 'app/options/CommonOptions'
+import Image                          from 'app/tools/images/Image'
+import {gameContentTranslation}       from 'lang/components/translationMethods'
+import EditorVoiceSoundComponent      from 'core/editorVoice/EditorVoiceSound.component'
+import InstrumentPropertyComponent    from 'core/entity/properties/instrument/InstrumentProperty.component'
+import {EntityCategories}             from 'core/entityCategory/EntityCategories'
+import PlayLimitComponent             from 'core/entityLimit/PlayLimit.component'
+import SMM1And3DSEditorLimitComponent from 'core/entityLimit/SMM1And3DSEditorLimit.component'
+import SMM2EditorLimitComponent       from 'core/entityLimit/SMM2EditorLimit.component'
+import GameComponent                  from 'core/game/Game.component'
+import {GameStyles}                   from 'core/gameStyle/GameStyles'
+import GameStyleComponent             from 'core/gameStyle/GameStyle.component'
+import CourseThemeComponent           from 'core/theme/CourseTheme.component'
+import {Themes}                       from 'core/theme/Themes'
+import {Times}                        from 'core/time/Times'
+import TimeComponent                  from 'core/time/Time.component'
+import {assert}                       from 'util/utilitiesMethods'
 
 /**
  * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null
- * @todo merge all of the "image" into 1 type
- * @todo merge all of the "game" into 1 type
- * @todo merge all of the "game style" into 1 type
- * @todo merge all of the "time" into 1 type
- * @todo merge all of the "category" into 1 type
- * @todo merge all of the "limit" into 1 type
  */
 export class EntityAppOption
     extends Enum<Ordinals, Names>
-    implements AppOptionWithContent, AppOptionWithTable {
+    implements AppOption<Entities> {
 
     //region -------------------- Enum instances --------------------
 
-    /**
-     * Display every image.
-     */
-    public static readonly IMAGES = new class EntityAppOption_Images extends EntityAppOption {
+    public static readonly IMAGE_IN_SMB = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    {englishName, englishNameInHtml, uniqueImage,} = enumeration
+        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
+            const gameStyle = GameStyles.SUPER_MARIO_BROS
+            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SMB cannot be displayed when it is not shown',)
 
-                return EntityAppOption._gameStyles.map(gameStyle => <Fragment key={`unique image (${englishName})`}>{
-                    uniqueImage.get(gameStyle).map(image =>
-                        <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
-                }</Fragment>)
-            }
+            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
+                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
+            }</Fragment>
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {
-                key: 'image', element: contentTranslation('Image'),
-                subHeaders: EntityAppOption._gameStyles.map<SingleHeaderContent>(gameStyle =>
-                    ({key: `image-${gameStyle.acronym}`, element: gameStyle.renderSingleComponent,})),
-            }
+        protected override _createTableHeaderOption() {
+            return {key: `image-smb`, element: GameStyles.SUPER_MARIO_BROS.renderSingleComponent,} satisfies SingleHeaderContent
+        }
+
+    }()
+    public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
+
+        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
+            const gameStyle = GameStyles.SUPER_MARIO_BROS_3
+            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SMB3 cannot be displayed when it is not shown',)
+
+            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
+                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
+            }</Fragment>
+        }
+
+        protected override _createTableHeaderOption() {
+            return {key: `image-smb3`, element: GameStyles.SUPER_MARIO_BROS_3.renderSingleComponent,} satisfies SingleHeaderContent
+        }
+
+    }()
+    public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
+
+        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
+            const gameStyle = GameStyles.SUPER_MARIO_WORLD
+            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SMW cannot be displayed when it is not shown',)
+
+            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
+                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
+            }</Fragment>
+        }
+
+        protected override _createTableHeaderOption() {
+            return {key: `image-smw`, element: GameStyles.SUPER_MARIO_WORLD.renderSingleComponent,} satisfies SingleHeaderContent
+        }
+
+    }()
+    public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
+
+        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
+            const gameStyle = GameStyles.NEW_SUPER_MARIO_BROS_U
+            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_NSMBU cannot be displayed when it is not shown',)
+
+            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
+                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
+            }</Fragment>
+        }
+
+        protected override _createTableHeaderOption() {
+            return {key: `image-nsmbu`, element: GameStyles.NEW_SUPER_MARIO_BROS_U.renderSingleComponent,} satisfies SingleHeaderContent
+        }
+
+    }()
+    public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
+
+        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
+            const gameStyle = GameStyles.SUPER_MARIO_3D_WORLD
+            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SM3DW cannot be displayed when it is not shown',)
+
+            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
+                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
+            }</Fragment>
+        }
+
+        protected override _createTableHeaderOption() {
+            return {key: `image-sm3dw`, element: GameStyles.SUPER_MARIO_3D_WORLD.renderSingleComponent,} satisfies SingleHeaderContent
         }
 
     }()
@@ -84,18 +128,14 @@ export class EntityAppOption
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
-
-                return <div className="nameAndEditorVoiceSound-container container">
-                    {CommonOptions.get.getNameContent(enumeration)}
-                    <div className="properties">
-                        <InstrumentPropertyComponent value={enumeration}/>
-                    </div>
-                    <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
+        protected override _createContentOption(enumeration: Entities,) {
+            return <div className="nameAndEditorVoiceSound-container container">
+                {CommonOptions.get.getNameContent(enumeration)}
+                <div className="properties">
+                    <InstrumentPropertyComponent value={enumeration}/>
                 </div>
-            }
+                <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
+            </div>
         }
 
         protected override _createTableHeaderOption() {
@@ -106,12 +146,8 @@ export class EntityAppOption
 
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
-
-                return <GameComponent reference={entity} name={entity} displayAllAsText/>
-            }
+        protected override _createContentOption({reference,}: Entities,) {
+            return <GameComponent reference={reference} name={reference} displayAllAsText/>
         }
 
         protected override _createTableHeaderOption() {
@@ -123,16 +159,12 @@ export class EntityAppOption
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
-
-                return <GameStyleComponent reference={entity} name={entity} displayAllAsText/>
-            }
+        protected override _createContentOption({reference,}: Entities,) {
+            return <GameStyleComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'gameStyle', element: gameContentTranslation('game style.singular'),}
+        protected override _createTableHeaderOption() {
+            return {key: 'gameStyle', element: gameContentTranslation('game style.singular'),} satisfies SingleHeaderContent
         }
 
     }()
@@ -140,16 +172,12 @@ export class EntityAppOption
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
-
-                return <CourseThemeComponent reference={entity} name={entity} displayAllAsText/>
-            }
+        protected override _createContentOption({reference,}: Entities,) {
+            return <CourseThemeComponent reference={reference} name={reference} displayAllAsText/>
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular'),}
+        protected override _createTableHeaderOption() {
+            return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular'),} satisfies SingleHeaderContent
         }
 
     }()
@@ -157,16 +185,12 @@ export class EntityAppOption
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const entity = EntityAppOption.CALLBACK_TO_GET_ENUMERATION().reference
-
-                return <TimeComponent reference={entity} name={entity} displayAllAsText={false}/>
-            }
+        protected override _createContentOption({reference,}: Entities,) {
+            return <TimeComponent reference={reference} name={reference} displayAllAsText={false}/>
         }
 
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return {key: 'time', element: gameContentTranslation('time.singular'),}
+        protected override _createTableHeaderOption() {
+            return {key: 'time', element: gameContentTranslation('time.singular'),} satisfies SingleHeaderContent
         }
 
     }()
@@ -174,13 +198,10 @@ export class EntityAppOption
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION(),
-                    categoryName = enumeration.reference.categoryNameContainer
+        protected override _createContentOption(enumeration: Entities,) {
+            const categoryName = enumeration.reference.categoryNameContainer
 
-                return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValueByName(categoryName.english).imageFile,)
-            }
+            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValueByName(categoryName.english).imageFile,)
         }
 
         protected override _createTableHeaderOption() {
@@ -194,66 +215,59 @@ export class EntityAppOption
      */
     public static readonly CATEGORY_AS_TEXT = new EntityAppOption()
 
-    public static readonly LIMIT = new class EntityAppOption_Limit extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
-
-                return [
-                    <SMM1And3DSEditorLimitComponent reference={enumeration}/>,
-                    <SMM2EditorLimitComponent reference={enumeration}/>,
-                    <PlayLimitComponent reference={enumeration}/>,
-                ]
-            }
-        }
-
-        protected override _createTableHeaderOption(): PossibleOptionWithTable {
-            return CommonOptions.get.getLimitHeader(
-                CommonOptions.get.getPlayLimitHeader(
-                    {key: 'limit-editor-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
-                    {key: 'limit-editor-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-                ),
-                CommonOptions.get.editorLimitHeader,
-            )
-        }
-
-    }()
-    public static readonly LIMIT_IN_SMM1_AND_3DS = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
-
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
-
-                return [
-                    <SMM1And3DSEditorLimitComponent reference={enumeration}/>,
-                    <PlayLimitComponent reference={enumeration}/>,
-                ]
-            }
+        protected override _createContentOption(enumeration: Entities,) {
+            return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption() {
-            return CommonOptions.get.limitWithSubHeaders
+            return CommonOptions.get.completeEditorLimitInSmm1And3dsHeader
         }
 
     }()
-    public static readonly LIMIT_IN_SMM2 = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
 
-        protected override _createContentOption() {
-            return () => {
-                const enumeration = EntityAppOption.CALLBACK_TO_GET_ENUMERATION()
-
-                return [
-                    <SMM2EditorLimitComponent reference={enumeration}/>,
-                    <PlayLimitComponent reference={enumeration}/>,
-                ]
-            }
+        protected override _createContentOption(enumeration: Entities,) {
+            return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption() {
-            return CommonOptions.get.limitWithSubHeaders
+            return CommonOptions.get.completeEditorLimitHeader
         }
 
+    }()
+    public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+
+        protected override _createContentOption(enumeration: Entities,) {
+            return <SMM2EditorLimitComponent reference={enumeration}/>
+        }
+
+        protected override _createTableHeaderOption() {
+            return CommonOptions.get.completeEditorLimitInSmm2Header
+        }
+
+    }()
+    public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+
+        protected override _createContentOption(enumeration: Entities,) {
+            return <SMM2EditorLimitComponent reference={enumeration}/>
+        }
+
+        protected override _createTableHeaderOption() {
+            return CommonOptions.get.completeEditorLimitHeader
+        }
+
+    }()
+    public static readonly PLAY_LIMIT = new class EntityLimitOption_PlayLimit extends EntityAppOption {
+
+        protected override _createContentOption(enumeration: Entities,) {
+            return <PlayLimitComponent reference={enumeration}/>
+        }
+
+        protected override _createTableHeaderOption() {
+            return CommonOptions.get.completePlayLimitHeader
+        }
     }()
 
     //endregion -------------------- Enum instances --------------------
@@ -281,20 +295,10 @@ export class EntityAppOption
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    /**
-     * The callback to get the enumeration based for each option.
-     *
-     * @note It should only be set by {@link EntityApp} and get by {@link EntityAppOption}.
-     */
-    public static CALLBACK_TO_GET_ENUMERATION: () => Entities
-
     static #gameStyles?: readonly GameStyles[]
     static #gameStyles_unusedImages?: | readonly [GameStyles,] | EmptyArray
     static #times?: readonly Times[]
     static #themes?: readonly Themes[]
-
-    #appOptionWithContent?: AppOptionWithContent
-    #appOptionWithTable?: AppOptionWithTable
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -327,41 +331,26 @@ export class EntityAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected _createContentOption(): PossibleOptionWithContent {
-        return null
+    protected _createContentOption(enumeration: Entities,): ReactElement {
+        throw new ReferenceError(`The EntityAppOption.${this.name} cannot create a content option`,)
     }
 
-    private get __appOptionWithContent(): AppOptionWithContent {
-        if (this.#appOptionWithContent == null) {
-            const content = this._createContentOption()
-            this.#appOptionWithContent = content == null
-                ? EmptyAppOption.get
-                : new AppOptionWithContentComponent(content,)
-        }
-        return this.#appOptionWithContent
-    }
-
-    public get renderContent(): readonly ReactElement[] {
-        return this.__appOptionWithContent.renderContent
+    public renderContent(enumeration: Entities,): readonly [ReactElement,] {
+        return [this._createContentOption(enumeration,),]
     }
 
     //endregion -------------------- App option - content --------------------
     //region -------------------- App option - table --------------------
 
-    protected _createTableHeaderOption(): PossibleOptionWithTable {
-        return null
+    protected _createTableHeaderOption(): NullOr<SingleHeaderContent> {
+        throw new ReferenceError(`The EntityAppOption.${this.name} cannot create a table header option`,)
     }
 
-    private get __appOptionWithTable(): AppOptionWithTable {
-        if (this.#appOptionWithTable == null) {
-            const content = this._createTableHeaderOption()
-            this.#appOptionWithTable = content == null ? EmptyAppOption.get : new AppOptionWithTableComponent(() => content,)
-        }
-        return this.#appOptionWithTable
-    }
-
-    public get renderTableHeader(): NullOr<SingleHeaderContent> {
-        return this.__appOptionWithTable.renderTableHeader
+    public renderTableHeader(): NullOr<SingleHeaderContent> {
+        const content = this._createTableHeaderOption()
+        if (content == null)
+            return null
+        return content
     }
 
     //endregion -------------------- App option - table --------------------
@@ -384,6 +373,3 @@ export class EntityAppOption
     //endregion -------------------- Enum methods --------------------
 
 }
-
-type PossibleOptionWithContent = NullOr<() => PossibleRenderReactElement>
-type PossibleOptionWithTable = NullOr<SingleHeaderContent>

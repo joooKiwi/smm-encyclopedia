@@ -3,22 +3,18 @@ import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {Content}                    from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
-import type {TableProperties}            from 'app/tools/table/Table.types'
 
 /**
  * An application interpreter when using {@link AbstractTableApp}
- * to encapsulate the {@link Table table react element}.
+ * to encapsulate a {@link HTMLTableElement table-like element}
  */
-export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTION extends Enumerable = Enumerable<any, any>, >
+export interface AppInterpreterWithTable<CONTENT extends Content = Content,
+    OPTION extends Enumerable = Enumerable<any, any>, >
     extends AppInterpreterWithCardList<CONTENT> {
 
-
-    /**
-     * Set the enumerable (CONTENT) on the {@link Enumerable option enum}.
-     *
-     * @param value the enumerable content to set on the {@link Enumerable option enum}
-     */
-    set callbackToGetEnumerable(value: () => CONTENT,)
+    readonly tableHeadersColor?: Nullable<BootstrapThemeColor>
+    readonly tableColor?: Nullable<BootstrapThemeColor>
+    readonly tableCaption: ReactElementOrString
 
     /**
      * Get every option for the {@link Table table react element}.
@@ -27,17 +23,14 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
      */
     get tableOptions(): readonly Nullable<OPTION>[]
 
-    /** Get the {@link TableProperties table properties} with some arguments (key, id, headers, content) removed */
-    get tableProperties(): SimplifiedTableProperties
-
-
     /**
      * Get the table content as an array of {@link ReactElement}
      * from the {@link Enumerable application option} received.
      *
+     * @param content The content to display
      * @param option the application option
      */
-    createTableContent(option: OPTION,): readonly ReactElement[]
+    createNewTableContent(content: CONTENT, option: OPTION,): readonly ReactElement[]
 
     /**
      * Get the {@link SingleHeaderContent table header} or null
@@ -48,9 +41,3 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content, OPTI
     createTableHeader(option: OPTION,): NullOr<SingleHeaderContent>
 
 }
-
-/**
- * A simplified {@link TableProperties table properties} used
- * for an {@link AppInterpreter application interpreter}.
- */
-export type SimplifiedTableProperties = Omit<TableProperties, | 'key' | 'id' | 'headers' | 'content'>
