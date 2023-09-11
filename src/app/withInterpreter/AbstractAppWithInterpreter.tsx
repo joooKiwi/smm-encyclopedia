@@ -43,8 +43,7 @@ export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
     protected abstract _createKey(): string
 
     /**
-     * Get the group key for each {@link ViewDisplays "view display" button}.
-     * It is also used for the {@link Table} id.
+     * Get the group key for each {@link ViewDisplays "view display" button}
      *
      * @see DisplayButtonGroup
      */

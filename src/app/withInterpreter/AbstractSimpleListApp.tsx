@@ -10,12 +10,6 @@ import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
 import {ListDimensionCreator}       from 'app/withInterpreter/ListDimension.creator'
 import NameComponent                from 'lang/name/component/Name.component'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {SIMPLE_LIST,} = ViewDisplays
-
-//endregion -------------------- Import from deconstruction --------------------
-
 export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimpleList,
     T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractAppWithInterpreter<APP, T, S> {
@@ -29,7 +23,7 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
 
     protected override _createPossibleViewDisplay(): readonly ViewAndRouteName[] {
         return [
-            [SIMPLE_LIST, this.__listRouteName,],
+            [ViewDisplays.SIMPLE_LIST, this.__listRouteName,],
         ]
     }
 

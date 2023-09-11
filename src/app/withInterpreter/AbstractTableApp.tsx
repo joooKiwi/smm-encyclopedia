@@ -28,7 +28,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     protected override _createPossibleViewDisplay(): readonly ViewAndRouteName[] {
         return [
             ...super._createPossibleViewDisplay(),
-            [TABLE, this.__tableRouteName,],
+            [ViewDisplays.TABLE, this.__tableRouteName,],
         ]
     }
 

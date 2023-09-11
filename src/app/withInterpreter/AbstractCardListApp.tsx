@@ -10,12 +10,6 @@ import {ListDimensionCreator}  from 'app/withInterpreter/ListDimension.creator'
 import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
 import NameComponent           from 'lang/name/component/Name.component'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {CARD_LIST,} = ViewDisplays
-
-//endregion -------------------- Import from deconstruction --------------------
-
 export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
     T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractSimpleListApp<APP, T, S> {
@@ -30,7 +24,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
     protected override _createPossibleViewDisplay(): readonly ViewAndRouteName[] {
         return [
             ...super._createPossibleViewDisplay(),
-            [CARD_LIST, this.__cardRouteName,],
+            [ViewDisplays.CARD_LIST, this.__cardRouteName,],
         ]
     }
 
