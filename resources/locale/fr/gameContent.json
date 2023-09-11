@@ -37,15 +37,17 @@
       "display all": "Afficher toutes les limites"
     },
     "editor": {
-      "simple":  "Éditeur",
-      "tooltip": "Limite dans l'éditeur",
+      "simple":               "Éditeur",
+      "complete":             "Limite dans l'éditeur",
+      "complete in SMM2":     "Limite dans l'éditeur ({{Name}})",
+      "complete in SMM1&3DS": "Limite dans l'éditeur ({{Name1}} & {{Name3ds}})",
 
       "all":         "Toutes les limites dans l'éditeur",
       "display all": "Afficher toutes les limites dans l'éditeur"
     },
     "play": {
-      "simple":  "En jouant",
-      "tooltip": "Limite en jouant",
+      "simple":   "En jouant",
+      "complete": "Limite en jouant",
 
       "all":         "Toutes les limites en jouant",
       "display all": "Afficher toutes les limites en jouant"
