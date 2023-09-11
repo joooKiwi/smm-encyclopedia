@@ -19,15 +19,23 @@ export default class NamePopoverComponent
     extends Component<NamePopoverProperties, NamePopoverStates>
     implements ReactComponent {
 
+    //#region -------------------- Fields --------------------
+
     readonly #currentLanguageTextContent
+
+    //#endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     constructor(props: NamePopoverProperties,) {
         super(props,)
-        this.#currentLanguageTextContent = ProjectLanguages.current.get<string>(this.otherProperties.name)
+        this.#currentLanguageTextContent = ProjectLanguages.current.get<string>(this.name,)
         this.state = {
             element: <TextComponent key={`${this.id} - temporary`} content={this.#currentLanguageTextContent}/>,
         }
     }
+
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter methods --------------------
 
     public get id(): string {
         return this.props.id
@@ -53,6 +61,7 @@ export default class NamePopoverComponent
         return this.otherProperties.popoverOrientation
     }
 
+    //endregion -------------------- Getter methods --------------------
 
     public override componentDidMount(): void {
         const id = this.id
@@ -79,7 +88,7 @@ export default class NamePopoverComponent
  * @param popoverOrientation the {@link Popover popover} orientation
  * @param title popover title
  */
-function createOption(elementId: string, popoverOrientation: | PopoverOrientation | undefined, title: string,): Partial<Popover.Options> {
+function createOption(elementId: string, popoverOrientation: Nullable<PopoverOrientation>, title: string,): Partial<Popover.Options> {
     const option: Partial<Popover.Options> = {
         title: title,
         content: document.getElementById(elementId)!,
