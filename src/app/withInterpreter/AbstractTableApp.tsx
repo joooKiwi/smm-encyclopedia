@@ -8,12 +8,6 @@ import Table                 from 'app/tools/table/Table'
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}        from 'app/withInterpreter/ViewDisplays'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {TABLE,} = ViewDisplays
-
-//endregion -------------------- Import from deconstruction --------------------
-
 export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
     T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
     extends AbstractCardListApp<APP, T, S> {
