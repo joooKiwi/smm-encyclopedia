@@ -30,8 +30,10 @@ export class PassiveEventHolder<const out ELEMENT extends Element, const out EVE
     }
 
     public set value(value: Nullable<EventListener>,) {
-        if (value != null)
+        if (value != null) {
             this.element.addEventListener(this.eventType, this.#event = value, {passive: true,},)
+            return
+        }
 
         this.#event = null
         const eventListener = this.value
