@@ -49,7 +49,7 @@ export class BootstrapInstanceHandler {
             return null
 
         const iterator = map.entries()
-       let value = iterator.next()
+        let value = iterator.next()
         if (typeof type == 'string') {
             while (!value.done) {
                 if (value.value[1].id === type)
