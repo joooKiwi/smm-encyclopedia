@@ -41,11 +41,11 @@ export default class EntityCategoryApp
         return gameContentTranslation('entity category.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EntityCategories> {
-        return new class implements AppInterpreterWithCardList<EntityCategories> {
+    protected override _createAppOptionInterpreter() {
+        return new class EntityCategoryAppInterpreter implements AppInterpreterWithCardList<EntityCategories> {
 
-            public get iterable() {
-                return EntityCategories[Symbol.iterator]()
+            public get content() {
+                return EntityCategories.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

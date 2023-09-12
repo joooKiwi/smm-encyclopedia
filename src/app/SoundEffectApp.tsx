@@ -9,7 +9,7 @@ import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {newIterableIterator}    from 'util/utilitiesMethods'
+import {filterGame}             from 'util/utilitiesMethods'
 
 export default class SoundEffectApp
     extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
@@ -43,8 +43,8 @@ export default class SoundEffectApp
 
         return new class SoundEffectAppInterpreter implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, SoundEffects[Symbol.iterator](),)
+            public get content() {
+                return filterGame(SoundEffects.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

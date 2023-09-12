@@ -52,7 +52,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
             dimensions = new ListDimensionCreator(cardListDimension === 'list' ? optionInterpreter.createListDimension() : cardListDimension).createDimensions()
 
         const content = [] as ReactElement[]
-        for (const enumerable of optionInterpreter.iterable) {
+        for (const enumerable of optionInterpreter.content) {
             const uniqueEnglishName = this._createUniqueNameOnCardList(enumerable)
             const name = enumerable.reference.nameContainer
             const id = `${key}-${enumerable.englishNameInHtml}-container`

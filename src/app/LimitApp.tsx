@@ -14,7 +14,7 @@ import LinkButton                                   from 'app/tools/button/LinkB
 import Image                                        from 'app/tools/images/Image'
 import {AbstractTableApp}                           from 'app/withInterpreter/AbstractTableApp'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {newIterableIterator}                        from 'util/utilitiesMethods'
+import {filterGame}                                 from 'util/utilitiesMethods'
 
 export default class LimitApp
     extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, LimitAppProperties>
@@ -68,8 +68,8 @@ export default class LimitApp
 
         return new class LimitAppInterpreter implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, $this.type.iterator,)
+            public get content() {
+                return filterGame($this.type.content, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

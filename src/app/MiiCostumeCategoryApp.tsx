@@ -41,11 +41,11 @@ export default class MiiCostumeCategoryApp
         },)
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {
-        return new class implements AppInterpreterWithCardList<MiiCostumeCategories> {
+    protected override _createAppOptionInterpreter() {
+        return new class MiiCostumeCategoryAppInterpreter implements AppInterpreterWithCardList<MiiCostumeCategories> {
 
-            public get iterable() {
-                return MiiCostumeCategories[Symbol.iterator]()
+            public get content() {
+                return MiiCostumeCategories.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

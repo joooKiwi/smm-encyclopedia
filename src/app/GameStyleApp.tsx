@@ -9,7 +9,7 @@ import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {newIterableIterator}    from 'util/utilitiesMethods'
+import {filterGame}             from 'util/utilitiesMethods'
 
 export default class GameStyleApp
     extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
@@ -43,8 +43,8 @@ export default class GameStyleApp
 
         return new class GameStyleAppInterpreter implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, GameStyles[Symbol.iterator](),)
+            public get content() {
+                return filterGame(GameStyles.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

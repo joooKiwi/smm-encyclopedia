@@ -49,7 +49,7 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
             dimensions = optionInterpreter.createListDimension()
 
         const content = [] as ReactElement[]
-        for (const enumerable of optionInterpreter.iterable) {
+        for (const enumerable of optionInterpreter.content) {
             const uniqueEnglishName = this._createUniqueNameOnSimpleList(enumerable)
             const name = enumerable.reference.nameContainer
             const id = `${key}-${enumerable.englishNameInHtml}-container`

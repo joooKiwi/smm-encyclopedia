@@ -29,11 +29,11 @@ export default class PredefinedMessageApp
         },)
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithSimpleList<PredefinedMessages> {
-        return new class implements AppInterpreterWithSimpleList<PredefinedMessages> {
+    protected override _createAppOptionInterpreter() {
+        return new class PredefinedMessageAppInterpreter implements AppInterpreterWithSimpleList<PredefinedMessages> {
 
-            public get iterable() {
-                return PredefinedMessages[Symbol.iterator]()
+            public get content() {
+                return PredefinedMessages.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

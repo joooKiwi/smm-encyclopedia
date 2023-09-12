@@ -68,13 +68,13 @@ export default class CourseTagApp
         </div>
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<CourseTags> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithCardList<CourseTags> {
+        return new class CourseTagAppInterpreter implements AppInterpreterWithCardList<CourseTags> {
 
-            public get iterable() {
-                return $this.type.iterator
+            public get content() {
+                return $this.type.content
             }
 
             //region -------------------- List interpreter --------------------

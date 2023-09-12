@@ -7,7 +7,7 @@ import {AbstractCardListApp}     from 'app/withInterpreter/AbstractCardListApp'
 import {CharacterNames}          from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
-import {newIterableIterator}     from 'util/utilitiesMethods'
+import {filterGame}              from 'util/utilitiesMethods'
 
 export default class CharacterNameApp
     extends AbstractCardListApp<AppInterpreterWithCardList<CharacterNames>, CharacterNameProperties> {
@@ -38,13 +38,13 @@ export default class CharacterNameApp
         return enumerable.uniqueEnglishName
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<CharacterNames> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithCardList<CharacterNames> {
+        return new class CharacterNameAppInterpreter implements AppInterpreterWithCardList<CharacterNames> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, CharacterNames[Symbol.iterator](),)
+            public get content() {
+                return filterGame(CharacterNames.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

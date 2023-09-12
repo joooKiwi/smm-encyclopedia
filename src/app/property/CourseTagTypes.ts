@@ -19,8 +19,8 @@ export abstract class CourseTagTypes
 
     public static readonly ALL =              new class CourseTagTypes_All extends CourseTagTypes {
 
-        public override get iterator(): CollectionIterator<CourseTags> {
-            return CourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.values.toArray()
         }
 
 
@@ -31,8 +31,8 @@ export abstract class CourseTagTypes
     }('all', 'everyCourseTag',)
     public static readonly OFFICIAL =         new class CourseTagTypes_Official extends CourseTagTypes {
 
-        public override get iterator(): IterableIterator<CourseTags> {
-            return CourseTags.officialCourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.officialCourseTags
         }
 
 
@@ -55,8 +55,8 @@ export abstract class CourseTagTypes
     }('official', 'officialCourseTag',)
     public static readonly UNOFFICIAL =       new class CourseTagTypes_Unofficial extends CourseTagTypes {
 
-        public override get iterator(): IterableIterator<CourseTags> {
-            return CourseTags.unofficialCourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.unofficialCourseTags
         }
 
 
@@ -79,8 +79,8 @@ export abstract class CourseTagTypes
     }('unofficial', 'unofficialCourseTag',)
     public static readonly MAKER_CENTRAL =    new class CourseTagTypes_MakerCentral extends CourseTagTypes {
 
-        public override get iterator(): IterableIterator<CourseTags> {
-            return CourseTags.makerCentralCourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.makerCentralCourseTags
         }
 
 
@@ -150,7 +150,12 @@ export abstract class CourseTagTypes
         return this.#routeName
     }
 
-    public abstract get iterator(): IterableIterator<CourseTags>
+    /**
+     * Retrieve the content applicable to the {@link CourseTagTypes}
+     *
+     * @see AppInterpreter.content
+     */
+    public abstract get content(): readonly CourseTags[]
 
     //region -------------------- Link button methods --------------------
 

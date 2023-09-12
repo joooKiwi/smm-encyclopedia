@@ -150,7 +150,7 @@ function getHeaderKey(header: SingleHeaderContent,): string {
 function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly Enumerable[],): CollectionHolder<SingleTableContent> {
     const tableContents = [] as SingleTableContent[]
     const size1 = options.length
-    const contentIterator = interpreter.iterable[Symbol.iterator]()
+    const contentIterator = interpreter.content[Symbol.iterator]()
     let contentIteratorResult: IteratorResult<Content, Content>
     while (!(contentIteratorResult = contentIterator.next()).done) {
         const contentValue = contentIteratorResult.value

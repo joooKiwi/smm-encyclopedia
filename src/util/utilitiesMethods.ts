@@ -61,27 +61,63 @@ export function newIterator<const T, >(collection: CollectionHolder<T>, conditio
     }
 }
 
-/**
- * Create a new {@link IterableIterator} for the type specified that are in the {@link Games} in the {@link games collection}
- *
- * @param games The {@link GameCollection collection} of game to get if they can be used
- * @param iterator The {@link IterableIterator} to loop over and retrieve them in the {@link Games.get}
- */
-export function* newIterableIterator<const T extends ClassWithReference<GameProperty>, >(games: GameCollection, iterator: IterableIterator<T>,): IterableIterator<T> {
-    const gameSize = games.size
+//region -------------------- filter game --------------------
 
-    let value = iterator.next() as IteratorResult<T, T>
-    while (!value.done) {
+/**
+ * Create a new {@link ReadonlyArray array} that are in the {@link games}
+ *
+ * @param values The {@link CollectionHolder} to loop over and retrieve them in the {@link Games.get}
+ * @param games The {@link GameCollection collection} of game to get if they can be used
+ */
+export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: GameCollection,): readonly T[]
+/**
+ * Create a new {@link ReadonlyArray array} that are in the {@link games}
+ *
+ * @param values The {@link ReadonlyArray} to loop over and retrieve them in the {@link Games.get}
+ * @param games The {@link GameCollection collection} of game to get if they can be used
+ */
+export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: GameCollection,): readonly T[]
+export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | readonly T[], games: GameCollection,): readonly T[] {
+    if (values instanceof Array)
+        return filterGameByArray(values, games,)
+    return filterGameByCollection(values, games,)
+}
+
+function filterGameByCollection<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: GameCollection,): readonly T[] {
+    const newArray = [] as T[]
+    const gameSize = games.size
+    const valuesSize = values.size
+    let valuesIndex = -1
+    while (++valuesIndex < valuesSize) {
+        const value = values.get(valuesIndex,)
         let gameIndex = -1
         while (++gameIndex < gameSize)
-            if (games[gameIndex]!.get(value.value.reference,)) {
-                yield value.value
+            if (games[gameIndex]!.get(value.reference,)) {
+                newArray.push(value,)
                 break
             }
-        value = iterator.next()
     }
-    throw new ReferenceError('The iterable has reached its end point and no longer have values.',)
+    return newArray
 }
+
+function filterGameByArray<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: GameCollection,): readonly T[] {
+    const newArray = [] as T[]
+    const gameSize = games.size
+    const valuesSize = values.length
+    let valuesIndex = -1
+    while (++valuesIndex < valuesSize) {
+        const value = values[valuesIndex]
+        let gameIndex = -1
+        while (++gameIndex < gameSize)
+            if (games[gameIndex]!.get(value.reference,)) {
+                newArray.push(value,)
+                break
+            }
+    }
+    return newArray
+}
+
+//endregion -------------------- filter game --------------------
 
 /**
  * Reverse the array fields

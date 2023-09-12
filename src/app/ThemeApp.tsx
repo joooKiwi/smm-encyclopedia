@@ -13,8 +13,8 @@ import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
 import {AbstractTableApp}                                from 'app/withInterpreter/AbstractTableApp'
-import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
-import {newIterableIterator}                             from 'util/utilitiesMethods'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {filterGame}                                 from 'util/utilitiesMethods'
 
 /**
  * @reactComponent
@@ -74,8 +74,8 @@ export default class ThemeApp
 
         return new class ThemeAppInterpreter implements AppInterpreterWithTable<Themes, ThemeAppOption> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, $this.type.iterator,)
+            public get content() {
+                return filterGame($this.type.content, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

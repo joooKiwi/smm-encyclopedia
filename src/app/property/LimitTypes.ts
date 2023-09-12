@@ -19,8 +19,8 @@ export abstract class LimitTypes
 
     public static readonly ALL =           new class EntityLimitTypes_All extends LimitTypes {
 
-        public override get iterator(): CollectionIterator<EntityLimits> {
-            return EntityLimits[Symbol.iterator]()
+        public override get content() {
+            return EntityLimits.values.toArray()
         }
 
 
@@ -31,8 +31,8 @@ export abstract class LimitTypes
     }('all', 'everyLimit',)
     public static readonly PLAY = new class EntityLimitTypes_WhilePlaying extends LimitTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits.whilePlayingEntityLimits[Symbol.iterator]()
+        public override get content() {
+            return EntityLimits.whilePlayingEntityLimits
         }
 
 
@@ -51,8 +51,8 @@ export abstract class LimitTypes
     }('play', 'playLimit',)
     public static readonly EDITOR =        new class EntityLimitTypes_Editor extends LimitTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits.editorEntityLimits[Symbol.iterator]()
+        public override get content() {
+            return EntityLimits.editorEntityLimits
         }
 
 
@@ -118,7 +118,12 @@ export abstract class LimitTypes
         return this.#routeName
     }
 
-    public abstract get iterator(): IterableIterator<EntityLimits>
+    /**
+     * Retrieve the content applicable to the {@link LimitTypes}
+     *
+     * @see AppInterpreter.content
+     */
+    public abstract get content(): readonly EntityLimits[]
 
     //region -------------------- Link button methods --------------------
 

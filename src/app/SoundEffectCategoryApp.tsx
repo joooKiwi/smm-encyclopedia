@@ -32,11 +32,11 @@ export default class SoundEffectCategoryApp
         return gameContentTranslation('sound effect category.all')
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
-        return new class implements AppInterpreterWithCardList<SoundEffectCategories> {
+    protected override _createAppOptionInterpreter() {
+        return new class SoundEffectCategoryAppInterpreter implements AppInterpreterWithCardList<SoundEffectCategories> {
 
-            public get iterable() {
-                return SoundEffectCategories[Symbol.iterator]()
+            public get content() {
+                return SoundEffectCategories.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

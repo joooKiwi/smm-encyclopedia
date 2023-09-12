@@ -30,11 +30,11 @@ export default class InstrumentApp
         return gameContentTranslation('instrument.all')
     }
 
-    protected _createAppOptionInterpreter(): AppInterpreterWithCardList<Instruments> {
-        return new class implements AppInterpreterWithCardList<Instruments> {
+    protected _createAppOptionInterpreter() {
+        return new class InstrumentAppInterpreter implements AppInterpreterWithCardList<Instruments> {
 
-            public get iterable() {
-                return Instruments[Symbol.iterator]()
+            public get content() {
+                return Instruments.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

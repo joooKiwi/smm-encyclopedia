@@ -52,8 +52,8 @@ export default class MiiCostumeApp
     protected override _createAppOptionInterpreter() {
         return new class MiiCostumeAppInterpreter implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
-            public get iterable() {
-                return MiiCostumes[Symbol.iterator]()
+            public get content() {
+                return MiiCostumes.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

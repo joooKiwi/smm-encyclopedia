@@ -13,7 +13,7 @@ import {Entities}                from 'core/entity/Entities'
 import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 import {unfinishedText}          from 'app/tools/text/UnfinishedText'
-import {newIterableIterator}     from 'util/utilitiesMethods'
+import {filterGame}              from 'util/utilitiesMethods'
 
 //region -------------------- Deconstruction imports --------------------
 
@@ -61,8 +61,8 @@ export default class EntityApp
 
         return new class EntityAppInterpreter implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, Entities[Symbol.iterator](),)
+            public get content() {
+                return filterGame(Entities.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

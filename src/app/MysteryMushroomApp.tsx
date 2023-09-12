@@ -57,8 +57,8 @@ export default class MysteryMushroomApp
     protected override _createAppOptionInterpreter() {
         return new class MysteryMushroomAppInterpreter implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
-            public get iterable() {
-                return MysteryMushrooms[Symbol.iterator]()
+            public get content() {
+                return MysteryMushrooms.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

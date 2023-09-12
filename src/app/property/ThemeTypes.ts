@@ -19,8 +19,8 @@ export abstract class ThemeTypes
 
     public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
-        public override get iterator(): CollectionIterator<Themes> {
-            return Themes[Symbol.iterator]()
+        public override get content() {
+            return Themes.values.toArray()
         }
 
 
@@ -31,8 +31,8 @@ export abstract class ThemeTypes
     }('all', 'everyTheme',)
     public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<Themes> {
-            return Themes.courseThemes[Symbol.iterator]()
+        public override get content() {
+            return Themes.courseThemes
         }
 
 
@@ -51,8 +51,8 @@ export abstract class ThemeTypes
     }('course', 'courseTheme',)
     public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<Themes> {
-            return Themes.worldThemes[Symbol.iterator]()
+        public override get content() {
+            return Themes.worldThemes
         }
 
 
@@ -118,7 +118,12 @@ export abstract class ThemeTypes
         return this.#routeName
     }
 
-    public abstract get iterator(): IterableIterator<Themes>
+    /**
+     * Retrieve the content applicable to the {@link ThemeTypes}
+     *
+     * @see AppInterpreter.content
+     */
+    public abstract get content(): readonly Themes[]
 
     //region -------------------- Link button methods --------------------
 
