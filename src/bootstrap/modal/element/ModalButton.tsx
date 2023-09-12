@@ -1,8 +1,10 @@
 import type {ReactProperties}      from 'util/react/ReactProperties'
 import type {HTMLButtonProperties} from 'util/react/html/HTMLButtonProperties'
 
+import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
+
 interface ModalButtonProperties
-    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {
+    extends ReactProperties, Omit<HTMLButtonProperties, | 'type' | 'onClick'> {
 
     elementToShow: string
 
@@ -16,5 +18,5 @@ interface ModalButtonProperties
  * @see https://getbootstrap.com/docs/5.2/components/modal
  */
 export default function ModalButton({elementToShow, ...otherProperties}: ModalButtonProperties,) {
-    return <button {...otherProperties} type="button" data-bs-toggle="modal" data-bs-target={`#${elementToShow}`}/>
+    return <button {...otherProperties} type="button" onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(elementToShow)?.instance.show()}/>
 }
