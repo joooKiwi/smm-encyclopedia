@@ -4,7 +4,7 @@ export class PassiveEventHolder<const out ELEMENT extends Element, const out EVE
     implements EventHolder<ELEMENT, EVENT_TYPE> {
 
     readonly #element
-    #event: | NullOr<EventListener>
+    #event: NullOr<EventListener>
     readonly #eventType
 
     public constructor(element: ELEMENT, type: EVENT_TYPE, eventListener: Nullable<EventListener> = null,) {
