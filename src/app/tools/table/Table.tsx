@@ -148,12 +148,13 @@ function getHeaderKey(header: SingleHeaderContent,): string {
  * @private
  */
 function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly Enumerable[],): CollectionHolder<SingleTableContent> {
-    const tableContents = [] as SingleTableContent[]
     const size1 = options.length
-    const contentIterator = interpreter.content[Symbol.iterator]()
-    let contentIteratorResult: IteratorResult<Content, Content>
-    while (!(contentIteratorResult = contentIterator.next()).done) {
-        const contentValue = contentIteratorResult.value
+    const content = interpreter.content
+    const contentSize = content.length
+    const tableContents = new Array<SingleTableContent>(contentSize,)
+    let contentIndex = -1
+    while (++contentIndex < contentSize) {
+        const contentValue = content[contentIndex]
 
         const tableContent: SingleTableContent = [contentValue.englishName,]
         let index1 = -1
@@ -164,7 +165,7 @@ function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly
             while (++index2 < size2)
                 tableContent.push(tableContentCreated[index2],)
         }
-        tableContents.push(tableContent,)
+        tableContents[contentIndex] = tableContent
     }
     return new GenericCollectionHolder(tableContents,)
 }

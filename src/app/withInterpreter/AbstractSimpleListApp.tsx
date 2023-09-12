@@ -9,6 +9,7 @@ import {AbstractAppWithInterpreter} from 'app/withInterpreter/AbstractAppWithInt
 import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
 import {ListDimensionCreator}       from 'app/withInterpreter/ListDimension.creator'
 import NameComponent                from 'lang/name/component/Name.component'
+import {ReactElement}               from 'react'
 
 export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimpleList,
     T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
@@ -44,27 +45,27 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
      * Create a list with only the names displayed.
      */
     public createList(): ReactElement {
-        const optionInterpreter = this._appOptionInterpreter,
-            key = this._key,
-            dimensions = optionInterpreter.createListDimension()
+        const optionInterpreter = this._appOptionInterpreter
+        const key = this._key
+        const dimensions = new ListDimensionCreator(optionInterpreter.createListDimension(),).createDimensions()
+        const content = optionInterpreter.content
 
-        const content = [] as ReactElement[]
-        for (const enumerable of optionInterpreter.content) {
-            const uniqueEnglishName = this._createUniqueNameOnSimpleList(enumerable)
-            const name = enumerable.reference.nameContainer
-            const id = `${key}-${enumerable.englishNameInHtml}-container`
+        const size = content.length
+        const contentToDisplay = new Array<ReactElement>(size,)
+        let index = -1
+        while (++index < size) {
+            const enumerable = content[index]
+            const uniqueEnglishName = this._createUniqueNameOnSimpleList(enumerable,)
 
             //TODO change the popover to be on the id instead of the name directly
-            content.push(
-                <div key={`${uniqueEnglishName} - main list container`} id={id}
-                     className={`${key}-container listElement-container ${new ListDimensionCreator(dimensions).createDimensions()}`}>
+            contentToDisplay[index] =
+                <div key={`${uniqueEnglishName} - main list container`} id={`${key}-${enumerable.englishNameInHtml}-container`} className={`${key}-container listElement-container ${dimensions}`}>
                     <span key={`${uniqueEnglishName} - main list text-container`} className="simpleListElement-container rounded-pill">
-                        <NameComponent key={`${uniqueEnglishName} - text container`} id="name" name={name} popoverOrientation="left"/>
+                        <NameComponent key={`${uniqueEnglishName} - text container`} id="name" name={enumerable.reference.nameContainer} popoverOrientation="left"/>
                     </span>
                 </div>
-            )
         }
-        return <>{content}</>
+        return <>{contentToDisplay}</>
     }
 
     //endregion -------------------- Render methods --------------------

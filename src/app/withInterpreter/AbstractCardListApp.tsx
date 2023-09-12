@@ -9,6 +9,7 @@ import {AbstractSimpleListApp} from 'app/withInterpreter/AbstractSimpleListApp'
 import {ListDimensionCreator}  from 'app/withInterpreter/ListDimension.creator'
 import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
 import NameComponent           from 'lang/name/component/Name.component'
+import {ReactElement}          from 'react'
 
 export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
     T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
@@ -46,28 +47,29 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
      * It can be similar to the {@link createList} but has more information displayed.
      */
     public createCardList(): ReactElement {
-        const optionInterpreter = this._appOptionInterpreter,
-            key = this._key,
-            cardListDimension = optionInterpreter.createCardListDimension(),
-            dimensions = new ListDimensionCreator(cardListDimension === 'list' ? optionInterpreter.createListDimension() : cardListDimension).createDimensions()
+        const optionInterpreter = this._appOptionInterpreter
+        const key = this._key
+        const cardListDimension = optionInterpreter.createCardListDimension()
+        const dimensions = new ListDimensionCreator(cardListDimension === 'list' ? optionInterpreter.createListDimension() : cardListDimension,).createDimensions()
+        const content = optionInterpreter.content
 
-        const content = [] as ReactElement[]
-        for (const enumerable of optionInterpreter.content) {
-            const uniqueEnglishName = this._createUniqueNameOnCardList(enumerable)
-            const name = enumerable.reference.nameContainer
-            const id = `${key}-${enumerable.englishNameInHtml}-container`
+        const size = content.length
+        const contentToDisplay = new Array<ReactElement>(size,)
+        let index = -1
+        while (++index < size) {
+            const enumerable = content[index]
+            const uniqueEnglishName = this._createUniqueNameOnCardList(enumerable,)
 
             //TODO change the popover to be on the id instead of the name directly
-            content.push(
-                <div key={`${uniqueEnglishName} - main card list container`} id={id} className={`${key}-container listElement-container ${dimensions}`}>
+            contentToDisplay[index] =
+                <div key={`${uniqueEnglishName} - main card list container`} id={`${key}-${enumerable.englishNameInHtml}-container`} className={`${key}-container listElement-container ${dimensions}`}>
                     <div key={`${uniqueEnglishName} - main card list sub-container`} className="cardListElement-container rounded-pill">
-                        <NameComponent key={`${uniqueEnglishName} - text container`} id="name" name={name} popoverOrientation="left"/>
+                        <NameComponent key={`${uniqueEnglishName} - text container`} id="name" name={enumerable.reference.nameContainer} popoverOrientation="left"/>
                         <div className="cardListName-content-container">{optionInterpreter.createCardListContent(enumerable)}</div>
                     </div>
                 </div>
-            )
         }
-        return <>{content}</>
+        return <>{contentToDisplay}</>
     }
 
     //endregion -------------------- Render methods --------------------
