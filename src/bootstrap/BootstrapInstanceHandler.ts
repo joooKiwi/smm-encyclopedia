@@ -114,13 +114,13 @@ export class BootstrapInstanceHandler {
     public remove<T extends ModalInstance<any, any>, >(instance: T,): T
     public remove<T extends PossibleBootstrapInstance, >(instance: T,): T {
         if (instance instanceof TooltipInstance)
-            (this.#popoverMap ??= new Map()).delete(instance,)
+            this.#tooltipMap?.delete(instance,)
         else if (instance instanceof PopoverInstance)
-            (this.#popoverMap ??= new Map()).delete(instance,)
+            this.#popoverMap?.delete(instance,)
         else if (instance instanceof OffcanvasInstance)
-            (this.#offcanvasMap ??= new Map()).delete(instance,)
+            this.#offcanvasMap?.delete(instance,)
         else
-            (this.#modalMap ??= new Map()).delete(instance,)
+            this.#modalMap?.delete(instance,)
         return instance
     }
 
