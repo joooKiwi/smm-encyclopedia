@@ -1,3 +1,5 @@
+import {useRef} from 'react'
+
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import Modal                                                                                                   from 'bootstrap/modal/Modal'
@@ -22,23 +24,29 @@ interface ModalContainersProperties
  * @reactComponent
  */
 export default function ModalContainers({parameter,}: ModalContainersProperties,) {
+    const languageChangerModal = useRef<HTMLDivElement>(null,)
+    const parameterModal = useRef<HTMLDivElement>(null,)
+    const displayViewModal = useRef<HTMLDivElement>(null,)
+    const searchModal = useRef<HTMLDivElement>(null,)
+    const colorModal = useRef<HTMLDivElement>(null,)
+
     return <aside key="modal container" id="modal-container">
-        <Modal elementId={LANGUAGE_CHANGER_MODAL_ID}/>
-        <ModalContainer key="modal - language changer (container)" id={LANGUAGE_CHANGER_MODAL_ID} verticallyCentered={true} modalSize="xl">
+        <Modal modalReference={languageChangerModal}/>
+        <ModalContainer modalReference={languageChangerModal} key="modal - language changer (container)" id={LANGUAGE_CHANGER_MODAL_ID} verticallyCentered={true} modalSize="xl">
             <ModalHeader key="modal - language changer (header)" modalTitle={contentTranslation('Change the language')}/>
             <ModalBody key="modal - language changer (body)"><LanguageChangerBody/></ModalBody>
             <ModalFooter key="modal - language changer (footer)"/>
         </ModalContainer>
 
-        <Modal elementId={PARAMETER_MODAL_ID}/>
-        <ModalContainer key="modal - parameter (container)" id={PARAMETER_MODAL_ID} verticallyCentered modalSize="xl">
+        <Modal modalReference={parameterModal}/>
+        <ModalContainer modalReference={parameterModal} key="modal - parameter (container)" id={PARAMETER_MODAL_ID} verticallyCentered modalSize="xl">
             <ModalHeader key="modal - parameter (header)" modalTitle={contentTranslation('Options')}/>
             <ModalBody key="modal - parameter (body)">{parameter}</ModalBody>
             {/*<ModalFooter key="modal - parameter (footer)" successButton={({children: contentTranslation('Confirm'),})}/>*/}
         </ModalContainer>
 
-        <Modal elementId={DISPLAY_VIEW_MODAL_ID}/>
-        <ModalContainer key="modal - display view (container)" id={DISPLAY_VIEW_MODAL_ID} verticallyCentered modalSize="lg">
+        <Modal modalReference={displayViewModal}/>
+        <ModalContainer modalReference={displayViewModal} key="modal - display view (container)" id={DISPLAY_VIEW_MODAL_ID} verticallyCentered modalSize="lg">
             <ModalHeader key="modal - display view (header)" modalTitle={`${contentTranslation('Display')}${SUSPENSION_POINT}`}/>
             <ModalBody key="modal - display view (body)">
                 <DisplayViewBody/>
@@ -46,8 +54,8 @@ export default function ModalContainers({parameter,}: ModalContainersProperties,
             <ModalFooter key="modal - display view (footer)"/>
         </ModalContainer>
 
-        <Modal elementId={SEARCH_MODAL_ID}/>
-        <ModalContainer key="modal - search (container)" id={SEARCH_MODAL_ID} verticallyCentered modalSize="lg">
+        <Modal modalReference={searchModal}/>
+        <ModalContainer modalReference={searchModal} key="modal - search (container)" id={SEARCH_MODAL_ID} verticallyCentered modalSize="lg">
         {/*    <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search')}${SUSPENSION_POINT}`}/>*/}
         {/*    <ModalBody key="modal - search (body)">*/}
         {/*        <SearchBody/>*/}
@@ -55,8 +63,8 @@ export default function ModalContainers({parameter,}: ModalContainersProperties,
         {/*    <ModalFooter key="modal - search (footer)" successButton={({children: contentTranslation('Search')})}/>*/}
         </ModalContainer>
 
-        <Modal elementId={COLOR_MODAL_ID}/>
-        <ModalContainer key="modal - color (container)" id={COLOR_MODAL_ID} verticallyCentered modalSize="sm">
+        <Modal modalReference={colorModal}/>
+        <ModalContainer modalReference={colorModal} key="modal - color (container)" id={COLOR_MODAL_ID} verticallyCentered modalSize="sm">
 
         </ModalContainer>
     </aside>
