@@ -1,5 +1,3 @@
-import './TranslateIcon.scss'
-
 /**
  * Simply the "translate icon" of Bootstrap.
  *
