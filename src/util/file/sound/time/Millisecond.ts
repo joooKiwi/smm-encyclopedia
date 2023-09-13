@@ -1,6 +1,6 @@
 import {AbstractTime} from 'util/file/sound/time/AbstractTime'
 
-export class Millisecond<TIME extends number = number, >
+export class Millisecond<const out TIME extends number = number, >
     extends AbstractTime {
 
     public constructor(frame: TIME,) {

@@ -4,7 +4,10 @@ import type {Time}                       from 'util/file/sound/time/Time'
 
 import {AbstractSoundFile} from 'util/file/sound/AbstractSoundFile'
 
-export abstract class AbstractRepeatableSoundFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension, REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
+export abstract class AbstractRepeatableSoundFile<const out PATH extends string = string,
+    const out NAME extends string = string,
+    const out EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
+    const out REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
     extends AbstractSoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME>
     implements RepeatableSoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {
 

@@ -2,7 +2,9 @@ import type {BasePath}                   from 'variables'
 import type {PossibleImageFileExtension} from 'util/file/image/ImageFile'
 import type {PossibleSoundFileExtension} from 'util/file/sound/SoundFile'
 
-export interface File<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleFileExtension = PossibleFileExtension, > {
+export interface File<out PATH extends string = string,
+    out NAME extends string = string,
+    out EXTENSION extends PossibleFileExtension = PossibleFileExtension, > {
 
     /** A unique identifier for the file */
     get key(): string

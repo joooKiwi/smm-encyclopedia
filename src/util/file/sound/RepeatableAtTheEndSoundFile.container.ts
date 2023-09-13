@@ -4,7 +4,9 @@ import type {PossibleSoundFileExtension}  from 'util/file/sound/SoundFile'
 import {AbstractRepeatableSoundFile} from 'util/file/sound/AbstractRepeatableSoundFile'
 import {RepeatableTypes}             from 'util/file/sound/RepeatableTypes'
 
-export class RepeatableAtTheEndSoundFileContainer<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension, >
+export class RepeatableAtTheEndSoundFileContainer<const out PATH extends string = string,
+    const out NAME extends string = string,
+    const out EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension, >
     extends AbstractRepeatableSoundFile<PATH, NAME, EXTENSION, null>
     implements RepeatableAtTheEndSoundFile<PATH, NAME, EXTENSION> {
 

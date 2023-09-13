@@ -2,7 +2,11 @@ import type {FullFileName, FullFilePath, PossibleFileExtension} from 'util/file/
 
 import {BASE_PATH} from 'variables'
 
-export abstract class AbstractFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleFileExtension = PossibleFileExtension, > {
+/** The base of every {@link File} implementations */
+export abstract class AbstractFile<const out PATH extends string = string,
+    const out NAME extends string = string,
+    const out EXTENSION extends PossibleFileExtension = PossibleFileExtension, >
+    implements File<PATH, NAME, EXTENSION> {
 
     //region -------------------- Fields --------------------
 

@@ -1,6 +1,6 @@
 import {Millisecond} from 'util/file/sound/time/Millisecond'
 
-export class FramePerMillisecond<FRAME extends number = number, >
+export class FramePerMillisecond<const out FRAME extends number = number, >
     extends Millisecond {
 
     //region -------------------- Fields --------------------
