@@ -9,6 +9,7 @@ export class SoundSubElementsHolder {
     readonly #exceptionElement
 
     //region -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(playElement: ReactCallback, pauseElement: ReactCallback, stopElement: ReactCallback, loadingElement: ReactCallback, exceptionElement: ReactCallback,) {
         this.#playElement = playElement
@@ -18,6 +19,7 @@ export class SoundSubElementsHolder {
         this.#exceptionElement = exceptionElement
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get playElement(): ReactCallback {

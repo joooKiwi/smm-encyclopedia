@@ -43,6 +43,7 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     #onEndEvent?: NullOr<OnEndSoundPlayerCallback<this>>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(source: SOURCE, title: TITLE, doesLoop: DOES_LOOP = AbstractSoundPlayer.DEFAULT_DOES_LOOP as DOES_LOOP,) {
         super(source.key,)
@@ -52,6 +53,7 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
         this.setState((this.#history = new SoundStateHistory(STANDBY,)).current,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter & setter methods --------------------
 
     public get source(): SOURCE {

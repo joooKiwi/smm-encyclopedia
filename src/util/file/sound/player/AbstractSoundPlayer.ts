@@ -14,10 +14,11 @@ export abstract class AbstractSoundPlayer<KEY extends string = string, >
     static #MAP?: ExtendedMap<string, SoundPlayer>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(key: KEY,) {
         if (!isInProduction) {
-            (AbstractSoundPlayer.map)
+            AbstractSoundPlayer.map
                 .if(map => map.includes(key))
                 .isMet(() => {
                     throw new ReferenceError(`A duplicate sound player was found with the same key "${key}".`)
@@ -25,6 +26,8 @@ export abstract class AbstractSoundPlayer<KEY extends string = string, >
                 .set(key, this)
         }
     }
+
+    //endregion -------------------- Constructor --------------------
 
     public static get map(): ExtendedMap<string, SoundPlayer> {
         return this.#MAP ??= new ExtendedMapContainer()

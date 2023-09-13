@@ -9,6 +9,7 @@ export class HistoryState {
     readonly #isFromEventDirectly
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(state: | SoundStates | HistoryState, isLoading: | boolean | HistoryState, isFromEventDirectly: | boolean | HistoryState,) {
         this.#state = state instanceof HistoryState ? state.state : state
@@ -16,6 +17,7 @@ export class HistoryState {
         this.#isFromEventDirectly = isFromEventDirectly instanceof HistoryState ? isFromEventDirectly.isFromEventDirectly : isFromEventDirectly
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get state(): SoundStates {

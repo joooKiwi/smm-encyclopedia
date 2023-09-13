@@ -17,12 +17,14 @@ export abstract class AbstractSoundFile<const out PATH extends string = string,
     readonly #repeatableTime: REPEATABLE_TIME//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(path: PATH, name: NAME, extension: EXTENSION, repeatableTime: REPEATABLE_TIME,) {
         super(path, name, extension,)
         this.#repeatableTime = repeatableTime
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     protected override _createKey(): string {

@@ -1,4 +1,4 @@
-import type {FullFileName, FullFilePath, PossibleFileExtension} from 'util/file/File'
+import type {File, FullFileName, FullFilePath, PossibleFileExtension} from 'util/file/File'
 
 import {BASE_PATH} from 'variables'
 
@@ -19,6 +19,7 @@ export abstract class AbstractFile<const out PATH extends string = string,
     readonly #extension
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(path: PATH, name: NAME, extension: EXTENSION,) {
         this.#path = path
@@ -26,6 +27,7 @@ export abstract class AbstractFile<const out PATH extends string = string,
         this.#extension = extension
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get key(): string {

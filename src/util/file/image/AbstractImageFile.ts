@@ -15,11 +15,14 @@ export abstract class AbstractImageFile<const out PATH extends string = string,
     readonly #fallbackName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
     protected constructor(path: PATH, name: NAME, extension: EXTENSION, fallbackName: FALLBACK_NAME,) {
         super(path, name, extension,)
         this.#fallbackName = fallbackName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     protected _createKey(): string {

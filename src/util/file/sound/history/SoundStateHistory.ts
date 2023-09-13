@@ -10,6 +10,7 @@ export class SoundStateHistory {
     #current!: HistoryState
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(currentState: SoundStates,) {
         if (currentState === SoundStates.LOADING)
@@ -18,6 +19,7 @@ export class SoundStateHistory {
         this.#history = [this.current,]
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get history(): readonly HistoryState[] {

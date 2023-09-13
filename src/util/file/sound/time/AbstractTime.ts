@@ -10,12 +10,14 @@ export abstract class AbstractTime<const out MILLISECOND extends number = number
     readonly #second
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(millisecond: MILLISECOND, second: SECOND,) {
         this.#millisecond = millisecond
         this.#second = second
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get millisecond(): MILLISECOND {
