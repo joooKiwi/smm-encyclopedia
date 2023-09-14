@@ -46,7 +46,7 @@ export abstract class SoundEffects
     public static readonly SHOCK =                      new class SoundEffects_Shock extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '00_00' as const satisfies PossibleSMM1ImagePaths
+            return '00_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -72,7 +72,7 @@ export abstract class SoundEffects
     public static readonly SCREAM =                     new class SoundEffects_Scream extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '00_01' as const satisfies PossibleSMM1ImagePaths
+            return '00_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -98,7 +98,7 @@ export abstract class SoundEffects
     public static readonly LAUGHTER =                   new class SoundEffects_Laughter extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '09_00' as const satisfies PossibleSMM1ImagePaths
+            return '09_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -158,7 +158,7 @@ export abstract class SoundEffects
     public static readonly CHEER =                      new class SoundEffects_Cheer extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '04_01' as const satisfies PossibleSMM1ImagePaths
+            return '04_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -178,7 +178,7 @@ export abstract class SoundEffects
     public static readonly BABY =                       new class SoundEffects_Baby extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '10_00' as const satisfies PossibleSMM1ImagePaths
+            return '10_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -215,8 +215,8 @@ export abstract class SoundEffects
     }('Party Popper',)
     public static readonly APPLAUSE =                   new class SoundEffects_Applause extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '04_00'
+        protected override _createSMM1ImageNumbers() {
+            return '04_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -251,7 +251,7 @@ export abstract class SoundEffects
     public static readonly CLATTER =                    new class SoundEffects_Clatter extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '01_00' as const satisfies PossibleSMM1ImagePaths
+            return '01_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -277,7 +277,7 @@ export abstract class SoundEffects
     public static readonly DRAMA =                      new class SoundEffects_Drama extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '01_01' as const satisfies PossibleSMM1ImagePaths
+            return '01_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -299,7 +299,7 @@ export abstract class SoundEffects
     public static readonly KICK =                       new class SoundEffects_Kick extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '02_00' as const satisfies PossibleSMM1ImagePaths
+            return '02_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -325,7 +325,7 @@ export abstract class SoundEffects
     public static readonly JUMP =                       new class SoundEffects_Jump extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '02_01' as const satisfies PossibleSMM1ImagePaths
+            return '02_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -351,7 +351,7 @@ export abstract class SoundEffects
     public static readonly HONK_HONK =                  new class SoundEffects_HonkHonk extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '10_01' as const satisfies PossibleSMM1ImagePaths
+            return '10_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -379,7 +379,7 @@ export abstract class SoundEffects
     public static readonly PUNCH =                      new class SoundEffects_Punch extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '06_00' as const satisfies PossibleSMM1ImagePaths
+            return '06_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -469,7 +469,7 @@ export abstract class SoundEffects
     public static readonly DING_DONG =                  new class SoundEffects_DingDong extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '11_00' as const satisfies PossibleSMM1ImagePaths
+            return '11_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -496,7 +496,7 @@ export abstract class SoundEffects
     public static readonly BZZZT =                      new class SoundEffects_Bzzzzt extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '11_01' as const satisfies PossibleSMM1ImagePaths
+            return '11_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -522,7 +522,7 @@ export abstract class SoundEffects
     public static readonly GLORY =                      new class SoundEffects_Glory extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '05_00' as const satisfies PossibleSMM1ImagePaths
+            return '05_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -546,7 +546,7 @@ export abstract class SoundEffects
     public static readonly DOOM =                       new class SoundEffects_Doom extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '05_01' as const satisfies PossibleSMM1ImagePaths
+            return '05_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -595,7 +595,7 @@ export abstract class SoundEffects
     public static readonly FIREWORKS =                  new class SoundEffects_Fireworks extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '06_01' as const satisfies PossibleSMM1ImagePaths
+            return '06_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -649,7 +649,7 @@ export abstract class SoundEffects
     public static readonly BIRD_CHIRPING =              new class SoundEffects_BirdChirping extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '09_01' as const satisfies PossibleSMM1ImagePaths
+            return '09_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
@@ -703,7 +703,7 @@ export abstract class SoundEffects
     public static readonly DISTORTION =                 new class SoundEffects_Distortion extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '12_01' as const satisfies PossibleSMM1ImagePaths
+            return '12_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
@@ -742,7 +742,7 @@ export abstract class SoundEffects
     public static readonly TELEPHONE =                  new class SoundEffects_Telephone extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '12_00' as const satisfies PossibleSMM1ImagePaths
+            return '12_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
@@ -817,7 +817,7 @@ export abstract class SoundEffects
     public static readonly FESTIVE_MUSIC =              new class SoundEffects_FestiveMusic extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '07_00' as const satisfies PossibleSMM1ImagePaths
+            return '07_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
@@ -830,7 +830,7 @@ export abstract class SoundEffects
     public static readonly RAVE_MUSIC =                 new class SoundEffects_RaveMusic extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '07_01' as const satisfies PossibleSMM1ImagePaths
+            return '07_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
@@ -895,7 +895,7 @@ export abstract class SoundEffects
     public static readonly BIRD_TWEETING_NOISE =        new class SoundEffects_BirdTweetingNoise extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return ['13_00', '14_00',] as const satisfies PossibleSMM1ImagePaths
+            return ['13_00', '14_00',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
         }
 
 
@@ -907,7 +907,7 @@ export abstract class SoundEffects
     public static readonly CHICKEN_CLUCKING_NOISE =     new class SoundEffects_ChickenCluckingNoise extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return ['13_01', '14_01',] as const satisfies PossibleSMM1ImagePaths
+            return ['13_01', '14_01',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
         }
 
 
@@ -920,7 +920,7 @@ export abstract class SoundEffects
     public static readonly BONUS_MUSIC =                new class SoundEffects_BonusMusic extends SoundEffects {
 
         protected override _createSMM1ImageNumbers() {
-            return '08_01' as const satisfies PossibleSMM1ImagePaths
+            return '08_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
         protected override _createSMM2ImageName() {
@@ -1088,8 +1088,7 @@ export abstract class SoundEffects
 
     //region -------------------- Getter methods (image) --------------------
 
-
-    protected _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
+    protected _createSMM1ImageNumbers(): NullOr<| SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,]> {
         return null
     }
 
@@ -1256,6 +1255,5 @@ export abstract class SoundEffects
 
 }
 
-type PossibleSMM1ImagePaths = NullOr<| SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,]>
 type SMM1ExclusiveCallback = (smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) => Builder<SMM1StandaloneSoundEffectSound>
 type PossibleSMM2SoundEffect = readonly (| SMM2SoundEffectSoundFile | MusicSoundFile)[]
