@@ -872,8 +872,6 @@ export abstract class SoundEffects
     }('Heartbeat',)
     public static readonly SILENCE =                    new class SoundEffects_Silence extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '03_01'
         protected override _createSMM1ImageNumbers() {
             return '03_01' as const satisfies SoundEffectImageNumber_SMM1
         }
