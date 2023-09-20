@@ -83,25 +83,24 @@ export abstract class SoundEffectAppOption
             const isSMM1Empty = sounds_exclusiveSmm1.length === 0,
                 isSMM2Empty = sounds_smm2.length === 0
 
-            return isSMM1Empty && isSMM2Empty
-                ? null
-                : <div key={`${englishName} (sound effect sounds)`}
-                       className={`soundEffect-sounds-container ${isSMM1Empty || isSMM2Empty ? ` soundEffect-sounds-smm${isSMM1Empty ? 2 : 1}-only-container` : ''}`}>
-                    {isSMM1Empty
-                        ? null
-                        : <div key={`${englishName} (sound effect sounds - SMM1&3DS)`} className="soundEffect-sounds-smm1-container">
-                            {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                                <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
-                            </div>)}
-                        </div>}
-                    {isSMM2Empty
-                        ? null
-                        : <div key={`${englishName} (sound effect sounds (SMM2))`} className="soundEffect-sounds-smm2-container">
-                            {sounds_smm2.map(sound => <div key={`${englishName} (sound effect sound - SMM2 - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm2-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                                <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
-                            </div>)}
-                        </div>}
-                </div>
+            if (isSMM1Empty && isSMM2Empty)
+                return null
+            return <div key={`${englishName} (sound effect sounds)`} className={`soundEffect-sounds-container ${isSMM1Empty || isSMM2Empty ? ` soundEffect-sounds-smm${isSMM1Empty ? 2 : 1}-only-container` : ''}`}>
+                {isSMM1Empty
+                    ? null
+                    : <div key={`${englishName} (sound effect sounds - SMM1&3DS)`} className="soundEffect-sounds-smm1-container">
+                        {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
+                            <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
+                        </div>)}
+                    </div>}
+                {isSMM2Empty
+                    ? null
+                    : <div key={`${englishName} (sound effect sounds (SMM2))`} className="soundEffect-sounds-smm2-container">
+                        {sounds_smm2.map(sound => <div key={`${englishName} (sound effect sound - SMM2 - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm2-container col-12 col-lg-6 col-xl-4 col-xxl-3">
+                            <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
+                        </div>)}
+                    </div>}
+            </div>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
