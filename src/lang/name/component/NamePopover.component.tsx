@@ -19,11 +19,11 @@ export default class NamePopoverComponent
     extends Component<NamePopoverProperties, NamePopoverStates>
     implements ReactComponent {
 
-    //#region -------------------- Fields --------------------
+    //region -------------------- Fields --------------------
 
     readonly #currentLanguageTextContent
 
-    //#endregion -------------------- Fields --------------------
+    //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     constructor(props: NamePopoverProperties,) {
