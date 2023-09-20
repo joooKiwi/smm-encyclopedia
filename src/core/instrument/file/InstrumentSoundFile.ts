@@ -1,10 +1,5 @@
 import type {PossibleFileName}       from 'core/instrument/Instruments.types'
 import type {NonRepeatableSoundFile} from 'util/file/sound/NonRepeatableSoundFile'
 
-export interface InstrumentSoundFile<NAME extends PossibleFileName = PossibleFileName, >
-    extends NonRepeatableSoundFile<InstrumentSoundPath, NAME, InstrumentSoundExtension> {
-
-}
-
-export type InstrumentSoundPath = 'instrument'
-export type InstrumentSoundExtension = 'wav'
+/** A {@link NonRepeatableSoundFile} made to be related to an {@link Instruments} */
+export type InstrumentSoundFile<NAME extends PossibleFileName = PossibleFileName, > = NonRepeatableSoundFile<'instrument', NAME, 'wav'>

@@ -7,10 +7,10 @@ import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFil
 import type {InstrumentSoundFile}                                                                                                                                                                                                                      from 'core/instrument/file/InstrumentSoundFile'
 import type {Instrument}                                                                                                                                                                                                                               from 'core/instrument/Instrument'
 
-import {InstrumentLoader}                          from 'core/instrument/Instrument.loader'
-import {InstrumentSoundFileContainer as SoundFile} from 'core/instrument/file/InstrumentSoundFile.container'
-import {StringContainer}                           from 'util/StringContainer'
-import {getValueByEnglishName}                     from 'util/utilitiesMethods'
+import {InstrumentLoader}      from 'core/instrument/Instrument.loader'
+import {instrumentSound}       from 'core/instrument/file/fileCreator'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 /**
  * @recursiveReference<{@link InstrumentLoader}>
@@ -183,7 +183,17 @@ export class Instruments
     }
 
     public get sounds(): readonly InstrumentSoundFile[] {
-        return this.#sounds ??= this.fileNames.map(fileName => new SoundFile(fileName,))
+        if (this.#sounds != null)
+            return this.#sounds
+
+        const fileNames = this.fileNames
+        const size = fileNames.length
+        const sounds = new Array<InstrumentSoundFile>(size,)
+        let index = size
+        while (index-- > 0)
+            sounds[index] = instrumentSound(fileNames[index],)
+
+        return this.#sounds = sounds
     }
 
     //endregion -------------------- Getter methods --------------------
