@@ -14,7 +14,7 @@ export abstract class AbstractDualEntityPropertyComponent<R>
 
     protected abstract _renderSecondComponent(): ReactJSXElement
 
-    public override _render(): ReactJSXElement {
+    protected override _render(): ReactJSXElement {
         return this._isInFirst ?
             this._renderFirstComponent()
             : this._renderSecondComponent()

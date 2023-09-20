@@ -11,7 +11,7 @@ export abstract class AbstractEntityPropertyComponent<R, E>
 
     protected abstract _renderSingleComponent(enumInstance: E,): ReactJSXElement
 
-    public override _render(): ReactJSXElement {
+    protected override _render(): ReactJSXElement {
         const enumInstances = [] as E[]
         this._map.forEach((isInEnumInstance, enumInstance) => {
             if (isInEnumInstance)
