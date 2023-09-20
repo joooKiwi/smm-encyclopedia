@@ -9,9 +9,9 @@ import type {MiiCostume}                                 from 'core/miiCostume/M
 import type {MiiCostumeImageFile, PossibleImageFileName} from 'core/miiCostume/file/MiiCostumeImageFile'
 import type {ClassWithImageFile}                         from 'util/file/image/ClassWithImageFile'
 
-import {MiiCostumeLoader}                          from 'core/miiCostume/MiiCostume.loader'
-import {MiiCostumeImageFileContainer as ImageFile} from 'core/miiCostume/file/MiiCostumeImageFile.container'
-import {StringContainer}                           from 'util/StringContainer'
+import {MiiCostumeLoader} from 'core/miiCostume/MiiCostume.loader'
+import {miiCostumeImage}  from 'core/miiCostume/file/fileCreator'
+import {StringContainer}  from 'util/StringContainer'
 
 /**
  * @recursiveReference {@link MiiCostumeLoader}
@@ -231,7 +231,7 @@ export class MiiCostumes
     }
 
     public get imageFile(): MiiCostumeImageFile{
-        return this.#imageFile ??= new ImageFile(this.__imageName, this.englishName,)
+        return this.#imageFile ??= miiCostumeImage(this.__imageName, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
