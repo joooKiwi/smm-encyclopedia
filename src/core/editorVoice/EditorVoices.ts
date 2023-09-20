@@ -664,11 +664,31 @@ export abstract class EditorVoices
     }
 
     static #findByEntity(value: Entities,): NullOr<EditorVoices> {
-        return this.values.find(it => it.entityReferences.references.includes(value as never))
+        return this.values.find(it => {
+            const references = it.entityReferences
+            const size = references.length
+            if (size === 0)
+                return false
+            let index = -1
+            while (++index < size)
+                if (references[index] === value)
+                    return true
+            return false
+        })
     }
 
     static #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
-        return this.values.find(it => it.characterNameReference.references.includes(value as never))
+        return this.values.find(it => {
+            const references = it.characterNameReferences
+            const size = references.length
+            if (size === 0)
+                return false
+            let index = -1
+            while (++index < size)
+                if (references[index] === value)
+                    return true
+            return false
+        })
     }
 
     //endregion -------------------- Methods --------------------
