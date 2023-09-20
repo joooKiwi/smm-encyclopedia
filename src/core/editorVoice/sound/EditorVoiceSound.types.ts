@@ -175,13 +175,13 @@ type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, 
  *
  * @see PossibleFileName
  */
-type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, > = `voice_${T}`
+export type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, > = `voice_${T}`
 /**
  * A simple string type {@link EditorVoices} sound file with "signing part" before its name
  *
  * @see PossibleFileName
  */
-type PossibleFileName_WithSingingPartBefore<T extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, > = `se_ui_singingparts_${T}`
+export type PossibleFileName_WithSingingPartBefore<T extends PossibleStartingName_WithSingingPartBefore = PossibleStartingName_WithSingingPartBefore, > = `se_ui_singingparts_${T}`
 /**
  * Every possible {@link EditorVoices} sound file with either "voice" or "singing part" before their its name
  *

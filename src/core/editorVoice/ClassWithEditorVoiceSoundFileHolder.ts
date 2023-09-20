@@ -1,14 +1,14 @@
-import type {EditorVoiceSoundFileHolder} from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
+import type {EditorVoiceSound} from 'core/editorVoice/sound/EditorVoiceSound'
 
 export interface ClassWithNullableEditorVoiceSoundFileHolder {
 
-    get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSoundFileHolder>
+    get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound>
 
 }
 
 export interface ClassWithEditorVoiceSoundFileHolder
     extends ClassWithNullableEditorVoiceSoundFileHolder {
 
-    get editorVoiceSoundFileHolder(): EditorVoiceSoundFileHolder
+    get editorVoiceSoundFileHolder(): EditorVoiceSound
 
 }

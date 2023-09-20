@@ -1,14 +1,14 @@
 import './EditorVoiceSound.component.scss'
 
-import type {EditorVoiceSoundFileHolder} from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
-import type {ReactProperties}            from 'util/react/ReactProperties'
+import type {EditorVoiceSound} from 'core/editorVoice/sound/EditorVoiceSound'
+import type {ReactProperties}  from 'util/react/ReactProperties'
 
 import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 
 interface EditorVoiceSoundComponentProperties
     extends ReactProperties {
 
-    editorVoiceSound: Nullable<EditorVoiceSoundFileHolder>
+    editorVoiceSound: Nullable<EditorVoiceSound>
 
     name: string
 
@@ -22,7 +22,7 @@ export default function EditorVoiceSoundComponent({editorVoiceSound, name,}: Edi
     if (editorVoiceSound == null)
         return null
 
-    const {regularSoundFile: regularFile, europeanSoundFile: europeanFile,} = editorVoiceSound
+    const {regularSound: regularFile, europeanSound: europeanFile,} = editorVoiceSound
     return regularFile == null
         ? null
         : europeanFile == null
