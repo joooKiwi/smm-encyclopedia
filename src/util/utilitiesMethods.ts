@@ -41,26 +41,6 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
     return true
 }
 
-/**
- * Create a new {@link Iterator} based on a {@link CollectionHolder} and a condition
- *
- * @param collection The collection to loop over
- * @param condition A callback that will only yield the value if met
- */
-export function newIterator<const T, >(collection: CollectionHolder<T>, condition: (value: T,) => boolean): Iterable<T> {
-    const size = collection.size
-    return {
-        * [Symbol.iterator]() {
-            let index = -1
-            while (++index < size) {
-                const value = collection[index]!
-                if (condition(value))
-                    yield value
-            }
-        }
-    }
-}
-
 //region -------------------- filter game --------------------
 
 /**
