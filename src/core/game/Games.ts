@@ -13,12 +13,12 @@ import type {MultipleRetrievableByUrl}                                          
 import type {ClassWithImageFile}                                                                                                                                 from 'util/file/image/ClassWithImageFile'
 import type {Selectable}                                                                                                                                         from 'util/types/Selectable'
 
-import GameComponent            from 'core/game/Game.component'
-import {GameImageFileContainer} from 'core/game/file/GameImageFile.container'
-import {StringContainer}        from 'util/StringContainer'
-import {EMPTY_ARRAY}            from 'util/emptyVariables'
-import {GameCollection}         from 'util/collection/GameCollection'
-import {newIterator}            from 'util/utilitiesMethods'
+import GameComponent     from 'core/game/Game.component'
+import {gameImage}       from 'core/game/file/fileCreator'
+import {StringContainer} from 'util/StringContainer'
+import {EMPTY_ARRAY}     from 'util/emptyVariables'
+import {GameCollection}  from 'util/collection/GameCollection'
+import {newIterator}     from 'util/utilitiesMethods'
 
 /**
  * @usedByTheRouting
@@ -321,7 +321,7 @@ export abstract class Games
 
 
     public get imageFile(): GameImageFile {
-        return this.#imageFile ??= new GameImageFileContainer(this.englishName,)
+        return this.#imageFile ??= gameImage(this.englishName,)
     }
 
 
