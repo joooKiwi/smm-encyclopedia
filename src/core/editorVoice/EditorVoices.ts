@@ -22,8 +22,8 @@ import {getValueByEnglishName} from 'util/utilitiesMethods'
  * @todo Change the reference used for the "Big Mushroom" as 2 different sounds
  * @todo Change the reference used from the "Green Koopa Troopa" to "Koopa Troopa"
  * @todo Change the reference used from the "Angry Sun" to "Sun"
- * @recursiveReference {@link Entities}, {@link CharacterNames}
- * @classWithDynamicImport {@link Entities}, {@link CharacterNames}
+ * @recursiveReference<{@link Entities}, {@link CharacterNames}>
+ * @classWithDynamicImport<{@link Entities}, {@link CharacterNames}>
  */
 export abstract class EditorVoices
     extends Enum<Ordinals, Names>
@@ -33,7 +33,7 @@ export abstract class EditorVoices
 
     //region -------------------- Sub class --------------------
 
-    /** A simple child class of an {@link EditorVoices}, but specialised for the {@link Entities} */
+    /** A simple child class of an {@link EditorVoices}, but specialized for the {@link Entities} */
     private static readonly EntityEditorVoices = class EntityEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
@@ -49,7 +49,7 @@ export abstract class EditorVoices
         }
 
     }
-    /** A simple child class of an {@link EditorVoices}, but specialised for the {@link CharacterNames} */
+    /** A simple child class of an {@link EditorVoices}, but specialized for the {@link CharacterNames} */
     private static readonly CharacterNameEditorVoices = class CharacterNameEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
