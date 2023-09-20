@@ -39,7 +39,7 @@ export class MiiCostumeCreator
 
     //endregion -------------------- Build helper methods --------------------
 
-    public override _create(name: Name<string>,): MiiCostume {
+    protected override _create(name: Name<string>,): MiiCostume {
         const template = this.template
 
         return new MiiCostumeContainer(name,
