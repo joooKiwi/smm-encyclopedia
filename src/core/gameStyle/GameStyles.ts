@@ -14,11 +14,11 @@ import type {GameStyleProperty}                                                 
 import type {GameStyleReferences}                                                                                                  from 'core/entity/properties/gameStyle/GameStyleReferences'
 import type {ClassWithImageFile}                                                                                                   from 'util/file/image/ClassWithImageFile'
 
-import GameStyleComponent            from 'core/gameStyle/GameStyle.component'
-import {GameStyleLoader}             from 'core/gameStyle/GameStyle.loader'
-import {GameStyleImageFileContainer} from 'core/gameStyle/file/GameStyleImageFile.container'
-import {StringContainer}             from 'util/StringContainer'
-import {getValueByEnglishName}       from 'util/utilitiesMethods'
+import GameStyleComponent      from 'core/gameStyle/GameStyle.component'
+import {GameStyleLoader}       from 'core/gameStyle/GameStyle.loader'
+import {gameStyleImage}        from 'core/gameStyle/file/fileCreator'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 export abstract class GameStyles
     extends Enum<Ordinals, Names>
@@ -165,7 +165,7 @@ export abstract class GameStyles
     }
 
     public get imageFile(): GameStyleImageFile {
-        return this.#imageFile ??= new GameStyleImageFileContainer(this.englishName, this.gameAcronym,)
+        return this.#imageFile ??= gameStyleImage(this.gameAcronym, this.englishName,)
     }
 
     public get shortImagePath(): PossibleShortImagePath {
