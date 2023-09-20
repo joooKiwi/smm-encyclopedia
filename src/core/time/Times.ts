@@ -11,10 +11,10 @@ import type {Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath} from
 import type {TimeImageFile}                                                 from 'core/time/file/TimeImageFile'
 import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
 
-import TimeComponent                         from 'core/time/Time.component'
-import {TimeImageFileContainer as ImageFile} from 'core/time/file/TimeImageFile.container'
-import {getValueByEnglishName}               from 'util/utilitiesMethods'
-import {StringContainer}                     from 'util/StringContainer'
+import TimeComponent           from 'core/time/Time.component'
+import {timeImage}             from 'core/time/file/fileCreator'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {StringContainer}       from 'util/StringContainer'
 
 export abstract class Times
     extends Enum<Ordinals, Names>
@@ -98,7 +98,7 @@ export abstract class Times
     }
 
     public get imageFile(): TimeImageFile {
-        return this.#imageFile ??= new ImageFile(this.englishName, this.#simpleImagePath,)
+        return this.#imageFile ??= timeImage(this.#simpleImagePath, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
