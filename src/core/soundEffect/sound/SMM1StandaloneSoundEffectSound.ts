@@ -3,8 +3,8 @@ import type {SMM1ExclusiveSoundEffectSound}         from 'core/soundEffect/sound
 import type {SMM2SoundEffectSound}                  from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {PossibleEditorValue, SoundEffectSound} from 'core/soundEffect/sound/SoundEffectSound'
 
-export interface SMM1StandaloneSoundEffectSound<SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[],
-    EDITOR_SOUND extends PossibleEditorValue<SOUNDS> = PossibleEditorValue<SOUNDS>>
+export interface SMM1StandaloneSoundEffectSound<out SOUNDS extends readonly SoundEffectSoundFile[] = readonly SoundEffectSoundFile[],
+    out EDITOR_SOUND extends PossibleEditorValue<SOUNDS> = PossibleEditorValue<SOUNDS>>
     extends SoundEffectSound<SOUNDS, EDITOR_SOUND> {
 
     get exclusiveSMM1Sounds(): SMM1ExclusiveSoundEffectSound

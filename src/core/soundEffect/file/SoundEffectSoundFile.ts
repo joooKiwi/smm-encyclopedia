@@ -1,11 +1,13 @@
-import type {SMM1SoundFilePath}            from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
-import type {SMM2SoundFilePath}            from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
-import type {PossibleSoundEffectSoundName} from 'core/soundEffect/sound/types'
-import type {NonRepeatableSoundFile}       from 'util/file/sound/NonRepeatableSoundFile'
+import type {PossibleSoundEffectSoundName, PossibleSoundEffectSoundName_SMM1, PossibleSoundEffectSoundName_SMM2} from 'core/soundEffect/sound/types'
+import type {NonRepeatableSoundFile}                                                                             from 'util/file/sound/NonRepeatableSoundFile'
 
-export interface SoundEffectSoundFile<PATH extends PossibleSoundFilePath = PossibleSoundFilePath, NAME extends PossibleSoundEffectSoundName = PossibleSoundEffectSoundName, >
-    extends NonRepeatableSoundFile<PATH, NAME, SoundFileExtension> {
-}
+/** A {@link NonRepeatableSoundFile} made to be related to a {@link SoundEffects} */
+export type SoundEffectSoundFile<out NAME extends PossibleSoundEffectSoundName = PossibleSoundEffectSoundName, >
+    = | SMM1SoundEffectSoundFile<NAME> | SMM2SoundEffectSoundFile<NAME>
 
-export type PossibleSoundFilePath = | SMM1SoundFilePath | SMM2SoundFilePath
-export type SoundFileExtension = 'wav'
+
+export type SMM1SoundEffectSoundFile<out NAME extends PossibleSoundEffectSoundName_SMM1 = PossibleSoundEffectSoundName_SMM1, >
+    = NonRepeatableSoundFile<'sound/sound effect/SMM1', NAME, 'wav'>
+
+export type SMM2SoundEffectSoundFile<out NAME extends PossibleSoundEffectSoundName_SMM2 = PossibleSoundEffectSoundName_SMM2, >
+    = NonRepeatableSoundFile<'sound/sound effect/SMM2', NAME, 'wav'>
