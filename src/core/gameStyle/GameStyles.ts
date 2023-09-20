@@ -5,9 +5,9 @@ import {CompanionEnum, Enum}                                    from '@joookiwi/
 import type {ClassWithAcronym}                                                                                                     from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                              from 'core/PropertyGetter'
-import type {GameStylesInSMM1, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
-import type {GameStyle}                                                                                                            from 'core/gameStyle/GameStyle'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                            from 'core/PropertyGetter'
+import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
+import type {GameStyle}                                                                                                                                          from 'core/gameStyle/GameStyle'
 import type {GameStyleImageFile}                                                                                                   from 'core/gameStyle/file/GameStyleImageFile'
 import type {PossibleOtherEntities}                                                                                                from 'core/entity/Entity'
 import type {GameStyleProperty}                                                                                                    from 'core/entity/properties/gameStyle/GameStyleProperty'
@@ -113,7 +113,8 @@ export abstract class GameStyles
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameStyle>
-    static #GAME_STYLES_SMM1?: GameStylesInSMM1
+    static #GAME_STYLES_SMM1?: GameStyles_ArrayInSMM1
+    static #GAME_STYLES_SMM2?: GameStyles_ArrayInSMM2
 
     #reference?: GameStyle
     readonly #acronym
@@ -184,8 +185,12 @@ export abstract class GameStyles
     }
 
 
-    public static get gameStyles_smm1(): GameStylesInSMM1 {
+    public static get gameStyles_smm1(): GameStyles_ArrayInSMM1 {
         return this.#GAME_STYLES_SMM1 ??= [this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U,]
+    }
+
+    public static get gameStyles_smm2(): GameStyles_ArrayInSMM2 {
+        return this.#GAME_STYLES_SMM2 ??= this.values.toArray() as GameStyles_ArrayInSMM2
     }
 
 
