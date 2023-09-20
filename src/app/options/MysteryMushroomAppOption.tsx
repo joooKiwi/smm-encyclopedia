@@ -73,7 +73,7 @@ export abstract class MysteryMushroomAppOption
             return this._renderSoundContent(enumeration,)
         }
 
-        public override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
+        protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return this._createSound(enumeration, enumeration.powerUpCollectedSound, it => it.haveASoundEffectWhenCollected, renderDiv,)
         }
 
@@ -88,7 +88,7 @@ export abstract class MysteryMushroomAppOption
             return this._renderImageContent(enumeration,)
         }
 
-        public override _createImageContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
+        protected override _createImageContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return this._createImage(enumeration, enumeration.waitingImage, renderDiv,)
         }
 
@@ -110,7 +110,7 @@ export abstract class MysteryMushroomAppOption
             return this._createImage(enumeration, enumeration.tauntImage, renderDiv,)
         }
 
-        public override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
+        protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return this._createSound(enumeration, enumeration.tauntSound, it => it.haveASoundEffectOnTaunt, renderDiv,)
         }
 
@@ -194,7 +194,7 @@ export abstract class MysteryMushroomAppOption
                 : this._createImage(enumeration, enumeration.jumpImages.map(images => images[0]!), renderDiv,)
         }
 
-        public override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
+        protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return this._createSounds(enumeration, enumeration.jumpSounds, it => it.haveASoundEffectOnJump, renderDiv,)
         }
 
@@ -224,7 +224,7 @@ export abstract class MysteryMushroomAppOption
             return this._renderSoundContent(enumeration,)
         }
 
-        public override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
+        protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return this._createSound(enumeration, enumeration.onGroundAfterJumpASound, it => it.haveASoundEffectOnGroundAfterJump, renderDiv,)
         }
 
@@ -246,7 +246,7 @@ export abstract class MysteryMushroomAppOption
             return this._createImage(enumeration, enumeration.turningImage, renderDiv,)
         }
 
-        public override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
+        protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return this._createSound(enumeration, enumeration.turningSound, it => it.haveASoundEffectOnTurnAfterRun, renderDiv,)
         }
 
@@ -283,7 +283,7 @@ export abstract class MysteryMushroomAppOption
             return this._createAnimatedImages(enumeration, enumeration.goalPoleImages, renderDiv,)
         }
 
-        public override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
+        protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return this._createSound(enumeration, enumeration.goalPoleSound, it => it.haveASoundEffectOnGoalPole, renderDiv,)
         }
 
@@ -445,7 +445,7 @@ export abstract class MysteryMushroomAppOption
         return this._createImageContent(enumeration, renderDiv,)
     }
 
-    public _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,): ReactElement {
+    protected _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,): ReactElement {
         return null
     }
 
