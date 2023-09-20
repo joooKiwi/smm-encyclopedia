@@ -1,16 +1,15 @@
-import type {EndlessMarioThemeFallbackName, EndlessMarioThemeName} from 'core/theme/file/EndlessMarioThemeImageFile'
-import type {LargeThemeFallbackName, LargeThemeName}               from 'core/theme/file/LargeThemeImageFile'
-import type {SmallThemeFallbackName, SmallThemeName}               from 'core/theme/file/SmallThemeImageFile'
-import type {ImageFile}                                            from 'util/file/image/ImageFile'
+import type {PossibleGameName, PossibleGameName_CourseTheme} from 'core/theme/Themes.types'
+import type {ImageFile}                                      from 'util/file/image/ImageFile'
 
-export interface ThemeImageFile<NAME extends PossibleImageFileName = PossibleImageFileName, FALLBACK_NAME extends PossibleImageFileFallbackName = PossibleImageFileFallbackName, >
-    extends ImageFile<ThemePath, NAME, ImageFileExtension, FALLBACK_NAME> {
-}
+/**
+ * A simple {@link ImageFile} made to be related to a {@link Themes}
+ *
+ * @see SmallThemeImageFile
+ * @see LargeThemeImageFile
+ * @see EndlessMarioThemeImageFile
+ */
+export type ThemeImageFile<NAME extends string = string, > = ImageFile<'theme', NAME, 'tiff'>
 
-export type ThemePath = 'theme'
-
-export type PossibleImageFileName = | SmallThemeName | LargeThemeName | EndlessMarioThemeName
-
-export type PossibleImageFileFallbackName = | SmallThemeFallbackName | LargeThemeFallbackName | EndlessMarioThemeFallbackName
-
-export type ImageFileExtension = 'tiff'
+export type SmallThemeImageFile = ThemeImageFile<`Lyt_E_SceneSmall_${PossibleGameName}_00`>
+export type LargeThemeImageFile = ThemeImageFile<`Lyt_E_Scene_${PossibleGameName}_00`>
+export type EndlessMarioThemeImageFile = ThemeImageFile<`WM_GameSkin_${PossibleGameName_CourseTheme}_00^l`>
