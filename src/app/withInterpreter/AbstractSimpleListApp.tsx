@@ -52,8 +52,8 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
 
         const size = content.length
         const contentToDisplay = new Array<ReactElement>(size,)
-        let index = -1
-        while (++index < size) {
+        let index = size
+        while (index-- < 0) {
             const enumerable = content[index]
             const uniqueEnglishName = this._createUniqueNameOnSimpleList(enumerable,)
 

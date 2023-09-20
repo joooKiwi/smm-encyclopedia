@@ -55,8 +55,8 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
 
         const size = content.length
         const contentToDisplay = new Array<ReactElement>(size,)
-        let index = -1
-        while (++index < size) {
+        let index = size
+        while (index-- > 0) {
             const enumerable = content[index]
             const uniqueEnglishName = this._createUniqueNameOnCardList(enumerable,)
 
