@@ -24,11 +24,7 @@ import CourseThemeComponent           from 'core/theme/CourseTheme.component'
 import {Themes}                       from 'core/theme/Themes'
 import {Times}                        from 'core/time/Times'
 import TimeComponent                  from 'core/time/Time.component'
-import {assert}                       from 'util/utilitiesMethods'
 
-/**
- * @todo convert the "_createTableHeaderOption" to have the enumerable as an argument and to be non-null
- */
 export class EntityAppOption
     extends Enum<Ordinals, Names>
     implements AppOption<Entities> {
@@ -38,12 +34,16 @@ export class EntityAppOption
     public static readonly IMAGE_IN_SMB = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const gameStyle = GameStyles.SUPER_MARIO_BROS
-            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SMB cannot be displayed when it is not shown',)
+            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_BROS,)
+            if (imageFiles == null)
+                return null
 
-            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
-                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
-            }</Fragment>
+            const size = imageFiles.length
+            const images = new Array<ReactJSXElement>(size,)
+            let index = size
+            while (index-- > 0)
+                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
         protected override _createTableHeaderOption() {
@@ -54,12 +54,16 @@ export class EntityAppOption
     public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const gameStyle = GameStyles.SUPER_MARIO_BROS_3
-            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SMB3 cannot be displayed when it is not shown',)
+            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_BROS_3,)
+            if (imageFiles == null)
+                return null
 
-            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
-                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
-            }</Fragment>
+            const size = imageFiles.length
+            const images = new Array<ReactJSXElement>(size,)
+            let index = size
+            while (index-- > 0)
+                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
         protected override _createTableHeaderOption() {
@@ -70,12 +74,16 @@ export class EntityAppOption
     public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const gameStyle = GameStyles.SUPER_MARIO_WORLD
-            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SMW cannot be displayed when it is not shown',)
+            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_WORLD,)
+            if (imageFiles == null)
+                return null
 
-            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
-                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
-            }</Fragment>
+            const size = imageFiles.length
+            const images = new Array<ReactJSXElement>(size,)
+            let index = size
+            while (index-- > 0)
+                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
         protected override _createTableHeaderOption() {
@@ -86,12 +94,16 @@ export class EntityAppOption
     public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const gameStyle = GameStyles.NEW_SUPER_MARIO_BROS_U
-            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_NSMBU cannot be displayed when it is not shown',)
+            const imageFiles = uniqueImage.map.get(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            if (imageFiles == null)
+                return null
 
-            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
-                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
-            }</Fragment>
+            const size = imageFiles.length
+            const images = new Array<ReactJSXElement>(size,)
+            let index = size
+            while (index-- > 0)
+                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
         protected override _createTableHeaderOption() {
@@ -102,12 +114,16 @@ export class EntityAppOption
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const gameStyle = GameStyles.SUPER_MARIO_3D_WORLD
-            assert(EntityAppOption._gameStyles.includes(gameStyle,), 'The EntityAppOption.IMAGE_IN_SM3DW cannot be displayed when it is not shown',)
+            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_3D_WORLD,)
+            if (imageFiles == null)
+                return null
 
-            return <Fragment key={`unique image (${englishName})`}>{uniqueImage.get(gameStyle).map(image =>
-                <Image className={`entity-image ${englishNameInHtml}-image`} file={image}/>)
-            }</Fragment>
+            const size = imageFiles.length
+            const images = new Array<ReactJSXElement>(size,)
+            let index = size
+            while (index-- > 0)
+                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
         protected override _createTableHeaderOption() {
