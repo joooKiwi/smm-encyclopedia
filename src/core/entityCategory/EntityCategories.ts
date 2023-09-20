@@ -9,10 +9,10 @@ import type {Names, Ordinals, PossibleEnglishName}         from 'core/entityCate
 import type {EntityCategoryImageFile, PossibleImageNumber} from 'core/entityCategory/file/EntityCategoryImageFile'
 import type {ClassWithImageFile}                           from 'util/file/image/ClassWithImageFile'
 
-import {EntityCategoryLoader}                          from 'core/entityCategory/EntityCategory.loader'
-import {EntityCategoryImageFileContainer as ImageFile} from 'core/entityCategory/file/EntityCategoryImageFile.container'
-import {StringContainer}                               from 'util/StringContainer'
-import {getValueByEnglishName}                         from 'util/utilitiesMethods'
+import {EntityCategoryLoader}  from 'core/entityCategory/EntityCategory.loader'
+import {entityCategoryImage}   from 'core/entityCategory/file/fileCreator'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 export class EntityCategories
     extends Enum<Ordinals, Names>
@@ -93,12 +93,8 @@ export class EntityCategories
     }
 
 
-    private get __imageNumber(): PossibleImageNumber {
-        return this.#imageNumber
-    }
-
     public get imageFile(): EntityCategoryImageFile {
-        return this.#imageFile ??= new ImageFile(this.__imageNumber, this.englishName,)
+        return this.#imageFile ??= entityCategoryImage(this.#imageNumber, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
