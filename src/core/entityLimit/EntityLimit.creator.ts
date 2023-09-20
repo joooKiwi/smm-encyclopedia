@@ -110,7 +110,7 @@ export class EntityLimitCreator
 
     //endregion -------------------- Build helper methods --------------------
 
-    public override _create(name: Name<string>,): EntityLimit {
+    protected override _create(name: Name<string>,): EntityLimit {
         const template = this.template
 
         return template.type == null
