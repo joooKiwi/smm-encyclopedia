@@ -9,10 +9,10 @@ import type {MiiCostumeCategory}                               from 'core/miiCos
 import type {MiiCostumeCategoryImageFile, PossibleImageNumber} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile'
 import type {ClassWithImageFile}                               from 'util/file/image/ClassWithImageFile'
 
-import {MiiCostumeCategoryLoader}                          from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
-import {MiiCostumeCategoryImageFileContainer as ImageFile} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile.container'
-import {StringContainer}                                   from 'util/StringContainer'
-import {getValueByEnglishName}                             from 'util/utilitiesMethods'
+import {MiiCostumeCategoryLoader} from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
+import {miiCostumeCategoryImage}  from 'core/miiCostumeCategory/file/fileCreator'
+import {StringContainer}          from 'util/StringContainer'
+import {getValueByEnglishName}    from 'util/utilitiesMethods'
 
 export class MiiCostumeCategories
     extends Enum<Ordinals, Names>
@@ -95,12 +95,8 @@ export class MiiCostumeCategories
     }
 
 
-    private get __imageNumber(): PossibleImageNumber {
-        return this.#imageNumber
-    }
-
     public get imageFile(): MiiCostumeCategoryImageFile {
-        return this.#imageFile ??= new ImageFile(this.__imageNumber, this.englishName,)
+        return this.#imageFile ??= miiCostumeCategoryImage(this.#imageNumber, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
