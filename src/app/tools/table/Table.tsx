@@ -145,7 +145,7 @@ function getHeaderKey(header: SingleHeaderContent,): string {
 }
 
 /**
- * Retrieve the {@link SingleTableContent content} of the {@link interpreter} and put it in a {@link CollectionHolder}
+ * Retrieve the {@link SingleTableContent content} of the {@link interpreter} and put it in an {@link ReadonlyArray array}
  *
  * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
  * @param options The displayed options in the table
@@ -175,7 +175,7 @@ function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly
 }
 
 /**
- * Retrieve the {@link SingleHeaderContent header} of the {@link interpreter} and put it in a {@link CollectionHolder}
+ * Retrieve the {@link SingleHeaderContent header} of the {@link interpreter} and put it in an {@link ReadonlyArray array}
  *
  *
  * @param interpreter The {@link AppInterpreterWithTable} to retrieve its content
