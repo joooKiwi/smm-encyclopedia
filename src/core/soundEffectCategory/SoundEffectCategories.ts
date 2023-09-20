@@ -9,10 +9,10 @@ import type {SoundEffectCategory}                                               
 import type {SoundEffectCategoryImageFile}                                                 from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
 import type {ClassWithImageFile}                                                           from 'util/file/image/ClassWithImageFile'
 
-import {SoundEffectCategoryLoader}                          from 'core/soundEffectCategory/SoundEffectCategory.loader'
-import {SoundEffectCategoryImageFileContainer as ImageFile} from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile.container'
-import {getValueByEnglishName}                              from 'util/utilitiesMethods'
-import {StringContainer}                                    from 'util/StringContainer'
+import {SoundEffectCategoryLoader} from 'core/soundEffectCategory/SoundEffectCategory.loader'
+import * as FileCreator            from 'core/soundEffectCategory/file/fileCreator'
+import {getValueByEnglishName}     from 'util/utilitiesMethods'
+import {StringContainer}           from 'util/StringContainer'
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
@@ -93,12 +93,8 @@ export class SoundEffectCategories
     }
 
 
-    public get imageName(): PossibleImageName {
-        return this.#imageName
-    }
-
     public get imageFile(): SoundEffectCategoryImageFile {
-        return this.#imageFile ??= new ImageFile(this.englishName, this.imageName,)
+        return this.#imageFile ??= FileCreator.soundEffectCategoryImage(this.#imageName, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
