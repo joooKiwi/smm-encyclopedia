@@ -928,7 +928,7 @@ export class MysteryMushrooms
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    #createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): T[] {
+    /**@deprecated Relocate elsewhere */#createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): readonly T[] {
         const englishName = this.englishName
         return this.__fileName.imageFileNames.map(it => callback(englishName, it,))
     }
