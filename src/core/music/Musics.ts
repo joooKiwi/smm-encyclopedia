@@ -1,7 +1,5 @@
-import type {Lazy}                                              from '@joookiwi/lazy'
 import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {lazyOf}                                                 from '@joookiwi/lazy'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                          from 'core/music/Musics.types'
@@ -11,19 +9,11 @@ import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from 'cor
 import type {SingleSoundEffectMusic}                                   from 'core/music/soundEffect/SingleSoundEffectMusic'
 import type {SoundEffectMusicWithDifferentEditor}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 
-import {BackgroundMusicContainer}                                          from 'core/music/backgroundMusic/BackgroundMusic.container'
-import {NonChangeableSoundEffectBackgroundMusicContainer}                  from 'core/music/backgroundMusic/NonChangeableSoundEffectBackgroundMusic.container'
-import {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer} from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect.container'
-import {NonRepeatableMusicSoundFile as NonRepeatable}                      from 'core/music/file/NonRepeatableMusicSoundFile'
-import {RepeatableDuringThePlayMusicSoundFile as RepeatableDuringThePlay}  from 'core/music/file/RepeatableDuringThePlayMusicSoundFile'
-import {RepeatableAtTheEndMusicSoundFile as RepeatableAtTheEnd}            from 'core/music/file/RepeatableAtTheEndMusicSoundFile'
-import {SingleSoundEffectMusicContainer}                                   from 'core/music/soundEffect/SingleSoundEffectMusic.container'
-import {SoundEffectMusicWithDifferentEditorContainer}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor.container'
-import type {SoundEffects}                                                 from 'core/soundEffect/SoundEffects'
-import type {Themes}                                                       from 'core/theme/Themes'
-import {Import}                                                            from 'util/DynamicImporter'
-import {FramePerMillisecond as Time}                                       from 'util/file/sound/time/FramePerMillisecond'
-import {ObjectHolders}                                                     from 'util/holder/ObjectHolders'
+import * as MusicCreator   from 'core/music/musicCreator'
+import * as FileCreator    from 'core/music/file/fileCreator'
+import type {SoundEffects} from 'core/soundEffect/SoundEffects'
+import type {Themes}       from 'core/theme/Themes'
+import {Import}            from 'util/DynamicImporter'
 
 /**
  * @todo add other musics (from title screen, theme, star, p-switch)
@@ -133,10 +123,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new SoundEffectMusicWithDifferentEditorContainer(
-                new NonRepeatable('BGM_Otoasobi_Dtbt_Murasame',),
-                new NonRepeatable('BGM_Otoasobi_Dtbt_MurasameIcon',),
-            )
+            return MusicCreator.separatedSoundEffectMusic('BGM_Otoasobi_Dtbt_Murasame', 'BGM_Otoasobi_Dtbt_MurasameIcon',)
         }
 
     }()
@@ -147,7 +134,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new SingleSoundEffectMusicContainer(new NonRepeatable('se_otoasobi_clowd',),)
+            return MusicCreator.singleSoundEffectMusic('se_otoasobi_clowd',)
         }
 
     }()
@@ -158,7 +145,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new SingleSoundEffectMusicContainer(new NonRepeatable('otoasobi_scat',),)
+            return MusicCreator.singleSoundEffectMusic('otoasobi_scat',)
         }
 
     }()
@@ -169,7 +156,7 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new SingleSoundEffectMusicContainer(new NonRepeatable('se_otoasobi_ohayashi',),)
+            return MusicCreator.singleSoundEffectMusic('se_otoasobi_ohayashi',)
         }
 
     }()
@@ -180,9 +167,9 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer(
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Healing', new Time(148_074,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_Ending', new Time(368_993,),),
+            return MusicCreator.linkAndSmb2BackgroundMusic(
+                FileCreator.repeatableDuringThePlay('M1_BGM_Otoasobi_Link_Healing', 148_074,),
+                FileCreator.repeatableDuringThePlay('BGM_M1_USA_Ending', 368_993,),
             )
         }
 
@@ -195,37 +182,37 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new BackgroundMusicContainer(
-                new NonRepeatable('M1_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Bonus', new Time(4,),),
-                new RepeatableAtTheEnd('M1_BGM_Otoasobi_BonusHurry',),
+            return MusicCreator.backgroundMusic(
+                FileCreator.nonRepeatable('M1_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('M1_BGM_Otoasobi_Bonus', 4,),
+                FileCreator.repeatableAtTheEnd('M1_BGM_Otoasobi_BonusHurry',),
 
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_Bonus', new Time(148_531,),),
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Link_BonusHurry', new Time(122_177,),),
+                FileCreator.repeatableDuringThePlay('M1_BGM_Otoasobi_Link_Bonus', 148_531,),
+                FileCreator.repeatableDuringThePlay('M1_BGM_Otoasobi_Link_BonusHurry', 122_177,),
 
-                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect', new Time(172_512,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_CharacterSelect_hurry', new Time(129_152,),),
+                FileCreator.repeatableDuringThePlay('BGM_M1_USA_CharacterSelect', 172_512,),
+                FileCreator.repeatableDuringThePlay('BGM_M1_USA_CharacterSelect_hurry', 129_152,),
 
-                new NonRepeatable('M3_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('M3_BGM_Otoasobi_Bonus', new Time(244,),),
-                new RepeatableAtTheEnd('M3_BGM_Otoasobi_BonusHurry',),
+                FileCreator.nonRepeatable('M3_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('M3_BGM_Otoasobi_Bonus', 244,),
+                FileCreator.repeatableAtTheEnd('M3_BGM_Otoasobi_BonusHurry',),
 
-                new NonRepeatable('MW_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Bonus', new Time(97_302,),),
+                FileCreator.nonRepeatable('MW_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('MW_BGM_Otoasobi_Bonus', 97_302,),
                 null,
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BonusHurry', new Time(83_895,),),
+                FileCreator.repeatableDuringThePlay('MW_BGM_Otoasobi_BonusHurry', 83_895,),
                 null,
 
-                new NonRepeatable('WU_BGM_Otoasobi_Bonus - Track 1',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 1', new Time(49_563,),),
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 2', new Time(49_563,),),
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 1', new Time(94_334,),),
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 2', new Time(94_334,),),
+                FileCreator.nonRepeatable('WU_BGM_Otoasobi_Bonus - Track 1',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 1', 49_563,),
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_Bonus - Track 2', 49_563,),
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 1', 94_334,),
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_BonusHurry - Track 2', 94_334,),
 
-                new NonRepeatable('3W_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Bonus', new Time(233_756,),),
+                FileCreator.nonRepeatable('3W_BGM_Otoasobi_Bonus',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('3W_BGM_Otoasobi_Bonus', 233_756,),
                 null,
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BonusHurry', new Time(241_918,),),
+                FileCreator.repeatableDuringThePlay('3W_BGM_Otoasobi_BonusHurry', 241_918,),
                 null,
             )
         }
@@ -238,37 +225,37 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new BackgroundMusicContainer(
-                new NonRepeatable('M1_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_Boss', new Time(265_559,),),
-                new RepeatableDuringThePlay('M1_BGM_Otoasobi_BossHurry', new Time(220_012,),),
+            return MusicCreator.backgroundMusic(
+                FileCreator.nonRepeatable('M1_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('M1_BGM_Otoasobi_Boss', 265_559,),
+                FileCreator.repeatableDuringThePlay('M1_BGM_Otoasobi_BossHurry', 220_012,),
 
-                new RepeatableDuringThePlay('M1_BGM_Link_Boss', new Time(15_931,),),
-                new RepeatableDuringThePlay('M1_BGM_Link_Boss_Hurry', new Time(11_872,),),
+                FileCreator.repeatableDuringThePlay('M1_BGM_Link_Boss', 15_931,),
+                FileCreator.repeatableDuringThePlay('M1_BGM_Link_Boss_Hurry', 11_872,),
 
-                new RepeatableDuringThePlay('BGM_M1_USA_Boss', new Time(115_011,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102_231,),),
+                FileCreator.repeatableDuringThePlay('BGM_M1_USA_Boss', 115_011,),
+                FileCreator.repeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', 102_231,),
 
-                new NonRepeatable('M3_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('M3_BGM_Otoasobi_Boss', new Time(206_172,),),
-                new RepeatableDuringThePlay('M3_BGM_Otoasobi_BossHurry', new Time(198_170,),),
+                FileCreator.nonRepeatable('M3_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('M3_BGM_Otoasobi_Boss', 206_172,),
+                FileCreator.repeatableDuringThePlay('M3_BGM_Otoasobi_BossHurry', 198_170,),
 
-                new NonRepeatable('MW_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_Boss', new Time(69_552,),),
+                FileCreator.nonRepeatable('MW_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('MW_BGM_Otoasobi_Boss', 69_552,),
                 null,
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_BossHurry', new Time(187_181,),),
-                null,
-
-                new NonRepeatable('WU_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_Boss', new Time(280_392,),),
-                null,
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_BossHurry', new Time(236_907,),),
+                FileCreator.repeatableDuringThePlay('MW_BGM_Otoasobi_BossHurry', 187_181,),
                 null,
 
-                new NonRepeatable('3W_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_Boss', new Time(233_238,),),
+                FileCreator.nonRepeatable('WU_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_Boss', 280_392,),
                 null,
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_BossHurry', new Time(267_965,),),
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_BossHurry', 236_907,),
+                null,
+
+                FileCreator.nonRepeatable('3W_BGM_Otoasobi_Boss',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('3W_BGM_Otoasobi_Boss', 233_238,),
+                null,
+                FileCreator.repeatableDuringThePlay('3W_BGM_Otoasobi_BossHurry', 267_965,),
                 null,
             )
         }
@@ -281,41 +268,41 @@ export class Musics
         }
 
         protected override _createMusic() {
-            const smb3Editor = new NonRepeatable('M3_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                smb3 = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBoss', new Time(89_453,),),
-                smb3Fast = new RepeatableDuringThePlay('M3_BGM_Otoasobi_LastBossHurry', new Time(76_674,),)
+            const smb3Editor = FileCreator.nonRepeatable('M3_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                smb3 = FileCreator.repeatableDuringThePlay('M3_BGM_Otoasobi_LastBoss', 89_453,),
+                smb3Fast = FileCreator.repeatableDuringThePlay('M3_BGM_Otoasobi_LastBossHurry', 76_674,)
 
-            return new BackgroundMusicContainer(
+            return MusicCreator.backgroundMusic(
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
-                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss', new Time(23_984,),),
-                new RepeatableDuringThePlay('M1_BGM_Link_LastBoss_Hurry', new Time(20_284,),),
+                FileCreator.repeatableDuringThePlay('M1_BGM_Link_LastBoss', 23_984,),
+                FileCreator.repeatableDuringThePlay('M1_BGM_Link_LastBoss_Hurry', 20_284,),
 
-                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss', new Time(115_011,),),
-                new RepeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', new Time(102_231,),),
+                FileCreator.repeatableDuringThePlay('BGM_M1_USA_LastBoss', 115_011,),
+                FileCreator.repeatableDuringThePlay('BGM_M1_USA_LastBoss_hurry', 102_231,),
 
                 smb3Editor,
                 smb3,
                 smb3Fast,
 
-                new NonRepeatable('MW_BGM_Otoasobi_LastBossIcon',),//README for some reason, it is set at 1 in the files (but it is ignored)
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBoss', new Time(90_251,),),
+                FileCreator.nonRepeatable('MW_BGM_Otoasobi_LastBossIcon',),//README for some reason, it is set at 1 in the files (but it is ignored)
+                FileCreator.repeatableDuringThePlay('MW_BGM_Otoasobi_LastBoss', 90_251,),
                 null,
-                new RepeatableDuringThePlay('MW_BGM_Otoasobi_LastBossHurry', new Time(72_957,),),
-                null,
-
-                new NonRepeatable('WU_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBoss', new Time(487_912,),),
-                null,
-                new RepeatableDuringThePlay('WU_BGM_Otoasobi_LastBossHurry', new Time(454_360,),),
+                FileCreator.repeatableDuringThePlay('MW_BGM_Otoasobi_LastBossHurry', 72_957,),
                 null,
 
-                new NonRepeatable('3W_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBoss', new Time(2_794_396,),),
+                FileCreator.nonRepeatable('WU_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_LastBoss', 487_912,),
                 null,
-                new RepeatableDuringThePlay('3W_BGM_Otoasobi_LastBossHurry', new Time(2_307_013,),),
+                FileCreator.repeatableDuringThePlay('WU_BGM_Otoasobi_LastBossHurry', 454_360,),
+                null,
+
+                FileCreator.nonRepeatable('3W_BGM_Otoasobi_LastBoss',),//TODO replace with specific time interval
+                FileCreator.repeatableDuringThePlay('3W_BGM_Otoasobi_LastBoss', 2_794_396,),
+                null,
+                FileCreator.repeatableDuringThePlay('3W_BGM_Otoasobi_LastBossHurry', 2_307_013,),
                 null,
             )
         }
@@ -329,9 +316,9 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKart_Circuit', new Time(130_927,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_SFCMarioKartHurry_Circuit', new Time(102_494,),),
+            return MusicCreator.nonChangeableBackgroundMusic(
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_SFCMarioKart_Circuit', 130_927,),
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_SFCMarioKartHurry_Circuit', 102_494,),
             )
         }
 
@@ -343,9 +330,9 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64_Slider', new Time(181_140,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_SuperMario64Hurry_Slider', new Time(151_154,),),
+            return MusicCreator.nonChangeableBackgroundMusic(
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_SuperMario64_Slider', 181_140,),
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_SuperMario64Hurry_Slider', 151_154,),
             )
         }
 
@@ -357,9 +344,9 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshine_DolphicTown', new Time(434_950,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioSunshineHurry_DolphicTown', new Time(392_890,),),
+            return MusicCreator.nonChangeableBackgroundMusic(
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_MarioSunshine_DolphicTown', 434_950,),
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_MarioSunshineHurry_DolphicTown', 392_890,),
             )
         }
 
@@ -371,9 +358,9 @@ export class Musics
         }
 
         protected override _createMusic() {
-            return new NonChangeableSoundEffectBackgroundMusicContainer(
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxy_WindGarden', new Time(419_760,),),
-                new RepeatableDuringThePlay('BGM_Otoasobi_MarioGalaxyHurry_WindGarden', new Time(353_407),),
+            return MusicCreator.nonChangeableBackgroundMusic(
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_MarioGalaxy_WindGarden', 419_760,),
+                FileCreator.repeatableDuringThePlay('BGM_Otoasobi_MarioGalaxyHurry_WindGarden', 353_407),
             )
         }
 
@@ -404,10 +391,10 @@ export class Musics
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
-    #gameStyleHolder?: Lazy<NullOr<Themes>>
-    #soundEffectHolder?: Lazy<NullOr<SoundEffects>>
+    #themeReference?: NullOr<Themes>
+    #soundEffectReference?: NullOr<SoundEffects>
 
-    #music?: Lazy<NullOr<PossibleMusic>>
+    #music?: NullOr<PossibleMusic>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -425,16 +412,10 @@ export class Musics
         return null
     }
 
-    private get __themeReference(): Lazy<NullOr<Themes>> {
-        if (this.#gameStyleHolder == null) {
-            const value = this._createThemeReference()
-            this.#gameStyleHolder = value == null ? ObjectHolders.NULL : lazyOf(value,)
-        }
-        return this.#gameStyleHolder
-    }
-
     public get themeReference(): NullOr<Themes> {
-        return this.__themeReference.value
+        if (this.#themeReference === undefined)
+            return this.#themeReference = this._createThemeReference()
+        return this.#themeReference
     }
 
 
@@ -442,16 +423,10 @@ export class Musics
         return null
     }
 
-    private get __soundEffectReference(): Lazy<NullOr<SoundEffects>> {
-        if (this.#soundEffectHolder == null) {
-            const value = this._createSoundEffectReference()
-            this.#soundEffectHolder = value == null ? ObjectHolders.NULL : lazyOf(value,)
-        }
-        return this.#soundEffectHolder
-    }
-
     public get soundEffectReference(): NullOr<SoundEffects> {
-        return this.__soundEffectReference.value
+        if (this.#soundEffectReference === undefined)
+            return this.#soundEffectReference = this._createSoundEffectReference()
+        return this.#soundEffectReference
     }
 
     //endregion -------------------- Other reference methods --------------------
@@ -461,16 +436,10 @@ export class Musics
         return null
     }
 
-    private get __music(): Lazy<NullOr<PossibleMusic>> {
-        if (this.#music == null) {
-            const value = this._createMusic()
-            this.#music = value == null ? ObjectHolders.NULL : lazyOf(value,)
-        }
-        return this.#music
-    }
-
     public get music(): NullOr<PossibleMusic> {
-        return this.__music.value
+        if (this.#music === undefined)
+            return this.#music = this._createMusic()
+        return this.#music
     }
 
     //endregion -------------------- Music methods --------------------

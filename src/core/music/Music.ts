@@ -8,7 +8,7 @@ import type {PossibleSoundEffectName as PossibleSoundEffectName_SingleSoundEffec
  *
  * They are located in the public folder (<i>public/music/SMB2/*.wav</i>)
  */
-export interface Music<ALL extends readonly MusicSoundFile[] = readonly MusicSoundFile[], > {
+export interface Music<out ALL extends readonly MusicSoundFile[] = readonly MusicSoundFile[], > {
 
     get everyMusics(): ALL
 

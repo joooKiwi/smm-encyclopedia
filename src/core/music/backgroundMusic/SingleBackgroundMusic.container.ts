@@ -1,6 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazy}      from '@joookiwi/lazy'
-
 import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM3DW_Music_SingleContainer, PossibleSMB3_Music_SingleContainer, PossibleSMB_Music_SingleContainer, PossibleSMW_Music_SingleContainer, SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
 import {nonNull} from 'util/utilitiesMethods'
@@ -14,7 +11,7 @@ export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_
 
     //region -------------------- Fields --------------------
 
-    readonly #allHolder: Lazy<PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>>
+    readonly #all
 
     readonly #smb: SMB_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
     readonly #smb3: SMB3_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
@@ -23,21 +20,17 @@ export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_
     readonly #sm3dw: SM3DW_MUSIC//FIXME this type is only there to help typescript (it's not the standard)
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     constructor(smb: SMB_MUSIC, smb3: SMB3_MUSIC, smw: SMW_MUSIC, nsmbu: NSMBU_MUSIC, sm3dw: SM3DW_MUSIC,) {
-        this.#smb = smb
-        this.#smb3 = smb3
-        this.#smw = smw
-        this.#nsmbu = nsmbu
-        this.#sm3dw = sm3dw
-
-        this.#allHolder = lazy(() => nonNull([this.smb, this.smb3, this.smw, this.nsmbu, this.sm3dw,]) as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>,)
+        this.#all = nonNull([this.#smb = smb, this.#smb3 = smb3, this.#smw = smw, this.#nsmbu = nsmbu, this.#sm3dw = sm3dw,]) as unknown as PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get all(): PossibleMusicArray<[SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC]> {
-        return this.#allHolder.value
+        return this.#all
     }
 
 
