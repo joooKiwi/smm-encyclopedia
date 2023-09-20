@@ -1,26 +1,75 @@
-import type {PossibleFileName}                                from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {SoundFileName as GoalPoleSoundFileName}          from 'core/mysteryMushroom/file/GoalPoleSoundFile'
-import type {SoundFileName as JumpSoundFileName}              from 'core/mysteryMushroom/file/JumpSoundFile'
-import type {SoundFileName as OnGroundAfterJumpSoundFileName} from 'core/mysteryMushroom/file/OnGroundAfterAJumpSoundFile'
-import type {SoundFileName as PowerUpCollectedSoundFileName}  from 'core/mysteryMushroom/file/PowerUpCollectedSoundFile'
-import type {SoundFileName as TauntSoundFileName}             from 'core/mysteryMushroom/file/TauntSoundFile'
-import type {SoundFileName as TurningSoundFileName}           from 'core/mysteryMushroom/file/TurningSoundFile'
-import type {SoundFileName as LostALifeSoundFileName}         from 'core/mysteryMushroom/file/LostALifeSoundFile'
-import type {NonRepeatableSoundFile}                          from 'util/file/sound/NonRepeatableSoundFile'
+import type {PossibleFileName}       from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {NonRepeatableSoundFile} from 'util/file/sound/NonRepeatableSoundFile'
 
-export interface MysteryMushroomSoundFile<NAME extends PossibleSoundFileName = PossibleSoundFileName, >
-    extends NonRepeatableSoundFile<MysteryMushroomSoundPath, NAME, MysteryMushroomSoundExtension> {
-}
+/**
+ * An {@link NonRepeatableSoundFile} made to be related to a {@link MysteryMushrooms}
+ *
+ * @see GoalPoleSoundFile
+ * @see JumpSoundFile
+ * @see LostALifeSoundFile
+ * @see OnGroundAfterAJumpSoundFile
+ * @see PowerUpCollectedSoundFile
+ * @see TauntSoundFile
+ * @see TurningSoundFile
+ */
+export type MysteryMushroomSoundFile<NAME extends PossibleName = PossibleName, >
+    = NonRepeatableSoundFile<`sound/mystery mushroom/${PossibleFileName}`, NAME, 'wav'>
 
+//region -------------------- Power-up collected --------------------
 
-export type MysteryMushroomSoundPath = `sound/mystery mushroom/${PossibleFileName}`
+export type PowerUpCollectedSoundFile = MysteryMushroomSoundFile<SoundFileName_PowerUpCollected>
 
-export type PossibleSoundFileName = | PowerUpCollectedSoundFileName
-                                    | TauntSoundFileName
-                                    | JumpSoundFileName
-                                    | OnGroundAfterJumpSoundFileName
-                                    | TurningSoundFileName
-                                    | GoalPoleSoundFileName
-                                    | LostALifeSoundFileName
+type SoundFileName_PowerUpCollected = 'powerup'
 
-export type MysteryMushroomSoundExtension = 'wav'
+//endregion -------------------- Power-up collected --------------------
+//region -------------------- Taunt --------------------
+
+export type TauntSoundFile = MysteryMushroomSoundFile<SoundFileName_Taunt>
+
+type SoundFileName_Taunt = 'appeal'
+
+//endregion -------------------- Taunt --------------------
+//region -------------------- Jump --------------------
+
+export type JumpSoundFile = MysteryMushroomSoundFile<SoundFileName_Jump>
+
+export type SoundFileNumber = | '' | 2
+type SoundFileName_Jump = `jump${SoundFileNumber}`
+
+//endregion -------------------- Jump --------------------
+//region -------------------- On ground after a jump --------------------
+
+export type OnGroundAfterAJumpSoundFile = MysteryMushroomSoundFile<SoundFileName_OnGroundAfterAJump>
+
+type SoundFileName_OnGroundAfterAJump = 'ground'
+
+//endregion -------------------- On ground after a jump --------------------
+//region -------------------- Turning --------------------
+
+export type TurningSoundFile = MysteryMushroomSoundFile<SoundFileName_Turning>
+
+type SoundFileName_Turning = 'slip'
+
+//endregion -------------------- Turning --------------------
+//region -------------------- Goal pole --------------------
+
+export type GoalPoleSoundFile = MysteryMushroomSoundFile<SoundFileName_GoalPole>
+
+type SoundFileName_GoalPole = 'goal'
+
+//endregion -------------------- Goal pole --------------------
+//region -------------------- Lost a life --------------------
+
+export type LostALifeSoundFile = MysteryMushroomSoundFile<SoundFileName_LostALife>
+
+type SoundFileName_LostALife = 'down'
+
+//endregion -------------------- Lost a life --------------------
+
+type PossibleName = | SoundFileName_PowerUpCollected
+                    | SoundFileName_Taunt
+                    | SoundFileName_Jump
+                    | SoundFileName_OnGroundAfterAJump
+                    | SoundFileName_Turning
+                    | SoundFileName_GoalPole
+                    | SoundFileName_LostALife

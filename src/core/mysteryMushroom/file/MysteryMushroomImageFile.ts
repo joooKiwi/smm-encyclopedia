@@ -1,46 +1,120 @@
-import type {PossibleEnglishName, PossibleFileName}                                                                    from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {ImageFallbackName as ClimbingImageFallbackName, ImageFileName as ClimbingImageFileName}                   from 'core/mysteryMushroom/file/ClimbingImageFile'
-import type {ImageFallbackName as FallingAfterAJumpImageFallbackName, ImageFileName as FallingAfterAJumpImageFileName} from 'core/mysteryMushroom/file/FallingAfterAJumpImageFile'
-import type {ImageFallbackName as GoalPoleImageFallbackName, ImageFileName as GoalPoleImageFileName}                   from 'core/mysteryMushroom/file/GoalPoleImageFile'
-import type {ImageFallbackName as JumpImageFallbackName, ImageFileName as JumpImageFileName}                           from 'core/mysteryMushroom/file/JumpImageFile'
-import type {ImageFallbackName as PressingDownImageFallbackName, ImageFileName as PressingDownImageFileName}           from 'core/mysteryMushroom/file/PressingDownImageFile'
-import type {ImageFallbackName as RunningImageFallbackName, ImageFileName as RunningImageFileName}                     from 'core/mysteryMushroom/file/RunningImageFile'
-import type {ImageFallbackName as SwimmingImageFallbackName, ImageFileName as SwimmingImageFileName}                   from 'core/mysteryMushroom/file/SwimmingImageFile'
-import type {ImageFallbackName as TauntImageFallbackName, ImageFileName as TauntImageFileName}                         from 'core/mysteryMushroom/file/TauntImageFile'
-import type {ImageFallbackName as TurningImageFallbackName, ImageFileName as TurningImageFileName}                     from 'core/mysteryMushroom/file/TurningImageFile'
-import type {ImageFallbackName as WaitingImageFallbackName, ImageFileName as WaitingImageFileName}                     from 'core/mysteryMushroom/file/WaitingImageFile'
-import type {ImageFallbackName as WalkImageFallbackName, ImageFileName as WalkImageFileName}                           from 'core/mysteryMushroom/file/WalkImageFile'
-import type {ImageFile}                                                                                                from 'util/file/image/ImageFile'
+import type {PossibleFileName} from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {ImageFile}        from 'util/file/image/ImageFile'
 
-export interface MysteryMushroomImageFile<NAME extends PossibleImageFileName = PossibleImageFileName, PARTIAL_FALLBACK extends PossibleImagePartialFallbackName = PossibleImagePartialFallbackName, >
-    extends ImageFile<ImageFilePath, NAME, ImageFileExtension, PossibleImageFallbackName<PARTIAL_FALLBACK>> {
-}
+/**
+ * An {@link ImageFile} made to be related to a {@link MysteryMushrooms}
+ *
+ * @see ClimbingImageFile
+ * @see GoalPoleImageFile
+ * @see JumpImageFile
+ * @see PressingDownImageFile
+ * @see RunningImageFile
+ * @see TauntImageFile
+ * @see TurningImageFile
+ * @see WaitingImageFile
+ * @see WalkImageFile
+ */
+export type MysteryMushroomImageFile<NAME extends PossibleName = PossibleName, > = ImageFile<`entity/1 - SMB/In game/SMM1/Player Chara - ${PossibleFileName}`, NAME, 'tiff'>
 
-export type ImageFilePath = `entity/1 - SMB/In game/SMM1/Player Chara - ${PossibleFileName}`
+//region -------------------- Waiting --------------------
 
-export type PossibleImageFileName =
-    | WaitingImageFileName
-    | TauntImageFileName
-    | PressingDownImageFileName
-    | WalkImageFileName
-    | RunningImageFileName
-    | SwimmingImageFileName
-    | JumpImageFileName | FallingAfterAJumpImageFileName
-    | TurningImageFileName
-    | ClimbingImageFileName
-    | GoalPoleImageFileName
+export type WaitingImageFile = MysteryMushroomImageFile<ImageFileName_Waiting>
 
-export type ImageFileExtension = 'tiff'
+type ImageFileName_Waiting = 'wait.0'
 
-export type PossibleImageFallbackName<PARTIAL_FALLBACK extends PossibleImagePartialFallbackName = PossibleImagePartialFallbackName, > = `${PossibleEnglishName} (${PARTIAL_FALLBACK})`
-export type PossibleImagePartialFallbackName =
-    | WaitingImageFallbackName
-    | TauntImageFallbackName
-    | PressingDownImageFallbackName
-    | WalkImageFallbackName
-    | RunningImageFallbackName
-    | SwimmingImageFallbackName
-    | JumpImageFallbackName | FallingAfterAJumpImageFallbackName
-    | TurningImageFallbackName
-    | ClimbingImageFallbackName
-    | GoalPoleImageFallbackName
+//endregion -------------------- Waiting --------------------
+//region -------------------- Taunt --------------------
+
+export type TauntImageFile = MysteryMushroomImageFile<ImageFileName_Taunt>
+
+type ImageFileName_Taunt = 'appeal.0'
+
+//endregion -------------------- Taunt --------------------
+//region -------------------- Pressing ↓ --------------------
+
+export type PressingDownImageFile = MysteryMushroomImageFile<ImageFileName_PressingDown>
+
+type ImageFileName_PressingDown = 'stoop.0'
+
+//endregion -------------------- Pressing ↓ --------------------
+//region -------------------- Walk --------------------
+
+export type WalkImageFile = MysteryMushroomImageFile<ImageFileName_Walk>
+
+type ImageFileName_Walk = | 'walk.0'
+                          | 'walk.1'
+                          | 'walk.2'
+
+//endregion -------------------- Walk --------------------
+//region -------------------- Running --------------------
+
+export type RunningImageFile = MysteryMushroomImageFile<ImageFileName_Running>
+
+type ImageFileName_Running = | `b_dash.0`
+                             | `b_dash.1`
+                             | `b_dash.2`
+
+//endregion -------------------- Running --------------------
+//region -------------------- Swimming --------------------
+
+export type SwimmingImageFile = MysteryMushroomImageFile<ImageFileName_Swimming>
+
+type ImageFileName_Swimming = | 'swim.0'
+                              | 'swim.1'
+                              | 'swim.2'
+                              | 'swim.3'
+                              | 'swim.4'
+                              | 'swim.5'
+
+//endregion -------------------- Swimming --------------------
+//region -------------------- Jump --------------------
+
+export type JumpImageFile = MysteryMushroomImageFile<ImageFileName_Jump>
+
+type ImageFileName_Jump = | 'jump.0'
+                          | 'jump.1'
+                          | 'jump.2'
+
+//endregion -------------------- Jump --------------------
+//region -------------------- Falling after a jump --------------------
+
+export type FallingAfterAJumpImageFile = MysteryMushroomImageFile<ImageFileName_FallingAfterAJump>
+
+type ImageFileName_FallingAfterAJump = 'jump_fall.0'
+
+//endregion -------------------- Falling after a jump --------------------
+//region -------------------- Turning --------------------
+
+export type TurningImageFile = MysteryMushroomImageFile<ImageFileName_Turning>
+
+type ImageFileName_Turning = 'turn.0'
+
+//endregion -------------------- Turning --------------------
+//region -------------------- Climbing --------------------
+
+export type ClimbingImageFile = MysteryMushroomImageFile<ImageFileName_Climbing>
+
+type ImageFileName_Climbing = | 'climb.0'
+                              | 'climb.1'
+
+//endregion -------------------- Climbing --------------------
+//region -------------------- Goal pole --------------------
+
+export type GoalPoleImageFile = MysteryMushroomImageFile<ImageFileName_GoalPole>
+
+type ImageFileName_GoalPole = | 'pole.0'
+                              | 'pole.1'
+
+//endregion -------------------- Goal pole --------------------
+
+type PossibleName =
+    | ImageFileName_Waiting
+    | ImageFileName_Taunt
+    | ImageFileName_PressingDown
+    | ImageFileName_Walk
+    | ImageFileName_Running
+    | ImageFileName_Swimming
+    | ImageFileName_Jump | ImageFileName_FallingAfterAJump
+    | ImageFileName_Turning
+    | ImageFileName_Climbing
+    | ImageFileName_GoalPole
