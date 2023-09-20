@@ -2,7 +2,7 @@ import type {PossibleGameName, PossibleGameName_CourseTheme} from 'core/theme/Th
 import type {ImageFile}                                      from 'util/file/image/ImageFile'
 
 /**
- * A simple {@link ImageFile} made to be related to a {@link Themes}
+ * An {@link ImageFile} made to be related to a {@link Themes}
  *
  * @see SmallThemeImageFile
  * @see LargeThemeImageFile
