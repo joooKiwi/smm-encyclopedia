@@ -348,8 +348,8 @@ export abstract class EditorVoices
     public static readonly SPIKE_BALL =               new EditorVoices.EntityEditorVoices('Spike Ball',                      SoundCreator.singleEditorVoiceWithSigningPart('SpikeBall',),)
     public static readonly SNOWBALL =                 new EditorVoices.EntityEditorVoices('Snowball',                        SoundCreator.singleEditorVoiceWithSigningPart('SnowBall',),)
 
-    public static readonly LAKITU =                   new EditorVoices.EntityEditorVoices('Lakitu',                          SoundCreator.ingleEditorVoiceWithVoice('lakitu',),)
-    public static readonly LAKITU_CLOUD =             new EditorVoices.EntityEditorVoices('Lakitu\'s Cloud',                 SoundCreator.ingleEditorVoiceWithVoice('lakitucloud',),)
+    public static readonly LAKITU =                   new EditorVoices.EntityEditorVoices('Lakitu',                          SoundCreator.singleEditorVoiceWithVoice('lakitu',),)
+    public static readonly LAKITU_CLOUD =             new EditorVoices.EntityEditorVoices('Lakitu\'s Cloud',                 SoundCreator.singleEditorVoiceWithVoice('lakitucloud',),)
 
     public static readonly BOO =                      new EditorVoices.EntityEditorVoices('Boo',                             SoundCreator.singleEditorVoiceWithVoice('boo',),)
     public static readonly STRETCH =                  new EditorVoices.EntityEditorVoices('Stretch',                         SoundCreator.singleEditorVoiceWithSigningPart('Stretch',),)
