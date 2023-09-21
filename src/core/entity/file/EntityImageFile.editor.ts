@@ -27,7 +27,7 @@ interface ImageNameMap {
     'Lava': NoImages
     'Poison': NoImages
 
-    'Pipe': ['Dokan', Name<'Dokan', | 0 | 1 | 2 | 3>,]
+    'Pipe': ['Dokan', Name<Style<'Dokan', Night<'snow'>>, | 0 | 1 | 2 | 3>,]
     'Clear Pipe': ImageThatHasOnly1Reference<'ToumeiDokan'>
 
     'Spike Trap': ['Toge', Name_0<Style<'Toge', Night<'snow'>>>,]
@@ -46,7 +46,7 @@ interface ImageNameMap {
     'Cristal Block': ['RengaBlock', Name_0<Style<'RengaBlock', | 'underground' | 'woods'>>,]
     'Rotating Block': ImageThatHasOnly1Reference<'RengaBlock'>
 
-    'Hard Block': ['HardBlock', Name_0<Style<'HardBlock', | 'underground' | 'water' | 'airship' | 'castle' | 'hauntedhouse' | 'snow' | Night<| 'underground' | 'snow' | 'airship'>>>,]
+    'Hard Block': ['HardBlock', Name_0<Style<'HardBlock', | 'underground' | 'water' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'underground' | 'snow' | 'airship'>>>,]
     'Rock Block': ImageThatHasOnly1Reference<'HardBlock'>
 
     '? Block': ['HatenaBlock', Name_0<Style<'HatenaBlock', Night<'snow'>>>,]
@@ -216,7 +216,7 @@ interface ImageNameMap {
     'Jumping Piranha Plant': ImageNameMap['Piranha Plant']
     'Fire Piranha Plant': ['Pakkun', Name<'Pakkun', 1>,]
     'Fireball thrown by a Fire Piranha Plant': NoImages
-    'Muncher': ImageThatIsDifferentInSMBAndSMB3<'BlackPakkun'>
+    'Muncher': ['BlackPakkun', ImageThatIsDifferentInSMBAndSMB3<'BlackPakkun'>,]
     'Piranha Creeper': ['PackunPipe', Name_0_1<'PackunPipe'>,]
 
     'Chain Chomp': ['Wanwan', ImageThatIsDifferentInSMBAndSMB3<'Wanwan'>,]
@@ -224,7 +224,7 @@ interface ImageNameMap {
     'Chain Chomp\'s Stump': NoImages
 
     'Spike': ['Gabon', Name<'Gabon', 0>,]
-    'Spike Ball': ['Gabon', ImageThatIsDifferentInSMBAndSMB3<'Gabon', 1>,]
+    'Spike Ball': ['Gabon', Name<Style<'Gabon', | 'underground' | 'water' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'desert' | 'athletic' | 'woods' | 'airship'>>, 1>,]
     'Snowball': ['Gabon', Name<Style<'Gabon', 'snow'>, 1>,]
 
     'Lakitu': ['Jugem', Name<'Jugem', 0>,]
@@ -272,7 +272,7 @@ interface ImageNameMap {
     //endregion -------------------- General enemies --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
-    'Bill Blaster': ImageThatIsDifferentInSMBAndSMB3<'KillerHoudai'>
+    'Bill Blaster': ['KillerHoudai', ImageThatIsDifferentInSMBAndSMB3<'KillerHoudai'>,]
     'Bullet Bill': NoImages
     'Bull\'s-Eye Blaster': ['KillerHoudai', Name<'KillerHoudai', 1>,]
     'Bull\'s-Eye Bill': NoImages
@@ -282,7 +282,7 @@ interface ImageNameMap {
     'Bull\'s-Eye Banzai': ['MagnumKiller', Name<'MagnumKiller', 1>,]
     'Cat Banzai Bill': ImageNameMap['Bull\'s-Eye Banzai']
 
-    'Cannon': ImageThatIsDifferentInSMBAndSMB3<'Houdai'>
+    'Cannon': ['Houdai', ImageThatIsDifferentInSMBAndSMB3<'Houdai'>,]
     'Cannonball': NoImages
     'Red Cannon': ['Houdai', Name<'Houdai', 1>,]
     'Red Cannonball': NoImages
@@ -318,7 +318,7 @@ interface ImageNameMap {
     'Bowser Jr.': ImageThatHasOnly1Reference<'KoopaJr'>
     'Fire thrown by a Bowser Jr.': NoImages
 
-    'Boom Boom': ['Bunbun', Name<'Bunbun', 1>,]
+    'Boom Boom': ['Bunbun', Name<'Bunbun', 0>,]
     'Pom Pom': ['Bunbun', Name<'Bunbun', 1>,]
     'Pom Pom\'s clone': NoImages
     'Shuriken thrown by a Pom Pom': NoImages
