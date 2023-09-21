@@ -442,7 +442,6 @@ type NoImages = readonly [null, null,]
 type PowerUp<NAME extends | SimpleImageName_Editor | string, > = `${NAME}${| '' | VariantEditorImage_PowerUp}`
 type Name<NAME extends | SimpleImageName_Editor | string, NUMBER extends VariantEditorImage_Number, > = `${NAME}_0${NUMBER}`
 type Name_0<NAME extends | SimpleImageName_Editor | string, > = Name<NAME, 0>
-type Name_0_1<NAME extends | SimpleImageName_Editor | string, > = Name<NAME, | 0 | 1>
 type Name_0_1_2<NAME extends | SimpleImageName_Editor | string, > = Name<NAME, | 0 | 1 | 2>
 type Style<NAME extends | SimpleImageName_Editor | string, STYLE extends VariantEditorImage_GameStyle = VariantEditorImage_GameStyle, > = | NAME | `${NAME}_${STYLE}`
 
