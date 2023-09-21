@@ -453,6 +453,9 @@ export type SimpleImageName_Editor_WithBlueVariant = ImageNameMap[| 'Buzzy Beetl
                                                                   | 'Bill Blaster' | 'Banzai Bill' | 'Cannon' | 'Skewer'][0]
 
 export type ImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][1]>
+export type ImageName_Editor_PowerUp = ImageNameMap[| 'Fire Flower' | 'Superball Flower' | 'Big Mushroom' | 'SMB2 Mushroom' | 'Super Leaf'
+                                                    | 'Frog Suit' | 'Cape Feather' | 'Power Balloon' | 'Propeller Mushroom' | 'Super Acorn'
+                                                    | 'Super Bell' | 'Super Hammer' | 'Boomerang Flower'][1]
 
 type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`
 type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>
