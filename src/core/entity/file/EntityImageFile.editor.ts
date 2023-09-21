@@ -159,8 +159,8 @@ interface ImageNameMap {
 
     'Goomba': ['Kuribo', Name<'Kuribo', 0>,]
     'Galoomba': ['Kuribo', Name<'Kuribo', 1>,]
-    'Goombrat': ImageNameMap['Goomba']
-    'Goombud': ImageNameMap['Galoomba']
+    'Goombrat': this['Goomba']
+    'Goombud': this['Galoomba']
 
     'Green Koopa Troopa': ['Nokonoko', Name<'Nokonoko', 0>,]
     'Red Koopa Troopa': ['Nokonoko', Name<'Nokonoko', 1>,]
@@ -213,7 +213,7 @@ interface ImageNameMap {
     'Angry Wiggler': ['Hanachan', Name<'Hanachan', 1>,]
 
     'Piranha Plant': ['Pakkun', Name<'Pakkun', 0>,]
-    'Jumping Piranha Plant': ImageNameMap['Piranha Plant']
+    'Jumping Piranha Plant': this['Piranha Plant']
     'Fire Piranha Plant': ['Pakkun', Name<'Pakkun', 1>,]
     'Fireball thrown by a Fire Piranha Plant': NoImages
     'Muncher': ['BlackPakkun', ImageThatIsDifferentInSMBAndSMB3<'BlackPakkun'>,]
@@ -233,7 +233,7 @@ interface ImageNameMap {
     'Boo': ['Teresa', Name<'Teresa', 0>,]
     'Stretch': NoImages
     'Boo Buddies': ['Teresa', Name<'Teresa', 1>,]
-    'Peepa': ImageNameMap['Boo Buddies']
+    'Peepa': this['Boo Buddies']
 
     'Bob-omb': ['Bombhei', Name<'Bombhei', 0>,]
     'Lit Bob-omb': ['Bombhei', Name<'Bombhei', 1>,]
@@ -280,7 +280,7 @@ interface ImageNameMap {
 
     'Banzai Bill': ['MagnumKiller', ImageThatIsDifferentInSMBAndSMB3<'MagnumKiller'>,]
     'Bull\'s-Eye Banzai': ['MagnumKiller', Name<'MagnumKiller', 1>,]
-    'Cat Banzai Bill': ImageNameMap['Bull\'s-Eye Banzai']
+    'Cat Banzai Bill': this['Bull\'s-Eye Banzai']
 
     'Cannon': ['Houdai', ImageThatIsDifferentInSMBAndSMB3<'Houdai'>,]
     'Cannonball': NoImages
@@ -294,9 +294,9 @@ interface ImageNameMap {
     'Skewer': ['TogeKonbo', ImageThatIsDifferentInSMBAndSMB3<'TogeKonbo'>,]
 
     'Koopa Clown Car': ['KoopaClown', Name<'KoopaClown', 0>,]
-    'Junior Clown Car': ImageNameMap['Koopa Clown Car']
+    'Junior Clown Car': this['Koopa Clown Car']
     'Fire Koopa Clown Car': ['KoopaClown', Name<'KoopaClown', 1>,]
-    'Fire Junior Clown Car': ImageNameMap['Fire Koopa Clown Car']
+    'Fire Junior Clown Car': this['Fire Koopa Clown Car']
     'Fire thrown by a Fire [Koopa / Junior] Clown Car': NoImages
 
     'Koopa Troopa Car': ImageThatHasOnly1Reference<'KoopaCar'>
@@ -311,7 +311,7 @@ interface ImageNameMap {
     //region -------------------- Bosses + projectiles --------------------
 
     'Bowser': ImageThatHasOnly1Reference<'Koopa'>
-    'Meowser': ImageNameMap['Bowser']
+    'Meowser': this['Bowser']
     'Fire thrown by a Bowser': NoImages
     'Falling Fire thrown by a Bowser': NoImages
 
@@ -389,7 +389,7 @@ interface ImageNameMap {
 
     'Lift': ['Lift', Name<'Lift', 0>,]
     'Flimsy Lift': ['Lift', Name<'Lift', 1>,]
-    'Cloud Lift': ImageNameMap['Lift']
+    'Cloud Lift': this['Lift']
 
     'Seesaw': ImageThatHasOnly1Reference<'Seesaw'>
 
