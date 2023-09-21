@@ -6,5 +6,4 @@ export interface RepeatableDuringThePlaySoundFile<out PATH extends string = stri
     out NAME extends string = string,
     out EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
     out REPEATABLE_TIME extends Time = Time, >
-    extends RepeatableSoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {
-}
+    extends RepeatableSoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {}
