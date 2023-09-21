@@ -1,5 +1,5 @@
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
-import type {GenericEditorImageFile, ImageNumber_Editor, PowerUpEditorImageFile, ImageNumber_PowerUp_Editor, SimpleImageName_Editor}                                                               from 'core/entity/file/EntityImageFile.editor'
+import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, ImageNumber_Editor, PowerUpEditorImageFile, SimpleImageName_Editor}                                               from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1}                                                                      from 'core/entity/file/EntityImageFile.inGame'
 import type {ImageName_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, SimpleImageName_BigMushroom_Unused_SMM1, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile} from 'core/entity/file/EntityImageFile.unused'
@@ -115,12 +115,11 @@ export function nightAirshipEditorImage(entity: Entities, name: SimpleImageName_
  * labelled as "with mushroom"
  *
  * @param entity The entity to retrieve its name
- * @param name The simple image file name
- * @param number The simple image file number
+ * @param name The image file name
  * @param gameStyle The image {@link GameStyles}
  */
-export function standalonePowerUpEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
+export function standalonePowerUpEditorImage(entity: Entities, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
 }
 
 /**
@@ -128,28 +127,27 @@ export function standalonePowerUpEditorImage(entity: Entities, name: SimpleImage
  * labelled as "standalone"
  *
  * @param entity The entity to retrieve its name
- * @param name The simple image file name
- * @param number The simple image file number
+ * @param name The image file name
  * @param gameStyle The image {@link GameStyles}
  */
-export function withMushroomPowerUpEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}Uni_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
+export function withMushroomPowerUpEditorImage(entity: Entities, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
 }
 
 /**
  * Get both standalone and "with mushroom" {@link PowerUpEditorImageFile} from the values provided
  *
  * @param entity The entity to retrieve its name
- * @param name The simple images file name
- * @param number The simple images file number
+ * @param standaloneName The image name that is standalone
+ * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  * @param gameStyle The images {@link GameStyles}
  * @see standalonePowerUpEditorImage
  * @see withMushroomPowerUpEditorImage
  */
-export function powerUpEditorImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor, gameStyle: GameStyles,): readonly [PowerUpEditorImageFile, PowerUpEditorImageFile,] {
+export function powerUpEditorImages(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp, gameStyle: GameStyles,): readonly [PowerUpEditorImageFile, PowerUpEditorImageFile,] {
     return [
-        standalonePowerUpEditorImage(entity, name, number, gameStyle,),
-        withMushroomPowerUpEditorImage(entity, name, number, gameStyle,),
+        standalonePowerUpEditorImage(entity, standaloneName, gameStyle,),
+        withMushroomPowerUpEditorImage(entity, nameWithMushroom, gameStyle,),
     ]
 }
 

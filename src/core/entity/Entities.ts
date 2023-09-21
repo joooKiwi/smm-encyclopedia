@@ -544,7 +544,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorImages(this, 'FireFlower',)
+            return ImageCreator.powerUpEditorImages(this, 'FireFlower_00', 'FireFlowerUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -561,7 +561,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSmbImages(this, 'FireFlower', 1,)
+            return ImageCreator.powerUpEditorInSmbImages(this, 'FireFlower_01', 'FireFlowerUni_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -629,7 +629,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSmbImages(this, 'DekaKinoko',)
+            return ImageCreator.powerUpEditorInSmbImages(this, 'DekaKinoko_00', 'DekaKinokoUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -659,7 +659,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSmbImages(this, 'KinokoUSA',)
+            return ImageCreator.powerUpEditorInSmbImages(this, 'KinokoUSA_00', 'KinokoUSAUni_00')
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -675,7 +675,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSmb3Images(this, 'SuperKonoha',)
+            return ImageCreator.powerUpEditorInSmb3Images(this, 'SuperKonoha_00', 'SuperKonohaUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -691,7 +691,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSmb3Images(this, 'FrogSuit',)
+            return ImageCreator.powerUpEditorInSmb3Images(this, 'FrogSuit_00', 'FrogSuitUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -707,7 +707,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSmwImages(this, 'MantleWing',)
+            return ImageCreator.powerUpEditorInSmwImages(this, 'MantleWing_00', 'MantleWingUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -723,7 +723,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSmwImages(this, 'PowerBalloon',)
+            return ImageCreator.powerUpEditorInSmwImages(this, 'PowerBalloon_00', 'PowerBalloonUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -739,7 +739,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInNsmbuImages(this, 'PropellerKinoko',)
+            return ImageCreator.powerUpEditorInNsmbuImages(this, 'PropellerKinoko_00', 'PropellerKinokoUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -755,7 +755,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInNsmbuImages(this, 'SuperDonguri',)
+            return ImageCreator.powerUpEditorInNsmbuImages(this, 'SuperDonguri_00', 'SuperDonguriUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -771,7 +771,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSm3dwImages(this, 'SuperBell',)
+            return ImageCreator.powerUpEditorInSm3dwImages(this, 'SuperBell_00', 'SuperBellUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -787,7 +787,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSm3dwImages(this, 'SuperHammer',)
+            return ImageCreator.powerUpEditorInSm3dwImages(this, 'SuperHammer_00', 'SuperHammerUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -804,7 +804,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): PowerUpEditorImage {
-            return ImageCreator.powerUpEditorInSm3dwImages(this, 'BoomerangFlower',)
+            return ImageCreator.powerUpEditorInSm3dwImages(this, 'BoomerangFlower_00', 'BoomerangFlowerUni_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {

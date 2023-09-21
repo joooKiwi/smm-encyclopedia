@@ -1,6 +1,6 @@
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
 import type {EntityImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile'
-import type {EditorImageFile, ImageNumber_Editor, ImageNumber_PowerUp_Editor, SimpleImageName_Editor, SimpleImageName_Editor_GroundOrSlope}                                                        from 'core/entity/file/EntityImageFile.editor'
+import type {EditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, ImageNumber_Editor, SimpleImageName_Editor, SimpleImageName_Editor_GroundOrSlope}                                        from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {InGameImageFile, InGameSMM2ImageFile, KoopalingImageName, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1, ImageName_SMM2, DangerousImageFileName}                              from 'core/entity/file/EntityImageFile.inGame'
 import type {SimpleImageName_BigMushroom_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile, ImageName_Unused_SMM1} from 'core/entity/file/EntityImageFile.unused'
@@ -995,25 +995,25 @@ export function multipleEditorInNotSm3dwImages(entity: Entities, name: SimpleIma
  * Create a simple {@link PowerUpEditorImage} that is in every {@link GameStyles game style}
  *
  * @param entity The entity reference
- * @param name The image name
- * @param number The image number
+ * @param standaloneName The image name that is standalone
+ * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor = 0,): PowerUpEditorImage {
+export function powerUpEditorImages(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
     const images = [
-        FileCreator.standalonePowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),         // index 0
-        FileCreator.withMushroomPowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),       // index 1
+        FileCreator.standalonePowerUpEditorImage(entity, standaloneName, GameStyles.SUPER_MARIO_BROS,),           // index 0
+        FileCreator.withMushroomPowerUpEditorImage(entity, nameWithMushroom, GameStyles.SUPER_MARIO_BROS,),       // index 1
 
-        FileCreator.standalonePowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),       // index 2
-        FileCreator.withMushroomPowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),     // index 3
+        FileCreator.standalonePowerUpEditorImage(entity, standaloneName, GameStyles.SUPER_MARIO_BROS_3,),         // index 2
+        FileCreator.withMushroomPowerUpEditorImage(entity, nameWithMushroom, GameStyles.SUPER_MARIO_BROS_3,),     // index 3
 
-        FileCreator.standalonePowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),        // index 4
-        FileCreator.withMushroomPowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),      // index 6
+        FileCreator.standalonePowerUpEditorImage(entity, standaloneName, GameStyles.SUPER_MARIO_WORLD,),          // index 4
+        FileCreator.withMushroomPowerUpEditorImage(entity, nameWithMushroom, GameStyles.SUPER_MARIO_WORLD,),      // index 6
 
-        FileCreator.standalonePowerUpEditorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),   // index 7
-        FileCreator.withMushroomPowerUpEditorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 8
+        FileCreator.standalonePowerUpEditorImage(entity, standaloneName, GameStyles.NEW_SUPER_MARIO_BROS_U,),     // index 7
+        FileCreator.withMushroomPowerUpEditorImage(entity, nameWithMushroom, GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 8
 
-        FileCreator.standalonePowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),     // index 9
-        FileCreator.withMushroomPowerUpEditorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),   // index 10
+        FileCreator.standalonePowerUpEditorImage(entity, standaloneName, GameStyles.SUPER_MARIO_3D_WORLD,),       // index 9
+        FileCreator.withMushroomPowerUpEditorImage(entity, nameWithMushroom, GameStyles.SUPER_MARIO_3D_WORLD,),   // index 10
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -1029,11 +1029,11 @@ export function powerUpEditorImages(entity: Entities, name: SimpleImageName_Edit
  * Create a simple {@link PowerUpEditorImage} that is in only the {@link GameStyles.SUPER_MARIO_BROS SMB} {@link GameStyles game style}
  *
  * @param entity The entity reference
- * @param name The image name
- * @param number The image number
+ * @param standaloneName The image name that is standalone
+ * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSmbImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor = 0,): PowerUpEditorImage {
-    const images = FileCreator.powerUpEditorImages(entity, name, number, GameStyles.SUPER_MARIO_BROS,)
+export function powerUpEditorInSmbImages(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+    const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_BROS,)
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS, new Map([[Themes.GROUND, images,],],),],],),],],),)
 }
@@ -1042,11 +1042,11 @@ export function powerUpEditorInSmbImages(entity: Entities, name: SimpleImageName
  * Create a simple {@link PowerUpEditorImage} that is in only the {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} {@link GameStyles game style}
  *
  * @param entity The entity reference
- * @param name The image name
- * @param number The image number
+ * @param standaloneName The image name that is standalone
+ * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSmb3Images(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor = 0,): PowerUpEditorImage {
-    const images = FileCreator.powerUpEditorImages(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,)
+export function powerUpEditorInSmb3Images(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+    const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_BROS_3,)
 
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS_3, new Map([[Themes.GROUND, images,],],),],],),],],),)
@@ -1056,11 +1056,11 @@ export function powerUpEditorInSmb3Images(entity: Entities, name: SimpleImageNam
  * Create a simple {@link PowerUpEditorImage} that is in only the {@link GameStyles.SUPER_MARIO_WORLD SMW} {@link GameStyles game style}
  *
  * @param entity The entity reference
- * @param name The image name
- * @param number The image number
+ * @param standaloneName The image name that is standalone
+ * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSmwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor = 0,): PowerUpEditorImage {
-    const images = FileCreator.powerUpEditorImages(entity, name, number, GameStyles.SUPER_MARIO_WORLD,)
+export function powerUpEditorInSmwImages(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+    const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_WORLD,)
 
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_WORLD, new Map([[Themes.GROUND, images,],],),],],),],],),)
@@ -1070,11 +1070,11 @@ export function powerUpEditorInSmwImages(entity: Entities, name: SimpleImageName
  * Create a simple {@link PowerUpEditorImage} that is in only the {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} {@link GameStyles game style}
  *
  * @param entity The entity reference
- * @param name The image name
- * @param number The image number
+ * @param standaloneName The image name that is standalone
+ * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInNsmbuImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor = 0,): PowerUpEditorImage {
-    const images = FileCreator.powerUpEditorImages(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,)
+export function powerUpEditorInNsmbuImages(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+    const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.NEW_SUPER_MARIO_BROS_U,)
 
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.NEW_SUPER_MARIO_BROS_U, new Map([[Themes.GROUND, images,],],),],],),],],),)
@@ -1084,11 +1084,11 @@ export function powerUpEditorInNsmbuImages(entity: Entities, name: SimpleImageNa
  * Create a simple {@link PowerUpEditorImage} that is in only the {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} {@link GameStyles game style}
  *
  * @param entity The entity reference
- * @param name The image name
- * @param number The image number
+ * @param standaloneName The image name that is standalone
+ * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSm3dwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor = 0,): PowerUpEditorImage {
-    const images = FileCreator.powerUpEditorImages(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,)
+export function powerUpEditorInSm3dwImages(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+    const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_3D_WORLD,)
 
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map([[Themes.GROUND, images,],],),],],),],],),)

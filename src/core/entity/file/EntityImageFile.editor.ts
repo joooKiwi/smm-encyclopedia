@@ -6,7 +6,7 @@ import type {ImageFile}                            from 'util/file/image/ImageFi
 export type EditorImageFile = | GenericEditorImageFile | PowerUpEditorImageFile
 
 export type GenericEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${SimpleImageName_Editor}_${| '' | `${DayOrNightGameName}_`}0${ImageNumber_Editor}`, 'tiff'>
-export type PowerUpEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${SimpleImageName_Editor}${| '_' | `${VariantEditorImage_PowerUp}_`}0${ImageNumber_PowerUp_Editor}`, 'tiff'>
+export type PowerUpEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${ImageName_Editor_PowerUp}`, 'tiff'>
 
 
 interface ImageNameMap {
