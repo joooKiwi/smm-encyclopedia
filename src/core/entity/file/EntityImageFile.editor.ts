@@ -434,7 +434,7 @@ interface ImageNameMap {
 export type PossibleRailExtended = `Rail${| 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}`
 export type PossibleConveyor = `${| 'Belt' | 'Slope'}Conveyor`
 type ImageThatIsAGround<NAME extends SimpleImageName_Editor, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship'>>>,]
-type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName_Editor, NUMBER extends | 0 | 1 = 0, > = [NAME, Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>,]
+type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName_Editor, NUMBER extends | 0 | 1 = 0, > = Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>
 type ImageThatHasOnly1Reference<NAME extends SimpleImageName_Editor, > = [NAME, Name_0<NAME>,]
 type ImageThatIsPowerUp<NAME extends SimpleImageName_Editor, > = [NAME, PowerUp<NAME>,]
 type NoImages = readonly [null, null,]
