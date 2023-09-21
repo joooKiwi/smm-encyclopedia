@@ -73,6 +73,10 @@ export class Entities
     }('Steep Slope',)
     public static readonly GENTLE_SLOPE =                                  new class Entities_GentleSlope extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorGroundOrSlopeImages(this, 'slope_l30',)
         }
@@ -274,12 +278,20 @@ export class Entities
 
     public static readonly QUESTION_MARK_BLOCK =                           new class Entities_QuestionMarkBlock extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorInNightSnowInSmbAndSmb3Images(this, 'HatenaBlock',)
         }
 
     }('? Block',)
     public static readonly HIDDEN_BLOCK =                                  new class Entities_HiddenBlock extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'ClearBlock',)
@@ -331,6 +343,10 @@ export class Entities
 
     public static readonly DONUT_BLOCK =                                   new class Entities_DonutBlock extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorInNightSnowInSmbAndSmb3Images(this, 'ChikuwaBlock',)
         }
@@ -338,6 +354,10 @@ export class Entities
     }('Donut Block',)
 
     public static readonly CLOUD_BLOCK =                                   new class Entities_CloudBlock extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorCloudBlockImages(this,)
@@ -347,12 +367,20 @@ export class Entities
 
     public static readonly ON_OFF_SWITCH =                                 new class Entities_OnOffBlock extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'OnOffSwitch',)
         }
 
     }('ON/OFF Switch',)
     public static readonly DOTTED_LINE_BLOCK =                             new class Entities_DottedLineBlock extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.multipleEditorImages(this, 'OnOffBlock', [0, 1,],)
@@ -361,6 +389,10 @@ export class Entities
     }('Dotted-Line Block',)
 
     public static readonly P_BLOCK =                                       new class Entities_PBlock extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.multipleEditorImages(this, 'PBlock', [0, 1,],)
@@ -382,12 +414,20 @@ export class Entities
 
     public static readonly ICE_BLOCK =                                     new class Entities_IceBlock extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorInNightSnowInSmb3Images(this, 'IceBlock',)
         }
 
     }('Ice Block',)
     public static readonly ICICLE =                                        new class Entities_Icicle extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.multipleEditorImages(this, 'Icicle', [0, 1,],)
@@ -1581,6 +1621,10 @@ export class Entities
     }('Spike Ball',)
     public static readonly SNOWBALL =                                      new class Entities_Snowball extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorInSnowImages(this, 'Gabon', 1,)
         }
@@ -1687,6 +1731,10 @@ export class Entities
 
     }('Bob-omb',)
     public static readonly LIT_BOB_OMB =                                   new class Entities_LitBobOmb extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'Bombhei', 1,)
@@ -1948,6 +1996,10 @@ export class Entities
     }('Bullet Bill',)
     public static readonly BULL_EYE_BLASTER =                              new class Entities_BullEyeBlaster extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'KillerHoudai', 1,)
         }
@@ -1972,6 +2024,10 @@ export class Entities
 
     }('Banzai Bill',)
     public static readonly BULL_EYE_BANZAI =                               new class Entities_BullEyeBanzai extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorInNotSm3dwImages(this, 'MagnumKiller', 1,)
@@ -2531,6 +2587,10 @@ export class Entities
 
     public static readonly TWISTER =                                       new class Entities_Twister extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'Tornado',)
         }
@@ -2935,6 +2995,10 @@ export class Entities
 
     public static readonly WARP_DOOR =                                     new class Entities_WarpDoor extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'Door',)
         }
@@ -2942,12 +3006,20 @@ export class Entities
     }('Warp Door',)
     public static readonly P_WARP_DOOR =                                   new class Entities_PWarpDoor extends Entities {
 
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
+
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'Door', 1,)
         }
 
     }('P Warp Door',)
     public static readonly KEY_DOOR =                                      new class Entities_KeyDoor extends Entities {
+
+        protected override _createUniqueImage(): UniqueImage {
+            return ImageCreator.uniqueImagesInEditor(this,)
+        }
 
         protected override _createEditorImage(): EditorImage {
             return ImageCreator.editorImages(this, 'Door', 2,)
