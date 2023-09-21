@@ -174,9 +174,9 @@ interface ImageNameMap {
     'Bone thrown by a Dry Bones': NoImages
     'Dry Bones Shell': SimpleName<'Karon', 1>
 
-    'Buzzy Beetle': ['Met', ImageThatIsDifferentInSMBAndSMB3<'Met'>,]
+    'Buzzy Beetle': ['Met', ImageThatHasBlueVariant<'Met'>,]
     'Para-Beetle': NoImages
-    'Buzzy Shell': ['Met', ImageThatIsDifferentInSMBAndSMB3<'Met', 1>,]
+    'Buzzy Shell': ['Met', ImageThatHasBlueVariant<'Met', 1>,]
 
     'Spiny': SimpleName<'Togezo'>
     'Winged Spiny': NoImages
@@ -216,11 +216,11 @@ interface ImageNameMap {
     'Jumping Piranha Plant': this['Piranha Plant']
     'Fire Piranha Plant': SimpleName<'Pakkun', 1>
     'Fireball thrown by a Fire Piranha Plant': NoImages
-    'Muncher': ['BlackPakkun', ImageThatIsDifferentInSMBAndSMB3<'BlackPakkun'>,]
+    'Muncher': ['BlackPakkun', ImageThatHasBlueVariant<'BlackPakkun'>,]
     'Piranha Creeper': SimpleName<'PackunPipe', | 0 | 1>
 
-    'Chain Chomp': ['Wanwan', ImageThatIsDifferentInSMBAndSMB3<'Wanwan'>,]
-    'Unchained Chomp': ['Wanwan', ImageThatIsDifferentInSMBAndSMB3<'Wanwan', 1>,]
+    'Chain Chomp': ['Wanwan', ImageThatHasBlueVariant<'Wanwan'>,]
+    'Unchained Chomp': ['Wanwan', ImageThatHasBlueVariant<'Wanwan', 1>,]
     'Chain Chomp\'s Stump': NoImages
 
     'Spike': SimpleName<'Gabon'>
@@ -272,17 +272,17 @@ interface ImageNameMap {
     //endregion -------------------- General enemies --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
-    'Bill Blaster': ['KillerHoudai', ImageThatIsDifferentInSMBAndSMB3<'KillerHoudai'>,]
+    'Bill Blaster': ['KillerHoudai', ImageThatHasBlueVariant<'KillerHoudai'>,]
     'Bullet Bill': NoImages
     'Bull\'s-Eye Blaster': SimpleName<'KillerHoudai', 1>
     'Bull\'s-Eye Bill': NoImages
     'Cat Bullet Bill': NoImages
 
-    'Banzai Bill': ['MagnumKiller', ImageThatIsDifferentInSMBAndSMB3<'MagnumKiller'>,]
+    'Banzai Bill': ['MagnumKiller', ImageThatHasBlueVariant<'MagnumKiller'>,]
     'Bull\'s-Eye Banzai': SimpleName<'MagnumKiller', 1>
     'Cat Banzai Bill': this['Bull\'s-Eye Banzai']
 
-    'Cannon': ['Houdai', ImageThatIsDifferentInSMBAndSMB3<'Houdai'>,]
+    'Cannon': ['Houdai', ImageThatHasBlueVariant<'Houdai'>,]
     'Cannonball': NoImages
     'Red Cannon': SimpleName<'Houdai', 1>
     'Red Cannonball': NoImages
@@ -291,7 +291,7 @@ interface ImageNameMap {
 
     'Fire Bar': SimpleName<'FireBar'>
 
-    'Skewer': ['TogeKonbo', ImageThatIsDifferentInSMBAndSMB3<'TogeKonbo'>,]
+    'Skewer': ['TogeKonbo', ImageThatHasBlueVariant<'TogeKonbo'>,]
 
     'Koopa Clown Car': SimpleName<'KoopaClown'>
     'Junior Clown Car': this['Koopa Clown Car']
@@ -434,7 +434,7 @@ interface ImageNameMap {
 export type PossibleRailExtended = `Rail${| 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}`
 export type PossibleConveyor = `${| 'Belt' | 'Slope'}Conveyor`
 type ImageThatIsAGround<NAME extends SimpleImageName_Editor, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship'>>>,]
-type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName_Editor, NUMBER extends | 0 | 1 = 0, > = Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>
+type ImageThatHasBlueVariant<NAME extends SimpleImageName_Editor, NUMBER extends | 0 | 1 = 0, > = Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>
 type SimpleName<NAME extends string, NUMBER extends | 0 | 1 | 2 = 0, > = [NAME, Name<NAME, NUMBER>,]
 type SimplePowerUpName<NAME extends string, NUMBER extends ImageNumber_PowerUp_Editor = 0, > = [NAME, Name<PowerUp<NAME>, NUMBER>,]
 type NoImages = readonly [null, null,]
@@ -449,6 +449,8 @@ type Style<NAME extends | SimpleImageName_Editor | string, STYLE extends Variant
 
 export type SimpleImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][0]>
 export type SimpleImageName_Editor_GroundOrSlope = ImageNameMap['Ground' | 'Gentle Slope' | 'Steep Slope'][0]
+export type SimpleImageName_Editor_WithBlueVariant = ImageNameMap[| 'Buzzy Beetle' | 'Buzzy Shell' | 'Muncher' | 'Chain Chomp' | 'Unchained Chomp'
+                                                                  | 'Bill Blaster' | 'Banzai Bill' | 'Cannon' | 'Skewer'][0]
 
 export type ImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][1]>
 
