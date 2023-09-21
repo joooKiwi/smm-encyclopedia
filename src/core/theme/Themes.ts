@@ -9,7 +9,7 @@ import type {PossibleOtherEntities}                                             
 import type {ThemeProperty}                                                              from 'core/entity/properties/theme/ThemeProperty'
 import type {ThemeReferences}                                                            from 'core/entity/properties/theme/ThemeReferences'
 import type {CourseTheme}                                                                from 'core/theme/CourseTheme'
-import type {DayOrNightGameName, Names, Ordinals, PossibleEnglishName, PossibleGameName} from 'core/theme/Themes.types'
+import type {Names, Ordinals, PossibleEnglishName, PossibleGameName} from 'core/theme/Themes.types'
 import type {CourseAndWorldTheme}                                                        from 'core/theme/CourseAndWorldTheme'
 import type {WorldTheme}                                                                 from 'core/theme/WorldTheme'
 import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFile}       from 'core/theme/file/ThemeImageFile'
@@ -17,9 +17,7 @@ import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFil
 import {ThemeComponent}        from 'core/theme/Theme.component'
 import {ThemeLoader}           from 'core/theme/Theme.loader'
 import * as FileCreator        from 'core/theme/file/fileCreator'
-import type {Times}            from 'core/time/Times'
 import {EMPTY_ARRAY}           from 'util/emptyVariables'
-import {Import}                from 'util/DynamicImporter'
 import {StringContainer}       from 'util/StringContainer'
 import {getValueByEnglishName} from 'util/utilitiesMethods'
 
@@ -266,17 +264,6 @@ export class Themes
 
     public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
         return EMPTY_ARRAY
-    }
-
-    public getGameName(isNightTheme: true,): DayGameName
-    public getGameName(isNightTheme: false,): NightGameName
-    public getGameName<B extends boolean = boolean, >(isInDayTime: B,): DayOrNightGameName<B>
-    public getGameName(time: | boolean | Times,): DayOrNightGameName
-    public getGameName(isInDayTime: | boolean | Times,) {
-        if (isInDayTime instanceof Import.Times)
-            return this.getGameName( isInDayTime === Import.Times.DAY,)
-        const text = this.gameName
-        return `${text}${isInDayTime ? '' : '_night'}`
     }
 
     public renderSingleComponent(isSmallPath: boolean,) {

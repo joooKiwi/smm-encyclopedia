@@ -22,9 +22,6 @@ export type PossibleGameName_WorldTheme = | 'plain' | 'underground' | 'desert' |
 export type PossibleGameName = | PossibleGameName_CourseTheme | PossibleGameName_WorldTheme
 export type DayGameName = PossibleGameName
 export type NightGameName = `${PossibleGameName}_night`
-export type DayOrNightGameName<B extends boolean = boolean, >
-    = B extends true ? DayGameName :
-    B extends false ? NightGameName
-        : | DayGameName | NightGameName
+export type DayOrNightGameName = | DayGameName | NightGameName
 
 //endregion -------------------- Name & image --------------------
