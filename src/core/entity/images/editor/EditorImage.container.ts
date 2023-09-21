@@ -162,13 +162,12 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
             }
 
             const iteratorResultValue_nightGameStyle = iteratorResult_nightGameStyle.value
-            if (iteratorResultValue_nightGameStyle == null)
-                break // We no longer have any values (for some weird reason)
-            if (iteratorResultValue_dayGameStyle != null)
-                if (iteratorResultValue_dayGameStyle[0] !== iteratorResultValue_nightGameStyle[0])
-                    continue
+            if (iteratorResultValue_nightGameStyle != null)
+                if (iteratorResultValue_dayGameStyle != null)
+                    if (iteratorResultValue_dayGameStyle[0] !== iteratorResultValue_nightGameStyle[0])
+                        continue
 
-            nightContext: { // eslint-disable-line no-labels
+            nightContext: if (iteratorResultValue_nightGameStyle != null) { // eslint-disable-line no-labels
                 const nightImagesToAdd = iteratorResultValue_nightGameStyle[1].get(theme,)
                 if (nightImagesToAdd == null)
                     break nightContext // eslint-disable-line no-labels
@@ -177,8 +176,8 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
                 let index = -1
                 while (++index < size)
                     images.push(nightImagesToAdd[index],)
+                iteratorResult_nightGameStyle = iterator_nightGameStyle.next()
             }
-            iteratorResult_nightGameStyle = iterator_nightGameStyle.next()
         }
 
         if (images.length === 0)
@@ -259,18 +258,19 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
 
 
             const iteratorResultValue_nightTheme = iteratorResult_nightTheme.value
-            if (iteratorResultValue_nightTheme == null)
-                break // We no longer have any values (for some weird reason)
-            if (iteratorResultValue_dayTheme != null)
-                if (iteratorResultValue_dayTheme[0] !== iteratorResultValue_nightTheme[0])
-                    continue
+            if (iteratorResultValue_nightTheme != null)
+                if (iteratorResultValue_dayTheme != null)
+                    if (iteratorResultValue_dayTheme[0] !== iteratorResultValue_nightTheme[0])
+                        continue
 
-            const nightImagesToAdd = iteratorResultValue_nightTheme[1]
-            const size2 = nightImagesToAdd.length
-            let index2 = -1
-            while (++index2 < size2)
-                images.push(nightImagesToAdd[index2],)
-            iteratorResult_nightTheme = iterator_nightTheme.next()
+            if (iteratorResultValue_nightTheme != null) {
+                const nightImagesToAdd = iteratorResultValue_nightTheme[1]
+                const size2 = nightImagesToAdd.length
+                let index2 = -1
+                while (++index2 < size2)
+                    images.push(nightImagesToAdd[index2],)
+                iteratorResult_nightTheme = iterator_nightTheme.next()
+            }
         }
 
         if (images.length === 0)
