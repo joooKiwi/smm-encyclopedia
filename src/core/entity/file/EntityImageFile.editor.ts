@@ -82,12 +82,12 @@ interface ImageNameMap {
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
 
-    'Super Mushroom': ['SuperKinoko', Name<'SuperKinoko', 0>,]
+    'Super Mushroom': SimplePowerUpName<'SuperKinoko'>
 
-    'Fire Flower': ['FireFlower', Name<PowerUp<'FireFlower'>, 0>,]
+    'Fire Flower': SimplePowerUpName<'FireFlower'>
     'Fireball thrown by a player': NoImages
 
-    'Superball Flower': ['FireFlower', Name<PowerUp<'FireFlower'>, 1>,]
+    'Superball Flower': SimplePowerUpName<'FireFlower', 1>
     'Superball thrown by a player': NoImages
 
     'Mystery Mushroom': NoImages
@@ -97,30 +97,30 @@ interface ImageNameMap {
     'Bomb thrown by a Link': NoImages
     'Arrow thrown by a Link': NoImages
 
-    'Big Mushroom': ImageThatIsPowerUp<'DekaKinoko'>
+    'Big Mushroom': SimplePowerUpName<'DekaKinoko'>
     'Big Mushroom (classic)': NoImages
     'Big Mushroom (modern)': NoImages
 
-    'SMB2 Mushroom': ImageThatIsPowerUp<'KinokoUSA'>
+    'SMB2 Mushroom': SimplePowerUpName<'KinokoUSA'>
 
-    'Super Leaf': ImageThatIsPowerUp<'SuperKonoha'>
+    'Super Leaf': SimplePowerUpName<'SuperKonoha'>
 
-    'Frog Suit': ImageThatIsPowerUp<'FrogSuit'>
+    'Frog Suit': SimplePowerUpName<'FrogSuit'>
 
-    'Cape Feather': ImageThatIsPowerUp<'MantleWing'>
+    'Cape Feather': SimplePowerUpName<'MantleWing'>
 
-    'Power Balloon': ImageThatIsPowerUp<'PowerBalloon'>
+    'Power Balloon': SimplePowerUpName<'PowerBalloon'>
 
-    'Propeller Mushroom': ImageThatIsPowerUp<'PropellerKinoko'>
+    'Propeller Mushroom': SimplePowerUpName<'PropellerKinoko'>
 
-    'Super Acorn': ImageThatIsPowerUp<'SuperDonguri'>
+    'Super Acorn': SimplePowerUpName<'SuperDonguri'>
 
-    'Super Bell': ImageThatIsPowerUp<'SuperBell'>
+    'Super Bell': SimplePowerUpName<'SuperBell'>
 
-    'Super Hammer': ImageThatIsPowerUp<'SuperHammer'>
+    'Super Hammer': SimplePowerUpName<'SuperHammer'>
     'Builder Box thrown by a player': NoImages
 
-    'Boomerang Flower': ImageThatIsPowerUp<'BoomerangFlower'>
+    'Boomerang Flower': SimplePowerUpName<'BoomerangFlower'>
     'Boomerang thrown by a player': NoImages
 
     'Cannon Box': SimpleName<'BoxKiller'>
@@ -435,8 +435,8 @@ export type PossibleRailExtended = `Rail${| 'U' | 'D' | `Branch${`${| 'U' | 'D'}
 export type PossibleConveyor = `${| 'Belt' | 'Slope'}Conveyor`
 type ImageThatIsAGround<NAME extends SimpleImageName_Editor, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship'>>>,]
 type ImageThatIsDifferentInSMBAndSMB3<NAME extends SimpleImageName_Editor, NUMBER extends | 0 | 1 = 0, > = Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>
-type ImageThatIsPowerUp<NAME extends SimpleImageName_Editor, > = [NAME, PowerUp<NAME>,]
 type SimpleName<NAME extends string, NUMBER extends | 0 | 1 | 2 = 0, > = [NAME, Name<NAME, NUMBER>,]
+type SimplePowerUpName<NAME extends string, NUMBER extends ImageNumber_PowerUp_Editor = 0, > = [NAME, Name<PowerUp<NAME>, NUMBER>,]
 type NoImages = readonly [null, null,]
 
 type PowerUp<NAME extends | SimpleImageName_Editor | string, > = `${NAME}${| '' | VariantEditorImage_PowerUp}`
