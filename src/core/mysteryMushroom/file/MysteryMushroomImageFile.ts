@@ -14,7 +14,7 @@ import type {ImageFile}        from 'util/file/image/ImageFile'
  * @see WaitingImageFile
  * @see WalkImageFile
  */
-export type MysteryMushroomImageFile<NAME extends PossibleName = PossibleName, > = ImageFile<`entity/1 - SMB/In game/SMM1/Player Chara - ${PossibleFileName}`, NAME, 'tiff'>
+export type MysteryMushroomImageFile<NAME extends PossibleName = PossibleName, > = ImageFile<`entity/in game/M1 Player Chara - ${PossibleFileName}`, NAME, 'tiff'>
 
 //region -------------------- Waiting --------------------
 
