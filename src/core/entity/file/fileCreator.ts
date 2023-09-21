@@ -175,7 +175,7 @@ export function powerUpEditorImages(entity: Entities, name: SimpleImageName_Edit
  * @param gameStyle The image {@link GameStyles}
  */
 export function clearConditionImage(entity: Entities, name: ImageName_ClearCondition, gameStyle: GameStyles,): ClearConditionImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Clear Condition/`, `${gameStyle.gameAcronym}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (Clear condition)`,)
+    return new SimpleImageFile(`entity/clear condition/`, `${gameStyle.gameAcronym}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (Clear condition)`,)
 }
 
 //endregion -------------------- Clear condition image --------------------

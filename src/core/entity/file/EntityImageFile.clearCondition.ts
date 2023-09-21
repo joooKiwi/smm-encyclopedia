@@ -1,8 +1,8 @@
-import type {PossibleEnglishName}                         from 'core/entity/Entities.types'
-import type {PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
-import type {ImageFile}                                   from 'util/file/image/ImageFile'
+import type {PossibleEnglishName} from 'core/entity/Entities.types'
+import type {PossibleGameAcronym} from 'core/gameStyle/GameStyles.types'
+import type {ImageFile}           from 'util/file/image/ImageFile'
 
-export type ClearConditionImageFile = ImageFile<`entity/${PossibleShortImagePath}/Clear Condition/`, `${PossibleGameAcronym}_Lyt_M_${ImageName_ClearCondition}`, 'tiff'>
+export type ClearConditionImageFile = ImageFile<`entity/clear condition/`, `${PossibleGameAcronym}_Lyt_M_${ImageName_ClearCondition}`, 'tiff'>
 
 
 /** A simple map type made to associate each {@link ClearConditionImageFile} name to a specific {@link Entities} */
