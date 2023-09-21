@@ -1,6 +1,10 @@
-import type {InGameSMM1ImageFile}          from 'core/entity/file/InGameSMM1ImageFile'
-import type {InGameSMM2ImageFile}          from 'core/entity/file/InGameSMM2ImageFile'
-import type {ImageWithTimesThemesAndGameStyles} from 'core/entity/images/ImageWithTimesThemesAndGameStyles'
+import type {InGameImageFile} from 'core/entity/file/EntityImageFile.inGame'
+import type {Image}           from 'core/entity/images/Image'
+import type {GameStyles}      from 'core/gameStyle/GameStyles'
 
-export interface InGameImage<IMAGE_FILE extends | InGameSMM1ImageFile | InGameSMM2ImageFile = | InGameSMM1ImageFile | InGameSMM2ImageFile, >
-    extends ImageWithTimesThemesAndGameStyles<IMAGE_FILE> {}
+export interface InGameImage<out IMAGE_FILE extends InGameImageFile = InGameImageFile, >
+    extends Image {
+
+    get(gameStyle: GameStyles,): readonly IMAGE_FILE[]
+
+}

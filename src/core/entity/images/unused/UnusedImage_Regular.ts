@@ -1,4 +1,4 @@
-import type {UnusedSMM1RegularImageFile} from 'core/entity/file/UnusedSMM1RegularImageFile'
+import type {UnusedSMM1RegularImageFile} from 'core/entity/file/EntityImageFile.unused'
 import type {UnusedImage}                from 'core/entity/images/unused/UnusedImage'
 import type {GameStyles}                 from 'core/gameStyle/GameStyles'
 

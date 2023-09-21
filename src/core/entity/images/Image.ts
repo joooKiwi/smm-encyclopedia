@@ -1,2 +1,1 @@
-export interface Image {
-}
+export interface Image {}

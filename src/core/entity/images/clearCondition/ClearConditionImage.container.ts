@@ -1,4 +1,4 @@
-import type {ClearConditionImageFile} from 'core/entity/file/ClearConditionImageFile'
+import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile.clearCondition'
 import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {GameStyles}              from 'core/gameStyle/GameStyles'
 
@@ -15,6 +15,10 @@ export class ClearConditionImageContainer
 
     public constructor(map: ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]>,) {
         this.#map = map
+    }
+
+    public get map(): ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]> {
+        return this.#map
     }
 
     public get(gameStyle: GameStyles,): readonly ClearConditionImageFile[] {
