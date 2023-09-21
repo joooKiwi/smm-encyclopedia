@@ -450,7 +450,7 @@ type Style<NAME extends | SimpleImageName_Editor | string, STYLE extends Variant
 export type SimpleImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][0]>
 export type SimpleImageName_Editor_GroundOrSlope = ImageNameMap['Ground' | 'Gentle Slope' | 'Steep Slope'][0]
 
-export type ImageName_Editor = ImageNameMap[PossibleEnglishName][1]
+export type ImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][1]>
 
 type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`
 type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>
