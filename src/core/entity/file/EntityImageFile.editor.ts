@@ -1,12 +1,12 @@
-import type {PossibleEnglishName}                         from 'core/entity/Entities.types'
-import type {PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
-import type {DayOrNightGameName, PossibleGameName}        from 'core/theme/Themes.types'
-import type {ImageFile}                                   from 'util/file/image/ImageFile'
+import type {PossibleEnglishName}                  from 'core/entity/Entities.types'
+import type {PossibleGameAcronym}                  from 'core/gameStyle/GameStyles.types'
+import type {DayOrNightGameName, PossibleGameName} from 'core/theme/Themes.types'
+import type {ImageFile}                            from 'util/file/image/ImageFile'
 
 export type EditorImageFile = | GenericEditorImageFile | PowerUpEditorImageFile
 
-export type GenericEditorImageFile = ImageFile<`entity/${PossibleShortImagePath}/Editor`, `${PossibleGameAcronym}_Lyt_P_${SimpleImageName_Editor}_${| '' | `${DayOrNightGameName}_`}0${ImageNumber_Editor}`, 'tiff'>
-export type PowerUpEditorImageFile = ImageFile<`entity/${PossibleShortImagePath}/Editor`, `${PossibleGameAcronym}_Lyt_P_${SimpleImageName_Editor}${| '_' | `${VariantEditorImage_PowerUp}_`}0${ImageNumber_PowerUp_Editor}`, 'tiff'>
+export type GenericEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${SimpleImageName_Editor}_${| '' | `${DayOrNightGameName}_`}0${ImageNumber_Editor}`, 'tiff'>
+export type PowerUpEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${SimpleImageName_Editor}${| '_' | `${VariantEditorImage_PowerUp}_`}0${ImageNumber_PowerUp_Editor}`, 'tiff'>
 
 
 interface ImageNameMap {

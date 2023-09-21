@@ -21,10 +21,7 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  * @see nightEditorImage
  */
 export function editorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    //const pathTest = `entity/${gameStyle.shortImagePath}/Editor` as const satisfies ImageFilePath_Entity<ImageFilePath_Editor>
-    // const nameTest = `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_0${number}` as const satisfies PossibleEditorImageFileName<PossibleGenericEditorPartialFileName>
-    // @ts-ignore: We ignore the name due to being too complex
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} #${number + 1})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} #${number + 1})`,)
 }
 
 
@@ -39,10 +36,7 @@ export function editorImage(entity: Entities, name: SimpleImageName_Editor, numb
  * @see nightEditorImage
  */
 export function editorInThemeImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles, theme: Themes,): GenericEditorImageFile {
-    //const pathTest = `entity/${gameStyle.shortImagePath}/Editor` as const satisfies ImageFilePath_Entity<ImageFilePath_Editor>
-    // const nameTest = `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_0${number}` as const satisfies PossibleEditorImageFileName<PossibleGenericEditorPartialFileName>
-    // @ts-ignore: We ignore the name due to being too complex
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} ${theme.englishName} Day #${number + 1})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} ${theme.englishName} Day #${number + 1})`,)
 }
 
 /**
@@ -56,10 +50,7 @@ export function editorInThemeImage(entity: Entities, name: SimpleImageName_Edito
  * @see editorInThemeImage
  */
 export function nightEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles, theme: Themes,): GenericEditorImageFile {
-    //const pathTest = `entity/${gameStyle.shortImagePath}/Editor` as const satisfies ImageFilePath_Entity<ImageFilePath_Editor>
-    // const nameTest = `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_night_0${number}` as const satisfies PossibleEditorImageFileName<PossibleGenericEditorPartialFileName>
-    // @ts-ignore: We ignore the name due to being too complex
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} ${theme.gameName} Night #${number + 1})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} ${theme.gameName} Night #${number + 1})`,)
 }
 
 //region -------------------- Editor image (specific theme & time) --------------------
@@ -74,7 +65,7 @@ export function nightEditorImage(entity: Entities, name: SimpleImageName_Editor,
  * @see nightSnowEditorImage
  */
 export function snowEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_snow_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Snow Day #${number + 1})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_snow_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Snow Day #${number + 1})`,)
 }
 
 /**
@@ -87,7 +78,7 @@ export function snowEditorImage(entity: Entities, name: SimpleImageName_Editor, 
  * @see nightAirshipEditorImage
  */
 export function airshipEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_airship_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Airship Day #${number + 1})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_airship_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Airship Day #${number + 1})`,)
 }
 
 /**
@@ -100,7 +91,7 @@ export function airshipEditorImage(entity: Entities, name: SimpleImageName_Edito
  * @see snowEditorImage
  */
 export function nightSnowEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_snow_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Snow Night #${number + 1})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_snow_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Snow Night #${number + 1})`,)
 }
 
 /**
@@ -113,7 +104,7 @@ export function nightSnowEditorImage(entity: Entities, name: SimpleImageName_Edi
  * @see airshipEditorImage
  */
 export function nightAirshipEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_airship_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Airship Night #${number + 1})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_airship_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Airship Night #${number + 1})`,)
 }
 
 //endregion -------------------- Editor image (specific theme & time) --------------------
@@ -129,7 +120,7 @@ export function nightAirshipEditorImage(entity: Entities, name: SimpleImageName_
  * @param gameStyle The image {@link GameStyles}
  */
 export function standalonePowerUpEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
 }
 
 /**
@@ -142,7 +133,7 @@ export function standalonePowerUpEditorImage(entity: Entities, name: SimpleImage
  * @param gameStyle The image {@link GameStyles}
  */
 export function withMushroomPowerUpEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_PowerUp_Editor, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/Editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}Uni_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}Uni_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
 }
 
 /**
