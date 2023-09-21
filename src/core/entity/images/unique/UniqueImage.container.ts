@@ -16,14 +16,16 @@ export class UniqueImageContainer<const out T extends EntityImageFile, >
     readonly #map
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    constructor(editor: EditorImage, clearCondition: ClearConditionImage, inGame: InGameImage, map: ReadonlyMap<GameStyles, readonly EntityImageFile[]>,) {
+    public constructor(editor: EditorImage, clearCondition: ClearConditionImage, inGame: InGameImage, map: ReadonlyMap<GameStyles, readonly T[]>,) {
         this.#editorImage = editor
         this.#clearConditionImage = clearCondition
         this.#inGameImage = inGame
         this.#map = map
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get editorImage(): EditorImage {

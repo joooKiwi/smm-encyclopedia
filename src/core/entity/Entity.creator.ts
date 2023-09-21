@@ -312,7 +312,7 @@ export class EntityCreator
 
     //endregion -------------------- Build helper methods --------------------
 
-    public override _create(name: Name<string>,) {
+    protected override _create(name: Name<string>,) {
         const isInProperty = this.#createProperty()
         const isInSMM1 = isInProperty.isInSuperMarioMaker1
         const isInSMM2 = isInProperty.isInSuperMarioMaker2

@@ -7,11 +7,7 @@ import {EMPTY_ARRAY} from 'util/emptyVariables'
 export class ClearConditionImageContainer
     implements ClearConditionImage {
 
-    //region -------------------- Fields --------------------
-
     readonly #map
-
-    //endregion -------------------- Fields --------------------
 
     public constructor(map: ReadonlyMap<GameStyles, readonly ClearConditionImageFile[]>,) {
         this.#map = map
