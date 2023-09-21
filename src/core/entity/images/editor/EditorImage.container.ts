@@ -283,7 +283,7 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
         if (size === 0)
             return EMPTY_ARRAY // No images in the day time in the game style
         if (size === 1)
-            return themeMap[Symbol.iterator]().next().value
+            return themeMap[Symbol.iterator]().next().value[1]
 
         const images = [] as T[]
         const iterator = themeMap[Symbol.iterator]()
