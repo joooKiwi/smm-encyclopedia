@@ -1,11 +1,10 @@
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
-import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, ImageNumber_Editor, PowerUpEditorImageFile, SimpleImageName_Editor}                                               from 'core/entity/file/EntityImageFile.editor'
+import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                                                                                           from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1}                                                                      from 'core/entity/file/EntityImageFile.inGame'
 import type {ImageName_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, SimpleImageName_BigMushroom_Unused_SMM1, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile} from 'core/entity/file/EntityImageFile.unused'
 import type {GameStyles}                                                                                                                                                                           from 'core/gameStyle/GameStyles'
 import type {PossibleGameAcronym_SMM1}                                                                                                                                                             from 'core/gameStyle/GameStyles.types'
-import type {Themes}                                                                                                                                                                               from 'core/theme/Themes'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
@@ -16,98 +15,12 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  *
  * @param entity The entity to retrieve its name
  * @param name The image name
- * @param number The image number
  * @param gameStyle The image {@link GameStyles}
- * @see nightEditorImage
  */
-export function editorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} #${number + 1})`,)
+export function editorImage(entity: Entities, name: ImageName_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym})`,)
 }
 
-
-/**
- * Create a simple {@link GenericEditorImageFile} in the {@link theme}
- *
- * @param entity The entity to retrieve its name
- * @param name The image name
- * @param number The image number
- * @param gameStyle The image {@link GameStyles}
- * @param theme The image {@link Themes}
- * @see nightEditorImage
- */
-export function editorInThemeImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles, theme: Themes,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} ${theme.englishName} Day #${number + 1})`,)
-}
-
-/**
- * Create a simple {@link GenericEditorImageFile} in the {@link theme} and {@link Times.NIGHT night-time}
- *
- * @param entity The entity to retrieve its name
- * @param name The image name
- * @param number The image number
- * @param gameStyle The image {@link GameStyles}
- * @param theme The image {@link Themes}
- * @see editorInThemeImage
- */
-export function nightEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles, theme: Themes,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_${theme.gameName}_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} ${theme.gameName} Night #${number + 1})`,)
-}
-
-//region -------------------- Editor image (specific theme & time) --------------------
-
-/**
- * Create a simple {@link GenericEditorImageFile} in the {@link Themes.SNOW snow theme}
- *
- * @param entity The entity to retrieve its name
- * @param name The image name
- * @param number The image number
- * @param gameStyle The image {@link GameStyles}
- * @see nightSnowEditorImage
- */
-export function snowEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_snow_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Snow Day #${number + 1})`,)
-}
-
-/**
- * Create a simple {@link GenericEditorImageFile} in the {@link Themes.AIRSHIP airship theme}
- *
- * @param entity The entity to retrieve its name
- * @param name The image name
- * @param number The image number
- * @param gameStyle The image {@link GameStyles}
- * @see nightAirshipEditorImage
- */
-export function airshipEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_airship_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Airship Day #${number + 1})`,)
-}
-
-/**
- * Create a simple {@link GenericEditorImageFile} in the {@link Themes.SNOW snow theme} and {@link Times.NIGHT night-time}
- *
- * @param entity The entity to retrieve its name
- * @param name The image name
- * @param number The image number
- * @param gameStyle The image {@link GameStyles}
- * @see snowEditorImage
- */
-export function nightSnowEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_snow_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Snow Night #${number + 1})`,)
-}
-
-/**
- * Create a simple {@link GenericEditorImageFile} in the {@link Themes.AIRSHIP airship theme} and {@link Times.NIGHT night-time}
- *
- * @param entity The entity to retrieve its name
- * @param name The image name
- * @param number The image number
- * @param gameStyle The image {@link GameStyles}
- * @see airshipEditorImage
- */
-export function nightAirshipEditorImage(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}_airship_night_0${number}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} Airship Night #${number + 1})`,)
-}
-
-//endregion -------------------- Editor image (specific theme & time) --------------------
 //region -------------------- Editor image (power-up) --------------------
 
 /**
