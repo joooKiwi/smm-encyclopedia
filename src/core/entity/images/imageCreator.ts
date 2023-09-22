@@ -1,6 +1,6 @@
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
 import type {EntityImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile'
-import type {EditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, ImageNumber_Editor, SimpleImageName_Editor, SimpleImageName_Editor_GroundOrSlope}                                        from 'core/entity/file/EntityImageFile.editor'
+import type {EditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, ImageNumber_Editor_BlueVariant, SimpleImageName_Editor_GroundOrSlope, SimpleImageName_Editor_WithBlueVariant}            from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {InGameImageFile, InGameSMM2ImageFile, KoopalingImageName, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1, ImageName_SMM2, DangerousImageFileName}                              from 'core/entity/file/EntityImageFile.inGame'
 import type {SimpleImageName_BigMushroom_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile, ImageName_Unused_SMM1} from 'core/entity/file/EntityImageFile.unused'
@@ -427,13 +427,13 @@ export function uniqueTreeImages(entity: Entities,): UniqueImage {
 
 //region -------------------- Editor images (simple) --------------------
 
-export function editorImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorImages(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -445,13 +445,13 @@ export function editorImages(entity: Entities, name: SimpleImageName_Editor, num
     ],),],],),)
 }
 
-export function editorInSnowImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInSnowImages(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.snowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),
-        FileCreator.snowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),
-        FileCreator.snowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),
-        FileCreator.snowEditorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),
-        FileCreator.snowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),
 
     ] as const
 
@@ -467,32 +467,37 @@ export function editorInSnowImages(entity: Entities, name: SimpleImageName_Edito
 //endregion -------------------- Editor images (simple) --------------------
 //region -------------------- Editor images (single) --------------------
 
-export function editorInSmbImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
-    const image = [FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),] as const
+export function editorInSmbImages(entity: Entities, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+    const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),] as const
 
-    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS, new Map([[Themes.GROUND, image,],],),],],),],],),)
+    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS, new Map([[theme, image,],],),],],),],],),)
 }
-export function editorInSmwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
-    const image = [FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),] as const
+export function editorInSmb3Images(entity: Entities, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+    const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),] as const
 
-    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_WORLD, new Map([[Themes.GROUND, image,],],),],],),],],),)
+    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS_3, new Map([[theme, image,],],),],],),],],),)
 }
-export function editorInNsmbuImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
-    const image = [FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),] as const
+export function editorInSmwImages(entity: Entities, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+    const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),] as const
 
-    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.NEW_SUPER_MARIO_BROS_U, new Map([[Themes.GROUND, image,],],),],],),],],),)
+    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_WORLD, new Map([[theme, image,],],),],],),],],),)
 }
-export function editorInSm3dwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
-    const image = [FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),] as const
+export function editorInNsmbuImages(entity: Entities, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+    const image = [FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),] as const
 
-    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map([[Themes.GROUND, image,],],),],],),],],),)
+    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.NEW_SUPER_MARIO_BROS_U, new Map([[theme, image,],],),],],),],],),)
+}
+export function editorInSm3dwImages(entity: Entities, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+    const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),] as const
+
+    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map([[theme, image,],],),],],),],],),)
 }
 
 
-export function editorInSmbAndSmb3Images(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInSmbAndSmb3Images(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -501,10 +506,10 @@ export function editorInSmbAndSmb3Images(entity: Entities, name: SimpleImageName
     ],),],],),)
 }
 
-export function editorInSmwAndNsmbuImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInSmwAndNsmbuImages(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -514,11 +519,11 @@ export function editorInSmwAndNsmbuImages(entity: Entities, name: SimpleImageNam
 }
 
 
-export function editorInNotSmwAndSm3dwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNotSmwAndSm3dwImages(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -528,11 +533,11 @@ export function editorInNotSmwAndSm3dwImages(entity: Entities, name: SimpleImage
     ],),],],),)
 }
 
-export function editorInNotNsmbuAndSm3dwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNotNsmbuAndSm3dwImages(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -543,12 +548,12 @@ export function editorInNotNsmbuAndSm3dwImages(entity: Entities, name: SimpleIma
 }
 
 
-export function editorInNotSmwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNotSmwImages(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -558,12 +563,12 @@ export function editorInNotSmwImages(entity: Entities, name: SimpleImageName_Edi
         [GameStyles.SUPER_MARIO_3D_WORLD, new Map([[Themes.GROUND, [images[3],],],],),],
     ],),],],),)
 }
-export function editorInNotSm3dwImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNotSm3dwImages(entity: Entities, name: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -574,17 +579,6 @@ export function editorInNotSm3dwImages(entity: Entities, name: SimpleImageName_E
     ],),],],),)
 }
 
-
-export function editorInSmb3AndThemeImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, theme: Themes,): EditorImage {
-    const image = [FileCreator.editorInThemeImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3, theme,),]
-
-    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS_3, new Map([[theme, image,],],),],],),],],),)
-}
-export function editorInSmwAndThemeImages(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor, theme: Themes,): EditorImage {
-    const image = [FileCreator.editorInThemeImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD, theme,),]
-
-    return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_WORLD, new Map([[theme, image,],],),],],),],],),)
-}
 
 
 /**
@@ -772,21 +766,21 @@ export function editorInNotSm3dwAndBlueVariantInSmbAndSmb3Images(entity: Entitie
  *
  * @param entity The {@link Entities} reference
  * @param name The image name
- * @param number The image number
+ * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNightSnowInSmbAndSmb3Images(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNightSnowInSmbAndSmb3Images(entity: Entities, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),            // index 0
-        FileCreator.nightSnowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),   // index 1
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
+        FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS,),   // index 1
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),          // index 2
-        FileCreator.nightSnowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,), // index 3
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),          // index 2
+        FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS_3,), // index 3
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),           // index 4
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),           // index 4
 
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 5
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 5
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),        // index 6
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),        // index 6
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -809,20 +803,20 @@ export function editorInNightSnowInSmbAndSmb3Images(entity: Entities, name: Simp
  *
  * @param entity The {@link Entities} reference
  * @param name The image name
- * @param number The image number
+ * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNightSnowInSmb3Images(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNightSnowInSmb3Images(entity: Entities, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),            // index 0
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),          // index 1
-        FileCreator.nightSnowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,), // index 2
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),          // index 1
+        FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS_3,), // index 2
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),           // index 3
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),           // index 3
 
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 4
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 4
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_3D_WORLD,),        // index 5
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),        // index 5
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -844,19 +838,19 @@ export function editorInNightSnowInSmb3Images(entity: Entities, name: SimpleImag
  *
  * @param entity The {@link Entities} reference
  * @param name The image name
- * @param number The image number
+ * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(entity: Entities, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),            // index 0
-        FileCreator.nightSnowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),   // index 1
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
+        FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS,),   // index 1
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),          // index 2
-        FileCreator.nightSnowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,), // index 3
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),          // index 2
+        FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS_3,), // index 3
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),           // index 4
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),           // index 4
 
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 5
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 5
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -879,18 +873,18 @@ export function editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(entity: Entities,
  *
  * @param entity The {@link Entities} reference
  * @param name The image name
- * @param number The image number
+ * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNotSm3dwAndNightSnowInSmb3Images(entity: Entities, name: SimpleImageName_Editor, number: ImageNumber_Editor = 0,): EditorImage {
+export function editorInNotSm3dwAndNightSnowInSmb3Images(entity: Entities, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS,),            // index 0
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,),          // index 1
-        FileCreator.nightSnowEditorImage(entity, name, number, GameStyles.SUPER_MARIO_BROS_3,), // index 2
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),          // index 1
+        FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS_3,), // index 2
 
-        FileCreator.editorImage(entity, name, number, GameStyles.SUPER_MARIO_WORLD,),           // index 3
+        FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),           // index 3
 
-        FileCreator.editorImage(entity, name, number, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 4
+        FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 4
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -909,8 +903,8 @@ export function editorInNotSm3dwAndNightSnowInSmb3Images(entity: Entities, name:
 //endregion -------------------- Editor images (single) --------------------
 //region -------------------- Editor images (multiple) --------------------
 
-export function multipleEditorImages(entity: Entities, name: SimpleImageName_Editor, numbers: readonly ImageNumber_Editor[],): EditorImage {
-    const size = numbers.length
+export function multipleEditorImages(entity: Entities, names: readonly ImageName_Editor[],): EditorImage {
+    const size = names.length
     const totalSize = size * 5
     const images = new Array<EditorImageFile>(totalSize,)
     const smbImages = new Array<EditorImageFile>(size,)
@@ -922,19 +916,19 @@ export function multipleEditorImages(entity: Entities, name: SimpleImageName_Edi
     let index = size
     let totalIndex = 0
     while (index-- > 0)
-        images[totalIndex++] = smbImages[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_BROS,)
+        images[totalIndex++] = smbImages[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_BROS,)
     index = size
     while (index-- > 0)
-        images[totalIndex++] = smb3Images[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_BROS_3,)
+        images[totalIndex++] = smb3Images[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_BROS_3,)
     index = size
     while (index-- > 0)
-        images[totalIndex++] = smwImages[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_WORLD,)
+        images[totalIndex++] = smwImages[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_WORLD,)
     index = size
     while (index-- > 0)
-        images[totalIndex++] = nsmbuImages[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.NEW_SUPER_MARIO_BROS_U,)
+        images[totalIndex++] = nsmbuImages[index] = FileCreator.editorImage(entity, names[index], GameStyles.NEW_SUPER_MARIO_BROS_U,)
     index = size
     while (index-- > 0)
-        images[totalIndex++] = sm3dwImages[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_3D_WORLD,)
+        images[totalIndex++] = sm3dwImages[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_3D_WORLD,)
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
         [GameStyles.SUPER_MARIO_BROS, new Map([[Themes.GROUND, smbImages,],],),],
@@ -946,19 +940,19 @@ export function multipleEditorImages(entity: Entities, name: SimpleImageName_Edi
 }
 
 
-export function multipleEditorInSm3dwImages(entity: Entities, name: SimpleImageName_Editor, numbers: readonly ImageNumber_Editor[],): EditorImage {
-    const size = numbers.length
+export function multipleEditorInSm3dwImages(entity: Entities, names: readonly ImageName_Editor[],): EditorImage {
+    const size = names.length
     const images = new Array<EditorImageFile>(size,)
     let index = size
     while (index-- > 0)
-        images[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_3D_WORLD,)
+        images[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_3D_WORLD,)
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map([[Themes.GROUND, images,],],),],],),],],),)
 }
 
 
-export function multipleEditorInNotSm3dwImages(entity: Entities, name: SimpleImageName_Editor, numbers: readonly ImageNumber_Editor[],): EditorImage {
-    const size = numbers.length
+export function multipleEditorInNotSm3dwImages(entity: Entities, names: readonly ImageName_Editor[],): EditorImage {
+    const size = names.length
     const totalSize = size * 4
     const images = new Array<EditorImageFile>(totalSize,)
     const smbImages = new Array<EditorImageFile>(size,)
@@ -969,16 +963,16 @@ export function multipleEditorInNotSm3dwImages(entity: Entities, name: SimpleIma
     let index = size
     let totalIndex = 0
     while (index-- > 0)
-        images[totalIndex++] = smbImages[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_BROS,)
+        images[totalIndex++] = smbImages[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_BROS,)
     index = size
     while (index-- > 0)
-        images[totalIndex++] = smb3Images[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_BROS_3,)
+        images[totalIndex++] = smb3Images[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_BROS_3,)
     index = size
     while (index-- > 0)
-        images[totalIndex++] = smwImages[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.SUPER_MARIO_WORLD,)
+        images[totalIndex++] = smwImages[index] = FileCreator.editorImage(entity, names[index], GameStyles.SUPER_MARIO_WORLD,)
     index = size
     while (index-- > 0)
-        images[totalIndex++] = nsmbuImages[index] = FileCreator.editorImage(entity, name, numbers[index], GameStyles.NEW_SUPER_MARIO_BROS_U,)
+        images[totalIndex++] = nsmbuImages[index] = FileCreator.editorImage(entity, names[index], GameStyles.NEW_SUPER_MARIO_BROS_U,)
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
         [GameStyles.SUPER_MARIO_BROS, new Map([[Themes.GROUND, smbImages,],],),],
@@ -1106,68 +1100,68 @@ export function powerUpEditorInSm3dwImages(entity: Entities, standaloneName: Ima
  */
 export function editorGroundOrSlopeImages(entity: Entities, name: SimpleImageName_Editor_GroundOrSlope,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS,),                                    // index 0
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,),         // index 1
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 2
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS, Themes.DESERT,),              // index 3
-        FileCreator.snowEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS,),                                // index 4
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS, Themes.SKY,),                 // index 5
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS, Themes.FOREST,),              // index 6
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,),         // index 7
-        FileCreator.airshipEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS,),                             // index 8
-        FileCreator.nightAirshipEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS,),                        // index 9
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),              // index 10
+        FileCreator.editorImage(entity, `${name}_00`, GameStyles.SUPER_MARIO_BROS,),                     // index 0
+        FileCreator.editorImage(entity, `${name}_underground_00`, GameStyles.SUPER_MARIO_BROS,),         // index 1
+        FileCreator.editorImage(entity, `${name}_water_00`, GameStyles.SUPER_MARIO_BROS,),               // index 2
+        FileCreator.editorImage(entity, `${name}_desert_00`, GameStyles.SUPER_MARIO_BROS,),              // index 3
+        FileCreator.editorImage(entity, `${name}_snow_00`, GameStyles.SUPER_MARIO_BROS,),                // index 4
+        FileCreator.editorImage(entity, `${name}_athletic_00`, GameStyles.SUPER_MARIO_BROS,),            // index 5
+        FileCreator.editorImage(entity, `${name}_woods_00`, GameStyles.SUPER_MARIO_BROS,),               // index 6
+        FileCreator.editorImage(entity, `${name}_hauntedhouse_00`, GameStyles.SUPER_MARIO_BROS,),        // index 7
+        FileCreator.editorImage(entity, `${name}_airship_00`, GameStyles.SUPER_MARIO_BROS,),             // index 8
+        FileCreator.editorImage(entity, `${name}_airship_night_00`, GameStyles.SUPER_MARIO_BROS,),       // index 9
+        FileCreator.editorImage(entity, `${name}_castle_00`, GameStyles.SUPER_MARIO_BROS,),              // index 10
 
-        FileCreator.editorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 11
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND,),       // index 12
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 13
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.DESERT,),            // index 14
-        FileCreator.snowEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3,),                              // index 15
-        FileCreator.nightSnowEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3,),                         // index 16
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.SKY,),               // index 17
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.FOREST,),            // index 18
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.GHOST_HOUSE,),       // index 19
-        FileCreator.airshipEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3,),                           // index 20
-        FileCreator.nightAirshipEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3,),                      // index 21
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.CASTLE,),            // index 22
-        FileCreator.nightEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_BROS_3, Themes.CASTLE,),              // index 23
+        FileCreator.editorImage(entity, `${name}_00`, GameStyles.SUPER_MARIO_BROS_3,),                   // index 11
+        FileCreator.editorImage(entity, `${name}_water_00`, GameStyles.SUPER_MARIO_BROS_3,),             // index 12
+        FileCreator.editorImage(entity, `${name}_underground_00`, GameStyles.SUPER_MARIO_BROS_3,),       // index 13
+        FileCreator.editorImage(entity, `${name}_desert_00`, GameStyles.SUPER_MARIO_BROS_3,),            // index 14
+        FileCreator.editorImage(entity, `${name}_snow_00`, GameStyles.SUPER_MARIO_BROS_3,),              // index 15
+        FileCreator.editorImage(entity, `${name}_snow_night_00`, GameStyles.SUPER_MARIO_BROS_3,),        // index 16
+        FileCreator.editorImage(entity, `${name}_athletic_00`, GameStyles.SUPER_MARIO_BROS_3,),          // index 17
+        FileCreator.editorImage(entity, `${name}_woods_00`, GameStyles.SUPER_MARIO_BROS_3,),             // index 18
+        FileCreator.editorImage(entity, `${name}_hauntedhouse_00`, GameStyles.SUPER_MARIO_BROS_3,),      // index 19
+        FileCreator.editorImage(entity, `${name}_airship_00`, GameStyles.SUPER_MARIO_BROS_3,),           // index 20
+        FileCreator.editorImage(entity, `${name}_airship_night_00`, GameStyles.SUPER_MARIO_BROS_3,),     // index 21
+        FileCreator.editorImage(entity, `${name}_castle_00`, GameStyles.SUPER_MARIO_BROS_3,),            // index 22
+        FileCreator.editorImage(entity, `${name}_castle_night_00`, GameStyles.SUPER_MARIO_BROS_3,),      // index 23
 
-        FileCreator.editorImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD,),                                   // index 24
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERGROUND,),        // index 25
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 26
-        FileCreator.nightEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),           // index 27
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.DESERT,),             // index 28
-        FileCreator.snowEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD,),                               // index 29
-        FileCreator.nightSnowEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD,),                          // index 30
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.SKY,),                // index 31
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.FOREST,),             // index 32
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.GHOST_HOUSE,),        // index 33
-        FileCreator.airshipEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD,),                            // index 34
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_WORLD, Themes.CASTLE,),             // index 35
+        FileCreator.editorImage(entity, `${name}_00`, GameStyles.SUPER_MARIO_WORLD,),                    // index 24
+        FileCreator.editorImage(entity, `${name}_underground_00`, GameStyles.SUPER_MARIO_WORLD,),        // index 25
+        FileCreator.editorImage(entity, `${name}_water_00`, GameStyles.SUPER_MARIO_WORLD,),              // index 26
+        FileCreator.editorImage(entity, `${name}_water_night_00`, GameStyles.SUPER_MARIO_WORLD,),        // index 27
+        FileCreator.editorImage(entity, `${name}_desert_00`, GameStyles.SUPER_MARIO_WORLD,),             // index 28
+        FileCreator.editorImage(entity, `${name}_snow_00`, GameStyles.SUPER_MARIO_WORLD,),               // index 29
+        FileCreator.editorImage(entity, `${name}_snow_night_00`, GameStyles.SUPER_MARIO_WORLD,),         // index 30
+        FileCreator.editorImage(entity, `${name}_athletic_00`, GameStyles.SUPER_MARIO_WORLD,),           // index 31
+        FileCreator.editorImage(entity, `${name}_woods_00`, GameStyles.SUPER_MARIO_WORLD,),              // index 32
+        FileCreator.editorImage(entity, `${name}_hauntedhouse_00`, GameStyles.SUPER_MARIO_WORLD,),       // index 33
+        FileCreator.editorImage(entity, `${name}_airship_00`, GameStyles.SUPER_MARIO_WORLD,),            // index 34
+        FileCreator.editorImage(entity, `${name}_castle_00`, GameStyles.SUPER_MARIO_WORLD,),             // index 35
 
-        FileCreator.editorImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 36
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND,),   // index 37
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 38
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.DESERT,),        // index 39
-        FileCreator.snowEditorImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 40
-        FileCreator.nightSnowEditorImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 41
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SKY,),           // index 42
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.FOREST,),        // index 43
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.GHOST_HOUSE,),   // index 44
-        FileCreator.airshipEditorImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 45
-        FileCreator.nightAirshipEditorImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                  // index 46
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.CASTLE,),        // index 47
+        FileCreator.editorImage(entity, `${name}_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),               // index 36
+        FileCreator.editorImage(entity, `${name}_underground_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),   // index 37
+        FileCreator.editorImage(entity, `${name}_water_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),         // index 38
+        FileCreator.editorImage(entity, `${name}_desert_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 39
+        FileCreator.editorImage(entity, `${name}_snow_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),          // index 40
+        FileCreator.editorImage(entity, `${name}_snow_night_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),    // index 41
+        FileCreator.editorImage(entity, `${name}_athletic_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 42
+        FileCreator.editorImage(entity, `${name}_woods_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),         // index 43
+        FileCreator.editorImage(entity, `${name}_hauntedhouse_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),  // index 44
+        FileCreator.editorImage(entity, `${name}_airship_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 45
+        FileCreator.editorImage(entity, `${name}_airship_night_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 46
+        FileCreator.editorImage(entity, `${name}_castle_00`, GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 47
 
-        FileCreator.editorImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD,),                                // index 48
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND,),     // index 49
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERWATER,),      // index 50
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.DESERT,),          // index 51
-        FileCreator.snowEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD,),                            // index 52
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.SKY,),             // index 53
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.FOREST,),          // index 54
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.GHOST_HOUSE,),     // index 55
-        FileCreator.airshipEditorImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD,),                         // index 56
-        FileCreator.editorInThemeImage(entity, name, 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.CASTLE,),          // index 57
+        FileCreator.editorImage(entity, `${name}_00`, GameStyles.SUPER_MARIO_3D_WORLD,),                 // index 48
+        FileCreator.editorImage(entity, `${name}_underground_00`, GameStyles.SUPER_MARIO_3D_WORLD,),     // index 49
+        FileCreator.editorImage(entity, `${name}_water_00`, GameStyles.SUPER_MARIO_3D_WORLD,),           // index 50
+        FileCreator.editorImage(entity, `${name}_desert_00`, GameStyles.SUPER_MARIO_3D_WORLD,),          // index 51
+        FileCreator.editorImage(entity, `${name}_snow_00`, GameStyles.SUPER_MARIO_3D_WORLD,),            // index 52
+        FileCreator.editorImage(entity, `${name}_athletic_00`, GameStyles.SUPER_MARIO_3D_WORLD,),        // index 53
+        FileCreator.editorImage(entity, `${name}_woods_00`, GameStyles.SUPER_MARIO_3D_WORLD,),           // index 54
+        FileCreator.editorImage(entity, `${name}_hauntedhouse_00`, GameStyles.SUPER_MARIO_3D_WORLD,),    // index 55
+        FileCreator.editorImage(entity, `${name}_airship_00`, GameStyles.SUPER_MARIO_3D_WORLD,),         // index 56
+        FileCreator.editorImage(entity, `${name}_castle_00`, GameStyles.SUPER_MARIO_3D_WORLD,),          // index 57
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -1259,34 +1253,34 @@ export function editorGroundOrSlopeImages(entity: Entities, name: SimpleImageNam
  */
 export function editorPipeImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'Dokan', 0, GameStyles.SUPER_MARIO_BROS,),            // index 0
-        FileCreator.editorImage(entity, 'Dokan', 1, GameStyles.SUPER_MARIO_BROS,),             // index 1
-        FileCreator.editorImage(entity, 'Dokan', 2, GameStyles.SUPER_MARIO_BROS,),             // index 2
-        FileCreator.editorImage(entity, 'Dokan', 3, GameStyles.SUPER_MARIO_BROS,),             // index 3
+        FileCreator.editorImage(entity, 'Dokan_00', GameStyles.SUPER_MARIO_BROS,),              // index 0
+        FileCreator.editorImage(entity, 'Dokan_01', GameStyles.SUPER_MARIO_BROS,),              // index 1
+        FileCreator.editorImage(entity, 'Dokan_02', GameStyles.SUPER_MARIO_BROS,),              // index 2
+        FileCreator.editorImage(entity, 'Dokan_03', GameStyles.SUPER_MARIO_BROS,),              // index 3
 
-        FileCreator.editorImage(entity, 'Dokan', 0, GameStyles.SUPER_MARIO_BROS_3,),           // index 4
-        FileCreator.editorImage(entity, 'Dokan', 1, GameStyles.SUPER_MARIO_BROS_3,),           // index 5
-        FileCreator.editorImage(entity, 'Dokan', 2, GameStyles.SUPER_MARIO_BROS_3,),           // index 6
-        FileCreator.editorImage(entity, 'Dokan', 3, GameStyles.SUPER_MARIO_BROS_3,),           // index 7
-        FileCreator.nightSnowEditorImage(entity, 'Dokan', 0, GameStyles.SUPER_MARIO_BROS_3,),  // index 8
-        FileCreator.nightSnowEditorImage(entity, 'Dokan', 1, GameStyles.SUPER_MARIO_BROS_3,),  // index 9
-        FileCreator.nightSnowEditorImage(entity, 'Dokan', 2, GameStyles.SUPER_MARIO_BROS_3,),  // index 10
-        FileCreator.nightSnowEditorImage(entity, 'Dokan', 3, GameStyles.SUPER_MARIO_BROS_3,),  // index 11
+        FileCreator.editorImage(entity, 'Dokan_00', GameStyles.SUPER_MARIO_BROS_3,),            // index 4
+        FileCreator.editorImage(entity, 'Dokan_01', GameStyles.SUPER_MARIO_BROS_3,),            // index 5
+        FileCreator.editorImage(entity, 'Dokan_02', GameStyles.SUPER_MARIO_BROS_3,),            // index 6
+        FileCreator.editorImage(entity, 'Dokan_03', GameStyles.SUPER_MARIO_BROS_3,),            // index 7
+        FileCreator.editorImage(entity, 'Dokan_snow_night_00', GameStyles.SUPER_MARIO_BROS_3,), // index 8
+        FileCreator.editorImage(entity, 'Dokan_snow_night_01', GameStyles.SUPER_MARIO_BROS_3,), // index 9
+        FileCreator.editorImage(entity, 'Dokan_snow_night_02', GameStyles.SUPER_MARIO_BROS_3,), // index 10
+        FileCreator.editorImage(entity, 'Dokan_snow_night_03', GameStyles.SUPER_MARIO_BROS_3,), // index 11
 
-        FileCreator.editorImage(entity, 'Dokan', 0, GameStyles.SUPER_MARIO_WORLD,),            // index 12
-        FileCreator.editorImage(entity, 'Dokan', 1, GameStyles.SUPER_MARIO_WORLD,),            // index 13
-        FileCreator.editorImage(entity, 'Dokan', 2, GameStyles.SUPER_MARIO_WORLD,),            // index 14
-        FileCreator.editorImage(entity, 'Dokan', 3, GameStyles.SUPER_MARIO_WORLD,),            // index 15
+        FileCreator.editorImage(entity, 'Dokan_00', GameStyles.SUPER_MARIO_WORLD,),             // index 12
+        FileCreator.editorImage(entity, 'Dokan_01', GameStyles.SUPER_MARIO_WORLD,),             // index 13
+        FileCreator.editorImage(entity, 'Dokan_02', GameStyles.SUPER_MARIO_WORLD,),             // index 14
+        FileCreator.editorImage(entity, 'Dokan_03', GameStyles.SUPER_MARIO_WORLD,),             // index 15
 
-        FileCreator.editorImage(entity, 'Dokan', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 16
-        FileCreator.editorImage(entity, 'Dokan', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 17
-        FileCreator.editorImage(entity, 'Dokan', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 18
-        FileCreator.editorImage(entity, 'Dokan', 3, GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 19
+        FileCreator.editorImage(entity, 'Dokan_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 16
+        FileCreator.editorImage(entity, 'Dokan_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 17
+        FileCreator.editorImage(entity, 'Dokan_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 18
+        FileCreator.editorImage(entity, 'Dokan_03', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 19
 
-        FileCreator.editorImage(entity, 'Dokan', 0, GameStyles.SUPER_MARIO_3D_WORLD,),         // index 20
-        FileCreator.editorImage(entity, 'Dokan', 1, GameStyles.SUPER_MARIO_3D_WORLD,),         // index 21
-        FileCreator.editorImage(entity, 'Dokan', 2, GameStyles.SUPER_MARIO_3D_WORLD,),         // index 22
-        FileCreator.editorImage(entity, 'Dokan', 3, GameStyles.SUPER_MARIO_3D_WORLD,),         // index 23
+        FileCreator.editorImage(entity, 'Dokan_00', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 20
+        FileCreator.editorImage(entity, 'Dokan_01', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 21
+        FileCreator.editorImage(entity, 'Dokan_02', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 22
+        FileCreator.editorImage(entity, 'Dokan_03', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 23
     ] as const
 
     return new EditorImageContainer(images, new Map([
@@ -1308,69 +1302,69 @@ export function editorPipeImages(entity: Entities,): EditorImage {
  */
 export function editorMushroomPlatformImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS,),                                    // index 0
-        FileCreator.editorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS,),                                    // index 1
-        FileCreator.editorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS,),                                    // index 2
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 3
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 4
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 5
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS,),                                // index 6
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS,),                                // index 7
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS,),                                // index 8
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS,),                           // index 9
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS,),                           // index 10
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS,),                           // index 11
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS,),                             // index 12
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS,),                             // index 13
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS,),                             // index 14
+        FileCreator.editorImage(entity, 'GroundMushroom_00', GameStyles.SUPER_MARIO_BROS,),                  // index 0
+        FileCreator.editorImage(entity, 'GroundMushroom_01', GameStyles.SUPER_MARIO_BROS,),                  // index 1
+        FileCreator.editorImage(entity, 'GroundMushroom_02', GameStyles.SUPER_MARIO_BROS,),                  // index 2
+        FileCreator.editorImage(entity, 'GroundMushroom_water_00', GameStyles.SUPER_MARIO_BROS,),            // index 3
+        FileCreator.editorImage(entity, 'GroundMushroom_water_01', GameStyles.SUPER_MARIO_BROS,),            // index 4
+        FileCreator.editorImage(entity, 'GroundMushroom_water_02', GameStyles.SUPER_MARIO_BROS,),            // index 5
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_00', GameStyles.SUPER_MARIO_BROS,),             // index 6
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_01', GameStyles.SUPER_MARIO_BROS,),             // index 7
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_02', GameStyles.SUPER_MARIO_BROS,),             // index 8
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_00', GameStyles.SUPER_MARIO_BROS,),       // index 9
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_01', GameStyles.SUPER_MARIO_BROS,),       // index 10
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_02', GameStyles.SUPER_MARIO_BROS,),       // index 11
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_00', GameStyles.SUPER_MARIO_BROS,),          // index 12
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_01', GameStyles.SUPER_MARIO_BROS,),          // index 13
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_02', GameStyles.SUPER_MARIO_BROS,),          // index 14
 
-        FileCreator.editorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 15
-        FileCreator.editorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 16
-        FileCreator.editorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 17
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 18
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 19
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 20
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS_3,),                              // index 21
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS_3,),                              // index 22
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS_3,),                              // index 23
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS_3,),                         // index 24
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS_3,),                         // index 25
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS_3,),                         // index 26
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_BROS_3,),                           // index 27
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_BROS_3,),                           // index 28
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_BROS_3,),                           // index 29
+        FileCreator.editorImage(entity, 'GroundMushroom_00', GameStyles.SUPER_MARIO_BROS_3,),                // index 15
+        FileCreator.editorImage(entity, 'GroundMushroom_01', GameStyles.SUPER_MARIO_BROS_3,),                // index 16
+        FileCreator.editorImage(entity, 'GroundMushroom_02', GameStyles.SUPER_MARIO_BROS_3,),                // index 17
+        FileCreator.editorImage(entity, 'GroundMushroom_water_00', GameStyles.SUPER_MARIO_BROS_3,),          // index 18
+        FileCreator.editorImage(entity, 'GroundMushroom_water_01', GameStyles.SUPER_MARIO_BROS_3,),          // index 19
+        FileCreator.editorImage(entity, 'GroundMushroom_water_02', GameStyles.SUPER_MARIO_BROS_3,),          // index 20
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_00', GameStyles.SUPER_MARIO_BROS_3,),           // index 21
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_01', GameStyles.SUPER_MARIO_BROS_3,),           // index 22
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_02', GameStyles.SUPER_MARIO_BROS_3,),           // index 23
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_00', GameStyles.SUPER_MARIO_BROS_3,),     // index 24
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_01', GameStyles.SUPER_MARIO_BROS_3,),     // index 25
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_02', GameStyles.SUPER_MARIO_BROS_3,),     // index 26
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_00', GameStyles.SUPER_MARIO_BROS_3,),        // index 27
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_01', GameStyles.SUPER_MARIO_BROS_3,),        // index 28
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_02', GameStyles.SUPER_MARIO_BROS_3,),        // index 29
 
-        FileCreator.editorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_WORLD,),                                   // index 30
-        FileCreator.editorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_WORLD,),                                   // index 31
-        FileCreator.editorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_WORLD,),                                   // index 32
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 33
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 34
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 35
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_WORLD,),                               // index 36
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_WORLD,),                               // index 37
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_WORLD,),                               // index 38
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_WORLD,),                          // index 39
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_WORLD,),                          // index 40
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_WORLD,),                          // index 41
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 0, GameStyles.SUPER_MARIO_WORLD,),                            // index 42
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 1, GameStyles.SUPER_MARIO_WORLD,),                            // index 43
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 2, GameStyles.SUPER_MARIO_WORLD,),                            // index 44
+        FileCreator.editorImage(entity, 'GroundMushroom_00', GameStyles.SUPER_MARIO_WORLD,),                 // index 30
+        FileCreator.editorImage(entity, 'GroundMushroom_01', GameStyles.SUPER_MARIO_WORLD,),                 // index 31
+        FileCreator.editorImage(entity, 'GroundMushroom_02', GameStyles.SUPER_MARIO_WORLD,),                 // index 32
+        FileCreator.editorImage(entity, 'GroundMushroom_water_00', GameStyles.SUPER_MARIO_WORLD,),           // index 33
+        FileCreator.editorImage(entity, 'GroundMushroom_water_01', GameStyles.SUPER_MARIO_WORLD,),           // index 34
+        FileCreator.editorImage(entity, 'GroundMushroom_water_02', GameStyles.SUPER_MARIO_WORLD,),           // index 35
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_00', GameStyles.SUPER_MARIO_WORLD,),            // index 36
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_01', GameStyles.SUPER_MARIO_WORLD,),            // index 37
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_02', GameStyles.SUPER_MARIO_WORLD,),            // index 38
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_00', GameStyles.SUPER_MARIO_WORLD,),      // index 39
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_01', GameStyles.SUPER_MARIO_WORLD,),      // index 40
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_02', GameStyles.SUPER_MARIO_WORLD,),      // index 41
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_00', GameStyles.SUPER_MARIO_WORLD,),         // index 42
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_01', GameStyles.SUPER_MARIO_WORLD,),         // index 43
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_02', GameStyles.SUPER_MARIO_WORLD,),         // index 44
 
-        FileCreator.editorImage(entity, 'GroundMushroom', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 45
-        FileCreator.editorImage(entity, 'GroundMushroom', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 46
-        FileCreator.editorImage(entity, 'GroundMushroom', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 47
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 48
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 49
-        FileCreator.editorInThemeImage(entity, 'GroundMushroom', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 50
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 51
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 52
-        FileCreator.snowEditorImage(entity, 'GroundMushroom', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 53
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 54
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 55
-        FileCreator.nightSnowEditorImage(entity, 'GroundMushroom', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 56
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 57
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 58
-        FileCreator.airshipEditorImage(entity, 'GroundMushroom', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 59
+        FileCreator.editorImage(entity, 'GroundMushroom_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),            // index 45
+        FileCreator.editorImage(entity, 'GroundMushroom_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),            // index 46
+        FileCreator.editorImage(entity, 'GroundMushroom_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),            // index 47
+        FileCreator.editorImage(entity, 'GroundMushroom_water_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 48
+        FileCreator.editorImage(entity, 'GroundMushroom_water_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 49
+        FileCreator.editorImage(entity, 'GroundMushroom_water_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 50
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 51
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 52
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 53
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_00', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 54
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_01', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 55
+        FileCreator.editorImage(entity, 'GroundMushroom_snow_night_02', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 56
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),    // index 57
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),    // index 58
+        FileCreator.editorImage(entity, 'GroundMushroom_airship_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),    // index 59
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile, EditorImageFile, EditorImageFile,]>>>([
@@ -1416,153 +1410,153 @@ export function editorMushroomPlatformImages(entity: Entities,): EditorImage {
  */
 export function editorSemisolidPlatformImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS,),                                    // index 0
-        FileCreator.editorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS,),                                    // index 1
-        FileCreator.editorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS,),                                    // index 2
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,),         // index 3
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,),         // index 4
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,),         // index 5
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 6
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 7
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 8
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS, Themes.DESERT,),              // index 9
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS, Themes.DESERT,),              // index 10
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS, Themes.DESERT,),              // index 11
-        FileCreator.snowEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS,),                                // index 12
-        FileCreator.snowEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS,),                                // index 13
-        FileCreator.snowEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS,),                                // index 14
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS,),                           // index 15
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS,),                           // index 16
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS,),                           // index 17
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS, Themes.SKY,),                 // index 18
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS, Themes.SKY,),                 // index 19
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS, Themes.SKY,),                 // index 20
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS, Themes.FOREST,),              // index 21
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS, Themes.FOREST,),              // index 22
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS, Themes.FOREST,),              // index 23
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,),         // index 24
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,),         // index 25
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,),         // index 26
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS,),                             // index 27
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS,),                             // index 28
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS,),                             // index 29
-        FileCreator.nightAirshipEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS,),                        // index 30
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),              // index 31
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),              // index 32
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),              // index 33
+        FileCreator.editorImage(entity, 'GroundBox_00', GameStyles.SUPER_MARIO_BROS,),                    // index 0
+        FileCreator.editorImage(entity, 'GroundBox_01', GameStyles.SUPER_MARIO_BROS,),                    // index 1
+        FileCreator.editorImage(entity, 'GroundBox_02', GameStyles.SUPER_MARIO_BROS,),                    // index 2
+        FileCreator.editorImage(entity, 'GroundBox_underground_00', GameStyles.SUPER_MARIO_BROS,),        // index 3
+        FileCreator.editorImage(entity, 'GroundBox_underground_01', GameStyles.SUPER_MARIO_BROS,),        // index 4
+        FileCreator.editorImage(entity, 'GroundBox_underground_02', GameStyles.SUPER_MARIO_BROS),         // index 5
+        FileCreator.editorImage(entity, 'GroundBox_water_00', GameStyles.SUPER_MARIO_BROS,),              // index 6
+        FileCreator.editorImage(entity, 'GroundBox_water_01', GameStyles.SUPER_MARIO_BROS,),              // index 7
+        FileCreator.editorImage(entity, 'GroundBox_water_02', GameStyles.SUPER_MARIO_BROS,),              // index 8
+        FileCreator.editorImage(entity, 'GroundBox_desert_00', GameStyles.SUPER_MARIO_BROS,),             // index 9
+        FileCreator.editorImage(entity, 'GroundBox_desert_01', GameStyles.SUPER_MARIO_BROS,),             // index 10
+        FileCreator.editorImage(entity, 'GroundBox_desert_02', GameStyles.SUPER_MARIO_BROS,),             // index 11
+        FileCreator.editorImage(entity, 'GroundBox_snow_00', GameStyles.SUPER_MARIO_BROS,),               // index 12
+        FileCreator.editorImage(entity, 'GroundBox_snow_01', GameStyles.SUPER_MARIO_BROS,),               // index 13
+        FileCreator.editorImage(entity, 'GroundBox_snow_02', GameStyles.SUPER_MARIO_BROS,),               // index 14
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_00', GameStyles.SUPER_MARIO_BROS,),         // index 15
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_01', GameStyles.SUPER_MARIO_BROS,),         // index 16
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_02', GameStyles.SUPER_MARIO_BROS,),         // index 17
+        FileCreator.editorImage(entity, 'GroundBox_athletic_00', GameStyles.SUPER_MARIO_BROS,),           // index 18
+        FileCreator.editorImage(entity, 'GroundBox_athletic_01', GameStyles.SUPER_MARIO_BROS,),           // index 19
+        FileCreator.editorImage(entity, 'GroundBox_athletic_02', GameStyles.SUPER_MARIO_BROS,),           // index 20
+        FileCreator.editorImage(entity, 'GroundBox_woods_00', GameStyles.SUPER_MARIO_BROS,),              // index 21
+        FileCreator.editorImage(entity, 'GroundBox_woods_01', GameStyles.SUPER_MARIO_BROS,),              // index 22
+        FileCreator.editorImage(entity, 'GroundBox_woods_02', GameStyles.SUPER_MARIO_BROS,),              // index 23
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_00', GameStyles.SUPER_MARIO_BROS,),       // index 24
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_01', GameStyles.SUPER_MARIO_BROS,),       // index 25
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_02', GameStyles.SUPER_MARIO_BROS,),       // index 26
+        FileCreator.editorImage(entity, 'GroundBox_airship_00', GameStyles.SUPER_MARIO_BROS,),            // index 27
+        FileCreator.editorImage(entity, 'GroundBox_airship_01', GameStyles.SUPER_MARIO_BROS,),            // index 28
+        FileCreator.editorImage(entity, 'GroundBox_airship_02', GameStyles.SUPER_MARIO_BROS,),            // index 29
+        FileCreator.editorImage(entity, 'GroundBox_airship_night_01', GameStyles.SUPER_MARIO_BROS,),      // index 30
+        FileCreator.editorImage(entity, 'GroundBox_castle_00', GameStyles.SUPER_MARIO_BROS,),             // index 31
+        FileCreator.editorImage(entity, 'GroundBox_castle_01', GameStyles.SUPER_MARIO_BROS,),             // index 32
+        FileCreator.editorImage(entity, 'GroundBox_castle_02', GameStyles.SUPER_MARIO_BROS,),             // index 33
 
-        FileCreator.editorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 34
-        FileCreator.editorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 35
-        FileCreator.editorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 36
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND,),       // index 37
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND,),       // index 38
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND,),       // index 39
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 40
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 41
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 42
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.DESERT,),            // index 43
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.DESERT,),            // index 44
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.DESERT,),            // index 45
-        FileCreator.snowEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3,),                              // index 46
-        FileCreator.snowEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3,),                              // index 47
-        FileCreator.snowEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3,),                              // index 48
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3,),                         // index 49
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3,),                         // index 50
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3,),                         // index 51
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.SKY,),               // index 52
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.SKY,),               // index 53
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.SKY,),               // index 54
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.FOREST,),            // index 55
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.FOREST,),            // index 56
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.FOREST,),            // index 57
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.GHOST_HOUSE,),       // index 58
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.GHOST_HOUSE,),       // index 59
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.GHOST_HOUSE,),       // index 60
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3,),                           // index 61
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3,),                           // index 62
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3,),                           // index 63
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.CASTLE,),            // index 64
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.CASTLE,),            // index 65
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_BROS_3, Themes.CASTLE,),            // index 66
+        FileCreator.editorImage(entity, 'GroundBox_00', GameStyles.SUPER_MARIO_BROS_3,),                  // index 34
+        FileCreator.editorImage(entity, 'GroundBox_01', GameStyles.SUPER_MARIO_BROS_3,),                  // index 35
+        FileCreator.editorImage(entity, 'GroundBox_02', GameStyles.SUPER_MARIO_BROS_3,),                  // index 36
+        FileCreator.editorImage(entity, 'GroundBox_underground_00', GameStyles.SUPER_MARIO_BROS_3,),      // index 37
+        FileCreator.editorImage(entity, 'GroundBox_underground_01', GameStyles.SUPER_MARIO_BROS_3,),      // index 38
+        FileCreator.editorImage(entity, 'GroundBox_underground_02', GameStyles.SUPER_MARIO_BROS_3,),      // index 39
+        FileCreator.editorImage(entity, 'GroundBox_water_00', GameStyles.SUPER_MARIO_BROS_3,),            // index 40
+        FileCreator.editorImage(entity, 'GroundBox_water_01', GameStyles.SUPER_MARIO_BROS_3,),            // index 41
+        FileCreator.editorImage(entity, 'GroundBox_water_02', GameStyles.SUPER_MARIO_BROS_3,),            // index 42
+        FileCreator.editorImage(entity, 'GroundBox_desert_00', GameStyles.SUPER_MARIO_BROS_3,),           // index 43
+        FileCreator.editorImage(entity, 'GroundBox_desert_01', GameStyles.SUPER_MARIO_BROS_3,),           // index 44
+        FileCreator.editorImage(entity, 'GroundBox_desert_02', GameStyles.SUPER_MARIO_BROS_3,),           // index 45
+        FileCreator.editorImage(entity, 'GroundBox_snow_00', GameStyles.SUPER_MARIO_BROS_3,),             // index 46
+        FileCreator.editorImage(entity, 'GroundBox_snow_01', GameStyles.SUPER_MARIO_BROS_3,),             // index 47
+        FileCreator.editorImage(entity, 'GroundBox_snow_02', GameStyles.SUPER_MARIO_BROS_3,),             // index 48
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_00', GameStyles.SUPER_MARIO_BROS_3,),       // index 49
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_01', GameStyles.SUPER_MARIO_BROS_3,),       // index 50
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_02', GameStyles.SUPER_MARIO_BROS_3,),       // index 51
+        FileCreator.editorImage(entity, 'GroundBox_athletic_00', GameStyles.SUPER_MARIO_BROS_3,),         // index 52
+        FileCreator.editorImage(entity, 'GroundBox_athletic_01', GameStyles.SUPER_MARIO_BROS_3,),         // index 53
+        FileCreator.editorImage(entity, 'GroundBox_athletic_02', GameStyles.SUPER_MARIO_BROS_3,),         // index 54
+        FileCreator.editorImage(entity, 'GroundBox_woods_00', GameStyles.SUPER_MARIO_BROS_3,),            // index 55
+        FileCreator.editorImage(entity, 'GroundBox_woods_01', GameStyles.SUPER_MARIO_BROS_3,),            // index 56
+        FileCreator.editorImage(entity, 'GroundBox_woods_02', GameStyles.SUPER_MARIO_BROS_3,),            // index 57
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_00', GameStyles.SUPER_MARIO_BROS_3,),     // index 58
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_01', GameStyles.SUPER_MARIO_BROS_3,),     // index 59
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_02', GameStyles.SUPER_MARIO_BROS_3,),     // index 60
+        FileCreator.editorImage(entity, 'GroundBox_airship_00', GameStyles.SUPER_MARIO_BROS_3,),          // index 61
+        FileCreator.editorImage(entity, 'GroundBox_airship_01', GameStyles.SUPER_MARIO_BROS_3,),          // index 62
+        FileCreator.editorImage(entity, 'GroundBox_airship_02', GameStyles.SUPER_MARIO_BROS_3,),          // index 63
+        FileCreator.editorImage(entity, 'GroundBox_castle_00', GameStyles.SUPER_MARIO_BROS_3,),           // index 64
+        FileCreator.editorImage(entity, 'GroundBox_castle_01', GameStyles.SUPER_MARIO_BROS_3,),           // index 65
+        FileCreator.editorImage(entity, 'GroundBox_castle_02', GameStyles.SUPER_MARIO_BROS_3,),           // index 66
 
-        FileCreator.editorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD,),                                   // index 67
-        FileCreator.editorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD,),                                   // index 68
-        FileCreator.editorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD,),                                   // index 69
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERGROUND,),        // index 70
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERGROUND,),        // index 71
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERGROUND,),        // index 72
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 73
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 74
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 75
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD, Themes.DESERT,),             // index 76
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD, Themes.DESERT,),             // index 77
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD, Themes.DESERT,),             // index 78
-        FileCreator.snowEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD,),                               // index 79
-        FileCreator.snowEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD,),                               // index 80
-        FileCreator.snowEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD,),                               // index 81
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD,),                          // index 82
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD,),                          // index 83
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD,),                          // index 84
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD, Themes.SKY,),                // index 85
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD, Themes.SKY,),                // index 86
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD, Themes.SKY,),                // index 87
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD, Themes.FOREST,),             // index 88
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD, Themes.FOREST,),             // index 89
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD, Themes.FOREST,),             // index 90
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD, Themes.GHOST_HOUSE,),        // index 91
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD, Themes.GHOST_HOUSE,),        // index 92
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD, Themes.GHOST_HOUSE,),        // index 93
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD,),                            // index 94
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD,),                            // index 95
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD,),                            // index 96
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_WORLD, Themes.CASTLE,),             // index 97
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.SUPER_MARIO_WORLD, Themes.CASTLE,),             // index 98
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.SUPER_MARIO_WORLD, Themes.CASTLE,),             // index 99
+        FileCreator.editorImage(entity, 'GroundBox_00', GameStyles.SUPER_MARIO_WORLD,),                   // index 67
+        FileCreator.editorImage(entity, 'GroundBox_01', GameStyles.SUPER_MARIO_WORLD,),                   // index 68
+        FileCreator.editorImage(entity, 'GroundBox_02', GameStyles.SUPER_MARIO_WORLD,),                   // index 69
+        FileCreator.editorImage(entity, 'GroundBox_underground_00', GameStyles.SUPER_MARIO_WORLD,),       // index 70
+        FileCreator.editorImage(entity, 'GroundBox_underground_01', GameStyles.SUPER_MARIO_WORLD,),       // index 71
+        FileCreator.editorImage(entity, 'GroundBox_underground_02', GameStyles.SUPER_MARIO_WORLD,),       // index 72
+        FileCreator.editorImage(entity, 'GroundBox_water_00', GameStyles.SUPER_MARIO_WORLD,),             // index 73
+        FileCreator.editorImage(entity, 'GroundBox_water_01', GameStyles.SUPER_MARIO_WORLD,),             // index 74
+        FileCreator.editorImage(entity, 'GroundBox_water_02', GameStyles.SUPER_MARIO_WORLD,),             // index 75
+        FileCreator.editorImage(entity, 'GroundBox_desert_00', GameStyles.SUPER_MARIO_WORLD,),            // index 76
+        FileCreator.editorImage(entity, 'GroundBox_desert_01', GameStyles.SUPER_MARIO_WORLD,),            // index 77
+        FileCreator.editorImage(entity, 'GroundBox_desert_02', GameStyles.SUPER_MARIO_WORLD,),            // index 78
+        FileCreator.editorImage(entity, 'GroundBox_snow_00', GameStyles.SUPER_MARIO_WORLD,),              // index 79
+        FileCreator.editorImage(entity, 'GroundBox_snow_01', GameStyles.SUPER_MARIO_WORLD,),              // index 80
+        FileCreator.editorImage(entity, 'GroundBox_snow_02', GameStyles.SUPER_MARIO_WORLD,),              // index 81
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_00', GameStyles.SUPER_MARIO_WORLD,),        // index 82
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_01', GameStyles.SUPER_MARIO_WORLD,),        // index 83
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_02', GameStyles.SUPER_MARIO_WORLD,),        // index 84
+        FileCreator.editorImage(entity, 'GroundBox_athletic_00', GameStyles.SUPER_MARIO_WORLD,),          // index 85
+        FileCreator.editorImage(entity, 'GroundBox_athletic_01', GameStyles.SUPER_MARIO_WORLD,),          // index 86
+        FileCreator.editorImage(entity, 'GroundBox_athletic_02', GameStyles.SUPER_MARIO_WORLD,),          // index 87
+        FileCreator.editorImage(entity, 'GroundBox_woods_00', GameStyles.SUPER_MARIO_WORLD,),             // index 88
+        FileCreator.editorImage(entity, 'GroundBox_woods_01', GameStyles.SUPER_MARIO_WORLD,),             // index 89
+        FileCreator.editorImage(entity, 'GroundBox_woods_02', GameStyles.SUPER_MARIO_WORLD,),             // index 90
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_00', GameStyles.SUPER_MARIO_WORLD,),      // index 91
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_01', GameStyles.SUPER_MARIO_WORLD,),      // index 92
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_02', GameStyles.SUPER_MARIO_WORLD,),      // index 93
+        FileCreator.editorImage(entity, 'GroundBox_airship_00', GameStyles.SUPER_MARIO_WORLD,),           // index 94
+        FileCreator.editorImage(entity, 'GroundBox_airship_01', GameStyles.SUPER_MARIO_WORLD,),           // index 95
+        FileCreator.editorImage(entity, 'GroundBox_airship_02', GameStyles.SUPER_MARIO_WORLD,),           // index 96
+        FileCreator.editorImage(entity, 'GroundBox_castle_00', GameStyles.SUPER_MARIO_WORLD,),            // index 97
+        FileCreator.editorImage(entity, 'GroundBox_castle_01', GameStyles.SUPER_MARIO_WORLD,),            // index 98
+        FileCreator.editorImage(entity, 'GroundBox_castle_02', GameStyles.SUPER_MARIO_WORLD,),            // index 99
 
-        FileCreator.editorImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 100
-        FileCreator.editorImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 101
-        FileCreator.editorImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 102
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND,),   // index 103
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND,),   // index 104
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND,),   // index 105
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 106
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 107
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 108
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.DESERT,),        // index 109
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.DESERT,),        // index 110
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.DESERT,),        // index 111
-        FileCreator.snowEditorImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 112
-        FileCreator.snowEditorImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 113
-        FileCreator.snowEditorImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 114
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 115
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 116
-        FileCreator.nightSnowEditorImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 117
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SKY,),           // index 118
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SKY,),           // index 119
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SKY,),           // index 120
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.FOREST,),        // index 121
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.FOREST,),        // index 122
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.FOREST,),        // index 123
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.GHOST_HOUSE,),   // index 124
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.GHOST_HOUSE,),   // index 125
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.GHOST_HOUSE,),   // index 126
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 127
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 128
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 129
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.CASTLE,),        // index 130
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 1, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.CASTLE,),        // index 131
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 2, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.CASTLE,),        // index 132
+        FileCreator.editorImage(entity, 'GroundBox_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),              // index 100
+        FileCreator.editorImage(entity, 'GroundBox_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),              // index 101
+        FileCreator.editorImage(entity, 'GroundBox_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),              // index 102
+        FileCreator.editorImage(entity, 'GroundBox_underground_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),  // index 103
+        FileCreator.editorImage(entity, 'GroundBox_underground_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),  // index 104
+        FileCreator.editorImage(entity, 'GroundBox_underground_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),  // index 105
+        FileCreator.editorImage(entity, 'GroundBox_water_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 106
+        FileCreator.editorImage(entity, 'GroundBox_water_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 107
+        FileCreator.editorImage(entity, 'GroundBox_water_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 108
+        FileCreator.editorImage(entity, 'GroundBox_desert_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 109
+        FileCreator.editorImage(entity, 'GroundBox_desert_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 110
+        FileCreator.editorImage(entity, 'GroundBox_desert_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 111
+        FileCreator.editorImage(entity, 'GroundBox_snow_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),         // index 112
+        FileCreator.editorImage(entity, 'GroundBox_snow_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),         // index 113
+        FileCreator.editorImage(entity, 'GroundBox_snow_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),         // index 114
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),   // index 115
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),   // index 116
+        FileCreator.editorImage(entity, 'GroundBox_snow_night_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),   // index 117
+        FileCreator.editorImage(entity, 'GroundBox_athletic_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),     // index 118
+        FileCreator.editorImage(entity, 'GroundBox_athletic_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),     // index 119
+        FileCreator.editorImage(entity, 'GroundBox_athletic_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),     // index 120
+        FileCreator.editorImage(entity, 'GroundBox_woods_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 121
+        FileCreator.editorImage(entity, 'GroundBox_woods_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 122
+        FileCreator.editorImage(entity, 'GroundBox_woods_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 123
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_00', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 124
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_01', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 125
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_02', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 126
+        FileCreator.editorImage(entity, 'GroundBox_airship_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 127
+        FileCreator.editorImage(entity, 'GroundBox_airship_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 128
+        FileCreator.editorImage(entity, 'GroundBox_airship_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 129
+        FileCreator.editorImage(entity, 'GroundBox_castle_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 130
+        FileCreator.editorImage(entity, 'GroundBox_castle_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 131
+        FileCreator.editorImage(entity, 'GroundBox_castle_02', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 132
 
-        FileCreator.editorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD,),                                // index 133
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND,),     // index 134
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERWATER,),      // index 135
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.DESERT,),          // index 136
-        FileCreator.snowEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD,),                            // index 137
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.SKY,),             // index 138
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.FOREST,),          // index 139
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.GHOST_HOUSE,),     // index 140
-        FileCreator.airshipEditorImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD,),                         // index 141
-        FileCreator.editorInThemeImage(entity, 'GroundBox', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.CASTLE,),          // index 142
+        FileCreator.editorImage(entity, 'GroundBox_00', GameStyles.SUPER_MARIO_3D_WORLD,),                // index 133
+        FileCreator.editorImage(entity, 'GroundBox_underground_00', GameStyles.SUPER_MARIO_3D_WORLD,),    // index 134
+        FileCreator.editorImage(entity, 'GroundBox_water_00', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 135
+        FileCreator.editorImage(entity, 'GroundBox_desert_00', GameStyles.SUPER_MARIO_3D_WORLD,),         // index 136
+        FileCreator.editorImage(entity, 'GroundBox_snow_00', GameStyles.SUPER_MARIO_3D_WORLD,),           // index 137
+        FileCreator.editorImage(entity, 'GroundBox_athletic_00', GameStyles.SUPER_MARIO_3D_WORLD,),       // index 138
+        FileCreator.editorImage(entity, 'GroundBox_woods_00', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 139
+        FileCreator.editorImage(entity, 'GroundBox_hauntedhouse_00', GameStyles.SUPER_MARIO_3D_WORLD,),   // index 140
+        FileCreator.editorImage(entity, 'GroundBox_airship_00', GameStyles.SUPER_MARIO_3D_WORLD,),        // index 141
+        FileCreator.editorImage(entity, 'GroundBox_castle_00', GameStyles.SUPER_MARIO_3D_WORLD,),         // index 142
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, EditorImageFile[]>>>([
@@ -1647,33 +1641,33 @@ export function editorSemisolidPlatformImages(entity: Entities,): EditorImage {
  */
 export function editorBridgeImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS,),                                    // index 0
-        FileCreator.snowEditorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS,),                                // index 1
-        FileCreator.nightSnowEditorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS,),                           // index 2
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,),         // index 3
-        FileCreator.airshipEditorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS,),                             // index 4
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),              // index 5
+        FileCreator.editorImage(entity, 'Bridge_00', GameStyles.SUPER_MARIO_BROS,),                    // index 0
+        FileCreator.editorImage(entity, 'Bridge_snow_00', GameStyles.SUPER_MARIO_BROS,),               // index 1
+        FileCreator.editorImage(entity, 'Bridge_snow_night_00', GameStyles.SUPER_MARIO_BROS,),         // index 2
+        FileCreator.editorImage(entity, 'Bridge_hauntedhouse_00', GameStyles.SUPER_MARIO_BROS,),       // index 3
+        FileCreator.editorImage(entity, 'Bridge_airship_00', GameStyles.SUPER_MARIO_BROS,),            // index 4
+        FileCreator.editorImage(entity, 'Bridge_castle_00', GameStyles.SUPER_MARIO_BROS,),             // index 5
 
-        FileCreator.editorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 6
-        FileCreator.snowEditorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS_3,),                              // index 7
-        FileCreator.nightSnowEditorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_BROS_3,),                         // index 8
+        FileCreator.editorImage(entity, 'Bridge_00', GameStyles.SUPER_MARIO_BROS_3,),                  // index 6
+        FileCreator.editorImage(entity, 'Bridge_snow_00', GameStyles.SUPER_MARIO_BROS_3,),             // index 7
+        FileCreator.editorImage(entity, 'Bridge_snow_night_00', GameStyles.SUPER_MARIO_BROS_3,),       // index 8
 
-        FileCreator.editorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_WORLD,),                                   // index 9
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_WORLD, Themes.DESERT,),             // index 10
-        FileCreator.snowEditorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_WORLD,),                               // index 11
-        FileCreator.nightSnowEditorImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_WORLD,),                          // index 12
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_WORLD, Themes.SKY,),                // index 13
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.SUPER_MARIO_WORLD, Themes.FOREST,),             // index 14
+        FileCreator.editorImage(entity, 'Bridge_00', GameStyles.SUPER_MARIO_WORLD,),                   // index 9
+        FileCreator.editorImage(entity, 'Bridge_desert_00', GameStyles.SUPER_MARIO_WORLD,),            // index 10
+        FileCreator.editorImage(entity, 'Bridge_snow_00', GameStyles.SUPER_MARIO_WORLD,),              // index 11
+        FileCreator.editorImage(entity, 'Bridge_snow_night_00', GameStyles.SUPER_MARIO_WORLD,),        // index 12
+        FileCreator.editorImage(entity, 'Bridge_athletic_00', GameStyles.SUPER_MARIO_WORLD,),          // index 13
+        FileCreator.editorImage(entity, 'Bridge_woods_00', GameStyles.SUPER_MARIO_WORLD,),             // index 14
 
-        FileCreator.editorImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 15
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND,),   // index 16
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),    // index 17
-        FileCreator.snowEditorImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                          // index 18
-        FileCreator.nightSnowEditorImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                     // index 19
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.FOREST,),        // index 20
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.GHOST_HOUSE,),   // index 21
-        FileCreator.airshipEditorImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                       // index 22
-        FileCreator.editorInThemeImage(entity, 'Bridge', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.CASTLE,),        // index 23
+        FileCreator.editorImage(entity, 'Bridge_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),              // index 15
+        FileCreator.editorImage(entity, 'Bridge_underground_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),  // index 16
+        FileCreator.editorImage(entity, 'Bridge_water_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 17
+        FileCreator.editorImage(entity, 'Bridge_snow_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),         // index 18
+        FileCreator.editorImage(entity, 'Bridge_snow_night_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),   // index 19
+        FileCreator.editorImage(entity, 'Bridge_woods_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 20
+        FileCreator.editorImage(entity, 'Bridge_hauntedhouse_00', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 21
+        FileCreator.editorImage(entity, 'Bridge_airship_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 22
+        FileCreator.editorImage(entity, 'Bridge_castle_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 23
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -1723,19 +1717,19 @@ export function editorBridgeImages(entity: Entities,): EditorImage {
  */
 export function editorBrickBlockImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS,),                            // index 0
-        FileCreator.editorInThemeImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,), // index 1
-        FileCreator.snowEditorImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS,),                        // index 2
-        FileCreator.nightSnowEditorImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS,),                   // index 3
-        FileCreator.editorInThemeImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,), // index 4
-        FileCreator.editorInThemeImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),      // index 5
+        FileCreator.editorImage(entity, 'RengaBlock_00', GameStyles.SUPER_MARIO_BROS,),              // index 0
+        FileCreator.editorImage(entity, 'RengaBlock_underground_00', GameStyles.SUPER_MARIO_BROS,),  // index 1
+        FileCreator.editorImage(entity, 'RengaBlock_snow_00', GameStyles.SUPER_MARIO_BROS,),         // index 2
+        FileCreator.editorImage(entity, 'RengaBlock_snow_night_00', GameStyles.SUPER_MARIO_BROS,),   // index 3
+        FileCreator.editorImage(entity, 'RengaBlock_hauntedhouse_00', GameStyles.SUPER_MARIO_BROS,), // index 4
+        FileCreator.editorImage(entity, 'RengaBlock_castle_00', GameStyles.SUPER_MARIO_BROS,),       // index 5
 
-        FileCreator.editorImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS_3,),                          // index 6
-        FileCreator.nightSnowEditorImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_BROS_3,),                 // index 7
+        FileCreator.editorImage(entity, 'RengaBlock_00', GameStyles.SUPER_MARIO_BROS_3,),            // index 6
+        FileCreator.editorImage(entity, 'RengaBlock_snow_night_00', GameStyles.SUPER_MARIO_BROS_3,), // index 7
 
-        FileCreator.editorImage(entity, 'RengaBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                      // index 8
+        FileCreator.editorImage(entity, 'RengaBlock_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 8
 
-        FileCreator.editorImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_3D_WORLD,),                        // index 9
+        FileCreator.editorImage(entity, 'RengaBlock_00', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 9
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -1765,8 +1759,8 @@ export function editorBrickBlockImages(entity: Entities,): EditorImage {
  */
 export function editorCristalBlockImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorInThemeImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND,),
-        FileCreator.editorInThemeImage(entity, 'RengaBlock', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.FOREST,),
+        FileCreator.editorImage(entity, 'RengaBlock_underground_00', GameStyles.SUPER_MARIO_3D_WORLD,),
+        FileCreator.editorImage(entity, 'RengaBlock_woods_00', GameStyles.SUPER_MARIO_3D_WORLD,),
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map<Themes, [EditorImageFile,]>([
@@ -1782,32 +1776,32 @@ export function editorCristalBlockImages(entity: Entities,): EditorImage {
  */
 export function editorHardBlockImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS,),                                  // index 0
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,),       // index 1
-        FileCreator.nightEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,),         // index 2
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),        // index 3
-        FileCreator.snowEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS,),                              // index 4
-        FileCreator.nightSnowEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS,),                         // index 5
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,),       // index 6
-        FileCreator.airshipEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS,),                           // index 7
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),            // index 8
+        FileCreator.editorImage(entity, 'HardBlock_00', GameStyles.SUPER_MARIO_BROS,),                   // index 0
+        FileCreator.editorImage(entity, 'HardBlock_underground_00', GameStyles.SUPER_MARIO_BROS,),       // index 1
+        FileCreator.editorImage(entity, 'HardBlock_underground_night_00', GameStyles.SUPER_MARIO_BROS,), // index 2
+        FileCreator.editorImage(entity, 'HardBlock_water_00', GameStyles.SUPER_MARIO_BROS,),             // index 3
+        FileCreator.editorImage(entity, 'HardBlock_snow_00', GameStyles.SUPER_MARIO_BROS,),              // index 4
+        FileCreator.editorImage(entity, 'HardBlock_snow_night_00', GameStyles.SUPER_MARIO_BROS,),        // index 5
+        FileCreator.editorImage(entity, 'HardBlock_hauntedhouse_00', GameStyles.SUPER_MARIO_BROS,),      // index 6
+        FileCreator.editorImage(entity, 'HardBlock_airship_00', GameStyles.SUPER_MARIO_BROS,),           // index 7
+        FileCreator.editorImage(entity, 'HardBlock_castle_00', GameStyles.SUPER_MARIO_BROS,),            // index 8
 
-        FileCreator.editorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS_3,),                                // index 9
-        FileCreator.snowEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS_3,),                            // index 10
-        FileCreator.nightSnowEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_BROS_3,),                       // index 11
+        FileCreator.editorImage(entity, 'HardBlock_00', GameStyles.SUPER_MARIO_BROS_3,),                 // index 9
+        FileCreator.editorImage(entity, 'HardBlock_snow_00', GameStyles.SUPER_MARIO_BROS_3,),            // index 10
+        FileCreator.editorImage(entity, 'HardBlock_snow_night_00', GameStyles.SUPER_MARIO_BROS_3,),      // index 11
 
-        FileCreator.editorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_WORLD,),                                 // index 12
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_WORLD, Themes.GHOST_HOUSE,),      // index 13
-        FileCreator.airshipEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_WORLD,),                          // index 14
-        FileCreator.nightAirshipEditorImage(entity, 'HardBlock', 0, GameStyles.SUPER_MARIO_WORLD,),                     // index 15
+        FileCreator.editorImage(entity, 'HardBlock_00', GameStyles.SUPER_MARIO_WORLD,),                  // index 12
+        FileCreator.editorImage(entity, 'HardBlock_hauntedhouse_00', GameStyles.SUPER_MARIO_WORLD,),     // index 13
+        FileCreator.editorImage(entity, 'HardBlock_airship_00', GameStyles.SUPER_MARIO_WORLD,),          // index 14
+        FileCreator.editorImage(entity, 'HardBlock_airship_night_00', GameStyles.SUPER_MARIO_WORLD,),    // index 15
 
-        FileCreator.editorImage(entity, 'HardBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                            // index 16
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERGROUND,), // index 17
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.UNDERWATER,),  // index 18
-        FileCreator.snowEditorImage(entity, 'HardBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                        // index 19
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.SKY,),         // index 20
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.FOREST,),      // index 21
-        FileCreator.editorInThemeImage(entity, 'HardBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U, Themes.CASTLE,),      // index 22
+        FileCreator.editorImage(entity, 'HardBlock_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),             // index 16
+        FileCreator.editorImage(entity, 'HardBlock_underground_00', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 17
+        FileCreator.editorImage(entity, 'HardBlock_water_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 18
+        FileCreator.editorImage(entity, 'HardBlock_snow_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 19
+        FileCreator.editorImage(entity, 'HardBlock_athletic_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),    // index 20
+        FileCreator.editorImage(entity, 'HardBlock_woods_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),       // index 21
+        FileCreator.editorImage(entity, 'HardBlock_castle_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),      // index 22
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -1858,20 +1852,20 @@ export function editorHardBlockImages(entity: Entities,): EditorImage {
  */
 export function editorCloudBlockImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_BROS,),                                    // index 0
-        FileCreator.editorInThemeImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),          // index 1
-        FileCreator.nightSnowEditorImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_BROS,),                           // index 2
+        FileCreator.editorImage(entity, 'KumoBlock_00', GameStyles.SUPER_MARIO_BROS,),              // index 0
+        FileCreator.editorImage(entity, 'KumoBlock_water_00', GameStyles.SUPER_MARIO_BROS,),        // index 1
+        FileCreator.editorImage(entity, 'KumoBlock_snow_night_00', GameStyles.SUPER_MARIO_BROS,),   // index 2
 
-        FileCreator.editorImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_BROS_3,),                                  // index 3
-        FileCreator.editorInThemeImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),        // index 4
-        FileCreator.nightSnowEditorImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_BROS_3,),                         // index 5
+        FileCreator.editorImage(entity, 'KumoBlock_00', GameStyles.SUPER_MARIO_BROS_3,),            // index 3
+        FileCreator.editorImage(entity, 'KumoBlock_water_00', GameStyles.SUPER_MARIO_BROS_3,),      // index 4
+        FileCreator.editorImage(entity, 'KumoBlock_snow_night_00', GameStyles.SUPER_MARIO_BROS_3,), // index 5
 
-        FileCreator.editorImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_WORLD,),                                   // index 6
-        FileCreator.editorInThemeImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_WORLD, Themes.UNDERWATER,),         // index 7
+        FileCreator.editorImage(entity, 'KumoBlock_00', GameStyles.SUPER_MARIO_WORLD,),             // index 6
+        FileCreator.editorImage(entity, 'KumoBlock_water_00', GameStyles.SUPER_MARIO_WORLD,),       // index 7
 
-        FileCreator.editorImage(entity, 'KumoBlock', 0, GameStyles.NEW_SUPER_MARIO_BROS_U,),                              // index 8
+        FileCreator.editorImage(entity, 'KumoBlock_00', GameStyles.NEW_SUPER_MARIO_BROS_U,),        // index 8
 
-        FileCreator.editorImage(entity, 'KumoBlock', 0, GameStyles.SUPER_MARIO_3D_WORLD,),                                // index 9
+        FileCreator.editorImage(entity, 'KumoBlock_00', GameStyles.SUPER_MARIO_3D_WORLD,),          // index 9
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -1905,18 +1899,18 @@ export function editorCloudBlockImages(entity: Entities,): EditorImage {
  */
 export function editorCheepCheepImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'Pukupuku', 0, GameStyles.SUPER_MARIO_BROS,),       // index 0
-        FileCreator.editorImage(entity, 'Pukupuku', 1, GameStyles.SUPER_MARIO_BROS,),       // index 1
+        FileCreator.editorImage(entity, 'Pukupuku_00', GameStyles.SUPER_MARIO_BROS,),       // index 0
+        FileCreator.editorImage(entity, 'Pukupuku_01', GameStyles.SUPER_MARIO_BROS,),       // index 1
 
-        FileCreator.editorImage(entity, 'Pukupuku', 0, GameStyles.SUPER_MARIO_BROS_3,),     // index 2
-        FileCreator.editorImage(entity, 'Pukupuku', 1, GameStyles.SUPER_MARIO_BROS_3,),     // index 3
+        FileCreator.editorImage(entity, 'Pukupuku_00', GameStyles.SUPER_MARIO_BROS_3,),     // index 2
+        FileCreator.editorImage(entity, 'Pukupuku_01', GameStyles.SUPER_MARIO_BROS_3,),     // index 3
 
-        FileCreator.editorImage(entity, 'Pukupuku', 1, GameStyles.SUPER_MARIO_WORLD,),      // index 4
+        FileCreator.editorImage(entity, 'Pukupuku_01', GameStyles.SUPER_MARIO_WORLD,),      // index 4
 
-        FileCreator.editorImage(entity, 'Pukupuku', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 5
+        FileCreator.editorImage(entity, 'Pukupuku_01', GameStyles.NEW_SUPER_MARIO_BROS_U,), // index 5
 
-        FileCreator.editorImage(entity, 'Pukupuku', 0, GameStyles.SUPER_MARIO_3D_WORLD,),   // index 6
-        FileCreator.editorImage(entity, 'Pukupuku', 1, GameStyles.SUPER_MARIO_3D_WORLD,),   // index 7
+        FileCreator.editorImage(entity, 'Pukupuku_00', GameStyles.SUPER_MARIO_3D_WORLD,),   // index 6
+        FileCreator.editorImage(entity, 'Pukupuku_01', GameStyles.SUPER_MARIO_3D_WORLD,),   // index 7
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([
@@ -1935,33 +1929,33 @@ export function editorCheepCheepImages(entity: Entities,): EditorImage {
  */
 export function editorSpikeBallImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS,),                              // index 0
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.GROUND,),          // index 1
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.UNDERGROUND,),   // index 2
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.UNDERWATER,),    // index 3
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.DESERT,),          // index 4
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.SKY,),             // index 5
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.FOREST,),          // index 6
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.GHOST_HOUSE,),   // index 7
-        FileCreator.nightAirshipEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS,),                  // index 8
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS, Themes.CASTLE,),        // index 9
+        FileCreator.editorImage(entity, 'Gabon_01', GameStyles.SUPER_MARIO_BROS,),                  // index 0
+        FileCreator.editorImage(entity, 'Gabon_plain_night_01', GameStyles.SUPER_MARIO_BROS,),      // index 1
+        FileCreator.editorImage(entity, 'Gabon_underground_01', GameStyles.SUPER_MARIO_BROS,),      // index 2
+        FileCreator.editorImage(entity, 'Gabon_water_01', GameStyles.SUPER_MARIO_BROS,),            // index 3
+        FileCreator.editorImage(entity, 'Gabon_desert_night_01', GameStyles.SUPER_MARIO_BROS,),     // index 4
+        FileCreator.editorImage(entity, 'Gabon_athletic_night_01', GameStyles.SUPER_MARIO_BROS,),   // index 5
+        FileCreator.editorImage(entity, 'Gabon_woods_night_01', GameStyles.SUPER_MARIO_BROS,),      // index 6
+        FileCreator.editorImage(entity, 'Gabon_hauntedhouse_01', GameStyles.SUPER_MARIO_BROS,),     // index 7
+        FileCreator.editorImage(entity, 'Gabon_airship_night_01', GameStyles.SUPER_MARIO_BROS,),    // index 8
+        FileCreator.editorImage(entity, 'Gabon_castle_01', GameStyles.SUPER_MARIO_BROS,),           // index 9
 
-        FileCreator.editorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3,),                            // index 10
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.GROUND,),        // index 11
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERGROUND,), // index 12
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.UNDERWATER,),  // index 13
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.DESERT,),        // index 14
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.SKY,),           // index 15
-        FileCreator.nightEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.FOREST,),        // index 16
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.GHOST_HOUSE,), // index 17
-        FileCreator.nightAirshipEditorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3,),                // index 18
-        FileCreator.editorInThemeImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_BROS_3, Themes.CASTLE,),      // index 19
+        FileCreator.editorImage(entity, 'Gabon_01', GameStyles.SUPER_MARIO_BROS_3,),                // index 10
+        FileCreator.editorImage(entity, 'Gabon_plain_night_01', GameStyles.SUPER_MARIO_BROS_3,),    // index 11
+        FileCreator.editorImage(entity, 'Gabon_underground_01', GameStyles.SUPER_MARIO_BROS_3,),    // index 12
+        FileCreator.editorImage(entity, 'Gabon_water_01', GameStyles.SUPER_MARIO_BROS_3,),          // index 13
+        FileCreator.editorImage(entity, 'Gabon_desert_night_01', GameStyles.SUPER_MARIO_BROS_3,),   // index 14
+        FileCreator.editorImage(entity, 'Gabon_athletic_night_01', GameStyles.SUPER_MARIO_BROS_3,), // index 15
+        FileCreator.editorImage(entity, 'Gabon_woods_night_01', GameStyles.SUPER_MARIO_BROS_3,),    // index 16
+        FileCreator.editorImage(entity, 'Gabon_hauntedhouse_01', GameStyles.SUPER_MARIO_BROS_3,),   // index 17
+        FileCreator.editorImage(entity, 'Gabon_airship_night_01', GameStyles.SUPER_MARIO_BROS_3,),  // index 18
+        FileCreator.editorImage(entity, 'Gabon_castle_01', GameStyles.SUPER_MARIO_BROS_3,),         // index 19
 
-        FileCreator.editorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_WORLD,),                             // index 20
+        FileCreator.editorImage(entity, 'Gabon_01', GameStyles.SUPER_MARIO_WORLD,),                 // index 20
 
-        FileCreator.editorImage(entity, 'Gabon', 1, GameStyles.NEW_SUPER_MARIO_BROS_U,),                        // index 21
+        FileCreator.editorImage(entity, 'Gabon_01', GameStyles.NEW_SUPER_MARIO_BROS_U,),            // index 21
 
-        FileCreator.editorImage(entity, 'Gabon', 1, GameStyles.SUPER_MARIO_3D_WORLD,),                          // index 22
+        FileCreator.editorImage(entity, 'Gabon_01', GameStyles.SUPER_MARIO_3D_WORLD,),              // index 22
     ] as const
 
     return new EditorImageContainer(images, new Map<Times, Map<GameStyles, Map<Themes, [EditorImageFile,]>>>([
@@ -2010,12 +2004,12 @@ export function editorSpikeBallImages(entity: Entities,): EditorImage {
  */
 export function editorTreeImages(entity: Entities,): EditorImage {
     const images = [
-        FileCreator.editorImage(entity, 'BellTree', 0, GameStyles.SUPER_MARIO_3D_WORLD,),
-        FileCreator.editorInThemeImage(entity, 'BellTree', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERGROUND,),
-        FileCreator.editorInThemeImage(entity, 'BellTree', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.UNDERWATER,),
-        FileCreator.editorInThemeImage(entity, 'BellTree', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.DESERT,),
-        FileCreator.editorInThemeImage(entity, 'BellTree', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.SNOW,),
-        FileCreator.editorInThemeImage(entity, 'BellTree', 0, GameStyles.SUPER_MARIO_3D_WORLD, Themes.FOREST,),
+        FileCreator.editorImage(entity, 'BellTree_00', GameStyles.SUPER_MARIO_3D_WORLD,),             // index 0
+        FileCreator.editorImage(entity, 'BellTree_underground_00', GameStyles.SUPER_MARIO_3D_WORLD,), // index 1
+        FileCreator.editorImage(entity, 'BellTree_water_00', GameStyles.SUPER_MARIO_3D_WORLD,),       // index 2
+        FileCreator.editorImage(entity, 'BellTree_desert_00', GameStyles.SUPER_MARIO_3D_WORLD,),      // index 3
+        FileCreator.editorImage(entity, 'BellTree_snow_00', GameStyles.SUPER_MARIO_3D_WORLD,),        // index 4
+        FileCreator.editorImage(entity, 'BellTree_woods_00', GameStyles.SUPER_MARIO_3D_WORLD,),       // index 5
     ] as const
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map([[Themes.GROUND, images,],],),],],),],],),)

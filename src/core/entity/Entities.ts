@@ -132,7 +132,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'ToumeiDokan',)
+            return ImageCreator.editorInSm3dwImages(this, 'ToumeiDokan_00',)
         }
 
     }('Clear Pipe',)
@@ -144,7 +144,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(this, 'Toge',)
+            return ImageCreator.editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(this, 'Toge_00', 'Toge_snow_night_00',)
         }
 
     }('Spike Trap',)
@@ -155,7 +155,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmb3AndThemeImages(this, 'Toge', 0, Themes.UNDERWATER,)
+            return ImageCreator.editorInSmb3Images(this, 'Toge_water_00', Themes.UNDERWATER,)
         }
 
     }('Jelectro',)
@@ -166,7 +166,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwAndThemeImages(this, 'Toge', 0, Themes.UNDERWATER,)
+            return ImageCreator.editorInSmwImages(this, 'Toge_water_00', Themes.UNDERWATER,)
         }
 
     }('Sea Urchin',)
@@ -177,7 +177,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorInSm3dwImages(this, 'TogeBlock', [0, 1, 2,],)
+            return ImageCreator.multipleEditorInSm3dwImages(this, ['TogeBlock_00', 'TogeBlock_01', 'TogeBlock_02',],)
         }
 
     }('Spike Block',)
@@ -248,7 +248,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwImages(this, 'RengaBlock',)
+            return ImageCreator.editorInSmwImages(this, 'RengaBlock_00',)
         }
 
     }('Rotating Block',)
@@ -271,7 +271,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'HardBlock',)
+            return ImageCreator.editorInSm3dwImages(this, 'HardBlock_00',)
         }
 
     }('Rock Block',)
@@ -283,7 +283,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNightSnowInSmbAndSmb3Images(this, 'HatenaBlock',)
+            return ImageCreator.editorInNightSnowInSmbAndSmb3Images(this, 'HatenaBlock_00', 'HatenaBlock_snow_night_00',)
         }
 
     }('? Block',)
@@ -294,7 +294,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'ClearBlock',)
+            return ImageCreator.editorImages(this, 'ClearBlock_00',)
         }
 
     }('Hidden Block',)
@@ -313,7 +313,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'BikkuriBlock',)
+            return ImageCreator.editorInSm3dwImages(this, 'BikkuriBlock_00',)
         }
 
     }('! Block',)
@@ -325,7 +325,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(this, 'OnpuBlock',)
+            return ImageCreator.editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(this, 'OnpuBlock_00', 'OnpuBlock_snow_night_00',)
         }
 
     }('Note Block',)
@@ -336,7 +336,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(this, 'OnpuBlock', 1,)
+            return ImageCreator.editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(this, 'OnpuBlock_01', 'OnpuBlock_snow_night_01',)
         }
 
     }('Music Block',)
@@ -348,7 +348,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNightSnowInSmbAndSmb3Images(this, 'ChikuwaBlock',)
+            return ImageCreator.editorInNightSnowInSmbAndSmb3Images(this, 'ChikuwaBlock_00', 'ChikuwaBlock_snow_night_00',)
         }
 
     }('Donut Block',)
@@ -372,7 +372,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'OnOffSwitch',)
+            return ImageCreator.editorImages(this, 'OnOffSwitch_00',)
         }
 
     }('ON/OFF Switch',)
@@ -383,7 +383,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorImages(this, 'OnOffBlock', [0, 1,],)
+            return ImageCreator.multipleEditorImages(this, ['OnOffBlock_00', 'OnOffBlock_01',],)
         }
 
     }('Dotted-Line Block',)
@@ -395,7 +395,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorImages(this, 'PBlock', [0, 1,],)
+            return ImageCreator.multipleEditorImages(this, ['PBlock_00', 'PBlock_01',],)
         }
 
     }('P Block',)
@@ -407,7 +407,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorInSm3dwImages(this, 'Chikachika', [0, 1,],)
+            return ImageCreator.multipleEditorInSm3dwImages(this, ['Chikachika_00', 'Chikachika_01',],)
         }
 
     }('Blinking Block',)
@@ -419,7 +419,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNightSnowInSmb3Images(this, 'IceBlock',)
+            return ImageCreator.editorInNightSnowInSmb3Images(this, 'IceBlock_00', 'IceBlock_snow_night_00',)
         }
 
     }('Ice Block',)
@@ -430,7 +430,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorImages(this, 'Icicle', [0, 1,],)
+            return ImageCreator.multipleEditorImages(this, ['Icicle_00', 'Icicle_01',],)
         }
 
     }('Icicle',)
@@ -442,7 +442,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Coin',)
+            return ImageCreator.editorImages(this, 'Coin_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -457,7 +457,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwAndNightSnowInSmb3Images(this, 'Coin', 1,)
+            return ImageCreator.editorInNotSm3dwAndNightSnowInSmb3Images(this, 'Coin_01', 'Coin_snow_night_01',)
         }
 
     }('Frozen Coin',)
@@ -468,7 +468,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, '10Coin',)
+            return ImageCreator.editorImages(this, '10Coin_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -483,7 +483,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, '10Coin', 1,)
+            return ImageCreator.editorImages(this, '10Coin_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -498,7 +498,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, '10Coin', 2,)
+            return ImageCreator.editorImages(this, '10Coin_02',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -513,7 +513,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'PinkCoin',)
+            return ImageCreator.editorImages(this, 'PinkCoin_00',)
         }
 
     }('Pink Coin',)
@@ -528,7 +528,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'SuperKinoko',)
+            return ImageCreator.editorImages(this, 'SuperKinoko_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -599,7 +599,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmbImages(this, 'SuperKinoko', 1,)
+            return ImageCreator.editorInSmbImages(this, 'SuperKinoko_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -821,7 +821,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'BoxKiller',)
+            return ImageCreator.editorInSm3dwImages(this, 'BoxKiller_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -838,7 +838,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'BoxPropeller',)
+            return ImageCreator.editorInSm3dwImages(this, 'BoxPropeller_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -854,7 +854,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'BoxKuribo',)
+            return ImageCreator.editorInSm3dwImages(this, 'BoxKuribo_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -870,7 +870,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'BoxKillerPlayer',)
+            return ImageCreator.editorInSm3dwImages(this, 'BoxKillerPlayer_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -886,7 +886,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'BoxPow',)
+            return ImageCreator.editorInSm3dwImages(this, 'BoxPow_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -902,7 +902,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'SuperStar',)
+            return ImageCreator.editorImages(this, 'SuperStar_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -918,7 +918,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, '1upKinoko',)
+            return ImageCreator.editorImages(this, '1upKinoko_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -933,7 +933,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'DokuKinoko',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'DokuKinoko_00',)
         }
 
     }('Rotten Mushroom',)
@@ -945,7 +945,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmbAndSmb3Images(this, 'KutsuKuribo',)
+            return ImageCreator.editorInSmbAndSmb3Images(this, 'KutsuKuribo_00',)
         }
 
     }('Shoe Goomba',)
@@ -971,7 +971,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmbAndSmb3Images(this, 'KutsuKuribo', 1,)
+            return ImageCreator.editorInSmbAndSmb3Images(this, 'KutsuKuribo_01',)
         }
 
     }('Stiletto Goomba',)
@@ -993,7 +993,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwAndNsmbuImages(this, 'YosshiEgg',)
+            return ImageCreator.editorInSmwAndNsmbuImages(this, 'YosshiEgg_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1030,7 +1030,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwAndNsmbuImages(this, 'YosshiEggRed',)
+            return ImageCreator.editorInSmwAndNsmbuImages(this, 'YosshiEggRed_00',)
         }
 
         protected override _createInGameImage(): InGameImage_SMM2 {
@@ -1051,7 +1051,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSmwImages(this, 'Kuribo',)
+            return ImageCreator.editorInNotSmwImages(this, 'Kuribo_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1076,7 +1076,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwImages(this, 'Kuribo',)
+            return ImageCreator.editorInSmwImages(this, 'Kuribo_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1091,7 +1091,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSmwAndSm3dwImages(this, 'Kuribo', 1,)
+            return ImageCreator.editorInNotSmwAndSm3dwImages(this, 'Kuribo_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1106,7 +1106,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwImages(this, 'Kuribo', 1,)
+            return ImageCreator.editorInSmwImages(this, 'Kuribo_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1122,7 +1122,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Nokonoko',)
+            return ImageCreator.editorImages(this, 'Nokonoko_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1133,7 +1133,7 @@ export class Entities
     public static readonly RED_KOOPA_TROOPA =                              new class Entities_RedKoopaTroopa extends Entities {
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Nokonoko', 1,)
+            return ImageCreator.editorImages(this, 'Nokonoko_01',)
         }
 
     }('Red Koopa Troopa',)
@@ -1155,7 +1155,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Karon',)
+            return ImageCreator.editorImages(this, 'Karon_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1172,7 +1172,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Karon', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Karon_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1220,7 +1220,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Togezo',)
+            return ImageCreator.editorImages(this, 'Togezo_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1238,7 +1238,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Togezo', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Togezo_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1254,7 +1254,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'TogeMet',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'TogeMet_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1270,7 +1270,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'TogeMet', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'TogeMet_01',)
         }
 
     }('Fast Spike Top',)
@@ -1283,7 +1283,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Pyonchu',)
+            return ImageCreator.editorInSm3dwImages(this, 'Pyonchu_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1298,7 +1298,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Pyonchu', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'Pyonchu_01',)
         }
 
     }('Spiny Skipsqueak',)
@@ -1310,7 +1310,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Arihei',)
+            return ImageCreator.editorInSm3dwImages(this, 'Arihei_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1325,7 +1325,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Arihei', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'Arihei_01',)
         }
 
     }('Horned Ant Trooper',)
@@ -1337,7 +1337,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Hacchin',)
+            return ImageCreator.editorInSm3dwImages(this, 'Hacchin_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1368,7 +1368,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwImages(this, 'Pukupuku',)
+            return ImageCreator.editorInSmwImages(this, 'Pukupuku_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1383,7 +1383,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNsmbuImages(this, 'Pukupuku',)
+            return ImageCreator.editorInNsmbuImages(this, 'Pukupuku_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1398,7 +1398,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'FishBone',)
+            return ImageCreator.editorImages(this, 'FishBone_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1414,7 +1414,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Gesso',)
+            return ImageCreator.editorImages(this, 'Gesso_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1429,7 +1429,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Gesso', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Gesso_01',)
         }
 
     }('Blooper Nanny',)
@@ -1452,7 +1452,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Fugumannen',)
+            return ImageCreator.editorInSm3dwImages(this, 'Fugumannen_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1468,7 +1468,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Hanachan',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Hanachan_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1483,7 +1483,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Hanachan', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Hanachan_01',)
         }
 
     }('Angry Wiggler',)
@@ -1495,7 +1495,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSmwImages(this, 'Pakkun',)
+            return ImageCreator.editorInNotSmwImages(this, 'Pakkun_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1510,7 +1510,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmwImages(this, 'Pakkun',)
+            return ImageCreator.editorInSmwImages(this, 'Pakkun_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1525,7 +1525,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Pakkun', 1,)
+            return ImageCreator.editorImages(this, 'Pakkun_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1556,7 +1556,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorInSm3dwImages(this, 'PackunPipe', [0, 1,],)
+            return ImageCreator.multipleEditorInSm3dwImages(this, ['PackunPipe_00', 'PackunPipe_01',],)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1600,7 +1600,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Gabon',)
+            return ImageCreator.editorImages(this, 'Gabon_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1626,7 +1626,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSnowImages(this, 'Gabon', 1,)
+            return ImageCreator.editorInSnowImages(this, 'Gabon_snow_01',)
         }
 
     }('Snowball',)
@@ -1638,7 +1638,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Jugem',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Jugem_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1653,7 +1653,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Jugem', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Jugem_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1669,7 +1669,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Teresa',)
+            return ImageCreator.editorImages(this, 'Teresa_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1695,7 +1695,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Teresa', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Teresa_01',)
         }
 
     }('Boo Buddies',)
@@ -1706,7 +1706,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Teresa', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'Teresa_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1737,7 +1737,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Bombhei', 1,)
+            return ImageCreator.editorImages(this, 'Bombhei_01',)
         }
 
     }('Lit Bob-omb',)
@@ -1749,7 +1749,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Sambo',)
+            return ImageCreator.editorImages(this, 'Sambo_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1760,7 +1760,7 @@ export class Entities
     public static readonly SNOW_POKEY =                                    new class Entities_SnowPokey extends Entities {
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSnowImages(this, 'Sambo',)
+            return ImageCreator.editorInSnowImages(this, 'Sambo_snow_00',)
         }
 
     }('Snow Pokey',)
@@ -1772,7 +1772,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Dossun',)
+            return ImageCreator.editorImages(this, 'Dossun_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1788,7 +1788,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'ChoroPoo',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'ChoroPoo_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1803,7 +1803,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Poo',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Poo_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1820,7 +1820,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Kameck',)
+            return ImageCreator.editorImages(this, 'Kameck_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1837,7 +1837,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Bros',)
+            return ImageCreator.editorImages(this, 'Bros_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1852,7 +1852,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'MegaBros',)
+            return ImageCreator.editorImages(this, 'MegaBros_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1868,7 +1868,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Bros', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'Bros_01',)
         }
 
     }('Fire Bro',)
@@ -1879,7 +1879,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'MegaBros', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'MegaBros_01',)
         }
 
     }('Heavy Fire Bro',)
@@ -1892,7 +1892,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Bubble',)
+            return ImageCreator.editorImages(this, 'Bubble_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1908,7 +1908,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaMecha',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaMecha_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1923,7 +1923,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaMecha', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaMecha_01',)
         }
 
     }('Blasta Mechakoopa',)
@@ -1935,7 +1935,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaMecha', 2,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaMecha_02',)
         }
 
     }('Zappa Mechakoopa',)
@@ -1948,7 +1948,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'MagmaFish',)
+            return ImageCreator.editorInSm3dwImages(this, 'MagmaFish_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -1964,7 +1964,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Donketsu',)
+            return ImageCreator.editorInSm3dwImages(this, 'Donketsu_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2001,7 +2001,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'KillerHoudai', 1,)
+            return ImageCreator.editorImages(this, 'KillerHoudai_01',)
         }
 
     }('Bull\'s-Eye Blaster',)
@@ -2030,7 +2030,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'MagnumKiller', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'MagnumKiller_01',)
         }
 
     }('Bull\'s-Eye Banzai',)
@@ -2041,7 +2041,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'MagnumKiller', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'MagnumKiller_01',)
         }
 
     }('Cat Banzai Bill',)
@@ -2072,7 +2072,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Houdai', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Houdai_01',)
         }
 
     }('Red Cannon',)
@@ -2085,7 +2085,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorInNotSm3dwImages(this, 'Burner', [0, 1,],)
+            return ImageCreator.multipleEditorInNotSm3dwImages(this, ['Burner_00', 'Burner_01',],)
         }
 
     }('Burner',)
@@ -2097,7 +2097,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'FireBar',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'FireBar_00',)
         }
 
     }('Fire Bar',)
@@ -2121,7 +2121,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotNsmbuAndSm3dwImages(this, 'KoopaClown',)
+            return ImageCreator.editorInNotNsmbuAndSm3dwImages(this, 'KoopaClown_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2152,7 +2152,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNsmbuImages(this, 'KoopaClown',)
+            return ImageCreator.editorInNsmbuImages(this, 'KoopaClown_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2167,7 +2167,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotNsmbuAndSm3dwImages(this, 'KoopaClown', 1,)
+            return ImageCreator.editorInNotNsmbuAndSm3dwImages(this, 'KoopaClown_01',)
         }
 
     }('Fire Koopa Clown Car',)
@@ -2178,7 +2178,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNsmbuImages(this, 'KoopaClown', 1,)
+            return ImageCreator.editorInNsmbuImages(this, 'KoopaClown_01',)
         }
 
     }('Fire Junior Clown Car',)
@@ -2191,7 +2191,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'KoopaCar',)
+            return ImageCreator.editorInSm3dwImages(this, 'KoopaCar_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2208,7 +2208,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Saw',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Saw_00',)
         }
 
     }('Grinder',)
@@ -2220,7 +2220,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'SunMoon',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'SunMoon_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2235,7 +2235,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'SunMoon', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'SunMoon_01',)
         }
 
     }('Moon',)
@@ -2250,7 +2250,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Koopa',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Koopa_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2269,7 +2269,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Koopa',)
+            return ImageCreator.editorInSm3dwImages(this, 'Koopa_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2287,7 +2287,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaJr',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'KoopaJr_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2308,7 +2308,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Bunbun',)
+            return ImageCreator.editorImages(this, 'Bunbun_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2323,7 +2323,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Bunbun', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'Bunbun_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2341,7 +2341,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Larry',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Larry_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2371,7 +2371,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Iggy',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Iggy_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2401,7 +2401,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Wendy',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Wendy_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2432,7 +2432,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Lemmy',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Lemmy_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2463,7 +2463,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Roy',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Roy_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2493,7 +2493,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Morton',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Morton_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2531,7 +2531,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Ludwig',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Ludwig_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2564,7 +2564,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Marumaru',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Marumaru_00',)
         }
 
     }('Bumper',)
@@ -2576,7 +2576,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'BurankoCrane',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'BurankoCrane_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2592,7 +2592,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Tornado',)
+            return ImageCreator.editorImages(this, 'Tornado_00',)
         }
 
     }('Twister',)
@@ -2604,7 +2604,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Hanatari',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Hanatari_00',)
         }
 
     }('One-Way Wall',)
@@ -2616,7 +2616,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Rail',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Rail_00',)
         }
 
     }('Track',)
@@ -2627,7 +2627,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorInSm3dwImages(this, 'OrbitBlock', [0, 1,],)
+            return ImageCreator.multipleEditorInSm3dwImages(this, ['OrbitBlock_00', 'OrbitBlock_01',],)
         }
 
     }('Track Block',)
@@ -2639,7 +2639,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'TsutaBlock',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'TsutaBlock_00',)
         }
 
         protected override _createUnusedRegularImage(): UnusedImage_Regular {
@@ -2677,7 +2677,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Yajirushi',)
+            return ImageCreator.editorImages(this, 'Yajirushi_00',)
         }
 
     }('Arrow Sign',)
@@ -2689,7 +2689,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'MiddleFlag',)
+            return ImageCreator.editorImages(this, 'MiddleFlag_00',)
         }
 
     }('Checkpoint Flag',)
@@ -2714,7 +2714,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'DashBlock',)
+            return ImageCreator.editorInSm3dwImages(this, 'DashBlock_00',)
         }
 
     }('Dash Block',)
@@ -2726,7 +2726,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'SnakeBlock',)
+            return ImageCreator.editorImages(this, 'SnakeBlock_00',)
         }
 
     }('Snake Block',)
@@ -2737,7 +2737,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'SnakeBlock', 1,)
+            return ImageCreator.editorImages(this, 'SnakeBlock_01',)
         }
 
     }('Fast Snake Block',)
@@ -2749,7 +2749,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'BeltConveyor',)
+            return ImageCreator.editorImages(this, 'BeltConveyor_00',)
         }
 
     }('Conveyor Belt',)
@@ -2760,7 +2760,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'BeltConveyor', 1,)
+            return ImageCreator.editorImages(this, 'BeltConveyor_01',)
         }
 
     }('Fast Conveyor Belt',)
@@ -2772,7 +2772,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorInSm3dwImages(this, 'Trampoline', [0, 1,],)
+            return ImageCreator.multipleEditorInSm3dwImages(this, ['Trampoline_00', 'Trampoline_01',],)
         }
 
     }('Mushroom Trampoline',)
@@ -2783,7 +2783,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorInSm3dwImages(this, 'OnOffTrampoline', [0, 1,],)
+            return ImageCreator.multipleEditorInSm3dwImages(this, ['OnOffTrampoline_00', 'OnOffTrampoline_01',],)
         }
 
     }('ON/OFF Trampoline',)
@@ -2795,7 +2795,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Lift',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Lift_00',)
         }
 
     }('Lift',)
@@ -2806,7 +2806,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Lift', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Lift_01',)
         }
 
     }('Flimsy Lift',)
@@ -2817,7 +2817,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Lift',)
+            return ImageCreator.editorInSm3dwImages(this, 'Lift_00',)
         }
 
     }('Cloud Lift',)
@@ -2829,7 +2829,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'Seesaw',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'Seesaw_00',)
         }
 
     }('Seesaw',)
@@ -2841,7 +2841,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'YouganLift',)
+            return ImageCreator.editorInNotSm3dwImages(this, 'YouganLift_00',)
         }
 
     }('Lava Lift',)
@@ -2852,7 +2852,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInNotSm3dwImages(this, 'YouganLift', 1,)
+            return ImageCreator.editorInNotSm3dwImages(this, 'YouganLift_01',)
         }
 
     }('Fast Lava Lift',)
@@ -2864,7 +2864,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'WoodBox',)
+            return ImageCreator.editorInSm3dwImages(this, 'WoodBox_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2880,7 +2880,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Key',)
+            return ImageCreator.editorImages(this, 'Key_00',)
         }
 
     }('Key',)
@@ -2891,7 +2891,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSmbImages(this, 'Key', 1,)
+            return ImageCreator.editorInSmbImages(this, 'Key_01',)
         }
 
     }('Cursed Key',)
@@ -2910,7 +2910,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.multipleEditorImages(this, 'JumpStep', [0, 1,],)
+            return ImageCreator.multipleEditorImages(this, ['JumpStep_00', 'JumpStep_01',],)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2925,7 +2925,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'Hopper',)
+            return ImageCreator.editorInSm3dwImages(this, 'Hopper_00',)
         }
 
     }('Hop-Chops',)
@@ -2937,7 +2937,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'PowBlock',)
+            return ImageCreator.editorImages(this, 'PowBlock_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2952,7 +2952,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'PowBlock', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'PowBlock_01',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -2968,7 +2968,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'PSwitch',)
+            return ImageCreator.editorImages(this, 'PSwitch_00',)
         }
 
         protected override _createClearConditionImage(): ClearConditionImage {
@@ -3000,7 +3000,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Door',)
+            return ImageCreator.editorImages(this, 'Door_00',)
         }
 
     }('Warp Door',)
@@ -3011,7 +3011,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Door', 1,)
+            return ImageCreator.editorImages(this, 'Door_01',)
         }
 
     }('P Warp Door',)
@@ -3022,7 +3022,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Door', 2,)
+            return ImageCreator.editorImages(this, 'Door_02',)
         }
 
     }('Key Door',)
@@ -3034,7 +3034,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'WarpBox',)
+            return ImageCreator.editorInSm3dwImages(this, 'WarpBox_00',)
         }
 
     }('Warp Box',)
@@ -3045,7 +3045,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorInSm3dwImages(this, 'WarpBox', 1,)
+            return ImageCreator.editorInSm3dwImages(this, 'WarpBox_01',)
         }
 
     }('Warp Box (With Key)',)
@@ -3057,7 +3057,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'Wing',)
+            return ImageCreator.editorImages(this, 'Wing_00',)
         }
 
     }('Wing',)
@@ -3068,7 +3068,7 @@ export class Entities
         }
 
         protected override _createEditorImage(): EditorImage {
-            return ImageCreator.editorImages(this, 'parachute',)
+            return ImageCreator.editorImages(this, 'parachute_00',)
         }
 
     }('Parachute',)
