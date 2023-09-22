@@ -20,8 +20,5 @@ export type PossibleEnglishName = | PossibleEnglishName_CourseTheme | PossibleEn
 export type PossibleGameName_CourseTheme = | 'plain' | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'
 export type PossibleGameName_WorldTheme = | 'plain' | 'underground' | 'desert' | 'snow' | 'athletic' | 'woods' | 'magma' | 'night'
 export type PossibleGameName = | PossibleGameName_CourseTheme | PossibleGameName_WorldTheme
-export type DayGameName = PossibleGameName
-export type NightGameName = `${PossibleGameName}_night`
-export type DayOrNightGameName = | DayGameName | NightGameName
 
 //endregion -------------------- Name & image --------------------
