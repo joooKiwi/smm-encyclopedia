@@ -1,6 +1,6 @@
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
 import type {EntityImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile'
-import type {EditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, ImageNumber_Editor_BlueVariant, SimpleImageName_Editor_GroundOrSlope, SimpleImageName_Editor_WithBlueVariant}            from 'core/entity/file/EntityImageFile.editor'
+import type {EditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, ImageNumber_Editor_WithBlueVariant, SimpleImageName_Editor_GroundOrSlope, SimpleImageName_Editor_WithBlueVariant}        from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {InGameImageFile, InGameSMM2ImageFile, KoopalingImageName, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1, ImageName_SMM2, DangerousImageFileName}                              from 'core/entity/file/EntityImageFile.inGame'
 import type {SimpleImageName_BigMushroom_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile, ImageName_Unused_SMM1} from 'core/entity/file/EntityImageFile.unused'
@@ -598,7 +598,7 @@ export function editorInNotSm3dwImages(entity: Entities, name: ImageName_Editor,
  * @param name The image name
  * @param number The image number
  */
-export function editorInBlueVariantInSmbAndSmb3Images<const NUMBER extends ImageNumber_Editor_BlueVariant, >(entity: Entities, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
+export function editorInBlueVariantInSmbAndSmb3Images<const NUMBER extends ImageNumber_Editor_WithBlueVariant, >(entity: Entities, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, `${name}_0${number}`, GameStyles.SUPER_MARIO_BROS,),                  // index 0
         FileCreator.editorImage(entity, `${name}_plain_night_0${number}`, GameStyles.SUPER_MARIO_BROS,),      // index 1
@@ -689,7 +689,7 @@ export function editorInBlueVariantInSmbAndSmb3Images<const NUMBER extends Image
  * @param name The image name
  * @param number The image number
  */
-export function editorInNotSm3dwAndBlueVariantInSmbAndSmb3Images<const NUMBER extends ImageNumber_Editor_BlueVariant, >(entity: Entities, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
+export function editorInNotSm3dwAndBlueVariantInSmbAndSmb3Images<const NUMBER extends ImageNumber_Editor_WithBlueVariant, >(entity: Entities, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, `${name}_0${number}`, GameStyles.SUPER_MARIO_BROS,),                  // index 0
         FileCreator.editorImage(entity, `${name}_plain_night_0${number}`, GameStyles.SUPER_MARIO_BROS,),      // index 1

@@ -1,11 +1,11 @@
-import type {PossibleEnglishName}                  from 'core/entity/Entities.types'
-import type {PossibleGameAcronym}                  from 'core/gameStyle/GameStyles.types'
-import type {DayOrNightGameName, PossibleGameName} from 'core/theme/Themes.types'
-import type {ImageFile}                            from 'util/file/image/ImageFile'
+import type {PossibleEnglishName} from 'core/entity/Entities.types'
+import type {PossibleGameAcronym} from 'core/gameStyle/GameStyles.types'
+import type {PossibleGameName}    from 'core/theme/Themes.types'
+import type {ImageFile}           from 'util/file/image/ImageFile'
 
 export type EditorImageFile = | GenericEditorImageFile | PowerUpEditorImageFile
 
-export type GenericEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${SimpleImageName_Editor}_${| '' | `${DayOrNightGameName}_`}0${ImageNumber_Editor}`, 'tiff'>
+export type GenericEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${ImageName_Editor}`, 'tiff'>
 export type PowerUpEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${ImageName_Editor_PowerUp}`, 'tiff'>
 
 
@@ -235,7 +235,7 @@ interface ImageNameMap {
     'Boo Buddies': SimpleName<'Teresa', 1>
     'Peepa': this['Boo Buddies']
 
-    'Bob-omb': SimpleName<'Bombhei'>
+    'Bob-omb': ImageThatHasBlueVariant<'Bombhei'>
     'Lit Bob-omb': SimpleName<'Bombhei', 1>
 
     'Pokey': SimpleName<'Sambo'>
@@ -433,7 +433,7 @@ interface ImageNameMap {
 
 export type PossibleRailExtended = `Rail${| 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}`
 export type PossibleConveyor = `${| 'Belt' | 'Slope'}Conveyor`
-type ImageThatIsAGround<NAME extends SimpleImageName_Editor, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship'>>>,]
+type ImageThatIsAGround<NAME extends string, > = [NAME, Name_0<Style<NAME, | 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle' | Night<| 'water' | 'snow' | 'athletic' | 'airship' | 'castle'>>>,]
 type ImageThatHasBlueVariant<NAME extends SimpleImageName_Editor, NUMBER extends | 0 | 1 = 0, > = Name<Style<NAME, | 'underground' | 'hauntedhouse' | 'castle' | Night<| 'plain' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'airship'>>, NUMBER>
 type SimpleName<NAME extends string, NUMBER extends | 0 | 1 | 2 = 0, > = [NAME, Name<NAME, NUMBER>,]
 type SimplePowerUpName<NAME extends string, NUMBER extends ImageNumber_PowerUp_Editor = 0, > = [NAME, Name<PowerUp<NAME>, NUMBER>,]
@@ -446,10 +446,12 @@ type Name_0_1_2<NAME extends | SimpleImageName_Editor | string, > = Name<NAME, |
 type Style<NAME extends | SimpleImageName_Editor | string, STYLE extends VariantEditorImage_GameStyle = VariantEditorImage_GameStyle, > = | NAME | `${NAME}_${STYLE}`
 
 
-export type SimpleImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][0]>
+type SimpleImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][0]>
 export type SimpleImageName_Editor_GroundOrSlope = ImageNameMap['Ground' | 'Gentle Slope' | 'Steep Slope'][0]
-export type SimpleImageName_Editor_WithBlueVariant = ImageNameMap[| 'Buzzy Beetle' | 'Buzzy Shell' | 'Muncher' | 'Chain Chomp' | 'Unchained Chomp'
-                                                                  | 'Bill Blaster' | 'Banzai Bill' | 'Cannon' | 'Skewer'][0]
+export type SimpleImageName_Editor_WithBlueVariant<NUMBER extends ImageNumber_Editor_WithBlueVariant = ImageNumber_Editor_WithBlueVariant, > = {
+    0: ImageNameMap[| 'Buzzy Beetle' | 'Muncher' | 'Chain Chomp' | 'Bob-omb' | 'Bill Blaster' | 'Banzai Bill' | 'Cannon' | 'Skewer'][0]
+    1: ImageNameMap[ | 'Buzzy Shell' | 'Unchained Chomp'][0]
+}[NUMBER]
 
 export type ImageName_Editor = NonNullable<ImageNameMap[PossibleEnglishName][1]>
 export type ImageName_Editor_PowerUp = ImageNameMap[| 'Fire Flower' | 'Superball Flower' | 'Big Mushroom' | 'SMB2 Mushroom' | 'Super Leaf'
@@ -459,7 +461,7 @@ export type ImageName_Editor_PowerUp = ImageNameMap[| 'Fire Flower' | 'Superball
 type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`
 type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>
 type VariantEditorImage_Number = | 0 | 1 | 2 | 3
-export type VariantEditorImage_PowerUp = 'Uni'
+type VariantEditorImage_PowerUp = 'Uni'
 
-export type ImageNumber_Editor = | 0 | 1 | 2 | 3
-export type ImageNumber_PowerUp_Editor = | 0 | 1
+export type ImageNumber_Editor_WithBlueVariant = | 0 | 1
+type ImageNumber_PowerUp_Editor = | 0 | 1
