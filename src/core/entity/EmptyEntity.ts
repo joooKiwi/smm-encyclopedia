@@ -1,6 +1,5 @@
 import type {Entity}                                      from 'core/entity/Entity'
 import type {ClassWithNullObjectPattern, EmptyEntityName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyArray, EmptyMap}                        from 'util/types/variables'
 
 import {EmptyEntityReference}             from 'core/entity/properties/EmptyEntityReference'
 import {EmptyIsInProperty}                from 'core/entity/properties/EmptyIsInProperty'

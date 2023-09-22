@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                          from 'core/ClassWithEnglishName'
 import type {PropertyGetter, PropertyReferenceGetter}                       from 'core/PropertyGetter'
@@ -9,12 +10,11 @@ import type {TimeReferences}                                                from
 import type {Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath} from 'core/time/Times.types'
 import type {TimeImageFile}                                                 from 'core/time/file/TimeImageFile'
 import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                      from 'util/types/nullable'
 
-import TimeComponent                         from 'core/time/Time.component'
-import {TimeImageFileContainer as ImageFile} from 'core/time/file/TimeImageFile.container'
-import {getValueByEnglishName}               from 'util/utilitiesMethods'
-import {StringContainer}                     from 'util/StringContainer'
+import TimeComponent           from 'core/time/Time.component'
+import {timeImage}             from 'core/time/file/fileCreator'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {StringContainer}       from 'util/StringContainer'
 
 export abstract class Times
     extends Enum<Ordinals, Names>
@@ -51,8 +51,8 @@ export abstract class Times
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Times, typeof Times>> = class CompanionEnum_Times
-        extends BasicCompanionEnum<Times, typeof Times> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Times, typeof Times> = class CompanionEnum_Times
+        extends CompanionEnum<Times, typeof Times> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -98,7 +98,7 @@ export abstract class Times
     }
 
     public get imageFile(): TimeImageFile {
-        return this.#imageFile ??= new ImageFile(this.englishName, this.#simpleImagePath,)
+        return this.#imageFile ??= timeImage(this.#simpleImagePath, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -128,8 +128,8 @@ export abstract class Times
         return Times.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Times> {
-        yield* Times.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Times> {
+        return Times.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

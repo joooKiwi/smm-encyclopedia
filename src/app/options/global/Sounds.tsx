@@ -1,11 +1,10 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithValue}        from 'util/types/ClassWithValue'
 import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
-import type {Nullable}              from 'util/types/nullable'
 import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
-import type {ReactElement}          from 'util/react/ReactProperties'
 
 import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
 
@@ -43,8 +42,8 @@ export abstract class Sounds
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Sounds, typeof Sounds>> = class CompanionEnum_Sounds
-        extends BasicCompanionEnum<Sounds, typeof Sounds> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Sounds, typeof Sounds> = class CompanionEnum_Sounds
+        extends CompanionEnum<Sounds, typeof Sounds> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -111,8 +110,8 @@ export abstract class Sounds
         return Sounds.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Sounds> {
-        yield* Sounds.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Sounds> {
+        return Sounds.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

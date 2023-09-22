@@ -1,7 +1,5 @@
 import type {Enumerable, PossibleEnumerableValueBy} from '@joookiwi/enumerable/dist/types'
 
-import type {NullOr} from 'util/types/nullable'
-
 /** A simple class made to be used in a static context of an {@link Enumerable} */
 export interface ClassWithCurrent<T extends Enumerable, > {
 

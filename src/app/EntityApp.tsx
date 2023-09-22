@@ -2,10 +2,9 @@ import './EntityApp.scss'
 import './options/EntityAppOption.scss'
 
 import type {EntityProperties}                                     from 'app/AppProperties.types'
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {EntityAppOption}         from 'app/options/EntityAppOption'
 import {AbstractTableApp}        from 'app/withInterpreter/AbstractTableApp'
@@ -14,7 +13,7 @@ import {Entities}                from 'core/entity/Entities'
 import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 import {unfinishedText}          from 'app/tools/text/UnfinishedText'
-import {newIterableIterator}     from 'util/utilitiesMethods'
+import {filterGame}              from 'util/utilitiesMethods'
 
 //region -------------------- Deconstruction imports --------------------
 
@@ -46,17 +45,24 @@ export default class EntityApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-        return gameContentTranslation('entity.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
+        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase(),
+            pluralEntityName = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName), pluralEntityLowerCaseName = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? pluralEntityName.toLowerCase()
+
+        return gameContentTranslation('entity.all', {
+            Entity: singularEntityName,
+            Entities: pluralEntityName,
+            entity: singularEntityLowerCaseName,
+            entities: pluralEntityLowerCaseName,
+        },)
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Entities, EntityAppOption> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithTable<Entities, EntityAppOption> {
+        return new class EntityAppInterpreter implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, Entities[Symbol.iterator](),)
+            public get content() {
+                return filterGame(Entities.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------
@@ -88,8 +94,14 @@ export default class EntityApp
             //endregion -------------------- Card list interpreter --------------------
             //region -------------------- Table interpreter --------------------
 
-            public set callbackToGetEnumerable(value: () => Entities,) {
-                EntityAppOption.CALLBACK_TO_GET_ENUMERATION = value
+            public readonly tableHeadersColor = 'secondary' satisfies BootstrapThemeColor
+
+            public get tableCaption() {
+                const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
+                return gameContentTranslation('entity.all', {
+                    Entity: singularEntityName,
+                    entity: singularEntityLowerCaseName,
+                },) satisfies ReactElementOrString
             }
 
             public get tableOptions(): readonly EntityAppOption[] {
@@ -97,33 +109,41 @@ export default class EntityApp
                     hasSMM1Or3DSGames = games.hasSMM1Or3DS,
                     hasSMM2Games = games.hasSMM2
 
-                return [
-                    EntityAppOption.IMAGES,
+                const options: EntityAppOption[] = [
+                    EntityAppOption.IMAGE_IN_SMB,
+                    EntityAppOption.IMAGE_IN_SMB3,
+                    EntityAppOption.IMAGE_IN_SMW,
+                    EntityAppOption.IMAGE_IN_NSMBU,
+                ]
+                if (hasSMM2Games)
+                    options.push(EntityAppOption.IMAGE_IN_SM3DW,)
+                options.push(
                     EntityAppOption.NAME,
                     // EntityAppOption.GAME,
                     // EntityAppOption.GAME_STYLE,
                     // EntityAppOption.COURSE_THEME,
                     // EntityAppOption.TIME,
                     EntityAppOption.CATEGORY,
-                    hasSMM1Or3DSGames && hasSMM2Games ? EntityAppOption.LIMIT
-                        : hasSMM1Or3DSGames ? EntityAppOption.LIMIT_IN_SMM1_AND_3DS
-                            : EntityAppOption.LIMIT_IN_SMM2,
-                ]
-            }
-
-            public get tableProperties(): SimplifiedTableProperties {
-                const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-                return {
-                    caption: gameContentTranslation('entity.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},),
+                )
+                if (hasSMM1Or3DSGames && hasSMM2Games)
+                    options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS, EntityAppOption.EDITOR_LIMIT_IN_SMM2,)
+                else {
+                    if (hasSMM1Or3DSGames)
+                        options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY,)
+                    if (hasSMM2Games)
+                        options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
                 }
+                options.push(EntityAppOption.PLAY_LIMIT,)
+                return options
             }
 
-            public createTableContent(option: EntityAppOption,) {
-                return option.renderContent
+
+            public createNewTableContent(content: Entities, option: EntityAppOption,) {
+                return option.renderContent(content,)
             }
 
             public createTableHeader(option: EntityAppOption,) {
-                return option.renderTableHeader
+                return option.renderTableHeader()
             }
 
             //endregion -------------------- Table interpreter --------------------

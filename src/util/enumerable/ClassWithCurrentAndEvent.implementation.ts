@@ -1,9 +1,8 @@
-import type {EnumerableConstructor, Enumerable, PossibleEnumerableValueBy, BasicCompanionEnumDeclaration} from '@joookiwi/enumerable/dist/types'
-import type {Dispatch, SetStateAction}                                                                    from 'react'
+import type {EnumerableConstructor, Enumerable, PossibleEnumerableValueBy, CompanionEnumDeclaration} from '@joookiwi/enumerable/dist/types'
+import type {Dispatch, SetStateAction}                                                               from 'react'
 
 import type {ClassWithCurrent}         from 'util/enumerable/ClassWithCurrent'
 import type {ClassWithSetCurrentEvent} from 'util/enumerable/ClassWithSetCurrentEvent'
-import type {NullOr}                   from 'util/types/nullable'
 
 /**
  * A simple implementation of the {@link ClassWithCurrent} using the {@link Enumerable} as the type validation
@@ -21,7 +20,7 @@ export class ClassWithCurrentAndEventImplementation<const T extends Enumerable, 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(constructorValue: EnumerableConstructor<T, BasicCompanionEnumDeclaration<T, any>> & Iterable<T>,) {
+    public constructor(constructorValue: EnumerableConstructor<T, CompanionEnumDeclaration<T, any>> & Iterable<T>,) {
         this.#constructorValue = constructorValue
     }
 

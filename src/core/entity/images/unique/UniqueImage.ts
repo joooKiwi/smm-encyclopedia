@@ -5,7 +5,7 @@ import type {EditorImage}         from 'core/entity/images/editor/EditorImage'
 import type {InGameImage}         from 'core/entity/images/inGame/InGameImage'
 import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-export interface UniqueImage
+export interface UniqueImage<out T extends EntityImageFile = EntityImageFile, >
     extends Image {
 
     get editorImage(): EditorImage
@@ -14,9 +14,6 @@ export interface UniqueImage
 
     get inGameImage(): InGameImage
 
-    get map(): ReadonlyMap<GameStyles, readonly EntityImageFile[]>
-
-
-    get(gameStyle: GameStyles,): readonly EntityImageFile[]
+    get map(): ReadonlyMap<GameStyles, readonly T[]>
 
 }

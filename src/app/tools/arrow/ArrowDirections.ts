@@ -1,8 +1,8 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleDirection, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
-import type {Nullable}                                         from 'util/types/nullable'
 
 /**
  * The arrow direction.<br/>
@@ -22,8 +22,8 @@ export class ArrowDirections
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ArrowDirections, typeof ArrowDirections>> = class CompanionEnum_ArrowDirections
-        extends BasicCompanionEnum<ArrowDirections, typeof ArrowDirections> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ArrowDirections, typeof ArrowDirections> = class CompanionEnum_ArrowDirections
+        extends CompanionEnum<ArrowDirections, typeof ArrowDirections> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -95,8 +95,8 @@ export class ArrowDirections
         return ArrowDirections.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<ArrowDirections> {
-        yield* ArrowDirections.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<ArrowDirections> {
+        return ArrowDirections.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

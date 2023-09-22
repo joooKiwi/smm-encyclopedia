@@ -1,10 +1,9 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
-import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
-import type {Nullable, NullOr}                                 from 'util/types/nullable'
 
 import {EntityLimits}   from 'core/entityLimit/EntityLimits'
 import {getValueByType} from 'util/utilitiesMethods'
@@ -20,8 +19,8 @@ export abstract class LimitTypes
 
     public static readonly ALL =           new class EntityLimitTypes_All extends LimitTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits[Symbol.iterator]()
+        public override get content() {
+            return EntityLimits.values.toArray()
         }
 
 
@@ -32,8 +31,8 @@ export abstract class LimitTypes
     }('all', 'everyLimit',)
     public static readonly PLAY = new class EntityLimitTypes_WhilePlaying extends LimitTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits.whilePlayingEntityLimits[Symbol.iterator]()
+        public override get content() {
+            return EntityLimits.whilePlayingEntityLimits
         }
 
 
@@ -52,8 +51,8 @@ export abstract class LimitTypes
     }('play', 'playLimit',)
     public static readonly EDITOR =        new class EntityLimitTypes_Editor extends LimitTypes {
 
-        public override get iterator(): IterableIterator<EntityLimits> {
-            return EntityLimits.editorEntityLimits[Symbol.iterator]()
+        public override get content() {
+            return EntityLimits.editorEntityLimits
         }
 
 
@@ -74,8 +73,8 @@ export abstract class LimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<LimitTypes, typeof LimitTypes>> = class CompanionEnum_LimitTypes
-        extends BasicCompanionEnum<LimitTypes, typeof LimitTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
+        extends CompanionEnum<LimitTypes, typeof LimitTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -119,7 +118,12 @@ export abstract class LimitTypes
         return this.#routeName
     }
 
-    public abstract get iterator(): IterableIterator<EntityLimits>
+    /**
+     * Retrieve the content applicable to the {@link LimitTypes}
+     *
+     * @see AppInterpreter.content
+     */
+    public abstract get content(): readonly EntityLimits[]
 
     //region -------------------- Link button methods --------------------
 
@@ -180,8 +184,8 @@ export abstract class LimitTypes
         return LimitTypes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<LimitTypes> {
-        yield* LimitTypes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<LimitTypes> {
+        return LimitTypes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

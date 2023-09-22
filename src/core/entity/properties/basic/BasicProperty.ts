@@ -1,6 +1,6 @@
-import type {InferredBooleanPropertyThatCanBeNotApplicable, InferredBooleanPropertyThatCanBeNotApplicableWithComment} from 'core/_properties/Property'
-import type {NullOr, NullOrBoolean}                                                                                   from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                                                  from 'util/types/variables'
+import type {PropertyThatCanBeUnknown}            from 'core/_properties/PropertyThatCanBeUnknown'
+import type {PropertyThatCanBeUnknownWithComment} from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {NotApplicableProperty}               from 'core/_properties/PropertyWithEverything'
 
 export interface BasicProperty {
 
@@ -32,9 +32,13 @@ export interface BasicProperty {
 
 }
 
-export type HasAMushroomVariant = InferredBooleanPropertyThatCanBeNotApplicable<PossibleHasAMushroomVariant>
-export type CanBeInAParachute = InferredBooleanPropertyThatCanBeNotApplicableWithComment<PossibleCanBeInAParachute>
-export type CanHaveWings = InferredBooleanPropertyThatCanBeNotApplicableWithComment<PossibleCanHaveWings>
+export type HasAMushroomVariant = | NotApplicableProperty | PropertyThatCanBeUnknown<boolean, false>
+export type CanBeInAParachute = | NotApplicableProperty
+                                | PropertyThatCanBeUnknownWithComment<boolean, false, null>
+                                | PropertyThatCanBeUnknownWithComment<true, false, LCL_whilePlaying>
+export type CanHaveWings = | NotApplicableProperty
+                           | PropertyThatCanBeUnknownWithComment<boolean, false, null>
+                           | PropertyThatCanBeUnknownWithComment<true, false, LCL_whilePlaying>
 
 export type LCL_whilePlaying = 'While playing → LCL'
 

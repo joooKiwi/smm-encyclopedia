@@ -1,16 +1,15 @@
 import './SoundEffectApp.scss'
 
 import type {SoundEffectProperties}                                from 'app/AppProperties.types'
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {newIterableIterator}    from 'util/utilitiesMethods'
+import {filterGame}             from 'util/utilitiesMethods'
 
 export default class SoundEffectApp
     extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
@@ -39,13 +38,13 @@ export default class SoundEffectApp
         return gameContentTranslation('sound effect.all')
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
+        return new class SoundEffectAppInterpreter implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, SoundEffects[Symbol.iterator](),)
+            public get content() {
+                return filterGame(SoundEffects.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------
@@ -73,32 +72,34 @@ export default class SoundEffectApp
             //endregion -------------------- Card list interpreter --------------------
             //region -------------------- Table interpreter --------------------
 
-            public set callbackToGetEnumerable(value: () => SoundEffects,) {
-                SoundEffectAppOption.CALLBACK_TO_GET_ENUMERATION = value
-            }
+            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+            public readonly tableCaption = gameContentTranslation('sound effect.all') satisfies ReactElementOrString
 
             public get tableOptions(): readonly SoundEffectAppOption[] {
-                return [
-                    SoundEffectAppOption.GAME,
+                const games = $this.props.games
+
+                const options = [] as SoundEffectAppOption[]
+                if (games.hasSMM1Or3DS)
+                    options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
+                if (games.hasSMM2)
+                    options.push(SoundEffectAppOption.SMM2_ICON,)
+                options.push(
                     SoundEffectAppOption.NAME,
                     SoundEffectAppOption.CATEGORY,
                     SoundEffectAppOption.PLAYER_BEHAVIOUR,
                     SoundEffectAppOption.SOUNDS,
-                ]
+                )
+                return options
             }
 
-            public get tableProperties(): SimplifiedTableProperties {
-                return {
-                    caption: gameContentTranslation('sound effect.all'),
-                }
-            }
 
-            public createTableContent(option: SoundEffectAppOption,) {
-                return option.renderContent
+            public createNewTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
+                return option.renderContent(content,)
             }
 
             public createTableHeader(option: SoundEffectAppOption,) {
-                return option.renderTableHeader
+                return option.renderTableHeader()
             }
 
             //endregion -------------------- Table interpreter --------------------

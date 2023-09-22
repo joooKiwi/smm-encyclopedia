@@ -1,8 +1,6 @@
 import type {TFunction, TypeOptions} from 'i18next'
 import type {Resources}              from 'react-i18next'
 
-import type {ReactElementOrString} from 'util/react/ReactProperties'
-
 export type ContentNamespace = 'content'
 export type GameContentNamespace = 'gameContent'
 export type EntityContentNamespace = 'entityContent'

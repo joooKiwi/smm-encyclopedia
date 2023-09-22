@@ -8,13 +8,13 @@ export abstract class AbstractDualEntityPropertyComponent<R>
 
     protected abstract get _isInFirst(): boolean
 
-    // protected abstract _renderSingleComponent(enumInstance: E,): JSX.Element
+    // protected abstract _renderSingleComponent(enumInstance: E,): ReactJSXElement
 
-    protected abstract _renderFirstComponent(): JSX.Element
+    protected abstract _renderFirstComponent(): ReactJSXElement
 
-    protected abstract _renderSecondComponent(): JSX.Element
+    protected abstract _renderSecondComponent(): ReactJSXElement
 
-    public override _render(): JSX.Element {
+    protected override _render(): ReactJSXElement {
         return this._isInFirst ?
             this._renderFirstComponent()
             : this._renderSecondComponent()

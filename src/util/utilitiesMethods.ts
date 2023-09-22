@@ -1,14 +1,13 @@
-import type {CollectionHolder, Enumerable, EnumerableConstructor} from '@joookiwi/enumerable/dist/types'
-import {EnumHelper}                                               from '@joookiwi/enumerable'
-import {AssertionError}                                           from 'assert'
+import type {CollectionHolder}                  from '@joookiwi/collection'
+import type {Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
+import {getCompanion}                           from '@joookiwi/enumerable'
+import {AssertionError}                         from 'assert'
 
 import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
 import type {ClassWithType}        from 'core/ClassWithType'
 import type {ClassWithReference}   from 'core/ClassWithReference'
 import type {GameProperty}         from 'core/entity/properties/game/GameProperty'
 import type {GameCollection}       from 'util/collection/GameCollection'
-import type {Nullable}             from 'util/types/nullable'
-import type {EmptyString}          from 'util/types/variables'
 
 import {isInProduction} from 'variables'
 import {EMPTY_STRING}   from 'util/emptyVariables'
@@ -42,46 +41,63 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
     return true
 }
 
+//region -------------------- filter game --------------------
+
 /**
- * Create a new {@link Iterator} based on a {@link CollectionHolder} and a condition
+ * Create a new {@link ReadonlyArray array} that are in the {@link games}
  *
- * @param collection The collection to loop over
- * @param condition A callback that will only yield the value if met
+ * @param values The {@link CollectionHolder} to loop over and retrieve them in the {@link Games.get}
+ * @param games The {@link GameCollection collection} of game to get if they can be used
  */
-export function newIterator<const T, >(collection: CollectionHolder<T>, condition: (value: T,) => boolean): Iterable<T> {
-    const size = collection.size
-    return {
-        * [Symbol.iterator]() {
-            let index = -1
-            while (++index < size) {
-                const value = collection[index]!
-                if (condition(value))
-                    yield value
-            }
-        }
-    }
+export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: GameCollection,): readonly T[]
+/**
+ * Create a new {@link ReadonlyArray array} that are in the {@link games}
+ *
+ * @param values The {@link ReadonlyArray} to loop over and retrieve them in the {@link Games.get}
+ * @param games The {@link GameCollection collection} of game to get if they can be used
+ */
+export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: GameCollection,): readonly T[]
+export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | readonly T[], games: GameCollection,): readonly T[] {
+    if (values instanceof Array)
+        return filterGameByArray(values, games,)
+    return filterGameByCollection(values, games,)
 }
 
-/**
- * Create a new {@link IterableIterator} for the type specified that are in the {@link Games} in the {@link games collection}
- *
- * @param games The {@link GameCollection collection} of game to get if they can be used
- * @param iterator The {@link IterableIterator} to loop over and retrieve them in the {@link Games.get}
- */
-export function* newIterableIterator<const T extends ClassWithReference<GameProperty>, >(games: GameCollection, iterator: IterableIterator<T>,): IterableIterator<T> {
+function filterGameByCollection<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: GameCollection,): readonly T[] {
+    const newArray = [] as T[]
     const gameSize = games.size
-
-    let value = iterator.next() as IteratorResult<T, T>
-    while (!value.done) {
+    const valuesSize = values.size
+    let valuesIndex = -1
+    while (++valuesIndex < valuesSize) {
+        const value = values.get(valuesIndex,)
         let gameIndex = -1
         while (++gameIndex < gameSize)
-            if (games[gameIndex]!.get(value.value.reference,)) {
-                yield value.value
+            if (games[gameIndex]!.get(value.reference,)) {
+                newArray.push(value,)
                 break
             }
-        value = iterator.next()
     }
+    return newArray
 }
+
+function filterGameByArray<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: GameCollection,): readonly T[] {
+    const newArray = [] as T[]
+    const gameSize = games.size
+    const valuesSize = values.length
+    let valuesIndex = -1
+    while (++valuesIndex < valuesSize) {
+        const value = values[valuesIndex]
+        let gameIndex = -1
+        while (++gameIndex < gameSize)
+            if (games[gameIndex]!.get(value.reference,)) {
+                newArray.push(value,)
+                break
+            }
+    }
+    return newArray
+}
+
+//endregion -------------------- filter game --------------------
 
 /**
  * Reverse the array fields
@@ -90,13 +106,13 @@ export function* newIterableIterator<const T extends ClassWithReference<GameProp
  * @returns A new reversed array
  */
 export function reverse<const T, >(array: readonly T[],): T[] {
-    return Array.from({
-        * [Symbol.iterator]() {
-            let index = array.length
-            while (--index >= 0)
-                yield array[index]
-        },
-    },)
+    const size = array.length,
+        newArray = new Array(size,)
+
+    let index = array.length
+    while (--index >= 0)
+        newArray.push(array[index],)
+    return newArray
 }
 
 /**
@@ -112,14 +128,26 @@ export function nonNull<const T, >(array: readonly T[],): NonNullable<T>[]
  */
 export function nonNull<const T, >(set: ReadonlySet<T>,): Set<NonNullable<T>>
 export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): | Set<NonNullable<T>> | NonNullable<T>[] {
-    if (setOrArray instanceof Array)
-        return setOrArray.filter((it): it is NonNullable<T> => it != null)
+    if (setOrArray instanceof Array) {
+        const size = setOrArray.length,
+            newArray = [] as NonNullable<T>[]
+
+        let index = -1
+        while (index++ < size) {
+            const value = setOrArray[index]
+            if (value != null)
+                newArray.push(value,)
+        }
+        if (size === newArray.length)
+            return setOrArray as NonNullable<T>[]
+        return newArray
+    }
 
     const newSet = new Set<NonNullable<T>>()
     setOrArray.forEach(it => {
         if (it == null) return
         newSet.add(it)
-    })
+    },)
     return newSet
 }
 
@@ -142,7 +170,7 @@ export function assert(condition: boolean, message: string,): asserts condition 
 //region -------------------- get value by … --------------------
 
 function getValues<const T extends Enumerable, >(enumerableConstructor: Nullable<EnumerableConstructor<T, any>>,): CollectionHolder<T> {
-    return EnumHelper.getCompanion(enumerableConstructor).values
+    return getCompanion(enumerableConstructor).values
 }
 
 export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {

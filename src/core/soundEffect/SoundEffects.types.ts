@@ -1,7 +1,6 @@
 import type {PossibleEnglishName_SoundEffect} from 'core/gameReference/GameReferences.types'
 import type {SoundEffects}                    from 'core/soundEffect/SoundEffects'
-import type {SMM1SoundEffectImageFile}        from 'core/soundEffect/file/SMM1SoundEffectImageFile'
-import type {NullOr}                          from 'util/types/nullable'
+import type {SMM1SoundEffectImageFile}        from 'core/soundEffect/file/SoundEffectImageFile'
 
 enum Enum {
 

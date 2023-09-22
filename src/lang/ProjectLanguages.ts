@@ -1,6 +1,7 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import type {Dispatch, SetStateAction}                                                              from 'react'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Dispatch, SetStateAction}                          from 'react'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
@@ -12,7 +13,6 @@ import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOrig
 import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'route/ClassUsedInRoute'
 import type {ClassWithCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/enumerable/ClassWithCurrent'
 import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
-import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/types/nullable'
 import type {SingleRetrievableByUrl}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'util/enumerable/SingleRetrievableByUrl'
 
 import {EveryLanguages}                       from 'lang/EveryLanguages'
@@ -81,8 +81,8 @@ export class ProjectLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ProjectLanguages, typeof ProjectLanguages>> = class CompanionEnum_ProjectLanguages
-        extends BasicCompanionEnum<ProjectLanguages, typeof ProjectLanguages> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ProjectLanguages, typeof ProjectLanguages> = class CompanionEnum_ProjectLanguages
+        extends CompanionEnum<ProjectLanguages, typeof ProjectLanguages> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -521,16 +521,16 @@ export class ProjectLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    public static get default(): ProjectLanguages {
-        return ProjectLanguages.getValueByLanguage(EveryLanguages.default)
+    public static get defaultValue(): ProjectLanguages {
+        return ProjectLanguages.getValueByLanguage(EveryLanguages.defaultValue)
     }
 
-    public static set default(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,) {
-        ProjectLanguages.setDefault(value)
+    public static set defaultValue(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,) {
+        ProjectLanguages.setDefaultValue(value)
     }
 
-    public static setDefault(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): typeof ProjectLanguages {
-        EveryLanguages.CompanionEnum.get.setDefault(value instanceof ProjectLanguages ? value.language : value)
+    public static setDefaultValue(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): typeof ProjectLanguages {
+        EveryLanguages.CompanionEnum.get.setDefaultValue(value instanceof ProjectLanguages ? value.language : value)
         return ProjectLanguages
     }
 
@@ -544,8 +544,8 @@ export class ProjectLanguages
         return ProjectLanguages.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<ProjectLanguages> {
-        yield* ProjectLanguages.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<ProjectLanguages> {
+        return ProjectLanguages.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

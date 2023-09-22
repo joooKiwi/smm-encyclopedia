@@ -1,7 +1,6 @@
 import type {OfficialNotificationHolder}        from 'core/officialNotification/holder/OfficialNotificationHolder'
 import type {PossibleEnglishNameWithOnlyAmount} from 'core/officialNotification/OfficialNotifications.types'
 import type {Builder}                           from 'util/builder/Builder'
-import type {NullOr}                            from 'util/types/nullable'
 
 import {OfficialNotifications}              from 'core/officialNotification/OfficialNotifications'
 import {EmptyOfficialNotificationHolder}    from 'core/officialNotification/holder/EmptyOfficialNotificationHolder'

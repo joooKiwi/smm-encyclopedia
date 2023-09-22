@@ -1,7 +1,6 @@
 import type {TOptions} from 'i18next'
 
-import type {TranslationReplaceKeysMap}          from 'lang/components/TranslationProperty'
-import type {ReactElement, ReactElementOrString} from 'util/react/ReactProperties'
+import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
 
 import {isInProduction} from 'variables'
 import {assert}         from 'util/utilitiesMethods'

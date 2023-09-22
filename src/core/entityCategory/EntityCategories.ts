@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                         from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                           from 'core/ClassWithReference'
@@ -7,12 +8,11 @@ import type {EntityCategory}                               from 'core/entityCate
 import type {Names, Ordinals, PossibleEnglishName}         from 'core/entityCategory/EntityCategories.types'
 import type {EntityCategoryImageFile, PossibleImageNumber} from 'core/entityCategory/file/EntityCategoryImageFile'
 import type {ClassWithImageFile}                           from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                     from 'util/types/nullable'
 
-import {EntityCategoryLoader}                          from 'core/entityCategory/EntityCategory.loader'
-import {EntityCategoryImageFileContainer as ImageFile} from 'core/entityCategory/file/EntityCategoryImageFile.container'
-import {StringContainer}                               from 'util/StringContainer'
-import {getValueByEnglishName}                         from 'util/utilitiesMethods'
+import {EntityCategoryLoader}  from 'core/entityCategory/EntityCategory.loader'
+import {entityCategoryImage}   from 'core/entityCategory/file/fileCreator'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 export class EntityCategories
     extends Enum<Ordinals, Names>
@@ -30,8 +30,8 @@ export class EntityCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityCategories, typeof EntityCategories>> = class CompanionEnum_EntityCategories
-        extends BasicCompanionEnum<EntityCategories, typeof EntityCategories> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<EntityCategories, typeof EntityCategories> = class CompanionEnum_EntityCategories
+        extends CompanionEnum<EntityCategories, typeof EntityCategories> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -93,12 +93,8 @@ export class EntityCategories
     }
 
 
-    private get __imageNumber(): PossibleImageNumber {
-        return this.#imageNumber
-    }
-
     public get imageFile(): EntityCategoryImageFile {
-        return this.#imageFile ??= new ImageFile(this.__imageNumber, this.englishName,)
+        return this.#imageFile ??= entityCategoryImage(this.#imageNumber, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -119,8 +115,8 @@ export class EntityCategories
         return EntityCategories.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityCategories> {
-        yield* EntityCategories.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EntityCategories> {
+        return EntityCategories.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

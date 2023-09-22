@@ -1,8 +1,8 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
-import type {Nullable}                                                        from 'util/types/nullable'
 
 export class EntityLimitTypes
     extends Enum<Ordinals, Names> {
@@ -15,8 +15,8 @@ export class EntityLimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimitTypes, typeof EntityLimitTypes>> = class CompanionEnum_EntityLimitTypes
-        extends BasicCompanionEnum<EntityLimitTypes, typeof EntityLimitTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<EntityLimitTypes, typeof EntityLimitTypes> = class CompanionEnum_EntityLimitTypes
+        extends CompanionEnum<EntityLimitTypes, typeof EntityLimitTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -86,8 +86,8 @@ export class EntityLimitTypes
         return EntityLimitTypes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityLimitTypes> {
-        yield* EntityLimitTypes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EntityLimitTypes> {
+        return EntityLimitTypes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

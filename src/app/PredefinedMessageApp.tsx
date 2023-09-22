@@ -1,7 +1,6 @@
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {PossibleDimensionOnList}      from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
-import type {ReactElementOrString}         from 'util/react/ReactProperties'
 
 import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {AbstractSimpleListApp}  from 'app/withInterpreter/AbstractSimpleListApp'
@@ -30,11 +29,11 @@ export default class PredefinedMessageApp
         },)
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithSimpleList<PredefinedMessages> {
-        return new class implements AppInterpreterWithSimpleList<PredefinedMessages> {
+    protected override _createAppOptionInterpreter() {
+        return new class PredefinedMessageAppInterpreter implements AppInterpreterWithSimpleList<PredefinedMessages> {
 
-            public get iterable() {
-                return PredefinedMessages[Symbol.iterator]()
+            public get content() {
+                return PredefinedMessages.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

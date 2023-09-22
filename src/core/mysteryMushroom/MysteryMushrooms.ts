@@ -1,55 +1,22 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                      from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                              from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                from 'core/ClassWithReference'
-import type {MysteryMushroom}                                                                   from 'core/mysteryMushroom/MysteryMushroom'
-import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleUniqueEnglishName} from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {ClimbingImageFile}                                                                 from 'core/mysteryMushroom/file/ClimbingImageFile'
-import type {FallingAfterAJumpImageFile}                                                        from 'core/mysteryMushroom/file/FallingAfterAJumpImageFile'
-import type {GoalPoleImageFile}                                                                 from 'core/mysteryMushroom/file/GoalPoleImageFile'
-import type {GoalPoleSoundFile}                                                                 from 'core/mysteryMushroom/file/GoalPoleSoundFile'
-import type {JumpImageFile}                                                                     from 'core/mysteryMushroom/file/JumpImageFile'
-import type {JumpSoundFile}                                                                     from 'core/mysteryMushroom/file/JumpSoundFile'
-import type {LostALifeSoundFile}                                                                from 'core/mysteryMushroom/file/LostALifeSoundFile'
-import type {OnGroundAfterAJumpSoundFile}                                                       from 'core/mysteryMushroom/file/OnGroundAfterAJumpSoundFile'
-import type {PowerUpCollectedSoundFile}                                                         from 'core/mysteryMushroom/file/PowerUpCollectedSoundFile'
-import type {PressingDownImageFile}                                                             from 'core/mysteryMushroom/file/PressingDownImageFile'
-import type {RunningImageFile}                                                                  from 'core/mysteryMushroom/file/RunningImageFile'
-import type {SwimmingImageFile}                                                                 from 'core/mysteryMushroom/file/SwimmingImageFile'
-import type {TauntImageFile}                                                                    from 'core/mysteryMushroom/file/TauntImageFile'
-import type {TauntSoundFile}                                                                    from 'core/mysteryMushroom/file/TauntSoundFile'
-import type {TurningImageFile}                                                                  from 'core/mysteryMushroom/file/TurningImageFile'
-import type {TurningSoundFile}                                                                  from 'core/mysteryMushroom/file/TurningSoundFile'
-import type {WaitingImageFile}                                                                  from 'core/mysteryMushroom/file/WaitingImageFile'
-import type {WalkImageFile}                                                                     from 'core/mysteryMushroom/file/WalkImageFile'
-import type {FileName, PossibleImageFileNames}                                                  from 'core/mysteryMushroom/file/name/FileName'
-import type {Nullable, NullOr}                                                                  from 'util/types/nullable'
+import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                                                             from 'core/ClassWithReference'
+import type {MysteryMushroom}                                                                                                                                                                                                from 'core/mysteryMushroom/MysteryMushroom'
+import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleUniqueEnglishName}                                                                                                                              from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {ClimbingImageFile, FallingAfterAJumpImageFile, GoalPoleImageFile, JumpImageFile, PressingDownImageFile, RunningImageFile, SwimmingImageFile, TauntImageFile, TurningImageFile, WaitingImageFile, WalkImageFile} from 'core/mysteryMushroom/file/MysteryMushroomImageFile'
+import type {GoalPoleSoundFile, JumpSoundFile, LostALifeSoundFile, OnGroundAfterAJumpSoundFile, PowerUpCollectedSoundFile, TauntSoundFile, TurningSoundFile}                                                                 from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
+import type {FileName, PossibleImageFileNames}                                                                                                                                                                               from 'core/mysteryMushroom/file/name/FileName'
 
-import {MysteryMushroomLoader}                                           from 'core/mysteryMushroom/MysteryMushroom.loader'
-import {ClimbingImageFileContainer as ClimbingImage}                     from 'core/mysteryMushroom/file/ClimbingImageFile.container'
-import {FallingAfterAJumpImageFileContainer as FallingAfterAJumpImage}   from 'core/mysteryMushroom/file/FallingAfterAJumpImageFile.container'
-import {GoalPoleImageFileContainer as GoalPoleImage}                     from 'core/mysteryMushroom/file/GoalPoleImageFile.container'
-import {GoalPoleSoundFileContainer as GoalPoleSound}                     from 'core/mysteryMushroom/file/GoalPoleSoundFile.container'
-import {JumpImageFileContainer as JumpImage}                             from 'core/mysteryMushroom/file/JumpImageFile.container'
-import {JumpSoundFileContainer as JumpSound}                             from 'core/mysteryMushroom/file/JumpSoundFile.container'
-import {LostALifeSoundFileContainer as LostALifeSound}                   from 'core/mysteryMushroom/file/LostALifeSoundFile.container'
-import {OnGroundAfterAJumpSoundFileContainer as OnGroundAfterAJumpSound} from 'core/mysteryMushroom/file/OnGroundAfterAJumpSoundFile.container'
-import {PowerUpCollectedSoundFileContainer as PowerUpCollectedSound}     from 'core/mysteryMushroom/file/PowerUpCollectedSoundFile.container'
-import {PressingDownImageFileContainer as PressingDownImage}             from 'core/mysteryMushroom/file/PressingDownImageFile.container'
-import {RunningImageFileContainer as RunningImage}                       from 'core/mysteryMushroom/file/RunningImageFile.container'
-import {SwimmingImageFileContainer as SwimmingImage}                     from 'core/mysteryMushroom/file/SwimmingImageFile.container'
-import {TauntImageFileContainer as TauntImage}                           from 'core/mysteryMushroom/file/TauntImageFile.container'
-import {TauntSoundFileContainer as TauntSound}                           from 'core/mysteryMushroom/file/TauntSoundFile.container'
-import {TurningImageFileContainer as TurningImage}                       from 'core/mysteryMushroom/file/TurningImageFile.container'
-import {TurningSoundFileContainer as TurningSound}                       from 'core/mysteryMushroom/file/TurningSoundFile.container'
-import {WaitingImageFileContainer as WaitingImage}                       from 'core/mysteryMushroom/file/WaitingImageFile.container'
-import {WalkImageFileContainer as WalkImage}                             from 'core/mysteryMushroom/file/WalkImageFile.container'
-import {DualFileNameContainer as DualFile}                               from 'core/mysteryMushroom/file/name/DualFileName.container'
-import {EmptyFileName as EmptyFile}                                      from 'core/mysteryMushroom/file/name/EmptyFileName'
-import {SingleFileNameContainer as SingleFile}                           from 'core/mysteryMushroom/file/name/SingleFileName.container'
-import {EMPTY_ARRAY}                                                     from 'util/emptyVariables'
-import {StringContainer}                                                 from 'util/StringContainer'
+import {MysteryMushroomLoader}                 from 'core/mysteryMushroom/MysteryMushroom.loader'
+import {DualFileNameContainer as DualFile}     from 'core/mysteryMushroom/file/name/DualFileName.container'
+import {EmptyFileName as EmptyFile}            from 'core/mysteryMushroom/file/name/EmptyFileName'
+import {SingleFileNameContainer as SingleFile} from 'core/mysteryMushroom/file/name/SingleFileName.container'
+import {EMPTY_ARRAY}                           from 'util/emptyVariables'
+import {StringContainer}                       from 'util/StringContainer'
+import * as FileCreator                        from 'core/mysteryMushroom/file/fileCreator'
 
 /**
  * @todo Change the path to be like in the game instead of the mystery mushroom name
@@ -63,8 +30,8 @@ export class MysteryMushrooms
 
     private static readonly MysteryMushroomsWithDualJumpAndNoGroundSounds =         class MysteryMushroomsWithDualJumpAndNoGroundSounds extends MysteryMushrooms {
 
-        protected override _createJumpSounds(name: PossibleFileName,): readonly JumpSoundFile[] {
-            return MysteryMushrooms._createDualJumpSounds(name,)
+        protected override _createJumpSounds(name: PossibleFileName,) {
+            return FileCreator.dualJumpSounds(name,)
         }
 
         public override get onGroundAfterJumpASound() {
@@ -74,8 +41,8 @@ export class MysteryMushrooms
     }
     private static readonly MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds =  class MysteryMushroomsWithDualJumpAndNoGroundAndTurnSounds extends MysteryMushrooms {
 
-        protected override _createJumpSounds(name: PossibleFileName,): readonly JumpSoundFile[] {
-            return MysteryMushrooms._createDualJumpSounds(name,)
+        protected override _createJumpSounds(name: PossibleFileName,) {
+            return FileCreator.dualJumpSounds(name,)
         }
 
         public override get onGroundAfterJumpASound() {
@@ -89,8 +56,8 @@ export class MysteryMushrooms
     }
     private static readonly MysteryMushroomsWithDualJumpAndNoTurnSounds =           class MysteryMushroomsWithDualJumpAndNoTurnSounds extends MysteryMushrooms {
 
-        protected override _createJumpSounds(name: PossibleFileName,): readonly JumpSoundFile[] {
-            return MysteryMushrooms._createDualJumpSounds(name,)
+        protected override _createJumpSounds(name: PossibleFileName,) {
+            return FileCreator.dualJumpSounds(name,)
         }
 
         public override get turningSound() {
@@ -547,8 +514,8 @@ export class MysteryMushrooms
 
     public static readonly SONIC =                  new class MysteryMushrooms_Sonic extends MysteryMushrooms {
 
-        protected override _createJumpImages(englishName: PossibleEnglishName, name: PossibleFileName): readonly [JumpImageFile] | readonly [JumpImageFile, JumpImageFile, JumpImageFile] {
-            return [new JumpImage(englishName, name, 0,), new JumpImage(englishName, name, 1,), new JumpImage(englishName, name, 2,),]
+        protected override _createJumpImages(englishName: PossibleEnglishName, name: PossibleFileName) {
+            return FileCreator.tripleJumpImages(englishName, name,)
         }
 
         public override get onGroundAfterJumpASound() {
@@ -617,8 +584,8 @@ export class MysteryMushrooms
 
     public static readonly WII_BALANCE_BOARD =      new class MysteryMushrooms_WiiBalanceBoard extends MysteryMushrooms {
 
-        protected override _createJumpSounds(name: PossibleFileName,): readonly JumpSoundFile[] {
-            return MysteryMushrooms._createDualJumpSounds(name,)
+        protected override _createJumpSounds(name: PossibleFileName,) {
+            return FileCreator.dualJumpSounds(name,)
         }
 
     }(new SingleFile('Wiibo',), 'Wii Balance Board',)
@@ -626,8 +593,8 @@ export class MysteryMushrooms
 
     public static readonly SHULK =                  new class MysteryMushrooms_Shulk extends MysteryMushrooms {
 
-        protected override _createJumpSounds(name: PossibleFileName,): readonly JumpSoundFile[] {
-            return MysteryMushrooms._createDualJumpSounds(name,)
+        protected override _createJumpSounds(name: PossibleFileName,) {
+            return FileCreator.dualJumpSounds(name,)
         }
 
         public override get onGroundAfterJumpASound() {
@@ -696,8 +663,8 @@ export class MysteryMushrooms
     public static readonly MELODY =                 new MysteryMushrooms.MysteryMushroomsWithNoGroundAndTurnSounds(new DualFile('Boss046', 'Boss046 L',), 'Melody',)
     public static readonly SHAUN_THE_SHEEP =        new class MysteryMushrooms_ShaunTheSheep extends MysteryMushrooms {
 
-        protected override _createJumpSounds(name: PossibleFileName,): readonly JumpSoundFile[] {
-            return MysteryMushrooms._createDualJumpSounds(name,)
+        protected override _createJumpSounds(name: PossibleFileName,) {
+            return FileCreator.dualJumpSounds(name,)
         }
 
         public override get onGroundAfterJumpASound() {
@@ -723,8 +690,8 @@ export class MysteryMushrooms
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<MysteryMushrooms, typeof MysteryMushrooms>> = class CompanionEnum_MysteryMushrooms
-        extends BasicCompanionEnum<MysteryMushrooms, typeof MysteryMushrooms> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<MysteryMushrooms, typeof MysteryMushrooms> = class CompanionEnum_MysteryMushrooms
+        extends CompanionEnum<MysteryMushrooms, typeof MysteryMushrooms> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -768,7 +735,7 @@ export class MysteryMushrooms
     #swimmingImages?: readonly (readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,])[]
 
     #jumpImages?: readonly (| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,])[]
-    #jumpSounds?: readonly JumpSoundFile[]
+    #jumpSounds?: | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,]
     #fallingAfterAJumpImage?: readonly FallingAfterAJumpImageFile[]
     #onGroundAfterJumpSound?: OnGroundAfterAJumpSoundFile
 
@@ -839,60 +806,60 @@ export class MysteryMushrooms
     //region -------------------- Power-up collected --------------------
 
     public get powerUpCollectedSound(): NullOr<PowerUpCollectedSoundFile> {
-        return this.#powerUpCollectedSound ??= new PowerUpCollectedSound(this.#soundFileName,)
+        return this.#powerUpCollectedSound ??= FileCreator.powerUpCollectedSound(this.#soundFileName,)
     }
 
     //endregion -------------------- Power-up collected --------------------
     //region -------------------- Waiting --------------------
 
     public get waitingImage(): readonly WaitingImageFile[] {
-        return this.#waitingImage ??= this.#createImageFiles((englishName, name,) => new WaitingImage(englishName, name,))
+        return this.#waitingImage ??= this.#createImageFiles(FileCreator.waitingImage,)
     }
 
     //endregion -------------------- Waiting --------------------
     //region -------------------- Taunt --------------------
 
     public get tauntImage(): readonly TauntImageFile[] {
-        return this.#tauntImage ??= this.#createImageFiles((englishName, name,) => new TauntImage(englishName, name,))
+        return this.#tauntImage ??= this.#createImageFiles(FileCreator.tauntImage,)
     }
 
     public get tauntSound(): NullOr<TauntSoundFile> {
-        return this.#tauntSound ??= new TauntSound(this.#soundFileName,)
+        return this.#tauntSound ??= FileCreator.tauntSound(this.#soundFileName,)
     }
 
     //endregion -------------------- Taunt --------------------
     //region -------------------- Pressing ↓ --------------------
 
     public get pressingDownImage(): readonly PressingDownImageFile[] {
-        return this.#pressingDownImage ??= this.#createImageFiles((englishName, name,) => new PressingDownImage(englishName, name,))
+        return this.#pressingDownImage ??= this.#createImageFiles(FileCreator.pressingDownImage,)
     }
 
     //endregion -------------------- Pressing ↓ --------------------
     //region -------------------- Walk --------------------
 
     public get walkImages(): readonly (readonly [WalkImageFile, WalkImageFile, WalkImageFile,])[] {
-        return this.#walkImages ??= this.#createImageFiles((englishName, name,) => [new WalkImage(englishName, name, 0,), new WalkImage(englishName, name, 1,), new WalkImage(englishName, name, 2,),])
+        return this.#walkImages ??= this.#createImageFiles(FileCreator.walkImages,)
     }
 
     //endregion -------------------- Walk --------------------
     //region -------------------- Running --------------------
 
     public get runningImages(): readonly (readonly [RunningImageFile, RunningImageFile, RunningImageFile,])[] {
-        return this.#runningImages ??= this.#createImageFiles((englishName, name,) => [new RunningImage(englishName, name, 0,), new RunningImage(englishName, name, 1,), new RunningImage(englishName, name, 2,),])
+        return this.#runningImages ??= this.#createImageFiles(FileCreator.runningImages,)
     }
 
     //endregion -------------------- Running --------------------
     //region -------------------- Swimming --------------------
 
     public get swimmingImages(): readonly (readonly [SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile, SwimmingImageFile,])[] {
-        return this.#swimmingImages ??= this.#createImageFiles((englishName, name,) => [new SwimmingImage(englishName, name, 0,), new SwimmingImage(englishName, name, 1,), new SwimmingImage(englishName, name, 2,), new SwimmingImage(englishName, name, 3,), new SwimmingImage(englishName, name, 4,), new SwimmingImage(englishName, name, 5,),])
+        return this.#swimmingImages ??= this.#createImageFiles(FileCreator.swimmingImages,)
     }
 
     //endregion -------------------- Swimming --------------------
     //region -------------------- Jumping --------------------
 
     protected _createJumpImages(englishName: PossibleEnglishName, name: PossibleFileName,): | readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,] {
-        return [new JumpImage(englishName, name, 0,),]
+        return FileCreator.singleJumpImages(englishName, name,)
     }
 
     public get jumpImages(): readonly (| readonly [JumpImageFile,] | readonly [JumpImageFile, JumpImageFile, JumpImageFile,])[] {
@@ -900,62 +867,58 @@ export class MysteryMushrooms
     }
 
 
-    protected _createJumpSounds(name: PossibleFileName,): readonly JumpSoundFile[] {
-        return [new JumpSound(name,),]
+    protected _createJumpSounds(name: PossibleFileName,): | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,] {
+        return FileCreator.singleJumpSounds(name,)
     }
 
-    protected static _createDualJumpSounds(name: PossibleFileName,): readonly [JumpSoundFile, JumpSoundFile,] {
-        return [new JumpSound(name,), new JumpSound(name, 2,),]
-    }
-
-    public get jumpSounds(): readonly JumpSoundFile[] {
+    public get jumpSounds(): | readonly [] | readonly [JumpSoundFile,] | readonly [JumpSoundFile, JumpSoundFile,] {
         return this.#jumpSounds ??= this._createJumpSounds(this.#soundFileName,)
     }
 
 
     public get fallingAfterAJumpImage(): readonly FallingAfterAJumpImageFile[] {
-        return this.#fallingAfterAJumpImage ??= this.#createImageFiles((englishName, name,) => new FallingAfterAJumpImage(englishName, name,))
+        return this.#fallingAfterAJumpImage ??= this.#createImageFiles(FileCreator.fallingAfterAJumpImage,)
     }
 
 
     public get onGroundAfterJumpASound(): NullOr<OnGroundAfterAJumpSoundFile> {
-        return this.#onGroundAfterJumpSound ??= new OnGroundAfterAJumpSound(this.#soundFileName,)
+        return this.#onGroundAfterJumpSound ??= FileCreator.onGroundAfterAJumpSound(this.#soundFileName,)
     }
 
     //endregion -------------------- Jumping --------------------
     //region -------------------- Turning --------------------
 
     public get turningImage(): readonly TurningImageFile[] {
-        return this.#turningImage ??= this.#createImageFiles((englishName, name,) => new TurningImage(englishName, name,))
+        return this.#turningImage ??= this.#createImageFiles(FileCreator.turningImage,)
     }
 
     public get turningSound(): NullOr<TurningSoundFile> {
-        return this.#turningSound ??= new TurningSound(this.#soundFileName,)
+        return this.#turningSound ??= FileCreator.turningSound(this.#soundFileName,)
     }
 
     //endregion -------------------- Turning --------------------
     //region -------------------- Climbing --------------------
 
     public get climbingImages(): readonly (readonly [ClimbingImageFile, ClimbingImageFile,])[] {
-        return this.#climbingImages ??= this.#createImageFiles((englishName, name,) => [new ClimbingImage(englishName, name, 0,), new ClimbingImage(englishName, name, 1,),])
+        return this.#climbingImages ??= this.#createImageFiles(FileCreator.climbingImages,)
     }
 
     //endregion -------------------- Climbing --------------------
     //region -------------------- Goal pole --------------------
 
     public get goalPoleImages(): readonly (readonly [GoalPoleImageFile, GoalPoleImageFile,])[] {
-        return this.#goalPoleImages ??= this.#createImageFiles((englishName, name,) => [new GoalPoleImage(englishName, name, 0,), new GoalPoleImage(englishName, name, 1,),])
+        return this.#goalPoleImages ??= this.#createImageFiles(FileCreator.goalPoleImages,)
     }
 
     public get goalPoleSound(): NullOr<GoalPoleSoundFile> {
-        return this.#goalPoleSound ??= new GoalPoleSound(this.#soundFileName,)
+        return this.#goalPoleSound ??= FileCreator.goalPoleSound(this.#soundFileName,)
     }
 
     //endregion -------------------- Goal pole --------------------
     //region -------------------- Lost a life --------------------
 
     public get lostALifeSound(): NullOr<LostALifeSoundFile> {
-        return this.#lostALifeSound ??= new LostALifeSound(this.#soundFileName,)
+        return this.#lostALifeSound ??= FileCreator.lostALifeSound(this.#soundFileName,)
     }
 
     //endregion -------------------- Lost a life --------------------
@@ -965,7 +928,7 @@ export class MysteryMushrooms
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    #createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): T[] {
+    /**@deprecated Relocate elsewhere */#createImageFiles<T>(callback: (englishName: PossibleEnglishName, name: PossibleFileName,) => T,): readonly T[] {
         const englishName = this.englishName
         return this.__fileName.imageFileNames.map(it => callback(englishName, it,))
     }
@@ -998,8 +961,8 @@ export class MysteryMushrooms
         return MysteryMushrooms.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<MysteryMushrooms> {
-        yield* MysteryMushrooms.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<MysteryMushrooms> {
+        return MysteryMushrooms.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

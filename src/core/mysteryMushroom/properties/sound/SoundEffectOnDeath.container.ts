@@ -1,12 +1,9 @@
 import type {PossibleGamesReceived, PossibleSimpleTranslationKeys, PossibleTranslationKeys, PossibleTypes, PossibleTypesReceived, PossibleValuesReceived, SoundEffectOnDeath} from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
 import type {ExtendedMap}                                                                                                                                                     from 'util/extended/ExtendedMap'
-import type {NullOr}                                                                                                                                                          from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                                                                                                          from 'util/types/variables'
 
-import {GameReferences}       from 'core/gameReference/GameReferences'
-import {PropertyProvider}     from 'core/_properties/Property.provider'
-import {UNKNOWN_REFERENCE}    from 'util/commonVariables'
-import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
+import {GameReferences}                    from 'core/gameReference/GameReferences'
+import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
+import {ExtendedMapContainer}              from 'util/extended/ExtendedMap.container'
 
 /**
  * @todo move the content in the constructor in the builder instead
@@ -20,26 +17,38 @@ export class SoundEffectOnDeathContainer
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, SoundEffectOnDeathContainer> = new ExtendedMapContainer()
 
-    readonly #property
+    readonly #value
     readonly #type
     readonly #game
-    readonly #smallDefinition
+    readonly #simpleTranslationKey
+    readonly #translationKey
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor([value, type, game, smallDefinition,]: ArgumentsReceived,) {
-        this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,)
+        if (value == null) {
+            this.#value = NOT_APPLICABLE as NotApplicable
+            this.#simpleTranslationKey = null
+        } else if (typeof value == 'boolean') {
+            this.#value = value
+            this.#simpleTranslationKey = null
+        } else {
+            this.#value = true
+            this.#simpleTranslationKey = value
+        }
         this.#type = type
         this.#game = game == null || game === UNKNOWN_REFERENCE || game.startsWith('Pokémon gen') ? null : GameReferences.getValueByNameOrAcronym(game)
         //FIXME try not to receive ??? as the value for the game
         //FIXME try not to receive "Pokémon gen 1" as the value for the game
-        this.#smallDefinition = smallDefinition
+        this.#translationKey = smallDefinition
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): BooleanOrNotApplicable {
-        return this.#property.value
+        return this.#value
     }
 
     public get type(): PossibleTypes {
@@ -51,11 +60,11 @@ export class SoundEffectOnDeathContainer
     }
 
     public get simpleTranslationKey(): PossibleSimpleTranslationKeys {
-        return this.#property.comment
+        return this.#simpleTranslationKey
     }
 
     public get translationKey(): PossibleTranslationKeys {
-        return this.#smallDefinition
+        return this.#translationKey
     }
 
     //endregion -------------------- Getter methods --------------------

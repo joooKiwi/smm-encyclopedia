@@ -1,38 +1,34 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}                                  from 'app/options/GameStyleAppOption.types'
-import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
-import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
-import type {GameStyles}                                       from 'core/gameStyle/GameStyles'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
-import type {NullOr}                                           from 'util/types/nullable'
+import type {AppOption}           from 'app/options/AppOption'
+import type {Names, Ordinals}     from 'app/options/GameStyleAppOption.types'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-import {CommonOptions}                              from 'app/options/CommonOptions'
-import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
-import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
-import NightEffectComponent                         from 'core/nightEffect/NightEffect.component'
-import {Themes}                                     from 'core/theme/Themes'
-import {Times}                                      from 'core/time/Times'
-import {ProjectLanguages}                           from 'lang/ProjectLanguages'
-import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {CommonOptions}          from 'app/options/CommonOptions'
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
+import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
+import {Themes}                 from 'core/theme/Themes'
+import {Times}                  from 'core/time/Times'
+import {ProjectLanguages}       from 'lang/ProjectLanguages'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export abstract class GameStyleAppOption
     extends Enum<Ordinals, Names>
-    implements AppOptionWithContent, AppOptionWithTable {
+    implements AppOption<GameStyles> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGE =             new class GameStyleAppOption_Images extends GameStyleAppOption {
+    public static readonly ICON =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
         protected override _createContentOption(enumeration: GameStyles,) {
             return enumeration.renderSingleComponent
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'image', element: contentTranslation('Image'),}
+            return {key: 'icon', element: unfinishedText('Icon'),}
         }
 
     }()
@@ -69,8 +65,8 @@ export abstract class GameStyleAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GameStyleAppOption, typeof GameStyleAppOption>> = class CompanionEnum_GameStyleAppOption
-        extends BasicCompanionEnum<GameStyleAppOption, typeof GameStyleAppOption> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<GameStyleAppOption, typeof GameStyleAppOption> = class CompanionEnum_GameStyleAppOption
+        extends CompanionEnum<GameStyleAppOption, typeof GameStyleAppOption> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -90,17 +86,6 @@ export abstract class GameStyleAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    /**
-     * The callback to get the enumeration based for each option.
-     *
-     * @note It should only be set by {@link GameStyleAppOption} and get by {@link EntityAppOption}.
-     */
-    public static CALLBACK_TO_GET_ENUMERATION: () => GameStyles
-
-    #appOptionWithContent?: AppOptionWithContent
-    #appOptionWithTable?: AppOptionWithTable
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
@@ -115,14 +100,10 @@ export abstract class GameStyleAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected abstract _createContentOption(enumeration: GameStyles,): PossibleRenderReactElement
+    protected abstract _createContentOption(enumeration: GameStyles,): ReactElement
 
-    private get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(GameStyleAppOption.CALLBACK_TO_GET_ENUMERATION()),)
-    }
-
-    public get renderContent(): readonly ReactElement[] {
-        return this.__appOptionWithContent.renderContent
+    public renderContent(enumeration: GameStyles,): readonly [ReactElement,] {
+        return [this._createContentOption(enumeration,),]
     }
 
     //endregion -------------------- App option - content --------------------
@@ -130,12 +111,8 @@ export abstract class GameStyleAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent
 
-    private get __appOptionWithTable(): AppOptionWithTable {
-        return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
-    }
-
-    public get renderTableHeader(): NullOr<SingleHeaderContent> {
-        return this.__appOptionWithTable.renderTableHeader
+    public renderTableHeader(): NullOr<SingleHeaderContent> {
+        return this._createTableHeaderOption()
     }
 
     //endregion -------------------- App option - table --------------------
@@ -151,8 +128,8 @@ export abstract class GameStyleAppOption
         return GameStyleAppOption.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<GameStyleAppOption> {
-        yield* GameStyleAppOption.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<GameStyleAppOption> {
+        return GameStyleAppOption.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

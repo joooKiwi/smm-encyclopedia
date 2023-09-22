@@ -1,6 +1,6 @@
 import {Millisecond} from 'util/file/sound/time/Millisecond'
 
-export class FramePerMillisecond<FRAME extends number = number, >
+export class FramePerMillisecond<const out FRAME extends number = number, >
     extends Millisecond {
 
     //region -------------------- Fields --------------------
@@ -9,6 +9,7 @@ export class FramePerMillisecond<FRAME extends number = number, >
     readonly #framePerSecond
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(frame: FRAME,) {
         super(frame / 60,)
@@ -16,6 +17,7 @@ export class FramePerMillisecond<FRAME extends number = number, >
         this.#framePerSecond = frame * 1000
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get framePerSecond(): number {

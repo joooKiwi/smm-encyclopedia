@@ -1,9 +1,8 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty} from 'core/entity/properties/instrument/InstrumentProperty'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}             from 'core/entity/properties/instrument/loader.types'
 import type {Instrument}                                                from 'core/instrument/Instrument'
-import type {ObjectHolder}                                              from 'util/holder/ObjectHolder'
-import type {NullOr}                                                    from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                    from 'util/types/variables'
 
 export class InstrumentPropertyContainer
     implements InstrumentProperty {
@@ -14,16 +13,19 @@ export class InstrumentPropertyContainer
     readonly #canMakeASoundOutOfAMusicBlock
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    constructor(instruments: ObjectHolder<readonly Instrument[]>, canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlockProperty,) {
+    constructor(instruments: Lazy<readonly Instrument[]>,
+                canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlockProperty,) {
         this.#instrumentsHolder = instruments
         this.#canMakeASoundOutOfAMusicBlock = canMakeASoundOutOfAMusicBlock
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get instruments(): readonly Instrument[] {
-        return this.#instrumentsHolder.get
+        return this.#instrumentsHolder.value
     }
 
     //region -------------------- Can make a sound out of a music block --------------------

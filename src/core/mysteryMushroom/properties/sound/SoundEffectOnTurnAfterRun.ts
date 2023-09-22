@@ -1,6 +1,4 @@
-import type {Property}               from 'core/_properties/Property'
-import type {NullOr}                 from 'util/types/nullable'
-import type {BooleanOrNotApplicable} from 'util/types/variables'
+import type {Property} from 'core/_properties/Property'
 
 export interface SoundEffectOnTurnAfterRun
     extends Property<BooleanOrNotApplicable> {

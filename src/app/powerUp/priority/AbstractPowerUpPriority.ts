@@ -1,15 +1,16 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {ImagesCallback, ImagesRetrieverCallback, PossibleGameStyles, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                                                     from 'core/entity/Entities'
 import type {EntityImageFile}                                                              from 'core/entity/file/EntityImageFile'
 import type {ClassInAnySuperMarioMakerGame}                                                from 'core/game/ClassInAnySuperMarioMakerGame'
 import type {Name}                                                                         from 'lang/name/Name'
-import type {ObjectHolder}                                                                 from 'util/holder/ObjectHolder'
 
-import {GameStyles}                   from 'core/gameStyle/GameStyles'
-import {Themes}                       from 'core/theme/Themes'
-import {Times}                        from 'core/time/Times'
-import {EMPTY_ARRAY}                  from 'util/emptyVariables'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import {GameStyles}  from 'core/gameStyle/GameStyles'
+import {Themes}      from 'core/theme/Themes'
+import {Times}       from 'core/time/Times'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -42,32 +43,36 @@ export abstract class AbstractPowerUpPriority
 
     public static FIRST_EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,)[0],]
     public static FIRST_IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => [this.IN_GAME_IMAGE_CALLBACK(entity, gameStyle,)[0],]
-    public static EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(false, gameStyle, Themes.GROUND, Times.DAY,)
-    public static IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(false, gameStyle, Themes.GROUND,)
+    public static EDITOR_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,)
+    public static IN_GAME_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle,) => entity.inGameImage.get(gameStyle,)
     public static FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK: ImagesRetrieverCallback = (entity, gameStyle) => gameStyle === GameStyles.NEW_SUPER_MARIO_BROS_U ? this.EDITOR_IMAGE_CALLBACK(entity, gameStyle,) : this.FIRST_IN_GAME_IMAGE_CALLBACK(entity, gameStyle,)
 
     //endregion -------------------- Image callbacks --------------------
 
-    readonly #nameHolder: ObjectHolder<Name<string>>
-    readonly #imagesHolder: ObjectHolder<readonly EntityImageFile[]>
+    readonly #nameHolder: Lazy<Name<string>>
+    readonly #imagesHolder: Lazy<readonly EntityImageFile[]>
     readonly #isIn
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    protected constructor(nameCallback: () => Name<string>, imagesCallback: ImagesCallback, isIn: ClassInAnySuperMarioMakerGame,) {
-        this.#nameHolder = new DelayedObjectHolderContainer(nameCallback)
-        this.#imagesHolder = new DelayedObjectHolderContainer(imagesCallback)
+    protected constructor(nameCallback: () => Name<string>,
+                          imagesCallback: ImagesCallback,
+                          isIn: ClassInAnySuperMarioMakerGame,) {
+        this.#nameHolder = lazy(nameCallback,)
+        this.#imagesHolder = lazy(imagesCallback,)
         this.#isIn = isIn
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get name(): Name<string> {
-        return this.#nameHolder.get
+        return this.#nameHolder.value
     }
 
     public get images(): readonly EntityImageFile[] {
-        return this.#imagesHolder.get
+        return this.#imagesHolder.value
     }
 
     public get isIn(): ClassInAnySuperMarioMakerGame {

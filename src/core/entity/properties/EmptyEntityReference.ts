@@ -1,6 +1,5 @@
 import type {EntityReferences}                                     from 'core/entity/properties/EntityReferences'
 import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyArray}                                           from 'util/types/variables'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 

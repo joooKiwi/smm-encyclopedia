@@ -1,8 +1,8 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRepeatableName} from 'util/file/sound/RepeatableTypes.types'
-import type {Nullable}                                from 'util/types/nullable'
 
 /**
  * @todo Add more types (within a range instead of just loop a single value)
@@ -19,8 +19,8 @@ export abstract class RepeatableTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<RepeatableTypes, typeof RepeatableTypes>> = class CompanionEnum_RepeatableTypes
-        extends BasicCompanionEnum<RepeatableTypes, typeof RepeatableTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<RepeatableTypes, typeof RepeatableTypes> = class CompanionEnum_RepeatableTypes
+        extends CompanionEnum<RepeatableTypes, typeof RepeatableTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -95,8 +95,8 @@ export abstract class RepeatableTypes
         return RepeatableTypes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<RepeatableTypes> {
-        yield* RepeatableTypes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<RepeatableTypes> {
+        return RepeatableTypes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

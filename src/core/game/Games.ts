@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                   from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                               from 'core/ClassWithEnglishName'
@@ -10,15 +11,13 @@ import type {GameImageFile}                                                     
 import type {ClassUsedInRoute}                                                                                                                                   from 'route/ClassUsedInRoute'
 import type {MultipleRetrievableByUrl}                                                                                                                           from 'util/enumerable/MultipleRetrievableByUrl'
 import type {ClassWithImageFile}                                                                                                                                 from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                                                                                                           from 'util/types/nullable'
 import type {Selectable}                                                                                                                                         from 'util/types/Selectable'
 
-import GameComponent            from 'core/game/Game.component'
-import {GameImageFileContainer} from 'core/game/file/GameImageFile.container'
-import {StringContainer}        from 'util/StringContainer'
-import {EMPTY_ARRAY}            from 'util/emptyVariables'
-import {GameCollection}         from 'util/collection/GameCollection'
-import {newIterator}            from 'util/utilitiesMethods'
+import GameComponent     from 'core/game/Game.component'
+import {gameImage}       from 'core/game/file/fileCreator'
+import {StringContainer} from 'util/StringContainer'
+import {EMPTY_ARRAY}     from 'util/emptyVariables'
+import {GameCollection}  from 'util/collection/GameCollection'
 
 /**
  * @usedByTheRouting
@@ -59,8 +58,8 @@ export abstract class Games
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Games, typeof Games>> = class CompanionEnum_Games
-        extends BasicCompanionEnum<Games, typeof Games> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Games, typeof Games> = class CompanionEnum_Games
+        extends CompanionEnum<Games, typeof Games> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -321,7 +320,7 @@ export abstract class Games
 
 
     public get imageFile(): GameImageFile {
-        return this.#imageFile ??= new GameImageFileContainer(this.englishName,)
+        return this.#imageFile ??= gameImage(this.englishName,)
     }
 
 
@@ -366,7 +365,7 @@ export abstract class Games
     }
 
     public static get selectedGames(): GameCollection {
-        return new GameCollection(newIterator(this.values, it => it.isSelected,),)
+        return new GameCollection(this.values.filter(it => it.isSelected,),)
     }
 
     public static get selectedGamesAsUrlValue(): FullValidUrlValue {
@@ -423,8 +422,8 @@ export abstract class Games
         return Games.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Games> {
-        yield* Games.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Games> {
+        return Games.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

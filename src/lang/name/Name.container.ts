@@ -3,7 +3,6 @@ import type {EmptyableOptionalLanguage}                                         
 import type {EmptyableLanguage}                                                                                                                                 from 'lang/name/containers/EmptyableLanguage'
 import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from 'lang/name/containers/Language'
 import type {OptionalLanguage}                                                                                                                                  from 'lang/name/containers/OptionalLanguage'
-import type {Nullable, NullOr}                                                                                                                                  from 'util/types/nullable'
 
 import {EveryLanguages}            from 'lang/EveryLanguages'
 import {ProjectLanguages}          from 'lang/ProjectLanguages'

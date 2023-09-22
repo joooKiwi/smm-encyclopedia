@@ -1,10 +1,8 @@
 import type {PossibleGamesReceived, PossibleTranslationKeys, PossibleValuesReceived, SpecialMusicInStarMode} from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode'
 import type {ExtendedMap}                                                                                    from 'util/extended/ExtendedMap'
-import type {NullOr}                                                                                         from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                                         from 'util/types/variables'
 
-import {PropertyProvider}     from 'core/_properties/Property.provider'
 import {GameReferences}       from 'core/gameReference/GameReferences'
+import {NOT_APPLICABLE}       from 'util/commonVariables'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
@@ -19,29 +17,40 @@ export class SpecialMusicInStarModeContainer
 
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, SpecialMusicInStarModeContainer> = new ExtendedMapContainer()
 
-    readonly #property
+    readonly #value
+    readonly #translationKey
     readonly #game
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor([value, game,]: ArgumentsReceived,) {
-        this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, false, true>(value, true, false,)
+        if (value == null) {
+            this.#value = NOT_APPLICABLE as NotApplicable
+            this.#translationKey = null
+        } else if (typeof value == 'boolean') {
+            this.#value = value
+            this.#translationKey = null
+        } else {
+            this.#value = true
+            this.#translationKey = value
+        }
         this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): BooleanOrNotApplicable {
-        return this.#property.value
+        return this.#value
     }
-
 
     public get gameReference(): NullOr<GameReferences> {
         return this.#game
     }
 
     public get translationKey(): PossibleTranslationKeys {
-        return this.#property.comment
+        return this.#translationKey
     }
 
     //endregion -------------------- Getter methods --------------------

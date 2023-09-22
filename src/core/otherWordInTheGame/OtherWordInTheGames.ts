@@ -1,11 +1,11 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {ClassWithReference}                                                        from 'core/ClassWithReference'
 import type {OtherWordInTheGame}                                                        from 'core/otherWordInTheGame/OtherWordInTheGame'
 import type {ClassWithEnglishName}                                                      from 'core/ClassWithEnglishName'
-import type {Nullable, NullOr}                                                          from 'util/types/nullable'
 
 import {isInProduction}           from 'variables'
 import {OtherWordInTheGameLoader} from 'core/otherWordInTheGame/OtherWordInTheGame.loader'
@@ -264,8 +264,8 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<OtherWordInTheGames, typeof OtherWordInTheGames>> = class CompanionEnum_OtherWordInTheGames
-        extends BasicCompanionEnum<OtherWordInTheGames, typeof OtherWordInTheGames> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<OtherWordInTheGames, typeof OtherWordInTheGames> = class CompanionEnum_OtherWordInTheGames
+        extends CompanionEnum<OtherWordInTheGames, typeof OtherWordInTheGames> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -447,8 +447,8 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
         return OtherWordInTheGames.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<OtherWordInTheGames> {
-        yield* OtherWordInTheGames.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<OtherWordInTheGames> {
+        return OtherWordInTheGames.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

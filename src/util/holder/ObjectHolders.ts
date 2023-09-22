@@ -1,28 +1,40 @@
-import type {ObjectHolder}                                   from 'util/holder/ObjectHolder'
-import type {EmptyArray, EmptyMap, EmptyObject, EmptyString} from 'util/types/variables'
+import type {Lazy}    from '@joookiwi/lazy'
+import {lazy, lazyOf} from '@joookiwi/lazy'
 
-import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
-import {ObjectHolderContainer}                              from 'util/holder/ObjectHolder.container'
+import {EMPTY_ARRAY as EMPTY_ARRAY2, EMPTY_MAP as EMPTY_MAP2, EMPTY_OBJECT as EMPTY_OBJECT2, EMPTY_STRING as EMPTY_STRING2} from 'util/emptyVariables'
+import {ValueOrCallback}                                                                                                    from 'util/holder/ObjectHolder.types'
 
-export class ObjectHolders {
+export namespace ObjectHolders {
 
-    private constructor() {
-        throw new Error('This class cannot be instantiated.')
+    /**
+     * Get a value from a {@link ValueOrCallback} to create a {@link Lazy} instance.
+     *
+     * This method is temporary in order to change the implementations about the {@link Lazy} creation.
+     *
+     * @param value The value
+     * @temporary
+     */
+    export function getLazyOn<const T,>(value: ValueOrCallback<T>,):Lazy<T>{
+        return value == null || value instanceof Map
+            ? lazyOf(value,)
+            : value instanceof Function
+                ? lazy(value,)
+                : lazyOf(value,)
     }
 
-    /** A callback holder that only return null */
-    public static readonly NULL: ObjectHolder<null> = new ObjectHolderContainer(null)
-    /** A callback holder that only return true */
-    public static readonly TRUE: ObjectHolder<true> = new ObjectHolderContainer(true)
-    /** A callback holder that only return false */
-    public static readonly FALSE: ObjectHolder<false> = new ObjectHolderContainer(false)
-    /** A callback holder that only return an empty {@link String string} */
-    public static readonly EMPTY_STRING: ObjectHolder<EmptyString> = new ObjectHolderContainer(EMPTY_STRING)
-    /** A callback holder that only return an empty {@link Array array} */
-    public static readonly EMPTY_ARRAY: ObjectHolder<EmptyArray> = new ObjectHolderContainer(EMPTY_ARRAY)
-    /** A callback holder that only return an empty {@link Map map} */
-    public static readonly EMPTY_MAP: ObjectHolder<EmptyMap> = new ObjectHolderContainer<EmptyMap>(EMPTY_MAP)
-    /** A callback holder that only return an empty {@link Object object} */
-    public static readonly EMPTY_OBJECT: ObjectHolder<EmptyObject> = new ObjectHolderContainer(EMPTY_OBJECT)
+    /** A {@link Lazy} instance with a <b>null</b> */
+    export const NULL = lazyOf(null,)
+    /** A {@link Lazy} instance with true */
+    export const TRUE = lazyOf(true,)
+    /** A {@link Lazy} instance with false */
+    export const FALSE = lazyOf(false,)
+    /** A {@link Lazy} instance with an empty {@link String} */
+    export const EMPTY_STRING = lazyOf(EMPTY_STRING2,)
+    /** A {@link Lazy} instance with an empty {@link Array} */
+    export const EMPTY_ARRAY = lazyOf(EMPTY_ARRAY2,)
+    /** A {@link Lazy} instance with an empty {@link Map} */
+    export const EMPTY_MAP = lazyOf(EMPTY_MAP2,)
+    /** A {@link Lazy} instance with an empty {@link Object} */
+    export const EMPTY_OBJECT = lazyOf(EMPTY_OBJECT2,)
 
 }

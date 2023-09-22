@@ -1,5 +1,4 @@
-import type {TimeProperty}  from 'core/entity/properties/time/TimeProperty'
-import type {NullOrBoolean} from 'util/types/nullable'
+import type {TimeProperty} from 'core/entity/properties/time/TimeProperty'
 
 import type {Times} from 'core/time/Times'
 import {Import}     from 'util/DynamicImporter'
@@ -7,7 +6,7 @@ import {Import}     from 'util/DynamicImporter'
 /**
  * @classWithDynamicImport {@link Times}
  */
-export class TimePropertyContainer<DAY extends boolean = boolean, NIGHT extends NullOrBoolean = NullOrBoolean, >
+export class TimePropertyContainer<const DAY extends boolean = boolean, const NIGHT extends NullOrBoolean = NullOrBoolean, >
     implements TimeProperty<DAY, NIGHT> {
 
     //region -------------------- Fields --------------------

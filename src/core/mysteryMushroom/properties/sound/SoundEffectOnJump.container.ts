@@ -1,10 +1,8 @@
 import type {PossibleAmount, PossibleGamesReceived, PossibleValuesReceived, SoundEffectOnJump} from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump'
 import type {ExtendedMap}                                                                      from 'util/extended/ExtendedMap'
-import type {NullOr}                                                                           from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                           from 'util/types/variables'
 
-import {PropertyProvider}     from 'core/_properties/Property.provider'
 import {GameReferences}       from 'core/gameReference/GameReferences'
+import {NOT_APPLICABLE}       from 'util/commonVariables'
 import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
 
 /**
@@ -17,32 +15,46 @@ export class SoundEffectOnJumpContainer
 
     //region -------------------- Fields --------------------
 
-    public static readonly $3_IMAGES = '3 images'
     static readonly #EVERY_CONTAINERS: ExtendedMap<ArgumentsReceived, SoundEffectOnJumpContainer> = new ExtendedMapContainer()
 
-    readonly #property
+    readonly #value
+    readonly #haveMultipleImages
+    readonly #amount
     readonly #game
-    #haveMultipleImages?: boolean
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     private constructor([value, game,]: ArgumentsReceived,) {
-        this.#property = PropertyProvider.newBooleanContainer<PossibleValuesReceived, true, true, true>(value, true, true,)
+        if (value == null) {
+            this.#value = NOT_APPLICABLE as NotApplicable
+            this.#haveMultipleImages = false
+            this.#amount = null
+        } else if (typeof value == 'boolean') {
+            this.#value = value
+            this.#haveMultipleImages = false
+            this.#amount = value ? 0 as const : 1 as const
+        } else {
+            this.#value = true
+            this.#haveMultipleImages = true
+            this.#amount = typeof value == 'string' ? 3 as const : 2 as const
+        }
         this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value(): BooleanOrNotApplicable {
-        return this.#property.value
+        return this.#value
     }
 
     public get haveMultipleImages(): boolean {
-        return this.#haveMultipleImages ??= this.#property.comment === SoundEffectOnJumpContainer.$3_IMAGES
+        return this.#haveMultipleImages
     }
 
     public get amount(): PossibleAmount {
-        return this.#property.amount
+        return this.#amount
     }
 
     public get gameReference(): NullOr<GameReferences> {

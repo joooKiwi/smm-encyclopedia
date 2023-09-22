@@ -1,50 +1,48 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}                                  from 'app/options/ThemeAppOption.types'
-import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
-import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
-import type {NullOr}                                           from 'util/types/nullable'
+import type {AppOption}           from 'app/options/AppOption'
+import type {Names, Ordinals}     from 'app/options/ThemeAppOption.types'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 
-import {AppOptionWithContentComponent}              from 'app/options/component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}                from 'app/options/component/AppOptionWithTable.component'
-import {CommonOptions}                              from 'app/options/CommonOptions'
-import Image                                        from 'app/tools/images/Image'
-import NightEffectComponent                         from 'core/nightEffect/NightEffect.component'
-import {Themes}                                     from 'core/theme/Themes'
-import {Times}                                      from 'core/time/Times'
-import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {CommonOptions}          from 'app/options/CommonOptions'
+import Image                    from 'app/tools/images/Image'
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
+import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
+import {Themes}                 from 'core/theme/Themes'
+import {Times}                  from 'core/time/Times'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /**
  * @todo change the SMM1 & SMM2 yes/no result into something different like the sounds or other things
  * @fixme if the yes/no is still in used after the change, use Texts.renderYesNoComponent() instead.
  */
 export abstract class ThemeAppOption
-    extends Enum<Ordinals, Names> {
+    extends Enum<Ordinals, Names>
+implements AppOption<Themes>{
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly IMAGE =                  new class ThemeAppOption_Image extends ThemeAppOption {
+    public static readonly ICON =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
         protected override _createContentOption(enumeration: Themes,) {
-            const {endlessMarioImageFile,} = enumeration
-
-            return [
-                enumeration.renderSingleComponent(false),
-                <Image file={endlessMarioImageFile}/>,
-            ]
+            return enumeration.renderSingleComponent(false,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {
-                key: 'image', element: contentTranslation('Image'),
-                subHeaders: [
-                    {key: 'image-empty', element: null,},
-                    {key: 'image-endless-mario', element: '--Endless Mario--',},//TODO add Endless Mario
-                ],
-            }
+            return {key: 'icon', element: unfinishedText('Icon'),}
+        }
+
+    }()
+    public static readonly ENDLESS_MARIO_ICON =    new class ThemeAppOption_EndlessMarioImage extends ThemeAppOption {
+
+        protected override _createContentOption({endlessMarioImageFile,}: Themes,) {
+            return <Image file={endlessMarioImageFile}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return {key: 'endless-mario-icon', element: unfinishedText('Endless Mario'),}//TODO add Endless Mario
         }
 
     }()
@@ -77,7 +75,7 @@ export abstract class ThemeAppOption
                     {Themes.DESERT.renderSingleComponent(false)}
                     {Times.NIGHT.renderSingleComponent}
                 </div>,
-                tooltip: gameContentTranslation('Effect (night)', {night: '--night effect name--',},)//TODO add translation for the night effect name
+                tooltip: gameContentTranslation('Effect (night)', {night: unfinishedText('night effect name'),},)//TODO add translation for the night effect name
             }
         }
 
@@ -86,8 +84,8 @@ export abstract class ThemeAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ThemeAppOption, typeof ThemeAppOption>> = class CompanionEnum_ThemeAppOption
-        extends BasicCompanionEnum<ThemeAppOption, typeof ThemeAppOption> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ThemeAppOption, typeof ThemeAppOption> = class CompanionEnum_ThemeAppOption
+        extends CompanionEnum<ThemeAppOption, typeof ThemeAppOption> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -107,17 +105,6 @@ export abstract class ThemeAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    /**
-     * The callback to get the enumeration based for each option.
-     *
-     * @note It should only be set by {@link ThemeAppOption} and get by {@link ThemeApp}.
-     */
-    public static CALLBACK_TO_GET_ENUMERATION: () => Themes
-
-    #appOptionWithContent?: AppOptionWithContent
-    #appOptionWithTable?: AppOptionWithTable
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
@@ -132,14 +119,10 @@ export abstract class ThemeAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected abstract _createContentOption(enumeration: Themes,): PossibleRenderReactElement
+    protected abstract _createContentOption(enumeration: Themes,): ReactElement
 
-    private get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(ThemeAppOption.CALLBACK_TO_GET_ENUMERATION()),)
-    }
-
-    public get renderContent(): readonly ReactElement[] {
-        return this.__appOptionWithContent.renderContent
+    public renderContent(enumeration: Themes,): readonly [ReactElement,] {
+        return [this._createContentOption(enumeration,),]
     }
 
     //endregion -------------------- App option - content --------------------
@@ -147,12 +130,8 @@ export abstract class ThemeAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent
 
-    private get __appOptionWithTable(): AppOptionWithTable {
-        return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
-    }
-
-    public get renderTableHeader(): NullOr<SingleHeaderContent> {
-        return this.__appOptionWithTable.renderTableHeader
+    public renderTableHeader(): NullOr<SingleHeaderContent> {
+        return this._createTableHeaderOption()
     }
 
     //endregion -------------------- App option - table --------------------
@@ -168,8 +147,8 @@ export abstract class ThemeAppOption
         return ThemeAppOption.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<ThemeAppOption> {
-        yield* ThemeAppOption.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<ThemeAppOption> {
+        return ThemeAppOption.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

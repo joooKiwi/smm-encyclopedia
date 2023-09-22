@@ -7,8 +7,6 @@ import type {CourseTagTypes}                                       from 'app/pro
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {CourseTags}                                           from 'core/courseTag/CourseTags'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
-import type {NullOr}                                               from 'util/types/nullable'
 
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'
@@ -70,13 +68,13 @@ export default class CourseTagApp
         </div>
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<CourseTags> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithCardList<CourseTags> {
+        return new class CourseTagAppInterpreter implements AppInterpreterWithCardList<CourseTags> {
 
-            public get iterable() {
-                return $this.type.iterator
+            public get content() {
+                return $this.type.content
             }
 
             //region -------------------- List interpreter --------------------

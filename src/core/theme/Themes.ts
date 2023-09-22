@@ -1,31 +1,25 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                                  from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                    from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                               from 'core/PropertyGetter'
-import type {PossibleOtherEntities}                                                                                                                                                 from 'core/entity/Entity'
-import type {ThemeProperty}                                                                                                                                                         from 'core/entity/properties/theme/ThemeProperty'
-import type {ThemeReferences}                                                                                                                                                       from 'core/entity/properties/theme/ThemeReferences'
-import type {CourseTheme}                                                                                                                                                           from 'core/theme/CourseTheme'
-import type {DayGameName, DayOrNightGameName, Names, NightGameName, Ordinals, PossibleEnglishName, PossibleEnglishName_CourseTheme, PossibleGameName, PossibleGameName_CourseTheme} from 'core/theme/Themes.types'
-import type {CourseAndWorldTheme}                                                                                                                                                   from 'core/theme/CourseAndWorldTheme'
-import type {WorldTheme}                                                                                                                                                            from 'core/theme/WorldTheme'
-import type {EndlessMarioThemeImageFile}                                                                                                                                            from 'core/theme/file/EndlessMarioThemeImageFile'
-import type {LargeThemeImageFile}                                                                                                                                                   from 'core/theme/file/LargeThemeImageFile'
-import type {SmallThemeImageFile}                                                                                                                                                   from 'core/theme/file/SmallThemeImageFile'
-import type {Nullable, NullOr, NullOrBoolean}                                                                                                                                       from 'util/types/nullable'
+import type {ClassWithEnglishName}                                                 from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                   from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                              from 'core/PropertyGetter'
+import type {PossibleOtherEntities}                                                from 'core/entity/Entity'
+import type {ThemeProperty}                                                        from 'core/entity/properties/theme/ThemeProperty'
+import type {ThemeReferences}                                                      from 'core/entity/properties/theme/ThemeReferences'
+import type {CourseTheme}                                                          from 'core/theme/CourseTheme'
+import type {Names, Ordinals, PossibleEnglishName, PossibleGameName}               from 'core/theme/Themes.types'
+import type {CourseAndWorldTheme}                                                  from 'core/theme/CourseAndWorldTheme'
+import type {WorldTheme}                                                           from 'core/theme/WorldTheme'
+import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
 
-import {ThemeComponent}                                               from 'core/theme/Theme.component'
-import {ThemeLoader}                                                  from 'core/theme/Theme.loader'
-import {EndlessMarioThemeImageFileContainer as EndlessMarioImageFile} from 'core/theme/file/EndlessMarioThemeImageFile.container'
-import {LargeThemeImageFileContainer as LargeImageFile}               from 'core/theme/file/LargeThemeImageFile.container'
-import {SmallThemeImageFileContainer as SmallImageFile}               from 'core/theme/file/SmallThemeImageFile.container'
-import type {Times}                                                   from 'core/time/Times'
-import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
-import {Import}                                                       from 'util/DynamicImporter'
-import {StringContainer}                                              from 'util/StringContainer'
-import {getValueByEnglishName}                                        from 'util/utilitiesMethods'
+import {ThemeComponent}        from 'core/theme/Theme.component'
+import {ThemeLoader}           from 'core/theme/Theme.loader'
+import * as FileCreator        from 'core/theme/file/fileCreator'
+import {EMPTY_ARRAY}           from 'util/emptyVariables'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 export class Themes
     extends Enum<Ordinals, Names>
@@ -165,8 +159,8 @@ export class Themes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Themes, typeof Themes>> = class CompanionEnum_Themes
-        extends BasicCompanionEnum<Themes, typeof Themes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Themes, typeof Themes> = class CompanionEnum_Themes
+        extends CompanionEnum<Themes, typeof Themes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -246,15 +240,15 @@ export class Themes
 
 
     public get smallImageFile(): SmallThemeImageFile {
-        return this.#smallImageFile ??= new SmallImageFile(this.englishName, this.gameName,)
+        return this.#smallImageFile ??= FileCreator.smallImageFile(this,)
     }
 
     public get largeImageFile(): LargeThemeImageFile {
-        return this.#largeImageFile ??= new LargeImageFile(this.englishName, this.gameName,)
+        return this.#largeImageFile ??= FileCreator.largeImageFile(this,)
     }
 
     public get endlessMarioImageFile(): NullOr<EndlessMarioThemeImageFile> {
-        return this.#endlessMarioImageFile ??= new EndlessMarioImageFile(this.englishName as PossibleEnglishName_CourseTheme, this.gameName as PossibleGameName_CourseTheme,)
+        return this.#endlessMarioImageFile ??= FileCreator.endlessMarioImageFile(this,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -270,17 +264,6 @@ export class Themes
 
     public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
         return EMPTY_ARRAY
-    }
-
-    public getGameName(isNightTheme: true,): DayGameName
-    public getGameName(isNightTheme: false,): NightGameName
-    public getGameName<B extends boolean = boolean, >(isInDayTime: B,): DayOrNightGameName<B>
-    public getGameName(time: | boolean | Times,): DayOrNightGameName
-    public getGameName(isInDayTime: | boolean | Times,) {
-        if (isInDayTime instanceof Import.Times)
-            return this.getGameName( isInDayTime === Import.Times.DAY,)
-        const text = this.gameName
-        return `${text}${isInDayTime ? '' : '_night'}`
     }
 
     public renderSingleComponent(isSmallPath: boolean,) {
@@ -342,8 +325,8 @@ export class Themes
         return Themes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Themes> {
-        yield* Themes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Themes> {
+        return Themes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

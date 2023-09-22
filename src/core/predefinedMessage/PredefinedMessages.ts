@@ -1,11 +1,11 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                      from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
 import type {PredefinedMessage}                    from 'core/predefinedMessage/PredefinedMessage'
-import type {Nullable}                             from 'util/types/nullable'
 
 import {PredefinedMessageLoader} from 'core/predefinedMessage/PredefinedMessage.loader'
 import {StringContainer}         from 'util/StringContainer'
@@ -43,8 +43,8 @@ export class PredefinedMessages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<PredefinedMessages, typeof PredefinedMessages>> = class CompanionEnum_PredefinedMessages
-        extends BasicCompanionEnum<PredefinedMessages, typeof PredefinedMessages> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<PredefinedMessages, typeof PredefinedMessages> = class CompanionEnum_PredefinedMessages
+        extends CompanionEnum<PredefinedMessages, typeof PredefinedMessages> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -120,8 +120,8 @@ export class PredefinedMessages
         return PredefinedMessages.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<PredefinedMessages> {
-        yield* PredefinedMessages.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<PredefinedMessages> {
+        return PredefinedMessages.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,5 +1,4 @@
 import type {PossibleDimension} from 'app/withInterpreter/ListDimension.creator.types'
-import type {NullOr}            from 'util/types/nullable'
 
 export interface DimensionOnList<DEFAULT extends PossibleDimension = PossibleDimension,
     SMALL extends PossibleDimension = PossibleDimension,

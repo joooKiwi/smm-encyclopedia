@@ -1,7 +1,7 @@
 import './GroupOfPowerUpPriority.scss'
 import './GroupOf3PowerUpPriority.scss'
 
-import type {ReactElement, ReactProperties} from 'util/react/ReactProperties'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import Arrow    from 'app/tools/arrow/Arrow'
 import {Arrows} from 'app/tools/arrow/Arrows'
@@ -28,7 +28,7 @@ interface GroupOf3PowerUpPriorityProperties
  * @param properties
  * @reactComponent
  */
-export default function GroupOf3PowerUpPriority({id, children:[child1, child2, child3,], leftArrow, isLeftArrowSeparated = false, rightArrow, isRightArrowSeparated = false, bottomArrow, isBottomArrowSeparated = false,}: GroupOf3PowerUpPriorityProperties,) {
+export default function GroupOf3PowerUpPriority({id, children: [child1, child2, child3,], leftArrow, isLeftArrowSeparated = false, rightArrow, isRightArrowSeparated = false, bottomArrow, isBottomArrowSeparated = false,}: GroupOf3PowerUpPriorityProperties,) {
     return <div id={id} className="groupOf3-powerUp-priority powerUp-group-priority d-flex flex-column justify-content-evenly">
         <div className="start-container d-flex justify-content-center">{child1}</div>
         <div className="diagonal-arrow-group-container d-flex justify-content-evenly position-relative">

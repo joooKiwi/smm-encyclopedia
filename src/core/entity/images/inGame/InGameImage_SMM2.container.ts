@@ -1,34 +1,23 @@
-import type {InGameSMM2ImageFile} from 'core/entity/file/InGameSMM2ImageFile'
+import type {InGameSMM2ImageFile} from 'core/entity/file/EntityImageFile.inGame'
 import type {InGameImage_SMM2}    from 'core/entity/images/inGame/InGameImage_SMM2'
+import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-import {AbstractImageWithTimesThemesAndGameStyles} from 'core/entity/images/AbstractImageWithTimesThemesAndGameStyles'
-import {GameStyles}                                from 'core/gameStyle/GameStyles'
-import {Themes}                                    from 'core/theme/Themes'
-import {Times}                                     from 'core/time/Times'
-import {EMPTY_MAP}                                 from 'util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 export class InGameImage_SMM2Container
-    extends AbstractImageWithTimesThemesAndGameStyles<InGameSMM2ImageFile>
     implements InGameImage_SMM2 {
 
+    readonly #images
+
     public constructor(images: ReadonlyMap<GameStyles, readonly InGameSMM2ImageFile[]>,) {
-        super(EMPTY_MAP, images,)
+        this.#images = images
     }
 
-    //region -------------------- Getter methods --------------------
-
-    protected override get _createEveryGameStyles() {
-        return GameStyles.values.toArray()
+    public get images(): ReadonlyMap<GameStyles, readonly InGameSMM2ImageFile[]> {
+        return this.#images
     }
 
-    protected override get _createEveryThemes() {
-        return Themes.courseThemes
+    public get(gameStyle: GameStyles,): readonly InGameSMM2ImageFile[] {
+        return this.images.get(gameStyle,) ?? EMPTY_ARRAY
     }
-
-    protected override get _createEveryTimes() {
-        return [Times.DAY,]
-    }
-
-    //endregion -------------------- Getter methods --------------------
-
 }

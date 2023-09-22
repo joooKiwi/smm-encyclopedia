@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum}                                          from '@joookiwi/enumerable'
 
 import type {GlobalAppState}                          from 'app/AppStates.types'
 import type {Names, Ordinals, PossibleAppOptionValue} from 'app/options/global/GlobalAppOption.types'
@@ -51,8 +52,8 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GlobalAppOption, typeof GlobalAppOption>> = class CompanionEnum_GlobalAppOption
-        extends BasicCompanionEnum<GlobalAppOption, typeof GlobalAppOption> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<GlobalAppOption, typeof GlobalAppOption> = class CompanionEnum_GlobalAppOption
+        extends CompanionEnum<GlobalAppOption, typeof GlobalAppOption> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -95,8 +96,8 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
         return GlobalAppOption.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<GlobalAppOption> {
-        yield* GlobalAppOption.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<GlobalAppOption> {
+        return GlobalAppOption.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

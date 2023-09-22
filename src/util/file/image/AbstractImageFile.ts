@@ -2,7 +2,11 @@ import type {ImageFile, PossibleImageFileExtension} from 'util/file/image/ImageF
 
 import {AbstractFile} from 'util/file/AbstractFile'
 
-export abstract class AbstractImageFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleImageFileExtension = PossibleImageFileExtension, FALLBACK_NAME extends string = string, >
+/** The base of every kind of {@link ImageFile} implementations */
+export abstract class AbstractImageFile<const out PATH extends string = string,
+    const out NAME extends string = string,
+    const out EXTENSION extends PossibleImageFileExtension = PossibleImageFileExtension,
+    const out FALLBACK_NAME extends string = string, >
     extends AbstractFile<PATH, NAME, EXTENSION>
     implements ImageFile<PATH, NAME, EXTENSION, FALLBACK_NAME> {
 
@@ -11,11 +15,14 @@ export abstract class AbstractImageFile<PATH extends string = string, NAME exten
     readonly #fallbackName
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
     protected constructor(path: PATH, name: NAME, extension: EXTENSION, fallbackName: FALLBACK_NAME,) {
         super(path, name, extension,)
         this.#fallbackName = fallbackName
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     protected _createKey(): string {

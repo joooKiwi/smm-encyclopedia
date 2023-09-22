@@ -1,10 +1,21 @@
-import {PossibleEnglishName} from 'core/entity/Entities.types'
-import type {ImageFile}      from 'util/file/image/ImageFile'
+import type {EditorImageFile}         from 'core/entity/file/EntityImageFile.editor'
+import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile.clearCondition'
+import type {InGameImageFile}         from 'core/entity/file/EntityImageFile.inGame'
+import type {UnusedSMM1ImageFile}     from 'core/entity/file/EntityImageFile.unused'
 
-export interface EntityImageFile<PATH extends string = string, NAME extends string = string, EXTENSION extends ImageFileExtension = ImageFileExtension, FALLBACK_NAME extends string = string, >
-    extends ImageFile<ImageFilePath<PATH>, NAME, EXTENSION, PossibleEntityImageFallbackName<FALLBACK_NAME>> {
-}
+/**
+ * An {@link ImageFile} made to be related to an {@link Entities}
+ *
+ * @see EditorImageFile
+ * @see GenericEditorImageFile
+ * @see PowerUpEditorImageFile
+ * @see ClearConditionImageFile
+ * @see InGameImageFile
+ * @see InGameSMM1ImageFile
+ * @see InGameSMM2ImageFile
+ * @see UnusedSMM1ImageFile
+ * @see UnusedSMM1RegularImageFile
+ * @see UnusedSMM1BigMushroomImageFile
+ */
+export type EntityImageFile = | EditorImageFile | ClearConditionImageFile | InGameImageFile | UnusedSMM1ImageFile
 
-export type ImageFilePath<PATH extends string = string, > = `entity/${PATH}`
-export type ImageFileExtension = | 'tiff' | 'png'
-export type PossibleEntityImageFallbackName<FALLBACK_NAME extends string = string, > = `${PossibleEnglishName} (${FALLBACK_NAME})`

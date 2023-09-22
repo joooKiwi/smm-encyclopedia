@@ -1,11 +1,13 @@
-import type {EveryLanguages}                            from 'lang/EveryLanguages'
-import type {Name}                                      from 'lang/name/Name'
-import type {NameTrait}                                 from 'lang/name/NameTrait'
-import type {NameTraitFromAnAlternativeContainer}       from 'lang/name/NameTraitFromAnAlternativeContainer'
-import type {ObjectHolder, PossibleValueOnObjectHolder} from 'util/holder/ObjectHolder'
+import type {Lazy} from '@joookiwi/lazy'
 
-import {ClassContainingAName}         from 'lang/name/ClassContainingAName'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
+import type {EveryLanguages}                      from 'lang/EveryLanguages'
+import type {Name}                                from 'lang/name/Name'
+import type {NameTrait}                           from 'lang/name/NameTrait'
+import type {NameTraitFromAnAlternativeContainer} from 'lang/name/NameTraitFromAnAlternativeContainer'
+import type {ValueOrCallback}                     from 'util/holder/ObjectHolder.types'
+
+import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {ObjectHolders}        from 'util/holder/ObjectHolders'
 
 export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends NameTrait<U>, >
     extends ClassContainingAName<T>
@@ -13,19 +15,21 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
 
     //region -------------------- Fields --------------------
 
-    readonly #alternativeContainer: ObjectHolder<ALTERNATIVE>
+    readonly #alternativeContainer: Lazy<ALTERNATIVE>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    public constructor(name: PossibleValueOnObjectHolder<Name<T>>, alternative: PossibleValueOnObjectHolder<ALTERNATIVE>,) {
+    public constructor(name: ValueOrCallback<Name<T>>, alternative: ValueOrCallback<ALTERNATIVE>,) {
         super(name,)
-        this.#alternativeContainer = new DelayedObjectHolderContainer(alternative)
+        this.#alternativeContainer = ObjectHolders.getLazyOn(alternative,)
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get alternativeContainer(): ALTERNATIVE {
-        return this.#alternativeContainer.get
+        return this.#alternativeContainer.value
     }
 
     public get alternativeNameContainer(): this['alternativeContainer']['nameContainer'] {

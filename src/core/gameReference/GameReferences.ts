@@ -1,12 +1,12 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                      from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                  from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                    from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
 import type {GameReference}                                         from 'core/gameReference/GameReference'
-import type {Nullable}                                              from 'util/types/nullable'
 
 import {GameReferenceLoader} from 'core/gameReference/GameReference.loader'
 import {StringContainer}     from 'util/StringContainer'
@@ -175,8 +175,8 @@ export class GameReferences
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GameReferences, typeof GameReferences>> = class CompanionEnum_GameReferences
-        extends BasicCompanionEnum<GameReferences, typeof GameReferences> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<GameReferences, typeof GameReferences> = class CompanionEnum_GameReferences
+        extends CompanionEnum<GameReferences, typeof GameReferences> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -261,8 +261,8 @@ export class GameReferences
         return GameReferences.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<GameReferences> {
-        yield* GameReferences.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<GameReferences> {
+        return GameReferences.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

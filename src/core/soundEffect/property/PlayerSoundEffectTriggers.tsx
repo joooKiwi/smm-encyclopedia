@@ -1,12 +1,11 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
 import type {Names, Ordinals, PossibleTranslationKey} from 'core/soundEffect/property/PlayerSoundEffectTriggers.types'
 import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTrigger.property'
-import type {ReactElement}                            from 'util/react/ReactProperties'
-import type {Nullable}                                from 'util/types/nullable'
 
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
@@ -201,8 +200,8 @@ export class PlayerSoundEffectTriggers
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers>> = class CompanionEnum_PlayerSoundEffectTriggers
-        extends BasicCompanionEnum<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> = class CompanionEnum_PlayerSoundEffectTriggers
+        extends CompanionEnum<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -387,8 +386,8 @@ export class PlayerSoundEffectTriggers
         return PlayerSoundEffectTriggers.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<PlayerSoundEffectTriggers> {
-        yield* PlayerSoundEffectTriggers.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<PlayerSoundEffectTriggers> {
+        return PlayerSoundEffectTriggers.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

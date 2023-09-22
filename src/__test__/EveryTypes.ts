@@ -27,8 +27,6 @@ import type {PossibleEnglishName as PossibleEnglishName_SoundEffect}            
 import type {PossibleEnglishName as PossibleEnglishName_SoundEffectCategory}                                                                                                                                                                                             from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from 'core/theme/Themes.types'
 import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from 'core/version/Versions.types'
-import type {UnknownCharacter, UnknownReference}                                                                                                                                                                                                                         from 'util/types/variables'
-import type {NullOr}                                                                                                                                                                                                                                                     from 'util/types/nullable'
 
 import {EntityBehaviours}            from 'core/behaviour/EntityBehaviours'
 import {CharacterNames}              from 'core/characterName/CharacterNames'
@@ -294,11 +292,11 @@ export class EveryTypes {
     //region -------------------- Entity limit --------------------
 
     public get everyPossibleAcronym_limit() {
-        return this.#everyPossibleAcronym_limit ??= [...EntityLimits.values.map(it => it.acronym).filterNonNull().toSet(),]
+        return this.#everyPossibleAcronym_limit ??= [...EntityLimits.values.map(it => it.acronym).filterNotNull().toSet(),]
     }
 
     public get everyPossibleAlternativeAcronym_limit() {
-        return this.#everyPossibleAlternativeAcronym_limit ??= [...EntityLimits.values.map(it => it.alternativeAcronym).filterNonNull().toSet(),]
+        return this.#everyPossibleAlternativeAcronym_limit ??= [...EntityLimits.values.map(it => it.alternativeAcronym).filterNotNull().toSet(),]
     }
 
 
@@ -315,7 +313,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleAlternativeName_limit() {
-        return this.#everyPossibleAlternativeName_limit ??= EntityLimits.values.map(it => it.alternativeEnglishName).filterNonNull().toArray()
+        return this.#everyPossibleAlternativeName_limit ??= EntityLimits.values.map(it => it.alternativeEnglishName).filterNotNull().toArray()
     }
 
 
@@ -487,7 +485,7 @@ export class EveryTypes {
     }
 
     public get everyPossiblePluralName_otherWordInTheGame() {
-        return this.#everyPossiblePluralName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => it.pluralEnglishName).filterNonNull().toArray()
+        return this.#everyPossiblePluralName_otherWordInTheGame ??= OtherWordInTheGames.values.map(it => it.pluralEnglishName).filterNotNull().toArray()
     }
 
     //endregion -------------------- Other word in the game --------------------

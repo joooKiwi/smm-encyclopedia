@@ -1,6 +1,5 @@
 import type {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 import type {Games}        from 'core/game/Games'
-import type {NullOr}       from 'util/types/nullable'
 
 /**
  * The base of a path to be used in the application holding the arguments to redirect specifically to the path needed
@@ -19,6 +18,6 @@ export interface Route<SIMPLE_NAME extends string, NAME extends string, PATH ext
 
     get games(): GAMES
 
-    get renderCallback(): () => JSX.Element
+    get renderCallback(): () => ReactJSXElement
 
 }

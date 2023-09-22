@@ -5,10 +5,8 @@ import type {InGameImage}         from 'core/entity/images/inGame/InGameImage'
 import type {UniqueImage}         from 'core/entity/images/unique/UniqueImage'
 import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-import {EMPTY_ARRAY} from 'util/emptyVariables'
-
-export class UniqueImageContainer
-    implements UniqueImage {
+export class UniqueImageContainer<const out T extends EntityImageFile, >
+    implements UniqueImage<T> {
 
     //region -------------------- Fields --------------------
 
@@ -18,14 +16,16 @@ export class UniqueImageContainer
     readonly #map
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    constructor(editor: EditorImage, clearCondition: ClearConditionImage, inGame: InGameImage, map: ReadonlyMap<GameStyles, readonly EntityImageFile[]>,) {
+    public constructor(editor: EditorImage, clearCondition: ClearConditionImage, inGame: InGameImage, map: ReadonlyMap<GameStyles, readonly T[]>,) {
         this.#editorImage = editor
         this.#clearConditionImage = clearCondition
         this.#inGameImage = inGame
         this.#map = map
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get editorImage(): EditorImage {
@@ -40,13 +40,10 @@ export class UniqueImageContainer
         return this.#inGameImage
     }
 
-    public get map(): ReadonlyMap<GameStyles, readonly EntityImageFile[]> {
+    public get map(): ReadonlyMap<GameStyles, readonly T[]> {
         return this.#map
     }
 
     //endregion -------------------- Getter methods --------------------
 
-    public get(gameStyle: GameStyles,): readonly EntityImageFile[] {
-        return this.map.get(gameStyle) ?? EMPTY_ARRAY
-    }
 }

@@ -10,7 +10,7 @@
 @import "~bootstrap/scss/images";
 @import "~bootstrap/scss/containers";
 @import "~bootstrap/scss/grid";
-@import "~bootstrap/scss/tables";//TODO remove the usage in the page
+//@import "~bootstrap/scss/tables";
 //@import "~bootstrap/scss/forms";
 @import "~bootstrap/scss/buttons";
 @import "~bootstrap/scss/transitions";
@@ -647,7 +647,7 @@
   //region -------------------- White --------------------
 
   --bs-white:  rgb(var(--bs-white-rgb));
-  //--bs-white-rgb: #{to-rgb($white)};
+  --bs-white-rgb: #{to-rgb($white)}; //It override the Bootstrap CSS
 
   //endregion -------------------- White --------------------
   //region -------------------- Gray --------------------
@@ -699,7 +699,7 @@
   //region -------------------- Black --------------------
 
   --bs-black:  rgb(var(--bs-black-rgb));
-  //--bs-black-rgb: #{to-rgb($black)};
+  --bs-black-rgb: #{to-rgb($black)}; //It override the Bootstrap CSS
 
   //endregion -------------------- Black --------------------
 
@@ -746,6 +746,13 @@
   --bs-primary-950:  rgb(var(--bs-primary-950-rgb));
   --bs-primary-950-rgb: #{to-rgb($primary-950)};
 
+  --bs-primary-text-emphasis:     var(--bs-primary-800);
+  --bs-primary-text-emphasis-rgb: var(--bs-primary-800-rgb);
+  --bs-primary-bg-subtle:         var(--bs-primary-100);
+  --bs-primary-bg-subtle-rgb:     var(--bs-primary-100-rgb);
+  --bs-primary-border-subtle:     var(--bs-primary-200);
+  --bs-primary-border-subtle-rgb: var(--bs-primary-200-rgb);
+
   //endregion -------------------- Primary --------------------
   //region -------------------- Secondary --------------------
 
@@ -789,6 +796,13 @@
   --bs-secondary-900-rgb: #{to-rgb($secondary-900)};
   --bs-secondary-950:  rgb(var(--bs-secondary-950-rgb));
   --bs-secondary-950-rgb: #{to-rgb($secondary-950)};
+
+  --bs-secondary-text-emphasis:     var(--bs-secondary-800);
+  --bs-secondary-text-emphasis-rgb: var(--bs-secondary-800-rgb);
+  --bs-secondary-bg-subtle:         var(--bs-secondary-100);
+  --bs-secondary-bg-subtle-rgb:     var(--bs-secondary-100-rgb);
+  --bs-secondary-border-subtle:     var(--bs-secondary-200);
+  --bs-secondary-border-subtle-rgb: var(--bs-secondary-200-rgb);
 
   //endregion -------------------- Secondary --------------------
   //region -------------------- Success --------------------
@@ -834,6 +848,13 @@
   --bs-success-950:  rgb(var(--bs-success-950-rgb));
   --bs-success-950-rgb: #{to-rgb($success-950)};
 
+  --bs-success-text-emphasis:     var(--bs-success-800);
+  --bs-success-text-emphasis-rgb: var(--bs-success-800-rgb);
+  --bs-success-bg-subtle:         var(--bs-success-100);
+  --bs-success-bg-subtle-rgb:     var(--bs-success-100-rgb);
+  --bs-success-border-subtle:     var(--bs-success-200);
+  --bs-success-border-subtle-rgb: var(--bs-success-200-rgb);
+
   //endregion -------------------- Success --------------------
   //region -------------------- Danger --------------------
 
@@ -877,6 +898,13 @@
   --bs-danger-900-rgb: #{to-rgb($danger-900)};
   --bs-danger-950:  rgb(var(--bs-danger-950-rgb));
   --bs-danger-950-rgb: #{to-rgb($danger-950)};
+
+  --bs-danger-text-emphasis:     var(--bs-danger-800);
+  --bs-danger-text-emphasis-rgb: var(--bs-danger-800-rgb);
+  --bs-danger-bg-subtle:         var(--bs-danger-100);
+  --bs-danger-bg-subtle-rgb:     var(--bs-danger-100-rgb);
+  --bs-danger-border-subtle:     var(--bs-danger-200);
+  --bs-danger-border-subtle-rgb: var(--bs-danger-200-rgb);
 
   //endregion -------------------- Danger --------------------
   //region -------------------- Warning --------------------
@@ -922,6 +950,13 @@
   --bs-warning-950:  rgb(var(--bs-warning-950-rgb));
   --bs-warning-950-rgb: #{to-rgb($warning-950)};
 
+  --bs-warning-text-emphasis:     var(--bs-warning-800);
+  --bs-warning-text-emphasis-rgb: var(--bs-warning-800-rgb);
+  --bs-warning-bg-subtle:         var(--bs-warning-100);
+  --bs-warning-bg-subtle-rgb:     var(--bs-warning-100-rgb);
+  --bs-warning-border-subtle:     var(--bs-warning-200);
+  --bs-warning-border-subtle-rgb: var(--bs-warning-200-rgb);
+
   //endregion -------------------- Warning --------------------
   //region -------------------- Info --------------------
 
@@ -965,6 +1000,13 @@
   --bs-info-900-rgb: #{to-rgb($info-900)};
   --bs-info-950:  rgb(var(--bs-info-950-rgb));
   --bs-info-950-rgb: #{to-rgb($info-950)};
+
+  --bs-info-text-emphasis:     var(--bs-info-800);
+  --bs-info-text-emphasis-rgb: var(--bs-info-800-rgb);
+  --bs-info-bg-subtle:         var(--bs-info-100);
+  --bs-info-bg-subtle-rgb:     var(--bs-info-100-rgb);
+  --bs-info-border-subtle:     var(--bs-info-200);
+  --bs-info-border-subtle-rgb: var(--bs-info-200-rgb);
 
   //endregion -------------------- Info --------------------
   //region -------------------- Light --------------------
@@ -1010,6 +1052,13 @@
   --bs-light-950:  rgb(var(--bs-light-950-rgb));
   --bs-light-950-rgb: #{to-rgb($light-950)};
 
+  --bs-light-text-emphasis:     var(--bs-light-700);
+  --bs-light-text-emphasis-rgb: var(--bs-light-700-rgb);
+  --bs-light-bg-subtle:         var(--bs-light-100);
+  --bs-light-bg-subtle-rgb:     var(--bs-light-100-rgb);
+  --bs-light-border-subtle:     var(--bs-light-200);
+  --bs-light-border-subtle-rgb: var(--bs-light-200-rgb);
+
   //endregion -------------------- Light --------------------
   //region -------------------- Dark --------------------
 
@@ -1053,6 +1102,13 @@
   --bs-dark-900-rgb: #{to-rgb($dark-900)};
   --bs-dark-950:  rgb(var(--bs-dark-950-rgb));
   --bs-dark-950-rgb: #{to-rgb($dark-950)};
+
+  --bs-dark-text-emphasis:     var(--bs-dark-800);
+  --bs-dark-text-emphasis-rgb: var(--bs-dark-800-rgb);
+  --bs-dark-bg-subtle:         var(--bs-dark-100);
+  --bs-dark-bg-subtle-rgb:     var(--bs-dark-100-rgb);
+  --bs-dark-border-subtle:     var(--bs-dark-200);
+  --bs-dark-border-subtle-rgb: var(--bs-dark-200-rgb);
 
   //endregion -------------------- Dark --------------------
 }
@@ -1197,16 +1253,16 @@
 }
 
 //endregion -------------------- Text space --------------------
-//region -------------------- Accordion --------------------
-
-.accordion {
-  --bs-accordion-color: var(--bs-dark);
-  --bs-accordion-bg: var(--bs-white);
-  --bs-accordion-btn-color: var(--bs-dark);
-  --bs-accordion-btn-focus-border-color: var(--bs-primary-250);
-  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
-  --bs-accordion-active-color: var(--bs-primary-550);
-  --bs-accordion-active-bg: var(--bs-primary-050);
-}
-
-//endregion -------------------- Accordion --------------------
+////region -------------------- Accordion --------------------
+//
+//.accordion {
+//  --bs-accordion-color: var(--bs-dark);
+//  --bs-accordion-bg: var(--bs-white);
+//  --bs-accordion-btn-color: var(--bs-dark);
+//  --bs-accordion-btn-focus-border-color: var(--bs-primary-250);
+//  --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25);
+//  --bs-accordion-active-color: var(--bs-primary-550);
+//  --bs-accordion-active-bg: var(--bs-primary-050);
+//}
+//
+////endregion -------------------- Accordion --------------------

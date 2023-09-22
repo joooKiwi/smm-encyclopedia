@@ -1,11 +1,11 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
 import type {CourseTag}                            from 'core/courseTag/CourseTag'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/courseTag/CourseTags.types'
-import type {Nullable}                             from 'util/types/nullable'
 
 import {CourseTagLoader}       from 'core/courseTag/CourseTag.loader'
 import {StringContainer}       from 'util/StringContainer'
@@ -57,8 +57,8 @@ export class CourseTags
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<CourseTags, typeof CourseTags>> = class CompanionEnum_CourseTags
-        extends BasicCompanionEnum<CourseTags, typeof CourseTags> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<CourseTags, typeof CourseTags> = class CompanionEnum_CourseTags
+        extends CompanionEnum<CourseTags, typeof CourseTags> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -155,8 +155,8 @@ export class CourseTags
         return CourseTags.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<CourseTags> {
-        yield* CourseTags.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<CourseTags> {
+        return CourseTags.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

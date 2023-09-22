@@ -1,11 +1,7 @@
 import type {DefaultAmount, DefaultComment, DefaultIsUnknown}                                                           from 'core/_properties/Property'
 import type {FalseProperty, NotApplicableProperty, NullProperty, PropertyWithEverything, TrueProperty, UnknownProperty} from 'core/_properties/PropertyWithEverything'
-import type {ObjectHolder, PossibleValueOnObjectHolder}                                                                 from 'util/holder/ObjectHolder'
-import type {NullOrNumber, NullOrString}                                                                                from 'util/types/nullable'
 
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
-
-export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown, AMOUNT extends NullOrNumber = DefaultAmount, COMMENT extends NullOrString = DefaultComment, >
+export class PropertyContainer<const T, const IS_UNKNOWN extends boolean = DefaultIsUnknown, const AMOUNT extends NullOrNumber = DefaultAmount, const COMMENT extends NullOrString = DefaultComment, >
     implements PropertyWithEverything<T, IS_UNKNOWN, AMOUNT, COMMENT> {
 
     //region -------------------- Constants --------------------
@@ -32,23 +28,24 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown,
     //endregion -------------------- Predefined properties --------------------
     //region -------------------- Fields --------------------
 
-    readonly #value: ObjectHolder<T>
+    readonly #value: T
     readonly #isUnknown: IS_UNKNOWN
     readonly #amount: AMOUNT
     readonly #comment: COMMENT
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    protected constructor(value: PossibleValueOnObjectHolder<T>,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, amount: AMOUNT, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,)
-    protected constructor(value: PossibleValueOnObjectHolder<T>, isUnknown_or_amount_or_comment?: | IS_UNKNOWN | AMOUNT | COMMENT, comment_or_amount?: | AMOUNT | COMMENT, comment?: COMMENT,) {
-        this.#value = new DelayedObjectHolderContainer<T>(value)
+    public constructor(value: T,)
+    public constructor(value: T, isUnknown: IS_UNKNOWN,)
+    public constructor(value: T, amount: AMOUNT,)
+    public constructor(value: T, comment: COMMENT,)
+    public constructor(value: T, amount: AMOUNT, comment: COMMENT,)
+    public constructor(value: T, isUnknown: IS_UNKNOWN, comment: COMMENT,)
+    public constructor(value: T, isUnknown: IS_UNKNOWN, amount: AMOUNT,)
+    public constructor(value: T, isUnknown: IS_UNKNOWN, amount: AMOUNT, comment: COMMENT,)
+    public constructor(value: T, isUnknown_or_amount_or_comment?: | IS_UNKNOWN | AMOUNT | COMMENT, comment_or_amount?: | AMOUNT | COMMENT, comment?: COMMENT,) {
+        this.#value = value
 
         switch (typeof isUnknown_or_amount_or_comment) {
             default://Everything can only be null.
@@ -86,10 +83,11 @@ export class PropertyContainer<T, IS_UNKNOWN extends boolean = DefaultIsUnknown,
         }
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get value() {
-        return this.#value.get
+        return this.#value
     }
 
     public get isUnknown() {

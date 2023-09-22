@@ -1,9 +1,9 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                from 'core/ClassWithEnglishName'
 import type {EnglishName, IsSourceFoundCallback, Names, Ordinals} from 'util/file/sound/player/Validators.types'
-import type {Nullable, NullOrBoolean}                             from 'util/types/nullable'
 
 import {getValueByEnglishName} from 'util/utilitiesMethods'
 
@@ -81,8 +81,8 @@ export abstract class Validators
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Validators, typeof Validators>> = class CompanionEnum_Validators
-        extends BasicCompanionEnum<Validators, typeof Validators> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Validators, typeof Validators> = class CompanionEnum_Validators
+        extends CompanionEnum<Validators, typeof Validators> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -154,16 +154,16 @@ export abstract class Validators
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    public static get default(): Validators {
-        return Validators.CompanionEnum.get.default
+    public static get defaultValue(): Validators {
+        return Validators.CompanionEnum.get.defaultValue
     }
 
-    public static set default(value: PossibleEnumerableValueBy<Validators>,) {
-        Validators.CompanionEnum.get.default = value
+    public static set defaultValue(value: PossibleEnumerableValueBy<Validators>,) {
+        Validators.CompanionEnum.get.defaultValue = value
     }
 
-    public static setDefault(value: PossibleEnumerableValueBy<Validators>,): typeof Validators {
-        Validators.CompanionEnum.get.setDefault(value,)
+    public static setDefaultValue(value: PossibleEnumerableValueBy<Validators>,): typeof Validators {
+        Validators.CompanionEnum.get.setDefaultValue(value,)
         return Validators
     }
 
@@ -175,8 +175,8 @@ export abstract class Validators
         return Validators.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Validators> {
-        yield* Validators.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Validators> {
+        return Validators.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

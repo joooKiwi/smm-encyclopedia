@@ -15,7 +15,7 @@ const NO_COLOR: TextColor = 'text-no'
  * @return {@link BooleanResultContainer}
  * @reactComponent
  */
-export default function YesOrNoResultTextComponent(properties: YesOrNoTextProperties,): JSX.Element {
+export default function YesOrNoResultTextComponent(properties: YesOrNoTextProperties,): ReactJSXElement {
     return <BooleanResultTextComponent
         true={[contentTranslation('Yes'), YES_COLOR,]}
         false={[contentTranslation('No'), NO_COLOR,]}

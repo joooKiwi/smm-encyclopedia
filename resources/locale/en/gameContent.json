@@ -37,15 +37,17 @@
       "display all": "Display every limit"
     },
     "editor": {
-      "simple":  "Editor",
-      "tooltip": "Limit in the editor",
+      "simple":               "Editor",
+      "complete":             "Limit in the editor",
+      "complete in SMM2":     "Limit in the editor ({{Name}})",
+      "complete in SMM1&3DS": "Limit in the editor ({{Name1}} & {{Name3ds}})",
 
       "all":         "Every editor limit",
       "display all": "Display every editor limit"
     },
     "play": {
-      "simple":  "Play",
-      "tooltip": "Limit while playing",
+      "simple":   "Play",
+      "complete": "Limit while playing",
 
       "all":         "Every play limit",
       "display all": "Display every play limit"

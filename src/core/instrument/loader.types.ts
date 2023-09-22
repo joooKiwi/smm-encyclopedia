@@ -1,5 +1,4 @@
 import type {PossibleEnglishName} from 'core/instrument/Instruments.types'
-import type {NullOr}              from 'util/types/nullable'
 
 export type PossibleMixedInstrument =
     | 'Unchain Chomp → Piano 1\nStump → Mokugyo'

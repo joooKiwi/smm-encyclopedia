@@ -1,5 +1,3 @@
-import type {NullOrString} from 'util/types/nullable'
-
 import {EveryTypes} from '__test__/EveryTypes'
 
 const ENTITY_LINK_SEPARATOR = ' / ',

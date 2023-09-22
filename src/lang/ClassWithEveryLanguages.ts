@@ -1,7 +1,6 @@
 import type {ClassWithOnlyProjectLanguages}                                           from 'lang/ClassWithOnlyProjectLanguages'
 import type {EveryLanguages}                                                          from 'lang/EveryLanguages'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
-import type {NullOr}                                                                  from 'util/types/nullable'
 
 /**
  * <p>

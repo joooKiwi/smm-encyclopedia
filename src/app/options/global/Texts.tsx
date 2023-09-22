@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                     from 'app/options/global/Texts.types'
 import type {BooleanResultTextProperties}         from 'app/tools/text/properties/BooleanResultTextProperties'
@@ -7,9 +8,7 @@ import type {BooleanTextProperties}               from 'app/tools/text/propertie
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 import type {YesOrNoTextProperties}               from 'app/tools/text/properties/YesOrNoTextProperties'
 import type {NameProperties}                      from 'lang/name/component/Name.properties'
-import type {ReactElement}                        from 'util/react/ReactProperties'
 import type {ClassWithValue}                      from 'util/types/ClassWithValue'
-import type {Nullable}                            from 'util/types/nullable'
 
 import TextComponent              from 'app/tools/text/TextComponent'
 import NameComponent              from 'lang/name/component/Name.component'
@@ -59,7 +58,7 @@ export abstract class Texts
         }
 
     }(true,)
-    public static readonly NO = new class Texts_No extends Texts {
+    public static readonly NO =  new class Texts_No extends Texts {
 
         public override renderTextComponent() {
             return null
@@ -86,8 +85,8 @@ export abstract class Texts
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Texts, typeof Texts>> = class CompanionEnum_Texts
-        extends BasicCompanionEnum<Texts, typeof Texts> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Texts, typeof Texts> = class CompanionEnum_Texts
+        extends CompanionEnum<Texts, typeof Texts> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -162,8 +161,8 @@ export abstract class Texts
         return Texts.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Texts> {
-        yield* Texts.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Texts> {
+        return Texts.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

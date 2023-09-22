@@ -1,12 +1,12 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {AlternativeEntityLimit, EntityLimit}                                                                 from 'core/entityLimit/EntityLimit'
 import type {EntityLimitTypes}                                                                                    from 'core/entityLimit/EntityLimitTypes'
 import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/EntityLimit.template'
 import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
 import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                                                from 'lang/name/Name'
-import type {NullOr}                                                                                              from 'util/types/nullable'
-import type {NotApplicable}                                                                                       from 'util/types/variables'
-import type {ObjectHolder, PossibleValueOnObjectHolder}                                                           from 'util/holder/ObjectHolder'
+import type {ValueOrCallback}                                                                                     from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {NOT_APPLICABLE}                       from 'util/commonVariables'
@@ -30,9 +30,9 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
 
     protected constructor(name: Name<string>,
                           acronym: ACRONYM,
-                          alternative: PossibleValueOnObjectHolder<AlternativeEntityLimit>,
-                          type: ObjectHolder<EntityLimitTypes>,
-                          limitAmount: ObjectHolder<EntityLimitAmount>,) {
+                          alternative: ValueOrCallback<AlternativeEntityLimit>,
+                          type: Lazy<EntityLimitTypes>,
+                          limitAmount: Lazy<EntityLimitAmount>,) {
         super(name, alternative,)
         this.#acronym = acronym
         this.#typeHolder = type
@@ -43,7 +43,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
     //region -------------------- Type --------------------
 
     public get type(): EntityLimitTypes {
-        return this.#typeHolder.get
+        return this.#typeHolder.value
     }
 
     //endregion -------------------- Type --------------------
@@ -107,7 +107,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
     //region -------------------- Limit amount --------------------
 
     public get limitContainer(): EntityLimitAmount {
-        return this.#limitHolder.get
+        return this.#limitHolder.value
     }
 
     //region -------------------- SMM1 & SMM3DS limit --------------------

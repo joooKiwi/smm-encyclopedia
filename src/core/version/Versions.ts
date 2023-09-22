@@ -1,8 +1,8 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from 'core/version/Versions.types'
-import type {Nullable, NullOr}                                                                         from 'util/types/nullable'
 
 import {Games}      from 'core/game/Games'
 import {GameStyles} from 'core/gameStyle/GameStyles'
@@ -53,8 +53,8 @@ export class Versions
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Versions, typeof Versions>> = class CompanionEnum_Versions
-        extends BasicCompanionEnum<Versions, typeof Versions> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Versions, typeof Versions> = class CompanionEnum_Versions
+        extends CompanionEnum<Versions, typeof Versions> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -150,8 +150,8 @@ export class Versions
         return Versions.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Versions> {
-        yield* Versions.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Versions> {
+        return Versions.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

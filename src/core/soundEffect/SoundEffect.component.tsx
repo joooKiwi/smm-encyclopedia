@@ -4,7 +4,6 @@ import {PureComponent} from 'react'
 
 import type {SoundEffects} from 'core/soundEffect/SoundEffects'
 import type {Name}         from 'lang/name/Name'
-import type {ReactElement} from 'util/react/ReactProperties'
 
 import Image             from 'app/tools/images/Image'
 import {Games}           from 'core/game/Games'

@@ -1,7 +1,6 @@
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import Image                    from 'app/tools/images/Image'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
@@ -42,11 +41,11 @@ export default class MiiCostumeCategoryApp
         },)
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<MiiCostumeCategories> {
-        return new class implements AppInterpreterWithCardList<MiiCostumeCategories> {
+    protected override _createAppOptionInterpreter() {
+        return new class MiiCostumeCategoryAppInterpreter implements AppInterpreterWithCardList<MiiCostumeCategories> {
 
-            public get iterable() {
-                return MiiCostumeCategories[Symbol.iterator]()
+            public get content() {
+                return MiiCostumeCategories.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

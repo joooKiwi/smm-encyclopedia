@@ -1,10 +1,9 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
-import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
-import type {Nullable, NullOr}                                 from 'util/types/nullable'
 
 import {Themes}         from 'core/theme/Themes'
 import {getValueByType} from 'util/utilitiesMethods'
@@ -20,8 +19,8 @@ export abstract class ThemeTypes
 
     public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<Themes> {
-            return Themes[Symbol.iterator]()
+        public override get content() {
+            return Themes.values.toArray()
         }
 
 
@@ -32,8 +31,8 @@ export abstract class ThemeTypes
     }('all', 'everyTheme',)
     public static readonly COURSE = new class ThemeTypes_Course extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<Themes> {
-            return Themes.courseThemes[Symbol.iterator]()
+        public override get content() {
+            return Themes.courseThemes
         }
 
 
@@ -52,8 +51,8 @@ export abstract class ThemeTypes
     }('course', 'courseTheme',)
     public static readonly WORLD =  new class ThemesTypes_World extends ThemeTypes {
 
-        public override get iterator(): IterableIterator<Themes> {
-            return Themes.worldThemes[Symbol.iterator]()
+        public override get content() {
+            return Themes.worldThemes
         }
 
 
@@ -74,8 +73,8 @@ export abstract class ThemeTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ThemeTypes, typeof ThemeTypes>> = class CompanionEnum_ThemeTypes
-        extends BasicCompanionEnum<ThemeTypes, typeof ThemeTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ThemeTypes, typeof ThemeTypes> = class CompanionEnum_ThemeTypes
+        extends CompanionEnum<ThemeTypes, typeof ThemeTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -119,7 +118,12 @@ export abstract class ThemeTypes
         return this.#routeName
     }
 
-    public abstract get iterator(): IterableIterator<Themes>
+    /**
+     * Retrieve the content applicable to the {@link ThemeTypes}
+     *
+     * @see AppInterpreter.content
+     */
+    public abstract get content(): readonly Themes[]
 
     //region -------------------- Link button methods --------------------
 
@@ -181,8 +185,8 @@ export abstract class ThemeTypes
         return ThemeTypes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<ThemeTypes> {
-        yield* ThemeTypes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<ThemeTypes> {
+        return ThemeTypes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,6 +1,7 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import type {Dispatch, SetStateAction}                                                              from 'react'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Dispatch, SetStateAction}                          from 'react'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {AbstractAppWithInterpreter}                        from 'app/withInterpreter/AbstractAppWithInterpreter'
 import type {AbstractCardListApp}                               from 'app/withInterpreter/AbstractCardListApp'
@@ -11,8 +12,6 @@ import type {ClassWithType}                                     from 'core/Class
 import type {ClassUsedInRoute}                                  from 'route/ClassUsedInRoute'
 import type {ClassWithIsCurrent}                                from 'util/enumerable/ClassWithIsCurrent'
 import type {SingleRetrievableByUrl}                            from 'util/enumerable/SingleRetrievableByUrl'
-import type {ReactElement}                                      from 'util/react/ReactProperties'
-import type {Nullable, NullOr}                                  from 'util/types/nullable'
 
 import {assert}                                 from 'util/utilitiesMethods'
 import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'
@@ -69,8 +68,8 @@ export abstract class ViewDisplays
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ViewDisplays, typeof ViewDisplays>> = class CompanionEnum_ViewDisplays
-        extends BasicCompanionEnum<ViewDisplays, typeof ViewDisplays> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ViewDisplays, typeof ViewDisplays> = class CompanionEnum_ViewDisplays
+        extends CompanionEnum<ViewDisplays, typeof ViewDisplays> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -294,8 +293,8 @@ export abstract class ViewDisplays
         return ViewDisplays.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<ViewDisplays> {
-        yield* ViewDisplays.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<ViewDisplays> {
+        return ViewDisplays.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

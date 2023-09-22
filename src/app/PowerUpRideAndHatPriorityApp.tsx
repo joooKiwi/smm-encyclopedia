@@ -5,8 +5,6 @@ import type {NSMBUPowerUpPriority, PowerUpByAllGameStylesPriority, PowerUpBySMM1
 import type {NSMBUPowerUpPriorities, SM3DWPowerUpPriorities, SMB3PowerUpPriorities, SMBPowerUpPriorities, SMWPowerUpPriorities}                                                        from 'app/powerUp/priority/predefined/types'
 import type {PowerUpPriorityTypes}                                                                                                                                                     from 'app/property/PowerUpPriorityTypes'
 import type {ClassWithType}                                                                                                                                                            from 'core/ClassWithType'
-import type {ReactElement, ReactElementOrString}                                                                                                                                       from 'util/react/ReactProperties'
-import type {Nullable, NullOr}                                                                                                                                                         from 'util/types/nullable'
 
 import AbstractApp                                  from 'app/AbstractApp'
 import {AbstractPowerUpPriority}                    from 'app/powerUp/priority/AbstractPowerUpPriority'
@@ -30,7 +28,8 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 //region -------------------- Import from deconstruction --------------------
 
 const {SMB_AND_SMB3, SMW_AND_NSMBU, SMB_SMB3_AND_SMW, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK, FIRST_EDITOR_IMAGE_CALLBACK, IN_GAME_IMAGE_CALLBACK, FIRST_IN_GAME_IMAGE_CALLBACK, FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK,} = AbstractPowerUpPriority
-const {SUPER_MUSHROOM, FIRE_FLOWER, SUPERBALL_FLOWER,
+const {
+    SUPER_MUSHROOM, FIRE_FLOWER, SUPERBALL_FLOWER,
     MYSTERY_MUSHROOM, WEIRD_MUSHROOM,
     MASTER_SWORD, BIG_MUSHROOM, BIG_MUSHROOM_CLASSIC, BIG_MUSHROOM_MODERN, SMB2_MUSHROOM,
     SUPER_LEAF, FROG_SUIT,
@@ -53,72 +52,72 @@ const {POWER_UP,} = OtherWordInTheGames
 
 /** @todo Replace the state with a property */
 export default class PowerUpRideAndHatPriorityApp
-    extends AbstractApp<PowerUpAndRidePriorityProperties, {gameStyle: NullOr<GameStyles>,}>
+    extends AbstractApp<PowerUpAndRidePriorityProperties, { gameStyle: NullOr<GameStyles>, }>
     implements ClassWithType<PowerUpPriorityTypes> {
 
     //region -------------------- Power-up priority holders --------------------
 
-    static readonly #SUPER_MUSHROOM: PowerUpByAllGameStylesPriority =               new AllGamesPowerUpPriority(SUPER_MUSHROOM,         SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
-    static readonly #MYSTERY_MUSHROOM: SMBPowerUpPriority =                         new SMM1PowerUpPriority(MYSTERY_MUSHROOM,           SUPER_MARIO_BROS,       IN_GAME_IMAGE_CALLBACK,)
-    static readonly #WEIRD_MUSHROOM: SMBPowerUpPriority =                           new SMM1PowerUpPriority(WEIRD_MUSHROOM,             SUPER_MARIO_BROS,       IN_GAME_IMAGE_CALLBACK,)
-    static readonly #MASTER_SWORD: SMBPowerUpPriority =                             new SMM2PowerUpPriority(MASTER_SWORD,               SUPER_MARIO_BROS,       EDITOR_IMAGE_CALLBACK,)
+    static readonly #SUPER_MUSHROOM: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SUPER_MUSHROOM, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #MYSTERY_MUSHROOM: SMBPowerUpPriority = new SMM1PowerUpPriority(MYSTERY_MUSHROOM, SUPER_MARIO_BROS, IN_GAME_IMAGE_CALLBACK,)
+    static readonly #WEIRD_MUSHROOM: SMBPowerUpPriority = new SMM1PowerUpPriority(WEIRD_MUSHROOM, SUPER_MARIO_BROS, IN_GAME_IMAGE_CALLBACK,)
+    static readonly #MASTER_SWORD: SMBPowerUpPriority = new SMM2PowerUpPriority(MASTER_SWORD, SUPER_MARIO_BROS, EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #FIRE_FLOWER: PowerUpByAllGameStylesPriority =                  new AllGamesPowerUpPriority(FIRE_FLOWER,            SMB_SMB3_SMW_AND_NSMBU, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #SUPERBALL_FLOWER: SMBPowerUpPriority =                         new SMM2PowerUpPriority(SUPERBALL_FLOWER,           SUPER_MARIO_BROS,       FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #FIRE_FLOWER: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(FIRE_FLOWER, SMB_SMB3_SMW_AND_NSMBU, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #SUPERBALL_FLOWER: SMBPowerUpPriority = new SMM2PowerUpPriority(SUPERBALL_FLOWER, SUPER_MARIO_BROS, FIRST_EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #BIG_MUSHROOM: SMBPowerUpPriority =                             new SMM2PowerUpPriority(BIG_MUSHROOM,               SUPER_MARIO_BROS,       FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #BIG_MUSHROOM_CLASSIC: SMBPowerUpPriority =                     new SMM1PowerUpPriority(BIG_MUSHROOM_CLASSIC,       SUPER_MARIO_BROS,       IN_GAME_IMAGE_CALLBACK,)
-    static readonly #BIG_MUSHROOM_MODERN: SMBPowerUpPriority =                      new SMM1PowerUpPriority(BIG_MUSHROOM_MODERN,        SUPER_MARIO_BROS,       IN_GAME_IMAGE_CALLBACK,)
-    static readonly #SMB2_MUSHROOM: SMBPowerUpPriority =                            new SMM2PowerUpPriority(SMB2_MUSHROOM,              SUPER_MARIO_BROS,       FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #BIG_MUSHROOM: SMBPowerUpPriority = new SMM2PowerUpPriority(BIG_MUSHROOM, SUPER_MARIO_BROS, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #BIG_MUSHROOM_CLASSIC: SMBPowerUpPriority = new SMM1PowerUpPriority(BIG_MUSHROOM_CLASSIC, SUPER_MARIO_BROS, IN_GAME_IMAGE_CALLBACK,)
+    static readonly #BIG_MUSHROOM_MODERN: SMBPowerUpPriority = new SMM1PowerUpPriority(BIG_MUSHROOM_MODERN, SUPER_MARIO_BROS, IN_GAME_IMAGE_CALLBACK,)
+    static readonly #SMB2_MUSHROOM: SMBPowerUpPriority = new SMM2PowerUpPriority(SMB2_MUSHROOM, SUPER_MARIO_BROS, FIRST_EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #SUPER_LEAF: SMB3PowerUpPriority =                              new AllGamesPowerUpPriority(SUPER_LEAF,             SUPER_MARIO_BROS_3,     FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #FROG_SUIT: SMB3PowerUpPriority =                               new SMM2PowerUpPriority(FROG_SUIT,                  SUPER_MARIO_BROS_3,     FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #SUPER_LEAF: SMB3PowerUpPriority = new AllGamesPowerUpPriority(SUPER_LEAF, SUPER_MARIO_BROS_3, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #FROG_SUIT: SMB3PowerUpPriority = new SMM2PowerUpPriority(FROG_SUIT, SUPER_MARIO_BROS_3, FIRST_EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #CAPE_FEATHER: SMWPowerUpPriority =                             new AllGamesPowerUpPriority(CAPE_FEATHER,           SUPER_MARIO_WORLD,      FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #POWER_BALLOON: SMWPowerUpPriority =                            new SMM2PowerUpPriority(POWER_BALLOON,              SUPER_MARIO_WORLD,      FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #CAPE_FEATHER: SMWPowerUpPriority = new AllGamesPowerUpPriority(CAPE_FEATHER, SUPER_MARIO_WORLD, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #POWER_BALLOON: SMWPowerUpPriority = new SMM2PowerUpPriority(POWER_BALLOON, SUPER_MARIO_WORLD, FIRST_EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #PROPELLER_MUSHROOM: NSMBUPowerUpPriority =                     new AllGamesPowerUpPriority(PROPELLER_MUSHROOM,     NEW_SUPER_MARIO_BROS_U, FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #SUPER_ACORN: NSMBUPowerUpPriority =                            new SMM2PowerUpPriority(SUPER_ACORN,                NEW_SUPER_MARIO_BROS_U, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #PROPELLER_MUSHROOM: NSMBUPowerUpPriority = new AllGamesPowerUpPriority(PROPELLER_MUSHROOM, NEW_SUPER_MARIO_BROS_U, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #SUPER_ACORN: NSMBUPowerUpPriority = new SMM2PowerUpPriority(SUPER_ACORN, NEW_SUPER_MARIO_BROS_U, FIRST_EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #SUPER_BELL: SM3DWPowerUpPriority =                             new SMM2PowerUpPriority(SUPER_BELL,                 SUPER_MARIO_3D_WORLD,   FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #SUPER_HAMMER: SM3DWPowerUpPriority =                           new SMM2PowerUpPriority(SUPER_HAMMER,               SUPER_MARIO_3D_WORLD,   FIRST_EDITOR_IMAGE_CALLBACK,)
-    static readonly #BOOMERANG_FLOWER: SM3DWPowerUpPriority =                       new SMM2PowerUpPriority(BOOMERANG_FLOWER,           SUPER_MARIO_3D_WORLD,   FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #SUPER_BELL: SM3DWPowerUpPriority = new SMM2PowerUpPriority(SUPER_BELL, SUPER_MARIO_3D_WORLD, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #SUPER_HAMMER: SM3DWPowerUpPriority = new SMM2PowerUpPriority(SUPER_HAMMER, SUPER_MARIO_3D_WORLD, FIRST_EDITOR_IMAGE_CALLBACK,)
+    static readonly #BOOMERANG_FLOWER: SM3DWPowerUpPriority = new SMM2PowerUpPriority(BOOMERANG_FLOWER, SUPER_MARIO_3D_WORLD, FIRST_EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #CANNON_BOX: SM3DWPowerUpPriority =                             new SMM2PowerUpPriority(CANNON_BOX,                 SUPER_MARIO_3D_WORLD,   EDITOR_IMAGE_CALLBACK,)
-    static readonly #PROPELLER_BOX: SM3DWPowerUpPriority =                          new SMM2PowerUpPriority(PROPELLER_BOX,              SUPER_MARIO_3D_WORLD,   EDITOR_IMAGE_CALLBACK,)
-    static readonly #GOOMBA_MASK: SM3DWPowerUpPriority =                            new SMM2PowerUpPriority(GOOMBA_MASK,                SUPER_MARIO_3D_WORLD,   EDITOR_IMAGE_CALLBACK,)
-    static readonly #BULLET_BILL_MASK: SM3DWPowerUpPriority =                       new SMM2PowerUpPriority(BULLET_BILL_MASK,           SUPER_MARIO_3D_WORLD,   EDITOR_IMAGE_CALLBACK,)
-    static readonly #RED_POW_BOX: SM3DWPowerUpPriority =                            new SMM2PowerUpPriority(RED_POW_BOX,                SUPER_MARIO_3D_WORLD,   EDITOR_IMAGE_CALLBACK,)
+    static readonly #CANNON_BOX: SM3DWPowerUpPriority = new SMM2PowerUpPriority(CANNON_BOX, SUPER_MARIO_3D_WORLD, EDITOR_IMAGE_CALLBACK,)
+    static readonly #PROPELLER_BOX: SM3DWPowerUpPriority = new SMM2PowerUpPriority(PROPELLER_BOX, SUPER_MARIO_3D_WORLD, EDITOR_IMAGE_CALLBACK,)
+    static readonly #GOOMBA_MASK: SM3DWPowerUpPriority = new SMM2PowerUpPriority(GOOMBA_MASK, SUPER_MARIO_3D_WORLD, EDITOR_IMAGE_CALLBACK,)
+    static readonly #BULLET_BILL_MASK: SM3DWPowerUpPriority = new SMM2PowerUpPriority(BULLET_BILL_MASK, SUPER_MARIO_3D_WORLD, EDITOR_IMAGE_CALLBACK,)
+    static readonly #RED_POW_BOX: SM3DWPowerUpPriority = new SMM2PowerUpPriority(RED_POW_BOX, SUPER_MARIO_3D_WORLD, EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #SUPER_STAR: PowerUpByAllGameStylesPriority =                   new AllGamesPowerUpPriority(SUPER_STAR,             SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #SUPER_STAR: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SUPER_STAR, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #SHOE: PowerUpByAllGameStylesPriority =                         new AllGamesPowerUpPriority(SHOE,                   SMB_AND_SMB3,           FIRST_IN_GAME_IMAGE_CALLBACK,)
-    static readonly #STILETTO: PowerUpByAllGameStylesPriority =                     new AllGamesPowerUpPriority(STILETTO,               SMB_AND_SMB3,           FIRST_IN_GAME_IMAGE_CALLBACK,)
+    static readonly #SHOE: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SHOE, SMB_AND_SMB3, FIRST_IN_GAME_IMAGE_CALLBACK,)
+    static readonly #STILETTO: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(STILETTO, SMB_AND_SMB3, FIRST_IN_GAME_IMAGE_CALLBACK,)
 
-    static readonly #YOSHI: PowerUpByAllGameStylesPriority =                        new AllGamesPowerUpPriority(YOSHI,                  SMW_AND_NSMBU,          (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(YOSHI_EGG, gameStyle,),)
-    static readonly #RED_YOSHI: PowerUpByAllGameStylesPriority =                    new SMM2PowerUpPriority(RED_YOSHI,                  SMW_AND_NSMBU,          (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(RED_YOSHI_EGG, gameStyle,),)
+    static readonly #YOSHI: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(YOSHI, SMW_AND_NSMBU, (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(YOSHI_EGG, gameStyle,),)
+    static readonly #RED_YOSHI: PowerUpByAllGameStylesPriority = new SMM2PowerUpPriority(RED_YOSHI, SMW_AND_NSMBU, (_, gameStyle,) => FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK(RED_YOSHI_EGG, gameStyle,),)
 
-    static readonly #BUZZY_SHELL: PowerUpByAllGameStylesPriority =                  new AllGamesPowerUpPriority(BUZZY_SHELL,            SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
-    static readonly #SPINY_SHELL: PowerUpByAllGameStylesPriority =                  new AllGamesPowerUpPriority(SPINY_SHELL,            SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
-    static readonly #DRY_BONES_SHELL: PowerUpByAllGameStylesPriority =              new SMM2PowerUpPriority(DRY_BONES_SHELL,            SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #BUZZY_SHELL: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(BUZZY_SHELL, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #SPINY_SHELL: PowerUpByAllGameStylesPriority = new AllGamesPowerUpPriority(SPINY_SHELL, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #DRY_BONES_SHELL: PowerUpByAllGameStylesPriority = new SMM2PowerUpPriority(DRY_BONES_SHELL, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
 
     // //TODO change to clown car group
     // static readonly #CLOWN_CAR: PowerUpBySMM1GameStylesPriority =       new AllGamesPowerUpPriority(KOOPA_CLOWN_CAR,        SMB_SMB3_SMW_AND_NSMBU, (_, gameStyle,) =>
     //     gameStyle === NEW_SUPER_MARIO_BROS_U
     //         ? AbstractPowerUpPriority.getEditorImages(JUNIOR_CLOWN_CAR, gameStyle,)
     //         : AbstractPowerUpPriority.getEditorImages(KOOPA_CLOWN_CAR, gameStyle,),)
-    static readonly #KOOPA_CLOWN_CAR: PowerUpBySMM1GameStylesPriority =             new AllGamesPowerUpPriority(KOOPA_CLOWN_CAR,        SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
-    static readonly #JUNIOR_CLOWN_CAR: NSMBUPowerUpPriority =                       new AllGamesPowerUpPriority(JUNIOR_CLOWN_CAR,       SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #KOOPA_CLOWN_CAR: PowerUpBySMM1GameStylesPriority = new AllGamesPowerUpPriority(KOOPA_CLOWN_CAR, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #JUNIOR_CLOWN_CAR: NSMBUPowerUpPriority = new AllGamesPowerUpPriority(JUNIOR_CLOWN_CAR, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
     // //TODO change to fire clown car group
     // static readonly #FIRE_CLOWN_CAR: PowerUpBySMM1GameStylesPriority =  new AllGamesPowerUpPriority(FIRE_KOOPA_CLOWN_CAR,   SMB_SMB3_SMW_AND_NSMBU, (_, gameStyle,) =>
     //     gameStyle === NEW_SUPER_MARIO_BROS_U
     //         ? AbstractPowerUpPriority.getEditorImages(FIRE_JUNIOR_CLOWN_CAR, gameStyle,)
     //         : AbstractPowerUpPriority.getEditorImages(FIRE_KOOPA_CLOWN_CAR, gameStyle,),)
-    static readonly #FIRE_KOOPA_CLOWN_CAR: PowerUpBySMM1GameStylesPriority =        new AllGamesPowerUpPriority(FIRE_KOOPA_CLOWN_CAR,   SMB_SMB3_AND_SMW,       EDITOR_IMAGE_CALLBACK,)
-    static readonly #FIRE_JUNIOR_CLOWN_CAR: NSMBUPowerUpPriority =                  new AllGamesPowerUpPriority(FIRE_JUNIOR_CLOWN_CAR,  NEW_SUPER_MARIO_BROS_U, EDITOR_IMAGE_CALLBACK,)
+    static readonly #FIRE_KOOPA_CLOWN_CAR: PowerUpBySMM1GameStylesPriority = new AllGamesPowerUpPriority(FIRE_KOOPA_CLOWN_CAR, SMB_SMB3_AND_SMW, EDITOR_IMAGE_CALLBACK,)
+    static readonly #FIRE_JUNIOR_CLOWN_CAR: NSMBUPowerUpPriority = new AllGamesPowerUpPriority(FIRE_JUNIOR_CLOWN_CAR, NEW_SUPER_MARIO_BROS_U, EDITOR_IMAGE_CALLBACK,)
 
-    static readonly #CAR: SM3DWPowerUpPriority =                                    new SMM2PowerUpPriority(CAR,                        SUPER_MARIO_3D_WORLD,   (_, gameStyle,) => EDITOR_IMAGE_CALLBACK(KOOPA_TROOPA_CAR, gameStyle,),)
-    static readonly #LAKITU_CLOUD: PowerUpBySMM1GameStylesPriority =                new SMM2PowerUpPriority(LAKITU_CLOUD,               SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
+    static readonly #CAR: SM3DWPowerUpPriority = new SMM2PowerUpPriority(CAR, SUPER_MARIO_3D_WORLD, (_, gameStyle,) => EDITOR_IMAGE_CALLBACK(KOOPA_TROOPA_CAR, gameStyle,),)
+    static readonly #LAKITU_CLOUD: PowerUpBySMM1GameStylesPriority = new SMM2PowerUpPriority(LAKITU_CLOUD, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK,)
 
 
     static readonly #SMB_POWER_UPS: SMBPowerUpPriorities = [
@@ -243,10 +242,14 @@ export default class PowerUpRideAndHatPriorityApp
         return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
             <div className="d-flex flex-wrap justify-content-center">
                 <div className={`btn ${this.hasSMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS}>{SUPER_MARIO_BROS.renderSingleComponent}</div>
-                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>{SUPER_MARIO_BROS_3.renderSingleComponent}</div>
-                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>{SUPER_MARIO_WORLD.renderSingleComponent}</div>
-                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>{NEW_SUPER_MARIO_BROS_U.renderSingleComponent}</div>
-                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>{SUPER_MARIO_3D_WORLD.renderSingleComponent}</div> : null}
+                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
+                     onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>{SUPER_MARIO_BROS_3.renderSingleComponent}</div>
+                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
+                     onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>{SUPER_MARIO_WORLD.renderSingleComponent}</div>
+                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
+                     onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>{NEW_SUPER_MARIO_BROS_U.renderSingleComponent}</div>
+                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
+                                     onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>{SUPER_MARIO_3D_WORLD.renderSingleComponent}</div> : null}
             </div>
             <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom w-100`} onClick={() => this.__gameStyle = null}>{unfinishedText('None')}</div>
         </div>
@@ -276,8 +279,12 @@ export default class PowerUpRideAndHatPriorityApp
                     <li id="example-direct" className="d-flex"><Arrow value={Arrows.RIGHT}/><UnfinishedText>Directly</UnfinishedText></li>
                 </ul>
                 <ul className="list-unstyled m-0">
-                    <li id="example-withLag" className="d-flex"><div className="color rounded my-auto"/><UnfinishedText>With lag</UnfinishedText></li>
-                    <li id="example-withoutLag" className="d-flex"><div className="color rounded my-auto"/><UnfinishedText>Without lag</UnfinishedText></li>
+                    <li id="example-withLag" className="d-flex">
+                        <div className="color rounded my-auto"/>
+                        <UnfinishedText>With lag</UnfinishedText></li>
+                    <li id="example-withoutLag" className="d-flex">
+                        <div className="color rounded my-auto"/>
+                        <UnfinishedText>Without lag</UnfinishedText></li>
                 </ul>
             </div>
         </div>

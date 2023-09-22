@@ -1,6 +1,4 @@
 import type {PossibleEnglishName} from 'core/soundEffect/SoundEffects.types'
-import type {NullOr}              from 'util/types/nullable'
-import type {EmptyArray}          from 'util/types/variables'
 
 interface SoundEffectSoundTemplateMap_SMM1Exclusive {
 

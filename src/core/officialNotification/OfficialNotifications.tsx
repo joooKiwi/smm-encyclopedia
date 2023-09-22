@@ -1,26 +1,25 @@
 import './OfficialNotifications.scss'
 
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
-import {Fragment}                                                                                   from 'react'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Lazy}                                              from '@joookiwi/lazy'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {lazy}                                                   from '@joookiwi/lazy'
+import {Fragment}                                               from 'react'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
 import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                              from 'lang/components/TranslationProperty'
-import type {ObjectHolder}                                                                                                                                                                                                                                                                                           from 'util/holder/ObjectHolder'
-import type {ReactElement}                                                                                                                                                                                                                                                                                           from 'util/react/ReactProperties'
-import type {Nullable, NullableNumber, NullOr}                                                                                                                                                                                                                                                                       from 'util/types/nullable'
 
 import Image                                                                     from 'app/tools/images/Image'
 import TextComponent                                                             from 'app/tools/text/TextComponent'
 import UnfinishedText, {unfinishedText}                                          from 'app/tools/text/UnfinishedText'
 import {gameContentTranslation}                                                  from 'lang/components/translationMethods'
-import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                       from 'core/officialNotification/file/generalImageFiles'
-import {BRONZE_MEDAL_IMAGE_FILE, GOLD_MEDAL_IMAGE_FILE, SILVER_MEDAL_IMAGE_FILE} from 'core/officialNotification/file/generalMedalImageFiles'
-import {FIRST_PLACE_IMAGE_FILE, SECOND_PLACE_IMAGE_FILE, THIRD_PLACE_IMAGE_FILE} from 'core/officialNotification/file/positionMedalImageFiles'
+import {FIRST_PLACE_IMAGE_FILE, SECOND_PLACE_IMAGE_FILE, THIRD_PLACE_IMAGE_FILE} from 'core/officialNotification/file/imageFiles'
+import {BRONZE_MEDAL_IMAGE_FILE, GOLD_MEDAL_IMAGE_FILE, SILVER_MEDAL_IMAGE_FILE} from 'core/officialNotification/file/imageFiles'
+import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                       from 'core/officialNotification/file/imageFiles'
 import {OtherWordInTheGames}                                                     from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {DelayedObjectHolderContainer}                                            from 'util/holder/DelayedObjectHolder.container'
 import {EMPTY_ARRAY, EMPTY_STRING}                                               from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
 
@@ -485,8 +484,8 @@ export class OfficialNotifications
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<OfficialNotifications, typeof OfficialNotifications>> = class CompanionEnum_OfficialNotifications
-        extends BasicCompanionEnum<OfficialNotifications, typeof OfficialNotifications> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<OfficialNotifications, typeof OfficialNotifications> = class CompanionEnum_OfficialNotifications
+        extends CompanionEnum<OfficialNotifications, typeof OfficialNotifications> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -511,7 +510,7 @@ export class OfficialNotifications
     readonly #additionalEnglishName: readonly PossibleEnglishNameWithEveryAmount[]
 
     readonly #translationKey
-    #additionalTranslationKeyHolder: ObjectHolder<NullOr<PossibleAdditionalTranslationKey>>
+    #additionalTranslationKeyHolder: Lazy<NullOr<PossibleAdditionalTranslationKey>>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -524,7 +523,7 @@ export class OfficialNotifications
         this.#englishName = new StringContainer(englishName)
         this.#translationKey = translationKey
         this.#additionalEnglishName = amount[0] === 1 ? EMPTY_ARRAY : amount.map(amount => this.englishName.replace('#', amount.toString(),) as PossibleEnglishNameWithEveryAmount)
-        this.#additionalTranslationKeyHolder = new DelayedObjectHolderContainer(() => this._createAdditionalTranslationKey)
+        this.#additionalTranslationKeyHolder = lazy(() => this._createAdditionalTranslationKey,)
     }
 
     //endregion -------------------- Constructor --------------------
@@ -556,7 +555,7 @@ export class OfficialNotifications
     }
 
     public get additionalTranslationKey(): NullOr<PossibleAdditionalTranslationKey> {
-        return this.#additionalTranslationKeyHolder.get
+        return this.#additionalTranslationKeyHolder.value
     }
 
     //endregion -------------------- Getter methods (translation key) --------------------
@@ -738,8 +737,8 @@ export class OfficialNotifications
         return OfficialNotifications.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<OfficialNotifications> {
-        yield* OfficialNotifications.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<OfficialNotifications> {
+        return OfficialNotifications.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

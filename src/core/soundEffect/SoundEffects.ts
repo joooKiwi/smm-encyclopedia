@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                   from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                     from 'core/ClassWithReference'
@@ -7,30 +8,27 @@ import type {MusicSoundFile}                                                    
 import type {PossibleSoundEffectMusicEditorName}                                                                                                     from 'core/music/soundEffect/SoundEffectMusic'
 import type {SoundEffect}                                                                                                                            from 'core/soundEffect/SoundEffect'
 import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectGames, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
-import type {SMM1SoundEffectSoundFile}                                                                                                               from 'core/soundEffect/file/SMM1SoundEffectSoundFile'
-import type {SMM2SoundEffectImageFile}                                                                                                               from 'core/soundEffect/file/SMM2SoundEffectImageFile'
-import type {SMM2SoundEffectSoundFile}                                                                                                               from 'core/soundEffect/file/SMM2SoundEffectSoundFile'
-import type {SoundEffectSoundFile}                                                                                                                   from 'core/soundEffect/file/SoundEffectSoundFile'
+import type {SMM2SoundEffectImageFile}                                                                                                               from 'core/soundEffect/file/SoundEffectImageFile'
+import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile, SoundEffectSoundFile}                                                               from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}                                                                              from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {SMM1ExclusiveSoundEffectSound}                                                                                                          from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
 import type {SMM1StandaloneSoundEffectSound}                                                                                                         from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
 import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                            from 'core/soundEffect/sound/types'
 import type {Builder}                                                                                                                                from 'util/builder/Builder'
-import type {Nullable, NullOr}                                                                                                                       from 'util/types/nullable'
 
-import type {Musics}                                        from 'core/music/Musics'
-import SoundEffectComponent                                 from 'core/soundEffect/SoundEffect.component'
-import {SoundEffectFromMusicAdaptor}                        from 'core/soundEffect/SoundEffectFromMusicAdaptor'
-import {SoundEffectLoader}                                  from 'core/soundEffect/SoundEffect.loader'
-import {SMM1SoundEffectImageFileContainer as SMM1ImageFile} from 'core/soundEffect/file/SMM1SoundEffectImageFile.container'
-import {SMM2SoundEffectImageFileContainer as SMM2ImageFile} from 'core/soundEffect/file/SMM2SoundEffectImageFile.container'
-import {EmptySMMSoundEffectSound}                           from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
-import {SMM1ExclusiveSoundEffectSoundBuilder}               from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound.builder'
-import {SMM1StandaloneSoundEffectSoundBuilder}              from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.builder'
-import {SMM2SoundEffectSoundFromSoundEffectBuilder}         from 'core/soundEffect/sound/SMM2SoundEffectSoundFromSoundEffect.builder'
-import {Import}                                             from 'util/DynamicImporter'
-import {StringContainer}                                    from 'util/StringContainer'
-import {getValueByEnglishName}                              from 'util/utilitiesMethods'
+import type {Musics}                                                    from 'core/music/Musics'
+import SoundEffectComponent                                             from 'core/soundEffect/SoundEffect.component'
+import {SoundEffectFromMusicAdaptor}                                    from 'core/soundEffect/SoundEffectFromMusicAdaptor'
+import {SoundEffectLoader}                                              from 'core/soundEffect/SoundEffect.loader'
+import * as FileCreator                                                 from 'core/soundEffect/file/fileCreator'
+import {EmptySMMSoundEffectSound as EmptySound}                         from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
+import {SMM1ExclusiveSoundEffectSoundContainer as SMM1ExclusiveSound}   from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound.container'
+import {SMM1StandaloneSoundEffectSoundContainer as SMM1StandaloneSound} from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound.container'
+import {SMM2SoundEffectSoundContainer as SMM2Sound}                     from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
+import {Import}                                                         from 'util/DynamicImporter'
+import {StringContainer}                                                from 'util/StringContainer'
+import {getValueByEnglishName}                                          from 'util/utilitiesMethods'
+import {EMPTY_ARRAY}                                                    from 'util/emptyVariables'
 
 /**
  * @todo move the images in a delayed method instead of in the constructor.
@@ -45,406 +43,393 @@ export abstract class SoundEffects
 
     public static readonly SHOCK =                      new class SoundEffects_Shock extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '00_00'
+        protected override _createSMM1ImageNumbers() {
+            return '00_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Shock'
+        protected override _createSMM2ImageName() {
+            return 'Shock' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_LEFT_AND_RIGHT_RIGHT.map(endName => `yr_SToy_01_OssanOdoroki_${endName}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_SToy_01_OssanOdoroki_L_pxsps_l_ear', 'yr_SToy_01_OssanOdoroki_R_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('SE_OssanOdoroki',)
+            return FileCreator.smm2SoundFiles('SE_OssanOdoroki',)
         }
 
     }('Shock',)
     public static readonly SCREAM =                     new class SoundEffects_Scream extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '00_01'
+        protected override _createSMM1ImageNumbers() {
+            return '00_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Scream'
+        protected override _createSMM2ImageName() {
+            return 'Scream' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_LEFT_AND_RIGHT_RIGHT.map(endName => `yr_SToy_01_OssanHimei4_${endName}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_SToy_01_OssanHimei4_L_pxsps_l_ear','yr_SToy_01_OssanHimei4_R_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('SE_OssanHimei4',)
+            return FileCreator.smm2SoundFiles('SE_OssanHimei4',)
         }
 
     }('Scream',)
     public static readonly LAUGHTER =                   new class SoundEffects_Laughter extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '09_00'
+        protected override _createSMM1ImageNumbers() {
+            return '09_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Laughter'
+        protected override _createSMM2ImageName() {
+            return 'Laughter' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = (['1_pxsps_l', '2_pxsps_r', '3_pxsps_l', '4_pxsps_r',] as const).map(endName => `yr_v_Laugh_Tsuji_0${endName}_ear`as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_v_Laugh_Tsuji_01_pxsps_l_ear', 'yr_v_Laugh_Tsuji_02_pxsps_r_ear', 'yr_v_Laugh_Tsuji_03_pxsps_l_ear', 'yr_v_Laugh_Tsuji_04_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return new SMM1StandaloneSoundEffectSoundBuilder(smm1, smm2,)
-                .smm2(1).smm1(1)
-                .smm2(2).smm1(2)
-                .smm2(3).smm1(3)
-                .editor(2, 4,)/*FIXME change to 2 only*/.smm1(4)
+            const smm1Sounds = smm1.sounds
+            const smm2Sounds = smm2.sounds
+
+            return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm2Sounds[1], smm1Sounds[1], smm2Sounds[2], smm1Sounds[2], smm2Sounds[3], smm1Sounds[3],], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            const sounds = ([1, 2, 3, 4,] as const).map(index => `yr_v_Laugh_Tsuji_0${index}` as const)
+            const sounds = FileCreator.smm2SoundFiles('yr_v_Laugh_Tsuji_01', 'yr_v_Laugh_Tsuji_02', 'yr_v_Laugh_Tsuji_03', 'yr_v_Laugh_Tsuji_04',)
 
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(sounds,)
-                .editor(4)
+            return new SMM2Sound(sounds, sounds[3], EMPTY_ARRAY, EMPTY_ARRAY,)
         }
 
     }('Laughter',)
     public static readonly GUFFAW =                     new class SoundEffects_Guffaw extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'LoudLaughter'
+        protected override _createSMM2ImageName() {
+            return 'LoudLaughter' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            const sounds = ([0, 1, 2, 3, 4, 5, 6, 7,] as const).map(index => `se_otoasobi_oowarai_0${index}` as const)
+            const sounds = FileCreator.smm2SoundFiles(
+                'se_otoasobi_oowarai_00',
+                'se_otoasobi_oowarai_01',
+                'se_otoasobi_oowarai_02',
+                'se_otoasobi_oowarai_03',
+                'se_otoasobi_oowarai_04',
+                'se_otoasobi_oowarai_05',
+                'se_otoasobi_oowarai_06',
+                'se_otoasobi_oowarai_07',
+            )
 
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(sounds,)
-                .editor(7)
+            return new SMM2Sound(sounds, sounds[6], EMPTY_ARRAY, EMPTY_ARRAY,)
         }
 
     }('Guffaw',)
     public static readonly BOOO =                       new class SoundEffects_Booo extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Boo'
+        protected override _createSMM2ImageName() {
+            return 'Boo' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_Booing01',)
+            return FileCreator.smm2SoundFiles('Otoasobi_Booing01',)
         }
 
     }('Booo!',)
     public static readonly CHEER =                      new class SoundEffects_Cheer extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '04_01'
+        protected override _createSMM1ImageNumbers() {
+            return '04_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Cheer'
+        protected override _createSMM2ImageName() {
+            return 'Cheer' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('SE_DaigunshuShort', 'SE_daikansei_3d',)
+            return FileCreator.smm1SoundFiles('SE_DaigunshuShort', 'SE_daikansei_3d',)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_Crowd_yubibue', 'Otoasobi_Crowd_donpafu',)
+            return FileCreator.smm2SoundFiles('Otoasobi_Crowd_yubibue', 'Otoasobi_Crowd_donpafu',)
         }
 
     }('Cheer',)
     public static readonly BABY =                       new class SoundEffects_Baby extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '10_00'
+        protected override _createSMM1ImageNumbers() {
+            return '10_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Baby'
+        protected override _createSMM2ImageName() {
+            return 'Baby' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_AND_RIGHT_UPPERCASE.map(direction => `SE_Affun_out${direction}_type4_invF_Rmic` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('SE_Affun_outL_type4_invF_Rmic', 'SE_Affun_outR_type4_invF_Rmic',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('SE_Affun', 'se_otoasobi_affun_night',)
+            return FileCreator.smm2SoundFiles('SE_Affun', 'se_otoasobi_affun_night',)
         }
 
     }('Baby',)
     public static readonly PARTY_POPPER =               new class SoundEffects_PartyPopper extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Cracker'
+        protected override _createSMM2ImageName() {
+            return 'Cracker' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_Cracker',)
+            return FileCreator.smm2SoundFiles('Otoasobi_Cracker',)
         }
 
     }('Party Popper',)
     public static readonly APPLAUSE =                   new class SoundEffects_Applause extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '04_00'
+        protected override _createSMM1ImageNumbers() {
+            return '04_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Applause'
+        protected override _createSMM2ImageName() {
+            return 'Applause' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = (['', SoundEffects._LEFT_AND_RIGHT_LOWERCASE.map(direction => `_pxsps_${direction}_ear` as const)] as const).flat().map(endName => `SE_KANSEI${endName}` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('SE_KANSEI', 'SE_KANSEI_pxsps_l_ear', 'SE_KANSEI_pxsps_r_ear',)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_Crap',)
+            return FileCreator.smm2SoundFiles('Otoasobi_Crap',)
         }
 
     }('Applause',)
     public static readonly NEAR_MISS =                  new class SoundEffects_NearMiss extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Incident'
+        protected override _createSMM2ImageName() {
+            return 'Incident' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('se_otoasobi_hiyarihat_07_edit', 'se_otoasobi_hiyarihat_07',)
+            return FileCreator.smm2SoundFiles('se_otoasobi_hiyarihat_07_edit', 'se_otoasobi_hiyarihat_07',)
         }
 
     }('Near Miss',)
 
     public static readonly CLATTER =                    new class SoundEffects_Clatter extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '01_00'
+        protected override _createSMM1ImageNumbers() {
+            return '01_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Clatter'
+        protected override _createSMM2ImageName() {
+            return 'Clatter' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_LEFT_AND_RIGHT_RIGHT.map(endName => `yr_SToy_02_destruction01_3D_${endName}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds)
+            return FileCreator.smm1SoundFiles('yr_SToy_02_destruction01_2D_L_pxsps_l_ear', 'yr_SToy_02_destruction01_3D_L_pxsps_l_ear', 'yr_SToy_02_destruction01_3D_R_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('yr_SToy_02_destruction01_2D_L_pxsps_l_ear',)
+            return FileCreator.smm2SoundFiles('yr_SToy_02_destruction01_2D_L_pxsps_l_ear',)
         }
 
     }('Clatter',)
     public static readonly DRAMA =                      new class SoundEffects_Drama extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '01_01'
+        protected override _createSMM1ImageNumbers() {
+            return '01_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Drama'
+        protected override _createSMM2ImageName() {
+            return 'Drama' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = (['2D_L_pxsps_l', '3D_L_pxsps_l','3D_R_pxsps_r',] as const).map(endName => `yr_SToy_02_shocking4_${endName}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_SToy_02_shocking4_2D_L_pxsps_l_ear', 'yr_SToy_02_shocking4_3D_L_pxsps_l_ear', 'yr_SToy_02_shocking4_3D_R_pxsps_r_ear',)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('se_otoasobi_gagaaan',)
+            return FileCreator.smm2SoundFiles('se_otoasobi_gagaaan',)
         }
 
     }('Drama!',)
     public static readonly KICK =                       new class SoundEffects_Kick extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '02_00'
+        protected override _createSMM1ImageNumbers() {
+            return '02_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Kick'
+        protected override _createSMM2ImageName() {
+            return 'Kick' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_LEFT_AND_RIGHT_RIGHT.map(endName => `yr_SToy_03_Aw_3D_${endName}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_SToy_03_Aw_3D_L_pxsps_l_ear', 'yr_SToy_03_Aw_3D_R_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('yr_SToy_03_Aw_2D',)
+            return FileCreator.smm2SoundFiles('yr_SToy_03_Aw_2D',)
         }
 
     }('Kick',)
     public static readonly JUMP =                       new class SoundEffects_Jump extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '02_01'
+        protected override _createSMM1ImageNumbers() {
+            return '02_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Jump'
+        protected override _createSMM2ImageName() {
+            return 'Jump' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_RIGHT_AND_RIGHT_RIGHT.map(endName => `yr_SToy_03_How_3D_${endName}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_SToy_03_How_3D_L_pxsps_r_ear', 'yr_SToy_03_How_3D_R_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('yr_SToy_03_How_2D',)
+            return FileCreator.smm2SoundFiles('yr_SToy_03_How_2D',)
         }
 
     }('Jump',)
     public static readonly HONK_HONK =                  new class SoundEffects_HonkHonk extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '10_01'
+        protected override _createSMM1ImageNumbers() {
+            return '10_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Honk'
+        protected override _createSMM2ImageName() {
+            return 'Honk' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_AND_RIGHT_LOWERCASE.map(direction => `bse_pafu00_e.a.44.cn4_pxsps_${direction}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds)
+            return FileCreator.smm1SoundFiles('yr_SToy_03_How_3D_L_pxsps_r_ear', 'yr_SToy_03_How_3D_R_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return new SMM1StandaloneSoundEffectSoundBuilder(smm1, smm2,)
-                .editor(2, 1,)
-                .smm2(2).smm1(1).smm1(2)
+            const smm1Sounds = smm1.sounds
+            const smm2Sounds = smm2.sounds
+
+            return new SMM1StandaloneSound([smm2Sounds[0], smm2Sounds[1], smm1Sounds[0], smm1Sounds[1],], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('bse_pafu00.a.44.cn4', 'bse_pafu00_e.44.cn4',)
+            return FileCreator.smm2SoundFiles('bse_pafu00.a.44.cn4', 'bse_pafu00_e.44.cn4',)
         }
 
     }('Honk Honk',)
     public static readonly PUNCH =                      new class SoundEffects_Punch extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '06_00'
+        protected override _createSMM1ImageNumbers() {
+            return '06_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Punch'
+        protected override _createSMM2ImageName() {
+            return 'Punch' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('SE_Punch3_pxsps_r_ear', 'SE_Punch4_pxsps_l_ear', 'bse_cat00_pxsps_r_ear',)
+            return FileCreator.smm1SoundFiles('SE_Punch3_pxsps_r_ear', 'SE_Punch4_pxsps_l_ear', 'bse_cat00_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return new SMM1StandaloneSoundEffectSoundBuilder(smm1, smm2,)
-                .smm2(1).editor(1, 1).smm1(2)
-                .smm1(3)
+            const smm1Sounds = smm1.sounds
+            const smm2Sounds = smm2.sounds
+
+            return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm1Sounds[1], smm1Sounds[2],], smm1.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('SE_Punch3_excited', 'SE_Punch4', 'SE_Punch4_excited',)
-                .editor(2)
+            const sounds = FileCreator.smm2SoundFiles('SE_Punch3_excited', 'SE_Punch4', 'SE_Punch4_excited',)
+
+            return new SMM2Sound(sounds, sounds[1], EMPTY_ARRAY, EMPTY_ARRAY,)
         }
 
     }('Punch',)
     public static readonly OINK =                       new class SoundEffects_Oink extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Whoopee'
+        protected override _createSMM2ImageName() {
+            return 'Whoopee' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('se_otoasobi_oimo', 'se_mariopaint-pig', 'se_otoasobi_whoopee_0',)
+            return FileCreator.smm2SoundFiles('se_otoasobi_oimo', 'se_mariopaint-pig', 'se_otoasobi_whoopee_0',)
         }
 
     }('Oink',)
     public static readonly KUH_THUNK =                  new class SoundEffects_Kuh_Thunk extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Focus'
+        protected override _createSMM2ImageName() {
+            return 'Focus' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_dodon',)
+            return FileCreator.smm2SoundFiles('Otoasobi_dodon',)
         }
 
     }('Kuh-thunk!',)
     public static readonly BEEP =                       new class SoundEffects_Beep extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Glitch'
+        protected override _createSMM2ImageName() {
+            return 'Glitch' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            const sounds = ([0, 1, 2, 3, 4, 5, 6, 7,] as const).map(index => `glitch_M1_00${index}` as const)
-
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(...sounds, 'muon_2sec',)
+            return FileCreator.smm2SoundFiles('glitch_M1_000', 'glitch_M1_001', 'glitch_M1_002', 'glitch_M1_003', 'glitch_M1_004', 'glitch_M1_005', 'glitch_M1_006', 'glitch_M1_007', 'muon_2sec',)
         }
 
     }('Beep!',)
     public static readonly NINJA_ATTACK =               new class SoundEffects_NinjaAttack extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Uproar'
+        protected override _createSMM2ImageName() {
+            return 'Uproar' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -455,175 +440,168 @@ export abstract class SoundEffects
     }('Ninja Attack!',)
     public static readonly ZAP =                        new class SoundEffects_Zap extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Discord'
+        protected override _createSMM2ImageName() {
+            return 'Discord' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('se_otoasobi_gaaann',)
+            return FileCreator.smm2SoundFiles('se_otoasobi_gaaann',)
         }
 
     }('Zap!',)
 
     public static readonly DING_DONG =                  new class SoundEffects_DingDong extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '11_00'
+        protected override _createSMM1ImageNumbers() {
+            return '11_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Ding'
+        protected override _createSMM2ImageName() {
+            return 'Ding' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_AND_RIGHT_LOWERCASE.map(direction => `SE_BELL_pxsps_${direction}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('SE_BELL_pxsps_l_ear', 'SE_BELL_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('SE_BELL', 'SE_BELL_excited', 'SE_LinkItemAppear',)
-                .link(3)
+            const sounds = FileCreator.smm2SoundFiles('SE_BELL', 'SE_BELL_excited', 'SE_LinkItemAppear',)
+
+            return new SMM2Sound(sounds, sounds[0], [sounds[2],] as const, EMPTY_ARRAY,)
         }
 
     }('Ding Dong',)
     public static readonly BZZZT =                      new class SoundEffects_Bzzzzt extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '11_01'
+        protected override _createSMM1ImageNumbers() {
+            return '11_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Bzzzt'
+        protected override _createSMM2ImageName() {
+            return 'Bzzzt' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_AND_RIGHT_LOWERCASE.map(direction => `SE_BU_pxsps_${direction}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('SE_BU_pxsps_l_ear', 'SE_BU_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('SE_BU=', 'SE_BU=_excited',)
+            return FileCreator.smm2SoundFiles('SE_BU=', 'SE_BU=_excited',)
         }
 
     }('Bzzzt!',)
     public static readonly GLORY =                      new class SoundEffects_Glory extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '05_00'
+        protected override _createSMM1ImageNumbers() {
+            return '05_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Glory'
+        protected override _createSMM2ImageName() {
+            return 'Glory' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('yr_SToy_06_Godd_01_pxsps_r_ear',)
+            return FileCreator.smm1SoundFiles('yr_SToy_06_Godd_01_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor1Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundWhere1IsFromSmm1And2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('yr_SToy_06_Godd_01',)
+            return FileCreator.smm2SoundFiles('yr_SToy_06_Godd_01',)
         }
 
     }('Glory',)
     public static readonly DOOM =                       new class SoundEffects_Doom extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '05_01'
+        protected override _createSMM1ImageNumbers() {
+            return '05_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Doom'
+        protected override _createSMM2ImageName() {
+            return 'Doom' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('yr_SToy_06_Devil_01_pxsps_l_ear',)
+            return FileCreator.smm1SoundFiles('yr_SToy_06_Devil_01_pxsps_l_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor1Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundWhere1IsFromSmm1And2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('yr_SToy_06_Devil_01',)
+            return FileCreator.smm2SoundFiles('yr_SToy_06_Devil_01',)
         }
 
     }('Doom',)
     public static readonly YEAH =                       new class SoundEffects_Yeah extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Admiration'
+        protected override _createSMM2ImageName() {
+            return 'Admiration' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_YEAH',)
+            return FileCreator.smm2SoundFiles('Otoasobi_YEAH',)
         }
 
     }('Yeah!',)
     public static readonly AWW =                        new class SoundEffects_Aww extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Anguish'
+        protected override _createSMM2ImageName() {
+            return 'Anguish' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_AAHH',)
+            return FileCreator.smm2SoundFiles('Otoasobi_AAHH',)
         }
 
     }('Aww...',)
 
     public static readonly FIREWORKS =                  new class SoundEffects_Fireworks extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '06_01'
+        protected override _createSMM1ImageNumbers() {
+            return '06_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Fireworks'
+        protected override _createSMM2ImageName() {
+            return 'Fireworks' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = (['1_pxsps_r', '2_pxsps_l',] as const).map(endName => `yr_SToy_07_FireWorks_01_${endName}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_SToy_07_FireWorks_01_1_pxsps_r_ear', 'yr_SToy_07_FireWorks_01_2_pxsps_l_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return SoundEffects._smm1ExclusiveCallbackFor2Smm1And1Smm2(smm1, smm2,)
+            return SoundEffects._createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            const sounds = ([1, '1_1', '1_2',] as const).map(number => `yr_SToy_07_FireWorks_0${number}` as const)
-
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(sounds,)
+            return FileCreator.smm2SoundFiles('yr_SToy_07_FireWorks_01', 'yr_SToy_07_FireWorks_01_1', 'yr_SToy_07_FireWorks_01_2',)
         }
 
     }('Fireworks',)
     public static readonly AUDIENCE =                   new class SoundEffects_Audience extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Audience'
+        protected override _createSMM2ImageName() {
+            return 'Audience' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -635,8 +613,8 @@ export abstract class SoundEffects
     }('Audience',)
     public static readonly SCATTING =                   new class SoundEffects_Scatting extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Scat'
+        protected override _createSMM2ImageName() {
+            return 'Scat' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -648,35 +626,40 @@ export abstract class SoundEffects
     }('Scatting',)
     public static readonly BIRD_CHIRPING =              new class SoundEffects_BirdChirping extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '09_01'
+        protected override _createSMM1ImageNumbers() {
+            return '09_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',)
+            return FileCreator.smm1SoundFiles('SE_UGUISU', 'SE_UGUISU_Edit', 'SE_UGUISU_pxsps_r_ear',)
         }
 
     }('Bird\'s Chirping',)
     public static readonly SPARK =                      new class SoundEffects_Spark extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Firecracker'
+        protected override _createSMM2ImageName() {
+            return 'Firecracker' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            const sounds = ([0, 1, 2, 3, 4,] as const).map(index => `se_otoasobi_spark_0${index}` as const)
+            const sounds = FileCreator.smm2SoundFiles(
+                'se_otoasobi_spark_00',
+                'se_otoasobi_spark_01',
+                'se_otoasobi_spark_02',
+                'se_otoasobi_spark_03',
+                'se_otoasobi_spark_04',
+            )
 
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(sounds,)
-                .editor(3)
+            return new SMM2Sound(sounds, sounds[2], EMPTY_ARRAY, EMPTY_ARRAY,)
         }
 
     }('Spark',)
     public static readonly TRADITIONAL =                new class SoundEffects_Traditional extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Ohayasi'
+        protected override _createSMM2ImageName() {
+            return 'Ohayasi' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -688,243 +671,288 @@ export abstract class SoundEffects
     }('Traditional',)
     public static readonly ELECTRIC_GUITAR =            new class SoundEffects_ElectricGuitar extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'ElectricGuitar'
+        protected override _createSMM2ImageName() {
+            return 'ElectricGuitar' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            const sounds = ([1, 2,] as const).map(index => `Otoasobi_Guitar0${index}` as const)
-
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(sounds,)
+            return FileCreator.smm2SoundFiles('Otoasobi_Guitar01', 'Otoasobi_Guitar02',)
         }
 
     }('Electric Guitar',)
     public static readonly DISTORTION =                 new class SoundEffects_Distortion extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '12_01'
+        protected override _createSMM1ImageNumbers() {
+            return '12_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const soundsSweep = (['', '_l_ear', '_r_ear',] as const).map(direction => `yr_SToy_13_Sweep_01${direction}` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder('yr_TaoeDown_01', ...soundsSweep, 'yr_Sweep_Up_01',)
+            return FileCreator.smm1SoundFiles('yr_TaoeDown_01', 'yr_SToy_13_Sweep_01', 'yr_SToy_13_Sweep_01_l_ear', 'yr_SToy_13_Sweep_01_r_ear', 'yr_Sweep_Up_01',)
         }
 
     }('Distortion',)
     public static readonly TWISTY_TURNY =               new class SoundEffects_TwistyTurny extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Filter'
+        protected override _createSMM2ImageName() {
+            return 'Filter' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(SoundEffects._soundsForTwistyTurnyAndWoozy,)
+            return SoundEffects._soundsForTwistyTurnyAndWoozy
         }
 
     }('Twisty Turny',)
     public static readonly WOOZY =                      new class SoundEffects_Woozy extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'SoundEffect'
+        protected override _createSMM2ImageName() {
+            return 'SoundEffect' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(SoundEffects._soundsForTwistyTurnyAndWoozy,)
-                .editor(5)
+            const sounds = SoundEffects._soundsForTwistyTurnyAndWoozy
+
+            return new SMM2Sound(sounds, sounds[4], EMPTY_ARRAY, EMPTY_ARRAY,)
         }
 
     }('Woozy',)
     public static readonly TELEPHONE =                  new class SoundEffects_Telephone extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '12_00'
+        protected override _createSMM1ImageNumbers() {
+            return '12_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds2D = (['H_Long_L', 'H_Long_R', 'H_Short_mono', 'H_Short_L', 'H_Short_R', 'L_Long_L', 'L_Long_R', 'L_Short_L', 'L_Short_R',] as const).map(endName => `yr_SToy_11_TEL_2D_${endName}` as const)
-            const durations = ['Long', 'Short',] as const
-            const orientations = ['H', 'L',] as const
-            const sounds3D = orientations.map(orientation => durations.map(duration => SoundEffects._LEFT_LEFT_AND_RIGHT_RIGHT.map(direction => `yr_SToy_11_TEL_3D_${orientation}_${duration}_${direction}_ear` as const))).flat(2)
             const sounds = [
-                ([0, 1,] as const).map(index => [sounds2D[index], sounds3D[index]]),
-                sounds2D[2],
-                ([3, 4, 5, 6, 7, 8,] as const).map(index => [sounds2D[index], sounds3D[index - 1],])].flat(2)
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Long_L',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Long_R',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_L',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_mono',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_H_Short_R',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Long_L',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Long_R',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Short_L',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_2D_L_Short_R',),
 
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
-                .editor(3)
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Long_L_pxsps_l_ear',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Long_R_pxsps_r_ear',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Short_L_pxsps_l_ear',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_H_Short_R_pxsps_r_ear',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_L_pxsps_l_ear',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_R_pxsps_r_ear',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_L_pxsps_l_ear',),
+                FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_R_pxsps_r_ear',),
+            ]
+
+            return new SMM1ExclusiveSound(sounds, sounds[1],)
         }
 
     }('Telephone',)
     public static readonly FLASH =                      new class SoundEffects_Flash extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Halo'
+        protected override _createSMM2ImageName() {
+            return 'Halo' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('se_otoasobi_haloeffect',)
+            return FileCreator.smm2SoundFiles('se_otoasobi_haloeffect',)
         }
 
     }('Flash',)
 
     public static readonly PEACEFUL =                   new class SoundEffects_Peaceful extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Calm'
+        protected override _createSMM2ImageName() {
+            return 'Calm' as const satisfies SoundEffectImageName_SMM2
         }
 
 
-        #sounds_smm2?:PossibleSMM2SoundEffect
+        #sounds_smm2?: PossibleSMM2SoundEffect
 
         public override get sounds_smm2(): PossibleSMM2SoundEffect {
             return this.#sounds_smm2 ??= [Import.Musics.PEACEFUL.music!.everyMusics, super.sounds_smm2,].flat()
         }
 
         protected override _createSMM2Sounds() {
-            const soundsHarp = ([1, 2, 3, 4, 5, 6, 7, 9, 10,] as const).map(index => `Otoasobi_Calm_Harp_${index === 10 ? index : `0${index}` as const}` as const)
-            const soundsPad = ([1, 2, 3, 4, 5, 6, 7, 9, 10, 11,] as const).map(index => `Otoasobi_Calm_Pad_${index === 10 || index === 11 ? index : `0${index}` as const}` as const)
-            const soundsSE = ([1, 2, 3, 4, 5, 6, 7,] as const).map(index => `Otoasobi_Calm_SE_0${index}` as const)
-
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_Calm_Hit_01', ...soundsHarp, ...soundsPad, ...soundsSE, 'Otoasobi_Calm_SE_08_edit', 'Otoasobi_Horror_SE_04',)
+            return [
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Hit_01',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_01',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_02',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_03',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_04',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_05',),
+                SoundEffects._calmHarp6Sound,
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_07',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_09',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_10',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_01',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_02',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_03',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_04',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_05',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_06',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_07',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_09',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_10',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_Pad_11',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_01',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_02',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_03',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_04',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_05',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_06',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_07',),
+                FileCreator.smm2SoundFile('Otoasobi_Calm_SE_08_edit',),
+                SoundEffects._horror4Sound,
+            ] as const
         }
 
     }('Peaceful',)
     public static readonly HORROR =                     new class SoundEffects_Horror extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Unrest'
+        protected override _createSMM2ImageName() {
+            return 'Unrest' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createSMM2Sounds() {
             //'se_otoasobi_hachoo'
-            const soundsHorror = ([1, 2, 3, 4, 5,] as const).map(index => `Otoasobi_Horror_0${index}` as const)
-            const soundsHorrorSE = ([1, 2, 3, 4, 5, 6, 7, 8,] as const).map(index => `Otoasobi_Horror_SE_0${index}` as const)
-            const soundsHorrorStrings = ([1, 2,] as const).map(index => `Otoasobi_Horror_Strings_0${index}` as const)
+            const sounds = [
+                SoundEffects._calmHarp6Sound,
+                FileCreator.smm2SoundFile('Otoasobi_Horror_01',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_02',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_03',),
+                SoundEffects._horror4Sound,
+                FileCreator.smm2SoundFile('Otoasobi_Horror_05',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_01',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_02',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_03',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_04',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_05',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_06',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_07',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_SE_08',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_Strings_01',),
+                FileCreator.smm2SoundFile('Otoasobi_Horror_Strings_02',),
+            ] as const
 
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('Otoasobi_Calm_SE_06', ...soundsHorror, ...soundsHorrorSE, ...soundsHorrorStrings,)
-                .editor(2)
+            return new SMM2Sound(sounds, sounds[1], EMPTY_ARRAY, EMPTY_ARRAY,)
         }
 
     }('Horror',)
     public static readonly FESTIVE_MUSIC =              new class SoundEffects_FestiveMusic extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '07_00'
+        protected override _createSMM1ImageNumbers() {
+            return '07_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('SE_SAMBA_3D_Perc', 'SE_Samba3',)
-                .editor(2)
+            const sounds = FileCreator.smm1SoundFiles('SE_SAMBA_3D_Perc', 'SE_Samba3',)
+
+            return new SMM1ExclusiveSound(sounds, sounds[1],)
         }
 
     }('Festive Music',)
     public static readonly RAVE_MUSIC =                 new class SoundEffects_RaveMusic extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '07_01'
+        protected override _createSMM1ImageNumbers() {
+            return '07_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('SE_Disco6measure','SE_Disco6measure_InUp2',)
-                .editor(2)
+            const sounds = FileCreator.smm1SoundFiles('SE_Disco6measure', 'SE_Disco6measure_InUp2',)
+
+            return new SMM1ExclusiveSound(sounds, sounds[1],)
         }
 
     }('Rave Music',)
     public static readonly HEARTBEAT =                  new class SoundEffects_HeartBeat extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '03_00'
+        protected override _createSMM1ImageNumbers() {
+            return '03_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Heartbeat'
+        protected override _createSMM2ImageName() {
+            return 'Heartbeat' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = SoundEffects._LEFT_LEFT_AND_RIGHT_RIGHT.map(direction => `yr_SToy_04_HeartBeat_H_${direction}_ear` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_SToy_04_HeartBeat_H_L_pxsps_l_ear', 'yr_SToy_04_HeartBeat_H_R_pxsps_r_ear',)
         }
 
         protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) {
-            return new SMM1StandaloneSoundEffectSoundBuilder(smm1, smm2,)
-                .editor(2, 1,).smm2(2).smm2(3)
-                .smm1(1).smm1(2)
+            const smm1Sounds = smm1.sounds
+            const smm2Sounds = smm2.sounds
+
+            return new SMM1StandaloneSound([smm2Sounds[0], smm2Sounds[1], smm2Sounds[2], smm1Sounds[0], smm1Sounds[1],], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
-            const sounds = ([1, 2, 3,] as const).map(index => `yr_SToy_04_HeartBeat_p${index}` as const)
-
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder(sounds,)
+            return FileCreator.smm2SoundFiles('yr_SToy_04_HeartBeat_p1', 'yr_SToy_04_HeartBeat_p2', 'yr_SToy_04_HeartBeat_p3',)
         }
 
     }('Heartbeat',)
     public static readonly SILENCE =                    new class SoundEffects_Silence extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '03_01'
+        protected override _createSMM1ImageNumbers() {
+            return '03_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Silence'
+        protected override _createSMM2ImageName() {
+            return 'Silence' as const satisfies SoundEffectImageName_SMM2
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            const sounds = ([1, '1_pxsps_l_ear', 2, '2_pxsps_r_ear', 3, '3_pxsps_l_ear',] as const).map(index => `yr_NOISE_short_${index}` as const)
-
-            return new SMM1ExclusiveSoundEffectSoundBuilder(sounds,)
+            return FileCreator.smm1SoundFiles('yr_NOISE_short_1', 'yr_NOISE_short_1_pxsps_l_ear', 'yr_NOISE_short_2', 'yr_NOISE_short_2_pxsps_r_ear', 'yr_NOISE_short_3', 'yr_NOISE_short_3_pxsps_l_ear',)
         }
 
         protected override _createSMM2Sounds() {
-            return new SMM2SoundEffectSoundFromSoundEffectBuilder('se_otoasobi_silence',)
+            return FileCreator.smm2SoundFiles('se_otoasobi_silence',)
         }
 
     }('Silence',)
     public static readonly BIRD_TWEETING_NOISE =        new class SoundEffects_BirdTweetingNoise extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return ['13_00', '14_00',]
+        protected override _createSMM1ImageNumbers() {
+            return ['13_00', '14_00',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',)
+            return FileCreator.smm1SoundFiles('hz_inco_1_removed1s50per', 'hz_inco_1_L_pxsps_l_ear', 'hz_inco_1_R_pxsps_r_ear',)
         }
 
     }('Bird\'s Tweeting Noise',)
     public static readonly CHICKEN_CLUCKING_NOISE =     new class SoundEffects_ChickenCluckingNoise extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return ['13_01', '14_01',]
+        protected override _createSMM1ImageNumbers() {
+            return ['13_01', '14_01',] as const satisfies readonly SoundEffectImageNumber_SMM1[]
         }
 
 
         protected override _createExclusiveSMM1Sounds() {
-            return new SMM1ExclusiveSoundEffectSoundBuilder('yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',)
+            return FileCreator.smm1SoundFiles('yr_SToy_14_Bird_B_01', 'yr_SToy_14_Bird_B_L_pxsps_l_ear', 'yr_SToy_14_Bird_B_R_pxsps_r_ear',)
         }
 
     }('Chicken\'s Clucking Noise',)
 
     public static readonly BONUS_MUSIC =                new class SoundEffects_BonusMusic extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '08_01'
+        protected override _createSMM1ImageNumbers() {
+            return '08_01' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Bonus'
+        protected override _createSMM2ImageName() {
+            return 'Bonus' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -935,12 +963,12 @@ export abstract class SoundEffects
     }('Bonus Music',)
     public static readonly BOSS_MUSIC =                 new class SoundEffects_BossMusic extends SoundEffects {
 
-        protected override _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
-            return '08_00'
+        protected override _createSMM1ImageNumbers() {
+            return '08_00' as const satisfies SoundEffectImageNumber_SMM1
         }
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Boss'
+        protected override _createSMM2ImageName() {
+            return 'Boss' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -951,8 +979,8 @@ export abstract class SoundEffects
     }('Boss Music',)
     public static readonly FINAL_BOSS_MUSIC =           new class SoundEffects_FinalBossMusic extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'LastBoss'
+        protected override _createSMM2ImageName() {
+            return 'LastBoss' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -963,8 +991,8 @@ export abstract class SoundEffects
     }('Final Boss',)
     public static readonly SUPER_MARIO_KART_MUSIC =     new class SoundEffects_SuperMarioKartMusic extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Mario03'
+        protected override _createSMM2ImageName() {
+            return 'Mario03' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -975,8 +1003,8 @@ export abstract class SoundEffects
     }('Super Mario Kart',)
     public static readonly SUPER_MARIO_64_MUSIC =       new class SoundEffects_SuperMario64Music extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Mario01'
+        protected override _createSMM2ImageName() {
+            return 'Mario01' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -987,8 +1015,8 @@ export abstract class SoundEffects
     }('Super Mario 64',)
     public static readonly SUPER_MARIO_SUNSHINE_MUSIC = new class SoundEffects_SuperMarioSunshineMusic extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Mario02'
+        protected override _createSMM2ImageName() {
+            return 'Mario02' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -999,8 +1027,8 @@ export abstract class SoundEffects
     }('Super Mario Sunshine',)
     public static readonly SUPER_MARIO_GALAXY_MUSIC =   new class SoundEffects_SuperMarioGalaxyMusic extends SoundEffects {
 
-        public override _createSMM2ImageName(): SoundEffectImageName_SMM2 {
-            return 'Mario00'
+        protected override _createSMM2ImageName() {
+            return 'Mario00' as const satisfies SoundEffectImageName_SMM2
         }
 
 
@@ -1013,8 +1041,8 @@ export abstract class SoundEffects
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<SoundEffects, typeof SoundEffects>> = class CompanionEnum_SoundEffects
-        extends BasicCompanionEnum<SoundEffects, typeof SoundEffects> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<SoundEffects, typeof SoundEffects> = class CompanionEnum_SoundEffects
+        extends CompanionEnum<SoundEffects, typeof SoundEffects> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -1044,13 +1072,9 @@ export abstract class SoundEffects
     #smm1ImageFiles?: PossibleSMM1ImageFiles
     #smm2ImageFile?: NullOr<SMM2SoundEffectImageFile>
 
-    static #smm1ExclusiveCallbackFor2Smm1And1Smm2: SMM1ExclusiveCallback
-    static #smm1ExclusiveCallbackFor1Smm1And1Smm2: SMM1ExclusiveCallback
-    static #SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY?: SoundEffectSoundNamesForTwistyTurnyAndWoozy
-    protected static readonly _LEFT_AND_RIGHT_LOWERCASE = ['l', 'r',] as const
-    protected static readonly _LEFT_AND_RIGHT_UPPERCASE = ['L', 'R',] as const
-    protected static readonly _LEFT_LEFT_AND_RIGHT_RIGHT = ['L_pxsps_l', 'R_pxsps_r',] as const
-    protected static readonly _LEFT_RIGHT_AND_RIGHT_RIGHT = ['L_pxsps_r', 'R_pxsps_r',] as const
+    static #SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY?: TwistyTurnyAndWoozySounds
+    static #CALM_HARP_6_SOUND?: CalmHarp6Sound
+    static #HORROR_4_SOUND?: Horror4Sound
     #sounds_exclusiveSmm1?: SMM1ExclusiveSoundEffectSound
     #sounds_standaloneSmm1?: SMM1StandaloneSoundEffectSound
     #sounds_smm2?: | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor
@@ -1088,19 +1112,16 @@ export abstract class SoundEffects
 
     //region -------------------- Getter methods (image) --------------------
 
-
-    protected _createSMM1ImageNumbers(): PossibleSMM1ImagePaths {
+    protected _createSMM1ImageNumbers(): NullOr<| SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,]> {
         return null
     }
 
     public get SMM1ImageFiles(): PossibleSMM1ImageFiles {
         if (this.#smm1ImageFiles === undefined) {
             const imageNumbers = this._createSMM1ImageNumbers()
-            this.#smm1ImageFiles = imageNumbers == null
-                ? null
-                : typeof imageNumbers == 'string'
-                    ? [new SMM1ImageFile(this.englishName, imageNumbers),]
-                    : [new SMM1ImageFile(this.englishName, imageNumbers[0]), new SMM1ImageFile(this.englishName, imageNumbers[1]),]
+            if (imageNumbers == null)
+                return this.#smm1ImageFiles = null
+            return this.#smm1ImageFiles = FileCreator.smm1ImageFiles(this.englishName, imageNumbers,)
         }
         return this.#smm1ImageFiles
     }
@@ -1113,9 +1134,9 @@ export abstract class SoundEffects
     public get SMM2ImageFile(): NullOr<SMM2SoundEffectImageFile> {
         if (this.#smm2ImageFile === undefined) {
             const imageName = this._createSMM2ImageName()
-            this.#smm2ImageFile = imageName == null
-                ? null
-                : new SMM2ImageFile(this.englishName, imageName,)
+            if (imageName == null)
+                return this.#smm2ImageFile = null
+            return this.#smm2ImageFile = FileCreator.smm2ImageFile(this.englishName, imageName,)
         }
         return this.#smm2ImageFile
     }
@@ -1123,31 +1144,76 @@ export abstract class SoundEffects
     //endregion -------------------- Getter methods (image) --------------------
     //region -------------------- Getter methods (sound) --------------------
 
-    protected static get _smm1ExclusiveCallbackFor1Smm1And1Smm2(): SMM1ExclusiveCallback {
-        return this.#smm1ExclusiveCallbackFor1Smm1And1Smm2 ??= (smm1, smm2) =>
-            new SMM1StandaloneSoundEffectSoundBuilder(smm1, smm2,)
-                .editor(2, 1,).smm1(1)
+    //region -------------------- Getter methods (SMM1 sound) --------------------
+
+    /**
+     * Create a simple {@link SMM1StandaloneSoundEffectSound} in that order:
+     *  - 1 image is from {@link smm2}
+     *  - 1 image are from {@link smm1}
+     *
+     * @param smm1 The {@link SMM1ExclusiveSoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds}
+     * @param smm2 The {@link SMM2SoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds} and {@link SoundEffectSound.editorSound editor sound}
+     * @onlyCalledByChildren
+     */
+    protected static _createExclusiveSmm1SoundWhere1IsFromSmm1And2(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): SMM1StandaloneSoundEffectSound {
+        const smm1Sounds = smm1.sounds
+        const smm2Sounds = smm2.sounds
+        const smm2EditorSound = smm2.editorSound
+
+        return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0],], smm2EditorSound, smm1, smm2,)
     }
 
-    protected static get _smm1ExclusiveCallbackFor2Smm1And1Smm2(): SMM1ExclusiveCallback {
-        return this.#smm1ExclusiveCallbackFor2Smm1And1Smm2 ??= (smm1, smm2,) =>
-            new SMM1StandaloneSoundEffectSoundBuilder(smm1, smm2,)
-                .editor(2, 1,)
-                .smm1(1)
-                .smm1(2)
+    /**
+     * Create a simple {@link SMM1StandaloneSoundEffectSound} in that order:
+     *  - 1 image is from {@link smm2}
+     *  - 2 images are from {@link smm1}
+     *
+     * @param smm1 The {@link SMM1ExclusiveSoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds}
+     * @param smm2 The {@link SMM2SoundEffectSound} to retrieve its {@link SoundEffectSound.sounds sounds} and {@link SoundEffectSound.editorSound editor sound}
+     * @onlyCalledByChildren
+     */
+    protected static _createExclusiveSmm1SoundsWhere2IsFromSmm1And1IsFromSmm2(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): SMM1StandaloneSoundEffectSound {
+        const smm1Sounds = smm1.sounds
+        const smm2Sounds = smm2.sounds
+        const smm2EditorSound = smm2.editorSound
+
+        return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm1Sounds[1],], smm2EditorSound, smm1, smm2,)
     }
 
-    protected _createExclusiveSMM1Sounds(): NullOr<Builder<SMM1ExclusiveSoundEffectSound>> {
+    /** Create an exclusive {@link SMM1ExclusiveSoundEffectSound} from either:
+     *  - a <b>null</b>
+     *  - a {@link SMM1ExclusiveSoundEffectSound} directly
+     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a simple {@link SMM1ExclusiveSoundEffectSound} after-end)
+     *
+     * @onlyCalledOnce
+     * @onlyCalledBy soundsContainer_exclusiveSmm1
+     */
+    protected _createExclusiveSMM1Sounds(): NullOr<| SMM1ExclusiveSoundEffectSound | readonly SMM1SoundEffectSoundFile[]> {
         return null
     }
 
-    protected _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): NullOr<Builder<SMM1StandaloneSoundEffectSound>> {
+    /**
+     * Create a standalone {@link SMM1StandaloneSoundEffectSound}
+     * from a {@link SMM1ExclusiveSoundEffectSound} and a {@link SMM2SoundEffectSound}
+     *
+     * @onlyCalledOnce
+     * @onlyCalledBy soundsContainer_standaloneSMM1
+     */
+    protected _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): NullOr<|Builder<SMM1StandaloneSoundEffectSound>|SMM1StandaloneSoundEffectSound> {
         return null
     }
 
     /** The "sound effect" exclusive sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
     public get soundsContainer_exclusiveSmm1(): SMM1ExclusiveSoundEffectSound {
-        return this.#sounds_exclusiveSmm1 ??= this._createExclusiveSMM1Sounds()?.build() ?? EmptySMMSoundEffectSound.get
+        if (this.#sounds_exclusiveSmm1 == null) {
+            const value = this._createExclusiveSMM1Sounds()
+            if (value == null)
+                return this.#sounds_exclusiveSmm1 = EmptySound.get
+            if (value instanceof Array)
+                return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, value[0],)
+            return this.#sounds_exclusiveSmm1 = value
+        }
+        return this.#sounds_exclusiveSmm1
     }
 
     /** The "sound effect" sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
@@ -1155,23 +1221,32 @@ export abstract class SoundEffects
         if (this.#sounds_standaloneSmm1 == null) {
             const smm1 = this.soundsContainer_exclusiveSmm1
             const smm2 = this.soundsContainer_smm2
-            const valueToCreate = this._createStandaloneSMM1Sounds(smm1, smm2 instanceof SoundEffectFromMusicAdaptor ? EmptySMMSoundEffectSound.get : smm2,)
+            const valueToCreate = this._createStandaloneSMM1Sounds(smm1, smm2 instanceof SoundEffectFromMusicAdaptor ? EmptySound.get : smm2,)
 
-            this.#sounds_standaloneSmm1 = valueToCreate == null
-                ? smm1 === EmptySMMSoundEffectSound.get
-                    ? EmptySMMSoundEffectSound.get
-                    : new SMM1StandaloneSoundEffectSoundBuilder(smm1).build()
-                : valueToCreate.build()
+            if (valueToCreate != null) {
+                if('build' in valueToCreate) {
+                    console.info({name: this.englishName, value: valueToCreate.build(), sounds: valueToCreate.build().sounds.map(it => it.name), editor: valueToCreate.build().editorSound?.name, link: valueToCreate.build().linkSounds.map(it => it.name), smb2: valueToCreate.build().smb2Sounds.map(it => it.name),},)
+                    return this.#sounds_standaloneSmm1 = valueToCreate.build()
+                }
+                return this.#sounds_standaloneSmm1 = valueToCreate
+            }
+            if (smm1 === EmptySound.get)
+                return this.#sounds_standaloneSmm1 = EmptySound.get
+
+            return this.#sounds_standaloneSmm1 = new SMM1StandaloneSound(smm1.sounds, smm1.editorSound, smm1, EmptySound.get,)
         }
         return this.#sounds_standaloneSmm1
     }
 
-    /** Every "sound effect" sounds stored in a {@link SMM1ExclusiveSoundEffectSound SMM1/SMM3DS exclusive "sound effect" sound} */
+    /** Every "sound effect" sound for {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} exclusively */
     public get sounds_exclusiveSmm1(): readonly SMM1SoundEffectSoundFile[] {
         return this.soundsContainer_exclusiveSmm1.sounds
     }
 
-    /** Every "sound effect" sounds stored in a {@link SMM1StandaloneSoundEffectSound SMM1 standalone "sound effect" sound} */
+    /**
+     * Every "sound effect" sound for {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS},
+     * but utilizing some {@link Games.SUPER_MARIO_MAKER_2 SMM2} sounds
+     */
     public get sounds_standaloneSmm1(): readonly SoundEffectSoundFile[] {
         return this.soundsContainer_standaloneSMM1.sounds
     }
@@ -1181,12 +1256,34 @@ export abstract class SoundEffects
         return this.soundsContainer_standaloneSMM1.editorSound
     }
 
+    //endregion -------------------- Getter methods (SMM1 sound) --------------------
+    //region -------------------- Getter methods (shared sound) --------------------
 
-    protected static get _soundsForTwistyTurnyAndWoozy(): SoundEffectSoundNamesForTwistyTurnyAndWoozy {
-        return this.#SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY ??= ['Otoasobi_DJ00', 'Otoasobi_DJ01', 'Otoasobi_DJ02', 'Otoasobi_DJ03', 'Otoasobi_DJ04', 'Otoasobi_DJ05',]
+    protected static get _soundsForTwistyTurnyAndWoozy(): TwistyTurnyAndWoozySounds {
+        return this.#SOUNDS_FOR_TWISTY_TURNY_AND_WOOZY ??= FileCreator.smm2SoundFiles('Otoasobi_DJ00', 'Otoasobi_DJ01', 'Otoasobi_DJ02', 'Otoasobi_DJ03', 'Otoasobi_DJ04', 'Otoasobi_DJ05',)
     }
 
-    protected _createSMM2Sounds(): NullOr<| Builder<SMM2SoundEffectSound> | Musics> {
+    protected static get _calmHarp6Sound(): CalmHarp6Sound {
+        return this.#CALM_HARP_6_SOUND ??= FileCreator.smm2SoundFile('Otoasobi_Calm_Harp_06',)
+    }
+
+    protected static get _horror4Sound(): Horror4Sound {
+        return this.#HORROR_4_SOUND ??= FileCreator.smm2SoundFile('Otoasobi_Horror_SE_04',)
+    }
+
+    //endregion -------------------- Getter methods (shared sound) --------------------
+    //region -------------------- Getter methods (SMM2 sound) --------------------
+
+    /** Create an exclusive {@link SMM2SoundEffectSound} from either:
+     *  - a <b>null</b>
+     *  - a {@link SMM2SoundEffectSound} directly
+     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a simple {@link SMM2SoundEffectSound} after-end)
+     *  - a {@link Musics} reference
+     *
+     * @onlyCalledOnce
+     * @onlyCalledBy soundsContainer_smm2
+     */
+    protected _createSMM2Sounds(): NullOr<| SMM2SoundEffectSound | readonly SMM2SoundEffectSoundFile[] | Musics> {
         return null
     }
 
@@ -1194,7 +1291,13 @@ export abstract class SoundEffects
     public get soundsContainer_smm2(): | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor {
         if (this.#sounds_smm2 == null) {
             const value = this._createSMM2Sounds()
-            this.#sounds_smm2 = value == null ? EmptySMMSoundEffectSound.get : 'build' in value ? value.build() : new SoundEffectFromMusicAdaptor(value)
+            if (value == null)
+                return this.#sounds_smm2 = EmptySound.get
+            if (value instanceof Array)
+                return this.#sounds_smm2 = new SMM2Sound(value, value[0], EMPTY_ARRAY, EMPTY_ARRAY,)
+            if (value instanceof Import.Musics)
+                return this.#sounds_smm2 = new SoundEffectFromMusicAdaptor(value,)
+            return this.#sounds_smm2 = value
         }
         return this.#sounds_smm2
     }
@@ -1219,8 +1322,11 @@ export abstract class SoundEffects
         return this.soundsContainer_smm2.smb2Sounds
     }
 
+    //endregion -------------------- Getter methods (SMM2 sound) --------------------
+
     //endregion -------------------- Getter methods (sound) --------------------
 
+    /** Every {@link SoundEffects} that is also a {@link GameReferences} */
     public static get soundEffect_games(): SoundEffectGames {
         return this.#soundEffect_games ??= [this.SUPER_MARIO_KART_MUSIC, this.SUPER_MARIO_64_MUSIC, this.SUPER_MARIO_SUNSHINE_MUSIC, this.SUPER_MARIO_GALAXY_MUSIC,]
     }
@@ -1248,14 +1354,29 @@ export abstract class SoundEffects
         return SoundEffects.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<SoundEffects> {
-        yield* SoundEffects.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<SoundEffects> {
+        return SoundEffects.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------
 
 }
 
-type PossibleSMM1ImagePaths = NullOr<| SoundEffectImageNumber_SMM1 | readonly [SoundEffectImageNumber_SMM1, SoundEffectImageNumber_SMM1,]>
-type SMM1ExclusiveCallback = (smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,) => Builder<SMM1StandaloneSoundEffectSound>
 type PossibleSMM2SoundEffect = readonly (| SMM2SoundEffectSoundFile | MusicSoundFile)[]
+
+//region -------------------- SMM2 sound file --------------------
+
+/** The {@link SMM2SoundEffectSoundFile} associated to every {@link SoundEffectSoundNamesForTwistyTurnyAndWoozy} */
+type TwistyTurnyAndWoozySounds = readonly [
+    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[0]>,
+    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[1]>,
+    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[2]>,
+    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[3]>,
+    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[4]>,
+    SMM2SoundEffectSoundFile<SoundEffectSoundNamesForTwistyTurnyAndWoozy[5]>,
+]
+
+type CalmHarp6Sound = SMM2SoundEffectSoundFile<'Otoasobi_Calm_Harp_06'>
+type Horror4Sound = SMM2SoundEffectSoundFile<'Otoasobi_Horror_SE_04'>
+
+//endregion -------------------- SMM2 sound file --------------------

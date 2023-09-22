@@ -6,7 +6,6 @@ import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/Enti
 import type {PossibleGroupName}                        from 'core/entityTypes'
 import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
 import type {Loader}                                   from 'util/loader/Loader'
-import type {NullOr}                                   from 'util/types/nullable'
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'

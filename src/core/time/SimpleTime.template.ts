@@ -1,5 +1,3 @@
-import type {NullOrBoolean} from 'util/types/nullable'
-
 /**
  * @template
  */

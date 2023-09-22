@@ -1,6 +1,5 @@
-import type {ClassWithComment}                          from 'core/_properties/ClassWithComment'
-import type {Property}                                  from 'core/_properties/Property'
-import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
+import type {Property}         from 'core/_properties/Property'
+import type {ClassWithComment} from 'util/ClassWithComment'
 
 /**
  * A generic property with a value
@@ -8,10 +7,4 @@ import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullabl
  * contained in it.
  */
 export interface PropertyWithComment<T, COMMENT extends NullOrString = NullOrString, >
-    extends Property<T>, ClassWithComment<COMMENT> {
-
-}
-
-export type BooleanPropertyWithComment<B extends NullOrBoolean = NullOrBoolean, COMMENT extends NullOrString = NullOrString, > = PropertyWithComment<B, COMMENT>
-export type NumberPropertyWithComment<N extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, > = PropertyWithComment<N, COMMENT>
-export type StringPropertyWithComment<S extends NullOrString = NullOrString, COMMENT extends NullOrString = NullOrString, > = PropertyWithComment<S, COMMENT>
+    extends Property<T>, ClassWithComment<COMMENT> {}

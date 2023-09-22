@@ -1,12 +1,13 @@
+import type {Lazy} from '@joookiwi/lazy'
+import {lazy}      from '@joookiwi/lazy'
+
 import type {PossibleGameReceived}                                 from 'core/_template/TemplateWithName.creator.types'
 import type {TemplateWithNameTemplate}                             from 'core/_template/TemplateWithName.template'
 import type {Name}                                                 from 'lang/name/Name'
 import type {PossibleGameReceived as OriginalPossibleGameReceived} from 'lang/name/Name.builder.types'
-import type {ObjectHolder}                                         from 'util/holder/ObjectHolder'
 
 import {TemplateCreator}              from 'core/_template/Template.creator'
 import {NameBuilderContainer}         from 'lang/name/Name.builder.container'
-import {DelayedObjectHolderContainer} from 'util/holder/DelayedObjectHolder.container'
 
 /**
  *
@@ -19,25 +20,29 @@ export abstract class TemplateWithNameCreator<TEMPLATE extends TemplateWithNameT
     //region -------------------- Fields --------------------
 
     readonly #isACompleteName
-    readonly #game: ObjectHolder<OriginalPossibleGameReceived>
+    readonly #game: Lazy<OriginalPossibleGameReceived>
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(template: TEMPLATE, game: PossibleGameReceived<TEMPLATE>, isACompleteName: boolean,) {
         super(template)
-        this.#game = new DelayedObjectHolderContainer(() => typeof game == 'function' ? game(this.template) : game)
+        this.#game = lazy(() => typeof game == 'function' ? game(this.template) : game,)
         this.#isACompleteName = isACompleteName
     }
 
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter methods --------------------
 
     public get isACompleteName() {
         return this.#isACompleteName
     }
 
     private get __game() {
-        return this.#game.get
+        return this.#game.value
     }
 
+    //endregion -------------------- Getter methods --------------------
 
     /**
      * Create a {@link Name} from a {@link TemplateWithNameTemplate template}, {@link OriginalPossibleGameReceived game} & a boolean to tell if it is a complete name

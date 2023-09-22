@@ -10,4 +10,4 @@ export interface RouteByViewDisplay<SIMPLE_NAME extends string, NAME extends str
  * A simple type made to be similar to the render callback in a {@link Route},
  * but with {@link ViewDisplays "view display"} as a parameter
  */
-export type RenderCallbackByViewDisplay<VIEW_DISPLAY extends ViewDisplays = ViewDisplays, > = (viewDisplay: VIEW_DISPLAY,) => JSX.Element
+export type RenderCallbackByViewDisplay<VIEW_DISPLAY extends ViewDisplays = ViewDisplays, > = (viewDisplay: VIEW_DISPLAY,) => ReactJSXElement

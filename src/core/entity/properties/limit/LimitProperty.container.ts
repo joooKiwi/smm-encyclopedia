@@ -1,7 +1,5 @@
 import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
 import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                              from 'core/entity/properties/limit/loader.types'
-import type {Nullable, NullOr}                                                                                                                                                                                                                                   from 'util/types/nullable'
-import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                                                                                              from 'util/types/variables'
 
 import type {EntityLimits} from 'core/entityLimit/EntityLimits'
 import {Import}            from 'util/DynamicImporter'

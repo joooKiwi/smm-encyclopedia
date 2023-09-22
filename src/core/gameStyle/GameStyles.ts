@@ -1,24 +1,24 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                     from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                              from 'core/PropertyGetter'
-import type {GameStylesInSMM1, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
-import type {GameStyle}                                                                                                            from 'core/gameStyle/GameStyle'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                            from 'core/PropertyGetter'
+import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
+import type {GameStyle}                                                                                                                                          from 'core/gameStyle/GameStyle'
 import type {GameStyleImageFile}                                                                                                   from 'core/gameStyle/file/GameStyleImageFile'
 import type {PossibleOtherEntities}                                                                                                from 'core/entity/Entity'
 import type {GameStyleProperty}                                                                                                    from 'core/entity/properties/gameStyle/GameStyleProperty'
 import type {GameStyleReferences}                                                                                                  from 'core/entity/properties/gameStyle/GameStyleReferences'
 import type {ClassWithImageFile}                                                                                                   from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                                                                             from 'util/types/nullable'
 
-import GameStyleComponent            from 'core/gameStyle/GameStyle.component'
-import {GameStyleLoader}             from 'core/gameStyle/GameStyle.loader'
-import {GameStyleImageFileContainer} from 'core/gameStyle/file/GameStyleImageFile.container'
-import {StringContainer}             from 'util/StringContainer'
-import {getValueByEnglishName}       from 'util/utilitiesMethods'
+import GameStyleComponent      from 'core/gameStyle/GameStyle.component'
+import {GameStyleLoader}       from 'core/gameStyle/GameStyle.loader'
+import {gameStyleImage}        from 'core/gameStyle/file/fileCreator'
+import {StringContainer}       from 'util/StringContainer'
+import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 export abstract class GameStyles
     extends Enum<Ordinals, Names>
@@ -90,8 +90,8 @@ export abstract class GameStyles
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<GameStyles, typeof GameStyles>> = class CompanionEnum_GameStyles
-        extends BasicCompanionEnum<GameStyles, typeof GameStyles> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<GameStyles, typeof GameStyles> = class CompanionEnum_GameStyles
+        extends CompanionEnum<GameStyles, typeof GameStyles> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -113,7 +113,8 @@ export abstract class GameStyles
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameStyle>
-    static #GAME_STYLES_SMM1?: GameStylesInSMM1
+    static #GAME_STYLES_SMM1?: GameStyles_ArrayInSMM1
+    static #GAME_STYLES_SMM2?: GameStyles_ArrayInSMM2
 
     #reference?: GameStyle
     readonly #acronym
@@ -165,7 +166,7 @@ export abstract class GameStyles
     }
 
     public get imageFile(): GameStyleImageFile {
-        return this.#imageFile ??= new GameStyleImageFileContainer(this.englishName, this.gameAcronym,)
+        return this.#imageFile ??= gameStyleImage(this.gameAcronym, this.englishName,)
     }
 
     public get shortImagePath(): PossibleShortImagePath {
@@ -184,8 +185,12 @@ export abstract class GameStyles
     }
 
 
-    public static get gameStyles_smm1(): GameStylesInSMM1 {
+    public static get gameStyles_smm1(): GameStyles_ArrayInSMM1 {
         return this.#GAME_STYLES_SMM1 ??= [this.SUPER_MARIO_BROS, this.SUPER_MARIO_BROS_3, this.SUPER_MARIO_WORLD, this.NEW_SUPER_MARIO_BROS_U,]
+    }
+
+    public static get gameStyles_smm2(): GameStyles_ArrayInSMM2 {
+        return this.#GAME_STYLES_SMM2 ??= this.values.toArray() as GameStyles_ArrayInSMM2
     }
 
 
@@ -204,8 +209,8 @@ export abstract class GameStyles
         return GameStyles.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<GameStyles> {
-        yield* GameStyles.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<GameStyles> {
+        return GameStyles.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -1,13 +1,11 @@
-import type {BooleanProperty}                                                                                                                                                                     from 'core/_properties/Property'
+import type {Property}                                                                                                                                                                            from 'core/_properties/Property'
 import type {PropertyThatCanBeUnknown}                                                                                                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
-import type {BooleanPropertyWithComment, PropertyWithComment}                                                                                                                                     from 'core/_properties/PropertyWithComment'
+import type {PropertyThatCanBeUnknownWithComment}                                                                                                                                                 from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PropertyWithComment}                                                                                                                                                                 from 'core/_properties/PropertyWithComment'
 import type {NotApplicableProperty, UnknownProperty}                                                                                                                                              from 'core/_properties/PropertyWithEverything'
 import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
 import type {EntityLimits}                                                                                                                                                                        from 'core/entityLimit/EntityLimits'
 import type {GameStructureFrom2Games}                                                                                                                                                             from 'core/game/GameStructure'
-import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
-import type {BooleanOrNotApplicable, NotApplicable}                                                                                                                                               from 'util/types/variables'
-import type {BooleanPropertyThatCanBeUnknownWithComment}                                                                                                                                          from 'core/_properties/PropertyThatCanBeUnknownWithComment'
 
 export interface LimitProperty {
 
@@ -117,22 +115,22 @@ export type GameStructureForEditorLimit = GameStructureFrom2Games<NullOr<EntityL
 type EditorLimit_SMM2 = PropertyThatCanBeUnknown<EntityLimits, false>
 export type PossibleEditorLimit_SMM2 = | EditorLimit_SMM2 | UnknownProperty | NotApplicableProperty
 
-type GeneralLimitProperty = BooleanPropertyWithComment<boolean, NullOr<PossibleGeneralEntityLimitComment>>
+type GeneralLimitProperty = PropertyWithComment<boolean, NullOr<PossibleGeneralEntityLimitComment>>
 export type PossibleIsInGeneralLimit = | GeneralLimitProperty | NotApplicableProperty
 
-type GeneralGlobalLimitProperty = BooleanPropertyWithComment<boolean, NullOr<PossibleGeneralGlobalEntityLimitComment>>
+type GeneralGlobalLimitProperty = PropertyWithComment<boolean, NullOr<PossibleGeneralGlobalEntityLimitComment>>
 export type PossibleIsInGeneralGlobalLimit = | GeneralGlobalLimitProperty | NotApplicableProperty
 
-type PowerUpLimitProperty = BooleanProperty
+type PowerUpLimitProperty = Property<NullOrBoolean>
 export type PossibleIsInPowerUpLimit = | PowerUpLimitProperty | NotApplicableProperty
 
-type ProjectileLimitProperty = BooleanPropertyWithComment<boolean, NullOr<PossibleProjectileEntityLimitComment>>
+type ProjectileLimitProperty = PropertyWithComment<boolean, NullOr<PossibleProjectileEntityLimitComment>>
 export type PossibleIsInProjectileLimit = | ProjectileLimitProperty | UnknownProperty | NotApplicableProperty
 
-type RenderedObjectLimit = BooleanPropertyThatCanBeUnknownWithComment<boolean, boolean, NullOr<PossibleRenderedObjectLimitTypeComment>>
+type RenderedObjectLimit = PropertyThatCanBeUnknownWithComment<boolean, boolean, NullOr<PossibleRenderedObjectLimitTypeComment>>
 export type PossibleIsInRenderedObjectLimit = | RenderedObjectLimit | NotApplicableProperty
 
-type CollectedCoinLimit = BooleanProperty
+type CollectedCoinLimit = Property<NullOrBoolean>
 export type PossibleIsInCollectedCoinLimit = | CollectedCoinLimit | NotApplicableProperty
 
 type OtherLimitProperty = PropertyWithComment<EntityLimits, NullOr<PossibleOtherLimitComment>>

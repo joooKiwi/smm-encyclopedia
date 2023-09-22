@@ -1,11 +1,10 @@
 import type {UniqueImage}                                      from 'core/entity/images/unique/UniqueImage'
 import type {ClassWithNullObjectPattern, EmptyUniqueImageName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyArray}                                       from 'util/types/variables'
 
-import {ClearConditionImageFactory} from 'core/entity/images/clearCondition/ClearConditionImage.factory'
-import {EditorImageFactory}         from 'core/entity/images/editor/EditorImage.factory'
-import {InGameImageFactory}         from 'core/entity/images/inGame/InGameImage.factory'
-import {EMPTY_ARRAY, EMPTY_MAP}     from 'util/emptyVariables'
+import {EmptyClearConditionImage} from 'core/entity/images/clearCondition/EmptyClearConditionImage'
+import {EmptyEditorImage}         from 'core/entity/images/editor/EmptyEditorImage'
+import {EmptyInGameImage}         from 'core/entity/images/inGame/EmptyInGameImage'
+import {EMPTY_MAP}                from 'util/emptyVariables'
 
 /**
  * @singleton
@@ -26,14 +25,10 @@ export class EmptyUniqueImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly clearConditionImage = ClearConditionImageFactory.EMPTY_CLEAR_CONDITION_IMAGE
-    public readonly editorImage = EditorImageFactory.EMPTY_EDITOR_IMAGE
-    public readonly inGameImage = InGameImageFactory.EMPTY_IN_GAME_IMAGE
+    public readonly clearConditionImage = EmptyClearConditionImage.get
+    public readonly editorImage = EmptyEditorImage.get
+    public readonly inGameImage = EmptyInGameImage.get
     public readonly map = EMPTY_MAP
-
-    public get(): EmptyArray {
-        return EMPTY_ARRAY
-    }
 
     public toString(): EmptyUniqueImageName {
         return 'Empty unique image'

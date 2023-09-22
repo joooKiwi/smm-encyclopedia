@@ -1,8 +1,7 @@
-import type {BasicCompanionEnumDeclaration, EnumerableConstructor, Enumerable} from '@joookiwi/enumerable'
+import type {CompanionEnumDeclaration, EnumerableConstructor, Enumerable} from '@joookiwi/enumerable'
 
 import type {ClassUsedInRoute}       from 'route/ClassUsedInRoute'
 import type {SingleRetrievableByUrl} from 'util/enumerable/SingleRetrievableByUrl'
-import type {NullOr}                 from 'util/types/nullable'
 
 /**
  * A basic implementation of the {@link SingleRetrievableByUrl} with only the regex
@@ -14,7 +13,7 @@ export abstract class SingleRetrievableByUrlImplementation<const T extends Enume
     //region -------------------- Fields --------------------
 
     public abstract readonly URL_REGEX: RegExp
-    protected abstract readonly _enumerableConstructor: EnumerableConstructor<T, BasicCompanionEnumDeclaration<T, any>> & Iterable<T>
+    protected abstract readonly _enumerableConstructor: EnumerableConstructor<T, CompanionEnumDeclaration<T, any>> & Iterable<T>
     protected readonly _prefix: NullOr<string> = null
     #values?: readonly T[]
     #prefix?: string

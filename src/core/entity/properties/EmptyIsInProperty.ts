@@ -1,6 +1,5 @@
 import type {Property}                                          from 'core/entity/properties/Property'
 import type {ClassWithNullObjectPattern, EmptyIsInPropertyName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyMap}                                          from 'util/types/variables'
 
 import {EmptyInstrumentProperty} from 'core/entity/properties/instrument/EmptyInstrumentProperty'
 import {EmptyLimitProperty}      from 'core/entity/properties/limit/EmptyLimitProperty'

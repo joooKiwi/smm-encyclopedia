@@ -1,8 +1,8 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
-import type {ReactElement}                       from 'util/react/ReactProperties'
 
 import {ArrowDirections} from 'app/tools/arrow/ArrowDirections'
 
@@ -99,8 +99,8 @@ export abstract class Arrows
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Arrows, typeof Arrows>> = class CompanionEnum_Arrows
-        extends BasicCompanionEnum<Arrows, typeof Arrows> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Arrows, typeof Arrows> = class CompanionEnum_Arrows
+        extends CompanionEnum<Arrows, typeof Arrows> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -199,8 +199,8 @@ export abstract class Arrows
         return Arrows.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Arrows> {
-        yield* Arrows.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Arrows> {
+        return Arrows.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

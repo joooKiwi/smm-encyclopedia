@@ -1,12 +1,12 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                          from 'core/ClassWithAcronym'
 import type {ClassWithReference}                                        from 'core/ClassWithReference'
 import type {EntityBehaviour}                                           from 'core/behaviour/EntityBehaviour'
 import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
 import type {ClassWithTranslationKey}                                   from 'lang/ClassWithTranslationKey'
-import type {Nullable}                                                  from 'util/types/nullable'
 
 import {EntityBehaviourLoader} from 'core/behaviour/EntityBehaviour.loader'
 
@@ -36,8 +36,8 @@ export class EntityBehaviours
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityBehaviours, typeof EntityBehaviours>> = class CompanionEnum_EntityBehaviours
-        extends BasicCompanionEnum<EntityBehaviours, typeof EntityBehaviours> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<EntityBehaviours, typeof EntityBehaviours> = class CompanionEnum_EntityBehaviours
+        extends CompanionEnum<EntityBehaviours, typeof EntityBehaviours> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -123,8 +123,8 @@ export class EntityBehaviours
         return EntityBehaviours.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityBehaviours> {
-        yield* EntityBehaviours.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EntityBehaviours> {
+        return EntityBehaviours.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

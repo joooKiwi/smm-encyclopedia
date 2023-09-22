@@ -1,6 +1,7 @@
 import type {Time} from 'util/file/sound/time/Time'
 
-export abstract class AbstractTime<MILLISECOND extends number = number, SECOND extends number = number, >
+export abstract class AbstractTime<const out MILLISECOND extends number = number,
+    const out SECOND extends number = number, >
     implements Time<MILLISECOND, SECOND> {
 
     //region -------------------- Fields --------------------
@@ -9,12 +10,14 @@ export abstract class AbstractTime<MILLISECOND extends number = number, SECOND e
     readonly #second
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     protected constructor(millisecond: MILLISECOND, second: SECOND,) {
         this.#millisecond = millisecond
         this.#second = second
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get millisecond(): MILLISECOND {

@@ -5,7 +5,6 @@ import type {CourseTag}                                              from 'core/
 import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/CourseTag.template'
 import type {PossibleEnglishName, PossibleMakerCentralName}          from 'core/courseTag/CourseTags.types'
 import type {Loader}                                                 from 'util/loader/Loader'
-import type {NullOr}                                                 from 'util/types/nullable'
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'

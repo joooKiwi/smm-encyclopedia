@@ -1,6 +1,5 @@
-import type {PropertyWithAmount}                        from 'core/_properties/PropertyWithAmount'
-import type {PropertyWithComment}                       from 'core/_properties/PropertyWithComment'
-import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullable'
+import type {PropertyWithAmount}  from 'core/_properties/PropertyWithAmount'
+import type {PropertyWithComment} from 'core/_properties/PropertyWithComment'
 
 /**
  * A generic property with a value
@@ -9,10 +8,4 @@ import type {NullOrBoolean, NullOrNumber, NullOrString} from 'util/types/nullabl
  * contained in it.
  */
 export interface PropertyWithAmountAndComment<T, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, >
-    extends PropertyWithAmount<T, AMOUNT>, PropertyWithComment<T, COMMENT> {
-
-}
-
-export type BooleanPropertyWithAmountAndComment<B extends NullOrBoolean = NullOrBoolean, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, > = PropertyWithAmountAndComment<B, AMOUNT, COMMENT>
-export type NumberPropertyWithAmountAndComment<N extends NullOrNumber = NullOrNumber, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, > = PropertyWithAmountAndComment<N, AMOUNT, COMMENT>
-export type StringPropertyWithAmountAndComment<S extends NullOrString = NullOrString, AMOUNT extends NullOrNumber = NullOrNumber, COMMENT extends NullOrString = NullOrString, > = PropertyWithAmountAndComment<S, AMOUNT, COMMENT>
+    extends PropertyWithAmount<T, AMOUNT>, PropertyWithComment<T, COMMENT> {}

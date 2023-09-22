@@ -1,11 +1,8 @@
-import type {PossibleEnglishName} from 'core/miiCostume/MiiCostumes.types'
-import type {ImageFile}           from 'util/file/image/ImageFile'
+import type {ImageFile} from 'util/file/image/ImageFile'
 
-export interface MiiCostumeImageFile
-    extends ImageFile<ImageFilePath, PossibleImageFileName, ImageFileExtension, PossibleEnglishName> {
-}
+/** An {@link ImageFile} made to be related to a {@link MiiCostumes} */
+export type MiiCostumeImageFile = ImageFile<'Mii costume', PossibleImageFileName, 'tiff'>
 
-export type ImageFilePath = 'Mii costume'
 
 export type PossibleImageFileName =
     | `All_${`${| 'BuilderMario' | 'ClimbMario' | 'Dossun' | 'DrMario' | 'Kameck'
@@ -44,5 +41,3 @@ export type PossibleImageFileName =
               | `Shirt_${| 'Default' | 'Border' | 'Gesso' | 'Hanabi' | 'Keshigom'
                          | 'Killer' | 'Kinoko' | 'Nintendo' | 'Warai'}`
               | `Skin${| '3W' | 'M1' | 'M3' | 'MW' | 'MU'}`}`
-
-export type ImageFileExtension = 'tiff'

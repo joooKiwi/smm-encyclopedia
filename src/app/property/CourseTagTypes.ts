@@ -1,10 +1,9 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/CourseTagTypes.types'
-import type {BootstrapColor}                                   from 'bootstrap/Bootstrap.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
-import type {Nullable, NullOr}                                 from 'util/types/nullable'
 
 import {CourseTags}     from 'core/courseTag/CourseTags'
 import {getValueByType} from 'util/utilitiesMethods'
@@ -20,8 +19,8 @@ export abstract class CourseTagTypes
 
     public static readonly ALL =              new class CourseTagTypes_All extends CourseTagTypes {
 
-        public override get iterator(): IterableIterator<CourseTags> {
-            return CourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.values.toArray()
         }
 
 
@@ -32,8 +31,8 @@ export abstract class CourseTagTypes
     }('all', 'everyCourseTag',)
     public static readonly OFFICIAL =         new class CourseTagTypes_Official extends CourseTagTypes {
 
-        public override get iterator(): IterableIterator<CourseTags> {
-            return CourseTags.officialCourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.officialCourseTags
         }
 
 
@@ -56,8 +55,8 @@ export abstract class CourseTagTypes
     }('official', 'officialCourseTag',)
     public static readonly UNOFFICIAL =       new class CourseTagTypes_Unofficial extends CourseTagTypes {
 
-        public override get iterator(): IterableIterator<CourseTags> {
-            return CourseTags.unofficialCourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.unofficialCourseTags
         }
 
 
@@ -80,8 +79,8 @@ export abstract class CourseTagTypes
     }('unofficial', 'unofficialCourseTag',)
     public static readonly MAKER_CENTRAL =    new class CourseTagTypes_MakerCentral extends CourseTagTypes {
 
-        public override get iterator(): IterableIterator<CourseTags> {
-            return CourseTags.makerCentralCourseTags[Symbol.iterator]()
+        public override get content() {
+            return CourseTags.makerCentralCourseTags
         }
 
 
@@ -106,8 +105,8 @@ export abstract class CourseTagTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<CourseTagTypes, typeof CourseTagTypes>> = class CompanionEnum_CourseTagTypes
-        extends BasicCompanionEnum<CourseTagTypes, typeof CourseTagTypes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<CourseTagTypes, typeof CourseTagTypes> = class CompanionEnum_CourseTagTypes
+        extends CompanionEnum<CourseTagTypes, typeof CourseTagTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -151,7 +150,12 @@ export abstract class CourseTagTypes
         return this.#routeName
     }
 
-    public abstract get iterator(): IterableIterator<CourseTags>
+    /**
+     * Retrieve the content applicable to the {@link CourseTagTypes}
+     *
+     * @see AppInterpreter.content
+     */
+    public abstract get content(): readonly CourseTags[]
 
     //region -------------------- Link button methods --------------------
 
@@ -226,8 +230,8 @@ export abstract class CourseTagTypes
         return CourseTagTypes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<CourseTagTypes> {
-        yield* CourseTagTypes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<CourseTagTypes> {
+        return CourseTagTypes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

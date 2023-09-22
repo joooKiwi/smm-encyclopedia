@@ -8,8 +8,6 @@ import type {SoundEffectWhenCollected}                                          
 import type {PossibleTranslationKeys as TranslationKeyOnSoundEffectOnMovement, SoundEffectOnMovement}                                                                                             from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
 import type {SoundEffectOnTaunt}                                                                                                                                                                  from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
 import type {SoundEffectOnTurnAfterRun}                                                                                                                                                           from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
-import type {NullOr}                                                                                                                                                                              from 'util/types/nullable'
-import type {BooleanOrNotApplicable}                                                                                                                                                              from 'util/types/variables'
 
 export interface SoundProperty {
 

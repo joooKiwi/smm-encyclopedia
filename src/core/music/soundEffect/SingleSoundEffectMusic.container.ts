@@ -1,18 +1,26 @@
 import type {MusicSoundFile}                                                      from 'core/music/file/MusicSoundFile'
 import type {PossibleMusicArray, PossibleSoundEffectName, SingleSoundEffectMusic} from 'core/music/soundEffect/SingleSoundEffectMusic'
 
-import {AbstractSoundEffectMusic} from 'core/music/soundEffect/AbstractSoundEffectMusic'
-
-export class SingleSoundEffectMusicContainer<NAME extends MusicSoundFile<PossibleSoundEffectName>, >
-    extends AbstractSoundEffectMusic<PossibleMusicArray<NAME>, NAME, NAME>
+export class SingleSoundEffectMusicContainer<const out NAME extends MusicSoundFile<PossibleSoundEffectName>, >
     implements SingleSoundEffectMusic<NAME> {
 
+    readonly #everyMusic
+    readonly #soundEffect
+
     public constructor(name: NAME,) {
-        super(name, name,)
+        this.#everyMusic = [this.#soundEffect = name,] as const
     }
 
-    protected override _createEveryMusics(): PossibleMusicArray<NAME> {
-        return [this.soundEffect,]
+    public get everyMusics(): PossibleMusicArray<NAME> {
+        return this.#everyMusic
+    }
+
+    public get soundEffect(): NAME {
+        return this.#soundEffect
+    }
+
+    public get editorSoundEffect(): NAME {
+        return this.#soundEffect
     }
 
 }

@@ -1,9 +1,8 @@
 import './MysteryMushroomApp.scss'
 
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
 import {unfinishedText}           from 'app/tools/text/UnfinishedText'
@@ -55,11 +54,11 @@ export default class MysteryMushroomApp
         return enumerable.uniqueEnglishName
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
-        return new class implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
+    protected override _createAppOptionInterpreter() {
+        return new class MysteryMushroomAppInterpreter implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
-            public get iterable() {
-                return MysteryMushrooms[Symbol.iterator]()
+            public get content() {
+                return MysteryMushrooms.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------
@@ -107,35 +106,43 @@ export default class MysteryMushroomApp
             //endregion -------------------- Card list interpreter --------------------
             //region -------------------- Table interpreter --------------------
 
-            public set callbackToGetEnumerable(value: () => MysteryMushrooms,) {
-                MysteryMushroomAppOption.CALLBACK_TO_GET_ENUMERATION = value
-            }
+            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+            public readonly tableCaption = gameContentTranslation('mystery mushroom.all', {
+                singularName: MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName).toLowerCase(),
+                pluralName: MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName).toLowerCase(),
+            },) satisfies ReactElementOrString
 
             public get tableOptions(): readonly MysteryMushroomAppOption[] {
                 return [
                     MysteryMushroomAppOption.CONDITION_TO_UNLOCK_IT,
                     MysteryMushroomAppOption.GAME,
                     MysteryMushroomAppOption.NAME,
-                    MysteryMushroomAppOption.IMAGES_AND_SOUNDS,
+
+                    MysteryMushroomAppOption.POWER_UP_COLLECTED,
+                    MysteryMushroomAppOption.WAITING,
+                    MysteryMushroomAppOption.TAUNT,
+                    MysteryMushroomAppOption.PRESSING_DOWN,
+                    MysteryMushroomAppOption.WALK,
+                    MysteryMushroomAppOption.RUNNING,
+                    MysteryMushroomAppOption.SWIMMING,
+                    MysteryMushroomAppOption.JUMP,
+                    MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
+                    MysteryMushroomAppOption.ON_GROUND_AFTER_A_JUMP,
+                    MysteryMushroomAppOption.TURNING,
+                    MysteryMushroomAppOption.CLIMBING,
+                    MysteryMushroomAppOption.GOAL_POLE,
+                    MysteryMushroomAppOption.LOST_A_LIFE,
                 ]
             }
 
-            public get tableProperties(): SimplifiedTableProperties {
-                return {
-                    caption: gameContentTranslation('mystery mushroom.all', {
-                        singularName: MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName).toLowerCase(),
-                        pluralName: MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName).toLowerCase(),
-                    },),
-                }
-            }
 
-
-            public createTableContent(option: MysteryMushroomAppOption,) {
-                return option.renderContent
+            public createNewTableContent(content: MysteryMushrooms, option: MysteryMushroomAppOption,) {
+                return option.renderContent(content,)
             }
 
             public createTableHeader(option: MysteryMushroomAppOption) {
-                return option.renderTableHeader
+                return option.renderTableHeader()
             }
 
             //endregion -------------------- Table interpreter --------------------

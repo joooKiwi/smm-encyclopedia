@@ -9,9 +9,9 @@ export abstract class AbstractEntityPropertyComponent<R, E>
     protected abstract get _map(): ReadonlyMap<E, boolean>
 
 
-    protected abstract _renderSingleComponent(enumInstance: E,): JSX.Element
+    protected abstract _renderSingleComponent(enumInstance: E,): ReactJSXElement
 
-    public override _render(): JSX.Element {
+    protected override _render(): ReactJSXElement {
         const enumInstances = [] as E[]
         this._map.forEach((isInEnumInstance, enumInstance) => {
             if (isInEnumInstance)

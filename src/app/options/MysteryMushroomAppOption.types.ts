@@ -1,12 +1,9 @@
-import type {NullOr} from 'util/types/nullable'
-
 enum Enum {
 
     CONDITION_TO_UNLOCK_IT,
     GAME,
     NAME,
 
-    IMAGES_AND_SOUNDS,
     POWER_UP_COLLECTED,
     WAITING,
     TAUNT,

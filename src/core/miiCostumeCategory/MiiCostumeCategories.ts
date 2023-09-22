@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                             from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                               from 'core/ClassWithReference'
@@ -7,12 +8,11 @@ import type {Names, Ordinals, PossibleEnglishName}             from 'core/miiCos
 import type {MiiCostumeCategory}                               from 'core/miiCostumeCategory/MiiCostumeCategory'
 import type {MiiCostumeCategoryImageFile, PossibleImageNumber} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile'
 import type {ClassWithImageFile}                               from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                         from 'util/types/nullable'
 
-import {MiiCostumeCategoryLoader}                          from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
-import {MiiCostumeCategoryImageFileContainer as ImageFile} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile.container'
-import {StringContainer}                                   from 'util/StringContainer'
-import {getValueByEnglishName}                             from 'util/utilitiesMethods'
+import {MiiCostumeCategoryLoader} from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
+import {miiCostumeCategoryImage}  from 'core/miiCostumeCategory/file/fileCreator'
+import {StringContainer}          from 'util/StringContainer'
+import {getValueByEnglishName}    from 'util/utilitiesMethods'
 
 export class MiiCostumeCategories
     extends Enum<Ordinals, Names>
@@ -30,8 +30,8 @@ export class MiiCostumeCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<MiiCostumeCategories, typeof MiiCostumeCategories>> = class CompanionEnum_MiiCostumeCategories
-        extends BasicCompanionEnum<MiiCostumeCategories, typeof MiiCostumeCategories> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<MiiCostumeCategories, typeof MiiCostumeCategories> = class CompanionEnum_MiiCostumeCategories
+        extends CompanionEnum<MiiCostumeCategories, typeof MiiCostumeCategories> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -95,12 +95,8 @@ export class MiiCostumeCategories
     }
 
 
-    private get __imageNumber(): PossibleImageNumber {
-        return this.#imageNumber
-    }
-
     public get imageFile(): MiiCostumeCategoryImageFile {
-        return this.#imageFile ??= new ImageFile(this.__imageNumber, this.englishName,)
+        return this.#imageFile ??= miiCostumeCategoryImage(this.#imageNumber, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -125,8 +121,8 @@ export class MiiCostumeCategories
         return MiiCostumeCategories.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<MiiCostumeCategories> {
-        yield* MiiCostumeCategories.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<MiiCostumeCategories> {
+        return MiiCostumeCategories.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

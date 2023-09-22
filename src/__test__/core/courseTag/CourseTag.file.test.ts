@@ -2,7 +2,6 @@ import file from 'resources/compiled/Course tag (SMM2).json'
 
 import type {PossibleExcludedLanguages}                      from '__test__/helperMethods.types'
 import type {PossibleName_SMM2 as PossibleName_Version_SMM2} from 'core/version/Versions.types'
-import type {NullOr}                                         from 'util/types/nullable'
 
 import {EveryTypes}                                                               from '__test__/EveryTypes'
 import {getEnglishName, testLanguages, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test__/helperMethods'

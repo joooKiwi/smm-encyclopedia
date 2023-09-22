@@ -1,7 +1,6 @@
 import type {Enumerable} from '@joookiwi/enumerable/dist/types'
 
 import type {ClassWithUrlRegex} from 'util/enumerable/ClassWithUrlRegex'
-import type {NullOr}            from 'util/types/nullable'
 import type {ClassUsedInRoute}  from 'route/ClassUsedInRoute'
 
 /**

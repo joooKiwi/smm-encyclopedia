@@ -1,6 +1,4 @@
-import type {PossibleEnglishName}        from 'core/entityLimit/EntityLimits.types'
-import type {NullOr, NullOrBoolean}      from 'util/types/nullable'
-import type {Infinity, UnknownCharacter} from 'util/types/variables'
+import type {PossibleEnglishName} from 'core/entityLimit/EntityLimits.types'
 
 //region -------------------- Limit amount --------------------
 

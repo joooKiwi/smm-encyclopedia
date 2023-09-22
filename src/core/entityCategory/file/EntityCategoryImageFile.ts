@@ -1,13 +1,6 @@
-import type {PossibleEnglishName} from 'core/entityCategory/EntityCategories.types'
-import type {ImageFile}           from 'util/file/image/ImageFile'
+import type {ImageFile} from 'util/file/image/ImageFile'
 
-export interface EntityCategoryImageFile
-    extends ImageFile<ImageFilePath, PossibleImageFileName, ImageFileExtension, PossibleEnglishName> {
-}
-
-export type ImageFilePath = 'category'
+/** An {@link ImageFile} made to be related to an {@link EntityCategories} */
+export type EntityCategoryImageFile = ImageFile<'category', `CategoryIcon_0${PossibleImageNumber}^s`, 'tiff'>
 
 export type PossibleImageNumber = | 0 | 1 | 2 | 3
-export type PossibleImageFileName = `CategoryIcon_0${PossibleImageNumber}^s`
-
-export type ImageFileExtension = 'tiff'

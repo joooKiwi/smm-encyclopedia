@@ -2,7 +2,6 @@ import type {SMM1ExclusiveSoundEffectSound}                            from 'cor
 import type {SMM1StandaloneSoundEffectSound}                           from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
 import type {SMM2SoundEffectSound}                                     from 'core/soundEffect/sound/SMM2SoundEffectSound'
 import type {ClassWithNullObjectPattern, EmptySMMSoundEffectSoundName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyArray}                                               from 'util/types/variables'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 

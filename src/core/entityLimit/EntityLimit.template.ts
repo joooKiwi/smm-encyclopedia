@@ -3,8 +3,6 @@ import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEng
 import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                        from 'core/entityLimit/EntityLimitTypes.types'
 import type {SimpleGameFrom1And2Template}                                                                      from 'core/game/SimpleGame.template'
 import type {NameTemplate}                                                                                     from 'lang/name/Name.template'
-import type {NullOr}                                                                                           from 'util/types/nullable'
-import type {NotApplicable, UnknownCharacter}                                                                  from 'util/types/variables'
 
 //region -------------------- Limit types --------------------
 

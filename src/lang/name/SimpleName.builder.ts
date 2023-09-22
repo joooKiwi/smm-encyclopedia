@@ -1,6 +1,5 @@
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
 import type {Builder}                                                                 from 'util/builder/Builder'
-import type {Nullable, NullOr}                                                        from 'util/types/nullable'
 
 import {SimpleNameContainer} from 'lang/name/SimpleName.container'
 import {assert}              from 'util/utilitiesMethods'

@@ -4,7 +4,6 @@ import {Fragment} from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
 import type {GameContentTranslationKey} from 'lang/components/TranslationProperty'
-import type {ReactElement}              from 'util/react/ReactProperties'
 
 import AbstractApp              from 'app/AbstractApp'
 import {Games}                  from 'core/game/Games'

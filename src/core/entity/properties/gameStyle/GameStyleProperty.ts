@@ -1,5 +1,4 @@
-import type {GameStyles}    from 'core/gameStyle/GameStyles'
-import type {NullOrBoolean} from 'util/types/nullable'
+import type {GameStyles} from 'core/gameStyle/GameStyles'
 
 export interface GameStyleProperty<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends NullOrBoolean = NullOrBoolean, > {
 

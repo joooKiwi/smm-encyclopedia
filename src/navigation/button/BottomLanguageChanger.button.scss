@@ -9,3 +9,8 @@
     bottom: var(--bs-spacer-lg);
   }
 }
+
+.bottomLanguage-tooltip {
+  --bs-tooltip-bg: var(--bs-light);
+  --bs-tooltip-color: var(--bs-dark);
+}

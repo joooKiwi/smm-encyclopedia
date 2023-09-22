@@ -3,7 +3,6 @@ import './SoundEffectCategoryApp.scss'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
@@ -33,11 +32,11 @@ export default class SoundEffectCategoryApp
         return gameContentTranslation('sound effect category.all')
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<SoundEffectCategories> {
-        return new class implements AppInterpreterWithCardList<SoundEffectCategories> {
+    protected override _createAppOptionInterpreter() {
+        return new class SoundEffectCategoryAppInterpreter implements AppInterpreterWithCardList<SoundEffectCategories> {
 
-            public get iterable() {
-                return SoundEffectCategories[Symbol.iterator]()
+            public get content() {
+                return SoundEffectCategories.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

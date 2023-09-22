@@ -1,12 +1,11 @@
 import './ThemeApp.scss'
 
 import type {ThemeAppProperties}                                   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable, SimplifiedTableProperties}   from 'app/interpreter/AppInterpreterWithTable'
+import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ThemeTypes}                                           from 'app/property/ThemeTypes'
 import type {Themes}                                               from 'core/theme/Themes'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
@@ -15,7 +14,7 @@ import LinkButton                                        from 'app/tools/button/
 import Image                                             from 'app/tools/images/Image'
 import {AbstractTableApp}                                from 'app/withInterpreter/AbstractTableApp'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
-import {newIterableIterator}                             from 'util/utilitiesMethods'
+import {filterGame}                                      from 'util/utilitiesMethods'
 
 /**
  * @reactComponent
@@ -24,7 +23,6 @@ export default class ThemeApp
     extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
 
     //region -------------------- Getter methods --------------------
-
 
     public get type(): ThemeTypes {
         return this.props.type
@@ -71,13 +69,13 @@ export default class ThemeApp
         </div>
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithTable<Themes, ThemeAppOption> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithTable<Themes, ThemeAppOption> {
+        return new class ThemeAppInterpreter implements AppInterpreterWithTable<Themes, ThemeAppOption> {
 
-            public get iterable(): IterableIterator<Themes> {
-                return newIterableIterator($this.props.games, $this.type.iterator,)
+            public get content() {
+                return filterGame($this.type.content, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------
@@ -114,31 +112,26 @@ export default class ThemeApp
             //endregion -------------------- Card list interpreter --------------------
             //region -------------------- Table interpreter --------------------
 
-            public set callbackToGetEnumerable(value: () => Themes,) {
-                ThemeAppOption.CALLBACK_TO_GET_ENUMERATION = value
-            }
+            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+            public readonly tableCaption = gameContentTranslation('theme.all.all') satisfies ReactElementOrString
 
-            public get tableOptions(): ThemeAppOption[] {
+            public get tableOptions(): readonly ThemeAppOption[] {
                 return [
-                    ThemeAppOption.IMAGE,
+                    ThemeAppOption.ICON,
+                    ThemeAppOption.ENDLESS_MARIO_ICON,
                     ThemeAppOption.NAME,
                     ThemeAppOption.NIGHT_EFFECT,
                 ]
             }
 
-            public get tableProperties(): SimplifiedTableProperties {
-                return {
-                    caption: gameContentTranslation('theme.all.all')
-                }
-            }
 
-
-            public createTableContent(option: ThemeAppOption,) {
-                return option.renderContent
+            public createNewTableContent(content: Themes, option: ThemeAppOption,) {
+                return option.renderContent(content,)
             }
 
             public createTableHeader(option: ThemeAppOption,) {
-                return option.renderTableHeader
+                return option.renderTableHeader()
             }
 
             //endregion -------------------- Table interpreter --------------------

@@ -1,30 +1,27 @@
 import './EntityLimitAppOption.scss'
 
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}                                  from 'app/options/EntityLimitAppOption.types'
-import type {AppOptionWithContent, PossibleRenderReactElement} from 'app/options/component/AppOptionWithContent'
-import type {AppOptionWithTable}                               from 'app/options/component/AppOptionWithTable'
-import type {SingleHeaderContent}                              from 'app/tools/table/SimpleHeader'
-import type {EntityLimit}                                      from 'core/entityLimit/EntityLimit'
-import type {EntityLimits}                                     from 'core/entityLimit/EntityLimits'
-import type {ReactElement}                                     from 'util/react/ReactProperties'
-import type {NullOr}                                           from 'util/types/nullable'
+import type {AppOption}           from 'app/options/AppOption'
+import type {Names, Ordinals}     from 'app/options/EntityLimitAppOption.types'
+import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
+import type {EntityLimit}         from 'core/entityLimit/EntityLimit'
+import type {EntityLimits}        from 'core/entityLimit/EntityLimits'
 
-import {CommonOptions}                 from 'app/options/CommonOptions'
-import {COURSE_THEME_IMAGE_FILE}       from 'app/options/file/themeImageFiles'
-import {AppOptionWithContentComponent} from 'app/options/component/AppOptionWithContent.component'
-import {AppOptionWithTableComponent}   from 'app/options/component/AppOptionWithTable.component'
-import TextComponent                   from 'app/tools/text/TextComponent'
-import Image                           from 'app/tools/images/Image'
-import {Games}                         from 'core/game/Games'
-import {EmptyEntityLimit}              from 'core/entityLimit/EmptyEntityLimit'
-import {contentTranslation}            from 'lang/components/translationMethods'
-import NameComponent                   from 'lang/name/component/Name.component'
+import {CommonOptions}           from 'app/options/CommonOptions'
+import {COURSE_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
+import TextComponent             from 'app/tools/text/TextComponent'
+import Image                     from 'app/tools/images/Image'
+import {EmptyEntityLimit}        from 'core/entityLimit/EmptyEntityLimit'
+import {ProjectLanguages}        from 'lang/ProjectLanguages'
+import {contentTranslation}      from 'lang/components/translationMethods'
+import NameComponent             from 'lang/name/component/Name.component'
 
 export abstract class EntityLimitAppOption
-    extends Enum<Ordinals, Names> {
+    extends Enum<Ordinals, Names>
+    implements AppOption<EntityLimits> {
 
     //region -------------------- Enum instances --------------------
 
@@ -77,26 +74,27 @@ export abstract class EntityLimitAppOption
         }
 
     }()
-    public static readonly AMOUNT = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
+    public static readonly AMOUNT_IN_ALL_GAMES = new class EntityLimitAppOption_Amount extends EntityLimitAppOption {
 
         protected override _createContentOption(enumeration: EntityLimits,) {
-            return [
-                EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS._createContentOption(enumeration,),
-                EntityLimitAppOption.AMOUNT_IN_SMM2._createContentOption(enumeration,),
-            ]
+            const {reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName,} = enumeration
+            if (limitAmountInSMM1AndSMM3DS === limitAmountInSMM2)
+                return <TextComponent key={`${englishName} - text component`} content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
+
+            return <span className="space-pre">
+                {EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS.renderContent(enumeration,)}
+                {ProjectLanguages.current.space}{ProjectLanguages.current.slash}{ProjectLanguages.current.space}
+                {EntityLimitAppOption.AMOUNT_IN_SMM2.renderContent(enumeration,)}
+            </span>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return CommonOptions.get.getLimitHeader(
-                    {key: 'limit-SuperMarioMaker1And3DS', alt: Games.SUPER_MARIO_MAKER_1.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_1.imageFile.fullName,},
-                    {key: 'limit-SuperMarioMaker2', alt: Games.SUPER_MARIO_MAKER_2.imageFile.fallbackName, path: Games.SUPER_MARIO_MAKER_2.imageFile.fullName,},
-            )
+            return CommonOptions.get.limitHeader
         }
-
     }()
     public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class EntityLimitAppOption_AmountInSMM1AndSMM3DS extends EntityLimitAppOption {
 
-        public override _createContentOption({reference, englishName,}: EntityLimits,) {
+        protected override _createContentOption({reference, englishName,}: EntityLimits,) {
             return <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
         }
 
@@ -107,7 +105,7 @@ export abstract class EntityLimitAppOption
     }()
     public static readonly AMOUNT_IN_SMM2 = new class EntityLimitAppOption_AmountInSMM2 extends EntityLimitAppOption {
 
-        public override _createContentOption({reference, englishName,}: EntityLimits,) {
+        protected override _createContentOption({reference, englishName,}: EntityLimits,) {
             return <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
         }
 
@@ -120,8 +118,8 @@ export abstract class EntityLimitAppOption
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimitAppOption, typeof EntityLimitAppOption>> = class CompanionEnum_EntityLimitAppOption
-        extends BasicCompanionEnum<EntityLimitAppOption, typeof EntityLimitAppOption> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<EntityLimitAppOption, typeof EntityLimitAppOption> = class CompanionEnum_EntityLimitAppOption
+        extends CompanionEnum<EntityLimitAppOption, typeof EntityLimitAppOption> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -141,17 +139,6 @@ export abstract class EntityLimitAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
-    /**
-     * The callback to get the enumeration based for each option.
-     *
-     * @note It should only be set by {@link EntityLimitAppOption} and get by {@link EntityLimitApp}.
-     */
-    public static CALLBACK_TO_GET_ENUMERATION: () => EntityLimits
-
-    #appOptionWithContent?: AppOptionWithContent
-    #appOptionWithTable?: AppOptionWithTable
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
@@ -166,14 +153,10 @@ export abstract class EntityLimitAppOption
 
     //region -------------------- App option - content --------------------
 
-    protected abstract _createContentOption(enumeration: EntityLimits,): PossibleRenderReactElement
+    protected abstract _createContentOption(enumeration: EntityLimits,): ReactElement
 
-    private get __appOptionWithContent(): AppOptionWithContent {
-        return this.#appOptionWithContent ??= new AppOptionWithContentComponent(() => this._createContentOption(EntityLimitAppOption.CALLBACK_TO_GET_ENUMERATION()),)
-    }
-
-    public get renderContent(): readonly ReactElement[] {
-        return this.__appOptionWithContent.renderContent
+    public renderContent(enumeration: EntityLimits,): readonly [ReactElement,] {
+        return [this._createContentOption(enumeration,),]
     }
 
     //endregion -------------------- App option - content --------------------
@@ -181,12 +164,8 @@ export abstract class EntityLimitAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent
 
-    private get __appOptionWithTable(): AppOptionWithTable {
-        return this.#appOptionWithTable ??= new AppOptionWithTableComponent(() => this._createTableHeaderOption(),)
-    }
-
-    public get renderTableHeader(): NullOr<SingleHeaderContent> {
-        return this.__appOptionWithTable.renderTableHeader
+    public renderTableHeader(): NullOr<SingleHeaderContent> {
+        return this._createTableHeaderOption()
     }
 
     //endregion -------------------- App option - table --------------------
@@ -202,8 +181,8 @@ export abstract class EntityLimitAppOption
         return EntityLimitAppOption.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityLimitAppOption> {
-        yield* EntityLimitAppOption.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EntityLimitAppOption> {
+        return EntityLimitAppOption.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

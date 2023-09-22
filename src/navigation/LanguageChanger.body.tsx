@@ -2,7 +2,7 @@ import './LanguageChanger.body.scss'
 
 import {Fragment, useState} from 'react'
 
-import {ModalInstance}             from 'bootstrap/modal/ModalInstance'
+import {BootstrapInstanceHandler}  from 'bootstrap/BootstrapInstanceHandler'
 import {EveryLanguages}            from 'lang/EveryLanguages'
 import {ProjectLanguages}          from 'lang/ProjectLanguages'
 import LanguageChangerLink         from 'navigation/LanguageChanger.link'
@@ -27,7 +27,7 @@ export default function LanguageChangerBody() {
                     everyLanguagesShown.push(language.language.parent ?? language.language)
                     return <LanguageChangerLink key={key} language={language} callbackToSetLanguage={language => {
                         setCurrentLanguage(ProjectLanguages.current = language)
-                        ModalInstance.getInstance(LANGUAGE_CHANGER_MODAL_ID).instance.hide()
+                        BootstrapInstanceHandler.get.getModalInstanceOrNull(LANGUAGE_CHANGER_MODAL_ID)?.instance.hide()
                     }}/>
                 }
             )

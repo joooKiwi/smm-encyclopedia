@@ -1,7 +1,6 @@
 import type {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 import type {Games}        from 'core/game/Games'
 import type {Route}        from 'route/instance/Route'
-import type {NullOr}       from 'util/types/nullable'
 
 /**
  * A simple {@link Route} with nothing specified,
@@ -30,7 +29,7 @@ export abstract class AbstractRoute<const SIMPLE_NAME extends string, const NAME
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(simpleName: SIMPLE_NAME, name: NAME, path: PATH, viewDisplay: VIEW_DISPLAY, games: GAMES, renderCallback: () => JSX.Element,) {
+    protected constructor(simpleName: SIMPLE_NAME, name: NAME, path: PATH, viewDisplay: VIEW_DISPLAY, games: GAMES, renderCallback: () => ReactJSXElement,) {
         this.#simpleName = simpleName
         this.#name = name
         this.#path = path
@@ -62,7 +61,7 @@ export abstract class AbstractRoute<const SIMPLE_NAME extends string, const NAME
         return this.#games
     }
 
-    public get renderCallback(): () => JSX.Element {
+    public get renderCallback(): () => ReactJSXElement {
         return this.#renderCallback
     }
 

@@ -1,8 +1,7 @@
-import type {GameProperty}               from 'core/entity/properties/game/GameProperty'
-import type {OtherPluralWordInTheGame}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
-import type {OtherWordInTheGame}         from 'core/otherWordInTheGame/OtherWordInTheGame'
-import type {Name}                       from 'lang/name/Name'
-import type {NullOr}                     from 'util/types/nullable'
+import type {GameProperty}             from 'core/entity/properties/game/GameProperty'
+import type {OtherPluralWordInTheGame} from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
+import type {OtherWordInTheGame}       from 'core/otherWordInTheGame/OtherWordInTheGame'
+import type {Name}                     from 'lang/name/Name'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 

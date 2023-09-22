@@ -17,3 +17,6 @@ export const EMPTY_MAP: ReadonlyMap<any, never> = Object.freeze(new Map<any, nev
 
 /** An empty object with nothing (and not modifiable) */
 export const EMPTY_OBJECT: Readonly<{}> = Object.freeze({})
+
+/** An empty callback*/
+export const EMPTY_CALLBACK: () => void = Object.freeze(() => {},)

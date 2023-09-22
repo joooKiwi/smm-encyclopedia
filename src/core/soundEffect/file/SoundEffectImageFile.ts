@@ -1,12 +1,9 @@
-import type {PossibleSMM1ImageFileName} from 'core/soundEffect/file/SMM1SoundEffectImageFile'
-import type {PossibleSMM2ImageFileName} from 'core/soundEffect/file/SMM2SoundEffectImageFile'
-import type {ImageFile}                 from 'util/file/image/ImageFile'
-import type {PossibleEnglishName}       from 'core/soundEffect/SoundEffects.types'
+import type {SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
+import type {ImageFile}                                              from 'util/file/image/ImageFile'
 
-export interface SoundEffectImageFile<NAME extends PossibleImageFileName = PossibleImageFileName, >
-    extends ImageFile<SoundEffectPath, NAME, ImageFileExtension, PossibleEnglishName> {
-}
+/** An {@link ImageFile} made to be related to a {@link SoundEffects} */
+export type SoundEffectImageFile = | SMM1SoundEffectImageFile | SMM2SoundEffectImageFile
 
-export type SoundEffectPath = 'sound effect'
-export type PossibleImageFileName = | PossibleSMM1ImageFileName | PossibleSMM2ImageFileName
-export type ImageFileExtension = 'tiff'
+
+export type SMM1SoundEffectImageFile = ImageFile<'sound effect', `Edit_Lyt_P_SE${SoundEffectImageNumber_SMM1}`, 'tiff'>
+export type SMM2SoundEffectImageFile = ImageFile<'sound effect', `Lyt_E_P_SE_${SoundEffectImageName_SMM2}`, 'tiff'>

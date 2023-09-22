@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                         from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                           from 'core/ClassWithReference'
@@ -7,12 +8,11 @@ import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleIm
 import type {SoundEffectCategory}                                                          from 'core/soundEffectCategory/SoundEffectCategory'
 import type {SoundEffectCategoryImageFile}                                                 from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
 import type {ClassWithImageFile}                                                           from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                                                     from 'util/types/nullable'
 
-import {SoundEffectCategoryLoader}                          from 'core/soundEffectCategory/SoundEffectCategory.loader'
-import {SoundEffectCategoryImageFileContainer as ImageFile} from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile.container'
-import {getValueByEnglishName}                              from 'util/utilitiesMethods'
-import {StringContainer}                                    from 'util/StringContainer'
+import {SoundEffectCategoryLoader} from 'core/soundEffectCategory/SoundEffectCategory.loader'
+import * as FileCreator            from 'core/soundEffectCategory/file/fileCreator'
+import {getValueByEnglishName}     from 'util/utilitiesMethods'
+import {StringContainer}           from 'util/StringContainer'
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
@@ -31,8 +31,8 @@ export class SoundEffectCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<SoundEffectCategories, typeof SoundEffectCategories>> = class CompanionEnum_SoundEffectCategories
-        extends BasicCompanionEnum<SoundEffectCategories, typeof SoundEffectCategories> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<SoundEffectCategories, typeof SoundEffectCategories> = class CompanionEnum_SoundEffectCategories
+        extends CompanionEnum<SoundEffectCategories, typeof SoundEffectCategories> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -93,12 +93,8 @@ export class SoundEffectCategories
     }
 
 
-    public get imageName(): PossibleImageName {
-        return this.#imageName
-    }
-
     public get imageFile(): SoundEffectCategoryImageFile {
-        return this.#imageFile ??= new ImageFile(this.englishName, this.imageName,)
+        return this.#imageFile ??= FileCreator.soundEffectCategoryImage(this.#imageName, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -119,8 +115,8 @@ export class SoundEffectCategories
         return SoundEffectCategories.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<SoundEffectCategories> {
-        yield* SoundEffectCategories.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<SoundEffectCategories> {
+        return SoundEffectCategories.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

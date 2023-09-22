@@ -2,7 +2,7 @@ import './GroupOfPowerUpPriority.scss'
 import './GroupOf6PowerUpPriority.scss'
 
 import type {GroupOf6PowerUpPriorityArrowProperties} from 'app/powerUp/group/GroupPriority.types'
-import type {ReactElement, ReactProperties}          from 'util/react/ReactProperties'
+import type {ReactProperties}                        from 'util/react/ReactProperties'
 
 import Arrow    from 'app/tools/arrow/Arrow'
 import {Arrows} from 'app/tools/arrow/Arrows'

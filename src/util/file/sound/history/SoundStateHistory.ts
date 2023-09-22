@@ -1,5 +1,3 @@
-import type {Nullable} from 'util/types/nullable'
-
 import {HistoryState} from 'util/file/sound/history/HistoryState'
 import {SoundStates}  from 'util/file/sound/player/SoundStates'
 
@@ -12,6 +10,7 @@ export class SoundStateHistory {
     #current!: HistoryState
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     public constructor(currentState: SoundStates,) {
         if (currentState === SoundStates.LOADING)
@@ -20,6 +19,7 @@ export class SoundStateHistory {
         this.#history = [this.current,]
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get history(): readonly HistoryState[] {

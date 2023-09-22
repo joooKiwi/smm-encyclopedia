@@ -1,13 +1,13 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithReference}                                              from 'core/ClassWithReference'
 import type {CharacterName}                                                   from 'core/characterName/CharacterName'
 import type {ClassWithEnglishName}                                            from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {ClassWithNullableEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
-import type {EditorVoiceSoundFileHolder}                                      from 'core/editorVoice/holder/sound/EditorVoiceSoundFileHolder'
-import type {Nullable, NullOr}                                                from 'util/types/nullable'
+import type {EditorVoiceSound}                                                from 'core/editorVoice/sound/EditorVoiceSound'
 
 import {CharacterNameLoader}   from 'core/characterName/CharacterName.loader'
 import {EditorVoices}          from 'core/editorVoice/EditorVoices'
@@ -15,7 +15,7 @@ import {StringContainer}       from 'util/StringContainer'
 import {getValueByEnglishName} from 'util/utilitiesMethods'
 
 /**
- * @recursiveReference {@link EditorVoices}
+ * @recursiveReference<{@link EditorVoices}>
  */
 export class CharacterNames
     extends Enum<Ordinals, Names>
@@ -174,8 +174,8 @@ export class CharacterNames
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<CharacterNames, typeof CharacterNames>> = class CompanionEnum_CharacterNames
-        extends BasicCompanionEnum<CharacterNames, typeof CharacterNames> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<CharacterNames, typeof CharacterNames> = class CompanionEnum_CharacterNames
+        extends CompanionEnum<CharacterNames, typeof CharacterNames> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -197,12 +197,12 @@ export class CharacterNames
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleUniqueEnglishName, CharacterName>
-    static #everyEnglishNames?:readonly PossibleEnglishName[]
+    static #everyEnglishNames?: readonly PossibleEnglishName[]
 
     #reference?: CharacterName
     readonly #englishName
     readonly #uniqueEnglishName
-    #editorVoiceSound?: NullOr<EditorVoiceSoundFileHolder>
+    #editorVoiceSound?: NullOr<EditorVoiceSound>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -245,7 +245,7 @@ export class CharacterNames
 
     //region -------------------- editor sound --------------------
 
-    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSoundFileHolder> {
+    public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
         if (this.#editorVoiceSound === undefined)
             this.#editorVoiceSound = EditorVoices.hasReference(this) ? EditorVoices.getValueByCharacterName(this).editorVoiceSoundFileHolder : null
         return this.#editorVoiceSound
@@ -279,8 +279,8 @@ export class CharacterNames
         return CharacterNames.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<CharacterNames> {
-        yield* CharacterNames.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<CharacterNames> {
+        return CharacterNames.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

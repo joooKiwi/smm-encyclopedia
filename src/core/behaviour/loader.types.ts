@@ -1,6 +1,4 @@
-import type {PossibleAcronym}  from 'core/behaviour/EntityBehaviours.types'
-import type {NullOr}           from 'util/types/nullable'
-import type {UnknownCharacter} from 'util/types/variables'
+import type {PossibleAcronym} from 'core/behaviour/EntityBehaviours.types'
 
 export type CanRespawnType = NullOr<| boolean | UnknownCharacter | 'With Vine' | 'If not collected'>
 export type CanRespawnOnlineType = | boolean | UnknownCharacter

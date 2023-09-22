@@ -1,11 +1,10 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithValue}  from 'util/types/ClassWithValue'
 import type {ImageProperties} from 'app/tools/images/properties/ImageProperties'
 import type {Names, Ordinals} from 'app/options/global/Images.types'
-import type {Nullable}        from 'util/types/nullable'
-import type {ReactElement}    from 'util/react/ReactProperties'
 
 import Image from 'app/tools/images/Image'
 
@@ -41,8 +40,8 @@ export abstract class Images
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<Images, typeof Images>> = class CompanionEnum_Images
-        extends BasicCompanionEnum<Images, typeof Images> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<Images, typeof Images> = class CompanionEnum_Images
+        extends CompanionEnum<Images, typeof Images> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -109,8 +108,8 @@ export abstract class Images
         return Images.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<Images> {
-        yield* Images.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<Images> {
+        return Images.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

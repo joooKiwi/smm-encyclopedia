@@ -1,6 +1,9 @@
 import type {File} from 'util/file/File'
 
-export interface ImageFile<PATH extends string = string, NAME extends string = string, EXTENSION extends PossibleImageFileExtension = PossibleImageFileExtension, FALLBACK_NAME extends string = string, >
+export interface ImageFile<out PATH extends string = string,
+    out NAME extends string = string,
+    out EXTENSION extends PossibleImageFileExtension = PossibleImageFileExtension,
+    out FALLBACK_NAME extends string = string, >
     extends File<PATH, NAME, EXTENSION> {
 
     get fallbackName(): FALLBACK_NAME

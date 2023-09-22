@@ -1,14 +1,13 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
-import {Fragment}                                                                                   from 'react'
-import {Link}                                                                                       from 'react-router-dom'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Fragment}                                               from 'react'
+import {Link}                                                   from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
 import type {TranslationReplaceKeysMap}            from 'lang/components/TranslationProperty'
 import type {EveryPossibleRouteNames}              from 'route/everyRoutes.types'
-import type {Nullable}                             from 'util/types/nullable'
-import type {ReactElement}                         from 'util/react/ReactProperties'
 
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
@@ -111,8 +110,8 @@ export class NightEffects
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<NightEffects, typeof NightEffects>> = class CompanionEnum_NightEffects
-        extends BasicCompanionEnum<NightEffects, typeof NightEffects> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<NightEffects, typeof NightEffects> = class CompanionEnum_NightEffects
+        extends CompanionEnum<NightEffects, typeof NightEffects> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -197,8 +196,8 @@ export class NightEffects
         return NightEffects.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<NightEffects> {
-        yield* NightEffects.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<NightEffects> {
+        return NightEffects.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

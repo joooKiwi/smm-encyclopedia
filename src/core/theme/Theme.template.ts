@@ -3,7 +3,6 @@ import type {PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/l
 import type {SimpleGameFrom1And2Template}     from 'core/game/SimpleGame.template'
 import type {PossibleEnglishName}             from 'core/nightEffect/NightEffects.types'
 import type {NameTemplate}                    from 'lang/name/Name.template'
-import type {NullOr}                          from 'util/types/nullable'
 
 /**
  * @template

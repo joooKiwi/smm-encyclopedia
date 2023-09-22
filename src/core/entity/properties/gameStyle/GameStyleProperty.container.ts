@@ -1,5 +1,4 @@
 import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {NullOrBoolean}     from 'util/types/nullable'
 
 import type {GameStyles} from 'core/gameStyle/GameStyles'
 import {Import}          from 'util/DynamicImporter'
@@ -7,7 +6,11 @@ import {Import}          from 'util/DynamicImporter'
 /**
  * @classWithDynamicImport {@link GameStyles}
  */
-export class GameStylePropertyContainer<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends NullOrBoolean = NullOrBoolean, >
+export class GameStylePropertyContainer<const SMB extends boolean = boolean,
+    const SMB3 extends boolean = boolean,
+    const SMW extends boolean = boolean,
+    const NSMBU extends boolean = boolean,
+    const SM3DW extends NullOrBoolean = NullOrBoolean, >
     implements GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW> {
 
     //region -------------------- Fields --------------------

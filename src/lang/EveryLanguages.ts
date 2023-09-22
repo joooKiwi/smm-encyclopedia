@@ -1,7 +1,8 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import type {Dispatch, SetStateAction}                                                              from 'react'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
-import i18n                                                                                         from 'i18next'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import type {Dispatch, SetStateAction}                          from 'react'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import i18n                                                     from 'i18next'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
@@ -10,8 +11,6 @@ import type {LanguageEnumerable}                                                
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'lang/ProjectLanguages.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
 import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
-import type {Nullable, NullOr}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/types/nullable'
-import type {EmptyArray}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'util/types/variables'
 
 import {Characters}                             from 'lang/Characters'
 import {SPACE}                                  from 'util/commonVariables'
@@ -485,8 +484,8 @@ export abstract class EveryLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EveryLanguages, typeof EveryLanguages>> = class CompanionEnum_EveryLanguages
-        extends BasicCompanionEnum<EveryLanguages, typeof EveryLanguages> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<EveryLanguages, typeof EveryLanguages> = class CompanionEnum_EveryLanguages
+        extends CompanionEnum<EveryLanguages, typeof EveryLanguages> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -672,7 +671,7 @@ export abstract class EveryLanguages
     }
 
     public get isDefaultLanguage(): boolean {
-        return this === EveryLanguages.default
+        return this === EveryLanguages.defaultValue
     }
 
     //region -------------------- Characters getter methods --------------------
@@ -906,16 +905,16 @@ export abstract class EveryLanguages
     //endregion -------------------- Methods --------------------
     //region -------------------- Enum methods --------------------
 
-    public static get default(): EveryLanguages {
-        return EveryLanguages.CompanionEnum.get.default
+    public static get defaultValue(): EveryLanguages {
+        return EveryLanguages.CompanionEnum.get.defaultValue
     }
 
-    public static set default(value: PossibleEnumerableValueBy<EveryLanguages>,) {
-        EveryLanguages.CompanionEnum.get.default = value
+    public static set defaultValue(value: PossibleEnumerableValueBy<EveryLanguages>,) {
+        EveryLanguages.CompanionEnum.get.defaultValue = value
     }
 
-    public static setDefault(value: PossibleEnumerableValueBy<EveryLanguages>,): typeof EveryLanguages {
-        EveryLanguages.CompanionEnum.get.setDefault(value,)
+    public static setDefaultValue(value: PossibleEnumerableValueBy<EveryLanguages>,): typeof EveryLanguages {
+        EveryLanguages.CompanionEnum.get.setDefaultValue(value,)
         return EveryLanguages
     }
 
@@ -927,8 +926,8 @@ export abstract class EveryLanguages
         return EveryLanguages.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EveryLanguages> {
-        yield* EveryLanguages.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EveryLanguages> {
+        return EveryLanguages.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

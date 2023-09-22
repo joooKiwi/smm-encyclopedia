@@ -1,12 +1,12 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithNullableAcronym}                                                                                                              from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                  from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                    from 'core/ClassWithReference'
 import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                            from 'core/entityLimit/EntityLimit'
 import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleEntityLink} from 'core/entityLimit/EntityLimits.types'
-import type {Nullable, NullOr}                                                                                                                      from 'util/types/nullable'
 
 import type {Entities}             from 'core/entity/Entities'
 import {EntityLimitLoader}         from 'core/entityLimit/EntityLimit.loader'
@@ -318,8 +318,8 @@ export class EntityLimits
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<EntityLimits, typeof EntityLimits>> = class CompanionEnum_EntityLimits
-        extends BasicCompanionEnum<EntityLimits, typeof EntityLimits> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<EntityLimits, typeof EntityLimits> = class CompanionEnum_EntityLimits
+        extends CompanionEnum<EntityLimits, typeof EntityLimits> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -504,8 +504,8 @@ export class EntityLimits
         return EntityLimits.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<EntityLimits> {
-        yield* EntityLimits.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<EntityLimits> {
+        return EntityLimits.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

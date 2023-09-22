@@ -1,6 +1,6 @@
 import type {ComponentOptions} from 'bootstrap/js/dist/base-component'
 
-export interface BootstrapConfigurationWithNoOption<EVENTS, ID extends PossibleIds = PossibleIds, > {
+export interface BootstrapConfigurationWithNoOption<EVENTS, ID extends string = string, > {
 
     readonly elementId: ID
 
@@ -8,20 +8,9 @@ export interface BootstrapConfigurationWithNoOption<EVENTS, ID extends PossibleI
 
 }
 
-export interface BootstrapConfiguration<OPTION extends ComponentOptions, EVENTS, ID extends PossibleIds = PossibleIds, >
+export interface BootstrapConfiguration<OPTION extends ComponentOptions, EVENTS, ID extends string = string, >
     extends BootstrapConfigurationWithNoOption<EVENTS, ID> {
 
-    readonly option: Partial<OPTION>
+    readonly option?: Partial<OPTION>
 
 }
-
-export type PossibleIds = | string | string[]
-export type BootstrapColor
-    = | 'primary' | 'secondary'//|'tertiary'
-      | 'light' | 'dark'
-      | 'success' | 'info' | 'warning' | 'danger'
-      | 'white' | 'gray' | 'gray-dark'
-      | 'blue' | 'indigo' | 'purple' | 'pink' | 'red' | 'orange' | 'yellow' | 'green' | 'teal' | 'cyan'
-
-export type PossibleTooltipPlacement = | 'top' | 'bottom' | 'left' | 'right'
-export type PossibleBootstrapDimension = | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12

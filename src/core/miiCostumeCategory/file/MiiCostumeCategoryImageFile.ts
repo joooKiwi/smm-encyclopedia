@@ -1,13 +1,6 @@
-import type {PossibleEnglishName} from 'core/miiCostumeCategory/MiiCostumeCategories.types'
-import type {ImageFile}           from 'util/file/image/ImageFile'
+import type {ImageFile} from 'util/file/image/ImageFile'
 
-export interface MiiCostumeCategoryImageFile
-    extends ImageFile<ImageFilePath, PossibleImageFileName, ImageFileExtension, PossibleEnglishName> {
-}
-
-export type ImageFilePath = 'category'
+/** An {@link ImageFile} made to be related to a {@link MiiCostumeCategories} */
+export type MiiCostumeCategoryImageFile = ImageFile<'category', `DressIcon_0${PossibleImageNumber}^s`, 'tiff'>
 
 export type PossibleImageNumber = | 0 | 1 | 2 | 3
-export type PossibleImageFileName = `DressIcon_0${PossibleImageNumber}^s`
-
-export type ImageFileExtension = 'tiff'

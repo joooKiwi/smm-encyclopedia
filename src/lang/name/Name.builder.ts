@@ -3,7 +3,6 @@ import type {Name}                                                              
 import type {IsACompleteNameCallback}                                                 from 'lang/name/Name.builder.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
 import type {Builder}                                                                 from 'util/builder/Builder'
-import type {Nullable, NullOr, UndefinedOr}                                           from 'util/types/nullable'
 
 //TODO rename this file to NameBuilderFromTemplate
 export interface NameBuilder<T, TEMPLATE, >

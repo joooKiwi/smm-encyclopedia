@@ -1,9 +1,10 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {Entity, PossibleOtherEntities} from 'core/entity/Entity'
 import type {EntityReferences}              from 'core/entity/properties/EntityReferences'
 import type {GameStyles}                    from 'core/gameStyle/GameStyles'
 import type {Themes}                        from 'core/theme/Themes'
 import type {Times}                         from 'core/time/Times'
-import type {ObjectHolder}                  from 'util/holder/ObjectHolder'
 
 export class EntityReferencesContainer
     implements EntityReferences {
@@ -36,12 +37,33 @@ export class EntityReferencesContainer
     readonly #everyReferences
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     //TODO change the singular references to a GameStyle, Theme & Time structure based objects.
-    public constructor(referenceInSuperMarioBrosStyle: ObjectHolder<PossibleOtherEntities>, referenceInSuperMarioBros3Style: ObjectHolder<PossibleOtherEntities>, referenceInSuperMarioWorldStyle: ObjectHolder<PossibleOtherEntities>, referenceInNewSuperMarioBrosUStyle: ObjectHolder<PossibleOtherEntities>, referenceInSuperMario3DWorldStyle: ObjectHolder<PossibleOtherEntities>,
-                       referenceInGroundTheme: ObjectHolder<PossibleOtherEntities>, referenceInUndergroundTheme: ObjectHolder<PossibleOtherEntities>, referenceInUnderwaterTheme: ObjectHolder<PossibleOtherEntities>, referenceInDesertTheme: ObjectHolder<PossibleOtherEntities>, referenceInSnowTheme: ObjectHolder<PossibleOtherEntities>, referenceInSkyTheme: ObjectHolder<PossibleOtherEntities>, referenceInForestTheme: ObjectHolder<PossibleOtherEntities>, referenceInGhostHouseTheme: ObjectHolder<PossibleOtherEntities>, referenceInAirshipTheme: ObjectHolder<PossibleOtherEntities>, referenceInCastleTheme: ObjectHolder<PossibleOtherEntities>,
-                       referenceInDayTheme: ObjectHolder<PossibleOtherEntities>, referenceInNightTheme: ObjectHolder<PossibleOtherEntities>,
-                       everyGameStyleReferences: ObjectHolder<readonly Entity[]>, everyThemeReferences: ObjectHolder<readonly Entity[]>, everyTimeReferences: ObjectHolder<readonly Entity[]>, everyReferences: ObjectHolder<readonly Entity[]>,) {
+    public constructor(referenceInSuperMarioBrosStyle: Lazy<PossibleOtherEntities>,
+                       referenceInSuperMarioBros3Style: Lazy<PossibleOtherEntities>,
+                       referenceInSuperMarioWorldStyle: Lazy<PossibleOtherEntities>,
+                       referenceInNewSuperMarioBrosUStyle: Lazy<PossibleOtherEntities>,
+                       referenceInSuperMario3DWorldStyle: Lazy<PossibleOtherEntities>,
+
+                       referenceInGroundTheme: Lazy<PossibleOtherEntities>,
+                       referenceInUndergroundTheme: Lazy<PossibleOtherEntities>,
+                       referenceInUnderwaterTheme: Lazy<PossibleOtherEntities>,
+                       referenceInDesertTheme: Lazy<PossibleOtherEntities>,
+                       referenceInSnowTheme: Lazy<PossibleOtherEntities>,
+                       referenceInSkyTheme: Lazy<PossibleOtherEntities>,
+                       referenceInForestTheme: Lazy<PossibleOtherEntities>,
+                       referenceInGhostHouseTheme: Lazy<PossibleOtherEntities>,
+                       referenceInAirshipTheme: Lazy<PossibleOtherEntities>,
+                       referenceInCastleTheme: Lazy<PossibleOtherEntities>,
+
+                       referenceInDayTheme: Lazy<PossibleOtherEntities>,
+                       referenceInNightTheme: Lazy<PossibleOtherEntities>,
+
+                       everyGameStyleReferences: Lazy<readonly Entity[]>,
+                       everyThemeReferences: Lazy<readonly Entity[]>,
+                       everyTimeReferences: Lazy<readonly Entity[]>,
+                       everyReferences: Lazy<readonly Entity[]>,) {
         this.#referenceInSuperMarioBrosStyle = referenceInSuperMarioBrosStyle
         this.#referenceInSuperMarioBros3Style = referenceInSuperMarioBros3Style
         this.#referenceInSuperMarioWorldStyle = referenceInSuperMarioWorldStyle
@@ -68,83 +90,83 @@ export class EntityReferencesContainer
         this.#everyReferences = everyReferences
     }
 
-
+    //endregion -------------------- Constructor --------------------
     //region -------------------- References methods --------------------
 
     //region -------------------- Game style references --------------------
 
     public get referenceInSuperMarioBrosStyle(): PossibleOtherEntities {
-        return this.#referenceInSuperMarioBrosStyle.get
+        return this.#referenceInSuperMarioBrosStyle.value
     }
 
     public get referenceInSuperMarioBros3Style(): PossibleOtherEntities {
-        return this.#referenceInSuperMarioBros3Style.get
+        return this.#referenceInSuperMarioBros3Style.value
     }
 
     public get referenceInSuperMarioWorldStyle(): PossibleOtherEntities {
-        return this.#referenceInSuperMarioWorldStyle.get
+        return this.#referenceInSuperMarioWorldStyle.value
     }
 
     public get referenceInNewSuperMarioBrosUStyle(): PossibleOtherEntities {
-        return this.#referenceInNewSuperMarioBrosUStyle.get
+        return this.#referenceInNewSuperMarioBrosUStyle.value
     }
 
     public get referenceInSuperMario3DWorldStyle(): PossibleOtherEntities {
-        return this.#referenceInSuperMario3DWorldStyle.get
+        return this.#referenceInSuperMario3DWorldStyle.value
     }
 
     //endregion -------------------- Game style references --------------------
     //region -------------------- Theme references --------------------
 
     public get referenceInGroundTheme(): PossibleOtherEntities {
-        return this.#referenceInGroundTheme.get
+        return this.#referenceInGroundTheme.value
     }
 
     public get referenceInUndergroundTheme(): PossibleOtherEntities {
-        return this.#referenceInUndergroundTheme.get
+        return this.#referenceInUndergroundTheme.value
     }
 
     public get referenceInUnderwaterTheme(): PossibleOtherEntities {
-        return this.#referenceInUnderwaterTheme.get
+        return this.#referenceInUnderwaterTheme.value
     }
 
     public get referenceInDesertTheme(): PossibleOtherEntities {
-        return this.#referenceInDesertTheme.get
+        return this.#referenceInDesertTheme.value
     }
 
     public get referenceInSnowTheme(): PossibleOtherEntities {
-        return this.#referenceInSnowTheme.get
+        return this.#referenceInSnowTheme.value
     }
 
     public get referenceInSkyTheme(): PossibleOtherEntities {
-        return this.#referenceInSkyTheme.get
+        return this.#referenceInSkyTheme.value
     }
 
     public get referenceInForestTheme(): PossibleOtherEntities {
-        return this.#referenceInForestTheme.get
+        return this.#referenceInForestTheme.value
     }
 
     public get referenceInGhostHouseTheme(): PossibleOtherEntities {
-        return this.#referenceInGhostHouseTheme.get
+        return this.#referenceInGhostHouseTheme.value
     }
 
     public get referenceInAirshipTheme(): PossibleOtherEntities {
-        return this.#referenceInAirshipTheme.get
+        return this.#referenceInAirshipTheme.value
     }
 
     public get referenceInCastleTheme(): PossibleOtherEntities {
-        return this.#referenceInCastleTheme.get
+        return this.#referenceInCastleTheme.value
     }
 
     //endregion -------------------- Theme references --------------------
     //region -------------------- Time references --------------------
 
     public get referenceInDayTheme(): PossibleOtherEntities {
-        return this.#referenceInDayTheme.get
+        return this.#referenceInDayTheme.value
     }
 
     public get referenceInNightTheme(): PossibleOtherEntities {
-        return this.#referenceInNightTheme.get
+        return this.#referenceInNightTheme.value
     }
 
     //endregion -------------------- Time references --------------------
@@ -158,19 +180,19 @@ export class EntityReferencesContainer
     }
 
     public get everyGameStyleReferences(): readonly Entity[] {
-        return this.#everyGameStyleReferences.get
+        return this.#everyGameStyleReferences.value
     }
 
     public get everyThemeReferences(): readonly Entity[] {
-        return this.#everyThemeReferences.get
+        return this.#everyThemeReferences.value
     }
 
     public get everyTimeReferences(): readonly Entity[] {
-        return this.#everyTimeReferences.get
+        return this.#everyTimeReferences.value
     }
 
     public get everyReferences(): readonly Entity[] {
-        return this.#everyReferences.get
+        return this.#everyReferences.value
     }
 
     //endregion -------------------- References methods --------------------

@@ -20,13 +20,21 @@ export type PossibleAcronym = PossibleAcronym_GameStyle
 export type PossibleEnglishName = PossibleEnglishName_GameStyle
 
 export type PossibleShortImagePath = | '1 - SMB' | '2 - SMB3' | '3 - SMW' | '4 - NSMBU' | '5 - SM3DW'
-export type PossibleGameAcronym = | PossibleGameAcronym_SMM1 | '3W'
-export type PossibleGameAcronym_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'
+export type PossibleGameAcronym = | PossibleGameAcronym_SMM1 | '3W'//TODO rename to PossibleAcronym
+export type PossibleGameAcronym_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'//TODO rename to PossibleAcronym_SMM1
 
 //endregion -------------------- Acronym / name / image ----------------------------------------
 //region -------------------- Array types --------------------
 
-export type GameStylesInSMM1 = readonly [
+export type GameStyles_ArrayInSMM2 = readonly [
+    typeof GameStyles['SUPER_MARIO_BROS'],
+    typeof GameStyles['SUPER_MARIO_BROS_3'],
+    typeof GameStyles['SUPER_MARIO_WORLD'],
+    typeof GameStyles['NEW_SUPER_MARIO_BROS_U'],
+    typeof GameStyles['SUPER_MARIO_3D_WORLD'],
+]
+
+export type GameStyles_ArrayInSMM1 = readonly [
     typeof GameStyles['SUPER_MARIO_BROS'],
     typeof GameStyles['SUPER_MARIO_BROS_3'],
     typeof GameStyles['SUPER_MARIO_WORLD'],

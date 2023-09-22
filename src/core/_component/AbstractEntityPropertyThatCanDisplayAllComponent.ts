@@ -25,11 +25,11 @@ export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
 
     protected abstract get _isInAll(): boolean
 
-    protected abstract _renderComponentForAllAsText(): JSX.Element
+    protected abstract _renderComponentForAllAsText(): ReactJSXElement
 
-    protected abstract _renderComponentForAllAsImages(): JSX.Element
+    protected abstract _renderComponentForAllAsImages(): ReactJSXElement
 
-    public override render(): JSX.Element {
+    public override render(): ReactJSXElement {
         if (this._isInAll) {
             if (this.displayAllAsText)
                 return this._renderComponentForAllAsText()
@@ -38,6 +38,6 @@ export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
         return this._render()
     }
 
-    protected abstract _render(): JSX.Element
+    protected abstract _render(): ReactJSXElement
 
 }

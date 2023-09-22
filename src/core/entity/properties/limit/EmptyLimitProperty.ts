@@ -1,6 +1,5 @@
 import type {LimitProperty}                              from 'core/entity/properties/limit/LimitProperty'
 import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
-import type {EmptyMap}                                   from 'util/types/variables'
 
 import {PropertyContainer}     from 'core/_properties/Property.container'
 import {GameStructureProvider} from 'core/game/GameStructure.provider'

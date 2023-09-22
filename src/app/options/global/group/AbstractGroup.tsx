@@ -3,8 +3,6 @@ import {PureComponent} from 'react'
 import type {GlobalAppOption}                                                                                   from 'app/options/global/GlobalAppOption'
 import type {GroupProperties, OnClickCallback, PossibleElement, PossibleId, PossibleOptionValue, SingleElement} from 'app/options/global/group/Group.types'
 import type {ReactComponent}                                                                                    from 'util/react/ReactComponent'
-import type {ReactElement}                                                                                      from 'util/react/ReactProperties'
-import type {NullOr}                                                                                            from 'util/types/nullable'
 
 /**
  * @deprecated Relocate the content in the inheritor implementation

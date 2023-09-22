@@ -1,6 +1,5 @@
 import type {EntityTemplate} from 'core/entity/Entity.template'
 import type {EntityLink}     from 'core/entity/loader.types'
-import type {NullOr}         from 'util/types/nullable'
 
 /**
  * @template

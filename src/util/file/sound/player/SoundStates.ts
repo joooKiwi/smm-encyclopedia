@@ -1,11 +1,10 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}         from 'core/ClassWithEnglishName'
-import type {ReactElement}                 from 'util/react/ReactProperties'
 import type {EnglishName, Names, Ordinals} from 'util/file/sound/player/SoundStates.types'
 import type {SoundSubElementsHolder}       from 'util/file/sound/holder/SoundSubElementsHolder'
-import type {Nullable}                     from 'util/types/nullable'
 
 import {getValueByEnglishName} from 'util/utilitiesMethods'
 
@@ -54,8 +53,8 @@ export abstract class SoundStates
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<SoundStates, typeof SoundStates>> = class CompanionEnum_SoundStates
-        extends BasicCompanionEnum<SoundStates, typeof SoundStates> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<SoundStates, typeof SoundStates> = class CompanionEnum_SoundStates
+        extends CompanionEnum<SoundStates, typeof SoundStates> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -118,8 +117,8 @@ export abstract class SoundStates
         return SoundStates.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<SoundStates> {
-        yield* SoundStates.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<SoundStates> {
+        return SoundStates.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

@@ -5,7 +5,6 @@ import {Component} from 'react'
 import type {AppProperties}  from 'app/AppProperties.types'
 import type {AppStates}      from 'app/AppStates.types'
 import type {ReactComponent} from 'util/react/ReactComponent'
-import type {ReactElement}   from 'util/react/ReactProperties'
 
 import GlobalOptionComponent from 'app/options/global/GlobalOption.component'
 import Footer                from 'navigation/Footer'
@@ -25,7 +24,7 @@ export default abstract class AbstractApp<T extends AppProperties = AppPropertie
         return <GlobalOptionComponent/>
     }
 
-    public override render(): JSX.Element {
+    public override render(): ReactJSXElement {
         return <>
             <ModalContainers parameter={this._parameterContent()}/>
             <Navigation/>

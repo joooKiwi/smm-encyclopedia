@@ -1,4 +1,5 @@
-export interface Time<MILLISECOND extends number = number, SECOND extends number = number, > {
+export interface Time<out MILLISECOND extends number = number,
+    out SECOND extends number = number, > {
 
     get millisecond(): MILLISECOND
 

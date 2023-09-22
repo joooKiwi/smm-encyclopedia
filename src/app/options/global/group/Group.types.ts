@@ -5,7 +5,6 @@ import type {GameStyles}        from 'core/gameStyle/GameStyles'
 import type {Themes}            from 'core/theme/Themes'
 import type {Times}             from 'core/time/Times'
 import type {ReactProperties}   from 'util/react/ReactProperties'
-import type {NullOr}            from 'util/types/nullable'
 
 export interface GroupProperties<T extends PossibleElement, U extends PossibleOptionValue, >
     extends ReactProperties {

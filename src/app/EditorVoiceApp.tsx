@@ -1,15 +1,14 @@
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
 
-import type {EditorVoiceProperties}   from 'app/AppProperties.types'
+import type {EditorVoiceProperties}                                from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
-import type {ReactElementOrString}                                 from 'util/react/ReactProperties'
 
 import {EditorVoices}            from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
-import {newIterableIterator}     from 'util/utilitiesMethods'
+import {filterGame}              from 'util/utilitiesMethods'
 
 export default class EditorVoiceApp
     extends AbstractCardListApp<AppInterpreterWithCardList<EditorVoices>, EditorVoiceProperties> {
@@ -33,13 +32,13 @@ export default class EditorVoiceApp
         return gameContentTranslation('editor voice.all')
     }
 
-    protected override _createAppOptionInterpreter(): AppInterpreterWithCardList<EditorVoices> {
+    protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class implements AppInterpreterWithCardList<EditorVoices> {
+        return new class EditorVoiceAppInterpreter implements AppInterpreterWithCardList<EditorVoices> {
 
-            public get iterable() {
-                return newIterableIterator($this.props.games, EditorVoices[Symbol.iterator](),)
+            public get content() {
+                return filterGame(EditorVoices.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

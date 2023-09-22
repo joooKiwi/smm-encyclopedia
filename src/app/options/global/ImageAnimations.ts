@@ -1,9 +1,9 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleImageAnimation} from 'app/options/global/ImageAnimations.types'
 import type {ClassWithValue}                          from 'util/types/ClassWithValue'
-import type {Nullable}                                from 'util/types/nullable'
 
 /**
  * The possible image animation as either
@@ -27,8 +27,8 @@ export class ImageAnimations
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<ImageAnimations, typeof ImageAnimations>> = class CompanionEnum_ImageAnimations
-        extends BasicCompanionEnum<ImageAnimations, typeof ImageAnimations> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<ImageAnimations, typeof ImageAnimations> = class CompanionEnum_ImageAnimations
+        extends CompanionEnum<ImageAnimations, typeof ImageAnimations> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -73,7 +73,7 @@ export class ImageAnimations
     public static getValueByValue(value: Nullable<| ImageAnimations | boolean | string>,): ImageAnimations {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if(value instanceof this)
+        if (value instanceof this)
             return value
         const valueFound = this.values.find(it => it.value === value)
         if (valueFound == null)
@@ -92,8 +92,8 @@ export class ImageAnimations
         return ImageAnimations.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<ImageAnimations> {
-        yield* ImageAnimations.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<ImageAnimations> {
+        return ImageAnimations.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

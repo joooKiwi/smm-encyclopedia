@@ -1,5 +1,6 @@
-import type {BasicCompanionEnumDeclaration, CollectionHolder, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable/dist/types'
-import {BasicCompanionEnum, Enum}                                                                   from '@joookiwi/enumerable'
+import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
+import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                       from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                         from 'core/ClassWithReference'
@@ -7,11 +8,10 @@ import type {Names, Ordinals, PossibleEnglishName}       from 'core/miiCostume/M
 import type {MiiCostume}                                 from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeImageFile, PossibleImageFileName} from 'core/miiCostume/file/MiiCostumeImageFile'
 import type {ClassWithImageFile}                         from 'util/file/image/ClassWithImageFile'
-import type {Nullable}                                   from 'util/types/nullable'
 
-import {MiiCostumeLoader}                          from 'core/miiCostume/MiiCostume.loader'
-import {MiiCostumeImageFileContainer as ImageFile} from 'core/miiCostume/file/MiiCostumeImageFile.container'
-import {StringContainer}                           from 'util/StringContainer'
+import {MiiCostumeLoader} from 'core/miiCostume/MiiCostume.loader'
+import {miiCostumeImage}  from 'core/miiCostume/file/fileCreator'
+import {StringContainer}  from 'util/StringContainer'
 
 /**
  * @recursiveReference {@link MiiCostumeLoader}
@@ -161,8 +161,8 @@ export class MiiCostumes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: Singleton<BasicCompanionEnumDeclaration<MiiCostumes, typeof MiiCostumes>> = class CompanionEnum_MiiCostumes
-        extends BasicCompanionEnum<MiiCostumes, typeof MiiCostumes> {
+    public static readonly CompanionEnum: CompanionEnumSingleton<MiiCostumes, typeof MiiCostumes> = class CompanionEnum_MiiCostumes
+        extends CompanionEnum<MiiCostumes, typeof MiiCostumes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -231,7 +231,7 @@ export class MiiCostumes
     }
 
     public get imageFile(): MiiCostumeImageFile{
-        return this.#imageFile ??= new ImageFile(this.__imageName, this.englishName,)
+        return this.#imageFile ??= miiCostumeImage(this.__imageName, this.englishName,)
     }
 
     //endregion -------------------- Getter methods --------------------
@@ -260,8 +260,8 @@ export class MiiCostumes
         return MiiCostumes.CompanionEnum.get.values
     }
 
-    public static* [Symbol.iterator](): IterableIterator<MiiCostumes> {
-        yield* MiiCostumes.CompanionEnum.get
+    public static [Symbol.iterator](): CollectionIterator<MiiCostumes> {
+        return MiiCostumes.CompanionEnum.get[Symbol.iterator]()
     }
 
     //endregion -------------------- Enum methods --------------------

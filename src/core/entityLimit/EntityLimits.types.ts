@@ -1,5 +1,4 @@
-import type {Entity}     from 'core/entity/Entity'
-import type {EmptyArray} from 'util/types/variables'
+import type {Entity} from 'core/entity/Entity'
 
 enum Enum {
 
