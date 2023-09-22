@@ -3185,12 +3185,12 @@ export class Entities
                 return this.#uniqueImage = EmptyUniqueImage.get
 
             if (!isEmptyEditor && isEmptyClearCondition && isEmptyInGame)
-                return ImageCreator.uniqueImageFromEditor(this, editorImage, clearConditionImage, inGameImage,)
+                return this.#uniqueImage = ImageCreator.uniqueImageFromEditor(this, editorImage, clearConditionImage, inGameImage,)
             if (isEmptyEditor && !isEmptyClearCondition && isEmptyInGame)
-                return ImageCreator.uniqueImageFromClearCondition(this, editorImage, clearConditionImage, inGameImage,)
+                return this.#uniqueImage = ImageCreator.uniqueImageFromClearCondition(this, editorImage, clearConditionImage, inGameImage,)
 
             if (isEmptyEditor && isEmptyClearCondition && !isEmptyInGame)
-                return ImageCreator.uniqueImageFromInGame(this, editorImage, clearConditionImage, inGameImage,)
+                return this.#uniqueImage = ImageCreator.uniqueImageFromInGame(this, editorImage, clearConditionImage, inGameImage,)
 
             console.error(`The unique image could not be determined for the "Entities.${this.name}". Please specify the type in the "Entities._createUniqueImage()".`,)
             return this.#uniqueImage = EmptyUniqueImage.get
