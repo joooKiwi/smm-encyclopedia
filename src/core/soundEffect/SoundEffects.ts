@@ -31,7 +31,6 @@ import {getValueByEnglishName}                                          from 'ut
 import {EMPTY_ARRAY}                                                    from 'util/emptyVariables'
 
 /**
- * @todo move the images in a delayed method instead of in the constructor.
  * @recursiveReference {@link Musics}
  */
 export abstract class SoundEffects
