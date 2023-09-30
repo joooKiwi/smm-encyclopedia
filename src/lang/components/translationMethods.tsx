@@ -4,7 +4,7 @@ import type {ContentTranslationKey, EntityContentTranslationKey, GameContentTran
 
 import {TranslationUtility} from 'lang/components/TranslationUtility'
 
-function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N> = SingleTranslationKey<N>, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace: Nullable<REPLACE> = null,): ReactElementOrString {
+function translateFromAny<const N extends Namespace, const V extends SingleTranslationKey<N> = SingleTranslationKey<N>, const REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(namespace: N, value: V, replace: Nullable<REPLACE> = null,): ReactElementOrString {
     if (replace == null)
         // @ts-ignore
         return i18next.t(value, {ns: namespace,},)
@@ -21,8 +21,8 @@ function translateFromAny<N extends Namespace, V extends SingleTranslationKey<N>
  * @param value The translation key
  * @canOnlyReturnAString
  */
-export function languageTranslation<V extends LanguageTranslationKey, >(value: V,): TranslationReturnValue<'language'>
-export function languageTranslation<V extends LanguageTranslationKey, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,): | TranslationReturnValue<'language'> | ReactElement {
+export function languageTranslation<const V extends LanguageTranslationKey, >(value: V,): TranslationReturnValue<'language', V>
+export function languageTranslation<const V extends LanguageTranslationKey, const REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,) {
     return translateFromAny('language', value, replace,)
 }
 
@@ -33,10 +33,10 @@ export function languageTranslation<V extends LanguageTranslationKey, REPLACE ex
  *
  * @param value The translation key (that should not have any "{{}}" in them)
  */
-export function contentTranslation<V extends ContentTranslationKey, >(value: V,): TranslationReturnValue<'content'>
-export function contentTranslation<V extends ContentTranslationKey, REPLACE extends TranslationReplaceKeysMap<string>, >(value: V, replace: REPLACE,): string
-export function contentTranslation<V extends ContentTranslationKey, REPLACE extends TranslationReplaceKeysMap, >(value: V, replace: REPLACE,): ReactElement
-export function contentTranslation<V extends ContentTranslationKey, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,): | TranslationReturnValue<'content'> | ReactElement {
+export function contentTranslation<const V extends ContentTranslationKey, >(value: V,): TranslationReturnValue<'content', V>
+export function contentTranslation<const V extends ContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap<string>, >(value: V, replace: REPLACE,): string
+export function contentTranslation<const V extends ContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap, >(value: V, replace: REPLACE,): ReactElement
+export function contentTranslation<const V extends ContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,) {
     return translateFromAny('content', value, replace,)
 }
 
@@ -46,10 +46,10 @@ export function contentTranslation<V extends ContentTranslationKey, REPLACE exte
  *
  * @param value The translation key (that should not have any "{{}}" in them)
  */
-export function gameContentTranslation<V extends GameContentTranslationKey, >(value: V,): TranslationReturnValue<'gameContent'>
-export function gameContentTranslation<V extends GameContentTranslationKey, REPLACE extends TranslationReplaceKeysMap<string>, >(value: V, replace: REPLACE,): string
-export function gameContentTranslation<V extends GameContentTranslationKey, REPLACE extends TranslationReplaceKeysMap, >(value: V, replace: REPLACE,): ReactElement
-export function gameContentTranslation<V extends GameContentTranslationKey, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,): | TranslationReturnValue<'gameContent'> | ReactElement {
+export function gameContentTranslation<const V extends GameContentTranslationKey, >(value: V,): TranslationReturnValue<'gameContent', V>
+export function gameContentTranslation<const V extends GameContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap<string>, >(value: V, replace: REPLACE,): string
+export function gameContentTranslation<const V extends GameContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap, >(value: V, replace: REPLACE,): ReactElement
+export function gameContentTranslation<V extends GameContentTranslationKey, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,) {
     return translateFromAny('gameContent', value, replace,)
 }
 
@@ -60,9 +60,9 @@ export function gameContentTranslation<V extends GameContentTranslationKey, REPL
  *
  * @param value The translation key (that should not have any "{{}}" in them)
  */
-export function entityContentTranslation<V extends EntityContentTranslationKey, >(value: V,): TranslationReturnValue<'entityContent'>
-export function entityContentTranslation<V extends EntityContentTranslationKey, REPLACE extends TranslationReplaceKeysMap<string>, >(value: V, replace: REPLACE,): string
-export function entityContentTranslation<V extends EntityContentTranslationKey, REPLACE extends TranslationReplaceKeysMap, >(value: V, replace: REPLACE,): ReactElement
-export function entityContentTranslation<V extends EntityContentTranslationKey, REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,): | TranslationReturnValue<'entityContent'> | ReactElement {
+export function entityContentTranslation<const V extends EntityContentTranslationKey, >(value: V,): TranslationReturnValue<'entityContent', V>
+export function entityContentTranslation<const V extends EntityContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap<string>, >(value: V, replace: REPLACE,): string
+export function entityContentTranslation<const V extends EntityContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap, >(value: V, replace: REPLACE,): ReactElement
+export function entityContentTranslation<const V extends EntityContentTranslationKey, const REPLACE extends TranslationReplaceKeysMap = TranslationReplaceKeysMap, >(value: V, replace?: REPLACE,) {
     return translateFromAny('entityContent', value, replace,)
 }
