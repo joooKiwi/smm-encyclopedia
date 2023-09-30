@@ -1,6 +1,6 @@
-import type {PossibleEnglishName}                         from 'core/entity/Entities.types'
-import type {PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
-import type {ImageFile}                                   from 'util/file/image/ImageFile'
+import type {PossibleEnglishName}                                                                from 'core/entity/Entities.types'
+import type {PossibleAcronym_InFile as PossibleAcronym_InFile_GameStyle, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
+import type {ImageFile}                                                                          from 'util/file/image/ImageFile'
 
 export type InGameImageFile = | InGameSMM1ImageFile | InGameSMM2ImageFile
 
@@ -461,7 +461,7 @@ export type BlockImageName = ImageNameMap[| 'Start Block' | 'Brick Block' | 'Har
                                           | 'Dash Block' | 'Snake Block' | 'Fast Snake Block']
 export type ShoeImageFileName = ImageNameMap[| 'Shoe' | 'Stiletto'][1]
 export type YoshiProjectileImageFileName = ImageNameMap[| 'Fire thrown by a Yoshi' | 'Poison thrown by a Yoshi']
-type ImagePath = `${PossibleGameAcronym} ${ImageName_SMM2}`
+type ImagePath = `${PossibleAcronym_InFile_GameStyle} ${ImageName_SMM2}`
 type SimpleImageName_SMM2 = NonNullable<ImageNameMap[PossibleEnglishName][0]>
 export type ImageName_SMM2 = NonNullable<ImageNameMap[PossibleEnglishName][1]>
 

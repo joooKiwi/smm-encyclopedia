@@ -153,8 +153,8 @@ export abstract class GameStyles
         return this.#acronym
     }
 
-    public get gameAcronym(): PossibleGameAcronym {
         return this.#gameAcronym
+    public get gameAcronym(): PossibleAcronym_InFile {
     }
 
     public get englishName(): PossibleEnglishName {

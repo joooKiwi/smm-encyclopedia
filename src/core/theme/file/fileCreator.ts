@@ -1,8 +1,8 @@
-import type {Themes}                       from 'core/theme/Themes'
-import type {PossibleGameName_CourseTheme} from 'core/theme/Themes.types'
-import type {LargeThemeImageFile}          from 'core/theme/file/ThemeImageFile'
-import type {SmallThemeImageFile}          from 'core/theme/file/ThemeImageFile'
-import type {EndlessMarioThemeImageFile}   from 'core/theme/file/ThemeImageFile'
+import type {Themes}                          from 'core/theme/Themes'
+import type {PossibleName_InFile_CourseTheme} from 'core/theme/Themes.types'
+import type {LargeThemeImageFile}             from 'core/theme/file/ThemeImageFile'
+import type {SmallThemeImageFile}             from 'core/theme/file/ThemeImageFile'
+import type {EndlessMarioThemeImageFile}      from 'core/theme/file/ThemeImageFile'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
@@ -31,5 +31,5 @@ export function largeImageFile(value: Themes,): LargeThemeImageFile {
  * @note It can only be a {@link CourseTheme}
  */
 export function endlessMarioImageFile(value: Themes,): EndlessMarioThemeImageFile {
-    return new SimpleImageFile('theme', `WM_GameSkin_${value.gameName as PossibleGameName_CourseTheme}_00^l`, 'tiff', `${value.englishName} (endless Mario)`,)
+    return new SimpleImageFile('theme', `WM_GameSkin_${value.gameName as PossibleName_InFile_CourseTheme}_00^l`, 'tiff', `${value.englishName} (endless Mario)`,)
 }

@@ -20,8 +20,10 @@ export type PossibleAcronym = PossibleAcronym_GameStyle
 export type PossibleEnglishName = PossibleEnglishName_GameStyle
 
 export type PossibleShortImagePath = | '1 - SMB' | '2 - SMB3' | '3 - SMW' | '4 - NSMBU' | '5 - SM3DW'
-export type PossibleGameAcronym = | PossibleGameAcronym_SMM1 | '3W'//TODO rename to PossibleAcronym
-export type PossibleGameAcronym_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'//TODO rename to PossibleAcronym_SMM1
+/** The possible acronym that are used within the file system of the {@link Games Super Mario Maker games} */
+export type PossibleAcronym_InFile = | PossibleAcronym_InFile_SMM1 | '3W'
+/** The possible acronym that are used within the file system of the {@link Games.SUPER_MARIO_MAKER_1 Super Mario Maker 1 game} */
+export type PossibleAcronym_InFile_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'
 
 //endregion -------------------- Acronym / name / image ----------------------------------------
 //region -------------------- Array types --------------------

@@ -226,8 +226,8 @@ export class Themes
         return this.#englishName.getInHtml
     }
 
-    public get gameName(): PossibleGameName {
         return this.#gameName
+    public get gameName(): PossibleName_InFile {
     }
 
     public get courseTheme(): CourseTheme {

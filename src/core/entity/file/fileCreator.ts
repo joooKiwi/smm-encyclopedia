@@ -4,7 +4,7 @@ import type {ClearConditionImageFile, ImageName_ClearCondition}                 
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1}                                                                      from 'core/entity/file/EntityImageFile.inGame'
 import type {ImageName_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, SimpleImageName_BigMushroom_Unused_SMM1, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile} from 'core/entity/file/EntityImageFile.unused'
 import type {GameStyles}                                                                                                                                                                           from 'core/gameStyle/GameStyles'
-import type {PossibleGameAcronym_SMM1}                                                                                                                                                             from 'core/gameStyle/GameStyles.types'
+import type {PossibleAcronym_InFile_SMM1}                                                                                                                                                          from 'core/gameStyle/GameStyles.types'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
@@ -118,7 +118,7 @@ export function inGameImage(entity: Entities, name: ImageName_SMM2, gameStyle: G
  * @param fileName The file name
  */
 export function unusedSmm1RegularImage(entity: Entities, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileName: ImageName_UnusedSMM1Regular,): UnusedSMM1RegularImageFile {
-    return new SimpleImageFile(`entity/unused/${gameStyle.gameAcronym as PossibleGameAcronym_SMM1} - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused)`,)
+    return new SimpleImageFile(`entity/unused/${gameStyle.gameAcronym as PossibleAcronym_InFile_SMM1} - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused)`,)
 }
 
 /**
