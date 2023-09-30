@@ -5,7 +5,6 @@ import type {Entity}                                           from 'core/entity
 import type {GameProperty}                                     from 'core/entity/properties/game/GameProperty'
 import type {GameStyle, PossibleNightDesertWindTranslationKey} from 'core/gameStyle/GameStyle'
 import type {Name}                                             from 'lang/name/Name'
-import type {ValueOrCallback}                                  from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
@@ -23,7 +22,7 @@ export class GameStyleContainer
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: ValueOrCallback<Name<string>>,
+    public constructor(name: Name<string>,
                        isInProperty: Lazy<GameProperty>,
                        isAvailableFromTheStart: Lazy<ClassThatIsAvailableFromTheStart>,
                        entities: Lazy<readonly Entity[]>,

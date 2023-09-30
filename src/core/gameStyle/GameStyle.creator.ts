@@ -13,6 +13,7 @@ import type {Name}                                                              
 import {TemplateCreator}      from 'core/_template/Template.creator'
 import {GamePropertyProvider} from 'core/entity/properties/game/GameProperty.provider'
 import {GameStyleContainer}   from 'core/gameStyle/GameStyle.container'
+import {GameReferences}       from 'core/gameReference/GameReferences'
 import {Import}               from 'util/DynamicImporter'
 
 /**
@@ -40,8 +41,8 @@ export class GameStyleCreator
     //endregion -------------------- Constructor --------------------
     //region -------------------- Builder helper methods --------------------
 
-    static #getNameBy(reference: PossibleAcronym,): () => Name<string> {
-        return () => Import.GameReferences.getValueByNameOrAcronym(reference).reference.nameContainer
+    static #getNameBy(reference: PossibleAcronym,): Name<string> {
+        return GameReferences.getValueByNameOrAcronym(reference).reference.nameContainer
     }
 
     static #getGameProperty({'1And3DS': isInSMM1And3DS,}: SimpleGameFrom1And2Template<boolean, boolean>,): Lazy<GameProperty> {

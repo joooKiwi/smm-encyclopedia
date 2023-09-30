@@ -44,7 +44,7 @@ export class MiiCostumeCreator
         return new MiiCostumeContainer(name,
             MiiCostumeCreator.#createOfficialNotification(template,),
             MiiCostumeCreator.#createVersion(template,),
-            () => MiiCostumeCreator.#createCategory(template,).value,//FIXME replace with a Lazy instance
+            MiiCostumeCreator.#createCategory(template,),
         )
     }
 

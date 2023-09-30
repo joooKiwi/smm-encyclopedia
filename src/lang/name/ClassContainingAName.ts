@@ -1,11 +1,6 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {EveryLanguages}  from 'lang/EveryLanguages'
 import type {Name}            from 'lang/name/Name'
 import type {NameTrait}       from 'lang/name/NameTrait'
-import type {ValueOrCallback} from 'util/holder/ObjectHolder.types'
-
-import {ObjectHolders} from 'util/holder/ObjectHolders'
 
 /**
  * A simple implementation of the {@link NameTrait}
@@ -16,20 +11,20 @@ export class ClassContainingAName<T, >
 
     //region -------------------- Fields --------------------
 
-    readonly #nameContainer: Lazy<Name<T>>
+    readonly #nameContainer: Name<T>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: ValueOrCallback<Name<T>>,) {
-        this.#nameContainer = ObjectHolders.getLazyOn(name,)
+    public constructor(name: Name<T>,) {
+        this.#nameContainer = name
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     public get nameContainer(): Name<T> {
-        return this.#nameContainer.value
+        return this.#nameContainer
     }
 
 

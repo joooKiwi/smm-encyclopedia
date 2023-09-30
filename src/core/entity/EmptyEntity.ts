@@ -1,9 +1,10 @@
 import type {Entity}                                      from 'core/entity/Entity'
+import type {EmptyEntityCategory}                         from 'core/entityCategory/EmptyEntityCategory'
 import type {ClassWithNullObjectPattern, EmptyEntityName} from 'util/ClassWithNullObjectPattern'
 
 import {EmptyEntityReference}             from 'core/entity/properties/EmptyEntityReference'
 import {EmptyIsInProperty}                from 'core/entity/properties/EmptyIsInProperty'
-import {EmptyEntityCategory}              from 'core/entityCategory/EmptyEntityCategory'
+import {LAZY_EMPTY_ENTITY_CATEGORY}       from 'core/entityCategory/EmptyEntityCategory.lazy'
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 import {EmptyStringName}                  from 'lang/name/EmptyStringName'
 import {EMPTY_MAP}                        from 'util/emptyVariables'
@@ -23,7 +24,7 @@ export class EmptyEntity
     static #instance?: EmptyEntity
 
     private constructor() {
-        super(EmptyStringName.get, EmptyEntityCategory.get,)
+        super(EmptyStringName.get, LAZY_EMPTY_ENTITY_CATEGORY,)
     }
 
     public static get get() {

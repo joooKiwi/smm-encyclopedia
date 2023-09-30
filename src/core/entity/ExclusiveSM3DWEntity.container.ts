@@ -1,3 +1,5 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {EntityReferences} from 'core/entity/properties/EntityReferences'
 import type {Property}         from 'core/entity/properties/Property'
 import type {EntityCategory}   from 'core/entityCategory/EntityCategory'
@@ -15,7 +17,7 @@ import {assert}                      from 'util/utilitiesMethods'
 export class ExclusiveSM3DWEntityContainer
     extends AbstractExclusiveSMM2Entity {
 
-    public constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
+    public constructor(name: Name<string>, category: Lazy<EntityCategory>, property: Property, references: EntityReferences,) {
         super(name, category, property, references,)
     }
 

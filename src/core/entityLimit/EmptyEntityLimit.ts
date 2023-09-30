@@ -1,3 +1,5 @@
+import {lazy} from '@joookiwi/lazy'
+
 import type {EntityLimit}                                      from 'core/entityLimit/EntityLimit'
 import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from 'util/ClassWithNullObjectPattern'
 
@@ -19,7 +21,7 @@ export class EmptyEntityLimit
     static #instance?: EmptyEntityLimit
 
     private constructor() {
-        super(EmptyStringName.get, () => this,)
+        super(EmptyStringName.get, lazy(() => this,),)
     }
 
     public static get get() {
