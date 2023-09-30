@@ -1,5 +1,5 @@
-import type {Lazy}    from '@joookiwi/lazy'
-import {lazy, lazyOf} from '@joookiwi/lazy'
+import type {Lazy}                from '@joookiwi/lazy'
+import {CommonLazy, lazy, lazyOf} from '@joookiwi/lazy'
 
 import type {NotApplicableProperty, UnknownProperty}                 from 'core/_properties/PropertyWithEverything'
 import type {PropertyThatCanBeUnknownWithComment}                    from 'core/_properties/PropertyThatCanBeUnknownWithComment'
@@ -42,7 +42,6 @@ import {EntityLimits}                                                           
 import {GameStructureProvider}                                                                                      from 'core/game/GameStructure.provider'
 import {Instruments}                                                                                                from 'core/instrument/Instruments'
 import {UNKNOWN_CHARACTER}                                                                                          from 'util/commonVariables'
-import {ObjectHolders}                                                                                              from 'util/holder/ObjectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -270,7 +269,7 @@ export class EntityCreator
         let everyTimeReferences: Lazy<readonly Entity[]>
         let everyReferences: Lazy<readonly Entity[]>
         if (reference.group.all === null)
-            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = ObjectHolders.EMPTY_ARRAY
+            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = CommonLazy.EMPTY_ARRAY
         else {
             everyGameStyleReferences = this.#createGroupReference(reference.group.gameStyle)
             everyThemeReferences = this.#createGroupReference(reference.group.theme)
@@ -290,7 +289,7 @@ export class EntityCreator
 
     #createGroupReference(set: Nullable<Set<EntityTemplate>>,): Lazy<readonly Entity[]> {
         return set == null
-            ? ObjectHolders.EMPTY_ARRAY
+            ? CommonLazy.EMPTY_ARRAY
             : lazy(() => Array.from(set, it => Entities.getValueByName(it.name.english.simple ?? it.name.english.american,).reference,),)
     }
 

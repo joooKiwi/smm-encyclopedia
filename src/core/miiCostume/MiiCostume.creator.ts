@@ -1,5 +1,5 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazy}      from '@joookiwi/lazy'
+import type {Lazy}        from '@joookiwi/lazy'
+import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {MiiCostume}                 from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeTemplate}         from 'core/miiCostume/MiiCostume.template'
@@ -12,7 +12,6 @@ import {MiiCostumeCategories}              from 'core/miiCostumeCategory/MiiCost
 import {MiiCostumeCategory}                from 'core/miiCostumeCategory/MiiCostumeCategory'
 import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
 import {Versions}                          from 'core/version/Versions'
-import {ObjectHolders}                     from 'util/holder/ObjectHolders'
 
 export class MiiCostumeCreator
     extends TemplateWithNameCreator<MiiCostumeTemplate, MiiCostume> {
@@ -29,7 +28,7 @@ export class MiiCostumeCreator
 
     static #createVersion({version,}: MiiCostumeTemplate,): Lazy<NullOr<Versions>> {
         return version == null
-            ? ObjectHolders.NULL
+            ? CommonLazy.NULL
             : lazy(() => Versions.getValueByName(version,),)
     }
 

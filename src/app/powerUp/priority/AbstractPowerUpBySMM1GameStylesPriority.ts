@@ -1,5 +1,5 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazy}      from '@joookiwi/lazy'
+import type {Lazy}        from '@joookiwi/lazy'
+import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {ImagesRetrieverCallback, PossibleGameStyles, PowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                                                     from 'core/entity/Entities'
@@ -8,7 +8,6 @@ import type {ClassInAnySuperMarioMakerGame}                                     
 
 import {AbstractPowerUpPriority} from 'app/powerUp/priority/AbstractPowerUpPriority'
 import {GameStyles}              from 'core/gameStyle/GameStyles'
-import {ObjectHolders}           from 'util/holder/ObjectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -37,10 +36,10 @@ export abstract class AbstractPowerUpBySMM1GameStylesPriority
         super(() => entity.reference.nameContainer,
             () => (gameStylesDisplayed instanceof Array ? gameStylesDisplayed : [gameStylesDisplayed]).map(gameStyle => callback(entity, gameStyle)).flat(),
             isIn,)
-        this.#smbImagesHolder = entity.reference.isInSuperMarioBrosStyle ? lazy(() => callback(entity, SUPER_MARIO_BROS,),) : ObjectHolders.EMPTY_ARRAY
-        this.#smb3ImagesHolder = entity.reference.isInSuperMarioBros3Style ? lazy(() => callback(entity, SUPER_MARIO_BROS_3,),) : ObjectHolders.EMPTY_ARRAY
-        this.#smwImagesHolder = entity.reference.isInSuperMarioWorldStyle ? lazy(() => callback(entity, SUPER_MARIO_WORLD,),) : ObjectHolders.EMPTY_ARRAY
-        this.#nsmbuImagesHolder = entity.reference.isInNewSuperMarioBrosUStyle ? lazy(() => callback(entity, NEW_SUPER_MARIO_BROS_U,),) : ObjectHolders.EMPTY_ARRAY
+        this.#smbImagesHolder = entity.reference.isInSuperMarioBrosStyle ? lazy(() => callback(entity, SUPER_MARIO_BROS,),) : CommonLazy.EMPTY_ARRAY
+        this.#smb3ImagesHolder = entity.reference.isInSuperMarioBros3Style ? lazy(() => callback(entity, SUPER_MARIO_BROS_3,),) : CommonLazy.EMPTY_ARRAY
+        this.#smwImagesHolder = entity.reference.isInSuperMarioWorldStyle ? lazy(() => callback(entity, SUPER_MARIO_WORLD,),) : CommonLazy.EMPTY_ARRAY
+        this.#nsmbuImagesHolder = entity.reference.isInNewSuperMarioBrosUStyle ? lazy(() => callback(entity, NEW_SUPER_MARIO_BROS_U,),) : CommonLazy.EMPTY_ARRAY
     }
 
     //endregion -------------------- Constructor --------------------

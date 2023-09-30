@@ -1,5 +1,5 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazy}      from '@joookiwi/lazy'
+import type {Lazy}        from '@joookiwi/lazy'
+import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {CourseTag}                       from 'core/courseTag/CourseTag'
 import type {CourseTagTemplate, NameTemplate} from 'core/courseTag/CourseTag.template'
@@ -9,7 +9,6 @@ import type {Name}                            from 'lang/name/Name'
 import {TemplateWithNameCreator} from 'core/_template/TemplateWithName.creator'
 import {CourseTagContainer}      from 'core/courseTag/CourseTag.container'
 import {Versions}                from 'core/version/Versions'
-import {ObjectHolders}           from 'util/holder/ObjectHolders'
 
 export class CourseTagCreator
     extends TemplateWithNameCreator<CourseTagTemplate, CourseTag> {
@@ -22,7 +21,7 @@ export class CourseTagCreator
 
     static #getMakerCentralName({makerCentral,}: NameTemplate,): Lazy<NullOr<PossibleMakerCentralName>> {
         return makerCentral == null
-            ? ObjectHolders.NULL
+            ? CommonLazy.NULL
             : lazy(() => makerCentral,)
     }
 
@@ -33,7 +32,7 @@ export class CourseTagCreator
      */
     static #getFirstAppearance({firstAppearance,}: CourseTagTemplate,): Lazy<NullOr<Versions>> {
         return firstAppearance == null
-            ? ObjectHolders.NULL
+            ? CommonLazy.NULL
             : lazy(() => Versions.getValueByName(firstAppearance,),)
     }
 

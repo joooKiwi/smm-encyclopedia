@@ -1,4 +1,5 @@
-import type {Lazy} from '@joookiwi/lazy'
+import type {Lazy}  from '@joookiwi/lazy'
+import {CommonLazy} from '@joookiwi/lazy'
 
 import type {PossibleGroupName}                         from 'core/entityTypes'
 import type {EntityBehaviourLink, PossibleGroup}        from 'core/behaviour/properties/EntityBehaviourLink'
@@ -8,7 +9,6 @@ import type {ProviderForNullable}                       from 'util/provider/Prov
 import type {ProviderWithKey}                           from 'util/provider/ProviderWithKey'
 
 import {EntityBehaviourLinkContainer} from 'core/behaviour/properties/EntityBehaviourLink.container'
-import {ObjectHolders}                from 'util/holder/ObjectHolders'
 import {AbstractProvider}             from 'util/provider/AbstractProvider'
 
 /**
@@ -46,7 +46,7 @@ export class EntityBehaviourLinkProvider
     //endregion -------------------- Singleton usage --------------------
 
     static #NULL_KEYS = [null, null,] as const
-    static #NULL_ARGUMENTS = [ObjectHolders.NULL, ObjectHolders.NULL,] as const
+    static #NULL_ARGUMENTS = [CommonLazy.NULL, CommonLazy.NULL,] as const
 
     public get null() {
         return this.get(EntityBehaviourLinkProvider.#NULL_KEYS, ...EntityBehaviourLinkProvider.#NULL_ARGUMENTS,)

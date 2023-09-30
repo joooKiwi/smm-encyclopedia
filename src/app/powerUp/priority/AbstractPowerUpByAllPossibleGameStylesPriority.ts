@@ -1,5 +1,5 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazy}      from '@joookiwi/lazy'
+import type {Lazy}        from '@joookiwi/lazy'
+import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {ImagesRetrieverCallback, PossibleGameStyles, PowerUpByAllGameStylesPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {Entities}                                                                    from 'core/entity/Entities'
@@ -8,7 +8,6 @@ import type {ClassInAnySuperMarioMakerGame}                                     
 
 import {AbstractPowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/AbstractPowerUpBySMM1GameStylesPriority'
 import {GameStyles}                              from 'core/gameStyle/GameStyles'
-import {ObjectHolders}                           from 'util/holder/ObjectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -32,7 +31,7 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
                           callback: ImagesRetrieverCallback,
                           isIn: ClassInAnySuperMarioMakerGame,) {
         super(entity, gameStylesDisplayed, callback, isIn,)
-        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? lazy(() => callback(entity, SUPER_MARIO_3D_WORLD)) : ObjectHolders.EMPTY_ARRAY
+        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? lazy(() => callback(entity, SUPER_MARIO_3D_WORLD)) : CommonLazy.EMPTY_ARRAY
     }
 
     //endregion -------------------- Constructor --------------------
