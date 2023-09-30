@@ -118,7 +118,7 @@ export abstract class GameStyles
 
     #reference?: GameStyle
     readonly #acronym
-    readonly #gameAcronym
+    readonly #acronymInFile
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>
     #imageFile?: GameStyleImageFile
     #shortImagePath?: PossibleShortImagePath
@@ -126,10 +126,10 @@ export abstract class GameStyles
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: PossibleAcronym, gameAcronym: PossibleAcronym_InFile, englishName: PossibleEnglishName,) {
+    private constructor(acronym: PossibleAcronym, acronymInFile: PossibleAcronym_InFile, englishName: PossibleEnglishName,) {
         super()
         this.#acronym = acronym
-        this.#gameAcronym = gameAcronym
+        this.#acronymInFile = acronymInFile
         this.#englishNameContainer = new StringContainer(englishName)
     }
 
@@ -153,8 +153,8 @@ export abstract class GameStyles
         return this.#acronym
     }
 
-        return this.#gameAcronym
-    public get gameAcronym(): PossibleAcronym_InFile {
+    public get acronymInFile(): PossibleAcronym_InFile {
+        return this.#acronymInFile
     }
 
     public get englishName(): PossibleEnglishName {
@@ -166,7 +166,7 @@ export abstract class GameStyles
     }
 
     public get imageFile(): GameStyleImageFile {
-        return this.#imageFile ??= gameStyleImage(this.gameAcronym, this.englishName,)
+        return this.#imageFile ??= gameStyleImage(this.acronymInFile, this.englishName,)
     }
 
     public get shortImagePath(): PossibleShortImagePath {

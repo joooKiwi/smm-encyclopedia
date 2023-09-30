@@ -18,7 +18,7 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  * @param gameStyle The image {@link GameStyles}
  */
 export function editorImage(entity: Entities, name: ImageName_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym})`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym})`,)
 }
 
 //region -------------------- Editor image (power-up) --------------------
@@ -32,7 +32,7 @@ export function editorImage(entity: Entities, name: ImageName_Editor, gameStyle:
  * @param gameStyle The image {@link GameStyles}
  */
 export function standalonePowerUpEditorImage(entity: Entities, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
 }
 
 /**
@@ -44,7 +44,7 @@ export function standalonePowerUpEditorImage(entity: Entities, name: ImageName_E
  * @param gameStyle The image {@link GameStyles}
  */
 export function withMushroomPowerUpEditorImage(entity: Entities, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.gameAcronym}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
 }
 
 /**
@@ -77,7 +77,7 @@ export function powerUpEditorImages(entity: Entities, standaloneName: ImageName_
  * @param gameStyle The image {@link GameStyles}
  */
 export function clearConditionImage(entity: Entities, name: ImageName_ClearCondition, gameStyle: GameStyles,): ClearConditionImageFile {
-    return new SimpleImageFile(`entity/clear condition/`, `${gameStyle.gameAcronym}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (Clear condition)`,)
+    return new SimpleImageFile(`entity/clear condition/`, `${gameStyle.acronymInFile}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (Clear condition)`,)
 }
 
 //endregion -------------------- Clear condition image --------------------
@@ -103,7 +103,7 @@ export function inGameSMM1Image(entity: Entities, name: SimpleImageName_SMM1, ga
  * @param fileName The file name
  */
 export function inGameImage(entity: Entities, name: ImageName_SMM2, gameStyle: GameStyles, fileName: PossibleInGameSMM2ImageFileName,): InGameSMM2ImageFile {
-    return new SimpleImageFile(`entity/in game/${gameStyle.gameAcronym} ${name}`, fileName, 'tiff', `${entity.englishName} (In game - ${gameStyle.acronym} SMM2)`,)
+    return new SimpleImageFile(`entity/in game/${gameStyle.acronymInFile} ${name}`, fileName, 'tiff', `${entity.englishName} (In game - ${gameStyle.acronym} SMM2)`,)
 }
 
 //endregion -------------------- In game image --------------------
@@ -118,7 +118,7 @@ export function inGameImage(entity: Entities, name: ImageName_SMM2, gameStyle: G
  * @param fileName The file name
  */
 export function unusedSmm1RegularImage(entity: Entities, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileName: ImageName_UnusedSMM1Regular,): UnusedSMM1RegularImageFile {
-    return new SimpleImageFile(`entity/unused/${gameStyle.gameAcronym as PossibleAcronym_InFile_SMM1} - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused)`,)
+    return new SimpleImageFile(`entity/unused/${gameStyle.acronymInFile as PossibleAcronym_InFile_SMM1} - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused)`,)
 }
 
 /**

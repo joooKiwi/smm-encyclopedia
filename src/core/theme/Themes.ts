@@ -188,7 +188,7 @@ export class Themes
 
     #reference?: CourseAndWorldTheme
     readonly #englishName
-    readonly #gameName
+    readonly #nameInFile
     #smallImageFile?: SmallThemeImageFile
     #largeImageFile?: LargeThemeImageFile
     #endlessMarioImageFile?: NullOr<EndlessMarioThemeImageFile>
@@ -196,10 +196,10 @@ export class Themes
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(englishName: PossibleEnglishName, gameName: PossibleName_InFile,) {
+    private constructor(englishName: PossibleEnglishName, nameInFile: PossibleName_InFile,) {
         super()
         this.#englishName = new StringContainer(englishName)
-        this.#gameName = gameName
+        this.#nameInFile = nameInFile
     }
 
     //endregion -------------------- Constructor --------------------
@@ -226,8 +226,8 @@ export class Themes
         return this.#englishName.getInHtml
     }
 
-        return this.#gameName
-    public get gameName(): PossibleName_InFile {
+    public get nameInFile(): PossibleName_InFile {
+        return this.#nameInFile
     }
 
     public get courseTheme(): CourseTheme {
