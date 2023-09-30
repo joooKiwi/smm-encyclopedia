@@ -77,12 +77,12 @@ export class EntityLimitCreator
     }
 
     #createLimitTemplateInSMM2(amount: NonNullable<PossibleLimitAmount_SMM2>,) {
-        return amount === UNKNOWN_CHARACTER
-            ? EntityLimitCreator.#UNKNOWN_CONTAINER
-            : lazy(() =>
-                typeof amount == 'number'
-                    ? new PropertyContainer(amount,)
-                    : new PropertyContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,),)
+        if (amount === UNKNOWN_CHARACTER)
+            return EntityLimitCreator.#UNKNOWN_CONTAINER
+        return lazy(() =>
+            typeof amount == 'number'
+                ? new PropertyContainer(amount,)
+                : new PropertyContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,),)
     }
 
     /**
