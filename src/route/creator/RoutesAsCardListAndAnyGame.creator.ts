@@ -111,12 +111,12 @@ export class RoutesAsCardListAndAnyGameCreator<const PARENT_NAME extends string,
             new SimpleRedirectRoute(name,              `${name} (list Game=2&3DS)`,   `/game-2,3ds/list${path}`,    `/game-3ds,2/list${path}`,  SMM2_AND_3DS,),
 
 
-            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=1)`,       `/game-1/card${path}`,        ViewDisplays.CARD_LIST, SMM1_ONLY, renderCallback,),
-            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=3DS)`,     `/game-3ds/card${path}`,      ViewDisplays.CARD_LIST, SMM3DS_ONLY, renderCallback,),
-            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=2)`,       `/game-2/card${path}`,        ViewDisplays.CARD_LIST, SMM2_ONLY, renderCallback,),
-            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=all)`,     `/game-all/card${path}`,      ViewDisplays.CARD_LIST, ALL_GAMES, renderCallback,),
+            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=1)`,       `/game-1/card${path}`,        ViewDisplays.CARD_LIST, SMM1_ONLY,    renderCallback,),
+            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=3DS)`,     `/game-3ds/card${path}`,      ViewDisplays.CARD_LIST, SMM3DS_ONLY,  renderCallback,),
+            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=2)`,       `/game-2/card${path}`,        ViewDisplays.CARD_LIST, SMM2_ONLY,    renderCallback,),
+            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=all)`,     `/game-all/card${path}`,      ViewDisplays.CARD_LIST, ALL_GAMES,    renderCallback,),
             new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=1&3DS)`,   `/game-1,3ds/card${path}`,    ViewDisplays.CARD_LIST, SMM1_AND_3DS, renderCallback,),
-            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=1&2)`,     `/game-1,2/card${path}`,      ViewDisplays.CARD_LIST, SMM1_AND_2, renderCallback,),
+            new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=1&2)`,     `/game-1,2/card${path}`,      ViewDisplays.CARD_LIST, SMM1_AND_2,   renderCallback,),
             new SimpleRouteByViewDisplayAndGames(name, `${name} (card Game=3DS&2)`,   `/game-3ds,2/card${path}`,    ViewDisplays.CARD_LIST, SMM3DS_AND_2, renderCallback,),
 
             new SimpleRedirectRoute(name,              `${name} (card)`,              `/card${path}`,               `/game-${defaultRoutePath}/card${path}`, EMPTY_ARRAY,),

@@ -77,10 +77,10 @@ export class RoutesAsAnyGameCreator<const PARENT_NAME extends string, const PARE
         return [
             new SimpleRedirectRoute(name, name, path, `/game-${defaultRoutePath}${path}`, EMPTY_ARRAY,),
 
-            new SimpleRouteByGames(name, `${name} (Game=1)`,       `/game-1${path}`,       SMM1_ONLY,       renderCallback,),
-            new SimpleRouteByGames(name, `${name} (Game=3DS)`,     `/game-3ds${path}`,     SMM3DS_ONLY,     renderCallback,),
-            new SimpleRouteByGames(name, `${name} (Game=2)`,       `/game-2${path}`,       SMM2_ONLY,       renderCallback,),
-            new SimpleRouteByGames(name, `${name} (Game=all)`,     `/game-all${path}`,     ALL_GAMES,             renderCallback,),
+            new SimpleRouteByGames(name, `${name} (Game=1)`,       `/game-1${path}`,       SMM1_ONLY,    renderCallback,),
+            new SimpleRouteByGames(name, `${name} (Game=3DS)`,     `/game-3ds${path}`,     SMM3DS_ONLY,  renderCallback,),
+            new SimpleRouteByGames(name, `${name} (Game=2)`,       `/game-2${path}`,       SMM2_ONLY,    renderCallback,),
+            new SimpleRouteByGames(name, `${name} (Game=all)`,     `/game-all${path}`,     ALL_GAMES,    renderCallback,),
             new SimpleRouteByGames(name, `${name} (Game=1&3DS)`,   `/game-1,3ds${path}`,   SMM1_AND_3DS, renderCallback,),
             new SimpleRouteByGames(name, `${name} (Game=1&2)`,     `/game-1,2${path}`,     SMM1_AND_2,   renderCallback,),
             new SimpleRouteByGames(name, `${name} (Game=3DS&2)`,   `/game-3ds,2${path}`,   SMM3DS_AND_2, renderCallback,),
