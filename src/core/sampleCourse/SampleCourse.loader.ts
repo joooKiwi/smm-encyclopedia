@@ -47,7 +47,7 @@ export class SampleCourseLoader
                 '\n-------------------- "sample course" has been loaded --------------------',
             )
 
-        this.#map = references
+        return this.#map = references
     }
 }
 
