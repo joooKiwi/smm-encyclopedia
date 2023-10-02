@@ -131,7 +131,7 @@ export abstract class MiiCostumeAppOption
 
     public renderTableHeader(): NullOr<SingleHeaderContent> {
         const content = this._createTableHeaderOption()
-        if(content == null)
+        if (content == null)
             return null
         return content
     }

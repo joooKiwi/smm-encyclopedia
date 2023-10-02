@@ -71,6 +71,7 @@ export default class GameStyleApp
             }
 
             //endregion -------------------- Card list interpreter --------------------
+            //region -------------------- Table interpreter --------------------
 
             public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
             public readonly tableColor = 'primary' satisfies BootstrapThemeColor
@@ -84,7 +85,6 @@ export default class GameStyleApp
                 ]
             }
 
-
             public createNewTableContent(content: GameStyles, option: GameStyleAppOption,) {
                 return option.renderContent(content,)
             }
@@ -92,6 +92,8 @@ export default class GameStyleApp
             public createTableHeader(option: GameStyleAppOption,) {
                 return option.renderTableHeader()
             }
+
+            //endregion -------------------- Table interpreter --------------------
 
         }()
     }
