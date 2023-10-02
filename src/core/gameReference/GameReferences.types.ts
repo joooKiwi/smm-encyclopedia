@@ -122,7 +122,8 @@ export type PossibleEnglishName_Game = `Super Mario Maker${| '' | ' for Nintendo
 export type PossibleAcronym_Game = `SMM${| '' | '3DS' | 2}`
 
 export type PossibleEnglishName_GameStyle = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U'
-export type PossibleAcronym_GameStyle = `SM${`B${'' | 3}` | `${'' | '3D'}W`}` | 'NSMBU'
+export type PossibleAcronym_GameStyle_SMM1 = | 'SMB' | 'SMB3' | 'SMW' | 'NSMBU'
+export type PossibleAcronym_GameStyle = | PossibleAcronym_GameStyle_SMM1 | 'SM3DW'
 
 export type PossibleEnglishName_SoundEffect = `Super Mario ${| 'Kart' | 64 | 'Sunshine' | 'Galaxy'}`
 export type PossibleAcronym_SoundEffect = `SM${| 'K' | 64 | 'S' | 'G'}`
