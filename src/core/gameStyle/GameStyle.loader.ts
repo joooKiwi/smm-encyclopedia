@@ -56,11 +56,10 @@ export class GameStyleLoader
 interface Content
     extends GameContentFrom1And2 {
 
-    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
-    reference: PossibleAcronym
-    nightDesertWindDirection: PossibleNightDesertWindDirection
-    nightDesertWindFrequency: PossibleNightDesertWindFrequency
-
+    readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+    readonly reference: PossibleAcronym
+    readonly nightDesertWindDirection: PossibleNightDesertWindDirection
+    readonly nightDesertWindFrequency: PossibleNightDesertWindFrequency
 
 }
 

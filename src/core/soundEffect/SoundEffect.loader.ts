@@ -58,17 +58,17 @@ interface Content
 
     //region -------------------- Triggers --------------------
 
-    doesTrigger_player_jumpAfterLanding: boolean
-    doesTrigger_player_turnAroundAfterBeingAtFullSpeed: boolean
-    doesTrigger_player_crouch: boolean
-    doesTrigger_player_after3SecondsRepeatedly: boolean
+    readonly doesTrigger_player_jumpAfterLanding: boolean
+    readonly doesTrigger_player_turnAroundAfterBeingAtFullSpeed: boolean
+    readonly doesTrigger_player_crouch: boolean
+    readonly doesTrigger_player_after3SecondsRepeatedly: boolean
 
-    doesTrigger_player_collectPowerUp: boolean
-    doesTrigger_player_getIntoAnEntity: boolean
+    readonly doesTrigger_player_collectPowerUp: boolean
+    readonly doesTrigger_player_getIntoAnEntity: boolean
 
-    doesTrigger_player_spawn: boolean
-    doesTrigger_player_damage: boolean
-    doesTrigger_player_lostALife: boolean
+    readonly doesTrigger_player_spawn: boolean
+    readonly doesTrigger_player_damage: boolean
+    readonly doesTrigger_player_lostALife: boolean
 
     //endregion -------------------- Triggers --------------------
 

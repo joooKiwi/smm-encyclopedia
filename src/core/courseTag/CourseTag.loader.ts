@@ -54,10 +54,9 @@ export class CourseTagLoader
 interface Content
     extends LanguageContent {
 
-    isAnOfficialTag: boolean
-    makerCentralName: NullOr<PossibleMakerCentralName>
-    firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
-
+    readonly isAnOfficialTag: boolean
+    readonly makerCentralName: NullOr<PossibleMakerCentralName>
+    readonly firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
 
 }
 

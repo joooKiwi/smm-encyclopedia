@@ -61,18 +61,14 @@ export class EntityLimitLoader
 interface Content
     extends LanguageContent {
 
-    alternative: NullOr<PossibleAlternativeEnglishName>
+    readonly alternative: NullOr<PossibleAlternativeEnglishName>
 
-    type: NullOr<PossibleEnglishName_LimitType>
-    acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>
+    readonly type: NullOr<PossibleEnglishName_LimitType>
+    readonly acronym: NullOr<| PossibleAcronym | PossibleAlternativeAcronym>
 
-    limit_SMM1And3DS: PossibleLimitAmount_SMM1And3DS
-    limit_SMM2: PossibleLimitAmount_SMM2
-    limit_comment: PossibleLimitAmount_Comment
-
-}
-
-
+    readonly limit_SMM1And3DS: PossibleLimitAmount_SMM1And3DS
+    readonly limit_SMM2: PossibleLimitAmount_SMM2
+    readonly limit_comment: PossibleLimitAmount_Comment
 
 }
 

@@ -56,14 +56,11 @@ export class ThemeLoader
 interface Content
     extends LanguageContent, GameContentFrom1And2 {
 
-    isInCourseTheme: boolean
+    readonly isInCourseTheme: boolean
+    readonly isInWorldTheme: boolean
 
-    isInWorldTheme: boolean
-
-
-    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
-
-    effectInNightTheme: PossibleEffectInNightTheme
+    readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+    readonly effectInNightTheme: PossibleEffectInNightTheme
 
 }
 

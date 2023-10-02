@@ -54,12 +54,7 @@ export class CharacterNameLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames, UniqueNameContent<PossibleUniqueEnglishName> {
 
-    hasNameSaidInTheEditor: boolean
-
-}
-
-class TemplateCreator
-    extends AbstractTemplateCreator<CharacterNameTemplate, Content> {
+    readonly hasNameSaidInTheEditor: boolean
 
 }
 

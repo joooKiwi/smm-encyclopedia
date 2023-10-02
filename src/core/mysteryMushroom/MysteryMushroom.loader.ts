@@ -67,43 +67,41 @@ export class MysteryMushroomLoader
 interface Content
     extends LanguageContent, UniqueNameContent<PossibleUniqueEnglishName> {
 
-    conditionToUnlockIt: PossibleConditionToUnlockIt
-    canBeUnlockedByAnAmiibo: boolean
+    readonly conditionToUnlockIt: PossibleConditionToUnlockIt
+    readonly canBeUnlockedByAnAmiibo: boolean
 
-    firstAppearanceInMarioMaker: PossibleVersionNameInSMM
+    readonly firstAppearanceInMarioMaker: PossibleVersionNameInSMM
 
-    reference: | PossibleGameReference | PokemonGeneration
-
-
-    haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected
-    haveASoundEffectWhenCollected: PossibleSoundEffectWhenCollected
-
-    haveASoundEffectOnTaunt_game: GameOnSoundEffectOnTaunt
-    haveASoundEffectOnTaunt: PossibleSoundEffectOnTaunt
-
-    haveASoundEffectOnJump_game: GameOnSoundEffectOnJump
-    haveASoundEffectOnJump: PossibleSoundEffectOnJump
-    haveASoundEffectOnGroundAfterJump_game: GameOnSoundEffectOnGroundAfterJump
-    haveASoundEffectOnGroundAfterJump: PossibleSoundEffectOnGroundAfterJump
-
-    soundEffectOnMovement: PossibleSoundEffectOnMovement
-
-    haveASoundEffectOnTurnAfterRun: PossibleSoundEffectOnTurnAfterRun
-
-    haveASpecialMusicInStarMode_game: GameInStarMode
-    haveASpecialMusicInStarMode: PossibleSpecialMusicInStarMode
-
-    haveASoundEffectWhenOnGoalPole_type: TypeOfMusicOnGoalPole
-    haveASoundEffectWhenOnGoalPole_game: GameOnSoundEffectOnGoalPole
-    haveASoundEffectWhenOnGoalPole_smallDefinition: TranslationKeyOnGoalPole
-    haveASoundEffectWhenOnGoalPole: PossibleSoundEffectOnGoalPole
-
-    haveASoundEffectOnDeath_type: TypeOfSoundEffectOnDeath
-    haveASoundEffectOnDeath_game: GameOnSoundEffectOnDeath
-    haveASoundEffectOnDeath_smallDefinition: TranslationKeyOnDeath
-    haveASoundEffectOnDeath: PossibleSoundEffectOnDeath
+    readonly reference: | PossibleGameReference | PokemonGeneration
 
 
+    readonly haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected
+    readonly haveASoundEffectWhenCollected: PossibleSoundEffectWhenCollected
+
+    readonly haveASoundEffectOnTaunt_game: GameOnSoundEffectOnTaunt
+    readonly haveASoundEffectOnTaunt: PossibleSoundEffectOnTaunt
+
+    readonly haveASoundEffectOnJump_game: GameOnSoundEffectOnJump
+    readonly haveASoundEffectOnJump: PossibleSoundEffectOnJump
+    readonly haveASoundEffectOnGroundAfterJump_game: GameOnSoundEffectOnGroundAfterJump
+    readonly haveASoundEffectOnGroundAfterJump: PossibleSoundEffectOnGroundAfterJump
+
+    readonly soundEffectOnMovement: PossibleSoundEffectOnMovement
+
+    readonly haveASoundEffectOnTurnAfterRun: PossibleSoundEffectOnTurnAfterRun
+
+    readonly haveASpecialMusicInStarMode_game: GameInStarMode
+    readonly haveASpecialMusicInStarMode: PossibleSpecialMusicInStarMode
+
+    readonly haveASoundEffectWhenOnGoalPole_type: TypeOfMusicOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole_game: GameOnSoundEffectOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole_smallDefinition: TranslationKeyOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole: PossibleSoundEffectOnGoalPole
+
+    readonly haveASoundEffectOnDeath_type: TypeOfSoundEffectOnDeath
+    readonly haveASoundEffectOnDeath_game: GameOnSoundEffectOnDeath
+    readonly haveASoundEffectOnDeath_smallDefinition: TranslationKeyOnDeath
+    readonly haveASoundEffectOnDeath: PossibleSoundEffectOnDeath
 
 }
 

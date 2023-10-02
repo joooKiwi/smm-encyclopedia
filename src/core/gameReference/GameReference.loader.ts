@@ -52,7 +52,7 @@ export class GameReferenceLoader
 interface Content
     extends LanguageContent {
 
-    acronym: PossibleAcronym
+    readonly acronym: PossibleAcronym
 
 }
 
