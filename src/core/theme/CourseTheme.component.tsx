@@ -7,9 +7,7 @@ import {ThemeComponent}          from 'core/theme/Theme.component'
 import {Themes}                  from 'core/theme/Themes'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class CourseThemeComponent
     extends ThemeComponent<ThemeProperty> {
 

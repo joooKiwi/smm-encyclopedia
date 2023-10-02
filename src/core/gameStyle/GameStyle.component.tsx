@@ -7,9 +7,7 @@ import Image                             from 'app/tools/images/Image'
 import {gameContentTranslation}          from 'lang/components/translationMethods'
 import {StringContainer}                 from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class GameStyleComponent
     extends AbstractEntityPropertyComponent<GameStyleProperty, GameStyles> {
 

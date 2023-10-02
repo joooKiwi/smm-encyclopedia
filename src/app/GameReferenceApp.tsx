@@ -13,9 +13,7 @@ import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class GameReferenceApp
     extends AbstractApp {
 

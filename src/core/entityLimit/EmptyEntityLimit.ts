@@ -9,9 +9,7 @@ import {EmptyStringName}                      from 'lang/name/EmptyStringName'
 import {EMPTY_MAP}                            from 'util/emptyVariables'
 import {assert}                               from 'util/utilitiesMethods'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyEntityLimit
     extends ClassContainingANameAndAnAlternative<string, string, EmptyEntityLimit>
     implements EntityLimit, ClassWithNullObjectPattern<EmptyEntityLimitName> {

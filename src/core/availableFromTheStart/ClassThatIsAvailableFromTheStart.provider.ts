@@ -7,9 +7,7 @@ import {GameStructureProvider}                     from 'core/game/GameStructure
 import {isArrayEquals}                             from 'util/utilitiesMethods'
 import {AbstractProvider}                          from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class ClassThatIsAvailableFromTheStartProvider
     extends AbstractProvider<ArgumentsReceived, ClassThatIsAvailableFromTheStart>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, ClassThatIsAvailableFromTheStart>,

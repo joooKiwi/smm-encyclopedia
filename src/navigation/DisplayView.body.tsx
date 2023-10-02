@@ -13,9 +13,8 @@ import DisplayViewRouteButton                            from 'navigation/Displa
 const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWordInTheGames
 
 //endregion -------------------- Deconstruction imports --------------------
-/**
- * @reactComponent
- */
+
+/** @reactComponent */
 export default function DisplayViewBody() {
     const isSMM1Selected = Games.SUPER_MARIO_MAKER_1.isSelected,
         // isSMM3DSSelected = true,

@@ -1,8 +1,6 @@
 import {EmptyLanguage} from 'lang/name/containers/EmptyLanguage'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyLanguageContainer
     implements EmptyLanguage {
 

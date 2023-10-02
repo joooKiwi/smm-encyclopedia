@@ -5,9 +5,7 @@ import {TimePropertyContainer} from 'core/entity/properties/time/TimeProperty.co
 import {isArrayEquals}         from 'util/utilitiesMethods'
 import {AbstractProvider}      from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class TimePropertyProvider
     extends AbstractProvider<ArgumentsReceived, TimeProperty>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, TimeProperty> {

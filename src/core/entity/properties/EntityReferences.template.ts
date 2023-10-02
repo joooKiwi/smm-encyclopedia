@@ -1,9 +1,7 @@
 import type {EntityTemplate} from 'core/entity/Entity.template'
 import type {EntityLink}     from 'core/entity/loader.types'
 
-/**
- * @template
- */
+/** @template */
 export interface EntityReferencesTemplate {
 
     style: {

@@ -4,9 +4,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityCategoryName} from 'util/Cla
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 import {EmptyStringName}      from 'lang/name/EmptyStringName'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyEntityCategory
     extends ClassContainingAName<string>
     implements EntityCategory, ClassWithNullObjectPattern<EmptyEntityCategoryName> {

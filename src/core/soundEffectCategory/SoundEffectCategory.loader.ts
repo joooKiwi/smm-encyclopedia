@@ -10,9 +10,7 @@ import {isInProduction}             from 'variables'
 import {AbstractTemplateCreator}    from 'core/_template/AbstractTemplate.creator'
 import {SoundEffectCategoryCreator} from 'core/soundEffectCategory/SoundEffectCategory.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class SoundEffectCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, SoundEffectCategory>> {
 

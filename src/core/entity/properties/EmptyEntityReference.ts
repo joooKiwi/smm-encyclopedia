@@ -3,9 +3,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from 'util/Cl
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyEntityReference
     implements EntityReferences, ClassWithNullObjectPattern<EmptyEntityReferenceName> {
 

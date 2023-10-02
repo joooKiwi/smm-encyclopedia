@@ -3,9 +3,7 @@ import type {SimpleGameStyleTemplate}        from 'core/gameStyle/SimpleGameStyl
 import type {SimpleThemeTemplate}            from 'core/theme/SimpleTheme.template'
 import type {SimpleTimeTemplate}             from 'core/time/SimpleTime.template'
 
-/**
- * @template
- */
+/** @template */
 export interface IsInPropertyTemplate {
 
     game: SimpleGameFromAllGamesTemplate<boolean, boolean, boolean>

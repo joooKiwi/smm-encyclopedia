@@ -12,9 +12,7 @@ import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import {ThemeCreator}            from 'core/theme/Theme.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class ThemeLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme>> {
 

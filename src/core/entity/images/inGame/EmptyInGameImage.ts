@@ -4,9 +4,7 @@ import type {ClassWithNullObjectPattern, EmptyInGameImageName} from 'util/ClassW
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyInGameImage
     implements InGameImage_SMM1, InGameImage_SMM2, ClassWithNullObjectPattern<EmptyInGameImageName> {
 

@@ -6,9 +6,7 @@ import {LimitPropertyContainer} from 'core/entity/properties/limit/LimitProperty
 import {isArrayEquals}          from 'util/utilitiesMethods'
 import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class LimitPropertyProvider
     extends AbstractProvider<Key, LimitProperty>
     implements ProviderWithExplicitKey<LimitProperty, Key, ArgumentsReceived> {

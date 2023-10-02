@@ -6,9 +6,7 @@ import BottomLanguageChangerButton from 'navigation/button/BottomLanguageChanger
 import DiscordButton               from 'navigation/button/Discord.button'
 import GithubButton                from 'navigation/button/Github.button'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function Footer() {
     return <footer id="footer-container" className="bg-dark bg-gradient">
         <div className="container">

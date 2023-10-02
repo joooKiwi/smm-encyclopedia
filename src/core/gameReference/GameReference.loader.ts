@@ -11,9 +11,7 @@ import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import {GameReferenceCreator}    from 'core/gameReference/GameReference.creator'
 
 
-/**
- * @singleton
- */
+/** @singleton */
 export class GameReferenceLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, GameReference>> {
 

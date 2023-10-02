@@ -5,9 +5,8 @@ import {DISPLAY_VIEW_MODAL_ID} from 'navigation/button/modalIds'
 import {SUSPENSION_POINT}      from 'util/commonVariables'
 
 const ID = 'displayView-button'
-/**
- * @reactComponent
- */
+
+/** @reactComponent */
 export default function DisplayViewButton() {
     const content = `${contentTranslation('Display')}${SUSPENSION_POINT}`
 

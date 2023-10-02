@@ -10,9 +10,7 @@ import {isInProduction}            from 'variables'
 import {AbstractTemplateCreator}   from 'core/_template/AbstractTemplate.creator'
 import {MiiCostumeCategoryCreator} from 'core/miiCostumeCategory/MiiCostumeCategory.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class MiiCostumeCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>> {
 

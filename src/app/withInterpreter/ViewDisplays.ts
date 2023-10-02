@@ -17,9 +17,7 @@ import {assert}                                 from 'util/utilitiesMethods'
 import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'
 import {SingleRetrievableByUrlImplementation}   from 'util/enumerable/SingleRetrievableByUrl.implementation'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class ViewDisplays
     extends Enum<Ordinals, Names>
     implements ClassWithType<Type>,

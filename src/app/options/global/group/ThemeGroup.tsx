@@ -7,9 +7,7 @@ import AbstractGroup from 'app/options/global/group/AbstractGroup'
 import Image         from 'app/tools/images/Image'
 import {Times}       from 'core/time/Times'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class ThemeGroup
     extends AbstractGroup<Themes, GlobalThemeOption> {
 

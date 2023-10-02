@@ -1,9 +1,7 @@
 import type {TemplateWithNameTemplate}       from 'core/_template/TemplateWithName.template'
 import type {SimpleGameFromAllGamesTemplate} from 'core/game/SimpleGame.template'
 
-/**
- * @template
- */
+/** @template */
 export interface OtherWordInTheGameTemplate
     extends TemplateWithNameTemplate {
 

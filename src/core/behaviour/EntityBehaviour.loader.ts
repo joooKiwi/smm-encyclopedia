@@ -11,9 +11,7 @@ import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import {EntityBehaviourCreator}  from 'core/behaviour/EntityBehaviour.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EntityBehaviourLoader
     implements Loader<ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>> {
 

@@ -19,9 +19,7 @@ import {StringContainer} from 'util/StringContainer'
 import {EMPTY_ARRAY}     from 'util/emptyVariables'
 import {GameCollection}  from 'util/collection/GameCollection'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class Games
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,

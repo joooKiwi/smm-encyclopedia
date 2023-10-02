@@ -11,9 +11,7 @@ import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import {EntityLimitCreator}      from 'core/entityLimit/EntityLimit.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EntityLimitLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, EntityLimit>> {
 

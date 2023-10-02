@@ -12,9 +12,7 @@ import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import {GameStyleCreator}        from 'core/gameStyle/GameStyle.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class GameStyleLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, GameStyle>> {
 

@@ -3,9 +3,7 @@ import {PureComponent} from 'react'
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {ReactComponent}           from 'util/react/ReactComponent'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export abstract class AbstractEntityPropertyThatCanDisplayAllComponent<R>
     extends PureComponent<EntityPropertyProperties<R>>
     implements ReactComponent {

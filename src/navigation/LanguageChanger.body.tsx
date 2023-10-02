@@ -9,9 +9,7 @@ import LanguageChangerLink         from 'navigation/LanguageChanger.link'
 import {LANGUAGE_CHANGER_MODAL_ID} from 'navigation/button/modalIds'
 import {StringContainer}           from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function LanguageChangerBody() {
     const [, setCurrentLanguage,] = useState(ProjectLanguages.current)
 

@@ -7,9 +7,7 @@ import {Times}                               from 'core/time/Times'
 import {gameContentTranslation}              from 'lang/components/translationMethods'
 import {StringContainer}                     from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class TimeComponent
     extends AbstractDualEntityPropertyComponent<TimeProperty> {
 

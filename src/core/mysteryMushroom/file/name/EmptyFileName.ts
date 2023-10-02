@@ -2,9 +2,7 @@ import type {FileName} from 'core/mysteryMushroom/file/name/FileName'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyFileName
     implements FileName<EmptyArray, EmptyArray> {
 

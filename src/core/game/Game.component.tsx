@@ -7,9 +7,7 @@ import {Games}                           from 'core/game/Games'
 import {gameContentTranslation}          from 'lang/components/translationMethods'
 import {StringContainer}                 from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class GameComponent
     extends AbstractEntityPropertyComponent<GameProperty, Games> {
 

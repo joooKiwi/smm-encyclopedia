@@ -6,9 +6,7 @@ import {SUSPENSION_POINT}   from 'util/commonVariables'
 
 const ID = 'search-button'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function SearchButton() {
     const content = `${contentTranslation('Search')}${SUSPENSION_POINT}`
 

@@ -12,9 +12,7 @@ const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWor
 
 //endregion -------------------- Deconstruction imports --------------------
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class HomeApp
     extends AbstractApp {
 

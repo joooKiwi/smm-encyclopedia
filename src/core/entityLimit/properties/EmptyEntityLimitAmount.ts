@@ -3,9 +3,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityLimitAmountName} from 'util/
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyEntityLimitAmount
     implements EntityLimitAmount, ClassWithNullObjectPattern<EmptyEntityLimitAmountName> {
 

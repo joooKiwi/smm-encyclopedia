@@ -25,9 +25,7 @@ import {EntityCreator}           from 'core/entity/Entity.creator'
 import {ReferencesToWatch}       from 'core/entity/ReferencesToWatch'
 import {EMPTY_ARRAY}             from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EntityLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, Entity>> {
 

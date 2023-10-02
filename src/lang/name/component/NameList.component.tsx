@@ -6,9 +6,7 @@ import TextComponent         from 'app/tools/text/TextComponent'
 import {languageTranslation} from 'lang/components/translationMethods'
 import {ProjectLanguages}    from 'lang/ProjectLanguages'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function NameListComponent({id, listId, name, doesDisplayPopover,}: NameListProperties,) {
     const languagesToDisplay = name.originalLanguages.filter(it => !it.isCurrent)
 

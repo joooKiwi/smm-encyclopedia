@@ -1,6 +1,4 @@
-/**
- * @template
- */
+/** @template */
 export interface NameTemplate {
 
     readonly english: {

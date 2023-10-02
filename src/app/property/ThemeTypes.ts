@@ -8,9 +8,7 @@ import type {ClassWithType}                                    from 'core/ClassW
 import {Themes}         from 'core/theme/Themes'
 import {getValueByType} from 'util/utilitiesMethods'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class ThemeTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {

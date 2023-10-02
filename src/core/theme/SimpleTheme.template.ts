@@ -1,6 +1,4 @@
-/**
- * @template
- */
+/** @template */
 export interface SimpleThemeTemplate<GROUND extends boolean = boolean, UNDERGROUND extends boolean = boolean,
     UNDERWATER extends boolean = boolean, DESERT extends NullOrBoolean = NullOrBoolean,
     SNOW extends NullOrBoolean = NullOrBoolean, SKY extends NullOrBoolean = NullOrBoolean,

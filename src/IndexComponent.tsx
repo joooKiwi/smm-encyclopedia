@@ -8,9 +8,7 @@ import {EveryLanguages}   from 'lang/EveryLanguages'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import Routes             from 'route/Routes'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 function FunctionIndexComponent() {
     const [viewDisplayName, setViewDisplay,] = useState(ViewDisplays.currentOrNull),
         [currentLanguage, setCurrentLanguage,] = useState(ProjectLanguages.currentOrNull?.language ?? null)

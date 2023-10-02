@@ -13,9 +13,7 @@ import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeFiredOu
 import type {PossibleName as PossibleMarioMakerVersion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'core/version/Versions.types'
 import type {NameTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'lang/name/Name.template'
 
-/**
- * @template
- */
+/** @template */
 export interface EntityTemplate
     extends TemplateWithNameTemplate<EntityNameTemplate> {
 
@@ -153,9 +151,7 @@ export interface EntityTemplate
 
 }
 
-/**
- * @template
- */
+/** @template */
 export interface EntityNameTemplate
     extends NameTemplate {
 
@@ -163,9 +159,7 @@ export interface EntityNameTemplate
 
 }
 
-/**
- * @template
- */
+/** @template */
 export interface DimensionTemplate
     extends SimpleDimensionTemplate<PossibleDimension, PossibleMaximumDimension> {
 

@@ -4,9 +4,7 @@ import type {SimpleGameFrom1And2Template}     from 'core/game/SimpleGame.templat
 import type {PossibleEnglishName}             from 'core/nightEffect/NightEffects.types'
 import type {NameTemplate}                    from 'lang/name/Name.template'
 
-/**
- * @template
- */
+/** @template */
 export interface ThemeTemplate
     extends TemplateWithNameTemplate<NameTemplate> {
 

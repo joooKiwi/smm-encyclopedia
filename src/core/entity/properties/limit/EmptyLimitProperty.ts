@@ -5,9 +5,7 @@ import {PropertyContainer}     from 'core/_properties/Property.container'
 import {GameStructureProvider} from 'core/game/GameStructure.provider'
 import {EMPTY_MAP}             from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyLimitProperty
     implements LimitProperty,
         ClassWithNullObjectPattern<EmptyLimitName> {

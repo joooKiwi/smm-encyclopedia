@@ -5,9 +5,7 @@ import type {ClassWithNullObjectPattern, EmptySMMSoundEffectSoundName} from 'uti
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptySMMSoundEffectSound
     implements SMM1ExclusiveSoundEffectSound<EmptyArray, null>,
         SMM1StandaloneSoundEffectSound<EmptyArray, null>,

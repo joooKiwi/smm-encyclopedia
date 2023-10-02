@@ -4,9 +4,7 @@ import type {ClassWithNullObjectPattern, EmptySoundEffectCategoryName} from 'uti
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 import {EmptyStringName}      from 'lang/name/EmptyStringName'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptySoundEffectCategory
     extends ClassContainingAName<string>
     implements SoundEffectCategory, ClassWithNullObjectPattern<EmptySoundEffectCategoryName> {

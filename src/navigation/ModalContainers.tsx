@@ -20,9 +20,7 @@ interface ModalContainersProperties
 
 }
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function ModalContainers({parameter,}: ModalContainersProperties,) {
     const languageChangerModal = useRef<HTMLDivElement>(null,)
     const parameterModal = useRef<HTMLDivElement>(null,)

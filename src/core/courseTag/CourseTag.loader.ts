@@ -10,9 +10,7 @@ import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import {CourseTagCreator}        from 'core/courseTag/CourseTag.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class CourseTagLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, CourseTag>> {
 

@@ -16,9 +16,7 @@ interface LinkButtonsProperties
 
 }
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function LinkButton({partialId, routeName, color, children,}: ReactPropertiesWithChildren<LinkButtonsProperties, ReactElementOrString>,) {
     const id = `${partialId}-button`,
         className = `btn btn-${color} link-button`

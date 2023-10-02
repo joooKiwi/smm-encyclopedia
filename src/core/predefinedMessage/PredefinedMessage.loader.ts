@@ -10,9 +10,7 @@ import {isInProduction}           from 'variables'
 import {AbstractTemplateCreator}  from 'core/_template/AbstractTemplate.creator'
 import {PredefinedMessageCreator} from 'core/predefinedMessage/PredefinedMessage.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class PredefinedMessageLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, PredefinedMessage>> {
 

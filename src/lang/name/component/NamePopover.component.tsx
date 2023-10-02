@@ -12,9 +12,7 @@ import TextPopover          from 'bootstrap/popover/TextPopover'
 import {ProjectLanguages}   from 'lang/ProjectLanguages'
 import {contentTranslation} from 'lang/components/translationMethods'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class NamePopoverComponent
     extends Component<NamePopoverProperties, NamePopoverStates>
     implements ReactComponent {

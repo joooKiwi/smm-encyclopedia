@@ -18,9 +18,7 @@ interface GameLinkProperties
 
 }
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function GameGroup() {
     const {pathname,} = useLocation(),
         gamesInUrl = Games.getInUrl(pathname)
@@ -30,9 +28,7 @@ export default function GameGroup() {
     </div>
 }
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 function GameLink({game, gamesInUrl,}: GameLinkProperties,) {
     const {pathname,} = useLocation()
 

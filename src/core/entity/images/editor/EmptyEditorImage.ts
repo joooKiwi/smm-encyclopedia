@@ -3,9 +3,7 @@ import type {ClassWithNullObjectPattern, EmptyEditorImageName} from 'util/ClassW
 
 import {EMPTY_ARRAY, EMPTY_MAP} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyEditorImage
     implements EditorImage<never>, ClassWithNullObjectPattern<EmptyEditorImageName> {
 

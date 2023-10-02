@@ -6,9 +6,7 @@ import {GameStructureProvider} from 'core/game/GameStructure.provider'
 import {isArrayEquals}         from 'util/utilitiesMethods'
 import {AbstractProvider}      from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class GamePropertyProvider
     extends AbstractProvider<ArgumentsReceived, GameProperty>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, GameProperty> {

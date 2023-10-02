@@ -8,9 +8,7 @@ import type {ClassWithType}                                    from 'core/ClassW
 import {EntityLimits}   from 'core/entityLimit/EntityLimits'
 import {getValueByType} from 'util/utilitiesMethods'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class LimitTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {

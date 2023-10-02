@@ -11,9 +11,7 @@ import Footer                from 'navigation/Footer'
 import ModalContainers       from 'navigation/ModalContainers'
 import Navigation            from 'navigation/Navigation'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default abstract class AbstractApp<T extends AppProperties = AppProperties, S extends AppStates = AppStates, >
     extends Component<T, S>
     implements ReactComponent {

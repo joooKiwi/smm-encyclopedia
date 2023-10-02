@@ -5,9 +5,7 @@ import {EmptyInstrumentProperty} from 'core/entity/properties/instrument/EmptyIn
 import {EmptyLimitProperty}      from 'core/entity/properties/limit/EmptyLimitProperty'
 import {EMPTY_MAP}               from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyIsInProperty
     implements Property, ClassWithNullObjectPattern<EmptyIsInPropertyName> {
 

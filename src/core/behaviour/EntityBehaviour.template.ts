@@ -2,9 +2,7 @@ import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/Enti
 import type {EntityBehaviourLinkTemplate}              from 'core/behaviour/properties/EntityBehaviourLink.template'
 import type {IsInOnlyTemplate}                         from 'core/behaviour/properties/IsInOnlyTemplate'
 
-/**
- * @template
- */
+/** @template */
 export interface EntityBehaviourTemplate {
 
     acronym: PossibleAcronym

@@ -5,9 +5,7 @@ import {SoundEffectOnGoalPoleContainer} from 'core/mysteryMushroom/properties/so
 import {isArrayEquals}                  from 'util/utilitiesMethods'
 import {AbstractProvider}               from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class SoundEffectOnGoalPoleProvider
     extends AbstractProvider<ArgumentsReceived, SoundEffectOnGoalPole>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, SoundEffectOnGoalPole> {

@@ -17,9 +17,7 @@ import {contentTranslation, gameContentTranslation}      from 'lang/components/t
 import {EmptyStringName}                                 from 'lang/name/EmptyStringName'
 import NameComponent                                     from 'lang/name/component/Name.component'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class CommonOptions {
 
     //region -------------------- Singleton usage --------------------

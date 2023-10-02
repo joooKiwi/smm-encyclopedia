@@ -8,9 +8,7 @@ import type {NameTemplate}                                                      
 
 //region -------------------- Limit amount types --------------------
 
-/**
- * @template
- */
+/** @template */
 export interface LimitAmountTemplate
     extends SimpleGameFrom1And2Template<PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2> {
 
@@ -18,9 +16,7 @@ export interface LimitAmountTemplate
 
 }
 
-/**
- * @template
- */
+/** @template */
 export interface EmptyLimitAmountTemplate
     extends LimitAmountTemplate {
 
@@ -57,13 +53,9 @@ interface AbstractEntityLimitTemplate<REGULAR_REFERENCE extends NullOr<PossibleE
 
 }
 
-/**
- * @template
- */
+/** @template */
 export type EntityLimitTemplate = AbstractEntityLimitTemplate<PossibleEnglishName, NullOr<PossibleAlternativeEnglishName>, PossibleEntityLimitTypeEnglishName, NullOr<PossibleAcronym>>
-/**
- * @template
- */
+/** @template */
 export type AlternativeLimitTemplate = AbstractEntityLimitTemplate<null, null, null, NullOr<PossibleAlternativeAcronym>, EmptyLimitAmountTemplate>
 
 

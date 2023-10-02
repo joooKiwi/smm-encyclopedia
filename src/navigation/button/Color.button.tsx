@@ -5,9 +5,7 @@ import {COLOR_MODAL_ID}     from 'navigation/button/modalIds'
 
 const ID = 'color-button'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function ColorButton() {
     return <Tooltip elementId={ID} option={({title: contentTranslation('color.plural'), placement: 'left',})}>
         <ModalButton key={`navigation button (color)`} id={ID} elementToShow={COLOR_MODAL_ID} className="btn btn-outline-primary btn-navigation bi bi-palette-fill" disabled aria-disabled>

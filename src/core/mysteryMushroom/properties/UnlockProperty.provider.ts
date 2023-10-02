@@ -5,9 +5,7 @@ import {UnlockPropertyContainer} from 'core/mysteryMushroom/properties/UnlockPro
 import {isArrayEquals}           from 'util/utilitiesMethods'
 import {AbstractProvider}        from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class UnlockPropertyProvider
     extends AbstractProvider<ArgumentsReceived, UnlockProperty>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, UnlockProperty> {

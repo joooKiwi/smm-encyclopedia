@@ -1,9 +1,7 @@
 import {OfficialNotificationHolder}                                from 'core/officialNotification/holder/OfficialNotificationHolder'
 import {ClassWithNullObjectPattern, EmptyOfficialNotificationName} from 'util/ClassWithNullObjectPattern'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyOfficialNotificationHolder
     implements OfficialNotificationHolder, ClassWithNullObjectPattern<EmptyOfficialNotificationName> {
 

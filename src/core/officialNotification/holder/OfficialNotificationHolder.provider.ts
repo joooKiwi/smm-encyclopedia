@@ -6,9 +6,7 @@ import type {ProviderWithExplicitKey}    from 'util/provider/ProviderWithExplici
 import {OfficialNotificationHolderContainer} from 'core/officialNotification/holder/OfficialNotificationHolder.container'
 import {AbstractProvider}                    from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class OfficialNotificationHolderProvider
     extends AbstractProvider<Key, OfficialNotificationHolder>
     implements ProviderWithExplicitKey<OfficialNotificationHolder, Key, ArgumentsReceived> {

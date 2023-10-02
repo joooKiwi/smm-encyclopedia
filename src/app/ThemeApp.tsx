@@ -16,9 +16,7 @@ import {AbstractTableApp}                                from 'app/withInterpret
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {filterGame}                                      from 'util/utilitiesMethods'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class ThemeApp
     extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
 

@@ -5,9 +5,7 @@ import {CompanionEnum, Enum}                                    from '@joookiwi/
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/PowerUpPriorityTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export class PowerUpPriorityTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {

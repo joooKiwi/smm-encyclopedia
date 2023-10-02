@@ -3,9 +3,7 @@ import type {SimpleGameFrom1And2Template}                                       
 import type {PossibleAcronym}                                                    from 'core/gameStyle/GameStyles.types'
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
 
-/**
- * @template
- */
+/** @template */
 export interface GameStyleTemplate {
 
     is: IsGameStyleTemplate
@@ -17,9 +15,7 @@ export interface GameStyleTemplate {
 }
 
 
-/**
- * @template
- */
+/** @template */
 export interface IsGameStyleTemplate {
 
     in: IsInGameStyleTemplate
@@ -28,18 +24,14 @@ export interface IsGameStyleTemplate {
 
 }
 
-/**
- * @template
- */
+/** @template */
 export interface IsInGameStyleTemplate {
 
     game: SimpleGameFrom1And2Template<boolean, boolean>
 
 }
 
-/**
- * @template
- */
+/** @template */
 export interface NightDesertWindTemplate {
 
     direction: PossibleNightDesertWindDirection

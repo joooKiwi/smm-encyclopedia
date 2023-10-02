@@ -5,9 +5,7 @@ import {SpecialMusicInStarModeContainer} from 'core/mysteryMushroom/properties/s
 import {isArrayEquals}                   from 'util/utilitiesMethods'
 import {AbstractProvider}                from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class SpecialMusicInStarModeProvider
     extends AbstractProvider<ArgumentsReceived, SpecialMusicInStarMode>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, SpecialMusicInStarMode> {

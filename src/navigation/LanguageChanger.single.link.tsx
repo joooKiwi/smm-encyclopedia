@@ -13,9 +13,7 @@ export interface SingleLanguageChangerLinkProperties
     extends ReactProperties, LanguageChangerLinkProperties {
 }
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: SingleLanguageChangerLinkProperties,) {
     const location = useLocation()
     const key = `single language changer link (${language.englishName})`,

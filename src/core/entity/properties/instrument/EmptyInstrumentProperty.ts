@@ -4,9 +4,7 @@ import type {ClassWithNullObjectPattern, EmptyInstrumentName} from 'util/ClassWi
 import {PropertyContainer} from 'core/_properties/Property.container'
 import {EMPTY_ARRAY}       from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyInstrumentProperty
     implements InstrumentProperty,
         ClassWithNullObjectPattern<EmptyInstrumentName> {

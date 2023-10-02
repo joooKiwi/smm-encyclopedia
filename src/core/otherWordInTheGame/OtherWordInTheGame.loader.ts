@@ -11,9 +11,7 @@ import {isInProduction}                    from 'variables'
 import {AbstractTemplateCreator}           from 'core/_template/AbstractTemplate.creator'
 import {OtherSingularWordInTheGameCreator} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 
 export class OtherWordInTheGameLoader
     implements Loader<ReadonlyMap<PossibleEnglishName_Singular, OtherSingularWordInTheGame>> {

@@ -24,9 +24,7 @@ import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import {MysteryMushroomCreator}  from 'core/mysteryMushroom/MysteryMushroom.creator'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class MysteryMushroomLoader
     implements Loader<ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom>> {
 
