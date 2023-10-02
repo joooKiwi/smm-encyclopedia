@@ -14,8 +14,7 @@ import {miiCostumeImage}  from 'core/miiCostume/file/fileCreator'
 import {StringContainer}  from 'util/StringContainer'
 
 /**
- * @recursiveReference {@link MiiCostumeLoader}
- * @classWithDynamicImport {@link MiiCostumeLoader}
+ * @recursiveReference<{@link MiiCostumeLoader}>
  */
 export class MiiCostumes
     extends Enum<Ordinals, Names>
