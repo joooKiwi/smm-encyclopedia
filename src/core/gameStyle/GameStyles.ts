@@ -194,6 +194,17 @@ export abstract class GameStyles
     }
 
 
+    public static getValueByAcronym(value: Nullable<| GameStyles | string>,): GameStyles {
+        if (value == null)
+            throw new TypeError(`No "${this.name}" could be found by a null value.`,)
+        if (value instanceof this)
+            return value
+        const valueFound = this.values.find(it => it.acronym === value,)
+        if (valueFound == null)
+            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`,)
+        return valueFound
+    }
+
     public static getValueByName(value: Nullable<| GameStyles | string>,): GameStyles {
         return getValueByEnglishName(value, this,)
     }
