@@ -14,16 +14,16 @@ interface ReferenceHolder
 
 type ReferenceType = | 'time' | 'theme' | 'gameStyle'
 
+const TIME = 'time'
+const THEME = 'theme'
+const GAME_STYLE = 'gameStyle'
+const THIS_REFERENCE = 'this'
+const SEPARATOR = '/'
+const SEPARATOR_WITH_SPACE = ` / `
+
 export class ReferencesToWatch {
 
     //region -------------------- Fields --------------------
-
-    static readonly #TIME = 'time'
-    static readonly #THEME = 'theme'
-    static readonly #GAME_STYLE = 'gameStyle'
-    static readonly #THIS_REFERENCE = 'this'
-    static readonly #SEPARATOR = '/'
-    static readonly #SEPARATOR_WITH_SPACE = ` ${ReferencesToWatch.#SEPARATOR} `
 
     readonly #englishNames
     readonly #alreadyAddedName: Set<EntityLink>
@@ -39,15 +39,15 @@ export class ReferencesToWatch {
 
     //region -------------------- Getter methods --------------------
 
-    protected get _englishNames() {
+    protected get _englishNames(): Map<PossibleEnglishName, EntityTemplate> {
         return this.#englishNames
     }
 
-    protected get _alreadyAddedName() {
+    protected get _alreadyAddedName(): Set<EntityLink> {
         return this.#alreadyAddedName
     }
 
-    protected get _references() {
+    protected get _references(): ReferenceHolder[] {
         return this.#references
     }
 
@@ -62,40 +62,56 @@ export class ReferencesToWatch {
     public addSubReference(reference: EntityTemplate,): void {
         const otherReference = reference.properties.reference;
 
-        ([
-            [otherReference.time.day, ReferencesToWatch.#TIME,],
-            [otherReference.time.night, ReferencesToWatch.#TIME,],
+        const potentialSubReferences = [
+            [otherReference.time.day, TIME,],
+            [otherReference.time.night, TIME,],
 
-            [otherReference.style.superMarioBros, ReferencesToWatch.#GAME_STYLE,],
-            [otherReference.style.superMarioBros3, ReferencesToWatch.#GAME_STYLE,],
-            [otherReference.style.superMarioWorld, ReferencesToWatch.#GAME_STYLE,],
-            [otherReference.style.newSuperMarioBrosU, ReferencesToWatch.#GAME_STYLE,],
-            [otherReference.style.superMario3DWorld, ReferencesToWatch.#GAME_STYLE,],
+            [otherReference.style.superMarioBros, GAME_STYLE,],
+            [otherReference.style.superMarioBros3, GAME_STYLE,],
+            [otherReference.style.superMarioWorld, GAME_STYLE,],
+            [otherReference.style.newSuperMarioBrosU, GAME_STYLE,],
+            [otherReference.style.superMario3DWorld, GAME_STYLE,],
 
-            [otherReference.theme.ground, ReferencesToWatch.#THEME,],
-            [otherReference.theme.underground, ReferencesToWatch.#THEME,],
-            [otherReference.theme.underwater, ReferencesToWatch.#THEME,],
-            [otherReference.theme.desert, ReferencesToWatch.#THEME,],
-            [otherReference.theme.snow, ReferencesToWatch.#THEME,],
-            [otherReference.theme.sky, ReferencesToWatch.#THEME,],
-            [otherReference.theme.forest, ReferencesToWatch.#THEME,],
-            [otherReference.theme.ghostHouse, ReferencesToWatch.#THEME,],
-            [otherReference.theme.airship, ReferencesToWatch.#THEME,],
-            [otherReference.theme.castle, ReferencesToWatch.#THEME,],
-        ].filter(([otherReference]) => otherReference !== null) as [EntityLink, ReferenceType,][])
-            .filter(([otherReference,]) => otherReference !== ReferencesToWatch.#THIS_REFERENCE)
-            .forEach(([otherReference, referenceType,]) => this._addReference(reference, otherReference, referenceType,))
+            [otherReference.theme.ground, THEME,],
+            [otherReference.theme.underground, THEME,],
+            [otherReference.theme.underwater, THEME,],
+            [otherReference.theme.desert, THEME,],
+            [otherReference.theme.snow, THEME,],
+            [otherReference.theme.sky, THEME,],
+            [otherReference.theme.forest, THEME,],
+            [otherReference.theme.ghostHouse, THEME,],
+            [otherReference.theme.airship, THEME,],
+            [otherReference.theme.castle, THEME,],
+        ] as const
+        let index = potentialSubReferences.length
+        while (index-- > 0) {
+            const value = potentialSubReferences[index]
+            const otherReference = value[0]
+            if (otherReference == null)
+                continue
+            if (otherReference === THIS_REFERENCE)
+                continue
+
+            this._addReference(reference, otherReference, value[1],)
+        }
     }
 
     protected _addReference(template: EntityTemplate, reference: EntityLink, referenceType: ReferenceType,): void {
-        if (reference.includes(ReferencesToWatch.#SEPARATOR))
-            ((reference.split(ReferencesToWatch.#SEPARATOR_WITH_SPACE) as (PossibleEnglishName | 'this')[])
-                .filter(splitReference => splitReference !== ReferencesToWatch.#THIS_REFERENCE) as PossibleEnglishName[])
-                .forEach(splitReference =>
-                    this._references.push(this._createReferenceHolder(template, splitReference, referenceType,)))
-        else
-            this._references.push(this._createReferenceHolder(template, reference as PossibleEnglishName, referenceType,))
-        this._alreadyAddedName.add(reference)
+        if (!reference.includes(SEPARATOR)) {
+            this._references.push(this._createReferenceHolder(template, reference as PossibleEnglishName, referenceType,),)
+            this._alreadyAddedName.add(reference,)
+        }
+
+        const references = this._references
+        const referenceSplitted = reference.split(SEPARATOR_WITH_SPACE,) as (PossibleEnglishName | 'this')[]
+        let index = referenceSplitted.length
+        while (index-- > 0) {
+            const value = referenceSplitted[index]
+            if (value === THIS_REFERENCE)
+                continue
+            references.push(this._createReferenceHolder(template, value, referenceType,),)
+        }
+        this._alreadyAddedName.add(reference,)
     }
 
     protected _createReferenceHolder(template: EntityTemplate, singleReference: PossibleEnglishName, referenceType: ReferenceType,): ReferenceHolder {
@@ -115,31 +131,34 @@ export class ReferencesToWatch {
      * @see EntityReferencesTemplate.group
      */
     public setReferences(): void {
-        this._references.forEach(reference => {
-            const referenceWatched = this._englishNames.get(reference.value)!
+        const references = this._references
+        let index = references.length
+        while (index-- > 0) {
+            const reference = references[index]
+            const referenceWatched = this._englishNames.get(reference.value,)!
 
-            const referenceToWatchTemplate = reference.reference,
-                referenceWatchedTemplate = referenceWatched,
-                groupToWatch = referenceToWatchTemplate.properties.reference.group,
-                groupWatched = referenceWatchedTemplate.properties.reference.group;
+            const referenceToWatchTemplate = reference.reference
+            const referenceWatchedTemplate = referenceWatched
+            const groupToWatch = referenceToWatchTemplate.properties.reference.group
+            const groupWatched = referenceWatchedTemplate.properties.reference.group;
 
-            (groupToWatch.all ??= new Set()).add(referenceToWatchTemplate);
-            (groupWatched.all ??= new Set()).add(referenceWatchedTemplate)
+            (groupToWatch.all ??= new Set()).add(referenceToWatchTemplate,);
+            (groupWatched.all ??= new Set()).add(referenceWatchedTemplate,)
             switch (reference.type) {
-                case ReferencesToWatch.#GAME_STYLE:
-                    (groupToWatch.gameStyle ??= new Set()).add(referenceToWatchTemplate);
-                    (groupWatched.gameStyle ??= new Set()).add(referenceWatchedTemplate)
+                case GAME_STYLE:
+                    (groupToWatch.gameStyle ??= new Set()).add(referenceToWatchTemplate,);
+                    (groupWatched.gameStyle ??= new Set()).add(referenceWatchedTemplate,)
                     break
-                case ReferencesToWatch.#THEME:
-                    (groupToWatch.theme ??= new Set()).add(referenceToWatchTemplate);
-                    (groupWatched.theme ??= new Set()).add(referenceWatchedTemplate)
+                case THEME:
+                    (groupToWatch.theme ??= new Set()).add(referenceToWatchTemplate,);
+                    (groupWatched.theme ??= new Set()).add(referenceWatchedTemplate,)
                     break
-                case ReferencesToWatch.#TIME:
-                    (groupToWatch.time ??= new Set()).add(referenceToWatchTemplate);
-                    (groupWatched.time ??= new Set()).add(referenceWatchedTemplate)
+                case TIME:
+                    (groupToWatch.time ??= new Set()).add(referenceToWatchTemplate,);
+                    (groupWatched.time ??= new Set()).add(referenceWatchedTemplate,)
                     break
             }
-        })
+        }
     }
 
     //endregion -------------------- Methods --------------------
