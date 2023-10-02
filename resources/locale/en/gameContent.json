@@ -209,6 +209,13 @@
     "all":         "Every {{singularName}}",
     "display all": "Display every {{singularName}}"
   },
+  "sample course": {
+    "singular": "Sample {{singularName}}",
+    "plural":   "Sample {{pluralName}}",
+
+    "all":         "Every sample {{singularName}}",
+    "display all": "Display every sample {singularName}}"
+  },
   "editor voice": {
     "singular": "Editor voice",
     "plural":   "Editor voices",

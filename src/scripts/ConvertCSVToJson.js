@@ -24,6 +24,7 @@ const largeBufferSize = {highWaterMark: 256 * 1024,};
     'Sound effect category',
     'Course tag (SMM2)',
     'Predefined message (SMM2)',
+    'Sample course (SMM)',
     'Mystery Mushroom (SMM)',
     'Mii Costume (SMM2)',
     'Mii Costume category (SMM2)',

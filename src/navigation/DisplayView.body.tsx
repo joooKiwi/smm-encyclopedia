@@ -89,6 +89,14 @@ export default function DisplayViewBody() {
                                         elementId="displayView-gameStyle-button"/>
             </div>
         </div>
+        {isSMM1Selected ? <div id="display-level-container" className="container">
+            <h3 className="text-center text-decoration-underline pb-2">{unfinishedText('Level')}</h3>
+            <div key="button group (sample course)" id="sampleCourse-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everySampleCourse" value={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('sample course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
+                                        elementId="displayView-sampleCourse-button"/>
+            </div>
+        </div> : null}
         <div id="display-sound-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Sound</UnfinishedText></h3>
             <div key="button group (sound effect)" id="soundEffect-buttonGroup" className="btn-group col-12" role="group">

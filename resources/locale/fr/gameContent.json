@@ -209,6 +209,13 @@
     "all":         "Tous les {{pluralName}}",
     "display all": "Afficher tous les {{pluralName}}"
   },
+  "sample course": {
+    "singular": "Échantillon de {{singularName}}",
+    "plural":   "Échantillons de {{singularName}}",
+
+    "all":         "Tous les échantillons de {{singularName}}",
+    "display all": "Afficher tous les échantillons de {{singularName}}"
+  },
   "editor voice": {
     "singular": "Voix de l'éditeur",
     "plural":   "Voix de l'éditeur",
