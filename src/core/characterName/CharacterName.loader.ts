@@ -9,6 +9,7 @@ import type {GameContentFromAllGames}   from 'core/game/Loader.types'
 import type {CharacterNameTemplate}     from 'core/characterName/CharacterName.template'
 
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {CharacterNameCreator}    from 'core/characterName/CharacterName.creator'
 import {isInProduction}          from 'variables'
 
@@ -69,9 +70,9 @@ class TemplateCreator
         const content = this._content
 
         return {
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
             uniqueName: content.uniqueName,
-            properties: {isIn: {game: this._createGameTemplateFromAllGames(),},}
+            properties: {isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},}
         }
     }
 }

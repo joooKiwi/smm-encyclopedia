@@ -8,6 +8,7 @@ import type {Loader}                 from 'util/loader/Loader'
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {EntityCategoryCreator}   from 'core/entityCategory/EntityCategory.creator'
 
 /**
@@ -68,9 +69,11 @@ class TemplateCreator
     }
 
     public override create(): EntityCategoryTemplate {
+        const content = this._content
+
         return {
             entities: null,
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

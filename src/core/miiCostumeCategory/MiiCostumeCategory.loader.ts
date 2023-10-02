@@ -8,6 +8,7 @@ import type {Loader}                     from 'util/loader/Loader'
 
 import {isInProduction}            from 'variables'
 import {AbstractTemplateCreator}   from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods        from 'core/_template/templateMethods'
 import {MiiCostumeCategoryCreator} from 'core/miiCostumeCategory/MiiCostumeCategory.creator'
 
 /** @singleton */
@@ -63,8 +64,10 @@ class TemplateCreator
     }
 
     public override create(): MiiCostumeCategoryTemplate {
+        const content = this._content
+
         return {
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

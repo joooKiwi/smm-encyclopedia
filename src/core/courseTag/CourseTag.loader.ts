@@ -8,6 +8,7 @@ import type {Loader}                                                 from 'util/
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {CourseTagCreator}        from 'core/courseTag/CourseTag.creator'
 
 /** @singleton */
@@ -72,7 +73,7 @@ class TemplateCreator
 
         return {
             name: {
-                ...this._createNameTemplate(),
+                ...TemplateMethods.createNameTemplate(content,),
                 makerCentral: content.makerCentralName,
             },
             isOfficial: content.isAnOfficialTag,

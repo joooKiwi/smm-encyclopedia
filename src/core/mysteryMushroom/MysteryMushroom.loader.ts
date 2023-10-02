@@ -22,6 +22,7 @@ import type {Loader}                                                            
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {MysteryMushroomCreator}  from 'core/mysteryMushroom/MysteryMushroom.creator'
 
 /** @singleton */
@@ -127,7 +128,7 @@ class TemplateCreator
             },
             uniqueName: content.uniqueName,
             gameReference: content.reference,
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

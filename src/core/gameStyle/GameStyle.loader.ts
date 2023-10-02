@@ -10,6 +10,7 @@ import type {Loader}                                                            
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {GameStyleCreator}        from 'core/gameStyle/GameStyle.creator'
 
 /** @singleton */
@@ -75,7 +76,7 @@ class TemplateCreator
 
         return {
             is: {
-                in: {game: this._createGameTemplateFrom1And2(),},
+                in: {game: TemplateMethods.createGameTemplateFrom1And2(content,),},
                 availableFromTheStart: content.isAvailableFromTheStart_SMM1,
             },
             reference: content.reference,

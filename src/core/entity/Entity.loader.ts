@@ -21,6 +21,7 @@ import type {Loader}                                                            
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {EntityCreator}           from 'core/entity/Entity.creator'
 import {ReferencesToWatch}       from 'core/entity/ReferencesToWatch'
 import {EMPTY_ARRAY}             from 'util/emptyVariables'
@@ -288,7 +289,7 @@ class TemplateCreator
                 //region ---------- Basic properties ----------
 
                 isIn: {//TODO change every theme, time & style to have a nullable boolean instead of just boolean or nullable boolean
-                    game: this._createGameTemplateFromAllGames(),
+                    game: TemplateMethods.createGameTemplateFromAllGames(content,),
                     style: gameStyleTemplate,
                     theme: {
                         ground: TemplateCreator.hasThisReferenced(groundLink),
@@ -485,12 +486,12 @@ class TemplateCreator
     }
 
     /**
-     * Create an {@link EntityNameTemplate} with the usage of {@link AbstractTemplateCreator._createNameTemplate}
+     * Create an {@link EntityNameTemplate} with the usage of {@link TemplateMethods.createNameTemplate}
      *
      * @param content The template
      */
-    createNameTemplate({hasANameReferencedInMarioMaker,}: Content,): EntityNameTemplate {
-        return {hasAReferenceInMarioMaker: hasANameReferencedInMarioMaker, ...this._createNameTemplate(),}
+    createNameTemplate(content: Content,): EntityNameTemplate {
+        return {hasAReferenceInMarioMaker: content.hasANameReferencedInMarioMaker, ...TemplateMethods.createNameTemplate(content,),}
     }
 
     /**

@@ -9,6 +9,7 @@ import type {PossibleEnglishName}                                               
 import type {Loader}                                                                                                       from 'util/loader/Loader'
 
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {SampleCourseCreator}     from 'core/sampleCourse/SampleCourse.creator'
 import {isInProduction}          from 'variables'
 
@@ -76,7 +77,7 @@ class TemplateCreator
         const content = this._content
 
         return {
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
             numbers: {world: content.worldNumber, first: content.courseNumberInFirst10MarioChallenge,},
             gameStyle: content.gameStyle,
             courseThemeArea: {main: content.courseTheme_mainArea, sub: content.courseTheme_subArea,},

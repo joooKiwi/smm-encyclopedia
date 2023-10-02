@@ -11,6 +11,7 @@ import type {Loader}                                                            
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {MiiCostumeCreator}       from 'core/miiCostume/MiiCostume.creator'
 
 /**
@@ -80,7 +81,7 @@ class TemplateCreator
             officialNotification: content.notificationIfUnlocked,
             version: content.MM2_version,
             category: content.category,
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

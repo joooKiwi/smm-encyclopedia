@@ -9,6 +9,7 @@ import type {Loader}                                                            
 
 import {isInProduction}                    from 'variables'
 import {AbstractTemplateCreator}           from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods                from 'core/_template/templateMethods'
 import {OtherSingularWordInTheGameCreator} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.creator'
 
 /** @singleton */
@@ -86,12 +87,14 @@ class TemplateCreator
     }
 
     public override create(): OtherWordInTheGameTemplate {
+        const content = this._content
+
         return {
             properties: {
-                isIn: {game: this._createGameTemplateFromAllGames(),},
+                isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},
                 pluralForm: null,
             },
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

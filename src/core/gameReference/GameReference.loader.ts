@@ -8,6 +8,7 @@ import type {Loader}                               from 'util/loader/Loader'
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {GameReferenceCreator}    from 'core/gameReference/GameReference.creator'
 
 
@@ -69,7 +70,7 @@ class TemplateCreator
 
         return {
             acronym: content.acronym,
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

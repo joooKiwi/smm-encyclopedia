@@ -10,6 +10,7 @@ import type {Loader}                                                        from
 
 import {isInProduction}           from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {SoundEffectCreator}      from 'core/soundEffect/SoundEffect.creator'
 
 /** @singleton */
@@ -89,7 +90,7 @@ class TemplateCreator
         return {
             properties: {
                 isIn: {
-                    game: this._createGameTemplateFrom1And2(),
+                    game: TemplateMethods.createGameTemplateFrom1And2(content,),
 
                     trigger: {
                         player: {
@@ -117,7 +118,7 @@ class TemplateCreator
                 },
                 category: content.category,
             },
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

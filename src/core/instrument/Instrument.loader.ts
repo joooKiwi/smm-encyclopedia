@@ -8,6 +8,7 @@ import type {Loader}              from 'util/loader/Loader'
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {InstrumentCreator}       from 'core/instrument/Instrument.creator'
 
 /**
@@ -66,8 +67,10 @@ class TemplateCreator
     }
 
     public override create(): InstrumentTemplate {
+        const content = this._content
+
         return {
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

@@ -10,6 +10,7 @@ import type {Loader}                                    from 'util/loader/Loader
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {ThemeCreator}            from 'core/theme/Theme.creator'
 
 /** @singleton */
@@ -80,7 +81,7 @@ class TemplateCreator
         return {
             is: {
                 in: {
-                    game: this._createGameTemplateFrom1And2(),
+                    game: TemplateMethods.createGameTemplateFrom1And2(content,),
                     theme: {
                         course: content.isInCourseTheme,
                         world: content.isInWorldTheme,
@@ -89,7 +90,7 @@ class TemplateCreator
                 availableFromTheStart: content.isAvailableFromTheStart_SMM1,
             },
             effect: content.effectInNightTheme,
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

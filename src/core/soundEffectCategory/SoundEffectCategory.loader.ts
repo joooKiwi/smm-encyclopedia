@@ -8,6 +8,7 @@ import type {Loader}                      from 'util/loader/Loader'
 
 import {isInProduction}             from 'variables'
 import {AbstractTemplateCreator}    from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods         from 'core/_template/templateMethods'
 import {SoundEffectCategoryCreator} from 'core/soundEffectCategory/SoundEffectCategory.creator'
 
 /** @singleton */
@@ -63,8 +64,10 @@ class TemplateCreator
     }
 
     public override create(): SoundEffectCategoryTemplate {
+        const content = this._content
+
         return {
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 

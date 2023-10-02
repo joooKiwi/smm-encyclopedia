@@ -9,6 +9,7 @@ import type {Loader}                                                            
 
 import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
+import * as TemplateMethods      from 'core/_template/templateMethods'
 import {EntityLimitCreator}      from 'core/entityLimit/EntityLimit.creator'
 
 /** @singleton */
@@ -91,13 +92,11 @@ class TemplateCreator
             acronym = content.acronym
 
         return type == null
-            ? this.#createAlternativeLimitTemplate(acronym as NullOr<PossibleAlternativeAcronym>,)
-            : this.#createLimitTemplate(type, acronym as NullOr<PossibleAcronym>,)
+            ? this.#createAlternativeLimitTemplate(content, acronym as NullOr<PossibleAlternativeAcronym>,)
+            : this.#createLimitTemplate(content, type, acronym as NullOr<PossibleAcronym>,)
     }
 
-    #createLimitTemplate(type: PossibleEnglishName_LimitType, acronym: NullOr<PossibleAcronym>,): EntityLimitTemplate {
-        const content = this._content
-
+    #createLimitTemplate(content: Content, type: PossibleEnglishName_LimitType, acronym: NullOr<PossibleAcronym>,): EntityLimitTemplate {
         return {
             references: {
                 regular: content.english as PossibleEnglishName,
@@ -110,11 +109,11 @@ class TemplateCreator
 
             limit: this.#createLimitAmountTemplate(),
 
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 
-    #createAlternativeLimitTemplate(acronym: NullOr<PossibleAlternativeAcronym>,): AlternativeLimitTemplate {
+    #createAlternativeLimitTemplate(content: Content, acronym: NullOr<PossibleAlternativeAcronym>,): AlternativeLimitTemplate {
         return {
             references: TemplateCreator.#EMPTY_REFERENCES,
 
@@ -123,7 +122,7 @@ class TemplateCreator
 
             limit: TemplateCreator.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
 
-            name: this._createNameTemplate(),
+            name: TemplateMethods.createNameTemplate(content,),
         }
     }
 
