@@ -58,7 +58,5 @@ interface Content
     extends LanguageContent {}
 
 function createTemplate(content: Content,): InstrumentTemplate {
-    return {
-        name: TemplateMethods.createNameTemplate(content,),
-    }
+    return {name: TemplateMethods.createNameTemplate(content,),}
 }

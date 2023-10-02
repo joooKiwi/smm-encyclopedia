@@ -26,6 +26,7 @@ export class GameReferenceLoader
     }
 
     //endregion -------------------- Singleton usage --------------------
+
     #map?: Map<PossibleEnglishName, GameReference>
 
     public load(): ReadonlyMap<PossibleEnglishName, GameReference> {
