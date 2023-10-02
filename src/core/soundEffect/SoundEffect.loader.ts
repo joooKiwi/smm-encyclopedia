@@ -8,7 +8,7 @@ import type {SoundEffectTemplate}                                           from
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {Loader}                                                        from 'util/loader/Loader'
 
-import {isInProduction}           from 'variables'
+import {isInProduction}          from 'variables'
 import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
 import * as TemplateMethods      from 'core/_template/templateMethods'
 import {SoundEffectCreator}      from 'core/soundEffect/SoundEffect.creator'

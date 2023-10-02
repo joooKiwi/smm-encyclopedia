@@ -58,8 +58,7 @@ export class EntityCategoryLoader
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
 class TemplateCreator
     extends AbstractTemplateCreator<EntityCategoryTemplate, Content> {

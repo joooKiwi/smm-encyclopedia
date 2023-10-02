@@ -53,8 +53,7 @@ export class SoundEffectCategoryLoader
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
 class TemplateCreator
     extends AbstractTemplateCreator<SoundEffectCategoryTemplate, Content> {

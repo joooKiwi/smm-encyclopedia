@@ -10,8 +10,7 @@ import {routeFromLocation}   from 'route/route'
 import {StringContainer}     from 'util/StringContainer'
 
 export interface SingleLanguageChangerLinkProperties
-    extends ReactProperties, LanguageChangerLinkProperties {
-}
+    extends ReactProperties, LanguageChangerLinkProperties {}
 
 /** @reactComponent */
 export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: SingleLanguageChangerLinkProperties,) {

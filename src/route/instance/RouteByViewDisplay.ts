@@ -3,8 +3,7 @@ import type {Route}        from 'route/instance/Route'
 
 /** A route specialized to only have {@link ViewDisplays} */
 export interface RouteByViewDisplay<SIMPLE_NAME extends string, NAME extends string, PATH extends string, VIEW_DISPLAY extends ViewDisplays = ViewDisplays, >
-    extends Route<SIMPLE_NAME, NAME, PATH, VIEW_DISPLAY, readonly[]> {
-}
+    extends Route<SIMPLE_NAME, NAME, PATH, VIEW_DISPLAY, readonly[]> {}
 
 /**
  * A simple type made to be similar to the render callback in a {@link Route},

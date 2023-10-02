@@ -9,5 +9,4 @@ import type {MusicSoundFile}                                 from 'core/music/fi
  */
 export interface SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect<LINK_MUSIC extends MusicSoundFile<PossibleLink_LinkMusic> = MusicSoundFile<PossibleLink_LinkMusic>,
     SMB2_MUSIC extends MusicSoundFile<PossibleSMB2_SMB2Music> = MusicSoundFile<PossibleSMB2_SMB2Music>, >
-    extends BackgroundMusic<null, null, null, LINK_MUSIC, LINK_MUSIC, SMB2_MUSIC, SMB2_MUSIC, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null> {
-}
+    extends BackgroundMusic<null, null, null, LINK_MUSIC, LINK_MUSIC, SMB2_MUSIC, SMB2_MUSIC, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null> {}

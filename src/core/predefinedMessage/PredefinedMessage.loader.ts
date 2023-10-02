@@ -53,8 +53,7 @@ export class PredefinedMessageLoader
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
 class TemplateCreator
     extends AbstractTemplateCreator<PredefinedMessageTemplate, Content> {

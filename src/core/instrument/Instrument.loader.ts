@@ -56,8 +56,7 @@ export class InstrumentLoader
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
 class TemplateCreator
     extends AbstractTemplateCreator<InstrumentTemplate, Content> {

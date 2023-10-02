@@ -53,8 +53,7 @@ export class MiiCostumeCategoryLoader
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
 class TemplateCreator
     extends AbstractTemplateCreator<MiiCostumeCategoryTemplate, Content> {

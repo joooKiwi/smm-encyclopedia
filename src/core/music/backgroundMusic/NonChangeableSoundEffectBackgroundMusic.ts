@@ -8,5 +8,4 @@ import type {MusicSoundFile}                                      from 'core/mus
  * It only has a regular & a fast variation.
  */
 export interface NonChangeableSoundEffectBackgroundMusic<MUSIC extends MusicSoundFile<PossibleOther_RegularMusic> = MusicSoundFile<PossibleOther_RegularMusic>, FAST_MUSIC extends MusicSoundFile<PossibleOther_FastMusic> = MusicSoundFile<PossibleOther_FastMusic>, >
-    extends BackgroundMusic<MUSIC, MUSIC, FAST_MUSIC, null, null, null, null, MUSIC, MUSIC, FAST_MUSIC, MUSIC, MUSIC, null, FAST_MUSIC, null, MUSIC, MUSIC, null, FAST_MUSIC, null, MUSIC, MUSIC, null, FAST_MUSIC, null> {
-}
+    extends BackgroundMusic<MUSIC, MUSIC, FAST_MUSIC, null, null, null, null, MUSIC, MUSIC, FAST_MUSIC, MUSIC, MUSIC, null, FAST_MUSIC, null, MUSIC, MUSIC, null, FAST_MUSIC, null, MUSIC, MUSIC, null, FAST_MUSIC, null> {}

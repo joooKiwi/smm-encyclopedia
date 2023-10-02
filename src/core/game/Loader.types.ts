@@ -1,17 +1,17 @@
 export interface GameContentFrom1And2 {
 
-    isInSuperMarioMaker1And3DS: boolean
+    readonly isInSuperMarioMaker1And3DS: boolean
 
-    isInSuperMarioMaker2: boolean
+    readonly isInSuperMarioMaker2: boolean
 
 }
 
 export interface GameContentFromAllGames {
 
-    isInSuperMarioMaker1: boolean
+    readonly isInSuperMarioMaker1: boolean
 
-    isInSuperMarioMakerFor3DS: boolean
+    readonly isInSuperMarioMakerFor3DS: boolean
 
-    isInSuperMarioMaker2: boolean
+    readonly isInSuperMarioMaker2: boolean
 
 }

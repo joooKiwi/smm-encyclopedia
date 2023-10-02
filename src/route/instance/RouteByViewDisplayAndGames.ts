@@ -10,8 +10,7 @@ import type {GameCollection}  from 'util/collection/GameCollection'
  * @see RouteByGames
  */
 export interface RouteByViewDisplayAndGames<SIMPLE_NAME extends string, NAME extends string, PATH extends string, VIEW_DISPLAY extends ViewDisplays = ViewDisplays, GAMES extends readonly Games[] = readonly Games[], >
-    extends Route<SIMPLE_NAME, NAME, PATH, VIEW_DISPLAY, GAMES> {
-}
+    extends Route<SIMPLE_NAME, NAME, PATH, VIEW_DISPLAY, GAMES> {}
 
 /**
  * A simple type made to be similar to the render callback in a {@link Route},
