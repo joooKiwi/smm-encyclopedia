@@ -1,3 +1,5 @@
+import type {Lazy} from '@joookiwi/lazy'
+
 import type {Entity, PossibleOtherEntities}                                                                                                                                                                                                                    from 'core/entity/Entity'
 import type {EntityReferences}                                                                                                                                                                                                                                 from 'core/entity/properties/EntityReferences'
 import type {Property}                                                                                                                                                                                                                                         from 'core/entity/properties/Property'
@@ -31,7 +33,7 @@ export abstract class AbstractEntity
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
+    protected constructor(name: Name<string>, category: Lazy<EntityCategory>, property: Property, references: EntityReferences,) {
         super(name, category,)
         this.#testCategory(this.categoryContainer)
         this.#propertyContainer = this.#testProperty(property)

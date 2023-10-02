@@ -4,10 +4,8 @@ import type {EveryLanguages}                      from 'lang/EveryLanguages'
 import type {Name}                                from 'lang/name/Name'
 import type {NameTrait}                           from 'lang/name/NameTrait'
 import type {NameTraitFromAnAlternativeContainer} from 'lang/name/NameTraitFromAnAlternativeContainer'
-import type {ValueOrCallback}                     from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
-import {ObjectHolders}        from 'util/holder/ObjectHolders'
 
 export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends NameTrait<U>, >
     extends ClassContainingAName<T>
@@ -20,9 +18,9 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: ValueOrCallback<Name<T>>, alternative: ValueOrCallback<ALTERNATIVE>,) {
+    public constructor(name: Name<T>, alternative: Lazy<ALTERNATIVE>,) {
         super(name,)
-        this.#alternativeContainer = ObjectHolders.getLazyOn(alternative,)
+        this.#alternativeContainer = alternative
     }
 
     //endregion -------------------- Constructor --------------------

@@ -1,23 +1,13 @@
-import type {PossibleGamesReceived as GameInStarMode, PossibleValuesReceived as PossibleSpecialMusicInStarMode}                                                                                                                  from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode'
-import type {PossibleGamesReceived as GameOnSoundEffectOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypesReceived as TypeOfSoundEffectOnDeath, PossibleValuesReceived as PossibleSoundEffectOnDeath}       from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
-import type {PossibleGamesReceived as GameOnSoundEffectOnGoalPole, PossibleTranslationKeys as TranslationKeyOnGoalPole, PossibleTypesReceived as TypeOfMusicOnGoalPole, PossibleValuesReceived as PossibleSoundEffectOnGoalPole} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
-import type {PossibleGamesReceived as GameOnSoundEffectOnGroundAfterJump, PossibleValuesReceived as PossibleSoundEffectOnGroundAfterJump}                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump'
-import type {PossibleGamesReceived as GameOnSoundEffectOnJump, PossibleValuesReceived as PossibleSoundEffectOnJump}                                                                                                              from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump'
-import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
-import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
-import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}                                                                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
-import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
-import type {SoundProperty}                                                                                                                                                                                                      from 'core/mysteryMushroom/properties/sound/SoundProperty'
-
-import {SoundEffectOnDeathContainer}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath.container'
-import {SoundEffectOnGoalPoleContainer}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole.container'
-import {SoundEffectOnGroundAfterJumpContainer} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump.container'
-import {SoundEffectOnJumpContainer}            from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump.container'
-import {SoundEffectOnMovementContainer}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement.container'
-import {SoundEffectOnTauntContainer}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt.container'
-import {SoundEffectOnTurnAfterRunContainer}    from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun.container'
-import {SoundEffectWhenCollectedContainer}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected.container'
-import {SpecialMusicInStarModeContainer}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode.container'
+import type {SoundEffectOnDeath}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
+import type {SoundEffectOnGoalPole}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
+import type {SoundEffectOnGroundAfterJump} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump'
+import type {SoundEffectOnJump}            from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump'
+import type {SoundEffectOnMovement}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
+import type {SoundEffectOnTaunt}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
+import type {SoundEffectOnTurnAfterRun}    from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
+import type {SoundEffectWhenCollected}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
+import type {SoundProperty}                from 'core/mysteryMushroom/properties/sound/SoundProperty'
+import type {SpecialMusicInStarMode}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode'
 
 /**
  * @todo Separate each "sound effect" or "special music" in their each class
@@ -38,25 +28,30 @@ export class SoundPropertyContainer
     readonly #soundEffectOnDeathContainer
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    public constructor(valueWhenCollected: PossibleSoundEffectWhenCollected, gameWhenCollected: GameOnSoundEffectWhenCollected,
-                       valueOnTaunt: PossibleSoundEffectOnTaunt, gameOnTaunt: GameOnSoundEffectOnTaunt,
-                       valueOnMovement: PossibleSoundEffectOnMovement,
-                       valueOnJump: PossibleSoundEffectOnJump, gameOnJump: GameOnSoundEffectOnJump, valueOnGroundAfterJump: PossibleSoundEffectOnGroundAfterJump, gameOnGroundAfterJump: GameOnSoundEffectOnGroundAfterJump,
-                       valueOnTurnAfterRun: PossibleSoundEffectOnTurnAfterRun,
-                       valueInStarMode: PossibleSpecialMusicInStarMode, gameInStarMode: GameInStarMode,
-                       valueOnGoalPole: PossibleSoundEffectOnGoalPole, typeOnGoalPole: TypeOfMusicOnGoalPole, gameOnGoalPole: GameOnSoundEffectOnGoalPole, smallDefinitionOnGoalPole: TranslationKeyOnGoalPole,
-                       valueOnDeath: PossibleSoundEffectOnDeath, typeOnDeath: TypeOfSoundEffectOnDeath, gameOnDeath: GameOnSoundEffectOnDeath, smallDefinitionOnDeath: TranslationKeyOnDeath,) {
-        this.#soundEffectWhenCollectedContainer = SoundEffectWhenCollectedContainer.get(valueWhenCollected, gameWhenCollected,)
-        this.#soundEffectOnTauntContainer = SoundEffectOnTauntContainer.get(valueOnTaunt, gameOnTaunt,)
-        this.#soundEffectOnMovementContainer = SoundEffectOnMovementContainer.get(valueOnMovement,)
-        this.#soundEffectOnJumpContainer = SoundEffectOnJumpContainer.get(valueOnJump, gameOnJump,)
-        this.#soundEffectOnGroundAfterJumpContainer = SoundEffectOnGroundAfterJumpContainer.get(valueOnGroundAfterJump, gameOnGroundAfterJump,)
-        this.#soundEffectOnTurnAfterRunContainer = SoundEffectOnTurnAfterRunContainer.get(valueOnTurnAfterRun,)
-        this.#specialMusicInStarModeContainer = SpecialMusicInStarModeContainer.get(valueInStarMode, gameInStarMode,)
-        this.#soundEffectOnGoalPoleContainer = SoundEffectOnGoalPoleContainer.get(valueOnGoalPole, typeOnGoalPole, gameOnGoalPole, smallDefinitionOnGoalPole,)
-        this.#soundEffectOnDeathContainer = SoundEffectOnDeathContainer.get(valueOnDeath, typeOnDeath, gameOnDeath, smallDefinitionOnDeath,)
+    public constructor(soundEffectWhenCollected: SoundEffectWhenCollected,
+                       soundEffectOnTaunt: SoundEffectOnTaunt,
+                       soundEffectOnMovement: SoundEffectOnMovement,
+                       soundEffectOnJump: SoundEffectOnJump,
+                       soundEffectOnGroundAfterJump: SoundEffectOnGroundAfterJump,
+                       soundEffectOnTurnAfterRun: SoundEffectOnTurnAfterRun,
+                       specialMusicInStarMode: SpecialMusicInStarMode,
+                       soundEffectOnGoalPole: SoundEffectOnGoalPole,
+                       soundEffectOnDeath: SoundEffectOnDeath,) {
+        this.#soundEffectWhenCollectedContainer = soundEffectWhenCollected
+        this.#soundEffectOnTauntContainer = soundEffectOnTaunt
+        this.#soundEffectOnMovementContainer = soundEffectOnMovement
+        this.#soundEffectOnJumpContainer = soundEffectOnJump
+        this.#soundEffectOnGroundAfterJumpContainer = soundEffectOnGroundAfterJump
+        this.#soundEffectOnTurnAfterRunContainer = soundEffectOnTurnAfterRun
+        this.#specialMusicInStarModeContainer = specialMusicInStarMode
+        this.#soundEffectOnGoalPoleContainer = soundEffectOnGoalPole
+        this.#soundEffectOnDeathContainer = soundEffectOnDeath
     }
+
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter methods --------------------
 
     //region -------------------- When collected --------------------
 
@@ -221,5 +216,7 @@ export class SoundPropertyContainer
     }
 
     //endregion -------------------- Death --------------------
+
+    //endregion -------------------- Getter methods --------------------
 
 }

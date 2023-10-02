@@ -1,12 +1,12 @@
-import type {PossibleGameAcronym_SMM1} from 'core/gameStyle/GameStyles.types'
-import type {PossibleEnglishName}      from 'core/entity/Entities.types'
-import type {ImageFile}                from 'util/file/image/ImageFile'
+import type {PossibleAcronym_InFile_SMM1 as PossibleAcronym_InFile_SMM1_GameStyle} from 'core/gameStyle/GameStyles.types'
+import type {PossibleEnglishName}                                                  from 'core/entity/Entities.types'
+import type {ImageFile}                                                            from 'util/file/image/ImageFile'
 
 export type UnusedSMM1ImageFile = | UnusedSMM1RegularImageFile | UnusedSMM1BigMushroomImageFile
 
 //region -------------------- Unused (regular) --------------------
 
-export type UnusedSMM1RegularImageFile = ImageFile<`entity/unused/${PossibleGameAcronym_SMM1} - ${ImageName_Unused_SMM1}`, ImageName_UnusedSMM1Regular, 'tiff'>
+export type UnusedSMM1RegularImageFile = ImageFile<`entity/unused/${PossibleAcronym_InFile_SMM1_GameStyle} - ${ImageName_Unused_SMM1}`, ImageName_UnusedSMM1Regular, 'tiff'>
 
 
 /** A simple map type made to associate each {@link UnusedSMM1RegularImageFile} name to a specific {@link Entities} */

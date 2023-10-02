@@ -5,7 +5,6 @@ import type {PossibleAcronym}                                                   
 import type {EntityLimitTypes}                                                      from 'core/entityLimit/EntityLimitTypes'
 import type {EntityLimitAmount}                                                     from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                  from 'lang/name/Name'
-import type {ValueOrCallback}                                                       from 'util/holder/ObjectHolder.types'
 
 import {AbstractEntityLimitContainer} from 'core/entityLimit/AbstractEntityLimit.container'
 
@@ -15,7 +14,7 @@ export class EntityLimitContainer
 
     public constructor(name: Name<string>,
                        acronym: NullOr<PossibleAcronym>,
-                       alternative: ValueOrCallback<AlternativeEntityLimit>,
+                       alternative: Lazy<AlternativeEntityLimit>,
                        type: Lazy<EntityLimitTypes>,
                        limitAmount: Lazy<EntityLimitAmount>,) {
         super(name, acronym, alternative, type, limitAmount,)

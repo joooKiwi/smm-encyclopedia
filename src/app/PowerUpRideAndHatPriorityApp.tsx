@@ -303,7 +303,6 @@ export default class PowerUpRideAndHatPriorityApp
                 </div>
             </nav>
             <UnfinishedText type="paragraph" isHidden>description</UnfinishedText>{/*TODO add description*/}
-            {/*TODO add legend for the colors & styles*/}
             <div id="displayed-powerUpPriorityGroup">
                 {this.hasSMB ? <PowerUpPriorityInSMB games={games}>{PowerUpRideAndHatPriorityApp.#SMB_POWER_UPS}</PowerUpPriorityInSMB> : null}
                 {this.hasSMB3 ? <PowerUpPriorityInSMB3 games={games}>{PowerUpRideAndHatPriorityApp.#SMB3_POWER_UPS}</PowerUpPriorityInSMB3> : null}

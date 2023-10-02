@@ -6,7 +6,6 @@ import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount,
 import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
 import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                                                from 'lang/name/Name'
-import type {ValueOrCallback}                                                                                     from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {NOT_APPLICABLE}                       from 'util/commonVariables'
@@ -30,7 +29,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
 
     protected constructor(name: Name<string>,
                           acronym: ACRONYM,
-                          alternative: ValueOrCallback<AlternativeEntityLimit>,
+                          alternative: Lazy<AlternativeEntityLimit>,
                           type: Lazy<EntityLimitTypes>,
                           limitAmount: Lazy<EntityLimitAmount>,) {
         super(name, alternative,)

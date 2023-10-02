@@ -1,13 +1,24 @@
 import type {MysteryMushroom, MysteryMushroomGames} from 'core/mysteryMushroom/MysteryMushroom'
 import type {MysteryMushroomTemplate}               from 'core/mysteryMushroom/MysteryMushroom.template'
+import type {SoundProperty}                         from 'core/mysteryMushroom/properties/sound/SoundProperty'
+import type {SoundPropertyTemplate}                 from 'core/mysteryMushroom/properties/sound/SoundProperty.template'
 import type {Name}                                  from 'lang/name/Name'
 
-import {TemplateWithNameCreator} from 'core/_template/TemplateWithName.creator'
-import {GameReferences}          from 'core/gameReference/GameReferences'
-import {MysteryMushroomContainer}         from 'core/mysteryMushroom/MysteryMushroom.container'
-import {MysteryMushroomPropertyContainer} from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
-import {UnlockPropertyProvider}           from 'core/mysteryMushroom/properties/UnlockProperty.provider'
-import {SoundPropertyContainer}           from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
+import {TemplateWithNameCreator}              from 'core/_template/TemplateWithName.creator'
+import {GameReferences}                       from 'core/gameReference/GameReferences'
+import {MysteryMushroomContainer}             from 'core/mysteryMushroom/MysteryMushroom.container'
+import {MysteryMushroomPropertyContainer}     from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
+import {UnlockPropertyProvider}               from 'core/mysteryMushroom/properties/UnlockProperty.provider'
+import {SoundEffectOnDeathProvider}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath.provider'
+import {SoundEffectOnGoalPoleProvider}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole.provider'
+import {SoundEffectOnGroundAfterJumpProvider} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump.provider'
+import {SoundEffectOnJumpProvider}            from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump.provider'
+import {SoundEffectOnMovementProvider}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement.provider'
+import {SoundEffectOnTauntProvider}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt.provider'
+import {SoundEffectOnTurnAfterRunProvider}    from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun.provider'
+import {SoundEffectWhenCollectedProvider}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected.provider'
+import {SoundPropertyContainer}               from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
+import {SpecialMusicInStarModeProvider}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode.provider'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -26,25 +37,28 @@ export class MysteryMushroomCreator
 
     //region -------------------- Property helper methods --------------------
 
-    #createSoundPropertyFields() {
-        const propertyTemplate = this.template.properties.sound
-        const {movement,} = propertyTemplate.soundEffect
-        const {
-            collected: collectedTemplate, taunt: tauntTemplate, jump: {value: jumpTemplate, ground: groundAfterJumpTemplate},
-            turn: turnAfterRun, goalPole: goalPoleTemplate, death: deathTemplate,
-        } = propertyTemplate.hasSoundEffect
-        const {starMode: starModeTemplate,} = propertyTemplate.hasSpecialMusic
+    #createSoundProperty(soundPropertyTemplate: SoundPropertyTemplate,): SoundProperty {
+        const collectedTemplate = soundPropertyTemplate.hasSoundEffect.collected
+        const tauntTemplate = soundPropertyTemplate.hasSoundEffect.taunt
+        const movement = soundPropertyTemplate.soundEffect.movement
+        const jumpTemplate = soundPropertyTemplate.hasSoundEffect.jump.value
+        const groundAfterJumpTemplate = soundPropertyTemplate.hasSoundEffect.jump.ground
+        const turnAfterRun = soundPropertyTemplate.hasSoundEffect.turn
+        const starModeTemplate = soundPropertyTemplate.hasSpecialMusic.starMode
+        const goalPoleTemplate = soundPropertyTemplate.hasSoundEffect.goalPole
+        const deathTemplate = soundPropertyTemplate.hasSoundEffect.death
 
-        return [
-            collectedTemplate.value, collectedTemplate.game,
-            tauntTemplate.value, tauntTemplate.game,
-            movement,
-            jumpTemplate.value, jumpTemplate.game, groundAfterJumpTemplate.value, groundAfterJumpTemplate.game,
-            turnAfterRun,
-            starModeTemplate.value, starModeTemplate.game,
-            goalPoleTemplate.value, goalPoleTemplate.type, goalPoleTemplate.game, goalPoleTemplate.smallDefinition,
-            deathTemplate.value, deathTemplate.type, deathTemplate.game, deathTemplate.smallDefinition,
-        ] as const
+        return new SoundPropertyContainer(
+            SoundEffectWhenCollectedProvider.get.get(collectedTemplate.value, collectedTemplate.game,),
+            SoundEffectOnTauntProvider.get.get(tauntTemplate.value, tauntTemplate.game,),
+            SoundEffectOnMovementProvider.get.get(movement,),
+            SoundEffectOnJumpProvider.get.get(jumpTemplate.value, jumpTemplate.game,),
+            SoundEffectOnGroundAfterJumpProvider.get.get(groundAfterJumpTemplate.value, groundAfterJumpTemplate.game,),
+            SoundEffectOnTurnAfterRunProvider.get.get(turnAfterRun,),
+            SpecialMusicInStarModeProvider.get.get(starModeTemplate.value, starModeTemplate.game,),
+            SoundEffectOnGoalPoleProvider.get.get(goalPoleTemplate.value, goalPoleTemplate.type, goalPoleTemplate.game, goalPoleTemplate.smallDefinition,),
+            SoundEffectOnDeathProvider.get.get(deathTemplate.value, deathTemplate.type, deathTemplate.game, deathTemplate.smallDefinition,),
+        )
     }
 
     #createProperty() {
@@ -53,7 +67,7 @@ export class MysteryMushroomCreator
 
         return new MysteryMushroomPropertyContainer(
             UnlockPropertyProvider.get.get(unlockTemplate.condition, unlockTemplate.amiibo,),
-            new SoundPropertyContainer(...this.#createSoundPropertyFields(),),
+            this.#createSoundProperty(propertyTemplate.sound,),
         )
     }
 

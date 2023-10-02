@@ -1,12 +1,12 @@
-import type {PossibleEnglishName} from 'core/entity/Entities.types'
-import type {PossibleGameAcronym} from 'core/gameStyle/GameStyles.types'
-import type {PossibleGameName}    from 'core/theme/Themes.types'
-import type {ImageFile}           from 'util/file/image/ImageFile'
+import type {PossibleEnglishName}                                        from 'core/entity/Entities.types'
+import type {PossibleAcronym_InFile as PossibleAcronym_InFile_GameStyle} from 'core/gameStyle/GameStyles.types'
+import type {PossibleName_InFile as PossibleName_InFile_Theme}           from 'core/theme/Themes.types'
+import type {ImageFile}                                                  from 'util/file/image/ImageFile'
 
 export type EditorImageFile = | GenericEditorImageFile | PowerUpEditorImageFile
 
-export type GenericEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${ImageName_Editor}`, 'tiff'>
-export type PowerUpEditorImageFile = ImageFile<`entity/editor`, `${PossibleGameAcronym}_Lyt_P_${ImageName_Editor_PowerUp}`, 'tiff'>
+export type GenericEditorImageFile = ImageFile<`entity/editor`, `${PossibleAcronym_InFile_GameStyle}_Lyt_P_${ImageName_Editor}`, 'tiff'>
+export type PowerUpEditorImageFile = ImageFile<`entity/editor`, `${PossibleAcronym_InFile_GameStyle}_Lyt_P_${ImageName_Editor_PowerUp}`, 'tiff'>
 
 
 interface ImageNameMap {
@@ -458,8 +458,8 @@ export type ImageName_Editor_PowerUp = ImageNameMap[| 'Fire Flower' | 'Superball
                                                     | 'Frog Suit' | 'Cape Feather' | 'Power Balloon' | 'Propeller Mushroom' | 'Super Acorn'
                                                     | 'Super Bell' | 'Super Hammer' | 'Boomerang Flower'][1]
 
-type Night<STYLE extends PossibleGameName, > = `${STYLE}_night`
-type VariantEditorImage_GameStyle = PossibleGameName | Night<PossibleGameName>
+type Night<STYLE extends PossibleName_InFile_Theme, > = `${STYLE}_night`
+type VariantEditorImage_GameStyle = PossibleName_InFile_Theme | Night<PossibleName_InFile_Theme>
 type VariantEditorImage_Number = | 0 | 1 | 2 | 3
 type VariantEditorImage_PowerUp = 'Uni'
 

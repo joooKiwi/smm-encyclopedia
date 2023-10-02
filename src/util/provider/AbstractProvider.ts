@@ -1,14 +1,11 @@
-import type {ExtendedMap}            from 'util/extended/ExtendedMap'
-import type {PossibleKeys, Provider} from 'util/provider/Provider'
+import type {Provider} from 'util/provider/Provider'
 
-import {ExtendedMapContainer} from 'util/extended/ExtendedMap.container'
-
-export class AbstractProvider<K extends PossibleKeys, V>
+export class AbstractProvider<K extends unknown, V>
     implements Provider<K, V> {
 
     //region -------------------- Fields --------------------
 
-    #everyContainers?: ExtendedMap<K, V>
+    #everyContainers?: Map<K, V>
 
     //endregion -------------------- Fields --------------------
 
@@ -17,8 +14,8 @@ export class AbstractProvider<K extends PossibleKeys, V>
 
     //region -------------------- Getter methods --------------------
 
-    public get everyContainers(): ExtendedMap<K, V> {
-        return this.#everyContainers ??= new ExtendedMapContainer()
+    public get everyContainers(): Map<K, V> {
+        return this.#everyContainers ??= new Map()
     }
 
     //endregion -------------------- Getter methods --------------------

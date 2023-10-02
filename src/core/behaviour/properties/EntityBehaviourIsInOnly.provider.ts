@@ -1,7 +1,8 @@
-import type {EntityBehaviourIsInOnly} from 'core/behaviour/properties/EntityBehaviourIsInOnly'
-import type {ProviderWithoutKey}      from 'util/provider/ProviderWithoutKey'
+import type {EntityBehaviourIsInOnly}            from 'core/behaviour/properties/EntityBehaviourIsInOnly'
+import type {ProviderWithMultipleArgumentsAsKey} from 'util/provider/ProviderWithMultipleArgumentsAsKey'
 
 import {EntityBehaviourIsInOnlyContainer} from 'core/behaviour/properties/EntityBehaviourIsInOnly.container'
+import {isArrayEquals}                    from 'util/utilitiesMethods'
 import {AbstractProvider}                 from 'util/provider/AbstractProvider'
 
 /**
@@ -19,7 +20,7 @@ import {AbstractProvider}                 from 'util/provider/AbstractProvider'
  */
 export class EntityBehaviourIsInOnlyProvider
     extends AbstractProvider<ArgumentsReceived, EntityBehaviourIsInOnly>
-    implements ProviderWithoutKey<EntityBehaviourIsInOnly, ArgumentsReceived> {
+    implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, EntityBehaviourIsInOnly> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -39,15 +40,22 @@ export class EntityBehaviourIsInOnlyProvider
         return this.get(false, false,)
     }
 
-    public get(...argumentsReceived: ArgumentsReceived): EntityBehaviourIsInOnly {
-        return this.everyContainers.if(map => map.has(argumentsReceived))
-            .isNotMet(map => map.set(argumentsReceived, new EntityBehaviourIsInOnlyContainer(...argumentsReceived),))
-            .get(argumentsReceived)
+    public get(isInOnline: boolean, isInMultiplayer: boolean,): EntityBehaviourIsInOnly {
+        const argumentsReceived = [isInOnline, isInMultiplayer,] as const satisfies ArgumentsReceived
+
+        const everyContainer = this.everyContainers
+        let argumentsReferenced = argumentsReceived
+        for (let [argument,] of everyContainer) {
+            if (!isArrayEquals(argument, argumentsReceived,))
+                continue
+            argumentsReferenced = argument
+            break
+        }
+        if (argumentsReferenced === argumentsReceived)
+            everyContainer.set(argumentsReceived, new EntityBehaviourIsInOnlyContainer(isInOnline, isInMultiplayer,),)
+        return everyContainer.get(argumentsReferenced,)!
     }
 
 }
 
-type ArgumentsReceived = readonly [
-    isInOnline: boolean,
-    isInMultiplayer: boolean,
-]
+type ArgumentsReceived = readonly [isInOnline: boolean, isInMultiplayer: boolean,]

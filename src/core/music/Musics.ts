@@ -17,7 +17,6 @@ import {Import}            from 'util/DynamicImporter'
 
 /**
  * @todo add other musics (from title screen, theme, star, p-switch)
- * @todo change the BackgroundMusicContainer creation in a builder instead
  * @recursiveReference {@link SoundEffects}
  */
 export class Musics

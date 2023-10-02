@@ -3,16 +3,17 @@ import {lazy}      from '@joookiwi/lazy'
 
 import type {SoundEffect}                      from 'core/soundEffect/SoundEffect'
 import type {SoundEffectTemplate}              from 'core/soundEffect/SoundEffect.template'
+import type {SoundEffectCategory}              from 'core/soundEffectCategory/SoundEffectCategory'
 import type {PlayerSoundEffectTriggerTemplate} from 'core/soundEffect/property/PlayerSoundEffectTrigger.template'
 import type {Name}                             from 'lang/name/Name'
 
-import {TemplateWithNameCreator}      from 'core/_template/TemplateWithName.creator'
-import {GamePropertyProvider}         from 'core/entity/properties/game/GameProperty.provider'
-import {PlayerSoundEffectTriggers}    from 'core/soundEffect/property/PlayerSoundEffectTriggers'
-import {SoundEffectContainer}         from 'core/soundEffect/SoundEffect.container'
-import {SoundEffectPropertyContainer} from 'core/soundEffect/property/SoundEffectProperty.container'
-import {EmptySoundEffectCategory}     from 'core/soundEffectCategory/EmptySoundEffectCategory'
-import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
+import {TemplateWithNameCreator}          from 'core/_template/TemplateWithName.creator'
+import {GamePropertyProvider}             from 'core/entity/properties/game/GameProperty.provider'
+import {PlayerSoundEffectTriggers}        from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import {SoundEffectContainer}             from 'core/soundEffect/SoundEffect.container'
+import {SoundEffectPropertyContainer}     from 'core/soundEffect/property/SoundEffectProperty.container'
+import {LAZY_EMPTY_SOUND_EFFECT_CATEGORY} from 'core/soundEffectCategory/EmptySoundEffectCategory.lazy'
+import {SoundEffectCategories}            from 'core/soundEffectCategory/SoundEffectCategories'
 
 export class SoundEffectCreator
     extends TemplateWithNameCreator<SoundEffectTemplate, SoundEffect> {
@@ -26,10 +27,11 @@ export class SoundEffectCreator
     //endregion -------------------- Constructor --------------------
     //region -------------------- Build helper methods --------------------
 
-    #createCategory() {
+    #createCategory(): Lazy<SoundEffectCategory> {
         const category = this.template.properties.category
-        return category == null ? EmptySoundEffectCategory.get
-            : SoundEffectCategories.getValueByName(category).reference
+        if (category == null)
+            return LAZY_EMPTY_SOUND_EFFECT_CATEGORY
+        return lazy(() => SoundEffectCategories.getValueByName(category).reference,)
     }
 
     static #getTrigger({movement, interaction, environment,}: PlayerSoundEffectTriggerTemplate,): Lazy<PlayerSoundEffectTriggers> {

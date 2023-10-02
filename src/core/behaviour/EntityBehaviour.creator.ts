@@ -1,4 +1,4 @@
-import {lazy} from '@joookiwi/lazy'
+import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {PossibleGroupName}                         from 'core/entityTypes'
 import type {EntityBehaviour}                           from 'core/behaviour/EntityBehaviour'
@@ -15,7 +15,6 @@ import {EntityBehaviourContainer}        from 'core/behaviour/EntityBehaviour.co
 import {EntityBehaviourIsInOnlyProvider} from 'core/behaviour/properties/EntityBehaviourIsInOnly.provider'
 import {EntityBehaviourLinkProvider}     from 'core/behaviour/properties/EntityBehaviourLink.provider'
 import {Import}                          from 'util/DynamicImporter'
-import {ObjectHolders}                   from 'util/holder/ObjectHolders'
 
 export class EntityBehaviourCreator
     extends TemplateCreator<EntityBehaviourTemplate, EntityBehaviour> {
@@ -47,8 +46,8 @@ export class EntityBehaviourCreator
         if (isGroupNull && isEntityNull)
             return EntityBehaviourLinkProvider.get.null
         return EntityBehaviourLinkProvider.get.get([group, entity,],
-            isGroupNull ? ObjectHolders.NULL : lazy(() => EntityBehaviourCreator.#getEntityGroupByName(group,),),
-            isEntityNull ? ObjectHolders.NULL : lazy(() => this.#getEntityByName(entity,),),
+            isGroupNull ? CommonLazy.NULL : lazy(() => EntityBehaviourCreator.#getEntityGroupByName(group,),),
+            isEntityNull ? CommonLazy.NULL : lazy(() => this.#getEntityByName(entity,),),
         )
     }
 

@@ -1,5 +1,5 @@
-import type {Lazy}    from '@joookiwi/lazy'
-import {lazy, lazyOf} from '@joookiwi/lazy'
+import type {Lazy}                from '@joookiwi/lazy'
+import {CommonLazy, lazy, lazyOf} from '@joookiwi/lazy'
 
 import type {NotApplicableProperty, UnknownProperty}                 from 'core/_properties/PropertyWithEverything'
 import type {PropertyThatCanBeUnknownWithComment}                    from 'core/_properties/PropertyThatCanBeUnknownWithComment'
@@ -28,7 +28,7 @@ import {ExclusiveSM3DWEntityContainer}                                          
 import {ExclusiveSMM1EntityContainer}                                                                               from 'core/entity/ExclusiveSMM1Entity.container'
 import {ExclusiveSMM2EntityContainer}                                                                               from 'core/entity/ExclusiveSMM2Entity.container'
 import {EntityReferencesContainer}                                                                                  from 'core/entity/properties/EntityReferences.container'
-import {EmptyInstrumentProperty}                                                                                    from 'core/entity/properties/instrument/EmptyInstrumentProperty'
+import {LAZY_EMPTY_INSTRUMENT_PROPERTY}                                                                             from 'core/entity/properties/instrument/EmptyInstrumentProperty.lazy'
 import {GamePropertyProvider}                                                                                       from 'core/entity/properties/game/GameProperty.provider'
 import {GameStylePropertyProvider}                                                                                  from 'core/entity/properties/gameStyle/GameStyleProperty.provider'
 import {InstrumentPropertyProvider}                                                                                 from 'core/entity/properties/instrument/InstrumentProperty.provider'
@@ -36,13 +36,12 @@ import {LimitPropertyProvider}                                                  
 import {PropertyContainer as PropertyInstanceContainer}                                                             from 'core/entity/properties/Property.container'
 import {ThemePropertyProvider}                                                                                      from 'core/entity/properties/theme/ThemeProperty.provider'
 import {TimePropertyProvider}                                                                                       from 'core/entity/properties/time/TimeProperty.provider'
-import {EmptyEntityCategory}                                                                                        from 'core/entityCategory/EmptyEntityCategory'
+import {LAZY_EMPTY_ENTITY_CATEGORY}                                                                                 from 'core/entityCategory/EmptyEntityCategory.lazy'
 import {EntityCategories}                                                                                           from 'core/entityCategory/EntityCategories'
 import {EntityLimits}                                                                                               from 'core/entityLimit/EntityLimits'
 import {GameStructureProvider}                                                                                      from 'core/game/GameStructure.provider'
 import {Instruments}                                                                                                from 'core/instrument/Instruments'
 import {UNKNOWN_CHARACTER}                                                                                          from 'util/commonVariables'
-import {ObjectHolders}                                                                                              from 'util/holder/ObjectHolders'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -63,8 +62,7 @@ export class EntityCreator
 
     //region -------------------- Fields --------------------
 
-    static readonly #EMPTY_ENTITY = lazy(() => [EmptyEntity.get,] as const,)
-    static readonly #EMPTY_INSTRUMENT_OBJECT = lazy(() => EmptyInstrumentProperty.get,)
+    static readonly #EMPTY_ENTITIES = lazy(() => [EmptyEntity.get,] as const,)
 
     readonly #SELF = lazy(() => [this.create(),] as const,)
 
@@ -103,11 +101,11 @@ export class EntityCreator
      * Get the entity category reference from the {@link EntityTemplate template}
      * or return an {@link EmptyEntityCategory empty category}.
      */
-    #getEntityCategory(): EntityCategory {
+    #getEntityCategory(): Lazy<EntityCategory> {
         const category = this.template.categoryInTheEditor
-        return category == null
-            ? EmptyEntityCategory.get
-            : EntityCategories.getValueByName(category).reference
+        if (category == null)
+            return LAZY_EMPTY_ENTITY_CATEGORY
+        return lazy(() => EntityCategories.getValueByName(category,).reference,)
     }
 
     //endregion -------------------- Entity category helper methods --------------------
@@ -202,12 +200,12 @@ export class EntityCreator
      * @see EmptyInstrumentProperty
      */
     static #getInstrumentPropertyHolder({instrument, canMakeASoundOutOfAMusicBlock,}: InstrumentPropertyTemplate,): Lazy<InstrumentProperty> {
-        return instrument == null
-            ? this.#EMPTY_INSTRUMENT_OBJECT
-            : lazy(() => InstrumentPropertyProvider.get.get([instrument, canMakeASoundOutOfAMusicBlock,],
-                lazy(() => this.#whereInstrument(instrument),),
-                newBooleanWithCommentCommentContainer(canMakeASoundOutOfAMusicBlock,),
-            ),)
+        if (instrument == null)
+            return LAZY_EMPTY_INSTRUMENT_PROPERTY
+        return lazy(() => InstrumentPropertyProvider.get.get([instrument, canMakeASoundOutOfAMusicBlock,],
+            lazy(() => this.#whereInstrument(instrument),),
+            newBooleanWithCommentCommentContainer(canMakeASoundOutOfAMusicBlock,),
+        ),)
     }
 
     //endregion -------------------- Property helper methods (instrument) --------------------
@@ -270,7 +268,7 @@ export class EntityCreator
         let everyTimeReferences: Lazy<readonly Entity[]>
         let everyReferences: Lazy<readonly Entity[]>
         if (reference.group.all === null)
-            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = ObjectHolders.EMPTY_ARRAY
+            everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = CommonLazy.EMPTY_ARRAY
         else {
             everyGameStyleReferences = this.#createGroupReference(reference.group.gameStyle)
             everyThemeReferences = this.#createGroupReference(reference.group.theme)
@@ -290,7 +288,7 @@ export class EntityCreator
 
     #createGroupReference(set: Nullable<Set<EntityTemplate>>,): Lazy<readonly Entity[]> {
         return set == null
-            ? ObjectHolders.EMPTY_ARRAY
+            ? CommonLazy.EMPTY_ARRAY
             : lazy(() => Array.from(set, it => Entities.getValueByName(it.name.english.simple ?? it.name.english.american,).reference,),)
     }
 
@@ -302,7 +300,7 @@ export class EntityCreator
      */
     #createOtherEntityReferences(link: Nullable<EntityLink>,): Lazy<PossibleOtherEntities> {
         if (link == null)
-            return EntityCreator.#EMPTY_ENTITY
+            return EntityCreator.#EMPTY_ENTITIES
         if (link === 'this')
             return this.#SELF
         return lazy<PossibleOtherEntities>(() => ((link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValueByName(splitLink).reference) as unknown as PossibleOtherEntities),)

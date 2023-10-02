@@ -5,7 +5,6 @@ import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostum
 import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
 import type {Versions}                   from 'core/version/Versions'
 import type {Name}                       from 'lang/name/Name'
-import type {ValueOrCallback}            from 'util/holder/ObjectHolder.types'
 
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 
@@ -21,10 +20,10 @@ export class MiiCostumeContainer
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: ValueOrCallback<Name<string>>,
+    public constructor(name: Name<string>,
                        officialNotification: Lazy<OfficialNotificationHolder>,
                        version: Lazy<NullOr<Versions>>,
-                       category: ValueOrCallback<MiiCostumeCategory>,) {
+                       category: Lazy<MiiCostumeCategory>,) {
         super(name, category,)
         this.#officialNotificationHolder = officialNotification
         this.#version = version

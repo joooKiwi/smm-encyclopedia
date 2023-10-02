@@ -18,9 +18,6 @@ import {EMPTY_ARRAY}                           from 'util/emptyVariables'
 import {StringContainer}                       from 'util/StringContainer'
 import * as FileCreator                        from 'core/mysteryMushroom/file/fileCreator'
 
-/**
- * @todo Change the path to be like in the game instead of the mystery mushroom name
- */
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MysteryMushroom>,

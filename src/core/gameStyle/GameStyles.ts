@@ -2,17 +2,17 @@ import type {CollectionHolder, CollectionIterator}              from '@joookiwi/
 import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                     from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                 from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                   from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                            from 'core/PropertyGetter'
-import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleGameAcronym, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
-import type {GameStyle}                                                                                                                                          from 'core/gameStyle/GameStyle'
-import type {GameStyleImageFile}                                                                                                   from 'core/gameStyle/file/GameStyleImageFile'
-import type {PossibleOtherEntities}                                                                                                from 'core/entity/Entity'
-import type {GameStyleProperty}                                                                                                    from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {GameStyleReferences}                                                                                                  from 'core/entity/properties/gameStyle/GameStyleReferences'
-import type {ClassWithImageFile}                                                                                                   from 'util/file/image/ClassWithImageFile'
+import type {ClassWithAcronym}                                                                                                                                      from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                                                  from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                    from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                               from 'core/PropertyGetter'
+import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleShortImagePath} from 'core/gameStyle/GameStyles.types'
+import type {GameStyle}                                                                                                                                             from 'core/gameStyle/GameStyle'
+import type {GameStyleImageFile}                                                                                                                                    from 'core/gameStyle/file/GameStyleImageFile'
+import type {PossibleOtherEntities}                                                                                                                                 from 'core/entity/Entity'
+import type {GameStyleProperty}                                                                                                                                     from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {GameStyleReferences}                                                                                                                                   from 'core/entity/properties/gameStyle/GameStyleReferences'
+import type {ClassWithImageFile}                                                                                                                                    from 'util/file/image/ClassWithImageFile'
 
 import GameStyleComponent      from 'core/gameStyle/GameStyle.component'
 import {GameStyleLoader}       from 'core/gameStyle/GameStyle.loader'
@@ -118,7 +118,7 @@ export abstract class GameStyles
 
     #reference?: GameStyle
     readonly #acronym
-    readonly #gameAcronym
+    readonly #acronymInFile
     readonly #englishNameContainer: StringContainer<PossibleEnglishName>
     #imageFile?: GameStyleImageFile
     #shortImagePath?: PossibleShortImagePath
@@ -126,10 +126,10 @@ export abstract class GameStyles
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: PossibleAcronym, gameAcronym: PossibleGameAcronym, englishName: PossibleEnglishName,) {
+    private constructor(acronym: PossibleAcronym, acronymInFile: PossibleAcronym_InFile, englishName: PossibleEnglishName,) {
         super()
         this.#acronym = acronym
-        this.#gameAcronym = gameAcronym
+        this.#acronymInFile = acronymInFile
         this.#englishNameContainer = new StringContainer(englishName)
     }
 
@@ -153,8 +153,8 @@ export abstract class GameStyles
         return this.#acronym
     }
 
-    public get gameAcronym(): PossibleGameAcronym {
-        return this.#gameAcronym
+    public get acronymInFile(): PossibleAcronym_InFile {
+        return this.#acronymInFile
     }
 
     public get englishName(): PossibleEnglishName {
@@ -166,7 +166,7 @@ export abstract class GameStyles
     }
 
     public get imageFile(): GameStyleImageFile {
-        return this.#imageFile ??= gameStyleImage(this.gameAcronym, this.englishName,)
+        return this.#imageFile ??= gameStyleImage(this.acronymInFile, this.englishName,)
     }
 
     public get shortImagePath(): PossibleShortImagePath {

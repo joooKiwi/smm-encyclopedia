@@ -1,14 +1,15 @@
-import type {Lazy} from '@joookiwi/lazy'
+import type {Lazy}  from '@joookiwi/lazy'
+import {CommonLazy} from '@joookiwi/lazy'
 
 import type {PossibleGroupName}                         from 'core/entityTypes'
 import type {EntityBehaviourLink, PossibleGroup}        from 'core/behaviour/properties/EntityBehaviourLink'
 import type {PossibleEnglishName as PossibleEntityName} from 'core/entity/Entities.types'
 import type {Entity}                                    from 'core/entity/Entity'
-import type {ProviderForNullable}                       from 'util/provider/ProviderForNullable'
-import type {ProviderWithKey}                           from 'util/provider/ProviderWithKey'
+import type {ProviderForNullable}     from 'util/provider/ProviderForNullable'
+import type {ProviderWithExplicitKey} from 'util/provider/ProviderWithExplicitKey'
 
 import {EntityBehaviourLinkContainer} from 'core/behaviour/properties/EntityBehaviourLink.container'
-import {ObjectHolders}                from 'util/holder/ObjectHolders'
+import {isArrayEquals}                from 'util/utilitiesMethods'
 import {AbstractProvider}             from 'util/provider/AbstractProvider'
 
 /**
@@ -29,7 +30,7 @@ import {AbstractProvider}             from 'util/provider/AbstractProvider'
  */
 export class EntityBehaviourLinkProvider
     extends AbstractProvider<Key, EntityBehaviourLink>
-    implements ProviderWithKey<EntityBehaviourLink, Key, ArgumentsReceived>, ProviderForNullable<EntityBehaviourLink, EntityBehaviourLink<null, null>, Key> {
+    implements ProviderWithExplicitKey<EntityBehaviourLink, Key, ArgumentsReceived>, ProviderForNullable<EntityBehaviourLink, EntityBehaviourLink<null, null>, Key> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -46,7 +47,7 @@ export class EntityBehaviourLinkProvider
     //endregion -------------------- Singleton usage --------------------
 
     static #NULL_KEYS = [null, null,] as const
-    static #NULL_ARGUMENTS = [ObjectHolders.NULL, ObjectHolders.NULL,] as const
+    static #NULL_ARGUMENTS = [CommonLazy.NULL, CommonLazy.NULL,] as const
 
     public get null() {
         return this.get(EntityBehaviourLinkProvider.#NULL_KEYS, ...EntityBehaviourLinkProvider.#NULL_ARGUMENTS,)
@@ -56,35 +57,47 @@ export class EntityBehaviourLinkProvider
      * Get (or create) a null {@link EntityBehaviourLink}
      *
      * @param key the null keys
-     * @param argumentsReceived the null arguments
+     * @param groupLink the <b>null</b> group
+     * @param entityLink the <b>null</b> {@link Entity}
      * @see EntityBehaviourLinkProvider.null
      */
-    public get(key: Key<null, null>, ...argumentsReceived: ArgumentsReceived<null, null>): EntityBehaviourLink<null, null>
+    public get(key: Key<null, null>, groupLink: Lazy<null>, entityLink: Lazy<null>,): EntityBehaviourLink<null, null>
     /**
      * Get (or create) an {@link EntityBehaviourLink} with no group.
      *
      * @param key The null group & nullable entity names
-     * @param argumentsReceived The null group & nullable entity
+     * @param groupLink The <b>null</b> group
+     * @param entityLink The nullable {@link Entity}
      */
-    public get(key: Key<null>, ...argumentsReceived: ArgumentsReceived<null>): EntityBehaviourLink<null>
+    public get(key: Key<null>, groupLink: Lazy<null>, entityLink: Lazy<NullOr<Entity>>,): EntityBehaviourLink<null>
     /**
      * Get (or create) an {@link EntityBehaviourLink} with no entity.
      *
      * @param key The nullable group & null entity names
-     * @param argumentsReceived The nullable group & null entity
+     * @param groupLink The nullable group
+     * @param entityLink The <b>null</b> {@link Entity}
      */
-    public get(key: Key<NullOr<PossibleGroupName>, null>, ...argumentsReceived: ArgumentsReceived<PossibleGroup, null>): EntityBehaviourLink<PossibleGroup, null>
+    public get(key: Key<NullOr<PossibleGroupName>, null>, groupLink: Lazy<PossibleGroup>, entityLink: Lazy<null>,): EntityBehaviourLink<PossibleGroup, null>
     /**
      * Get (or create) an {@link EntityBehaviourLink} with a nullable group & a nullable entity.
      *
      * @param key The nullable group & entity names
-     * @param argumentsReceived The nullable group & entity
+     * @param groupLink The nullable group
+     * @param entityLink The nullable {@link Entity}
      */
-    public get(key: Key, ...argumentsReceived: ArgumentsReceived): EntityBehaviourLink
-    public get(key: Key, ...argumentsReceived: ArgumentsReceived): EntityBehaviourLink {
-        return this.everyContainers.if(map => map.has(key))
-            .isNotMet(map => map.set(key, new EntityBehaviourLinkContainer(...argumentsReceived),))
-            .get(key)
+    public get(key: Key, groupLink: Lazy<PossibleGroup>, entityLink: Lazy<NullOr<Entity>>,): EntityBehaviourLink
+    public get(key: Key, groupLink: Lazy<PossibleGroup>, entityLink: Lazy<NullOr<Entity>>,): EntityBehaviourLink {
+        const everyContainer = this.everyContainers
+        let keyReferenced = key
+        for (let [keyInMap,] of everyContainer) {
+            if (!isArrayEquals(keyInMap, key,))
+                continue
+            keyReferenced = keyInMap
+            break
+        }
+        if (keyReferenced === key)
+            everyContainer.set(key, new EntityBehaviourLinkContainer(groupLink, entityLink,),)
+        return everyContainer.get(keyReferenced,)!
     }
 
 }
@@ -93,7 +106,4 @@ type Key<GROUP extends NullOr<PossibleGroupName> = NullOr<PossibleGroupName>, EN
     groupLink: GROUP,
     entityLink: ENTITY,
 ]
-type ArgumentsReceived<GROUP extends PossibleGroup = PossibleGroup, ENTITY extends NullOr<Entity> = NullOr<Entity>, > = readonly [
-    groupLink: Lazy<GROUP>,
-    entityLink: Lazy<ENTITY>,
-]
+type ArgumentsReceived = readonly [groupLink: Lazy<PossibleGroup>, entityLink: Lazy<NullOr<Entity>>,]

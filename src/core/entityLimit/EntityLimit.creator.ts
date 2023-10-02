@@ -11,10 +11,10 @@ import type {Name}                                                              
 import {PropertyContainer}                       from 'core/_properties/Property.container'
 import {TemplateWithNameCreator}                 from 'core/_template/TemplateWithName.creator'
 import {AlternativeEntityLimitContainer}         from 'core/entityLimit/AlternativeEntityLimit.container'
-import {EmptyEntityLimit}                        from 'core/entityLimit/EmptyEntityLimit'
+import {LAZY_EMPTY_ENTITY_LIMIT}                 from 'core/entityLimit/EmptyEntityLimit.lazy'
 import {EntityLimitContainer}                    from 'core/entityLimit/EntityLimit.container'
 import {EntityLimitTypes}                        from 'core/entityLimit/EntityLimitTypes'
-import {EmptyEntityLimitAmount}                  from 'core/entityLimit/properties/EmptyEntityLimitAmount'
+import {LAZY_EMPTY_ENTITY_LIMIT_AMOUNT}          from 'core/entityLimit/properties/EmptyEntityLimitAmount.lazy'
 import {EntityLimitAmountContainer}              from 'core/entityLimit/properties/EntityLimitAmount.container'
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER}       from 'util/commonVariables'
 import {Import}                                  from 'util/DynamicImporter'
@@ -31,9 +31,6 @@ export class EntityLimitCreator
 
     static readonly #NOT_APPLICABLE_CONTAINER = lazyOf(PropertyContainer.NOT_APPLICABLE_CONTAINER,)
     static readonly #UNKNOWN_CONTAINER = lazyOf(PropertyContainer.UNKNOWN_CONTAINER,)
-
-    static readonly #EMPTY_ENTITY_LIMIT = lazy(() => EmptyEntityLimit.get,)
-    static readonly #EMPTY_ENTITY_LIMIT_AMOUNT = lazy(() => EmptyEntityLimitAmount.get,)
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -55,9 +52,9 @@ export class EntityLimitCreator
     }
 
     #getAlternativeEntityLimitBy(limit: Nullable<PossibleAlternativeEnglishName>,): Lazy<AlternativeEntityLimit> {
-        return limit == null
-            ? EntityLimitCreator.#EMPTY_ENTITY_LIMIT
-            : lazy(() => EntityLimitCreator.references.get(limit) as AlternativeEntityLimit,)
+        if (limit == null)
+            return LAZY_EMPTY_ENTITY_LIMIT
+        return lazy(() => EntityLimitCreator.references.get(limit,) as AlternativeEntityLimit,)
     }
 
     /**
@@ -80,12 +77,12 @@ export class EntityLimitCreator
     }
 
     #createLimitTemplateInSMM2(amount: NonNullable<PossibleLimitAmount_SMM2>,) {
-        return amount === UNKNOWN_CHARACTER
-            ? EntityLimitCreator.#UNKNOWN_CONTAINER
-            : lazy(() =>
-                typeof amount == 'number'
-                    ? new PropertyContainer(amount,)
-                    : new PropertyContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,),)
+        if (amount === UNKNOWN_CHARACTER)
+            return EntityLimitCreator.#UNKNOWN_CONTAINER
+        return lazy(() =>
+            typeof amount == 'number'
+                ? new PropertyContainer(amount,)
+                : new PropertyContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,),)
     }
 
     /**
@@ -96,13 +93,13 @@ export class EntityLimitCreator
      * @canContainDuplicateObjects
      */
     #createLimitAmount({'1And3DS': amountInSMM1And3DS, 2: amountInSMM2, comment,}: LimitAmountTemplate,): Lazy<EntityLimitAmount> {
-        return amountInSMM1And3DS == null || amountInSMM2 == null
-            ? EntityLimitCreator.#EMPTY_ENTITY_LIMIT_AMOUNT
-            : lazy(() => new EntityLimitAmountContainer(
-                this.#createLimitTemplateInSMM1And3DS(amountInSMM1And3DS,),
-                this.#createLimitTemplateInSMM2(amountInSMM2,),
-                comment,
-            ),)
+        if (amountInSMM1And3DS == null || amountInSMM2 == null)
+            return LAZY_EMPTY_ENTITY_LIMIT_AMOUNT
+        return lazy(() => new EntityLimitAmountContainer(
+            this.#createLimitTemplateInSMM1And3DS(amountInSMM1And3DS,),
+            this.#createLimitTemplateInSMM2(amountInSMM2,),
+            comment,
+        ),)
 
     }
 
@@ -123,7 +120,7 @@ export class EntityLimitCreator
             : new EntityLimitContainer(
                 name,
                 template.acronym,
-                () => this.#getAlternativeEntityLimitBy(template.references.alternative,).value,//FIXME replace with a Lazy instance
+                this.#getAlternativeEntityLimitBy(template.references.alternative,),
                 this.#getTypeBy(template.type),
                 this.#createLimitAmount(template.limit),
             )

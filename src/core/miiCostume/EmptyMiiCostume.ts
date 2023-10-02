@@ -1,7 +1,7 @@
 import type {MiiCostume}                                      from 'core/miiCostume/MiiCostume'
 import type {ClassWithNullObjectPattern, EmptyMiiCostumeName} from 'util/ClassWithNullObjectPattern'
 
-import {EmptyMiiCostumeCategory}          from 'core/miiCostumeCategory/EmptyMiiCostumeCategory'
+import {LAZY_EMPTY_MII_COSTUME_CATEGORY}  from 'core/miiCostumeCategory/EmptyMiiCostumeCategory.lazy'
 import {MiiCostumeCategory}               from 'core/miiCostumeCategory/MiiCostumeCategory'
 import {EmptyOfficialNotificationHolder}  from 'core/officialNotification/holder/EmptyOfficialNotificationHolder'
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
@@ -19,7 +19,7 @@ export class EmptyMiiCostume
     static #instance?: EmptyMiiCostume
 
     private constructor() {
-        super(EmptyStringName.get, EmptyMiiCostumeCategory.get,)
+        super(EmptyStringName.get, LAZY_EMPTY_MII_COSTUME_CATEGORY,)
     }
 
     public static get get() {

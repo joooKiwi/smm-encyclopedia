@@ -9,7 +9,7 @@ import type {PossibleOtherEntities}                                             
 import type {ThemeProperty}                                                        from 'core/entity/properties/theme/ThemeProperty'
 import type {ThemeReferences}                                                      from 'core/entity/properties/theme/ThemeReferences'
 import type {CourseTheme}                                                          from 'core/theme/CourseTheme'
-import type {Names, Ordinals, PossibleEnglishName, PossibleGameName}               from 'core/theme/Themes.types'
+import type {Names, Ordinals, PossibleEnglishName, PossibleName_InFile}            from 'core/theme/Themes.types'
 import type {CourseAndWorldTheme}                                                  from 'core/theme/CourseAndWorldTheme'
 import type {WorldTheme}                                                           from 'core/theme/WorldTheme'
 import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
@@ -188,7 +188,7 @@ export class Themes
 
     #reference?: CourseAndWorldTheme
     readonly #englishName
-    readonly #gameName
+    readonly #nameInFile
     #smallImageFile?: SmallThemeImageFile
     #largeImageFile?: LargeThemeImageFile
     #endlessMarioImageFile?: NullOr<EndlessMarioThemeImageFile>
@@ -196,10 +196,10 @@ export class Themes
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(englishName: PossibleEnglishName, gameName: PossibleGameName,) {
+    private constructor(englishName: PossibleEnglishName, nameInFile: PossibleName_InFile,) {
         super()
         this.#englishName = new StringContainer(englishName)
-        this.#gameName = gameName
+        this.#nameInFile = nameInFile
     }
 
     //endregion -------------------- Constructor --------------------
@@ -226,8 +226,8 @@ export class Themes
         return this.#englishName.getInHtml
     }
 
-    public get gameName(): PossibleGameName {
-        return this.#gameName
+    public get nameInFile(): PossibleName_InFile {
+        return this.#nameInFile
     }
 
     public get courseTheme(): CourseTheme {

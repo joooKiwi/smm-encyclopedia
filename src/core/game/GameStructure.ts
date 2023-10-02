@@ -1,4 +1,4 @@
-export interface GameStructure<SMM1 = any, SMM3DS = any, SMM2 = any, > {
+export interface GameStructure<SMM1 = unknown, SMM3DS = unknown, SMM2 = unknown, > {
 
     get superMarioMaker(): SMM1
 

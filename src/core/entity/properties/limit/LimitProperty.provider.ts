@@ -1,8 +1,9 @@
 import type {CollectedCoinLimitType, EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpLimitType, ProjectileEntityLimitType, RenderedObjectLimitType}      from 'core/entity/properties/limit/loader.types'
 import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
-import type {ProviderWithKey}                                                                                                                                                                                                                                   from 'util/provider/ProviderWithKey'
+import type {ProviderWithExplicitKey}                                                                                                                                                                                                                          from 'util/provider/ProviderWithExplicitKey'
 
 import {LimitPropertyContainer} from 'core/entity/properties/limit/LimitProperty.container'
+import {isArrayEquals}          from 'util/utilitiesMethods'
 import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
 /**
@@ -10,7 +11,7 @@ import {AbstractProvider}       from 'util/provider/AbstractProvider'
  */
 export class LimitPropertyProvider
     extends AbstractProvider<Key, LimitProperty>
-    implements ProviderWithKey<LimitProperty, Key, ArgumentsReceived> {
+    implements ProviderWithExplicitKey<LimitProperty, Key, ArgumentsReceived> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -26,10 +27,18 @@ export class LimitPropertyProvider
 
     //endregion -------------------- Singleton usage --------------------
 
-    public get(key: Key, ...argumentsReceived: ArgumentsReceived): LimitProperty {
-        return this.everyContainers.if(map => map.has(key))
-            .isNotMet(map => map.set(key, new LimitPropertyContainer(...argumentsReceived),))
-            .get(key)
+    public get(key: Key, editorLimit: GameStructureForEditorLimit, generalLimit: readonly [value: PossibleIsInGeneralLimit, superGlobal: PossibleIsInGeneralGlobalLimit,], powerUpLimit: PossibleIsInPowerUpLimit, projectileLimit: PossibleIsInProjectileLimit, renderedObjectLimit: PossibleIsInRenderedObjectLimit, collectedCoinLimit: PossibleIsInCollectedCoinLimit, otherLimit: PossibleOtherLimit,): LimitProperty {
+        const everyContainer = this.everyContainers
+        let keyReferenced = key
+        for (let [keyInMap,] of everyContainer) {
+            if (!isArrayEquals(keyInMap, key,))
+                continue
+            keyReferenced = keyInMap
+            break
+        }
+        if (keyReferenced === key)
+            everyContainer.set(key, new LimitPropertyContainer(editorLimit, generalLimit, powerUpLimit, projectileLimit, renderedObjectLimit, collectedCoinLimit, otherLimit,),)
+        return everyContainer.get(keyReferenced,)!
     }
 
 }
