@@ -111,7 +111,7 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
         if (audio == null)
             return
         audio.setState(new HistoryState(STANDBY, false, false,),)
-        AbstractSoundPlayer.map.remove(audio.source.key)
+        AbstractSoundPlayer.map.delete(audio.source.key)
     }
 
     public override render(): ReactJSXElement {

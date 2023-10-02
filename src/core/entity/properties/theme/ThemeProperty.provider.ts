@@ -1,7 +1,8 @@
-import type {ThemeProperty}      from 'core/entity/properties/theme/ThemeProperty'
-import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
+import type {ThemeProperty}                      from 'core/entity/properties/theme/ThemeProperty'
+import type {ProviderWithMultipleArgumentsAsKey} from 'util/provider/ProviderWithMultipleArgumentsAsKey'
 
 import {ThemePropertyContainer} from 'core/entity/properties/theme/ThemeProperty.container'
+import {isArrayEquals}          from 'util/utilitiesMethods'
 import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
 /**
@@ -9,7 +10,7 @@ import {AbstractProvider}       from 'util/provider/AbstractProvider'
  */
 export class ThemePropertyProvider
     extends AbstractProvider<ArgumentsReceived, ThemeProperty>
-    implements ProviderWithoutKey<ThemeProperty, ArgumentsReceived> {
+    implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, ThemeProperty> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -49,10 +50,20 @@ export class ThemePropertyProvider
         const GHOST_HOUSE extends boolean = boolean,
         const AIRSHIP extends boolean = boolean,
         const CASTLE extends boolean = boolean, >(isInGroundTheme: GROUND, isInUndergroundTheme: UNDERGROUND, isInUnderwaterTheme: UNDERWATER, isInDesertTheme: DESERT, isInSnowTheme: SNOW, isInSkyTheme: SKY, isInForestTheme: FOREST, isInGhostHouseTheme: GHOST_HOUSE, isInAirshipTheme: AIRSHIP, isInCastleTheme: CASTLE,): ThemeProperty<GROUND, UNDERGROUND, UNDERWATER, DESERT, SNOW, SKY, FOREST, GHOST_HOUSE, AIRSHIP, CASTLE>
-    public get(...argumentsReceived: ArgumentsReceived): ThemeProperty {
-        return this.everyContainers.if(map => map.has(argumentsReceived))
-            .isNotMet(map => map.set(argumentsReceived, new ThemePropertyContainer(...argumentsReceived,)))
-            .get(argumentsReceived)
+    public get(isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: NullOrBoolean, isInSnowTheme: NullOrBoolean, isInSkyTheme: NullOrBoolean, isInForestTheme: NullOrBoolean, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,): ThemeProperty {
+        const argumentsReceived = [isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,] as const satisfies ArgumentsReceived
+
+        const everyContainer = this.everyContainers
+        let argumentsReferenced = argumentsReceived
+        for (let [argument,] of everyContainer) {
+            if (!isArrayEquals(argument, argumentsReceived,))
+                continue
+            argumentsReferenced = argument
+            break
+        }
+        if (argumentsReferenced === argumentsReceived)
+            everyContainer.set(argumentsReceived, new ThemePropertyContainer(isInGroundTheme, isInUndergroundTheme, isInUnderwaterTheme, isInDesertTheme, isInSnowTheme, isInSkyTheme, isInForestTheme, isInGhostHouseTheme, isInAirshipTheme, isInCastleTheme,),)
+        return everyContainer.get(argumentsReferenced,)!
     }
 
 }

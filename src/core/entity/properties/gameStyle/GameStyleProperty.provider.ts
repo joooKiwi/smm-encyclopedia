@@ -1,7 +1,8 @@
-import type {GameStyleProperty}  from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {ProviderWithoutKey} from 'util/provider/ProviderWithoutKey'
+import type {GameStyleProperty}                  from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {ProviderWithMultipleArgumentsAsKey} from 'util/provider/ProviderWithMultipleArgumentsAsKey'
 
 import {GameStylePropertyContainer} from 'core/entity/properties/gameStyle/GameStyleProperty.container'
+import {isArrayEquals}              from 'util/utilitiesMethods'
 import {AbstractProvider}           from 'util/provider/AbstractProvider'
 
 /**
@@ -9,7 +10,7 @@ import {AbstractProvider}           from 'util/provider/AbstractProvider'
  */
 export class GameStylePropertyProvider
     extends AbstractProvider<ArgumentsReceived, GameStyleProperty>
-    implements ProviderWithoutKey<GameStyleProperty, ArgumentsReceived> {
+    implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, GameStyleProperty> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -39,10 +40,20 @@ export class GameStylePropertyProvider
         const SMW extends boolean = boolean,
         const NSMBU extends boolean = boolean,
         const SM3DW extends NullOrBoolean = NullOrBoolean, >(isInSuperMarioBrosStyle: SMB, isInSuperMarioBros3Style: SMB3, isInSuperMarioWorldStyle: SMW, isInNewSuperMarioBrosUStyle: NSMBU, isInSuperMario3DWorldStyle: SM3DW,): GameStyleProperty<SMB, SMB3, SMW, NSMBU, SM3DW>
-    public get(...argumentsReceived: ArgumentsReceived): GameStyleProperty {
-        return this.everyContainers.if(map => map.has(argumentsReceived))
-            .isNotMet(map => map.set(argumentsReceived, new GameStylePropertyContainer(...argumentsReceived,),))
-            .get(argumentsReceived)
+    public get(isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: NullOrBoolean,): GameStyleProperty {
+        const argumentsReceived = [isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,] as const satisfies ArgumentsReceived
+
+        const everyContainer = this.everyContainers
+        let argumentsReferenced = argumentsReceived
+        for (let [argument,] of everyContainer) {
+            if (!isArrayEquals(argument, argumentsReceived,))
+                continue
+            argumentsReferenced = argument
+            break
+        }
+        if (argumentsReferenced === argumentsReceived)
+            everyContainer.set(argumentsReceived, new GameStylePropertyContainer(isInSuperMarioBrosStyle, isInSuperMarioBros3Style, isInSuperMarioWorldStyle, isInNewSuperMarioBrosUStyle, isInSuperMario3DWorldStyle,),)
+        return everyContainer.get(argumentsReferenced,)!
     }
 
 }
