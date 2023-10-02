@@ -118,41 +118,46 @@ export type PossibleEnglishName = | PossibleEnglishName_Game | PossibleEnglishNa
 export type PossibleAcronym = | PossibleAcronym_Game | PossibleAcronym_GameStyle | PossibleAcronym_SoundEffect | PossibleAcronym_Exclusive
 
 
-export type PossibleEnglishName_Game = `Super Mario Maker${| '' | ' for Nintendo 3DS' | ' 2'}`
-export type PossibleAcronym_Game = `SMM${| '' | '3DS' | 2}`
+export type PossibleEnglishName_Game = | 'Super Mario Maker' | 'Super Mario Maker for Nintendo 3DS' | 'Super Mario Maker 2'
+export type PossibleAcronym_Game = | 'SMM' | 'SMM3DS' | 'SMM2'
 
-export type PossibleEnglishName_GameStyle = `Super Mario ${`Bros.${'' | ' 3'}` | `${'' | '3D '}World`}` | 'New Super Mario Bros. U'
+export type PossibleEnglishName_GameStyle = | 'Super Mario Bros.' | 'Super Mario Bros. 3' | 'Super Mario World' | 'New Super Mario Bros. U' | 'Super Mario 3D World'
 export type PossibleAcronym_GameStyle_SMM1 = | 'SMB' | 'SMB3' | 'SMW' | 'NSMBU'
 export type PossibleAcronym_GameStyle = | PossibleAcronym_GameStyle_SMM1 | 'SM3DW'
 
-export type PossibleEnglishName_SoundEffect = `Super Mario ${| 'Kart' | 64 | 'Sunshine' | 'Galaxy'}`
-export type PossibleAcronym_SoundEffect = `SM${| 'K' | 64 | 'S' | 'G'}`
+export type PossibleEnglishName_SoundEffect = | 'Super Mario Kart' | 'Super Mario 64' | 'Super Mario Sunshine' | 'Super Mario Galaxy'
+export type PossibleAcronym_SoundEffect = | 'SMK' | 'SM64' | 'SMS' | 'SMG'
 
 export type PossibleEnglishName_Exclusive =
     | 'Mario Bros.' | 'Super Mario Bros. 2' | 'Super Mario World 2: Yoshi\'s Island' | 'Super Mario Land' | 'Wario Land: Super Mario Land 3' | 'Mario Tennis'
-    | `Dr. Mario${| '' | ' 64'}` | 'Luigi\'s Mansion' | 'Yoshi\'s Woolly World' | 'Captain Toad: Treasure Tracker'
+    | 'Dr. Mario' | 'Dr. Mario 64' | 'Luigi\'s Mansion' | 'Yoshi\'s Woolly World' | 'Captain Toad: Treasure Tracker'
     | 'WarioWare: Touched!' | 'Mario & Luigi: Paper Jam'
 
-    | `Donkey Kong${| '' | ` ${| 'Jr.' | 'Country'}`}`
+    | 'Donkey Kong' | 'Donkey Kong Jr.' | 'Donkey Kong Country'
 
-    | `Kirby's ${| 'Dream Land' | 'Adventure'}`
+    | `Kirby's Dream Land` | `Kirby's Adventure`
 
-    | `Kid Icarius${| '' | ': Uprising'}`
+    | 'Kid Icarius' | 'Kid Icarius: Uprising'
 
     | 'Mega Man'
 
-    | `Metroid${| '' | ': Zero Mission'}`
+    | 'Metroid' | 'Metroid: Zero Mission'
 
     | 'Nintendo Entertainment System R.O.B.'
 
-    | `Fire Emblem${| `: ${| 'Shadow Dragon' | 'Radiant Dawn'}` | ' Awakening'}`
+    | 'Fire Emblem: Shadow Dragon' | 'Fire Emblem: Radiant Dawn' | 'Fire Emblem Awakening'
 
-    | `Pokémon ${| `${| 'Red' | 'Blue' | 'Yellow'} Version` | 'Diamond' | 'Pearl' | 'X' | 'Y'}` | '(Pokémon Green Version)'
+    | 'Pokémon Red Version' | 'Pokémon Blue Version' | 'Pokémon Yellow Version' | '(Pokémon Green Version)'
+    | 'Pokémon Diamond' | 'Pokémon Pearl'
+    | 'Pokémon X' | 'Pokémon Y'
 
-    | `Pikmin${| '' | ' 3'}`
+    | 'Pikmin' | 'Pikmin 3'
 
-    | `The Legend of Zelda${| '' | `: ${| 'A Link to the Past' | 'Ocarina of Time' | 'Majora\'s Mask' | 'The Wind Waker' | 'Twilight Princess' | 'Tri Force Heroes'}`}`
-    | 'Zelda II: The Adventure of Link'
+    | 'The Legend of Zelda' | 'Zelda II: The Adventure of Link'
+    | 'The Legend of Zelda: A Link to the Past'
+    | 'The Legend of Zelda: Ocarina of Time' | 'The Legend of Zelda: Majora\'s Mask'
+    | 'The Legend of Zelda: The Wind Waker' | 'The Legend of Zelda: Twilight Princess'
+    | 'The Legend of Zelda: Tri Force Heroes'
 
     | 'Xenoblade Chronicles'
 
@@ -164,7 +169,9 @@ export type PossibleEnglishName_Exclusive =
 
     | 'Chibi-Robo!'
 
-    | `Animal Crossing${| '' | `: ${| 'Wild World' | 'City Folk' | 'New Leaf' | 'Happy Home Designer'}`}`
+    | 'Animal Crossing'
+    | 'Animal Crossing: Wild World' | 'Animal Crossing: City Folk'
+    | 'Animal Crossing: New Leaf' | 'Animal Crossing: Happy Home Designer'
 
     | 'F-Zero'
 
@@ -180,7 +187,7 @@ export type PossibleEnglishName_Exclusive =
 
     | 'Punch-out!!'
 
-    | `Star Fox${| '' | ' Zero'}`
+    | 'Star Fox' | 'Star Fox Zero'
 
     | 'Yakuman Ho-o'
 
@@ -222,23 +229,23 @@ export type PossibleEnglishName_Exclusive =
     | 'Brain Age: Train Your Brain in Minutes a Day!'
 
 export type PossibleAcronym_Exclusive =
-    | 'MB' | 'SMB2' | 'SMW2:YI' | 'SML' | 'WL:SML3' | 'MT' | `DM${| '' | 64}` | 'LM' | 'YWW' | 'CT:TT' | 'WW:T' | 'M&L:PJ'
-    | `DK${| '' | 'J' | 'C'}`
-    | `K${| 'DL' | 'A'}`
-    | `KI${| '' | ':U'}`
+    | 'MB' | 'SMB2' | 'SMW2:YI' | 'SML' | 'WL:SML3' | 'MT' | 'DM' | 'DM64' | 'LM' | 'YWW' | 'CT:TT' | 'WW:T' | 'M&L:PJ'
+    | 'DK' | 'DKJ' | 'DKC'
+    | 'KDL' | 'KA'
+    | 'KI' | 'KI:U'
     | 'MeM'
-    | `M${| '' | ':ZM'}`
+    | 'M' | 'M:ZM'
     | 'NES ROB'
-    | `FE${| `:${| 'SD' | 'RD'}` | 'A'}`
-    | `P${| 'R' | 'G' | 'B' | 'Ye' | 'D' | 'P' | 'X' | 'Y'}`
-    | `Pi${| '' | 3}`
-    | `TLZ${| '' | `:${| 'ALP' | 'OT' | 'MM' | 'TWW' | 'TP' | 'TFH'}`}` | 'Z2:TAL'
+    | 'FE:SD' | 'FE:RD' | 'FEA'
+    | 'PR' | 'PG' | 'PB' | 'PYe' | 'PD' | 'PP' | 'PX' | 'PY'
+    | 'Pi' | 'Pi3'
+    | 'TLZ' | 'Z2:TAL' | 'TLZ:ALP' | 'TLZ:OT' | 'TLZ:MM' | 'TLZ:TWW' | 'TLZ:TP' | 'TLZ:TFH'
     | 'XC'
     | 'EB' | 'M3'
     | 'Sp'
     | 'WF'
     | 'CR'
-    | `AC${| '' | `:${| 'WW' | 'CF' | 'NL' | 'HHD'}`}`
+    | 'AC' | 'AC:WW' | 'AC:CF' | 'AC:NL' | 'AC:HHD'
     | 'F-Z'
     | 'G&W'
     | 'STH'
@@ -246,7 +253,7 @@ export type PossibleAcronym_Exclusive =
     | 'PM'
     | 'WC'
     | 'PO'
-    | `SF${| '' | 'Z'}`
+    | 'SF' | 'SFZ'
     | 'YH-O'
     | 'BBA'
     | 'Sn' | 'NBA' | 'MoM'
