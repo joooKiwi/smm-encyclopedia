@@ -1,7 +1,5 @@
 import type {TemplateWithNameTemplate} from 'core/_template/TemplateWithName.template'
-import type {NameTemplate}             from 'lang/name/Name.template'
 
+/** @template */
 export interface PredefinedMessageTemplate
-    extends TemplateWithNameTemplate<NameTemplate> {
-
-}
+    extends TemplateWithNameTemplate {}

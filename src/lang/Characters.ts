@@ -409,15 +409,15 @@ export class Characters
     //endregion -------------------- Transformation methods --------------------
 
     // public static getValueByCharacter<T extends string, >(value: T,): Characters
-    public static getValueByCharacter(value: |Characters|string|null|undefined,): Characters {
+    public static getValueByCharacter(value: | Characters | string | null | undefined,): Characters {
         if (value == null)
             throw new TypeError(`No "${this.name}" could be found by a null value.`)
         if (value instanceof this)
             return value
         const valueFound = this.values.find(enumerable =>
-                enumerable.spaceEvenCharacters.includes(value as never)
-                || enumerable.spaceUnevenCharacters.includes(value as never))
-        if(valueFound == null)
+            enumerable.spaceEvenCharacters.includes(value as never)
+            || enumerable.spaceUnevenCharacters.includes(value as never))
+        if (valueFound == null)
             throw new ReferenceError(`No "${this.name}" could be found by ths value "${value}".`)
         return valueFound
     }

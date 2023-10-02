@@ -462,7 +462,7 @@ export abstract class MysteryMushroomAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent
 
-    public renderTableHeader(): NullOr<SingleHeaderContent> {
+    public renderTableHeader(): SingleHeaderContent {
         return this._createTableHeaderOption()
     }
 

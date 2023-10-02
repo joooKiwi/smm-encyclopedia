@@ -1223,7 +1223,7 @@ export abstract class SoundEffects
             const valueToCreate = this._createStandaloneSMM1Sounds(smm1, smm2 instanceof SoundEffectFromMusicAdaptor ? EmptySound.get : smm2,)
 
             if (valueToCreate != null) {
-                if('build' in valueToCreate) {
+                if ('build' in valueToCreate) {
                     console.info({name: this.englishName, value: valueToCreate.build(), sounds: valueToCreate.build().sounds.map(it => it.name), editor: valueToCreate.build().editorSound?.name, link: valueToCreate.build().linkSounds.map(it => it.name), smb2: valueToCreate.build().smb2Sounds.map(it => it.name),},)
                     return this.#sounds_standaloneSmm1 = valueToCreate.build()
                 }

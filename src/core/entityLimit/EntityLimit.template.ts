@@ -2,7 +2,6 @@ import type {TemplateWithNameTemplate}                                          
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName} from 'core/entityLimit/EntityLimits.types'
 import type {PossibleEnglishName as PossibleEntityLimitTypeEnglishName}                                        from 'core/entityLimit/EntityLimitTypes.types'
 import type {SimpleGameFrom1And2Template}                                                                      from 'core/game/SimpleGame.template'
-import type {NameTemplate}                                                                                     from 'lang/name/Name.template'
 
 //region -------------------- Limit types --------------------
 
@@ -37,7 +36,7 @@ interface AbstractEntityLimitTemplate<REGULAR_REFERENCE extends NullOr<PossibleE
     TYPE extends NullOr<PossibleEntityLimitTypeEnglishName> = NullOr<PossibleEntityLimitTypeEnglishName>,
     ACRONYM extends NullOr<| PossibleAcronym | PossibleAlternativeAcronym> = NullOr<| PossibleAcronym | PossibleAlternativeAcronym>,
     LIMIT extends LimitAmountTemplate = LimitAmountTemplate, >
-    extends TemplateWithNameTemplate<NameTemplate> {
+    extends TemplateWithNameTemplate {
 
     references: {
         regular: REGULAR_REFERENCE
@@ -48,8 +47,6 @@ interface AbstractEntityLimitTemplate<REGULAR_REFERENCE extends NullOr<PossibleE
     acronym: ACRONYM
 
     limit: LIMIT
-
-    name: NameTemplate
 
 }
 

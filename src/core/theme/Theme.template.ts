@@ -2,11 +2,10 @@ import type {TemplateWithNameTemplate}        from 'core/_template/TemplateWithN
 import type {PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/loader.types'
 import type {SimpleGameFrom1And2Template}     from 'core/game/SimpleGame.template'
 import type {PossibleEnglishName}             from 'core/nightEffect/NightEffects.types'
-import type {NameTemplate}                    from 'lang/name/Name.template'
 
 /** @template */
 export interface ThemeTemplate
-    extends TemplateWithNameTemplate<NameTemplate> {
+    extends TemplateWithNameTemplate {
 
     is: {
         in: {
