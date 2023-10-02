@@ -80,160 +80,160 @@ export class EntityLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
-    entityType: PossibleEntityType
+    readonly entityType: PossibleEntityType
 
-    firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
-    firstAppearanceInMarioMaker_version: PossibleMarioMakerVersion
+    readonly firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
+    readonly firstAppearanceInMarioMaker_version: PossibleMarioMakerVersion
 
 
     //region -------------------- Basic properties --------------------
 
-    categoryInTheEditor: NullOr<PossibleEnglishName_Category>
+    readonly categoryInTheEditor: NullOr<PossibleEnglishName_Category>
 
-    hasAMushroomVariant: PossibleHasAMushroomVariant
-    canBeInAParachute: PossibleCanBeInAParachute
-    canHaveWings: PossibleCanHaveWings
+    readonly hasAMushroomVariant: PossibleHasAMushroomVariant
+    readonly canBeInAParachute: PossibleCanBeInAParachute
+    readonly canHaveWings: PossibleCanHaveWings
 
     //endregion -------------------- Basic properties --------------------
     //region -------------------- Specific properties --------------------
 
-    canContainOrSpawnAKey: CanContainOrSpawnAKey
+    readonly canContainOrSpawnAKey: CanContainOrSpawnAKey
 
-    isAffectedDirectlyByAnOnOrOffState: IsAffectedDirectlyByAnOnOrOffState
+    readonly isAffectedDirectlyByAnOnOrOffState: IsAffectedDirectlyByAnOnOrOffState
 
-    canBePutOnATrack: CanBePutOnATrack
-    editorLimit_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>
-    whilePlaying_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>
+    readonly canBePutOnATrack: CanBePutOnATrack
+    readonly editorLimit_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>
+    readonly whilePlaying_canBePutOnATrack: NullOr<PossibleEnglishName_Limit>
 
-    canSpawnOutOfAPipe: CanSpawnOutOfAPipe
+    readonly canSpawnOutOfAPipe: CanSpawnOutOfAPipe
 
-    canBePutInASwingingClaw: CanBePutInASwingingClaw
+    readonly canBePutInASwingingClaw: CanBePutInASwingingClaw
 
-    canBeThrownByALakitu: CanBeThrownByALakitu
-    canBePutInALakituCloud: CanBePutInALakituCloud
+    readonly canBeThrownByALakitu: CanBeThrownByALakitu
+    readonly canBePutInALakituCloud: CanBePutInALakituCloud
 
-    canBePutInAClownCar: CanBePutInAClownCar
+    readonly canBePutInAClownCar: CanBePutInAClownCar
 
-    canBeFiredOutOfABulletLauncher: CanBeFiredOutOfABulletLauncher
+    readonly canBeFiredOutOfABulletLauncher: CanBeFiredOutOfABulletLauncher
 
-    canBePutInABlock: CanBePutInABlock
+    readonly canBePutInABlock: CanBePutInABlock
 
-    canBePutInATree: CanBePutInATree
+    readonly canBePutInATree: CanBePutInATree
 
-    weight: PossibleWeight
+    readonly weight: PossibleWeight
 
-    lightSourceEmitted: PossibleLightSource
-    lightSourceEmitted_isInSMB: HasALightSourceEmittedInSMB
+    readonly lightSourceEmitted: PossibleLightSource
+    readonly lightSourceEmitted_isInSMB: HasALightSourceEmittedInSMB
 
-    canSurviveInTheLavaOrThePoison: CanSurviveInTheLavaOrThePoison
+    readonly canSurviveInTheLavaOrThePoison: CanSurviveInTheLavaOrThePoison
 
-    canIgniteABobOmb: CanIgniteABobOmb
-    canBeBrokenOrKilledByABobOmb: CanBeBrokenOrKilledByABobOmb
+    readonly canIgniteABobOmb: CanIgniteABobOmb
+    readonly canBeBrokenOrKilledByABobOmb: CanBeBrokenOrKilledByABobOmb
 
-    canBeAffectedByATwister: CanBeAffectedByATwister
+    readonly canBeAffectedByATwister: CanBeAffectedByATwister
 
-    canGoThroughWalls: CanGoThroughWalls
-    canGoThroughWalls_SM3DW: CanGoThroughWallsInSM3DW
+    readonly canGoThroughWalls: CanGoThroughWalls
+    readonly canGoThroughWalls_SM3DW: CanGoThroughWallsInSM3DW
 
-    canBeStacked: CanBeStacked
+    readonly canBeStacked: CanBeStacked
 
-    isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal
+    readonly isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal
 
-    instrument: PossibleInstrument
-    canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock
+    readonly instrument: PossibleInstrument
+    readonly canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock
 
     //endregion -------------------- Specific properties --------------------
     //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
 
-    canBeThrownByBowserInClownCar: CanBeThrownByBowserInClownCar
+    readonly canBeThrownByBowserInClownCar: CanBeThrownByBowserInClownCar
 
-    canBeThrownByBowserJr: CanBeThrownByBowserJr
-    canBeThrownByBowserJrInClownCar: CanBeThrownByBowserJrInClownCar
+    readonly canBeThrownByBowserJr: CanBeThrownByBowserJr
+    readonly canBeThrownByBowserJrInClownCar: CanBeThrownByBowserJrInClownCar
 
-    canBeTransformedByMagikoopa: CanBeTransformedByMagikoopa
-    canBeSpawnedByMagikoopa: CanBeSpawnedByMagikoopa
-    canBeSpawnedByWingedMagikoopa: CanBeSpawnedByWingedMagikoopa
+    readonly canBeTransformedByMagikoopa: CanBeTransformedByMagikoopa
+    readonly canBeSpawnedByMagikoopa: CanBeSpawnedByMagikoopa
+    readonly canBeSpawnedByWingedMagikoopa: CanBeSpawnedByWingedMagikoopa
 
     //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
     //region -------------------- Entity limit properties --------------------
 
-    limitAmount: LimitAmountType
+    readonly limitAmount: LimitAmountType
 
-    editorLimit_SMM1And3DS: EditorLimitType_SMM1And3DS
-    editorLimit_SMM2: EditorLimitType_SMM2
+    readonly editorLimit_SMM1And3DS: EditorLimitType_SMM1And3DS
+    readonly editorLimit_SMM2: EditorLimitType_SMM2
 
-    whilePlaying_isInGEL: GeneralEntityLimitType
-    whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType
+    readonly whilePlaying_isInGEL: GeneralEntityLimitType
+    readonly whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalEntityLimitType
 
-    whilePlaying_isInPL: PowerUpLimitType
+    readonly whilePlaying_isInPL: PowerUpLimitType
 
-    whilePlaying_isInPJL: ProjectileEntityLimitType
+    readonly whilePlaying_isInPJL: ProjectileEntityLimitType
 
-    whilePlaying_isInObjectRenderedLimit: RenderedObjectLimitType
+    readonly whilePlaying_isInObjectRenderedLimit: RenderedObjectLimitType
 
-    whilePlaying_isInCollectedCoinLimit: CollectedCoinLimitType
+    readonly whilePlaying_isInCollectedCoinLimit: CollectedCoinLimitType
 
-    whilePlaying_otherLimit: OtherLimitType
-    whilePlaying_otherLimit_comment: OtherLimitCommentType
+    readonly whilePlaying_otherLimit: OtherLimitType
+    readonly whilePlaying_otherLimit_comment: OtherLimitCommentType
 
     //endregion -------------------- Entity limit properties --------------------
     //region -------------------- Spawning / Despawning range properties --------------------
 
-    canRespawn: CanRespawnType
-    canRespawn_online: CanRespawnOnlineType
-    canRespawn_online_inABlock: CanRespawnOnlineOutOfABlockType
+    readonly canRespawn: CanRespawnType
+    readonly canRespawn_online: CanRespawnOnlineType
+    readonly canRespawn_online_inABlock: CanRespawnOnlineOutOfABlockType
 
-    behaviour_solo: PossibleBehaviourType
-    behaviour_localCoop: PossibleBehaviourType
-    behaviour_onlineCoop: PossibleBehaviourType
-    behaviour_onlineVS: PossibleBehaviourType
+    readonly behaviour_solo: PossibleBehaviourType
+    readonly behaviour_localCoop: PossibleBehaviourType
+    readonly behaviour_onlineCoop: PossibleBehaviourType
+    readonly behaviour_onlineVS: PossibleBehaviourType
 
 
-    offscreenSpawningAndDespawningReferencePoint: OffscreenSpawningAndDespawningReferencePoint
-    offscreenSpawningHorizontalRange: OffscreenSpawningHorizontalRangeLimitType
-    offscreenDespawningHorizontalRange: OffscreenDespawningHorizontalRangeLimitType
+    readonly offscreenSpawningAndDespawningReferencePoint: OffscreenSpawningAndDespawningReferencePoint
+    readonly offscreenSpawningHorizontalRange: OffscreenSpawningHorizontalRangeLimitType
+    readonly offscreenDespawningHorizontalRange: OffscreenDespawningHorizontalRangeLimitType
 
-    offscreenSpawningUpwardVerticalRange: OffscreenSpawningUpwardVerticalRangeLimitType
-    offscreenDespawningUpwardVerticalRange: OffscreenDespawningUpwardVerticalRangeLimitType
+    readonly offscreenSpawningUpwardVerticalRange: OffscreenSpawningUpwardVerticalRangeLimitType
+    readonly offscreenDespawningUpwardVerticalRange: OffscreenDespawningUpwardVerticalRangeLimitType
 
-    offscreenSpawningDownwardVerticalRange: OffscreenSpawningDownwardVerticalRangeLimitType
-    offscreenDespawningDownwardVerticalRange: OffscreenDespawningDownwardVerticalRangeLimitType
+    readonly offscreenSpawningDownwardVerticalRange: OffscreenSpawningDownwardVerticalRangeLimitType
+    readonly offscreenDespawningDownwardVerticalRange: OffscreenDespawningDownwardVerticalRangeLimitType
 
     //endregion -------------------- Spawning / Despawning range properties --------------------
     //region -------------------- Dimension properties --------------------
 
-    dimension: PossibleDimension
-    dimension_maximum: PossibleMaximumDimension
+    readonly dimension: PossibleDimension
+    readonly dimension_maximum: PossibleMaximumDimension
 
-    dimension_differentSM3DW: PossibleDimensionDifferentInSM3DW
-    dimension_maximum_differentSM3DW: PossibleMaximumDimensionDifferentInSM3DW
+    readonly dimension_differentSM3DW: PossibleDimensionDifferentInSM3DW
+    readonly dimension_maximum_differentSM3DW: PossibleMaximumDimensionDifferentInSM3DW
 
     //endregion -------------------- Dimension properties --------------------
     //region -------------------- Reference on specific condition properties -------------------
 
-    inDayTheme: NullOr<EntityLink>
-    inNightTheme: NullOr<EntityLink>
+    readonly inDayTheme: NullOr<EntityLink>
+    readonly inNightTheme: NullOr<EntityLink>
 
-    inGroundTheme: NullOr<EntityLink>
-    inUndergroundTheme: NullOr<EntityLink>
-    inUnderwaterTheme: NullOr<EntityLink>
-    inDesertTheme: NullOr<EntityLink>
-    inSnowTheme: NullOr<EntityLink>
-    inSkyTheme: NullOr<EntityLink>
-    inForestTheme: NullOr<EntityLink>
-    inGhostHouseTheme: NullOr<EntityLink>
-    inAirshipTheme: NullOr<EntityLink>
-    inCastleTheme: NullOr<EntityLink>
+    readonly inGroundTheme: NullOr<EntityLink>
+    readonly inUndergroundTheme: NullOr<EntityLink>
+    readonly inUnderwaterTheme: NullOr<EntityLink>
+    readonly inDesertTheme: NullOr<EntityLink>
+    readonly inSnowTheme: NullOr<EntityLink>
+    readonly inSkyTheme: NullOr<EntityLink>
+    readonly inForestTheme: NullOr<EntityLink>
+    readonly inGhostHouseTheme: NullOr<EntityLink>
+    readonly inAirshipTheme: NullOr<EntityLink>
+    readonly inCastleTheme: NullOr<EntityLink>
 
-    inSMBGameStyle: NullOr<EntityLink>
-    inSMB3GameStyle: NullOr<EntityLink>
-    inSMWGameStyle: NullOr<EntityLink>
-    inNSMBUGameStyle: NullOr<EntityLink>
-    inSM3DWGameStyle: NullOr<EntityLink>
+    readonly inSMBGameStyle: NullOr<EntityLink>
+    readonly inSMB3GameStyle: NullOr<EntityLink>
+    readonly inSMWGameStyle: NullOr<EntityLink>
+    readonly inNSMBUGameStyle: NullOr<EntityLink>
+    readonly inSM3DWGameStyle: NullOr<EntityLink>
 
     //endregion -------------------- Reference on specific condition properties --------------------
 
-    hasANameReferencedInMarioMaker: HasAReferenceInMarioMaker
+    readonly hasANameReferencedInMarioMaker: HasAReferenceInMarioMaker
 
 }
 
