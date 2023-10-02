@@ -32,22 +32,22 @@ export class ThemeLoader
     #map?: Map<PossibleEnglishName, CourseAndWorldTheme>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new ThemeCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- theme has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- theme has been loaded --------------------',
-                )
+        file.map(it => new ThemeCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- theme has been loaded --------------------\n',
+                references,
+                '\n-------------------- theme has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

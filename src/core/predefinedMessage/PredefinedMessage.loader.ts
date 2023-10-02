@@ -30,22 +30,22 @@ export class PredefinedMessageLoader
     #map?: Map<PossibleEnglishName, PredefinedMessage>
 
     public load(): ReadonlyMap<PossibleEnglishName, PredefinedMessage> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, PredefinedMessage>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new PredefinedMessageCreator(createTemplate(it,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, PredefinedMessage>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "Predefined message" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "Predefined message" has been loaded --------------------',
-                )
+        file.map(it => new PredefinedMessageCreator(createTemplate(it,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "Predefined message" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "Predefined message" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

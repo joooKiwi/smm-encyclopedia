@@ -35,22 +35,22 @@ export class EntityCategoryLoader
     #map?: Map<PossibleEnglishName, EntityCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, EntityCategory> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, EntityCategory>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new EntityCategoryCreator(createTemplate(it,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, EntityCategory>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "entity category" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "entity category" has been loaded --------------------',
-                )
+        file.map(it => new EntityCategoryCreator(createTemplate(it,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "entity category" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "entity category" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

@@ -29,22 +29,22 @@ export class GameReferenceLoader
     #map?: Map<PossibleEnglishName, GameReference>
 
     public load(): ReadonlyMap<PossibleEnglishName, GameReference> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, GameReference>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new GameReferenceCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, GameReference>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "game references" has been loaded (start) --------------------\n',
-                    references,
-                    '\n-------------------- "game references" has been loaded (end) --------------------',
-                )
+        file.map(it => new GameReferenceCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "game references" has been loaded (start) --------------------\n',
+                references,
+                '\n-------------------- "game references" has been loaded (end) --------------------',
+            )
+
+        return this.#map = references
     }
 }
 

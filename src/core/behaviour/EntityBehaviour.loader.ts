@@ -30,22 +30,22 @@ export class EntityBehaviourLoader
     #map?: Map<PossibleTranslationKeys, EntityBehaviour>
 
     public load(): ReadonlyMap<PossibleTranslationKeys, EntityBehaviour> {
-        if (this.#map == null) {
-            const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new EntityBehaviourCreator(createTemplate(it as Content,),).create())
-                .forEach(it => references.set(it.translationKey, it,))
+        const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "game style" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "game style" has been loaded --------------------',
-                )// temporary console.lo
+        file.map(it => new EntityBehaviourCreator(createTemplate(it as Content,),).create())
+            .forEach(it => references.set(it.translationKey, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "game style" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "game style" has been loaded --------------------',
+            )// temporary console.lo
+
+        return this.#map = references
     }
 
 }

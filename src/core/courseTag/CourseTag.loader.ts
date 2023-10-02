@@ -30,22 +30,22 @@ export class CourseTagLoader
     #map?: Map<PossibleEnglishName, CourseTag>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseTag> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, CourseTag>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new CourseTagCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, CourseTag>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "course tag" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "course tag" has been loaded --------------------',
-                )
+        file.map(it => new CourseTagCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "course tag" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "course tag" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

@@ -32,22 +32,22 @@ export class GameStyleLoader
     #map?: Map<PossibleEnglishName, GameStyle>
 
     public load(): ReadonlyMap<PossibleEnglishName, GameStyle> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, GameStyle>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new GameStyleCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, GameStyle>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "game style" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "game style" has been loaded --------------------',
-                )
+        file.map(it => new GameStyleCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "game style" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "game style" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

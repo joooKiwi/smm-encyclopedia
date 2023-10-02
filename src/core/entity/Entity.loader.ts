@@ -45,33 +45,33 @@ export class EntityLoader
     #map?: Map<PossibleEnglishName, Entity>
 
     public load(): ReadonlyMap<PossibleEnglishName, Entity> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, Entity>(),
-                templateReferences = new Map<PossibleEnglishName, EntityTemplate>(),
-                referencesToWatch = new ReferencesToWatch(templateReferences),
-                namesAndTemplates = file.map(it => {
-                    const template = new TemplateCreator(it as Content).create(),
-                        englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
+        if (this.#map != null)
+            return this.#map
 
-                    templateReferences.set(englishName, template,)
-                    referencesToWatch.addSubReference(template)
-                    return [englishName, template,] as const
-                })
+        const references = new Map<PossibleEnglishName, Entity>(),
+            templateReferences = new Map<PossibleEnglishName, EntityTemplate>(),
+            referencesToWatch = new ReferencesToWatch(templateReferences),
+            namesAndTemplates = file.map(it => {
+                const template = new TemplateCreator(it as Content).create(),
+                    englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
 
-            referencesToWatch.setReferences()
-            namesAndTemplates.forEach(([name, template,]) =>
-                references.set(name, new EntityCreator(template).create()))
+                templateReferences.set(englishName, template,)
+                referencesToWatch.addSubReference(template)
+                return [englishName, template,] as const
+            })
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "entity" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "entity" has been loaded --------------------',
-                )
+        referencesToWatch.setReferences()
+        namesAndTemplates.forEach(([name, template,]) =>
+            references.set(name, new EntityCreator(template).create()))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "entity" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "entity" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

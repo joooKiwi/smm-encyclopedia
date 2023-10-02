@@ -36,22 +36,22 @@ export class MiiCostumeLoader
     #map?: Map<PossibleEnglishName, MiiCostume>
 
     public load(): ReadonlyMap<PossibleEnglishName, MiiCostume> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, MiiCostume>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new MiiCostumeCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, MiiCostume>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "Mii costume" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "Mii costume" has been loaded --------------------',
-                )
+        file.map(it => new MiiCostumeCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "Mii costume" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "Mii costume" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 }
 

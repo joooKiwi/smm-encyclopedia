@@ -30,22 +30,22 @@ export class MiiCostumeCategoryLoader
     #map?: Map<PossibleEnglishName, MiiCostumeCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, MiiCostumeCategory> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new MiiCostumeCategoryCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "Mii costume" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "Mii costume" has been loaded --------------------',
-                )
+        file.map(it => new MiiCostumeCategoryCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "Mii costume" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "Mii costume" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

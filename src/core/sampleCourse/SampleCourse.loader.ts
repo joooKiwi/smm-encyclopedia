@@ -32,22 +32,22 @@ export class SampleCourseLoader
     #map?: Map<PossibleEnglishName, SampleCourse>
 
     public load(): ReadonlyMap<PossibleEnglishName, SampleCourse> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, SampleCourse>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new SampleCourseCreator(createTemplate(it as Content,),),)
-                .forEach(it => references.set(`Level ${it.template.numbers.world}`, it.create(),),)
+        const references = new Map<PossibleEnglishName, SampleCourse>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "sample course" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "sample course" has been loaded --------------------',
-                )
+        file.map(it => new SampleCourseCreator(createTemplate(it as Content,),),)
+            .forEach(it => references.set(`Level ${it.template.numbers.world}`, it.create(),),)
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "sample course" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "sample course" has been loaded --------------------',
+            )
+
+        this.#map = references
     }
 }
 

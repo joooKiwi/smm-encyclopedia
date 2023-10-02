@@ -43,22 +43,22 @@ export class MysteryMushroomLoader
     #map?: Map<PossibleUniqueEnglishName, MysteryMushroom>
 
     public load(): ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom> {
-        if (this.#map == null) {
-            const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new MysteryMushroomCreator(createTemplate(it as Content,),),)
-                .forEach(it => references.set(it.template.uniqueName, it.create(),))
+        const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "mystery mushroom" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "mystery mushroom" has been loaded --------------------',
-                )
+        file.map(it => new MysteryMushroomCreator(createTemplate(it as Content,),),)
+            .forEach(it => references.set(it.template.uniqueName, it.create(),))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "mystery mushroom" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "mystery mushroom" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

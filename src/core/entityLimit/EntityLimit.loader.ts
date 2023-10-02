@@ -31,28 +31,28 @@ export class EntityLimitLoader
     #map?: Map<PossibleEnglishName, EntityLimit>
 
     public load(): ReadonlyMap<PossibleEnglishName, EntityLimit> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, EntityLimit>()
+        if (this.#map != null)
+            return this.#map
 
-            //region -------------------- Builder initialisation --------------------
+        const references = new Map<PossibleEnglishName, EntityLimit>()
 
-            EntityLimitCreator.references = references
+        //region -------------------- Builder initialisation --------------------
 
-            //endregion -------------------- Builder initialisation --------------------
+        EntityLimitCreator.references = references
 
-            file.map(it => new EntityLimitCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        //endregion -------------------- Builder initialisation --------------------
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "limit" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "limit" has been loaded --------------------',
-                )
+        file.map(it => new EntityLimitCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "limit" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "limit" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }

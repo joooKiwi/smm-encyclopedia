@@ -30,22 +30,22 @@ export class SoundEffectCategoryLoader
     #map?: Map<PossibleEnglishName, SoundEffectCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, SoundEffectCategory> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, SoundEffectCategory>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new SoundEffectCategoryCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, SoundEffectCategory>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "sound effect category" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "sound effect category" has been loaded --------------------'
-                )
+        file.map(it => new SoundEffectCategoryCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "sound effect category" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "sound effect category" has been loaded --------------------'
+            )
+
+        return this.#map = references
     }
 
 }

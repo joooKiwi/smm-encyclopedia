@@ -31,22 +31,22 @@ export class CharacterNameLoader
     #map?: Map<PossibleUniqueEnglishName, CharacterName>
 
     public load(): ReadonlyMap<PossibleUniqueEnglishName, CharacterName> {
-        if (this.#map == null) {
-            const references = new Map<PossibleUniqueEnglishName, CharacterName>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new CharacterNameCreator(createTemplate(it as Content,),),)
-                .forEach(it => references.set(it.template.uniqueName as PossibleUniqueEnglishName, it.create(),))
+        const references = new Map<PossibleUniqueEnglishName, CharacterName>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "character name" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "character name" has been loaded --------------------',
-                )
+        file.map(it => new CharacterNameCreator(createTemplate(it as Content,),),)
+            .forEach(it => references.set(it.template.uniqueName as PossibleUniqueEnglishName, it.create(),))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "character name" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "character name" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 }
 

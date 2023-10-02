@@ -33,22 +33,22 @@ export class InstrumentLoader
     #map?: Map<PossibleEnglishName, Instrument>
 
     public load(): ReadonlyMap<PossibleEnglishName, Instrument> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, Instrument>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new InstrumentCreator(createTemplate(it as Content,),).create(),)
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = new Map<PossibleEnglishName, Instrument>()
 
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "instrument" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "instrument" has been loaded --------------------',
-                )
+        file.map(it => new InstrumentCreator(createTemplate(it as Content,),).create(),)
+            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
-            this.#map = references
-        }
-        return this.#map
+        if (!isInProduction)
+            console.info(
+                '-------------------- "instrument" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "instrument" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
