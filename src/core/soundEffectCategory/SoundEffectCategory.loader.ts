@@ -34,9 +34,11 @@ export class SoundEffectCategoryLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, SoundEffectCategory>()
-
-        file.map(it => new SoundEffectCategoryCreator(createTemplate(it as Content,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new SoundEffectCategoryCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

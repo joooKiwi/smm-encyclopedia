@@ -36,26 +36,48 @@ export class OtherWordInTheGameLoader
         if (this.#map != null)
             return this.#map
 
-        const references = new Map<PossibleEnglishName_Singular, OtherSingularWordInTheGame>(),
-            templateReferences = new Map<PossibleEnglishName, OtherWordInTheGameTemplate>(),
-            templateReferencesToFollow = new Map<PossibleEnglishName_Singular, OtherWordInTheGameTemplate>()
+        const references = new Map<PossibleEnglishName_Singular, OtherSingularWordInTheGame>()
+        const templateReferences = new Map<PossibleEnglishName, OtherWordInTheGameTemplate>()
+        const templateReferencesToFollow = new Map<PossibleEnglishName_Singular, OtherWordInTheGameTemplate>()
+        //#region -------------------- Associating the template to the english name ----------------------------------------
 
-        file.map(it => {
-            const template = createTemplate(it as Content,)
+        const size = file.length
+        let index = size
+        const temporaryArray = new Array<readonly [PossibleEnglishName, OtherWordInTheGameTemplate, Content,]>(size,)
+        while (index-- > 0) {
+            const content = file[index] as Content
+            const template = createTemplate(content,)
             const englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
 
             templateReferences.set(englishName, template,)
+            temporaryArray[index] = [englishName, template, content,]
+        }
 
-            return [englishName, template, it as Content,] as const
-        }).forEach(([name, template, content,]) => {
-            if (content.pluralFormOf == null) {
-                templateReferencesToFollow.set(name as PossibleEnglishName_Singular, template,)
-                return
+        //#endregion -------------------- Associating the template to the english name ----------------------------------------
+        //#region -------------------- Setting the template references ----------------------------------------
+
+        index = size
+        while (index-- > 0) {
+            const value = temporaryArray[index]
+            const content = value[2]
+
+            if (content.pluralFormOf != null) {
+                templateReferences.get(content.pluralFormOf)!.properties.pluralForm = value[1]
+                continue
             }
-            templateReferences.get(content.pluralFormOf)!.properties.pluralForm = template
-        });
 
-        templateReferencesToFollow.forEach((template, name,) => references.set(name, new OtherSingularWordInTheGameCreator(template).create(),))
+            templateReferencesToFollow.set(value[0] as PossibleEnglishName_Singular, value[1],)
+        }
+
+        //#endregion -------------------- Setting the template references ----------------------------------------
+        //#region -------------------- Associating the references to the english name ----------------------------------------
+
+        const iterator = templateReferencesToFollow[Symbol.iterator]()
+        let iteratorResult: IteratorResult<readonly [PossibleEnglishName_Singular, OtherWordInTheGameTemplate,], unknown>
+        while (!(iteratorResult = iterator.next()).done)
+            references.set(iteratorResult.value[0], new OtherSingularWordInTheGameCreator(iteratorResult.value[1],).create(),)
+
+        //#endregion -------------------- Associating the references to the english name ----------------------------------------
 
         if (!isInProduction)
             console.info(

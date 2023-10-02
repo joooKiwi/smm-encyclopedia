@@ -36,9 +36,11 @@ export class SampleCourseLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, SampleCourse>()
-
-        file.map(it => new SampleCourseCreator(createTemplate(it as Content,),),)
-            .forEach(it => references.set(`Level ${it.template.numbers.world}`, it.create(),),)
+        let index = file.length
+        while (index-- > 0) {
+            const template = createTemplate(file[index] as Content,)
+            references.set(`Level ${template.numbers.world}`, new SampleCourseCreator(template,).create(),)
+        }
 
         if (!isInProduction)
             console.info(

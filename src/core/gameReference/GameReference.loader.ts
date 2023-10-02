@@ -34,9 +34,11 @@ export class GameReferenceLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, GameReference>()
-
-        file.map(it => new GameReferenceCreator(createTemplate(it as Content,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new GameReferenceCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

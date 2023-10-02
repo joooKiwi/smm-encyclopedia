@@ -36,9 +36,11 @@ export class ThemeLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
-
-        file.map(it => new ThemeCreator(createTemplate(it as Content,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new ThemeCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

@@ -34,9 +34,11 @@ export class MiiCostumeCategoryLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
-
-        file.map(it => new MiiCostumeCategoryCreator(createTemplate(it as Content,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new MiiCostumeCategoryCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

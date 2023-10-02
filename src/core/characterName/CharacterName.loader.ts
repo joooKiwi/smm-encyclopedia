@@ -35,9 +35,11 @@ export class CharacterNameLoader
             return this.#map
 
         const references = new Map<PossibleUniqueEnglishName, CharacterName>()
-
-        file.map(it => new CharacterNameCreator(createTemplate(it as Content,),),)
-            .forEach(it => references.set(it.template.uniqueName as PossibleUniqueEnglishName, it.create(),))
+        let index = file.length
+        while (index-- > 0) {
+            const template = createTemplate(file[index] as Content,)
+            references.set(template.uniqueName as PossibleUniqueEnglishName, new CharacterNameCreator(template,).create(),)
+        }
 
         if (!isInProduction)
             console.info(

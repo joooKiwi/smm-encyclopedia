@@ -34,9 +34,11 @@ export class PredefinedMessageLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, PredefinedMessage>()
-
-        file.map(it => new PredefinedMessageCreator(createTemplate(it,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new PredefinedMessageCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

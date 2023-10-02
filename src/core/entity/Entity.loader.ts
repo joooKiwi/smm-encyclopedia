@@ -48,21 +48,26 @@ export class EntityLoader
         if (this.#map != null)
             return this.#map
 
-        const references = new Map<PossibleEnglishName, Entity>(),
-            templateReferences = new Map<PossibleEnglishName, EntityTemplate>(),
-            referencesToWatch = new ReferencesToWatch(templateReferences),
-            namesAndTemplates = file.map(it => {
-                const template = new TemplateCreator(it as Content).create(),
-                    englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
+        const references = new Map<PossibleEnglishName, Entity>()
+        const templateReferences = new Map<PossibleEnglishName, EntityTemplate>()
+        const referencesToWatch = new ReferencesToWatch(templateReferences,)
+        const size = file.length
+        const namesAndTemplates = new Array<readonly [PossibleEnglishName, EntityTemplate,]>(size,)
+        let index = size
+        while (index-- > 0) {
+            const template = new TemplateCreator(file[index] as Content).create()
+            const englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
 
-                templateReferences.set(englishName, template,)
-                referencesToWatch.addSubReference(template)
-                return [englishName, template,] as const
-            })
+            templateReferences.set(englishName, template,)
+            referencesToWatch.addSubReference(template)
+            namesAndTemplates[index] = [englishName, template,]
+        }
 
         referencesToWatch.setReferences()
-        namesAndTemplates.forEach(([name, template,]) =>
-            references.set(name, new EntityCreator(template).create()))
+
+        index = size
+        while (index-- > 0)
+            references.set(namesAndTemplates[index][0], new EntityCreator(namesAndTemplates[index][1],).create(),)
 
         if (!isInProduction)
             console.info(

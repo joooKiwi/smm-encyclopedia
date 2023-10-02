@@ -47,9 +47,11 @@ export class MysteryMushroomLoader
             return this.#map
 
         const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
-
-        file.map(it => new MysteryMushroomCreator(createTemplate(it as Content,),),)
-            .forEach(it => references.set(it.template.uniqueName, it.create(),))
+        let index = file.length
+        while (index-- > 0) {
+            const template = createTemplate(file[index] as Content,)
+            references.set(template.uniqueName, new MysteryMushroomCreator(template,).create(),)
+        }
 
         if (!isInProduction)
             console.info(

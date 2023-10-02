@@ -34,16 +34,12 @@ export class EntityLimitLoader
         if (this.#map != null)
             return this.#map
 
-        const references = new Map<PossibleEnglishName, EntityLimit>()
-
-        //region -------------------- Builder initialisation --------------------
-
-        EntityLimitCreator.references = references
-
-        //endregion -------------------- Builder initialisation --------------------
-
-        file.map(it => new EntityLimitCreator(createTemplate(it as Content,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        const references = EntityLimitCreator.references = new Map<PossibleEnglishName, EntityLimit>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new EntityLimitCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

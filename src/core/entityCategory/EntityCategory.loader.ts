@@ -39,9 +39,11 @@ export class EntityCategoryLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, EntityCategory>()
-
-        file.map(it => new EntityCategoryCreator(createTemplate(it,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new EntityCategoryCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

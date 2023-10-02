@@ -36,9 +36,11 @@ export class GameStyleLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, GameStyle>()
-
-        file.map(it => new GameStyleCreator(createTemplate(it as Content,),).create(),)
-            .forEach(it => references.set(it.english as PossibleEnglishName, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new GameStyleCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.english as PossibleEnglishName, reference,)
+        }
 
         if (!isInProduction)
             console.info(

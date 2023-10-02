@@ -34,9 +34,11 @@ export class EntityBehaviourLoader
             return this.#map
 
         const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
-
-        file.map(it => new EntityBehaviourCreator(createTemplate(it as Content,),).create())
-            .forEach(it => references.set(it.translationKey, it,))
+        let index = file.length
+        while (index-- > 0) {
+            const reference = new EntityBehaviourCreator(createTemplate(file[index] as Content,),).create()
+            references.set(reference.translationKey, reference,)
+        }
 
         if (!isInProduction)
             console.info(
