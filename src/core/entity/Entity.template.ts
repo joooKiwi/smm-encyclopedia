@@ -169,6 +169,7 @@ export interface DimensionTemplate
 
 export type SimpleDimensionTemplateDifferentInSM3DW = SimpleDimensionTemplate<PossibleDimensionDifferentInSM3DW, PossibleMaximumDimensionDifferentInSM3DW>
 
+/** @template */
 export interface SimpleDimensionTemplate<V extends | PossibleDimension | PossibleDimensionDifferentInSM3DW, M extends | PossibleMaximumDimension | PossibleMaximumDimensionDifferentInSM3DW, > {
 
     value: V

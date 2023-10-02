@@ -2,6 +2,7 @@ import type {TemplateWithNameTemplate}             from 'core/_template/Template
 import type {PossibleMakerCentralName}             from 'core/courseTag/CourseTags.types'
 import type {NameTemplate as OriginalNameTemplate} from 'lang/name/Name.template'
 
+/** @template */
 export interface CourseTagTemplate
     extends TemplateWithNameTemplate<NameTemplate> {
 
@@ -11,6 +12,7 @@ export interface CourseTagTemplate
 
 }
 
+/** @template */
 export interface NameTemplate
     extends OriginalNameTemplate {
 

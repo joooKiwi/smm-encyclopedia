@@ -3,6 +3,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Category}               
 import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
 import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from 'core/version/Versions.types'
 
+/** @template */
 export interface MiiCostumeTemplate
     extends TemplateWithNameTemplate {
 

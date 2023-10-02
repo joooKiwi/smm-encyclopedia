@@ -3,6 +3,7 @@ import type {SimpleGameFrom1And2Template}                                   from
 import type {PlayerSoundEffectTriggerTemplate}                              from 'core/soundEffect/property/PlayerSoundEffectTrigger.template'
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
 
+/** @template */
 export interface SoundEffectTemplate
     extends TemplateWithNameTemplate {
 
