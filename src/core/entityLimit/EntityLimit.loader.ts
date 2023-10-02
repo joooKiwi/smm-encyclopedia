@@ -1,16 +1,15 @@
 import file from 'resources/compiled/Entity limit.json'
 
-import type {LanguageContent}                                                                                                                                                                     from 'core/_template/LanguageContent'
-import type {EntityLimit}                                                                                                                                                                         from 'core/entityLimit/EntityLimit'
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, LimitAmountTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from 'core/entityLimit/EntityLimit.template'
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                                                    from 'core/entityLimit/EntityLimits.types'
-import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                from 'core/entityLimit/EntityLimitTypes.types'
-import type {Loader}                                                                                                                                                                              from 'util/loader/Loader'
+import type {LanguageContent}                                                                                                                                                from 'core/_template/LanguageContent'
+import type {EntityLimit}                                                                                                                                                    from 'core/entityLimit/EntityLimit'
+import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from 'core/entityLimit/EntityLimit.template'
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                               from 'core/entityLimit/EntityLimits.types'
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                           from 'core/entityLimit/EntityLimitTypes.types'
+import type {Loader}                                                                                                                                                         from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {EntityLimitCreator}      from 'core/entityLimit/EntityLimit.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {EntityLimitCreator} from 'core/entityLimit/EntityLimit.creator'
 
 /** @singleton */
 export class EntityLimitLoader
@@ -41,7 +40,7 @@ export class EntityLimitLoader
 
             //endregion -------------------- Builder initialisation --------------------
 
-            file.map(it => new EntityLimitCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new EntityLimitCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -73,30 +72,31 @@ interface Content
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<| EntityLimitTemplate | AlternativeLimitTemplate, Content> {
 
-    static readonly #EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,}
-    static readonly #EMPTY_REFERENCES = {
-        regular: null,
-        alternative: null,
-    }
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
+}
 
-    public override create(): | EntityLimitTemplate | AlternativeLimitTemplate {
-        const content = this._content,
-            type = content.type,
-            acronym = content.acronym
 
-        return type == null
-            ? this.#createAlternativeLimitTemplate(content, acronym as NullOr<PossibleAlternativeAcronym>,)
-            : this.#createLimitTemplate(content, type, acronym as NullOr<PossibleAcronym>,)
-    }
+const EMPTY_REFERENCES = {regular: null, alternative: null,}
+const EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,}
 
-    #createLimitTemplate(content: Content, type: PossibleEnglishName_LimitType, acronym: NullOr<PossibleAcronym>,): EntityLimitTemplate {
+function createTemplate(content: Content,): | EntityLimitTemplate | AlternativeLimitTemplate {
+    const type = content.type
+    if (type == null)
+        return {
+            references: EMPTY_REFERENCES,
+
+            type: null,
+            acronym: content.acronym as NullOr<PossibleAlternativeAcronym>,
+
+            limit: EMPTY_LIMIT_AMOUNT_TEMPLATE,
+
+            name: TemplateMethods.createNameTemplate(content,),
+        } satisfies AlternativeLimitTemplate
+
+    const limit_SMM1 = content.limit_SMM1And3DS
+    const limit_SMM2 = content.limit_SMM2
+    if (limit_SMM1 == null && limit_SMM2 == null)
         return {
             references: {
                 regular: content.english as PossibleEnglishName,
@@ -105,40 +105,28 @@ class TemplateCreator
 
             type: type,
 
-            acronym: acronym,
+            acronym: content.acronym as NullOr<PossibleAcronym>,
 
-            limit: this.#createLimitAmountTemplate(),
-
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
-    #createAlternativeLimitTemplate(content: Content, acronym: NullOr<PossibleAlternativeAcronym>,): AlternativeLimitTemplate {
-        return {
-            references: TemplateCreator.#EMPTY_REFERENCES,
-
-            type: null,
-            acronym: acronym,
-
-            limit: TemplateCreator.#EMPTY_LIMIT_AMOUNT_TEMPLATE,
+            limit: EMPTY_LIMIT_AMOUNT_TEMPLATE,
 
             name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
+        } satisfies EntityLimitTemplate
+    return {
+        references: {
+            regular: content.english as PossibleEnglishName,
+            alternative: content.alternative,
+        },
 
+        type: type,
 
-    #createLimitAmountTemplate(): LimitAmountTemplate {
-        const content = this._content,
-            limit_SMM1 = content.limit_SMM1And3DS,
-            limit_SMM2 = content.limit_SMM2
+        acronym: content.acronym as NullOr<PossibleAcronym>,
 
-        return limit_SMM1 == null && limit_SMM2 == null
-            ? TemplateCreator.#EMPTY_LIMIT_AMOUNT_TEMPLATE
-            : {
-                '1And3DS': limit_SMM1,
-                2: limit_SMM2,
-                comment: content.limit_comment,
-            }
-    }
+        limit: {
+            '1And3DS': limit_SMM1,
+            2: limit_SMM2,
+            comment: content.limit_comment,
+        },
 
+        name: TemplateMethods.createNameTemplate(content,),
+    } satisfies EntityLimitTemplate
 }

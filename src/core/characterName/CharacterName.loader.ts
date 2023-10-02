@@ -8,10 +8,9 @@ import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.
 import type {GameContentFromAllGames}   from 'core/game/Loader.types'
 import type {CharacterNameTemplate}     from 'core/characterName/CharacterName.template'
 
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {CharacterNameCreator}    from 'core/characterName/CharacterName.creator'
-import {isInProduction}          from 'variables'
+import * as TemplateMethods   from 'core/_template/templateMethods'
+import {CharacterNameCreator} from 'core/characterName/CharacterName.creator'
+import {isInProduction}       from 'variables'
 
 export class CharacterNameLoader
     implements Loader<ReadonlyMap<PossibleUniqueEnglishName, CharacterName>> {
@@ -35,7 +34,7 @@ export class CharacterNameLoader
         if (this.#map == null) {
             const references = new Map<PossibleUniqueEnglishName, CharacterName>()
 
-            file.map(it => new CharacterNameCreator(new TemplateCreator(it as Content).create()))
+            file.map(it => new CharacterNameCreator(createTemplate(it as Content,),),)
                 .forEach(it => references.set(it.template.uniqueName as PossibleUniqueEnglishName, it.create(),))
 
             if (!isInProduction)
@@ -62,17 +61,12 @@ interface Content
 class TemplateCreator
     extends AbstractTemplateCreator<CharacterNameTemplate, Content> {
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
+}
 
-    public override create(): CharacterNameTemplate {
-        const content = this._content
-
-        return {
-            name: TemplateMethods.createNameTemplate(content,),
-            uniqueName: content.uniqueName,
-            properties: {isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},}
-        }
+function createTemplate(content: Content,): CharacterNameTemplate {
+    return {
+        name: TemplateMethods.createNameTemplate(content,),
+        uniqueName: content.uniqueName,
+        properties: {isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},}
     }
 }

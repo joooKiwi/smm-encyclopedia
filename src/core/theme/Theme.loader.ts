@@ -8,10 +8,9 @@ import type {PossibleEnglishName}                       from 'core/theme/Themes.
 import type {PossibleEffectInNightTheme, ThemeTemplate} from 'core/theme/Theme.template'
 import type {Loader}                                    from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {ThemeCreator}            from 'core/theme/Theme.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {ThemeCreator}       from 'core/theme/Theme.creator'
 
 /** @singleton */
 export class ThemeLoader
@@ -36,7 +35,7 @@ export class ThemeLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
 
-            file.map(it => new ThemeCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new ThemeCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -68,30 +67,19 @@ interface Content
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<ThemeTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): ThemeTemplate {
-        const content = this._content
-
-        return {
-            is: {
-                in: {
-                    game: TemplateMethods.createGameTemplateFrom1And2(content,),
-                    theme: {
-                        course: content.isInCourseTheme,
-                        world: content.isInWorldTheme,
-                    },
+function createTemplate(content: Content,): ThemeTemplate {
+    return {
+        is: {
+            in: {
+                game: TemplateMethods.createGameTemplateFrom1And2(content,),
+                theme: {
+                    course: content.isInCourseTheme,
+                    world: content.isInWorldTheme,
                 },
-                availableFromTheStart: content.isAvailableFromTheStart_SMM1,
             },
-            effect: content.effectInNightTheme,
-            name: TemplateMethods.createNameTemplate(content,),
-        }
+            availableFromTheStart: content.isAvailableFromTheStart_SMM1,
+        },
+        effect: content.effectInNightTheme,
+        name: TemplateMethods.createNameTemplate(content,),
     }
-
 }

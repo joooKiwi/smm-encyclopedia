@@ -19,12 +19,11 @@ import type {PossibleInstrument}                                                
 import type {PossibleName as PossibleMarioMakerVersion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'core/version/Versions.types'
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {EntityCreator}           from 'core/entity/Entity.creator'
-import {ReferencesToWatch}       from 'core/entity/ReferencesToWatch'
-import {EMPTY_ARRAY}             from 'util/emptyVariables'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {EntityCreator}      from 'core/entity/Entity.creator'
+import {ReferencesToWatch}  from 'core/entity/ReferencesToWatch'
+import {EMPTY_ARRAY}        from 'util/emptyVariables'
 
 /** @singleton */
 export class EntityLoader
@@ -238,8 +237,8 @@ interface Content
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<EntityTemplate, Content> {
+/** @todo Transform into a functional approach */
+class TemplateCreator {
 
     static readonly SLASH_SEPARATOR = ' / '
     static readonly LINK_AS_THIS = 'this'
@@ -250,12 +249,18 @@ class TemplateCreator
         differentInSM3DW: this.EMPTY_SIMPLE_DIMENSION_TEMPLATE,
     }
 
+    readonly #content
+
     public constructor(content: Content,) {
-        super(content)
+        this.#content = content
     }
 
-    public override create(): EntityTemplate {
-        const content = this._content,
+    private get __content(): Content {
+        return this.#content
+    }
+
+    public create(): EntityTemplate {
+        const content = this.__content,
             [
                 isInSuperMarioMaker1, isInSuperMarioMaker2,
                 dayLink, nightLink,

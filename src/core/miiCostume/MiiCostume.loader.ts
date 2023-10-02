@@ -9,10 +9,9 @@ import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNo
 import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from 'core/version/Versions.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {MiiCostumeCreator}       from 'core/miiCostume/MiiCostume.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {MiiCostumeCreator}  from 'core/miiCostume/MiiCostume.creator'
 
 /**
  * @singleton
@@ -40,7 +39,7 @@ export class MiiCostumeLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, MiiCostume>()
 
-            file.map(it => new MiiCostumeCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new MiiCostumeCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -67,22 +66,11 @@ interface Content
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<MiiCostumeTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): MiiCostumeTemplate {
+    return {
+        officialNotification: content.notificationIfUnlocked,
+        version: content.MM2_version,
+        category: content.category,
+        name: TemplateMethods.createNameTemplate(content,),
     }
-
-    public override create(): MiiCostumeTemplate {
-        const content = this._content
-
-        return {
-            officialNotification: content.notificationIfUnlocked,
-            version: content.MM2_version,
-            category: content.category,
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
 }

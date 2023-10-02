@@ -8,10 +8,9 @@ import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, 
 import type {PossibleEnglishName}                                                                                          from 'core/sampleCourse/SampleCourses.types'
 import type {Loader}                                                                                                       from 'util/loader/Loader'
 
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {SampleCourseCreator}     from 'core/sampleCourse/SampleCourse.creator'
-import {isInProduction}          from 'variables'
+import * as TemplateMethods  from 'core/_template/templateMethods'
+import {SampleCourseCreator} from 'core/sampleCourse/SampleCourse.creator'
+import {isInProduction}      from 'variables'
 
 /** @singleton */
 export class SampleCourseLoader
@@ -36,7 +35,7 @@ export class SampleCourseLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, SampleCourse>()
 
-            file.map(it => new SampleCourseCreator(new TemplateCreator(it as Content,).create(),),)
+            file.map(it => new SampleCourseCreator(createTemplate(it as Content,),),)
                 .forEach(it => references.set(`Level ${it.template.numbers.world}`, it.create(),),)
 
             if (!isInProduction)
@@ -66,23 +65,12 @@ interface Content
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<SampleCourseTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): SampleCourseTemplate {
+    return {
+        name: TemplateMethods.createNameTemplate(content,),
+        numbers: {world: content.worldNumber, first: content.courseNumberInFirst10MarioChallenge,},
+        gameStyle: content.gameStyle,
+        courseThemeArea: {main: content.courseTheme_mainArea, sub: content.courseTheme_subArea,},
+        amountOfTime: content.amountOfTime,
     }
-
-    public override create(): SampleCourseTemplate {
-        const content = this._content
-
-        return {
-            name: TemplateMethods.createNameTemplate(content,),
-            numbers: {world: content.worldNumber, first: content.courseNumberInFirst10MarioChallenge,},
-            gameStyle: content.gameStyle,
-            courseThemeArea: {main: content.courseTheme_mainArea, sub: content.courseTheme_subArea,},
-            amountOfTime: content.amountOfTime,
-        }
-    }
-
 }

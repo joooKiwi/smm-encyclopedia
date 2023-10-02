@@ -8,7 +8,6 @@ import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishNam
 import type {Loader}                                                                        from 'util/loader/Loader'
 
 import {isInProduction}                    from 'variables'
-import {AbstractTemplateCreator}           from 'core/_template/AbstractTemplate.creator'
 import * as TemplateMethods                from 'core/_template/templateMethods'
 import {OtherSingularWordInTheGameCreator} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.creator'
 
@@ -40,8 +39,8 @@ export class OtherWordInTheGameLoader
                 templateReferencesToFollow = new Map<PossibleEnglishName_Singular, OtherWordInTheGameTemplate>()
 
             file.map(it => {
-                const template = new TemplateCreator(it as Content).create(),
-                    englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
+                const template = createTemplate(it as Content,)
+                const englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
 
                 templateReferences.set(englishName, template,)
 
@@ -79,23 +78,12 @@ interface Content
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<OtherWordInTheGameTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): OtherWordInTheGameTemplate {
+    return {
+        properties: {
+            isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},
+            pluralForm: null,
+        },
+        name: TemplateMethods.createNameTemplate(content,),
     }
-
-    public override create(): OtherWordInTheGameTemplate {
-        const content = this._content
-
-        return {
-            properties: {
-                isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},
-                pluralForm: null,
-            },
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
 }

@@ -16,14 +16,12 @@ import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}           
 import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
 import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
 import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
-import type {SoundPropertyTemplate}                                                                                                                                                                                              from 'core/mysteryMushroom/properties/sound/SoundProperty.template'
 import type {PossibleName_SMM1 as PossibleVersionNameInSMM}                                                                                                                                                                      from 'core/version/Versions.types'
 import type {Loader}                                                                                                                                                                                                             from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {MysteryMushroomCreator}  from 'core/mysteryMushroom/MysteryMushroom.creator'
+import {isInProduction}         from 'variables'
+import * as TemplateMethods     from 'core/_template/templateMethods'
+import {MysteryMushroomCreator} from 'core/mysteryMushroom/MysteryMushroom.creator'
 
 /** @singleton */
 export class MysteryMushroomLoader
@@ -48,7 +46,7 @@ export class MysteryMushroomLoader
         if (this.#map == null) {
             const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
 
-            file.map(it => new MysteryMushroomCreator(new TemplateCreator(it as Content).create()))
+            file.map(it => new MysteryMushroomCreator(createTemplate(it as Content,),),)
                 .forEach(it => references.set(it.template.uniqueName, it.create(),))
 
             if (!isInProduction)
@@ -105,80 +103,65 @@ interface Content
     haveASoundEffectOnDeath_smallDefinition: TranslationKeyOnDeath
     haveASoundEffectOnDeath: PossibleSoundEffectOnDeath
 
+
+
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<MysteryMushroomTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): MysteryMushroomTemplate {
-        const content = this._content
-
-        return {
-            properties: {
-                firstAppearance: content.firstAppearanceInMarioMaker,
-                unlock: {
-                    condition: content.conditionToUnlockIt,
-                    amiibo: content.canBeUnlockedByAnAmiibo,
-                },
-                sound: this.#createSoundTemplate(),
+function createTemplate(content: Content,): MysteryMushroomTemplate {
+    return {
+        properties: {
+            firstAppearance: content.firstAppearanceInMarioMaker,
+            unlock: {
+                condition: content.conditionToUnlockIt,
+                amiibo: content.canBeUnlockedByAnAmiibo,
             },
-            uniqueName: content.uniqueName,
-            gameReference: content.reference,
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
-    #createSoundTemplate(): SoundPropertyTemplate {
-        const content = this._content
-
-        return {
-            soundEffect: {
-                movement: content.soundEffectOnMovement,
-            },
-            hasSoundEffect: {
-                collected: {
-                    value: content.haveASoundEffectWhenCollected,
-                    game: content.haveASoundEffectWhenCollected_game,
+            sound: {
+                soundEffect: {
+                    movement: content.soundEffectOnMovement,
                 },
-                taunt: {
-                    value: content.haveASoundEffectOnTaunt,
-                    game: content.haveASoundEffectOnTaunt_game,
-                },
-                jump: {
-                    value: {
-                        value: content.haveASoundEffectOnJump,
-                        game: content.haveASoundEffectOnJump_game,
+                hasSoundEffect: {
+                    collected: {
+                        value: content.haveASoundEffectWhenCollected,
+                        game: content.haveASoundEffectWhenCollected_game,
                     },
-                    ground: {
-                        value: content.haveASoundEffectOnGroundAfterJump,
-                        game: content.haveASoundEffectOnGroundAfterJump_game,
+                    taunt: {
+                        value: content.haveASoundEffectOnTaunt,
+                        game: content.haveASoundEffectOnTaunt_game,
+                    },
+                    jump: {
+                        value: {
+                            value: content.haveASoundEffectOnJump,
+                            game: content.haveASoundEffectOnJump_game,
+                        },
+                        ground: {
+                            value: content.haveASoundEffectOnGroundAfterJump,
+                            game: content.haveASoundEffectOnGroundAfterJump_game,
+                        },
+                    },
+                    turn: content.haveASoundEffectOnTurnAfterRun,
+                    goalPole: {
+                        value: content.haveASoundEffectWhenOnGoalPole,
+                        game: content.haveASoundEffectWhenOnGoalPole_game,
+                        smallDefinition: content.haveASoundEffectWhenOnGoalPole_smallDefinition,
+                        type: content.haveASoundEffectWhenOnGoalPole_type,
+                    },
+                    death: {
+                        value: content.haveASoundEffectOnDeath,
+                        game: content.haveASoundEffectOnDeath_game,
+                        smallDefinition: content.haveASoundEffectOnDeath_smallDefinition,
+                        type: content.haveASoundEffectOnDeath_type,
                     },
                 },
-                turn: content.haveASoundEffectOnTurnAfterRun,
-                goalPole: {
-                    value: content.haveASoundEffectWhenOnGoalPole,
-                    game: content.haveASoundEffectWhenOnGoalPole_game,
-                    smallDefinition: content.haveASoundEffectWhenOnGoalPole_smallDefinition,
-                    type: content.haveASoundEffectWhenOnGoalPole_type,
-                },
-                death: {
-                    value: content.haveASoundEffectOnDeath,
-                    game: content.haveASoundEffectOnDeath_game,
-                    smallDefinition: content.haveASoundEffectOnDeath_smallDefinition,
-                    type: content.haveASoundEffectOnDeath_type,
+                hasSpecialMusic: {
+                    starMode: {
+                        value: content.haveASpecialMusicInStarMode,
+                        game: content.haveASpecialMusicInStarMode_game,
+                    },
                 },
             },
-            hasSpecialMusic: {
-                starMode: {
-                    value: content.haveASpecialMusicInStarMode,
-                    game: content.haveASpecialMusicInStarMode_game,
-                },
-            },
-        }
+        },
+        uniqueName: content.uniqueName,
+        gameReference: content.reference,
+        name: TemplateMethods.createNameTemplate(content,),
     }
-
 }

@@ -7,7 +7,6 @@ import type {PossibleEnglishName}       from 'core/predefinedMessage/PredefinedM
 import type {Loader}                    from 'util/loader/Loader'
 
 import {isInProduction}           from 'variables'
-import {AbstractTemplateCreator}  from 'core/_template/AbstractTemplate.creator'
 import * as TemplateMethods       from 'core/_template/templateMethods'
 import {PredefinedMessageCreator} from 'core/predefinedMessage/PredefinedMessage.creator'
 
@@ -34,7 +33,7 @@ export class PredefinedMessageLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, PredefinedMessage>()
 
-            file.map(it => new PredefinedMessageCreator(new TemplateCreator(it).create()).create())
+            file.map(it => new PredefinedMessageCreator(createTemplate(it,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -55,19 +54,6 @@ export class PredefinedMessageLoader
 interface Content
     extends LanguageContent {}
 
-class TemplateCreator
-    extends AbstractTemplateCreator<PredefinedMessageTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): PredefinedMessageTemplate {
-        const content = this._content
-
-        return {
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
+function createTemplate(content: Content,): PredefinedMessageTemplate {
+    return {name: TemplateMethods.createNameTemplate(content,),}
 }

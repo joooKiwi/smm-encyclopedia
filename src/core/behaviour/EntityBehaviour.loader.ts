@@ -7,9 +7,8 @@ import type {PossibleGroupName}                        from 'core/entityTypes'
 import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
 import type {Loader}                                   from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {EntityBehaviourCreator}  from 'core/behaviour/EntityBehaviour.creator'
+import {isInProduction}         from 'variables'
+import {EntityBehaviourCreator} from 'core/behaviour/EntityBehaviour.creator'
 
 /** @singleton */
 export class EntityBehaviourLoader
@@ -34,7 +33,7 @@ export class EntityBehaviourLoader
         if (this.#map == null) {
             const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
 
-            file.map(it => new EntityBehaviourCreator(new TemplateBuilder(it as Content).create()).create())
+            file.map(it => new EntityBehaviourCreator(createTemplate(it as Content,),).create())
                 .forEach(it => references.set(it.translationKey, it,))
 
             if (!isInProduction)
@@ -65,28 +64,17 @@ interface Content {
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateCreator<EntityBehaviourTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): EntityBehaviourTemplate {
+    return {
+        acronym: content.acronym,
+        translationKey: content.translationKey,
+        isOnly: {
+            online: content.isOnlineOnly,
+            multiplayer: content.isMultiplayerOnly,
+        },
+        links: {
+            group: content.link_group,
+            entity: content.link_entity,
+        },
     }
-
-    public create(): EntityBehaviourTemplate {
-        const content = this._content
-
-        return {
-            acronym: content.acronym,
-            translationKey: content.translationKey,
-            isOnly: {
-                online: content.isOnlineOnly,
-                multiplayer: content.isMultiplayerOnly,
-            },
-            links: {
-                group: content.link_group,
-                entity: content.link_entity,
-            },
-        }
-    }
-
 }

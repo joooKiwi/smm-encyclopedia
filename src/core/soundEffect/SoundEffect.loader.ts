@@ -8,10 +8,9 @@ import type {SoundEffectTemplate}                                           from
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {Loader}                                                        from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {SoundEffectCreator}      from 'core/soundEffect/SoundEffect.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {SoundEffectCreator} from 'core/soundEffect/SoundEffect.creator'
 
 /** @singleton */
 export class SoundEffectLoader
@@ -36,7 +35,7 @@ export class SoundEffectLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, SoundEffect>()
 
-            file.map(it => new SoundEffectCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new SoundEffectCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -73,53 +72,42 @@ interface Content
 
     //endregion -------------------- Triggers --------------------
 
-    category: NullOr<PossibleSoundEffectCategoryEnglishName>
+    readonly category: NullOr<PossibleSoundEffectCategoryEnglishName>
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<SoundEffectTemplate, Content> {
+function createTemplate(content: Content,): SoundEffectTemplate {
+    return {
+        properties: {
+            isIn: {
+                game: TemplateMethods.createGameTemplateFrom1And2(content,),
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
+                trigger: {
+                    player: {
 
-    public override create(): SoundEffectTemplate {
-        const content = this._content
-
-        return {
-            properties: {
-                isIn: {
-                    game: TemplateMethods.createGameTemplateFrom1And2(content,),
-
-                    trigger: {
-                        player: {
-
-                            movement: {
-                                jumpAfterLanding: content.doesTrigger_player_jumpAfterLanding,
-                                turnAroundAfterBeingAtFullSpeed: content.doesTrigger_player_turnAroundAfterBeingAtFullSpeed,
-                                crouch: content.doesTrigger_player_crouch,
-                                after3SecondsRepeatedly: content.doesTrigger_player_after3SecondsRepeatedly,
-                            },
-
-                            interaction: {
-                                collectPowerUp: content.doesTrigger_player_collectPowerUp,
-                                getIntoAnEntity: content.doesTrigger_player_getIntoAnEntity,
-                            },
-
-                            environment: {
-                                spawn: content.doesTrigger_player_spawn,
-                                damage: content.doesTrigger_player_damage,
-                                lostALife: content.doesTrigger_player_lostALife,
-                            },
-
+                        movement: {
+                            jumpAfterLanding: content.doesTrigger_player_jumpAfterLanding,
+                            turnAroundAfterBeingAtFullSpeed: content.doesTrigger_player_turnAroundAfterBeingAtFullSpeed,
+                            crouch: content.doesTrigger_player_crouch,
+                            after3SecondsRepeatedly: content.doesTrigger_player_after3SecondsRepeatedly,
                         },
+
+                        interaction: {
+                            collectPowerUp: content.doesTrigger_player_collectPowerUp,
+                            getIntoAnEntity: content.doesTrigger_player_getIntoAnEntity,
+                        },
+
+                        environment: {
+                            spawn: content.doesTrigger_player_spawn,
+                            damage: content.doesTrigger_player_damage,
+                            lostALife: content.doesTrigger_player_lostALife,
+                        },
+
                     },
                 },
-                category: content.category,
             },
-            name: TemplateMethods.createNameTemplate(content,),
-        }
+            category: content.category,
+        },
+        name: TemplateMethods.createNameTemplate(content,),
     }
-
 }

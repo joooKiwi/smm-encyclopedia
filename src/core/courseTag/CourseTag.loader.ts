@@ -6,10 +6,9 @@ import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from 'core/
 import type {PossibleEnglishName, PossibleMakerCentralName}          from 'core/courseTag/CourseTags.types'
 import type {Loader}                                                 from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {CourseTagCreator}        from 'core/courseTag/CourseTag.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {CourseTagCreator}   from 'core/courseTag/CourseTag.creator'
 
 /** @singleton */
 export class CourseTagLoader
@@ -34,7 +33,7 @@ export class CourseTagLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, CourseTag>()
 
-            file.map(it => new CourseTagCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new CourseTagCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -59,26 +58,16 @@ interface Content
     makerCentralName: NullOr<PossibleMakerCentralName>
     firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
 
+
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<CourseTagTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): CourseTagTemplate {
+    return {
+        name: {
+            ...TemplateMethods.createNameTemplate(content,),
+            makerCentral: content.makerCentralName,
+        },
+        isOfficial: content.isAnOfficialTag,
+        firstAppearance: content.firstAppearanceInMarioMaker,
     }
-
-    public override create(): CourseTagTemplate {
-        const content = this._content
-
-        return {
-            name: {
-                ...TemplateMethods.createNameTemplate(content,),
-                makerCentral: content.makerCentralName,
-            },
-            isOfficial: content.isAnOfficialTag,
-            firstAppearance: content.firstAppearanceInMarioMaker,
-        }
-    }
-
 }

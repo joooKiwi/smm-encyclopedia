@@ -6,11 +6,9 @@ import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/Game
 import type {GameReferenceTemplate}                from 'core/gameReference/GameReference.template'
 import type {Loader}                               from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {GameReferenceCreator}    from 'core/gameReference/GameReference.creator'
-
+import {isInProduction}       from 'variables'
+import * as TemplateMethods   from 'core/_template/templateMethods'
+import {GameReferenceCreator} from 'core/gameReference/GameReference.creator'
 
 /** @singleton */
 export class GameReferenceLoader
@@ -34,7 +32,7 @@ export class GameReferenceLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, GameReference>()
 
-            file.map(it => new GameReferenceCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new GameReferenceCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -58,20 +56,9 @@ interface Content
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<GameReferenceTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): GameReferenceTemplate {
+    return {
+        acronym: content.acronym,
+        name: TemplateMethods.createNameTemplate(content,),
     }
-
-    public override create(): GameReferenceTemplate {
-        const content = this._content
-
-        return {
-            acronym: content.acronym,
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
 }

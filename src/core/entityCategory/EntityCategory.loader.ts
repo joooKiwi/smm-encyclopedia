@@ -6,10 +6,9 @@ import type {EntityCategory}         from 'core/entityCategory/EntityCategory'
 import type {EntityCategoryTemplate} from 'core/entityCategory/EntityCategory.template'
 import type {Loader}                 from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {EntityCategoryCreator}   from 'core/entityCategory/EntityCategory.creator'
+import {isInProduction}        from 'variables'
+import * as TemplateMethods    from 'core/_template/templateMethods'
+import {EntityCategoryCreator} from 'core/entityCategory/EntityCategory.creator'
 
 /**
  * A single class made to handle the loading
@@ -39,7 +38,7 @@ export class EntityCategoryLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, EntityCategory>()
 
-            file.map(it => new EntityCategoryCreator(new TemplateCreator(it).create()).create())
+            file.map(it => new EntityCategoryCreator(createTemplate(it,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -60,20 +59,9 @@ export class EntityCategoryLoader
 interface Content
     extends LanguageContent {}
 
-class TemplateCreator
-    extends AbstractTemplateCreator<EntityCategoryTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): EntityCategoryTemplate {
+    return {
+        entities: null,
+        name: TemplateMethods.createNameTemplate(content,),
     }
-
-    public override create(): EntityCategoryTemplate {
-        const content = this._content
-
-        return {
-            entities: null,
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
 }

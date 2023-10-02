@@ -7,7 +7,6 @@ import type {SoundEffectCategoryTemplate} from 'core/soundEffectCategory/SoundEf
 import type {Loader}                      from 'util/loader/Loader'
 
 import {isInProduction}             from 'variables'
-import {AbstractTemplateCreator}    from 'core/_template/AbstractTemplate.creator'
 import * as TemplateMethods         from 'core/_template/templateMethods'
 import {SoundEffectCategoryCreator} from 'core/soundEffectCategory/SoundEffectCategory.creator'
 
@@ -34,7 +33,7 @@ export class SoundEffectCategoryLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, SoundEffectCategory>()
 
-            file.map(it => new SoundEffectCategoryCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new SoundEffectCategoryCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -55,19 +54,6 @@ export class SoundEffectCategoryLoader
 interface Content
     extends LanguageContent {}
 
-class TemplateCreator
-    extends AbstractTemplateCreator<SoundEffectCategoryTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): SoundEffectCategoryTemplate {
-        const content = this._content
-
-        return {
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
+function createTemplate(content: Content,): SoundEffectCategoryTemplate {
+    return {name: TemplateMethods.createNameTemplate(content,),}
 }

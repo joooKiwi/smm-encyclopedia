@@ -8,10 +8,9 @@ import type {GameStyleTemplate}                                                 
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
 import type {Loader}                                                             from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import * as TemplateMethods      from 'core/_template/templateMethods'
-import {GameStyleCreator}        from 'core/gameStyle/GameStyle.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {GameStyleCreator}   from 'core/gameStyle/GameStyle.creator'
 
 /** @singleton */
 export class GameStyleLoader
@@ -36,7 +35,7 @@ export class GameStyleLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, GameStyle>()
 
-            file.map(it => new GameStyleCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new GameStyleCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -62,29 +61,19 @@ interface Content
     nightDesertWindDirection: PossibleNightDesertWindDirection
     nightDesertWindFrequency: PossibleNightDesertWindFrequency
 
+
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<GameStyleTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
+function createTemplate(content: Content,): GameStyleTemplate {
+    return {
+        is: {
+            in: {game: TemplateMethods.createGameTemplateFrom1And2(content,),},
+            availableFromTheStart: content.isAvailableFromTheStart_SMM1,
+        },
+        reference: content.reference,
+        nightDesertWind: {
+            direction: content.nightDesertWindDirection,
+            frequency: content.nightDesertWindFrequency,
+        },
     }
-
-    public override create(): GameStyleTemplate {
-        const content = this._content
-
-        return {
-            is: {
-                in: {game: TemplateMethods.createGameTemplateFrom1And2(content,),},
-                availableFromTheStart: content.isAvailableFromTheStart_SMM1,
-            },
-            reference: content.reference,
-            nightDesertWind: {
-                direction: content.nightDesertWindDirection,
-                frequency: content.nightDesertWindFrequency,
-            },
-        }
-    }
-
 }

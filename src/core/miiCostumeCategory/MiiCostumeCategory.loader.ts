@@ -7,7 +7,6 @@ import type {MiiCostumeCategoryTemplate} from 'core/miiCostumeCategory/MiiCostum
 import type {Loader}                     from 'util/loader/Loader'
 
 import {isInProduction}            from 'variables'
-import {AbstractTemplateCreator}   from 'core/_template/AbstractTemplate.creator'
 import * as TemplateMethods        from 'core/_template/templateMethods'
 import {MiiCostumeCategoryCreator} from 'core/miiCostumeCategory/MiiCostumeCategory.creator'
 
@@ -34,7 +33,7 @@ export class MiiCostumeCategoryLoader
         if (this.#map == null) {
             const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
 
-            file.map(it => new MiiCostumeCategoryCreator(new TemplateCreator(it as Content).create()).create())
+            file.map(it => new MiiCostumeCategoryCreator(createTemplate(it as Content,),).create(),)
                 .forEach(it => references.set(it.english as PossibleEnglishName, it,))
 
             if (!isInProduction)
@@ -55,19 +54,6 @@ export class MiiCostumeCategoryLoader
 interface Content
     extends LanguageContent {}
 
-class TemplateCreator
-    extends AbstractTemplateCreator<MiiCostumeCategoryTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): MiiCostumeCategoryTemplate {
-        const content = this._content
-
-        return {
-            name: TemplateMethods.createNameTemplate(content,),
-        }
-    }
-
+function createTemplate(content: Content,): MiiCostumeCategoryTemplate {
+    return {name: TemplateMethods.createNameTemplate(content,),}
 }
