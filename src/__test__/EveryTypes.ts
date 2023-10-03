@@ -23,6 +23,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}      
 import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from 'core/officialNotification/OfficialNotifications.types'
 import type {PossibleEnglishName as PossibleEnglishName_OtherWordInTheGame, PossibleEnglishName_Plural as PossiblePluralEnglishName_OtherWordInTheGame, PossibleEnglishName_Singular as PossibleSingularEnglishName_OtherWordInTheGame}                                  from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from 'core/predefinedMessage/PredefinedMessages.types'
+import type {PossibleWorldNumber as PossibleWorldNumber_SampleCourse}                                                                                                                                                                                                    from 'core/sampleCourse/SampleCourse.template'
 import type {PossibleEnglishName as PossibleEnglishName_SoundEffect}                                                                                                                                                                                                     from 'core/soundEffect/SoundEffects.types'
 import type {PossibleEnglishName as PossibleEnglishName_SoundEffectCategory}                                                                                                                                                                                             from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from 'core/theme/Themes.types'
@@ -44,6 +45,7 @@ import {MysteryMushrooms}            from 'core/mysteryMushroom/MysteryMushrooms
 import {OfficialNotifications}       from 'core/officialNotification/OfficialNotifications'
 import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {PredefinedMessages}          from 'core/predefinedMessage/PredefinedMessages'
+import {SampleCourses}               from 'core/sampleCourse/SampleCourses'
 import {SoundEffects}                from 'core/soundEffect/SoundEffects'
 import {SoundEffectCategories}       from 'core/soundEffectCategory/SoundEffectCategories'
 import {Themes}                      from 'core/theme/Themes'
@@ -92,6 +94,7 @@ export class EveryTypes {
     #everyPossibleName_gameReference?: readonly PossibleEnglishName_GameReference[]
 
     #everyPossibleAcronym_gameStyle?: readonly PossibleAcronym_GameStyle[]
+    #everyPossibleAcronym_gameStyle_smm1?: readonly PossibleAcronym_GameStyle[]
 
     #everyPossibleName_characterName?: readonly PossibleEnglishName_CharacterName[]
     #everyPossibleUniqueName_characterName?: readonly PossibleUniqueEnglishName_CharacterName[]
@@ -113,6 +116,7 @@ export class EveryTypes {
     #everyPossibleName_entityGroup?: EveryPossibleName_EntityGroup
 
     #everyPossibleName_theme?: readonly PossibleEnglishName_Theme[]
+    #everyPossibleName_courseTheme_smm1?: readonly PossibleEnglishName_Theme[]
     #everyPossibleName_themeNightEffect?: readonly PossibleEnglishName_Theme_NightEffect[]
 
     #everyPossibleName_entityCategory?: readonly PossibleEnglishName_EntityCategory[]
@@ -145,6 +149,8 @@ export class EveryTypes {
     #everyPossibleNameWithAmount_officialNotification?: readonly PossibleNameWithEveryAmount_OfficialNotification[]
 
     #everyPossibleName_predefinedMessage?: readonly PossibleEnglishName_PredefinedMessage[]
+
+    #everyPossibleWorldNumber_SampleCourse?: readonly PossibleWorldNumber_SampleCourse[]
 
     #everyPossibleName_instrument?: readonly PossibleEnglishName_Instrument[]
     #everyPossibleMixedName_instrument?: readonly PossibleMixedName_Instrument[]
@@ -179,6 +185,10 @@ export class EveryTypes {
 
     public get everyPossibleAcronym_gameStyle() {
         return this.#everyPossibleAcronym_gameStyle ??= GameStyles.values.map(limit => limit.acronym).toArray()
+    }
+
+    public get everyPossibleAcronym_gameStyle_smm1() {
+        return this.#everyPossibleAcronym_gameStyle_smm1 ??= GameStyles.gameStyles_smm1.map(limit => limit.acronym,)
     }
 
     //endregion -------------------- Game style --------------------
@@ -275,6 +285,10 @@ export class EveryTypes {
 
     public get everyPossibleName_theme() {
         return this.#everyPossibleName_theme ??= Themes.values.map(it => it.englishName).toArray()
+    }
+
+    public get everyPossibleName_courseTheme_smm1() {
+        return this.#everyPossibleName_courseTheme_smm1 ??= Themes.courseThemes_smm1.map(it => it.englishName,)
     }
 
     public get everyPossibleName_themeNightEffect() {
@@ -444,6 +458,13 @@ export class EveryTypes {
     }
 
     //endregion -------------------- Predefined message --------------------
+    //region -------------------- Sample course --------------------
+
+    public get everyPossibleWorldNumber_SampleCourse() {
+        return this.#everyPossibleWorldNumber_SampleCourse ??= SampleCourses.CompanionEnum.get.values.map(it => it.name,).toArray()
+    }
+
+    //endregion -------------------- Sample course --------------------
     //region -------------------- Instrument --------------------
 
     public get everyPossibleName_instrument() {
