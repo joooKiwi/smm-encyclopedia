@@ -75,6 +75,14 @@ export class SampleCourses
     public static readonly '15-2' = new SampleCourses('Level 15-2',)
     public static readonly '15-3' = new SampleCourses('Level 15-3',)
     public static readonly '15-4' = new SampleCourses('Level 15-4',)
+    public static readonly '16-1' = new SampleCourses('Level 16-1',)
+    public static readonly '16-2' = new SampleCourses('Level 16-2',)
+    public static readonly '16-3' = new SampleCourses('Level 16-3',)
+    public static readonly '16-4' = new SampleCourses('Level 16-4',)
+    public static readonly '17-1' = new SampleCourses('Level 17-1',)
+    public static readonly '17-2' = new SampleCourses('Level 17-2',)
+    public static readonly '17-3' = new SampleCourses('Level 17-3',)
+    public static readonly '17-4' = new SampleCourses('Level 17-4',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
