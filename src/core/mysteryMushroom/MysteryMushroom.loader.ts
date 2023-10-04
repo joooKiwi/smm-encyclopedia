@@ -2,7 +2,7 @@ import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
 import type {LanguageContent}                                                                                                                                                                                                    from 'core/_template/LanguageContent'
 import type {UniqueNameContent}                                                                                                                                                                                                  from 'core/_template/UniqueNameContent'
-import type {PossibleEnglishName as PossibleGameReference}                                                                                                                                                                       from 'core/gameReference/GameReferences.types'
+import type {PossibleAcronym as PossibleAcronym_GameReference}                                                                                                                                                                   from 'core/gameReference/GameReferences.types'
 import type {MysteryMushroom}                                                                                                                                                                                                    from 'core/mysteryMushroom/MysteryMushroom'
 import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {MysteryMushroomTemplate, PokemonGeneration}                                                                                                                                                                         from 'core/mysteryMushroom/MysteryMushroom.template'
@@ -74,7 +74,7 @@ interface Content
 
     readonly firstAppearanceInMarioMaker: PossibleVersionNameInSMM
 
-    readonly reference: | PossibleGameReference | PokemonGeneration
+    readonly reference: | PossibleAcronym_GameReference | PokemonGeneration
 
 
     readonly haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected
