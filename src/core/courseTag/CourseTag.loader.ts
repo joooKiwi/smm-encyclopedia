@@ -35,7 +35,7 @@ export class CourseTagLoader
 
         const references = new Map<PossibleEnglishName, CourseTag>()
         let index = file.length
-        while (index-- < 0) {
+        while (index-- > 0) {
             const reference = new CourseTagCreator(createTemplate(file[index] as Content,),).create()
             references.set(reference.english as PossibleEnglishName, reference,)
         }
