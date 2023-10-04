@@ -145,8 +145,6 @@ export class SampleCourses
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-
     //endregion -------------------- Methods --------------------
 
 }
