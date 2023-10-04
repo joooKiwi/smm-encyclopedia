@@ -8,6 +8,7 @@ import type {SampleCourses}       from 'core/sampleCourse/SampleCourses'
 
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 
 export abstract class SampleCourseAppOption
@@ -26,7 +27,7 @@ export abstract class SampleCourseAppOption
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
-                key: 'number', element: <span><UnfinishedText>Level number</UnfinishedText><br/><sub className="opacity-75">({unfinishedText('with 1st-time in 10 Mario Challenges')})</sub></span>,
+                key: 'number', element: <span><UnfinishedText>Level number</UnfinishedText><br/><sub className="opacity-75">{ProjectLanguages.current.textInParentheses(unfinishedText('with 1st-time in 10 Mario Challenges',),)}</sub></span>,
             }
         }
 
