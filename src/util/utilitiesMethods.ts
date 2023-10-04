@@ -222,7 +222,7 @@ export function getValueInUrl<const T extends EnumerableUsedInRoute,>(url: strin
     const lowerCasedUrl = url.toLowerCase()
     const prefix = companionEnum.PREFIX?.toLowerCase() ?? EMPTY_STRING
     const valueFound = companionEnum.values.find(it =>
-        lowerCasedUrl.includes(`/${prefix}${it.urlValue}/`,),)
+        lowerCasedUrl.includes(`/${prefix}${it.urlValue.toLowerCase()}/`,),)
     if (valueFound == null)
         throw new ReferenceError(`No "${companionEnum.instance.name}" was found by the url "${url}".`,)
     return valueFound
