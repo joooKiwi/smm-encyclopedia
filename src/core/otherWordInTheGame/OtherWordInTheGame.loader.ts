@@ -39,7 +39,7 @@ export class OtherWordInTheGameLoader
         const references = new Map<PossibleEnglishName_Singular, OtherSingularWordInTheGame>()
         const templateReferences = new Map<PossibleEnglishName, OtherWordInTheGameTemplate>()
         const templateReferencesToFollow = new Map<PossibleEnglishName_Singular, OtherWordInTheGameTemplate>()
-        //#region -------------------- Associating the template to the english name ----------------------------------------
+        //region -------------------- Associating the template to the english name ----------------------------------------
 
         const size = file.length
         let index = size
@@ -53,8 +53,8 @@ export class OtherWordInTheGameLoader
             temporaryArray[index] = [englishName, template, content,]
         }
 
-        //#endregion -------------------- Associating the template to the english name ----------------------------------------
-        //#region -------------------- Setting the template references ----------------------------------------
+        //endregion -------------------- Associating the template to the english name ----------------------------------------
+        //region -------------------- Setting the template references ----------------------------------------
 
         index = size
         while (index-- > 0) {
@@ -69,15 +69,15 @@ export class OtherWordInTheGameLoader
             templateReferencesToFollow.set(value[0] as PossibleEnglishName_Singular, value[1],)
         }
 
-        //#endregion -------------------- Setting the template references ----------------------------------------
-        //#region -------------------- Associating the references to the english name ----------------------------------------
+        //endregion -------------------- Setting the template references ----------------------------------------
+        //region -------------------- Associating the references to the english name ----------------------------------------
 
         const iterator = templateReferencesToFollow[Symbol.iterator]()
         let iteratorResult: IteratorResult<readonly [PossibleEnglishName_Singular, OtherWordInTheGameTemplate,], unknown>
         while (!(iteratorResult = iterator.next()).done)
             references.set(iteratorResult.value[0], new OtherSingularWordInTheGameCreator(iteratorResult.value[1],).create(),)
 
-        //#endregion -------------------- Associating the references to the english name ----------------------------------------
+        //endregion -------------------- Associating the references to the english name ----------------------------------------
 
         if (!isInProduction)
             console.info(
