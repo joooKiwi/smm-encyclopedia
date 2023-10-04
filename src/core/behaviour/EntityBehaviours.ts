@@ -1,14 +1,16 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {Singleton} from '@joookiwi/enumerable'
+import {Enum}           from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                          from 'core/ClassWithAcronym'
 import type {ClassWithReference}                                        from 'core/ClassWithReference'
 import type {EntityBehaviour}                                           from 'core/behaviour/EntityBehaviour'
+import type {CompanionEnumDeclaration_EntityBehaviours}                 from 'core/behaviour/EntityBehaviours.companionEnumDeclaration'
 import type {Names, Ordinals, PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
 import type {ClassWithTranslationKey}                                   from 'lang/ClassWithTranslationKey'
 
-import {EntityBehaviourLoader} from 'core/behaviour/EntityBehaviour.loader'
+import {EntityBehaviourLoader}         from 'core/behaviour/EntityBehaviour.loader'
+import {getValueByAcronym}             from 'util/utilitiesMethods'
+import {CompanionEnumByTranslationKey} from 'util/enumerable/companion/CompanionEnumByTranslationKey'
 
 export class EntityBehaviours
     extends Enum<Ordinals, Names>
@@ -36,8 +38,9 @@ export class EntityBehaviours
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EntityBehaviours, typeof EntityBehaviours> = class CompanionEnum_EntityBehaviours
-        extends CompanionEnum<EntityBehaviours, typeof EntityBehaviours> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_EntityBehaviours> = class CompanionEnum_EntityBehaviours
+        extends CompanionEnumByTranslationKey<EntityBehaviours, typeof EntityBehaviours>
+        implements CompanionEnumDeclaration_EntityBehaviours {
 
         //region -------------------- Singleton usage --------------------
 
@@ -52,6 +55,10 @@ export class EntityBehaviours
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public getValueByAcronym(value: Nullable<| EntityBehaviours | string>,): EntityBehaviours {
+            return getValueByAcronym(value, this,)
+        }
 
     }
 
@@ -99,34 +106,6 @@ export class EntityBehaviours
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByAcronymOrTranslationKey(value: Nullable<| EntityBehaviours | string>,): EntityBehaviours {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.acronym === value
-            || it.translationKey === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<EntityBehaviours>,): EntityBehaviours {
-        return EntityBehaviours.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EntityBehaviours> {
-        return EntityBehaviours.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EntityBehaviours> {
-        return EntityBehaviours.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
