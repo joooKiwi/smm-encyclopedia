@@ -77,6 +77,7 @@ export abstract class Games
         public override readonly URL_REGEX = /\/game-((1|3ds|2)(,(1|3ds|2))?|(all))\//i
         public override readonly ALL_URL_REGEX = /\/game-all\//i
         public override readonly SINGLE_URL_REGEX = /\/game-(1|3ds|2)\//i
+        public override readonly PREFIX = 'game-'
 
         public getValueByUrlValue(value: Nullable<| Games | string>,): Games {
             return getValueByUrlValue(value, this,)
