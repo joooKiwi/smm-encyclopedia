@@ -5,6 +5,7 @@ import type {RenderCallbackByViewDisplay, RouteByViewDisplay}                   
 
 import {ViewDisplays}                      from 'app/withInterpreter/ViewDisplays'
 import {RoutesAsCardListAndAnyGameCreator} from 'route/creator/RoutesAsCardListAndAnyGame.creator'
+import {RoutesAsCardListAndSMM1Creator}    from 'route/creator/RoutesAsCardListAndSMM1.creator'
 import {RoutesAsCardListAndSMM2Creator}    from 'route/creator/RoutesAsCardListAndSMM2.creator'
 import {RoutesCreator}                     from 'route/creator/Routes.creator'
 import {SimpleRedirectRoute}               from 'route/instance/SimpleRedirectRoute'
@@ -56,6 +57,14 @@ export class RoutesAsCardListCreator<const PARENT_NAME extends string, const PAR
      */
     public asAnyGame(defaultRoutePath?: GroupValidUrlValue,): RoutesAsCardListAndAnyGameCreator<PARENT_NAME, PARENT_PATH> {
         return new RoutesAsCardListAndAnyGameCreator(this, defaultRoutePath,)
+    }
+
+    /**
+     * Put the routes to be applicable to a list ({@link ViewDisplays.SIMPLE_LIST simple} or {@link ViewDisplays.CARD_LIST card})
+     * as well as only the {@link Games.SUPER_MARIO_MAKER_1 SMM1} {@link Games game}
+     */
+    public asSMM1Game(): RoutesAsCardListAndSMM1Creator<PARENT_NAME, PARENT_PATH> {
+        return new RoutesAsCardListAndSMM1Creator(this,)
     }
 
     /**
