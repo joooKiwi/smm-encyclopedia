@@ -7,7 +7,7 @@ export class CompanionEnumByTranslationKey<const ENUM extends EnumerableWithTran
     const ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
     extends CompanionEnum<ENUM, ENUM_CONSTRUCTOR> {
 
-    public getValueByValue(value: Nullable<| ENUM | string>,): ENUM {
+    public getValueByTranslationKey(value: Nullable<| ENUM | string>,): ENUM {
         if (value == null)
             throw new TypeError(`No "${this.instance.name}" could be found by a null translation key.`,)
         if (value instanceof this.instance)
