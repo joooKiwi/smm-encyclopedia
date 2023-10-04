@@ -5,16 +5,16 @@ import {getEnglishName, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test_
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER}                         from 'util/commonVariables'
 
 describe('Limit (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames = types.everyPossibleName_limit,
-        everyAlternativeNames = types.everyPossibleAlternativeName_limit,
-        everyAlternativeNamesOrNull = [null, ...types.everyPossibleAlternativeName_limit,],
-        everyAcronyms = [null, ...types.everyPossibleAcronym_limit,],
-        everyAlternativeAcronyms = [null, ...types.everyPossibleAlternativeAcronym_limit,],
-        everyTypes = types.everyPossibleName_limitType,
-        everyLimitInSMM1And3DS = [null, UNKNOWN_CHARACTER, NOT_APPLICABLE, ...types.everyPossibleAmount_smm1And3ds_limit,],
-        everyLimitInSMM2 = [null, UNKNOWN_CHARACTER, ...types.everyPossibleAmount_smm2_limit,],
-        everyComment = [null, ...types.everyPossibleComment_limit,]
+    const types = EveryTypes.get
+    const everyNames = types.everyPossibleName_limit
+    const everyAlternativeNames = types.everyPossibleAlternativeName_limit
+    const everyAlternativeNamesOrNull = [null, ...types.everyPossibleAlternativeName_limit,] as const
+    const everyAcronyms = [null, ...types.everyPossibleAcronym_limit,] as const
+    const everyAlternativeAcronyms = [null, ...types.everyPossibleAlternativeAcronym_limit,] as const
+    const everyTypes = types.everyPossibleName_limitType
+    const everyLimitInSMM1And3DS = [null, UNKNOWN_CHARACTER, NOT_APPLICABLE, ...types.everyPossibleAmount_smm1And3ds_limit,] as const
+    const everyLimitInSMM2 = [null, UNKNOWN_CHARACTER, ...types.everyPossibleAmount_smm2_limit,] as const
+    const everyComment = [null, ...types.everyPossibleComment_limit,] as const
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         const isAlternativeLimit = it.type == null

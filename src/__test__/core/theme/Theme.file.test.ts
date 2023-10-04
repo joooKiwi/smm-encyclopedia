@@ -6,10 +6,10 @@ import {EveryTypes}                                     from '__test__/EveryType
 import {getEnglishName, testLanguages, testOnlyEnglish} from '__test__/helperMethods'
 
 describe('Theme (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames_nightEffect = types.everyPossibleName_themeNightEffect,
-        everyNames = types.everyPossibleName_theme,
-        excludedLanguages_SMM1: readonly PossibleExcludedLanguages[] = ['portuguese',]
+    const types = EveryTypes.get
+    const everyNames_nightEffect = types.everyPossibleName_themeNightEffect
+    const everyNames = types.everyPossibleName_theme
+    const excludedLanguages_SMM1: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         const isSMM1Exclusive = it.isInSuperMarioMaker2 && !it.isInSuperMarioMaker1And3DS,

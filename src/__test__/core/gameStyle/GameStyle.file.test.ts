@@ -1,9 +1,12 @@
 import file from 'resources/compiled/Game style.json'
 
+import type {PossibleAcronym}                                                    from 'core/gameStyle/GameStyles.types'
+import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
+
 describe('Game style (file test)', () => {
-    const possibleAcronyms = ['SMB', 'SMB3', 'SMW', 'NSMBU', 'SM3DW',] as const,
-        possibleNightWindDirection = ['←', '↔', '→',] as const,
-        possibleNightWindFrequency = ['periodic', 'constant',] as const
+    const possibleAcronyms = ['SMB', 'SMB3', 'SMW', 'NSMBU', 'SM3DW',] as const satisfies readonly PossibleAcronym[]
+    const possibleNightWindDirection = ['←', '↔', '→',]                as const satisfies readonly PossibleNightDesertWindDirection[]
+    const possibleNightWindFrequency = ['periodic', 'constant',]       as const satisfies readonly PossibleNightDesertWindFrequency[]
 
     file.forEach(it => describe(it.reference, () => {// eslint-disable-line jest/valid-title
         const isSM3DW = it.reference === 'SM3DW'

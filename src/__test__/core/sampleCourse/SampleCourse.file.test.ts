@@ -12,7 +12,7 @@ describe('Sample course (file test)', () => {
     const possibleFirstNumberInFirst10MarioChallenge = [null, 1, 2, 3, 4, 5, 6, 7, 8,] as const satisfies readonly PossibleFirstNumberInFirst10MarioChallenges[]
     const possibleGameStyle = types.everyPossibleAcronym_gameStyle_smm1
     const possibleTheme = types.everyPossibleName_courseTheme_smm1
-    const possibleNullableTheme = [null, ...possibleTheme,]
+    const possibleNullableTheme = [null, ...types.everyPossibleName_courseTheme_smm1,] as const
     const everyAmountOfTime = [50, 100, 300, 500,] as const satisfies readonly PossibleAmountOfTime[]
     const excludedLanguages: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
 

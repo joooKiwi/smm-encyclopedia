@@ -6,12 +6,12 @@ import {EveryTypes}                                                           fr
 import {getEnglishName, testEnglish, testLanguages, testOnlyEnglishAndFrench} from '__test__/helperMethods'
 
 describe('Character name (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames = types.everyPossibleName_characterName,
-        everyUniqueNames = types.everyPossibleUniqueName_characterName,
-        luigiToadOrToadette = / (Luigi)|(Toad)|(Toadette)/,
-        excludedNames_smm1: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',],
-        excludedNames_smm2: readonly PossibleExcludedLanguages[] = ['portuguese',]
+    const types = EveryTypes.get
+    const everyNames = types.everyPossibleName_characterName
+    const everyUniqueNames = types.everyPossibleUniqueName_characterName
+    const luigiToadOrToadette = / (Luigi)|(Toad)|(Toadette)/
+    const excludedNames_smm1: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
+    const excludedNames_smm2: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         const isAddedLuigiToadOrToadette = luigiToadOrToadette.test(it.uniqueName)
