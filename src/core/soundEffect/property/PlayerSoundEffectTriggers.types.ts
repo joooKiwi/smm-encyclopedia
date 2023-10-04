@@ -1,5 +1,3 @@
-import type {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
-
 enum Enum {
 
     JUMP_AFTER_LANDING,
@@ -37,5 +35,3 @@ export type PossibleTranslationKey =
     | 'Take damage | Lose life'
 
 //endregion -------------------- Translation key --------------------
-
-export type PlayerSoundEffectTriggersByTranslation<T extends string, > = T extends PossibleTranslationKey ? PlayerSoundEffectTriggers : never

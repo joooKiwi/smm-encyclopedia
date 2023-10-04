@@ -1,5 +1,3 @@
-import type {Images} from 'app/options/global/Images'
-
 enum Enum {
 
     YES,
@@ -9,5 +7,3 @@ enum Enum {
 
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
-
-export type ImagesByValue<T, > = T extends boolean ? Images : never
