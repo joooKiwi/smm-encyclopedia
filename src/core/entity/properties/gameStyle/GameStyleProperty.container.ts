@@ -58,7 +58,7 @@ export class GameStylePropertyContainer<const SMB extends boolean = boolean,
     //region -------------------- Convertor methods --------------------
 
     public toGameStyleMap(): ReadonlyMap<GameStyles, boolean> {
-        return this.#map ??= new Map(Import.GameStyles.values.map(gameStyle => [gameStyle, gameStyle.get(this),]))
+        return this.#map ??= new Map(Import.GameStyles.CompanionEnum.get.values.map(gameStyle => [gameStyle, gameStyle.get(this),],),)
     }
 
     //endregion -------------------- Convertor methods --------------------

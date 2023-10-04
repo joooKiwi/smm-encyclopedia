@@ -20,11 +20,11 @@ interface GameLinkProperties
 
 /** @reactComponent */
 export default function GameGroup() {
-    const {pathname,} = useLocation(),
-        gamesInUrl = Games.getInUrl(pathname)
+    const pathname = useLocation().pathname
+    const gamesInUrl = Games.CompanionEnum.get.getValueInUrl(pathname,)
 
     return <div key={`game option container`} id={`games-option-container`} className="btn-group" role="group">
-        {Games.values.map(it => <GameLink key={`game option (${it.englishName})`} game={it} gamesInUrl={gamesInUrl}/>)}
+        {Games.CompanionEnum.get.values.map(it => <GameLink key={`game option (${it.englishName})`} game={it} gamesInUrl={gamesInUrl}/>,)}
     </div>
 }
 

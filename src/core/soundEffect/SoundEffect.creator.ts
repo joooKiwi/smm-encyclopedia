@@ -31,7 +31,7 @@ export class SoundEffectCreator
         const category = this.template.properties.category
         if (category == null)
             return LAZY_EMPTY_SOUND_EFFECT_CATEGORY
-        return lazy(() => SoundEffectCategories.getValueByName(category).reference,)
+        return lazy(() => SoundEffectCategories.CompanionEnum.get.getValueByName(category,).reference,)
     }
 
     static #getTrigger({movement, interaction, environment,}: PlayerSoundEffectTriggerTemplate,): Lazy<PlayerSoundEffectTriggers> {

@@ -22,5 +22,5 @@ function DisplayButton({reactKey: key, view, currentView, routeName,}: DisplayBu
 
     return currentPath === path || view === currentView
         ? <button key={`${key} (${view.name})`} className={`btn btn-success bi-${view.htmlType} btn-viewDisplay`} type="button" disabled/>
-        : <Link key={`${key} (${view.name})`} to={path} className={`btn btn-dark bi-${view.htmlType} btn-viewDisplay`} onClick={() => ViewDisplays.current = view}/>
+        : <Link key={`${key} (${view.name})`} to={path} className={`btn btn-dark bi-${view.htmlType} btn-viewDisplay`} onClick={() => ViewDisplays.CompanionEnum.get.current = view}/>
 }

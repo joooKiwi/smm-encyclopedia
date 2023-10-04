@@ -169,7 +169,7 @@ export class LimitPropertyContainer
      */
     #newMap(...values: readonly Nullable<EntityLimits>[]): ReadonlyMap<EntityLimits, boolean> {
         const newValues = nonNull(values)
-        return new Map(Import.EntityLimits.values.map(limit => [limit, newValues.includes(limit),]))
+        return new Map(Import.EntityLimits.CompanionEnum.get.values.map(limit => [limit, newValues.includes(limit,),],),)
     }
 
     public toLimitMap(): ReadonlyMap<EntityLimits, boolean> {

@@ -1,12 +1,11 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
+import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
-import {EntityLimits}   from 'core/entityLimit/EntityLimits'
-import {getValueByType} from 'util/utilitiesMethods'
+import {EntityLimits}        from 'core/entityLimit/EntityLimits'
+import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
 /** @usedByTheRouting */
 export abstract class LimitTypes
@@ -18,7 +17,7 @@ export abstract class LimitTypes
     public static readonly ALL =           new class EntityLimitTypes_All extends LimitTypes {
 
         public override get content() {
-            return EntityLimits.values.toArray()
+            return EntityLimits.CompanionEnum.get.values.toArray()
         }
 
 
@@ -71,8 +70,8 @@ export abstract class LimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
-        extends CompanionEnum<LimitTypes, typeof LimitTypes> {
+    public static readonly CompanionEnum: CompanionEnumByTypeSingleton<string, LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
+        extends CompanionEnumByType<string, LimitTypes, typeof LimitTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -166,27 +165,7 @@ export abstract class LimitTypes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByType(value: Nullable<| LimitTypes | string>,): LimitTypes {
-        return getValueByType(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<LimitTypes>,): LimitTypes {
-        return LimitTypes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<LimitTypes> {
-        return LimitTypes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<LimitTypes> {
-        return LimitTypes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

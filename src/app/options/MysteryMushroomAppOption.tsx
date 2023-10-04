@@ -1,7 +1,6 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                               from 'react'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {Fragment}                    from 'react'
 
 import type {AppOption}                                    from 'app/options/AppOption'
 import type {Names, Ordinals, PossibleMysteryMushroomType} from 'app/options/MysteryMushroomAppOption.types'
@@ -469,21 +468,6 @@ export abstract class MysteryMushroomAppOption
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<MysteryMushroomAppOption>,): MysteryMushroomAppOption {
-        return MysteryMushroomAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<MysteryMushroomAppOption> {
-        return MysteryMushroomAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<MysteryMushroomAppOption> {
-        return MysteryMushroomAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

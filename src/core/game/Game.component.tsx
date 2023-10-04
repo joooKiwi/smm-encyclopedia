@@ -38,7 +38,7 @@ export default class GameComponent
     }
 
     protected override _renderComponentForAllAsImages() {
-        return <div key={`${this.name.english} (every games)`}>{Games.values.map(game => this._renderSingleComponent(game))}</div>
+        return <div key={`${this.name.english} (every games)`}>{Games.CompanionEnum.get.values.map(game => this._renderSingleComponent(game,),)}</div>
     }
 
 }

@@ -1,12 +1,11 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/CourseTagTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
+import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
-import {CourseTags}     from 'core/courseTag/CourseTags'
-import {getValueByType} from 'util/utilitiesMethods'
+import {CourseTags}          from 'core/courseTag/CourseTags'
+import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
 /** @usedByTheRouting */
 export abstract class CourseTagTypes
@@ -18,7 +17,7 @@ export abstract class CourseTagTypes
     public static readonly ALL =              new class CourseTagTypes_All extends CourseTagTypes {
 
         public override get content() {
-            return CourseTags.values.toArray()
+            return CourseTags.CompanionEnum.get.values.toArray()
         }
 
 
@@ -103,8 +102,8 @@ export abstract class CourseTagTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<CourseTagTypes, typeof CourseTagTypes> = class CompanionEnum_CourseTagTypes
-        extends CompanionEnum<CourseTagTypes, typeof CourseTagTypes> {
+    public static readonly CompanionEnum: CompanionEnumByTypeSingleton<string, CourseTagTypes, typeof CourseTagTypes> = class CompanionEnum_CourseTagTypes
+        extends CompanionEnumByType<string, CourseTagTypes, typeof CourseTagTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -212,27 +211,7 @@ export abstract class CourseTagTypes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByType(value: Nullable<| CourseTagTypes | string>,): CourseTagTypes {
-        return getValueByType(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<CourseTagTypes>,): CourseTagTypes {
-        return CourseTagTypes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<CourseTagTypes> {
-        return CourseTagTypes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<CourseTagTypes> {
-        return CourseTagTypes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

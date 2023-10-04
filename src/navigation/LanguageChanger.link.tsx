@@ -28,5 +28,5 @@ export default function LanguageChangerLink({language, callbackToSetLanguage,}: 
 
     return <div key={`language changer (double - ${language.language.parent!.englishName})`} id={`double-language-changer-${englishNameAsId}`}
                 className="languageChanger-link-container btn-group btn-group-lg col-12 col-xl-5" role="group">{childrenLanguages.map(language =>
-        <LanguageChangerSingleLink key={`${language.englishName} (single button in group)`} language={ProjectLanguages.getValueByLanguage(language)!} callbackToSetLanguage={callbackToSetLanguage}/>)}</div>
+        <LanguageChangerSingleLink key={`${language.englishName} (single button in group)`} language={ProjectLanguages.CompanionEnum.get.getValueByLanguage(language,)} callbackToSetLanguage={callbackToSetLanguage}/>)}</div>
 }

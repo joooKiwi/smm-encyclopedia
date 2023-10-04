@@ -36,7 +36,7 @@ export default class SoundEffectCategoryApp
         return new class SoundEffectCategoryAppInterpreter implements AppInterpreterWithCardList<SoundEffectCategories> {
 
             public get content() {
-                return SoundEffectCategories.values.toArray()
+                return SoundEffectCategories.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

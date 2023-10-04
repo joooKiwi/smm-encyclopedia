@@ -1,16 +1,16 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {ClassWithReference}                                                        from 'core/ClassWithReference'
 import type {OtherWordInTheGame}                                                        from 'core/otherWordInTheGame/OtherWordInTheGame'
 import type {ClassWithEnglishName}                                                      from 'core/ClassWithEnglishName'
+import type {CompanionEnumByNameSingleton}                                              from 'util/enumerable/Singleton.types'
 
 import {isInProduction}           from 'variables'
 import {OtherWordInTheGameLoader} from 'core/otherWordInTheGame/OtherWordInTheGame.loader'
-import {StringContainer}          from 'util/StringContainer'
 import {EveryLanguages}           from 'lang/EveryLanguages'
+import {StringContainer}          from 'util/StringContainer'
+import {CompanionEnumByName}      from 'util/enumerable/companion/CompanionEnumByName'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -264,8 +264,8 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<OtherWordInTheGames, typeof OtherWordInTheGames> = class CompanionEnum_OtherWordInTheGames
-        extends CompanionEnum<OtherWordInTheGames, typeof OtherWordInTheGames> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<OtherWordInTheGames, typeof OtherWordInTheGames> = class CompanionEnum_OtherWordInTheGames
+        extends CompanionEnumByName<OtherWordInTheGames, typeof OtherWordInTheGames> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -280,6 +280,19 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByName(value: Nullable<| OtherWordInTheGames | string>,): OtherWordInTheGames {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(it =>
+                it.singularEnglishName === value
+                || it.pluralEnglishName === value,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
 
     }
 
@@ -329,7 +342,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     public get singularNameOnReference(): string {
         const value = this.reference.languageValue
         if (value == null)
-            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${EveryLanguages.current.englishName} language.`)
+            throw new ReferenceError(`The singular value "${this.singularEnglishName}" has never been initialized on the ${EveryLanguages.CompanionEnum.get.current.englishName} language.`,)
         return value
     }
 
@@ -364,7 +377,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
             throw ReferenceError(`There is no plural value on the ${this.englishName}.`)
         const value = pluralForm.languageValue
         if (value == null)
-            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${EveryLanguages.current.englishName} language.`)
+            throw new ReferenceError(`The plural value "${this.pluralEnglishName}" has never been initialized on the ${EveryLanguages.CompanionEnum.get.current.englishName} language.`,)
         return value
     }
 
@@ -424,33 +437,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static getValueByName(value: Nullable<| OtherWordInTheGames | string>,): OtherWordInTheGames {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.singularEnglishName === value
-            || it.pluralEnglishName === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<OtherWordInTheGames>,): OtherWordInTheGames {
-        return OtherWordInTheGames.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<OtherWordInTheGames> {
-        return OtherWordInTheGames.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<OtherWordInTheGames> {
-        return OtherWordInTheGames.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

@@ -14,7 +14,7 @@ export class SoundEffectOnTauntContainer
 
     constructor(value: PossibleValuesReceived, game: PossibleGamesReceived,) {
         this.#value = value ?? NOT_APPLICABLE as NotApplicable
-        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
+        this.#game = game == null ? null : GameReferences.CompanionEnum.get.getValueByNameOrAcronym(game,)
     }
 
     public get value(): BooleanOrNotApplicable {

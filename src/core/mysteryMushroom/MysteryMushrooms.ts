@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                                                             from 'core/ClassWithReference'
@@ -9,6 +7,7 @@ import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleUni
 import type {ClimbingImageFile, FallingAfterAJumpImageFile, GoalPoleImageFile, JumpImageFile, PressingDownImageFile, RunningImageFile, SwimmingImageFile, TauntImageFile, TurningImageFile, WaitingImageFile, WalkImageFile} from 'core/mysteryMushroom/file/MysteryMushroomImageFile'
 import type {GoalPoleSoundFile, JumpSoundFile, LostALifeSoundFile, OnGroundAfterAJumpSoundFile, PowerUpCollectedSoundFile, TauntSoundFile, TurningSoundFile}                                                                 from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
 import type {FileName, PossibleImageFileNames}                                                                                                                                                                               from 'core/mysteryMushroom/file/name/FileName'
+import type {CompanionEnumByNameSingleton}                                                                                                                                                                                   from 'util/enumerable/Singleton.types'
 
 import {MysteryMushroomLoader}                 from 'core/mysteryMushroom/MysteryMushroom.loader'
 import {DualFileNameContainer as DualFile}     from 'core/mysteryMushroom/file/name/DualFileName.container'
@@ -17,6 +16,7 @@ import {SingleFileNameContainer as SingleFile} from 'core/mysteryMushroom/file/n
 import {EMPTY_ARRAY}                           from 'util/emptyVariables'
 import {StringContainer}                       from 'util/StringContainer'
 import * as FileCreator                        from 'core/mysteryMushroom/file/fileCreator'
+import {CompanionEnumByName}                   from 'util/enumerable/companion/CompanionEnumByName'
 
 export class MysteryMushrooms
     extends Enum<Ordinals, Names>
@@ -687,8 +687,8 @@ export class MysteryMushrooms
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<MysteryMushrooms, typeof MysteryMushrooms> = class CompanionEnum_MysteryMushrooms
-        extends CompanionEnum<MysteryMushrooms, typeof MysteryMushrooms> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<MysteryMushrooms, typeof MysteryMushrooms> = class CompanionEnum_MysteryMushrooms
+        extends CompanionEnumByName<MysteryMushrooms, typeof MysteryMushrooms>{
 
         //region -------------------- Singleton usage --------------------
 
@@ -703,6 +703,24 @@ export class MysteryMushrooms
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByName(value: Nullable<| MysteryMushrooms | string>,): MysteryMushrooms {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(it => {
+                if (it.englishName === value || it.uniqueEnglishName === value)
+                    return true
+
+                const fileName = it.__fileName
+                return fileName.imageFileNames.includes(value as never,)
+                    || fileName.soundFileName.includes(value as never,)
+            },)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
 
     }
 
@@ -930,41 +948,6 @@ export class MysteryMushrooms
         return this.__fileName.imageFileNames.map(it => callback(englishName, it,))
     }
 
-    public static getValueByName(value: Nullable<| MysteryMushrooms | string>,): MysteryMushrooms {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => {
-            const fileName = it.__fileName
-            return it.englishName === value
-                || it.uniqueEnglishName === value
-                || fileName.imageFileNames.includes(value as never)
-                || fileName.soundFileName.includes(value as never)
-        })
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<MysteryMushrooms>,): MysteryMushrooms {
-        return MysteryMushrooms.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<MysteryMushrooms> {
-        return MysteryMushrooms.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<MysteryMushrooms> {
-        return MysteryMushrooms.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
-
-// @ts-ignore
-(window.test ??={}).MysteryMushrooms = MysteryMushrooms

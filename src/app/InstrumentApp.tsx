@@ -34,7 +34,7 @@ export default class InstrumentApp
         return new class InstrumentAppInterpreter implements AppInterpreterWithCardList<Instruments> {
 
             public get content() {
-                return Instruments.values.toArray()
+                return Instruments.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

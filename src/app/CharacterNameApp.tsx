@@ -44,7 +44,7 @@ export default class CharacterNameApp
         return new class CharacterNameAppInterpreter implements AppInterpreterWithCardList<CharacterNames> {
 
             public get content() {
-                return filterGame(CharacterNames.values, $this.props.games,)
+                return filterGame(CharacterNames.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

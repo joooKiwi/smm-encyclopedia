@@ -1,18 +1,11 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleName, PossibleName_SMM1, PossibleName_SMM2, PossibleName_SMM3DS} from 'core/version/Versions.types'
+import type {Names, Ordinals, PossibleName} from 'core/version/Versions.types'
+import type {CompanionEnumByNameSingleton}  from 'util/enumerable/Singleton.types'
 
-import {Games}      from 'core/game/Games'
-import {GameStyles} from 'core/gameStyle/GameStyles'
-
-//region -------------------- Import from deconstruction --------------------
-
-const {SUPER_MARIO_MAKER_1, SUPER_MARIO_MAKER_2, SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,} = Games
-const {SUPER_MARIO_3D_WORLD,} = GameStyles
-
-//endregion -------------------- Import from deconstruction --------------------
+import {Games}               from 'core/game/Games'
+import {GameStyles}          from 'core/gameStyle/GameStyles'
+import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
 
 export class Versions
     extends Enum<Ordinals, Names> {
@@ -46,15 +39,15 @@ export class Versions
     public static readonly SMM2_V1_1_0 =       new Versions('v1.1.0',       2,     new Date(2019, 11, 1,),)
     public static readonly SMM2_V2_0_0 =       new Versions('v2.0.0',       2,     new Date(2019, 12, 5,),)
     public static readonly SMM2_V3_0_0 =       new Versions('v3.0.0',       2,     new Date(2020, 4,  22,),)
-    public static readonly SMM2_SM3DW_V3_0_0 = new Versions('SM3DW v3.0.0', 2,     new Date(2020, 4,  22,), SUPER_MARIO_3D_WORLD,)
+    public static readonly SMM2_SM3DW_V3_0_0 = new Versions('SM3DW v3.0.0', 2,     new Date(2020, 4,  22,), GameStyles.SUPER_MARIO_3D_WORLD,)
     public static readonly SMM2_V3_0_1 =       new Versions('v3.0.1',       2,     new Date(2020, 7,  15,),)
     public static readonly SMM2_V3_0_2 =       new Versions('v3.0.2',       2,     new Date(2022, 11, 23,),)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Versions, typeof Versions> = class CompanionEnum_Versions
-        extends CompanionEnum<Versions, typeof Versions> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Versions, typeof Versions> = class CompanionEnum_Versions
+        extends CompanionEnumByName<Versions, typeof Versions> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -69,6 +62,17 @@ export class Versions
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByName(value: Nullable<| Versions | string>,): Versions {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(it => it.simpleName === value,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
 
     }
 
@@ -88,7 +92,7 @@ export class Versions
     private constructor(name: PossibleName, game: PossibleGame, releaseDate: NullOr<Date>, gameStyle?: GameStyles_SM3DW,) {
         super()
         this.#name = name
-        this.#game = Games.getValueByValue(game === 1 ? 'SMM' : `SMM${game}` as const)
+        this.#game = Games.CompanionEnum.get.getValueBySimpleValue(game === 1 ? 'SMM' : `SMM${game}` as const)
         this.#releaseDate = releaseDate
         this.#gameStyle = gameStyle ?? null
     }
@@ -104,57 +108,17 @@ export class Versions
         return this.#game
     }
 
+    public get releaseDate(): NullOr<Date> {
+        return this.#releaseDate
+    }
+
     public get gameStyle(): NullOr<GameStyles_SM3DW> {
         return this.#gameStyle
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyNames(): readonly PossibleName[] {
-        return this.values.map(it => it.simpleName).toArray()
-    }
-
-    public static get everyNames_smm1(): readonly PossibleName_SMM1[] {
-        return this.values.filter(it => it.game === SUPER_MARIO_MAKER_1).map(it => it.simpleName as PossibleName_SMM1).toArray()
-    }
-
-    public static get everyNames_smm3ds(): readonly PossibleName_SMM3DS[] {
-        return this.values.filter(it => it.game === SUPER_MARIO_MAKER_FOR_NINTENDO_3DS).map(it => it.simpleName as PossibleName_SMM3DS).toArray()
-    }
-
-    public static get everyNames_smm2(): readonly PossibleName_SMM2[] {
-        return this.values.filter(it => it.game === SUPER_MARIO_MAKER_2).map(it => it.simpleName as PossibleName_SMM2).toArray()
-    }
-
-
-    public static getValueByName(value: Nullable<| Versions | string>,): Versions {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.simpleName === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "Versions" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Versions>,): Versions {
-        return Versions.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Versions> {
-        return Versions.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Versions> {
-        return Versions.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

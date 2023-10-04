@@ -22,9 +22,9 @@ export class SampleCourseCreator
             name,
             template.numbers.world,
             template.numbers.first,
-            GameStyles.getValueByAcronym(template.gameStyle,),
-            Themes.getValueByName(template.courseThemeArea.main,),
-            subArea == null ? null : Themes.getValueByName(subArea,),
+            GameStyles.CompanionEnum.get.getValueByAcronym(template.gameStyle,),
+            Themes.CompanionEnum.get.getValueByName(template.courseThemeArea.main,),
+            subArea == null ? null : Themes.CompanionEnum.get.getValueByName(subArea,),
             template.amountOfTime,
         )
     }

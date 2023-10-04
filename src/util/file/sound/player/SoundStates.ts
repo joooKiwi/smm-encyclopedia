@@ -1,12 +1,11 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}         from 'core/ClassWithEnglishName'
 import type {EnglishName, Names, Ordinals} from 'util/file/sound/player/SoundStates.types'
 import type {SoundSubElementsHolder}       from 'util/file/sound/holder/SoundSubElementsHolder'
+import type {CompanionEnumByNameSingleton} from 'util/enumerable/Singleton.types'
 
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export abstract class SoundStates
     extends Enum<Ordinals, Names>
@@ -53,8 +52,8 @@ export abstract class SoundStates
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<SoundStates, typeof SoundStates> = class CompanionEnum_SoundStates
-        extends CompanionEnum<SoundStates, typeof SoundStates> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<SoundStates, typeof SoundStates> = class CompanionEnum_SoundStates
+        extends CompanionEnumByEnglishNameOnly<SoundStates, typeof SoundStates> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -101,26 +100,6 @@ export abstract class SoundStates
 
     public abstract getElementsFrom(elementsHolder: SoundSubElementsHolder,): readonly ReactElement[]
 
-
-    public static getValueByName(value: Nullable<| SoundStates | string>,): SoundStates {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<SoundStates>,): SoundStates {
-        return SoundStates.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<SoundStates> {
-        return SoundStates.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<SoundStates> {
-        return SoundStates.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

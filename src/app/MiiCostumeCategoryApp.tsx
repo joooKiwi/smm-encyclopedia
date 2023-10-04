@@ -45,7 +45,7 @@ export default class MiiCostumeCategoryApp
         return new class MiiCostumeCategoryAppInterpreter implements AppInterpreterWithCardList<MiiCostumeCategories> {
 
             public get content() {
-                return MiiCostumeCategories.values.toArray()
+                return MiiCostumeCategories.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

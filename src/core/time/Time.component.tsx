@@ -45,7 +45,7 @@ export default class TimeComponent
     }
 
     protected override _renderComponentForAllAsImages() {
-        return <div key={`Every times images (${this.name.english})`}>{Times.values.map(time => this._renderSingleComponent(time))}</div>
+        return <div key={`Every times images (${this.name.english})`}>{Times.CompanionEnum.get.values.map(time => this._renderSingleComponent(time,),)}</div>
     }
 
 }

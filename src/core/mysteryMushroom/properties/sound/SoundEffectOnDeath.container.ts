@@ -32,7 +32,7 @@ export class SoundEffectOnDeathContainer
             this.#simpleTranslationKey = value
         }
         this.#type = type
-        this.#game = game == null || game === UNKNOWN_REFERENCE || game.startsWith('Pokémon gen') ? null : GameReferences.getValueByNameOrAcronym(game)
+        this.#game = game == null || game === UNKNOWN_REFERENCE || game.startsWith('Pokémon gen') ? null : GameReferences.CompanionEnum.get.getValueByNameOrAcronym(game,)
         //FIXME try not to receive ??? as the value for the game
         //FIXME try not to receive "Pokémon gen 1" as the value for the game
         this.#translationKey = smallDefinition

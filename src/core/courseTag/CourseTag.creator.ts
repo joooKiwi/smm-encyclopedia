@@ -33,7 +33,7 @@ export class CourseTagCreator
     static #getFirstAppearance({firstAppearance,}: CourseTagTemplate,): Lazy<NullOr<Versions>> {
         return firstAppearance == null
             ? CommonLazy.NULL
-            : lazy(() => Versions.getValueByName(firstAppearance,),)
+            : lazy(() => Versions.CompanionEnum.get.getValueByName(firstAppearance,),)
     }
 
     //endregion -------------------- Build helper methods --------------------

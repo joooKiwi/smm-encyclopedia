@@ -77,10 +77,10 @@ export class ThemeCreator
      */
     static #getWhereEntityIs(name: PossibleEnglishName,): Lazy<readonly Entity[]> {
         return lazy(() => {
-            const theme = Themes.getValueByName(name)
+            const theme = Themes.CompanionEnum.get.getValueByName(name,)
 
-            return Import.Entities.values.map(({reference,}) => reference)
-                .filter(reference => theme.get(reference))
+            return Import.Entities.CompanionEnum.get.values.map(({reference,},) => reference,)
+                .filter(reference => theme.get(reference,),)
                 .toArray()
         })
     }
@@ -91,7 +91,7 @@ export class ThemeCreator
      * @param name the night effect
      */
     static #getWhereNightEffectIs(name: PossibleEnglishName_NightEffect,): Lazy<NightEffects> {
-        return lazy(() => NightEffects.getValueByName(name,),)
+        return lazy(() => NightEffects.CompanionEnum.get.getValueByName(name,),)
     }
 
     //endregion -------------------- Course theme builder helper methods --------------------

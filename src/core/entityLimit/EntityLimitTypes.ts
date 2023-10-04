@@ -1,11 +1,15 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
+import type {CompanionEnumByNameSingleton}                                    from 'util/enumerable/Singleton.types'
+
+import {ClassWithEnglishName} from 'core/ClassWithEnglishName'
+import {StringContainer}      from 'util/StringContainer'
+import {CompanionEnumByName}  from 'util/enumerable/companion/CompanionEnumByName'
 
 export class EntityLimitTypes
-    extends Enum<Ordinals, Names> {
+    extends Enum<Ordinals, Names>
+    implements ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
@@ -15,8 +19,8 @@ export class EntityLimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EntityLimitTypes, typeof EntityLimitTypes> = class CompanionEnum_EntityLimitTypes
-        extends CompanionEnum<EntityLimitTypes, typeof EntityLimitTypes> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<EntityLimitTypes, typeof EntityLimitTypes> = class CompanionEnum_EntityLimitTypes
+        extends CompanionEnumByName<EntityLimitTypes, typeof EntityLimitTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -32,6 +36,19 @@ export class EntityLimitTypes
 
         //endregion -------------------- Singleton usage --------------------
 
+        public override getValueByName(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(it =>
+                it.englishName === value
+                || it.englishCommonText === value,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
+
     }
 
     //endregion -------------------- Companion enum --------------------
@@ -45,7 +62,7 @@ export class EntityLimitTypes
 
     private constructor(englishName: PossibleEnglishName, englishCommonText: PossibleEnglishCommonText,) {
         super()
-        this.#englishName = englishName
+        this.#englishName = new StringContainer(englishName,)
         this.#englishCommonText = englishCommonText
     }
 
@@ -53,7 +70,11 @@ export class EntityLimitTypes
     //region -------------------- Getter methods --------------------
 
     public get englishName(): PossibleEnglishName {
-        return this.#englishName
+        return this.#englishName.get
+    }
+
+    public get englishNameInHtml(): string {
+        return this.#englishName.getInHtml
     }
 
     public get englishCommonText(): PossibleEnglishCommonText {
@@ -62,34 +83,6 @@ export class EntityLimitTypes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByName(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null name.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.englishName === value
-            || it.englishCommonText === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<EntityLimitTypes>,): EntityLimitTypes {
-        return EntityLimitTypes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EntityLimitTypes> {
-        return EntityLimitTypes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EntityLimitTypes> {
-        return EntityLimitTypes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

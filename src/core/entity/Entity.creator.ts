@@ -105,14 +105,14 @@ export class EntityCreator
         const category = this.template.categoryInTheEditor
         if (category == null)
             return LAZY_EMPTY_ENTITY_CATEGORY
-        return lazy(() => EntityCategories.getValueByName(category,).reference,)
+        return lazy(() => EntityCategories.CompanionEnum.get.getValueByName(category,).reference,)
     }
 
     //endregion -------------------- Entity category helper methods --------------------
     //region -------------------- Property helper methods --------------------
 
     static #getEntityLimitByNameOrAcronymOrNull(entityLimit: Nullable<PossibleEnglishName_EntityLimit>,): NullOr<EntityLimits> {
-        return entityLimit == null ? null : EntityLimits.getValueByNameOrAcronym(entityLimit)
+        return entityLimit == null ? null : EntityLimits.CompanionEnum.get.getValueByName(entityLimit,)
     }
 
     static #getEntityLimitProperty(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
@@ -122,7 +122,7 @@ export class EntityCreator
             ? NOT_APPLICABLE_CONTAINER
             : entityLimit === UNKNOWN_CHARACTER
                 ? UNKNOWN_CONTAINER
-                : new PropertyContainer(EntityLimits.getValueByNameOrAcronym(entityLimit), false, null, comment,)
+                : new PropertyContainer(EntityLimits.CompanionEnum.get.getValueByName(entityLimit,), false, null, comment,)
     }
 
     /**
@@ -182,11 +182,11 @@ export class EntityCreator
      */
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): | readonly [Instrument,] | readonly [Instrument, Instrument,]
     static #whereInstrument(instrument: NonNullable<PossibleInstrument>,): readonly Instrument[] {
-        const singleInstrument = Instruments.getValueByName(instrument)
+        const singleInstrument = Instruments.CompanionEnum.get.getValueByName(instrument,)
         if (singleInstrument != null)
             return [singleInstrument.reference,]
 
-        return Instruments.values.filter(it => instrument.includes(it.englishName))
+        return Instruments.CompanionEnum.get.values.filter(it => instrument.includes(it.englishName,),)
             .map(it => it.reference)
             .toArray()
     }
@@ -289,7 +289,7 @@ export class EntityCreator
     #createGroupReference(set: Nullable<Set<EntityTemplate>>,): Lazy<readonly Entity[]> {
         return set == null
             ? CommonLazy.EMPTY_ARRAY
-            : lazy(() => Array.from(set, it => Entities.getValueByName(it.name.english.simple ?? it.name.english.american,).reference,),)
+            : lazy(() => Array.from(set, it => Entities.CompanionEnum.get.getValueByName(it.name.english.simple ?? it.name.english.american,).reference,),)
     }
 
     /**
@@ -303,7 +303,7 @@ export class EntityCreator
             return EntityCreator.#EMPTY_ENTITIES
         if (link === 'this')
             return this.#SELF
-        return lazy<PossibleOtherEntities>(() => ((link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.getValueByName(splitLink).reference) as unknown as PossibleOtherEntities),)
+        return lazy<PossibleOtherEntities>(() => ((link.split(' / ') as PossibleEnglishName[]).map(splitLink => Entities.CompanionEnum.get.getValueByName(splitLink,).reference,) as unknown as PossibleOtherEntities),)
     }
 
     //endregion -------------------- Entity references helper methods --------------------

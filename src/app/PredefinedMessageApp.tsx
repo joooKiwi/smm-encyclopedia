@@ -33,7 +33,7 @@ export default class PredefinedMessageApp
         return new class PredefinedMessageAppInterpreter implements AppInterpreterWithSimpleList<PredefinedMessages> {
 
             public get content() {
-                return PredefinedMessages.values.toArray()
+                return PredefinedMessages.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

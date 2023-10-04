@@ -43,6 +43,6 @@ interface RedirectionComponentProperties
  * @reactComponent
  */
 function RedirectionComponent({redirectPath,}: RedirectionComponentProperties,) {
-    const language = useCallback(() => ProjectLanguages.currentOrNull ?? ProjectLanguages.defaultValue, [],)
+    const language = useCallback(() => ProjectLanguages.CompanionEnum.get.currentOrNull ?? ProjectLanguages.CompanionEnum.get.defaultValue, [],)
     return <Navigate replace to={`/${language().projectAcronym}${redirectPath}`}/>
 }

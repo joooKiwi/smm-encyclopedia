@@ -36,7 +36,7 @@ export class TimePropertyContainer<const DAY extends boolean = boolean, const NI
     //region -------------------- Convertor methods --------------------
 
     public toTimeMap(): ReadonlyMap<Times, boolean> {
-        return this.#map ??= new Map(Import.Times.values.map(time => [time, time.get(this),]))
+        return this.#map ??= new Map(Import.Times.CompanionEnum.get.values.map(time => [time, time.get(this),],),)
     }
 
     //endregion -------------------- Convertor methods --------------------

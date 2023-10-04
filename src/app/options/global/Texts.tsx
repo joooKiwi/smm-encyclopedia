@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                     from 'app/options/global/Texts.types'
 import type {BooleanResultTextProperties}         from 'app/tools/text/properties/BooleanResultTextProperties'
@@ -8,13 +6,15 @@ import type {BooleanTextProperties}               from 'app/tools/text/propertie
 import type {PossibleTextContent, TextProperties} from 'app/tools/text/properties/TextProperties'
 import type {YesOrNoTextProperties}               from 'app/tools/text/properties/YesOrNoTextProperties'
 import type {NameProperties}                      from 'lang/name/component/Name.properties'
+import type {CompanionEnumByValueSingleton}       from 'util/enumerable/Singleton.types'
 import type {ClassWithValue}                      from 'util/types/ClassWithValue'
 
-import TextComponent              from 'app/tools/text/TextComponent'
 import NameComponent              from 'lang/name/component/Name.component'
-import YesOrNoResultTextComponent from 'app/tools/text/YesOrNoResultTextComponent'
-import BooleanTextComponent       from 'app/tools/text/BooleanTextComponent'
 import BooleanResultTextComponent from 'app/tools/text/BooleanResultTextComponent'
+import BooleanTextComponent       from 'app/tools/text/BooleanTextComponent'
+import TextComponent              from 'app/tools/text/TextComponent'
+import YesOrNoResultTextComponent from 'app/tools/text/YesOrNoResultTextComponent'
+import {CompanionEnumByValue}     from 'util/enumerable/companion/CompanionEnumByValue'
 
 /**
  * The possible text as either
@@ -85,8 +85,8 @@ export abstract class Texts
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Texts, typeof Texts> = class CompanionEnum_Texts
-        extends CompanionEnum<Texts, typeof Texts> {
+    public static readonly CompanionEnum: CompanionEnumByValueSingleton<boolean, Texts, typeof Texts> = class CompanionEnum_Texts
+        extends CompanionEnumByValue<boolean, Texts, typeof Texts> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -137,34 +137,6 @@ export abstract class Texts
 
     public abstract renderBooleanResultComponent(properties: BooleanResultTextProperties,): ReactElement
 
-
-    // public static getValueByValue<T, >(value: T,): TextsByValue<T>
-    public static getValueByValue(value: Nullable<| Texts | boolean>,): Texts {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.value === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Texts>,): Texts {
-        return Texts.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Texts> {
-        return Texts.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Texts> {
-        return Texts.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

@@ -1,8 +1,9 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleDirection, PossibleName} from 'app/tools/arrow/ArrowDirections.types'
+import type {CompanionEnumByValueSingleton}                    from 'util/enumerable/Singleton.types'
+
+import {CompanionEnumByValue} from 'util/enumerable/companion/CompanionEnumByValue'
 
 /**
  * The arrow direction.<br/>
@@ -22,8 +23,8 @@ export class ArrowDirections
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<ArrowDirections, typeof ArrowDirections> = class CompanionEnum_ArrowDirections
-        extends CompanionEnum<ArrowDirections, typeof ArrowDirections> {
+    public static readonly CompanionEnum: CompanionEnumByValueSingleton<string, ArrowDirections, typeof ArrowDirections> = class CompanionEnum_ArrowDirections
+        extends CompanionEnumByValue<string, ArrowDirections, typeof ArrowDirections> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -71,34 +72,6 @@ export class ArrowDirections
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    // public static getValueByValue<T,>(value: T,): ArrowDirectionsByValue<T>
-    public static getValueByValue(value: Nullable<| ArrowDirections | string>,): ArrowDirections {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.value === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<ArrowDirections>,): ArrowDirections {
-        return ArrowDirections.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<ArrowDirections> {
-        return ArrowDirections.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<ArrowDirections> {
-        return ArrowDirections.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

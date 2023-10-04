@@ -14,7 +14,7 @@ import {everySimpleRoutes} from 'route/everyRoutes'
 import {routeFromName}     from 'route/route'
 
 const /** Every {@link ProjectLanguages project language} as an {@link Array} */
-    languages = ProjectLanguages.values.toArray(),
+    languages = ProjectLanguages.CompanionEnum.get.values.toArray(),
     /**
      * Every route encapsulated in a hash router (for GitHub).
      *
@@ -75,27 +75,27 @@ export default function Routes() {
  * @throws {Response} The route encapsulated in a response
  */
 function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
-    if (ProjectLanguages.currentOrNull != null)
+    if (ProjectLanguages.CompanionEnum.get.currentOrNull != null)
         return null // The path is already in place and the current language has been set
 
     const url = loaderArguments.request.url
 
     const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path))
     if (routeFoundByBasicPath == null)
-        throw redirect(routeFromName('home', ProjectLanguages.defaultValue,))
+        throw redirect(routeFromName('home', ProjectLanguages.CompanionEnum.get.defaultValue,))
 
-    const languageFound = ProjectLanguages.getInUrl(url)
-    if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.defaultValue)
+    const languageFound = ProjectLanguages.CompanionEnum.get.getValueInUrl(url,)
+    if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.CompanionEnum.get.defaultValue)
         return null // The path is "en-AM/home" without setting the current language (by an url redirection)
 
-    ProjectLanguages.current = languageFound ?? ProjectLanguages.defaultValue
+    ProjectLanguages.CompanionEnum.get.current = languageFound ?? ProjectLanguages.CompanionEnum.get.defaultValue
 
-    const viewDisplayFound = ViewDisplays.getInUrl(url),
-        gamesFound = Games.getInUrl(url)
+    const viewDisplayFound = ViewDisplays.CompanionEnum.get.getValueInUrl(url,)
+    const gamesFound = Games.CompanionEnum.get.getValueInUrl(url,)
     if (viewDisplayFound == null && gamesFound.length === 0)
         throw redirect(routeFromName(routeFoundByBasicPath.name, ProjectLanguages.current,))
 
-    const expectedViewDisplayPath = viewDisplayFound == null ? '' : `/${(ViewDisplays.current = viewDisplayFound).urlValue}` as const,
+    const expectedViewDisplayPath = viewDisplayFound == null ? '' : `/${(ViewDisplays.CompanionEnum.get.current = viewDisplayFound).urlValue}` as const,
         expectedGamesPath = gamesFound.length === 0 ? '' : `/${Games.setSelected(gamesFound).selectedGamesAsUrlValue}` as const,
         expectedPath = `${expectedGamesPath}${expectedViewDisplayPath}${routeFoundByBasicPath.path}`,
         routeFoundByArguments = everySimpleRoutes.find(it => it.path === expectedPath)
@@ -114,7 +114,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
     if (language.isCurrent)
         return null
-    throw redirect(routeFromName('home', ProjectLanguages.current = language,))
+    throw redirect(routeFromName('home', ProjectLanguages.CompanionEnum.get.current = language,))
 }
 
 /**
@@ -129,7 +129,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): never {
     if (!Games.selectedGames.hasAll(...games,))
         Games.setSelected(games,)
-    throw redirect(routeFromName(name, ProjectLanguages.defaultValue = getUserLanguage(),))
+    throw redirect(routeFromName(name, ProjectLanguages.CompanionEnum.get.defaultValue = getUserLanguage(),))
 }
 
 /**

@@ -29,11 +29,11 @@ export class MiiCostumeCreator
     static #createVersion({version,}: MiiCostumeTemplate,): Lazy<NullOr<Versions>> {
         return version == null
             ? CommonLazy.NULL
-            : lazy(() => Versions.getValueByName(version,),)
+            : lazy(() => Versions.CompanionEnum.get.getValueByName(version,),)
     }
 
     static #createCategory({category,}: MiiCostumeTemplate,): Lazy<MiiCostumeCategory> {
-        return lazy(() => MiiCostumeCategories.getValueByName(category,).reference,)
+        return lazy(() => MiiCostumeCategories.CompanionEnum.get.getValueByName(category,).reference,)
     }
 
     //endregion -------------------- Build helper methods --------------------

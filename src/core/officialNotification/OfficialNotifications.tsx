@@ -1,16 +1,15 @@
 import './OfficialNotifications.scss'
 
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import type {Lazy}                                              from '@joookiwi/lazy'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {lazy}                                                   from '@joookiwi/lazy'
-import {Fragment}                                               from 'react'
+import type {Lazy} from '@joookiwi/lazy'
+import {Enum}      from '@joookiwi/enumerable'
+import {lazy}      from '@joookiwi/lazy'
+import {Fragment}  from 'react'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                   from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleAdditionalTranslationKey, PossibleAmount, PossibleAmount_HighScoreOfXInEndlessMarioEasyOrNormal, PossibleAmount_HighScoreOfXInEndlessMarioExpertOrSuperExpert, PossibleEnglishName, PossibleEnglishNameWithAmount, PossibleEnglishNameWithEveryAmount, PossibleTranslationKey} from 'core/officialNotification/OfficialNotifications.types'
 import type {ClassWithTranslationKey}                                                                                                                                                                                                                                                                                from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}                                                                                                                                                                                                                                                                              from 'lang/components/TranslationProperty'
+import type {CompanionEnumByNameSingleton}                                                                                                                                                                                                                                                                           from 'util/enumerable/Singleton.types'
 
 import Image                                                                     from 'app/tools/images/Image'
 import TextComponent                                                             from 'app/tools/text/TextComponent'
@@ -22,6 +21,7 @@ import {LIKE_IMAGE_FILE, STAMP_IMAGE_FILE}                                      
 import {OtherWordInTheGames}                                                     from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {EMPTY_ARRAY, EMPTY_STRING}                                               from 'util/emptyVariables'
 import {StringContainer}                                                         from 'util/StringContainer'
+import {CompanionEnumByName}                                                     from 'util/enumerable/companion/CompanionEnumByName'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -484,8 +484,8 @@ export class OfficialNotifications
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<OfficialNotifications, typeof OfficialNotifications> = class CompanionEnum_OfficialNotifications
-        extends CompanionEnum<OfficialNotifications, typeof OfficialNotifications> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<OfficialNotifications, typeof OfficialNotifications> = class CompanionEnum_OfficialNotifications
+        extends CompanionEnumByName<OfficialNotifications, typeof OfficialNotifications> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -500,6 +500,19 @@ export class OfficialNotifications
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByName(value: Nullable<| OfficialNotifications | string>,): OfficialNotifications {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(it =>
+                it.englishName === value
+                || it.additionalEnglishName.includes(value as never,),)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
 
     }
 
@@ -713,34 +726,6 @@ export class OfficialNotifications
         return <TextComponent content={gameContentTranslation(`Official notification.${this.translationKey}`, this._addArgumentTo(key, keyMap,),)}/>
     }
 
-
-    public static getValueByName(value: Nullable<| OfficialNotifications | string>,): OfficialNotifications {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.englishName === value
-            || it.additionalEnglishName.includes(value as never))
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<OfficialNotifications>,): OfficialNotifications {
-        return OfficialNotifications.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<OfficialNotifications> {
-        return OfficialNotifications.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<OfficialNotifications> {
-        return OfficialNotifications.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

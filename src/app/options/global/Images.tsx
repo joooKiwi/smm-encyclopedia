@@ -1,12 +1,12 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
-import type {ClassWithValue}  from 'util/types/ClassWithValue'
-import type {ImageProperties} from 'app/tools/images/properties/ImageProperties'
-import type {Names, Ordinals} from 'app/options/global/Images.types'
+import type {ImageProperties}               from 'app/tools/images/properties/ImageProperties'
+import type {Names, Ordinals}               from 'app/options/global/Images.types'
+import type {CompanionEnumByValueSingleton} from 'util/enumerable/Singleton.types'
+import type {ClassWithValue}                from 'util/types/ClassWithValue'
 
-import Image from 'app/tools/images/Image'
+import Image                  from 'app/tools/images/Image'
+import {CompanionEnumByValue} from 'util/enumerable/companion/CompanionEnumByValue'
 
 /**
  * The possible image as either
@@ -40,8 +40,8 @@ export abstract class Images
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Images, typeof Images> = class CompanionEnum_Images
-        extends CompanionEnum<Images, typeof Images> {
+    public static readonly CompanionEnum: CompanionEnumByValueSingleton<boolean, Images, typeof Images> = class CompanionEnum_Images
+        extends CompanionEnumByValue<boolean, Images, typeof Images> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -84,34 +84,6 @@ export abstract class Images
 
     public abstract renderComponent(properties: ImageProperties,): ReactElement
 
-
-    // public static getValueByValue<T, >(value: T,): ImagesByValue<T>
-    public static getValueByValue(value: Nullable<| Images | boolean>,): Images {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.value === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Images>,): Images {
-        return Images.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Images> {
-        return Images.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Images> {
-        return Images.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

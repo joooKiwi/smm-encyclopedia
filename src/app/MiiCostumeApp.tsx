@@ -53,7 +53,7 @@ export default class MiiCostumeApp
         return new class MiiCostumeAppInterpreter implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
             public get content() {
-                return MiiCostumes.values.toArray()
+                return MiiCostumes.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

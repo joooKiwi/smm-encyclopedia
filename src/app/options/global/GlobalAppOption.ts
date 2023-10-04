@@ -1,6 +1,5 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum}                                          from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum}               from '@joookiwi/enumerable'
 
 import type {GlobalAppState}                          from 'app/AppStates.types'
 import type {Names, Ordinals, PossibleAppOptionValue} from 'app/options/global/GlobalAppOption.types'
@@ -73,7 +72,6 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
@@ -86,20 +84,5 @@ export abstract class GlobalAppOption<T extends PossibleAppOptionValue = Possibl
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<GlobalAppOption>,): GlobalAppOption {
-        return GlobalAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<GlobalAppOption> {
-        return GlobalAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<GlobalAppOption> {
-        return GlobalAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

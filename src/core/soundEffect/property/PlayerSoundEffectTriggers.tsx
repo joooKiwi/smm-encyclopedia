@@ -1,18 +1,18 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithTranslationKey}                 from 'lang/ClassWithTranslationKey'
 import type {TranslationReplaceKeysMap}               from 'lang/components/TranslationProperty'
 import type {Names, Ordinals, PossibleTranslationKey} from 'core/soundEffect/property/PlayerSoundEffectTriggers.types'
 import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTrigger.property'
+import type {CompanionEnumByTranslationKeySingleton}  from 'util/enumerable/Singleton.types'
 
-import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
 import Image                            from 'app/tools/images/Image'
 import TextComponent                    from 'app/tools/text/TextComponent'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import {assert}                         from 'util/utilitiesMethods'
+import {CompanionEnumByTranslationKey}  from 'util/enumerable/companion/CompanionEnumByTranslationKey'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -200,8 +200,8 @@ export class PlayerSoundEffectTriggers
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> = class CompanionEnum_PlayerSoundEffectTriggers
-        extends CompanionEnum<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> {
+    public static readonly CompanionEnum: CompanionEnumByTranslationKeySingleton<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> = class CompanionEnum_PlayerSoundEffectTriggers
+        extends CompanionEnumByTranslationKey<PlayerSoundEffectTriggers, typeof PlayerSoundEffectTriggers> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -362,34 +362,6 @@ export class PlayerSoundEffectTriggers
         assert(false, 'There is no player sound effect trigger usable with no possible property.',)
     }
 
-
-    // public static getValueByTranslation<T extends string, >(value: Nullable<| PlayerSoundEffectTriggers | T>,): PlayerSoundEffectTriggersByTranslation<T>
-    public static getValueByTranslation(value: Nullable<| PlayerSoundEffectTriggers | string>,): PlayerSoundEffectTriggers {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(enumerable => enumerable.translationKey === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<PlayerSoundEffectTriggers>,): PlayerSoundEffectTriggers {
-        return PlayerSoundEffectTriggers.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<PlayerSoundEffectTriggers> {
-        return PlayerSoundEffectTriggers.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<PlayerSoundEffectTriggers> {
-        return PlayerSoundEffectTriggers.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

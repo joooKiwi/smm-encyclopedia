@@ -62,7 +62,7 @@ export default class EntityApp
         return new class EntityAppInterpreter implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
             public get content() {
-                return filterGame(Entities.values, $this.props.games,)
+                return filterGame(Entities.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

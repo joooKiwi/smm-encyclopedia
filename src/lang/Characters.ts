@@ -1,8 +1,8 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {Singleton}      from '@joookiwi/enumerable'
+import {CompanionEnum, Enum} from '@joookiwi/enumerable'
 
 import type {Braces_Array, Braces_SpaceEven_Array, Braces_SpaceUneven_Array, Brackets_Array, Brackets_SpaceEven_Array, Brackets_SpaceUneven_Array, CharactersEquivalencesMap, Braces, Brackets, Numbers, Parentheses, Points, RomainAlphabet, Slashes, Letters_Array, LowercaseLetters_Array, LowercaseRomainAlphabet_SpaceEven_Array, LowercaseRomainAlphabet_SpaceUneven_Array, Names, Numbers_Array, Numbers_SpaceEven_Array, Numbers_SpaceUneven_Array, Ordinals, Parentheses_Array, Parentheses_SpaceEven_Array, Parentheses_SpaceUneven_Array, Points_Array, Points_SpaceEven_Array, Points_SpaceUneven_Array, PossibleBraces_Array, PossibleBrackets_Array, PossibleLowercaseRomainAlphabet_Array, PossibleMixedSpaceEvenCharacter_RomainAlphabet, PossibleMixedSpaceUnevenCharacter_RomainAlphabet, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoints_Array, PossibleSingleCharacter, PossibleSingleSpaceEvenCharacter_ExcludingRomainAlphabet, PossibleSingleSpaceUnevenCharacter_ExcludingRomainAlphabet, PossibleSlashes_Array, PossibleSpaceEvenCharacters, PossibleSpaceUnevenCharacters, PossibleUppercaseRomainAlphabet_Array, RomainAlphabet_SpaceEven_Array, RomainAlphabet_SpaceUneven_Array, Slashes_Array, Slashes_SpaceEven_Array, Slashes_SpaceUneven_Array, SpaceEvenCharacter_RomainAlphabet, SpaceUnevenCharacter_RomainAlphabet, TextInBraces, TextInBrackets, TextInParentheses, UppercaseLetters_Array, UppercaseRomainAlphabet_SpaceEven_Array, UppercaseRomainAlphabet_SpaceUneven_Array, VariableCharacterByCharacter, VariableCharacterByString, VariableCharactersByBoolean, VariableValueByBoolean} from 'lang/Characters.types'
+import type {CompanionEnum_Characters as CompanionEnumDeclaration_Characters}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/Characters.companionEnumDeclaration'
 
 export class Characters
     extends Enum<Ordinals, Names> {
@@ -70,8 +70,9 @@ export class Characters
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Characters, typeof Characters> = class CompanionEnum_Characters
-        extends CompanionEnum<Characters, typeof Characters> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_Characters> = class CompanionEnum_Characters
+        extends CompanionEnum<Characters, typeof Characters>
+        implements CompanionEnumDeclaration_Characters {
 
         //region -------------------- Singleton usage --------------------
 
@@ -86,6 +87,33 @@ export class Characters
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+
+        public getCharacter<const B extends boolean, const C extends PossibleSingleCharacter, >(isSpaceEven: B, value: C,): VariableCharacterByCharacter<B, C>
+        public getCharacter<const B extends boolean, const C extends string, >(isSpaceEven: B, value: C,): VariableCharacterByString<B, C>
+        public getCharacter(isSpaceEven: boolean, value: string,) {
+            const enumValue = this.getValueByCharacter(value,)
+            const isUppercase = value === value.toUpperCase()
+            const isLowercase = value === value.toLowerCase()
+            if (!isUppercase && !isLowercase)//. ? ! , - & / | ( ) [ ] { } [0 to 9]
+                return enumValue.getCharacters(isSpaceEven,)[0]
+
+            const characters = enumValue.getCharacters(isSpaceEven,)//[a to z] [A to Z]
+            return isUppercase ? characters[0] : characters[1]
+        }
+
+        public getValueByCharacter(value: Nullable<| Characters | string>,): Characters {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null character.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(it =>
+                it.spaceEvenCharacters.includes(value as never,)
+                || it.spaceUnevenCharacters.includes(value as never,),)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by ths value "${value}".`,)
+            return valueFound
+        }
 
     }
 
@@ -351,26 +379,14 @@ export class Characters
         return isSpaceEven ? this.spaceEvenCharacters : this.spaceUnevenCharacters
     }
 
-    public static getCharacter<B extends boolean, C extends PossibleSingleCharacter, >(isSpaceEven: B, value: C,): VariableCharacterByCharacter<B, C>
-    public static getCharacter<B extends boolean, C extends string, >(isSpaceEven: B, value: C,): VariableCharacterByString<B, C>
-    public static getCharacter(isSpaceEven: boolean, value: string,) {
-        const enumValue = this.getValueByCharacter(value)
-        const isUppercase = value === value.toUpperCase()
-        const isLowercase = value === value.toLowerCase()
-        if (!isUppercase && !isLowercase)//. ? ! , - & / | ( ) [ ] { } [0 to 9]
-            return enumValue.getCharacters(isSpaceEven)[0]
-
-        const characters = enumValue.getCharacters(isSpaceEven)//[a to z] [A to Z]
-        return isUppercase ? characters[0] : characters[1]
-    }
-
     /**
      * An equivalence {@link Object object map} of every character used in the {@link Characters} enum.
      */
     public static get equivalenceMapObject(): CharactersEquivalencesMap {
         if (this.#SPACE_EVEN_OBJECT_MAP == null) {
             const spaceEvenObjectMap: Partial<CharactersEquivalencesMap> = {}
-            for (const enumerable of this) {
+            const values = this.CompanionEnum.get.values
+            for (const enumerable of values) {
                 const [spaceEvenCharacter1, spaceEvenCharacter2,] = enumerable.spaceEvenCharacters
                 const [spaceUnevenCharacter1, spaceUnevenCharacter2,] = enumerable.spaceUnevenCharacters
                 Reflect.set(spaceEvenObjectMap, spaceEvenCharacter1, spaceUnevenCharacter1,)
@@ -408,36 +424,7 @@ export class Characters
 
     //endregion -------------------- Transformation methods --------------------
 
-    // public static getValueByCharacter<T extends string, >(value: T,): Characters
-    public static getValueByCharacter(value: | Characters | string | null | undefined,): Characters {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(enumerable =>
-            enumerable.spaceEvenCharacters.includes(value as never)
-            || enumerable.spaceUnevenCharacters.includes(value as never))
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by ths value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Characters>,): Characters {
-        return Characters.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Characters> {
-        return Characters.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Characters> {
-        return Characters.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

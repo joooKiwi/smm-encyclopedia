@@ -44,7 +44,7 @@ export default class GameStyleApp
         return new class GameStyleAppInterpreter implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
             public get content() {
-                return filterGame(GameStyles.values, $this.props.games,)
+                return filterGame(GameStyles.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

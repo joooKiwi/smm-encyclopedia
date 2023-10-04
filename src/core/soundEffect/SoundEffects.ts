@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                   from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                     from 'core/ClassWithReference'
@@ -15,6 +13,7 @@ import type {SMM1ExclusiveSoundEffectSound}                                     
 import type {SMM1StandaloneSoundEffectSound}                                                                                                         from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
 import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                            from 'core/soundEffect/sound/types'
 import type {Builder}                                                                                                                                from 'util/builder/Builder'
+import type {CompanionEnumByNameSingleton}                                                                                                           from 'util/enumerable/Singleton.types'
 
 import type {Musics}                                                    from 'core/music/Musics'
 import SoundEffectComponent                                             from 'core/soundEffect/SoundEffect.component'
@@ -27,11 +26,11 @@ import {SMM1StandaloneSoundEffectSoundContainer as SMM1StandaloneSound} from 'co
 import {SMM2SoundEffectSoundContainer as SMM2Sound}                     from 'core/soundEffect/sound/SMM2SoundEffectSound.container'
 import {Import}                                                         from 'util/DynamicImporter'
 import {StringContainer}                                                from 'util/StringContainer'
-import {getValueByEnglishName}                                          from 'util/utilitiesMethods'
 import {EMPTY_ARRAY}                                                    from 'util/emptyVariables'
+import {CompanionEnumByEnglishNameOnly}                                 from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 /**
- * @recursiveReference {@link Musics}
+ * @recursiveReference<{@link Musics}>
  */
 export abstract class SoundEffects
     extends Enum<Ordinals, Names>
@@ -1040,8 +1039,8 @@ export abstract class SoundEffects
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<SoundEffects, typeof SoundEffects> = class CompanionEnum_SoundEffects
-        extends CompanionEnum<SoundEffects, typeof SoundEffects> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<SoundEffects, typeof SoundEffects> = class CompanionEnum_SoundEffects
+        extends CompanionEnumByEnglishNameOnly<SoundEffects, typeof SoundEffects> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -1337,27 +1336,7 @@ export abstract class SoundEffects
         return SoundEffectComponent.render(this)
     }
 
-
-    public static getValueByName(value: Nullable<| SoundEffects | string>,): SoundEffects {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<SoundEffects>,): SoundEffects {
-        return SoundEffects.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<SoundEffects> {
-        return SoundEffects.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<SoundEffects> {
-        return SoundEffects.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

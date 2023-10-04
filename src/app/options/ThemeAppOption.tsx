@@ -1,6 +1,5 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/ThemeAppOption.types'
@@ -137,20 +136,5 @@ implements AppOption<Themes>{
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<ThemeAppOption>,): ThemeAppOption {
-        return ThemeAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<ThemeAppOption> {
-        return ThemeAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<ThemeAppOption> {
-        return ThemeAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

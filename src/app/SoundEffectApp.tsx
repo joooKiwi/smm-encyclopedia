@@ -44,7 +44,7 @@ export default class SoundEffectApp
         return new class SoundEffectAppInterpreter implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
             public get content() {
-                return filterGame(SoundEffects.values, $this.props.games,)
+                return filterGame(SoundEffects.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

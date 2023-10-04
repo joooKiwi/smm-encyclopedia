@@ -38,7 +38,7 @@ export default class EditorVoiceApp
         return new class EditorVoiceAppInterpreter implements AppInterpreterWithCardList<EditorVoices> {
 
             public get content() {
-                return filterGame(EditorVoices.values, $this.props.games,)
+                return filterGame(EditorVoices.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

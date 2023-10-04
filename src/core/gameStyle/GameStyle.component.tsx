@@ -41,7 +41,7 @@ export default class GameStyleComponent
     }
 
     protected override _renderComponentForAllAsImages() {
-        return <div key={`${this.name.english} (every game styles)`}>{GameStyles.values.map(gameStyle => this._renderSingleComponent(gameStyle))}</div>
+        return <div key={`${this.name.english} (every game styles)`}>{GameStyles.CompanionEnum.get.values.map(gameStyle => this._renderSingleComponent(gameStyle),)}</div>
     }
 
 }

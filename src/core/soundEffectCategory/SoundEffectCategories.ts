@@ -1,18 +1,17 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                         from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                           from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName, PossibleImageName, PossibleImageNumber} from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {SoundEffectCategory}                                                          from 'core/soundEffectCategory/SoundEffectCategory'
 import type {SoundEffectCategoryImageFile}                                                 from 'core/soundEffectCategory/file/SoundEffectCategoryImageFile'
+import type {CompanionEnumByNameSingleton}                                                 from 'util/enumerable/Singleton.types'
 import type {ClassWithImageFile}                                                           from 'util/file/image/ClassWithImageFile'
 
-import {SoundEffectCategoryLoader} from 'core/soundEffectCategory/SoundEffectCategory.loader'
-import * as FileCreator            from 'core/soundEffectCategory/file/fileCreator'
-import {getValueByEnglishName}     from 'util/utilitiesMethods'
-import {StringContainer}           from 'util/StringContainer'
+import {SoundEffectCategoryLoader}      from 'core/soundEffectCategory/SoundEffectCategory.loader'
+import * as FileCreator                 from 'core/soundEffectCategory/file/fileCreator'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class SoundEffectCategories
     extends Enum<Ordinals, Names>
@@ -31,8 +30,8 @@ export class SoundEffectCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<SoundEffectCategories, typeof SoundEffectCategories> = class CompanionEnum_SoundEffectCategories
-        extends CompanionEnum<SoundEffectCategories, typeof SoundEffectCategories> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<SoundEffectCategories, typeof SoundEffectCategories> = class CompanionEnum_SoundEffectCategories
+        extends CompanionEnumByEnglishNameOnly<SoundEffectCategories, typeof SoundEffectCategories>{
 
         //region -------------------- Singleton usage --------------------
 
@@ -99,26 +98,6 @@ export class SoundEffectCategories
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByName(value: Nullable<| SoundEffectCategories | string>,): SoundEffectCategories {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<SoundEffectCategories>,): SoundEffectCategories {
-        return SoundEffectCategories.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<SoundEffectCategories> {
-        return SoundEffectCategories.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<SoundEffectCategories> {
-        return SoundEffectCategories.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

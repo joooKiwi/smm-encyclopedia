@@ -1,6 +1,5 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
 
@@ -189,21 +188,6 @@ export abstract class Arrows
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Arrows>,): Arrows {
-        return Arrows.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Arrows> {
-        return Arrows.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Arrows> {
-        return Arrows.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

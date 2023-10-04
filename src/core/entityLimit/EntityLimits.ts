@@ -1,18 +1,18 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithNullableAcronym}                                                                                                              from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                  from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                    from 'core/ClassWithReference'
 import type {EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit}                                                                            from 'core/entityLimit/EntityLimit'
 import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleEntityLink} from 'core/entityLimit/EntityLimits.types'
+import type {CompanionEnumByNameSingleton}                                                                                                          from 'util/enumerable/Singleton.types'
 
 import type {Entities}             from 'core/entity/Entities'
 import {EntityLimitLoader}         from 'core/entityLimit/EntityLimit.loader'
 import {Import}                    from 'util/DynamicImporter'
 import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
 import {StringContainer}           from 'util/StringContainer'
+import {CompanionEnumByName}       from 'util/enumerable/companion/CompanionEnumByName'
 
 /**
  * @classWithDynamicImport {@link Entities}
@@ -316,10 +316,10 @@ export class EntityLimits
     } (['Warp Pipe Limit',],)
 
     //endregion -------------------- Enum instances --------------------
-    //region -------------------- Enum fields --------------------
+    //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EntityLimits, typeof EntityLimits> = class CompanionEnum_EntityLimits
-        extends CompanionEnum<EntityLimits, typeof EntityLimits> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<EntityLimits, typeof EntityLimits> = class CompanionEnum_EntityLimits
+        extends CompanionEnumByName<EntityLimits, typeof EntityLimits>{
 
         //region -------------------- Singleton usage --------------------
 
@@ -335,16 +335,31 @@ export class EntityLimits
 
         //endregion -------------------- Singleton usage --------------------
 
+        public override getValueByName(value: Nullable<| EntityLimits | string>,): EntityLimits {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(it =>
+                it.englishName === value
+                || it.englishName.replace(' Limit', EMPTY_STRING,) === value
+                || it.englishName.replace(' Limit (Editor)', EMPTY_STRING,) === value
+                || it.alternativeEnglishName === value
+                || it.alternativeEnglishName?.replace(' Limit', EMPTY_STRING,) === value
+                || it.alternativeEnglishName?.replace(' Limit (Editor)', EMPTY_STRING,) === value,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
+
     }
 
-    //endregion -------------------- Enum fields --------------------
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, EntityLimit>
     static #whilePlayingEntityLimits?: readonly EntityLimits[]
     static #editorEntityLimits?: readonly EntityLimits[]
-    static readonly #LIMIT = ' Limit'
-    static readonly #LIMIT_EDITOR = ' Limit (Editor)'
 
     #reference?: EntityLimitWithPossibleAlternativeEntityLimit
     readonly #isEditorLimit
@@ -466,49 +481,14 @@ export class EntityLimits
     //region -------------------- Methods --------------------
 
     public static get whilePlayingEntityLimits(): readonly EntityLimits[] {
-        return this.#whilePlayingEntityLimits ??= this.values.filter(it => !it.isEditorLimit).toArray()
+        return this.#whilePlayingEntityLimits ??= this.CompanionEnum.get.values.filter(it => !it.isEditorLimit,).toArray()
     }
 
     public static get editorEntityLimits(): readonly EntityLimits[] {
-        return this.#editorEntityLimits ??= this.values.filter(it => it.isEditorLimit).toArray()
-    }
-
-
-    public static getValueByNameOrAcronym(value: Nullable<| EntityLimits | string>,): EntityLimits {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it =>
-            it.englishName === value
-            || it.englishName.replace(this.#LIMIT, EMPTY_STRING,) === value
-            || it.englishName.replace(this.#LIMIT_EDITOR, EMPTY_STRING,) === value
-            || it.alternativeEnglishName === value
-            || it.alternativeEnglishName?.replace(this.#LIMIT, EMPTY_STRING,) === value
-            || it.alternativeEnglishName?.replace(this.#LIMIT_EDITOR, EMPTY_STRING,) === value
-            || it.acronym === value
-            || it.alternativeAcronym === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
+        return this.#editorEntityLimits ??= this.CompanionEnum.get.values.filter(it => it.isEditorLimit).toArray()
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<EntityLimits>,): EntityLimits {
-        return EntityLimits.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EntityLimits> {
-        return EntityLimits.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EntityLimits> {
-        return EntityLimits.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

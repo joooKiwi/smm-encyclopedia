@@ -72,7 +72,7 @@ export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
     public constructor(template: TEMPLATE, game: PossibleGameReceived, isACompleteName: boolean,) {
         this.#template = template
         if (game === 'all') {
-            this.#game = Games.values.toArray() as readonly [Games, Games, Games,]
+            this.#game = Games.CompanionEnum.get.values.toArray() as readonly [Games, Games, Games,]
             this.#isACompleteName = () => isACompleteName
         } else if (game === 'notSMM2') {
             this.#game = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
@@ -80,7 +80,7 @@ export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
         } else {
             if (game instanceof Games && !isInProduction)
                 console.warn('The usage of Games in the NameBuilderContainer is deprecated, the usage of "1" "" or "3DS" should be used instead')
-            const _game = game instanceof Games ? game : Games.getValueByValue(game)
+            const _game = game instanceof Games ? game : Games.CompanionEnum.get.getValueBySimpleValue(game,)
             this.#game = [_game,] as const
             this.#isACompleteName = language => NameBuilderContainer.#IS_A_COMPLETE_NAME_BASED_ON_GAME(_game, language,) && isACompleteName
         }

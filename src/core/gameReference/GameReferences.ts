@@ -1,15 +1,15 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                      from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                  from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                    from 'core/ClassWithReference'
+import type {ClassWithEnglishName}                                  from 'core/ClassWithEnglishName'
+import type {ClassWithAcronym}                                      from 'core/ClassWithAcronym'
 import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
 import type {GameReference}                                         from 'core/gameReference/GameReference'
+import type {CompanionEnumByAcronymOrNameSingleton}                 from 'util/enumerable/Singleton.types'
 
-import {GameReferenceLoader} from 'core/gameReference/GameReference.loader'
-import {StringContainer}     from 'util/StringContainer'
+import {GameReferenceLoader}          from 'core/gameReference/GameReference.loader'
+import {StringContainer}              from 'util/StringContainer'
+import {CompanionEnumByAcronymOrName} from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
 
 export class GameReferences
     extends Enum<Ordinals, Names>
@@ -175,8 +175,8 @@ export class GameReferences
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<GameReferences, typeof GameReferences> = class CompanionEnum_GameReferences
-        extends CompanionEnum<GameReferences, typeof GameReferences> {
+    public static readonly CompanionEnum: CompanionEnumByAcronymOrNameSingleton<GameReferences, typeof GameReferences> = class CompanionEnum_GameReferences
+        extends CompanionEnumByAcronymOrName<GameReferences, typeof GameReferences> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -237,34 +237,6 @@ export class GameReferences
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByNameOrAcronym(value: Nullable<| GameReferences | string>,): GameReferences {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(enumerable => enumerable.englishName === value
-            || enumerable.acronym === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<GameReferences>,): GameReferences {
-        return GameReferences.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<GameReferences> {
-        return GameReferences.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<GameReferences> {
-        return GameReferences.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

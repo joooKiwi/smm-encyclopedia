@@ -36,7 +36,7 @@ export abstract class AbstractPowerUpPriority
     public static readonly SMB_SMB3_SMW_AND_NSMBU = GameStyles.gameStyles_smm1
     public static readonly SMB3_SMW_NSMBU_AND_SM3DW = [SUPER_MARIO_BROS_3, SUPER_MARIO_WORLD, NEW_SUPER_MARIO_BROS_U, SUPER_MARIO_3D_WORLD,] as const
 
-    public static readonly ALL_GAME_STYLES = GameStyles.values
+    public static readonly ALL_GAME_STYLES = GameStyles.CompanionEnum.get.values
 
     //endregion -------------------- Game styles --------------------
     //region -------------------- Image callbacks --------------------

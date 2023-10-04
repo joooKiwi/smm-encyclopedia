@@ -58,7 +58,7 @@ export default class MysteryMushroomApp
         return new class MysteryMushroomAppInterpreter implements AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption> {
 
             public get content() {
-                return MysteryMushrooms.values.toArray()
+                return MysteryMushrooms.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

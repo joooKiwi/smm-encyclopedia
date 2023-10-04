@@ -1,18 +1,17 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                             from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                               from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName}             from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {MiiCostumeCategory}                               from 'core/miiCostumeCategory/MiiCostumeCategory'
 import type {MiiCostumeCategoryImageFile, PossibleImageNumber} from 'core/miiCostumeCategory/file/MiiCostumeCategoryImageFile'
+import type {CompanionEnumByNameSingleton}                     from 'util/enumerable/Singleton.types'
 import type {ClassWithImageFile}                               from 'util/file/image/ClassWithImageFile'
 
-import {MiiCostumeCategoryLoader} from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
-import {miiCostumeCategoryImage}  from 'core/miiCostumeCategory/file/fileCreator'
-import {StringContainer}          from 'util/StringContainer'
-import {getValueByEnglishName}    from 'util/utilitiesMethods'
+import {MiiCostumeCategoryLoader}       from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
+import {miiCostumeCategoryImage}        from 'core/miiCostumeCategory/file/fileCreator'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class MiiCostumeCategories
     extends Enum<Ordinals, Names>
@@ -30,8 +29,8 @@ export class MiiCostumeCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<MiiCostumeCategories, typeof MiiCostumeCategories> = class CompanionEnum_MiiCostumeCategories
-        extends CompanionEnum<MiiCostumeCategories, typeof MiiCostumeCategories> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<MiiCostumeCategories, typeof MiiCostumeCategories> = class CompanionEnum_MiiCostumeCategories
+        extends CompanionEnumByEnglishNameOnly<MiiCostumeCategories, typeof MiiCostumeCategories> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -101,30 +100,6 @@ export class MiiCostumeCategories
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.values.map(it => it.englishName).toArray()
-    }
-
-    public static getValueByName(value: Nullable<| MiiCostumeCategories | string>,): MiiCostumeCategories {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<MiiCostumeCategories>,): MiiCostumeCategories {
-        return MiiCostumeCategories.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<MiiCostumeCategories> {
-        return MiiCostumeCategories.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<MiiCostumeCategories> {
-        return MiiCostumeCategories.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

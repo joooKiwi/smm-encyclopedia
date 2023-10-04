@@ -48,7 +48,7 @@ export class EntityLimitCreator
      * @param template
      */
     #getEntityLimitTypeBy(template: AlternativeLimitTemplate,): Lazy<EntityLimitTypes> {
-        return lazy(() => Import.EntityLimits.getValueByNameOrAcronym(template.name.english.simple).reference.type,)
+        return lazy(() => Import.EntityLimits.CompanionEnum.get.getValueByName(template.name.english.simple,).reference.type,)
     }
 
     #getAlternativeEntityLimitBy(limit: Nullable<PossibleAlternativeEnglishName>,): Lazy<AlternativeEntityLimit> {
@@ -63,7 +63,7 @@ export class EntityLimitCreator
      * @param name
      */
     #getTypeBy(name: PossibleEnglishName_EntityLimitType,): Lazy<EntityLimitTypes> {
-        return lazy(() => EntityLimitTypes.getValueByName(name,),)
+        return lazy(() => EntityLimitTypes.CompanionEnum.get.getValueByName(name,),)
     }
 
     //region -------------------- Limit amount helper methods --------------------

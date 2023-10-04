@@ -45,7 +45,7 @@ export default class EntityCategoryApp
         return new class EntityCategoryAppInterpreter implements AppInterpreterWithCardList<EntityCategories> {
 
             public get content() {
-                return EntityCategories.values.toArray()
+                return EntityCategories.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

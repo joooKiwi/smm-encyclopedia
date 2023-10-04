@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals}                                          from 'core/music/Musics.types'
 import type {BackgroundMusic}                                          from 'core/music/backgroundMusic/BackgroundMusic'
@@ -8,16 +6,18 @@ import type {NonChangeableSoundEffectBackgroundMusic}                  from 'cor
 import type {SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from 'core/music/backgroundMusic/SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect'
 import type {SingleSoundEffectMusic}                                   from 'core/music/soundEffect/SingleSoundEffectMusic'
 import type {SoundEffectMusicWithDifferentEditor}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
+import type {CompanionEnumByReferenceSingleton}                        from 'util/enumerable/Singleton.types'
 
-import * as MusicCreator   from 'core/music/musicCreator'
-import * as FileCreator    from 'core/music/file/fileCreator'
-import type {SoundEffects} from 'core/soundEffect/SoundEffects'
-import type {Themes}       from 'core/theme/Themes'
-import {Import}            from 'util/DynamicImporter'
+import * as MusicCreator          from 'core/music/musicCreator'
+import * as FileCreator           from 'core/music/file/fileCreator'
+import type {SoundEffects}        from 'core/soundEffect/SoundEffects'
+import type {Themes}              from 'core/theme/Themes'
+import {Import}                   from 'util/DynamicImporter'
+import {CompanionEnumByReference} from 'util/enumerable/companion/CompanionEnumByReference'
 
 /**
  * @todo add other musics (from title screen, theme, star, p-switch)
- * @recursiveReference {@link SoundEffects}
+ * @recursiveReference<{@link SoundEffects}>
  */
 export class Musics
     extends Enum<Ordinals, Names> {
@@ -368,8 +368,8 @@ export class Musics
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Musics, typeof Musics> = class CompanionEnum_Musics
-        extends CompanionEnum<Musics, typeof Musics> {
+    public static readonly CompanionEnum: CompanionEnumByReferenceSingleton<| Themes | SoundEffects, Musics, typeof Musics> = class CompanionEnum_Musics
+        extends CompanionEnumByReference<| Themes | SoundEffects, Musics, typeof Musics> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -384,6 +384,19 @@ export class Musics
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByReference(value: Nullable<| Musics | Themes | SoundEffects>,): Musics {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null reference.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = value instanceof Import.Themes
+                ? this.values.find(it => it.themeReference === value,)
+                : this.values.find(it => it.soundEffectReference === value,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this reference "${value}".`,)
+            return valueFound
+        }
 
     }
 
@@ -445,36 +458,7 @@ export class Musics
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByReference(value: Nullable<| Musics | Themes | SoundEffects>,): Musics {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = value instanceof Import.Themes
-            ? this.values.find(it => it.themeReference === value)
-            : this.values.find(it => it.soundEffectReference === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this reference "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Musics>,): Musics {
-        return Musics.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Musics> {
-        return Musics.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Musics> {
-        return Musics.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

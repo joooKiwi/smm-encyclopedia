@@ -39,7 +39,7 @@ export class OfficialNotificationHolderBuilder
         if (name == null)
             return EmptyOfficialNotificationHolder.get
 
-        const officialNotification = OfficialNotifications.getValueByName(name)
+        const officialNotification = OfficialNotifications.CompanionEnum.get.getValueByName(name,)
 
         if (OfficialNotificationHolderBuilder.#POSSIBLE_EXCLUDED_CASES.includes(officialNotification))
             return OfficialNotificationHolderProvider.get.get(name, officialNotification,)

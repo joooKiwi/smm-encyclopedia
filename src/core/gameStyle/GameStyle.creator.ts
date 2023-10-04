@@ -42,7 +42,7 @@ export class GameStyleCreator
     //region -------------------- Builder helper methods --------------------
 
     static #getNameBy(reference: PossibleAcronym,): Name<string> {
-        return GameReferences.getValueByNameOrAcronym(reference).reference.nameContainer
+        return GameReferences.CompanionEnum.get.getValueByAcronym(reference,).reference.nameContainer
     }
 
     static #getGameProperty({'1And3DS': isInSMM1And3DS,}: SimpleGameFrom1And2Template<boolean, boolean>,): Lazy<GameProperty> {
@@ -62,10 +62,10 @@ export class GameStyleCreator
 
     static #getEntityBy(englishName: PossibleAcronym,): Lazy<readonly Entity[]> {
         return lazy(() => {
-            const gameStyle = Import.GameStyles.getValue(englishName)
+            const gameStyle = Import.GameStyles.CompanionEnum.get.getValueByAcronym(englishName,)
 
-            return Import.Entities.values.map(({reference,}) => reference)
-                .filter(reference => gameStyle.get(reference))
+            return Import.Entities.CompanionEnum.get.values.map(({reference,},) => reference,)
+                .filter(reference => gameStyle.get(reference,),)
                 .toArray()
         },)
     }

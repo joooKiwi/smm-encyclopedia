@@ -1,7 +1,6 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                               from 'react'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {Fragment}                    from 'react'
 
 import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
@@ -217,7 +216,7 @@ export class EntityAppOption
         protected override _createContentOption(enumeration: Entities,) {
             const categoryName = enumeration.reference.categoryNameContainer
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValueByName(categoryName.english).imageFile,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.CompanionEnum.get.getValueByName(categoryName.english,).imageFile,)
         }
 
         protected override _createTableHeaderOption() {
@@ -327,7 +326,7 @@ export class EntityAppOption
     //region -------------------- Getter methods --------------------
 
     protected static get _gameStyles(): readonly GameStyles[] {
-        return this.#gameStyles ??= GameStyles.values.toArray()
+        return this.#gameStyles ??= GameStyles.CompanionEnum.get.values.toArray()
     }
 
     protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | EmptyArray {
@@ -335,7 +334,7 @@ export class EntityAppOption
     }
 
     protected static get times(): readonly Times[] {
-        return this.#times ??= Times.values.toArray()
+        return this.#times ??= Times.CompanionEnum.get.values.toArray()
     }
 
     protected static get themes(): readonly Themes[] {
@@ -372,20 +371,5 @@ export class EntityAppOption
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<EntityAppOption>,): EntityAppOption {
-        return EntityAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EntityAppOption> {
-        return EntityAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EntityAppOption> {
-        return EntityAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
