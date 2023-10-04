@@ -29,7 +29,7 @@ export class MiiCostumeCreator
     static #createVersion({version,}: MiiCostumeTemplate,): Lazy<NullOr<Versions>> {
         return version == null
             ? CommonLazy.NULL
-            : lazy(() => Versions.CompanionEnum.get.getValueByName(version,),)
+            : lazy(() => Versions.CompanionEnum.get.getValueByName(`v${version}`,),)
     }
 
     static #createCategory({category,}: MiiCostumeTemplate,): Lazy<MiiCostumeCategory> {

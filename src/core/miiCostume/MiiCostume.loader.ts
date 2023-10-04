@@ -2,11 +2,10 @@ import file from 'resources/compiled/Mii Costume (SMM2).json'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {MiiCostume}                                                                    from 'core/miiCostume/MiiCostume'
-import type {MiiCostumeTemplate}                                                            from 'core/miiCostume/MiiCostume.template'
+import type {MiiCostumeTemplate, PossibleMarioMakerVersion}                                 from 'core/miiCostume/MiiCostume.template'
 import type {PossibleEnglishName}                                                           from 'core/miiCostume/MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_Category}                           from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
-import type {PossibleName_SMM2_Number as PossibleMarioMakerVersion_SMM2_Number}             from 'core/version/Versions.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
 
 import {isInProduction}     from 'variables'
@@ -63,7 +62,7 @@ interface Content
 
     notificationIfUnlocked: NullOr<PossibleEnglishName_OfficialNotification>
 
-    MM2_version: NullOr<PossibleMarioMakerVersion_SMM2_Number>
+    MM2_version: PossibleMarioMakerVersion
     category: PossibleEnglishName_Category
 
 }
