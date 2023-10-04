@@ -214,7 +214,14 @@
     "plural":   "Sample {{pluralName}}",
 
     "all":         "Every sample {{singularName}}",
-    "display all": "Display every sample {singularName}}"
+    "display all": "Display every sample {{singularName}}"
+  },
+  "medal": {
+    "singular": "Medal",
+    "plural":   "Medals",
+
+    "all":         "Every medal",
+    "display all": "Display every medal"
   },
   "editor voice": {
     "singular": "Editor voice",
