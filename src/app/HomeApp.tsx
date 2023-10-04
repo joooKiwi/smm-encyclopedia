@@ -76,7 +76,7 @@ export default class HomeApp
                 <PageProgress progress="completed"        link={routeFromName('everyCourseTag')}                content={gameContentTranslation('course tag.singular', {Course: singularCourseName, course: singularCourseLowerCaseName, Tag: singularTagName, tag: singularTagLowerCaseName,},)} exclusiveGame="SMM2"/>
                 <PageProgress progress="completed"        link={routeFromName('everyPredefinedMessage')}        content={unfinishedText('Predefined message')} exclusiveGame="SMM2"/>
                 <PageProgress progress="completed"        link={routeFromName('everySampleCourse')}             content={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)} exclusiveGame="SMM1"/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Medal')} exclusiveGame="SMM1"/>
+                <PageProgress progress="page almost done" link={routeFromName('everyMedal')}                    content={gameContentTranslation('medal.singular')} exclusiveGame="SMM1"/>
                 <PageProgress progress="data in progress"                                                             content={unfinishedText('Super Mario Challenges levels')} exclusiveGame="SMM3DS"/>
                 <PageProgress progress="data in progress"                                                             content={unfinishedText("Job")} exclusiveGame="SMM2"/>
                 <PageProgress progress="data in progress"                                                             content={unfinishedText('Official notification')} exclusiveGame="SMM2"/>

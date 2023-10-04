@@ -29,6 +29,7 @@ const SoundEffectCategoryApp =       lazy(() => import('app/SoundEffectCategoryA
 const SoundEffectApp =               lazy(() => import('app/SoundEffectApp'))
 const ThemeApp =                     lazy(() => import('app/ThemeApp'))
 const SampleCourseApp =              lazy(() => import('app/SampleCourseApp'))
+const MedalApp =                     lazy(() => import('app/MedalApp'))
 const HomeApp =                      lazy(() => import('app/HomeApp'))
 const SourcesApp =                   lazy(() => import('app/SourcesApp'))
 
@@ -89,7 +90,9 @@ export const everySimpleRoutes = [
 
 
     new RoutesCreator('everyPredefinedMessage',        '/every/predefined-message',).asSimpleList().asSMM2Game().create(viewDisplay =>                          <PredefinedMessageApp                       viewDisplay={viewDisplay}/>,),
+
     new RoutesCreator('everySampleCourse',             '/every/sample-course',).asTable().asSMM1Game().create(viewDisplay =>                               <SampleCourseApp                            viewDisplay={viewDisplay}/>,),
+    new RoutesCreator('everyMedal',                   '/every/medal',).asCardList().asSMM1Game().create(viewDisplay =>                                        <MedalApp                                   viewDisplay={viewDisplay}/>,),
 
     new RoutesCreator('everyCourseTag',                '/every/course-tag',).asCardList().asSMM2Game().create(viewDisplay =>                                    <CourseTagApp                               viewDisplay={viewDisplay} type={ALL_COURSE_TAG}/>,),
     new RoutesCreator('officialCourseTag',             '/official/course-tag',).asCardList().asSMM2Game().create(viewDisplay =>                                 <CourseTagApp                               viewDisplay={viewDisplay} type={OFFICIAL}/>,),
