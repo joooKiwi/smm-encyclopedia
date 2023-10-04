@@ -93,4 +93,5 @@ export class MysteryMushroomCreator
     protected _create(name: Name<string>,): MysteryMushroom {
         return new MysteryMushroomContainer(name, this._getGames(), this.#createProperty())
     }
+
 }

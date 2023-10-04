@@ -15,7 +15,7 @@ import {StringContainer}           from 'util/StringContainer'
 import {CompanionEnumByName}       from 'util/enumerable/companion/CompanionEnumByName'
 
 /**
- * @classWithDynamicImport {@link Entities}
+ * @classWithDynamicImport<{@link Entities}>
  */
 export class EntityLimits
     extends Enum<Ordinals, Names>
