@@ -6,11 +6,12 @@ import type {LanguageContent}           from 'core/_template/LanguageContent'
 import type {UniqueNameContent}         from 'core/_template/UniqueNameContent'
 import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {GameContentFromAllGames}   from 'core/game/Loader.types'
-import type {CharacterNameTemplate}     from 'core/characterName/CharacterName.template'
 
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/characterName/CharacterName.creator'
 import {isInProduction}     from 'variables'
+import {CharacterNameContainer} from 'core/characterName/CharacterName.container'
+import {NameBuilderContainer} from 'lang/name/Name.builder.container'
+import {GamePropertyProvider} from 'core/entity/properties/game/GameProperty.provider'
 
 export class CharacterNameLoader
     implements Loader<ReadonlyMap<PossibleUniqueEnglishName, CharacterName>> {
@@ -37,8 +38,8 @@ export class CharacterNameLoader
         const references = new Map<PossibleUniqueEnglishName, CharacterName>()
         let index = file.length
         while (index-- > 0) {
-            const template = createTemplate(file[index] as Content,)
-            references.set(template.uniqueName as PossibleUniqueEnglishName, createContent(template,),)
+            const content = file[index] as Content
+            references.set(content.uniqueName as PossibleUniqueEnglishName, createContent(content,),)
         }
 
         if (!isInProduction)
@@ -60,10 +61,9 @@ interface Content
 
 }
 
-function createTemplate(content: Content,): CharacterNameTemplate {
-    return {
-        name: TemplateMethods.createNameTemplate(content,),
-        uniqueName: content.uniqueName,
-        properties: {isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},}
-    }
+function createContent(content: Content,): CharacterName {
+    return new CharacterNameContainer(
+        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),
+        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
+    )
 }
