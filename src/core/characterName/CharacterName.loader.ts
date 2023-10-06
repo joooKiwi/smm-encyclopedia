@@ -7,11 +7,11 @@ import type {UniqueNameContent}         from 'core/_template/UniqueNameContent'
 import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {GameContentFromAllGames}   from 'core/game/Loader.types'
 
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {isInProduction}     from 'variables'
+import {isInProduction}         from 'variables'
+import * as TemplateMethods     from 'core/_template/templateMethods'
 import {CharacterNameContainer} from 'core/characterName/CharacterName.container'
-import {NameBuilderContainer} from 'lang/name/Name.builder.container'
-import {GamePropertyProvider} from 'core/entity/properties/game/GameProperty.provider'
+import {GamePropertyProvider}   from 'core/entity/properties/game/GameProperty.provider'
+import {NameBuilderContainer}   from 'lang/name/Name.builder.container'
 
 export class CharacterNameLoader
     implements Loader<ReadonlyMap<PossibleUniqueEnglishName, CharacterName>> {
