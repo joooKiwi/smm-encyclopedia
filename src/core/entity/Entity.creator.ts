@@ -112,17 +112,19 @@ export class EntityCreator
     //region -------------------- Property helper methods --------------------
 
     static #getEntityLimitByNameOrAcronymOrNull(entityLimit: Nullable<PossibleEnglishName_EntityLimit>,): NullOr<EntityLimits> {
-        return entityLimit == null ? null : EntityLimits.CompanionEnum.get.getValueByName(entityLimit,)
+        if (entityLimit == null)
+            return null
+        return EntityLimits.CompanionEnum.get.getValueByName(entityLimit,)
     }
 
     static #getEntityLimitProperty(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<EntityLimits, false, null> | NotApplicableProperty | UnknownProperty
     static #getEntityLimitProperty<COMMENT extends NullOrString, >(entityLimit: Nullable<PossibleEnglishName_EntityLimit>, comment: COMMENT,): | PropertyThatCanBeUnknownWithComment<EntityLimits, false, COMMENT> | NotApplicableProperty
     static #getEntityLimitProperty(entityLimit: Nullable<| PossibleEnglishName_EntityLimit | UnknownCharacter>, comment: NullOrString = null,): PropertyThatCanBeUnknownWithComment<EntityLimits, false> | NotApplicableProperty | UnknownProperty {
-        return entityLimit == null
-            ? NOT_APPLICABLE_CONTAINER
-            : entityLimit === UNKNOWN_CHARACTER
-                ? UNKNOWN_CONTAINER
-                : new PropertyContainer(EntityLimits.CompanionEnum.get.getValueByName(entityLimit,), false, null, comment,)
+        if (entityLimit == null)
+            return NOT_APPLICABLE_CONTAINER
+        if (entityLimit === UNKNOWN_CHARACTER)
+            return UNKNOWN_CONTAINER
+        return new PropertyContainer(EntityLimits.CompanionEnum.get.getValueByName(entityLimit,), false, null, comment,)
     }
 
     /**
@@ -287,9 +289,9 @@ export class EntityCreator
     }
 
     #createGroupReference(set: Nullable<Set<EntityTemplate>>,): Lazy<readonly Entity[]> {
-        return set == null
-            ? CommonLazy.EMPTY_ARRAY
-            : lazy(() => Array.from(set, it => Entities.CompanionEnum.get.getValueByName(it.name.english.simple ?? it.name.english.american,).reference,),)
+        if (set == null)
+            return CommonLazy.EMPTY_ARRAY
+        return lazy(() => Array.from(set, it => Entities.CompanionEnum.get.getValueByName(it.name.english.simple ?? it.name.english.american,).reference,),)
     }
 
     /**
@@ -316,13 +318,14 @@ export class EntityCreator
         const isInSMM2 = isInProperty.isInSuperMarioMaker2
 
 
-        return isInSMM1 && !isInSMM2
-            ? new ExclusiveSMM1EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
-            : !isInSMM1 && isInSMM2
-                ? !isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle
-                    ? new ExclusiveSM3DWEntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
-                    : new ExclusiveSMM2EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
-                : new EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
+        if (isInSMM1 && !isInSMM2)
+            return new ExclusiveSMM1EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
+        if (!isInSMM1 && isInSMM2) {
+            if (!isInProperty.isInSuperMarioBrosStyle && !isInProperty.isInSuperMarioBros3Style && !isInProperty.isInSuperMarioWorldStyle && !isInProperty.isInNewSuperMarioBrosUStyle && isInProperty.isInSuperMario3DWorldStyle)
+                return new ExclusiveSM3DWEntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
+            return new ExclusiveSMM2EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
+        }
+        return new EntityContainer(name, this.#getEntityCategory(), isInProperty, this.#createReferences(),)
     }
 
 }
