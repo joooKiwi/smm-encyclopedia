@@ -3,12 +3,12 @@ import file from 'resources/compiled/Game reference.json'
 import type {LanguageContent}                      from 'core/_template/LanguageContent'
 import type {GameReference}                        from 'core/gameReference/GameReference'
 import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
-import type {GameReferenceTemplate}                from 'core/gameReference/GameReference.template'
 import type {Loader}                               from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/gameReference/GameReference.creator'
+import {isInProduction}         from 'variables'
+import * as TemplateMethods     from 'core/_template/templateMethods'
+import {NameBuilderContainer}   from 'lang/name/Name.builder.container'
+import {GameReferenceContainer} from 'core/gameReference/GameReference.container'
 
 /** @singleton */
 export class GameReferenceLoader
@@ -36,7 +36,7 @@ export class GameReferenceLoader
         const references = new Map<PossibleEnglishName, GameReference>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
+            const reference = createContent(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -59,9 +59,9 @@ interface Content
 
 }
 
-function createTemplate(content: Content,): GameReferenceTemplate {
-    return {
-        acronym: content.acronym,
-        name: TemplateMethods.createNameTemplate(content,),
-    }
+function createContent(content: Content,): GameReference {
+    return new GameReferenceContainer(
+        content.acronym,
+        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),
+    )
 }
