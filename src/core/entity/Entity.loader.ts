@@ -7,7 +7,7 @@ import type {CanMakeASoundOutOfAMusicBlock}                                     
 import type {CollectedCoinLimitType, EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, OtherLimitCommentType, OtherLimitType, PowerUpLimitType, ProjectileEntityLimitType, RenderedObjectLimitType}                                                                                                                                                                                                                                                                                                                 from 'core/entity/properties/limit/loader.types'
 import type {Entity}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/entity/Entity'
 import type {EntityLink}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from 'core/entity/loader.types'
-import type {DimensionTemplate, EntityNameTemplate, EntityTemplate, SimpleDimensionTemplate, SimpleDimensionTemplateDifferentInSM3DW}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/Entity.template'
+import type {DimensionTemplate, EntityTemplate, SimpleDimensionTemplate}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from 'core/entity/Entity.template'
 import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/entity/properties/basic/BasicProperty'
 import type {PossibleEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/entity/Entities.types'
 import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/entityCategory/EntityCategories.types'
@@ -55,7 +55,7 @@ export class EntityLoader
         const namesAndTemplates = new Array<readonly [PossibleEnglishName, EntityTemplate,]>(size,)
         let index = size
         while (index-- > 0) {
-            const template = new TemplateCreator(file[index] as Content).create()
+            const template = createTemplate(file[index] as Content,)
             const englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
 
             templateReferences.set(englishName, template,)
@@ -242,330 +242,298 @@ interface Content
 
 }
 
-/** @todo Transform into a functional approach */
-class TemplateCreator {
 
-    static readonly SLASH_SEPARATOR = ' / '
-    static readonly LINK_AS_THIS = 'this'
-    static readonly EMPTY_SIMPLE_DIMENSION_TEMPLATE: SimpleDimensionTemplate<null, null> = {value: null, maximum: null,}
-    static readonly EMPTY_DIMENSION_TEMPLATE: DimensionTemplate = {
-        value: null,
-        maximum: null,
-        differentInSM3DW: this.EMPTY_SIMPLE_DIMENSION_TEMPLATE,
+function createTemplate(content: Content,): EntityTemplate {
+    const isInSuperMarioMaker1 = content.isInSuperMarioMaker1
+    const isInSuperMarioMaker2 = content.isInSuperMarioMaker2
+    const dayLink = content.inDayTheme
+    const nightLink = content.inNightTheme
+    const groundLink = content.inGroundTheme
+    const undergroundLink = content.inUndergroundTheme
+    const underwaterLink = content.inUnderwaterTheme
+    const desertLink = content.inDesertTheme
+    const snowLink = content.inSnowTheme
+    const skyLink = content.inSkyTheme
+    const forestLink = content.inForestTheme
+    const ghostHouseLink = content.inGhostHouseTheme
+    const airshipLink = content.inAirshipTheme
+    const castleLink = content.inCastleTheme
+    const superMarioBrosLink = content.inSMBGameStyle
+    const superMarioBros3Link = content.inSMBGameStyle
+    const superMarioWorldLink = content.inSMWGameStyle
+    const newSuperMarioBrosULink = content.inNSMBUGameStyle
+    const superMario3DWorldLink = content.inSM3DWGameStyle
+    const isExclusiveToSuperMarioMaker1 = isInSuperMarioMaker1 && !isInSuperMarioMaker2
+    const gameStyleTemplate: SimpleGameStyleTemplate = {
+        superMarioBros: hasThisReferenced(superMarioBrosLink,),
+        superMarioBros3: hasThisReferenced(superMarioBros3Link,),
+        superMarioWorld: hasThisReferenced(superMarioWorldLink,),
+        newSuperMarioBrosU: hasThisReferenced(newSuperMarioBrosULink,),
+        superMario3DWorld: isExclusiveToSuperMarioMaker1 ? hasThisReferencedOrNull(superMario3DWorldLink,) : hasThisReferenced(superMario3DWorldLink,),
     }
+    const isExclusiveToSuperMario3DWorld = !gameStyleTemplate.superMarioBros && !gameStyleTemplate.superMarioBros3 && !gameStyleTemplate.superMarioWorld && !gameStyleTemplate.newSuperMarioBrosU && gameStyleTemplate.superMario3DWorld === true
 
-    readonly #content
-
-    public constructor(content: Content,) {
-        this.#content = content
-    }
-
-    private get __content(): Content {
-        return this.#content
-    }
-
-    public create(): EntityTemplate {
-        const content = this.__content,
-            [
-                isInSuperMarioMaker1, isInSuperMarioMaker2,
-                dayLink, nightLink,
-                groundLink, undergroundLink, underwaterLink, desertLink, snowLink, skyLink, forestLink, ghostHouseLink, airshipLink, castleLink,
-                superMarioBrosLink, superMarioBros3Link, superMarioWorldLink, newSuperMarioBrosULink, superMario3DWorldLink,
-            ] = [
-                content.isInSuperMarioMaker1, content.isInSuperMarioMaker2,
-                content.inDayTheme, content.inNightTheme,
-                content.inGroundTheme, content.inUndergroundTheme, content.inUnderwaterTheme, content.inDesertTheme, content.inSnowTheme, content.inSkyTheme, content.inForestTheme, content.inGhostHouseTheme, content.inAirshipTheme, content.inCastleTheme,
-                content.inSMBGameStyle, content.inSMB3GameStyle, content.inSMWGameStyle, content.inNSMBUGameStyle, content.inSM3DWGameStyle,
-            ],
-            isExclusiveToSuperMarioMaker1 = isInSuperMarioMaker1 && !isInSuperMarioMaker2,
-            gameStyleTemplate: SimpleGameStyleTemplate = {
-                superMarioBros: TemplateCreator.hasThisReferenced(superMarioBrosLink),
-                superMarioBros3: TemplateCreator.hasThisReferenced(superMarioBros3Link),
-                superMarioWorld: TemplateCreator.hasThisReferenced(superMarioWorldLink),
-                newSuperMarioBrosU: TemplateCreator.hasThisReferenced(newSuperMarioBrosULink),
-                superMario3DWorld: isExclusiveToSuperMarioMaker1 ? TemplateCreator.hasThisReferencedOrNull(superMario3DWorldLink) : TemplateCreator.hasThisReferenced(superMario3DWorldLink),
+    return {
+        properties: {
+            entityType: content.entityType,
+            firstAppearance: {
+                game: content.firstAppearanceInMarioMaker,
+                version: content.firstAppearanceInMarioMaker_version,
             },
-            isExclusiveToSuperMario3DWorld = !gameStyleTemplate.superMarioBros && !gameStyleTemplate.superMarioBros3 && !gameStyleTemplate.superMarioWorld && !gameStyleTemplate.newSuperMarioBrosU && gameStyleTemplate.superMario3DWorld === true
+            //region -------------------- Basic properties --------------------
 
+            isIn: {//TODO change every theme, time & style to have a nullable boolean instead of just boolean or nullable boolean
+                game: TemplateMethods.createGameTemplateFromAllGames(content,),
+                style: gameStyleTemplate,
+                theme: {
+                    ground: hasThisReferenced(groundLink,),
+                    underground: hasThisReferenced(undergroundLink,),
+                    underwater: hasThisReferenced(underwaterLink,),
+                    desert: hasThisReferencedOrNull(desertLink,),
+                    snow: hasThisReferencedOrNull(snowLink,),
+                    sky: hasThisReferencedOrNull(skyLink,),
+                    forest: hasThisReferencedOrNull(forestLink,),
+                    ghostHouse: hasThisReferenced(ghostHouseLink,),
+                    airship: hasThisReferenced(airshipLink,),
+                    castle: hasThisReferenced(castleLink,),
+                },
+                time: {
+                    day: hasThisReferenced(dayLink,),
+                    night: isExclusiveToSuperMarioMaker1 || isExclusiveToSuperMario3DWorld ? hasThisReferencedOrNull(nightLink,) : hasThisReferenced(nightLink,),
+                },
+            },
+
+            basic: {
+                hasAMushroomVariant: content.hasAMushroomVariant,
+                canBeInAParachute: content.canBeInAParachute,
+                canHaveWings: content.canHaveWings,
+            },
+
+            //endregion -------------------- Basic properties --------------------
+            //region -------------------- Specific properties --------------------
+
+            canContainOrSpawnAKey: content.canContainOrSpawnAKey,
+
+            isAffectedDirectlyByAnOnOrOffState: content.isAffectedDirectlyByAnOnOrOffState,
+
+            canBePutOnATrack: {
+                value: content.canBePutOnATrack,
+                editorLimit: content.editorLimit_canBePutOnATrack,
+                whilePlaying: content.whilePlaying_canBePutOnATrack,
+            },
+
+            canSpawnOutOfAPipe: content.canSpawnOutOfAPipe,
+
+            canBePutInASwingingClaw: content.canBePutInASwingingClaw,
+
+            canBeThrownByALakitu: content.canBeThrownByALakitu,
+            canBePutInALakituCloud: content.canBePutInALakituCloud,
+
+            canBePutInAClownCar: content.canBePutInAClownCar,
+
+            canBeFiredOutOfABulletLauncher: content.canBeFiredOutOfABulletLauncher,
+
+            canBePutInABlock: content.canBePutInABlock,
+
+            canBePutInATree: content.canBePutInATree,
+
+            weight: content.weight,
+
+            lightSourceEmitted: {
+                value: content.lightSourceEmitted,
+                isInSMB: content.lightSourceEmitted_isInSMB,
+            },
+
+            canSurviveInTheLavaOrThePoison: content.canSurviveInTheLavaOrThePoison,
+
+            bobOmb: {
+                canIgnite: content.canIgniteABobOmb,
+                canBeBrokenOrKilled: content.canBeBrokenOrKilledByABobOmb,
+            },
+
+            canBeAffectedByATwister: content.canBeAffectedByATwister,
+
+            canGoThroughWalls: {
+                value: content.canGoThroughWalls,
+                inSM3DW: content.canGoThroughWalls_SM3DW,
+            },
+
+            canBeStacked: content.canBeStacked,
+
+            isGlobalGroundOrGlobal: content.isGlobalGroundOrGlobal,
+
+            sound: {
+                instrument: content.instrument,
+                canMakeASoundOutOfAMusicBlock: content.canMakeASoundOutOfAMusicBlock,
+            },
+
+            //endregion -------------------- Specific properties --------------------
+            //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+
+            bowserBowserJrMagikoopa: {
+                bowser: {
+                    clownCar: content.canBeThrownByBowserInClownCar,
+                },
+                bowserJr: {
+                    value: content.canBeThrownByBowserJr,
+                    clownCar: content.canBeThrownByBowserJrInClownCar,
+                },
+                magikoopa: {
+                    transformed: content.canBeTransformedByMagikoopa,
+                    spawn: {
+                        value: content.canBeSpawnedByMagikoopa,
+                        wing: content.canBeSpawnedByWingedMagikoopa,
+                    },
+                },
+            },
+
+            //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
+            limits: {
+                amount: content.limitAmount,
+                editor: {
+                    '1And3DS': content.editorLimit_SMM1And3DS,
+                    2: content.editorLimit_SMM2,
+                },
+                whilePlaying: {
+                    isInGEL: {
+                        value: content.whilePlaying_isInGEL,
+                        isSuperGlobal: content.whilePlaying_isInGEL_isSuperGlobal,
+                    },
+                    isInPL: content.whilePlaying_isInPL,
+                    isInPJL: content.whilePlaying_isInPJL,
+                    isInRenderedObjectLimit: content.whilePlaying_isInObjectRenderedLimit,
+                    isInCollectedCoinLimit: content.whilePlaying_isInCollectedCoinLimit,
+                    otherLimit: {
+                        value: content.whilePlaying_otherLimit,
+                        comment: content.whilePlaying_otherLimit_comment,
+                    },
+                },
+            },
+            canRespawn: {
+                value: content.canRespawn,
+                online: {
+                    value: content.canRespawn_online,
+                    insideABlock: content.canRespawn_online_inABlock,
+                }
+            },
+            behaviour: {
+                solo: splitBehaviour(content.behaviour_solo,),
+                localCoop: splitBehaviour(content.behaviour_localCoop,),
+                online: {
+                    coop: splitBehaviour(content.behaviour_onlineCoop,),
+                    versus: splitBehaviour(content.behaviour_onlineVS,),
+                },
+            },
+            offscreenRange: {
+                referencePoint: content.offscreenSpawningAndDespawningReferencePoint,
+                spawning: {
+                    horizontal: content.offscreenSpawningHorizontalRange,
+                    vertical: {
+                        upward: content.offscreenSpawningUpwardVerticalRange,
+                        downward: content.offscreenSpawningDownwardVerticalRange,
+                    },
+                },
+                despawning: {
+                    horizontal: content.offscreenDespawningHorizontalRange,
+                    vertical: {
+                        upward: content.offscreenDespawningUpwardVerticalRange,
+                        downward: content.offscreenDespawningDownwardVerticalRange,
+                    },
+                },
+            },
+            dimension: createDimensionTemplate(content,),
+            reference: {
+                style: {
+                    superMarioBros: superMarioBrosLink,
+                    superMarioBros3: superMarioBros3Link,
+                    superMarioWorld: superMarioWorldLink,
+                    newSuperMarioBrosU: newSuperMarioBrosULink,
+                    superMario3DWorld: superMario3DWorldLink,
+                },
+                theme: {
+                    ground: groundLink,
+                    underground: undergroundLink,
+                    underwater: underwaterLink,
+                    desert: desertLink,
+                    snow: snowLink,
+                    sky: skyLink,
+                    forest: forestLink,
+                    ghostHouse: ghostHouseLink,
+                    airship: airshipLink,
+                    castle: castleLink,
+                },
+                time: {
+                    day: dayLink,
+                    night: nightLink,
+                },
+                group: {
+                    all: null,
+                    gameStyle: null,
+                    theme: null,
+                    time: null,
+                },
+            },
+        },
+        categoryInTheEditor: content.categoryInTheEditor,
+        name: {hasAReferenceInMarioMaker: content.hasANameReferencedInMarioMaker, ...TemplateMethods.createNameTemplate(content,),},
+    }
+}
+
+const EMPTY_SIMPLE_DIMENSION_TEMPLATE: SimpleDimensionTemplate<null, null> = {value: null, maximum: null,}
+const EMPTY_DIMENSION_TEMPLATE: DimensionTemplate = {value: null, maximum: null, differentInSM3DW: EMPTY_SIMPLE_DIMENSION_TEMPLATE,}
+
+/**
+ * Tell if a {@link Nullable} {@link EntityLink} has "this"
+ *
+ * @param link The {@link Nullable} {@link EntityLink} to test
+ */
+function hasThisReferenced(link: Nullable<EntityLink>,): boolean {
+    return link != null && link.includes('this',)
+}
+
+/**
+ * Tell if the {@link Nullable} {@link EntityLink} has "this".
+ * And if the {@link EntityLink} is <b>null</b>, then <b>null</b> is returned
+ *
+ * @param link The {@link EntityLink} to test
+ */
+function hasThisReferencedOrNull(link: Nullable<EntityLink>,): boolean {
+    return link == null ? null : link.includes('this',)
+}
+
+/**
+ * Separate the {@link PossibleBehaviourType} into multiple {@link PossibleAcronym_Behaviour behaviour acronym}
+ * or {@link UnknownCharacter '?'}
+ *
+ * @param behaviour The {@link PossibleBehaviourType} to split
+ */
+function splitBehaviour(behaviour: PossibleBehaviourType,): readonly PossibleAcronym_Behaviour[]
+function splitBehaviour(behaviour: PossibleBehaviourType,): readonly string[] {
+    return behaviour?.split(' / ',) ?? EMPTY_ARRAY
+}
+
+/**
+ * Create a {@link DimensionTemplate} or an empty one if every value are <b>null</b>
+ *
+ * @param content The content to retrieve the dimension fields
+ */
+function createDimensionTemplate(content: Content,): DimensionTemplate {
+    const value = content.dimension
+    const maximumValue = content.dimension_maximum
+    const valueSM3DW = content.dimension_differentSM3DW
+    const maximumValueSM3DW = content.dimension_maximum_differentSM3DW
+
+    if (value == null && maximumValue == null && valueSM3DW == null && maximumValueSM3DW == null)
+        return EMPTY_DIMENSION_TEMPLATE
+    if (valueSM3DW == null && maximumValueSM3DW == null)
         return {
-            properties: {
-                entityType: content.entityType,
-
-                firstAppearance: {
-                    game: content.firstAppearanceInMarioMaker,
-                    version: content.firstAppearanceInMarioMaker_version,
-                },
-
-                //region ---------- Basic properties ----------
-
-                isIn: {//TODO change every theme, time & style to have a nullable boolean instead of just boolean or nullable boolean
-                    game: TemplateMethods.createGameTemplateFromAllGames(content,),
-                    style: gameStyleTemplate,
-                    theme: {
-                        ground: TemplateCreator.hasThisReferenced(groundLink),
-                        underground: TemplateCreator.hasThisReferenced(undergroundLink),
-                        underwater: TemplateCreator.hasThisReferenced(underwaterLink),
-                        desert: TemplateCreator.hasThisReferencedOrNull(desertLink),
-                        snow: TemplateCreator.hasThisReferencedOrNull(snowLink),
-                        sky: TemplateCreator.hasThisReferencedOrNull(skyLink),
-                        forest: TemplateCreator.hasThisReferencedOrNull(forestLink),
-                        ghostHouse: TemplateCreator.hasThisReferenced(ghostHouseLink),
-                        airship: TemplateCreator.hasThisReferenced(airshipLink),
-                        castle: TemplateCreator.hasThisReferenced(castleLink),
-                    },
-                    time: {
-                        day: TemplateCreator.hasThisReferenced(dayLink),
-                        night: isExclusiveToSuperMarioMaker1 || isExclusiveToSuperMario3DWorld ? TemplateCreator.hasThisReferencedOrNull(nightLink) : TemplateCreator.hasThisReferenced(nightLink),
-                    },
-                },
-
-                basic: {
-                    hasAMushroomVariant: content.hasAMushroomVariant,
-                    canBeInAParachute: content.canBeInAParachute,
-                    canHaveWings: content.canHaveWings,
-                },
-
-                //endregion ---------- Basic properties ----------
-                //region ---------- Specific properties ----------
-
-                canContainOrSpawnAKey: content.canContainOrSpawnAKey,
-
-                isAffectedDirectlyByAnOnOrOffState: content.isAffectedDirectlyByAnOnOrOffState,
-
-                canBePutOnATrack: {
-                    value: content.canBePutOnATrack,
-                    editorLimit: content.editorLimit_canBePutOnATrack,
-                    whilePlaying: content.whilePlaying_canBePutOnATrack,
-                },
-
-                canSpawnOutOfAPipe: content.canSpawnOutOfAPipe,
-
-                canBePutInASwingingClaw: content.canBePutInASwingingClaw,
-
-                canBeThrownByALakitu: content.canBeThrownByALakitu,
-                canBePutInALakituCloud: content.canBePutInALakituCloud,
-
-                canBePutInAClownCar: content.canBePutInAClownCar,
-
-                canBeFiredOutOfABulletLauncher: content.canBeFiredOutOfABulletLauncher,
-
-                canBePutInABlock: content.canBePutInABlock,
-
-                canBePutInATree: content.canBePutInATree,
-
-                weight: content.weight,
-
-                lightSourceEmitted: {
-                    value: content.lightSourceEmitted,
-                    isInSMB: content.lightSourceEmitted_isInSMB,
-                },
-
-                canSurviveInTheLavaOrThePoison: content.canSurviveInTheLavaOrThePoison,
-
-                bobOmb: {
-                    canIgnite: content.canIgniteABobOmb,
-                    canBeBrokenOrKilled: content.canBeBrokenOrKilledByABobOmb,
-                },
-
-                canBeAffectedByATwister: content.canBeAffectedByATwister,
-
-                canGoThroughWalls: {
-                    value: content.canGoThroughWalls,
-                    inSM3DW: content.canGoThroughWalls_SM3DW,
-                },
-
-                canBeStacked: content.canBeStacked,
-
-                isGlobalGroundOrGlobal: content.isGlobalGroundOrGlobal,
-
-                sound: {
-                    instrument: content.instrument,
-                    canMakeASoundOutOfAMusicBlock: content.canMakeASoundOutOfAMusicBlock,
-                },
-
-                //endregion ---------- Specific properties ----------
-                //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
-
-                bowserBowserJrMagikoopa: {
-                    bowser: {
-                        clownCar: content.canBeThrownByBowserInClownCar,
-                    },
-                    bowserJr: {
-                        value: content.canBeThrownByBowserJr,
-                        clownCar: content.canBeThrownByBowserJrInClownCar,
-                    },
-                    magikoopa: {
-                        transformed: content.canBeTransformedByMagikoopa,
-                        spawn: {
-                            value: content.canBeSpawnedByMagikoopa,
-                            wing: content.canBeSpawnedByWingedMagikoopa,
-                        },
-                    },
-                },
-
-                //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
-                limits: {
-                    amount: content.limitAmount,
-                    editor: {
-                        '1And3DS': content.editorLimit_SMM1And3DS,
-                        2: content.editorLimit_SMM2,
-                    },
-                    whilePlaying: {
-                        isInGEL: {
-                            value: content.whilePlaying_isInGEL,
-                            isSuperGlobal: content.whilePlaying_isInGEL_isSuperGlobal,
-                        },
-                        isInPL: content.whilePlaying_isInPL,
-                        isInPJL: content.whilePlaying_isInPJL,
-                        isInRenderedObjectLimit: content.whilePlaying_isInObjectRenderedLimit,
-                        isInCollectedCoinLimit: content.whilePlaying_isInCollectedCoinLimit,
-                        otherLimit: {
-                            value: content.whilePlaying_otherLimit,
-                            comment: content.whilePlaying_otherLimit_comment,
-                        },
-                    },
-                },
-                canRespawn: {
-                    value: content.canRespawn,
-                    online: {
-                        value: content.canRespawn_online,
-                        insideABlock: content.canRespawn_online_inABlock,
-                    }
-                },
-                behaviour: {
-                    solo: TemplateCreator.splitBehaviour(content.behaviour_solo,),
-                    localCoop: TemplateCreator.splitBehaviour(content.behaviour_localCoop,),
-                    online: {
-                        coop: TemplateCreator.splitBehaviour(content.behaviour_onlineCoop,),
-                        versus: TemplateCreator.splitBehaviour(content.behaviour_onlineVS,),
-                    },
-                },
-                offscreenRange: {
-                    referencePoint: content.offscreenSpawningAndDespawningReferencePoint,
-                    spawning: {
-                        horizontal: content.offscreenSpawningHorizontalRange,
-                        vertical: {
-                            upward: content.offscreenSpawningUpwardVerticalRange,
-                            downward: content.offscreenSpawningDownwardVerticalRange,
-                        },
-                    },
-                    despawning: {
-                        horizontal: content.offscreenDespawningHorizontalRange,
-                        vertical: {
-                            upward: content.offscreenDespawningUpwardVerticalRange,
-                            downward: content.offscreenDespawningDownwardVerticalRange,
-                        },
-                    },
-                },
-                dimension: TemplateCreator.createDimensionTemplate(content,),
-                reference: {
-                    style: {
-                        superMarioBros: superMarioBrosLink,
-                        superMarioBros3: superMarioBros3Link,
-                        superMarioWorld: superMarioWorldLink,
-                        newSuperMarioBrosU: newSuperMarioBrosULink,
-                        superMario3DWorld: superMario3DWorldLink,
-                    },
-                    theme: {
-                        ground: groundLink,
-                        underground: undergroundLink,
-                        underwater: underwaterLink,
-                        desert: desertLink,
-                        snow: snowLink,
-                        sky: skyLink,
-                        forest: forestLink,
-                        ghostHouse: ghostHouseLink,
-                        airship: airshipLink,
-                        castle: castleLink,
-                    },
-                    time: {
-                        day: dayLink,
-                        night: nightLink,
-                    },
-                    group: {
-                        all: null,
-                        gameStyle: null,
-                        theme: null,
-                        time: null,
-                    },
-                },
-            },
-            categoryInTheEditor: content.categoryInTheEditor,
-            name: this.createNameTemplate(content),
+            value: value,
+            maximum: maximumValue,
+            differentInSM3DW: EMPTY_SIMPLE_DIMENSION_TEMPLATE,
         }
+    return {
+        value: value,
+        maximum: maximumValue,
+        differentInSM3DW: {value: valueSM3DW, maximum: maximumValueSM3DW,},
     }
-
-    /**
-     * Create an {@link EntityNameTemplate} with the usage of {@link TemplateMethods.createNameTemplate}
-     *
-     * @param content The template
-     */
-    createNameTemplate(content: Content,): EntityNameTemplate {
-        return {hasAReferenceInMarioMaker: content.hasANameReferencedInMarioMaker, ...TemplateMethods.createNameTemplate(content,),}
-    }
-
-    /**
-     * Tell if an {@link EntityLink} has {@link LINK_AS_THIS "this"}
-     *
-     * @param link The {@link EntityLink} to test
-     * @note This method should not be called by the {@link create} method
-     */
-    static #hasThisReferenced(link: EntityLink,) {
-        return link.includes(this.LINK_AS_THIS)
-    }
-
-    /**
-     * Tell if a {@link Nullable} {@link EntityLink} has {@link LINK_AS_THIS "this"}
-     *
-     * @param link The {@link Nullable} {@link EntityLink} to test
-     */
-    static hasThisReferenced(link: Nullable<EntityLink>,) {
-        return link != null && this.#hasThisReferenced(link)
-    }
-
-    /**
-     * Tell if the {@link Nullable} {@link EntityLink} has {@link LINK_AS_THIS "this"}.
-     * And if the {@link EntityLink} is <b>null</b>, then <b>null</b> is returned
-     *
-     * @param link The {@link EntityLink} to test
-     */
-    static hasThisReferencedOrNull(link: Nullable<EntityLink>,) {
-        return link == null ? null : this.#hasThisReferenced(link)
-    }
-
-
-    /**
-     * Separate the {@link PossibleBehaviourType} into multiple {@link PossibleAcronym_Behaviour behaviour acronym}
-     * or {@link UnknownCharacter '?'}
-     *
-     * @param behaviour The {@link PossibleBehaviourType} to split
-     */
-    static splitBehaviour(behaviour: PossibleBehaviourType,): readonly PossibleAcronym_Behaviour[]
-    static splitBehaviour(behaviour: PossibleBehaviourType,): readonly string[] {
-        return behaviour?.split(this.SLASH_SEPARATOR) ?? EMPTY_ARRAY
-    }
-
-
-    /**
-     * Create a {@link DimensionTemplate} or an empty one if every value are <b>null</b>
-     *
-     * @param content The template
-     * @memoryOptimization
-     */
-    static createDimensionTemplate({dimension: value, dimension_maximum: maximumValue, dimension_differentSM3DW: valueSM3DW, dimension_maximum_differentSM3DW: maximumValueSM3DW,}: Content,): DimensionTemplate {
-        return value == null && maximumValue == null && valueSM3DW == null && maximumValueSM3DW == null
-            ? this.EMPTY_DIMENSION_TEMPLATE
-            : {
-                value: value,
-                maximum: maximumValue,
-                differentInSM3DW: this.createSM3DWDifferentDimensionTemplate(valueSM3DW, maximumValueSM3DW,),
-            }
-    }
-
-    static createSM3DWDifferentDimensionTemplate(value: PossibleDimensionDifferentInSM3DW, maximumValue: PossibleMaximumDimensionDifferentInSM3DW,): SimpleDimensionTemplateDifferentInSM3DW {
-        return value == null && maximumValue == null
-            ? this.EMPTY_SIMPLE_DIMENSION_TEMPLATE
-            : {value: value, maximum: maximumValue,}
-    }
-
 }
