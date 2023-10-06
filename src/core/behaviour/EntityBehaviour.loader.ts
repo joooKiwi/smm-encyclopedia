@@ -1,16 +1,24 @@
 import file from 'resources/compiled/Entity behaviour.json'
 
+import {CommonLazy, lazy} from '@joookiwi/lazy'
+
 import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
-import type {EntityBehaviourTemplate}                  from 'core/behaviour/EntityBehaviour.template'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
+import type {EntityBehaviourLink}                      from 'core/behaviour/properties/EntityBehaviourLink'
 import type {PossibleGroupName}                        from 'core/entityTypes'
 import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
 import type {Loader}                                   from 'util/loader/Loader'
 
-import {isInProduction} from 'variables'
-import {createContent}  from 'core/behaviour/EntityBehaviour.creator'
+import {isInProduction}                  from 'variables'
+import {EntityBehaviourContainer}        from 'core/behaviour/EntityBehaviour.container'
+import {EntityBehaviourIsInOnlyProvider} from 'core/behaviour/properties/EntityBehaviourIsInOnly.provider'
+import {EntityBehaviourLinkProvider}     from 'core/behaviour/properties/EntityBehaviourLink.provider'
+import {Import}                          from 'util/DynamicImporter'
 
-/** @singleton */
+/**
+ * @dependsOn<{@link EntityLoader}>
+ * @singleton
+ */
 export class EntityBehaviourLoader
     implements Loader<ReadonlyMap<PossibleTranslationKeys, EntityBehaviour>> {
 
@@ -36,7 +44,7 @@ export class EntityBehaviourLoader
         const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
+            const reference = createContent(file[index] as Content,)
             references.set(reference.translationKey, reference,)
         }
 
@@ -66,17 +74,23 @@ interface Content {
 
 }
 
-function createTemplate(content: Content,): EntityBehaviourTemplate {
-    return {
-        acronym: content.acronym,
-        translationKey: content.translationKey,
-        isOnly: {
-            online: content.isOnlineOnly,
-            multiplayer: content.isMultiplayerOnly,
-        },
-        links: {
-            group: content.link_group,
-            entity: content.link_entity,
-        },
-    }
+function createContent(content: Content,): EntityBehaviour {
+    return new EntityBehaviourContainer(
+        content.acronym,
+        content.translationKey,
+        EntityBehaviourIsInOnlyProvider.get.get(content.isOnlineOnly, content.isMultiplayerOnly,),
+        createLinks(content,),
+    )
+}
+
+function createLinks(content: Content,): EntityBehaviourLink {
+    const group = content.link_group
+    const entity = content.link_entity
+
+    if (group == null && entity == null)
+        return EntityBehaviourLinkProvider.get.null
+    return EntityBehaviourLinkProvider.get.get([group, entity,],
+        group == null ? CommonLazy.NULL : lazy(() => ({}),),//TODO implement the get entity by group name once it is implemented
+        entity == null ? CommonLazy.NULL : lazy(() => Import.EntityLoader.get.load().get(entity,)!,),
+    )
 }
