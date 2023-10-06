@@ -149,7 +149,7 @@ export class LimitPropertyContainer
         return this.#isOtherLimitContainer
     }
 
-    public get otherLimit(): | EntityLimits | NotApplicable {
+    public get otherLimit(): NullOr<| EntityLimits | NotApplicable> {
         return this.otherLimitContainer.value
     }
 

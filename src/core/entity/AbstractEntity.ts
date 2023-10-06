@@ -308,7 +308,7 @@ export abstract class AbstractEntity
         return this.propertyContainer.otherLimitContainer
     }
 
-    public get otherLimit(): | EntityLimits | NotApplicable {
+    public get otherLimit(): NullOr<| EntityLimits | NotApplicable> {
         return this.propertyContainer.otherLimit
     }
 

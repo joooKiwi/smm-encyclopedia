@@ -31,10 +31,10 @@ export class PropertyContainer
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(game: Lazy<GameProperty>,
-                       gameStyle: Lazy<GameStyleProperty>,
-                       theme: Lazy<ThemeProperty>,
-                       time: Lazy<TimeProperty>,
+    public constructor(game: GameProperty,
+                       gameStyle: GameStyleProperty,
+                       theme: ThemeProperty,
+                       time: TimeProperty,
                        limit: Lazy<LimitProperty>,
                        instrument: Lazy<InstrumentProperty>,) {
         this.#gameContainer = game
@@ -51,7 +51,7 @@ export class PropertyContainer
     //region -------------------- Game properties --------------------
 
     public get gameContainer(): GameProperty {
-        return this.#gameContainer.value
+        return this.#gameContainer
     }
 
     public get isInSuperMarioMaker1(): boolean {
@@ -70,7 +70,7 @@ export class PropertyContainer
     //region -------------------- Game style properties --------------------
 
     public get gameStyleContainer(): GameStyleProperty {
-        return this.#gameStyleContainer.value
+        return this.#gameStyleContainer
     }
 
     public get isInSuperMarioBrosStyle(): boolean {
@@ -97,7 +97,7 @@ export class PropertyContainer
     //region -------------------- Theme properties --------------------
 
     public get themeContainer(): ThemeProperty {
-        return this.#themeContainer.value
+        return this.#themeContainer
     }
 
     public get isInGroundTheme(): boolean {
@@ -144,7 +144,7 @@ export class PropertyContainer
     //region -------------------- Time properties --------------------
 
     public get timeContainer(): TimeProperty {
-        return this.#timeContainer.value
+        return this.#timeContainer
     }
 
     public get isInDayTheme(): boolean {
@@ -269,7 +269,7 @@ export class PropertyContainer
         return this.limitContainer.otherLimitContainer
     }
 
-    public get otherLimit(): | EntityLimits | NotApplicable {
+    public get otherLimit(): NullOr<| EntityLimits | NotApplicable> {
         return this.limitContainer.otherLimit
     }
 

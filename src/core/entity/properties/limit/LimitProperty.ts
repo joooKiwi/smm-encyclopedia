@@ -74,7 +74,7 @@ export interface LimitProperty {
 
     get otherLimitContainer(): PossibleOtherLimit
 
-    get otherLimit(): | EntityLimits | NotApplicable
+    get otherLimit(): NullOr<| EntityLimits | NotApplicable>
 
     get otherLimitComment(): NullOr<PossibleOtherLimitComment>
 
@@ -133,7 +133,7 @@ export type PossibleIsInRenderedObjectLimit = | RenderedObjectLimit | NotApplica
 type CollectedCoinLimit = Property<NullOrBoolean>
 export type PossibleIsInCollectedCoinLimit = | CollectedCoinLimit | NotApplicableProperty
 
-type OtherLimitProperty = PropertyWithComment<EntityLimits, NullOr<PossibleOtherLimitComment>>
-export type PossibleOtherLimit = | OtherLimitProperty | NotApplicableProperty
+type OtherLimitProperty = PropertyThatCanBeUnknownWithComment<EntityLimits, boolean, NullOr<PossibleOtherLimitComment>>
+export type PossibleOtherLimit = | OtherLimitProperty | UnknownProperty | NotApplicableProperty
 
 //endregion -------------------- Single entity limit --------------------
