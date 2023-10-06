@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Course tag (SMM2).json'
 
 import type {PossibleExcludedLanguages}           from '__test__/helperMethods.types'
-import type {PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/CourseTag.template'
+import type {PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/loader.types'
 
 import {EveryTypes}                                                               from '__test__/EveryTypes'
 import {getEnglishName, testLanguages, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test__/helperMethods'

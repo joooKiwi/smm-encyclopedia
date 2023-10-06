@@ -23,7 +23,7 @@ export class CourseTagContainer
     public constructor(name: Name<string>,
                        isAnOfficialTag: boolean,
                        makerCentralName: NullOr<PossibleMakerCentralName>,
-                       firstAppearance: Lazy<NullOr<Versions>>,) {
+                       firstAppearance: NullOr<Versions>,) {
         super(name)
         this.#isAnOfficialTag = isAnOfficialTag
         this.#makerCentralName = makerCentralName
@@ -42,7 +42,7 @@ export class CourseTagContainer
     }
 
     public get firstAppearance(): NullOr<Versions> {
-        return this.#firstAppearance.value
+        return this.#firstAppearance
     }
 
     //endregion -------------------- Getter methods --------------------
