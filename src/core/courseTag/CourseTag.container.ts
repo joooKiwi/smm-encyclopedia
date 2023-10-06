@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {CourseTag}                from 'core/courseTag/CourseTag'
 import type {PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
 import type {Versions}                 from 'core/version/Versions'
