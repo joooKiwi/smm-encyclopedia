@@ -497,7 +497,7 @@ function hasThisReferenced(link: Nullable<EntityLink>,): boolean {
  *
  * @param link The {@link EntityLink} to test
  */
-function hasThisReferencedOrNull(link: Nullable<EntityLink>,): boolean {
+function hasThisReferencedOrNull(link: Nullable<EntityLink>,): NullOrBoolean {
     return link == null ? null : link.includes('this',)
 }
 
