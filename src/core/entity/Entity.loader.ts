@@ -21,7 +21,7 @@ import type {Loader}                                                            
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {EntityCreator}      from 'core/entity/Entity.creator'
+import {createContent}      from 'core/entity/Entity.creator'
 import {ReferencesToWatch}  from 'core/entity/ReferencesToWatch'
 import {EMPTY_ARRAY}        from 'util/emptyVariables'
 
@@ -67,7 +67,7 @@ export class EntityLoader
 
         index = size
         while (index-- > 0)
-            references.set(namesAndTemplates[index][0], new EntityCreator(namesAndTemplates[index][1],).create(),)
+            references.set(namesAndTemplates[index][0], createContent(namesAndTemplates[index][1],),)
 
         if (!isInProduction)
             console.info(
