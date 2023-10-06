@@ -11,8 +11,8 @@ import {NameBuilderContainer}         from 'lang/name/Name.builder.container'
 
 /**
  *
- * @property TEMPLATE the {@link TemplateWithNameCreator template builder}
- * @property OBJECT the object to create
+ * @param TEMPLATE the {@link TemplateWithNameCreator template builder}
+ * @param OBJECT the object to create
  */
 export abstract class TemplateWithNameCreator<TEMPLATE extends TemplateWithNameTemplate, OBJECT, >
     extends TemplateCreator<TEMPLATE, OBJECT> {
