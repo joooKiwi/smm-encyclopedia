@@ -5,17 +5,18 @@ import type {ClassThatIsAvailableFromTheStart, PossibleIsAvailableFromTheStart} 
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                  from 'core/gameStyle/GameStyle'
 import type {GameStyleTemplate, NightDesertWindTemplate}                        from 'core/gameStyle/GameStyle.template'
 
-import {GamePropertyProvider} from 'core/entity/properties/game/GameProperty.provider'
-import {GameStyleContainer}   from 'core/gameStyle/GameStyle.container'
-import {GameReferences}       from 'core/gameReference/GameReferences'
-import {Import}               from 'util/DynamicImporter'
+import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
+import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
+import {GameStyleContainer}                       from 'core/gameStyle/GameStyle.container'
+import {GameReferences}                           from 'core/gameReference/GameReferences'
+import {Import}                                   from 'util/DynamicImporter'
 
 const GAME_PROPERTY_IN_ALL_GAMES = lazy(() => GamePropertyProvider.get.all,)
 const GAME_PROPERTY_IN_SMM2 = lazy(() => GamePropertyProvider.get.smm2Only,)
 
-const IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => Import.ClassThatIsAvailableFromTheStartProvider.get.get(null,),)
-const IS_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => Import.ClassThatIsAvailableFromTheStartProvider.get.get(true,),)
-const IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => Import.ClassThatIsAvailableFromTheStartProvider.get.get(false,),)
+const IS_NOT_APPLICABLE_ON_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => ClassThatIsAvailableFromTheStartProvider.get.null,)
+const IS_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => ClassThatIsAvailableFromTheStartProvider.get.get(true,),)
+const IS_NOT_AVAILABLE_FROM_THE_START_IN_SMM1 = lazy(() => ClassThatIsAvailableFromTheStartProvider.get.get(false,),)
 
 export function createContent(template: GameStyleTemplate,): GameStyle {
     return new GameStyleContainer(
