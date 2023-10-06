@@ -56,4 +56,4 @@ function copyLocalFile(name, source, destination,) {
     logger.success(`The file "${name}" was copied from "${source}" to "${destination}".`)
 }
 
-copyLocaleFiles('resources/locale', 'src/lang/locale',)
+void copyLocaleFiles('resources/locale', 'src/lang/locale',)
