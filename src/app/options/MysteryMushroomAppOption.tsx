@@ -353,25 +353,6 @@ export abstract class MysteryMushroomAppOption
         return this.#type
     }
 
-    protected static get _imagesAndSounds(): readonly MysteryMushroomAppOption[] {
-        return this.#imagesAndSounds ??= [
-            MysteryMushroomAppOption.POWER_UP_COLLECTED,
-            MysteryMushroomAppOption.WAITING,
-            MysteryMushroomAppOption.TAUNT,
-            MysteryMushroomAppOption.PRESSING_DOWN,
-            MysteryMushroomAppOption.WALK,
-            MysteryMushroomAppOption.RUNNING,
-            MysteryMushroomAppOption.SWIMMING,
-            MysteryMushroomAppOption.JUMP,
-            MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
-            MysteryMushroomAppOption.ON_GROUND_AFTER_A_JUMP,
-            MysteryMushroomAppOption.TURNING,
-            MysteryMushroomAppOption.CLIMBING,
-            MysteryMushroomAppOption.GOAL_POLE,
-            MysteryMushroomAppOption.LOST_A_LIFE,
-        ]
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
