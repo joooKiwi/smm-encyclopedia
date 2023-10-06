@@ -42,9 +42,9 @@ export class MiiCostumeCategoryLoader
 
         if (!isInProduction)
             console.info(
-                '-------------------- "Mii costume" has been loaded --------------------\n',
+                '-------------------- "Mii costume category" has been loaded --------------------\n',
                 references,
-                '\n-------------------- "Mii costume" has been loaded --------------------',
+                '\n-------------------- "Mii costume category" has been loaded --------------------',
             )
 
         return this.#map = references
