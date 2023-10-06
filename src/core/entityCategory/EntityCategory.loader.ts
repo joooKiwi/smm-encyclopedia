@@ -1,14 +1,14 @@
 import file from 'resources/compiled/Entity category.json'
 
-import type {LanguageContent}        from 'core/_template/LanguageContent'
-import type {PossibleEnglishName}    from 'core/entityCategory/EntityCategories.types'
-import type {EntityCategory}         from 'core/entityCategory/EntityCategory'
-import type {EntityCategoryTemplate} from 'core/entityCategory/EntityCategory.template'
-import type {Loader}                 from 'util/loader/Loader'
+import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {PossibleEnglishName} from 'core/entityCategory/EntityCategories.types'
+import type {EntityCategory}      from 'core/entityCategory/EntityCategory'
+import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/entityCategory/EntityCategory.creator'
+import {isInProduction}          from 'variables'
+import * as TemplateMethods      from 'core/_template/templateMethods'
+import {EntityCategoryContainer} from 'core/entityCategory/EntityCategory.container'
+import {NameBuilderContainer}    from 'lang/name/Name.builder.container'
 
 /**
  * A single class made to handle the loading
@@ -41,7 +41,7 @@ export class EntityCategoryLoader
         const references = new Map<PossibleEnglishName, EntityCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
+            const reference = createContent(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -61,9 +61,6 @@ export class EntityCategoryLoader
 interface Content
     extends LanguageContent {}
 
-function createTemplate(content: Content,): EntityCategoryTemplate {
-    return {
-        entities: null,
-        name: TemplateMethods.createNameTemplate(content,),
-    }
+function createContent(content: Content,): EntityCategory {
+    return new EntityCategoryContainer(new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, true,).build(),)
 }
