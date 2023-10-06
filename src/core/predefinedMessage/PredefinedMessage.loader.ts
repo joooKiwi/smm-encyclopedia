@@ -42,9 +42,9 @@ export class PredefinedMessageLoader
 
         if (!isInProduction)
             console.info(
-                '-------------------- "Predefined message" has been loaded --------------------\n',
+                '-------------------- "predefined message" has been loaded --------------------\n',
                 references,
-                '\n-------------------- "Predefined message" has been loaded --------------------',
+                '\n-------------------- "predefined message" has been loaded --------------------',
             )
 
         return this.#map = references

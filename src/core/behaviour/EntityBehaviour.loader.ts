@@ -42,9 +42,9 @@ export class EntityBehaviourLoader
 
         if (!isInProduction)
             console.info(
-                '-------------------- "game style" has been loaded --------------------\n',
+                '-------------------- "entity behaviour" has been loaded --------------------\n',
                 references,
-                '\n-------------------- "game style" has been loaded --------------------',
+                '\n-------------------- "entity behaviour" has been loaded --------------------',
             )// temporary console.lo
 
         return this.#map = references

@@ -44,9 +44,9 @@ export class ThemeLoader
 
         if (!isInProduction)
             console.info(
-                '-------------------- theme has been loaded --------------------\n',
+                '-------------------- "theme" has been loaded --------------------\n',
                 references,
-                '\n-------------------- theme has been loaded --------------------',
+                '\n-------------------- "theme" has been loaded --------------------',
             )
 
         return this.#map = references
