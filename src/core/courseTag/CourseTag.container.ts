@@ -14,20 +14,20 @@ export class CourseTagContainer
     //region -------------------- Fields --------------------
 
     readonly #isAnOfficialTag
-    readonly #makerCentralNameHolder
-    readonly #firstAppearanceHolder
+    readonly #makerCentralName
+    readonly #firstAppearance
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
                        isAnOfficialTag: boolean,
-                       makerCentralName: Lazy<NullOr<PossibleMakerCentralName>>,
+                       makerCentralName: NullOr<PossibleMakerCentralName>,
                        firstAppearance: Lazy<NullOr<Versions>>,) {
         super(name)
         this.#isAnOfficialTag = isAnOfficialTag
-        this.#makerCentralNameHolder = makerCentralName
-        this.#firstAppearanceHolder = firstAppearance
+        this.#makerCentralName = makerCentralName
+        this.#firstAppearance = firstAppearance
     }
 
     //endregion -------------------- Constructor --------------------
@@ -38,11 +38,11 @@ export class CourseTagContainer
     }
 
     public get makerCentralName(): NullOr<PossibleMakerCentralName> {
-        return this.#makerCentralNameHolder.value
+        return this.#makerCentralName
     }
 
     public get firstAppearance(): NullOr<Versions> {
-        return this.#firstAppearanceHolder.value
+        return this.#firstAppearance.value
     }
 
     //endregion -------------------- Getter methods --------------------
