@@ -10,7 +10,7 @@ import type {Loader}                                                            
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {GameStyleCreator}   from 'core/gameStyle/GameStyle.creator'
+import {createContent}      from 'core/gameStyle/GameStyle.creator'
 
 /** @singleton */
 export class GameStyleLoader
@@ -38,7 +38,7 @@ export class GameStyleLoader
         const references = new Map<PossibleEnglishName, GameStyle>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new GameStyleCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

@@ -7,8 +7,8 @@ import type {PossibleGroupName}                        from 'core/entityTypes'
 import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
 import type {Loader}                                   from 'util/loader/Loader'
 
-import {isInProduction}         from 'variables'
-import {EntityBehaviourCreator} from 'core/behaviour/EntityBehaviour.creator'
+import {isInProduction} from 'variables'
+import {createContent}  from 'core/behaviour/EntityBehaviour.creator'
 
 /** @singleton */
 export class EntityBehaviourLoader
@@ -36,7 +36,7 @@ export class EntityBehaviourLoader
         const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new EntityBehaviourCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.translationKey, reference,)
         }
 

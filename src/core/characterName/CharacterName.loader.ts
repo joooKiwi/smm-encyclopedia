@@ -8,9 +8,9 @@ import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.
 import type {GameContentFromAllGames}   from 'core/game/Loader.types'
 import type {CharacterNameTemplate}     from 'core/characterName/CharacterName.template'
 
-import * as TemplateMethods   from 'core/_template/templateMethods'
-import {CharacterNameCreator} from 'core/characterName/CharacterName.creator'
-import {isInProduction}       from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/characterName/CharacterName.creator'
+import {isInProduction}     from 'variables'
 
 export class CharacterNameLoader
     implements Loader<ReadonlyMap<PossibleUniqueEnglishName, CharacterName>> {
@@ -38,7 +38,7 @@ export class CharacterNameLoader
         let index = file.length
         while (index-- > 0) {
             const template = createTemplate(file[index] as Content,)
-            references.set(template.uniqueName as PossibleUniqueEnglishName, new CharacterNameCreator(template,).create(),)
+            references.set(template.uniqueName as PossibleUniqueEnglishName, createContent(template,),)
         }
 
         if (!isInProduction)

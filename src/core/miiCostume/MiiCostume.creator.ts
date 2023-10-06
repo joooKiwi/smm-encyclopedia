@@ -1,51 +1,21 @@
-import type {Lazy}        from '@joookiwi/lazy'
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
-import type {MiiCostume}                 from 'core/miiCostume/MiiCostume'
-import type {MiiCostumeTemplate}         from 'core/miiCostume/MiiCostume.template'
-import type {Name}                       from 'lang/name/Name'
-import type {OfficialNotificationHolder} from 'core/officialNotification/holder/OfficialNotificationHolder'
+import type {MiiCostume}         from 'core/miiCostume/MiiCostume'
+import type {MiiCostumeTemplate} from 'core/miiCostume/MiiCostume.template'
 
-import {TemplateWithNameCreator}           from 'core/_template/TemplateWithName.creator'
 import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'
 import {MiiCostumeCategories}              from 'core/miiCostumeCategory/MiiCostumeCategories'
-import {MiiCostumeCategory}                from 'core/miiCostumeCategory/MiiCostumeCategory'
 import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
 import {Versions}                          from 'core/version/Versions'
+import {NameBuilderContainer}              from 'lang/name/Name.builder.container'
 
-export class MiiCostumeCreator
-    extends TemplateWithNameCreator<MiiCostumeTemplate, MiiCostume> {
+export function createContent(template: MiiCostumeTemplate,): MiiCostume {
+    const version = template.version
 
-    public constructor(template: MiiCostumeTemplate,) {
-        super(template, 2, true,)
-    }
-
-    //region -------------------- Build helper methods --------------------
-
-    static #createOfficialNotification({officialNotification: officialNotificationName,}: MiiCostumeTemplate,): Lazy<OfficialNotificationHolder> {
-        return lazy(() => new OfficialNotificationHolderBuilder(officialNotificationName,).build(),)
-    }
-
-    static #createVersion({version,}: MiiCostumeTemplate,): Lazy<NullOr<Versions>> {
-        return version == null
-            ? CommonLazy.NULL
-            : lazy(() => Versions.CompanionEnum.get.getValueByName(`v${version}`,),)
-    }
-
-    static #createCategory({category,}: MiiCostumeTemplate,): Lazy<MiiCostumeCategory> {
-        return lazy(() => MiiCostumeCategories.CompanionEnum.get.getValueByName(category,).reference,)
-    }
-
-    //endregion -------------------- Build helper methods --------------------
-
-    protected override _create(name: Name<string>,): MiiCostume {
-        const template = this.template
-
-        return new MiiCostumeContainer(name,
-            MiiCostumeCreator.#createOfficialNotification(template,),
-            MiiCostumeCreator.#createVersion(template,),
-            MiiCostumeCreator.#createCategory(template,),
-        )
-    }
-
+    return new MiiCostumeContainer(
+        new NameBuilderContainer(template.name, 2, true,).build(),
+        lazy(() => new OfficialNotificationHolderBuilder(template.officialNotification,).build(),),
+        version == null ? CommonLazy.NULL : lazy(() => Versions.CompanionEnum.get.getValueByName(`v${version}`,),),
+        lazy(() => MiiCostumeCategories.CompanionEnum.get.getValueByName(template.category,).reference,),
+    )
 }

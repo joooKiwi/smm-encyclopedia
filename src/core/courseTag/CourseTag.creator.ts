@@ -1,52 +1,30 @@
 import type {Lazy}        from '@joookiwi/lazy'
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
-import type {CourseTag}                       from 'core/courseTag/CourseTag'
-import type {CourseTagTemplate, NameTemplate} from 'core/courseTag/CourseTag.template'
-import type {PossibleMakerCentralName}        from 'core/courseTag/CourseTags.types'
-import type {Name}                            from 'lang/name/Name'
+import type {CourseTag}                                              from 'core/courseTag/CourseTag'
+import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/CourseTag.template'
 
-import {TemplateWithNameCreator} from 'core/_template/TemplateWithName.creator'
-import {CourseTagContainer}      from 'core/courseTag/CourseTag.container'
-import {Versions}                from 'core/version/Versions'
+import {CourseTagContainer}   from 'core/courseTag/CourseTag.container'
+import {Versions}             from 'core/version/Versions'
+import {NameBuilderContainer} from 'lang/name/Name.builder.container'
 
-export class CourseTagCreator
-    extends TemplateWithNameCreator<CourseTagTemplate, CourseTag> {
+export function createContent(template: CourseTagTemplate,): CourseTag {
+    const templateName = template.name
+    return new CourseTagContainer(
+        new NameBuilderContainer(templateName, 2, false,).build(),
+        template.isOfficial,
+        templateName.makerCentral,
+        getFirstAppearance(template.firstAppearance,)
+    )
+}
 
-    public constructor(template: CourseTagTemplate,) {
-        super(template, 2, false,)
-    }
-
-    //region -------------------- Build helper methods --------------------
-
-    static #getMakerCentralName({makerCentral,}: NameTemplate,): Lazy<NullOr<PossibleMakerCentralName>> {
-        return makerCentral == null
-            ? CommonLazy.NULL
-            : lazy(() => makerCentral,)
-    }
-
-    /**
-     * Get the version dependent on {@link CourseTagTemplate.firstAppearance} or null if not found.
-     *
-     * @param template
-     */
-    static #getFirstAppearance({firstAppearance,}: CourseTagTemplate,): Lazy<NullOr<Versions>> {
-        return firstAppearance == null
-            ? CommonLazy.NULL
-            : lazy(() => Versions.CompanionEnum.get.getValueByName(firstAppearance,),)
-    }
-
-    //endregion -------------------- Build helper methods --------------------
-
-    protected override _create(name: Name<string>,): CourseTag {
-        const template = this.template
-
-        return new CourseTagContainer(
-            name,
-            template.isOfficial,
-            CourseTagCreator.#getMakerCentralName(template.name),
-            CourseTagCreator.#getFirstAppearance(template),
-        )
-    }
-
+/**
+ * Get the version dependent on {@link CourseTagTemplate.firstAppearance} or null if not found.
+ *
+ * @param value
+ */
+function getFirstAppearance(value: PossibleFirstAppearanceInMarioMaker,): Lazy<NullOr<Versions>> {
+    if (value == null)
+        return CommonLazy.NULL
+    return lazy(() => Versions.CompanionEnum.get.getValueByName(value,),)
 }

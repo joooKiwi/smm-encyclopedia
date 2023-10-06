@@ -8,7 +8,7 @@ import type {Loader}                                                 from 'util/
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {CourseTagCreator}   from 'core/courseTag/CourseTag.creator'
+import {createContent}      from 'core/courseTag/CourseTag.creator'
 
 /** @singleton */
 export class CourseTagLoader
@@ -36,7 +36,7 @@ export class CourseTagLoader
         const references = new Map<PossibleEnglishName, CourseTag>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new CourseTagCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

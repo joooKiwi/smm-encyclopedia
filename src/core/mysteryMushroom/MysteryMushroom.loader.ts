@@ -19,9 +19,9 @@ import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleVa
 import type {PossibleName_SMM1 as PossibleVersionNameInSMM}                                                                                                                                                                      from 'core/version/Versions.types'
 import type {Loader}                                                                                                                                                                                                             from 'util/loader/Loader'
 
-import {isInProduction}         from 'variables'
-import * as TemplateMethods     from 'core/_template/templateMethods'
-import {MysteryMushroomCreator} from 'core/mysteryMushroom/MysteryMushroom.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/mysteryMushroom/MysteryMushroom.creator'
 
 /** @singleton */
 export class MysteryMushroomLoader
@@ -50,7 +50,7 @@ export class MysteryMushroomLoader
         let index = file.length
         while (index-- > 0) {
             const template = createTemplate(file[index] as Content,)
-            references.set(template.uniqueName, new MysteryMushroomCreator(template,).create(),)
+            references.set(template.uniqueName, createContent(template,),)
         }
 
         if (!isInProduction)

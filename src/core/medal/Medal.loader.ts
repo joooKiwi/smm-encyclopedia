@@ -6,7 +6,7 @@ import type {PossibleEnglishName}                                               
 import type {Loader}                                                                                            from 'util/loader/Loader'
 
 import {isInProduction} from 'variables'
-import {MedalCreator}   from 'core/medal/Medal.creator'
+import {createContent}  from 'core/medal/Medal.creator'
 
 /**
  *
@@ -38,7 +38,7 @@ export class MedalLoader
         const references = new Map<PossibleEnglishName, Medal>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new MedalCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.imageName, reference,)
         }
 

@@ -8,9 +8,9 @@ import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, 
 import type {PossibleEnglishName}                                                                                          from 'core/sampleCourse/SampleCourses.types'
 import type {Loader}                                                                                                       from 'util/loader/Loader'
 
-import * as TemplateMethods  from 'core/_template/templateMethods'
-import {SampleCourseCreator} from 'core/sampleCourse/SampleCourse.creator'
-import {isInProduction}      from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/sampleCourse/SampleCourse.creator'
+import {isInProduction}     from 'variables'
 
 /** @singleton */
 export class SampleCourseLoader
@@ -39,7 +39,7 @@ export class SampleCourseLoader
         let index = file.length
         while (index-- > 0) {
             const template = createTemplate(file[index] as Content,)
-            references.set(`Level ${template.numbers.world}`, new SampleCourseCreator(template,).create(),)
+            references.set(`Level ${template.numbers.world}`, createContent(template,),)
         }
 
         if (!isInProduction)

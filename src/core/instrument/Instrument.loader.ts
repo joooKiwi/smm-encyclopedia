@@ -8,7 +8,7 @@ import type {Loader}              from 'util/loader/Loader'
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {InstrumentCreator}  from 'core/instrument/Instrument.creator'
+import {createContent}      from 'core/instrument/Instrument.creator'
 
 /**
  * @singleton
@@ -39,7 +39,7 @@ export class InstrumentLoader
         const references = new Map<PossibleEnglishName, Instrument>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new InstrumentCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

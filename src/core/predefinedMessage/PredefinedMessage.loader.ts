@@ -6,9 +6,9 @@ import type {PredefinedMessageTemplate} from 'core/predefinedMessage/PredefinedM
 import type {PossibleEnglishName}       from 'core/predefinedMessage/PredefinedMessages.types'
 import type {Loader}                    from 'util/loader/Loader'
 
-import {isInProduction}           from 'variables'
-import * as TemplateMethods       from 'core/_template/templateMethods'
-import {PredefinedMessageCreator} from 'core/predefinedMessage/PredefinedMessage.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/predefinedMessage/PredefinedMessage.creator'
 
 /** @singleton */
 export class PredefinedMessageLoader
@@ -36,7 +36,7 @@ export class PredefinedMessageLoader
         const references = new Map<PossibleEnglishName, PredefinedMessage>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new PredefinedMessageCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

@@ -10,7 +10,7 @@ import type {Loader}                                    from 'util/loader/Loader
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {ThemeCreator}       from 'core/theme/Theme.creator'
+import {createContent}      from 'core/theme/Theme.creator'
 
 /** @singleton */
 export class ThemeLoader
@@ -38,7 +38,7 @@ export class ThemeLoader
         const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new ThemeCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

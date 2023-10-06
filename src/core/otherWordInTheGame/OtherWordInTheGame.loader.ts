@@ -7,9 +7,9 @@ import type {OtherWordInTheGameTemplate}                                        
 import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
 
-import {isInProduction}                    from 'variables'
-import * as TemplateMethods                from 'core/_template/templateMethods'
-import {OtherSingularWordInTheGameCreator} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/otherWordInTheGame/OtherSingularWordInTheGame.creator'
 
 /** @singleton */
 
@@ -75,7 +75,7 @@ export class OtherWordInTheGameLoader
         const iterator = templateReferencesToFollow[Symbol.iterator]()
         let iteratorResult: IteratorResult<readonly [PossibleEnglishName_Singular, OtherWordInTheGameTemplate,], unknown>
         while (!(iteratorResult = iterator.next()).done)
-            references.set(iteratorResult.value[0], new OtherSingularWordInTheGameCreator(iteratorResult.value[1],).create(),)
+            references.set(iteratorResult.value[0], createContent(iteratorResult.value[1],),)
 
         //endregion -------------------- Associating the references to the english name ----------------------------------------
 

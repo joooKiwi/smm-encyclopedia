@@ -1,67 +1,32 @@
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
-import type {PossibleGroupName}                         from 'core/entityTypes'
-import type {EntityBehaviour}                           from 'core/behaviour/EntityBehaviour'
-import type {EntityBehaviourTemplate}                   from 'core/behaviour/EntityBehaviour.template'
-import type {EntityBehaviourIsInOnly}                   from 'core/behaviour/properties/EntityBehaviourIsInOnly'
-import type {EntityBehaviourLink}                       from 'core/behaviour/properties/EntityBehaviourLink'
-import type {EntityBehaviourLinkTemplate}               from 'core/behaviour/properties/EntityBehaviourLink.template'
-import type {IsInOnlyTemplate}                          from 'core/behaviour/properties/IsInOnlyTemplate'
-import type {PossibleEnglishName as PossibleEntityName} from 'core/entity/Entities.types'
-import type {Entity}                                    from 'core/entity/Entity'
+import type {EntityBehaviour}             from 'core/behaviour/EntityBehaviour'
+import type {EntityBehaviourTemplate}     from 'core/behaviour/EntityBehaviour.template'
+import type {EntityBehaviourLink}         from 'core/behaviour/properties/EntityBehaviourLink'
+import type {EntityBehaviourLinkTemplate} from 'core/behaviour/properties/EntityBehaviourLink.template'
 
-import {TemplateCreator}                 from 'core/_template/Template.creator'
 import {EntityBehaviourContainer}        from 'core/behaviour/EntityBehaviour.container'
 import {EntityBehaviourIsInOnlyProvider} from 'core/behaviour/properties/EntityBehaviourIsInOnly.provider'
 import {EntityBehaviourLinkProvider}     from 'core/behaviour/properties/EntityBehaviourLink.provider'
 import {Import}                          from 'util/DynamicImporter'
 
-export class EntityBehaviourCreator
-    extends TemplateCreator<EntityBehaviourTemplate, EntityBehaviour> {
+export function createContent(template: EntityBehaviourTemplate,): EntityBehaviour {
+    return new EntityBehaviourContainer(
+        template.acronym,
+        template.translationKey,
+        EntityBehaviourIsInOnlyProvider.get.get(template.isOnly.online, template.isOnly.multiplayer,),
+        createLinks(template.links,),
+    )
+}
 
-    public constructor(template: EntityBehaviourTemplate,) {
-        super(template)
-    }
+function createLinks(template: EntityBehaviourLinkTemplate,): EntityBehaviourLink {
+    const group = template.group
+    const entity = template.entity
 
-    //region -------------------- Builder helper methods --------------------
-
-    static #createIsInOnly({online, multiplayer,}: IsInOnlyTemplate,): EntityBehaviourIsInOnly {
-        return EntityBehaviourIsInOnlyProvider.get.get(online, multiplayer,)
-    }
-
-
-    static #getEntityGroupByName(name: PossibleGroupName,): object {
-        return {}//TODO implement this methods when the group name is added.
-    }
-
-    static #getEntityByName(name: PossibleEntityName,): Entity {
-        return Import.Entities.CompanionEnum.get.getValueByName(name,).reference
-    }
-
-    static #createLinks({group, entity,}: EntityBehaviourLinkTemplate,): EntityBehaviourLink {
-        const isGroupNull = group == null
-        const isEntityNull = entity == null
-
-
-        if (isGroupNull && isEntityNull)
-            return EntityBehaviourLinkProvider.get.null
-        return EntityBehaviourLinkProvider.get.get([group, entity,],
-            isGroupNull ? CommonLazy.NULL : lazy(() => EntityBehaviourCreator.#getEntityGroupByName(group,),),
-            isEntityNull ? CommonLazy.NULL : lazy(() => this.#getEntityByName(entity,),),
-        )
-    }
-
-    //endregion -------------------- Builder helper methods --------------------
-
-    public create(): EntityBehaviour {
-        const template = this.template
-
-        return new EntityBehaviourContainer(
-            template.acronym,
-            template.translationKey,
-            EntityBehaviourCreator.#createIsInOnly(template.isOnly),
-            EntityBehaviourCreator.#createLinks(template.links),
-        )
-    }
-
+    if (group == null && entity == null)
+        return EntityBehaviourLinkProvider.get.null
+    return EntityBehaviourLinkProvider.get.get([group, entity,],
+        group == null ? CommonLazy.NULL : lazy(() => ({}),),//TODO implement the get entity by group name once it is implemented
+        entity == null ? CommonLazy.NULL : lazy(() => Import.Entities.CompanionEnum.get.getValueByName(entity,).reference,),
+    )
 }

@@ -6,9 +6,9 @@ import type {SoundEffectCategory}         from 'core/soundEffectCategory/SoundEf
 import type {SoundEffectCategoryTemplate} from 'core/soundEffectCategory/SoundEffectCategory.template'
 import type {Loader}                      from 'util/loader/Loader'
 
-import {isInProduction}             from 'variables'
-import * as TemplateMethods         from 'core/_template/templateMethods'
-import {SoundEffectCategoryCreator} from 'core/soundEffectCategory/SoundEffectCategory.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/soundEffectCategory/SoundEffectCategory.creator'
 
 /** @singleton */
 export class SoundEffectCategoryLoader
@@ -36,7 +36,7 @@ export class SoundEffectCategoryLoader
         const references = new Map<PossibleEnglishName, SoundEffectCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new SoundEffectCategoryCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

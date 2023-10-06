@@ -10,7 +10,7 @@ import type {Loader}                                                        from
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {SoundEffectCreator} from 'core/soundEffect/SoundEffect.creator'
+import {createContent}      from 'core/soundEffect/SoundEffect.creator'
 
 /** @singleton */
 export class SoundEffectLoader
@@ -38,7 +38,7 @@ export class SoundEffectLoader
         const references = new Map<PossibleEnglishName, SoundEffect>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new SoundEffectCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

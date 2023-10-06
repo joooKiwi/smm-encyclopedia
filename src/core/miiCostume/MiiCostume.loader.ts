@@ -10,7 +10,7 @@ import type {Loader}                                                            
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {MiiCostumeCreator}  from 'core/miiCostume/MiiCostume.creator'
+import {createContent}      from 'core/miiCostume/MiiCostume.creator'
 
 /**
  * @singleton
@@ -41,7 +41,7 @@ export class MiiCostumeLoader
         const references = new Map<PossibleEnglishName, MiiCostume>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new MiiCostumeCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

@@ -6,13 +6,13 @@ import type {EntityCategory}         from 'core/entityCategory/EntityCategory'
 import type {EntityCategoryTemplate} from 'core/entityCategory/EntityCategory.template'
 import type {Loader}                 from 'util/loader/Loader'
 
-import {isInProduction}        from 'variables'
-import * as TemplateMethods    from 'core/_template/templateMethods'
-import {EntityCategoryCreator} from 'core/entityCategory/EntityCategory.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/entityCategory/EntityCategory.creator'
 
 /**
  * A single class made to handle the loading
- * and the unique creation of every {@link EntityCategory category}.
+ * and the unique creation of every {@link EntityCategory}.
  *
  * @singleton
  */
@@ -41,7 +41,7 @@ export class EntityCategoryLoader
         const references = new Map<PossibleEnglishName, EntityCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new EntityCategoryCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

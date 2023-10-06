@@ -1,10 +1,8 @@
-import type {MysteryMushroom, MysteryMushroomGames} from 'core/mysteryMushroom/MysteryMushroom'
-import type {MysteryMushroomTemplate}               from 'core/mysteryMushroom/MysteryMushroom.template'
-import type {SoundProperty}                         from 'core/mysteryMushroom/properties/sound/SoundProperty'
-import type {SoundPropertyTemplate}                 from 'core/mysteryMushroom/properties/sound/SoundProperty.template'
-import type {Name}                                  from 'lang/name/Name'
+import type {MysteryMushroom, MysteryMushroomGames}            from 'core/mysteryMushroom/MysteryMushroom'
+import type {MysteryMushroomTemplate, PokemonGeneration}       from 'core/mysteryMushroom/MysteryMushroom.template'
+import type {PossibleAcronym as PossibleAcronym_GameReference} from 'core/gameReference/GameReferences.types'
+import type {MysteryMushroomProperty}                          from 'core/mysteryMushroom/properties/MysteryMushroomProperty'
 
-import {TemplateWithNameCreator}              from 'core/_template/TemplateWithName.creator'
 import {GameReferences}                       from 'core/gameReference/GameReferences'
 import {MysteryMushroomContainer}             from 'core/mysteryMushroom/MysteryMushroom.container'
 import {MysteryMushroomPropertyContainer}     from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
@@ -19,79 +17,53 @@ import {SoundEffectOnTurnAfterRunProvider}    from 'core/mysteryMushroom/propert
 import {SoundEffectWhenCollectedProvider}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected.provider'
 import {SoundPropertyContainer}               from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
 import {SpecialMusicInStarModeProvider}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode.provider'
+import {NameBuilderContainer}                 from 'lang/name/Name.builder.container'
 
-//region -------------------- Import from deconstruction --------------------
+export function createContent(template: MysteryMushroomTemplate,): MysteryMushroom {
+    return new MysteryMushroomContainer(
+        new NameBuilderContainer(template.name, 1, false,).build(),//TODO change the false to true since it is a complete SMM1 name
+        retrieveGames(template.gameReference,),
+        createProperty(template.properties,),
+    )
+}
 
-const {POKEMON_RED, POKEMON_GREEN, POKEMON_BLUE, POKEMON_YELLOW, POKEMON_DIAMOND, POKEMON_PEARL, POKEMON_X, POKEMON_Y,} = GameReferences
-
-//endregion -------------------- Import from deconstruction --------------------
-
-export class MysteryMushroomCreator
-    extends TemplateWithNameCreator<MysteryMushroomTemplate, MysteryMushroom> {
-
-    public constructor(template: MysteryMushroomTemplate,) {
-        super(template, 1, false,)//TODO change the false to true since it is a complete SMM1 name
+function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneration,): MysteryMushroomGames {
+    switch (value) {
+        case 'Pokémon gen 1':
+            return [GameReferences.POKEMON_RED, GameReferences.POKEMON_GREEN, GameReferences.POKEMON_BLUE, GameReferences.POKEMON_YELLOW,]
+        case 'Pokémon gen 4':
+            return [GameReferences.POKEMON_DIAMOND, GameReferences.POKEMON_PEARL,]
+        case 'Pokémon gen 6':
+            return [GameReferences.POKEMON_X, GameReferences.POKEMON_Y,]
+        default:
+            return [GameReferences.CompanionEnum.get.getValueByAcronym(value,),]
     }
+}
 
-    //region -------------------- Build helper methods --------------------
+function createProperty(template: MysteryMushroomTemplate['properties'],): MysteryMushroomProperty {
+    const unlockTemplate = template.unlock
+    const collectedSoundTemplate = template.sound.hasSoundEffect.collected
+    const tauntSoundTemplate = template.sound.hasSoundEffect.taunt
+    const movementSound = template.sound.soundEffect.movement
+    const jumpSoundTemplate = template.sound.hasSoundEffect.jump.value
+    const groundAfterJumpSoundTemplate = template.sound.hasSoundEffect.jump.ground
+    const turnAfterRunSound = template.sound.hasSoundEffect.turn
+    const starModeSoundTemplate = template.sound.hasSpecialMusic.starMode
+    const goalPoleSoundTemplate = template.sound.hasSoundEffect.goalPole
+    const deathSoundTemplate = template.sound.hasSoundEffect.death
 
-    //region -------------------- Property helper methods --------------------
-
-    #createSoundProperty(soundPropertyTemplate: SoundPropertyTemplate,): SoundProperty {
-        const collectedTemplate = soundPropertyTemplate.hasSoundEffect.collected
-        const tauntTemplate = soundPropertyTemplate.hasSoundEffect.taunt
-        const movement = soundPropertyTemplate.soundEffect.movement
-        const jumpTemplate = soundPropertyTemplate.hasSoundEffect.jump.value
-        const groundAfterJumpTemplate = soundPropertyTemplate.hasSoundEffect.jump.ground
-        const turnAfterRun = soundPropertyTemplate.hasSoundEffect.turn
-        const starModeTemplate = soundPropertyTemplate.hasSpecialMusic.starMode
-        const goalPoleTemplate = soundPropertyTemplate.hasSoundEffect.goalPole
-        const deathTemplate = soundPropertyTemplate.hasSoundEffect.death
-
-        return new SoundPropertyContainer(
-            SoundEffectWhenCollectedProvider.get.get(collectedTemplate.value, collectedTemplate.game,),
-            SoundEffectOnTauntProvider.get.get(tauntTemplate.value, tauntTemplate.game,),
-            SoundEffectOnMovementProvider.get.get(movement,),
-            SoundEffectOnJumpProvider.get.get(jumpTemplate.value, jumpTemplate.game,),
-            SoundEffectOnGroundAfterJumpProvider.get.get(groundAfterJumpTemplate.value, groundAfterJumpTemplate.game,),
-            SoundEffectOnTurnAfterRunProvider.get.get(turnAfterRun,),
-            SpecialMusicInStarModeProvider.get.get(starModeTemplate.value, starModeTemplate.game,),
-            SoundEffectOnGoalPoleProvider.get.get(goalPoleTemplate.value, goalPoleTemplate.type, goalPoleTemplate.game, goalPoleTemplate.smallDefinition,),
-            SoundEffectOnDeathProvider.get.get(deathTemplate.value, deathTemplate.type, deathTemplate.game, deathTemplate.smallDefinition,),
-        )
-    }
-
-    #createProperty() {
-        const propertyTemplate = this.template.properties
-        const unlockTemplate = propertyTemplate.unlock
-
-        return new MysteryMushroomPropertyContainer(
-            UnlockPropertyProvider.get.get(unlockTemplate.condition, unlockTemplate.amiibo,),
-            this.#createSoundProperty(propertyTemplate.sound,),
-        )
-    }
-
-    //endregion -------------------- Property helper methods --------------------
-
-    protected _getGames(): MysteryMushroomGames {
-        const reference = this.template.gameReference
-
-        switch (reference) {
-            case 'Pokémon gen 1':
-                return [POKEMON_RED, POKEMON_GREEN, POKEMON_BLUE, POKEMON_YELLOW,]
-            case 'Pokémon gen 4':
-                return [POKEMON_DIAMOND, POKEMON_PEARL,]
-            case 'Pokémon gen 6':
-                return [POKEMON_X, POKEMON_Y,]
-            default:
-                return [GameReferences.CompanionEnum.get.getValueByAcronym(reference,),]
-        }
-    }
-
-    //endregion -------------------- Build helper methods --------------------
-
-    protected _create(name: Name<string>,): MysteryMushroom {
-        return new MysteryMushroomContainer(name, this._getGames(), this.#createProperty())
-    }
-
+    return new MysteryMushroomPropertyContainer(
+        UnlockPropertyProvider.get.get(unlockTemplate.condition, unlockTemplate.amiibo,),
+        new SoundPropertyContainer(
+            SoundEffectWhenCollectedProvider.get.get(collectedSoundTemplate.value, collectedSoundTemplate.game,),
+            SoundEffectOnTauntProvider.get.get(tauntSoundTemplate.value, tauntSoundTemplate.game,),
+            SoundEffectOnMovementProvider.get.get(movementSound,),
+            SoundEffectOnJumpProvider.get.get(jumpSoundTemplate.value, jumpSoundTemplate.game,),
+            SoundEffectOnGroundAfterJumpProvider.get.get(groundAfterJumpSoundTemplate.value, groundAfterJumpSoundTemplate.game,),
+            SoundEffectOnTurnAfterRunProvider.get.get(turnAfterRunSound,),
+            SpecialMusicInStarModeProvider.get.get(starModeSoundTemplate.value, starModeSoundTemplate.game,),
+            SoundEffectOnGoalPoleProvider.get.get(goalPoleSoundTemplate.value, goalPoleSoundTemplate.type, goalPoleSoundTemplate.game, goalPoleSoundTemplate.smallDefinition,),
+            SoundEffectOnDeathProvider.get.get(deathSoundTemplate.value, deathSoundTemplate.type, deathSoundTemplate.game, deathSoundTemplate.smallDefinition,),
+        ),
+    )
 }

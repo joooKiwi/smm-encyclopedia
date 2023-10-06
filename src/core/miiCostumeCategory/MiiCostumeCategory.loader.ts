@@ -6,9 +6,9 @@ import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostum
 import type {MiiCostumeCategoryTemplate} from 'core/miiCostumeCategory/MiiCostumeCategory.template'
 import type {Loader}                     from 'util/loader/Loader'
 
-import {isInProduction}            from 'variables'
-import * as TemplateMethods        from 'core/_template/templateMethods'
-import {MiiCostumeCategoryCreator} from 'core/miiCostumeCategory/MiiCostumeCategory.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/miiCostumeCategory/MiiCostumeCategory.creator'
 
 /** @singleton */
 export class MiiCostumeCategoryLoader
@@ -36,7 +36,7 @@ export class MiiCostumeCategoryLoader
         const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new MiiCostumeCategoryCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

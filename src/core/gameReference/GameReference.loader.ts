@@ -6,9 +6,9 @@ import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/Game
 import type {GameReferenceTemplate}                from 'core/gameReference/GameReference.template'
 import type {Loader}                               from 'util/loader/Loader'
 
-import {isInProduction}       from 'variables'
-import * as TemplateMethods   from 'core/_template/templateMethods'
-import {GameReferenceCreator} from 'core/gameReference/GameReference.creator'
+import {isInProduction}     from 'variables'
+import * as TemplateMethods from 'core/_template/templateMethods'
+import {createContent}      from 'core/gameReference/GameReference.creator'
 
 /** @singleton */
 export class GameReferenceLoader
@@ -36,7 +36,7 @@ export class GameReferenceLoader
         const references = new Map<PossibleEnglishName, GameReference>()
         let index = file.length
         while (index-- > 0) {
-            const reference = new GameReferenceCreator(createTemplate(file[index] as Content,),).create()
+            const reference = createContent(createTemplate(file[index] as Content,),)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

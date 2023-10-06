@@ -1,37 +1,27 @@
-import type {SimpleGameFromAllGamesTemplate} from 'core/game/SimpleGame.template'
-import type {OtherSingularWordInTheGame}     from 'core/otherWordInTheGame/OtherSingularWordInTheGame'
-import type {OtherWordInTheGameTemplate}     from 'core/otherWordInTheGame/OtherWordInTheGame.template'
-import type {Name}                           from 'lang/name/Name'
+import type {OtherSingularWordInTheGame} from 'core/otherWordInTheGame/OtherSingularWordInTheGame'
+import type {OtherWordInTheGameTemplate} from 'core/otherWordInTheGame/OtherWordInTheGame.template'
 
-import {TemplateWithNameCreator}             from 'core/_template/TemplateWithName.creator'
 import {GamePropertyProvider}                from 'core/entity/properties/game/GameProperty.provider'
 import {OtherPluralWordInTheGameContainer}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame.container'
 import {OtherSingularWordInTheGameContainer} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.container'
+import {NameBuilderContainer}                from 'lang/name/Name.builder.container'
 
-export class OtherSingularWordInTheGameCreator
-    extends TemplateWithNameCreator<OtherWordInTheGameTemplate, OtherSingularWordInTheGame> {
 
-    public constructor(template: OtherWordInTheGameTemplate,) {
-        super(template, 'all', false,)//TODO change it to true once other translations are completed
-    }
+export function createContent(template: OtherWordInTheGameTemplate,): OtherSingularWordInTheGame {
+    const pluralForm = template.properties.pluralForm
+    const isInGame = template.properties.isIn.game
 
-    //region -------------------- Build helper methods --------------------
+    const name = new NameBuilderContainer(template.name, 'all', false,).build()//TODO change it to true once other translations are completed
+    const gameProperty = GamePropertyProvider.get.get(isInGame['1'], isInGame['3DS'], isInGame['2'],)
 
-    static #createGame(template: SimpleGameFromAllGamesTemplate<boolean, boolean, boolean>,) {
-        return GamePropertyProvider.get.get(template['1'], template['3DS'], template['2'],)
-    }
-
-    //endregion -------------------- Build helper methods --------------------
-    protected override _create(name: Name<string>,): OtherSingularWordInTheGame {
-        const template = this.template,
-            gameProperty = OtherSingularWordInTheGameCreator.#createGame(template.properties.isIn.game,),
-            pluralForm = template.properties.pluralForm
-
-        return new OtherSingularWordInTheGameContainer(
-            name,
+    if (pluralForm == null)
+        return new OtherSingularWordInTheGameContainer(name, gameProperty, null,)
+    return new OtherSingularWordInTheGameContainer(
+        name,
+        gameProperty,
+        new OtherPluralWordInTheGameContainer(
+            new NameBuilderContainer(pluralForm.name, 'all', false,).build(),//TODO change it to true once other translations are completed
             gameProperty,
-            pluralForm == null ? null : new OtherPluralWordInTheGameContainer(this._createName(pluralForm), gameProperty,),
-        )
-    }
-
+        ),
+    )
 }
