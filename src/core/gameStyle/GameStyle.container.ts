@@ -23,8 +23,8 @@ export class GameStyleContainer
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
-                       isInProperty: Lazy<GameProperty>,
-                       isAvailableFromTheStart: Lazy<ClassThatIsAvailableFromTheStart>,
+                       isInProperty: GameProperty,
+                       isAvailableFromTheStart: ClassThatIsAvailableFromTheStart,
                        entities: Lazy<readonly Entity[]>,
                        nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,)
@@ -40,7 +40,7 @@ export class GameStyleContainer
     //region -------------------- Game properties --------------------
 
     public get isInProperty() {
-        return this.#isInPropertyHolder.value
+        return this.#isInPropertyHolder
     }
 
     public get isInSuperMarioMaker1() {
@@ -59,7 +59,7 @@ export class GameStyleContainer
     //region -------------------- "Is available from the start" properties --------------------
 
     public get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart {
-        return this.#isAvailableFromTheStartHolder.value
+        return this.#isAvailableFromTheStartHolder
     }
 
     public get isAvailableFromTheStartInSMM1() {

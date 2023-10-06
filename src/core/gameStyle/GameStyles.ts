@@ -19,6 +19,7 @@ import {gameStyleImage}               from 'core/gameStyle/file/fileCreator'
 import {StringContainer}              from 'util/StringContainer'
 import {CompanionEnumByAcronymOrName} from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
 
+/** @recursiveReference<{@link GameStyleLoader}> */
 export abstract class GameStyles
     extends Enum<Ordinals, Names>
     implements ClassWithReference<GameStyle>,
