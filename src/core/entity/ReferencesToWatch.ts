@@ -123,7 +123,7 @@ export class ReferencesToWatch {
     }
 
     /**
-     * Add every references on both individual {@link references}
+     * Add every references on both individual {@link _references}
      * and the {@link ReferenceHolder.value reference value} inside {@link ReferenceHolder}.
      *
      * It also adds each reference into the proper type ({@link ReferenceType}).
