@@ -18,8 +18,7 @@ export class PredefinedMessageLoader
 
     static #instance?: PredefinedMessageLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

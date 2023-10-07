@@ -16,8 +16,7 @@ export class EmptySMMSoundEffectSound
 
     static #instance?: EmptySMMSoundEffectSound
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

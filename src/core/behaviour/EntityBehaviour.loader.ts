@@ -26,8 +26,7 @@ export class EntityBehaviourLoader
 
     static #instance?: EntityBehaviourLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

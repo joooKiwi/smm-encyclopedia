@@ -27,8 +27,7 @@ export class SampleCourseLoader
 
     static #instance?: SampleCourseLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

@@ -10,8 +10,7 @@ export class EmptyFileName
 
     static #instance?: EmptyFileName
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

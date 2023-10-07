@@ -10,8 +10,7 @@ export class BootstrapInstanceHandler {
 
     static #instance?: BootstrapInstanceHandler
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

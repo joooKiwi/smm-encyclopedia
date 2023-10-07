@@ -12,8 +12,7 @@ export class EmptySingleBackgroundMusic
 
     static #instance?: EmptySingleBackgroundMusic
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

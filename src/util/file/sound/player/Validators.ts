@@ -133,8 +133,7 @@ export abstract class Validators
      *
      * @param callback the callback to execute
      */
-    public onCreate(callback: IsSourceFoundCallback,): void {
-    }
+    public onCreate(callback: IsSourceFoundCallback,): void {}
 
     /**
      * Handle the state when the {@link HTMLAudioElement audio element} is playing.

@@ -13,8 +13,7 @@ export class EmptyInstrumentProperty
 
     static #instance?: EmptyInstrumentProperty
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

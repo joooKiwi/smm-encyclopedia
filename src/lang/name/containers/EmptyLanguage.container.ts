@@ -8,8 +8,7 @@ export class EmptyLanguageContainer
 
     static #instance?: EmptyLanguageContainer
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

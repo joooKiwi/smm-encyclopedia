@@ -32,8 +32,7 @@ export class GameStyleLoader
 
     static #instance?: GameStyleLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

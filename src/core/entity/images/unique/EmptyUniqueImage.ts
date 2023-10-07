@@ -14,8 +14,7 @@ export class EmptyUniqueImage
 
     static #instance?: EmptyUniqueImage
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

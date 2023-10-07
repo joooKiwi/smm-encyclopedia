@@ -9,8 +9,7 @@ export class AbstractProvider<K extends unknown, V>
 
     //endregion -------------------- Fields --------------------
 
-    protected constructor() {
-    }
+    protected constructor() {}
 
     //region -------------------- Getter methods --------------------
 

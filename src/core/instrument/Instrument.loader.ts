@@ -20,8 +20,7 @@ export class InstrumentLoader
 
     static #instance?: InstrumentLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -56,8 +55,7 @@ export class InstrumentLoader
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
 function createContent(content: Content,): Instrument {
     return new InstrumentContainer(

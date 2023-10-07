@@ -13,8 +13,7 @@ export class EmptyIsInProperty
 
     static #instance?: EmptyIsInProperty
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

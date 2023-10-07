@@ -48,8 +48,7 @@ export class MysteryMushroomLoader
 
     static #instance?: MysteryMushroomLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

@@ -23,8 +23,7 @@ export class CourseTagLoader
 
     static #instance?: CourseTagLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

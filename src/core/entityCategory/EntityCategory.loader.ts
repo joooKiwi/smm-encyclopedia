@@ -23,8 +23,7 @@ export class EntityCategoryLoader
 
     static #instance?: EntityCategoryLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

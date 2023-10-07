@@ -19,8 +19,7 @@ export class EntityLimitLoader
 
     static #instance?: EntityLimitLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

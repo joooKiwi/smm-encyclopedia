@@ -11,8 +11,7 @@ export class EmptyEntityLimitAmount
 
     static #instance?: EmptyEntityLimitAmount
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

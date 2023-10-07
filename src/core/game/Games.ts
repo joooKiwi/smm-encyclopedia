@@ -119,8 +119,7 @@ export abstract class Games
 
         static #instance?: Companion_GamePossibilities
 
-        private constructor() {
-        }
+        private constructor() {}
 
         public static get get() {
             return Companion_GamePossibilities.#instance ??= new Companion_GamePossibilities()

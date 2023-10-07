@@ -9,8 +9,7 @@ export class EmptyOfficialNotificationHolder
 
     static #instance?: EmptyOfficialNotificationHolder
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

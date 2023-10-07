@@ -12,8 +12,7 @@ export class EmptyInGameImage
 
     static #instance?: EmptyInGameImage
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

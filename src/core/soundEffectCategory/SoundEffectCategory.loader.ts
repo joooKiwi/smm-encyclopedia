@@ -18,8 +18,7 @@ export class SoundEffectCategoryLoader
 
     static #instance?: SoundEffectCategoryLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

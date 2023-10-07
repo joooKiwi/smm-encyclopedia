@@ -33,8 +33,7 @@ export class EntityLoader
 
     static #instance?: EntityLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

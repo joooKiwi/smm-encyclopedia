@@ -18,8 +18,7 @@ export class MiiCostumeCategoryLoader
 
     static #instance?: MiiCostumeCategoryLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

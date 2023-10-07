@@ -42,8 +42,7 @@ export class DynamicImporter {
 
     static #instance?: DynamicImporter
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

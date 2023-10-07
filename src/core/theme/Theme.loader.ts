@@ -40,8 +40,7 @@ export class ThemeLoader
 
     static #instance?: ThemeLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

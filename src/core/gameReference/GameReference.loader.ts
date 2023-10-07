@@ -18,8 +18,7 @@ export class GameReferenceLoader
 
     static #instance?: GameReferenceLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
