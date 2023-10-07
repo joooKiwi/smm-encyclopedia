@@ -67,7 +67,7 @@ export class MysteryMushroomLoader
         let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            references.set(template.uniqueName, createContent(content,),)
+            references.set(content.uniqueName, createContent(content,),)
         }
 
         if (!isInProduction)
