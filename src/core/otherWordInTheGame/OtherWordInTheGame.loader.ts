@@ -2,14 +2,17 @@ import file from 'resources/compiled/Other word in the game.json'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {GameContentFromAllGames}                                                       from 'core/game/Loader.types'
+import type {OtherPluralWordInTheGame}                                                      from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
 import type {OtherSingularWordInTheGame}                                                    from 'core/otherWordInTheGame/OtherSingularWordInTheGame'
-import type {OtherWordInTheGameTemplate}                                                    from 'core/otherWordInTheGame/OtherWordInTheGame.template'
 import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishName_Singular} from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/otherWordInTheGame/OtherSingularWordInTheGame.creator'
+import {isInProduction}                      from 'variables'
+import * as TemplateMethods                  from 'core/_template/templateMethods'
+import {GamePropertyProvider}                from 'core/entity/properties/game/GameProperty.provider'
+import {OtherPluralWordInTheGameContainer}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame.container'
+import {OtherSingularWordInTheGameContainer} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.container'
+import {NameBuilderContainer}                from 'lang/name/Name.builder.container'
 
 /** @singleton */
 
@@ -37,47 +40,17 @@ export class OtherWordInTheGameLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName_Singular, OtherSingularWordInTheGame>()
-        const templateReferences = new Map<PossibleEnglishName, OtherWordInTheGameTemplate>()
-        const templateReferencesToFollow = new Map<PossibleEnglishName_Singular, OtherWordInTheGameTemplate>()
-        //region -------------------- Associating the template to the english name ----------------------------------------
-
-        const size = file.length
-        let index = size
-        const temporaryArray = new Array<readonly [PossibleEnglishName, OtherWordInTheGameTemplate, Content,]>(size,)
+        const pluralReferences = new Map<PossibleEnglishName_Plural, OtherPluralWordInTheGame>()
+        let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            const template = createTemplate(content,)
-            const englishName = (template.name.english.simple ?? template.name.english.american) as PossibleEnglishName
-
-            templateReferences.set(englishName, template,)
-            temporaryArray[index] = [englishName, template, content,]
-        }
-
-        //endregion -------------------- Associating the template to the english name ----------------------------------------
-        //region -------------------- Setting the template references ----------------------------------------
-
-        index = size
-        while (index-- > 0) {
-            const value = temporaryArray[index]
-            const content = value[2]
-
-            if (content.pluralFormOf != null) {
-                templateReferences.get(content.pluralFormOf)!.properties.pluralForm = value[1]
+            const englishName = (content.english ?? content.americanEnglish)!
+            if (content.isPlural) {
+                pluralReferences.set(englishName as PossibleEnglishName_Plural, createPluralContent(content,),)
                 continue
             }
-
-            templateReferencesToFollow.set(value[0] as PossibleEnglishName_Singular, value[1],)
+            references.set(englishName as PossibleEnglishName_Singular, createSingularContent(content, pluralReferences,),)
         }
-
-        //endregion -------------------- Setting the template references ----------------------------------------
-        //region -------------------- Associating the references to the english name ----------------------------------------
-
-        const iterator = templateReferencesToFollow[Symbol.iterator]()
-        let iteratorResult: IteratorResult<readonly [PossibleEnglishName_Singular, OtherWordInTheGameTemplate,], unknown>
-        while (!(iteratorResult = iterator.next()).done)
-            references.set(iteratorResult.value[0], createContent(iteratorResult.value[1],),)
-
-        //endregion -------------------- Associating the references to the english name ----------------------------------------
 
         if (!isInProduction)
             console.info(
@@ -96,16 +69,28 @@ interface Content
     readonly english: NullOr<PossibleEnglishName>
     readonly americanEnglish: NullOr<PossibleEnglishName>
 
-    readonly pluralFormOf: NullOr<PossibleEnglishName_Plural>
+    readonly isPlural: boolean
+    readonly pluralForm: NullOr<PossibleEnglishName_Plural>
 
 }
 
-function createTemplate(content: Content,): OtherWordInTheGameTemplate {
-    return {
-        properties: {
-            isIn: {game: TemplateMethods.createGameTemplateFromAllGames(content,),},
-            pluralForm: null,
-        },
-        name: TemplateMethods.createNameTemplate(content,),
-    }
+function createSingularContent(content: Content, pluralContents: ReadonlyMap<PossibleEnglishName_Plural, OtherPluralWordInTheGame>,): OtherSingularWordInTheGame {
+    const pluralForm = content.pluralForm
+    const name = new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build()//TODO change it to true once other translations are completed
+    const gameProperty = GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,)
+
+    if (pluralForm == null)
+        return new OtherSingularWordInTheGameContainer(name, gameProperty, null,)
+
+    const pluralFormFound = pluralContents.get(pluralForm,)
+    if (pluralFormFound == null)
+        throw new ReferenceError(`No plural reference "${pluralForm}" was found for the singular "${content.english ?? content.americanEnglish}".`,)
+    return new OtherSingularWordInTheGameContainer(name, gameProperty, pluralFormFound,)
+}
+
+function createPluralContent(content: Content,): OtherPluralWordInTheGame {
+    return new OtherPluralWordInTheGameContainer(
+        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),//TODO change it to true once other translations are completed
+        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
+    )
 }
