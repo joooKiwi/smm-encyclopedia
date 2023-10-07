@@ -2,6 +2,7 @@ import type {GameReferences}          from 'core/gameReference/GameReferences'
 import type {MysteryMushroomProperty} from 'core/mysteryMushroom/properties/MysteryMushroomProperty'
 import type {NameTrait}               from 'lang/name/NameTrait'
 
+/** @todo Add a "firstAppearanceInMarioMaker" field */
 export interface MysteryMushroom
     extends NameTrait<string>,
         MysteryMushroomProperty {
