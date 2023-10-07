@@ -3,27 +3,9 @@
     <node-interpreter value="project" />
     <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
     <working-dir value="$PROJECT_DIR$" />
-    <jest-options value="--watchAll=false" />
+    <jest-options value="--testNamePattern=&quot;(file test)&quot; --watchAll=false" />
     <envs />
     <scope-kind value="ALL" />
-    <method v="2">
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Course tag)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Character name)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Entity)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Entity behaviour)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Entity category)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Game reference)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Game style)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Instrument)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Limit)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Mii costume)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Mii costume category)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Mystery Mushroom)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Predefined message)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Sample course)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Sound effect)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Sound effect category)" run_configuration_type="JavaScriptTestRunnerJest" />
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="File test (Theme)" run_configuration_type="JavaScriptTestRunnerJest" />
-    </method>
+    <method v="2" />
   </configuration>
 </component>
