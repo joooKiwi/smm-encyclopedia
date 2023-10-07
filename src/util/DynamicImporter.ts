@@ -7,6 +7,7 @@ import type {EntityCategories}                          from 'core/entityCategor
 import type {EntityLimits}                              from 'core/entityLimit/EntityLimits'
 import type {EntityLimitTypes}                          from 'core/entityLimit/EntityLimitTypes'
 import type {Entities}                                  from 'core/entity/Entities'
+import type {EntityLoader}                              from 'core/entity/Entity.loader'
 import type {GameReferences}                            from 'core/gameReference/GameReferences'
 import type {GameStyles}                                from 'core/gameStyle/GameStyles'
 import type {Instruments}                               from 'core/instrument/Instruments'
@@ -60,6 +61,7 @@ export class DynamicImporter {
     //region -------------------- Entity fields --------------------
 
     #Entities?: typeof Entities
+    #EntityLoader?: typeof EntityLoader
 
     //endregion -------------------- Entity fields --------------------
     //region -------------------- "Entity limit" fields --------------------
@@ -173,6 +175,9 @@ export class DynamicImporter {
         return this.#Entities ??= require('../core/entity/Entities').Entities
     }
 
+    public get EntityLoader(): typeof EntityLoader {
+        return this.#EntityLoader ??= require('../core/entity/Entity.loader').EntityLoader
+    }
 
     //endregion -------------------- Entity getter methods --------------------
     //region -------------------- "Entity limit" getter methods --------------------
