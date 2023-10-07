@@ -10,7 +10,6 @@ import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency}
 import type {Loader}                                                             from 'util/loader/Loader'
 
 import {isInProduction}                           from 'variables'
-import * as TemplateMethods                       from 'core/_template/templateMethods'
 import {GameStyleContainer}                       from 'core/gameStyle/GameStyle.container'
 import {GameReferences}                           from 'core/gameReference/GameReferences'
 import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
@@ -19,6 +18,7 @@ import {Import}                                   from 'util/DynamicImporter'
 
 /**
  * @dependsOn<{@link GameReferences}>
+ * @indirectlyDependsOn<{@link GameReferenceLoader}>
  * @dependsOn<{@link GameStyles}>
  * @dependsOn<{@link Entities}>
  * @indirectlyDependsOn<{@link EntityLoader}>
