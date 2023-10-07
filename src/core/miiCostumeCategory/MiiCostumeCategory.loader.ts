@@ -3,12 +3,12 @@ import file from 'resources/compiled/Mii Costume category (SMM2).json'
 import type {LanguageContent}            from 'core/_template/LanguageContent'
 import type {PossibleEnglishName}        from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostumeCategory'
-import type {MiiCostumeCategoryTemplate} from 'core/miiCostumeCategory/MiiCostumeCategory.template'
 import type {Loader}                     from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/miiCostumeCategory/MiiCostumeCategory.creator'
+import {isInProduction}              from 'variables'
+import * as TemplateMethods          from 'core/_template/templateMethods'
+import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
+import {NameBuilderContainer}        from 'lang/name/Name.builder.container'
 
 /** @singleton */
 export class MiiCostumeCategoryLoader
@@ -36,7 +36,7 @@ export class MiiCostumeCategoryLoader
         const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
+            const reference = createContent(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -56,6 +56,6 @@ export class MiiCostumeCategoryLoader
 interface Content
     extends LanguageContent {}
 
-function createTemplate(content: Content,): MiiCostumeCategoryTemplate {
-    return {name: TemplateMethods.createNameTemplate(content,),}
+function createContent(content: Content,): MiiCostumeCategory {
+    return new MiiCostumeCategoryContainer(new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, false,).build(),)
 }
