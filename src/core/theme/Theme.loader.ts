@@ -57,7 +57,7 @@ export class ThemeLoader
         const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -85,7 +85,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): CourseAndWorldTheme {
+function createReference(content: Content,): CourseAndWorldTheme {
     const isInCourseTheme = content.isInCourseTheme
     const isInWorldTheme = content.isInWorldTheme
 

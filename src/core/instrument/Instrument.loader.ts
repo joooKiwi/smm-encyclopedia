@@ -37,7 +37,7 @@ export class InstrumentLoader
         const references = new Map<PossibleEnglishName, Instrument>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -57,7 +57,7 @@ export class InstrumentLoader
 interface Content
     extends LanguageContent {}
 
-function createContent(content: Content,): Instrument {
+function createReference(content: Content,): Instrument {
     return new InstrumentContainer(
         new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),
         CommonLazy.EMPTY_ARRAY, //TODO add other entity references by the instrument

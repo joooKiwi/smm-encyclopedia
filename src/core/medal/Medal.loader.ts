@@ -43,7 +43,7 @@ export class MedalLoader
         let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            references.set(content.image, createContent(content,),)
+            references.set(content.image, createReference(content,),)
         }
 
         if (!isInProduction)
@@ -67,7 +67,7 @@ interface Content {
 
 }
 
-function createContent(content: Content,): Medal {
+function createReference(content: Content,): Medal {
     const imageName = content.image
 
     return new MedalContainer(

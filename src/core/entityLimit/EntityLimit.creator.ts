@@ -16,7 +16,7 @@ import {NameBuilderContainer}              from 'lang/name/Name.builder.containe
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
 import {Import}                            from 'util/DynamicImporter'
 
-export function createContent(template: | EntityLimitTemplate | AlternativeLimitTemplate, references: ReadonlyMap<PossibleEnglishName | PossibleAlternativeEnglishName, EntityLimit>,): EntityLimit {
+export function createReference(template: | EntityLimitTemplate | AlternativeLimitTemplate, references: ReadonlyMap<PossibleEnglishName | PossibleAlternativeEnglishName, EntityLimit>,): EntityLimit {
     if (template.type == null)
         return new AlternativeEntityLimitContainer(
             new NameBuilderContainer(template.name, 2, false,).build(),

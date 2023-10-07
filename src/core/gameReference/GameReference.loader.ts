@@ -35,7 +35,7 @@ export class GameReferenceLoader
         const references = new Map<PossibleEnglishName, GameReference>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -58,7 +58,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): GameReference {
+function createReference(content: Content,): GameReference {
     return new GameReferenceContainer(
         content.acronym,
         new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),

@@ -66,7 +66,7 @@ export class MysteryMushroomLoader
         let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            references.set(content.uniqueName, createContent(content,),)
+            references.set(content.uniqueName, createReference(content,),)
         }
 
         if (!isInProduction)
@@ -123,7 +123,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): MysteryMushroom {
+function createReference(content: Content,): MysteryMushroom {
     return new MysteryMushroomContainer(
         new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 1, false,).build(),//TODO change the false to true since it is a complete SMM1 name
         retrieveGames(content.reference,),

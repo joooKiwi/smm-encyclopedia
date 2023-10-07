@@ -38,7 +38,7 @@ export class CharacterNameLoader
         let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            references.set(content.uniqueName as PossibleUniqueEnglishName, createContent(content,),)
+            references.set(content.uniqueName as PossibleUniqueEnglishName, createReference(content,),)
         }
 
         if (!isInProduction)
@@ -60,7 +60,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): CharacterName {
+function createReference(content: Content,): CharacterName {
     return new CharacterNameContainer(
         new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),
         GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),

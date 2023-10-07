@@ -46,7 +46,7 @@ export class SoundEffectLoader
         const references = new Map<PossibleEnglishName, SoundEffect>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -86,7 +86,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): SoundEffect {
+function createReference(content: Content,): SoundEffect {
     const category = content.category
 
     return new SoundEffectContainer(

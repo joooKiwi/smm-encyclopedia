@@ -49,7 +49,7 @@ export class GameStyleLoader
         const references = new Map<PossibleEnglishName, GameStyle>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -76,7 +76,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): GameStyle {
+function createReference(content: Content,): GameStyle {
     return new GameStyleContainer(
         GameReferences.CompanionEnum.get.getValueByAcronym(content.reference,).reference.nameContainer,
         content.isInSuperMarioMaker1And3DS ? GamePropertyProvider.get.all : GamePropertyProvider.get.smm2Only,

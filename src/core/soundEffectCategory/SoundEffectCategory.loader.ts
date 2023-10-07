@@ -35,7 +35,7 @@ export class SoundEffectCategoryLoader
         const references = new Map<PossibleEnglishName, SoundEffectCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -55,7 +55,7 @@ export class SoundEffectCategoryLoader
 interface Content
     extends LanguageContent {}
 
-function createContent(content: Content,): SoundEffectCategory {
+function createReference(content: Content,): SoundEffectCategory {
     return new SoundEffectCategoryContainer(new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, false,).build(),)
 }
 

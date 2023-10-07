@@ -9,7 +9,7 @@ import type {Loader}                                                            
 
 import {isInProduction}     from 'variables'
 import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/entityLimit/EntityLimit.creator'
+import {createReference}    from 'core/entityLimit/EntityLimit.creator'
 
 /** @singleton */
 export class EntityLimitLoader
@@ -36,7 +36,7 @@ export class EntityLimitLoader
         const references = new Map<PossibleEnglishName, EntityLimit>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,), references,)
+            const reference = createReference(createTemplate(file[index] as Content,), references,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 

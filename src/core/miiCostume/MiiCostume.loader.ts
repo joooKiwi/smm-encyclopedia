@@ -46,7 +46,7 @@ export class MiiCostumeLoader
         const references = new Map<PossibleEnglishName, MiiCostume>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -72,7 +72,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): MiiCostume {
+function createReference(content: Content,): MiiCostume {
     const version = content.MM2_version
 
     return new MiiCostumeContainer(

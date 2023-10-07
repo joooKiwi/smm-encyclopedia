@@ -40,7 +40,7 @@ export class CourseTagLoader
         const references = new Map<PossibleEnglishName, CourseTag>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -66,7 +66,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): CourseTag {
+function createReference(content: Content,): CourseTag {
     const firstAppearance = content.firstAppearanceInMarioMaker
 
     return new CourseTagContainer(

@@ -42,7 +42,7 @@ import {NameBuilderContainer}                                                   
 
 const EMPTY_ENTITIES = lazy(() => [EmptyEntity.get,] as const,)
 
-export function createContent(template: EntityTemplate,): Entity {
+export function createReference(template: EntityTemplate,): Entity {
     const isInSMM1 = template.properties.isIn.game['1']
     const isInSMM3DS = template.properties.isIn.game['3DS']
     const isInSMM2 = template.properties.isIn.game['2']

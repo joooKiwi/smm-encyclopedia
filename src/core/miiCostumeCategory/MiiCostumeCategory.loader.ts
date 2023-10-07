@@ -35,7 +35,7 @@ export class MiiCostumeCategoryLoader
         const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -55,6 +55,6 @@ export class MiiCostumeCategoryLoader
 interface Content
     extends LanguageContent {}
 
-function createContent(content: Content,): MiiCostumeCategory {
+function createReference(content: Content,): MiiCostumeCategory {
     return new MiiCostumeCategoryContainer(new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, false,).build(),)
 }

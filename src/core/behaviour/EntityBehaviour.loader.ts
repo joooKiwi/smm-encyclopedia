@@ -43,7 +43,7 @@ export class EntityBehaviourLoader
         const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.translationKey, reference,)
         }
 
@@ -73,7 +73,7 @@ interface Content {
 
 }
 
-function createContent(content: Content,): EntityBehaviour {
+function createReference(content: Content,): EntityBehaviour {
     return new EntityBehaviourContainer(
         content.acronym,
         content.translationKey,

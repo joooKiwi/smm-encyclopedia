@@ -45,7 +45,7 @@ export class SampleCourseLoader
         let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            references.set(`Level ${content.worldNumber}`, createContent(content,),)
+            references.set(`Level ${content.worldNumber}`, createReference(content,),)
         }
 
         if (!isInProduction)
@@ -73,7 +73,7 @@ interface Content
 
 }
 
-function createContent(content: Content,): SampleCourse {
+function createReference(content: Content,): SampleCourse {
     const subArea = content.courseTheme_subArea
 
     return new SampleCourseContainer(

@@ -40,7 +40,7 @@ export class EntityCategoryLoader
         const references = new Map<PossibleEnglishName, EntityCategory>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(file[index] as Content,)
+            const reference = createReference(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -60,6 +60,6 @@ export class EntityCategoryLoader
 interface Content
     extends LanguageContent {}
 
-function createContent(content: Content,): EntityCategory {
+function createReference(content: Content,): EntityCategory {
     return new EntityCategoryContainer(new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, true,).build(),)
 }
