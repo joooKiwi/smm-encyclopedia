@@ -10,14 +10,14 @@ import type {Loader}                                                            
 import {isInProduction}                    from 'variables'
 import * as TemplateMethods                from 'core/_template/templateMethods'
 import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'
-import {MiiCostumeCategories}              from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {MiiCostumeCategoryLoader}          from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
 import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
 import {Versions}                          from 'core/version/Versions'
 import {NameBuilderContainer}              from 'lang/name/Name.builder.container'
 import {PossibleMarioMakerVersion}         from 'core/miiCostume/loader.types'
 
 /**
- * @dependsOn<{@link MiiCostumeCategories}>
+ * @dependsOn<{@link MiiCostumeCategoryLoader}>
  * @dependsOn<{@link OfficialNotifications}>
  * @dependsOn<{@link Versions}>
  * @singleton
@@ -80,6 +80,6 @@ function createContent(content: Content,): MiiCostume {
         new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, true,).build(),
         new OfficialNotificationHolderBuilder(content.notificationIfUnlocked,).build(),
         version == null ? null : Versions.CompanionEnum.get.getValueByName(`v${version}`,),
-        MiiCostumeCategories.CompanionEnum.get.getValueByName(content.category,).reference,
+        MiiCostumeCategoryLoader.get.load().get(content.category,)!,
     )
 }

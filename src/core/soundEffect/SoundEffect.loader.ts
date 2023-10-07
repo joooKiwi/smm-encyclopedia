@@ -14,12 +14,12 @@ import {SoundEffectContainer}         from 'core/soundEffect/SoundEffect.contain
 import {PlayerSoundEffectTriggers}    from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 import {SoundEffectPropertyContainer} from 'core/soundEffect/property/SoundEffectProperty.container'
 import {EmptySoundEffectCategory}     from 'core/soundEffectCategory/EmptySoundEffectCategory'
-import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
+import {SoundEffectCategoryLoader}    from 'core/soundEffectCategory/SoundEffectCategory.loader'
 import {NameBuilderContainer}         from 'lang/name/Name.builder.container'
 
 /**
  * @dependsOn<{@link PlayerSoundEffectTriggers}>
- * @dependsOn<{@link SoundEffectCategories}>
+ * @dependsOn<{@link SoundEffectCategoryLoader}>
  * @singleton
  */
 export class SoundEffectLoader
@@ -92,7 +92,7 @@ function createContent(content: Content,): SoundEffect {
 
     return new SoundEffectContainer(
         new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, false,).build(),
-        category == null ? EmptySoundEffectCategory.get : SoundEffectCategories.CompanionEnum.get.getValueByName(category,).reference,
+        category == null ? EmptySoundEffectCategory.get : SoundEffectCategoryLoader.get.load().get(category,)!,
         new SoundEffectPropertyContainer(
             GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),
             PlayerSoundEffectTriggers.getValueByTrigger(//TODO replace PlayerSoundEffectTriggers.getValueByTrigger in "SoundEffect.loader.ts" in a simple function
