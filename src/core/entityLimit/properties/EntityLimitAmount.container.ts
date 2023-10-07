@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {PropertyThatCanBeUnknown}                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
 import type {NotApplicableProperty, UnknownProperty}                                                              from 'core/_properties/PropertyWithEverything'
 import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
@@ -17,8 +15,8 @@ export class EntityLimitAmountContainer
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(limitInSMM1AndSMM3DS: Lazy<| PropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicableProperty | UnknownProperty>,
-                       limitInSMM2: Lazy<| PropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | UnknownProperty>,
+    public constructor(limitInSMM1AndSMM3DS: | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicableProperty | UnknownProperty,
+                       limitInSMM2: | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | UnknownProperty,
                        comment: PossibleLimitAmount_Comment,) {
         this.#limitInSMM1AndSMM3DS = limitInSMM1AndSMM3DS
         this.#limitInSMM2 = limitInSMM2
@@ -31,7 +29,7 @@ export class EntityLimitAmountContainer
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
     public get limitContainerInSMM1AndSMM3DS() {
-        return this.#limitInSMM1AndSMM3DS.value
+        return this.#limitInSMM1AndSMM3DS
     }
 
     public get limitAmountInSMM1AndSMM3DS() {
@@ -46,7 +44,7 @@ export class EntityLimitAmountContainer
     //region -------------------- SMM2 limit --------------------
 
     public get limitContainerInSMM2() {
-        return this.#limitInSMM2.value
+        return this.#limitInSMM2
     }
 
     public get limitAmountInSMM2() {

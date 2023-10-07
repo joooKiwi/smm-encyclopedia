@@ -31,7 +31,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
                           acronym: ACRONYM,
                           alternative: Lazy<AlternativeEntityLimit>,
                           type: Lazy<EntityLimitTypes>,
-                          limitAmount: Lazy<EntityLimitAmount>,) {
+                          limitAmount: EntityLimitAmount,) {
         super(name, alternative,)
         this.#acronym = acronym
         this.#typeHolder = type
@@ -106,7 +106,7 @@ export abstract class AbstractEntityLimitContainer<ACRONYM extends NullOr<| Poss
     //region -------------------- Limit amount --------------------
 
     public get limitContainer(): EntityLimitAmount {
-        return this.#limitHolder.value
+        return this.#limitHolder
     }
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
