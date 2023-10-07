@@ -1,5 +1,5 @@
+import type {PossibleAmountOfStarReceivedToUnlockIt, PossibleMaximumAmountAllowedToUploadALevel} from 'core/medal/loader.types'
 import type {Medal}                                                                              from 'core/medal/Medal'
-import type {PossibleAmountOfStarReceivedToUnlockIt, PossibleMaximumAmountAllowedToUploadALevel} from 'core/medal/Medal.template'
 import type {PossibleEnglishName}                                                                from 'core/medal/Medals.types'
 import type {Entity}                                                                             from 'core/entity/Entity'
 import type {CharacterName}                                                                      from 'core/characterName/CharacterName'

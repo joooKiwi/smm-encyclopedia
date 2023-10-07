@@ -1,5 +1,5 @@
 import type {PossibleEnglishName}                                                                from 'core/medal/Medals.types'
-import type {PossibleAmountOfStarReceivedToUnlockIt, PossibleMaximumAmountAllowedToUploadALevel} from 'core/medal/Medal.template'
+import type {PossibleAmountOfStarReceivedToUnlockIt, PossibleMaximumAmountAllowedToUploadALevel} from 'core/medal/loader.types'
 import type {NameTrait}                                                                          from 'lang/name/NameTrait'
 
 export interface Medal

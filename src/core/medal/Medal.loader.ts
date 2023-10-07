@@ -1,15 +1,20 @@
 import file from 'resources/compiled/Medals (SMM).json'
 
-import type {Medal}                                                                                             from 'core/medal/Medal'
-import type {MedalTemplate, PossibleAmountOfStarReceivedToUnlockIt, PossibleMaximumAmountAllowedToUploadALevel} from 'core/medal/Medal.template'
-import type {PossibleEnglishName}                                                                               from 'core/medal/Medals.types'
-import type {Loader}                                                                                            from 'util/loader/Loader'
+import type {PossibleAmountOfStarReceivedToUnlockIt, PossibleMaximumAmountAllowedToUploadALevel} from 'core/medal/loader.types'
+import type {Medal}                                                                              from 'core/medal/Medal'
+import type {PossibleEnglishName}                                                                from 'core/medal/Medals.types'
+import type {Loader}                                                                             from 'util/loader/Loader'
 
 import {isInProduction} from 'variables'
-import {createContent}  from 'core/medal/Medal.creator'
+import {MedalContainer} from 'core/medal/Medal.container'
+import {Medals}         from 'core/medal/Medals'
 
 /**
- *
+ * @dependsOn<{@link Medals}>
+ * @indirectlyDependsOn<{@link CharacterNameLoader}>
+ * @indirectlyDependsOn<{@link CharacterNames}>
+ * @indirectlyDependsOn<{@link Entities}>
+ * @indirectlyDependsOn<{@link EntityLoader}>
  * @recursiveReference<{@link Medals}>
  * @singleton
  */
@@ -38,8 +43,8 @@ export class MedalLoader
         const references = new Map<PossibleEnglishName, Medal>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
-            references.set(reference.imageName, reference,)
+            const content = file[index] as Content
+            references.set(content.image, createContent(content,),)
         }
 
         if (!isInProduction)
@@ -57,18 +62,19 @@ export class MedalLoader
 
 interface Content {
 
-    amountOfAllowedLevelToUpload: PossibleMaximumAmountAllowedToUploadALevel,
-    amountOfStarReceived: PossibleAmountOfStarReceivedToUnlockIt,
+    amountOfAllowedLevelToUpload: PossibleMaximumAmountAllowedToUploadALevel
+    amountOfStarReceived: PossibleAmountOfStarReceivedToUnlockIt
     image: PossibleEnglishName
 
 }
 
-function createTemplate(content: Content,): MedalTemplate {
-    return {
-        amount: {
-            allowedLevelToUpload: content.amountOfAllowedLevelToUpload,
-            amountOfStarReceived: content.amountOfStarReceived,
-        },
-        imageName: content.image,
-    }
+function createContent(content: Content,): Medal {
+    const imageName = content.image
+
+    return new MedalContainer(
+        Medals.CompanionEnum.get.getValueByName(imageName,).associatedReference.reference,
+        imageName,
+        content.amountOfAllowedLevelToUpload,
+        content.amountOfStarReceived,
+    )
 }
