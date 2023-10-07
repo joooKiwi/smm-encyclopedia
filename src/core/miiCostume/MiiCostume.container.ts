@@ -1,4 +1,4 @@
-import type {Lazy} from '@joookiwi/lazy'
+import {lazyOf} from '@joookiwi/lazy'
 
 import type {MiiCostume}                 from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostumeCategory'
@@ -21,10 +21,10 @@ export class MiiCostumeContainer
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
-                       officialNotification: Lazy<OfficialNotificationHolder>,
-                       version: Lazy<NullOr<Versions>>,
-                       category: Lazy<MiiCostumeCategory>,) {
-        super(name, category,)
+                       officialNotification: OfficialNotificationHolder,
+                       version: NullOr<Versions>,
+                       category: MiiCostumeCategory,) {
+        super(name, lazyOf(category,),)
         this.#officialNotificationHolder = officialNotification
         this.#version = version
     }
@@ -35,7 +35,7 @@ export class MiiCostumeContainer
     //region -------------------- Official notification --------------------
 
     public get officialNotificationContainer() {
-        return this.#officialNotificationHolder.value
+        return this.#officialNotificationHolder
     }
 
     public get officialNotification() {
@@ -49,7 +49,7 @@ export class MiiCostumeContainer
     //endregion -------------------- Official notification --------------------
 
     public get version() {
-        return this.#version.value
+        return this.#version
     }
 
     //endregion -------------------- Getter methods --------------------

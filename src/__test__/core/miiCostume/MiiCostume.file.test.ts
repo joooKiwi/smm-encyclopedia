@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Mii Costume (SMM2).json'
 
 import type {PossibleExcludedLanguages} from '__test__/helperMethods.types'
-import type {PossibleMarioMakerVersion} from 'core/miiCostume/MiiCostume.template'
+import type {PossibleMarioMakerVersion} from 'core/miiCostume/loader.types'
 
 import {EveryTypes}                                 from '__test__/EveryTypes'
 import {getEnglishName, testEnglish, testLanguages} from '__test__/helperMethods'

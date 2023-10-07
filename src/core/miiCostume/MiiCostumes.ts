@@ -13,9 +13,6 @@ import {miiCostumeImage}     from 'core/miiCostume/file/fileCreator'
 import {StringContainer}     from 'util/StringContainer'
 import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
 
-/**
- * @recursiveReference<{@link MiiCostumeLoader}>
- */
 export class MiiCostumes
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MiiCostume>,

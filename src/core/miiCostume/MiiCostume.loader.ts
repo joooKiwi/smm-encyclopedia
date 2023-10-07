@@ -2,19 +2,25 @@ import file from 'resources/compiled/Mii Costume (SMM2).json'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {MiiCostume}                                                                    from 'core/miiCostume/MiiCostume'
-import type {MiiCostumeTemplate, PossibleMarioMakerVersion}                                 from 'core/miiCostume/MiiCostume.template'
 import type {PossibleEnglishName}                                                           from 'core/miiCostume/MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_Category}                           from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/miiCostume/MiiCostume.creator'
+import {isInProduction}                    from 'variables'
+import * as TemplateMethods                from 'core/_template/templateMethods'
+import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'
+import {MiiCostumeCategories}              from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
+import {Versions}                          from 'core/version/Versions'
+import {NameBuilderContainer}              from 'lang/name/Name.builder.container'
+import {PossibleMarioMakerVersion}         from 'core/miiCostume/loader.types'
 
 /**
+ * @dependsOn<{@link MiiCostumeCategories}>
+ * @dependsOn<{@link OfficialNotifications}>
+ * @dependsOn<{@link Versions}>
  * @singleton
- * @recursiveReference<{@link MiiCostumes}>
  */
 export class MiiCostumeLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, MiiCostume>> {
@@ -41,7 +47,7 @@ export class MiiCostumeLoader
         const references = new Map<PossibleEnglishName, MiiCostume>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
+            const reference = createContent(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -67,11 +73,13 @@ interface Content
 
 }
 
-function createTemplate(content: Content,): MiiCostumeTemplate {
-    return {
-        officialNotification: content.notificationIfUnlocked,
-        version: content.MM2_version,
-        category: content.category,
-        name: TemplateMethods.createNameTemplate(content,),
-    }
+function createContent(content: Content,): MiiCostume {
+    const version = content.MM2_version
+
+    return new MiiCostumeContainer(
+        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, true,).build(),
+        new OfficialNotificationHolderBuilder(content.notificationIfUnlocked,).build(),
+        version == null ? null : Versions.CompanionEnum.get.getValueByName(`v${version}`,),
+        MiiCostumeCategories.CompanionEnum.get.getValueByName(content.category,).reference,
+    )
 }
