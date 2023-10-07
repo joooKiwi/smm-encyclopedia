@@ -12,6 +12,7 @@ import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishNa
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from 'core/gameStyle/GameStyles.types'
 import type {PossibleEnglishName as PossibleEnglishName_Instrument}                                                                                                                                                                                                      from 'core/instrument/Instruments.types'
 import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                                                    from 'core/instrument/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_Medal}                                                                                                                                                                                                           from 'core/medal/Medals.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}                                                                                                                                                                                                      from 'core/miiCostume/MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                                             from 'core/mysteryMushroom/MysteryMushrooms.types'
@@ -39,6 +40,7 @@ import {Games}                       from 'core/game/Games'
 import {GameStyles}                  from 'core/gameStyle/GameStyles'
 import {GameReferences}              from 'core/gameReference/GameReferences'
 import {Instruments}                 from 'core/instrument/Instruments'
+import {Medals}                      from 'core/medal/Medals'
 import {NightEffects}                from 'core/nightEffect/NightEffects'
 import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {MiiCostumes}                 from 'core/miiCostume/MiiCostumes'
@@ -76,6 +78,7 @@ import {nonNull}                     from 'util/utilitiesMethods'
  * @see OfficialNotifications
  * @see PredefinedMessages
  * @see SampleCourses
+ * @see Medals
  * @see Instruments
  * @see Versions
  * @see OtherWordInTheGames
@@ -159,6 +162,8 @@ export class EveryTypes {
     #everyPossibleName_predefinedMessage?: readonly PossibleEnglishName_PredefinedMessage[]
 
     #everyPossibleWorldNumber_SampleCourse?: readonly PossibleWorldNumber_SampleCourse[]
+
+    #everyPossibleName_medal?: readonly PossibleEnglishName_Medal[]
 
     #everyPossibleName_instrument?: readonly PossibleEnglishName_Instrument[]
     #everyPossibleMixedName_instrument?: readonly PossibleMixedName_Instrument[]
@@ -480,6 +485,13 @@ export class EveryTypes {
     }
 
     //endregion -------------------- Sample course --------------------
+    //region -------------------- Medal --------------------
+
+    public get everyPossibleName_medal() {
+        return this.#everyPossibleName_medal ??= Medals.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+    }
+
+    //endregion -------------------- Medal --------------------
     //region -------------------- Instrument --------------------
 
     public get everyPossibleName_instrument() {
