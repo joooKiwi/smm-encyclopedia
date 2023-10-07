@@ -11,9 +11,6 @@ import {instrumentSound}                from 'core/instrument/file/fileCreator'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-/**
- * @recursiveReference<{@link InstrumentLoader}>
- */
 export class Instruments
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName> {

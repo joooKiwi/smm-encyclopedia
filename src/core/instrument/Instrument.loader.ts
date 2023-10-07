@@ -1,19 +1,18 @@
 import file from 'resources/compiled/Instrument.json'
 
+import {CommonLazy} from '@joookiwi/lazy'
+
 import type {LanguageContent}     from 'core/_template/LanguageContent'
 import type {Instrument}          from 'core/instrument/Instrument'
 import type {PossibleEnglishName} from 'core/instrument/Instruments.types'
-import type {InstrumentTemplate}  from 'core/instrument/Instrument.template'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/instrument/Instrument.creator'
+import {isInProduction}       from 'variables'
+import * as TemplateMethods   from 'core/_template/templateMethods'
+import {InstrumentContainer}  from 'core/instrument/Instrument.container'
+import {NameBuilderContainer} from 'lang/name/Name.builder.container'
 
-/**
- * @singleton
- * @recursiveReference<{@link Instruments}>
- */
+/** @singleton */
 export class InstrumentLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, Instrument>> {
 
@@ -39,7 +38,7 @@ export class InstrumentLoader
         const references = new Map<PossibleEnglishName, Instrument>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
+            const reference = createContent(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -57,8 +56,12 @@ export class InstrumentLoader
 
 
 interface Content
-    extends LanguageContent {}
+    extends LanguageContent {
+}
 
-function createTemplate(content: Content,): InstrumentTemplate {
-    return {name: TemplateMethods.createNameTemplate(content,),}
+function createContent(content: Content,): Instrument {
+    return new InstrumentContainer(
+        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),
+        CommonLazy.EMPTY_ARRAY, //TODO add other entity references by the instrument
+    )
 }
