@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {GameProperty}              from 'core/entity/properties/game/GameProperty'
 import type {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
 import type {SoundEffectProperty}       from 'core/soundEffect/property/SoundEffectProperty'
@@ -16,7 +14,7 @@ export class SoundEffectPropertyContainer
     //region -------------------- Constructor --------------------
 
     public constructor(game: GameProperty,
-                       playerSoundEffectTrigger: Lazy<PlayerSoundEffectTriggers>,) {
+                       playerSoundEffectTrigger: PlayerSoundEffectTriggers,) {
         this.#gameContainer = game
         this.#playerSoundEffectTriggerHolder = playerSoundEffectTrigger
     }
@@ -46,7 +44,7 @@ export class SoundEffectPropertyContainer
     //region -------------------- Player sound effect trigger properties --------------------
 
     public get playerSoundEffectTriggerContainer(): PlayerSoundEffectTriggers {
-        return this.#playerSoundEffectTriggerHolder.value
+        return this.#playerSoundEffectTriggerHolder
     }
 
     public get translationKey() {
