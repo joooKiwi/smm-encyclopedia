@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Sample course (SMM).json'
 
 import type {PossibleExcludedLanguages}                                         from '__test__/helperMethods.types'
-import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges} from 'core/sampleCourse/SampleCourse.template'
+import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges} from 'core/sampleCourse/loader.types'
 
 import {getEnglishName, testLanguages} from '__test__/helperMethods'
 import {EveryTypes}                    from '__test__/EveryTypes'

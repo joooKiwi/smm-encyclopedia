@@ -1,5 +1,5 @@
 import type {GameStyles}                                                                             from 'core/gameStyle/GameStyles'
-import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, PossibleWorldNumber} from 'core/sampleCourse/SampleCourse.template'
+import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, PossibleWorldNumber} from 'core/sampleCourse/loader.types'
 import type {Themes}                                                                                 from 'core/theme/Themes'
 import type {NameTrait}                                                                              from 'lang/name/NameTrait'
 
