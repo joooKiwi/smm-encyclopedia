@@ -1,14 +1,14 @@
 import file from 'resources/compiled/Predefined message (SMM2).json'
 
-import type {LanguageContent}           from 'core/_template/LanguageContent'
-import type {PredefinedMessage}         from 'core/predefinedMessage/PredefinedMessage'
-import type {PredefinedMessageTemplate} from 'core/predefinedMessage/PredefinedMessage.template'
-import type {PossibleEnglishName}       from 'core/predefinedMessage/PredefinedMessages.types'
-import type {Loader}                    from 'util/loader/Loader'
+import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {PredefinedMessage}   from 'core/predefinedMessage/PredefinedMessage'
+import type {PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
+import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createContent}      from 'core/predefinedMessage/PredefinedMessage.creator'
+import {isInProduction}             from 'variables'
+import * as TemplateMethods         from 'core/_template/templateMethods'
+import {PredefinedMessageContainer} from 'core/predefinedMessage/PredefinedMessage.container'
+import {NameBuilderContainer}       from 'lang/name/Name.builder.container'
 
 /** @singleton */
 export class PredefinedMessageLoader
@@ -36,7 +36,7 @@ export class PredefinedMessageLoader
         const references = new Map<PossibleEnglishName, PredefinedMessage>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createContent(createTemplate(file[index] as Content,),)
+            const reference = createContent(file[index] as Content,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -56,6 +56,6 @@ export class PredefinedMessageLoader
 interface Content
     extends LanguageContent {}
 
-function createTemplate(content: Content,): PredefinedMessageTemplate {
-    return {name: TemplateMethods.createNameTemplate(content,),}
+function createContent(content: Content,): PredefinedMessage {
+    return new PredefinedMessageContainer(new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, true,).build(),)
 }
