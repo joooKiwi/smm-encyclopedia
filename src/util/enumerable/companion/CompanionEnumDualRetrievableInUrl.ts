@@ -15,9 +15,9 @@ export abstract class CompanionEnumDualRetrievableInUrl<const ENUM extends Enume
     const ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
     extends CompanionEnum<ENUM, ENUM_CONSTRUCTOR> {
 
-    public abstract URL_REGEX: RegExp
-    public abstract ALL_URL_REGEX: RegExp
-    public abstract SINGLE_URL_REGEX: RegExp
+    public abstract readonly URL_REGEX: RegExp
+    public abstract readonly ALL_URL_REGEX: RegExp
+    public abstract readonly SINGLE_URL_REGEX: RegExp
     public readonly PREFIX: NullOrString = null
 
     /**
