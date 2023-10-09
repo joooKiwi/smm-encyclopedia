@@ -15,8 +15,6 @@ import {EMPTY_ARRAY}                      from 'util/emptyVariables'
 const {
     SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,
     SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2, ALL_GAMES,
-    SMM1_2X, SMM3DS_2X, SMM2_2X,
-    SMM3DS_AND_1, SMM2_AND_1, SMM2_AND_3DS,
 } = Games.GamePossibilitiesCompanion.get
 
 //endregion -------------------- Import from deconstruction --------------------
@@ -77,14 +75,6 @@ export class RoutesAsSimpleListAndSMM2Creator<const PARENT_NAME extends string, 
             new SimpleRedirectRoute(name,              `${name} (Game=1&2)`,          `/game-1,2${path}`,           finalPath, SMM1_AND_2,),
             new SimpleRedirectRoute(name,              `${name} (Game=3DS&2)`,        `/game-3ds,2${path}`,         finalPath, SMM3DS_AND_2,),
 
-            new SimpleRedirectRoute(name,              `${name} (Game=1&1)`,          `/game-1,1${path}`,           finalPath, SMM1_2X,),
-            new SimpleRedirectRoute(name,              `${name} (Game=3DS&3DS)`,      `/game-3ds,3ds${path}`,       finalPath, SMM3DS_2X,),
-            new SimpleRedirectRoute(name,              `${name} (Game=2&2)`,          `/game-2,2${path}`,           finalPath, SMM2_2X,),
-
-            new SimpleRedirectRoute(name,              `${name} (Game=3DS&1)`,        `/game-3ds,1${path}`,         finalPath, SMM3DS_AND_1,),
-            new SimpleRedirectRoute(name,              `${name} (Game=2&1)`,          `/game-2,1${path}`,           finalPath, SMM2_AND_1,),
-            new SimpleRedirectRoute(name,              `${name} (Game=2&3DS)`,        `/game-2,3ds${path}`,         finalPath, SMM2_AND_3DS,),
-
 
             new SimpleRedirectRoute(name,              `${name} (list Game=1)`,       `/game-1/list${path}`,        finalPath, SMM1_ONLY,),
             new SimpleRedirectRoute(name,              `${name} (list Game=3DS)`,     `/game-3ds/list${path}`,      finalPath, SMM3DS_ONLY,),
@@ -95,13 +85,6 @@ export class RoutesAsSimpleListAndSMM2Creator<const PARENT_NAME extends string, 
             new SimpleRedirectRoute(name,              `${name} (list Game=3DS&2)`,   `/game-3ds,2/list${path}`,    finalPath, SMM3DS_AND_2,),
 
             new SimpleRedirectRoute(name,              `${name} (list)`,              `/list${path}`,               finalPath, EMPTY_ARRAY,),
-            new SimpleRedirectRoute(name,              `${name} (list Game=1&1)`,     `/game-1,1/list${path}`,      finalPath, SMM1_2X,),
-            new SimpleRedirectRoute(name,              `${name} (list Game=3DS&3DS)`, `/game-3ds,3ds/list${path}`,  finalPath, SMM3DS_2X,),
-            new SimpleRedirectRoute(name,              `${name} (list Game=2&2)`,     `/game-2,2/list${path}`,      finalPath, SMM2_2X,),
-
-            new SimpleRedirectRoute(name,              `${name} (list Game=3DS&1)`,   `/game-3ds,1/list${path}`,    finalPath, SMM3DS_AND_1,),
-            new SimpleRedirectRoute(name,              `${name} (list Game=2&1)`,     `/game-2,1/list${path}`,      finalPath, SMM2_AND_1,),
-            new SimpleRedirectRoute(name,              `${name} (list Game=2&3DS)`,   `/game-2,3ds/list${path}`,    finalPath, SMM2_AND_3DS,),
         ]
     }
 

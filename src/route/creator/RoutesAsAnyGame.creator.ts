@@ -14,8 +14,6 @@ import {EMPTY_ARRAY}         from 'util/emptyVariables'
 const {
     SMM1_ONLY, SMM3DS_ONLY, SMM2_ONLY,
     SMM1_AND_3DS, SMM1_AND_2, SMM3DS_AND_2, ALL_GAMES,
-    SMM1_2X, SMM3DS_2X, SMM2_2X,
-    SMM3DS_AND_1, SMM2_AND_1, SMM2_AND_3DS,
 } = Games.GamePossibilitiesCompanion.get
 
 //endregion -------------------- Import from deconstruction --------------------
@@ -84,14 +82,6 @@ export class RoutesAsAnyGameCreator<const PARENT_NAME extends string, const PARE
             new SimpleRouteByGames(name, `${name} (Game=1&3DS)`,   `/game-1,3ds${path}`,   SMM1_AND_3DS, renderCallback,),
             new SimpleRouteByGames(name, `${name} (Game=1&2)`,     `/game-1,2${path}`,     SMM1_AND_2,   renderCallback,),
             new SimpleRouteByGames(name, `${name} (Game=3DS&2)`,   `/game-3ds,2${path}`,   SMM3DS_AND_2, renderCallback,),
-
-            new SimpleRedirectRoute(name, `${name} (Game=1&1)`,     `/game-1,1${path}`,     `/game-1${path}`,     SMM1_2X,),
-            new SimpleRedirectRoute(name, `${name} (Game=3DS&3DS)`, `/game-3ds,3ds${path}`, `/game-3ds${path}`,   SMM3DS_2X,),
-            new SimpleRedirectRoute(name, `${name} (Game=2&2)`,     `/game-2,2${path}`,     `/game-2${path}`,     SMM2_2X,),
-
-            new SimpleRedirectRoute(name, `${name} (Game=3DS&1)`,   `/game-3ds,1${path}`,   `/game-1,3ds${path}`, SMM3DS_AND_1,),
-            new SimpleRedirectRoute(name, `${name} (Game=2&1)`,     `/game-2,1${path}`,     `/game-1,2${path}`,   SMM2_AND_1,),
-            new SimpleRedirectRoute(name, `${name} (Game=2&3DS)`,   `/game-2,3ds${path}`,   `/game-3ds,2${path}`, SMM2_AND_3DS,),
         ]
     }
 

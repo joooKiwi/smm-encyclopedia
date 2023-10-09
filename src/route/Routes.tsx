@@ -47,6 +47,14 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
                 }),),
                 loader: () => redirectToHomeIfNotCurrentLanguage(language,),
             }),),
+            languages.map<RouteObject>(language => ({
+                path: `/${language.projectAcronym}/*`,
+                children: everySimpleRoutes.map<RouteObject>(route => ({
+                    path: `/${language.projectAcronym}/*/${route.path}` as const,
+                    loader: loaderArguments => redirectToCorrectPath2(loaderArguments, language,),
+                }),),
+                loader: loaderArguments => redirectToCorrectPath2(loaderArguments, language,),
+            }),)
         ].flat(),
         loader: loaderArguments => redirectToPathIfFound(loaderArguments,),
     },], {basename: '/',},)
@@ -103,6 +111,81 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
         throw new TypeError(`A route should be findable when trying to retrieve from the url "${expectedPath}".`,)
     throw redirect(routeFromName(routeFoundByArguments.name, ProjectLanguages.current,),)
 }
+
+
+/**
+ * Redirect to the correct path from a value with only a {@link language}
+ *
+ * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
+ * @see redirectToCorrectPath4
+ */
+// function redirectToCorrectPath1(loaderArguments: LoaderFunctionArgs,): never {
+//     const url = loaderArguments.request.url
+//     redirectToCorrectPath4(
+//         loaderArguments,
+//         ProjectLanguages.CompanionEnum.get.getValueInUrl(url,),
+//         ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
+//         Games.CompanionEnum.get.getValueInUrl(url,),
+//     )
+// }
+/**
+ * Redirect to the correct path from no values
+ *
+ * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
+ * @param language The route language
+ * @see redirectToCorrectPath4
+ */
+function redirectToCorrectPath2(loaderArguments: LoaderFunctionArgs, language: ProjectLanguages,): never {
+    const url = loaderArguments.request.url
+    redirectToCorrectPath4(
+        loaderArguments,
+        language,
+        ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
+        Games.CompanionEnum.get.getValueInUrl(url,),
+    )
+}
+/**
+ * Redirect to the correct path from a value with only a {@link language} and a {@link viewDisplay}
+ *
+ * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
+ * @param language The route language
+ * @param viewDisplay The nullable view display
+ * @see redirectToCorrectPath4
+ */
+// function redirectToCorrectPath3(loaderArguments: LoaderFunctionArgs, language: ProjectLanguages, viewDisplay: NullOr<ViewDisplays>,): never {
+//     const url = loaderArguments.request.url
+//     redirectToCorrectPath4(
+//         loaderArguments,
+//         language,
+//         viewDisplay,
+//         Games.CompanionEnum.get.getValueInUrl(url,),
+//     )
+// }
+/**
+ * Redirect to the correct path from a value with only a {@link language}, a {@link viewDisplay} and the {@link games}
+ *
+ * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
+ * @param language The nullable route language
+ * @param viewDisplay The nullable view display
+ * @param games The games in the route
+ * @see redirectToCorrectPath4
+ */
+function redirectToCorrectPath4(loaderArguments: LoaderFunctionArgs, language: NullOr<ProjectLanguages>, viewDisplay: NullOr<ViewDisplays>, games: readonly Games[],): never {
+    const url = loaderArguments.request.url
+
+    const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path,),)
+
+    const expectedViewDisplayPath = viewDisplay == null ? '' : `/${ViewDisplays.CompanionEnum.get.current = viewDisplay.urlValue}` as const
+    const expectedGamesPath = games.length === 0 ? '' : `/${Games.setSelected(games,).selectedGamesAsUrlValue}` as const
+    const expectedBasicPath = routeFoundByBasicPath == null ? '/home' : routeFoundByBasicPath.path
+    const expectedLanguage = language ?? getUserLanguage()
+    const expectedPath = `${expectedGamesPath}${expectedViewDisplayPath}${expectedBasicPath}`
+    const routeFoundByArguments = everySimpleRoutes.find(it => it.path === expectedPath,)
+    if (routeFoundByArguments == null)
+        throw new TypeError(`A route should be findable when trying to retrieve from the url "${expectedPath}".`,)
+    throw redirect(routeFromName(routeFoundByArguments.name, expectedLanguage,),)
+}
+
 
 /**
  * Redirect to the <b>home page</b> & set the {@link ProjectLanguages.current current language} to the language received

@@ -1,5 +1,5 @@
 import type {Singleton} from '@joookiwi/enumerable'
-import {Enum}           from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}           from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                   from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                               from 'core/ClassWithEnglishName'
@@ -17,7 +17,7 @@ import {gameImage}                                                    from 'core
 import {StringContainer}                                              from 'util/StringContainer'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
 import {GameCollection}                                               from 'util/collection/GameCollection'
-import {CompanionEnumDualRetrievableInUrl}                            from 'util/enumerable/companion/CompanionEnumDualRetrievableInUrl'
+import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
 
 /** @usedByTheRouting */
 export abstract class Games
@@ -57,7 +57,7 @@ export abstract class Games
     //region -------------------- Companion enum --------------------
 
     public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_Games> = class CompanionEnum_Games
-        extends CompanionEnumDualRetrievableInUrl<Games, typeof Games>
+        extends CompanionEnum<Games, typeof Games>
         implements CompanionEnumDeclaration_Games {
 
         //region -------------------- Singleton usage --------------------
@@ -74,10 +74,18 @@ export abstract class Games
 
         //endregion -------------------- Singleton usage --------------------
 
-        public override readonly URL_REGEX = /\/game-((1|3ds|2)(,(1|3ds|2))?|(all))\//i
-        public override readonly ALL_URL_REGEX = /\/game-all\//i
-        public override readonly SINGLE_URL_REGEX = /\/game-(1|3ds|2)\//i
-        public override readonly PREFIX = 'game-'
+        /** The separator the every url parts */
+        protected readonly _PART_SEPARATOR = '/'
+        /** The separator the url arguments */
+        protected readonly _ARGUMENT_SEPARATOR = ','
+
+        // public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))+|(all))(\/|$)/i
+        // public readonly ALL_URL_REGEX = /.*\/game-all(\/|$)/i
+        public readonly SINGLE_URL_REGEX = /.*\/game-(1|3ds|2)(\/|$)/i
+        public readonly PREFIX_WITHOUT_SLASH = 'game-'
+        public readonly PREFIX = '/game-'
+        public readonly ALL_PREFIX_GROUP = '/game-all/'
+        public readonly AMOUNT_OF_VALUES = 3
 
         public getValueByUrlValue(value: Nullable<| Games | string>,): Games {
             return getValueByUrlValue(value, this,)
@@ -101,6 +109,42 @@ export abstract class Games
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
+        }
+
+        public getValueInUrl(url: string,): readonly Games[] {
+            const prefix = this.PREFIX
+            if(!url.includes(prefix,))
+                return EMPTY_ARRAY
+
+            if (url.includes(this.ALL_PREFIX_GROUP,))
+                return this.values.toArray()
+
+            const lowerCasedUrl = url.toLowerCase()
+            if (this.SINGLE_URL_REGEX.test(url,)) {
+                const valueFound = this.values.find(it => lowerCasedUrl.includes(`${prefix}${it.urlValue}`,),)
+                if (valueFound == null)
+                    throw new ReferenceError(`No "${this.instance.name}" was found by the url "${url}".`,)
+                return [valueFound,]
+            }
+
+            const prefixWithoutSlash = this.PREFIX_WITHOUT_SLASH
+            const gameUrlsFound = lowerCasedUrl.split(this._PART_SEPARATOR,).find(it => it.startsWith(prefixWithoutSlash,),)!.substring(prefixWithoutSlash.length,).split(this._ARGUMENT_SEPARATOR,)
+            const size = gameUrlsFound.length
+            const valuesFound = new Array<Games>(size,)
+            let index = size
+            while (index-- > 0)
+                valuesFound[index] = this.getValueByUrlValue(gameUrlsFound[index],)
+
+            const gamesFound = this.values.filter(it => {
+                let index = -1
+                while (++index < size)
+                    if (valuesFound[index] === it)
+                        return true
+                return false
+            },)
+            if (gamesFound.size === this.AMOUNT_OF_VALUES)
+                return this.values.toArray()
+            return gamesFound.toArray()
         }
 
     }
