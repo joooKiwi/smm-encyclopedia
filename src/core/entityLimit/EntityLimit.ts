@@ -1,5 +1,7 @@
 import type {ClassWithNullableAcronym}                                                                            from 'core/ClassWithAcronym'
 import type {ClassWithType}                                                                                       from 'core/ClassWithType'
+import type {PropertyThatCanBeUnknown}                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
+import type {NotApplicableProperty, UnknownProperty}                                                              from 'core/_properties/PropertyWithEverything'
 import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
 import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
 import type {EntityLimitTypes}                                                                                    from 'core/entityLimit/EntityLimitTypes'
@@ -19,9 +21,9 @@ export interface EntityLimit
 
     get alternativeAcronym(): NullOr<PossibleAlternativeAcronym>
 
-    //region -------------------- Limit amount --------------------
-
     get alternativeLimitContainer(): EntityLimitAmount
+
+    get alternativeAmountComment(): PossibleLimitAmount_Comment
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
@@ -42,18 +44,15 @@ export interface EntityLimit
 
     //endregion -------------------- SMM2 limit --------------------
 
-    get alternativeAmountComment(): PossibleLimitAmount_Comment
-
-    //endregion -------------------- Limit amount --------------------
-
     //endregion -------------------- Alternative entity limit --------------------
-    //region -------------------- Limit amount --------------------
 
     get limitContainer(): EntityLimitAmount
 
+    get amountComment(): PossibleLimitAmount_Comment
+
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    get limitContainerInSMM1AndSMM3DS(): this['limitContainer']['limitContainerInSMM1AndSMM3DS']
+    get limitContainerInSMM1AndSMM3DS(): | PropertyThatCanBeUnknown<NullOr<PossibleLimitAmount_SMM1And3DS_Amount>> | NotApplicableProperty | UnknownProperty
 
     get limitAmountInSMM1AndSMM3DS(): | NullOr<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicable
 
@@ -62,7 +61,7 @@ export interface EntityLimit
     //endregion -------------------- SMM1 & SMM3DS limit --------------------
     //region -------------------- SMM2 limit --------------------
 
-    get limitContainerInSMM2(): this['limitContainer']['limitContainerInSMM2']
+    get limitContainerInSMM2(): | PropertyThatCanBeUnknown<NullOr<PossibleLimitAmount_SMM2_Amount>> | UnknownProperty
 
     get limitAmountInSMM2(): NullOr<PossibleLimitAmount_SMM2_Amount>
 
@@ -70,9 +69,6 @@ export interface EntityLimit
 
     //endregion -------------------- SMM2 limit --------------------
 
-    get amountComment(): PossibleLimitAmount_Comment
-
-    //endregion -------------------- Limit amount --------------------
 
     get isInSuperMarioMaker1Or3DS(): boolean
 
