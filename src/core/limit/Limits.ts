@@ -405,7 +405,7 @@ export class Limits
 
 
     /**
-     * Tell whenever the {@link Limits} is an editor limit (<b>true</b>) a limit while playing (<b>false</b>)
+     * Tell whenever the {@link Limits} is an editor limit (<b>true</b>) a play limit (<b>false</b>)
      *
      * @backingField
      * @see Limit.type
