@@ -1,5 +1,4 @@
-import type {Lazy} from '@joookiwi/lazy'
-import {lazyOf}    from '@joookiwi/lazy'
+import {lazyOf} from '@joookiwi/lazy'
 
 import type {AlternativeEntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from 'core/entityLimit/EntityLimit'
 import type {PossibleAcronym}                                                       from 'core/entityLimit/EntityLimits.types'
@@ -16,9 +15,9 @@ export class EntityLimitContainer
     public constructor(name: Name<string>,
                        acronym: NullOr<PossibleAcronym>,
                        alternative: AlternativeEntityLimit,
-                       type: Lazy<EntityLimitTypes>,
+                       type: EntityLimitTypes,
                        limitAmount: EntityLimitAmount,) {
-        super(name, acronym, lazyOf(alternative,), type, limitAmount,)
+        super(name, acronym, lazyOf(alternative,), lazyOf(type,), limitAmount,)
     }
 
 }

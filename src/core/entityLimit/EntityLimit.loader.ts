@@ -1,17 +1,33 @@
 import file from 'resources/compiled/Entity limit.json'
 
-import type {LanguageContent}                                                                                                                                                from 'core/_template/LanguageContent'
-import type {EntityLimit}                                                                                                                                                    from 'core/entityLimit/EntityLimit'
-import type {AlternativeLimitTemplate, EmptyLimitAmountTemplate, EntityLimitTemplate, PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2} from 'core/entityLimit/EntityLimit.template'
-import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                                               from 'core/entityLimit/EntityLimits.types'
-import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                           from 'core/entityLimit/EntityLimitTypes.types'
-import type {Loader}                                                                                                                                                         from 'util/loader/Loader'
+import {lazy} from '@joookiwi/lazy'
 
-import {isInProduction}     from 'variables'
-import * as TemplateMethods from 'core/_template/templateMethods'
-import {createReference}    from 'core/entityLimit/EntityLimit.creator'
+import type {LanguageContent}                                                                                                                      from 'core/_template/LanguageContent'
+import type {AlternativeEntityLimit, EntityLimit}                                                                                                  from 'core/entityLimit/EntityLimit'
+import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                     from 'core/entityLimit/EntityLimits.types'
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                 from 'core/entityLimit/EntityLimitTypes.types'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2, PossibleLimitAmount_SMM2_UnknownAmount_Amount} from 'core/entityLimit/loader.types'
+import type {EntityLimitAmount}                                                                                                                    from 'core/entityLimit/properties/EntityLimitAmount'
+import type {Loader}                                                                                                                               from 'util/loader/Loader'
 
-/** @singleton */
+import {isInProduction}                    from 'variables'
+import * as TemplateMethods                from 'core/_template/templateMethods'
+import {PropertyContainer}                 from 'core/_properties/Property.container'
+import {AlternativeEntityLimitContainer}   from 'core/entityLimit/AlternativeEntityLimit.container'
+import {EmptyEntityLimit}                  from 'core/entityLimit/EmptyEntityLimit'
+import {EntityLimitContainer}              from 'core/entityLimit/EntityLimit.container'
+import {EntityLimits}                      from 'core/entityLimit/EntityLimits'
+import {EntityLimitTypes}                  from 'core/entityLimit/EntityLimitTypes'
+import {EntityLimitAmountContainer}        from 'core/entityLimit/properties/EntityLimitAmount.container'
+import {EmptyEntityLimitAmount}            from 'core/entityLimit/properties/EmptyEntityLimitAmount'
+import {NameBuilderContainer}              from 'lang/name/Name.builder.container'
+import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
+
+/**
+ * @dependsOn<{@link EntityLimits}>
+ * @recursiveReference<{@link EntityLimits}>
+ * @singleton
+ */
 export class EntityLimitLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, EntityLimit>> {
 
@@ -19,7 +35,8 @@ export class EntityLimitLoader
 
     static #instance?: EntityLimitLoader
 
-    private constructor() {}
+    private constructor() {
+    }
 
     public static get get() {
         return this.#instance ??= new this()
@@ -34,10 +51,19 @@ export class EntityLimitLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, EntityLimit>()
+        const regularReferences = new Map<PossibleEnglishName, EntityLimit>()
+        const alternativeReferences = new Map<PossibleAlternativeEnglishName, AlternativeEntityLimit>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createReference(createTemplate(file[index] as Content,), references,)
-            references.set(reference.english as PossibleEnglishName, reference,)
+            const content = file[index] as Content
+            const englishName = (content.english ?? content.americanEnglish)!
+            if (content.type == null) {
+                alternativeReferences.set(englishName as PossibleAlternativeEnglishName, createAlternativeReference(content,regularReferences,),)
+                continue
+            }
+            const reference = createReference(content, alternativeReferences,)
+            references.set(englishName, reference,)
+            regularReferences.set(englishName, reference,)
         }
 
         if (!isInProduction)
@@ -56,6 +82,9 @@ export class EntityLimitLoader
 interface Content
     extends LanguageContent {
 
+    readonly english: NullOr<PossibleEnglishName>
+    readonly americanEnglish: NullOr<PossibleEnglishName>
+
     readonly alternative: NullOr<PossibleAlternativeEnglishName>
 
     readonly type: NullOr<PossibleEnglishName_LimitType>
@@ -68,56 +97,69 @@ interface Content
 }
 
 
-const EMPTY_REFERENCES = {regular: null, alternative: null,}
-const EMPTY_LIMIT_AMOUNT_TEMPLATE: EmptyLimitAmountTemplate = {'1And3DS': null, 2: null, comment: null,}
+function createReference(content: Content, alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeEntityLimit>,): EntityLimit {
+    return new EntityLimitContainer(
+        new NameBuilderContainer( TemplateMethods.createNameTemplate(content,), 2, false,).build(),
+        content.acronym as NullOr<PossibleAcronym>,
+        getAlternativeEntityLimitBy(content.alternative,alternativeReferences),
+        EntityLimitTypes.CompanionEnum.get.getValueByName(content.type,),
+        createLimitAmount(content,),
+    )
+}
+function createAlternativeReference(content: Content, regularReferences: Map<PossibleEnglishName, EntityLimit>,): AlternativeEntityLimit {
+    return new AlternativeEntityLimitContainer(
+        new NameBuilderContainer( TemplateMethods.createNameTemplate(content,), 2, false,).build(),
+        content.acronym as NullOr<PossibleAlternativeAcronym>,
+        lazy(() => EntityLimits.CompanionEnum.get.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
+        createLimitAmount(content,),
+    )
+}
 
-function createTemplate(content: Content,): | EntityLimitTemplate | AlternativeLimitTemplate {
-    const type = content.type
-    if (type == null)
-        return {
-            references: EMPTY_REFERENCES,
 
-            type: null,
-            acronym: content.acronym as NullOr<PossibleAlternativeAcronym>,
+function createLimitTemplateInSMM1And3DS(amount: NonNullable<PossibleLimitAmount_SMM1And3DS>,) {
+    if (amount === NOT_APPLICABLE)
+        return PropertyContainer.NOT_APPLICABLE_CONTAINER
+    if (amount === UNKNOWN_CHARACTER)
+        return PropertyContainer.UNKNOWN_CONTAINER
+    return new PropertyContainer(amount,)
+}
 
-            limit: EMPTY_LIMIT_AMOUNT_TEMPLATE,
+function createLimitTemplateInSMM2(amount: NonNullable<PossibleLimitAmount_SMM2>,) {
+    if (amount === UNKNOWN_CHARACTER)
+        return PropertyContainer.UNKNOWN_CONTAINER
+    if (typeof amount == 'number')
+        return new PropertyContainer(amount,)
+    return new PropertyContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,)
+}
 
-            name: TemplateMethods.createNameTemplate(content,),
-        } satisfies AlternativeLimitTemplate
+function getAlternativeEntityLimitBy(value: Nullable<PossibleAlternativeEnglishName>,alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeEntityLimit>): AlternativeEntityLimit {
+    if (value == null)
+        return EmptyEntityLimit.get
 
-    const limit_SMM1 = content.limit_SMM1And3DS
-    const limit_SMM2 = content.limit_SMM2
-    if (limit_SMM1 == null && limit_SMM2 == null)
-        return {
-            references: {
-                regular: content.english as PossibleEnglishName,
-                alternative: content.alternative,
-            },
+    const alternativeReferenceFound = alternativeReferences.get(value,)
+    if(alternativeReferenceFound == null)
+        throw new ReferenceError(`No alternative reference ${value} could be found.`,)
+    return alternativeReferenceFound
+}
 
-            type: type,
 
-            acronym: content.acronym as NullOr<PossibleAcronym>,
+/**
+ * Create the {@link EntityLimitAmount} from the proper amount
+ *
+ *
+ * @param content The content to retrieve the limit fields
+ * @canContainDuplicateObjects
+ */
+function createLimitAmount(content: Content,): EntityLimitAmount {
+    const amountInSMM1And3DS = content.limit_SMM1And3DS
+    const amountInSMM2 = content.limit_SMM2
+    const comment = content.limit_comment
 
-            limit: EMPTY_LIMIT_AMOUNT_TEMPLATE,
-
-            name: TemplateMethods.createNameTemplate(content,),
-        } satisfies EntityLimitTemplate
-    return {
-        references: {
-            regular: content.english as PossibleEnglishName,
-            alternative: content.alternative,
-        },
-
-        type: type,
-
-        acronym: content.acronym as NullOr<PossibleAcronym>,
-
-        limit: {
-            '1And3DS': limit_SMM1,
-            2: limit_SMM2,
-            comment: content.limit_comment,
-        },
-
-        name: TemplateMethods.createNameTemplate(content,),
-    } satisfies EntityLimitTemplate
+    if (amountInSMM1And3DS == null || amountInSMM2 == null)
+        return EmptyEntityLimitAmount.get
+    return new EntityLimitAmountContainer(
+        createLimitTemplateInSMM1And3DS(amountInSMM1And3DS,),
+        createLimitTemplateInSMM2(amountInSMM2,),
+        comment,
+    )
 }

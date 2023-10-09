@@ -2,8 +2,8 @@ import type {Lazy} from '@joookiwi/lazy'
 
 import type {AlternativeEntityLimit, EntityLimit}                                                                 from 'core/entityLimit/EntityLimit'
 import type {EntityLimitTypes}                                                                                    from 'core/entityLimit/EntityLimitTypes'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/EntityLimit.template'
 import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/loader.types'
 import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
 import type {Name}                                                                                                from 'lang/name/Name'
 

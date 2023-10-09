@@ -16,6 +16,7 @@ import {CompanionEnumByName}       from 'util/enumerable/companion/CompanionEnum
 
 /**
  * @classWithDynamicImport<{@link Entities}>
+ * @recursiveReference<{@link EntityLimitLoader}>
  */
 export class EntityLimits
     extends Enum<Ordinals, Names>
