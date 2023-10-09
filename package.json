@@ -74,7 +74,7 @@
     "react-intl": "^6.4.7",
     "react-router-dom": "^6.16.0",
     "react-scripts": "^5.0.1",
-    "sass": "^1.68.0",
+    "sass": "^1.69.0",
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
@@ -83,9 +83,9 @@
     "@testing-library/user-event": "^14.5.1",
     "@types/bootstrap": "^5.2.7",
     "@types/jest": "^29.5.5",
-    "@types/node": "^20.7.1",
-    "@types/react": "^18.2.23",
-    "@types/react-dom": "^18.2.8",
+    "@types/node": "^20.8.3",
+    "@types/react": "^18.2.25",
+    "@types/react-dom": "^18.2.11",
     "@types/react-router-dom": "^5.3.3",
     "fs-extra": "^11.1.1",
     "gh-pages": "^6.0.0",
