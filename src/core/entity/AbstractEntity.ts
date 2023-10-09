@@ -480,12 +480,12 @@ export abstract class AbstractEntity
         return this.limitContainer.toLimitMap()
     }
 
-    public toLimitInTheEditorMap(): ReadonlyMap<Limits, boolean> {
-        return this.limitContainer.toLimitInTheEditorMap()
+    public toEditorLimitMap(): ReadonlyMap<Limits, boolean> {
+        return this.limitContainer.toEditorLimitMap()
     }
 
-    public toLimitWhilePlayingMap(): ReadonlyMap<Limits, boolean> {
-        return this.limitContainer.toLimitWhilePlayingMap()
+    public toPlayLimitMap(): ReadonlyMap<Limits, boolean> {
+        return this.limitContainer.toPlayLimitMap()
     }
 
     //endregion -------------------- Convertor methods --------------------

@@ -29,7 +29,7 @@ export abstract class LimitTypes
     public static readonly PLAY = new class LimitTypes_Play extends LimitTypes {
 
         public override get content() {
-            return Limits.whilePlayingLimits
+            return Limits.playLimits
         }
 
 
@@ -137,7 +137,7 @@ export abstract class LimitTypes
     /**
      * The route name for the path with only the play {@link Limits}
      *
-     * @see Limits.whilePlayingLimits
+     * @see Limits.playLimits
      */
     public get playRouteName(): NullOr<Extract<PossibleRouteName, 'playLimit'>> {
         return 'playLimit'

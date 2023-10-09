@@ -173,17 +173,17 @@ export class LimitPropertyContainer
     }
 
     public toLimitMap(): ReadonlyMap<Limits, boolean> {
-        return new Map([...this.toLimitInTheEditorMap(), ...this.toLimitWhilePlayingMap(),])
+        return new Map([...this.toEditorLimitMap(), ...this.toPlayLimitMap(),])
     }
 
-    public toLimitInTheEditorMap(): ReadonlyMap<Limits, boolean> {
+    public toEditorLimitMap(): ReadonlyMap<Limits, boolean> {
         const editorLimits = [this.editorLimit_smm1And3ds, this.editorLimit_smm2,]
 
         return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof Import.Limits ? editorLimit : null))
     }
 
-    public toLimitWhilePlayingMap(): ReadonlyMap<Limits, boolean> {
-        const otherLimitWhilePlaying = this.otherLimit
+    public toPlayLimitMap(): ReadonlyMap<Limits, boolean> {
+        const otherLimits = this.otherLimit
 
         return this.#newMap(
             this.isInGeneralLimit === true ? Import.Limits.GENERAL_ENTITY_LIMIT : null,
@@ -192,7 +192,7 @@ export class LimitPropertyContainer
             this.isInProjectileLimit === true ? Import.Limits.PROJECTILE_LIMIT : null,
             this.isInRenderedObjectLimit === true ? Import.Limits.RENDERED_OBJECT_LIMIT : null,
             this.isInCollectedCoinLimit === true ? Import.Limits.COLLECTED_COIN_LIMIT : null,
-            otherLimitWhilePlaying instanceof Import.Limits ? otherLimitWhilePlaying : null,
+            otherLimits instanceof Import.Limits ? otherLimits : null,
         )
     }
 

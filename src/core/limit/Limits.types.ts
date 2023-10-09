@@ -37,11 +37,11 @@ export type Names = keyof typeof Enum
 
 //region -------------------- Name / acronym --------------------
 
-type PossibleAcronymInBothEditorAndWhilePlaying = `${| 'GE' | 'P'}L${| '' | ' (E)'}`
-type PossibleStartingEnglishNameInBothEditorAndWhilePlaying = | 'General Entity' | 'Power-up'
+type PossibleAcronymInBothEditorAndPlay = `${| 'GE' | 'P'}L${| '' | ' (E)'}`
+type PossibleStartingEnglishNameInBothEditorAndPlay = | 'General Entity' | 'Power-up'
 
-export type PossibleAcronym = | PossibleAcronymInBothEditorAndWhilePlaying | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'ET' | 'GV' | 'CC' | 'CK' | 'HY'}L`
-type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
+export type PossibleAcronym = | PossibleAcronymInBothEditorAndPlay | `${| 'LC' | 'SE' | 'C' | 'PJ' | 'LS' | 'ET' | 'GV' | 'CC' | 'CK' | 'HY'}L`
+type PossibleStartingEnglishNameNotInBothEditorAndPlay =
     | 'Loose Coin' | 'Sound Effect' | 'Corpse' | 'Projectile' | 'Light Source'
 
     | 'Ground' | 'Block' | 'Extendable Terrain' | 'Clear Pipe'
@@ -64,7 +64,7 @@ type PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying =
     | 'Angry Sun / Moon' | 'Phanto' | 'Koopa Troopa Car'
 
     | `Warp ${| 'Door' | 'Box' | 'Pipe'}`
-export type PossibleEnglishName = | `${PossibleStartingEnglishNameNotInBothEditorAndWhilePlaying} Limit` | `${PossibleStartingEnglishNameInBothEditorAndWhilePlaying} Limit${| '' | ' (Editor)'}`
+export type PossibleEnglishName = | `${PossibleStartingEnglishNameNotInBothEditorAndPlay} Limit` | `${PossibleStartingEnglishNameInBothEditorAndPlay} Limit${| '' | ' (Editor)'}`
 
 export type PossibleAlternativeAcronym = `EL${| 'B' | 'C'}`
 export type PossibleAlternativeEnglishName = | `Entity Limit ${| 'B' | 'C'}` | `Ground Limit ${| 1 | 2 | 3}` | 'General Enemy Limit' | 'Object Displayed Limit'

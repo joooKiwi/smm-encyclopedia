@@ -91,19 +91,19 @@ export interface LimitProperty {
 
     /**
      * Return a {@link Map} based on the enum {@link Limits},
-     * but with only the <u>limit in the editor</u> as possible true value.
+     * but with only the <u>editor limit</u> as possible true value.
      *
      * @see toLimitMap
      */
-    toLimitInTheEditorMap(): ReadonlyMap<Limits, boolean>
+    toEditorLimitMap(): ReadonlyMap<Limits, boolean>
 
     /**
      * Return a {@link Map} based on the enum {@link Limits},
-     * but with only the <u>limit while playing</u> as possible true value.
+     * but with only the <u>play limit</u> as possible true value.
      *
      * @see toLimitMap
      */
-    toLimitWhilePlayingMap(): ReadonlyMap<Limits, boolean>
+    toPlayLimitMap(): ReadonlyMap<Limits, boolean>
 
 }
 

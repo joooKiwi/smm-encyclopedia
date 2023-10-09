@@ -359,7 +359,7 @@ export class Limits
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, Limit>
-    static #whilePlayingLimits?: readonly Limits[]
+    static #playLimits?: readonly Limits[]
     static #editorLimits?: readonly Limits[]
 
     #reference?: LimitWithPossibleAlternativeLimit
@@ -481,8 +481,8 @@ export class Limits
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public static get whilePlayingLimits(): readonly Limits[] {
-        return this.#whilePlayingLimits ??= this.CompanionEnum.get.values.filter(it => !it.isEditorLimit,).toArray()
+    public static get playLimits(): readonly Limits[] {
+        return this.#playLimits ??= this.CompanionEnum.get.values.filter(it => !it.isEditorLimit,).toArray()
     }
 
     public static get editorLimits(): readonly Limits[] {

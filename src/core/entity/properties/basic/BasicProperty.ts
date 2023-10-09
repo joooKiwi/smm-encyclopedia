@@ -17,7 +17,7 @@ export interface BasicProperty {
 
     get canBeInAParachute(): NullOr<BooleanOrNotApplicable>
 
-    get canBeInAParachuteComment(): NullOr<LCL_whilePlaying>
+    get canBeInAParachuteComment(): NullOr<LCL_Play>
 
     //endregion -------------------- Can be a in a parachute --------------------
     //region -------------------- Can have wings --------------------
@@ -26,7 +26,7 @@ export interface BasicProperty {
 
     get canHaveWings(): NullOr<BooleanOrNotApplicable>
 
-    get canHaveWingsComment(): NullOr<LCL_whilePlaying>
+    get canHaveWingsComment(): NullOr<LCL_Play>
 
     //endregion -------------------- Can have wings --------------------
 
@@ -35,13 +35,13 @@ export interface BasicProperty {
 export type HasAMushroomVariant = | NotApplicableProperty | PropertyThatCanBeUnknown<boolean, false>
 export type CanBeInAParachute = | NotApplicableProperty
                                 | PropertyThatCanBeUnknownWithComment<boolean, false, null>
-                                | PropertyThatCanBeUnknownWithComment<true, false, LCL_whilePlaying>
+                                | PropertyThatCanBeUnknownWithComment<true, false, LCL_Play>
 export type CanHaveWings = | NotApplicableProperty
                            | PropertyThatCanBeUnknownWithComment<boolean, false, null>
-                           | PropertyThatCanBeUnknownWithComment<true, false, LCL_whilePlaying>
+                           | PropertyThatCanBeUnknownWithComment<true, false, LCL_Play>
 
-export type LCL_whilePlaying = 'While playing → LCL'
+export type LCL_Play = 'While playing → LCL'
 
 export type PossibleHasAMushroomVariant = NullOrBoolean
-export type PossibleCanBeInAParachute = NullOr<| boolean | LCL_whilePlaying>
-export type PossibleCanHaveWings = NullOr<| boolean | LCL_whilePlaying>
+export type PossibleCanBeInAParachute = NullOr<| boolean | LCL_Play>
+export type PossibleCanHaveWings = NullOr<| boolean | LCL_Play>

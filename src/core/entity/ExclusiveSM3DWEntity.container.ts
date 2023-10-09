@@ -23,7 +23,7 @@ export class ExclusiveSM3DWEntityContainer
         super._testProperty(property)
 
         assert(property.isInNightTheme == null, `The ${this.english} (SM3DW exclusive) should have a property isInNightTheme to null.`,)
-        // assert(typeof property.isInProjectileLimit == 'boolean', `The ${this.english} (SM3DW exclusive) should have a property isInProjectileLimitWhilePlaying to be a boolean.`,)
+        // assert(typeof property.isInProjectileLimit == 'boolean', `The ${this.english} (SM3DW exclusive) should have a property isInProjectileLimit to be a boolean.`,)
     }
 
 }

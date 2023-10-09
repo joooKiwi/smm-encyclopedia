@@ -338,7 +338,7 @@ export class EveryTypes {
     }
 
     public get everyPossibleName_playLimit() {
-        return this.#everyPossibleName_playLimit ??= Limits.whilePlayingLimits.map(it => it.englishName,)
+        return this.#everyPossibleName_playLimit ??= Limits.playLimits.map(it => it.englishName,)
     }
 
     public get everyPossibleAlternativeName_limit() {
