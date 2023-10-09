@@ -3,25 +3,25 @@ import type {ClassWithType}                                                     
 import type {PropertyThatCanBeUnknown}                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
 import type {NotApplicableProperty, UnknownProperty}                                                              from 'core/_properties/PropertyWithEverything'
 import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
-import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/entityLimit/EntityLimits.types'
-import type {EntityLimitTypes}                                                                                    from 'core/entityLimit/EntityLimitTypes'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/loader.types'
-import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
+import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/limit/Limits.types'
+import type {LimitTypes}                                                                                          from 'core/limit/LimitTypes'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/limit/loader.types'
+import type {LimitAmount}                                                                                         from 'core/limit/properties/LimitAmount'
 import type {NameTrait}                                                                                           from 'lang/name/NameTrait'
 import type {NameTraitFromAnAlternativeContainer}                                                                 from 'lang/name/NameTraitFromAnAlternativeContainer'
 
-export interface EntityLimit
-    extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeEntityLimit>,
+export interface Limit
+    extends NameTrait<string>, NameTraitFromAnAlternativeContainer<string, AlternativeLimit>,
         ClassWithNullableAcronym<| PossibleAcronym | PossibleAlternativeAcronym>/*,
-        ClassWithEnglishName<PossibleEntityLimits>*/,
-        ClassWithType<EntityLimitTypes>,
+        ClassWithEnglishName<PossibleLimits>*/,
+        ClassWithType<LimitTypes>,
         GameProperty {
 
     //region -------------------- Alternative entity limit --------------------
 
     get alternativeAcronym(): NullOr<PossibleAlternativeAcronym>
 
-    get alternativeLimitContainer(): EntityLimitAmount
+    get alternativeLimitContainer(): LimitAmount
 
     get alternativeAmountComment(): PossibleLimitAmount_Comment
 
@@ -46,7 +46,7 @@ export interface EntityLimit
 
     //endregion -------------------- Alternative entity limit --------------------
 
-    get limitContainer(): EntityLimitAmount
+    get limitContainer(): LimitAmount
 
     get amountComment(): PossibleLimitAmount_Comment
 
@@ -74,15 +74,15 @@ export interface EntityLimit
 
 }
 
-export interface EntityLimitWithPossibleAlternativeEntityLimit
-    extends EntityLimit {
+export interface LimitWithPossibleAlternativeLimit
+    extends Limit {
 
     get acronym(): NullOr<PossibleAcronym>
 
 }
 
-export interface AlternativeEntityLimit
-    extends EntityLimit {
+export interface AlternativeLimit
+    extends Limit {
 
     get acronym(): NullOr<PossibleAlternativeAcronym>
 

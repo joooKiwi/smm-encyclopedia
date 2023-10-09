@@ -4,13 +4,13 @@ import type {GameStyleProperty}                                                 
 import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                                                                                                                                                                                        from 'core/entity/properties/instrument/InstrumentProperty'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                    from 'core/entity/properties/instrument/loader.types'
 import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                              from 'core/entity/properties/limit/loader.types'
+import type {PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                from 'core/entity/properties/limit/loader.types'
 import type {ThemeProperty}                                                                                                                                                                                                                                    from 'core/entity/properties/theme/ThemeProperty'
 import type {TimeProperty}                                                                                                                                                                                                                                     from 'core/entity/properties/time/TimeProperty'
-import type {EntityLimits}                                                                                                                                                                                                                                     from 'core/entityLimit/EntityLimits'
 import type {Games}                                                                                                                                                                                                                                            from 'core/game/Games'
 import type {GameStyles}                                                                                                                                                                                                                                       from 'core/gameStyle/GameStyles'
 import type {Instrument}                                                                                                                                                                                                                                       from 'core/instrument/Instrument'
+import type {Limits}                                                                                                                                                                                                                                           from 'core/limit/Limits'
 import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
 import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
 
@@ -166,11 +166,11 @@ export class PropertyContainer
         return this.limitContainer.editorLimitContainer
     }
 
-    public get editorLimit_smm1And3ds(): NullOr<EntityLimits> {
+    public get editorLimit_smm1And3ds(): NullOr<Limits> {
         return this.limitContainer.editorLimit_smm1And3ds
     }
 
-    public get editorLimit_smm2(): NullOr<| EntityLimits | NotApplicable> {
+    public get editorLimit_smm2(): NullOr<| Limits | NotApplicable> {
         return this.limitContainer.editorLimit_smm2
     }
 
@@ -189,7 +189,7 @@ export class PropertyContainer
         return this.limitContainer.isInGeneralLimit
     }
 
-    public get isInGeneralLimitComment(): NullOr<PossibleGeneralEntityLimitComment> {
+    public get isInGeneralLimitComment(): NullOr<PossibleGeneralLimitComment> {
         return this.limitContainer.isInGeneralLimitComment
     }
 
@@ -204,7 +204,7 @@ export class PropertyContainer
         return this.limitContainer.isInGlobalGeneralLimit
     }
 
-    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalEntityLimitComment> {
+    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalLimitComment> {
         return this.limitContainer.isInGlobalGeneralLimitComment
     }
 
@@ -230,7 +230,7 @@ export class PropertyContainer
         return this.limitContainer.isInProjectileLimit
     }
 
-    public get isInProjectileLimitComment(): NullOr<PossibleProjectileEntityLimitComment> {
+    public get isInProjectileLimitComment(): NullOr<PossibleProjectileLimitComment> {
         return this.limitContainer.isInProjectileLimitComment
     }
 
@@ -267,7 +267,7 @@ export class PropertyContainer
         return this.limitContainer.otherLimitContainer
     }
 
-    public get otherLimit(): NullOr<| EntityLimits | NotApplicable> {
+    public get otherLimit(): NullOr<| Limits | NotApplicable> {
         return this.limitContainer.otherLimit
     }
 
@@ -326,15 +326,15 @@ export class PropertyContainer
         return this.timeContainer.toTimeMap()
     }
 
-    public toLimitMap(): ReadonlyMap<EntityLimits, boolean> {
+    public toLimitMap(): ReadonlyMap<Limits, boolean> {
         return this.limitContainer.toLimitMap()
     }
 
-    public toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean> {
+    public toLimitInTheEditorMap(): ReadonlyMap<Limits, boolean> {
         return this.limitContainer.toLimitInTheEditorMap()
     }
 
-    public toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean> {
+    public toLimitWhilePlayingMap(): ReadonlyMap<Limits, boolean> {
         return this.limitContainer.toLimitWhilePlayingMap()
     }
 

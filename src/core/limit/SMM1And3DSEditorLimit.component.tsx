@@ -1,7 +1,7 @@
-import type {SimpleLimitComponentProperties} from 'core/entityLimit/Limit.component.types'
+import type {SimpleLimitComponentProperties} from 'core/limit/Limit.component.types'
 
 import TextComponent    from 'app/tools/text/TextComponent'
-import LimitComponent   from 'core/entityLimit/Limit.component'
+import LimitComponent   from 'core/limit/Limit.component'
 import {NOT_APPLICABLE} from 'util/commonVariables'
 
 export default function SMM1And3DSEditorLimitComponent({reference,}: SimpleLimitComponentProperties,) {

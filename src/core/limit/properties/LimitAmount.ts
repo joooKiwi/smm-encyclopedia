@@ -1,9 +1,9 @@
 import type {PropertyThatCanBeUnknown}                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
 import type {NotApplicableProperty, UnknownProperty}                                                              from 'core/_properties/PropertyWithEverything'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/loader.types'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/limit/loader.types'
 import type {ClassWithComment}                                                                                    from 'util/ClassWithComment'
 
-export interface EntityLimitAmount
+export interface LimitAmount
     extends ClassWithComment<PossibleLimitAmount_Comment> {
 
     //region -------------------- SMM1 & SMM3DS limit --------------------

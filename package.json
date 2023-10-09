@@ -36,7 +36,7 @@
 
     "Mario", "Luigi", "Toad", "Toadette", "Yoshi", "Peach", "Bowser", "Koopaling", "Link",
     "Goomba", "KoopaTroopa", "Lakitu", "Magikoopa", "Kamek", "Ninji",
-    "entity", "entityLimit", "power-up", "powerUp", "soundEffect", "MysteryMushroom", "MiiCostume",
+    "entity", "limit", "power-up", "powerUp", "soundEffect", "MysteryMushroom", "MiiCostume",
     "Nintendo", "WiiU", "3DS", "Switch",
     "videoGame",
     "wiki", "encyclopedia"

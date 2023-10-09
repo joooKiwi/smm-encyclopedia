@@ -1,15 +1,15 @@
-import type {EntityLimitAmount}                                      from 'core/entityLimit/properties/EntityLimitAmount'
-import type {ClassWithNullObjectPattern, EmptyEntityLimitAmountName} from 'util/ClassWithNullObjectPattern'
+import type {LimitAmount}                                      from 'core/limit/properties/LimitAmount'
+import type {ClassWithNullObjectPattern, EmptyLimitAmountName} from 'util/ClassWithNullObjectPattern'
 
 import {PropertyContainer} from 'core/_properties/Property.container'
 
 /** @singleton */
-export class EmptyEntityLimitAmount
-    implements EntityLimitAmount, ClassWithNullObjectPattern<EmptyEntityLimitAmountName> {
+export class EmptyLimitAmount
+    implements LimitAmount, ClassWithNullObjectPattern<EmptyLimitAmountName> {
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyEntityLimitAmount
+    static #instance?: EmptyLimitAmount
 
     private constructor() {}
 
@@ -32,8 +32,8 @@ export class EmptyEntityLimitAmount
 
     //endregion -------------------- Getter methods --------------------
 
-    public toString(): EmptyEntityLimitAmountName {
-        return 'Empty entity limit (amount)'
+    public toString(): EmptyLimitAmountName {
+        return 'Empty limit (amount)'
     }
 
 }

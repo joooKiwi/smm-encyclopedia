@@ -5,10 +5,10 @@ import type {AppInterpreterWithTable}                              from 'app/int
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {LimitTypes}                                           from 'app/property/LimitTypes'
 import type {ClassWithType}                                        from 'core/ClassWithType'
-import type {EntityLimits}                                         from 'core/entityLimit/EntityLimits'
+import type {Limits}                                               from 'core/limit/Limits'
 import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
 
-import {EntityLimitAppOption}                       from 'app/options/EntityLimitAppOption'
+import {LimitAppOption}                             from 'app/options/LimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Image                                        from 'app/tools/images/Image'
@@ -17,7 +17,7 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {filterGame}                                 from 'util/utilitiesMethods'
 
 export default class LimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<EntityLimits, EntityLimitAppOption>, LimitAppProperties>
+    extends AbstractTableApp<AppInterpreterWithTable<Limits, LimitAppOption>, LimitAppProperties>
     implements ClassWithType<LimitTypes> {
 
     //region -------------------- Getter methods --------------------
@@ -66,7 +66,7 @@ export default class LimitApp
     protected override _createAppOptionInterpreter() {
         const $this = this
 
-        return new class LimitAppInterpreter implements AppInterpreterWithTable<EntityLimits, EntityLimitAppOption> {
+        return new class LimitAppInterpreter implements AppInterpreterWithTable<Limits, LimitAppOption> {
 
             public get content() {
                 return filterGame($this.type.content, $this.props.games,)
@@ -89,7 +89,7 @@ export default class LimitApp
                 return 'list'
             }
 
-            public createCardListContent(enumeration: EntityLimits,) {
+            public createCardListContent(enumeration: Limits,) {
                 return enumeration.isEditorLimit
                     ? <div className="card-bodyWithEditor-container">
                         <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 bottom-0"/>
@@ -98,9 +98,9 @@ export default class LimitApp
                     : this.#createBody(enumeration)
             }
 
-            #createBody(enumeration: EntityLimits,) {
+            #createBody(enumeration: Limits,) {
                 return <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
-                    {EntityLimitAppOption.AMOUNT_IN_ALL_GAMES.renderContent(enumeration,)}
+                    {LimitAppOption.AMOUNT_IN_ALL_GAMES.renderContent(enumeration,)}
                 </div>
             }
 
@@ -111,32 +111,32 @@ export default class LimitApp
             public readonly tableColor = 'primary' satisfies BootstrapThemeColor
             public readonly tableCaption = gameContentTranslation(`limit.${$this.type.type}.all`) satisfies ReactElementOrString
 
-            public get tableOptions(): readonly EntityLimitAppOption[] {
+            public get tableOptions(): readonly LimitAppOption[] {
                 const games = $this.props.games,
                     hasSMM1Or3DSGames = games.hasSMM1Or3DS,
                     hasSMM2Games = games.hasSMM2
 
-                const options: EntityLimitAppOption[] = [
-                    EntityLimitAppOption.ACRONYM,
-                    EntityLimitAppOption.NAME,
+                const options: LimitAppOption[] = [
+                    LimitAppOption.ACRONYM,
+                    LimitAppOption.NAME,
                 ]
                 if (hasSMM1Or3DSGames && hasSMM2Games)
-                   options.push(EntityLimitAppOption.AMOUNT_IN_ALL_GAMES,)
+                   options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
                 else {
                     if (hasSMM1Or3DSGames)
-                        options.push(EntityLimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
+                        options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
                     if (hasSMM2Games)
-                        options.push(EntityLimitAppOption.AMOUNT_IN_SMM2,)
+                        options.push(LimitAppOption.AMOUNT_IN_SMM2,)
                 }
                 return options
             }
 
 
-            public createNewTableContent(content: EntityLimits, option: EntityLimitAppOption,) {
+            public createNewTableContent(content: Limits, option: LimitAppOption,) {
                 return option.renderContent(content,)
             }
 
-            public createTableHeader(option: EntityLimitAppOption,) {
+            public createTableHeader(option: LimitAppOption,) {
                 return option.renderTableHeader()
             }
 

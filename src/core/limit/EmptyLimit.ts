@@ -1,22 +1,22 @@
 import {lazy} from '@joookiwi/lazy'
 
-import type {EntityLimit}                                      from 'core/entityLimit/EntityLimit'
-import type {ClassWithNullObjectPattern, EmptyEntityLimitName} from 'util/ClassWithNullObjectPattern'
+import type {Limit}                                      from 'core/limit/Limit'
+import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
 
-import {EmptyEntityLimitAmount}               from 'core/entityLimit/properties/EmptyEntityLimitAmount'
+import {EmptyLimitAmount}                     from 'core/limit/properties/EmptyLimitAmount'
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {EmptyStringName}                      from 'lang/name/EmptyStringName'
 import {EMPTY_MAP}                            from 'util/emptyVariables'
 import {assert}                               from 'util/utilitiesMethods'
 
 /** @singleton */
-export class EmptyEntityLimit
-    extends ClassContainingANameAndAnAlternative<string, string, EmptyEntityLimit>
-    implements EntityLimit, ClassWithNullObjectPattern<EmptyEntityLimitName> {
+export class EmptyLimit
+    extends ClassContainingANameAndAnAlternative<string, string, EmptyLimit>
+    implements Limit, ClassWithNullObjectPattern<EmptyLimitName> {
 
     //region -------------------- Singleton usage --------------------
 
-    static #instance?: EmptyEntityLimit
+    static #instance?: EmptyLimit
 
     private constructor() {
         super(EmptyStringName.get, lazy(() => this,),)
@@ -46,7 +46,7 @@ export class EmptyEntityLimit
 
     //region -------------------- Limit amount --------------------
 
-    public readonly alternativeLimitContainer = EmptyEntityLimitAmount.get
+    public readonly alternativeLimitContainer = EmptyLimitAmount.get
 
     public readonly alternativeLimitContainerInSMM1AndSMM3DS = this.alternativeLimitContainer.limitContainerInSMM1AndSMM3DS
     public readonly alternativeLimitAmountInSMM1AndSMM3DS = this.alternativeLimitContainerInSMM1AndSMM3DS.value
@@ -63,7 +63,7 @@ export class EmptyEntityLimit
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- Limit amount --------------------
 
-    public readonly limitContainer = EmptyEntityLimitAmount.get
+    public readonly limitContainer = EmptyLimitAmount.get
 
     public readonly limitContainerInSMM1AndSMM3DS = this.limitContainer.limitContainerInSMM1AndSMM3DS
     public readonly limitAmountInSMM1AndSMM3DS = this.limitContainerInSMM1AndSMM3DS.value
@@ -89,8 +89,8 @@ export class EmptyEntityLimit
 
     //endregion -------------------- Game properties --------------------
 
-    public override toString(): EmptyEntityLimitName {
-        return 'Empty entity limit'
+    public override toString(): EmptyLimitName {
+        return 'Empty limit'
     }
 
 }

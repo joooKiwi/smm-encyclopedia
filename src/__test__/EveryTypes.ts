@@ -1,45 +1,45 @@
-import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                                        from 'core/entityTypes'
-import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                                                      from 'core/behaviour/EntityBehaviours.types'
-import type {PossibleEnglishName as PossibleEnglishName_CharacterName, PossibleUniqueEnglishName as PossibleUniqueEnglishName_CharacterName}                                                                                                                             from 'core/characterName/CharacterNames.types'
-import type {PossibleEnglishName as PossibleEnglishName_CourseTag, PossibleMakerCentralName}                                                                                                                                                                             from 'core/courseTag/CourseTags.types'
-import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                                          from 'core/entity/Entities.types'
-import type {LimitAmountType, PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                       from 'core/entity/properties/limit/loader.types'
-import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                                                  from 'core/entityCategory/EntityCategories.types'
-import type {PossibleEnglishName as PossibleEnglishName_EntityLimitType}                                                                                                                                                                                                 from 'core/entityLimit/EntityLimitTypes.types'
-import type {PossibleAcronym as PossibleAcronym_EntityLimit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_EntityLimit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_EntityLimit, PossibleEnglishName as PossibleEnglishName_EntityLimit} from 'core/entityLimit/EntityLimits.types'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount, PossibleLimitAmount_SMM2_UnknownAmount}                                                                                                                from 'core/entityLimit/loader.types'
-import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                                                 from 'core/gameReference/GameReferences.types'
-import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                                               from 'core/gameStyle/GameStyles.types'
-import type {PossibleEnglishName as PossibleEnglishName_Instrument}                                                                                                                                                                                                      from 'core/instrument/Instruments.types'
-import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                                                    from 'core/instrument/loader.types'
-import type {PossibleEnglishName as PossibleEnglishName_Medal}                                                                                                                                                                                                           from 'core/medal/Medals.types'
-import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}                                                                                                                                                                                                      from 'core/miiCostume/MiiCostumes.types'
-import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                                              from 'core/miiCostumeCategory/MiiCostumeCategories.types'
-import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                                             from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {PokemonGeneration}                                                                                                                                                                                                                                          from 'core/mysteryMushroom/loader.types'
-import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                                                 from 'core/mysteryMushroom/properties/UnlockProperty'
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                                                    from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                                                       from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
-import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                                               from 'core/nightEffect/NightEffects.types'
-import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                                             from 'core/officialNotification/OfficialNotifications.types'
-import type {PossibleEnglishName as PossibleEnglishName_OtherWordInTheGame, PossibleEnglishName_Plural as PossiblePluralEnglishName_OtherWordInTheGame, PossibleEnglishName_Singular as PossibleSingularEnglishName_OtherWordInTheGame}                                  from 'core/otherWordInTheGame/OtherWordInTheGames.types'
-import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                                               from 'core/predefinedMessage/PredefinedMessages.types'
-import type {PossibleWorldNumber as PossibleWorldNumber_SampleCourse}                                                                                                                                                                                                    from 'core/sampleCourse/loader.types'
-import type {PossibleEnglishName as PossibleEnglishName_SoundEffect}                                                                                                                                                                                                     from 'core/soundEffect/SoundEffects.types'
-import type {PossibleEnglishName as PossibleEnglishName_SoundEffectCategory}                                                                                                                                                                                             from 'core/soundEffectCategory/SoundEffectCategories.types'
-import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                                           from 'core/theme/Themes.types'
-import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                                                    from 'core/version/Versions.types'
+import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                from 'core/entityTypes'
+import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                              from 'core/behaviour/EntityBehaviours.types'
+import type {PossibleEnglishName as PossibleEnglishName_CharacterName, PossibleUniqueEnglishName as PossibleUniqueEnglishName_CharacterName}                                                                                                     from 'core/characterName/CharacterNames.types'
+import type {PossibleEnglishName as PossibleEnglishName_CourseTag, PossibleMakerCentralName}                                                                                                                                                     from 'core/courseTag/CourseTags.types'
+import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                  from 'core/entity/Entities.types'
+import type {LimitAmountType, PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                 from 'core/entity/properties/limit/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                          from 'core/entityCategory/EntityCategories.types'
+import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                         from 'core/gameReference/GameReferences.types'
+import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                       from 'core/gameStyle/GameStyles.types'
+import type {PossibleEnglishName as PossibleEnglishName_Instrument}                                                                                                                                                                              from 'core/instrument/Instruments.types'
+import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                            from 'core/instrument/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                                                               from 'core/limit/LimitTypes.types'
+import type {PossibleAcronym as PossibleAcronym_Limit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_Limit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_Limit, PossibleEnglishName as PossibleEnglishName_Limit} from 'core/limit/Limits.types'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount, PossibleLimitAmount_SMM2_UnknownAmount}                                                                                        from 'core/limit/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_Medal}                                                                                                                                                                                   from 'core/medal/Medals.types'
+import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}                                                                                                                                                                              from 'core/miiCostume/MiiCostumes.types'
+import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                      from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                     from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {PokemonGeneration}                                                                                                                                                                                                                  from 'core/mysteryMushroom/loader.types'
+import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                         from 'core/mysteryMushroom/properties/UnlockProperty'
+import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
+import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                               from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
+import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                       from 'core/nightEffect/NightEffects.types'
+import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                     from 'core/officialNotification/OfficialNotifications.types'
+import type {PossibleEnglishName as PossibleEnglishName_OtherWordInTheGame, PossibleEnglishName_Plural as PossiblePluralEnglishName_OtherWordInTheGame, PossibleEnglishName_Singular as PossibleSingularEnglishName_OtherWordInTheGame}          from 'core/otherWordInTheGame/OtherWordInTheGames.types'
+import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                       from 'core/predefinedMessage/PredefinedMessages.types'
+import type {PossibleWorldNumber as PossibleWorldNumber_SampleCourse}                                                                                                                                                                            from 'core/sampleCourse/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_SoundEffect}                                                                                                                                                                             from 'core/soundEffect/SoundEffects.types'
+import type {PossibleEnglishName as PossibleEnglishName_SoundEffectCategory}                                                                                                                                                                     from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                   from 'core/theme/Themes.types'
+import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                            from 'core/version/Versions.types'
 
 import {EntityBehaviours}            from 'core/behaviour/EntityBehaviours'
 import {CharacterNames}              from 'core/characterName/CharacterNames'
 import {Entities}                    from 'core/entity/Entities'
 import {EntityCategories}            from 'core/entityCategory/EntityCategories'
-import {EntityLimitTypes}            from 'core/entityLimit/EntityLimitTypes'
-import {EntityLimits}                from 'core/entityLimit/EntityLimits'
 import {Games}                       from 'core/game/Games'
 import {GameStyles}                  from 'core/gameStyle/GameStyles'
 import {GameReferences}              from 'core/gameReference/GameReferences'
 import {Instruments}                 from 'core/instrument/Instruments'
+import {LimitTypes}                  from 'core/limit/LimitTypes'
+import {Limits}                      from 'core/limit/Limits'
 import {Medals}                      from 'core/medal/Medals'
 import {NightEffects}                from 'core/nightEffect/NightEffects'
 import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
@@ -67,8 +67,8 @@ import {nonNull}                     from 'util/utilitiesMethods'
  * @see Themes
  * @see NightEffects
  * @see EntityCategories
- * @see EntityLimits
- * @see EntityLimitTypes
+ * @see Limits
+ * @see LimitTypes
  * @see SoundEffects
  * @see SoundEffectCategories
  * @see CourseTags
@@ -114,9 +114,9 @@ export class EveryTypes {
     #everyPossibleLightSource_entity?: readonly NonNullable<Exclude<PossibleLightSource, UnknownCharacter>>[]
     #everyPossibleSurviveConditionInDeadlyLiquid_entity?: readonly NonNullable<Exclude<CanSurviveInTheLavaOrThePoison, | boolean | UnknownCharacter>>[]
     #everyPossibleLimitAmountType_entity?: readonly NonNullable<Exclude<LimitAmountType, | boolean | UnknownCharacter>>[]
-    #everyPossibleGEL_entity?: readonly PossibleGeneralEntityLimitComment[]
-    #everyPossibleGELGlobal_entity?: readonly PossibleGeneralGlobalEntityLimitComment[]
-    #everyPossiblePJL_entity?: readonly PossibleProjectileEntityLimitComment[]
+    #everyPossibleGEL_entity?: readonly PossibleGeneralLimitComment[]
+    #everyPossibleGELGlobal_entity?: readonly PossibleGeneralGlobalLimitComment[]
+    #everyPossiblePJL_entity?: readonly PossibleProjectileLimitComment[]
     #everyPossibleObjectRenderedLimit_entity?: readonly PossibleRenderedObjectLimitTypeComment[]
     #everyPossibleOtherLimitComment_entity?: readonly PossibleOtherLimitComment[]
 
@@ -131,16 +131,16 @@ export class EveryTypes {
 
     #everyPossibleName_entityCategory?: readonly PossibleEnglishName_EntityCategory[]
 
-    #everyPossibleAcronym_limit?: readonly PossibleAcronym_EntityLimit[]
-    #everyPossibleAlternativeAcronym_limit?: readonly PossibleAlternativeAcronym_EntityLimit[]
-    #everyPossibleName_limit?: readonly PossibleEnglishName_EntityLimit[]
-    #everyPossibleName_editorLimit?: readonly PossibleEnglishName_EntityLimit[]
-    #everyPossibleName_playLimit?: readonly PossibleEnglishName_EntityLimit[]
-    #everyPossibleAlternativeName_limit?: readonly PossibleAlternativeEnglishName_EntityLimit[]
+    #everyPossibleAcronym_limit?: readonly PossibleAcronym_Limit[]
+    #everyPossibleAlternativeAcronym_limit?: readonly PossibleAlternativeAcronym_Limit[]
+    #everyPossibleName_limit?: readonly PossibleEnglishName_Limit[]
+    #everyPossibleName_editorLimit?: readonly PossibleEnglishName_Limit[]
+    #everyPossibleName_playLimit?: readonly PossibleEnglishName_Limit[]
+    #everyPossibleAlternativeName_limit?: readonly PossibleAlternativeEnglishName_Limit[]
     #everyPossibleAmount_smm1And3ds_limit?: readonly PossibleLimitAmount_SMM1And3DS_Amount[]
     #everyPossibleAmount_smm2_limit?: readonly (| PossibleLimitAmount_SMM2_Amount | PossibleLimitAmount_SMM2_UnknownAmount)[]
     #everyPossibleComment_limit?: readonly NonNullable<PossibleLimitAmount_Comment>[]
-    #everyPossibleName_limitType?: readonly PossibleEnglishName_EntityLimitType[]
+    #everyPossibleName_limitType?: readonly PossibleEnglishName_LimitType[]
 
     #everyPossibleName_soundEffect?: readonly PossibleEnglishName_SoundEffect[]
     #everyPossibleName_soundEffectCategory?: readonly PossibleEnglishName_SoundEffectCategory[]
@@ -321,28 +321,28 @@ export class EveryTypes {
     //region -------------------- Entity limit --------------------
 
     public get everyPossibleAcronym_limit() {
-        return this.#everyPossibleAcronym_limit ??= [...EntityLimits.CompanionEnum.get.values.map(it => it.acronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAcronym_limit ??= [...Limits.CompanionEnum.get.values.map(it => it.acronym,).filterNotNull().toSet(),]
     }
 
     public get everyPossibleAlternativeAcronym_limit() {
-        return this.#everyPossibleAlternativeAcronym_limit ??= [...EntityLimits.CompanionEnum.get.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
+        return this.#everyPossibleAlternativeAcronym_limit ??= [...Limits.CompanionEnum.get.values.map(it => it.alternativeAcronym,).filterNotNull().toSet(),]
     }
 
 
     public get everyPossibleName_limit() {
-        return this.#everyPossibleName_limit ??= EntityLimits.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+        return this.#everyPossibleName_limit ??= Limits.CompanionEnum.get.values.map(it => it.englishName,).toArray()
     }
 
     public get everyPossibleName_editorLimit() {
-        return this.#everyPossibleName_editorLimit ??= EntityLimits.editorEntityLimits.map(it => it.englishName,)
+        return this.#everyPossibleName_editorLimit ??= Limits.editorLimits.map(it => it.englishName,)
     }
 
     public get everyPossibleName_playLimit() {
-        return this.#everyPossibleName_playLimit ??= EntityLimits.whilePlayingEntityLimits.map(it => it.englishName,)
+        return this.#everyPossibleName_playLimit ??= Limits.whilePlayingLimits.map(it => it.englishName,)
     }
 
     public get everyPossibleAlternativeName_limit() {
-        return this.#everyPossibleAlternativeName_limit ??= EntityLimits.CompanionEnum.get.values.map(it => it.alternativeEnglishName,).filterNotNull().toArray()
+        return this.#everyPossibleAlternativeName_limit ??= Limits.CompanionEnum.get.values.map(it => it.alternativeEnglishName,).filterNotNull().toArray()
     }
 
 
@@ -372,7 +372,7 @@ export class EveryTypes {
     //region -------------------- Entity limit type --------------------
 
     public get everyPossibleName_limitType() {
-        return this.#everyPossibleName_limitType ??= EntityLimitTypes.CompanionEnum.get.values.map(type => type.englishName,).toArray()
+        return this.#everyPossibleName_limitType ??= LimitTypes.CompanionEnum.get.values.map(type => type.englishName,).toArray()
     }
 
     //endregion -------------------- Entity limit type --------------------

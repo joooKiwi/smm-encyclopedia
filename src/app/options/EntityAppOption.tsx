@@ -13,12 +13,12 @@ import {gameContentTranslation}       from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent      from 'core/editorVoice/EditorVoiceSound.component'
 import InstrumentPropertyComponent    from 'core/entity/properties/instrument/InstrumentProperty.component'
 import {EntityCategories}             from 'core/entityCategory/EntityCategories'
-import PlayLimitComponent             from 'core/entityLimit/PlayLimit.component'
-import SMM1And3DSEditorLimitComponent from 'core/entityLimit/SMM1And3DSEditorLimit.component'
-import SMM2EditorLimitComponent       from 'core/entityLimit/SMM2EditorLimit.component'
 import GameComponent                  from 'core/game/Game.component'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import GameStyleComponent             from 'core/gameStyle/GameStyle.component'
+import PlayLimitComponent             from 'core/limit/PlayLimit.component'
+import SMM1And3DSEditorLimitComponent from 'core/limit/SMM1And3DSEditorLimit.component'
+import SMM2EditorLimitComponent       from 'core/limit/SMM2EditorLimit.component'
 import CourseThemeComponent           from 'core/theme/CourseTheme.component'
 import {Themes}                       from 'core/theme/Themes'
 import {Times}                        from 'core/time/Times'
@@ -230,7 +230,7 @@ export class EntityAppOption
      */
     public static readonly CATEGORY_AS_TEXT = new EntityAppOption()
 
-    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
@@ -241,7 +241,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
@@ -252,7 +252,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM2EditorLimitComponent reference={enumeration}/>
@@ -263,7 +263,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM2EditorLimitComponent reference={enumeration}/>
@@ -274,7 +274,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly PLAY_LIMIT = new class EntityLimitOption_PlayLimit extends EntityAppOption {
+    public static readonly PLAY_LIMIT = new class EntityAppOption_PlayLimit extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <PlayLimitComponent reference={enumeration}/>

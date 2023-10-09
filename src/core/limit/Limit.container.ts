@@ -1,21 +1,21 @@
 import {lazyOf} from '@joookiwi/lazy'
 
-import type {PropertyThatCanBeUnknown}                                                           from 'core/_properties/PropertyThatCanBeUnknown'
-import type {NotApplicableProperty, UnknownProperty}                                             from 'core/_properties/PropertyWithEverything'
-import type {AlternativeEntityLimit, EntityLimit, EntityLimitWithPossibleAlternativeEntityLimit} from 'core/entityLimit/EntityLimit'
-import type {PossibleAcronym}                                                                    from 'core/entityLimit/EntityLimits.types'
-import type {EntityLimitTypes}                                                                   from 'core/entityLimit/EntityLimitTypes'
-import type {PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount}             from 'core/entityLimit/loader.types'
-import type {EntityLimitAmount}                                                                  from 'core/entityLimit/properties/EntityLimitAmount'
-import type {Name}                                                                               from 'lang/name/Name'
+import type {PropertyThatCanBeUnknown}                                               from 'core/_properties/PropertyThatCanBeUnknown'
+import type {NotApplicableProperty, UnknownProperty}                                 from 'core/_properties/PropertyWithEverything'
+import type {AlternativeLimit, Limit, LimitWithPossibleAlternativeLimit}             from 'core/limit/Limit'
+import type {PossibleAcronym}                                                        from 'core/limit/Limits.types'
+import type {LimitTypes}                                                             from 'core/limit/LimitTypes'
+import type {PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/limit/loader.types'
+import type {LimitAmount}                                                            from 'core/limit/properties/LimitAmount'
+import type {Name}                                                                   from 'lang/name/Name'
 
 import {NOT_APPLICABLE}                       from 'util/commonVariables'
 import {GameMap}                              from 'util/collection/GameMap'
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 
-export class EntityLimitContainer
-    extends ClassContainingANameAndAnAlternative<string, string, AlternativeEntityLimit>
-    implements EntityLimitWithPossibleAlternativeEntityLimit {
+export class LimitContainer
+    extends ClassContainingANameAndAnAlternative<string, string, AlternativeLimit>
+    implements LimitWithPossibleAlternativeLimit {
 
     //region -------------------- Fields --------------------
 
@@ -24,16 +24,16 @@ export class EntityLimitContainer
     readonly #limitAmount
 
     #isInSMM1OrSMM3DS?: boolean
-    #gameMap?: GameMap<boolean, EntityLimit>
+    #gameMap?: GameMap<boolean, Limit>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
                        acronym: NullOr<PossibleAcronym>,
-                       alternative: AlternativeEntityLimit,
-                       type: EntityLimitTypes,
-                       limitAmount: EntityLimitAmount,) {
+                       alternative: AlternativeLimit,
+                       type: LimitTypes,
+                       limitAmount: LimitAmount,) {
         super(name, lazyOf(alternative,),)
         this.#acronym = acronym
         this.#type = type
@@ -43,7 +43,7 @@ export class EntityLimitContainer
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get type(): EntityLimitTypes {
+    public get type(): LimitTypes {
         return this.#type
     }
 
@@ -51,7 +51,7 @@ export class EntityLimitContainer
         return this.#acronym
     }
 
-    public get limitContainer(): EntityLimitAmount {
+    public get limitContainer(): LimitAmount {
         return this.#limitAmount
     }
 
@@ -155,7 +155,7 @@ export class EntityLimitContainer
         return true
     }
 
-    public toGameMap(): GameMap<boolean, EntityLimit> {
+    public toGameMap(): GameMap<boolean, Limit> {
         return this.#gameMap ??= new GameMap(this,)
     }
 

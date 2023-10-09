@@ -4,13 +4,13 @@ import type {EntityBehaviours}                          from 'core/behaviour/Ent
 import type {CharacterNames}                            from 'core/characterName/CharacterNames'
 import type {CourseTags}                                from 'core/courseTag/CourseTags'
 import type {EntityCategories}                          from 'core/entityCategory/EntityCategories'
-import type {EntityLimits}                              from 'core/entityLimit/EntityLimits'
-import type {EntityLimitTypes}                          from 'core/entityLimit/EntityLimitTypes'
 import type {Entities}                                  from 'core/entity/Entities'
 import type {EntityLoader}                              from 'core/entity/Entity.loader'
 import type {GameReferences}                            from 'core/gameReference/GameReferences'
 import type {GameStyles}                                from 'core/gameStyle/GameStyles'
 import type {Instruments}                               from 'core/instrument/Instruments'
+import type {Limits}                                    from 'core/limit/Limits'
+import type {LimitTypes}                                from 'core/limit/LimitTypes'
 import type {MiiCostumeCategories}                      from 'core/miiCostumeCategory/MiiCostumeCategories'
 import type {MiiCostumes}                               from 'core/miiCostume/MiiCostumes'
 import type {Musics}                                    from 'core/music/Musics'
@@ -63,13 +63,13 @@ export class DynamicImporter {
     #EntityLoader?: typeof EntityLoader
 
     //endregion -------------------- Entity fields --------------------
-    //region -------------------- "Entity limit" fields --------------------
+    //region -------------------- "Limit" fields --------------------
 
-    #EntityLimits?: typeof EntityLimits
+    #Limits?: typeof Limits
 
-    #EntityLimitTypes?: typeof EntityLimitTypes
+    #LimitTypes?: typeof LimitTypes
 
-    //endregion -------------------- "Entity limit" fields --------------------
+    //endregion -------------------- "Limit" fields --------------------
     //region -------------------- "Entity category" fields --------------------
 
     #EntityCategories?: typeof EntityCategories
@@ -179,18 +179,18 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- Entity getter methods --------------------
-    //region -------------------- "Entity limit" getter methods --------------------
+    //region -------------------- "Limit" getter methods --------------------
 
-    public get EntityLimits(): typeof EntityLimits {
-        return this.#EntityLimits ??= require('../core/entityLimit/EntityLimits').EntityLimits
+    public get Limits(): typeof Limits {
+        return this.#Limits ??= require('../core/limit/Limits').Limits
     }
 
 
-    public get EntityLimitTypes(): typeof EntityLimitTypes {
-        return this.#EntityLimitTypes ??= require('../core/entityLimit/EntityLimitTypes').EntityLimitTypes
+    public get LimitTypes(): typeof LimitTypes {
+        return this.#LimitTypes ??= require('../core/limit/LimitTypes').LimitTypes
     }
 
-    //endregion -------------------- "Entity limit" getter methods --------------------
+    //endregion -------------------- "Limit" getter methods --------------------
     //region -------------------- "Entity category" getter methods --------------------
 
     public get EntityCategories(): typeof EntityCategories {

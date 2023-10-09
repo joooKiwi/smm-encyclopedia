@@ -1,42 +1,42 @@
 import {Enum} from '@joookiwi/enumerable'
 
-import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/entityLimit/EntityLimitTypes.types'
+import type {Names, Ordinals, PossibleEnglishCommonText, PossibleEnglishName} from 'core/limit/LimitTypes.types'
 import type {CompanionEnumByNameSingleton}                                    from 'util/enumerable/Singleton.types'
 
 import {ClassWithEnglishName} from 'core/ClassWithEnglishName'
 import {StringContainer}      from 'util/StringContainer'
 import {CompanionEnumByName}  from 'util/enumerable/companion/CompanionEnumByName'
 
-export class EntityLimitTypes
+export class LimitTypes
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly WHILE_PLAYING = new EntityLimitTypes('While Playing', 'While playing',)
-    public static readonly EDITOR =        new EntityLimitTypes('Editor',        'In the editor',)
+    public static readonly WHILE_PLAYING = new LimitTypes('While Playing', 'While playing',)
+    public static readonly EDITOR =        new LimitTypes('Editor',        'In the editor',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumByNameSingleton<EntityLimitTypes, typeof EntityLimitTypes> = class CompanionEnum_EntityLimitTypes
-        extends CompanionEnumByName<EntityLimitTypes, typeof EntityLimitTypes> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
+        extends CompanionEnumByName<LimitTypes, typeof LimitTypes> {
 
         //region -------------------- Singleton usage --------------------
 
-        static #instance?: CompanionEnum_EntityLimitTypes
+        static #instance?: CompanionEnum_LimitTypes
 
         private constructor() {
-            super(EntityLimitTypes,)
+            super(LimitTypes,)
         }
 
         public static get get() {
-            return this.#instance ??= new CompanionEnum_EntityLimitTypes()
+            return this.#instance ??= new CompanionEnum_LimitTypes()
         }
 
         //endregion -------------------- Singleton usage --------------------
 
-        public override getValueByName(value: Nullable<| EntityLimitTypes | string>,): EntityLimitTypes {
+        public override getValueByName(value: Nullable<| LimitTypes | string>,): LimitTypes {
             if (value == null)
                 throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
             if (value instanceof this.instance)

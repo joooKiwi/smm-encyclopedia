@@ -3,20 +3,20 @@ import {lazy}      from '@joookiwi/lazy'
 
 import type {PropertyThatCanBeUnknown}                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
 import type {NotApplicableProperty, UnknownProperty}                                                              from 'core/_properties/PropertyWithEverything'
-import type {AlternativeEntityLimit, EntityLimit}                                                                 from 'core/entityLimit/EntityLimit'
-import type {PossibleAlternativeAcronym}                                                                          from 'core/entityLimit/EntityLimits.types'
-import type {EntityLimitTypes}                                                                                    from 'core/entityLimit/EntityLimitTypes'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/entityLimit/loader.types'
-import type {EntityLimitAmount}                                                                                   from 'core/entityLimit/properties/EntityLimitAmount'
+import type {AlternativeLimit, Limit}                                                                             from 'core/limit/Limit'
+import type {PossibleAlternativeAcronym}                                                                          from 'core/limit/Limits.types'
+import type {LimitTypes}                                                                                          from 'core/limit/LimitTypes'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/limit/loader.types'
+import type {LimitAmount}                                                                                         from 'core/limit/properties/LimitAmount'
 import type {Name}                                                                                                from 'lang/name/Name'
 
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {NOT_APPLICABLE}                       from 'util/commonVariables'
 import {GameMap}                              from 'util/collection/GameMap'
 
-export class AlternativeEntityLimitContainer
-    extends ClassContainingANameAndAnAlternative<string, string, AlternativeEntityLimit>
-    implements AlternativeEntityLimit {
+export class AlternativeLimitContainer
+    extends ClassContainingANameAndAnAlternative<string, string, AlternativeLimit>
+    implements AlternativeLimit {
 
     //region -------------------- Fields --------------------
 
@@ -25,25 +25,25 @@ export class AlternativeEntityLimitContainer
     readonly #limitAmount
 
     #isInSMM1OrSMM3DS?: boolean
-    #gameMap?: GameMap<boolean, EntityLimit>
+    #gameMap?: GameMap<boolean, Limit>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
                        acronym: NullOr<PossibleAlternativeAcronym>,
-                       regularEntityLimit: Lazy<EntityLimitTypes>,
-                       limitAmount: EntityLimitAmount,) {
+                       regularLimit: Lazy<LimitTypes>,
+                       limitAmount: LimitAmount,) {
         super(name, lazy(() => this,),)
         this.#acronym = acronym
-        this.#type = regularEntityLimit
+        this.#type = regularLimit
         this.#limitAmount = limitAmount
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get type(): EntityLimitTypes {
+    public get type(): LimitTypes {
         return this.#type.value
     }
 
@@ -103,7 +103,7 @@ export class AlternativeEntityLimitContainer
 
     //endregion -------------------- Alternative entity limit --------------------
 
-    public get limitContainer(): EntityLimitAmount {
+    public get limitContainer(): LimitAmount {
         return this.#limitAmount
     }
 
@@ -161,7 +161,7 @@ export class AlternativeEntityLimitContainer
         return true
     }
 
-    public toGameMap(): GameMap<boolean, EntityLimit> {
+    public toGameMap(): GameMap<boolean, Limit> {
         return this.#gameMap ??= new GameMap(this,)
     }
 

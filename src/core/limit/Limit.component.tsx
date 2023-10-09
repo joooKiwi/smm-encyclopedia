@@ -2,7 +2,7 @@ import {Fragment} from 'react'
 
 import type {ReactProperties} from 'util/react/ReactProperties'
 
-import {EntityLimits}     from 'core/entityLimit/EntityLimits'
+import {Limits}           from 'core/limit/Limits'
 import NameComponent      from 'lang/name/component/Name.component'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import TextComponent      from 'app/tools/text/TextComponent'
@@ -16,7 +16,7 @@ interface EditorLimitProperties
 
     readonly id: Id
 
-    readonly limits: | EntityLimits | ReadonlyMap<EntityLimits, boolean>
+    readonly limits: | Limits | ReadonlyMap<Limits, boolean>
 
     readonly displayAcronymIfApplicable: boolean
 
@@ -28,7 +28,7 @@ interface EditorLimitProperties
  * @reactComponent
  */
 export default function LimitComponent({id, limits, displayAcronymIfApplicable,}: EditorLimitProperties,) {
-    if (limits instanceof EntityLimits)
+    if (limits instanceof Limits)
         return createSingleComponent(id, limits, displayAcronymIfApplicable,)
 
     const selectedLimits = [...limits].filter(([, hasLimit]) => hasLimit).map(([limit,]) => limit)
@@ -39,24 +39,24 @@ export default function LimitComponent({id, limits, displayAcronymIfApplicable,}
         )}</>
 }
 
-function createReturnOfLine(selectedLimits: readonly EntityLimits[], index: number,) {
+function createReturnOfLine(selectedLimits: readonly Limits[], index: number,) {
     return index === selectedLimits.length - 1 ? <></> : <>{ProjectLanguages.current.comma}<br/></>
 }
 
-function createSingleComponent(id: Id, entityLimit: EntityLimits, displayAcronymIfApplicable: boolean,) {
+function createSingleComponent(id: Id, limit: Limits, displayAcronymIfApplicable: boolean,) {
     if (displayAcronymIfApplicable) {
-        const acronym = entityLimit.acronym
+        const acronym = limit.acronym
         if (acronym == null)
-            return createSingleNameComponent(id, entityLimit,)
-        const acronymId = `limit-acronym-${id}-${StringContainer.getInHtml(entityLimit.acronym!)}`
+            return createSingleNameComponent(id, limit,)
+        const acronymId = `limit-acronym-${id}-${StringContainer.getInHtml(limit.acronym!)}`
         //TODO Transform the tooltip to a popover to display every names instead
-        return <Tooltip option={{title: entityLimit.reference.nameContainer.languageValue,}} elementId={acronymId}>
-            <TextComponent key={`${entityLimit.englishName} (acronym) → ${id}`} id={acronymId} content={acronym}/>
+        return <Tooltip option={{title: limit.reference.nameContainer.languageValue,}} elementId={acronymId}>
+            <TextComponent key={`${limit.englishName} (acronym) → ${id}`} id={acronymId} content={acronym}/>
         </Tooltip>
     }
-    return createSingleNameComponent(id, entityLimit,)
+    return createSingleNameComponent(id, limit,)
 }
 
-function createSingleNameComponent(id: Id, entityLimit: EntityLimits,) {
-    return <NameComponent key={`${entityLimit.englishName} (name) → ${id}`} id={`limit-name-${id}`} name={entityLimit.reference}/>
+function createSingleNameComponent(id: Id, limit: Limits,) {
+    return <NameComponent key={`${limit.englishName} (name) → ${id}`} id={`limit-name-${id}`} name={limit.reference}/>
 }
