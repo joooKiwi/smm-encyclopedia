@@ -35,8 +35,8 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
         children: [
             everySimpleRoutes.map<RouteObject>(route => ({
                 path: route.path,
-                loader: () => redirectToPathWithUserLanguage(route),
-            })),
+                loader: () => redirectToPathWithUserLanguage(route,),
+            }),),
 
             languages.map<RouteObject>(language => ({
                 path: `/${language.projectAcronym}` as const,
@@ -44,11 +44,11 @@ const /** Every {@link ProjectLanguages project language} as an {@link Array} */
                     path: `/${language.projectAcronym}${route.path}` as const,
                     element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
                     loader: () => setDefaultValues(route,)
-                })),
-                loader: () => redirectToHomeIfNotCurrentLanguage(language),
-            })),
+                }),),
+                loader: () => redirectToHomeIfNotCurrentLanguage(language,),
+            }),),
         ].flat(),
-        loader: loaderArguments => redirectToPathIfFound(loaderArguments),
+        loader: loaderArguments => redirectToPathIfFound(loaderArguments,),
     },], {basename: '/',},)
 
 // console.debug(router.routes[0].children)
@@ -80,9 +80,9 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 
     const url = loaderArguments.request.url
 
-    const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path))
+    const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path,),)
     if (routeFoundByBasicPath == null)
-        throw redirect(routeFromName('home', ProjectLanguages.CompanionEnum.get.defaultValue,))
+        throw redirect(routeFromName('home', ProjectLanguages.CompanionEnum.get.defaultValue,),)
 
     const languageFound = ProjectLanguages.CompanionEnum.get.getValueInUrl(url,)
     if (routeFoundByBasicPath.name === 'home' && languageFound === ProjectLanguages.CompanionEnum.get.defaultValue)
@@ -93,15 +93,15 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
     const viewDisplayFound = ViewDisplays.CompanionEnum.get.getValueInUrl(url,)
     const gamesFound = Games.CompanionEnum.get.getValueInUrl(url,)
     if (viewDisplayFound == null && gamesFound.length === 0)
-        throw redirect(routeFromName(routeFoundByBasicPath.name, ProjectLanguages.current,))
+        throw redirect(routeFromName(routeFoundByBasicPath.name, ProjectLanguages.current,),)
 
-    const expectedViewDisplayPath = viewDisplayFound == null ? '' : `/${(ViewDisplays.CompanionEnum.get.current = viewDisplayFound).urlValue}` as const,
-        expectedGamesPath = gamesFound.length === 0 ? '' : `/${Games.setSelected(gamesFound).selectedGamesAsUrlValue}` as const,
-        expectedPath = `${expectedGamesPath}${expectedViewDisplayPath}${routeFoundByBasicPath.path}`,
-        routeFoundByArguments = everySimpleRoutes.find(it => it.path === expectedPath)
+    const expectedViewDisplayPath = viewDisplayFound == null ? '' : `/${(ViewDisplays.CompanionEnum.get.current = viewDisplayFound).urlValue}` as const
+    const expectedGamesPath = gamesFound.length === 0 ? '' : `/${Games.setSelected(gamesFound,).selectedGamesAsUrlValue}` as const
+    const expectedPath = `${expectedGamesPath}${expectedViewDisplayPath}${routeFoundByBasicPath.path}`
+    const routeFoundByArguments = everySimpleRoutes.find(it => it.path === expectedPath,)
     if (routeFoundByArguments == null)
-        throw new TypeError(`A route should be findable when trying to retrieve from the url "${expectedPath}".`)
-    throw redirect(routeFromName(routeFoundByArguments.name, ProjectLanguages.current,))
+        throw new TypeError(`A route should be findable when trying to retrieve from the url "${expectedPath}".`,)
+    throw redirect(routeFromName(routeFoundByArguments.name, ProjectLanguages.current,),)
 }
 
 /**
@@ -114,7 +114,7 @@ function redirectToPathIfFound(loaderArguments: LoaderFunctionArgs,): null {
 function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
     if (language.isCurrent)
         return null
-    throw redirect(routeFromName('home', ProjectLanguages.CompanionEnum.get.current = language,))
+    throw redirect(routeFromName('home', ProjectLanguages.CompanionEnum.get.current = language,),)
 }
 
 /**
@@ -129,7 +129,7 @@ function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
 function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): never {
     if (!Games.selectedGames.hasAll(...games,))
         Games.setSelected(games,)
-    throw redirect(routeFromName(name, ProjectLanguages.CompanionEnum.get.defaultValue = getUserLanguage(),))
+    throw redirect(routeFromName(name, ProjectLanguages.CompanionEnum.get.defaultValue = getUserLanguage(),),)
 }
 
 /**
@@ -142,6 +142,6 @@ function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstan
  */
 function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
     if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(...games,))
-        Games.setSelected(games)
+        Games.setSelected(games,)
     return null
 }
