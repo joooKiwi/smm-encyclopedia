@@ -8,11 +8,10 @@ import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishNam
 import type {Loader}                                                                        from 'util/loader/Loader'
 
 import {isInProduction}                      from 'variables'
-import * as TemplateMethods                  from 'core/_template/templateMethods'
 import {GamePropertyProvider}                from 'core/entity/properties/game/GameProperty.provider'
 import {OtherPluralWordInTheGameContainer}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame.container'
 import {OtherSingularWordInTheGameContainer} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.container'
-import {NameBuilderContainer}                from 'lang/name/Name.builder.container'
+import {NameFromContentBuilderContainer}     from 'lang/name/NameFromContent.builder.container'
 
 /** @singleton */
 
@@ -75,7 +74,7 @@ interface Content
 
 function createSingularContent(content: Content, pluralContents: ReadonlyMap<PossibleEnglishName_Plural, OtherPluralWordInTheGame>,): OtherSingularWordInTheGame {
     const pluralForm = content.pluralForm
-    const name = new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build()//TODO change it to true once other translations are completed
+    const name = new NameFromContentBuilderContainer(content, 'all', false,).build()//TODO change it to true once other translations are completed
     const gameProperty = GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,)
 
     if (pluralForm == null)
@@ -89,7 +88,7 @@ function createSingularContent(content: Content, pluralContents: ReadonlyMap<Pos
 
 function createPluralContent(content: Content,): OtherPluralWordInTheGame {
     return new OtherPluralWordInTheGameContainer(
-        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),//TODO change it to true once other translations are completed
+        new NameFromContentBuilderContainer(content, 'all', false,).build(),//TODO change it to true once other translations are completed
         GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
     )
 }

@@ -14,7 +14,6 @@ import type {Name}                            from 'lang/name/Name'
 import type {Loader}                          from 'util/loader/Loader'
 
 import {isInProduction}                           from 'variables'
-import * as TemplateMethods                       from 'core/_template/templateMethods'
 import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
 import {Entities}                                 from 'core/entity/Entities'
 import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
@@ -25,7 +24,7 @@ import {Themes}                                   from 'core/theme/Themes'
 import {WorldOnlyThemeContainer}                  from 'core/theme/WorldOnlyTheme.container'
 import {WorldThemeContainer}                      from 'core/theme/WorldTheme.container'
 import {NightEffects}                             from 'core/nightEffect/NightEffects'
-import {NameBuilderContainer}                     from 'lang/name/Name.builder.container'
+import {NameFromContentBuilderContainer}          from 'lang/name/NameFromContent.builder.container'
 
 /**
  * @dependsOn<{@link Entities}>
@@ -90,8 +89,8 @@ function createReference(content: Content,): CourseAndWorldTheme {
     const isInWorldTheme = content.isInWorldTheme
 
     const name = content.isInSuperMarioMaker1And3DS
-        ? new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', true,).build()
-        : new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, true,).build()
+        ? new NameFromContentBuilderContainer(content, 'all', true,).build()
+        : new NameFromContentBuilderContainer(content, 2, true,).build()
 
     if (isInCourseTheme && isInWorldTheme)
         return createCourseAndWorldTheme(content, name,)

@@ -8,12 +8,11 @@ import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNo
 import type {Loader}                                                                        from 'util/loader/Loader'
 
 import {isInProduction}                    from 'variables'
-import * as TemplateMethods                from 'core/_template/templateMethods'
 import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.container'
 import {MiiCostumeCategoryLoader}          from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
 import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
 import {Versions}                          from 'core/version/Versions'
-import {NameBuilderContainer}              from 'lang/name/Name.builder.container'
+import {NameFromContentBuilderContainer}   from 'lang/name/NameFromContent.builder.container'
 import {PossibleMarioMakerVersion}         from 'core/miiCostume/loader.types'
 
 /**
@@ -76,7 +75,7 @@ function createReference(content: Content,): MiiCostume {
     const version = content.MM2_version
 
     return new MiiCostumeContainer(
-        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, true,).build(),
+        new NameFromContentBuilderContainer(content, 2, true,).build(),
         new OfficialNotificationHolderBuilder(content.notificationIfUnlocked,).build(),
         version == null ? null : Versions.CompanionEnum.get.getValueByName(`v${version}`,),
         MiiCostumeCategoryLoader.get.load().get(content.category,)!,

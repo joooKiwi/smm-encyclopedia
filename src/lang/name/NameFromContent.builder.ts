@@ -1,11 +1,10 @@
 import type {Games}                                                                   from 'core/game/Games'
 import type {Name}                                                                    from 'lang/name/Name'
-import type {IsACompleteNameCallback}                                                 from 'lang/name/Name.builder.types'
+import type {IsACompleteNameCallback}                                                 from 'lang/name/NameFromContent.builder.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
 import type {Builder}                                                                 from 'util/builder/Builder'
 
-//TODO rename this file to NameBuilderFromTemplate
-export interface NameBuilder<T, TEMPLATE, >
+export interface NameFromContentBuilder<out T, out CONTENT, >
     extends Builder<Name<T>> {
 
     //region -------------------- English getter & setter methods --------------------
@@ -114,7 +113,7 @@ export interface NameBuilder<T, TEMPLATE, >
 
     //endregion -------------------- Greek getter & setter methods --------------------
 
-    get template(): TEMPLATE
+    get content(): CONTENT
 
     get game(): | readonly [Games,] | readonly [Games, Games,] | readonly [Games, Games, Games,]
 

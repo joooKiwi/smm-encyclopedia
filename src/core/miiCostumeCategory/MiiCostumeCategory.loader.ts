@@ -1,14 +1,13 @@
 import file from 'resources/compiled/Mii Costume category (SMM2).json'
 
-import type {LanguageContent}            from 'core/_template/LanguageContent'
-import type {PossibleEnglishName}        from 'core/miiCostumeCategory/MiiCostumeCategories.types'
-import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostumeCategory'
-import type {Loader}                     from 'util/loader/Loader'
+import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {PossibleEnglishName} from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {MiiCostumeCategory}  from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}              from 'variables'
-import * as TemplateMethods          from 'core/_template/templateMethods'
-import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
-import {NameBuilderContainer}        from 'lang/name/Name.builder.container'
+import {isInProduction}                  from 'variables'
+import {MiiCostumeCategoryContainer}     from 'core/miiCostumeCategory/MiiCostumeCategory.container'
+import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
 
 /** @singleton */
 export class MiiCostumeCategoryLoader
@@ -56,5 +55,5 @@ interface Content
     extends LanguageContent {}
 
 function createReference(content: Content,): MiiCostumeCategory {
-    return new MiiCostumeCategoryContainer(new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, false,).build(),)
+    return new MiiCostumeCategoryContainer(new NameFromContentBuilderContainer(content, 2, false,).build(),)
 }

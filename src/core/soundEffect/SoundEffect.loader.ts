@@ -7,15 +7,14 @@ import type {PossibleEnglishName}                                           from
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {Loader}                                                        from 'util/loader/Loader'
 
-import {isInProduction}               from 'variables'
-import * as TemplateMethods           from 'core/_template/templateMethods'
-import {GamePropertyProvider}         from 'core/entity/properties/game/GameProperty.provider'
-import {SoundEffectContainer}         from 'core/soundEffect/SoundEffect.container'
-import {PlayerSoundEffectTriggers}    from 'core/soundEffect/property/PlayerSoundEffectTriggers'
-import {SoundEffectPropertyContainer} from 'core/soundEffect/property/SoundEffectProperty.container'
-import {EmptySoundEffectCategory}     from 'core/soundEffectCategory/EmptySoundEffectCategory'
-import {SoundEffectCategoryLoader}    from 'core/soundEffectCategory/SoundEffectCategory.loader'
-import {NameBuilderContainer}         from 'lang/name/Name.builder.container'
+import {isInProduction}                  from 'variables'
+import {GamePropertyProvider}            from 'core/entity/properties/game/GameProperty.provider'
+import {SoundEffectContainer}            from 'core/soundEffect/SoundEffect.container'
+import {PlayerSoundEffectTriggers}       from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import {SoundEffectPropertyContainer}    from 'core/soundEffect/property/SoundEffectProperty.container'
+import {EmptySoundEffectCategory}        from 'core/soundEffectCategory/EmptySoundEffectCategory'
+import {SoundEffectCategoryLoader}       from 'core/soundEffectCategory/SoundEffectCategory.loader'
+import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
 
 /**
  * @dependsOn<{@link PlayerSoundEffectTriggers}>
@@ -90,7 +89,7 @@ function createReference(content: Content,): SoundEffect {
     const category = content.category
 
     return new SoundEffectContainer(
-        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 2, false,).build(),
+        new NameFromContentBuilderContainer(content, 2, false,).build(),
         category == null ? EmptySoundEffectCategory.get : SoundEffectCategoryLoader.get.load().get(category,)!,
         new SoundEffectPropertyContainer(
             GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),

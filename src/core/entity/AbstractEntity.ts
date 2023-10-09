@@ -57,8 +57,7 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testCategory(category: EntityCategory,): void {
-    }
+    protected _testCategory(category: EntityCategory,): void {}
 
     #testProperty(property: Property,): Property {
         if (!isInProduction)
@@ -74,8 +73,7 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testProperty(property: Property,): void {
-    }
+    protected _testProperty(property: Property,): void {}
 
     //endregion -------------------- Tester methods --------------------
     //region -------------------- Getter methods --------------------

@@ -11,7 +11,6 @@ import type {EntityLimitAmount}                                                 
 import type {Loader}                                                                                                                               from 'util/loader/Loader'
 
 import {isInProduction}                    from 'variables'
-import * as TemplateMethods                from 'core/_template/templateMethods'
 import {PropertyContainer}                 from 'core/_properties/Property.container'
 import {AlternativeEntityLimitContainer}   from 'core/entityLimit/AlternativeEntityLimit.container'
 import {EmptyEntityLimit}                  from 'core/entityLimit/EmptyEntityLimit'
@@ -20,7 +19,7 @@ import {EntityLimits}                      from 'core/entityLimit/EntityLimits'
 import {EntityLimitTypes}                  from 'core/entityLimit/EntityLimitTypes'
 import {EntityLimitAmountContainer}        from 'core/entityLimit/properties/EntityLimitAmount.container'
 import {EmptyEntityLimitAmount}            from 'core/entityLimit/properties/EmptyEntityLimitAmount'
-import {NameBuilderContainer}              from 'lang/name/Name.builder.container'
+import {NameFromContentBuilderContainer}   from 'lang/name/NameFromContent.builder.container'
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
 
 /**
@@ -35,8 +34,7 @@ export class EntityLimitLoader
 
     static #instance?: EntityLimitLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -58,7 +56,7 @@ export class EntityLimitLoader
             const content = file[index] as Content
             const englishName = (content.english ?? content.americanEnglish)!
             if (content.type == null) {
-                alternativeReferences.set(englishName as PossibleAlternativeEnglishName, createAlternativeReference(content,regularReferences,),)
+                alternativeReferences.set(englishName as PossibleAlternativeEnglishName, createAlternativeReference(content, regularReferences,),)
                 continue
             }
             const reference = createReference(content, alternativeReferences,)
@@ -99,16 +97,17 @@ interface Content
 
 function createReference(content: Content, alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeEntityLimit>,): EntityLimit {
     return new EntityLimitContainer(
-        new NameBuilderContainer( TemplateMethods.createNameTemplate(content,), 2, false,).build(),
+        new NameFromContentBuilderContainer(content, 2, false,).build(),
         content.acronym as NullOr<PossibleAcronym>,
-        getAlternativeEntityLimitBy(content.alternative,alternativeReferences),
+        getAlternativeEntityLimitBy(content.alternative, alternativeReferences),
         EntityLimitTypes.CompanionEnum.get.getValueByName(content.type,),
         createLimitAmount(content,),
     )
 }
+
 function createAlternativeReference(content: Content, regularReferences: Map<PossibleEnglishName, EntityLimit>,): AlternativeEntityLimit {
     return new AlternativeEntityLimitContainer(
-        new NameBuilderContainer( TemplateMethods.createNameTemplate(content,), 2, false,).build(),
+        new NameFromContentBuilderContainer(content, 2, false,).build(),
         content.acronym as NullOr<PossibleAlternativeAcronym>,
         lazy(() => EntityLimits.CompanionEnum.get.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
         createLimitAmount(content,),
@@ -132,12 +131,12 @@ function createLimitTemplateInSMM2(amount: NonNullable<PossibleLimitAmount_SMM2>
     return new PropertyContainer(Number(amount.substring(0, amount.length - 1),) as PossibleLimitAmount_SMM2_UnknownAmount_Amount, true,)
 }
 
-function getAlternativeEntityLimitBy(value: Nullable<PossibleAlternativeEnglishName>,alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeEntityLimit>): AlternativeEntityLimit {
+function getAlternativeEntityLimitBy(value: Nullable<PossibleAlternativeEnglishName>, alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeEntityLimit>): AlternativeEntityLimit {
     if (value == null)
         return EmptyEntityLimit.get
 
     const alternativeReferenceFound = alternativeReferences.get(value,)
-    if(alternativeReferenceFound == null)
+    if (alternativeReferenceFound == null)
         throw new ReferenceError(`No alternative reference ${value} could be found.`,)
     return alternativeReferenceFound
 }

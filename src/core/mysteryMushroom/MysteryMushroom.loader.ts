@@ -20,7 +20,6 @@ import type {PossibleName_SMM1 as PossibleVersionNameInSMM}                     
 import type {Loader}                                                                                                                                                                                                             from 'util/loader/Loader'
 
 import {isInProduction}                       from 'variables'
-import * as TemplateMethods                   from 'core/_template/templateMethods'
 import {GameReferences}                       from 'core/gameReference/GameReferences'
 import {MysteryMushroomContainer}             from 'core/mysteryMushroom/MysteryMushroom.container'
 import {MysteryMushroomPropertyContainer}     from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
@@ -35,7 +34,7 @@ import {SoundEffectOnTurnAfterRunProvider}    from 'core/mysteryMushroom/propert
 import {SoundEffectWhenCollectedProvider}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected.provider'
 import {SoundPropertyContainer}               from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
 import {SpecialMusicInStarModeProvider}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode.provider'
-import {NameBuilderContainer}                 from 'lang/name/Name.builder.container'
+import {NameFromContentBuilderContainer}      from 'lang/name/NameFromContent.builder.container'
 
 /**
  * @dependsOn<{@link GameReferences}>
@@ -125,7 +124,7 @@ interface Content
 
 function createReference(content: Content,): MysteryMushroom {
     return new MysteryMushroomContainer(
-        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 1, false,).build(),//TODO change the false to true since it is a complete SMM1 name
+        new NameFromContentBuilderContainer(content, 1, false,).build(),//TODO change the false to true since it is a complete SMM1 name
         retrieveGames(content.reference,),
         new MysteryMushroomPropertyContainer(
             UnlockPropertyProvider.get.get(content.conditionToUnlockIt, content.canBeUnlockedByAnAmiibo,),

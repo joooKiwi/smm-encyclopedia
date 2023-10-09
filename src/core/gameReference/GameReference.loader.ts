@@ -5,10 +5,9 @@ import type {GameReference}                        from 'core/gameReference/Game
 import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
 import type {Loader}                               from 'util/loader/Loader'
 
-import {isInProduction}         from 'variables'
-import * as TemplateMethods     from 'core/_template/templateMethods'
-import {NameBuilderContainer}   from 'lang/name/Name.builder.container'
-import {GameReferenceContainer} from 'core/gameReference/GameReference.container'
+import {isInProduction}                  from 'variables'
+import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {GameReferenceContainer}          from 'core/gameReference/GameReference.container'
 
 /** @singleton */
 export class GameReferenceLoader
@@ -61,6 +60,6 @@ interface Content
 function createReference(content: Content,): GameReference {
     return new GameReferenceContainer(
         content.acronym,
-        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),
+        new NameFromContentBuilderContainer(content, 'all', false,).build(),
     )
 }

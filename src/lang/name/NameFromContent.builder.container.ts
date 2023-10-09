@@ -1,42 +1,42 @@
 import type {Name}                                                                    from 'lang/name/Name'
-import type {NameBuilder}                                                             from 'lang/name/Name.builder'
-import type {IsACompleteNameCallback, PossibleGameReceived}                           from 'lang/name/Name.builder.types'
-import type {NameTemplate}                                                            from 'lang/name/Name.template'
+import type {NameFromContentBuilder}                                                  from 'lang/name/NameFromContent.builder'
+import type {IsACompleteNameCallback, PossibleGameReceived}                           from 'lang/name/NameFromContent.builder.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal} from 'lang/name/containers/Language'
 
-import {isInProduction} from 'variables'
-import {Games}          from 'core/game/Games'
-import {EveryLanguages} from 'lang/EveryLanguages'
-import {NameContainer}  from 'lang/name/Name.container'
-import {assert}         from 'util/utilitiesMethods'
+import {isInProduction}  from 'variables'
+import {Games}           from 'core/game/Games'
+import {EveryLanguages}  from 'lang/EveryLanguages'
+import {NameContainer}   from 'lang/name/Name.container'
+import {assert}          from 'util/utilitiesMethods'
+import {LanguageContent} from 'core/_template/LanguageContent'
 
-export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
-    implements NameBuilder<string, TEMPLATE> {
+/**
+ * A constant meant to signify a complete language.
+ *
+ * As it stands, only the English and French language are complete.
+ *
+ * @see EveryLanguages.isACompleteLanguage
+ */
+const IS_NULLABLE_FOR_COMPLETED_LANGUAGES = false
+/**
+ * A constant meant to signify an optional language.
+ *
+ * As it stands, only the Hebrew, Polish, Ukrainian & Greek is optional.
+ *
+ * @see ProjectLanguages.isInEverySuperMarioMakerGame
+ */
+const IS_NULLABLE_FOR_OPTIONAL_LANGUAGES = true
+
+const SMM1_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.ENGLISH, EveryLanguages.FRENCH, EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,]
+const SMM2_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.ENGLISH, EveryLanguages.FRENCH, EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,]
+const IS_A_COMPLETE_NAME_BASED_ON_GAME: (game: Games, language: EveryLanguages,) => boolean
+    = (game, language,) => game === Games.SUPER_MARIO_MAKER_1 ? SMM1_LANGUAGES.includes(language,) : SMM2_LANGUAGES.includes(language,)
+
+
+export class NameFromContentBuilderContainer<const CONTENT extends LanguageContent, >
+    implements NameFromContentBuilder<string, CONTENT> {
 
     //region -------------------- Fields --------------------
-
-    /**
-     * A constant meant to signify a complete language.
-     *
-     * As it stands, only the English and French language are complete.
-     *
-     * @see EveryLanguages.isACompleteLanguage
-     */
-    static readonly #IS_NULLABLE_FOR_COMPLETED_LANGUAGES = false
-    /**
-     * A constant meant to signify an optional language.
-     *
-     * As it stands, only the Hebrew, Polish, Ukrainian & Greek is optional.
-     *
-     * @see ProjectLanguages.isInEverySuperMarioMakerGame
-     */
-    static readonly #IS_NULLABLE_FOR_OPTIONAL_LANGUAGES = true
-
-    static readonly #SMM1_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.ENGLISH, EveryLanguages.FRENCH, EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.PORTUGUESE, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE,]
-    static readonly #SMM2_LANGUAGES: readonly EveryLanguages[] = [EveryLanguages.ENGLISH, EveryLanguages.FRENCH, EveryLanguages.GERMAN, EveryLanguages.SPANISH, EveryLanguages.ITALIAN, EveryLanguages.DUTCH, EveryLanguages.RUSSIAN, EveryLanguages.JAPANESE, EveryLanguages.CHINESE, EveryLanguages.KOREAN,]
-    static readonly #IS_A_COMPLETE_NAME_BASED_ON_GAME: (game: Games, language: EveryLanguages,) => boolean
-        = (game, language,) => game === Games.SUPER_MARIO_MAKER_1 ? this.#SMM1_LANGUAGES.includes(language) : this.#SMM2_LANGUAGES.includes(language)
-
 
     #english?: AmericanOrEuropeanOriginal<string>
     #french?: CanadianOrEuropeanOriginal<string>
@@ -54,23 +54,24 @@ export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
     #ukrainian?: NullOrString
     #greek?: NullOrString
 
-    readonly #template
+    readonly #content
     readonly #game
     readonly #isACompleteName: IsACompleteNameCallback
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
     /**
      * Create a new {@link Builder builder} instance to create a {@link Name}.
      *
-     * @param template the {@link NameTemplate name template}
+     * @param content the {@link NameTemplate name template}
      * @param game the game received
      * @param isACompleteName tell whenever it is a complete name
      *
      * @note When it receive the game as {@link AllGameReceived "all"}, then it will only be the value received by the 3rd argument (is a complete name).
      */
-    public constructor(template: TEMPLATE, game: PossibleGameReceived, isACompleteName: boolean,) {
-        this.#template = template
+    public constructor(content: CONTENT, game: PossibleGameReceived, isACompleteName: boolean,) {
+        this.#content = content
         if (game === 'all') {
             this.#game = Games.CompanionEnum.get.values.toArray() as readonly [Games, Games, Games,]
             this.#isACompleteName = () => isACompleteName
@@ -82,10 +83,11 @@ export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
                 console.warn('The usage of Games in the NameBuilderContainer is deprecated, the usage of "1" "" or "3DS" should be used instead')
             const _game = game instanceof Games ? game : Games.CompanionEnum.get.getValueBySimpleValue(game,)
             this.#game = [_game,] as const
-            this.#isACompleteName = language => NameBuilderContainer.#IS_A_COMPLETE_NAME_BASED_ON_GAME(_game, language,) && isACompleteName
+            this.#isACompleteName = language => IS_A_COMPLETE_NAME_BASED_ON_GAME(_game, language,) && isACompleteName
         }
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter & setter methods --------------------
 
     //region -------------------- English getter & setter methods --------------------
@@ -269,8 +271,8 @@ export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
 
     //endregion -------------------- Greek getter & setter methods --------------------
 
-    public get template(): TEMPLATE {
-        return this.#template
+    public get content(): CONTENT {
+        return this.#content
     }
 
     public get game(): | readonly [Games,] | readonly [Games, Games,] | readonly [Games, Games, Games,] {
@@ -292,12 +294,12 @@ export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
             switch (language) {
                 case EveryLanguages.ENGLISH:
                 case EveryLanguages.FRENCH:
-                    return NameBuilderContainer.#IS_NULLABLE_FOR_COMPLETED_LANGUAGES
+                    return IS_NULLABLE_FOR_COMPLETED_LANGUAGES
                 case EveryLanguages.HEBREW:
                 case EveryLanguages.POLISH:
                 case EveryLanguages.UKRAINIAN:
                 case EveryLanguages.GREEK:
-                    return NameBuilderContainer.#IS_NULLABLE_FOR_OPTIONAL_LANGUAGES
+                    return IS_NULLABLE_FOR_OPTIONAL_LANGUAGES
                 default:
                     return !this.isACompleteName(language,)
             }
@@ -315,23 +317,23 @@ export class NameBuilderContainer<TEMPLATE extends NameTemplate, >
     //endregion -------------------- Methods --------------------
 
     public build(): Name<string> {
-        const {english, french, german, spanish, italian, dutch, portuguese, russian, japanese, chinese, korean, hebrew, polish, ukrainian, greek,} = this.template
+        const content = this.content
 
-        this.setEnglish(this.#get(EveryLanguages.ENGLISH, english.simple, english.american, english.european,))
-            .setFrench(this.#get(EveryLanguages.FRENCH, french.simple, french.canadian, french.european,))
-            .setGerman(this.#get(EveryLanguages.GERMAN, german,))
-            .setSpanish(this.#get(EveryLanguages.SPANISH, spanish.simple, spanish.american, spanish.european,))
-            .setItalian(this.#get(EveryLanguages.ITALIAN, italian,))
-            .setDutch(this.#get(EveryLanguages.DUTCH, dutch,))
-            .setPortuguese(this.#get(EveryLanguages.PORTUGUESE, portuguese.simple, portuguese.american, portuguese.european,))
-            .setRussian(this.#get(EveryLanguages.RUSSIAN, russian,))
-            .setJapanese(this.#get(EveryLanguages.JAPANESE, japanese,))
-            .setChinese(this.#get(EveryLanguages.CHINESE, chinese.simple, chinese.simplified, chinese.traditional,))
-            .setKorean(this.#get(EveryLanguages.KOREAN, korean,))
-            .setHebrew(this.#get(EveryLanguages.HEBREW, hebrew,))
-            .setPolish(this.#get(EveryLanguages.POLISH, polish,))
-            .setUkrainian(this.#get(EveryLanguages.UKRAINIAN, ukrainian,))
-            .setGreek(this.#get(EveryLanguages.GREEK, greek,))
+        this.setEnglish(this.#get(EveryLanguages.ENGLISH, content.english, content.americanEnglish, content.europeanEnglish,))
+            .setFrench(this.#get(EveryLanguages.FRENCH, content.french, content.canadianFrench, content.europeanFrench,))
+            .setGerman(this.#get(EveryLanguages.GERMAN, content.german,))
+            .setSpanish(this.#get(EveryLanguages.SPANISH, content.spanish, content.americanSpanish, content.europeanSpanish,))
+            .setItalian(this.#get(EveryLanguages.ITALIAN, content.italian,))
+            .setDutch(this.#get(EveryLanguages.DUTCH, content.dutch,))
+            .setPortuguese(this.#get(EveryLanguages.PORTUGUESE, content.portuguese, content.americanPortuguese, content.europeanPortuguese,))
+            .setRussian(this.#get(EveryLanguages.RUSSIAN, content.russian,))
+            .setJapanese(this.#get(EveryLanguages.JAPANESE, content.japanese,))
+            .setChinese(this.#get(EveryLanguages.CHINESE, content.chinese, content.simplifiedChinese, content.traditionalChinese,))
+            .setKorean(this.#get(EveryLanguages.KOREAN, content.korean,))
+            .setHebrew(this.#get(EveryLanguages.HEBREW, content.hebrew ?? null,))
+            .setPolish(this.#get(EveryLanguages.POLISH, content.polish ?? null,))
+            .setUkrainian(this.#get(EveryLanguages.UKRAINIAN, content.ukrainian ?? null,))
+            .setGreek(this.#get(EveryLanguages.GREEK, content.greek ?? null,))
 
         assert(this.english !== undefined, 'The english reference has not been initialised.',)
         assert(this.french !== undefined, 'The french reference has not been initialised.',)

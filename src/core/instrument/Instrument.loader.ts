@@ -7,10 +7,9 @@ import type {Instrument}          from 'core/instrument/Instrument'
 import type {PossibleEnglishName} from 'core/instrument/Instruments.types'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}       from 'variables'
-import * as TemplateMethods   from 'core/_template/templateMethods'
-import {InstrumentContainer}  from 'core/instrument/Instrument.container'
-import {NameBuilderContainer} from 'lang/name/Name.builder.container'
+import {isInProduction}                  from 'variables'
+import {InstrumentContainer}             from 'core/instrument/Instrument.container'
+import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
 
 /** @singleton */
 export class InstrumentLoader
@@ -59,7 +58,7 @@ interface Content
 
 function createReference(content: Content,): Instrument {
     return new InstrumentContainer(
-        new NameBuilderContainer(TemplateMethods.createNameTemplate(content,), 'all', false,).build(),
+        new NameFromContentBuilderContainer(content, 'all', false,).build(),
         CommonLazy.EMPTY_ARRAY, //TODO add other entity references by the instrument
     )
 }
