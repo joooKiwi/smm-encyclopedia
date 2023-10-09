@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {EntityReferences} from 'core/entity/properties/EntityReferences'
 import type {Property}         from 'core/entity/properties/Property'
 import type {EntityCategory}   from 'core/entityCategory/EntityCategory'
@@ -17,15 +15,15 @@ import {assert}                      from 'util/utilitiesMethods'
 export class ExclusiveSM3DWEntityContainer
     extends AbstractExclusiveSMM2Entity {
 
-    public constructor(name: Name<string>, category: Lazy<EntityCategory>, property: Property, references: EntityReferences,) {
+    public constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
         super(name, category, property, references,)
     }
 
     protected override _testProperty(property: Property,): void {
         super._testProperty(property)
 
-        assert(property.isInNightTheme == null, 'The property isInNightTheme should always be set to a null for a SM3DW exclusive property.',)
-        // assert(typeof property.isInProjectileLimitWhilePlaying == 'boolean', 'The property isInProjectileLimitWhilePlaying should always be a boolean for a SM3DW exclusive property.',)
+        assert(property.isInNightTheme == null, `The ${this.english} (SM3DW exclusive) should have a property isInNightTheme to null.`,)
+        // assert(typeof property.isInProjectileLimit == 'boolean', `The ${this.english} (SM3DW exclusive) should have a property isInProjectileLimitWhilePlaying to be a boolean.`,)
     }
 
 }

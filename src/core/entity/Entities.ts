@@ -35,6 +35,7 @@ import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/Compa
 
 /**
  * @recursiveReference<{@link EditorVoices}>
+ * @recursiveReference<{@link EntityLoader}>
  */
 export class Entities
     extends Enum<Ordinals, Names>

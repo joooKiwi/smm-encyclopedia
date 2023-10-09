@@ -1,4 +1,4 @@
-import type {Lazy} from '@joookiwi/lazy'
+import {lazyOf} from '@joookiwi/lazy'
 
 import type {Entity, PossibleOtherEntities}                                                                                                                                                                                                                    from 'core/entity/Entity'
 import type {EntityReferences}                                                                                                                                                                                                                                 from 'core/entity/properties/EntityReferences'
@@ -33,8 +33,8 @@ export abstract class AbstractEntity
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(name: Name<string>, category: Lazy<EntityCategory>, property: Property, references: EntityReferences,) {
-        super(name, category,)
+    protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
+        super(name, lazyOf(category,),)
         this.#testCategory(this.categoryContainer)
         this.#propertyContainer = this.#testProperty(property)
         this.#referencesContainer = references
@@ -57,7 +57,8 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testCategory(category: EntityCategory,): void {}
+    protected _testCategory(category: EntityCategory,): void {
+    }
 
     #testProperty(property: Property,): Property {
         if (!isInProduction)
@@ -73,7 +74,8 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testProperty(property: Property,): void {}
+    protected _testProperty(property: Property,): void {
+    }
 
     //endregion -------------------- Tester methods --------------------
     //region -------------------- Getter methods --------------------

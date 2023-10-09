@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {Property}                                                                                                                                                                                                                                         from 'core/entity/properties/Property'
 import type {GameProperty}                                                                                                                                                                                                                                     from 'core/entity/properties/game/GameProperty'
 import type {GameStyleProperty}                                                                                                                                                                                                                                from 'core/entity/properties/gameStyle/GameStyleProperty'
@@ -35,8 +33,8 @@ export class PropertyContainer
                        gameStyle: GameStyleProperty,
                        theme: ThemeProperty,
                        time: TimeProperty,
-                       limit: Lazy<LimitProperty>,
-                       instrument: Lazy<InstrumentProperty>,) {
+                       limit: LimitProperty,
+                       instrument: InstrumentProperty,) {
         this.#gameContainer = game
         this.#gameStyleContainer = gameStyle
         this.#themeContainer = theme
@@ -159,7 +157,7 @@ export class PropertyContainer
     //region -------------------- Limit properties --------------------
 
     public get limitContainer(): LimitProperty {
-        return this.#limitContainer.value
+        return this.#limitContainer
     }
 
     //region -------------------- Editor limit --------------------
@@ -283,7 +281,7 @@ export class PropertyContainer
     //region -------------------- Instrument properties --------------------
 
     public get instrumentContainer(): InstrumentProperty {
-        return this.#instrumentHolder.value
+        return this.#instrumentHolder
     }
 
 
