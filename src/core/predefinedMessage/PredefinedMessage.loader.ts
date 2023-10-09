@@ -5,9 +5,9 @@ import type {PredefinedMessage}   from 'core/predefinedMessage/PredefinedMessage
 import type {PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}                  from 'variables'
-import {PredefinedMessageContainer}      from 'core/predefinedMessage/PredefinedMessage.container'
-import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {isInProduction}             from 'variables'
+import {PredefinedMessageContainer} from 'core/predefinedMessage/PredefinedMessage.container'
+import {createNameFromContent}      from 'lang/name/createNameFromContent'
 
 /** @singleton */
 export class PredefinedMessageLoader
@@ -55,5 +55,5 @@ interface Content
     extends LanguageContent {}
 
 function createReference(content: Content,): PredefinedMessage {
-    return new PredefinedMessageContainer(new NameFromContentBuilderContainer(content, 2, true,).build(),)
+    return new PredefinedMessageContainer(createNameFromContent(content, 2, true,),)
 }

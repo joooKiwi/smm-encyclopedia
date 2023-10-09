@@ -24,7 +24,7 @@ import {Themes}                                   from 'core/theme/Themes'
 import {WorldOnlyThemeContainer}                  from 'core/theme/WorldOnlyTheme.container'
 import {WorldThemeContainer}                      from 'core/theme/WorldTheme.container'
 import {NightEffects}                             from 'core/nightEffect/NightEffects'
-import {NameFromContentBuilderContainer}          from 'lang/name/NameFromContent.builder.container'
+import {createNameFromContent}                    from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link Entities}>
@@ -89,8 +89,8 @@ function createReference(content: Content,): CourseAndWorldTheme {
     const isInWorldTheme = content.isInWorldTheme
 
     const name = content.isInSuperMarioMaker1And3DS
-        ? new NameFromContentBuilderContainer(content, 'all', true,).build()
-        : new NameFromContentBuilderContainer(content, 2, true,).build()
+        ? createNameFromContent(content, 'all', true,)
+        : createNameFromContent(content, 2, true,)
 
     if (isInCourseTheme && isInWorldTheme)
         return createCourseAndWorldTheme(content, name,)

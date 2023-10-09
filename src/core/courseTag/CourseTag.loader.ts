@@ -6,10 +6,10 @@ import type {PossibleEnglishName, PossibleMakerCentralName} from 'core/courseTag
 import type {PossibleFirstAppearanceInMarioMaker}           from 'core/courseTag/loader.types'
 import type {Loader}                                        from 'util/loader/Loader'
 
-import {isInProduction}                  from 'variables'
-import {CourseTagContainer}              from 'core/courseTag/CourseTag.container'
-import {Versions}                        from 'core/version/Versions'
-import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {isInProduction}        from 'variables'
+import {CourseTagContainer}    from 'core/courseTag/CourseTag.container'
+import {Versions}              from 'core/version/Versions'
+import {createNameFromContent} from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link Versions}>
@@ -67,10 +67,11 @@ interface Content
 
 function createReference(content: Content,): CourseTag {
     const firstAppearance = content.firstAppearanceInMarioMaker
+    const isAnOfficialTag = content.isAnOfficialTag
 
     return new CourseTagContainer(
-        new NameFromContentBuilderContainer(content, 2, false,).build(),
-        content.isAnOfficialTag,
+        createNameFromContent(content, 2, isAnOfficialTag,),
+        isAnOfficialTag,
         content.makerCentralName,
         firstAppearance == null ? null : Versions.CompanionEnum.get.getValueByName(firstAppearance,),
     )

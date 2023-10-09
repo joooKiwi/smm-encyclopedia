@@ -5,9 +5,9 @@ import type {PossibleEnglishName} from 'core/soundEffectCategory/SoundEffectCate
 import type {SoundEffectCategory} from 'core/soundEffectCategory/SoundEffectCategory'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}                  from 'variables'
-import {SoundEffectCategoryContainer}    from 'core/soundEffectCategory/SoundEffectCategory.container'
-import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {isInProduction}               from 'variables'
+import {SoundEffectCategoryContainer} from 'core/soundEffectCategory/SoundEffectCategory.container'
+import {createNameFromContent}        from 'lang/name/createNameFromContent'
 
 /** @singleton */
 export class SoundEffectCategoryLoader
@@ -55,6 +55,6 @@ interface Content
     extends LanguageContent {}
 
 function createReference(content: Content,): SoundEffectCategory {
-    return new SoundEffectCategoryContainer(new NameFromContentBuilderContainer(content, 2, false,).build(),)
+    return new SoundEffectCategoryContainer(createNameFromContent(content, 2, false,),)
 }
 

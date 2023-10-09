@@ -8,11 +8,11 @@ import type {PossibleAmountOfTime, PossibleFirstNumberInFirst10MarioChallenges, 
 import type {PossibleEnglishName}                                                                    from 'core/sampleCourse/SampleCourses.types'
 import type {Loader}                                                                                 from 'util/loader/Loader'
 
-import {isInProduction}                  from 'variables'
-import {GameStyles}                      from 'core/gameStyle/GameStyles'
-import {SampleCourseContainer}           from 'core/sampleCourse/SampleCourse.container'
-import {Themes}                          from 'core/theme/Themes'
-import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {isInProduction}        from 'variables'
+import {GameStyles}            from 'core/gameStyle/GameStyles'
+import {SampleCourseContainer} from 'core/sampleCourse/SampleCourse.container'
+import {Themes}                from 'core/theme/Themes'
+import {createNameFromContent} from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link GameStyles}>
@@ -76,7 +76,7 @@ function createReference(content: Content,): SampleCourse {
     const subArea = content.courseTheme_subArea
 
     return new SampleCourseContainer(
-        new NameFromContentBuilderContainer(content, 1, false,).build(),
+        createNameFromContent(content, 1, true,),
         content.worldNumber,
         content.courseNumberInFirst10MarioChallenge,
         GameStyles.CompanionEnum.get.getValueByAcronym(content.gameStyle,),

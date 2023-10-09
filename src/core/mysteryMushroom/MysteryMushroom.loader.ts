@@ -34,7 +34,7 @@ import {SoundEffectOnTurnAfterRunProvider}    from 'core/mysteryMushroom/propert
 import {SoundEffectWhenCollectedProvider}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected.provider'
 import {SoundPropertyContainer}               from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
 import {SpecialMusicInStarModeProvider}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode.provider'
-import {NameFromContentBuilderContainer}      from 'lang/name/NameFromContent.builder.container'
+import {createNameFromContent}                from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link GameReferences}>
@@ -124,7 +124,7 @@ interface Content
 
 function createReference(content: Content,): MysteryMushroom {
     return new MysteryMushroomContainer(
-        new NameFromContentBuilderContainer(content, 1, false,).build(),//TODO change the false to true since it is a complete SMM1 name
+        createNameFromContent(content, 1, true,),
         retrieveGames(content.reference,),
         new MysteryMushroomPropertyContainer(
             UnlockPropertyProvider.get.get(content.conditionToUnlockIt, content.canBeUnlockedByAnAmiibo,),

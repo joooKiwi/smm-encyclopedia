@@ -14,7 +14,7 @@ import {PlayerSoundEffectTriggers}       from 'core/soundEffect/property/PlayerS
 import {SoundEffectPropertyContainer}    from 'core/soundEffect/property/SoundEffectProperty.container'
 import {EmptySoundEffectCategory}        from 'core/soundEffectCategory/EmptySoundEffectCategory'
 import {SoundEffectCategoryLoader}       from 'core/soundEffectCategory/SoundEffectCategory.loader'
-import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {createNameFromContent}           from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link PlayerSoundEffectTriggers}>
@@ -89,7 +89,7 @@ function createReference(content: Content,): SoundEffect {
     const category = content.category
 
     return new SoundEffectContainer(
-        new NameFromContentBuilderContainer(content, 2, false,).build(),
+        createNameFromContent(content, 2, false,),
         category == null ? EmptySoundEffectCategory.get : SoundEffectCategoryLoader.get.load().get(category,)!,
         new SoundEffectPropertyContainer(
             GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),

@@ -5,9 +5,9 @@ import type {PossibleEnglishName} from 'core/entityCategory/EntityCategories.typ
 import type {EntityCategory}      from 'core/entityCategory/EntityCategory'
 import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}                  from 'variables'
-import {EntityCategoryContainer}         from 'core/entityCategory/EntityCategory.container'
-import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {isInProduction}          from 'variables'
+import {EntityCategoryContainer} from 'core/entityCategory/EntityCategory.container'
+import {createNameFromContent}   from 'lang/name/createNameFromContent'
 
 /**
  * A single class made to handle the loading
@@ -60,5 +60,5 @@ interface Content
     extends LanguageContent {}
 
 function createReference(content: Content,): EntityCategory {
-    return new EntityCategoryContainer(new NameFromContentBuilderContainer(content, 2, true,).build(),)
+    return new EntityCategoryContainer(createNameFromContent(content, 2, true,),)
 }

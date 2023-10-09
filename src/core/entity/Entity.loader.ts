@@ -49,8 +49,8 @@ import {EmptyEntityCategory}                                                    
 import {EntityLimits}                                                                                               from 'core/entityLimit/EntityLimits'
 import {GameStructureProvider}                                                                                      from 'core/game/GameStructure.provider'
 import {Instruments}                                                                                                from 'core/instrument/Instruments'
-import {NameFromContentBuilderContainer}                                                                            from 'lang/name/NameFromContent.builder.container'
 import {UNKNOWN_CHARACTER}                                                                                          from 'util/commonVariables'
+import {createNameFromContent}                                                                                      from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link EntityCategoryLoader}>
@@ -317,7 +317,7 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
 
     if (isInSMM1 && !isInSMM3DS && !isInSMM2)
         return new ExclusiveSMM1EntityContainer(
-            new NameFromContentBuilderContainer(content, 1, false,).build(),
+            createNameFromContent(content, 1, false,),
             getEntityCategory(content.categoryInTheEditor,),
             createProperty(content,),
             createReferences(content, referenceLinks,),
@@ -329,13 +329,13 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
             && !hasThisReferenced(content.inNSMBUGameStyle,)
             && hasThisReferenced(content.inSM3DWGameStyle,))
             return new ExclusiveSM3DWEntityContainer(
-                new NameFromContentBuilderContainer(content, 2, false,).build(),
+                createNameFromContent(content, 2, false,),
                 getEntityCategory(content.categoryInTheEditor,),
                 createProperty(content,),
                 createReferences(content, referenceLinks,),
             )
         return new ExclusiveSMM2EntityContainer(
-            new NameFromContentBuilderContainer(content, 2, false,).build(),
+            createNameFromContent(content, 2, false,),
             getEntityCategory(content.categoryInTheEditor,),
             createProperty(content,),
             createReferences(content, referenceLinks,),
@@ -343,38 +343,38 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
     }
     if (!isInSMM1 && isInSMM3DS && !isInSMM2)
         return new EntityContainer(
-            new NameFromContentBuilderContainer(content, '3DS', false,).build(),
+            createNameFromContent(content, '3DS', false,),
             getEntityCategory(content.categoryInTheEditor,),
             createProperty(content,),
             createReferences(content, referenceLinks,),
         )
     if (isInSMM1 && isInSMM3DS && !isInSMM2)
         return new EntityContainer(
-            new NameFromContentBuilderContainer(content, 'notSMM2', false,).build(),
+            createNameFromContent(content, 'notSMM2', false,),
+            getEntityCategory(content.categoryInTheEditor,),
+            createProperty(content,),
+            createReferences(content, referenceLinks,),
+        )
+    if (isInSMM1 && !isInSMM3DS && isInSMM2)
+        return new EntityContainer(
+            createNameFromContent(content, 'notSMM3DS', false,),
+            getEntityCategory(content.categoryInTheEditor,),
+            createProperty(content,),
+            createReferences(content, referenceLinks,),
+        )
+    if (!isInSMM1 && isInSMM3DS && isInSMM2)
+        return new EntityContainer(
+            createNameFromContent(content, 'notSMM1', false,),
             getEntityCategory(content.categoryInTheEditor,),
             createProperty(content,),
             createReferences(content, referenceLinks,),
         )
     return new EntityContainer(
-        new NameFromContentBuilderContainer(content, 'all', false,).build(),
+        createNameFromContent(content, 'all', false,),
         getEntityCategory(content.categoryInTheEditor,),
         createProperty(content,),
         createReferences(content, referenceLinks,),
     )
-    // if (isInSMM1 && !isInSMM3DS && isInSMM2)
-    //     return new EntityContainer(
-    //         new NameBuilderContainer(content, 'all', false,).build(),//TODO add the "notSMM3DS"
-    //         getEntityCategory(content.categoryInTheEditor,),
-    //         createProperty(content,),
-    //         createReferences(content, referenceLinks,),
-    //     )
-    // if (!isInSMM1 && isInSMM3DS && isInSMM2)
-    //     return new EntityContainer(
-    //         new NameBuilderContainer(content, 'all', false,).build(),//TODO add the "notSMM1" (note: this one is not applicable to anything)
-    //         getEntityCategory(content.categoryInTheEditor,),
-    //         createProperty(content,),
-    //         createReferences(content, referenceLinks,),
-    //     )
 }
 
 

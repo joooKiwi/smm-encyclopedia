@@ -7,10 +7,10 @@ import type {UniqueNameContent}         from 'core/_template/UniqueNameContent'
 import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {GameContentFromAllGames}   from 'core/game/Loader.types'
 
-import {isInProduction}                  from 'variables'
-import {CharacterNameContainer}          from 'core/characterName/CharacterName.container'
-import {GamePropertyProvider}            from 'core/entity/properties/game/GameProperty.provider'
-import {NameFromContentBuilderContainer} from 'lang/name/NameFromContent.builder.container'
+import {isInProduction}         from 'variables'
+import {CharacterNameContainer} from 'core/characterName/CharacterName.container'
+import {GamePropertyProvider}   from 'core/entity/properties/game/GameProperty.provider'
+import {createNameFromContent}  from 'lang/name/createNameFromContent'
 
 export class CharacterNameLoader
     implements Loader<ReadonlyMap<PossibleUniqueEnglishName, CharacterName>> {
@@ -61,7 +61,7 @@ interface Content
 
 function createReference(content: Content,): CharacterName {
     return new CharacterNameContainer(
-        new NameFromContentBuilderContainer(content, 'all', false,).build(),
+        createNameFromContent(content, 'all', false,),
         GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
     )
 }

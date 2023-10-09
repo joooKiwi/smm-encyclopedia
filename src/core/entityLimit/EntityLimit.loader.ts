@@ -19,7 +19,7 @@ import {EntityLimits}                      from 'core/entityLimit/EntityLimits'
 import {EntityLimitTypes}                  from 'core/entityLimit/EntityLimitTypes'
 import {EntityLimitAmountContainer}        from 'core/entityLimit/properties/EntityLimitAmount.container'
 import {EmptyEntityLimitAmount}            from 'core/entityLimit/properties/EmptyEntityLimitAmount'
-import {NameFromContentBuilderContainer}   from 'lang/name/NameFromContent.builder.container'
+import {createNameFromContent}             from 'lang/name/createNameFromContent'
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
 
 /**
@@ -97,7 +97,7 @@ interface Content
 
 function createReference(content: Content, alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeEntityLimit>,): EntityLimit {
     return new EntityLimitContainer(
-        new NameFromContentBuilderContainer(content, 2, false,).build(),
+        createNameFromContent(content, 2, false,),
         content.acronym as NullOr<PossibleAcronym>,
         getAlternativeEntityLimitBy(content.alternative, alternativeReferences),
         EntityLimitTypes.CompanionEnum.get.getValueByName(content.type,),
@@ -107,7 +107,7 @@ function createReference(content: Content, alternativeReferences: ReadonlyMap<Po
 
 function createAlternativeReference(content: Content, regularReferences: Map<PossibleEnglishName, EntityLimit>,): AlternativeEntityLimit {
     return new AlternativeEntityLimitContainer(
-        new NameFromContentBuilderContainer(content, 2, false,).build(),
+        createNameFromContent(content, 2, false,),
         content.acronym as NullOr<PossibleAlternativeAcronym>,
         lazy(() => EntityLimits.CompanionEnum.get.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
         createLimitAmount(content,),

@@ -3,6 +3,7 @@ import file from 'resources/compiled/Mii Costume (SMM2).json'
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {MiiCostume}                                                                    from 'core/miiCostume/MiiCostume'
 import type {PossibleEnglishName}                                                           from 'core/miiCostume/MiiCostumes.types'
+import type {PossibleMarioMakerVersion}                                                     from 'core/miiCostume/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Category}                           from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleEnglishNameWithOnlyAmount as PossibleEnglishName_OfficialNotification} from 'core/officialNotification/OfficialNotifications.types'
 import type {Loader}                                                                        from 'util/loader/Loader'
@@ -12,8 +13,7 @@ import {MiiCostumeContainer}               from 'core/miiCostume/MiiCostume.cont
 import {MiiCostumeCategoryLoader}          from 'core/miiCostumeCategory/MiiCostumeCategory.loader'
 import {OfficialNotificationHolderBuilder} from 'core/officialNotification/holder/OfficialNotificationHolder.builder'
 import {Versions}                          from 'core/version/Versions'
-import {NameFromContentBuilderContainer}   from 'lang/name/NameFromContent.builder.container'
-import {PossibleMarioMakerVersion}         from 'core/miiCostume/loader.types'
+import {createNameFromContent}             from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link MiiCostumeCategoryLoader}>
@@ -75,7 +75,7 @@ function createReference(content: Content,): MiiCostume {
     const version = content.MM2_version
 
     return new MiiCostumeContainer(
-        new NameFromContentBuilderContainer(content, 2, true,).build(),
+        createNameFromContent(content, 2, true,),
         new OfficialNotificationHolderBuilder(content.notificationIfUnlocked,).build(),
         version == null ? null : Versions.CompanionEnum.get.getValueByName(`v${version}`,),
         MiiCostumeCategoryLoader.get.load().get(content.category,)!,

@@ -11,7 +11,7 @@ import {isInProduction}                      from 'variables'
 import {GamePropertyProvider}                from 'core/entity/properties/game/GameProperty.provider'
 import {OtherPluralWordInTheGameContainer}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame.container'
 import {OtherSingularWordInTheGameContainer} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.container'
-import {NameFromContentBuilderContainer}     from 'lang/name/NameFromContent.builder.container'
+import {createNameFromContent}               from 'lang/name/createNameFromContent'
 
 /** @singleton */
 
@@ -74,7 +74,7 @@ interface Content
 
 function createSingularContent(content: Content, pluralContents: ReadonlyMap<PossibleEnglishName_Plural, OtherPluralWordInTheGame>,): OtherSingularWordInTheGame {
     const pluralForm = content.pluralForm
-    const name = new NameFromContentBuilderContainer(content, 'all', false,).build()//TODO change it to true once other translations are completed
+    const name = createNameFromContent(content, 'all', false,)//TODO change it to true once other translations are completed
     const gameProperty = GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,)
 
     if (pluralForm == null)
@@ -88,7 +88,7 @@ function createSingularContent(content: Content, pluralContents: ReadonlyMap<Pos
 
 function createPluralContent(content: Content,): OtherPluralWordInTheGame {
     return new OtherPluralWordInTheGameContainer(
-        new NameFromContentBuilderContainer(content, 'all', false,).build(),//TODO change it to true once other translations are completed
+        createNameFromContent(content, 'all', false,),//TODO change it to true once other translations are completed
         GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
     )
 }
