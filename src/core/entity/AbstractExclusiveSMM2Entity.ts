@@ -25,9 +25,9 @@ export abstract class AbstractExclusiveSMM2Entity
 
         assert(property.isInSuperMario3DWorldStyle != null, `The ${this.english} (SMM2 exclusive) should have a property isInSuperMario3DWorldStyle to a boolean.`,)
 
-        assert(property.isInGeneralLimit !== 'N/A', `The ${this.english} (SMM2 exclusive) should have a property isInGeneralLimit to a boolean.`,)
-        assert(property.isInGlobalGeneralLimit !== 'N/A', `The ${this.english} (SMM2 exclusive) should have a property isInGlobalGeneralLimit to a boolean.`,)
-        assert(typeof property.isInPowerUpLimit === 'boolean', `The ${this.english} (SMM2 exclusive) should have a property isInPowerUpLimit to a boolean.`,)
+        assert(property.isInGeneralLimit != null, `The ${this.english} (SMM2 exclusive) should have a property isInGeneralLimit to a boolean or N/A.`,)
+        assert(property.isInGlobalGeneralLimit != null, `The ${this.english} (SMM2 exclusive) should have a property isInGlobalGeneralLimit to a boolean or N/A.`,)
+        assert(property.isInPowerUpLimit != null, `The ${this.english} (SMM2 exclusive) should have a property isInPowerUpLimit to a boolean or N/A.`,)
         assert(property.editorLimit_smm1And3ds == null, `The ${this.english} (SMM2 exclusive) should have a property editorLimit_smm1And3ds to null.`,)
     }
 
