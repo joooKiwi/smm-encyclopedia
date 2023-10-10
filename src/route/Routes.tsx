@@ -194,7 +194,7 @@ function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstan
  * @canSetSelectedGames
  */
 function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
-    if (path.includes('/game-') && games.length !== 0 && !Games.selectedGames.hasAll(...games,))
+    if (path.includes(Games.CompanionEnum.get.PREFIX,) && games.length !== 0 && !Games.selectedGames.hasAll(...games,))
         Games.setSelected(games,)
     return null
 }
