@@ -31,7 +31,19 @@ jobs:
           cache: 'npm'
 
       - name: Installation of the dependencies (for NPM)
-        run: npm ci
+        run: npm ci --ignore-scripts
+
+      - name: Conversion from CSV to Json
+        run: npm run convert-csv-to-json
+
+      - name: Copying the images for the CSS
+        run: npm run copy-images-for-css
+
+      - name: Copying the locale on the "/src" folder
+        run: npm run copy-locale-to-src
+
+      - name: Building of the application
+        run: npm run build
 
       - name: Deployment of the application
         run: |
