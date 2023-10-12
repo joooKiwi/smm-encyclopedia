@@ -2,7 +2,7 @@ import './MysteryMushroomApp.scss'
 
 import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
 import {unfinishedText}           from 'app/tools/text/UnfinishedText'
@@ -26,15 +26,15 @@ export default class MysteryMushroomApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyMysteryMushroom (list)'
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return 'everyMysteryMushroom (card)'
     }
 
-    protected override _createTableRouteName(): EveryPossibleRouteNames {
+    protected override _createTableRouteName(): PossibleRouteName {
         return 'everyMysteryMushroom (table)'
     }
 

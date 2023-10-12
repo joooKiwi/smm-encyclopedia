@@ -1,7 +1,7 @@
 import {Link, useLocation} from 'react-router-dom'
 
-import type {EveryPossibleRouteNames} from 'route/everyRoutes.types'
-import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
+import type {ReactProperties}   from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import Tooltip                    from 'bootstrap/tooltip/Tooltip'
@@ -13,7 +13,7 @@ interface DisplayViewRouteButtonProperty
 
     readonly elementId: string
 
-    readonly routeName: EveryPossibleRouteNames
+    readonly routeName: PossibleRouteName
 
     readonly value: ReactElementOrString
 

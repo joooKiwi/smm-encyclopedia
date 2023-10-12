@@ -3,13 +3,12 @@ import type {AppStates}                    from 'app/AppStates.types'
 import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
+import type {PossibleRouteName}            from 'route/EveryRoutes.types'
 
 import {AbstractSimpleListApp} from 'app/withInterpreter/AbstractSimpleListApp'
 import {ListDimensionCreator}  from 'app/withInterpreter/ListDimension.creator'
 import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
 import NameComponent           from 'lang/name/component/Name.component'
-import {ReactElement}          from 'react'
 
 export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
     T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
@@ -17,7 +16,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
 
     //region -------------------- Fields --------------------
 
-    #routeName?: EveryPossibleRouteNames
+    #routeName?: PossibleRouteName
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter & create methods --------------------
@@ -29,11 +28,11 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
         ]
     }
 
-    private get __cardRouteName(): EveryPossibleRouteNames {
+    private get __cardRouteName(): PossibleRouteName {
         return this.#routeName ??= this._createCardListRouteName()
     }
 
-    protected abstract _createCardListRouteName(): EveryPossibleRouteNames
+    protected abstract _createCardListRouteName(): PossibleRouteName
 
     protected _createUniqueNameOnCardList(enumerable: ValueByApp<APP>,): string {
         return enumerable.englishName

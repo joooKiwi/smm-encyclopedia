@@ -2,7 +2,7 @@ import './EntityCategoryApp.scss'
 
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
@@ -27,11 +27,11 @@ export default class EntityCategoryApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyEntityCategory (list)'
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return 'everyEntityCategory (card)'
     }
 

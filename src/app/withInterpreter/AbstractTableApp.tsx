@@ -2,7 +2,7 @@ import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppStates}                    from 'app/AppStates.types'
 import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
+import type {PossibleRouteName}            from 'route/EveryRoutes.types'
 
 import Table                 from 'app/tools/table/Table'
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
@@ -14,7 +14,7 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
 
     //region -------------------- Fields --------------------
 
-    #routeName?: EveryPossibleRouteNames
+    #routeName?: PossibleRouteName
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter & create methods --------------------
@@ -26,11 +26,11 @@ export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
         ]
     }
 
-    private get __tableRouteName(): EveryPossibleRouteNames {
+    private get __tableRouteName(): PossibleRouteName {
         return this.#routeName ??= this._createTableRouteName()
     }
 
-    protected abstract _createTableRouteName(): EveryPossibleRouteNames
+    protected abstract _createTableRouteName(): PossibleRouteName
 
     //endregion -------------------- Getter & create methods --------------------
     //region -------------------- Render methods --------------------

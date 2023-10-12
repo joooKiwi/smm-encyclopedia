@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 
-import type {EveryPossibleRouteNames}                      from 'route/everyRoutes.types'
+import type {PossibleRouteName}                            from 'route/EveryRoutes.types'
 import type {ReactProperties, ReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
 import {routeFromName} from 'route/route'
@@ -10,7 +10,7 @@ interface LinkButtonsProperties
 
     partialId: string
 
-    routeName: Nullable<EveryPossibleRouteNames>
+    routeName: Nullable<PossibleRouteName>
 
     color: BootstrapColor
 

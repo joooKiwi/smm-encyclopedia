@@ -2,8 +2,8 @@ import './GameGroup.scss'
 
 import {Link, useLocation} from 'react-router-dom'
 
-import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
-import type {ReactProperties}            from 'util/react/ReactProperties'
+import type {PossibleRoutePath} from 'route/EveryRoutes.types'
+import type {ReactProperties}   from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {Games}                    from 'core/game/Games'
@@ -39,9 +39,9 @@ function GameLink({game, gamesInUrl,}: GameLinkProperties,) {
             {game.renderSingleComponent}
         </button>
 
-    const gamesAsUrl = Games.getGroupUrlValue(gamesInUrl,),
-        gamesFromSelectionAsUrl = game.isSelected && gamesInUrl.length === 1 ? gamesAsUrl : Games.getGroupUrlValue(game.isSelected ? gamesInUrl.filter(it => it !== game) : [...gamesInUrl, game,],),
-        newPath = pathname.replace(`game-${gamesAsUrl}`, `game-${gamesFromSelectionAsUrl}`,) as EveryPossibleRouteInstance['path']
+    const gamesAsUrl = Games.getGroupUrlValue(gamesInUrl,)
+    const gamesFromSelectionAsUrl = game.isSelected && gamesInUrl.length === 1 ? gamesAsUrl : Games.getGroupUrlValue(game.isSelected ? gamesInUrl.filter(it => it !== game) : [...gamesInUrl, game,],)
+    const newPath = pathname.replace(`game-${gamesAsUrl}`, `game-${gamesFromSelectionAsUrl}`,) as PossibleRoutePath
 
     return <Link type="button" id={id} className={`btn btn-${game.isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID)?.instance.hide()}>

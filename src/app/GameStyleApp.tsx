@@ -3,7 +3,7 @@ import './GameStyleApp.scss'
 import type {GameStyleProperties}                                  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
@@ -21,15 +21,15 @@ export default class GameStyleApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyGameStyle (list)'
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return 'everyGameStyle (card)'
     }
 
-    protected override _createTableRouteName(): EveryPossibleRouteNames {
+    protected override _createTableRouteName(): PossibleRouteName {
         return 'everyGameStyle (table)'
     }
 

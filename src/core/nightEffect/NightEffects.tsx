@@ -5,7 +5,7 @@ import {Link}     from 'react-router-dom'
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
 import type {TranslationReplaceKeysMap}            from 'lang/components/TranslationProperty'
-import type {EveryPossibleRouteNames}              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                    from 'route/EveryRoutes.types'
 import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singleton.types'
 
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
@@ -58,7 +58,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
-                gameStyle: <Link key={`${this.englishName} (game style)`} to={routeFromName('everyGameStyle')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={routeFromName('everyGameStyle',)} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
             }
         }
 
@@ -159,8 +159,8 @@ export class NightEffects
         return <Fragment key={`${instance.englishName} (underwater)`}>{Themes.UNDERWATER.renderSingleComponent(true)}</Fragment>
     }
 
-    protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
-        return <Link key={`${instance.englishName} (entities)`} to={routeFromName(routeName)} className="link-primary">{
+    protected static _createEntitiesLink(instance: NightEffects, routeName: PossibleRouteName,): ReactElement {
+        return <Link key={`${instance.englishName} (entities)`} to={routeFromName(routeName,)} className="link-primary">{
             ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName).toLowerCase()
         }</Link>
     }

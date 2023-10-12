@@ -2,7 +2,7 @@ import './SoundEffectCategoryApp.scss'
 
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
@@ -19,12 +19,12 @@ export default class SoundEffectCategoryApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
         return 'everySoundEffect (list)'
+    protected override _createSimpleListRouteName(): PossibleRouteName {
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
         return 'everySoundEffect (card)'
+    protected override _createCardListRouteName(): PossibleRouteName {
     }
 
 

@@ -74,12 +74,10 @@ export abstract class Games
 
         //endregion -------------------- Singleton usage --------------------
 
-        /** The separator the every url parts */
-        protected readonly _PART_SEPARATOR = '/'
-        /** The separator the url arguments */
-        protected readonly _ARGUMENT_SEPARATOR = ','
+        public readonly URL_NAME_SEPARATOR = '/'
+        public readonly NAME_ARGUMENT_SEPARATOR = ','
 
-        // public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))+|(all))(\/|$)/i
+        public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))+|(all))(\/|$)/i
         // public readonly ALL_URL_REGEX = /.*\/game-all(\/|$)/i
         public readonly SINGLE_URL_REGEX = /.*\/game-(1|3ds|2)(\/|$)/i
         public readonly PREFIX_WITHOUT_SLASH = 'game-'
@@ -112,13 +110,13 @@ export abstract class Games
         }
 
         public getValueInUrl(url: string,): readonly Games[] {
-            const prefix = this.PREFIX
-            if(!url.includes(prefix,))
+            if (!this.URL_REGEX.test(url,))
                 return EMPTY_ARRAY
 
             if (url.includes(this.ALL_PREFIX_GROUP,))
                 return this.values.toArray()
 
+            const prefix = this.PREFIX
             const lowerCasedUrl = url.toLowerCase()
             if (this.SINGLE_URL_REGEX.test(url,)) {
                 const valueFound = this.values.find(it => lowerCasedUrl.includes(`${prefix}${it.urlValue}`,),)
@@ -128,7 +126,7 @@ export abstract class Games
             }
 
             const prefixWithoutSlash = this.PREFIX_WITHOUT_SLASH
-            const gameUrlsFound = lowerCasedUrl.split(this._PART_SEPARATOR,).find(it => it.startsWith(prefixWithoutSlash,),)!.substring(prefixWithoutSlash.length,).split(this._ARGUMENT_SEPARATOR,)
+            const gameUrlsFound = lowerCasedUrl.split(this.URL_NAME_SEPARATOR,).find(it => it.startsWith(prefixWithoutSlash,) && (it.endsWith('1',) || it.endsWith('2',) || it.endsWith('3ds',)),)!.substring(prefixWithoutSlash.length,).split(this.NAME_ARGUMENT_SEPARATOR,)
             const size = gameUrlsFound.length
             const valuesFound = new Array<Games>(size,)
             let index = size
@@ -155,7 +153,7 @@ export abstract class Games
     /**
      * A simple companion class to the {@link Games} but for the game possibilities (in stored {@link Array}).
      *
-     * This class is mostly used in the {@link RoutesCreator} chain of operation.
+     * @note This class is only used in the {@link EveryRoutes}
      */
     public static readonly GamePossibilitiesCompanion = class Companion_GamePossibilities {
 
@@ -174,6 +172,7 @@ export abstract class Games
 
         #everySingleFields?: readonly (readonly [Games,])[]
         #everyDoubleFields?: readonly (readonly [Games, Games,])[]
+        #everyFields?: readonly (readonly Games[])[]
 
         //region -------------------- Array fields --------------------
 
@@ -198,53 +197,6 @@ export abstract class Games
         public readonly ALL_GAMES = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
 
         //endregion -------------------- Non-redirection array fields --------------------
-        //region -------------------- Redirection (x2) array fields --------------------
-
-        /**
-         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} (x2)
-         * @inRedirectionOnly
-         * @see SMM1_ONLY
-         */
-        public readonly SMM1_2X = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_1,] as const
-        /**
-         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} (x2)
-         * @inRedirectionOnly
-         * @see SMM3DS_ONLY
-         */
-        public readonly SMM3DS_2X = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
-        /**
-         * An array representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} (x2)
-         * @inRedirectionOnly
-         * @see SMM2_ONLY
-         */
-        public readonly SMM2_2X = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_2,] as const
-
-        //endregion -------------------- Redirection (x2) array fields --------------------
-        //region -------------------- Redirection (reverse order) array fields --------------------
-
-        /**
-         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS},
-         * but in a reverse order
-         * @inRedirectionOnly
-         * @see SMM1_AND_3DS
-         */
-        public readonly SMM3DS_AND_1 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_1,] as const
-        /**
-         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2},
-         * but in a reverse order
-         * @inRedirectionOnly
-         * @see SMM1_AND_2
-         */
-        public readonly SMM2_AND_1 = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_1,] as const
-        /**
-         * An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2},
-         * but in a reverse order
-         * @inRedirectionOnly
-         * @see SMM3DS_AND_2
-         */
-        public readonly SMM2_AND_3DS = [Games.SUPER_MARIO_MAKER_2, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
-
-        //endregion -------------------- Redirection (reverse order) array fields --------------------
 
         //endregion -------------------- Array fields --------------------
 
@@ -258,9 +210,15 @@ export abstract class Games
 
         /** Every double {@link Games} fields in the {@link Companion_GamePossibilities current instance} */
         private get __everyDoubleGameFields(): readonly (readonly [Games, Games,])[] {
-            return this.#everyDoubleFields ??= [this.SMM1_AND_3DS, this.SMM1_AND_2, this.SMM3DS_AND_2,
-                this.SMM1_2X, this.SMM3DS_2X, this.SMM2_2X,
-                this.SMM3DS_AND_1, this.SMM2_AND_1, this.SMM2_AND_3DS,]
+            return this.#everyDoubleFields ??= [this.SMM1_AND_3DS, this.SMM1_AND_2, this.SMM3DS_AND_2,]
+        }
+
+        public get everyFields(): readonly (readonly Games[])[]{
+            return this.#everyFields ??= [
+                this.ALL_GAMES,
+                this.SMM1_ONLY, this.SMM3DS_ONLY, this.SMM2_ONLY,
+                this.SMM1_AND_3DS, this.SMM1_AND_2, this.SMM3DS_AND_2,
+            ]
         }
 
         //endregion -------------------- Getter methods --------------------

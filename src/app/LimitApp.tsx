@@ -6,7 +6,7 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/int
 import type {LimitTypes}                                           from 'app/property/LimitTypes'
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {Limits}                                               from 'core/limit/Limits'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {LimitAppOption}                             from 'app/options/LimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
@@ -34,15 +34,15 @@ export default class LimitApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return `${this.type.routeName} (list)`
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return `${this.type.routeName} (card)`
     }
 
-    protected override _createTableRouteName(): EveryPossibleRouteNames {
+    protected override _createTableRouteName(): PossibleRouteName {
         return `${this.type.routeName} (table)`
     }
 

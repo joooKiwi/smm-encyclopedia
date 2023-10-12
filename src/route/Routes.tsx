@@ -3,68 +3,178 @@ import {RouterProvider, redirect}             from 'react-router/dist'
 import {createHashRouter}                     from 'react-router-dom/dist'
 import {Suspense}                             from 'react'
 
-import type {EveryPossibleRouteInstance} from 'route/everyRoutes.types'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
 
-import LoadingApp          from 'app/LoadingApp'
-import {ViewDisplays}      from 'app/withInterpreter/ViewDisplays'
-import {Games}             from 'core/game/Games'
-import {getUserLanguage}   from 'lang/getUserLanguage'
-import {ProjectLanguages}  from 'lang/ProjectLanguages'
-import {everySimpleRoutes} from 'route/everyRoutes'
-import {routeFromName}     from 'route/route'
+import LoadingApp         from 'app/LoadingApp'
+import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
+import {Games}            from 'core/game/Games'
+import {getUserLanguage}  from 'lang/getUserLanguage'
+import {ProjectLanguages} from 'lang/ProjectLanguages'
+import {EveryRoutes}      from 'route/EveryRoutes'
+import {routeFromName}    from 'route/route'
+import {GameCollection}   from 'util/collection/GameCollection'
+import {EMPTY_ARRAY}      from 'util/emptyVariables'
 
-const /** Every {@link ProjectLanguages project language} as an {@link Array} */
-    languages = ProjectLanguages.CompanionEnum.get.values.toArray(),
-    /**
-     * Every route encapsulated in a hash router (for GitHub).
-     *
-     * It utilise at first the {@link ProjectLanguages} {@link ProjectLanguages.acronym acronym} in the path.
-     *
-     * If there is no {@link ProjectLanguages.acronym acronym} at first,
-     * it should automatically detect the language on the device <i>(to be added)</i>.
-     *
-     * Also, it will create a specific route depending on the {@link Games game(s)} to be displayed.
-     *
-     * Then, by using the routes ({@link everySimpleRoutes}), the path are applied in the parameter.
-     *
-     * @see https://reactrouter.com/main/routers/create-hash-router
-     */
-    router = createHashRouter([{
-        caseSensitive: false,
-        path: '/',
-        children: [
-            everySimpleRoutes.map<RouteObject>(route => ({
-                path: route.path,
-                loader: () => redirectToPathWithUserLanguage(route,),
-            }),),
+/** Every {@link ProjectLanguages project language} as an {@link Array} */
+const languages = ProjectLanguages.CompanionEnum.get.values.toArray()
+const everyRouteInstance = EveryRoutes.CompanionEnum.get.values
+const everyRouteInstanceWithMoreThat1Element = everyRouteInstance.filter(it => it.everyRoute.length !== 1,)
+const everyRouteInstanceWithGameAndViewDisplay = everyRouteInstance.filter(it => it.everyRoute.find(it => it.games == null && it.viewDisplay == null,) == null,)
+const everyRoute = EveryRoutes.CompanionEnum.get.everyRoute
+// const everyGames = Games.GamePossibilitiesCompanion.get.everyFields
+const everyViewDisplay = ViewDisplays.CompanionEnum.get.values
+/**
+ * Every route encapsulated in a hash router (for GitHub).
+ *
+ * It utilise at first the {@link ProjectLanguages} {@link ProjectLanguages.acronym acronym} in the path.
+ *
+ * If there is no {@link ProjectLanguages.acronym acronym} at first,
+ * it should automatically detect the language on the device <i>(to be added)</i>.
+ *
+ * Also, it will create a specific route depending on the {@link Games game(s)} to be displayed.
+ *
+ * Then, by using the routes ({@link EveryRoutes}), the path are applied in the parameter.
+ *
+ * @see https://reactrouter.com/main/routers/create-hash-router
+ */
+const router = createHashRouter([{
+    caseSensitive: false,
+    path: '/',
+    children: [
+        //region -------------------- Path from nothing --------------------
 
-            languages.map<RouteObject>(language => ({
-                path: `/${language.projectAcronym}` as const,
-                children: everySimpleRoutes.map<RouteObject>(route => ({
-                    path: `/${language.projectAcronym}${route.path}` as const,
-                    element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback()}</Suspense>,
-                    loader: () => setDefaultValues(route,)
+        {
+            path: '/',
+            loader() {
+                throw redirect(EveryRoutes.HOME.getPath(ProjectLanguages.CompanionEnum.get.currentOrNull ?? getUserLanguage(), null, null,),)
+            },
+        } satisfies RouteObject,
+
+        //endregion -------------------- Path from nothing --------------------
+        //region -------------------- Path from simple route path --------------------
+
+        everyRouteInstanceWithMoreThat1Element.map<RouteObject>(routeInstance => ({
+            path: routeInstance.simplePath,
+            loader() {
+                throw redirect(routeInstance.getPath(ProjectLanguages.CompanionEnum.get.currentOrNull ?? getUserLanguage(), null, null,),)
+            },
+        }),).toArray(),
+
+        //endregion -------------------- Path from simple route path --------------------
+        //region -------------------- Path from route path --------------------
+
+        everyRoute.map<RouteObject>(route => ({
+            path: route.path,
+            loader: () => {
+                throw redirect(routeFromName(route.name as PossibleRouteName, ProjectLanguages.CompanionEnum.get.currentOrNull ?? getUserLanguage(),),)
+            },
+        }),),
+
+        //endregion -------------------- Path from route path --------------------
+        //region -------------------- Path from language --------------------
+
+        languages.map<RouteObject>(language => ({
+            path: `/${language.projectAcronym}`,
+            children: [
+                //region -------------------- Path from nothing --------------------
+
+                {
+                    path: `/${language.projectAcronym}`,
+                    loader() {
+                        throw redirect(EveryRoutes.HOME.getPath(language, null, null,),)
+                    },
+                },
+
+                //endregion -------------------- Path from nothing --------------------
+                //region -------------------- Path from simple route path --------------------
+
+                everyRouteInstanceWithMoreThat1Element.map<RouteObject>(routeInstance => ({
+                    path: `/${language.projectAcronym}${routeInstance.simplePath}`,
+                    loader() {
+                        throw redirect(routeInstance.getPath(language, null, null,),)
+                    },
+                }),).toArray(),
+
+                //endregion -------------------- Path from simple route path --------------------
+                //region -------------------- Path from route path --------------------
+
+                everyRoute.map<RouteObject>(route => ({
+                    path: `/${language.projectAcronym}${route.path}`,
+                    element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(route.viewDisplay!, new GameCollection(route.games ?? EMPTY_ARRAY,),)}</Suspense>,
+                    loader: ()=> null,
                 }),),
-                loader: () => redirectToHomeIfNotCurrentLanguage(language,),
-            }),),
 
-            languages.map(language => everySimpleRoutes.map<RouteObject>(route => ({
-                path: `/${language.projectAcronym}/*/${route.path}` as const,
-                loader: loaderArguments => redirectToCorrectPath2(loaderArguments, language,),
-            }))).flat(),
-            languages.map<RouteObject>(language => ({
-                path: `/${language.projectAcronym}/*`,
-                loader: loaderArguments => redirectToCorrectPath2(loaderArguments, language,),
-            }),),
-            {
-                path: '/*',
-                loader: loaderArguments => redirectToCorrectPath1(loaderArguments,),
-            } as const satisfies RouteObject,
-        ].flat(),
-        loader: loaderArguments => redirectToCorrectPath1(loaderArguments,),
-    },], {basename: '/',},)
+                //endregion -------------------- Path from route path --------------------
+                //region -------------------- Path from view display --------------------
+
+                everyViewDisplay.map<RouteObject>(viewDisplay => ({
+                    path: `/${language.projectAcronym}/${viewDisplay.urlValue}`,
+                    children: [
+                        //region -------------------- Path from nothing --------------------
+
+                        {
+                            path: `/${language.projectAcronym}/${viewDisplay.urlValue}`,
+                            loader() {
+                                throw redirect(EveryRoutes.HOME.getPath(language, null, viewDisplay,),)
+                            },
+                        },
+
+                        //endregion -------------------- Path from nothing --------------------
+                        //region -------------------- Path from simple route path --------------------
+
+                        everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
+                            path: `/${language.projectAcronym}/${viewDisplay.urlValue}${routeInstance.simplePath}`,
+                            loader() {
+                                throw redirect(routeInstance.getPath(language, null, viewDisplay,),)
+                            },
+                        }),).toArray(),
+
+                        //endregion -------------------- Path from simple route path --------------------
+                        //region -------------------- Fallback if nothing was found --------------------
+
+                        {
+                            path: `/${language.projectAcronym}/${viewDisplay.urlValue}*`,
+                            loader: loaderArguments => redirectToCorrectPathWithNoRouteAndGame2(loaderArguments, language, viewDisplay,),
+                        } satisfies RouteObject,
+
+                        //endregion -------------------- Fallback if nothing was found --------------------
+                    ].flat(),
+                    loader() {
+                        ViewDisplays.CompanionEnum.get.current = viewDisplay
+                        return null
+                    }
+                }),).toArray(),
+
+                //endregion -------------------- Path from view display --------------------
+                //region -------------------- Fallback if nothing was found --------------------
+
+                {
+                    path: `/${language.projectAcronym}/*`,
+                    loader: loaderArguments => redirectToCorrectPathWithNoRouteAndGame1(loaderArguments, language,),
+                } satisfies RouteObject,
+
+                //endregion -------------------- Fallback if nothing was found --------------------
+            ].flat(),
+            loader() {
+                ProjectLanguages.CompanionEnum.get.current = language
+                return null
+            },
+        }),),
+
+        //endregion -------------------- Path from language --------------------
+        //region -------------------- Fallback if nothing was found --------------------
+
+        {
+            path: '/*',
+            loader: loaderArguments => redirectToCorrectPathWithNoArguments(loaderArguments,),
+        } satisfies RouteObject,
+
+        //endregion -------------------- Fallback if nothing was found --------------------
+    ].flat(),
+} satisfies RouteObject,], {basename: '/',},)
 
 // console.debug(router.routes[0].children)
+//TODO Test the routes when the page is not on its first load
 
 /** @reactComponent */
 export default function Routes() {
@@ -76,125 +186,64 @@ export default function Routes() {
  * Redirect to the correct path from a value with only a {@link language}
  *
  * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
- * @see redirectToCorrectPath4
+ * @see redirectToCorrectPathWithEveryArguments
  * @throws {Response} The route encapsulated in a response
- * @throws {TypeError} The route was not found from the url
  */
-function redirectToCorrectPath1(loaderArguments: LoaderFunctionArgs,): null {
-    if (ProjectLanguages.CompanionEnum.get.currentOrNull != null)
-        return null // The path is already in place and the current language has been set
-
+function redirectToCorrectPathWithNoArguments(loaderArguments: LoaderFunctionArgs,): never {
     const url = loaderArguments.request.url
-    redirectToCorrectPath4(
-        loaderArguments,
+    throw redirectToCorrectPathWithEveryArguments(
+        EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
         ProjectLanguages.CompanionEnum.get.getValueInUrl(url,),
-        ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
         Games.CompanionEnum.get.getValueInUrl(url,),
+        ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
     )
 }
 /**
- * Redirect to the correct path from no values
+ * Redirect to the correct path from a value with only a {@link language}
  *
  * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
  * @param language The route language
- * @see redirectToCorrectPath4
+ * @see redirectToCorrectPathWithEveryArguments
  * @throws {Response} The route encapsulated in a response
- * @throws {TypeError} The route was not found from the url excluding the {@link language}
  */
-function redirectToCorrectPath2(loaderArguments: LoaderFunctionArgs, language: ProjectLanguages,): never {
+function redirectToCorrectPathWithNoRouteAndGame1(loaderArguments: LoaderFunctionArgs, language: ProjectLanguages,): never {
     const url = loaderArguments.request.url
-    redirectToCorrectPath4(
-        loaderArguments,
+    throw redirectToCorrectPathWithEveryArguments(
+        EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
         language,
-        ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
         Games.CompanionEnum.get.getValueInUrl(url,),
+        ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
     )
 }
 /**
- * Redirect to the correct path from a value with only a {@link language} and a {@link viewDisplay}
+ * Redirect to the correct path from a value with only a {@link language}
  *
  * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
  * @param language The route language
- * @param viewDisplay The nullable view display
- * @see redirectToCorrectPath4
+ * @param viewDisplay The view display
+ * @see redirectToCorrectPathWithEveryArguments
  * @throws {Response} The route encapsulated in a response
- * @throws {TypeError} The route was not found from the url excluding the {@link language} and {@link viewDisplay}
  */
-// function redirectToCorrectPath3(loaderArguments: LoaderFunctionArgs, language: ProjectLanguages, viewDisplay: NullOr<ViewDisplays>,): never {
-//     const url = loaderArguments.request.url
-//     redirectToCorrectPath4(
-//         loaderArguments,
-//         language,
-//         viewDisplay,
-//         Games.CompanionEnum.get.getValueInUrl(url,),
-//     )
-// }
+function redirectToCorrectPathWithNoRouteAndGame2(loaderArguments: LoaderFunctionArgs, language: ProjectLanguages, viewDisplay: ViewDisplays,): never {
+    const url = loaderArguments.request.url
+    throw redirectToCorrectPathWithEveryArguments(
+        EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
+        language,
+        Games.CompanionEnum.get.getValueInUrl(url,),
+        viewDisplay,
+    )
+}
 /**
- * Redirect to the correct path from a value with only a {@link language}, a {@link viewDisplay} and the {@link games}
+ * Redirect to the correct path from a value with only a {@link route} {@link language}, a {@link viewDisplay} and the {@link games}
  *
- * @param loaderArguments The arguments to retrieve the {@link Request request} {@link Request.url url}
+ * @param route The nullable simple route
  * @param language The nullable route language
  * @param viewDisplay The nullable view display
  * @param games The games in the route
- * @see redirectToCorrectPath4
  * @throws {Response} The route encapsulated in a response
- * @throws {TypeError} The route was not found from the url excluding the {@link language}, {@link viewDisplay} and {@link games}
  */
-function redirectToCorrectPath4(loaderArguments: LoaderFunctionArgs, language: NullOr<ProjectLanguages>, viewDisplay: NullOr<ViewDisplays>, games: readonly Games[],): never {
-    const url = loaderArguments.request.url
-
-    const routeFoundByBasicPath = everySimpleRoutes.find(it => url.endsWith(it.path,),)
-
-    const expectedViewDisplayPath = viewDisplay == null ? '' : `/${(ViewDisplays.CompanionEnum.get.current = viewDisplay).urlValue}` as const
-    const expectedGamesPath = games.length === 0 ? '' : `/${Games.setSelected(games,).selectedGamesAsUrlValue}` as const
-    const expectedBasicPath = routeFoundByBasicPath == null ? '/home' : routeFoundByBasicPath.path
-    const expectedLanguage = ProjectLanguages.CompanionEnum.get.current = language == null ? getUserLanguage() : language
-    const expectedPath = `${expectedGamesPath}${expectedViewDisplayPath}${expectedBasicPath}`
-    const routeFoundByArguments = everySimpleRoutes.find(it => it.path === expectedPath,)
-    if (routeFoundByArguments == null)
-        throw new TypeError(`A route should be findable when trying to retrieve from the url "${expectedPath}".`,)
-    throw redirect(routeFromName(routeFoundByArguments.name, expectedLanguage,),)
-}
-
-
-/**
- * Redirect to the <b>home page</b> & set the {@link ProjectLanguages.current current language} to the language received
- * if the language {@link ProjectLanguages.isCurrent is not the current language}
- *
- * @param language The language to set the {@link ProjectLanguages.current current language} and validate if it {@link ProjectLanguages.isCurrent is the current language}
- * @throws {Response} The home route encapsulated in a response
- */
-function redirectToHomeIfNotCurrentLanguage(language: ProjectLanguages,): null {
-    if (language.isCurrent)
-        return null
-    throw redirect(routeFromName('home', ProjectLanguages.CompanionEnum.get.current = language,),)
-}
-
-/**
- * Redirect to the {@link Route.path route path} with
- * the {@link ProjectLanguages.default default language} using the {@link getUserLanguage}
- *
- * @param route The route instance to retrieve its {@link Route.name name}
- *
- * @canSetSelectedGames
- * @throws {Response} The route path encapsulated in a response
- */
-function redirectToPathWithUserLanguage({name, games,}: EveryPossibleRouteInstance,): never {
-    if (!Games.selectedGames.hasAll(...games,))
-        Games.setSelected(games,)
-    throw redirect(routeFromName(name, ProjectLanguages.CompanionEnum.get.defaultValue = getUserLanguage(),),)
-}
-
-/**
- * Set the default selections <i>(if there are not already selected)</i>
- * for the {@link Games}
- *
- * @param route The {@link Route} to retrieve its {@link Route.path path} & {@link Route.games games}
- *
- * @canSetSelectedGames
- */
-function setDefaultValues({path, games,}: EveryPossibleRouteInstance,): null {
-    if (path.includes(Games.CompanionEnum.get.PREFIX,) && games.length !== 0 && !Games.selectedGames.hasAll(...games,))
-        Games.setSelected(games,)
-    return null
+function redirectToCorrectPathWithEveryArguments(route: NullOr<EveryRoutes>, language: NullOr<ProjectLanguages>, games: readonly Games[], viewDisplay: NullOr<ViewDisplays>,): never {
+    if (route == null)
+        route = EveryRoutes.HOME
+    throw redirect(route.getPath(language, games, viewDisplay,),)
 }

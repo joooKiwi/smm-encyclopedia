@@ -1,6 +1,6 @@
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {PossibleDimensionOnList}      from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
+import type {PossibleRouteName}            from 'route/EveryRoutes.types'
 
 import UnfinishedText           from 'app/tools/text/UnfinishedText'
 import {AbstractSimpleListApp}  from 'app/withInterpreter/AbstractSimpleListApp'
@@ -17,7 +17,7 @@ export default class PredefinedMessageApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyPredefinedMessage (list)'
     }
 
