@@ -25,6 +25,7 @@
     "test-file": "react-scripts test --testNamePattern=\"(file test)\" --watchAll=false",
 
     "build": "react-scripts build",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -m \"Deployment of the version 0.21.0 (beta)\" -d build"
   },
   "keywords": [

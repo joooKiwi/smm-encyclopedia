@@ -42,9 +42,6 @@ jobs:
       - name: Copying the locale on the "/src" folder
         run: npm run copy-locale-to-src
 
-      - name: Building of the application
-        run: npm run build
-
       - name: Deployment of the application
         run: |
           git config --global user.name $user_name
