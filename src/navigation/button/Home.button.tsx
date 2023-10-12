@@ -10,7 +10,7 @@ const HOME_ID = 'home-link'
 /** @reactComponent */
 export default function HomeButton() {
     return <Tooltip option={({title: contentTranslation('Home'), placement: 'left',})} elementId={HOME_ID}>
-        <Link key="navigation button" id={HOME_ID} className="btn btn-lg bi-house" to={routeFromName('home')}
+        <Link key="navigation button" id={HOME_ID} className="btn btn-lg bi-house" to={routeFromName('home',)}
               onClick={() => BootstrapInstanceHandler.get.getTooltipInstanceOrNull(HOME_ID)?.instance.hide()}/>
     </Tooltip>
 }

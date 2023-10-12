@@ -25,7 +25,7 @@ export default function LinkButton({partialId, routeName, color, children,}: Rea
     const id = `${partialId}-button`
     const className = `btn btn-${color} link-button`
 
-    return routeName == null
-        ? <button type="button" id={id} className={className} disabled>{children}</button>
-        : <Link type="button" id={id} className={className} to={routeFromName(routeName)}>{children}</Link>
+    if (routeName == null)
+        return <button type="button" id={id} className={className} disabled>{children}</button>
+    return <Link type="button" id={id} className={className} to={routeFromName(routeName,)}>{children}</Link>
 }

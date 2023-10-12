@@ -6,13 +6,13 @@ export interface DisplayButtonGroupProperties
     extends ReactProperties {
 
     /** The React key (applicable to both "button group" & button) */
-    reactKey: string
+    readonly reactKey: string
 
     /** The views applicable to the button group (with its own route name) */
     readonly views: readonly ViewAndRouteName[]
 
     /** The current type used for the group (if the route is the default one) */
-    currentView: ViewDisplays
+    readonly currentView: ViewDisplays
 
 }
 
@@ -20,13 +20,13 @@ export interface DisplayButtonProperties
     extends ReactProperties {
 
     /** The React key */
-    reactKey: string
+    readonly reactKey: string
 
     /** The views on the button */
-    view: ViewDisplays
+    readonly view: ViewDisplays
 
     /** The current view displayed (if the route is the default one) */
-    currentView: ViewDisplays
+    readonly currentView: ViewDisplays
 
     /** The route path on the button */
     readonly routeName: PossibleRouteName

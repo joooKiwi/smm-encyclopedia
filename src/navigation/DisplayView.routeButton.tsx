@@ -28,14 +28,14 @@ interface DisplayViewRouteButtonProperty
 export default function DisplayViewRouteButton({routeName, value, tooltipValue, elementId,}: DisplayViewRouteButtonProperty,) {
     const {pathname,} = useLocation()
 
-    const key = `route button (${routeName})`,
-        routeValue = routeFromName(routeName),
-        isRouteSameFromPathName = routeValue === pathname
+    const key = `route button (${routeName})`
+    const routeValue = routeFromName(routeName,)
+    const isRouteSameFromPathName = routeValue === pathname
 
-    return isRouteSameFromPathName
-        ? <button key={key} id={elementId} className="btn btn-primary" disabled>{value}</button>
-        : <Tooltip option={{placement: 'top', title: tooltipValue,}} elementId={elementId}>
-            <Link key={key} id={elementId} to={routeValue} className="btn btn-outline-primary"
-                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(DISPLAY_VIEW_MODAL_ID)?.instance.hide()}>{value}</Link>
-        </Tooltip>
+    if (isRouteSameFromPathName)
+        return <button key={key} id={elementId} className="btn btn-primary" disabled>{value}</button>
+    return <Tooltip option={{placement: 'top', title: tooltipValue,}} elementId={elementId}>
+        <Link key={key} id={elementId} to={routeValue} className="btn btn-outline-primary"
+              onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(DISPLAY_VIEW_MODAL_ID)?.instance.hide()}>{value}</Link>
+    </Tooltip>
 }
