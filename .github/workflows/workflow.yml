@@ -31,7 +31,7 @@ jobs:
           cache: 'npm'
 
       - name: Installation of the dependencies (for NPM)
-        run: npm ci --ignore-scripts
+        run: npm ci
 
       - name: Conversion from CSV to Json
         run: npm run convert-csv-to-json
