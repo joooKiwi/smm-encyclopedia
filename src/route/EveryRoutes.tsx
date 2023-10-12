@@ -523,7 +523,6 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                     return routeFromOnlyViewDisplay
 
                 if (name.startsWith(`${value.simpleName} `,)) {
-                    debugger
                     const gamesToFind = this.#getGamesInName(name,)
                     const viewDisplayToFind = this.#getViewDisplayInName(name,)
                     const pathToFind = `${value._getPartialPathFromGames(gamesToFind,)}${value._getPartialPathFromViewDisplay(viewDisplayToFind,)}${value.simplePath}`
