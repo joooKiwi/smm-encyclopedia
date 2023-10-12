@@ -17,10 +17,10 @@ export default function DisplayButtonGroup({reactKey: key, views, currentView,}:
 }
 
 function DisplayButton({reactKey: key, view, currentView, routeName,}: DisplayButtonProperties,) {
-    const {pathname: currentPath,} = useLocation(),
-        path = routeFromName(routeName)
+    const {pathname: currentPath,} = useLocation()
+    const path = routeFromName(routeName,)
 
-    return currentPath === path || view === currentView
-        ? <button key={`${key} (${view.name})`} className={`btn btn-success bi-${view.htmlType} btn-viewDisplay`} type="button" disabled/>
-        : <Link key={`${key} (${view.name})`} to={path} className={`btn btn-dark bi-${view.htmlType} btn-viewDisplay`} onClick={() => ViewDisplays.current = view}/>
+    if (currentPath === path || view === currentView)
+        return <button key={`${key} (${view.name})`} className={`btn btn-success bi-${view.htmlType} btn-viewDisplay`} type="button" disabled/>
+    return <Link key={`${key} (${view.name})`} to={path} className={`btn btn-dark bi-${view.htmlType} btn-viewDisplay`} onClick={() => ViewDisplays.CompanionEnum.get.current = view}/>
 }

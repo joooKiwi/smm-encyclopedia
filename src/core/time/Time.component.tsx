@@ -7,9 +7,7 @@ import {Times}                               from 'core/time/Times'
 import {gameContentTranslation}              from 'lang/components/translationMethods'
 import {StringContainer}                     from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class TimeComponent
     extends AbstractDualEntityPropertyComponent<TimeProperty> {
 
@@ -47,7 +45,7 @@ export default class TimeComponent
     }
 
     protected override _renderComponentForAllAsImages() {
-        return <div key={`Every times images (${this.name.english})`}>{Times.values.map(time => this._renderSingleComponent(time))}</div>
+        return <div key={`Every times images (${this.name.english})`}>{Times.CompanionEnum.get.values.map(time => this._renderSingleComponent(time,),)}</div>
     }
 
 }

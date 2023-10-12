@@ -3,7 +3,7 @@ import './GameStyleApp.scss'
 import type {GameStyleProperties}                                  from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
@@ -21,15 +21,15 @@ export default class GameStyleApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyGameStyle (list)'
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return 'everyGameStyle (card)'
     }
 
-    protected override _createTableRouteName(): EveryPossibleRouteNames {
+    protected override _createTableRouteName(): PossibleRouteName {
         return 'everyGameStyle (table)'
     }
 
@@ -44,7 +44,7 @@ export default class GameStyleApp
         return new class GameStyleAppInterpreter implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
             public get content() {
-                return filterGame(GameStyles.values, $this.props.games,)
+                return filterGame(GameStyles.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------
@@ -71,6 +71,7 @@ export default class GameStyleApp
             }
 
             //endregion -------------------- Card list interpreter --------------------
+            //region -------------------- Table interpreter --------------------
 
             public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
             public readonly tableColor = 'primary' satisfies BootstrapThemeColor
@@ -84,7 +85,6 @@ export default class GameStyleApp
                 ]
             }
 
-
             public createNewTableContent(content: GameStyles, option: GameStyleAppOption,) {
                 return option.renderContent(content,)
             }
@@ -92,6 +92,8 @@ export default class GameStyleApp
             public createTableHeader(option: GameStyleAppOption,) {
                 return option.renderTableHeader()
             }
+
+            //endregion -------------------- Table interpreter --------------------
 
         }()
     }

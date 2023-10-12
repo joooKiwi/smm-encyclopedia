@@ -23,9 +23,9 @@ export class CourseThemeContainer
 
     public constructor(name: Name<string>,
                        isInProperty: GameProperty,
-                       isAvailableFromTheStart: Lazy<ClassThatIsAvailableFromTheStart>,
+                       isAvailableFromTheStart: ClassThatIsAvailableFromTheStart,
                        entities: Lazy<readonly Entity[]>,
-                       effect: Lazy<NightEffects>,) {
+                       effect: NightEffects,) {
         super(name, isInProperty, isAvailableFromTheStart,)
         this.#entitiesHolder = entities
         this.#effectHolder = effect
@@ -39,7 +39,7 @@ export class CourseThemeContainer
     }
 
     public get effect() {
-        return this.#effectHolder.value
+        return this.#effectHolder
     }
 
     //endregion -------------------- Getter methods --------------------

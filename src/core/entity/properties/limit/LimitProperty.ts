@@ -1,11 +1,11 @@
-import type {Property}                                                                                                                                                                            from 'core/_properties/Property'
-import type {PropertyThatCanBeUnknown}                                                                                                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
-import type {PropertyThatCanBeUnknownWithComment}                                                                                                                                                 from 'core/_properties/PropertyThatCanBeUnknownWithComment'
-import type {PropertyWithComment}                                                                                                                                                                 from 'core/_properties/PropertyWithComment'
-import type {NotApplicableProperty, UnknownProperty}                                                                                                                                              from 'core/_properties/PropertyWithEverything'
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
-import type {EntityLimits}                                                                                                                                                                        from 'core/entityLimit/EntityLimits'
-import type {GameStructureFrom2Games}                                                                                                                                                             from 'core/game/GameStructure'
+import type {Property}                                                                                                                                                          from 'core/_properties/Property'
+import type {PropertyThatCanBeUnknown}                                                                                                                                          from 'core/_properties/PropertyThatCanBeUnknown'
+import type {PropertyThatCanBeUnknownWithComment}                                                                                                                               from 'core/_properties/PropertyThatCanBeUnknownWithComment'
+import type {PropertyWithComment}                                                                                                                                               from 'core/_properties/PropertyWithComment'
+import type {NotApplicableProperty, UnknownProperty}                                                                                                                            from 'core/_properties/PropertyWithEverything'
+import type {PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
+import type {GameStructureFrom2Games}                                                                                                                                           from 'core/game/GameStructure'
+import type {Limits}                                                                                                                                                            from 'core/limit/Limits'
 
 export interface LimitProperty {
 
@@ -13,9 +13,9 @@ export interface LimitProperty {
 
     get editorLimitContainer(): GameStructureForEditorLimit
 
-    get editorLimit_smm1And3ds(): NullOr<EntityLimits>
+    get editorLimit_smm1And3ds(): NullOr<Limits>
 
-    get editorLimit_smm2(): NullOr<| EntityLimits | NotApplicable>
+    get editorLimit_smm2(): NullOr<| Limits | NotApplicable>
 
     get isUnknown_editorLimit_smm2(): boolean
 
@@ -26,7 +26,7 @@ export interface LimitProperty {
 
     get isInGeneralLimit(): BooleanOrNotApplicable
 
-    get isInGeneralLimitComment(): NullOr<PossibleGeneralEntityLimitComment>
+    get isInGeneralLimitComment(): NullOr<PossibleGeneralLimitComment>
 
     //endregion -------------------- General limit --------------------
     //region -------------------- Global general limit --------------------
@@ -35,7 +35,7 @@ export interface LimitProperty {
 
     get isInGlobalGeneralLimit(): BooleanOrNotApplicable
 
-    get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalEntityLimitComment>
+    get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalLimitComment>
 
     //endregion -------------------- Global general limit --------------------
     //region -------------------- Power-up limit --------------------
@@ -51,7 +51,7 @@ export interface LimitProperty {
 
     get isInProjectileLimit(): NullOr<BooleanOrNotApplicable>
 
-    get isInProjectileLimitComment(): NullOr<PossibleProjectileEntityLimitComment>
+    get isInProjectileLimitComment(): NullOr<PossibleProjectileLimitComment>
 
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Rendered object limit --------------------
@@ -74,57 +74,57 @@ export interface LimitProperty {
 
     get otherLimitContainer(): PossibleOtherLimit
 
-    get otherLimit(): | EntityLimits | NotApplicable
+    get otherLimit(): NullOr<| Limits | NotApplicable>
 
     get otherLimitComment(): NullOr<PossibleOtherLimitComment>
 
     //endregion -------------------- Other limit --------------------
 
     /**
-     * Return a {@link Map} based on the enum {@link EntityLimits}
+     * Return a {@link Map} based on the enum {@link Limits}
      * with every value stored inside {@link LimitProperty this instance}
      * as a boolean.
      *
-     * @note It contain every value of the {@link EntityLimits}
+     * @note It contain every value of the {@link Limits}
      */
-    toLimitMap(): ReadonlyMap<EntityLimits, boolean>
+    toLimitMap(): ReadonlyMap<Limits, boolean>
 
     /**
-     * Return a {@link Map} based on the enum {@link EntityLimits},
-     * but with only the <u>limit in the editor</u> as possible true value.
+     * Return a {@link Map} based on the enum {@link Limits},
+     * but with only the <u>editor limit</u> as possible true value.
      *
      * @see toLimitMap
      */
-    toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean>
+    toEditorLimitMap(): ReadonlyMap<Limits, boolean>
 
     /**
-     * Return a {@link Map} based on the enum {@link EntityLimits},
-     * but with only the <u>limit while playing</u> as possible true value.
+     * Return a {@link Map} based on the enum {@link Limits},
+     * but with only the <u>play limit</u> as possible true value.
      *
      * @see toLimitMap
      */
-    toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean>
+    toPlayLimitMap(): ReadonlyMap<Limits, boolean>
 
 }
 
-/** The game structure for the <u>editor {@link EntityLimits limit}</u> */
-export type GameStructureForEditorLimit = GameStructureFrom2Games<NullOr<EntityLimits>, PossibleEditorLimit_SMM2>
+/** The game structure for the <u>editor {@link Limits}</u> */
+export type GameStructureForEditorLimit = GameStructureFrom2Games<NullOr<Limits>, PossibleEditorLimit_SMM2>
 
 //region -------------------- Single entity limit --------------------
 
-type EditorLimit_SMM2 = PropertyThatCanBeUnknown<EntityLimits, false>
+type EditorLimit_SMM2 = PropertyThatCanBeUnknown<Limits, false>
 export type PossibleEditorLimit_SMM2 = | EditorLimit_SMM2 | UnknownProperty | NotApplicableProperty
 
-type GeneralLimitProperty = PropertyWithComment<boolean, NullOr<PossibleGeneralEntityLimitComment>>
+type GeneralLimitProperty = PropertyWithComment<boolean, NullOr<PossibleGeneralLimitComment>>
 export type PossibleIsInGeneralLimit = | GeneralLimitProperty | NotApplicableProperty
 
-type GeneralGlobalLimitProperty = PropertyWithComment<boolean, NullOr<PossibleGeneralGlobalEntityLimitComment>>
+type GeneralGlobalLimitProperty = PropertyWithComment<boolean, NullOr<PossibleGeneralGlobalLimitComment>>
 export type PossibleIsInGeneralGlobalLimit = | GeneralGlobalLimitProperty | NotApplicableProperty
 
 type PowerUpLimitProperty = Property<NullOrBoolean>
 export type PossibleIsInPowerUpLimit = | PowerUpLimitProperty | NotApplicableProperty
 
-type ProjectileLimitProperty = PropertyWithComment<boolean, NullOr<PossibleProjectileEntityLimitComment>>
+type ProjectileLimitProperty = PropertyWithComment<boolean, NullOr<PossibleProjectileLimitComment>>
 export type PossibleIsInProjectileLimit = | ProjectileLimitProperty | UnknownProperty | NotApplicableProperty
 
 type RenderedObjectLimit = PropertyThatCanBeUnknownWithComment<boolean, boolean, NullOr<PossibleRenderedObjectLimitTypeComment>>
@@ -133,7 +133,7 @@ export type PossibleIsInRenderedObjectLimit = | RenderedObjectLimit | NotApplica
 type CollectedCoinLimit = Property<NullOrBoolean>
 export type PossibleIsInCollectedCoinLimit = | CollectedCoinLimit | NotApplicableProperty
 
-type OtherLimitProperty = PropertyWithComment<EntityLimits, NullOr<PossibleOtherLimitComment>>
-export type PossibleOtherLimit = | OtherLimitProperty | NotApplicableProperty
+type OtherLimitProperty = PropertyThatCanBeUnknownWithComment<Limits, boolean, NullOr<PossibleOtherLimitComment>>
+export type PossibleOtherLimit = | OtherLimitProperty | UnknownProperty | NotApplicableProperty
 
 //endregion -------------------- Single entity limit --------------------

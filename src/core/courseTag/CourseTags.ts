@@ -1,15 +1,14 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
 import type {CourseTag}                            from 'core/courseTag/CourseTag'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/courseTag/CourseTags.types'
+import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singleton.types'
 
-import {CourseTagLoader}       from 'core/courseTag/CourseTag.loader'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {CourseTagLoader}                from 'core/courseTag/CourseTag.loader'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class CourseTags
     extends Enum<Ordinals, Names>
@@ -57,8 +56,8 @@ export class CourseTags
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<CourseTags, typeof CourseTags> = class CompanionEnum_CourseTags
-        extends CompanionEnum<CourseTags, typeof CourseTags> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<CourseTags, typeof CourseTags> = class CompanionEnum_CourseTags
+        extends CompanionEnumByEnglishNameOnly<CourseTags, typeof CourseTags> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -133,32 +132,13 @@ export class CourseTags
     }
 
     public static get unofficialCourseTags(): readonly CourseTags[] {
-        return this.#unofficialCourseTags ??= this.values.filter(it => !this.officialCourseTags.includes(it)).toArray()
+        return this.#unofficialCourseTags ??= this.CompanionEnum.get.values.filter(it => !this.officialCourseTags.includes(it)).toArray()
     }
 
     public static get makerCentralCourseTags(): readonly CourseTags[] {
-        return this.#makerCentralCourseTags ??= this.values.filter(it => it.reference.makerCentralName != null).toArray()
-    }
-
-    public static getValueByName(value: Nullable<| CourseTags | string>,) {
-        return getValueByEnglishName(value, this,)
+        return this.#makerCentralCourseTags ??= this.CompanionEnum.get.values.filter(it => it.reference.makerCentralName != null).toArray()
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<CourseTags>,): CourseTags {
-        return CourseTags.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<CourseTags> {
-        return CourseTags.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<CourseTags> {
-        return CourseTags.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

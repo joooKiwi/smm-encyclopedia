@@ -14,13 +14,16 @@ export class MysteryMushroomContainer
     readonly #propertyContainer
 
     //endregion -------------------- Fields --------------------
-
-    public constructor(name: Name<string>, games: MysteryMushroomGames, property: MysteryMushroomProperty,) {
+    //region -------------------- Constructor --------------------
+    public constructor(name: Name<string>,
+                       games: MysteryMushroomGames,
+                       property: MysteryMushroomProperty,) {
         super(name,)
         this.#games = games
         this.#propertyContainer = property
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Games --------------------

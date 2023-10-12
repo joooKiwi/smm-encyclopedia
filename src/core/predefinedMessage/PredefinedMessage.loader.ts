@@ -1,18 +1,15 @@
 import file from 'resources/compiled/Predefined message (SMM2).json'
 
-import type {LanguageContent}           from 'core/_template/LanguageContent'
-import type {PredefinedMessage}         from 'core/predefinedMessage/PredefinedMessage'
-import type {PredefinedMessageTemplate} from 'core/predefinedMessage/PredefinedMessage.template'
-import type {PossibleEnglishName}       from 'core/predefinedMessage/PredefinedMessages.types'
-import type {Loader}                    from 'util/loader/Loader'
+import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {PredefinedMessage}   from 'core/predefinedMessage/PredefinedMessage'
+import type {PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
+import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}           from 'variables'
-import {AbstractTemplateCreator}  from 'core/_template/AbstractTemplate.creator'
-import {PredefinedMessageCreator} from 'core/predefinedMessage/PredefinedMessage.creator'
+import {isInProduction}             from 'variables'
+import {PredefinedMessageContainer} from 'core/predefinedMessage/PredefinedMessage.container'
+import {createNameFromContent}      from 'lang/name/createNameFromContent'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class PredefinedMessageLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, PredefinedMessage>> {
 
@@ -20,8 +17,7 @@ export class PredefinedMessageLoader
 
     static #instance?: PredefinedMessageLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -32,42 +28,32 @@ export class PredefinedMessageLoader
     #map?: Map<PossibleEnglishName, PredefinedMessage>
 
     public load(): ReadonlyMap<PossibleEnglishName, PredefinedMessage> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, PredefinedMessage>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new PredefinedMessageCreator(new TemplateCreator(it).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "Predefined message" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "Predefined message" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, PredefinedMessage>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "predefined message" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "predefined message" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
-class TemplateCreator
-    extends AbstractTemplateCreator<PredefinedMessageTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): PredefinedMessageTemplate {
-        return {
-            name: this._createNameTemplate(),
-        }
-    }
-
+function createReference(content: Content,): PredefinedMessage {
+    return new PredefinedMessageContainer(createNameFromContent(content, 2, true,),)
 }

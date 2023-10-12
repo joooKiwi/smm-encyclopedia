@@ -209,6 +209,20 @@
     "all":         "Tous les {{pluralName}}",
     "display all": "Afficher tous les {{pluralName}}"
   },
+  "sample course": {
+    "singular": "Échantillon de {{singularName}}",
+    "plural":   "Échantillons de {{singularName}}",
+
+    "all":         "Tous les échantillons de {{singularName}}",
+    "display all": "Afficher tous les échantillons de {{singularName}}"
+  },
+  "medal": {
+    "singular": "Médaille",
+    "plural":   "Médailles",
+
+    "all":         "Toutes les médailles",
+    "display all": "Afficher toutes les médailles"
+  },
   "editor voice": {
     "singular": "Voix de l'éditeur",
     "plural":   "Voix de l'éditeur",

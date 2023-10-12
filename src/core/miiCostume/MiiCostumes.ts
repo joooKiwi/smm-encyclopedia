@@ -1,22 +1,18 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                       from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                         from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName}       from 'core/miiCostume/MiiCostumes.types'
 import type {MiiCostume}                                 from 'core/miiCostume/MiiCostume'
 import type {MiiCostumeImageFile, PossibleImageFileName} from 'core/miiCostume/file/MiiCostumeImageFile'
+import type {CompanionEnumByNameSingleton}               from 'util/enumerable/Singleton.types'
 import type {ClassWithImageFile}                         from 'util/file/image/ClassWithImageFile'
 
-import {MiiCostumeLoader} from 'core/miiCostume/MiiCostume.loader'
-import {miiCostumeImage}  from 'core/miiCostume/file/fileCreator'
-import {StringContainer}  from 'util/StringContainer'
+import {MiiCostumeLoader}    from 'core/miiCostume/MiiCostume.loader'
+import {miiCostumeImage}     from 'core/miiCostume/file/fileCreator'
+import {StringContainer}     from 'util/StringContainer'
+import {CompanionEnumByName} from 'util/enumerable/companion/CompanionEnumByName'
 
-/**
- * @recursiveReference {@link MiiCostumeLoader}
- * @classWithDynamicImport {@link MiiCostumeLoader}
- */
 export class MiiCostumes
     extends Enum<Ordinals, Names>
     implements ClassWithReference<MiiCostume>,
@@ -161,8 +157,8 @@ export class MiiCostumes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<MiiCostumes, typeof MiiCostumes> = class CompanionEnum_MiiCostumes
-        extends CompanionEnum<MiiCostumes, typeof MiiCostumes> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<MiiCostumes, typeof MiiCostumes> = class CompanionEnum_MiiCostumes
+        extends CompanionEnumByName<MiiCostumes, typeof MiiCostumes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -177,6 +173,19 @@ export class MiiCostumes
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByName(value: Nullable<| MiiCostumes | string>,): MiiCostumes {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(enumerable =>
+                enumerable.englishName === value
+                || enumerable.__imageName === value,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
 
     }
 
@@ -236,34 +245,6 @@ export class MiiCostumes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByName(value: Nullable<| MiiCostumes | string>,): MiiCostumes {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null name.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(enumerable => enumerable.englishName === value
-            || enumerable.__imageName === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<MiiCostumes>,): MiiCostumes {
-        return MiiCostumes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<MiiCostumes> {
-        return MiiCostumes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<MiiCostumes> {
-        return MiiCostumes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

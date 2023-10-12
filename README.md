@@ -146,7 +146,7 @@ They don't follow directly the standard, but have a general format followed.
 |:--------------------------|:-------------------------------------------------------------------------------------------------------------------------:|:----------------------------------------------------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [upper-case-name]         |                                    An upper case name (using `_` as a word separator)                                     |                         Constant,<br/>Enum instance                          | <pre>AN_EXAMPLE                                                                                                                                                                                                             |
 | [lower-case-name]         |                                           A lower case name (using camel case)                                            |                                   Variable                                   | <pre>anExample                                                                                                                                                                                                              |
-| [capital-case]            |                                                   A capital case name (                                                   |     Class,<br/>Interface,<br/>Type,<br/>Dynamic import method for class      | <pre>AnExample                                                                                                                                                                                                              |
+| [capital-case]            |                                          A capital case name (using Pascal case)                                          |     Class,<br/>Interface,<br/>Type,<br/>Dynamic import method for class      | <pre>AnExample                                                                                                                                                                                                              |
 | [name][_[nameX]*]         |                                      Multiple different names following each others                                       |                             Variable,<br/>Method                             | <pre>anExample_withSomething_secret                                                                                                                                                                                         |
 | #[name]                   |                                                  **(always)** `private`                                                   |                             Variable,<br/>Method                             | <pre>#anExample<br/>#anExample()                                                                                                                                                                                            |
 | $[name]                   |                              something that starts with a number<br/>*(Not a PHP variable)*                               |                             Variable,<br/>Method                             | <pre>$1Example<br/>$1Example()                                                                                                                                                                                              |
@@ -176,7 +176,7 @@ The rest should not be used outside the same package (folder).
 | [name].loader.ts    | Loader    |                                         The file loader (main core)                                         |               Builder<br/>Template<br/>Type |
 | loader.types.ts     | Type      |                                  Types only applicable to the file loaders                                  |                                             |
 | [name].builder.ts   | Builder   |                        The class that create the class with builder pattern methods                         | Template <br/>Class<br/>Enum _(some times)_ |
-| [name].creator.ts   | Creator   |                        A class that create the class with a singular `create` method                        | Template <br/>Class<br/>Enum _(some times)_ |
+| [name].creator.ts   | Creator   | A class that create the class with a singular `create` method,<br/>or a stateless method `createContent()`  | Template <br/>Class<br/>Enum _(some times)_ |
 | [name].provider.ts  | Provider  | The provider class that will get or create the specific instance<br/>(will never create duplicate instance) |                        Interface <br/>Class |
 | [name].ts           | Interface |                                The class description that is used elsewhere                                 |                                        Type |
 | Empty[name].ts      | Singleton |                                          The empty class instance                                           |                                   Interface |
@@ -196,8 +196,8 @@ The types used in the interface:
 
 #### Dependencies
 
-<details>
-<summary>Grid</summary>
+Every dependency are described bellow with the direct dependency
+and the indirect (via the `DynamicImporter` utility class)
 
 | Name                                        |                                                                                     Direct dependency                                                                                     |        Indirect dependency         |
 |:--------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|:----------------------------------:|
@@ -220,7 +220,7 @@ The types used in the interface:
 | Sound effect category                       |                                                                                                                                                                                           |            Sound effect            |
 | Course tag <sup>(SMM2)                      |                                                                                                                                                                                           |                                    |
 | Predefined message <sup>(SMM2)              |                                                                                                                                                                                           |                                    |
-| Sample courses <sup>(SMM2)                  |                                                                                                                                                                                           |                                    |
+| Sample courses <sup>(SMM1)                  |                                                                                  Themes,<br/>Game style                                                                                   |                                    |
 | Medals <sup>(SMM1)                          |                                                                                                                                                                                           |     Entity,<br/>Character name     |
 | Super Mario Challenges levels <sup>(SMM3DW) |                                                                                                                                                                                           |                                    |
 | Job <sup>(SMM2)                             |                                                                                                                                                                                           |               Entity               |
@@ -233,133 +233,89 @@ The types used in the interface:
 | Instrument                                  |                                                                                                                                                                                           |               Entity               |
 | Version                                     |                                                                                        Game style                                                                                         |                                    |
 
-</details>
-<details>
-<summary>Flowchart (does not work on the mobile app)</summary>
-
-```mermaid
----
-title: Legends
----
-flowchart TB
-  E(("General<br/>dependency"))
-  subgraph Exclusive to...
-    SMM1{{"Super Mario Maker (WiiU)"}}
-    SMM3DS>"Super Mario Maker for Nintendo 3DS (3DS)"]
-    SMM2[\"Super Mario Maker 2 (Switch)"\]
-  end
-  subgraph Dependencies to...
-    A -- Direct --> B
-    C -. "Indirect (via the DynamicImporter)" .-> D
-  end
-```
-
-The dependencies imply that the entity uses almost everything in the project.<br/>
-So, some recursive dependencies are in place to make the project compile.
-
-To simplify the diagram, the entity dependencies have been removed to help readability.<br>
-And the dependencies used in the Entity are:<br/>
-1. Clear condition
-2. Editor voice
-3. Entity behaviour
-4. Entity category
-5. Entity group _(by dynamic import)_
-6. Entity limit
-7. Entity projectile
-8. Entity object
-9. Game
-10. Game style
-11. Instrument
-12. Mystery Mushroom
-13. Night effect _(by dynamic import)_
-14. Theme
-15. Time
-16. Version
-
-```mermaid
-flowchart LR
-  CN(("Character<br/>name"))
-  CC[\Clear condition\]
-  CCC[\Clear condition category\]
-  CT[\Course tag\]
-  EV((Editor voice))
-  E{"Entity<br/>(the main content)"}
-  EB(("Entity<br/>behaviour"))
-  EC(("Entity<br/>category"))
-  EG((Entity group))
-  EL((Entity limit))
-  EP((Entity<br/>projectile))
-  EO((Entity<br/>object))
-  G((Game))
-  GR(("Game<br/>reference"))
-  GS((Game style))
-  I((Instrument))
-  J[\Job\]
-  M{{Medal}}
-  MC[\Mii costume\]
-  MCC[\Mii costume category\]
-  MM{{Mystery Mushroom}}
-  NE((Night effect))
-  NS[\Ninji speedrun\]
-  ON(("Official<br/>notification"))
-  PM[\Predefined message\]
-  SC[\Sample course\]
-  SE((Sound effect))
-  SEC(("Sound effect<br/>category"))
-  SMCL>Super Mario Challenges level]
-  Th((Theme))
-  Ti((Time))
-  V((Version))
-  
-
-  subgraph Independent
-    CT & J & M & NS & ON & PM & SC & SMCL
-  end
-  subgraph Entity
-   E & EB & EC & EG & EL & EO & EP & I & MM
-  end
-
-  subgraph Sound effect
-    SE     --> SEC
-    SEC    -.-> SE
-  end
-  subgraph "Clear condition (SMM2)"
-    CC     -->  CCC
-    CCC    -.-> CC
-  end
-  CN       -->  EV
-  CC       -.-> E
-  EV       -.-> CN & E
-  EB       -.-> E
-  EC       -.-> E
-  EG       -->  E
-  EL       -.-> E
-  EO       -.-> E
-  EP       -.-> E
-  SE       -.-> E & EG & G
-  Th       -.-> Ti & G
-  V        -->  GS
-  subgraph Game
-    G & GS -->  GR
-    GR     -.-> G & GS
-    subgraph Game style
-      GS   -->  NE
-    end
-  end
-  I        -.-> E
-  J        -.-> E
-  M        -.-> CN & E
-  MC       -.-> E
-  subgraph "Mii costume (SMM2)"
-    MC     -->  MCC
-    MCC    -.-> MC
-  end
-  NE       -.-> CN & GS & E
-  ON       -.-> E & MC
-
-```
-
-</details>
+[//]: # (```mermaid)
+[//]: # (flowchart LR)
+[//]: # (  CN&#40;&#40;"Character<br/>name"&#41;&#41;)
+[//]: # (  CC[\Clear condition\])
+[//]: # (  CCC[\Clear condition category\])
+[//]: # (  CT[\Course tag\])
+[//]: # (  EV&#40;&#40;Editor voice&#41;&#41;)
+[//]: # (  E{"Entity<br/>&#40;the main content&#41;"})
+[//]: # (  EB&#40;&#40;"Entity<br/>behaviour"&#41;&#41;)
+[//]: # (  EC&#40;&#40;"Entity<br/>category"&#41;&#41;)
+[//]: # (  EG&#40;&#40;Entity group&#41;&#41;)
+[//]: # (  EL&#40;&#40;Entity limit&#41;&#41;)
+[//]: # (  EP&#40;&#40;Entity<br/>projectile&#41;&#41;)
+[//]: # (  EO&#40;&#40;Entity<br/>object&#41;&#41;)
+[//]: # (  G&#40;&#40;Game&#41;&#41;)
+[//]: # (  GR&#40;&#40;"Game<br/>reference"&#41;&#41;)
+[//]: # (  GS&#40;&#40;Game style&#41;&#41;)
+[//]: # (  I&#40;&#40;Instrument&#41;&#41;)
+[//]: # (  J[\Job\])
+[//]: # (  M{{Medal}})
+[//]: # (  MC[\Mii costume\])
+[//]: # (  MCC[\Mii costume category\])
+[//]: # (  MM{{Mystery Mushroom}})
+[//]: # (  NE&#40;&#40;Night effect&#41;&#41;)
+[//]: # (  NS[\Ninji speedrun\])
+[//]: # (  ON&#40;&#40;"Official<br/>notification"&#41;&#41;)
+[//]: # (  PM[\Predefined message\])
+[//]: # (  SC[\Sample course\])
+[//]: # (  SE&#40;&#40;Sound effect&#41;&#41;)
+[//]: # (  SEC&#40;&#40;"Sound effect<br/>category"&#41;&#41;)
+[//]: # (  SMCL>Super Mario Challenges level])
+[//]: # (  Th&#40;&#40;Theme&#41;&#41;)
+[//]: # (  Ti&#40;&#40;Time&#41;&#41;)
+[//]: # (  V&#40;&#40;Version&#41;&#41;)
+[//]: # ()
+[//]: # ()
+[//]: # (  subgraph Independent)
+[//]: # (    CT & J & M & NS & ON & PM & SC & SMCL)
+[//]: # (  end)
+[//]: # (  subgraph Entity)
+[//]: # (   E & EB & EC & EG & EL & EO & EP & I & MM)
+[//]: # (  end)
+[//]: # ()
+[//]: # (  subgraph Sound effect)
+[//]: # (    SE     --> SEC)
+[//]: # (    SEC    -.-> SE)
+[//]: # (  end)
+[//]: # (  subgraph "Clear condition &#40;SMM2&#41;")
+[//]: # (    CC     -->  CCC)
+[//]: # (    CCC    -.-> CC)
+[//]: # (  end)
+[//]: # (  CN       -->  EV)
+[//]: # (  CC       -.-> E)
+[//]: # (  EV       -.-> CN & E)
+[//]: # (  EB       -.-> E)
+[//]: # (  EC       -.-> E)
+[//]: # (  EG       -->  E)
+[//]: # (  EL       -.-> E)
+[//]: # (  EO       -.-> E)
+[//]: # (  EP       -.-> E)
+[//]: # (  SE       -.-> E & EG & G)
+[//]: # (  Th       -.-> Ti & G)
+[//]: # (  V        -->  GS)
+[//]: # (  subgraph Game)
+[//]: # (    G & GS -->  GR)
+[//]: # (    GR     -.-> G & GS)
+[//]: # (    subgraph "Game style")
+[//]: # (      GS   -->  NE)
+[//]: # (    end)
+[//]: # (  end)
+[//]: # (  I        -.-> E)
+[//]: # (  J        -.-> E)
+[//]: # (  M        -.-> CN & E)
+[//]: # (  MC       -.-> E)
+[//]: # (  subgraph "Mii costume &#40;SMM2&#41;")
+[//]: # (    MC     -->  MCC)
+[//]: # (    MCC    -.-> MC)
+[//]: # (  end)
+[//]: # (  NE       -.-> CN & GS & E)
+[//]: # (  ON       -.-> E & MC)
+[//]: # (  SC       -.-> Th & GS)
+[//]: # ()
+[//]: # (```)
 
 #### Routes
 
@@ -392,6 +348,7 @@ So far, the paths are separated by multiple parts:
 | `every/mii-costume-category`                                                                                     | The type of Mii costume that can be used only in `Super Mario Maker 2`             |
 | `every-mystery-mushroom`                                                                                         | The Mystery Mushrooms usable only in `Super Mario Maker`                           |
 | `every/predefined-message`                                                                                       | The predefined message used online                                                 |
+| `every/sample-course`                                                                                            | The sample courses (in `Super Mario Maker` only)                                   |
 | \[`every`&#124;`official`&#124;`unofficial`&#124;`maker-central`]<br/>`course-tag`                               | The course tags used online or by the community                                    |
 | `every/instrument`                                                                                               | The instrument applicable to anything that can make a sound out of a `Music Block` |
 | `every-editor-voice`                                                                                             | The voices applicable to anything placed in the editor                             |

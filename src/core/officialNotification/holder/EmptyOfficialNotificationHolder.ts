@@ -1,9 +1,7 @@
 import {OfficialNotificationHolder}                                from 'core/officialNotification/holder/OfficialNotificationHolder'
 import {ClassWithNullObjectPattern, EmptyOfficialNotificationName} from 'util/ClassWithNullObjectPattern'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyOfficialNotificationHolder
     implements OfficialNotificationHolder, ClassWithNullObjectPattern<EmptyOfficialNotificationName> {
 
@@ -11,8 +9,7 @@ export class EmptyOfficialNotificationHolder
 
     static #instance?: EmptyOfficialNotificationHolder
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

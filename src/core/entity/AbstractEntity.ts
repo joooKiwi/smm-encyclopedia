@@ -1,14 +1,14 @@
-import type {Lazy} from '@joookiwi/lazy'
+import {lazyOf} from '@joookiwi/lazy'
 
 import type {Entity, PossibleOtherEntities}                                                                                                                                                                                                                    from 'core/entity/Entity'
 import type {EntityReferences}                                                                                                                                                                                                                                 from 'core/entity/properties/EntityReferences'
 import type {Property}                                                                                                                                                                                                                                         from 'core/entity/properties/Property'
 import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                              from 'core/entity/properties/limit/loader.types'
+import type {PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                from 'core/entity/properties/limit/loader.types'
 import type {EntityCategory}                                                                                                                                                                                                                                   from 'core/entityCategory/EntityCategory'
-import type {EntityLimits}                                                                                                                                                                                                                                     from 'core/entityLimit/EntityLimits'
 import type {Games}                                                                                                                                                                                                                                            from 'core/game/Games'
 import type {GameStyles}                                                                                                                                                                                                                                       from 'core/gameStyle/GameStyles'
+import type {Limits}                                                                                                                                                                                                                                           from 'core/limit/Limits'
 import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
 import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
 import type {Name}                                                                                                                                                                                                                                             from 'lang/name/Name'
@@ -33,8 +33,8 @@ export abstract class AbstractEntity
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(name: Name<string>, category: Lazy<EntityCategory>, property: Property, references: EntityReferences,) {
-        super(name, category,)
+    protected constructor(name: Name<string>, category: EntityCategory, property: Property, references: EntityReferences,) {
+        super(name, lazyOf(category,),)
         this.#testCategory(this.categoryContainer)
         this.#propertyContainer = this.#testProperty(property)
         this.#referencesContainer = references
@@ -57,8 +57,7 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testCategory(category: EntityCategory,): void {
-    }
+    protected _testCategory(category: EntityCategory,): void {}
 
     #testProperty(property: Property,): Property {
         if (!isInProduction)
@@ -74,8 +73,7 @@ export abstract class AbstractEntity
      * @onlyCalledOnDevelopment
      * @onlyCalledOnTest
      */
-    protected _testProperty(property: Property,): void {
-    }
+    protected _testProperty(property: Property,): void {}
 
     //endregion -------------------- Tester methods --------------------
     //region -------------------- Getter methods --------------------
@@ -206,11 +204,11 @@ export abstract class AbstractEntity
         return this.propertyContainer.editorLimitContainer
     }
 
-    public get editorLimit_smm1And3ds(): NullOr<EntityLimits> {
+    public get editorLimit_smm1And3ds(): NullOr<Limits> {
         return this.propertyContainer.editorLimit_smm1And3ds
     }
 
-    public get editorLimit_smm2(): NullOr<| EntityLimits | NotApplicable> {
+    public get editorLimit_smm2(): NullOr<| Limits | NotApplicable> {
         return this.propertyContainer.editorLimit_smm2
     }
 
@@ -229,7 +227,7 @@ export abstract class AbstractEntity
         return this.propertyContainer.isInGeneralLimit
     }
 
-    public get isInGeneralLimitComment(): NullOr<PossibleGeneralEntityLimitComment> {
+    public get isInGeneralLimitComment(): NullOr<PossibleGeneralLimitComment> {
         return this.propertyContainer.isInGeneralLimitComment
     }
 
@@ -243,7 +241,7 @@ export abstract class AbstractEntity
         return this.propertyContainer.isInGlobalGeneralLimit
     }
 
-    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalEntityLimitComment> {
+    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalLimitComment> {
         return this.propertyContainer.isInGlobalGeneralLimitComment
     }
 
@@ -271,7 +269,7 @@ export abstract class AbstractEntity
         return this.propertyContainer.isInProjectileLimit
     }
 
-    public get isInProjectileLimitComment(): NullOr<PossibleProjectileEntityLimitComment> {
+    public get isInProjectileLimitComment(): NullOr<PossibleProjectileLimitComment> {
         return this.propertyContainer.isInProjectileLimitComment
     }
 
@@ -308,7 +306,7 @@ export abstract class AbstractEntity
         return this.propertyContainer.otherLimitContainer
     }
 
-    public get otherLimit(): | EntityLimits | NotApplicable {
+    public get otherLimit(): NullOr<| Limits | NotApplicable> {
         return this.propertyContainer.otherLimit
     }
 
@@ -478,16 +476,16 @@ export abstract class AbstractEntity
         return this.timeContainer.toTimeMap()
     }
 
-    public toLimitMap(): ReadonlyMap<EntityLimits, boolean> {
+    public toLimitMap(): ReadonlyMap<Limits, boolean> {
         return this.limitContainer.toLimitMap()
     }
 
-    public toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean> {
-        return this.limitContainer.toLimitInTheEditorMap()
+    public toEditorLimitMap(): ReadonlyMap<Limits, boolean> {
+        return this.limitContainer.toEditorLimitMap()
     }
 
-    public toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean> {
-        return this.limitContainer.toLimitWhilePlayingMap()
+    public toPlayLimitMap(): ReadonlyMap<Limits, boolean> {
+        return this.limitContainer.toPlayLimitMap()
     }
 
     //endregion -------------------- Convertor methods --------------------

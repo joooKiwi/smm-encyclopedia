@@ -1,17 +1,22 @@
 import file from 'resources/compiled/Entity behaviour.json'
 
+import {CommonLazy, lazy} from '@joookiwi/lazy'
+
 import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
-import type {EntityBehaviourTemplate}                  from 'core/behaviour/EntityBehaviour.template'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
+import type {EntityBehaviourLink}                      from 'core/behaviour/properties/EntityBehaviourLink'
 import type {PossibleGroupName}                        from 'core/entityTypes'
 import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
 import type {Loader}                                   from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {EntityBehaviourCreator}  from 'core/behaviour/EntityBehaviour.creator'
+import {isInProduction}                  from 'variables'
+import {EntityBehaviourContainer}        from 'core/behaviour/EntityBehaviour.container'
+import {EntityBehaviourIsInOnlyProvider} from 'core/behaviour/properties/EntityBehaviourIsInOnly.provider'
+import {EntityBehaviourLinkProvider}     from 'core/behaviour/properties/EntityBehaviourLink.provider'
+import {Import}                          from 'util/DynamicImporter'
 
 /**
+ * @dependsOn<{@link EntityLoader}>
  * @singleton
  */
 export class EntityBehaviourLoader
@@ -21,8 +26,7 @@ export class EntityBehaviourLoader
 
     static #instance?: EntityBehaviourLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -33,22 +37,24 @@ export class EntityBehaviourLoader
     #map?: Map<PossibleTranslationKeys, EntityBehaviour>
 
     public load(): ReadonlyMap<PossibleTranslationKeys, EntityBehaviour> {
-        if (this.#map == null) {
-            const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new EntityBehaviourCreator(new TemplateBuilder(it as Content).create()).create())
-                .forEach(it => references.set(it.translationKey, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "game style" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "game style" has been loaded --------------------',
-                )// temporary console.lo
-
-            this.#map = references
+        const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.translationKey, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "entity behaviour" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "entity behaviour" has been loaded --------------------',
+            )// temporary console.lo
+
+        return this.#map = references
     }
 
 }
@@ -67,28 +73,23 @@ interface Content {
 
 }
 
-class TemplateBuilder
-    extends AbstractTemplateCreator<EntityBehaviourTemplate, Content> {
+function createReference(content: Content,): EntityBehaviour {
+    return new EntityBehaviourContainer(
+        content.acronym,
+        content.translationKey,
+        EntityBehaviourIsInOnlyProvider.get.get(content.isOnlineOnly, content.isMultiplayerOnly,),
+        createLinks(content,),
+    )
+}
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
+function createLinks(content: Content,): EntityBehaviourLink {
+    const group = content.link_group
+    const entity = content.link_entity
 
-    public create(): EntityBehaviourTemplate {
-        const content = this._content
-
-        return {
-            acronym: content.acronym,
-            translationKey: content.translationKey,
-            isOnly: {
-                online: content.isOnlineOnly,
-                multiplayer: content.isMultiplayerOnly,
-            },
-            links: {
-                group: content.link_group,
-                entity: content.link_entity,
-            },
-        }
-    }
-
+    if (group == null && entity == null)
+        return EntityBehaviourLinkProvider.get.null
+    return EntityBehaviourLinkProvider.get.get([group, entity,],
+        group == null ? CommonLazy.NULL : lazy(() => ({}),),//TODO implement the get entity by group name once it is implemented
+        entity == null ? CommonLazy.NULL : lazy(() => Import.EntityLoader.get.load().get(entity,)!,),
+    )
 }

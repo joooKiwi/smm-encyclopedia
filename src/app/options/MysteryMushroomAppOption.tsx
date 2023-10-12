@@ -1,7 +1,6 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                               from 'react'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {Fragment}                    from 'react'
 
 import type {AppOption}                                    from 'app/options/AppOption'
 import type {Names, Ordinals, PossibleMysteryMushroomType} from 'app/options/MysteryMushroomAppOption.types'
@@ -354,25 +353,6 @@ export abstract class MysteryMushroomAppOption
         return this.#type
     }
 
-    protected static get _imagesAndSounds(): readonly MysteryMushroomAppOption[] {
-        return this.#imagesAndSounds ??= [
-            MysteryMushroomAppOption.POWER_UP_COLLECTED,
-            MysteryMushroomAppOption.WAITING,
-            MysteryMushroomAppOption.TAUNT,
-            MysteryMushroomAppOption.PRESSING_DOWN,
-            MysteryMushroomAppOption.WALK,
-            MysteryMushroomAppOption.RUNNING,
-            MysteryMushroomAppOption.SWIMMING,
-            MysteryMushroomAppOption.JUMP,
-            MysteryMushroomAppOption.FALLING_AFTER_A_JUMP,
-            MysteryMushroomAppOption.ON_GROUND_AFTER_A_JUMP,
-            MysteryMushroomAppOption.TURNING,
-            MysteryMushroomAppOption.CLIMBING,
-            MysteryMushroomAppOption.GOAL_POLE,
-            MysteryMushroomAppOption.LOST_A_LIFE,
-        ]
-    }
-
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
@@ -462,28 +442,13 @@ export abstract class MysteryMushroomAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent
 
-    public renderTableHeader(): NullOr<SingleHeaderContent> {
+    public renderTableHeader(): SingleHeaderContent {
         return this._createTableHeaderOption()
     }
 
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<MysteryMushroomAppOption>,): MysteryMushroomAppOption {
-        return MysteryMushroomAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<MysteryMushroomAppOption> {
-        return MysteryMushroomAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<MysteryMushroomAppOption> {
-        return MysteryMushroomAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

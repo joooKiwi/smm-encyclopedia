@@ -1,18 +1,35 @@
 import file from 'resources/compiled/Theme.json'
 
-import type {LanguageContent}                           from 'core/_template/LanguageContent'
-import type {PossibleIsAvailableFromTheStart}           from 'core/availableFromTheStart/loader.types'
-import type {GameContentFrom1And2}                      from 'core/game/Loader.types'
-import type {CourseAndWorldTheme}                       from 'core/theme/CourseAndWorldTheme'
-import type {PossibleEnglishName}                       from 'core/theme/Themes.types'
-import type {PossibleEffectInNightTheme, ThemeTemplate} from 'core/theme/Theme.template'
-import type {Loader}                                    from 'util/loader/Loader'
+import {lazy} from '@joookiwi/lazy'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {ThemeCreator}            from 'core/theme/Theme.creator'
+import type {LanguageContent}                 from 'core/_template/LanguageContent'
+import type {PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/loader.types'
+import type {GameContentFrom1And2}            from 'core/game/Loader.types'
+import type {CourseAndWorldTheme}             from 'core/theme/CourseAndWorldTheme'
+import type {CourseTheme}                     from 'core/theme/CourseTheme'
+import type {PossibleEnglishName}             from 'core/theme/Themes.types'
+import type {PossibleEffectInNightTheme}      from 'core/theme/loader.types'
+import type {WorldTheme}                      from 'core/theme/WorldTheme'
+import type {Name}                            from 'lang/name/Name'
+import type {Loader}                          from 'util/loader/Loader'
+
+import {isInProduction}                           from 'variables'
+import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
+import {Entities}                                 from 'core/entity/Entities'
+import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
+import {CourseAndWorldThemeContainer}             from 'core/theme/CourseAndWorldTheme.container'
+import {CourseOnlyThemeContainer}                 from 'core/theme/CourseOnlyTheme.container'
+import {CourseThemeContainer}                     from 'core/theme/CourseTheme.container'
+import {Themes}                                   from 'core/theme/Themes'
+import {WorldOnlyThemeContainer}                  from 'core/theme/WorldOnlyTheme.container'
+import {WorldThemeContainer}                      from 'core/theme/WorldTheme.container'
+import {NightEffects}                             from 'core/nightEffect/NightEffects'
+import {createNameFromContent}                    from 'lang/name/createNameFromContent'
 
 /**
+ * @dependsOn<{@link Entities}>
+ * @indirectlyDependsOn<{@link EntityLoader}>
+ * @dependsOn<{@link Themes}>
  * @singleton
  */
 export class ThemeLoader
@@ -22,8 +39,7 @@ export class ThemeLoader
 
     static #instance?: ThemeLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -34,22 +50,24 @@ export class ThemeLoader
     #map?: Map<PossibleEnglishName, CourseAndWorldTheme>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseAndWorldTheme> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new ThemeCreator(new TemplateCreator(it as Content).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- theme has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- theme has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "theme" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "theme" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
@@ -58,41 +76,59 @@ export class ThemeLoader
 interface Content
     extends LanguageContent, GameContentFrom1And2 {
 
-    isInCourseTheme: boolean
+    readonly isInCourseTheme: boolean
+    readonly isInWorldTheme: boolean
 
-    isInWorldTheme: boolean
-
-
-    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
-
-    effectInNightTheme: PossibleEffectInNightTheme
+    readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+    readonly effectInNightTheme: PossibleEffectInNightTheme
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<ThemeTemplate, Content> {
+function createReference(content: Content,): CourseAndWorldTheme {
+    const isInCourseTheme = content.isInCourseTheme
+    const isInWorldTheme = content.isInWorldTheme
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
+    const name = content.isInSuperMarioMaker1And3DS
+        ? createNameFromContent(content, 'all', true,)
+        : createNameFromContent(content, 2, true,)
 
-    public override create(): ThemeTemplate {
-        const content = this._content
+    if (isInCourseTheme && isInWorldTheme)
+        return createCourseAndWorldTheme(content, name,)
+    if (isInCourseTheme)
+        return new CourseOnlyThemeContainer(name, createCourseTheme(content, name,),)
+    return new WorldOnlyThemeContainer(name, createWorldTheme(name,),)
+}
 
-        return {
-            is: {
-                in: {
-                    game: this._createGameTemplateFrom1And2(),
-                    theme: {
-                        course: content.isInCourseTheme,
-                        world: content.isInWorldTheme,
-                    },
-                },
-                availableFromTheStart: content.isAvailableFromTheStart_SMM1,
-            },
-            effect: content.effectInNightTheme,
-            name: this._createNameTemplate(),
-        }
-    }
+function createCourseAndWorldTheme(content: Content, name: Name<string>,): CourseAndWorldTheme {
+    return new CourseAndWorldThemeContainer(
+        name,
+        GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),
+        ClassThatIsAvailableFromTheStartProvider.get.get(content.isAvailableFromTheStart_SMM1,),
+        createCourseTheme(content, name,),
+        createWorldTheme(name,),
+    )
+}
 
+function createCourseTheme(content: Content, name: Name<string>,): CourseTheme {
+    return new CourseThemeContainer(
+        name,
+        GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),
+        ClassThatIsAvailableFromTheStartProvider.get.get(content.isAvailableFromTheStart_SMM1,),
+        lazy(() => {
+            const theme = Themes.CompanionEnum.get.getValueByName(name.english,)
+
+            return Entities.CompanionEnum.get.values.map(it => it.reference,)
+                .filter(reference => theme.get(reference,),)
+                .toArray()
+        },),
+        NightEffects.CompanionEnum.get.getValueByName(content.effectInNightTheme,),
+    )
+}
+
+function createWorldTheme(name: Name<string>,): WorldTheme {
+    return new WorldThemeContainer(
+        name,
+        GamePropertyProvider.get.smm2Only,
+        ClassThatIsAvailableFromTheStartProvider.get.get(null,),
+    )
 }

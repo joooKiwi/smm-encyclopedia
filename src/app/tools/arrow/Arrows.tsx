@@ -1,12 +1,9 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleContainer} from 'app/tools/arrow/Arrows.types'
 
 import {ArrowDirections} from 'app/tools/arrow/ArrowDirections'
-
-const {VERTICAL, HORIZONTAL} = ArrowDirections
 
 /**
  * Every possible arrow direction. It can be a single arrow, joined & bi-directional.<br/>
@@ -33,7 +30,7 @@ export abstract class Arrows
             return [this.createCardinalArrow(), null,]
         }
 
-    }('arrow-container', VERTICAL, true,)
+    }('arrow-container', ArrowDirections.VERTICAL, true,)
     public static readonly DOWN =                 new class ArrowDirections_Down extends Arrows {
 
         public override createCardinalArrow(): NonNullable<ReactElement> {
@@ -44,7 +41,7 @@ export abstract class Arrows
             return [null, this.createCardinalArrow(),]
         }
 
-    }('arrow-container', VERTICAL, true,)
+    }('arrow-container', ArrowDirections.VERTICAL, true,)
     public static readonly LEFT =                 new class ArrowDirections_Left extends Arrows {
 
         public override createCardinalArrow(): NonNullable<ReactElement> {
@@ -55,7 +52,7 @@ export abstract class Arrows
             return [this.createCardinalArrow(), null,]
         }
 
-    }('arrow-container', HORIZONTAL, true,)
+    }('arrow-container', ArrowDirections.HORIZONTAL, true,)
     public static readonly RIGHT =                new class ArrowDirections_Right extends Arrows {
 
         public override createCardinalArrow(): NonNullable<ReactElement> {
@@ -66,35 +63,35 @@ export abstract class Arrows
             return [null, this.createCardinalArrow(),]
         }
 
-    }('arrow-container', HORIZONTAL, true,)
+    }('arrow-container', ArrowDirections.HORIZONTAL, true,)
     public static readonly VERTICAL_JOINED =      new class ArrowDirections_Vertical extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
             return [Arrows.UP.createCardinalArrow(), Arrows.DOWN.createCardinalArrow(),]
         }
 
-    }('arrow-container', VERTICAL, true,)
+    }('arrow-container', ArrowDirections.VERTICAL, true,)
     public static readonly VERTICAL_SEPARATED =   new class ArrowDirections_VerticalSeparated extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
             return [Arrows.UP.createArrow(), Arrows.DOWN.createArrow(),]
         }
 
-    }('arrows-container', VERTICAL, false,)
+    }('arrows-container', ArrowDirections.VERTICAL, false,)
     public static readonly HORIZONTAL_JOINED =    new class ArrowDirections_Horizontal extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
             return [Arrows.LEFT.createCardinalArrow(), Arrows.RIGHT.createCardinalArrow(),]
         }
 
-    }('arrow-container', HORIZONTAL, true,)
+    }('arrow-container', ArrowDirections.HORIZONTAL, true,)
     public static readonly HORIZONTAL_SEPARATED = new class ArrowDirections_HorizontalSeparated extends Arrows {
 
         protected override _createArrow(): PossibleArrowCreation {
             return [Arrows.LEFT.createArrow(), Arrows.RIGHT.createArrow(),]
         }
 
-    }('arrows-container', HORIZONTAL, false,)
+    }('arrows-container', ArrowDirections.HORIZONTAL, false,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -189,21 +186,6 @@ export abstract class Arrows
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Arrows>,): Arrows {
-        return Arrows.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Arrows> {
-        return Arrows.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Arrows> {
-        return Arrows.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

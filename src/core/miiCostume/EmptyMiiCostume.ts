@@ -7,9 +7,7 @@ import {EmptyOfficialNotificationHolder}  from 'core/officialNotification/holder
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 import {EmptyStringName}                  from 'lang/name/EmptyStringName'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyMiiCostume
     extends ClassContainingANameAndACategory<string, string, MiiCostumeCategory>
     implements MiiCostume, ClassWithNullObjectPattern<EmptyMiiCostumeName> {

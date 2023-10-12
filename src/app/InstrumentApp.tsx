@@ -1,6 +1,6 @@
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {Instruments}            from 'core/instrument/Instruments'
@@ -17,11 +17,11 @@ export default class InstrumentApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyInstrument (list)'
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return 'everyInstrument (card)'
     }
 
@@ -34,7 +34,7 @@ export default class InstrumentApp
         return new class InstrumentAppInterpreter implements AppInterpreterWithCardList<Instruments> {
 
             public get content() {
-                return Instruments.values.toArray()
+                return Instruments.CompanionEnum.get.values.toArray()
             }
 
             //region -------------------- List interpreter --------------------

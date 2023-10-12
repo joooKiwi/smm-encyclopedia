@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
 import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
 import type {Theme}                            from 'core/theme/Theme'
@@ -21,7 +19,7 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
 
     protected constructor(name: Name<string>,
                           isInProperty: PROPERTY,
-                          isAvailableFromTheStart: Lazy<ClassThatIsAvailableFromTheStart>,) {
+                          isAvailableFromTheStart: ClassThatIsAvailableFromTheStart,) {
         super(name,)
         this.#isInProperty = isInProperty
         this.#isAvailableFromTheStartHolder = isAvailableFromTheStart
@@ -52,7 +50,7 @@ export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
     //region -------------------- "Is available from the start" properties --------------------
 
     public get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart {
-        return this.#isAvailableFromTheStartHolder.value
+        return this.#isAvailableFromTheStartHolder
     }
 
     public get isAvailableFromTheStartInSMM1() {

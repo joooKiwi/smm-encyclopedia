@@ -4,12 +4,11 @@ import type {EmptyableLanguage}                                                 
 import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from 'lang/name/containers/Language'
 import type {OptionalLanguage}                                                                                                                                  from 'lang/name/containers/OptionalLanguage'
 
-import {EveryLanguages}            from 'lang/EveryLanguages'
-import {ProjectLanguages}          from 'lang/ProjectLanguages'
-import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguage.container'
-import {LanguageContainer}         from 'lang/name/containers/Language.container'
-import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguage.container'
-import {assert}                    from 'util/utilitiesMethods'
+import {EveryLanguages}                   from 'lang/EveryLanguages'
+import {ProjectLanguages}                 from 'lang/ProjectLanguages'
+import {EmptyLanguageContainer}           from 'lang/name/containers/EmptyLanguage.container'
+import {newLanguage, newOptionalLanguage} from 'lang/name/containers/Language.provider'
+import {assert}                           from 'util/utilitiesMethods'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -323,7 +322,7 @@ export class NameContainer<T, >
             return EmptyLanguageContainer.get
         }
 
-        const languageContainer = this.optionalLanguages.includes(language) ? OptionalLanguageContainer.newInstance(value) : LanguageContainer.newInstance(value)
+        const languageContainer = this.optionalLanguages.includes(language) ? newOptionalLanguage(value,) : newLanguage(value,)
         const isValueArray = value instanceof Array
 
         switch (language) {

@@ -1,18 +1,15 @@
 import file from 'resources/compiled/Sound effect category.json'
 
-import type {LanguageContent}             from 'core/_template/LanguageContent'
-import type {PossibleEnglishName}         from 'core/soundEffectCategory/SoundEffectCategories.types'
-import type {SoundEffectCategory}         from 'core/soundEffectCategory/SoundEffectCategory'
-import type {SoundEffectCategoryTemplate} from 'core/soundEffectCategory/SoundEffectCategory.template'
-import type {Loader}                      from 'util/loader/Loader'
+import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {PossibleEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {SoundEffectCategory} from 'core/soundEffectCategory/SoundEffectCategory'
+import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}             from 'variables'
-import {AbstractTemplateCreator}    from 'core/_template/AbstractTemplate.creator'
-import {SoundEffectCategoryCreator} from 'core/soundEffectCategory/SoundEffectCategory.creator'
+import {isInProduction}               from 'variables'
+import {SoundEffectCategoryContainer} from 'core/soundEffectCategory/SoundEffectCategory.container'
+import {createNameFromContent}        from 'lang/name/createNameFromContent'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class SoundEffectCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, SoundEffectCategory>> {
 
@@ -20,8 +17,7 @@ export class SoundEffectCategoryLoader
 
     static #instance?: SoundEffectCategoryLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -32,42 +28,33 @@ export class SoundEffectCategoryLoader
     #map?: Map<PossibleEnglishName, SoundEffectCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, SoundEffectCategory> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, SoundEffectCategory>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new SoundEffectCategoryCreator(new TemplateCreator(it as Content).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "sound effect category" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "sound effect category" has been loaded --------------------'
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, SoundEffectCategory>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "sound effect category" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "sound effect category" has been loaded --------------------'
+            )
+
+        return this.#map = references
     }
 
 }
 
 
 interface Content
-    extends LanguageContent {
+    extends LanguageContent {}
+
+function createReference(content: Content,): SoundEffectCategory {
+    return new SoundEffectCategoryContainer(createNameFromContent(content, 2, false,),)
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<SoundEffectCategoryTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): SoundEffectCategoryTemplate {
-        return {
-            name: this._createNameTemplate(),
-        }
-    }
-
-}

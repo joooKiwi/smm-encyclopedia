@@ -10,9 +10,7 @@ interface SingleArrowProperties
 
 }
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function Arrow({value,}: SingleArrowProperties,) {
     return value.createArrow()
 }

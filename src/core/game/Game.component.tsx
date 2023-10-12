@@ -7,9 +7,7 @@ import {Games}                           from 'core/game/Games'
 import {gameContentTranslation}          from 'lang/components/translationMethods'
 import {StringContainer}                 from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class GameComponent
     extends AbstractEntityPropertyComponent<GameProperty, Games> {
 
@@ -40,7 +38,7 @@ export default class GameComponent
     }
 
     protected override _renderComponentForAllAsImages() {
-        return <div key={`${this.name.english} (every games)`}>{Games.values.map(game => this._renderSingleComponent(game))}</div>
+        return <div key={`${this.name.english} (every games)`}>{Games.CompanionEnum.get.values.map(game => this._renderSingleComponent(game,),)}</div>
     }
 
 }

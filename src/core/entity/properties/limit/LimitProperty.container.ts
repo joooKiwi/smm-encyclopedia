@@ -1,9 +1,9 @@
 import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                              from 'core/entity/properties/limit/loader.types'
+import type {PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                from 'core/entity/properties/limit/loader.types'
 
-import type {EntityLimits} from 'core/entityLimit/EntityLimits'
-import {Import}            from 'util/DynamicImporter'
-import {nonNull}           from 'util/utilitiesMethods'
+import type {Limits} from 'core/limit/Limits'
+import {Import}      from 'util/DynamicImporter'
+import {nonNull}     from 'util/utilitiesMethods'
 
 export class LimitPropertyContainer
     implements LimitProperty {
@@ -48,11 +48,11 @@ export class LimitPropertyContainer
         return this.#editorLimitContainer
     }
 
-    public get editorLimit_smm1And3ds(): NullOr<EntityLimits> {
+    public get editorLimit_smm1And3ds(): NullOr<Limits> {
         return this.editorLimitContainer.superMarioMaker
     }
 
-    public get editorLimit_smm2(): NullOr<| EntityLimits | NotApplicable> {
+    public get editorLimit_smm2(): NullOr<| Limits | NotApplicable> {
         return this.editorLimitContainer.superMarioMaker2.value
     }
 
@@ -71,7 +71,7 @@ export class LimitPropertyContainer
         return this.isInGeneralLimitContainer.value
     }
 
-    public get isInGeneralLimitComment(): NullOr<PossibleGeneralEntityLimitComment> {
+    public get isInGeneralLimitComment(): NullOr<PossibleGeneralLimitComment> {
         return this.isInGeneralLimitContainer.comment
     }
 
@@ -86,7 +86,7 @@ export class LimitPropertyContainer
         return this.isInGlobalGeneralLimitContainer.value
     }
 
-    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalEntityLimitComment> {
+    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalLimitComment> {
         return this.isInGlobalGeneralLimitContainer.comment
     }
 
@@ -112,7 +112,7 @@ export class LimitPropertyContainer
         return this.isInProjectileLimitContainer.value
     }
 
-    public get isInProjectileLimitComment(): NullOr<PossibleProjectileEntityLimitComment> {
+    public get isInProjectileLimitComment(): NullOr<PossibleProjectileLimitComment> {
         return this.isInProjectileLimitContainer.comment
     }
 
@@ -149,7 +149,7 @@ export class LimitPropertyContainer
         return this.#isOtherLimitContainer
     }
 
-    public get otherLimit(): | EntityLimits | NotApplicable {
+    public get otherLimit(): NullOr<| Limits | NotApplicable> {
         return this.otherLimitContainer.value
     }
 
@@ -163,36 +163,36 @@ export class LimitPropertyContainer
     //region -------------------- Convertor methods --------------------
 
     /**
-     * Create a new map of limit based on the {@link EntityLimits entity limit} received.
+     * Create a new map of limit based on the {@link Limits} received.
      *
      * @param values the values (null are ignored)
      */
-    #newMap(...values: readonly Nullable<EntityLimits>[]): ReadonlyMap<EntityLimits, boolean> {
+    #newMap(...values: readonly Nullable<Limits>[]): ReadonlyMap<Limits, boolean> {
         const newValues = nonNull(values)
-        return new Map(Import.EntityLimits.values.map(limit => [limit, newValues.includes(limit),]))
+        return new Map(Import.Limits.CompanionEnum.get.values.map(limit => [limit, newValues.includes(limit,),],),)
     }
 
-    public toLimitMap(): ReadonlyMap<EntityLimits, boolean> {
-        return new Map([...this.toLimitInTheEditorMap(), ...this.toLimitWhilePlayingMap(),])
+    public toLimitMap(): ReadonlyMap<Limits, boolean> {
+        return new Map([...this.toEditorLimitMap(), ...this.toPlayLimitMap(),])
     }
 
-    public toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean> {
+    public toEditorLimitMap(): ReadonlyMap<Limits, boolean> {
         const editorLimits = [this.editorLimit_smm1And3ds, this.editorLimit_smm2,]
 
-        return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof Import.EntityLimits ? editorLimit : null))
+        return this.#newMap(...editorLimits.map(editorLimit => editorLimit instanceof Import.Limits ? editorLimit : null))
     }
 
-    public toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean> {
-        const otherLimitWhilePlaying = this.otherLimit
+    public toPlayLimitMap(): ReadonlyMap<Limits, boolean> {
+        const otherLimits = this.otherLimit
 
         return this.#newMap(
-            this.isInGeneralLimit === true ? Import.EntityLimits.GENERAL_ENTITY_LIMIT : null,
-            this.isInGlobalGeneralLimit === true ? Import.EntityLimits.GENERAL_ENTITY_LIMIT : null,
-            this.isInPowerUpLimit === true ? Import.EntityLimits.POWER_UP_ENTITY_LIMIT : null,
-            this.isInProjectileLimit === true ? Import.EntityLimits.PROJECTILE_LIMIT : null,
-            this.isInRenderedObjectLimit === true ? Import.EntityLimits.RENDERED_OBJECT_LIMIT : null,
-            this.isInCollectedCoinLimit === true ? Import.EntityLimits.COLLECTED_COIN_LIMIT : null,
-            otherLimitWhilePlaying instanceof Import.EntityLimits ? otherLimitWhilePlaying : null,
+            this.isInGeneralLimit === true ? Import.Limits.GENERAL_ENTITY_LIMIT : null,
+            this.isInGlobalGeneralLimit === true ? Import.Limits.GENERAL_ENTITY_LIMIT : null,
+            this.isInPowerUpLimit === true ? Import.Limits.POWER_UP_ENTITY_LIMIT : null,
+            this.isInProjectileLimit === true ? Import.Limits.PROJECTILE_LIMIT : null,
+            this.isInRenderedObjectLimit === true ? Import.Limits.RENDERED_OBJECT_LIMIT : null,
+            this.isInCollectedCoinLimit === true ? Import.Limits.COLLECTED_COIN_LIMIT : null,
+            otherLimits instanceof Import.Limits ? otherLimits : null,
         )
     }
 

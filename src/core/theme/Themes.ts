@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                   from 'core/ClassWithReference'
@@ -13,13 +11,14 @@ import type {Names, Ordinals, PossibleEnglishName, PossibleName_InFile}         
 import type {CourseAndWorldTheme}                                                  from 'core/theme/CourseAndWorldTheme'
 import type {WorldTheme}                                                           from 'core/theme/WorldTheme'
 import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
+import type {CompanionEnumByNameSingleton}                                         from 'util/enumerable/Singleton.types'
 
-import {ThemeComponent}        from 'core/theme/Theme.component'
-import {ThemeLoader}           from 'core/theme/Theme.loader'
-import * as FileCreator        from 'core/theme/file/fileCreator'
-import {EMPTY_ARRAY}           from 'util/emptyVariables'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {ThemeComponent}                 from 'core/theme/Theme.component'
+import {ThemeLoader}                    from 'core/theme/Theme.loader'
+import * as FileCreator                 from 'core/theme/file/fileCreator'
+import {EMPTY_ARRAY}                    from 'util/emptyVariables'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class Themes
     extends Enum<Ordinals, Names>
@@ -159,8 +158,8 @@ export class Themes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Themes, typeof Themes> = class CompanionEnum_Themes
-        extends CompanionEnum<Themes, typeof Themes> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Themes, typeof Themes> = class CompanionEnum_Themes
+        extends CompanionEnumByEnglishNameOnly<Themes, typeof Themes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -310,25 +309,6 @@ export class Themes
         ]
     }
 
-    public static getValueByName(value: Nullable<| Themes | string>,): Themes {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Themes>,): Themes {
-        return Themes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Themes> {
-        return Themes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Themes> {
-        return Themes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

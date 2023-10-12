@@ -5,9 +5,7 @@ import {ThemePropertyContainer} from 'core/entity/properties/theme/ThemeProperty
 import {isArrayEquals}          from 'util/utilitiesMethods'
 import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class ThemePropertyProvider
     extends AbstractProvider<ArgumentsReceived, ThemeProperty>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, ThemeProperty> {

@@ -13,9 +13,7 @@ import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class GameReferenceApp
     extends AbstractApp {
 
@@ -49,11 +47,11 @@ export default class GameReferenceApp
     private static get __otherGameReferences(): readonly GameReferences[] {
         if (this.#otherGameReferences == null) {
             const alreadyIncludedNames = [
-                ...Games.values.map(game => game.englishName),
-                ...GameStyles.values.map(game => game.englishName),
-                ...SoundEffects.soundEffect_games.map(game => game.englishName) as PossibleEnglishName_Games[],
+                ...Games.CompanionEnum.get.values.map(game => game.englishName,),
+                ...GameStyles.CompanionEnum.get.values.map(game => game.englishName,),
+                ...SoundEffects.soundEffect_games.map(game => game.englishName,) as PossibleEnglishName_Games[],
             ]
-            this.#otherGameReferences = GameReferences.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never)).toArray()
+            this.#otherGameReferences = GameReferences.CompanionEnum.get.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),).toArray()
         }
         return this.#otherGameReferences
     }
@@ -67,7 +65,7 @@ export default class GameReferenceApp
         return <div key={`names container - ${groupId}`} id={`${groupId}-names-container`} className="names-container">
             <h2 key={`names title - ${groupId}`} id={`${groupId}-names-title`} className="col-12 names-title">{gameContentTranslation(title)}</h2>
             <div key={`name (container) - ${groupId}`} id={`${groupId}-name-container`} className="container-fluid name-container">{
-                enumReferences.map(gameReference => [gameReference, GameReferences.getValueByNameOrAcronym(gameReference.englishName),] as const).map(([enumReference, gameReference,]) =>
+                enumReferences.map(gameReference => [gameReference, GameReferences.CompanionEnum.get.getValueByName(gameReference.englishName,),] as const).map(([enumReference, gameReference,]) =>
                     <Fragment key={`single name container - ${gameReference.englishName}`}>
                         <div id={`${gameReference.englishNameInHtml}-name-container`} className={`${enumReferences.length > 5 ? 'col-3' : 'col'} single-name-container`}>
                             <div className="single-name-sub-container">
@@ -86,8 +84,8 @@ export default class GameReferenceApp
     protected override _mainContent() {
         return <div id="gameReference-container" className="container-fluid main-container">
             <h2 id="main-names-title" className="col-12 names-title">{gameContentTranslation('game reference.plural')}</h2>
-            {this._getContainer('game', 'game.plural', Games.values.toArray(),)}
-            {this._getContainer('gameStyle', 'game style.plural', GameStyles.values.toArray(),)}
+            {this._getContainer('game', 'game.plural', Games.CompanionEnum.get.values.toArray(),)}
+            {this._getContainer('gameStyle', 'game style.plural', GameStyles.CompanionEnum.get.values.toArray(),)}
             {this._getContainer('soundEffect', 'sound effect.plural', SoundEffects.soundEffect_games,)}
             {this._getContainer('otherGameReferences', 'game reference.others', GameReferenceApp.__otherGameReferences, GameReferenceApp.RETURN_OF_LINES,)}
         </div>

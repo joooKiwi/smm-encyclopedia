@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                          from 'core/ClassWithEnglishName'
 import type {PropertyGetter, PropertyReferenceGetter}                       from 'core/PropertyGetter'
@@ -10,11 +8,12 @@ import type {TimeReferences}                                                from
 import type {Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath} from 'core/time/Times.types'
 import type {TimeImageFile}                                                 from 'core/time/file/TimeImageFile'
 import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
+import type {CompanionEnumByNameSingleton}                                  from 'util/enumerable/Singleton.types'
 
-import TimeComponent           from 'core/time/Time.component'
-import {timeImage}             from 'core/time/file/fileCreator'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
-import {StringContainer}       from 'util/StringContainer'
+import TimeComponent                    from 'core/time/Time.component'
+import {timeImage}                      from 'core/time/file/fileCreator'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export abstract class Times
     extends Enum<Ordinals, Names>
@@ -51,8 +50,8 @@ export abstract class Times
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Times, typeof Times> = class CompanionEnum_Times
-        extends CompanionEnum<Times, typeof Times> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Times, typeof Times> = class CompanionEnum_Times
+        extends CompanionEnumByEnglishNameOnly<Times, typeof Times> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -112,26 +111,6 @@ export abstract class Times
         return TimeComponent.renderSingleComponent(this)
     }
 
-
-    public static getValueByName(value: Nullable<| Times | string>,): Times {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Times>,): Times {
-        return Times.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Times> {
-        return Times.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Times> {
-        return Times.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

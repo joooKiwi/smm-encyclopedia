@@ -1,21 +1,20 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import type {Dispatch, SetStateAction}                          from 'react'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import i18n                                                     from 'i18next'
+import type {Singleton} from '@joookiwi/enumerable'
+import {Enum}           from '@joookiwi/enumerable'
+import i18n             from 'i18next'
 
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
+import type {CompanionEnumDeclaration_EveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/EveryLanguages.companionEnumDeclaration'
 import type {AdditionalAcronym, AdditionalEnglishName, AdditionalOriginalName, BasicAcronym, BasicEnglishName, BasicOriginalName, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName, PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'lang/EveryLanguages.types'
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/LanguageEnumerable'
 import type {PossibleAcronym as PossibleAcronym_Project, PossibleDifferentWord, PossibleEnglishName as PossibleEnglishName_Project, PossibleInternationalAcronym as PossibleInternationalAcronym_Project, PossibleOriginalName as PossibleOriginalName_Project}                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'lang/ProjectLanguages.types'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
 import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
 
-import {Characters}                             from 'lang/Characters'
-import {SPACE}                                  from 'util/commonVariables'
-import {EMPTY_STRING}                           from 'util/emptyVariables'
-import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'
+import {Characters}                                 from 'lang/Characters'
+import {SPACE}                                      from 'util/commonVariables'
+import {EMPTY_STRING}                               from 'util/emptyVariables'
+import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
 export abstract class EveryLanguages
     extends Enum<Ordinals, Names>
@@ -484,8 +483,9 @@ export abstract class EveryLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EveryLanguages, typeof EveryLanguages> = class CompanionEnum_EveryLanguages
-        extends CompanionEnum<EveryLanguages, typeof EveryLanguages> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_EveryLanguages> = class CompanionEnum_EveryLanguages
+        extends CompanionEnumWithCurrentAndSetCurrentEvent<EveryLanguages, typeof EveryLanguages>
+        implements CompanionEnumDeclaration_EveryLanguages {
 
         //region -------------------- Singleton usage --------------------
 
@@ -503,50 +503,59 @@ export abstract class EveryLanguages
 
         protected override readonly _DEFAULT = EveryLanguages.AMERICAN_ENGLISH
 
+        protected override _onSetCurrent(value: EveryLanguages,) {
+            super._onSetCurrent(value,)
+            void i18n.changeLanguage(value.projectAcronym,)
+            document.querySelector('html[lang]',)?.setAttribute('lang', value.projectAcronym,)
+        }
+
+
+        public getValueByName(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(enumerable =>
+                enumerable.projectAcronym === value
+                || enumerable.internationalAcronym === value
+                || enumerable.englishName === value
+                || enumerable.originalName === value)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
+
+        public getValueByAcronym(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null acronym.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(enumerable =>
+                enumerable.projectAcronym === value
+                || enumerable.internationalAcronym === value)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this acronym "${value}".`,)
+            return valueFound
+        }
+
+        public getValueByNameOrAcronym(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
+            if (value == null)
+                throw new TypeError(`No "${this.instance.name}" could be found by a null name or acronym.`,)
+            if (value instanceof this.instance)
+                return value
+            const valueFound = this.values.find(enumerable =>
+                enumerable.projectAcronym === value
+                || enumerable.internationalAcronym === value
+                || enumerable.englishName === value
+                || enumerable.originalName === value)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
+            return valueFound
+        }
+
     }
 
     //endregion -------------------- Companion enum --------------------
-    //region -------------------- Companion --------------------
-
-    /**
-     * The reference of the static methods applicable to the class {@link EveryLanguages}
-     *
-     * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
-     * @singleton
-     */
-    public static readonly Companion = class Companion_EveryLanguages extends ClassWithCurrentAndEventImplementation<EveryLanguages> {
-
-        //region -------------------- Singleton usage --------------------
-
-        static #instance?: Companion_EveryLanguages
-
-        private constructor() {
-            super(EveryLanguages,)
-        }
-
-        public static get get() {
-            return this.#instance ??= new this()
-        }
-
-        //endregion -------------------- Singleton usage --------------------
-
-        protected override _onSetCurrent(value: EveryLanguages,) {
-            super._onSetCurrent(value)
-            void i18n.changeLanguage(value.projectAcronym)
-            this.#setLanguageToHTML(value,)
-        }
-
-        /**
-         * Set the language into the dom elements using a <b>lang</b> value
-         * to change it to the current instance.
-         */
-        #setLanguageToHTML(value: EveryLanguages,): this {
-            document.querySelector('html[lang]')?.setAttribute('lang', value.projectAcronym)
-            return this
-        }
-    }
-
-    //endregion -------------------- Companion --------------------
     //region -------------------- Fields --------------------
 
     protected static readonly _SPACE_EVEN_LANGUAGE_WITH_SPACE: SpaceParameterReceived = [true, true, false,]
@@ -664,14 +673,14 @@ export abstract class EveryLanguages
     }
 
     public get children(): PossibleChildrenLanguages {
-        return this.#children ??= EveryLanguages.values.filter(it => it.parent != null)
-            .filter(it => it !== this)
-            .filter(it => it.parent === this)
+        return this.#children ??= EveryLanguages.CompanionEnum.get.values.filter(it => it.parent != null,)
+            .filter(it => it !== this,)
+            .filter(it => it.parent === this,)
             .toArray() as PossibleChildrenLanguages
     }
 
     public get isDefaultLanguage(): boolean {
-        return this === EveryLanguages.defaultValue
+        return this === EveryLanguages.CompanionEnum.get.defaultValue
     }
 
     //region -------------------- Characters getter methods --------------------
@@ -782,70 +791,21 @@ export abstract class EveryLanguages
     }
 
 
-    public character<C extends PossibleSingleCharacter, >(character: C,): VariableCharacterByCharacter<this['isASpaceEvenLanguage'], C>
-    public character<C extends string, >(character: C,): VariableCharacterByString<this['isASpaceEvenLanguage'], C>
+    public character<const C extends PossibleSingleCharacter, >(character: C,): VariableCharacterByCharacter<this['isASpaceEvenLanguage'], C>
+    public character<const C extends string, >(character: C,): VariableCharacterByString<this['isASpaceEvenLanguage'], C>
     public character(character: string,) {
-        return Characters.getCharacter(this.isASpaceEvenLanguage, character,)
+        return Characters.CompanionEnum.get.getCharacter(this.isASpaceEvenLanguage, character,)
     }
 
     //endregion -------------------- Characters getter methods --------------------
     //region -------------------- Getter & setter methods (current) --------------------
 
     public get isCurrent(): boolean {
-        return this === EveryLanguages.currentOrNull
+        return this === EveryLanguages.CompanionEnum.get.currentOrNull
     }
 
     public get isCurrentOrAssociatedWithIt(): boolean {
         return this.isCurrent
-    }
-
-
-    /** Get the current {@link EveryLanguages language} that may be initialized */
-    public static get currentOrNull(): NullOr<EveryLanguages> {
-        return this.Companion.get.currentOrNull
-    }
-
-    /**
-     * Get the non-nullable current {@link EveryLanguages language}
-     *
-     * @throws ReferenceError The current {@link EveryLanguages language} has not been initialized yet
-     */
-    public static get current(): EveryLanguages {
-        return this.Companion.get.current
-    }
-
-    /**
-     * Set the current {@link EveryLanguages language} held in the {@link EveryLanguages.Companion}
-     *
-     * @param value The {@link EveryLanguages language} to set as the current one
-     */
-    public static set current(value: PossibleEnumerableValueBy<EveryLanguages>,) {
-        this.Companion.get.current = value
-    }
-
-
-    /** Get the current {@link EveryLanguages language} event listener or <b>null</b> if it has not been initialized */
-    public static get onSetCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<EveryLanguages>>>> {
-        return this.Companion.get.onSetCurrentEventOrNull
-    }
-
-    /**
-     * Get the non-nullable current {@link EveryLanguages language} event listener
-     *
-     * @throws {ReferenceError} The event listener has not been initialized
-     */
-    public static get onSetCurrentEvent(): Dispatch<SetStateAction<NullOr<EveryLanguages>>> {
-        return this.Companion.get.onSetCurrentEvent
-    }
-
-    /**
-     * Initialize the event listener on the setting of the current {@link EveryLanguages language}
-     *
-     * @param value The event listener to set
-     * @shouldOnlyBeCalledOnce
-     */
-    public static set onSetCurrentEvent(value: Dispatch<SetStateAction<NullOr<EveryLanguages>>>,) {
-        this.Companion.get.onSetCurrentEvent = value
     }
 
     //endregion -------------------- Getter & setter methods (current) --------------------
@@ -886,51 +846,7 @@ export abstract class EveryLanguages
 
     //endregion -------------------- Transformation methods --------------------
 
-    // public static getValueByLanguage<T, >(value: T,): EveryLanguagesByLanguage<T>
-    public static getValueByLanguage(value: Nullable<| EveryLanguages | string>,): EveryLanguages {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof EveryLanguages)
-            return value
-        const valueFound = this.values.find(enumerable =>
-            enumerable.projectAcronym === value
-            || enumerable.internationalAcronym === value
-            || enumerable.englishName === value
-            || enumerable.originalName === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound;
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static get defaultValue(): EveryLanguages {
-        return EveryLanguages.CompanionEnum.get.defaultValue
-    }
-
-    public static set defaultValue(value: PossibleEnumerableValueBy<EveryLanguages>,) {
-        EveryLanguages.CompanionEnum.get.defaultValue = value
-    }
-
-    public static setDefaultValue(value: PossibleEnumerableValueBy<EveryLanguages>,): typeof EveryLanguages {
-        EveryLanguages.CompanionEnum.get.setDefaultValue(value,)
-        return EveryLanguages
-    }
-
-    public static getValue(value: PossibleEnumerableValueBy<EveryLanguages>,): EveryLanguages {
-        return EveryLanguages.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EveryLanguages> {
-        return EveryLanguages.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EveryLanguages> {
-        return EveryLanguages.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

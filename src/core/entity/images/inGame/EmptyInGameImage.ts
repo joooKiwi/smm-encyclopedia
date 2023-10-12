@@ -4,9 +4,7 @@ import type {ClassWithNullObjectPattern, EmptyInGameImageName} from 'util/ClassW
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyInGameImage
     implements InGameImage_SMM1, InGameImage_SMM2, ClassWithNullObjectPattern<EmptyInGameImageName> {
 
@@ -14,8 +12,7 @@ export class EmptyInGameImage
 
     static #instance?: EmptyInGameImage
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

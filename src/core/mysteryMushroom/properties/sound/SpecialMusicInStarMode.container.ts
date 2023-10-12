@@ -29,7 +29,7 @@ export class SpecialMusicInStarModeContainer
             this.#value = true
             this.#translationKey = value
         }
-        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
+        this.#game = game == null ? null : GameReferences.CompanionEnum.get.getValueByAcronym(game,)
     }
 
     //endregion -------------------- Constructor --------------------

@@ -1,18 +1,17 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                         from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                           from 'core/ClassWithReference'
 import type {EntityCategory}                               from 'core/entityCategory/EntityCategory'
 import type {Names, Ordinals, PossibleEnglishName}         from 'core/entityCategory/EntityCategories.types'
 import type {EntityCategoryImageFile, PossibleImageNumber} from 'core/entityCategory/file/EntityCategoryImageFile'
+import type {CompanionEnumByNameSingleton}                 from 'util/enumerable/Singleton.types'
 import type {ClassWithImageFile}                           from 'util/file/image/ClassWithImageFile'
 
-import {EntityCategoryLoader}  from 'core/entityCategory/EntityCategory.loader'
-import {entityCategoryImage}   from 'core/entityCategory/file/fileCreator'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {EntityCategoryLoader}           from 'core/entityCategory/EntityCategory.loader'
+import {entityCategoryImage}            from 'core/entityCategory/file/fileCreator'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class EntityCategories
     extends Enum<Ordinals, Names>
@@ -30,8 +29,8 @@ export class EntityCategories
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EntityCategories, typeof EntityCategories> = class CompanionEnum_EntityCategories
-        extends CompanionEnum<EntityCategories, typeof EntityCategories> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<EntityCategories, typeof EntityCategories> = class CompanionEnum_EntityCategories
+        extends CompanionEnumByEnglishNameOnly<EntityCategories, typeof EntityCategories> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -99,26 +98,6 @@ export class EntityCategories
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByName(value: Nullable<| EntityCategories | string>,): EntityCategories {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<EntityCategories>,): EntityCategories {
-        return EntityCategories.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EntityCategories> {
-        return EntityCategories.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EntityCategories> {
-        return EntityCategories.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

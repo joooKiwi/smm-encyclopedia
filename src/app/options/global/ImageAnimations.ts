@@ -1,9 +1,10 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleImageAnimation} from 'app/options/global/ImageAnimations.types'
 import type {ClassWithValue}                          from 'util/types/ClassWithValue'
+import type {CompanionEnumByValueSingleton}           from 'util/enumerable/Singleton.types'
+
+import {CompanionEnumByValue} from 'util/enumerable/companion/CompanionEnumByValue'
 
 /**
  * The possible image animation as either
@@ -27,8 +28,8 @@ export class ImageAnimations
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<ImageAnimations, typeof ImageAnimations> = class CompanionEnum_ImageAnimations
-        extends CompanionEnum<ImageAnimations, typeof ImageAnimations> {
+    public static readonly CompanionEnum: CompanionEnumByValueSingleton<| boolean | string, ImageAnimations, typeof ImageAnimations> = class CompanionEnum_ImageAnimations
+        extends CompanionEnumByValue<| boolean | string, ImageAnimations, typeof ImageAnimations> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -68,34 +69,6 @@ export class ImageAnimations
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    // public static getValueByValue<T, >(value: T,): ImageAnimationByValue<T>
-    public static getValueByValue(value: Nullable<| ImageAnimations | boolean | string>,): ImageAnimations {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.value === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<ImageAnimations>,): ImageAnimations {
-        return ImageAnimations.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<ImageAnimations> {
-        return ImageAnimations.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<ImageAnimations> {
-        return ImageAnimations.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

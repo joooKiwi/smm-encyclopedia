@@ -1,8 +1,6 @@
 import {EmptyLanguage} from 'lang/name/containers/EmptyLanguage'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyLanguageContainer
     implements EmptyLanguage {
 
@@ -10,8 +8,7 @@ export class EmptyLanguageContainer
 
     static #instance?: EmptyLanguageContainer
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

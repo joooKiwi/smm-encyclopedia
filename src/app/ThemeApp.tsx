@@ -5,7 +5,7 @@ import type {AppInterpreterWithTable}                              from 'app/int
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 import type {ThemeTypes}                                           from 'app/property/ThemeTypes'
 import type {Themes}                                               from 'core/theme/Themes'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
@@ -16,9 +16,7 @@ import {AbstractTableApp}                                from 'app/withInterpret
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {filterGame}                                      from 'util/utilitiesMethods'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class ThemeApp
     extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
 
@@ -36,15 +34,15 @@ export default class ThemeApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return `${this.type.routeName} (list)`
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return `${this.type.routeName} (card)`
     }
 
-    protected override _createTableRouteName(): EveryPossibleRouteNames {
+    protected override _createTableRouteName(): PossibleRouteName {
         return `${this.type.routeName} (table)`
     }
 

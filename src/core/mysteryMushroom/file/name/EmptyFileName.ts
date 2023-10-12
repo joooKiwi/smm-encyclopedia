@@ -2,9 +2,7 @@ import type {FileName} from 'core/mysteryMushroom/file/name/FileName'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyFileName
     implements FileName<EmptyArray, EmptyArray> {
 
@@ -12,8 +10,7 @@ export class EmptyFileName
 
     static #instance?: EmptyFileName
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

@@ -6,7 +6,7 @@ import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/int
 import type {CourseTagTypes}                                       from 'app/property/CourseTagTypes'
 import type {ClassWithType}                                        from 'core/ClassWithType'
 import type {CourseTags}                                           from 'core/courseTag/CourseTags'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'
@@ -38,11 +38,11 @@ export default class CourseTagApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return `${this.type.routeName} (list)`
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return `${this.type.routeName} (card)`
     }
 

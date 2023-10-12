@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithReference}                                              from 'core/ClassWithReference'
 import type {CharacterName}                                                   from 'core/characterName/CharacterName'
@@ -8,11 +6,13 @@ import type {ClassWithEnglishName}                                            fr
 import type {Names, Ordinals, PossibleEnglishName, PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {ClassWithNullableEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
 import type {EditorVoiceSound}                                                from 'core/editorVoice/sound/EditorVoiceSound'
+import type {CompanionEnumByNameWithValidationSingleton}                      from 'util/enumerable/Singleton.types'
 
-import {CharacterNameLoader}   from 'core/characterName/CharacterName.loader'
-import {EditorVoices}          from 'core/editorVoice/EditorVoices'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {CharacterNameLoader}               from 'core/characterName/CharacterName.loader'
+import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
+import {StringContainer}                   from 'util/StringContainer'
+import {getValueByEnglishName}             from 'util/utilitiesMethods'
+import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
 
 /**
  * @recursiveReference<{@link EditorVoices}>
@@ -174,8 +174,8 @@ export class CharacterNames
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Enum fields --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<CharacterNames, typeof CharacterNames> = class CompanionEnum_CharacterNames
-        extends CompanionEnum<CharacterNames, typeof CharacterNames> {
+    public static readonly CompanionEnum: CompanionEnumByNameWithValidationSingleton<CharacterNames, typeof CharacterNames> = class CompanionEnum_CharacterNames
+        extends CompanionEnumByNameWithValidation<CharacterNames, typeof CharacterNames> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -190,6 +190,18 @@ export class CharacterNames
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByName(value: Nullable<| CharacterNames | string>,): CharacterNames {
+            return getValueByEnglishName(value, this,)
+        }
+
+        public override hasValueByName(value: Nullable<| CharacterNames | string>,): boolean {
+            if (value == null)
+                return false
+            if (value instanceof this.instance)
+                return true
+            return this.instance.everyEnglishNames.includes(value as never,)
+        }
 
     }
 
@@ -246,9 +258,11 @@ export class CharacterNames
     //region -------------------- editor sound --------------------
 
     public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
-        if (this.#editorVoiceSound === undefined)
-            this.#editorVoiceSound = EditorVoices.hasReference(this) ? EditorVoices.getValueByCharacterName(this).editorVoiceSoundFileHolder : null
-        return this.#editorVoiceSound
+        if (this.#editorVoiceSound !== undefined)
+            return this.#editorVoiceSound
+        if (EditorVoices.CompanionEnum.get.hasReference(this,))
+            return this.#editorVoiceSound = EditorVoices.CompanionEnum.get.getValueByCharacterName(this,).editorVoiceSoundFileHolder
+        return this.#editorVoiceSound = null
     }
 
     //endregion -------------------- editor sound --------------------
@@ -257,32 +271,9 @@ export class CharacterNames
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.#everyEnglishNames ??= this.values.map(it => it.englishName).toArray()
-    }
-
-    public static getValueByName(value: Nullable<| CharacterNames | string>,): CharacterNames {
-        return getValueByEnglishName(value, this,)
-    }
-
-    public static hasValueByName(value: Nullable<| CharacterNames | string>,) {
-        return value != null && (value instanceof CharacterNames || this.everyEnglishNames.includes(value as never))
+        return this.#everyEnglishNames ??= this.CompanionEnum.get.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<CharacterNames>,): CharacterNames {
-        return CharacterNames.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<CharacterNames> {
-        return CharacterNames.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<CharacterNames> {
-        return CharacterNames.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

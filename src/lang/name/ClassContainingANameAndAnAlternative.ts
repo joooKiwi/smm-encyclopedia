@@ -13,7 +13,7 @@ export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends Name
 
     //region -------------------- Fields --------------------
 
-    readonly #alternativeContainer: Lazy<ALTERNATIVE>
+    readonly #alternativeContainer
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------

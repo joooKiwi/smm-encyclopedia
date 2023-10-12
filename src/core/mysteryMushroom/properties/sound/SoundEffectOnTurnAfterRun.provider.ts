@@ -4,9 +4,7 @@ import type {ProviderWithSingleArgumentAsKey}                   from 'util/provi
 import {SoundEffectOnTurnAfterRunContainer} from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun.container'
 import {AbstractProvider}                   from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class SoundEffectOnTurnAfterRunProvider
     extends AbstractProvider<PossibleValuesReceived, SoundEffectOnTurnAfterRun>
     implements ProviderWithSingleArgumentAsKey<PossibleValuesReceived, SoundEffectOnTurnAfterRun> {

@@ -1,10 +1,13 @@
 import file from 'resources/compiled/Entity.json'
 
-import type {PossibleExcludedLanguages}                                                                                                                                                                                                                                                  from '__test__/helperMethods.types'
-import type {CanRespawnType}                                                                                                                                                                                                                                                             from 'core/behaviour/loader.types'
-import type {CanMakeASoundOutOfAMusicBlock}                                                                                                                                                                                                                                              from 'core/entity/properties/instrument/loader.types'
-import type {OffscreenSpawningAndDespawningReferencePoint}                                                                                                                                                                                                                               from 'core/entity/properties/limit/loader.types'
-import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, HasAReferenceInMarioMaker, IsGlobalGroundOrGlobal} from 'core/entityTypes'
+import type {PossibleExcludedLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                    from '__test__/helperMethods.types'
+import type {CanRespawnType}                                                                                                                                                                                                                                                                                                                                                                                                                               from 'core/behaviour/loader.types'
+import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleWeight} from 'core/entityTypes'
+import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                 from 'core/entity/properties/basic/BasicProperty'
+import type {CanMakeASoundOutOfAMusicBlock}                                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/properties/instrument/loader.types'
+import type {GeneralLimitType, GeneralGlobalLimitType, LimitAmountType, OffscreenSpawningAndDespawningReferencePoint, OtherLimitCommentType, ProjectileLimitType, RenderedObjectLimitType}                                                                                                                                                                                                                                                                 from 'core/entity/properties/limit/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                          from 'core/entityCategory/EntityCategories.types'
+import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/version/Versions.types'
 
 import {EveryTypes}                                 from '__test__/EveryTypes'
 import {getEnglishName, testEnglish, testLanguages} from '__test__/helperMethods'
@@ -13,40 +16,43 @@ import {testEntityLink}                             from '__test__/core/entity/t
 import {INFINITY, UNKNOWN_CHARACTER}                from 'util/commonVariables'
 
 describe('Entity (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames = types.everyPossibleName_entity,
-        possibleEntityType = ['(Entity)', 'Entity', 'Projectile', 'Object',] as const,
-        possibleFirstAppearance = [1, 2,] as const,
-        everyVersion = [null, ...types.everyPossibleName_version,],
-        everyPossibleCategory = [null, ...types.everyPossibleName_entityCategory,],
-        /*everyEditorLimits = types.everyPossibleName_editorLimit, */everyEditorLimitsWithNull = [null, ...types.everyPossibleName_editorLimit,], everyEditorLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_editorLimit,],
-        /*everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,], */everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,],
-        possibleBasicProperty = [null, true, false, UNKNOWN_CHARACTER, 'While playing → LCL',] as const,
-        possibleAffectedByOnOffState = [null, true, false, 'Only some variants',] as const,
-        everyWeight = [null, UNKNOWN_CHARACTER, ...types.everyPossibleWeight_entity,],
-        everyLightSources = [null, UNKNOWN_CHARACTER, ...types.everyPossibleLightSource_entity,],
-        everySurviveConditionsInDeadlyLiquid = [null, true, false, UNKNOWN_CHARACTER, ...types.everyPossibleSurviveConditionInDeadlyLiquid_entity,],
-        possibleCanIgniteByBobOmb: readonly CanIgniteABobOmb[] = [true, false, 'NSMBU', 'Castle',] as const,
-        possibleCanBeBrokenOrKilledByBobOmb: readonly CanBeBrokenOrKilledByABobOmb[] = [true, false, 'Koopa Troopa', 'Unchained Chomp', 'Standing on top of block that get destroyed',] as const,
-        possibleAffectedByTwister: readonly CanBeAffectedByATwister[] = [null, true, false, 'When falling', 'Parachute',] as const,
-        possibleCanGoThroughWallsInSM3DW: readonly CanGoThroughWallsInSM3DW[] = [null, true, false, 'on down curve',] as const,
-        possibleIsGlobalGroundOrGlobal: readonly IsGlobalGroundOrGlobal[] = [null, true, false, 'SM3DW',] as const,
-        everyInstruments = [null, ...types.everyPossibleName_instrument, ...types.everyPossibleMixedName_instrument,],
-        possibleCanMakeASoundOutOfMusicBlock: readonly CanMakeASoundOutOfAMusicBlock[] = [null, true, false, 'Excluding the top 3 notes',],
-        possibleCanBeThrownByBowserInClownCar: readonly CanBeThrownByBowserInClownCar[] = [null, true, false, 'Bob-omb clear condition',] as const,
-        possibleCanBeThrownByBowserJr: readonly CanBeThrownByBowserJr[] = [null, false, '3rd phase',] as const,
-        possibleCanBeThrownByBowserJrInClownCar: readonly CanBeThrownByBowserJrInClownCar[] = [null, true, false, 'Koopa Troopa clear condition',] as const,
-        possibleCanBeSpawnedByWingedMagikoopa: readonly CanBeSpawnedByWingedMagikoopa[] = [null, true, false, 'winged',] as const,
-        everyLimitAmountType = [null, UNKNOWN_CHARACTER, ...types.everyPossibleLimitAmountType_entity,],
-        everyGEL = [null, true, false, ...types.everyPossibleGEL_entity,],
-        everyGELGlobal = [null, true, false, ...types.everyPossibleGELGlobal_entity,],
-        everyPJL = [null, true, false, ...types.everyPossiblePJL_entity,],
-        everyObjectRenderedLimit = [null, true, false, ...types.everyPossibleObjectRenderedLimit_entity,],
-        everyOtherLimitComment = [null, ...types.everyPossibleOtherLimitComment_entity,],
-        possibleCanRespawn: readonly CanRespawnType[] = [null, true, false, UNKNOWN_CHARACTER, 'With Vine', 'If not collected',] as const,
-        possibleOffscreenReferencePoint: readonly OffscreenSpawningAndDespawningReferencePoint[] = [null, UNKNOWN_CHARACTER, 'Center', 'Center\n(excluding path)', 'Edge', 'Anything', 'Anything\n(excluding path)', INFINITY,] as const,
-        possibleHasNameReferencedInMarioMaker: readonly HasAReferenceInMarioMaker[] = [null, true, false, UNKNOWN_CHARACTER, 'Only spoken (in english) in Editor',] as const,
-        excludedLanguages: readonly PossibleExcludedLanguages[] = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian', 'japanese', 'chinese', 'korean',]
+    const types = EveryTypes.get
+    const everyNames = types.everyPossibleName_entity
+    const possibleEntityType = ['(Entity)', 'Entity', 'Projectile', 'Object',]                                                                                           as const satisfies readonly PossibleEntityType[]
+    const possibleFirstAppearance = [1, 2,]                                                                                                                              as const satisfies readonly PossibleFirstAppearanceInMarioMaker[]
+    const everyVersion = [null, ...types.everyPossibleName_version,]                                                                                                     as const satisfies readonly NullOr<PossibleName_Version>[]
+    const everyPossibleCategory = [null, ...types.everyPossibleName_entityCategory,]                                                                                     as const satisfies readonly NullOr<PossibleEnglishName_Category>[]
+    /*const everyEditorLimits = types.everyPossibleName_editorLimit, */
+    const everyEditorLimitsWithNull = [null, ...types.everyPossibleName_editorLimit,]
+    const everyEditorLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_editorLimit,]
+    /*const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,], */
+    const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]
+    const possibleBasicProperty = [null, true, false, 'While playing → LCL',]                                                                                            as const satisfies readonly (| PossibleHasAMushroomVariant | PossibleCanBeInAParachute | PossibleCanHaveWings)[]
+    const possibleAffectedByOnOffState = [null, true, false, 'Only some variants',]                                                                                      as const satisfies readonly IsAffectedDirectlyByAnOnOrOffState[]
+    const everyWeight = [null, UNKNOWN_CHARACTER, ...types.everyPossibleWeight_entity,]                                                                                  as const satisfies readonly PossibleWeight[]
+    const everyLightSources = [null, UNKNOWN_CHARACTER, ...types.everyPossibleLightSource_entity,]                                                                       as const satisfies readonly PossibleLightSource[]
+    const everySurviveConditionsInDeadlyLiquid = [true, false, UNKNOWN_CHARACTER, ...types.everyPossibleSurviveConditionInDeadlyLiquid_entity,]                          as const satisfies readonly CanSurviveInTheLavaOrThePoison[]
+    const possibleCanIgniteByBobOmb = [true, false, 'NSMBU', 'Castle',]                                                                                                  as const satisfies readonly CanIgniteABobOmb[]
+    const possibleCanBeBrokenOrKilledByBobOmb = [true, false, 'Koopa Troopa', 'Unchained Chomp', 'Standing on top of block that get destroyed',]                         as const satisfies readonly CanBeBrokenOrKilledByABobOmb[]
+    const possibleAffectedByTwister = [null, true, false, 'When falling', 'Parachute',]                                                                                  as const satisfies readonly CanBeAffectedByATwister[]
+    const possibleCanGoThroughWallsInSM3DW = [null, true, false, 'on down curve',]                                                                                       as const satisfies readonly CanGoThroughWallsInSM3DW[]
+    const possibleIsGlobalGroundOrGlobal = [null, true, false, 'SM3DW',]                                                                                                 as const satisfies readonly IsGlobalGroundOrGlobal[]
+    const everyInstruments = [null, ...types.everyPossibleName_instrument, ...types.everyPossibleMixedName_instrument,]                                                  as const
+    const possibleCanMakeASoundOutOfMusicBlock = [null, true, false, 'Excluding the top 3 notes',]                                                                       as const satisfies readonly CanMakeASoundOutOfAMusicBlock[]
+    const possibleCanBeThrownByBowserInClownCar = [null, true, false, 'Bob-omb clear condition',]                                                                        as const satisfies readonly CanBeThrownByBowserInClownCar[]
+    const possibleCanBeThrownByBowserJr = [null, false, '3rd phase',]                                                                                                    as const satisfies readonly CanBeThrownByBowserJr[]
+    const possibleCanBeThrownByBowserJrInClownCar = [null, true, false, 'Koopa Troopa clear condition',]                                                                 as const satisfies readonly CanBeThrownByBowserJrInClownCar[]
+    const possibleCanBeSpawnedByWingedMagikoopa = [null, true, false, 'winged',]                                                                                         as const satisfies readonly CanBeSpawnedByWingedMagikoopa[]
+    const everyLimitAmountType = [null, UNKNOWN_CHARACTER, ...types.everyPossibleLimitAmountType_entity,]                                                                as const satisfies readonly LimitAmountType[]
+    const everyGEL = [null, true, false, ...types.everyPossibleGEL_entity,]                                                                                              as const satisfies readonly GeneralLimitType[]
+    const everyGELGlobal = [null, true, false, ...types.everyPossibleGELGlobal_entity,]                                                                                  as const satisfies readonly GeneralGlobalLimitType[]
+    const everyPJL = [null, true, false, ...types.everyPossiblePJL_entity,]                                                                                              as const satisfies readonly ProjectileLimitType[]
+    const everyObjectRenderedLimit = [null, true, false, ...types.everyPossibleObjectRenderedLimit_entity,]                                                              as const satisfies readonly RenderedObjectLimitType[]
+    const everyOtherLimitComment = [null, ...types.everyPossibleOtherLimitComment_entity,]                                                                               as const satisfies readonly OtherLimitCommentType[]
+    const possibleCanRespawn = [null, true, false, UNKNOWN_CHARACTER, 'With Vine', 'If not collected',]                                                                  as const satisfies readonly CanRespawnType[]
+    const possibleOffscreenReferencePoint = [null, UNKNOWN_CHARACTER, 'Center', 'Center\n(excluding path)', 'Edge', 'Anything', 'Anything\n(excluding path)', INFINITY,] as const satisfies readonly OffscreenSpawningAndDespawningReferencePoint[]
+    const possibleHasNameReferencedInMarioMaker = [null, true, false, UNKNOWN_CHARACTER, 'Only spoken (in english) in Editor',]                                          as const satisfies readonly HasAReferenceInMarioMaker[]
+    const excludedLanguages: readonly PossibleExcludedLanguages[] = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian', 'japanese', 'chinese', 'korean',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedLanguages,)

@@ -9,16 +9,14 @@ import LanguageChangerLink         from 'navigation/LanguageChanger.link'
 import {LANGUAGE_CHANGER_MODAL_ID} from 'navigation/button/modalIds'
 import {StringContainer}           from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function LanguageChangerBody() {
     const [, setCurrentLanguage,] = useState(ProjectLanguages.current)
 
     const everyLanguagesShown: EveryLanguages[] = []
 
     return <div key="language changer (body)" id="languageChanger-body" className="container">{
-        ProjectLanguages.values
+        ProjectLanguages.CompanionEnum.get.values
             .map(language => {
                     const key = `languageChanger-content-${StringContainer.getInHtml(language.englishName)}`
                     if (everyLanguagesShown.includes(language.language.parent!))
@@ -26,7 +24,7 @@ export default function LanguageChangerBody() {
 
                     everyLanguagesShown.push(language.language.parent ?? language.language)
                     return <LanguageChangerLink key={key} language={language} callbackToSetLanguage={language => {
-                        setCurrentLanguage(ProjectLanguages.current = language)
+                        setCurrentLanguage(ProjectLanguages.CompanionEnum.get.current = language)
                         BootstrapInstanceHandler.get.getModalInstanceOrNull(LANGUAGE_CHANGER_MODAL_ID)?.instance.hide()
                     }}/>
                 }

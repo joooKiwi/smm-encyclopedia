@@ -1,6 +1,5 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {SoundEffects}        from 'core/soundEffect/SoundEffects'
 import type {AppOption}           from 'app/options/AppOption'
@@ -58,7 +57,7 @@ export abstract class SoundEffectAppOption
         protected override _createContentOption(enumeration: SoundEffects,) {
             const {reference,} = enumeration
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.getValueByName(reference.categoryEnglish).imageFile,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => SoundEffectCategories.CompanionEnum.get.getValueByName(reference.categoryEnglish,).imageFile,)
         }
 
         protected override _createTableHeaderOption() {
@@ -170,27 +169,12 @@ export abstract class SoundEffectAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent
 
-    public renderTableHeader(): NullOr<SingleHeaderContent> {
+    public renderTableHeader(): SingleHeaderContent {
         return this._createTableHeaderOption()
     }
 
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<SoundEffectAppOption>,): SoundEffectAppOption {
-        return SoundEffectAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<SoundEffectAppOption> {
-        return SoundEffectAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<SoundEffectAppOption> {
-        return SoundEffectAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

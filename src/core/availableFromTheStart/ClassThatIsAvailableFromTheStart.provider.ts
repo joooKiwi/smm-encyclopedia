@@ -7,9 +7,7 @@ import {GameStructureProvider}                     from 'core/game/GameStructure
 import {isArrayEquals}                             from 'util/utilitiesMethods'
 import {AbstractProvider}                          from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class ClassThatIsAvailableFromTheStartProvider
     extends AbstractProvider<ArgumentsReceived, ClassThatIsAvailableFromTheStart>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, ClassThatIsAvailableFromTheStart>,
@@ -70,8 +68,8 @@ export class ClassThatIsAvailableFromTheStartProvider
      */
     public get<SMM1 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM3DS extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, SMM2 extends PossibleIsAvailableFromTheStart = PossibleIsAvailableFromTheStart, >(isAvailableFromTheStart_SMM1: SMM1, isAvailableFromTheStart_SMM3DS: SMM3DS, isAvailableFromTheStart_SMM2: SMM2,): ClassThatIsAvailableFromTheStart<SMM1, SMM3DS, SMM2>
     public get(isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart, isAvailableFromTheStart_SMM3DS?: PossibleIsAvailableFromTheStart, isAvailableFromTheStart_SMM2?: PossibleIsAvailableFromTheStart,): ClassThatIsAvailableFromTheStart {
-        if (arguments.length === 1){
-            if(isAvailableFromTheStart_SMM1 == null)
+        if (arguments.length === 1) {
+            if (isAvailableFromTheStart_SMM1 == null)
                 return this.get(null, null, true,)
             return this.get(isAvailableFromTheStart_SMM1, true, true,)
         }

@@ -3,17 +3,13 @@ import file from 'resources/compiled/Game reference.json'
 import type {LanguageContent}                      from 'core/_template/LanguageContent'
 import type {GameReference}                        from 'core/gameReference/GameReference'
 import type {PossibleAcronym, PossibleEnglishName} from 'core/gameReference/GameReferences.types'
-import type {GameReferenceTemplate}                from 'core/gameReference/GameReference.template'
 import type {Loader}                               from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {GameReferenceCreator}    from 'core/gameReference/GameReference.creator'
+import {isInProduction}         from 'variables'
+import {GameReferenceContainer} from 'core/gameReference/GameReference.container'
+import {createNameFromContent}  from 'lang/name/createNameFromContent'
 
-
-/**
- * @singleton
- */
+/** @singleton */
 export class GameReferenceLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, GameReference>> {
 
@@ -21,33 +17,35 @@ export class GameReferenceLoader
 
     static #instance?: GameReferenceLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
     }
 
     //endregion -------------------- Singleton usage --------------------
+
     #map?: Map<PossibleEnglishName, GameReference>
 
     public load(): ReadonlyMap<PossibleEnglishName, GameReference> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, GameReference>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new GameReferenceCreator(new TemplateCreator(it as Content).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "game references" has been loaded (start) --------------------\n',
-                    references,
-                    '\n-------------------- "game references" has been loaded (end) --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, GameReference>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "game references" has been loaded (start) --------------------\n',
+                references,
+                '\n-------------------- "game references" has been loaded (end) --------------------',
+            )
+
+        return this.#map = references
     }
 }
 
@@ -55,24 +53,13 @@ export class GameReferenceLoader
 interface Content
     extends LanguageContent {
 
-    acronym: PossibleAcronym
+    readonly acronym: PossibleAcronym
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<GameReferenceTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): GameReferenceTemplate {
-        const content = this._content
-
-        return {
-            acronym: content.acronym,
-            name: this._createNameTemplate(),
-        }
-    }
-
+function createReference(content: Content,): GameReference {
+    return new GameReferenceContainer(
+        content.acronym,
+        createNameFromContent(content, 'all', false,),
+    )
 }

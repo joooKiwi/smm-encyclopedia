@@ -1,18 +1,28 @@
 import file from 'resources/compiled/Game style.json'
 
+import {lazy} from '@joookiwi/lazy'
+
 import type {PossibleIsAvailableFromTheStart}                                    from 'core/availableFromTheStart/loader.types'
 import type {GameContentFrom1And2}                                               from 'core/game/Loader.types'
-import type {GameStyle}                                                          from 'core/gameStyle/GameStyle'
+import type {GameStyle, PossibleNightDesertWindTranslationKey}                   from 'core/gameStyle/GameStyle'
 import type {PossibleAcronym, PossibleEnglishName}                               from 'core/gameStyle/GameStyles.types'
-import type {GameStyleTemplate}                                                  from 'core/gameStyle/GameStyle.template'
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
 import type {Loader}                                                             from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {GameStyleCreator}        from 'core/gameStyle/GameStyle.creator'
+import {isInProduction}                           from 'variables'
+import {GameStyleContainer}                       from 'core/gameStyle/GameStyle.container'
+import {GameReferences}                           from 'core/gameReference/GameReferences'
+import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
+import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
+import {Import}                                   from 'util/DynamicImporter'
 
 /**
+ * @dependsOn<{@link GameReferences}>
+ * @indirectlyDependsOn<{@link GameReferenceLoader}>
+ * @dependsOn<{@link GameStyles}>
+ * @dependsOn<{@link Entities}>
+ * @indirectlyDependsOn<{@link EntityLoader}>
+ * @recursiveReference<{@link GameStyles}>
  * @singleton
  */
 export class GameStyleLoader
@@ -22,8 +32,7 @@ export class GameStyleLoader
 
     static #instance?: GameStyleLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -34,22 +43,24 @@ export class GameStyleLoader
     #map?: Map<PossibleEnglishName, GameStyle>
 
     public load(): ReadonlyMap<PossibleEnglishName, GameStyle> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, GameStyle>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new GameStyleCreator(new TemplateCreator(it as Content).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "game style" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "game style" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, GameStyle>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "game style" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "game style" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
@@ -58,34 +69,32 @@ export class GameStyleLoader
 interface Content
     extends GameContentFrom1And2 {
 
-    isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
-    reference: PossibleAcronym
-    nightDesertWindDirection: PossibleNightDesertWindDirection
-    nightDesertWindFrequency: PossibleNightDesertWindFrequency
+    readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+    readonly reference: PossibleAcronym
+    readonly nightDesertWindDirection: PossibleNightDesertWindDirection
+    readonly nightDesertWindFrequency: PossibleNightDesertWindFrequency
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<GameStyleTemplate, Content> {
+function createReference(content: Content,): GameStyle {
+    return new GameStyleContainer(
+        GameReferences.CompanionEnum.get.getValueByAcronym(content.reference,).reference.nameContainer,
+        content.isInSuperMarioMaker1And3DS ? GamePropertyProvider.get.all : GamePropertyProvider.get.smm2Only,
+        ClassThatIsAvailableFromTheStartProvider.get.get(content.isAvailableFromTheStart_SMM1,),
+        lazy(() => {
+            const gameStyle = Import.GameStyles.CompanionEnum.get.getValueByAcronym(content.reference,)
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
+            return Import.Entities.CompanionEnum.get.values.map(it => it.reference,)
+                .filter(reference => gameStyle.get(reference,),)
+                .toArray()
+        },),
+        createNightDesertWindTranslationKey(content,),
+    )
+}
 
-    public override create(): GameStyleTemplate {
-        const content = this._content
-
-        return {
-            is: {
-                in: {game: this._createGameTemplateFrom1And2(),},
-                availableFromTheStart: content.isAvailableFromTheStart_SMM1,
-            },
-            reference: content.reference,
-            nightDesertWind: {
-                direction: content.nightDesertWindDirection,
-                frequency: content.nightDesertWindFrequency,
-            },
-        }
-    }
-
+function createNightDesertWindTranslationKey(content: Content,): PossibleNightDesertWindTranslationKey {
+    const direction = content.nightDesertWindDirection
+    if (direction == null)
+        return null
+    return `${direction} ${content.nightDesertWindFrequency}` as PossibleNightDesertWindTranslationKey
 }

@@ -1,18 +1,16 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {Property}                                                                                                                                                                                                                                         from 'core/entity/properties/Property'
 import type {GameProperty}                                                                                                                                                                                                                                     from 'core/entity/properties/game/GameProperty'
 import type {GameStyleProperty}                                                                                                                                                                                                                                from 'core/entity/properties/gameStyle/GameStyleProperty'
 import type {CanMakeASoundOutOfAMusicBlockProperty, InstrumentProperty}                                                                                                                                                                                        from 'core/entity/properties/instrument/InstrumentProperty'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                    from 'core/entity/properties/instrument/loader.types'
 import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
-import type {PossibleGeneralEntityLimitComment, PossibleGeneralGlobalEntityLimitComment, PossibleOtherLimitComment, PossibleProjectileEntityLimitComment, PossibleRenderedObjectLimitTypeComment}                                                              from 'core/entity/properties/limit/loader.types'
+import type {PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                from 'core/entity/properties/limit/loader.types'
 import type {ThemeProperty}                                                                                                                                                                                                                                    from 'core/entity/properties/theme/ThemeProperty'
 import type {TimeProperty}                                                                                                                                                                                                                                     from 'core/entity/properties/time/TimeProperty'
-import type {EntityLimits}                                                                                                                                                                                                                                     from 'core/entityLimit/EntityLimits'
 import type {Games}                                                                                                                                                                                                                                            from 'core/game/Games'
 import type {GameStyles}                                                                                                                                                                                                                                       from 'core/gameStyle/GameStyles'
 import type {Instrument}                                                                                                                                                                                                                                       from 'core/instrument/Instrument'
+import type {Limits}                                                                                                                                                                                                                                           from 'core/limit/Limits'
 import type {Themes}                                                                                                                                                                                                                                           from 'core/theme/Themes'
 import type {Times}                                                                                                                                                                                                                                            from 'core/time/Times'
 
@@ -31,12 +29,12 @@ export class PropertyContainer
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(game: Lazy<GameProperty>,
-                       gameStyle: Lazy<GameStyleProperty>,
-                       theme: Lazy<ThemeProperty>,
-                       time: Lazy<TimeProperty>,
-                       limit: Lazy<LimitProperty>,
-                       instrument: Lazy<InstrumentProperty>,) {
+    public constructor(game: GameProperty,
+                       gameStyle: GameStyleProperty,
+                       theme: ThemeProperty,
+                       time: TimeProperty,
+                       limit: LimitProperty,
+                       instrument: InstrumentProperty,) {
         this.#gameContainer = game
         this.#gameStyleContainer = gameStyle
         this.#themeContainer = theme
@@ -51,7 +49,7 @@ export class PropertyContainer
     //region -------------------- Game properties --------------------
 
     public get gameContainer(): GameProperty {
-        return this.#gameContainer.value
+        return this.#gameContainer
     }
 
     public get isInSuperMarioMaker1(): boolean {
@@ -70,7 +68,7 @@ export class PropertyContainer
     //region -------------------- Game style properties --------------------
 
     public get gameStyleContainer(): GameStyleProperty {
-        return this.#gameStyleContainer.value
+        return this.#gameStyleContainer
     }
 
     public get isInSuperMarioBrosStyle(): boolean {
@@ -97,7 +95,7 @@ export class PropertyContainer
     //region -------------------- Theme properties --------------------
 
     public get themeContainer(): ThemeProperty {
-        return this.#themeContainer.value
+        return this.#themeContainer
     }
 
     public get isInGroundTheme(): boolean {
@@ -144,7 +142,7 @@ export class PropertyContainer
     //region -------------------- Time properties --------------------
 
     public get timeContainer(): TimeProperty {
-        return this.#timeContainer.value
+        return this.#timeContainer
     }
 
     public get isInDayTheme(): boolean {
@@ -159,7 +157,7 @@ export class PropertyContainer
     //region -------------------- Limit properties --------------------
 
     public get limitContainer(): LimitProperty {
-        return this.#limitContainer.value
+        return this.#limitContainer
     }
 
     //region -------------------- Editor limit --------------------
@@ -168,11 +166,11 @@ export class PropertyContainer
         return this.limitContainer.editorLimitContainer
     }
 
-    public get editorLimit_smm1And3ds(): NullOr<EntityLimits> {
+    public get editorLimit_smm1And3ds(): NullOr<Limits> {
         return this.limitContainer.editorLimit_smm1And3ds
     }
 
-    public get editorLimit_smm2(): NullOr<| EntityLimits | NotApplicable> {
+    public get editorLimit_smm2(): NullOr<| Limits | NotApplicable> {
         return this.limitContainer.editorLimit_smm2
     }
 
@@ -191,7 +189,7 @@ export class PropertyContainer
         return this.limitContainer.isInGeneralLimit
     }
 
-    public get isInGeneralLimitComment(): NullOr<PossibleGeneralEntityLimitComment> {
+    public get isInGeneralLimitComment(): NullOr<PossibleGeneralLimitComment> {
         return this.limitContainer.isInGeneralLimitComment
     }
 
@@ -206,7 +204,7 @@ export class PropertyContainer
         return this.limitContainer.isInGlobalGeneralLimit
     }
 
-    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalEntityLimitComment> {
+    public get isInGlobalGeneralLimitComment(): NullOr<PossibleGeneralGlobalLimitComment> {
         return this.limitContainer.isInGlobalGeneralLimitComment
     }
 
@@ -232,7 +230,7 @@ export class PropertyContainer
         return this.limitContainer.isInProjectileLimit
     }
 
-    public get isInProjectileLimitComment(): NullOr<PossibleProjectileEntityLimitComment> {
+    public get isInProjectileLimitComment(): NullOr<PossibleProjectileLimitComment> {
         return this.limitContainer.isInProjectileLimitComment
     }
 
@@ -269,7 +267,7 @@ export class PropertyContainer
         return this.limitContainer.otherLimitContainer
     }
 
-    public get otherLimit(): | EntityLimits | NotApplicable {
+    public get otherLimit(): NullOr<| Limits | NotApplicable> {
         return this.limitContainer.otherLimit
     }
 
@@ -283,7 +281,7 @@ export class PropertyContainer
     //region -------------------- Instrument properties --------------------
 
     public get instrumentContainer(): InstrumentProperty {
-        return this.#instrumentHolder.value
+        return this.#instrumentHolder
     }
 
 
@@ -328,16 +326,16 @@ export class PropertyContainer
         return this.timeContainer.toTimeMap()
     }
 
-    public toLimitMap(): ReadonlyMap<EntityLimits, boolean> {
+    public toLimitMap(): ReadonlyMap<Limits, boolean> {
         return this.limitContainer.toLimitMap()
     }
 
-    public toLimitInTheEditorMap(): ReadonlyMap<EntityLimits, boolean> {
-        return this.limitContainer.toLimitInTheEditorMap()
+    public toEditorLimitMap(): ReadonlyMap<Limits, boolean> {
+        return this.limitContainer.toEditorLimitMap()
     }
 
-    public toLimitWhilePlayingMap(): ReadonlyMap<EntityLimits, boolean> {
-        return this.limitContainer.toLimitWhilePlayingMap()
+    public toPlayLimitMap(): ReadonlyMap<Limits, boolean> {
+        return this.limitContainer.toPlayLimitMap()
     }
 
     //endregion -------------------- Convertor methods --------------------

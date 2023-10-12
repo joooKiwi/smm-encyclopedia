@@ -1,4 +1,4 @@
-import type {Lazy} from '@joookiwi/lazy'
+import {lazyOf} from '@joookiwi/lazy'
 
 import type {GameProperty}              from 'core/entity/properties/game/GameProperty'
 import type {SoundEffect}               from 'core/soundEffect/SoundEffect'
@@ -20,8 +20,8 @@ export class SoundEffectContainer
 
     //endregion -------------------- Fields --------------------
 
-    public constructor(name: Name<string>, category: Lazy<SoundEffectCategory>, property: SoundEffectProperty,) {
-        super(name, category,)
+    public constructor(name: Name<string>, category: SoundEffectCategory, property: SoundEffectProperty,) {
+        super(name, lazyOf(category,),)
         this.#propertyContainer = property
     }
 

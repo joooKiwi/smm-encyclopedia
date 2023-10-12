@@ -31,7 +31,7 @@ export default function SimpleDate({year, month, day,}: DateTimeFormatProperties
         year="numeric"
         month="long"
         day="numeric">
-        {parts => <>{parts.map(({type, value,}) => type === 'day' ? <Fragment key={`${date} - ${type}`}>{DateDayLanguages.current.newDayComponent(Number(value) as DayNumber)}</Fragment> : value)}</>}
+        {parts => <>{parts.map(({type, value,}) => type === 'day' ? <Fragment key={`${date} - ${type}`}>{DateDayLanguages.CompanionEnum.get.current.newDayComponent(Number(value,) as DayNumber,)}</Fragment> : value)}</>}
     </FormattedDateParts>
 }
 

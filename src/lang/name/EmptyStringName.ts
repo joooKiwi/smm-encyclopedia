@@ -3,9 +3,7 @@ import type {ClassWithNullObjectPattern, EmptyNameName} from 'util/ClassWithNull
 
 import {EMPTY_ARRAY, EMPTY_MAP, EMPTY_STRING} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyStringName
     implements Name<string>, ClassWithNullObjectPattern<EmptyNameName> {
 
@@ -13,8 +11,7 @@ export class EmptyStringName
 
     static #instance?: EmptyStringName
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

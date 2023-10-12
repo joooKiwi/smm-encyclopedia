@@ -4,15 +4,21 @@ import type {LanguageContent}                                               from
 import type {GameContentFrom1And2}                                          from 'core/game/Loader.types'
 import type {SoundEffect}                                                   from 'core/soundEffect/SoundEffect'
 import type {PossibleEnglishName}                                           from 'core/soundEffect/SoundEffects.types'
-import type {SoundEffectTemplate}                                           from 'core/soundEffect/SoundEffect.template'
 import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
 import type {Loader}                                                        from 'util/loader/Loader'
 
-import {isInProduction}           from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {SoundEffectCreator}      from 'core/soundEffect/SoundEffect.creator'
+import {isInProduction}                  from 'variables'
+import {GamePropertyProvider}            from 'core/entity/properties/game/GameProperty.provider'
+import {SoundEffectContainer}            from 'core/soundEffect/SoundEffect.container'
+import {PlayerSoundEffectTriggers}       from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import {SoundEffectPropertyContainer}    from 'core/soundEffect/property/SoundEffectProperty.container'
+import {EmptySoundEffectCategory}        from 'core/soundEffectCategory/EmptySoundEffectCategory'
+import {SoundEffectCategoryLoader}       from 'core/soundEffectCategory/SoundEffectCategory.loader'
+import {createNameFromContent}           from 'lang/name/createNameFromContent'
 
 /**
+ * @dependsOn<{@link PlayerSoundEffectTriggers}>
+ * @dependsOn<{@link SoundEffectCategoryLoader}>
  * @singleton
  */
 export class SoundEffectLoader
@@ -22,8 +28,7 @@ export class SoundEffectLoader
 
     static #instance?: SoundEffectLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -34,22 +39,24 @@ export class SoundEffectLoader
     #map?: Map<PossibleEnglishName, SoundEffect>
 
     public load(): ReadonlyMap<PossibleEnglishName, SoundEffect> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, SoundEffect>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new SoundEffectCreator(new TemplateCreator(it as Content).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "sound effect" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "sound effect" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, SoundEffect>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "sound effect" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "sound effect" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
@@ -60,67 +67,37 @@ interface Content
 
     //region -------------------- Triggers --------------------
 
-    doesTrigger_player_jumpAfterLanding: boolean
-    doesTrigger_player_turnAroundAfterBeingAtFullSpeed: boolean
-    doesTrigger_player_crouch: boolean
-    doesTrigger_player_after3SecondsRepeatedly: boolean
+    readonly doesTrigger_player_jumpAfterLanding: boolean
+    readonly doesTrigger_player_turnAroundAfterBeingAtFullSpeed: boolean
+    readonly doesTrigger_player_crouch: boolean
+    readonly doesTrigger_player_after3SecondsRepeatedly: boolean
 
-    doesTrigger_player_collectPowerUp: boolean
-    doesTrigger_player_getIntoAnEntity: boolean
+    readonly doesTrigger_player_collectPowerUp: boolean
+    readonly doesTrigger_player_getIntoAnEntity: boolean
 
-    doesTrigger_player_spawn: boolean
-    doesTrigger_player_damage: boolean
-    doesTrigger_player_lostALife: boolean
+    readonly doesTrigger_player_spawn: boolean
+    readonly doesTrigger_player_damage: boolean
+    readonly doesTrigger_player_lostALife: boolean
 
     //endregion -------------------- Triggers --------------------
 
-    category: NullOr<PossibleSoundEffectCategoryEnglishName>
+    readonly category: NullOr<PossibleSoundEffectCategoryEnglishName>
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<SoundEffectTemplate, Content> {
+function createReference(content: Content,): SoundEffect {
+    const category = content.category
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): SoundEffectTemplate {
-        const content = this._content
-
-        return {
-            properties: {
-                isIn: {
-                    game: this._createGameTemplateFrom1And2(),
-
-                    trigger: {
-                        player: {
-
-                            movement: {
-                                jumpAfterLanding: content.doesTrigger_player_jumpAfterLanding,
-                                turnAroundAfterBeingAtFullSpeed: content.doesTrigger_player_turnAroundAfterBeingAtFullSpeed,
-                                crouch: content.doesTrigger_player_crouch,
-                                after3SecondsRepeatedly: content.doesTrigger_player_after3SecondsRepeatedly,
-                            },
-
-                            interaction: {
-                                collectPowerUp: content.doesTrigger_player_collectPowerUp,
-                                getIntoAnEntity: content.doesTrigger_player_getIntoAnEntity,
-                            },
-
-                            environment: {
-                                spawn: content.doesTrigger_player_spawn,
-                                damage: content.doesTrigger_player_damage,
-                                lostALife: content.doesTrigger_player_lostALife,
-                            },
-
-                        },
-                    },
-                },
-                category: content.category,
-            },
-            name: this._createNameTemplate(),
-        }
-    }
-
+    return new SoundEffectContainer(
+        createNameFromContent(content, 2, false,),
+        category == null ? EmptySoundEffectCategory.get : SoundEffectCategoryLoader.get.load().get(category,)!,
+        new SoundEffectPropertyContainer(
+            GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),
+            PlayerSoundEffectTriggers.getValueByTrigger(//TODO replace PlayerSoundEffectTriggers.getValueByTrigger in "SoundEffect.loader.ts" in a simple function
+                content.doesTrigger_player_jumpAfterLanding, content.doesTrigger_player_turnAroundAfterBeingAtFullSpeed, content.doesTrigger_player_crouch, content.doesTrigger_player_after3SecondsRepeatedly,
+                content.doesTrigger_player_collectPowerUp, content.doesTrigger_player_getIntoAnEntity,
+                content.doesTrigger_player_spawn, content.doesTrigger_player_damage, content.doesTrigger_player_lostALife,
+            ),
+        ),
+    )
 }

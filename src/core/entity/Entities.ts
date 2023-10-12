@@ -1,6 +1,4 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                        from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                          from 'core/ClassWithReference'
@@ -18,23 +16,26 @@ import type {InGameImage_SMM2}                            from 'core/entity/imag
 import type {UniqueImage}                                 from 'core/entity/images/unique/UniqueImage'
 import type {UnusedImage_BigMushroom}                     from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                         from 'core/entity/images/unused/UnusedImage_Regular'
+import type {CompanionEnumByNameWithValidationSingleton}  from 'util/enumerable/Singleton.types'
 
-import {EditorVoices}                 from 'core/editorVoice/EditorVoices'
-import {EntityLoader}                 from 'core/entity/Entity.loader'
-import * as ImageCreator              from 'core/entity/images/imageCreator'
-import {EmptyClearConditionImage}     from 'core/entity/images/clearCondition/EmptyClearConditionImage'
-import {EmptyEditorImage}             from 'core/entity/images/editor/EmptyEditorImage'
-import {EmptyInGameImage}             from 'core/entity/images/inGame/EmptyInGameImage'
-import {EmptyUniqueImage}             from 'core/entity/images/unique/EmptyUniqueImage'
-import {EmptyUnusedImage_BigMushroom} from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
-import {EmptyUnusedImage_Regular}     from 'core/entity/images/unused/EmptyUnusedImage_Regular'
-import {GameStyles}                   from 'core/gameStyle/GameStyles'
-import {Themes}                       from 'core/theme/Themes'
-import {StringContainer}              from 'util/StringContainer'
-import {getValueByEnglishName}        from 'util/utilitiesMethods'
+import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
+import {EntityLoader}                      from 'core/entity/Entity.loader'
+import * as ImageCreator                   from 'core/entity/images/imageCreator'
+import {EmptyClearConditionImage}          from 'core/entity/images/clearCondition/EmptyClearConditionImage'
+import {EmptyEditorImage}                  from 'core/entity/images/editor/EmptyEditorImage'
+import {EmptyInGameImage}                  from 'core/entity/images/inGame/EmptyInGameImage'
+import {EmptyUniqueImage}                  from 'core/entity/images/unique/EmptyUniqueImage'
+import {EmptyUnusedImage_BigMushroom}      from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
+import {EmptyUnusedImage_Regular}          from 'core/entity/images/unused/EmptyUnusedImage_Regular'
+import {GameStyles}                        from 'core/gameStyle/GameStyles'
+import {Themes}                            from 'core/theme/Themes'
+import {StringContainer}                   from 'util/StringContainer'
+import {getValueByEnglishName}             from 'util/utilitiesMethods'
+import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
 
 /**
  * @recursiveReference<{@link EditorVoices}>
+ * @recursiveReference<{@link EntityLoader}>
  */
 export class Entities
     extends Enum<Ordinals, Names>
@@ -3088,8 +3089,8 @@ export class Entities
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Entities, typeof Entities> = class CompanionEnum_Entities
-        extends CompanionEnum<Entities, typeof Entities> {
+    public static readonly CompanionEnum: CompanionEnumByNameWithValidationSingleton<Entities, typeof Entities> = class CompanionEnum_Entities
+        extends CompanionEnumByNameWithValidation<Entities, typeof Entities> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -3104,6 +3105,18 @@ export class Entities
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public override getValueByName(value: Nullable<| Entities | string>,): Entities {
+            return getValueByEnglishName(value, this,)
+        }
+
+        public override hasValueByName(value: Nullable<| Entities | string>,): boolean {
+            if (value == null)
+                return false
+            if (value instanceof this.instance)
+                return true
+            return this.instance.everyEnglishNames.includes(value as never,)
+        }
 
     }
 
@@ -3225,9 +3238,11 @@ export class Entities
     //region -------------------- editor sound --------------------
 
     public get editorVoiceSoundFileHolder(): NullOr<EditorVoiceSound> {
-        if (this.#editorVoiceSound === undefined)
-            this.#editorVoiceSound = EditorVoices.hasReference(this) ? EditorVoices.getValueByEntity(this).editorVoiceSoundFileHolder : null
-        return this.#editorVoiceSound
+        if (this.#editorVoiceSound !== undefined)
+            return this.#editorVoiceSound
+        if (EditorVoices.CompanionEnum.get.hasReference(this,))
+            return this.#editorVoiceSound = EditorVoices.CompanionEnum.get.getValueByEntity(this,).editorVoiceSoundFileHolder
+        return this.#editorVoiceSound = null
     }
 
     //endregion -------------------- editor sound --------------------
@@ -3330,33 +3345,10 @@ export class Entities
     //region -------------------- Methods --------------------
 
     public static get everyEnglishNames(): readonly PossibleEnglishName[] {
-        return this.#everyEnglishNames ??= this.values.map(it => it.englishName).toArray()
-    }
-
-    public static getValueByName(value: Nullable<| Entities | string>,): Entities {
-        return getValueByEnglishName(value, this,)
-    }
-
-    public static hasValueByName(value: Nullable<| Entities | string>,) {
-        return value != null && (value instanceof Entities || this.everyEnglishNames.includes(value as never))
+        return this.#everyEnglishNames ??= this.CompanionEnum.get.values.map(it => it.englishName,).toArray()
     }
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Entities>,): Entities {
-        return Entities.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Entities> {
-        return Entities.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Entities> {
-        return Entities.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

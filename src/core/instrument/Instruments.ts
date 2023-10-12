@@ -1,20 +1,16 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                     from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from 'core/instrument/Instruments.types'
 import type {InstrumentSoundFile}                                                                                                                                                                                                                      from 'core/instrument/file/InstrumentSoundFile'
 import type {Instrument}                                                                                                                                                                                                                               from 'core/instrument/Instrument'
+import type {CompanionEnumByNameSingleton}                                                                                                                                                                                                             from 'util/enumerable/Singleton.types'
 
-import {InstrumentLoader}      from 'core/instrument/Instrument.loader'
-import {instrumentSound}       from 'core/instrument/file/fileCreator'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {InstrumentLoader}               from 'core/instrument/Instrument.loader'
+import {instrumentSound}                from 'core/instrument/file/fileCreator'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-/**
- * @recursiveReference<{@link InstrumentLoader}>
- */
 export class Instruments
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName> {
@@ -111,8 +107,8 @@ export class Instruments
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Instruments, typeof Instruments> = class CompanionEnum_Instruments
-        extends CompanionEnum<Instruments, typeof Instruments> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Instruments, typeof Instruments> = class CompanionEnum_Instruments
+        extends CompanionEnumByEnglishNameOnly<Instruments, typeof Instruments> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -198,26 +194,6 @@ export class Instruments
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByName(value: Nullable<| Instruments | string>,): Instruments {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Instruments>,): Instruments {
-        return Instruments.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Instruments> {
-        return Instruments.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Instruments> {
-        return Instruments.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

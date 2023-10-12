@@ -1,22 +1,20 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import type {Dispatch, SetStateAction}                          from 'react'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {ImpossibleNames, PossibleEnumerableValue, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import type {Dispatch, SetStateAction}                                                       from 'react'
+import {Enum, NullReferenceException}                                                        from '@joookiwi/enumerable'
 
+import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/game/ClassInAnySuperMarioMakerGame'
 import type {PossibleBraces_Array, PossibleBrackets_Array, PossibleColon, PossibleComma, PossibleCommercialAnd, PossibleEndingBrace, PossibleEndingBracket, PossibleEndingParentheses, PossibleExclamationPoint, PossibleInterrogationPoint, PossibleLowercaseRomainAlphabet_Array, PossibleNumbers_Array, PossibleParentheses_Array, PossiblePoint, PossiblePoints_Array, PossibleSemicolon, PossibleSingleCharacter, PossibleSlash, PossibleSlashes_Array, PossibleStartingBrace, PossibleStartingBracket, PossibleStartingParentheses, PossibleUnionTrait, PossibleUppercaseRomainAlphabet_Array, PossibleVerticalSlash, TextInBraces, TextInBrackets, TextInParentheses, VariableCharacterByCharacter, VariableCharacterByString} from 'lang/Characters.types'
 import type {AnyClassWithEveryLanguages, ClassWithEveryLanguages, CompleteClassWithEveryLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'lang/ClassWithEveryLanguages'
 import type {PossibleSpaceCharacter}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'lang/EveryLanguages.types'
 import type {LanguageEnumerable}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'lang/LanguageEnumerable'
+import type {CompanionEnumDeclaration_ProjectLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'lang/ProjectLanguages.companionEnumDeclaration'
 import type {Names, Ordinals, PossibleAcronym, PossibleDifferentWord, PossibleEnglishName, PossibleInternationalAcronym, PossibleOriginalName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'lang/ProjectLanguages.types'
-import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/game/ClassInAnySuperMarioMakerGame'
 import type {AmericanOrEuropeanOriginal, CanadianOrEuropeanOriginal, ChineseOriginal}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'lang/name/containers/Language'
 import type {ClassUsedInRoute}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'route/ClassUsedInRoute'
-import type {ClassWithCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/enumerable/ClassWithCurrent'
 import type {ClassWithIsCurrent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      from 'util/enumerable/ClassWithIsCurrent'
-import type {SingleRetrievableByUrl}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'util/enumerable/SingleRetrievableByUrl'
 
-import {EveryLanguages}                       from 'lang/EveryLanguages'
-import {SingleRetrievableByUrlImplementation} from 'util/enumerable/SingleRetrievableByUrl.implementation'
+import {EveryLanguages}                from 'lang/EveryLanguages'
+import {CompanionEnumRetrievableInUrl} from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
 
 /**
  * <p>
@@ -81,8 +79,9 @@ export class ProjectLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<ProjectLanguages, typeof ProjectLanguages> = class CompanionEnum_ProjectLanguages
-        extends CompanionEnum<ProjectLanguages, typeof ProjectLanguages> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_ProjectLanguages> = class CompanionEnum_ProjectLanguages
+        extends CompanionEnumRetrievableInUrl<ProjectLanguages, typeof ProjectLanguages>
+        implements CompanionEnumDeclaration_ProjectLanguages {
 
         //region -------------------- Singleton usage --------------------
 
@@ -98,87 +97,75 @@ export class ProjectLanguages
 
         //endregion -------------------- Singleton usage --------------------
 
-    }
+        public override readonly URL_REGEX = /\/(((en|es|pt)-(AM|EU))|(fr-(CA|EU))|(zh-(tw|cn))|de|it|nl|ru|ja|ko)\//i
 
-    //endregion -------------------- Companion enum --------------------
-    //region -------------------- Companion --------------------
-
-    /**
-     * The reference of the static methods applicable to the class {@link ProjectLanguages}
-     *
-     * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
-     * @singleton
-     */
-    public static readonly Companion = class Companion_ProjectLanguages
-        implements ClassWithCurrent<ProjectLanguages>, SingleRetrievableByUrl<ProjectLanguages> {
-
-        //region -------------------- Singleton usage --------------------
-
-        static #instance?: Companion_ProjectLanguages
-
-        private constructor() {
+        public override get defaultValue(): ProjectLanguages {
+            return this.getValueByLanguage(EveryLanguages.CompanionEnum.get.defaultValue,)
         }
 
-        public static get get() {
-            return this.#instance ??= new this()
+        public override set defaultValue(value: Nullable<PossibleEnumerableValue<| ProjectLanguages | EveryLanguages>>,) {
+            if (value instanceof ProjectLanguages) {
+                EveryLanguages.CompanionEnum.get.setDefaultValue(value.language,)
+                return
+            }
+
+            EveryLanguages.CompanionEnum.get.setDefaultValue(value,)
         }
 
-        //endregion -------------------- Singleton usage --------------------
-        //region -------------------- Fields --------------------
+        public override setDefaultValue(value: ImpossibleNames,): never
+        public override setDefaultValue(value: Nullable<PossibleEnumerableValue<| ProjectLanguages | EveryLanguages>>,): this
+        public override setDefaultValue(value: Nullable<PossibleEnumerableValue<| ProjectLanguages | EveryLanguages>>,): this {
+            this.defaultValue = value
+            return this
+        }
 
-        /** A {@link RegExp regex} to identify the possible {@link ProjectLanguages} in an url */
-        public readonly URL_REGEX = ProjectLanguages.#SingleRetrievableByUrl.get.URL_REGEX
-
-        //endregion -------------------- Fields --------------------
 
         public get currentOrNull(): NullOr<ProjectLanguages> {
-            const value = EveryLanguages.currentOrNull
-            return value == null ? null : ProjectLanguages.getValueByLanguage(value)
+            const value = EveryLanguages.CompanionEnum.get.currentOrNull
+            if (value == null)
+                return null
+            return this.getValueByLanguage(value,)
         }
 
         public get current(): ProjectLanguages {
-            return ProjectLanguages.getValueByLanguage(EveryLanguages.current)
+            return this.getValueByLanguage(EveryLanguages.CompanionEnum.get.current,)
         }
 
-        public set current(value: PossibleEnumerableValueBy<ProjectLanguages>,) {
-            EveryLanguages.current = ProjectLanguages.getValue(value).language
+        public set current(value: PossibleEnumerableValueBy<| ProjectLanguages | EveryLanguages>,) {
+            if (value instanceof ProjectLanguages) {
+                EveryLanguages.CompanionEnum.get.current = value.language
+                return
+            }
+            EveryLanguages.CompanionEnum.get.current = value
         }
 
 
-        /**
-         * Get a {@link ProjectLanguages} from an url found or null if there is none
-         *
-         * @param url The url to find the {@link ProjectLanguages language} (if it is found)
-         * @throws {ReferenceError} A fail-safe error on a {@link ProjectLanguages} that was not found
-         */
-        public getInUrl = (url: string,) => ProjectLanguages.#SingleRetrievableByUrl.get.getInUrl(url)
+        public get onSetCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<EveryLanguages>>>> {
+            return EveryLanguages.CompanionEnum.get.onSetCurrentEventOrNull
+        }
 
+        public get onSetCurrentEvent(): Dispatch<SetStateAction<NullOr<EveryLanguages>>> {
+            return EveryLanguages.CompanionEnum.get.onSetCurrentEvent
+        }
+
+        public set onSetCurrentEvent(value: Dispatch<SetStateAction<NullOr<EveryLanguages>>>,) {
+            EveryLanguages.CompanionEnum.get.onSetCurrentEvent = value
+        }
+
+
+        public getValueByLanguage(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): ProjectLanguages {
+            if (value instanceof EveryLanguages) {
+                const valueFound = this.values.find(it => it.language === value,)
+                if (valueFound == null)
+                    throw new NullReferenceException(`No "${this.instance.name}" could be found by this value "${value}".`, value,)
+                return valueFound
+            }
+            return this._getValue(value,)
+        }
 
     }
 
-    static readonly #SingleRetrievableByUrl = class SingleRetrievableByUrl_ProjectLanguages
-        extends SingleRetrievableByUrlImplementation<ProjectLanguages> {
-
-        //region -------------------- Singleton usage --------------------
-
-        static #instance?: SingleRetrievableByUrl_ProjectLanguages
-
-        private constructor() {
-            super()
-        }
-
-        public static get get() {
-            return this.#instance ??= new this()
-        }
-
-        //endregion -------------------- Singleton usage --------------------
-
-        override readonly URL_REGEX = /\/(((en|es|pt)-(AM|EU))|(fr-(CA|EU))|(zh-(tw|cn))|de|it|nl|ru|ja|ko)\//i
-        override readonly _enumerableConstructor = ProjectLanguages
-
-    }
-
-    //endregion -------------------- Companion --------------------
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
 
     readonly #language: EveryLanguages
@@ -391,7 +378,7 @@ export class ProjectLanguages
     //region -------------------- Getter & setter methods (current) --------------------
 
     public get isCurrent(): boolean {
-        return this === ProjectLanguages.currentOrNull
+        return this === ProjectLanguages.CompanionEnum.get.currentOrNull
     }
 
     public get isCurrentOrAssociatedWithIt(): boolean {
@@ -400,63 +387,13 @@ export class ProjectLanguages
 
 
     /**
-     * Get the current {@link ProjectLanguages language} that may be initialized
-     *
-     * @see EveryLanguages.currentOrNull
-     */
-    public static get currentOrNull(): NullOr<ProjectLanguages> {
-        return this.Companion.get.currentOrNull
-    }
-
-    /**
-     * Get the non-nullable current {@link ProjectLanguages language}
+     * A simple intermediate to the {@link ProjectLanguages.CompanionEnum} "current" value
      *
      * @throws ReferenceError The current {@link ProjectLanguages language} has not been initialized yet
-     * @see EveryLanguages.current
+     * @see EveryLanguages.CompanionEnum.current
      */
     public static get current(): ProjectLanguages {
-        return this.Companion.get.current
-    }
-
-    /**
-     * Set the current {@link ProjectLanguages language} held in the {@link ProjectLanguages.Companion}
-     *
-     * @param value The {@link ProjectLanguages language} to set as the current one
-     * @see EveryLanguages.current
-     */
-    public static set current(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,) {
-        EveryLanguages.Companion.get.current = value instanceof ProjectLanguages ? value.language : value
-    }
-
-
-    /**
-     * Get the current {@link EveryLanguages language} event listener or <b>null</b> if it has not been initialized
-     *
-     * @see EveryLanguages.onSetCurrentEventOrNull
-     */
-    public static get onSetCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<EveryLanguages>>>> {
-        return EveryLanguages.onSetCurrentEventOrNull
-    }
-
-    /**
-     * Get the non-nullable current {@link EveryLanguages language} event listener
-     *
-     * @throws {ReferenceError} The event listener has not been initialized
-     * @see EveryLanguages.onSetCurrentEvent
-     */
-    public static get onSetCurrentEvent(): Dispatch<SetStateAction<NullOr<EveryLanguages>>> {
-        return EveryLanguages.onSetCurrentEvent
-    }
-
-    /**
-     * Initialize the event listener on the setting of the current {@link EveryLanguages language}
-     *
-     * @param value The event listener to set
-     * @see EveryLanguages.onSetCurrentEvent
-     * @shouldOnlyBeCalledOnce
-     */
-    public static set onSetCurrentEvent(value: Dispatch<SetStateAction<NullOr<EveryLanguages>>>,) {
-        EveryLanguages.onSetCurrentEvent = value
+        return this.CompanionEnum.get.current
     }
 
     //endregion -------------------- Getter & setter methods (current) --------------------
@@ -472,17 +409,6 @@ export class ProjectLanguages
     public original<T, >(classWithEveryLanguages: ClassWithEveryLanguages<T>,): NullOr<| T | AmericanOrEuropeanOriginal<T> | CanadianOrEuropeanOriginal<T> | ChineseOriginal<T>>
     public original<T, >(classWithEveryLanguages: AnyClassWithEveryLanguages<T>,) {
         return this.language.original<T>(classWithEveryLanguages)
-    }
-
-
-    /**
-     * A simple intermediate method to retrieve a {@link ProjectLanguages} by an url
-     *
-     * @param url The url to retrieve the {@link ProjectLanguages language} (if it is present)
-     * @see ProjectLanguages.Companion.getInUrl
-     */
-    public static getInUrl(url: string,): NullOr<ProjectLanguages> {
-        return this.Companion.get.getInUrl(url,)
     }
 
     //region -------------------- Transformation methods --------------------
@@ -504,50 +430,6 @@ export class ProjectLanguages
 
     //endregion -------------------- Transformation methods --------------------
 
-    // public static getValueByLanguage<T,>(value: T,): ProjectLanguagesByLanguage<T>
-    public static getValueByLanguage(value: Nullable<| ProjectLanguages | EveryLanguages | string>,): ProjectLanguages {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof ProjectLanguages)
-            return value
-        if (typeof value == 'string')
-            return this.getValueByLanguage(EveryLanguages.getValueByLanguage(value))
-        const valueFound = this.values.find(it => it.language === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound;
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static get defaultValue(): ProjectLanguages {
-        return ProjectLanguages.getValueByLanguage(EveryLanguages.defaultValue)
-    }
-
-    public static set defaultValue(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,) {
-        ProjectLanguages.setDefaultValue(value)
-    }
-
-    public static setDefaultValue(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): typeof ProjectLanguages {
-        EveryLanguages.CompanionEnum.get.setDefaultValue(value instanceof ProjectLanguages ? value.language : value)
-        return ProjectLanguages
-    }
-
-    public static getValue(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): ProjectLanguages {
-        return value instanceof EveryLanguages
-            ? ProjectLanguages.CompanionEnum.get.getValue(ProjectLanguages.getValueByLanguage(value,),)
-            : ProjectLanguages.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<ProjectLanguages> {
-        return ProjectLanguages.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<ProjectLanguages> {
-        return ProjectLanguages.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

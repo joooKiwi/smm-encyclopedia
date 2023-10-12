@@ -4,8 +4,8 @@ import {EveryTypes}                                                from '__test_
 import {getEnglishName, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test__/helperMethods'
 
 describe('Instrument (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames = types.everyPossibleName_instrument
+    const types = EveryTypes.get
+    const everyNames = types.everyPossibleName_instrument
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         testOnlyEnglishAndFrench(it)

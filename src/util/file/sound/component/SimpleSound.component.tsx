@@ -69,7 +69,7 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
 
     /** @see SimpleSoundProperties.validator */
     public get validator(): Validators {
-        return this.props.validator ?? Validators.defaultValue
+        return this.props.validator ?? Validators.CompanionEnum.get.defaultValue
     }
 
 

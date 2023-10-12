@@ -1,24 +1,23 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                               from 'react'
-import {Link}                                                   from 'react-router-dom'
+import {Enum}     from '@joookiwi/enumerable'
+import {Fragment} from 'react'
+import {Link}     from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/nightEffect/NightEffects.types'
 import type {TranslationReplaceKeysMap}            from 'lang/components/TranslationProperty'
-import type {EveryPossibleRouteNames}              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                    from 'route/EveryRoutes.types'
+import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singleton.types'
 
-import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {unfinishedText}         from 'app/tools/text/UnfinishedText'
-import {Themes}                 from 'core/theme/Themes'
-import {ProjectLanguages}       from 'lang/ProjectLanguages'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-import {routeFromName}          from 'route/route'
-import {Import}                 from 'util/DynamicImporter'
-import {EMPTY_OBJECT}           from 'util/emptyVariables'
-import {getValueByEnglishName}  from 'util/utilitiesMethods'
-import {StringContainer}        from 'util/StringContainer'
+import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {unfinishedText}                 from 'app/tools/text/UnfinishedText'
+import {Themes}                         from 'core/theme/Themes'
+import {ProjectLanguages}               from 'lang/ProjectLanguages'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import {routeFromName}                  from 'route/route'
+import {Import}                         from 'util/DynamicImporter'
+import {EMPTY_OBJECT}                   from 'util/emptyVariables'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -59,7 +58,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the game styles to only show the effect with the game style view.
             return {
-                gameStyle: <Link key={`${this.englishName} (game style)`} to={routeFromName('everyGameStyle')} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
+                gameStyle: <Link key={`${this.englishName} (game style)`} to={routeFromName('everyGameStyle',)} className="link-primary">{gameContentTranslation('game style.singular').toLowerCase()}</Link>,
             }
         }
 
@@ -110,8 +109,8 @@ export class NightEffects
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<NightEffects, typeof NightEffects> = class CompanionEnum_NightEffects
-        extends CompanionEnum<NightEffects, typeof NightEffects> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<NightEffects, typeof NightEffects> = class CompanionEnum_NightEffects
+        extends CompanionEnumByEnglishNameOnly<NightEffects, typeof NightEffects> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -160,8 +159,8 @@ export class NightEffects
         return <Fragment key={`${instance.englishName} (underwater)`}>{Themes.UNDERWATER.renderSingleComponent(true)}</Fragment>
     }
 
-    protected static _createEntitiesLink(instance: NightEffects, routeName: EveryPossibleRouteNames,): ReactElement {
-        return <Link key={`${instance.englishName} (entities)`} to={routeFromName(routeName)} className="link-primary">{
+    protected static _createEntitiesLink(instance: NightEffects, routeName: PossibleRouteName,): ReactElement {
+        return <Link key={`${instance.englishName} (entities)`} to={routeFromName(routeName,)} className="link-primary">{
             ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName).toLowerCase()
         }</Link>
     }
@@ -180,26 +179,6 @@ export class NightEffects
         return gameContentTranslation(`nightEffect.${this.englishName}`, this._createReplaceComponent(),)
     }
 
-
-    public static getValueByName(value: Nullable<| NightEffects | string>,): NightEffects {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<NightEffects>,): NightEffects {
-        return NightEffects.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<NightEffects> {
-        return NightEffects.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<NightEffects> {
-        return NightEffects.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

@@ -1,17 +1,17 @@
 import file from 'resources/compiled/Course tag (SMM2).json'
 
-import type {PossibleExcludedLanguages}                      from '__test__/helperMethods.types'
-import type {PossibleName_SMM2 as PossibleName_Version_SMM2} from 'core/version/Versions.types'
+import type {PossibleExcludedLanguages}           from '__test__/helperMethods.types'
+import type {PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/loader.types'
 
 import {EveryTypes}                                                               from '__test__/EveryTypes'
 import {getEnglishName, testLanguages, testOnlyEnglish, testOnlyEnglishAndFrench} from '__test__/helperMethods'
 
 describe('Course tag (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames = types.everyPossibleName_courseTag,
-        everyMakerCentralName = [null, ...types.everyPossibleMakerCentralName_courseTag,],
-        possibleFirstAppearance: readonly NullOr<PossibleName_Version_SMM2>[] = [null, 'v1.0.0', 'v3.0.0',],
-        excludedNames: readonly PossibleExcludedLanguages[] = ['portuguese',]
+    const types = EveryTypes.get
+    const everyNames = types.everyPossibleName_courseTag
+    const everyMakerCentralName = [null, ...types.everyPossibleMakerCentralName_courseTag,]
+    const possibleFirstAppearance = [null, 'v1.0.0', 'v3.0.0',] as const satisfies readonly PossibleFirstAppearanceInMarioMaker[]
+    const excludedNames: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         it.isAnOfficialTag

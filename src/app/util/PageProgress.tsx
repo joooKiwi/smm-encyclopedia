@@ -2,7 +2,7 @@ import './PageProgress.scss'
 
 import {Link} from 'react-router-dom'
 
-import type {EveryPossibleRoutes} from 'route/everyRoutes.types'
+import type {EveryPossibleRoutes} from 'route/EveryRoutes.types'
 import type {ReactProperties}     from 'util/react/ReactProperties'
 
 import {ProjectLanguages}   from 'lang/ProjectLanguages'

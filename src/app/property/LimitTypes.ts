@@ -1,26 +1,23 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/LimitTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
+import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
-import {EntityLimits}   from 'core/entityLimit/EntityLimits'
-import {getValueByType} from 'util/utilitiesMethods'
+import {Limits}              from 'core/limit/Limits'
+import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class LimitTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly ALL =           new class EntityLimitTypes_All extends LimitTypes {
+    public static readonly ALL = new class LimitTypes_All extends LimitTypes {
 
         public override get content() {
-            return EntityLimits.values.toArray()
+            return Limits.CompanionEnum.get.values.toArray()
         }
 
 
@@ -29,10 +26,10 @@ export abstract class LimitTypes
         }
 
     }('all', 'everyLimit',)
-    public static readonly PLAY = new class EntityLimitTypes_WhilePlaying extends LimitTypes {
+    public static readonly PLAY = new class LimitTypes_Play extends LimitTypes {
 
         public override get content() {
-            return EntityLimits.whilePlayingEntityLimits
+            return Limits.playLimits
         }
 
 
@@ -49,10 +46,10 @@ export abstract class LimitTypes
         }
 
     }('play', 'playLimit',)
-    public static readonly EDITOR =        new class EntityLimitTypes_Editor extends LimitTypes {
+    public static readonly EDITOR = new class LimitTypes_Editor extends LimitTypes {
 
         public override get content() {
-            return EntityLimits.editorEntityLimits
+            return Limits.editorLimits
         }
 
 
@@ -73,8 +70,8 @@ export abstract class LimitTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
-        extends CompanionEnum<LimitTypes, typeof LimitTypes> {
+    public static readonly CompanionEnum: CompanionEnumByTypeSingleton<string, LimitTypes, typeof LimitTypes> = class CompanionEnum_LimitTypes
+        extends CompanionEnumByType<string, LimitTypes, typeof LimitTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -123,11 +120,11 @@ export abstract class LimitTypes
      *
      * @see AppInterpreter.content
      */
-    public abstract get content(): readonly EntityLimits[]
+    public abstract get content(): readonly Limits[]
 
     //region -------------------- Link button methods --------------------
 
-    /** The route name for the path with every {@link EntityLimits} */
+    /** The route name for the path with every {@link Limits} */
     public get allRouteName(): NullOr<Extract<PossibleRouteName, 'everyLimit'>> {
         return 'everyLimit'
     }
@@ -138,9 +135,9 @@ export abstract class LimitTypes
 
 
     /**
-     * The route name for the path with only the play {@link EntityLimits}
+     * The route name for the path with only the play {@link Limits}
      *
-     * @see EntityLimits.whilePlayingEntityLimits
+     * @see Limits.playLimits
      */
     public get playRouteName(): NullOr<Extract<PossibleRouteName, 'playLimit'>> {
         return 'playLimit'
@@ -152,9 +149,9 @@ export abstract class LimitTypes
 
 
     /**
-     * The route name for the path with only the editor {@link EntityLimits}
+     * The route name for the path with only the editor {@link Limits}
      *
-     * @see EntityLimits.editorEntityLimits
+     * @see Limits.editorLimits
      */
     public get editorRouteName(): NullOr<Extract<PossibleRouteName, 'editorLimit'>> {
         return 'editorLimit'
@@ -168,27 +165,7 @@ export abstract class LimitTypes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByType(value: Nullable<| LimitTypes | string>,): LimitTypes {
-        return getValueByType(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<LimitTypes>,): LimitTypes {
-        return LimitTypes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<LimitTypes> {
-        return LimitTypes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<LimitTypes> {
-        return LimitTypes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

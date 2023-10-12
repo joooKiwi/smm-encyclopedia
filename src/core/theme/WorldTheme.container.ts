@@ -1,5 +1,3 @@
-import type {Lazy} from '@joookiwi/lazy'
-
 import type {ClassThatIsAvailableFromTheStart}                from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
 import type {AbstractExclusiveSMM2GameProperty, GameProperty} from 'core/entity/properties/game/GameProperty'
 import type {WorldTheme}                                      from 'core/theme/WorldTheme'
@@ -13,7 +11,7 @@ export class WorldThemeContainer
 
     public constructor(name: Name<string>,
                        isInProperty: GameProperty<false, false, true>,
-                       isAvailableFromTheStart: Lazy<ClassThatIsAvailableFromTheStart<null, null, true>>,) {
+                       isAvailableFromTheStart: ClassThatIsAvailableFromTheStart<null, null, true>,) {
         super(name, isInProperty, isAvailableFromTheStart,)
     }
 

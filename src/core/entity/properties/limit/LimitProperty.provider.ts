@@ -1,4 +1,4 @@
-import type {CollectedCoinLimitType, EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralEntityLimitType, GeneralGlobalEntityLimitType, OtherLimitCommentType, OtherLimitType, PowerUpLimitType, ProjectileEntityLimitType, RenderedObjectLimitType}      from 'core/entity/properties/limit/loader.types'
+import type {CollectedCoinLimitType, EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralLimitType, GeneralGlobalLimitType, OtherLimitCommentType, OtherLimitType, PowerUpLimitType, ProjectileLimitType, RenderedObjectLimitType}                        from 'core/entity/properties/limit/loader.types'
 import type {GameStructureForEditorLimit, LimitProperty, PossibleIsInCollectedCoinLimit, PossibleIsInGeneralGlobalLimit, PossibleIsInGeneralLimit, PossibleIsInPowerUpLimit, PossibleIsInProjectileLimit, PossibleIsInRenderedObjectLimit, PossibleOtherLimit} from 'core/entity/properties/limit/LimitProperty'
 import type {ProviderWithExplicitKey}                                                                                                                                                                                                                          from 'util/provider/ProviderWithExplicitKey'
 
@@ -6,9 +6,7 @@ import {LimitPropertyContainer} from 'core/entity/properties/limit/LimitProperty
 import {isArrayEquals}          from 'util/utilitiesMethods'
 import {AbstractProvider}       from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class LimitPropertyProvider
     extends AbstractProvider<Key, LimitProperty>
     implements ProviderWithExplicitKey<LimitProperty, Key, ArgumentsReceived> {
@@ -45,9 +43,9 @@ export class LimitPropertyProvider
 
 type Key = readonly [
     editorLimit: readonly [EditorLimitType_SMM1And3DS, EditorLimitType_SMM2,],
-    generalLimit: readonly [GeneralEntityLimitType, GeneralGlobalEntityLimitType,],
+    generalLimit: readonly [GeneralLimitType, GeneralGlobalLimitType,],
     powerUpLimit: PowerUpLimitType,
-    projectileLimit: ProjectileEntityLimitType,
+    projectileLimit: ProjectileLimitType,
     renderedObjectLimit: RenderedObjectLimitType,
     collectedCoinLimit: CollectedCoinLimitType,
     otherLimit: readonly [OtherLimitType, OtherLimitCommentType,],

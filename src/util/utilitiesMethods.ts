@@ -1,13 +1,15 @@
-import type {CollectionHolder}                  from '@joookiwi/collection'
-import type {Enumerable, EnumerableConstructor} from '@joookiwi/enumerable'
-import {getCompanion}                           from '@joookiwi/enumerable'
-import {AssertionError}                         from 'assert'
+import type {CollectionHolder} from '@joookiwi/collection'
+import {AssertionError}        from 'assert'
 
-import type {ClassWithEnglishName} from 'core/ClassWithEnglishName'
-import type {ClassWithType}        from 'core/ClassWithType'
-import type {ClassWithReference}   from 'core/ClassWithReference'
-import type {GameProperty}         from 'core/entity/properties/game/GameProperty'
-import type {GameCollection}       from 'util/collection/GameCollection'
+import type {ClassWithReference}                                                                                  from 'core/ClassWithReference'
+import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
+import type {GameCollection}                                                                                      from 'util/collection/GameCollection'
+import type {EnumerableUsedInRoute, EnumerableWithEnglishName, EnumerableWithNullableAcronym, EnumerableWithType} from 'util/enumerable/Enumerable.types'
+import type {CompanionEnumByAcronym}                                                                              from 'util/enumerable/companion/CompanionEnumByAcronym'
+import type {CompanionEnumByName}                                                                                 from 'util/enumerable/companion/CompanionEnumByName'
+import type {CompanionEnumByType}                                                                                 from 'util/enumerable/companion/CompanionEnumByType'
+import type {CompanionEnumByUrlValue}                                                                             from 'util/enumerable/companion/CompanionEnumByUrlValue'
+import type {CompanionEnumRetrievableInUrl}                                                                       from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
 
 import {isInProduction} from 'variables'
 import {EMPTY_STRING}   from 'util/emptyVariables'
@@ -169,33 +171,61 @@ export function assert(condition: boolean, message: string,): asserts condition 
 
 //region -------------------- get value by … --------------------
 
-function getValues<const T extends Enumerable, >(enumerableConstructor: Nullable<EnumerableConstructor<T, any>>,): CollectionHolder<T> {
-    return getCompanion(enumerableConstructor).values
-}
-
-export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {
+export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, companionEnum: CompanionEnumByName<T, any>,): T {
     if (value == null)
-        throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null name.`)
-    if (value instanceof enumerableConstructor)
+        throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null name.`,)
+    if (value instanceof companionEnum.instance)
         return value as T
-    const valueFound = getValues(enumerableConstructor).find(it => it.englishName === value)
+    const valueFound = companionEnum.values.find(it => it.englishName === value,)
     if (valueFound == null)
-        throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
+        throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
     return valueFound
 }
 
-export function getValueByType<const T extends EnumerableWithType, >(value: Nullable<| T | string>, enumerableConstructor: EnumerableConstructor<T, any>,): T {
+export function getValueByAcronym<const T extends EnumerableWithNullableAcronym, >(value: Nullable<| T | string>, companionEnum: CompanionEnumByAcronym<T, any>,): T {
     if (value == null)
-        throw new TypeError(`No "${enumerableConstructor.name}" could be found by a null type.`)
-    if (value instanceof enumerableConstructor)
+        throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null acronym.`,)
+    if (value instanceof companionEnum.instance)
         return value as T
-    const valueFound = getValues(enumerableConstructor).find(it => it.type === value)
+    const valueFound = companionEnum.values.find(it => it.acronym === value,)
     if (valueFound == null)
-        throw new ReferenceError(`No "${enumerableConstructor.name}" could be found by this value "${value}".`)
+        throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
     return valueFound
 }
 
-type EnumerableWithEnglishName = & Enumerable & ClassWithEnglishName<string>
-type EnumerableWithType = & Enumerable & ClassWithType<string>
+export function getValueByType<const T extends EnumerableWithType<unknown>, >(value: Nullable<| T | T['type']>, companionEnum: CompanionEnumByType<T['type'], T, any>,): T {
+    if (value == null)
+        throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null type.`,)
+    if (value instanceof companionEnum.instance)
+        return value as T
+    const valueFound = companionEnum.values.find(it => it.type === value,)
+    if (valueFound == null)
+        throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
+    return valueFound
+}
+
+export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(value: Nullable<| T | string>, companionEnum: CompanionEnumByUrlValue<T, any>,): T {
+    if (value == null)
+        throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null url value.`,)
+    if (value instanceof companionEnum.instance)
+        return value as T
+    const valueFound = companionEnum.values.find(it => it.urlValue === value,)
+    if (valueFound == null)
+        throw new ReferenceError(`No "${companionEnum.instance.name}" could be found by this value "${value}".`,)
+    return valueFound
+}
+
+export function getValueInUrl<const T extends EnumerableUsedInRoute,>(url: string, companionEnum: CompanionEnumRetrievableInUrl<T, any>,):NullOr<T>{
+    if (!companionEnum.URL_REGEX.test(url,))
+        return null
+
+    const lowerCasedUrl = url.toLowerCase()
+    const prefix = companionEnum.PREFIX?.toLowerCase() ?? EMPTY_STRING
+    const valueFound = companionEnum.values.find(it =>
+        lowerCasedUrl.includes(`/${prefix}${it.urlValue.toLowerCase()}/`,),)
+    if (valueFound == null)
+        throw new ReferenceError(`No "${companionEnum.instance.name}" was found by the url "${url}".`,)
+    return valueFound
+}
 
 //endregion -------------------- get value by … --------------------

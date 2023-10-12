@@ -7,9 +7,7 @@ import ParameterButton          from 'navigation/button/Parameter.button'
 import SearchButton             from 'navigation/button/Search.button'
 import TopLanguageChangerButton from 'navigation/button/TopLanguageChanger.button'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function Navigation() {
     return <nav id="navigation-container" className="container-fluid bg-light bg-gradient">
         <div id="navigation-sub-container" className="position-relative">

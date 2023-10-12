@@ -5,9 +5,7 @@ import {GameStylePropertyContainer} from 'core/entity/properties/gameStyle/GameS
 import {isArrayEquals}              from 'util/utilitiesMethods'
 import {AbstractProvider}           from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class GameStylePropertyProvider
     extends AbstractProvider<ArgumentsReceived, GameStyleProperty>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, GameStyleProperty> {

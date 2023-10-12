@@ -7,9 +7,7 @@ import Image                             from 'app/tools/images/Image'
 import {gameContentTranslation}          from 'lang/components/translationMethods'
 import {StringContainer}                 from 'util/StringContainer'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class GameStyleComponent
     extends AbstractEntityPropertyComponent<GameStyleProperty, GameStyles> {
 
@@ -43,7 +41,7 @@ export default class GameStyleComponent
     }
 
     protected override _renderComponentForAllAsImages() {
-        return <div key={`${this.name.english} (every game styles)`}>{GameStyles.values.map(gameStyle => this._renderSingleComponent(gameStyle))}</div>
+        return <div key={`${this.name.english} (every game styles)`}>{GameStyles.CompanionEnum.get.values.map(gameStyle => this._renderSingleComponent(gameStyle),)}</div>
     }
 
 }

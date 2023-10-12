@@ -4,9 +4,7 @@ import type {ProviderWithSingleArgumentAsKey}               from 'util/provider/
 import {SoundEffectOnMovementContainer} from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement.container'
 import {AbstractProvider}               from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class SoundEffectOnMovementProvider
     extends AbstractProvider<PossibleValuesReceived, SoundEffectOnMovement>
     implements ProviderWithSingleArgumentAsKey<PossibleValuesReceived, SoundEffectOnMovement> {

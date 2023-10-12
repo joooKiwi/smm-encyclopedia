@@ -1,15 +1,16 @@
-import type {CollectionHolder, CollectionIterator}                        from '@joookiwi/collection'
-import type {CompanionEnumWithParentSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnumWithParent, EnumWithParent}                          from '@joookiwi/enumerable'
+import type {PossibleEnumerableValueBy, Singleton}                                                 from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, EnumWithParent, NullEnumerableException, UnhandledValueException} from '@joookiwi/enumerable'
 
-import type {Names, Ordinals}  from 'lang/ProjectLanguages.types'
-import type {ClassWithCurrent} from 'util/enumerable/ClassWithCurrent'
+import type {Names, Ordinals}                           from 'lang/ProjectLanguages.types'
+import type {CompanionEnumDeclaration_DateDayLanguages} from 'lang/date/DateDayLanguages.companionEnumDeclaration'
+import type {ClassWithIsCurrent}                        from 'util/enumerable/ClassWithIsCurrent'
 
 import {EveryLanguages}   from 'lang/EveryLanguages'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 
 export abstract class DateDayLanguages
-    extends EnumWithParent<ProjectLanguages, Ordinals, Names> {
+    extends EnumWithParent<ProjectLanguages, Ordinals, Names>
+    implements ClassWithIsCurrent {
 
     //region -------------------- Enum instances --------------------
 
@@ -139,8 +140,9 @@ export abstract class DateDayLanguages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumWithParentSingleton<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages> = class CompanionEnum_DateDayLanguages
-        extends CompanionEnumWithParent<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_DateDayLanguages> = class CompanionEnum_DateDayLanguages
+        extends CompanionEnumWithParent<DateDayLanguages, typeof DateDayLanguages, ProjectLanguages, typeof ProjectLanguages>
+        implements CompanionEnumDeclaration_DateDayLanguages {
 
         //region -------------------- Singleton usage --------------------
 
@@ -156,49 +158,49 @@ export abstract class DateDayLanguages
 
         //endregion -------------------- Singleton usage --------------------
 
-    }
-
-    //endregion -------------------- Companion enum --------------------
-    //region -------------------- Companion --------------------
-
-    /**
-     * The reference of the static methods applicable to the class {@link DateDayLanguages}
-     *
-     * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
-     * @singleton
-     */
-    public static readonly Companion2 = class Companion_DateDayLanguages
-        implements ClassWithCurrent<DateDayLanguages> {
-
-        //region -------------------- Singleton usage --------------------
-
-        static #instance?: Companion_DateDayLanguages
-
-        private constructor() {
+        public override get defaultValue(): DateDayLanguages {
+            return DateDayLanguages.CompanionEnum.get.getValue(ProjectLanguages.CompanionEnum.get.defaultValue,)
         }
 
-        public static get get() {
-            return this.#instance ??= new this()
+        public override set defaultValue(value: unknown,) {
+            if (value == null)
+                throw new NullEnumerableException('No null value was expected to be set on the DateDayLanguages.defaultValue setter method',)
+            throw new UnhandledValueException('No value was expected to be set on the DateDayLanguages.defaultValue setter method', value,)
         }
 
-        //endregion -------------------- Singleton usage --------------------
+        public override setDefaultValue(value: unknown,): never {
+            if (value == null)
+                throw new NullEnumerableException('No null value was expected to be set on the DateDayLanguages.defaultValue setter method',)
+            throw new UnhandledValueException('No value was expected to be set on the DateDayLanguages.defaultValue setter method', value,)
+        }
+
 
         public get currentOrNull(): NullOr<DateDayLanguages> {
-            const value = ProjectLanguages.currentOrNull
-            return value == null ? null : DateDayLanguages.getValueByLanguage(value)
+            const value = ProjectLanguages.CompanionEnum.get.currentOrNull
+            if (value == null)
+                return null
+            return this.getValueByLanguage(value,)
         }
 
         public get current(): DateDayLanguages {
-            return DateDayLanguages.getValueByLanguage(ProjectLanguages.current)
+            return this.getValueByLanguage(ProjectLanguages.CompanionEnum.get.current,)
         }
 
         public set current(value: PossibleEnumerableValueBy<| DateDayLanguages | ProjectLanguages | EveryLanguages>,) {
-            ProjectLanguages.current = DateDayLanguages.getValue(value).parent
+            ProjectLanguages.CompanionEnum.get.current = this.getValueByLanguage(value,).parent
+        }
+
+
+
+        public getValueByLanguage(value: Nullable<PossibleEnumerableValueBy<| ProjectLanguages | DateDayLanguages | EveryLanguages>>,): DateDayLanguages {
+            if (value instanceof EveryLanguages)
+                return this._getValueFromValuesByParent(ProjectLanguages.CompanionEnum.get.getValueByLanguage(value,),)
+            return this._getValue(value,)
         }
 
     }
 
-    //endregion -------------------- Companion --------------------
+    //endregion -------------------- Companion enum --------------------
     //region -------------------- Constructor --------------------
 
     private constructor() {
@@ -206,86 +208,17 @@ export abstract class DateDayLanguages
     }
 
     //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter & setter methods --------------------
-
-    //region -------------------- Getter & setter methods (current) --------------------
+    //region -------------------- Getter methods --------------------
 
     public get isCurrent(): boolean {
-        return this === DateDayLanguages.currentOrNull
+        return this === DateDayLanguages.CompanionEnum.get.currentOrNull
     }
 
-
-    /**
-     * Get the current {@link ProjectLanguages language} that may be initialized
-     *
-     * @see EveryLanguages.currentOrNull
-     */
-    public static get currentOrNull(): NullOr<DateDayLanguages> {
-        return DateDayLanguages.Companion2.get.currentOrNull
-    }
-
-    /**
-     * Get the non-nullable current {@link DateDayLanguages language}
-     *
-     * @throws ReferenceError The current {@link DateDayLanguages language} has not been initialized yet
-     * @see ProjectLanguages.current
-     */
-    public static get current(): DateDayLanguages {
-        return this.Companion2.get.current
-    }
-
-    /**
-     * Set the current {@link DateDayLanguages language} held in the {@link DateDayLanguages.Companion2}
-     *
-     * @param value The {@link DateDayLanguages language} to set as the current one
-     * @see ProjectLanguages.current
-     */
-    public static set current(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages | DateDayLanguages>,) {
-        this.Companion2.get.current = value
-    }
-
-    //endregion -------------------- Getter & setter methods (current) --------------------
-
-    //endregion -------------------- Getter & setter methods --------------------
+    //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public abstract newDayComponent(day: DayNumber,): ReactJSXElement
 
-
-    // public static override getValueByLanguage<T,>(value: T,): DateDayLanguagesByLanguage<T>
-    public static getValueByLanguage(value: Nullable<| DateDayLanguages | ProjectLanguages | EveryLanguages | string>,): DateDayLanguages {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof DateDayLanguages)
-            return value
-        const languageFound = ProjectLanguages.getValueByLanguage(value),
-            valueFound = this.values.find(it => it.parent === languageFound)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static get default(): DateDayLanguages {
-        return DateDayLanguages.getValue(ProjectLanguages.defaultValue)
-    }
-
-    public static getValue(value: PossibleEnumerableValueBy<| ProjectLanguages | DateDayLanguages | EveryLanguages>,): DateDayLanguages {
-        return value instanceof EveryLanguages
-            ? DateDayLanguages.CompanionEnum.get.getValue(DateDayLanguages.getValueByLanguage(value,),)
-            : DateDayLanguages.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<DateDayLanguages> {
-        return DateDayLanguages.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<DateDayLanguages> {
-        return DateDayLanguages.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

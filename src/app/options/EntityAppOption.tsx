@@ -1,7 +1,6 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
-import {Fragment}                                               from 'react'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {Fragment}                    from 'react'
 
 import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
@@ -14,12 +13,12 @@ import {gameContentTranslation}       from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent      from 'core/editorVoice/EditorVoiceSound.component'
 import InstrumentPropertyComponent    from 'core/entity/properties/instrument/InstrumentProperty.component'
 import {EntityCategories}             from 'core/entityCategory/EntityCategories'
-import PlayLimitComponent             from 'core/entityLimit/PlayLimit.component'
-import SMM1And3DSEditorLimitComponent from 'core/entityLimit/SMM1And3DSEditorLimit.component'
-import SMM2EditorLimitComponent       from 'core/entityLimit/SMM2EditorLimit.component'
 import GameComponent                  from 'core/game/Game.component'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 import GameStyleComponent             from 'core/gameStyle/GameStyle.component'
+import PlayLimitComponent             from 'core/limit/PlayLimit.component'
+import SMM1And3DSEditorLimitComponent from 'core/limit/SMM1And3DSEditorLimit.component'
+import SMM2EditorLimitComponent       from 'core/limit/SMM2EditorLimit.component'
 import CourseThemeComponent           from 'core/theme/CourseTheme.component'
 import {Themes}                       from 'core/theme/Themes'
 import {Times}                        from 'core/time/Times'
@@ -217,7 +216,7 @@ export class EntityAppOption
         protected override _createContentOption(enumeration: Entities,) {
             const categoryName = enumeration.reference.categoryNameContainer
 
-            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.getValueByName(categoryName.english).imageFile,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => EntityCategories.CompanionEnum.get.getValueByName(categoryName.english,).imageFile,)
         }
 
         protected override _createTableHeaderOption() {
@@ -231,7 +230,7 @@ export class EntityAppOption
      */
     public static readonly CATEGORY_AS_TEXT = new EntityAppOption()
 
-    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
@@ -242,7 +241,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityLimitOption_LimitInSMM1And3DS extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM1And3DSEditorLimitComponent reference={enumeration}/>
@@ -253,7 +252,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM2EditorLimitComponent reference={enumeration}/>
@@ -264,7 +263,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityLimitOption_LimitInSMM2 extends EntityAppOption {
+    public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <SMM2EditorLimitComponent reference={enumeration}/>
@@ -275,7 +274,7 @@ export class EntityAppOption
         }
 
     }()
-    public static readonly PLAY_LIMIT = new class EntityLimitOption_PlayLimit extends EntityAppOption {
+    public static readonly PLAY_LIMIT = new class EntityAppOption_PlayLimit extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
             return <PlayLimitComponent reference={enumeration}/>
@@ -327,7 +326,7 @@ export class EntityAppOption
     //region -------------------- Getter methods --------------------
 
     protected static get _gameStyles(): readonly GameStyles[] {
-        return this.#gameStyles ??= GameStyles.values.toArray()
+        return this.#gameStyles ??= GameStyles.CompanionEnum.get.values.toArray()
     }
 
     protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | EmptyArray {
@@ -335,7 +334,7 @@ export class EntityAppOption
     }
 
     protected static get times(): readonly Times[] {
-        return this.#times ??= Times.values.toArray()
+        return this.#times ??= Times.CompanionEnum.get.values.toArray()
     }
 
     protected static get themes(): readonly Themes[] {
@@ -372,20 +371,5 @@ export class EntityAppOption
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<EntityAppOption>,): EntityAppOption {
-        return EntityAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EntityAppOption> {
-        return EntityAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EntityAppOption> {
-        return EntityAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

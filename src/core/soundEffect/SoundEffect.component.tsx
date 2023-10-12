@@ -19,9 +19,7 @@ interface SoundEffectProperties {
 
 }
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class SoundEffectComponent
     extends PureComponent<SoundEffectProperties> {
 

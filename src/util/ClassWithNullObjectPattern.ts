@@ -27,15 +27,15 @@ export type EmptyUniqueImageName = 'Empty unique image'
 export type EmptyEntityCategoryName = 'Empty entity category'
 
 //endregion -------------------- Entity category types --------------------
-//region -------------------- Entity limit types --------------------
+//region -------------------- Limit types --------------------
 
+export type EmptyLimitPropertyName = 'Empty limit property'
 export type EmptyLimitName = 'Empty limit'
-export type EmptyEntityLimitName = 'Empty entity limit'
 
-export type EmptyEntityLimitAmountName = 'Empty entity limit (amount)'
-export type EmptyEntityLimitLinkName = 'Empty entity limit (link)'
+export type EmptyLimitAmountName = 'Empty limit (amount)'
+export type EmptyLimitLinkName = 'Empty limit (link)'
 
-//endregion -------------------- Entity limit types --------------------
+//endregion -------------------- Limit types --------------------
 //region -------------------- Game style types --------------------
 
 export type EmptyGameStyleName = 'Empty game style'
@@ -106,7 +106,7 @@ export type EveryPossibleEmptyName =
 
     | EmptyEntityCategoryName
 
-    | EmptyLimitName | EmptyEntityLimitName | EmptyEntityLimitAmountName | EmptyEntityLimitLinkName
+    | EmptyLimitPropertyName | EmptyLimitName | EmptyLimitAmountName | EmptyLimitLinkName
 
     | EmptyGameStyleName
 

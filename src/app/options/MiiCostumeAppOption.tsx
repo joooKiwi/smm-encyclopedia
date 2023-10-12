@@ -1,6 +1,5 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/MiiCostumeAppOption.types'
@@ -62,7 +61,7 @@ export abstract class MiiCostumeAppOption
 
         protected override _createContentOption(enumeration: MiiCostumes,) {
             const categoryName = enumeration.reference.categoryContainer.nameContainer
-            return CommonOptions.get.getCategoryContent(enumeration, () => MiiCostumeCategories.getValueByName(categoryName.english).imageFile,)
+            return CommonOptions.get.getCategoryContent(enumeration, () => MiiCostumeCategories.CompanionEnum.get.getValueByName(categoryName.english,).imageFile,)
         }
 
         protected override _createTableHeaderOption() {
@@ -131,7 +130,7 @@ export abstract class MiiCostumeAppOption
 
     public renderTableHeader(): NullOr<SingleHeaderContent> {
         const content = this._createTableHeaderOption()
-        if(content == null)
+        if (content == null)
             return null
         return content
     }
@@ -139,20 +138,5 @@ export abstract class MiiCostumeAppOption
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<MiiCostumeAppOption>,): MiiCostumeAppOption {
-        return MiiCostumeAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<MiiCostumeAppOption> {
-        return MiiCostumeAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<MiiCostumeAppOption> {
-        return MiiCostumeAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

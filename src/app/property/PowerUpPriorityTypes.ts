@@ -1,13 +1,12 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/PowerUpPriorityTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
+import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
-/**
- * @usedByTheRouting
- */
+import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
+
+/** @usedByTheRouting */
 export class PowerUpPriorityTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {
@@ -281,8 +280,8 @@ export class PowerUpPriorityTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<PowerUpPriorityTypes, typeof PowerUpPriorityTypes> = class CompanionEnum_PowerUpPriorityTypes
-        extends CompanionEnum<PowerUpPriorityTypes, typeof PowerUpPriorityTypes> {
+    public static readonly CompanionEnum: CompanionEnumByTypeSingleton<string, PowerUpPriorityTypes, typeof PowerUpPriorityTypes> = class CompanionEnum_PowerUpPriorityTypes
+        extends CompanionEnumByType<string, PowerUpPriorityTypes, typeof PowerUpPriorityTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -327,10 +326,6 @@ export class PowerUpPriorityTypes
     }
 
     //region -------------------- Link button methods --------------------
-    //endregion -------------------- Link button methods --------------------
-
-    //endregion -------------------- Getter methods --------------------
-    //region -------------------- Methods --------------------
 
     public get isAllSelected(): boolean {
         return false
@@ -396,22 +391,11 @@ export class PowerUpPriorityTypes
         return 'success'
     }
 
+    //endregion -------------------- Link button methods --------------------
+
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Methods --------------------
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<PowerUpPriorityTypes>,): PowerUpPriorityTypes {
-        return PowerUpPriorityTypes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<PowerUpPriorityTypes> {
-        return PowerUpPriorityTypes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<PowerUpPriorityTypes> {
-        return PowerUpPriorityTypes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

@@ -231,7 +231,7 @@ const resources: Resource = {
     //endregion -------------------- Korean --------------------
 }
 
-i18n
+void i18n
     .use(initReactI18next)
     .init({
         fallbackLng: {

@@ -5,9 +5,7 @@ import {SoundEffectOnGroundAfterJumpContainer} from 'core/mysteryMushroom/proper
 import {isArrayEquals}                         from 'util/utilitiesMethods'
 import {AbstractProvider}                      from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class SoundEffectOnGroundAfterJumpProvider
     extends AbstractProvider<ArgumentsReceived, SoundEffectOnGroundAfterJump>
     implements ProviderWithMultipleArgumentsAsKey<ArgumentsReceived, SoundEffectOnGroundAfterJump> {

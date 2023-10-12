@@ -8,16 +8,14 @@ import {EveryLanguages}   from 'lang/EveryLanguages'
 import {ProjectLanguages} from 'lang/ProjectLanguages'
 import Routes             from 'route/Routes'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 function FunctionIndexComponent() {
-    const [viewDisplayName, setViewDisplay,] = useState(ViewDisplays.currentOrNull),
-        [currentLanguage, setCurrentLanguage,] = useState(ProjectLanguages.currentOrNull?.language ?? null)
-    ProjectLanguages.onSetCurrentEvent = setCurrentLanguage
-    ViewDisplays.setCurrentEvent = setViewDisplay
+    const [viewDisplayName, setViewDisplay,] = useState(ViewDisplays.CompanionEnum.get.currentOrNull,)
+    const [currentLanguage, setCurrentLanguage,] = useState(ProjectLanguages.CompanionEnum.get.currentOrNull?.language ?? null,)
+    ProjectLanguages.CompanionEnum.get.onSetCurrentEvent = setCurrentLanguage
+    ViewDisplays.CompanionEnum.get.onSetCurrentEvent = setViewDisplay
 
-    return <IntlProvider locale={(currentLanguage ?? EveryLanguages.defaultValue).internationalAcronym}
+    return <IntlProvider locale={(currentLanguage ?? EveryLanguages.CompanionEnum.get.defaultValue).internationalAcronym}
                          key={`reactLanguageProvider (${currentLanguage} - ${viewDisplayName ?? 'default view display'})`}>
         <React.StrictMode>
             <Routes/>

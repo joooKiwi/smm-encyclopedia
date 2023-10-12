@@ -1,23 +1,20 @@
-import type {LimitProperty}                              from 'core/entity/properties/limit/LimitProperty'
-import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
+import type {LimitProperty}                                      from 'core/entity/properties/limit/LimitProperty'
+import type {ClassWithNullObjectPattern, EmptyLimitPropertyName} from 'util/ClassWithNullObjectPattern'
 
 import {PropertyContainer}     from 'core/_properties/Property.container'
 import {GameStructureProvider} from 'core/game/GameStructure.provider'
 import {EMPTY_MAP}             from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyLimitProperty
     implements LimitProperty,
-        ClassWithNullObjectPattern<EmptyLimitName> {
+        ClassWithNullObjectPattern<EmptyLimitPropertyName> {
 
     //region -------------------- Singleton usage --------------------
 
     static #instance?: EmptyLimitProperty
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -64,18 +61,18 @@ export class EmptyLimitProperty
         return EMPTY_MAP
     }
 
-    public toLimitInTheEditorMap(): EmptyMap {
+    public toEditorLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitWhilePlayingMap(): EmptyMap {
+    public toPlayLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 
     //endregion -------------------- Convertor methods --------------------
 
-    public toString(): EmptyLimitName {
-        return 'Empty limit'
+    public toString(): EmptyLimitPropertyName {
+        return 'Empty limit property'
     }
 
 }

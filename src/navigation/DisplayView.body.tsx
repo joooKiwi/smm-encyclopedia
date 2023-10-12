@@ -13,12 +13,11 @@ import DisplayViewRouteButton                            from 'navigation/Displa
 const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWordInTheGames
 
 //endregion -------------------- Deconstruction imports --------------------
-/**
- * @reactComponent
- */
+
+/** @reactComponent */
 export default function DisplayViewBody() {
     const isSMM1Selected = Games.SUPER_MARIO_MAKER_1.isSelected,
-        // isSMM3DSSelected = true,
+        isSMM3DSSelected = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.isSelected,
         isSMM2Selected = Games.SUPER_MARIO_MAKER_2.isSelected,
         singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference,
         /*pluralTagName = TAG.pluralNameOnReference, */pluralTagLowerCaseName = TAG.pluralLowerCaseNameOnReference,
@@ -90,6 +89,19 @@ export default function DisplayViewBody() {
                                         elementId="displayView-gameStyle-button"/>
             </div>
         </div>
+        {isSMM1Selected || isSMM3DSSelected ? <div id="display-level-container" className="container">
+            <h3 className="text-center text-decoration-underline pb-2">{unfinishedText('Level')}</h3>
+            {isSMM1Selected ? <div key="button group (sample course)" id="sampleCourse-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everySampleCourse" value={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('sample course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
+                                        elementId="displayView-sampleCourse-button"/>
+            </div> : null}
+            {isSMM1Selected ? <div key="button group (medal)" id="medal-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everyMedal" value={gameContentTranslation('medal.singular',)}
+                                        tooltipValue={gameContentTranslation('medal.display all',)}
+                                        elementId="displayView-medal-button"/>
+            </div> : null}
+        </div> : null}
         <div id="display-sound-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Sound</UnfinishedText></h3>
             <div key="button group (sound effect)" id="soundEffect-buttonGroup" className="btn-group col-12" role="group">

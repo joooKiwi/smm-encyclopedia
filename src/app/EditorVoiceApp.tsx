@@ -3,7 +3,7 @@ import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
 import type {EditorVoiceProperties}                                from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {EditorVoices}            from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
@@ -19,11 +19,11 @@ export default class EditorVoiceApp
         return 'editorVoice'
     }
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyEditorVoice (list)'
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return 'everyEditorVoice (card)'
     }
 
@@ -38,7 +38,7 @@ export default class EditorVoiceApp
         return new class EditorVoiceAppInterpreter implements AppInterpreterWithCardList<EditorVoices> {
 
             public get content() {
-                return filterGame(EditorVoices.values, $this.props.games,)
+                return filterGame(EditorVoices.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

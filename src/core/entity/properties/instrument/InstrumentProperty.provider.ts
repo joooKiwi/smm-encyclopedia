@@ -10,9 +10,7 @@ import {InstrumentPropertyContainer} from 'core/entity/properties/instrument/Ins
 import {isArrayEquals}               from 'util/utilitiesMethods'
 import {AbstractProvider}            from 'util/provider/AbstractProvider'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class InstrumentPropertyProvider
     extends AbstractProvider<Key, InstrumentProperty>
     implements ProviderWithExplicitKey<InstrumentProperty, Key, ArgumentsReceived> {

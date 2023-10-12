@@ -1,15 +1,14 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                   from 'core/ClassWithReference'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
 import type {PredefinedMessage}                    from 'core/predefinedMessage/PredefinedMessage'
+import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singleton.types'
 
-import {PredefinedMessageLoader} from 'core/predefinedMessage/PredefinedMessage.loader'
-import {StringContainer}         from 'util/StringContainer'
-import {getValueByEnglishName}   from 'util/utilitiesMethods'
+import {PredefinedMessageLoader}        from 'core/predefinedMessage/PredefinedMessage.loader'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export class PredefinedMessages
     extends Enum<Ordinals, Names>
@@ -43,8 +42,8 @@ export class PredefinedMessages
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<PredefinedMessages, typeof PredefinedMessages> = class CompanionEnum_PredefinedMessages
-        extends CompanionEnum<PredefinedMessages, typeof PredefinedMessages> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<PredefinedMessages, typeof PredefinedMessages> = class CompanionEnum_PredefinedMessages
+        extends CompanionEnumByEnglishNameOnly<PredefinedMessages, typeof PredefinedMessages> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -104,26 +103,6 @@ export class PredefinedMessages
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByName(value: Nullable<| PredefinedMessages | string>,): PredefinedMessages {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<PredefinedMessages>,): PredefinedMessages {
-        return PredefinedMessages.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<PredefinedMessages> {
-        return PredefinedMessages.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<PredefinedMessages> {
-        return PredefinedMessages.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

@@ -6,9 +6,7 @@ import {EmptyEditorImage}         from 'core/entity/images/editor/EmptyEditorIma
 import {EmptyInGameImage}         from 'core/entity/images/inGame/EmptyInGameImage'
 import {EMPTY_MAP}                from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyUniqueImage
     implements UniqueImage, ClassWithNullObjectPattern<EmptyUniqueImageName> {
 
@@ -16,8 +14,7 @@ export class EmptyUniqueImage
 
     static #instance?: EmptyUniqueImage
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

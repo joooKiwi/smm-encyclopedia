@@ -191,11 +191,11 @@ export class EmptyEntity
         return EMPTY_MAP
     }
 
-    public toLimitInTheEditorMap(): EmptyMap {
+    public toEditorLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitWhilePlayingMap(): EmptyMap {
+    public toPlayLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 

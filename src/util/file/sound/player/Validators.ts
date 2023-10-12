@@ -1,11 +1,10 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                from 'core/ClassWithEnglishName'
+import type {CompanionEnumByNameSingleton}                        from 'util/enumerable/Singleton.types'
 import type {EnglishName, IsSourceFoundCallback, Names, Ordinals} from 'util/file/sound/player/Validators.types'
 
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 export abstract class Validators
     extends Enum<Ordinals, Names>
@@ -81,8 +80,8 @@ export abstract class Validators
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Validators, typeof Validators> = class CompanionEnum_Validators
-        extends CompanionEnum<Validators, typeof Validators> {
+    public static readonly CompanionEnum: CompanionEnumByNameSingleton<Validators, typeof Validators> = class CompanionEnum_Validators
+        extends CompanionEnumByEnglishNameOnly<Validators, typeof Validators> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -134,8 +133,7 @@ export abstract class Validators
      *
      * @param callback the callback to execute
      */
-    public onCreate(callback: IsSourceFoundCallback,): void {
-    }
+    public onCreate(callback: IsSourceFoundCallback,): void {}
 
     /**
      * Handle the state when the {@link HTMLAudioElement audio element} is playing.
@@ -146,39 +144,6 @@ export abstract class Validators
         return null
     }
 
-
-    public static getValueByName(value: Nullable<| Validators | string>,): Validators {
-        return getValueByEnglishName(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static get defaultValue(): Validators {
-        return Validators.CompanionEnum.get.defaultValue
-    }
-
-    public static set defaultValue(value: PossibleEnumerableValueBy<Validators>,) {
-        Validators.CompanionEnum.get.defaultValue = value
-    }
-
-    public static setDefaultValue(value: PossibleEnumerableValueBy<Validators>,): typeof Validators {
-        Validators.CompanionEnum.get.setDefaultValue(value,)
-        return Validators
-    }
-
-    public static getValue(value: PossibleEnumerableValueBy<Validators>,): Validators {
-        return Validators.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Validators> {
-        return Validators.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Validators> {
-        return Validators.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

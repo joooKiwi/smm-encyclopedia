@@ -1,18 +1,17 @@
 import file from 'resources/compiled/Entity category.json'
 
-import type {LanguageContent}        from 'core/_template/LanguageContent'
-import type {PossibleEnglishName}    from 'core/entityCategory/EntityCategories.types'
-import type {EntityCategory}         from 'core/entityCategory/EntityCategory'
-import type {EntityCategoryTemplate} from 'core/entityCategory/EntityCategory.template'
-import type {Loader}                 from 'util/loader/Loader'
+import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {PossibleEnglishName} from 'core/entityCategory/EntityCategories.types'
+import type {EntityCategory}      from 'core/entityCategory/EntityCategory'
+import type {Loader}              from 'util/loader/Loader'
 
 import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {EntityCategoryCreator}   from 'core/entityCategory/EntityCategory.creator'
+import {EntityCategoryContainer} from 'core/entityCategory/EntityCategory.container'
+import {createNameFromContent}   from 'lang/name/createNameFromContent'
 
 /**
  * A single class made to handle the loading
- * and the unique creation of every {@link EntityCategory category}.
+ * and the unique creation of every {@link EntityCategory}.
  *
  * @singleton
  */
@@ -23,8 +22,7 @@ export class EntityCategoryLoader
 
     static #instance?: EntityCategoryLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -35,43 +33,32 @@ export class EntityCategoryLoader
     #map?: Map<PossibleEnglishName, EntityCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, EntityCategory> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, EntityCategory>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new EntityCategoryCreator(new TemplateCreator(it).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "entity category" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "entity category" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, EntityCategory>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "entity category" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "entity category" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
-class TemplateCreator
-    extends AbstractTemplateCreator<EntityCategoryTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): EntityCategoryTemplate {
-        return {
-            entities: null,
-            name: this._createNameTemplate(),
-        }
-    }
-
+function createReference(content: Content,): EntityCategory {
+    return new EntityCategoryContainer(createNameFromContent(content, 2, true,),)
 }

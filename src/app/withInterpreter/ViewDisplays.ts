@@ -1,25 +1,20 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import type {Dispatch, SetStateAction}                          from 'react'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {Singleton} from '@joookiwi/enumerable'
+import {Enum}           from '@joookiwi/enumerable'
 
 import type {AbstractAppWithInterpreter}                        from 'app/withInterpreter/AbstractAppWithInterpreter'
 import type {AbstractCardListApp}                               from 'app/withInterpreter/AbstractCardListApp'
 import type {AbstractSimpleListApp}                             from 'app/withInterpreter/AbstractSimpleListApp'
 import type {AbstractTableApp}                                  from 'app/withInterpreter/AbstractTableApp'
+import type {CompanionEnumDeclaration_ViewDisplays}             from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
 import type {HTMLType, Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
 import type {ClassWithType}                                     from 'core/ClassWithType'
 import type {ClassUsedInRoute}                                  from 'route/ClassUsedInRoute'
 import type {ClassWithIsCurrent}                                from 'util/enumerable/ClassWithIsCurrent'
-import type {SingleRetrievableByUrl}                            from 'util/enumerable/SingleRetrievableByUrl'
 
-import {assert}                                 from 'util/utilitiesMethods'
-import {ClassWithCurrentAndEventImplementation} from 'util/enumerable/ClassWithCurrentAndEvent.implementation'
-import {SingleRetrievableByUrlImplementation}   from 'util/enumerable/SingleRetrievableByUrl.implementation'
+import {assert, getValueInUrl}                      from 'util/utilitiesMethods'
+import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class ViewDisplays
     extends Enum<Ordinals, Names>
     implements ClassWithType<Type>,
@@ -68,8 +63,9 @@ export abstract class ViewDisplays
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<ViewDisplays, typeof ViewDisplays> = class CompanionEnum_ViewDisplays
-        extends CompanionEnum<ViewDisplays, typeof ViewDisplays> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_ViewDisplays> = class CompanionEnum_ViewDisplays
+        extends CompanionEnumWithCurrentAndSetCurrentEvent<ViewDisplays, typeof ViewDisplays>
+        implements CompanionEnumDeclaration_ViewDisplays {
 
         //region -------------------- Singleton usage --------------------
 
@@ -85,74 +81,16 @@ export abstract class ViewDisplays
 
         //endregion -------------------- Singleton usage --------------------
 
+        public readonly URL_REGEX = /\/(table|list|card)\//i
+        public readonly PREFIX = null
+
+        public getValueInUrl(url: string): NullOr<ViewDisplays> {
+            return getValueInUrl(url, this,);
+        }
+
     }
 
     //endregion -------------------- Companion enum --------------------
-    //region -------------------- Companion --------------------
-
-    /**
-     * The reference of the static methods applicable to the class {@link ViewDisplays}
-     *
-     * @see https://kotlinlang.org/docs/object-declarations.html#companion-objects
-     * @singleton
-     */
-    public static readonly Companion = class Companion_ViewDisplays
-        extends ClassWithCurrentAndEventImplementation<ViewDisplays>
-        implements SingleRetrievableByUrl<ViewDisplays> {
-
-        //region -------------------- Singleton usage --------------------
-
-        static #instance?: Companion_ViewDisplays
-
-        private constructor() {
-            super(ViewDisplays,)
-        }
-
-        public static get get() {
-            return this.#instance ??= new this()
-        }
-
-        //endregion -------------------- Singleton usage --------------------
-        //region -------------------- Fields --------------------
-
-        /** A {@link RegExp regex} to identify the current {@link ViewDisplays} in an url */
-        public readonly URL_REGEX = ViewDisplays.#SingleRetrievableByUrl.get.URL_REGEX
-
-        //endregion -------------------- Fields --------------------
-
-        /**
-         * Get a {@link ViewDisplays} from an url found or null if there is none
-         *
-         * @param url The url to find the {@link ViewDisplays view display} (if it is found)
-         * @throws {ReferenceError} A fail-safe error on a {@link ViewDisplays} that was not found
-         */
-        public getInUrl = (url: string,) => ViewDisplays.#SingleRetrievableByUrl.get.getInUrl(url)
-
-    }
-
-    static readonly #SingleRetrievableByUrl = class SingleRetrievableByUrl_ViewDisplays
-        extends SingleRetrievableByUrlImplementation<ViewDisplays> {
-
-        //region -------------------- Singleton usage --------------------
-
-        static #instance?: SingleRetrievableByUrl_ViewDisplays
-
-        private constructor() {
-            super()
-        }
-
-        public static get get() {
-            return this.#instance ??= new this()
-        }
-
-        //endregion -------------------- Singleton usage --------------------
-
-        override readonly URL_REGEX = /\/(table|list|card)\//i
-        override readonly _enumerableConstructor = ViewDisplays
-
-    }
-
-    //endregion -------------------- Companion --------------------
     //region -------------------- Fields --------------------
 
     readonly #type
@@ -184,63 +122,10 @@ export abstract class ViewDisplays
         return this.#htmlType
     }
 
-    //region -------------------- Getter & setter methods (current) --------------------
-
     /** The current instance is the current one selected in the application */
     public get isCurrent(): boolean {
-        return this === ViewDisplays.currentOrNull
+        return this === ViewDisplays.CompanionEnum.get.currentOrNull
     }
-
-
-    /** Get the current {@link ViewDisplays view display} that may be initialized */
-    public static get currentOrNull(): NullOr<ViewDisplays> {
-        return this.Companion.get.currentOrNull
-    }
-
-    /**
-     * Get the non-nullable current {@link ViewDisplays view display}
-     *
-     * @throws ReferenceError The current {@link ViewDisplays view display} has not been initialized yet
-     */
-    public static get current(): ViewDisplays {
-        return this.Companion.get.current
-    }
-
-    /**
-     * Set the current {@link ViewDisplays view display} held in the {@link ViewDisplays.Companion}
-     *
-     * @param value The {@link ViewDisplays view display} to set as the current one
-     */
-    public static set current(value: PossibleEnumerableValueBy<ViewDisplays>,) {
-        this.Companion.get.current = value
-    }
-
-
-    /** Get the current {@link ViewDisplays view display} event listener or <b>null</b> if it has not been initialized */
-    public static get setCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<ViewDisplays>>>> {
-        return this.Companion.get.onSetCurrentEventOrNull
-    }
-
-    /**
-     * Get the non-nullable current {@link ViewDisplays view display} event listener
-     *
-     * @throws {ReferenceError} The event listener has not been initialized
-     */
-    public static get setCurrentEvent(): Dispatch<SetStateAction<NullOr<ViewDisplays>>> {
-        return this.Companion.get.onSetCurrentEvent
-    }
-
-    /**
-     * Initialize the event listener on the setting of the current {@link ViewDisplays view display}
-     *
-     * @param value The event listener to set
-     * @shouldOnlyBeCalledOnce
-     */
-    public static set setCurrentEvent(value: Dispatch<SetStateAction<NullOr<ViewDisplays>>>,) {
-        this.Companion.get.onSetCurrentEvent = value
-    }
-
-    //endregion -------------------- Getter & setter methods (current) --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
@@ -271,33 +156,7 @@ export abstract class ViewDisplays
 
     protected abstract _getRoutePath<const PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
 
-
-    /**
-     * A simple intermediate method to retrieve a {@link ViewDisplays} by an url
-     *
-     * @param url The url to retrieve the {@link ViewDisplays view display} (if it is present)
-     * @see ViewDisplays.Companion.getInUrl
-     */
-    public static getInUrl(url: string,): NullOr<ViewDisplays> {
-        return this.Companion.get.getInUrl(url)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<ViewDisplays>,): ViewDisplays {
-        return ViewDisplays.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<ViewDisplays> {
-        return ViewDisplays.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<ViewDisplays> {
-        return ViewDisplays.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

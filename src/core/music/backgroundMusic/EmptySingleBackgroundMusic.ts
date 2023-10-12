@@ -3,9 +3,7 @@ import type {ClassWithNullObjectPattern, EmptySingleBackgroundMusicName} from 'u
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptySingleBackgroundMusic
     implements SingleBackgroundMusic<null, null, null, null, null>,
         ClassWithNullObjectPattern<EmptySingleBackgroundMusicName> {
@@ -14,8 +12,7 @@ export class EmptySingleBackgroundMusic
 
     static #instance?: EmptySingleBackgroundMusic
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

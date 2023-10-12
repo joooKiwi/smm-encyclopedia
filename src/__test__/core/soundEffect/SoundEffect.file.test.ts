@@ -6,10 +6,10 @@ import {EveryTypes}                                     from '__test__/EveryType
 import {getEnglishName, testLanguages, testOnlyEnglish} from '__test__/helperMethods'
 
 describe('Sound effect (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames = types.everyPossibleName_soundEffect,
-        everyCategoryNames = [null, ...types.everyPossibleName_soundEffectCategory,],
-        excludedLanguages: readonly PossibleExcludedLanguages[] = ['portuguese',]
+    const types = EveryTypes.get
+    const everyNames = types.everyPossibleName_soundEffect
+    const everyCategoryNames = [null, ...types.everyPossibleName_soundEffectCategory,] as const
+    const excludedLanguages: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         //TODO add the sound effect names for the sound effect with no category

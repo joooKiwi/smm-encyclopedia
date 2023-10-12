@@ -2,10 +2,10 @@ import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
 import type {LanguageContent}                                                                                                                                                                                                    from 'core/_template/LanguageContent'
 import type {UniqueNameContent}                                                                                                                                                                                                  from 'core/_template/UniqueNameContent'
-import type {PossibleEnglishName as PossibleGameReference}                                                                                                                                                                       from 'core/gameReference/GameReferences.types'
-import type {MysteryMushroom}                                                                                                                                                                                                    from 'core/mysteryMushroom/MysteryMushroom'
+import type {PossibleAcronym as PossibleAcronym_GameReference}                                                                                                                                                                   from 'core/gameReference/GameReferences.types'
+import type {PokemonGeneration}                                                                                                                                                                                                  from 'core/mysteryMushroom/loader.types'
+import type {MysteryMushroom, MysteryMushroomGames}                                                                                                                                                                              from 'core/mysteryMushroom/MysteryMushroom'
 import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {MysteryMushroomTemplate, PokemonGeneration}                                                                                                                                                                         from 'core/mysteryMushroom/MysteryMushroom.template'
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                        from 'core/mysteryMushroom/properties/UnlockProperty'
 import type {PossibleGamesReceived as GameInStarMode, PossibleValuesReceived as PossibleSpecialMusicInStarMode}                                                                                                                  from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode'
 import type {PossibleGamesReceived as GameOnSoundEffectOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypesReceived as TypeOfSoundEffectOnDeath, PossibleValuesReceived as PossibleSoundEffectOnDeath}       from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
@@ -16,15 +16,28 @@ import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}           
 import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
 import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
 import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
-import type {SoundPropertyTemplate}                                                                                                                                                                                              from 'core/mysteryMushroom/properties/sound/SoundProperty.template'
 import type {PossibleName_SMM1 as PossibleVersionNameInSMM}                                                                                                                                                                      from 'core/version/Versions.types'
 import type {Loader}                                                                                                                                                                                                             from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {MysteryMushroomCreator}  from 'core/mysteryMushroom/MysteryMushroom.creator'
+import {isInProduction}                       from 'variables'
+import {GameReferences}                       from 'core/gameReference/GameReferences'
+import {MysteryMushroomContainer}             from 'core/mysteryMushroom/MysteryMushroom.container'
+import {MysteryMushroomPropertyContainer}     from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
+import {UnlockPropertyProvider}               from 'core/mysteryMushroom/properties/UnlockProperty.provider'
+import {SoundEffectOnDeathProvider}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath.provider'
+import {SoundEffectOnGoalPoleProvider}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole.provider'
+import {SoundEffectOnGroundAfterJumpProvider} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump.provider'
+import {SoundEffectOnJumpProvider}            from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump.provider'
+import {SoundEffectOnMovementProvider}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement.provider'
+import {SoundEffectOnTauntProvider}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt.provider'
+import {SoundEffectOnTurnAfterRunProvider}    from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun.provider'
+import {SoundEffectWhenCollectedProvider}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected.provider'
+import {SoundPropertyContainer}               from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
+import {SpecialMusicInStarModeProvider}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode.provider'
+import {createNameFromContent}                from 'lang/name/createNameFromContent'
 
 /**
+ * @dependsOn<{@link GameReferences}>
  * @singleton
  */
 export class MysteryMushroomLoader
@@ -34,8 +47,7 @@ export class MysteryMushroomLoader
 
     static #instance?: MysteryMushroomLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -46,22 +58,24 @@ export class MysteryMushroomLoader
     #map?: Map<PossibleUniqueEnglishName, MysteryMushroom>
 
     public load(): ReadonlyMap<PossibleUniqueEnglishName, MysteryMushroom> {
-        if (this.#map == null) {
-            const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new MysteryMushroomCreator(new TemplateCreator(it as Content).create()))
-                .forEach(it => references.set(it.template.uniqueName, it.create(),))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "mystery mushroom" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "mystery mushroom" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
+        let index = file.length
+        while (index-- > 0) {
+            const content = file[index] as Content
+            references.set(content.uniqueName, createReference(content,),)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "mystery mushroom" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "mystery mushroom" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
@@ -70,116 +84,74 @@ export class MysteryMushroomLoader
 interface Content
     extends LanguageContent, UniqueNameContent<PossibleUniqueEnglishName> {
 
-    conditionToUnlockIt: PossibleConditionToUnlockIt
-    canBeUnlockedByAnAmiibo: boolean
+    readonly conditionToUnlockIt: PossibleConditionToUnlockIt
+    readonly canBeUnlockedByAnAmiibo: boolean
 
-    firstAppearanceInMarioMaker: PossibleVersionNameInSMM
+    readonly firstAppearanceInMarioMaker: PossibleVersionNameInSMM
 
-    reference: | PossibleGameReference | PokemonGeneration
+    readonly reference: | PossibleAcronym_GameReference | PokemonGeneration
 
 
-    haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected
-    haveASoundEffectWhenCollected: PossibleSoundEffectWhenCollected
+    readonly haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected
+    readonly haveASoundEffectWhenCollected: PossibleSoundEffectWhenCollected
 
-    haveASoundEffectOnTaunt_game: GameOnSoundEffectOnTaunt
-    haveASoundEffectOnTaunt: PossibleSoundEffectOnTaunt
+    readonly haveASoundEffectOnTaunt_game: GameOnSoundEffectOnTaunt
+    readonly haveASoundEffectOnTaunt: PossibleSoundEffectOnTaunt
 
-    haveASoundEffectOnJump_game: GameOnSoundEffectOnJump
-    haveASoundEffectOnJump: PossibleSoundEffectOnJump
-    haveASoundEffectOnGroundAfterJump_game: GameOnSoundEffectOnGroundAfterJump
-    haveASoundEffectOnGroundAfterJump: PossibleSoundEffectOnGroundAfterJump
+    readonly haveASoundEffectOnJump_game: GameOnSoundEffectOnJump
+    readonly haveASoundEffectOnJump: PossibleSoundEffectOnJump
+    readonly haveASoundEffectOnGroundAfterJump_game: GameOnSoundEffectOnGroundAfterJump
+    readonly haveASoundEffectOnGroundAfterJump: PossibleSoundEffectOnGroundAfterJump
 
-    soundEffectOnMovement: PossibleSoundEffectOnMovement
+    readonly soundEffectOnMovement: PossibleSoundEffectOnMovement
 
-    haveASoundEffectOnTurnAfterRun: PossibleSoundEffectOnTurnAfterRun
+    readonly haveASoundEffectOnTurnAfterRun: PossibleSoundEffectOnTurnAfterRun
 
-    haveASpecialMusicInStarMode_game: GameInStarMode
-    haveASpecialMusicInStarMode: PossibleSpecialMusicInStarMode
+    readonly haveASpecialMusicInStarMode_game: GameInStarMode
+    readonly haveASpecialMusicInStarMode: PossibleSpecialMusicInStarMode
 
-    haveASoundEffectWhenOnGoalPole_type: TypeOfMusicOnGoalPole
-    haveASoundEffectWhenOnGoalPole_game: GameOnSoundEffectOnGoalPole
-    haveASoundEffectWhenOnGoalPole_smallDefinition: TranslationKeyOnGoalPole
-    haveASoundEffectWhenOnGoalPole: PossibleSoundEffectOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole_type: TypeOfMusicOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole_game: GameOnSoundEffectOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole_smallDefinition: TranslationKeyOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole: PossibleSoundEffectOnGoalPole
 
-    haveASoundEffectOnDeath_type: TypeOfSoundEffectOnDeath
-    haveASoundEffectOnDeath_game: GameOnSoundEffectOnDeath
-    haveASoundEffectOnDeath_smallDefinition: TranslationKeyOnDeath
-    haveASoundEffectOnDeath: PossibleSoundEffectOnDeath
+    readonly haveASoundEffectOnDeath_type: TypeOfSoundEffectOnDeath
+    readonly haveASoundEffectOnDeath_game: GameOnSoundEffectOnDeath
+    readonly haveASoundEffectOnDeath_smallDefinition: TranslationKeyOnDeath
+    readonly haveASoundEffectOnDeath: PossibleSoundEffectOnDeath
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<MysteryMushroomTemplate, Content> {
+function createReference(content: Content,): MysteryMushroom {
+    return new MysteryMushroomContainer(
+        createNameFromContent(content, 1, true,),
+        retrieveGames(content.reference,),
+        new MysteryMushroomPropertyContainer(
+            UnlockPropertyProvider.get.get(content.conditionToUnlockIt, content.canBeUnlockedByAnAmiibo,),
+            new SoundPropertyContainer(
+                SoundEffectWhenCollectedProvider.get.get(content.haveASoundEffectWhenCollected, content.haveASoundEffectWhenCollected_game,),
+                SoundEffectOnTauntProvider.get.get(content.haveASoundEffectOnTaunt, content.haveASoundEffectOnTaunt_game,),
+                SoundEffectOnMovementProvider.get.get(content.soundEffectOnMovement,),
+                SoundEffectOnJumpProvider.get.get(content.haveASoundEffectOnJump, content.haveASoundEffectOnJump_game,),
+                SoundEffectOnGroundAfterJumpProvider.get.get(content.haveASoundEffectOnGroundAfterJump, content.haveASoundEffectOnGroundAfterJump_game,),
+                SoundEffectOnTurnAfterRunProvider.get.get(content.haveASoundEffectOnTurnAfterRun,),
+                SpecialMusicInStarModeProvider.get.get(content.haveASpecialMusicInStarMode, content.haveASpecialMusicInStarMode_game,),
+                SoundEffectOnGoalPoleProvider.get.get(content.haveASoundEffectWhenOnGoalPole, content.haveASoundEffectWhenOnGoalPole_type, content.haveASoundEffectWhenOnGoalPole_game, content.haveASoundEffectWhenOnGoalPole_smallDefinition,),
+                SoundEffectOnDeathProvider.get.get(content.haveASoundEffectOnDeath, content.haveASoundEffectOnDeath_type, content.haveASoundEffectOnDeath_game, content.haveASoundEffectOnDeath_smallDefinition,),
+            ),
+        ),
+    )
+}
 
-    public constructor(content: Content,) {
-        super(content,)
+function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneration,): MysteryMushroomGames {
+    switch (value) {
+        case 'Pokémon gen 1':
+            return [GameReferences.POKEMON_RED, GameReferences.POKEMON_GREEN, GameReferences.POKEMON_BLUE, GameReferences.POKEMON_YELLOW,]
+        case 'Pokémon gen 4':
+            return [GameReferences.POKEMON_DIAMOND, GameReferences.POKEMON_PEARL,]
+        case 'Pokémon gen 6':
+            return [GameReferences.POKEMON_X, GameReferences.POKEMON_Y,]
+        default:
+            return [GameReferences.CompanionEnum.get.getValueByAcronym(value,),]
     }
-
-    public override create(): MysteryMushroomTemplate {
-        const content = this._content
-
-        return {
-            properties: {
-                firstAppearance: content.firstAppearanceInMarioMaker,
-                unlock: {
-                    condition: content.conditionToUnlockIt,
-                    amiibo: content.canBeUnlockedByAnAmiibo,
-                },
-                sound: this.#createSoundTemplate(),
-            },
-            uniqueName: content.uniqueName,
-            gameReference: content.reference,
-            name: this._createNameTemplate(),
-        }
-    }
-
-    #createSoundTemplate(): SoundPropertyTemplate {
-        const content = this._content
-
-        return {
-            soundEffect: {
-                movement: content.soundEffectOnMovement,
-            },
-            hasSoundEffect: {
-                collected: {
-                    value: content.haveASoundEffectWhenCollected,
-                    game: content.haveASoundEffectWhenCollected_game,
-                },
-                taunt: {
-                    value: content.haveASoundEffectOnTaunt,
-                    game: content.haveASoundEffectOnTaunt_game,
-                },
-                jump: {
-                    value: {
-                        value: content.haveASoundEffectOnJump,
-                        game: content.haveASoundEffectOnJump_game,
-                    },
-                    ground: {
-                        value: content.haveASoundEffectOnGroundAfterJump,
-                        game: content.haveASoundEffectOnGroundAfterJump_game,
-                    },
-                },
-                turn: content.haveASoundEffectOnTurnAfterRun,
-                goalPole: {
-                    value: content.haveASoundEffectWhenOnGoalPole,
-                    game: content.haveASoundEffectWhenOnGoalPole_game,
-                    smallDefinition: content.haveASoundEffectWhenOnGoalPole_smallDefinition,
-                    type: content.haveASoundEffectWhenOnGoalPole_type,
-                },
-                death: {
-                    value: content.haveASoundEffectOnDeath,
-                    game: content.haveASoundEffectOnDeath_game,
-                    smallDefinition: content.haveASoundEffectOnDeath_smallDefinition,
-                    type: content.haveASoundEffectOnDeath_type,
-                },
-            },
-            hasSpecialMusic: {
-                starMode: {
-                    value: content.haveASpecialMusicInStarMode,
-                    game: content.haveASpecialMusicInStarMode_game,
-                },
-            },
-        }
-    }
-
 }

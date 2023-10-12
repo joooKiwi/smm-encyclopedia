@@ -3,9 +3,7 @@ import type {ClassWithNullObjectPattern, EmptyEntityReferenceName} from 'util/Cl
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyEntityReference
     implements EntityReferences, ClassWithNullObjectPattern<EmptyEntityReferenceName> {
 
@@ -13,8 +11,7 @@ export class EmptyEntityReference
 
     static #instance?: EmptyEntityReference
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

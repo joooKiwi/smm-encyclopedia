@@ -1,6 +1,3 @@
-import type {EveryLanguages}   from 'lang/EveryLanguages'
-import type {ProjectLanguages} from 'lang/ProjectLanguages'
-
 enum Enum {
 
     AMERICAN_ENGLISH, EUROPEAN_ENGLISH,
@@ -77,9 +74,3 @@ export type PossibleChinese = | 'Traditional' | 'Simplified'
 export type PossibleDifferentWord = | PossibleRegion | PossibleChinese
 
 //endregion -------------------- Region --------------------
-
-export type ProjectLanguagesByLanguage<T, > = T extends (PossibleAcronym | PossibleInternationalAcronym | PossibleEnglishName | PossibleOriginalName)
-    ? ProjectLanguages
-    : T extends EveryLanguages
-        ? | ProjectLanguages | never
-        : never

@@ -10,8 +10,7 @@ export class EmptyUnusedImage_Regular
 
     static #instance?: EmptyUnusedImage_Regular
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

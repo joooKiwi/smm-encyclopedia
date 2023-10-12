@@ -5,9 +5,7 @@ import {EmptyInstrumentProperty} from 'core/entity/properties/instrument/EmptyIn
 import {EmptyLimitProperty}      from 'core/entity/properties/limit/EmptyLimitProperty'
 import {EMPTY_MAP}               from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyIsInProperty
     implements Property, ClassWithNullObjectPattern<EmptyIsInPropertyName> {
 
@@ -15,8 +13,7 @@ export class EmptyIsInProperty
 
     static #instance?: EmptyIsInProperty
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -136,11 +133,11 @@ export class EmptyIsInProperty
         return EMPTY_MAP
     }
 
-    public toLimitInTheEditorMap(): EmptyMap {
+    public toEditorLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 
-    public toLimitWhilePlayingMap(): EmptyMap {
+    public toPlayLimitMap(): EmptyMap {
         return EMPTY_MAP
     }
 

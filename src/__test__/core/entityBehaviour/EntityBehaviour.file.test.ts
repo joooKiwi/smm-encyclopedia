@@ -3,11 +3,11 @@ import file from 'resources/compiled/Entity behaviour.json'
 import {EveryTypes} from '__test__/EveryTypes'
 
 describe('Entity behaviour (file test)', () => {
-    const types = EveryTypes.get,
-        everyAcronym = types.everyPossibleAcronym_entityBehaviour,
-        everyTranslationKey = types.everyPossibleTranslationKey_entityBehaviour,
-        everyGroup = [null, ...types.everyPossibleName_entityGroup,],
-        everyEntity = [null, ...types.everyPossibleName_entity,]
+    const types = EveryTypes.get
+    const everyAcronym = types.everyPossibleAcronym_entityBehaviour
+    const everyTranslationKey = types.everyPossibleTranslationKey_entityBehaviour
+    const everyGroup = [null, ...types.everyPossibleName_entityGroup,] as const
+    const everyEntity = [null, ...types.everyPossibleName_entity,] as const
 
     file.forEach(it => describe(it.translationKey, () => {// eslint-disable-line jest/valid-title
         describe('Type validations', () => {

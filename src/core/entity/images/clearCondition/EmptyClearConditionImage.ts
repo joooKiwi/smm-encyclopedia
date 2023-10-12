@@ -10,8 +10,7 @@ export class EmptyClearConditionImage
 
     static #instance?: EmptyClearConditionImage
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

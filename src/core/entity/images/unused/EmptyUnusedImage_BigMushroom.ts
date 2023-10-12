@@ -10,8 +10,7 @@ export class EmptyUnusedImage_BigMushroom
 
     static #instance?: EmptyUnusedImage_BigMushroom
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

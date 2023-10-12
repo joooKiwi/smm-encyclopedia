@@ -1,7 +1,7 @@
-isInSuperMarioMaker1,isInSuperMarioMakerFor3DS,isInSuperMarioMaker2,pluralFormOf,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
-TRUE,TRUE,FALSE,,Flyday,,,BZZendredi,,,Fliegtag,Viernezzz,,,Venerzzzì,Vliegdag,Bzzexta-feira,,,Полетница,Flyday,,,,
-TRUE,TRUE,FALSE,,,Happy Sunday,Today is Sunday,,Bon dimanche!,C'est dimanche !,Endlich Sonntag,¡Ya es domingo!,,,Già domenica!,Het is zondag!,Hoje é Domingo,,,Воскресенье,今日は 日曜,,,,
-TRUE,TRUE,FALSE,,"Let's get
+isInSuperMarioMaker1,isInSuperMarioMakerFor3DS,isInSuperMarioMaker2,isPlural,pluralForm,english,americanEnglish,europeanEnglish,french,canadianFrench,europeanFrench,german,spanish,americanSpanish,europeanSpanish,italian,dutch,portuguese,americanPortuguese,europeanPortuguese,russian,japanese,chinese,traditionalChinese,simplifiedChinese,korean
+TRUE,TRUE,FALSE,FALSE,,Flyday,,,BZZendredi,,,Fliegtag,Viernezzz,,,Venerzzzì,Vliegdag,Bzzexta-feira,,,Полетница,Flyday,,,,
+TRUE,TRUE,FALSE,FALSE,,,Happy Sunday,Today is Sunday,,Bon dimanche!,C'est dimanche !,Endlich Sonntag,¡Ya es domingo!,,,Già domenica!,Het is zondag!,Hoje é Domingo,,,Воскресенье,今日は 日曜,,,,
+TRUE,TRUE,FALSE,FALSE,,"Let's get
 making!",,,,"Créons des
 niveaux!","Créons des
 stages !","Zeit zum
@@ -11,69 +11,69 @@ DA FARE!","Tijd om iets
 te bouwen!",Mãos à obra!,,,"Дизайнеры,
 за работу!","いっぱい
 つくれる！",,,,
-FALSE,FALSE,TRUE,,Game Style,,,Style de jeu,,,Spiel-Thema,Apariencia,,,Stile,Gamestijl,,,,Стиль,ゲームスキン,,遊戲外觀,游戏风格,게임 배경
-FALSE,FALSE,TRUE,,Extra Game Styles,,,Style de jeu supplémentaire,,,Bonus-Spiel-Themen,Especiales,,,Stili aggiuntivi,Speciaal,,,,Другие стили,エクストラゲームスキン,,額外遊戲外觀,特制游戏风格,엑스트라 게임 배경
-FALSE,FALSE,TRUE,,Current Condition,,,Condition actuelle,,,Aktive Zielbedingung:,Actual:,,,Condizione attuale,Huidige winvoorwaarde:,,,,Текущее условие:,げんざいのじょうけん,,現在的條件,当前的条件,현재 조건
-FALSE,FALSE,TRUE,,Clear condition,,,Condition de victoire,,,Zielbedingung,Condición especial,,,Condizione speciale,Winvoorwaarde,,,,Условие прохождения,ゴールじょうけん,,過關條件,终点条件,클리어 조건
-FALSE,FALSE,TRUE,,Course Maker,,,,Créateur de niveaux,Créer un stage,Level bauen,Crear un nivel,,,Crea un livello,Level maken,,,,Редактор,コースをつくる,,創作關卡,创作关卡,코스 만들기
-FALSE,FALSE,TRUE,,Course Theme,,,Décor,,,Umgebung,Entorno,,,Tema,Levelthema,,,,Тема уровня,シーンスキン,,場景外觀,场景类型,코스 배경
-FALSE,FALSE,TRUE,,World Maker,,,Créer un super monde,,,Welt bauen,Crear un mundo,,,Crea un mondo,Wereld maken,,,,Мастерская миров,ワールドをつくる,,創作世界,创作世界,월드 만들기
-FALSE,FALSE,TRUE,,World Theme,,,Décor,,,Umgebung,Entorno,,,Tema,Wereldthema,,,,Тема мира,シーンスキン,,場景外觀,场景类型,월드 배경
-FALSE,FALSE,TRUE,,Autoscroll,,,Défilement auto,,,,Autoavance,,,,,,,,,,,,,
-TRUE,TRUE,TRUE,,Mario's Trail,,,Trajectoire du joueur,,,,Recorrido de Mario,,,,,,,,,,,,,
-TRUE,TRUE,TRUE,,Copy,,,Copier,,,Kopieren,Copiar,,,Copia,Kopiëren,,,,Копирование,コピー,,複製,复制,복사
-TRUE,TRUE,TRUE,,Erase,,,,Effacer,Gomme,Radiergummi,,Borrador,Goma de borrar,Cancella,Wisser,,,,Удаление,消しゴム,橡皮擦,,,지우개
-TRUE,TRUE,TRUE,,Multigrab,,,Sélection multiple,,,Mehrfachauswahl,,Agrupar,Selección múltiple,Selezione multipla,Selecteren,,,,Выделение,複数せんたく,,複選,多选,멀티 선택
-FALSE,FALSE,TRUE,,Solo Making,,,Créer en solo,,,,Individual,,,,,,,,,,,,,
-FALSE,FALSE,TRUE,,Co-op Making,,,Créer en duo,,,,En pareja,,,,,,,,,,,,,
-FALSE,FALSE,TRUE,,View Mode,,,Mode observation,,,Ansicht,Cambiar vista,,,Cambia visuale,Zoomen,,,,Приблизить,ビューモード,观看模式,觀看模式,,뷰 모드
-FALSE,FALSE,TRUE,,Stamp,,,,Étampe,Tampon,Stempel,Sello,,,Timbro,Stempel,,,,Печать,スタンプ,印章,,,스탬프
-FALSE,FALSE,TRUE,Stamp,Stamps,,,,Étampes,Tampons,,,,,,,,,,,スタンプ,印章,,,
-FALSE,FALSE,TRUE,,Stamp Card,,,,Carton,Tampons,Stempelkarte,Tarjeta de sellos,,,Timbri,Stempelkaart,,,,Все печати,スタンプカード,印章收集卡,,,스탬프 카드
-FALSE,FALSE,TRUE,,Tag,,,,Étiquette,Tag,Schlagwort,Etiquetas,,,Tag,Label,,,,Теги,タグ,,標籤,标签,태그
-FALSE,FALSE,TRUE,Tag,Tags,,,,Étiquettes,Tags,,,,,,,,,,,タグ,,標籤,标签,
-FALSE,FALSE,FALSE,,Liquid,,,Liquide,,,,,,,,,,,,,,,,,
-FALSE,FALSE,FALSE,Liquid,Liquids,,,Liquides,,,,,,,,,,,,,,,,,
-FALSE,FALSE,TRUE,,Water Level,,,Niveau de l'eau,,,Wasserpegel,Nivel del agua,,,Livello dell'acqua,Waterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
-FALSE,FALSE,TRUE,,Poison Level,,,Niveau du poison,,,Wasserpegel,Nivel del agua tóxica,,,Livello del veleno,Gifwaterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
-FALSE,FALSE,TRUE,,Lava Level,,,Niveau de la lave,,,Lavapegel,Nivel de la lava,,,Livello della lava,Lavastand,,,,Уровень лавы,溶岩の高さ,熔岩的高度,,,용암 높이
-TRUE,FALSE,FALSE,,10 Mario Challenge,,,,Défi 10 Mario,Défi des 10 Mario,10-Mario-Herausforderung,Desafío 10 Marios,,,Sfida dei 10 Mario,Missie met 10 Mario's,Desafio 10 Marios,,,10 жизней Марио,10人マリオチャレンジ,,,,
-TRUE,TRUE,FALSE,,100 Mario Challenge,,,,Défi 100 Mario,Défi des 100 Mario,100-Mario-Herausforderung,Desafío 100 Marios,,,Sfida dei 100 Mario,Missie met 100 Mario's,Desafio 100 Marios,,,100 жизней Марио,100人マリオチャレンジ,,,,
-FALSE,TRUE,FALSE,,Super Mario Challenge,,,Défi Super Mario,,,PSuper-Mario-Herausforderung,Desafío Super Mario,,,Sfida Super Mario,Super Mario-missie,Desafio Super Mario,,,Испытание «Супермарио»,スーパーマリオチャレンジ,,,,
-FALSE,FALSE,TRUE,,Endless Challenge,,,Défi infini,,,Endlos-Herausforderung,Desafío de Mario sin fin,,,Sfida infinita,Oneindige missie,,,,Марафон Марио,どこまでマリオチャレンジ,,瑪利歐耐力挑戰,马力欧耐力挑战,어디까지 마리오 챌린지
-TRUE,TRUE,TRUE,,Easy,,,Facile,,,Leicht,Fácil,,,Facile,Makkelijk,Fácil,,,Легко,かんたん,,簡單,简单,쉬움
-TRUE,TRUE,TRUE,,Normal,,,Normal,,,Normal,Normal,,,Normale,Normaal,Normal,,,Норма,ふつう,普通,,,보통
-TRUE,TRUE,TRUE,,Expert,,,Expert,,,Schwierig,Difícil,,,Difficile,Moeilijk,Difícil,,,Сложно,むずかしい,,困難,困难,어려움
-TRUE,TRUE,TRUE,,Super expert,,,Super expert,,,Sehr schwierig,Muy difícil,,,Super difficile,Supermoeilijk,Muito difícil,,,Экстрим,とてもむずかしい,,超難,超难,매우 어려움
-FALSE,FALSE,TRUE,,Yamamura's Dojo,,,Dojo de Yamamura,,,Yamamuras Dojo,Aula de Yamamura,,,Scuola di Yamamura,Yamamura's academie,,,,Школа Ямамуры,ヤマムラ道場,,亞瑪姆拉道館,亚玛姆拉道馆,야마무라 레슨
-FALSE,FALSE,TRUE,,Story Mode,,,,Mode Histoire,Mode histoire,Abenteuermodus,Historia,,,Modalità storia,Verhaal,,,,Строй-история,ストーリーモード,故事模式,,,스토리 모드
-FALSE,FALSE,TRUE,,Course World,,,,Monde des niveaux,Stages du monde,Level aus aller Welt,Niveles mundiales,,,Livelli dal mondo,Levelwereld,,,,Вселенная уровней,世界のコース,,全球關卡,全球关卡,세계의 코스
-FALSE,FALSE,TRUE,,Network Play,,,Jeu en réseau,,,Vernetztes Spielen,Juego en red,,,Gioco in rete,Online spelen,,,,Сетевая игра,通信であそぶ,,以通訊方式遊玩,以连接方式游玩,통신 플레이
-FALSE,FALSE,TRUE,,Multiplayer Versus,,,Affrontement,,,Gegeneinander,Competitivo,,,Competizione,Strijd,,,,Поединок,みんなでバトル,,多人對戰,多人对战,함께 배틀
-FALSE,FALSE,TRUE,,Multiplayer Co-op,,,Coopération,,,Miteinander,Cooperativo,,,Cooperazione,Samenwerking,,,,Вместе,みんなでクリア,,多人過關,多人过关,함께 클리어
-FALSE,FALSE,TRUE,,Leaderboard,,,Classements,,,Baumeister-Ranglisten,,Clasificaciones,Clasificaciones de creadores,Classifiche,Ranglijsten,,,,Рейтинги,職人ランキング,工匠排行榜,,,전문가 랭킹
-TRUE,FALSE,FALSE,,Event Courses,,,,Niveaux officiels,Stages officiels,Event-Level,Niveles oficiales,,,Livelli evento,Officiële levels,Níveis Oficiais,,,Тематические уровни,???,,,,
-FALSE,FALSE,TRUE,,Ninji Speedruns,,,Contre-la-montre des Ninjis,,,Ninji-Speedrun,,Contrarrelojes ninji,Contrarrelojes Ninji,Corse Ninji,Ninji-speedruns,,,,«Ниндзик-забеги»,ハックンタイムアタック,,哈庫計時賽,哈库计时挑战,닌군 타임 어택
-FALSE,FALSE,TRUE,,Super World,,,Super monde,,,Super-Welt,,supermundo,Supermundos,Super mondi,Superwereld,,,,Супермир,ワールド,世界,,,월드
-FALSE,FALSE,TRUE,Super World,Super Worlds,,,Super mondes,,,,,,,,,,,,,ワールド,世界,,,
-TRUE,TRUE,TRUE,,Koopa Troopa,,,Koopa,,,Koopa,Koopa,,,Koopa,Koopa Troopa,Koopa Troopa,,,Купа-трупа,ノコノコ,,慢慢龜,慢慢龟,엉금엉금
-TRUE,TRUE,TRUE,,Beach Koopa,,,Koopa de plage,,,Panzerloser Koopa,Koopa de playa,,,Beach Koopa,???,???,,,???,はだかノコノコ,???,,,???
-TRUE,TRUE,TRUE,,Koopa Shell,,,Carapace de Koopa,,,Koopa-Panzer,,Caparazón de koopa,Caparazón de Koopa,Guscio di Koopa,Koopa-schild,???,,,Панцирь купы,???,,龜殼,龟壳,엉금엉금등껍질을
-TRUE,FALSE,FALSE,,Mystery Mushroom,,,,Champignon mystère,Champignon ?,?-Pilz,Champiñón ?,,,Fungo ?,?-paddenstoel,Cogumelo Misterioso,,,Загадочный гриб ,ハテナキノコ,,,,
-TRUE,TRUE,FALSE,Mystery Mushroom,Mystery Mushrooms,,,,Champignons mystères,Champignons ?,,,,,,,,,,,ハテナキノコ,,,,
-FALSE,FALSE,TRUE,,Mii costume,,,Costume de Mii,,,,,,,,,,,,,,,,,
-FALSE,FALSE,TRUE,Mii costume,Mii costumes,,,Costumes de Mii,,,,,,,,,,,,,,,,,
-TRUE,TRUE,TRUE,,Mii,,,Mii,,,Mii,Mii,,,Mii,,Mii,,,Mii,Ｍｉｉ,Ｍｉｉ,,,Ｍｉｉ
-TRUE,TRUE,TRUE,Mii,Miis,,,Miis,,,,,,,,,,,,,Ｍｉｉ,Ｍｉｉ,,,
-FALSE,FALSE,TRUE,,Koopaling,,,,Koopaling,Terreur de Bowser,Koopaling,Koopaline,,,???,Koopaling,???,???,???,???,クッパの手下,,庫巴7人幫,酷霸王７人帮,쿠파7인조
-FALSE,FALSE,TRUE,Koopaling,Koopalings,,,,Koopalings,Terreurs de Bowser,Koopalinge,Koopalines,,,,Koopalings,,,,,クッパの手下,,庫巴7人幫,酷霸王７人帮,
-FALSE,FALSE,FALSE,,Entity,,,Entité,,,,,,,,,,,,,,,,,
-FALSE,FALSE,FALSE,Entity,Entities,,,Entités,,,,,,,,,,,,,,,,,
-FALSE,FALSE,FALSE,,Player,,,Joueur,,,,,,,,,,,,,,,,,
-FALSE,FALSE,FALSE,Player,Players,,,Joueurs,,,,,,,,,,,,,,,,,
-FALSE,FALSE,TRUE,,Course,,,,Niveau,Stage,Level,Nivel,,,Livello,Level,,,,,,,,,
-FALSE,FALSE,TRUE,Course,Courses,,,,Niveaux,Stages,,,,,,,,,,,,,,,
-FALSE,FALSE,TRUE,,World Record,,,Record du monde,,,Weltrekord,Récord,,,Record mondiale,Wereldrecord,,,,,,,,,
-FALSE,FALSE,TRUE,World Record,World Records,,,Records du monde,,,,,,,,,,,,,,,,,
-FALSE,FALSE,FALSE,,Power-up,,,Amélioration,,,,,,,,,,,,,,,,,
-FALSE,FALSE,FALSE,Power-up,Power-ups,,,Améliorations,,,,,,,,,,,,,,,,,
+FALSE,FALSE,TRUE,FALSE,,Game Style,,,Style de jeu,,,Spiel-Thema,Apariencia,,,Stile,Gamestijl,,,,Стиль,ゲームスキン,,遊戲外觀,游戏风格,게임 배경
+FALSE,FALSE,TRUE,FALSE,,Extra Game Styles,,,Style de jeu supplémentaire,,,Bonus-Spiel-Themen,Especiales,,,Stili aggiuntivi,Speciaal,,,,Другие стили,エクストラゲームスキン,,額外遊戲外觀,特制游戏风格,엑스트라 게임 배경
+FALSE,FALSE,TRUE,FALSE,,Current Condition,,,Condition actuelle,,,Aktive Zielbedingung:,Actual:,,,Condizione attuale,Huidige winvoorwaarde:,,,,Текущее условие:,げんざいのじょうけん,,現在的條件,当前的条件,현재 조건
+FALSE,FALSE,TRUE,FALSE,,Clear condition,,,Condition de victoire,,,Zielbedingung,Condición especial,,,Condizione speciale,Winvoorwaarde,,,,Условие прохождения,ゴールじょうけん,,過關條件,终点条件,클리어 조건
+FALSE,FALSE,TRUE,FALSE,,Course Maker,,,,Créateur de niveaux,Créer un stage,Level bauen,Crear un nivel,,,Crea un livello,Level maken,,,,Редактор,コースをつくる,,創作關卡,创作关卡,코스 만들기
+FALSE,FALSE,TRUE,FALSE,,Course Theme,,,Décor,,,Umgebung,Entorno,,,Tema,Levelthema,,,,Тема уровня,シーンスキン,,場景外觀,场景类型,코스 배경
+FALSE,FALSE,TRUE,FALSE,,World Maker,,,Créer un super monde,,,Welt bauen,Crear un mundo,,,Crea un mondo,Wereld maken,,,,Мастерская миров,ワールドをつくる,,創作世界,创作世界,월드 만들기
+FALSE,FALSE,TRUE,FALSE,,World Theme,,,Décor,,,Umgebung,Entorno,,,Tema,Wereldthema,,,,Тема мира,シーンスキン,,場景外觀,场景类型,월드 배경
+FALSE,FALSE,TRUE,FALSE,,Autoscroll,,,Défilement auto,,,,Autoavance,,,,,,,,,,,,,
+TRUE,TRUE,TRUE,FALSE,,Mario's Trail,,,Trajectoire du joueur,,,,Recorrido de Mario,,,,,,,,,,,,,
+TRUE,TRUE,TRUE,FALSE,,Copy,,,Copier,,,Kopieren,Copiar,,,Copia,Kopiëren,,,,Копирование,コピー,,複製,复制,복사
+TRUE,TRUE,TRUE,FALSE,,Erase,,,,Effacer,Gomme,Radiergummi,,Borrador,Goma de borrar,Cancella,Wisser,,,,Удаление,消しゴム,橡皮擦,,,지우개
+TRUE,TRUE,TRUE,FALSE,,Multigrab,,,Sélection multiple,,,Mehrfachauswahl,,Agrupar,Selección múltiple,Selezione multipla,Selecteren,,,,Выделение,複数せんたく,,複選,多选,멀티 선택
+FALSE,FALSE,TRUE,FALSE,,Solo Making,,,Créer en solo,,,,Individual,,,,,,,,,,,,,
+FALSE,FALSE,TRUE,FALSE,,Co-op Making,,,Créer en duo,,,,En pareja,,,,,,,,,,,,,
+FALSE,FALSE,TRUE,FALSE,,View Mode,,,Mode observation,,,Ansicht,Cambiar vista,,,Cambia visuale,Zoomen,,,,Приблизить,ビューモード,观看模式,觀看模式,,뷰 모드
+FALSE,FALSE,TRUE,FALSE,Stamps,Stamp,,,,Étampe,Tampon,Stempel,Sello,,,Timbro,Stempel,,,,Печать,スタンプ,印章,,,스탬프
+FALSE,FALSE,TRUE,TRUE,,Stamps,,,,Étampes,Tampons,,,,,,,,,,,スタンプ,印章,,,
+FALSE,FALSE,TRUE,FALSE,,Stamp Card,,,,Carton,Tampons,Stempelkarte,Tarjeta de sellos,,,Timbri,Stempelkaart,,,,Все печати,スタンプカード,印章收集卡,,,스탬프 카드
+FALSE,FALSE,TRUE,FALSE,Tags,Tag,,,,Étiquette,Tag,Schlagwort,Etiquetas,,,Tag,Label,,,,Теги,タグ,,標籤,标签,태그
+FALSE,FALSE,TRUE,TRUE,,Tags,,,,Étiquettes,Tags,,,,,,,,,,,タグ,,標籤,标签,
+FALSE,FALSE,FALSE,FALSE,Liquids,Liquid,,,Liquide,,,,,,,,,,,,,,,,,
+FALSE,FALSE,FALSE,TRUE,,Liquids,,,Liquides,,,,,,,,,,,,,,,,,
+FALSE,FALSE,TRUE,FALSE,,Water Level,,,Niveau de l'eau,,,Wasserpegel,Nivel del agua,,,Livello dell'acqua,Waterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
+FALSE,FALSE,TRUE,FALSE,,Poison Level,,,Niveau du poison,,,Wasserpegel,Nivel del agua tóxica,,,Livello del veleno,Gifwaterstand,,,,Уровень воды,水面の高さ,水面的高度,,,수면 높이
+FALSE,FALSE,TRUE,FALSE,,Lava Level,,,Niveau de la lave,,,Lavapegel,Nivel de la lava,,,Livello della lava,Lavastand,,,,Уровень лавы,溶岩の高さ,熔岩的高度,,,용암 높이
+TRUE,FALSE,FALSE,FALSE,,10 Mario Challenge,,,,Défi 10 Mario,Défi des 10 Mario,10-Mario-Herausforderung,Desafío 10 Marios,,,Sfida dei 10 Mario,Missie met 10 Mario's,Desafio 10 Marios,,,10 жизней Марио,10人マリオチャレンジ,,,,
+TRUE,TRUE,FALSE,FALSE,,100 Mario Challenge,,,,Défi 100 Mario,Défi des 100 Mario,100-Mario-Herausforderung,Desafío 100 Marios,,,Sfida dei 100 Mario,Missie met 100 Mario's,Desafio 100 Marios,,,100 жизней Марио,100人マリオチャレンジ,,,,
+FALSE,TRUE,FALSE,FALSE,,Super Mario Challenge,,,Défi Super Mario,,,PSuper-Mario-Herausforderung,Desafío Super Mario,,,Sfida Super Mario,Super Mario-missie,Desafio Super Mario,,,Испытание «Супермарио»,スーパーマリオチャレンジ,,,,
+FALSE,FALSE,TRUE,FALSE,,Endless Challenge,,,Défi infini,,,Endlos-Herausforderung,Desafío de Mario sin fin,,,Sfida infinita,Oneindige missie,,,,Марафон Марио,どこまでマリオチャレンジ,,瑪利歐耐力挑戰,马力欧耐力挑战,어디까지 마리오 챌린지
+TRUE,TRUE,TRUE,FALSE,,Easy,,,Facile,,,Leicht,Fácil,,,Facile,Makkelijk,Fácil,,,Легко,かんたん,,簡單,简单,쉬움
+TRUE,TRUE,TRUE,FALSE,,Normal,,,Normal,,,Normal,Normal,,,Normale,Normaal,Normal,,,Норма,ふつう,普通,,,보통
+TRUE,TRUE,TRUE,FALSE,,Expert,,,Expert,,,Schwierig,Difícil,,,Difficile,Moeilijk,Difícil,,,Сложно,むずかしい,,困難,困难,어려움
+TRUE,TRUE,TRUE,FALSE,,Super expert,,,Super expert,,,Sehr schwierig,Muy difícil,,,Super difficile,Supermoeilijk,Muito difícil,,,Экстрим,とてもむずかしい,,超難,超难,매우 어려움
+FALSE,FALSE,TRUE,FALSE,,Yamamura's Dojo,,,Dojo de Yamamura,,,Yamamuras Dojo,Aula de Yamamura,,,Scuola di Yamamura,Yamamura's academie,,,,Школа Ямамуры,ヤマムラ道場,,亞瑪姆拉道館,亚玛姆拉道馆,야마무라 레슨
+FALSE,FALSE,TRUE,FALSE,,Story Mode,,,,Mode Histoire,Mode histoire,Abenteuermodus,Historia,,,Modalità storia,Verhaal,,,,Строй-история,ストーリーモード,故事模式,,,스토리 모드
+FALSE,FALSE,TRUE,FALSE,,Course World,,,,Monde des niveaux,Stages du monde,Level aus aller Welt,Niveles mundiales,,,Livelli dal mondo,Levelwereld,,,,Вселенная уровней,世界のコース,,全球關卡,全球关卡,세계의 코스
+FALSE,FALSE,TRUE,FALSE,,Network Play,,,Jeu en réseau,,,Vernetztes Spielen,Juego en red,,,Gioco in rete,Online spelen,,,,Сетевая игра,通信であそぶ,,以通訊方式遊玩,以连接方式游玩,통신 플레이
+FALSE,FALSE,TRUE,FALSE,,Multiplayer Versus,,,Affrontement,,,Gegeneinander,Competitivo,,,Competizione,Strijd,,,,Поединок,みんなでバトル,,多人對戰,多人对战,함께 배틀
+FALSE,FALSE,TRUE,FALSE,,Multiplayer Co-op,,,Coopération,,,Miteinander,Cooperativo,,,Cooperazione,Samenwerking,,,,Вместе,みんなでクリア,,多人過關,多人过关,함께 클리어
+FALSE,FALSE,TRUE,FALSE,,Leaderboard,,,Classements,,,Baumeister-Ranglisten,,Clasificaciones,Clasificaciones de creadores,Classifiche,Ranglijsten,,,,Рейтинги,職人ランキング,工匠排行榜,,,전문가 랭킹
+TRUE,FALSE,FALSE,FALSE,,Event Courses,,,,Niveaux officiels,Stages officiels,Event-Level,Niveles oficiales,,,Livelli evento,Officiële levels,Níveis Oficiais,,,Тематические уровни,???,,,,
+FALSE,FALSE,TRUE,FALSE,,Ninji Speedruns,,,Contre-la-montre des Ninjis,,,Ninji-Speedrun,,Contrarrelojes ninji,Contrarrelojes Ninji,Corse Ninji,Ninji-speedruns,,,,«Ниндзик-забеги»,ハックンタイムアタック,,哈庫計時賽,哈库计时挑战,닌군 타임 어택
+FALSE,FALSE,TRUE,FALSE,Super Worlds,Super World,,,Super monde,,,Super-Welt,,supermundo,Supermundos,Super mondi,Superwereld,,,,Супермир,ワールド,世界,,,월드
+FALSE,FALSE,TRUE,TRUE,,Super Worlds,,,Super mondes,,,,,,,,,,,,,ワールド,世界,,,
+TRUE,TRUE,TRUE,FALSE,,Koopa Troopa,,,Koopa,,,Koopa,Koopa,,,Koopa,Koopa Troopa,Koopa Troopa,,,Купа-трупа,ノコノコ,,慢慢龜,慢慢龟,엉금엉금
+TRUE,TRUE,TRUE,FALSE,,Beach Koopa,,,Koopa de plage,,,Panzerloser Koopa,Koopa de playa,,,Beach Koopa,???,???,,,???,はだかノコノコ,???,,,???
+TRUE,TRUE,TRUE,FALSE,,Koopa Shell,,,Carapace de Koopa,,,Koopa-Panzer,,Caparazón de koopa,Caparazón de Koopa,Guscio di Koopa,Koopa-schild,???,,,Панцирь купы,???,,龜殼,龟壳,엉금엉금등껍질을
+TRUE,FALSE,FALSE,FALSE,Mystery Mushrooms,Mystery Mushroom,,,,Champignon mystère,Champignon ?,?-Pilz,Champiñón ?,,,Fungo ?,?-paddenstoel,Cogumelo Misterioso,,,Загадочный гриб ,ハテナキノコ,,,,
+TRUE,TRUE,FALSE,TRUE,,Mystery Mushrooms,,,,Champignons mystères,Champignons ?,,,,,,,,,,,ハテナキノコ,,,,
+FALSE,FALSE,TRUE,FALSE,Mii costumes,Mii costume,,,Costume de Mii,,,,,,,,,,,,,,,,,
+FALSE,FALSE,TRUE,TRUE,,Mii costumes,,,Costumes de Mii,,,,,,,,,,,,,,,,,
+TRUE,TRUE,TRUE,FALSE,Miis,Mii,,,Mii,,,Mii,Mii,,,Mii,,Mii,,,Mii,Ｍｉｉ,Ｍｉｉ,,,Ｍｉｉ
+TRUE,TRUE,TRUE,TRUE,,Miis,,,Miis,,,,,,,,,,,,,Ｍｉｉ,Ｍｉｉ,,,
+FALSE,FALSE,TRUE,FALSE,Koopalings,Koopaling,,,,Koopaling,Terreur de Bowser,Koopaling,Koopaline,,,???,Koopaling,???,???,???,???,クッパの手下,,庫巴7人幫,酷霸王７人帮,쿠파7인조
+FALSE,FALSE,TRUE,TRUE,,Koopalings,,,,Koopalings,Terreurs de Bowser,Koopalinge,Koopalines,,,,Koopalings,,,,,クッパの手下,,庫巴7人幫,酷霸王７人帮,
+FALSE,FALSE,FALSE,FALSE,Entities,Entity,,,Entité,,,,,,,,,,,,,,,,,
+FALSE,FALSE,FALSE,TRUE,,Entities,,,Entités,,,,,,,,,,,,,,,,,
+FALSE,FALSE,FALSE,FALSE,Players,Player,,,Joueur,,,,,,,,,,,,,,,,,
+FALSE,FALSE,FALSE,TRUE,,Players,,,Joueurs,,,,,,,,,,,,,,,,,
+FALSE,FALSE,TRUE,FALSE,Courses,Course,,,,Niveau,Stage,Level,Nivel,,,Livello,Level,,,,,,,,,
+FALSE,FALSE,TRUE,TRUE,,Courses,,,,Niveaux,Stages,,,,,,,,,,,,,,,
+FALSE,FALSE,TRUE,FALSE,World Records,World Record,,,Record du monde,,,Weltrekord,Récord,,,Record mondiale,Wereldrecord,,,,,,,,,
+FALSE,FALSE,TRUE,TRUE,,World Records,,,Records du monde,,,,,,,,,,,,,,,,,
+FALSE,FALSE,FALSE,FALSE,Power-ups,Power-up,,,Amélioration,,,,,,,,,,,,,,,,,
+FALSE,FALSE,FALSE,TRUE,,Power-ups,,,Améliorations,,,,,,,,,,,,,,,,,

@@ -3,13 +3,12 @@ import type {AppStates}                    from 'app/AppStates.types'
 import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {EveryPossibleRouteNames}      from 'route/everyRoutes.types'
+import type {PossibleRouteName}            from 'route/EveryRoutes.types'
 
 import {AbstractAppWithInterpreter} from 'app/withInterpreter/AbstractAppWithInterpreter'
 import {ViewDisplays}               from 'app/withInterpreter/ViewDisplays'
 import {ListDimensionCreator}       from 'app/withInterpreter/ListDimension.creator'
 import NameComponent                from 'lang/name/component/Name.component'
-import {ReactElement}               from 'react'
 
 export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimpleList,
     T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
@@ -17,7 +16,7 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
 
     //region -------------------- Fields --------------------
 
-    #routeName?: EveryPossibleRouteNames
+    #routeName?: PossibleRouteName
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter & create methods --------------------
@@ -28,11 +27,11 @@ export abstract class AbstractSimpleListApp<APP extends AppInterpreterWithSimple
         ]
     }
 
-    private get __listRouteName(): EveryPossibleRouteNames {
+    private get __listRouteName(): PossibleRouteName {
         return this.#routeName ??= this._createSimpleListRouteName()
     }
 
-    protected abstract _createSimpleListRouteName(): EveryPossibleRouteNames
+    protected abstract _createSimpleListRouteName(): PossibleRouteName
 
     protected _createUniqueNameOnSimpleList(enumerable: ValueByApp<APP>,): string {
         return enumerable.englishName

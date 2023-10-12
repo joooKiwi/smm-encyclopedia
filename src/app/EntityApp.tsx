@@ -4,7 +4,7 @@ import './options/EntityAppOption.scss'
 import type {EntityProperties}                                     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
 import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {EveryPossibleRouteNames}                              from 'route/everyRoutes.types'
+import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
 
 import {EntityAppOption}         from 'app/options/EntityAppOption'
 import {AbstractTableApp}        from 'app/withInterpreter/AbstractTableApp'
@@ -31,15 +31,15 @@ export default class EntityApp
     }
 
 
-    protected override _createSimpleListRouteName(): EveryPossibleRouteNames {
+    protected override _createSimpleListRouteName(): PossibleRouteName {
         return 'everyEntity (list)'
     }
 
-    protected override _createCardListRouteName(): EveryPossibleRouteNames {
+    protected override _createCardListRouteName(): PossibleRouteName {
         return 'everyEntity (card)'
     }
 
-    protected override _createTableRouteName(): EveryPossibleRouteNames {
+    protected override _createTableRouteName(): PossibleRouteName {
         return 'everyEntity (table)'
     }
 
@@ -62,7 +62,7 @@ export default class EntityApp
         return new class EntityAppInterpreter implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
             public get content() {
-                return filterGame(Entities.values, $this.props.games,)
+                return filterGame(Entities.CompanionEnum.get.values, $this.props.games,)
             }
 
             //region -------------------- List interpreter --------------------

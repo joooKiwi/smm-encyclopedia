@@ -33,7 +33,7 @@ export class SoundEffectOnJumpContainer
             this.#haveMultipleImages = true
             this.#amount = typeof value == 'string' ? 3 as const : 2 as const
         }
-        this.#game = game == null ? null : GameReferences.getValueByNameOrAcronym(game)
+        this.#game = game == null ? null : GameReferences.CompanionEnum.get.getValueByNameOrAcronym(game,)
     }
 
     //endregion -------------------- Constructor --------------------

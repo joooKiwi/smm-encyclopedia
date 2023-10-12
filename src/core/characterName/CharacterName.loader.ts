@@ -6,11 +6,11 @@ import type {LanguageContent}           from 'core/_template/LanguageContent'
 import type {UniqueNameContent}         from 'core/_template/UniqueNameContent'
 import type {PossibleUniqueEnglishName} from 'core/characterName/CharacterNames.types'
 import type {GameContentFromAllGames}   from 'core/game/Loader.types'
-import type {CharacterNameTemplate}     from 'core/characterName/CharacterName.template'
 
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {CharacterNameCreator}    from 'core/characterName/CharacterName.creator'
-import {isInProduction}          from 'variables'
+import {isInProduction}         from 'variables'
+import {CharacterNameContainer} from 'core/characterName/CharacterName.container'
+import {GamePropertyProvider}   from 'core/entity/properties/game/GameProperty.provider'
+import {createNameFromContent}  from 'lang/name/createNameFromContent'
 
 export class CharacterNameLoader
     implements Loader<ReadonlyMap<PossibleUniqueEnglishName, CharacterName>> {
@@ -19,8 +19,7 @@ export class CharacterNameLoader
 
     static #instance?: CharacterNameLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -31,22 +30,24 @@ export class CharacterNameLoader
     #map?: Map<PossibleUniqueEnglishName, CharacterName>
 
     public load(): ReadonlyMap<PossibleUniqueEnglishName, CharacterName> {
-        if (this.#map == null) {
-            const references = new Map<PossibleUniqueEnglishName, CharacterName>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new CharacterNameCreator(new TemplateCreator(it as Content).create()))
-                .forEach(it => references.set(it.template.uniqueName as PossibleUniqueEnglishName, it.create(),))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "character name" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "character name" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleUniqueEnglishName, CharacterName>()
+        let index = file.length
+        while (index-- > 0) {
+            const content = file[index] as Content
+            references.set(content.uniqueName as PossibleUniqueEnglishName, createReference(content,),)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "character name" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "character name" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 }
 
@@ -54,24 +55,13 @@ export class CharacterNameLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames, UniqueNameContent<PossibleUniqueEnglishName> {
 
-    hasNameSaidInTheEditor: boolean
+    readonly hasNameSaidInTheEditor: boolean
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<CharacterNameTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): CharacterNameTemplate {
-        const content = this._content
-
-        return {
-            name: this._createNameTemplate(),
-            uniqueName: content.uniqueName,
-            properties: {isIn: {game: this._createGameTemplateFromAllGames(),},}
-        }
-    }
+function createReference(content: Content,): CharacterName {
+    return new CharacterNameContainer(
+        createNameFromContent(content, 'all', false,),
+        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
+    )
 }

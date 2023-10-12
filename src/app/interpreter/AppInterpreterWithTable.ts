@@ -7,6 +7,8 @@ import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
 /**
  * An application interpreter when using {@link AbstractTableApp}
  * to encapsulate a {@link HTMLTableElement table-like element}
+ *
+ * @todo Change The requirement of the "Content" to not use the english name as a requirement
  */
 export interface AppInterpreterWithTable<CONTENT extends Content = Content,
     OPTION extends Enumerable = Enumerable<any, any>, >

@@ -4,8 +4,8 @@ import {EveryTypes}                                     from '__test__/EveryType
 import {getEnglishName, testLanguages, testOnlyEnglish} from '__test__/helperMethods'
 
 describe('Mii costume category (file test)', () => {
-    const types = EveryTypes.get,
-        everyNames = types.everyPossibleName_MiiCostumeCategory
+    const types = EveryTypes.get
+    const everyNames = types.everyPossibleName_MiiCostumeCategory
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         testLanguages(it,)

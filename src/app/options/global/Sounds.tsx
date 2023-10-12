@@ -1,12 +1,12 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
-import type {ClassWithValue}        from 'util/types/ClassWithValue'
-import type {Names, Ordinals}       from 'app/options/global/Sounds.types'
-import type {SimpleSoundProperties} from 'util/file/sound/component/property/SimpleSoundProperties'
+import type {Names, Ordinals}               from 'app/options/global/Sounds.types'
+import type {CompanionEnumByValueSingleton} from 'util/enumerable/Singleton.types'
+import type {SimpleSoundProperties}         from 'util/file/sound/component/property/SimpleSoundProperties'
+import type {ClassWithValue}                from 'util/types/ClassWithValue'
 
-import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.component'
+import {CompanionEnumByValue} from 'util/enumerable/companion/CompanionEnumByValue'
+import SimpleSoundComponent   from 'util/file/sound/component/SimpleSound.component'
 
 /**
  * The possible sound as either
@@ -42,8 +42,8 @@ export abstract class Sounds
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<Sounds, typeof Sounds> = class CompanionEnum_Sounds
-        extends CompanionEnum<Sounds, typeof Sounds> {
+    public static readonly CompanionEnum: CompanionEnumByValueSingleton<boolean, Sounds, typeof Sounds> = class CompanionEnum_Sounds
+        extends CompanionEnumByValue<boolean, Sounds, typeof Sounds> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -86,34 +86,6 @@ export abstract class Sounds
 
     public abstract renderComponent(properties: SimpleSoundProperties,): ReactElement
 
-
-    // public static getValueByValue<T, >(value: T,): SoundsByValue<T>
-    public static getValueByValue(value: Nullable<| Sounds | boolean>,): Sounds {
-        if (value == null)
-            throw new TypeError(`No "${this.name}" could be found by a null value.`)
-        if (value instanceof this)
-            return value
-        const valueFound = this.values.find(it => it.value === value)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by this value "${value}".`)
-        return valueFound
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<Sounds>,): Sounds {
-        return Sounds.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<Sounds> {
-        return Sounds.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<Sounds> {
-        return Sounds.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

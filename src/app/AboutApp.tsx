@@ -1,8 +1,6 @@
 import AbstractApp from 'app/AbstractApp'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default class AboutApp
     extends AbstractApp {
 

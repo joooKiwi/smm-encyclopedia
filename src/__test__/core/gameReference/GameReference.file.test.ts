@@ -6,10 +6,10 @@ import {EveryTypes}                                 from '__test__/EveryTypes'
 import {getEnglishName, testEnglish, testLanguages} from '__test__/helperMethods'
 
 describe('Game reference (file test)', () => {
-    const types = EveryTypes.get,
-        everyAcronyms = types.everyPossibleAcronym_gameReference,
-        everyNames = types.everyPossibleName_gameReference,
-        excludedLanguages: readonly PossibleExcludedLanguages[] = ['japanese', 'chinese', 'korean',]
+    const types = EveryTypes.get
+    const everyAcronyms = types.everyPossibleAcronym_gameReference
+    const everyNames = types.everyPossibleName_gameReference
+    const excludedLanguages: readonly PossibleExcludedLanguages[] = ['japanese', 'chinese', 'korean',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
         //TODO Complete the german, italian, dutch, spanish, portuguese & russian for the game reference:

@@ -9,9 +9,7 @@ import {EmptyStringName}                          from 'lang/name/EmptyStringNam
 import {ClassContainingAName}                     from 'lang/name/ClassContainingAName'
 import {EMPTY_MAP}                                from 'util/emptyVariables'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class EmptyCourseAndWorldTheme
     extends ClassContainingAName<string>
     implements CourseAndWorldTheme, ClassWithNullObjectPattern<EmptyCourseAndWorldThemeName> {

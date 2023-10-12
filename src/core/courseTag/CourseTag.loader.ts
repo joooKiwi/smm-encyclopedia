@@ -1,16 +1,18 @@
 import file from 'resources/compiled/Course tag (SMM2).json'
 
-import type {LanguageContent}                                        from 'core/_template/LanguageContent'
-import type {CourseTag}                                              from 'core/courseTag/CourseTag'
-import type {CourseTagTemplate, PossibleFirstAppearanceInMarioMaker} from 'core/courseTag/CourseTag.template'
-import type {PossibleEnglishName, PossibleMakerCentralName}          from 'core/courseTag/CourseTags.types'
-import type {Loader}                                                 from 'util/loader/Loader'
+import type {LanguageContent}                               from 'core/_template/LanguageContent'
+import type {CourseTag}                                     from 'core/courseTag/CourseTag'
+import type {PossibleEnglishName, PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
+import type {PossibleFirstAppearanceInMarioMaker}           from 'core/courseTag/loader.types'
+import type {Loader}                                        from 'util/loader/Loader'
 
-import {isInProduction}          from 'variables'
-import {AbstractTemplateCreator} from 'core/_template/AbstractTemplate.creator'
-import {CourseTagCreator}        from 'core/courseTag/CourseTag.creator'
+import {isInProduction}        from 'variables'
+import {CourseTagContainer}    from 'core/courseTag/CourseTag.container'
+import {Versions}              from 'core/version/Versions'
+import {createNameFromContent} from 'lang/name/createNameFromContent'
 
 /**
+ * @dependsOn<{@link Versions}>
  * @singleton
  */
 export class CourseTagLoader
@@ -20,8 +22,7 @@ export class CourseTagLoader
 
     static #instance?: CourseTagLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -32,22 +33,24 @@ export class CourseTagLoader
     #map?: Map<PossibleEnglishName, CourseTag>
 
     public load(): ReadonlyMap<PossibleEnglishName, CourseTag> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, CourseTag>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new CourseTagCreator(new TemplateCreator(it as Content).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "course tag" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "course tag" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, CourseTag>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "course tag" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "course tag" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
@@ -56,30 +59,20 @@ export class CourseTagLoader
 interface Content
     extends LanguageContent {
 
-    isAnOfficialTag: boolean
-    makerCentralName: NullOr<PossibleMakerCentralName>
-    firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
+    readonly isAnOfficialTag: boolean
+    readonly makerCentralName: NullOr<PossibleMakerCentralName>
+    readonly firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
 
 }
 
-class TemplateCreator
-    extends AbstractTemplateCreator<CourseTagTemplate, Content> {
+function createReference(content: Content,): CourseTag {
+    const firstAppearance = content.firstAppearanceInMarioMaker
+    const isAnOfficialTag = content.isAnOfficialTag
 
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): CourseTagTemplate {
-        const content = this._content
-
-        return {
-            name: {
-                ...this._createNameTemplate(),
-                makerCentral: content.makerCentralName,
-            },
-            isOfficial: content.isAnOfficialTag,
-            firstAppearance: content.firstAppearanceInMarioMaker,
-        }
-    }
-
+    return new CourseTagContainer(
+        createNameFromContent(content, 2, isAnOfficialTag,),
+        isAnOfficialTag,
+        content.makerCentralName,
+        firstAppearance == null ? null : Versions.CompanionEnum.get.getValueByName(firstAppearance,),
+    )
 }

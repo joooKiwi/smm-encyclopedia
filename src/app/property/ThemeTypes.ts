@@ -1,16 +1,13 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import {Enum} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName, PossibleType} from 'app/property/ThemeTypes.types'
 import type {ClassWithType}                                    from 'core/ClassWithType'
+import type {CompanionEnumByTypeSingleton}                     from 'util/enumerable/Singleton.types'
 
-import {Themes}         from 'core/theme/Themes'
-import {getValueByType} from 'util/utilitiesMethods'
+import {Themes}              from 'core/theme/Themes'
+import {CompanionEnumByType} from 'util/enumerable/companion/CompanionEnumByType'
 
-/**
- * @usedByTheRouting
- */
+/** @usedByTheRouting */
 export abstract class ThemeTypes
     extends Enum<Ordinals, Names>
     implements ClassWithType<PossibleType> {
@@ -20,7 +17,7 @@ export abstract class ThemeTypes
     public static readonly ALL =    new class ThemeTypes_All extends ThemeTypes {
 
         public override get content() {
-            return Themes.values.toArray()
+            return Themes.CompanionEnum.get.values.toArray()
         }
 
 
@@ -73,8 +70,8 @@ export abstract class ThemeTypes
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<ThemeTypes, typeof ThemeTypes> = class CompanionEnum_ThemeTypes
-        extends CompanionEnum<ThemeTypes, typeof ThemeTypes> {
+    public static readonly CompanionEnum: CompanionEnumByTypeSingleton<string, ThemeTypes, typeof ThemeTypes> = class CompanionEnum_ThemeTypes
+        extends CompanionEnumByType<string, ThemeTypes, typeof ThemeTypes> {
 
         //region -------------------- Singleton usage --------------------
 
@@ -169,27 +166,7 @@ export abstract class ThemeTypes
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByType(value: Nullable<| ThemeTypes | string>,): ThemeTypes {
-        return getValueByType(value, this,)
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<ThemeTypes>,): ThemeTypes {
-        return ThemeTypes.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<ThemeTypes> {
-        return ThemeTypes.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<ThemeTypes> {
-        return ThemeTypes.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
 

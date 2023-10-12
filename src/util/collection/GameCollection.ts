@@ -1,4 +1,3 @@
-import type {CollectionHolder}   from '@joookiwi/collection'
 import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
@@ -15,24 +14,6 @@ export class GameCollection<const T extends Games = Games, const REFERENCE exten
     #hasSMM2?: GameWithSMM2<T>
 
     //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(array: readonly T[],)
-    public constructor(lateArray: () => readonly T[],)
-    public constructor(set: ReadonlySet<T>,)
-    public constructor(lateSet: () => ReadonlySet<T>,)
-    public constructor(iterable: Iterable<T>,)
-    public constructor(lateIterable: () => Iterable<T>,)
-    public constructor(collectionHolder: CollectionHolder<T>,)
-    public constructor(lateCollectionHolder: () => CollectionHolder<T>,)
-    public constructor(reference: REFERENCE,)
-    public constructor(lateReference: () => REFERENCE,)
-    public constructor(reference: | REFERENCE | (() => REFERENCE),)
-    public constructor(iterable: | REFERENCE | (() => REFERENCE),) {
-        super(iterable,)
-    }
-
-    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     /**

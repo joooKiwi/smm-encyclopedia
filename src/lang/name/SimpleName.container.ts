@@ -3,10 +3,9 @@ import type {EmptyableLanguage}                                                 
 import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from 'lang/name/containers/Language'
 import type {OptionalLanguage}                                                                                                                                  from 'lang/name/containers/OptionalLanguage'
 
-import {EveryLanguages}            from 'lang/EveryLanguages'
-import {ProjectLanguages}          from 'lang/ProjectLanguages'
-import {LanguageContainer}         from 'lang/name/containers/Language.container'
-import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguage.container'
+import {EveryLanguages}                   from 'lang/EveryLanguages'
+import {ProjectLanguages}                 from 'lang/ProjectLanguages'
+import {newLanguage, newOptionalLanguage} from 'lang/name/containers/Language.provider'
 
 //region -------------------- Import from deconstruction --------------------
 
@@ -291,7 +290,7 @@ export class SimpleNameContainer<T extends NonNullable<unknown>,> {
     static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<| S | A>,): Language<T, S, A>
     static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<T, S, A>
     static #newLanguageContainer<T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<| T | readonly T[]>,) {
-        const languageContainer = (SimpleNameContainer.OPTIONAL_LANGUAGES as readonly EveryLanguages[]).includes(language) ? OptionalLanguageContainer.newInstance(value) : LanguageContainer.newInstance(value)
+        const languageContainer = (SimpleNameContainer.OPTIONAL_LANGUAGES as readonly EveryLanguages[]).includes(language) ? newOptionalLanguage(value,) : newLanguage(value,)
         const isValueArray = value instanceof Array
 
         switch (language) {

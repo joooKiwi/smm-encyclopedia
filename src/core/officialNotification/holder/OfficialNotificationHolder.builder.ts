@@ -7,31 +7,23 @@ import {EmptyOfficialNotificationHolder}    from 'core/officialNotification/hold
 import {OfficialNotificationHolderProvider} from 'core/officialNotification/holder/OfficialNotificationHolder.provider'
 import {SPACE}                              from 'util/commonVariables'
 
+
+const NUMBER_ONLY_REGEX = /^\d+$/
+const POSSIBLE_EXCLUDED_CASES: readonly OfficialNotifications[] = [OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_1, OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_2,]
+
+/** @deprecated Use a stateless method instead to create retrieve the Official notification */
 export class OfficialNotificationHolderBuilder
     implements Builder<OfficialNotificationHolder> {
 
-    //region -------------------- Fields --------------------
-
-    static readonly #NUMBER_ONLY_REGEX = /^\d+$/
-    static readonly #OFFICIAL_NOTIFICATION_SEPARATOR = SPACE
-    static readonly #POSSIBLE_EXCLUDED_CASES: readonly OfficialNotifications[] = [OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_1, OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_2,]
-    static readonly #NO_NUMBER_FOUND = -1
-
     readonly #name
-
-    //endregion -------------------- Fields --------------------
 
     public constructor(name: NullOr<PossibleEnglishNameWithOnlyAmount>,) {
         this.#name = name
     }
 
-    //region -------------------- Getter methods --------------------
-
-    public get name() {
+    public get name(): NullOr<PossibleEnglishNameWithOnlyAmount> {
         return this.#name
     }
-
-    //endregion -------------------- Getter methods --------------------
 
     public build(): OfficialNotificationHolder {
         const name = this.name
@@ -39,18 +31,15 @@ export class OfficialNotificationHolderBuilder
         if (name == null)
             return EmptyOfficialNotificationHolder.get
 
-        const officialNotification = OfficialNotifications.getValueByName(name)
+        const officialNotification = OfficialNotifications.CompanionEnum.get.getValueByName(name,)
 
-        if (OfficialNotificationHolderBuilder.#POSSIBLE_EXCLUDED_CASES.includes(officialNotification))
+        if (POSSIBLE_EXCLUDED_CASES.includes(officialNotification,))
             return OfficialNotificationHolderProvider.get.get(name, officialNotification,)
 
-        const numberFoundInOfficialNotification = Number(name.split(OfficialNotificationHolderBuilder.#OFFICIAL_NOTIFICATION_SEPARATOR)
-            .find(value => OfficialNotificationHolderBuilder.#NUMBER_ONLY_REGEX.test(value)) ?? OfficialNotificationHolderBuilder.#NO_NUMBER_FOUND)
-
-        return numberFoundInOfficialNotification === OfficialNotificationHolderBuilder.#NO_NUMBER_FOUND
-            ? OfficialNotificationHolderProvider.get.get(name, officialNotification,)
-            : OfficialNotificationHolderProvider.get.get(name, officialNotification, numberFoundInOfficialNotification,)
-
+        const numberFoundInOfficialNotificationFound = name.split(SPACE,).find(value => NUMBER_ONLY_REGEX.test(value,),)
+        if (numberFoundInOfficialNotificationFound == null)
+            return OfficialNotificationHolderProvider.get.get(name, officialNotification,)
+        return OfficialNotificationHolderProvider.get.get(name, officialNotification, Number(numberFoundInOfficialNotificationFound,),)
     }
 
 }

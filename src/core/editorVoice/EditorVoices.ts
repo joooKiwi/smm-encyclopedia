@@ -1,20 +1,20 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                    from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                      from 'core/ClassWithReference'
 import type {ClassWithEditorVoiceSoundFileHolder}                     from 'core/editorVoice/ClassWithEditorVoiceSoundFileHolder'
 import type {Names, Ordinals, PossibleEnglishName, PossibleReference} from 'core/editorVoice/EditorVoices.types'
 import type {EditorVoiceSound}                                        from 'core/editorVoice/sound/EditorVoiceSound'
+import type {CompanionEnumDeclaration_EditorVoices}                   from 'core/editorVoice/EditorVoice.companionEnumDeclaration'
 
-import type {CharacterNames}   from 'core/characterName/CharacterNames'
-import * as SoundCreator       from 'core/editorVoice/sound/soundCreator'
-import type {Entities}         from 'core/entity/Entities'
-import {Import}                from 'util/DynamicImporter'
-import {EMPTY_ARRAY}           from 'util/emptyVariables'
-import {StringContainer}       from 'util/StringContainer'
-import {getValueByEnglishName} from 'util/utilitiesMethods'
+import type {CharacterNames}            from 'core/characterName/CharacterNames'
+import * as SoundCreator                from 'core/editorVoice/sound/soundCreator'
+import type {Entities}                  from 'core/entity/Entities'
+import {Import}                         from 'util/DynamicImporter'
+import {EMPTY_ARRAY}                    from 'util/emptyVariables'
+import {StringContainer}                from 'util/StringContainer'
+import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
 /**
  * @todo change the english name to the enum name for the _createEntityReference
@@ -513,8 +513,9 @@ export abstract class EditorVoices
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EditorVoices, typeof EditorVoices> = class CompanionEnum_EditorVoices
-        extends CompanionEnum<EditorVoices, typeof EditorVoices> {
+    public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_EditorVoices> = class CompanionEnum_EditorVoices
+        extends CompanionEnumByEnglishNameOnly<EditorVoices, typeof EditorVoices>
+        implements CompanionEnumDeclaration_EditorVoices {
 
         //region -------------------- Singleton usage --------------------
 
@@ -529,6 +530,60 @@ export abstract class EditorVoices
         }
 
         //endregion -------------------- Singleton usage --------------------
+
+        public getValueByCharacterName(value: PossibleEnumerableValueBy<| EditorVoices | CharacterNames>,): EditorVoices {
+            if (value instanceof this.instance)
+                return value
+            const characterNameValue = value instanceof Import.CharacterNames ? value : Import.CharacterNames.CompanionEnum.get.getValue(value,)
+            const valueFound = this.#findByCharacterName(characterNameValue,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by "${Import.CharacterNames.name}.${characterNameValue}".`,)
+            return valueFound
+        }
+
+        public getValueByEntity(value: PossibleEnumerableValueBy<| EditorVoices | Entities>,): EditorVoices {
+            if (value instanceof this.instance)
+                return value
+            const entityValue = value instanceof Import.Entities ? value : Import.Entities.CompanionEnum.get.getValue(value,)
+            const valueFound = this.#findByEntity(entityValue,)
+            if (valueFound == null)
+                throw new ReferenceError(`No "${this.instance.name}" could be found by "${Import.Entities.name}.${entityValue}".`,)
+            return valueFound
+        }
+
+        public hasReference(value: | Entities | CharacterNames,): boolean {
+            if (value instanceof Import.Entities)
+                return this.#findByEntity(value,) != null
+            return this.#findByCharacterName(value,) != null
+        }
+
+        #findByEntity(value: Entities,): NullOr<EditorVoices> {
+            return this.values.find(it => {
+                const references = it.entityReferences
+                const size = references.length
+                if (size === 0)
+                    return false
+                let index = -1
+                while (++index < size)
+                    if (references[index] === value)
+                        return true
+                return false
+            },)
+        }
+
+        #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
+            return this.values.find(it => {
+                const references = it.characterNameReferences
+                const size = references.length
+                if (size === 0)
+                    return false
+                let index = -1
+                while (++index < size)
+                    if (references[index] === value)
+                        return true
+                return false
+            },)
+        }
 
     }
 
@@ -593,8 +648,8 @@ export abstract class EditorVoices
             const reference = this._createCharacterNameReference()
             if (reference instanceof Array)
                 return this.#characterNameReference = reference
-            if (Import.CharacterNames.hasValueByName(reference,))
-                return this.#characterNameReference = [Import.CharacterNames.getValueByName(reference,),]
+            if (Import.CharacterNames.CompanionEnum.get.hasValueByName(reference,))
+                return this.#characterNameReference = [Import.CharacterNames.CompanionEnum.get.getValueByName(reference,),]
             return this.#characterNameReference = EMPTY_ARRAY
         }
         return this.#characterNameReference
@@ -626,8 +681,8 @@ export abstract class EditorVoices
             const reference = this._createEntityReferences()
             if (reference instanceof Array)
                 return this.#entityReferences = reference
-            if (Import.Entities.hasValueByName(reference,))
-                return this.#entityReferences = [Import.Entities.getValueByName(reference,),]
+            if (Import.Entities.CompanionEnum.get.hasValueByName(reference,))
+                return this.#entityReferences = [Import.Entities.CompanionEnum.get.getValueByName(reference,),]
             return this.#entityReferences = EMPTY_ARRAY
         }
         return this.#entityReferences
@@ -639,80 +694,6 @@ export abstract class EditorVoices
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public static getValueByName(value: Nullable<| EditorVoices | string>,): EditorVoices {
-        return getValueByEnglishName(value, this,)
-    }
-
-    public static getValueByCharacterName(value: PossibleEnumerableValueBy<| EditorVoices | CharacterNames>,): EditorVoices {
-        if (value instanceof this)
-            return value
-        const characterNameValue = value instanceof Import.CharacterNames ? value : Import.CharacterNames.getValue(value),
-            valueFound = this.#findByCharacterName(characterNameValue)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by "${Import.CharacterNames.name}.${characterNameValue}".`)
-        return valueFound
-    }
-
-    public static getValueByEntity(value: PossibleEnumerableValueBy<| EditorVoices | Entities>,): EditorVoices {
-        if (value instanceof this)
-            return value
-        const entityValue = value instanceof Import.Entities ? value : Import.Entities.getValue(value),
-            valueFound = this.#findByEntity(entityValue)
-        if (valueFound == null)
-            throw new ReferenceError(`No "${this.name}" could be found by "${Import.Entities.name}.${entityValue}".`)
-        return valueFound
-    }
-
-    public static hasReference(value: | Entities | CharacterNames,): boolean {
-        return value instanceof Import.Entities
-            ? this.#findByEntity(value) != null
-            : this.#findByCharacterName(value) != null
-    }
-
-    static #findByEntity(value: Entities,): NullOr<EditorVoices> {
-        return this.values.find(it => {
-            const references = it.entityReferences
-            const size = references.length
-            if (size === 0)
-                return false
-            let index = -1
-            while (++index < size)
-                if (references[index] === value)
-                    return true
-            return false
-        })
-    }
-
-    static #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
-        return this.values.find(it => {
-            const references = it.characterNameReferences
-            const size = references.length
-            if (size === 0)
-                return false
-            let index = -1
-            while (++index < size)
-                if (references[index] === value)
-                    return true
-            return false
-        })
-    }
-
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<EditorVoices>,): EditorVoices {
-        return EditorVoices.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<EditorVoices> {
-        return EditorVoices.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<EditorVoices> {
-        return EditorVoices.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }

@@ -1,18 +1,15 @@
 import file from 'resources/compiled/Mii Costume category (SMM2).json'
 
-import type {LanguageContent}            from 'core/_template/LanguageContent'
-import type {PossibleEnglishName}        from 'core/miiCostumeCategory/MiiCostumeCategories.types'
-import type {MiiCostumeCategory}         from 'core/miiCostumeCategory/MiiCostumeCategory'
-import type {MiiCostumeCategoryTemplate} from 'core/miiCostumeCategory/MiiCostumeCategory.template'
-import type {Loader}                     from 'util/loader/Loader'
+import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {PossibleEnglishName} from 'core/miiCostumeCategory/MiiCostumeCategories.types'
+import type {MiiCostumeCategory}  from 'core/miiCostumeCategory/MiiCostumeCategory'
+import type {Loader}              from 'util/loader/Loader'
 
-import {isInProduction}            from 'variables'
-import {AbstractTemplateCreator}   from 'core/_template/AbstractTemplate.creator'
-import {MiiCostumeCategoryCreator} from 'core/miiCostumeCategory/MiiCostumeCategory.creator'
+import {isInProduction}              from 'variables'
+import {MiiCostumeCategoryContainer} from 'core/miiCostumeCategory/MiiCostumeCategory.container'
+import {createNameFromContent}       from 'lang/name/createNameFromContent'
 
-/**
- * @singleton
- */
+/** @singleton */
 export class MiiCostumeCategoryLoader
     implements Loader<ReadonlyMap<PossibleEnglishName, MiiCostumeCategory>> {
 
@@ -20,8 +17,7 @@ export class MiiCostumeCategoryLoader
 
     static #instance?: MiiCostumeCategoryLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()
@@ -32,42 +28,32 @@ export class MiiCostumeCategoryLoader
     #map?: Map<PossibleEnglishName, MiiCostumeCategory>
 
     public load(): ReadonlyMap<PossibleEnglishName, MiiCostumeCategory> {
-        if (this.#map == null) {
-            const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
+        if (this.#map != null)
+            return this.#map
 
-            file.map(it => new MiiCostumeCategoryCreator(new TemplateCreator(it as Content).create()).create())
-                .forEach(it => references.set(it.english as PossibleEnglishName, it,))
-
-            if (!isInProduction)
-                console.info(
-                    '-------------------- "Mii costume" has been loaded --------------------\n',
-                    references,
-                    '\n-------------------- "Mii costume" has been loaded --------------------',
-                )
-
-            this.#map = references
+        const references = new Map<PossibleEnglishName, MiiCostumeCategory>()
+        let index = file.length
+        while (index-- > 0) {
+            const reference = createReference(file[index] as Content,)
+            references.set(reference.english as PossibleEnglishName, reference,)
         }
-        return this.#map
+
+        if (!isInProduction)
+            console.info(
+                '-------------------- "Mii costume category" has been loaded --------------------\n',
+                references,
+                '\n-------------------- "Mii costume category" has been loaded --------------------',
+            )
+
+        return this.#map = references
     }
 
 }
 
 
 interface Content
-    extends LanguageContent {
-}
+    extends LanguageContent {}
 
-class TemplateCreator
-    extends AbstractTemplateCreator<MiiCostumeCategoryTemplate, Content> {
-
-    public constructor(content: Content,) {
-        super(content,)
-    }
-
-    public override create(): MiiCostumeCategoryTemplate {
-        return {
-            name: this._createNameTemplate(),
-        }
-    }
-
+function createReference(content: Content,): MiiCostumeCategory {
+    return new MiiCostumeCategoryContainer(createNameFromContent(content, 2, false,),)
 }

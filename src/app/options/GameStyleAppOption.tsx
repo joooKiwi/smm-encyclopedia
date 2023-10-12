@@ -1,6 +1,5 @@
-import type {CollectionHolder, CollectionIterator}              from '@joookiwi/collection'
-import type {CompanionEnumSingleton, PossibleEnumerableValueBy} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}                                    from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/GameStyleAppOption.types'
@@ -111,27 +110,12 @@ export abstract class GameStyleAppOption
 
     protected abstract _createTableHeaderOption(): SingleHeaderContent
 
-    public renderTableHeader(): NullOr<SingleHeaderContent> {
+    public renderTableHeader(): SingleHeaderContent {
         return this._createTableHeaderOption()
     }
 
     //endregion -------------------- App option - table --------------------
 
     //endregion -------------------- Methods --------------------
-    //region -------------------- Enum methods --------------------
-
-    public static getValue(value: PossibleEnumerableValueBy<GameStyleAppOption>,): GameStyleAppOption {
-        return GameStyleAppOption.CompanionEnum.get.getValue(value,)
-    }
-
-    public static get values(): CollectionHolder<GameStyleAppOption> {
-        return GameStyleAppOption.CompanionEnum.get.values
-    }
-
-    public static [Symbol.iterator](): CollectionIterator<GameStyleAppOption> {
-        return GameStyleAppOption.CompanionEnum.get[Symbol.iterator]()
-    }
-
-    //endregion -------------------- Enum methods --------------------
 
 }
