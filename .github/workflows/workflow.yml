@@ -33,15 +33,6 @@ jobs:
       - name: Installation of the dependencies (for NPM)
         run: npm ci
 
-      - name: Conversion from CSV to Json
-        run: npm run convert-csv-to-json
-
-      - name: Copying the images for the CSS
-        run: npm run copy-images-for-css
-
-      - name: Copying the locale on the "/src" folder
-        run: npm run copy-locale-to-src
-
       - name: Deployment of the application
         run: |
           git config --global user.name $user_name
