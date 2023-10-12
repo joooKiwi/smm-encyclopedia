@@ -19,12 +19,12 @@ export default class SoundEffectCategoryApp
     }
 
 
-        return 'everySoundEffect (list)'
     protected override _createSimpleListRouteName(): PossibleRouteName {
+        return 'everySoundEffectCategory (list)'
     }
 
-        return 'everySoundEffect (card)'
     protected override _createCardListRouteName(): PossibleRouteName {
+        return 'everySoundEffectCategory (card)'
     }
 
 
