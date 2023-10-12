@@ -54,7 +54,11 @@ export default class SampleCourseApp
             //region -------------------- List interpreter --------------------
 
             public createListDimension(): PossibleDimensionOnList {
-                return null
+                return {
+                    medium: 3,
+                    large: null,
+                    extraLarge: null,
+                }
             }
 
             //endregion -------------------- List interpreter --------------------
