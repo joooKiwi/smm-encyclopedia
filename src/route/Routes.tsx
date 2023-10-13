@@ -215,7 +215,7 @@ const router = createHashRouter([{
                                 //region -------------------- Path from simple route path --------------------
 
                                 everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
-                                    path: `/${pathFromLanguageAndViewDisplay}${routeInstance.simplePath}`,
+                                    path: `${pathFromLanguageAndViewDisplay}${routeInstance.simplePath}`,
                                     loader() {
                                         throw redirect(routeInstance.getPath(language, null, viewDisplay,),)
                                     },
@@ -225,7 +225,7 @@ const router = createHashRouter([{
                                 //region -------------------- Fallback if nothing was found --------------------
 
                                 {
-                                    path: `/${pathFromLanguageAndViewDisplay}*`,
+                                    path: `${pathFromLanguageAndViewDisplay}*`,
                                     loader: loaderArguments => redirectToCorrectPathWithNoRouteAndGame2(loaderArguments, language, viewDisplay,),
                                 } satisfies RouteObject,
 
