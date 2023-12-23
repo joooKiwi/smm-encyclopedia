@@ -26,7 +26,7 @@ export default abstract class AbstractApp<T extends AppProperties = AppPropertie
         return <>
             <ModalContainers parameter={this._parameterContent()}/>
             <Navigation/>
-            <main id="main-container" className="pt-3 pb-5 align-bottom container-fluid">
+            <main id="main-container" className="container-fluid flex-grow-1 align-bottom pt-3 pb-5">
                 {this._mainContent()}
             </main>
             <Footer/>
