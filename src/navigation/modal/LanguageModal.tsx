@@ -2,8 +2,8 @@ import {useRef} from 'react'
 
 import Modal                       from 'bootstrap/modal/Modal'
 import {contentTranslation}        from 'lang/components/translationMethods'
-import LanguageChangerBody         from 'navigation/LanguageChanger.body'
 import {LANGUAGE_CHANGER_MODAL_ID} from 'navigation/button/modalIds'
+import LanguageChangerBody         from 'navigation/modal/language/LanguageChanger.body'
 
 /** @reactComponent */
 export default function LanguageModal() {

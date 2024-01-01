@@ -1,6 +1,6 @@
 import {Link, useLocation} from 'react-router-dom'
 
-import type {LanguageChangerLinkProperties} from 'navigation/LanguageChanger.link'
+import type {LanguageChangerLinkProperties} from 'navigation/modal/language/LanguageChanger.link'
 import type {ReactProperties}               from 'util/react/ReactProperties'
 
 import Tooltip               from 'bootstrap/tooltip/Tooltip'
@@ -15,14 +15,14 @@ export interface SingleLanguageChangerLinkProperties
 /** @reactComponent */
 export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: SingleLanguageChangerLinkProperties,) {
     const location = useLocation()
-    const key = `single language changer link (${language.englishName})`,
-        englishNameAsId = StringContainer.getInHtml(language.englishName),
-        buttonId = `single-languageChanger-${englishNameAsId}`
+    const key = `single language changer link (${language.englishName})`
+    const englishNameAsId = StringContainer.getInHtml(language.englishName)
+    const buttonId = `single-languageChanger-${englishNameAsId}`
 
     return createTooltip(language, buttonId,
         language.isCurrent
-            ? <button key={key} id={buttonId} className="btn btn-lg btn-outline-primary active">{language.originalName}</button>
-            : <Link key={key} id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary"
+            ? <button key={key} id={buttonId} className="btn btn-lg btn-outline-primary active w-100">{language.originalName}</button>
+            : <Link key={key} id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
                     onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>,
     )
 }
