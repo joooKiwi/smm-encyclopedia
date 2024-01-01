@@ -1,7 +1,6 @@
 import {Link, useLocation} from 'react-router-dom'
 
-import type {LanguageChangerLinkProperties} from 'navigation/modal/language/LanguageChanger.link'
-import type {ReactProperties}               from 'util/react/ReactProperties'
+import type {ReactProperties} from 'util/react/ReactProperties'
 
 import Tooltip               from 'bootstrap/tooltip/Tooltip'
 import {languageTranslation} from 'lang/components/translationMethods'
@@ -9,20 +8,25 @@ import {ProjectLanguages}    from 'lang/ProjectLanguages'
 import {routeFromLocation}   from 'route/route'
 import {StringContainer}     from 'util/StringContainer'
 
-export interface SingleLanguageChangerLinkProperties
-    extends ReactProperties, LanguageChangerLinkProperties {}
+interface SingleLanguageChangerLinkProperties
+    extends ReactProperties {
+
+    language: ProjectLanguages
+
+    callbackToSetLanguage: (language: ProjectLanguages,) => void
+
+}
 
 /** @reactComponent */
 export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: SingleLanguageChangerLinkProperties,) {
     const location = useLocation()
-    const key = `single language changer link (${language.englishName})`
     const englishNameAsId = StringContainer.getInHtml(language.englishName)
     const buttonId = `single-languageChanger-${englishNameAsId}`
 
     return createTooltip(language, buttonId,
         language.isCurrent
-            ? <button key={key} id={buttonId} className="btn btn-lg btn-outline-primary active w-100">{language.originalName}</button>
-            : <Link key={key} id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
+            ? <button key={`single language changer link (${language.englishName}) - button`} id={buttonId} className="btn btn-lg btn-outline-primary active w-100">{language.originalName}</button>
+            : <Link key={`single language changer link (${language.englishName} - link)`} id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
                     onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>,
     )
 }
