@@ -12,7 +12,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
 
 export default class SoundEffectApp
-    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
+    extends AbstractTableApp<SoundEffects, AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
 
     //region -------------------- Create methods --------------------
 

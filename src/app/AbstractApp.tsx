@@ -16,7 +16,8 @@ import SearchModal           from 'navigation/modal/SearchModal'
 import ColorModal            from 'navigation/modal/ColorModal'
 
 /** @reactComponent */
-export default abstract class AbstractApp<T extends AppProperties = AppProperties, S extends AppStates = AppStates, >
+export default abstract class AbstractApp<const out T extends AppProperties = AppProperties,
+    const S extends AppStates = AppStates, >
     extends Component<T, S>
     implements ReactComponent {
 

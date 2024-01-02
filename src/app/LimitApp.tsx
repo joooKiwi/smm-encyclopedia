@@ -17,7 +17,7 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {filterGame}                                 from 'util/utilitiesMethods'
 
 export default class LimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<Limits, LimitAppOption>, LimitAppProperties>
+    extends AbstractTableApp<Limits, AppInterpreterWithTable<Limits, LimitAppOption>, LimitAppProperties>
     implements ClassWithType<LimitTypes> {
 
     //region -------------------- Getter methods --------------------

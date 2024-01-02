@@ -10,7 +10,7 @@ import {gameContentTranslation}  from 'lang/components/translationMethods'
 import {filterGame}              from 'util/utilitiesMethods'
 
 export default class CharacterNameApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<CharacterNames>, CharacterNameProperties> {
+    extends AbstractCardListApp<CharacterNames, AppInterpreterWithCardList<CharacterNames>, CharacterNameProperties> {
 
     //region -------------------- Create methods --------------------
 

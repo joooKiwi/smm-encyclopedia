@@ -16,7 +16,7 @@ const {MII_COSTUME,} = OtherWordInTheGames
 //endregion -------------------- Import from deconstruction --------------------
 
 export default class MiiCostumeCategoryApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<MiiCostumeCategories>> {
+    extends AbstractCardListApp<MiiCostumeCategories, AppInterpreterWithCardList<MiiCostumeCategories>> {
 
     //region -------------------- Create methods --------------------
 

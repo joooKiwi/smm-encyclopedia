@@ -12,7 +12,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
 
 export default class GameStyleApp
-    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
+    extends AbstractTableApp<GameStyles, AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
 
     //region -------------------- Create methods --------------------
 

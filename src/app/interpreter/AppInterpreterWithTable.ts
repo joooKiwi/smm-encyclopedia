@@ -10,8 +10,8 @@ import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
  *
  * @todo Change The requirement of the "Content" to not use the english name as a requirement
  */
-export interface AppInterpreterWithTable<CONTENT extends Content = Content,
-    OPTION extends Enumerable = Enumerable<any, any>, >
+export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
+    out OPTION extends Enumerable = Enumerable<any, any>, >
     extends AppInterpreterWithCardList<CONTENT> {
 
     readonly tableHeadersColor?: Nullable<BootstrapThemeColor>

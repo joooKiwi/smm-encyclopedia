@@ -16,7 +16,7 @@ const {COURSE,} = OtherWordInTheGames
 //endregion -------------------- Deconstruction imports --------------------
 
 export default class SampleCourseApp
-    extends AbstractTableApp<AppInterpreterWithTable<SampleCourses>> {
+    extends AbstractTableApp<SampleCourses, AppInterpreterWithTable<SampleCourses>> {
 
     //region -------------------- Create methods --------------------
 

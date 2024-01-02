@@ -18,7 +18,7 @@ const {ENTITY,} = OtherWordInTheGames
 //endregion -------------------- Deconstruction imports --------------------
 
 export default class EntityCategoryApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
+    extends AbstractCardListApp<EntityCategories, AppInterpreterWithCardList<EntityCategories>> {
 
     //region -------------------- Create methods --------------------
 

@@ -20,7 +20,7 @@ const {MII_COSTUME,} = OtherWordInTheGames
 //endregion -------------------- Import from deconstruction --------------------
 
 export default class MiiCostumeApp
-    extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>> {
+    extends AbstractTableApp<MiiCostumes, AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>> {
 
     //region -------------------- Create methods --------------------
 

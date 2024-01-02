@@ -10,7 +10,7 @@ import {SoundEffectCategories}  from 'core/soundEffectCategory/SoundEffectCatego
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class SoundEffectCategoryApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<SoundEffectCategories>> {
+    extends AbstractCardListApp<SoundEffectCategories, AppInterpreterWithCardList<SoundEffectCategories>> {
 
     //region -------------------- Create methods --------------------
 

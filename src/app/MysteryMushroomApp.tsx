@@ -17,7 +17,7 @@ const {MYSTERY_MUSHROOM,} = OtherWordInTheGames
 
 //endregion -------------------- Import from deconstruction --------------------
 export default class MysteryMushroomApp
-    extends AbstractTableApp<AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>> {
+    extends AbstractTableApp<MysteryMushrooms, AppInterpreterWithTable<MysteryMushrooms, MysteryMushroomAppOption>> {
 
     //region -------------------- Create methods --------------------
 

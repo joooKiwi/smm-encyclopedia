@@ -8,7 +8,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import Image                    from 'app/tools/images/Image'
 
 export default class MedalApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<Medals>> {
+    extends AbstractCardListApp<Medals, AppInterpreterWithCardList<Medals>> {
 
     //region -------------------- Create methods --------------------
 

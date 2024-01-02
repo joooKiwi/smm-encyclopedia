@@ -11,7 +11,7 @@ import {gameContentTranslation}  from 'lang/components/translationMethods'
 import {filterGame}              from 'util/utilitiesMethods'
 
 export default class EditorVoiceApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<EditorVoices>, EditorVoiceProperties> {
+    extends AbstractCardListApp<EditorVoices, AppInterpreterWithCardList<EditorVoices>, EditorVoiceProperties> {
 
     //region -------------------- Create methods --------------------
 

@@ -21,7 +21,7 @@ const {TAG, COURSE,} = OtherWordInTheGames
 //endregion -------------------- Import from deconstruction --------------------
 
 export default class CourseTagApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties>
+    extends AbstractCardListApp<CourseTags, AppInterpreterWithCardList<CourseTags>, CourseTagAppProperties>
     implements ClassWithType<CourseTagTypes> {
 
     //region -------------------- Getter methods --------------------

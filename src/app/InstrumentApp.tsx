@@ -8,7 +8,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import SimpleSoundComponent     from 'util/file/sound/component/SimpleSound.component'
 
 export default class InstrumentApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<Instruments>> {
+    extends AbstractCardListApp<Instruments, AppInterpreterWithCardList<Instruments>> {
 
     //region -------------------- Create methods --------------------
 

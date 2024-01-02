@@ -18,7 +18,7 @@ import {filterGame}                                      from 'util/utilitiesMet
 
 /** @reactComponent */
 export default class ThemeApp
-    extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
+    extends AbstractTableApp<Themes, AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
 
     //region -------------------- Getter methods --------------------
 

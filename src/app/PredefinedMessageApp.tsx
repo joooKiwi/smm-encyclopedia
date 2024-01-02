@@ -8,7 +8,7 @@ import {PredefinedMessages}     from 'core/predefinedMessage/PredefinedMessages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class PredefinedMessageApp
-    extends AbstractSimpleListApp<AppInterpreterWithSimpleList<PredefinedMessages>> {
+    extends AbstractSimpleListApp<PredefinedMessages, AppInterpreterWithSimpleList<PredefinedMessages>> {
 
     //region -------------------- Create methods --------------------
 

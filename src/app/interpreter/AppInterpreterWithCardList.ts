@@ -6,7 +6,7 @@ import type {DimensionOnList}              from 'app/interpreter/DimensionOnList
  * An application interpreter when using {@link AbstractCardListApp}
  * to encapsulate the card list.
  */
-export interface AppInterpreterWithCardList<CONTENT extends Content = Content, >
+export interface AppInterpreterWithCardList<out CONTENT extends Content = Content, >
     extends AppInterpreterWithSimpleList<CONTENT> {
 
     createCardListDimension(): DimensionOnList

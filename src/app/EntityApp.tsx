@@ -22,7 +22,7 @@ const {ENTITY,} = OtherWordInTheGames
 //endregion -------------------- Deconstruction imports --------------------
 
 export default class EntityApp
-    extends AbstractTableApp<AppInterpreterWithTable<Entities, EntityAppOption>, EntityProperties> {
+    extends AbstractTableApp<Entities, AppInterpreterWithTable<Entities, EntityAppOption>, EntityProperties> {
 
     //region -------------------- Create methods --------------------
 
