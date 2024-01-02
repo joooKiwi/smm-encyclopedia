@@ -123,7 +123,7 @@ export default class LimitApp
                     LimitAppOption.NAME,
                 ]
                 if (hasSMM1Or3DSGames && hasSMM2Games)
-                   options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
+                    options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
                 else {
                     if (hasSMM1Or3DSGames)
                         options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
