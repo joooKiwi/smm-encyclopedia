@@ -1,10 +1,10 @@
 import './EntityApp.scss'
 import './options/EntityAppOption.scss'
 
-import type {EntityProperties}                                     from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {EntityProperties}           from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {EntityAppOption}         from 'app/options/EntityAppOption'
 import {AbstractTableApp}        from 'app/withInterpreter/AbstractTableApp'
@@ -67,20 +67,21 @@ export default class EntityApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    medium: 4,
-                    large: 3,
-                    extraLarge: 2,
+                    default: 1,
+                    small: 2,
+                    medium: 3,
+                    large: 4,
+                    extraLarge: 6,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent({englishName: name, reference, editorVoiceSoundFileHolder,}: Entities,) {

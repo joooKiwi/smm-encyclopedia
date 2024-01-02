@@ -1,5 +1,5 @@
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
-import type {PossibleDimensionOnList}      from 'app/interpreter/DimensionOnList'
+import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {PossibleRouteName}            from 'route/EveryRoutes.types'
 
 import UnfinishedText           from 'app/tools/text/UnfinishedText'
@@ -38,8 +38,14 @@ export default class PredefinedMessageApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
-                return null
+            public createListDimension(): DimensionOnList {
+                return {
+                    default: 1,
+                    small: 2,
+                    medium: 3,
+                    large: 5,
+                    extraLarge: 6,
+                }
             }
 
             //endregion -------------------- List interpreter --------------------

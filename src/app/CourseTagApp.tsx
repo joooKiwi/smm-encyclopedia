@@ -1,12 +1,12 @@
 import './CourseTagApp.scss'
 
-import type {CourseTagAppProperties}                               from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList,}                          from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {CourseTagTypes}                                       from 'app/property/CourseTagTypes'
-import type {ClassWithType}                                        from 'core/ClassWithType'
-import type {CourseTags}                                           from 'core/courseTag/CourseTags'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {CourseTagAppProperties}      from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList,} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}             from 'app/interpreter/DimensionOnList'
+import type {CourseTagTypes}              from 'app/property/CourseTagTypes'
+import type {ClassWithType}               from 'core/ClassWithType'
+import type {CourseTags}                  from 'core/courseTag/CourseTags'
+import type {PossibleRouteName}           from 'route/EveryRoutes.types'
 
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'
@@ -79,15 +79,20 @@ export default class CourseTagApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
-                return null
+            public createListDimension(): DimensionOnList {
+                return {
+                    default: 1,
+                    small: 2,
+                    medium: 4,
+                    large: 6,
+                }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,) {

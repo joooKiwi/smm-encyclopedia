@@ -1,12 +1,12 @@
 import './LimitApp.scss'
 
-import type {LimitAppProperties}                                   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {LimitTypes}                                           from 'app/property/LimitTypes'
-import type {ClassWithType}                                        from 'core/ClassWithType'
-import type {Limits}                                               from 'core/limit/Limits'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {LimitAppProperties}      from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {LimitTypes}              from 'app/property/LimitTypes'
+import type {ClassWithType}           from 'core/ClassWithType'
+import type {Limits}                  from 'core/limit/Limits'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {LimitAppOption}                             from 'app/options/LimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
@@ -74,19 +74,21 @@ export default class LimitApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    large: null,
-                    extraLarge: 2,
+                    default: 1,
+                    small: 2,
+                    medium: 4,
+                    large: 5,
+                    extraLarge: 6,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumeration: Limits,) {

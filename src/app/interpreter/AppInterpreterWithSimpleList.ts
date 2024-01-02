@@ -1,5 +1,5 @@
 import type {AppInterpreter, Content} from 'app/interpreter/AppInterpreter'
-import type {PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 
 /**
  * An application interpreter when using {@link AbstractSimpleListApp}
@@ -8,6 +8,6 @@ import type {PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
 export interface AppInterpreterWithSimpleList<CONTENT extends Content = Content, >
     extends AppInterpreter<CONTENT> {
 
-    createListDimension(): PossibleDimensionOnList
+    createListDimension(): DimensionOnList
 
 }

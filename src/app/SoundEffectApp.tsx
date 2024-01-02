@@ -1,9 +1,9 @@
 import './SoundEffectApp.scss'
 
-import type {SoundEffectProperties}                                from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {SoundEffectProperties}   from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
@@ -49,15 +49,21 @@ export default class SoundEffectApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
-                return null
+            public createListDimension(): DimensionOnList {
+                return {
+                    default: 1,
+                    small: 3,
+                    medium: 4,
+                    large: 5,
+                    extraLarge: 6,
+                }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: SoundEffects,) {

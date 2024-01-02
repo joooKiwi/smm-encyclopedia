@@ -1,6 +1,6 @@
-import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {Instruments}            from 'core/instrument/Instruments'
@@ -39,15 +39,21 @@ export default class InstrumentApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
-                return null
+            public createListDimension(): DimensionOnList {
+                return {
+                    default: 1,
+                    small: 3,
+                    medium: 4,
+                    large: 5,
+                    extraLarge: 6,
+                }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent({sounds, name,}: Instruments,) {

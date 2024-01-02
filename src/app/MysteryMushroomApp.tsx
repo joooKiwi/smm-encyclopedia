@@ -1,8 +1,8 @@
 import './MysteryMushroomApp.scss'
 
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {MysteryMushroomAppOption} from 'app/options/MysteryMushroomAppOption'
 import {unfinishedText}           from 'app/tools/text/UnfinishedText'
@@ -63,21 +63,27 @@ export default class MysteryMushroomApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    medium: null,
+                    default: 1,
+                    small: 2,
+                    medium: 3,
                     large: 4,
-                    extraLarge: 3,
-                    extraExtraLarge: 2,
+                    extraLarge: 6,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension(): DimensionOnList {
+                return {
+                    default: 1,
+                    small: 2,
+                    large: 3,
+                    extraLarge: 4,
+                    extraExtraLarge: 6,
+                }
             }
 
             public createCardListContent(enumerable: MysteryMushrooms,) {
