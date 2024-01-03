@@ -47,7 +47,7 @@ export default class HomeApp
                 <p className="mb-2">{contentTranslation('home.progress.description')}</p>
                 <p className="mb-2">{contentTranslation('home.progress.list to do.description')}</p>
                 <ol>
-                   <li>{contentTranslation('home.progress.list to do.automatic language')}</li>
+                   <li className="text-decoration-line-through">{contentTranslation('home.progress.list to do.automatic language')}</li>
                    <li>{contentTranslation('home.progress.list to do.font family')}</li>
                    <li>{contentTranslation('home.progress.list to do.color mode')}</li>
                    <li>{contentTranslation('home.progress.list to do.more info', {
