@@ -34,6 +34,6 @@ export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: Si
 function createTooltip(language: ProjectLanguages, id: string, element: ReactElement,) {
     const englishName = language.englishName
 
-    return <Tooltip key={`single language changer link (tooltip - ${englishName})`} elementId={id}
+    return <Tooltip key={`single language changer link (tooltip - ${englishName} - in ${ProjectLanguages.current.englishName})`} elementId={id}
                     option={({title: languageTranslation(englishName), placement: 'top',})}>{element}</Tooltip>
 }
