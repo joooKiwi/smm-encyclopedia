@@ -6,9 +6,7 @@ import DisplayViewBody         from 'navigation/DisplayView.body'
 import {DISPLAY_VIEW_MODAL_ID} from 'navigation/button/modalIds'
 import {SUSPENSION_POINT}      from 'util/commonVariables'
 
-/**
- * @reactComponent
- */
+/** @reactComponent */
 export default function DisplayViewModal() {
     const modal = useRef<HTMLDivElement>(null,)
 
