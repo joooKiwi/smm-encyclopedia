@@ -23,12 +23,14 @@ export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: Si
     const englishNameAsId = StringContainer.getInHtml(language.englishName)
     const buttonId = `single-languageChanger-${englishNameAsId}`
 
+    if (language.isCurrent)
+        return createTooltip(language, buttonId,
+            <button key={`single language changer link (${language.englishName}) - button`} id={buttonId} className="btn btn-lg btn-outline-primary active w-100">{language.originalName}</button>,
+            )
     return createTooltip(language, buttonId,
-        language.isCurrent
-            ? <button key={`single language changer link (${language.englishName}) - button`} id={buttonId} className="btn btn-lg btn-outline-primary active w-100">{language.originalName}</button>
-            : <Link key={`single language changer link (${language.englishName} - link)`} id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
-                    onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>,
-    )
+        <Link key={`single language changer link (${language.englishName} - link)`} id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
+              onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>,
+        )
 }
 
 function createTooltip(language: ProjectLanguages, id: string, element: ReactElement,) {
