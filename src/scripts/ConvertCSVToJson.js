@@ -84,9 +84,8 @@ function transformValue(value,) {
     if (typeof value == 'string') {
         if (value.includes('\r'))
             return value.replaceAll('\r', '',).replaceAll('\r\n', '\n',)
-        if (invalidStringRegex.test(value)) {
+        if (invalidStringRegex.test(value))
             return value.substring(0, value.indexOf('_'))
-        }
     }
     return value
 }
