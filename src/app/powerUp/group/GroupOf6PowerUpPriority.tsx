@@ -27,8 +27,8 @@ interface GroupOf6PowerUpPriorityProperties
  * @reactComponent
  */
 export default function GroupOf6PowerUpPriority({id, children: [child1, child2, child3, child4, child5, child6,], arrow, hasSeparatedLines = false,}: GroupOf6PowerUpPriorityProperties,) {
-    const horizontalArrow = hasSeparatedLines ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED,
-        verticalArrow = hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED
+    const horizontalArrow = hasSeparatedLines ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED
+    const verticalArrow = hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED
 
     return <div id={id} className="groupOf6-powerUp-priority powerUp-group-priority d-flex flex-column justify-content-between">
         <div className="start-container d-flex justify-content-center m-0 position-relative">

@@ -17,13 +17,13 @@ export default class HomeApp
     extends AbstractApp {
 
     protected override _mainContent() {
-        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase(),
-            singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference,
-            singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = COURSE.singularLowerCaseNameOnReferenceOrNull ?? singularCourseName.toLowerCase(),
-            singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName),
-            singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName),
-            pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!), pluralMiiCostumeLowerCaseName = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!),
-            singularPowerUpName = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName), singularPowerUpLowerCaseName = singularPowerUpName.toLowerCase()
+        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
+        const singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference
+        const singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = COURSE.singularLowerCaseNameOnReferenceOrNull ?? singularCourseName.toLowerCase()
+        const singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName)
+        const singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)
+        const pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!), pluralMiiCostumeLowerCaseName = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!)
+        const singularPowerUpName = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName), singularPowerUpLowerCaseName = singularPowerUpName.toLowerCase()
 
         return <>
             <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('home.title')}</h1>

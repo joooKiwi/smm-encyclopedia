@@ -45,8 +45,8 @@ export default class EntityApp
 
 
     protected override _createTitleContent(): ReactElementOrString {
-        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase(),
-            pluralEntityName = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName), pluralEntityLowerCaseName = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? pluralEntityName.toLowerCase()
+        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
+        const pluralEntityName = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName), pluralEntityLowerCaseName = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? pluralEntityName.toLowerCase()
 
         return gameContentTranslation('entity.all', {
             Entity: singularEntityName,
@@ -106,9 +106,9 @@ export default class EntityApp
             }
 
             public get tableOptions(): readonly EntityAppOption[] {
-                const games = $this.props.games,
-                    hasSMM1Or3DSGames = games.hasSMM1Or3DS,
-                    hasSMM2Games = games.hasSMM2
+                const games = $this.props.games
+                const hasSMM1Or3DSGames = games.hasSMM1Or3DS
+                const hasSMM2Games = games.hasSMM2
 
                 const options: EntityAppOption[] = [
                     EntityAppOption.IMAGE_IN_SMB,

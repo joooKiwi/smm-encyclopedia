@@ -34,8 +34,8 @@ type PageProgressType = | 'completed' | 'page almost done' | 'page in progress'
  * @see TextComponent
  */
 export default function PageProgress({progress, link, content, exclusiveGame,}: PageProgressProperties,) {
-    const currentLanguage = ProjectLanguages.current,
-        exclusiveGameComponent = exclusiveGame == null ? null : <sup className="fst-italic text-dark text-opacity-25">{currentLanguage.space}{currentLanguage.textInParentheses(exclusiveGame)}</sup>
+    const currentLanguage = ProjectLanguages.current
+    const exclusiveGameComponent = exclusiveGame == null ? null : <sup className="fst-italic text-dark text-opacity-25">{currentLanguage.space}{currentLanguage.textInParentheses(exclusiveGame)}</sup>
 
     return <div className="pageProgress-container">
         {createPageProgressType(progress)}

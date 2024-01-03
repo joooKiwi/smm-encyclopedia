@@ -353,9 +353,9 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
      * @doesNotTriggerIfIsSameState
      */
     public override pause(): this {
-        const currentState = this.history.current,
-            isLoading = currentState.isLoading,
-            isPaused = currentState.state === PAUSED
+        const currentState = this.history.current
+        const isLoading = currentState.isLoading
+        const isPaused = currentState.state === PAUSED
 
         if (!isLoading || !isPaused) {
             if (isLoading)
@@ -379,9 +379,9 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
      * @doesNotTriggerIfIsSameState
      */
     public override stop(): this {
-        const currentState = this.history.current,
-            isLoading = currentState.isLoading,
-            isStandby = currentState.state === STANDBY
+        const currentState = this.history.current
+        const isLoading = currentState.isLoading
+        const isStandby = currentState.state === STANDBY
 
         if (!isLoading || !isStandby) {
             if (isLoading)
@@ -400,8 +400,8 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     }
 
     public setState(value: HistoryState,): this {
-        const history = this.history,
-            currentState = history.current
+        const history = this.history
+        const currentState = history.current
         if (currentState.equals(value))
             return this
         this.onBeforeStateChanged?.(this, value, currentState,)

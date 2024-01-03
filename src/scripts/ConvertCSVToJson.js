@@ -41,10 +41,10 @@ const largeBufferSize = {highWaterMark: 256 * 1024,};
  * @param {string} fileName The file name (without any path & extension)
  */
 function convertFileFromCsvToJson(fileName,) {
-    const startingTime = Date.now(),
-        path = `${__dirname}/../../resources/csv/${fileName}.csv`,
-        file = fileName === 'Entity' ? createReadStream(path, largeBufferSize,) : createReadStream(path,),
-        writeSteam = createWriteStreamFromFileName(startingTime, fileName,)
+    const startingTime = Date.now()
+    const path = `${__dirname}/../../resources/csv/${fileName}.csv`
+    const file = fileName === 'Entity' ? createReadStream(path, largeBufferSize,) : createReadStream(path,)
+    const writeSteam = createWriteStreamFromFileName(startingTime, fileName,)
 
     parse(file, {
         dynamicTyping: true,

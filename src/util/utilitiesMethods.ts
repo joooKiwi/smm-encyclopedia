@@ -108,8 +108,8 @@ function filterGameByArray<const T extends ClassWithReference<GameProperty>, >(v
  * @returns A new reversed array
  */
 export function reverse<const T, >(array: readonly T[],): T[] {
-    const size = array.length,
-        newArray = new Array(size,)
+    const size = array.length
+    const newArray = new Array(size,)
 
     let index = array.length
     while (--index >= 0)
@@ -131,8 +131,8 @@ export function nonNull<const T, >(array: readonly T[],): NonNullable<T>[]
 export function nonNull<const T, >(set: ReadonlySet<T>,): Set<NonNullable<T>>
 export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): | Set<NonNullable<T>> | NonNullable<T>[] {
     if (setOrArray instanceof Array) {
-        const size = setOrArray.length,
-            newArray = [] as NonNullable<T>[]
+        const size = setOrArray.length
+        const newArray = [] as NonNullable<T>[]
 
         let index = -1
         while (index++ < size) {

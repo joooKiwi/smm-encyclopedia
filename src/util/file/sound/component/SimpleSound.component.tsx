@@ -46,8 +46,8 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
             isSourceRetrieved: false,
         }
         this.#isSourceFoundCallback = value => {
-            const audio = this._audio,
-                isDurationValid = audio.isDurationValid
+            const audio = this._audio
+            const isDurationValid = audio.isDurationValid
             value ?? isDurationValid
                 ? this.setState({isSourceRetrieved: true,})
                 : this.setState({isSourceRetrieved: true, /*state: audio.setState(new HistoryState(EXCEPTION, audio.history.current,)).history.current,*/})

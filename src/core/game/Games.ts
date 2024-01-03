@@ -227,9 +227,9 @@ export abstract class Games
         public getFromPath(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
             if (path === 'game-all' || path === 'all')
                 return this.ALL_GAMES
-            const pathFiltered = path.replace('game-', '',) as GroupUrlValue,
-                gamesFound = pathFiltered.split(',',),
-                gamesFoundSize = gamesFound.length
+            const pathFiltered = path.replace('game-', '',) as GroupUrlValue
+            const gamesFound = pathFiltered.split(',',)
+            const gamesFoundSize = gamesFound.length
 
             const gameFound1 = Games.CompanionEnum.get.getValueByUrlValue(gamesFound[0],)
             if (gamesFoundSize === 1)

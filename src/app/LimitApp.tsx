@@ -114,9 +114,9 @@ export default class LimitApp
             public readonly tableCaption = gameContentTranslation(`limit.${$this.type.type}.all`) satisfies ReactElementOrString
 
             public get tableOptions(): readonly LimitAppOption[] {
-                const games = $this.props.games,
-                    hasSMM1Or3DSGames = games.hasSMM1Or3DS,
-                    hasSMM2Games = games.hasSMM2
+                const games = $this.props.games
+                const hasSMM1Or3DSGames = games.hasSMM1Or3DS
+                const hasSMM2Games = games.hasSMM2
 
                 const options: LimitAppOption[] = [
                     LimitAppOption.ACRONYM,

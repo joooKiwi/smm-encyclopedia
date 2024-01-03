@@ -25,8 +25,8 @@ interface GroupOf5PowerUpPriorityProperties
  * @reactComponent
  */
 export default function GroupOf5PowerUpPriority({id, children: [child1, child2, child3, child4, child5,], arrow, hasSeparatedLines = false,}: GroupOf5PowerUpPriorityProperties,) {
-    const horizontalArrow = hasSeparatedLines ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED,
-        verticalArrow = hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED
+    const horizontalArrow = hasSeparatedLines ? Arrows.HORIZONTAL_SEPARATED : Arrows.HORIZONTAL_JOINED
+    const verticalArrow = hasSeparatedLines ? Arrows.VERTICAL_SEPARATED : Arrows.VERTICAL_JOINED
 
     return <div id={id} className="groupOf5-powerUp-priority powerUp-group-priority d-flex flex-column justify-content-evenly">
         <div className="start-container d-flex justify-content-center">{child1}</div>

@@ -5,8 +5,8 @@ import LimitComponent   from 'core/limit/Limit.component'
 import {NOT_APPLICABLE} from 'util/commonVariables'
 
 export default function SMM2EditorLimitComponent({reference,}: SimpleLimitComponentProperties,) {
-    const entity = reference.reference,
-        editorLimit = entity.editorLimit_smm2
+    const entity = reference.reference
+    const editorLimit = entity.editorLimit_smm2
 
     return editorLimit == null || editorLimit === NOT_APPLICABLE
         ? <TextComponent id={`editor-SuperMarioMaker2-${reference.englishNameInHtml}`} content={editorLimit} isUnknown={entity.isUnknown_editorLimit_smm2}/>
