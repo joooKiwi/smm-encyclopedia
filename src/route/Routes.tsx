@@ -103,7 +103,12 @@ const router = createHashRouter([{
                     everyRoute.map<RouteObject>(route => ({
                         path: `${pathFromLanguage}${route.path}`,
                         element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(route.viewDisplay!, new GameCollection(route.games ?? EMPTY_ARRAY,),)}</Suspense>,
-                        loader: () => null,
+                        loader: () => {
+                            const games = route.games
+                            if (games != null)
+                                Games.setSelected(games,)
+                            return null
+                        },
                     }),),
 
                     //endregion -------------------- Path from route path --------------------
