@@ -21,7 +21,7 @@ export class GameCollection<const out T extends Games = Games, const out REFEREN
      * {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} & {@link Games.SUPER_MARIO_MAKER_2 SMM2}) type in its values
      */
     public get hasAllGames(): boolean {
-        return this.#hasAllGames = this.hasAll(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,)
+        return this.#hasAllGames ??= this.hasAll(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,)
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} type in its values */
