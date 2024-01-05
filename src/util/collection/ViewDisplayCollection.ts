@@ -19,7 +19,8 @@ export class ViewDisplayCollection<const out T extends ViewDisplays = ViewDispla
 
     /**
      * The collection has every view display ({@link ViewDisplays.SIMPLE_LIST},
-     * {@link ViewDisplays.CARD_LIST} & {@link ViewDisplays.TABLE}) type in its values
+     * {@link ViewDisplays.CARD_LIST} & {@link ViewDisplays.TABLE})
+     * type in its values
      */
     public get hasAllViewDisplay(): boolean {
         return this.#hasAllViewDisplay ??= this.hasAll(ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST, ViewDisplays.TABLE,)
