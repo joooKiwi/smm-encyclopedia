@@ -24,7 +24,9 @@ export default function GameGroup() {
     const gamesInUrl = Games.CompanionEnum.get.getValueInUrl(pathname,)
 
     return <div key={`game option container`} id={`games-option-container`} className="btn-group" role="group">
-        {Games.CompanionEnum.get.values.map(it => <GameLink key={`game option (${it.englishName})`} game={it} gamesInUrl={gamesInUrl}/>,)}
+        <GameLink game={Games.SUPER_MARIO_MAKER_1} gamesInUrl={gamesInUrl}/>
+        <GameLink game={Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS} gamesInUrl={gamesInUrl}/>
+        <GameLink game={Games.SUPER_MARIO_MAKER_2} gamesInUrl={gamesInUrl}/>
     </div>
 }
 
