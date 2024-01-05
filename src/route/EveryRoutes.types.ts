@@ -1,9 +1,9 @@
-import type {ViewDisplays}                                                    from 'app/withInterpreter/ViewDisplays'
-import type {PossibleUrlValue}                                                from 'app/withInterpreter/ViewDisplays.types'
-import type {FullValidUrlValue, GroupValidUrlSimpleValue, GroupValidUrlValue} from 'core/game/Games.types'
-import type {PossibleAcronym}                                                 from 'lang/ProjectLanguages.types'
-import type {EveryRoutes}                                                     from 'route/EveryRoutes'
-import type {GameCollection}                                                  from 'util/collection/GameCollection'
+import type {ViewDisplays}                                from 'app/withInterpreter/ViewDisplays'
+import type {PossibleUrlValue}                            from 'app/withInterpreter/ViewDisplays.types'
+import type {FullValidUrlValue, GroupValidUrlSimpleValue} from 'core/game/Games.types'
+import type {PossibleAcronym}                             from 'lang/ProjectLanguages.types'
+import type {EveryRoutes}                                 from 'route/EveryRoutes'
+import type {GameCollection}                              from 'util/collection/GameCollection'
 
 enum Enum {
     HOME,
@@ -109,54 +109,87 @@ interface SimpleRouteMap {
 
 //region -------------------- Simple route map types --------------------
 
-// type NameInSMM1<NAME extends string, > = | NAME | `${NAME} (Game=1)`
-// type NameInSMM2<NAME extends string, > = | NAME | `${NAME} (Game=2)`
-type NameInAnyGame<NAME extends string, > = | NAME | `${NAME} (Game=${GroupValidUrlSimpleValue})`
-// type NameInTable<NAME extends string, > = | NAME | `${NAME} (${| 'table' | 'card' | 'list'})`
-type NameInTableAndSMM1<NAME extends string, > = | NAME | `${NAME} (${| 'table' | 'card' | 'list' | 'table Game=1' | 'card Game=1' | 'list Game=1' | 'Game=1'})`
-type NameInTableAndSMM2<NAME extends string, > = | NAME | `${NAME} (${| 'table' | 'card' | 'list' | 'table Game=2' | 'card Game=2' | 'list Game=2' | 'Game=2'})`
-type NameInTableAndAnyGame<NAME extends string, > = | NAME | `${NAME} (${| 'table' | 'card' | 'list' | `table Game=${GroupValidUrlSimpleValue}` | `card Game=${GroupValidUrlSimpleValue}` | `list Game=${GroupValidUrlSimpleValue}` | `Game=${GroupValidUrlSimpleValue}`})`
-// type NameInCard<NAME extends string, > = | NAME | `${NAME} (${| 'card' | 'list'})`
-type NameInCardAndSMM1<NAME extends string, > = | NAME | `${NAME} (${| 'card' | 'list' | 'card Game=1' | 'list Game=1' | 'Game=1'})`
-type NameInCardAndSMM2<NAME extends string, > = | NAME | `${NAME} (${| 'card' | 'list' | 'card Game=2' | 'list Game=2' | 'Game=2'})`
-type NameInCardAndAnyGame<NAME extends string, > = | NAME | `${NAME} (${| 'card' | 'list' | `card Game=${GroupValidUrlSimpleValue}` | `list Game=${GroupValidUrlSimpleValue}` | `Game=${GroupValidUrlSimpleValue}`})`
-// type NameInList<NAME extends string, > = | NAME | `${NAME} (list)`
-// type NameInListAndSMM1<NAME extends string, > = | NAME | `${NAME} (${| 'list' | 'list Game=1' | 'Game=1'})`
-type NameInListAndSMM2<NAME extends string, > = | NAME | `${NAME} (${| 'list' | 'list Game=2' | 'Game=2'})`
-// type NameInListAndAnyGame<NAME extends string, > = | NAME | `${NAME} (${| 'list' | `list Game=${GroupValidUrlSimpleValue}` | `Game=${GroupValidUrlSimpleValue}`})`
+type TableCardOrList = | 'table' | 'card' | 'list'
+type CardOrList = | 'card' | 'list'
+type List = 'list'
 
-type PathInAnyGame<PATH extends string, > = | PATH | `/game-${GroupValidUrlValue}${PATH}`
-type PathInSMM1<PATH extends string, > = | PATH | `/game-1${PATH}`
-type PathInSMM2<PATH extends string, > = | PATH | `/game-2${PATH}`
-type PathInTable<PATH extends string, > = | PATH | `/${| 'table' | 'card' | 'list'}${PATH}`
-type PathInTableAndSMM1<PATH extends string, > = | PATH | PathInTable<PATH> | PathInSMM1<| PATH | PathInTable<PATH>>
-type PathInTableAndSMM2<PATH extends string, > = | PATH | PathInTable<PATH> | PathInSMM2<| PATH | PathInTable<PATH>>
-type PathInTableAndAnyGame<PATH extends string, > = | PATH | PathInTable<PATH> | PathInAnyGame<| PATH | PathInTable<PATH>>
-type PathInCard<PATH extends string, > = | PATH | `/${| 'card' | 'list'}${PATH}`
-type PathInCardAndSMM1<PATH extends string, > = | PATH | PathInCard<PATH> | PathInSMM1<| PATH | PathInCard<PATH>>
-type PathInCardAndSMM2<PATH extends string, > = | PATH | PathInCard<PATH> | PathInSMM2<| PATH | PathInCard<PATH>>
-type PathInCardAndAnyGame<PATH extends string, > = | PATH | PathInCard<PATH> | PathInAnyGame<| PATH | PathInCard<PATH>>
-type PathInList<PATH extends string, > = | PATH | `/list${PATH}`
-// type PathInListAndSMM1<PATH extends string, > = | PATH | PathInList<PATH> | PathInSMM1<| PATH | PathInList<PATH>>
-type PathInListAndSMM2<PATH extends string, > = | PATH | PathInList<PATH> | PathInSMM2<| PATH | PathInList<PATH>>
-// type PathInListAndAnyGame<PATH extends string, > = | PATH | PathInList<PATH> | PathInAnyGame<| PATH | PathInList<PATH>>
+//region -------------------- Simple route map types (name) --------------------
 
-type Direct<NAME extends Names, > = readonly [typeof EveryRoutes[NAME]['simpleName'], typeof EveryRoutes[NAME]['simplePath'],]
-// type InSMM1<NAME extends Names, > = readonly [NameInSMM1<typeof EveryRoutes[NAME]['simpleName']>, PathInSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
-// type InSMM2<NAME extends Names, > = readonly [NameInSMM2<typeof EveryRoutes[NAME]['simpleName']>, PathInSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
-type InAnyGame<NAME extends Names, > = readonly [NameInAnyGame<typeof EveryRoutes[NAME]['simpleName']>, PathInAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
-// type InTable<NAME extends Names, > = readonly [NameInTable<typeof EveryRoutes[NAME]['simpleName']>, PathInTable<typeof EveryRoutes[NAME]['simplePath']>,]
-type InTableAndSMM1<NAME extends Names, > = readonly [NameInTableAndSMM1<typeof EveryRoutes[NAME]['simpleName']>, PathInTableAndSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
-type InTableAndSMM2<NAME extends Names, > = readonly [NameInTableAndSMM2<typeof EveryRoutes[NAME]['simpleName']>, PathInTableAndSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
+
+/** The union of both the first and second value both separately and joined with a space */
+type NameJoin1<NAME extends string, FIRST extends string, > = | NAME | `${NAME} (${FIRST})`
+/** The union of both the first and second value both separately and joined with a space */
+type NameJoin2<NAME extends string, FIRST extends string, SECOND extends string, > = | NAME | `${NAME} (${| FIRST | `${FIRST} ${SECOND}` | SECOND})`
+
+type NameInSMM1 = 'Game=1'
+type NameInSMM2 = 'Game=2'
+type NameInAllGame = `Game=${GroupValidUrlSimpleValue}`
+
+// type NameInSMM1<NAME extends string, > =            NameJoin1<NAME, NameInSMM1>
+// type NameInSMM2<NAME extends string, > =            NameJoin1<NAME, NameInSMM2>
+type NameInAnyGame<NAME extends string, > =         NameJoin1<NAME, NameInAllGame>
+// type NameInTable<NAME extends string, > =           NameJoin1<NAME, TableCardOrList>
+type NameInTableAndSMM1<NAME extends string, > =    NameJoin2<NAME, TableCardOrList, NameInSMM1>
+type NameInTableAndSMM2<NAME extends string, > =    NameJoin2<NAME, TableCardOrList, NameInSMM2>
+type NameInTableAndAnyGame<NAME extends string, > = NameJoin2<NAME, TableCardOrList, NameInAllGame>
+// type NameInCard<NAME extends string, > =            NameJoin1<NAME, CardOrList>
+type NameInCardAndSMM1<NAME extends string, > =     NameJoin2<NAME, CardOrList, NameInSMM1>
+type NameInCardAndSMM2<NAME extends string, > =     NameJoin2<NAME, CardOrList, NameInSMM2>
+type NameInCardAndAnyGame<NAME extends string, > =  NameJoin2<NAME, CardOrList, NameInAllGame>
+// type NameInList<NAME extends string, > =           NameJoin1<NAME, List>
+// type NameInListAndSMM1<NAME extends string, > =    NameJoin2<NAME, List, NameInSMM1>
+type NameInListAndSMM2<NAME extends string, > =    NameJoin2<NAME, List, NameInSMM2>
+// type NameInListAndAnyGame<NAME extends string, > = NameJoin2<NAME, List, NameInAllGame>
+
+//endregion -------------------- Simple route map types (name) --------------------
+//region -------------------- Simple route map types (path) --------------------
+
+/** The union of both the first value both separately and joined with a slash */
+type PathJoin1<PATH extends string, FIRST extends string, > = | PATH | `/${FIRST}${PATH}`
+/** The union of both the first and second value both separately and joined with a slash */
+type PathJoin2<PATH extends string, FIRST extends string, SECOND extends string, > = | PATH | `/${FIRST | `${FIRST}/${SECOND}` | SECOND}${PATH}`
+
+type PathInSMM1 = 'game-1'
+type PathInSMM2 = 'game-2'
+type PathInAllGame = FullValidUrlValue
+
+// type PathInSMM1<PATH extends string, > =            PathJoin1<PATH , PathInSMM1>
+// type PathInSMM2<PATH extends string, > =            PathJoin1<PATH , PathInSMM2>
+type PathInAnyGame<PATH extends string, > =         PathJoin1<PATH , PathInAllGame>
+// type PathInTable<PATH extends string, > =           PathJoin1<PATH, TableCardOrList>
+type PathInTableAndSMM1<PATH extends string, > =    PathJoin2<PATH, TableCardOrList, PathInSMM1>
+type PathInTableAndSMM2<PATH extends string, > =    PathJoin2<PATH, TableCardOrList, PathInSMM2>
+type PathInTableAndAnyGame<PATH extends string, > = PathJoin2<PATH, TableCardOrList, PathInAllGame>
+// type PathInCard<PATH extends string, > =            PathJoin1<PATH, CardOrList>
+type PathInCardAndSMM1<PATH extends string, > =     PathJoin2<PATH, CardOrList, PathInSMM1>
+type PathInCardAndSMM2<PATH extends string, > =     PathJoin2<PATH, CardOrList, PathInSMM2>
+type PathInCardAndAnyGame<PATH extends string, > =  PathJoin2<PATH, CardOrList, PathInAllGame>
+// type PathInList<PATH extends string = string, > =   PathJoin1<PATH, List>
+// type PathInListAndSMM1<PATH extends string, > =     PathJoin2<PATH, List, PathInSMM1>
+type PathInListAndSMM2<PATH extends string, > =     PathJoin2<PATH, List, PathInSMM2>
+// type PathInListAndAnyGame<PATH extends string, > =  PathJoin2<PATH, List, PathInAllGame>
+
+//endregion -------------------- Simple route map types (path) --------------------
+//region -------------------- Simple route map types (name + path) --------------------
+
+type Direct<NAME extends Names, > =            readonly [typeof EveryRoutes[NAME]['simpleName'],                        typeof EveryRoutes[NAME]['simplePath'],]
+// type InSMM1<NAME extends Names, > =            readonly [NameInSMM1<typeof EveryRoutes[NAME]['simpleName']>,            PathInSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
+// type InSMM2<NAME extends Names, > =            readonly [NameInSMM2<typeof EveryRoutes[NAME]['simpleName']>,            PathInSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
+type InAnyGame<NAME extends Names, > =         readonly [NameInAnyGame<typeof EveryRoutes[NAME]['simpleName']>,         PathInAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
+// type InTable<NAME extends Names, > =           readonly [NameInTable<typeof EveryRoutes[NAME]['simpleName']>,           PathInTable<typeof EveryRoutes[NAME]['simplePath']>,]
+type InTableAndSMM1<NAME extends Names, > =    readonly [NameInTableAndSMM1<typeof EveryRoutes[NAME]['simpleName']>,    PathInTableAndSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
+type InTableAndSMM2<NAME extends Names, > =    readonly [NameInTableAndSMM2<typeof EveryRoutes[NAME]['simpleName']>,    PathInTableAndSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
 type InTableAndAnyGame<NAME extends Names, > = readonly [NameInTableAndAnyGame<typeof EveryRoutes[NAME]['simpleName']>, PathInTableAndAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
-// type InCard<NAME extends Names, > = readonly [NameInCard<typeof EveryRoutes[NAME]['simpleName']>, PathInCard<typeof EveryRoutes[NAME]['simplePath']>,]
-type InCardAndSMM1<NAME extends Names, > = readonly [NameInCardAndSMM1<typeof EveryRoutes[NAME]['simpleName']>, PathInCardAndSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
-type InCardAndSMM2<NAME extends Names, > = readonly [NameInCardAndSMM2<typeof EveryRoutes[NAME]['simpleName']>, PathInCardAndSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
-type InCardAndAnyGame<NAME extends Names, > = readonly [NameInCardAndAnyGame<typeof EveryRoutes[NAME]['simpleName']>, PathInCardAndAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
-// type InList<NAME extends Names, > = readonly [NameInList<typeof EveryRoutes[NAME]['simpleName']>, PathInList<typeof EveryRoutes[NAME]['simplePath']>,]
-// type InListAndSMM1<NAME extends Names, > = readonly [NameInListAndSMM1<typeof EveryRoutes[NAME]['simpleName']>, PathInListAndSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
-type InListAndSMM2<NAME extends Names, > = readonly [NameInListAndSMM2<typeof EveryRoutes[NAME]['simpleName']>, PathInListAndSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
-// type InListAndAnyGame<NAME extends Names, > = readonly [NameInListAndAnyGame<typeof EveryRoutes[NAME]['simpleName']>, PathInListAndAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
+// type InCard<NAME extends Names, > =            readonly [NameInCard<typeof EveryRoutes[NAME]['simpleName']>,            PathInCard<typeof EveryRoutes[NAME]['simplePath']>,]
+type InCardAndSMM1<NAME extends Names, > =     readonly [NameInCardAndSMM1<typeof EveryRoutes[NAME]['simpleName']>,     PathInCardAndSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
+type InCardAndSMM2<NAME extends Names, > =     readonly [NameInCardAndSMM2<typeof EveryRoutes[NAME]['simpleName']>,     PathInCardAndSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
+type InCardAndAnyGame<NAME extends Names, > =  readonly [NameInCardAndAnyGame<typeof EveryRoutes[NAME]['simpleName']>,  PathInCardAndAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
+// type InList<NAME extends Names, > =            readonly [NameInList<typeof EveryRoutes[NAME]['simpleName']>,            PathInList<typeof EveryRoutes[NAME]['simplePath']>,]
+// type InListAndSMM1<NAME extends Names, > =     readonly [NameInListAndSMM1<typeof EveryRoutes[NAME]['simpleName']>,     PathInListAndSMM1<typeof EveryRoutes[NAME]['simplePath']>,]
+type InListAndSMM2<NAME extends Names, > =     readonly [NameInListAndSMM2<typeof EveryRoutes[NAME]['simpleName']>,     PathInListAndSMM2<typeof EveryRoutes[NAME]['simplePath']>,]
+// type InListAndAnyGame<NAME extends Names, > =  readonly [NameInListAndAnyGame<typeof EveryRoutes[NAME]['simpleName']>,  PathInListAndAnyGame<typeof EveryRoutes[NAME]['simplePath']>,]
+
+//endregion -------------------- Simple route map types (name + path) --------------------
 
 //endregion -------------------- Simple route map types --------------------
 
