@@ -2,7 +2,7 @@ import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 
-export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays, const REFERENCE extends Iterable<T> = Iterable<T>, >
+export class ViewDisplayCollection<const out T extends ViewDisplays = ViewDisplays, const out REFERENCE extends Iterable<T> = Iterable<T>, >
     extends GenericCollectionHolder<T, REFERENCE> {
 
     //region -------------------- Fields --------------------

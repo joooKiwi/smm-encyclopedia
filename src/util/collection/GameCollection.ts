@@ -2,7 +2,7 @@ import {GenericCollectionHolder} from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
 
-export class GameCollection<const T extends Games = Games, const REFERENCE extends Iterable<T> = Iterable<T>, >
+export class GameCollection<const out T extends Games = Games, const out REFERENCE extends Iterable<T> = Iterable<T>, >
     extends GenericCollectionHolder<T, REFERENCE> {
 
     //region -------------------- Fields --------------------
