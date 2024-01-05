@@ -40,7 +40,7 @@ export default function Table({id, interpreter,}: TableProperties,) {
     const content = retrieveContent(interpreter, options,)
     const headers = retrieveHeader(interpreter, options,)
 
-    return <div id={id} className={`table-container ${color == null ? '' : `table-${color}`} ${headersColor == null ? '' : `headers-${headersColor}`} w-100`}>
+    return <div id={id} className={`ttable ${color == null ? '' : `table-${color}`} ${headersColor == null ? '' : `headers-${headersColor}`} w-100`}>
         <TableHeader>{headers}</TableHeader>
         <TableContent>{content}</TableContent>
         <TableFooter>{headers}</TableFooter>

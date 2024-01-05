@@ -1,4 +1,4 @@
-.table-container {
+.ttable {
   --table-content-color:            var(--bs-body-color);
   --table-header-border-color:      var(--bs-secondary-border-subtle);
   --table-footer-border-color:      var(--bs-secondary-border-subtle);
@@ -14,14 +14,13 @@
 
 //region -------------------- Display type --------------------
 
-.table-container { display: table }
-.tcaption {        display: table-caption }
-.theader {         display: table-header-group }
-.tfooter {         display: table-footer-group }
-.tcontent {        display: table-row-group }
-
-.trow {            display: table-row }
-.tcell {           display: table-cell }
+.ttable {    display: table }
+.tcaption {  display: table-caption }
+.theader {   display: table-header-group }
+.tfooter {   display: table-footer-group }
+.tcontent {  display: table-row-group }
+.trow {      display: table-row }
+.tcell {     display: table-cell }
 
 //endregion -------------------- Display type --------------------
 //region -------------------- Border --------------------
@@ -96,7 +95,7 @@
 .table-dark {      --table-content-color: var(--bs-light) }
 
 
-.table-container { color: var(--table-content-color) }
+.ttable { color: var(--table-content-color) }
 
 .theader,
 .tfooter, { color: var(--bs-body-color) }
@@ -152,7 +151,7 @@
 //endregion -------------------- Placement --------------------
 //region -------------------- Image --------------------
 
-.table-container img { max-height: 1cm }
+.ttable img { max-height: 1cm }
 
 .theader img,
 .tfooter img, { max-height: .75cm }
