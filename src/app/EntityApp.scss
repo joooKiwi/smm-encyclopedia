@@ -18,12 +18,12 @@
 
 #entity-table {
 
-  .table-content-container {
+  .tcontent {
     //td {
     //  min-height: 2cm;
     //}
 
-    .table-row-container > {
+    .trow > {
       $index: 0;
       //region -------------------- image - SMB --------------------
       $index: $index + 1;
