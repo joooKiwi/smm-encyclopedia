@@ -51,7 +51,7 @@ export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
 
-/** A simple map type made to give each possibilities for a path and a name to a specific {@link EveryRoutes} */
+/** A simple map type made to give each possibility for a path and a name to a specific {@link EveryRoutes} */
 interface SimpleRouteMap {
     HOME:    Direct<'HOME'>
     ABOUT:   Direct<'ABOUT'>
