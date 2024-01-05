@@ -77,7 +77,7 @@ export abstract class Games
         public readonly URL_NAME_SEPARATOR = '/'
         public readonly NAME_ARGUMENT_SEPARATOR = ','
 
-        public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))+|(all))(\/|$)/i
+        public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))*|(all))(\/|$)/i
         // public readonly ALL_URL_REGEX = /.*\/game-all(\/|$)/i
         public readonly SINGLE_URL_REGEX = /.*\/game-(1|3ds|2)(\/|$)/i
         public readonly PREFIX_WITHOUT_SLASH = 'game-'
