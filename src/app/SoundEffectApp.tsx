@@ -84,18 +84,27 @@ export default class SoundEffectApp
 
             public get tableOptions(): readonly SoundEffectAppOption[] {
                 const games = $this.props.games
+                const hasSMM1Or3DS = games.hasSMM1Or3DS
+                const hasSMM2 = games.hasSMM2
 
                 const options = [] as SoundEffectAppOption[]
-                if (games.hasSMM1Or3DS)
+                if (hasSMM1Or3DS)
                     options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
-                if (games.hasSMM2)
+                if (hasSMM2)
                     options.push(SoundEffectAppOption.SMM2_ICON,)
                 options.push(
                     SoundEffectAppOption.NAME,
                     SoundEffectAppOption.CATEGORY,
                     SoundEffectAppOption.PLAYER_BEHAVIOUR,
-                    SoundEffectAppOption.SOUNDS,
                 )
+                if (hasSMM1Or3DS && hasSMM2)
+                    options.push(SoundEffectAppOption.SOUNDS,)
+                else {
+                    if (hasSMM1Or3DS)
+                        options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
+                    if (hasSMM2)
+                        options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
+                }
                 return options
             }
 

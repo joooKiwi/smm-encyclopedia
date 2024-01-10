@@ -6,12 +6,14 @@ import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/SoundEffectAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 
-import {CommonOptions}                  from 'app/options/CommonOptions'
-import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
-import {Games}                          from 'core/game/Games'
-import SoundEffectComponent             from 'core/soundEffect/SoundEffect.component'
-import {SoundEffectCategories}          from 'core/soundEffectCategory/SoundEffectCategories'
-import SimpleSoundComponent             from 'util/file/sound/component/SimpleSound.component'
+import {CommonOptions}                          from 'app/options/CommonOptions'
+import UnfinishedText, {unfinishedText}         from 'app/tools/text/UnfinishedText'
+import {Games}                                  from 'core/game/Games'
+import SMM1And3DSOnlySoundEffectSoundsComponent from 'core/soundEffect/SMM1And3DSOnlySoundEffectSounds.component'
+import SMM2OnlySoundEffectSoundsComponent       from 'core/soundEffect/SMM2OnlySoundEffectSounds.component'
+import SoundEffectComponent                     from 'core/soundEffect/SoundEffect.component'
+import SoundEffectSoundsComponent               from 'core/soundEffect/SoundEffectSounds.component'
+import {SoundEffectCategories}                  from 'core/soundEffectCategory/SoundEffectCategories'
 
 export abstract class SoundEffectAppOption
     extends Enum<Ordinals, Names>
@@ -76,30 +78,32 @@ export abstract class SoundEffectAppOption
         }
 
     }()
-    public static readonly SOUNDS =               new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
+    public static readonly SOUNDS =               new class GameStyleAppOption_Sounds extends SoundEffectAppOption {
 
-        protected override _createContentOption({englishName, sounds_exclusiveSmm1, sounds_standaloneSmm1, sounds_smm2,}: SoundEffects,) {
-            const isSMM1Empty = sounds_exclusiveSmm1.length === 0
-            const isSMM2Empty = sounds_smm2.length === 0
+        protected override _createContentOption(enumeration: SoundEffects,) {
+            return <SoundEffectSoundsComponent reference={enumeration}/>
+        }
 
-            if (isSMM1Empty && isSMM2Empty)
-                return null
-            return <div key={`${englishName} (sound effect sounds)`} className={`soundEffect-sounds-container ${isSMM1Empty || isSMM2Empty ? ` soundEffect-sounds-smm${isSMM1Empty ? 2 : 1}-only-container` : ''}`}>
-                {isSMM1Empty
-                    ? null
-                    : <div key={`${englishName} (sound effect sounds - SMM1&3DS)`} className="soundEffect-sounds-smm1-container">
-                        {sounds_standaloneSmm1.map(sound => <div key={`${englishName} (sound effect sound - SMM1&3DS - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm1-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                            <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
-                        </div>)}
-                    </div>}
-                {isSMM2Empty
-                    ? null
-                    : <div key={`${englishName} (sound effect sounds (SMM2))`} className="soundEffect-sounds-smm2-container">
-                        {sounds_smm2.map(sound => <div key={`${englishName} (sound effect sound - SMM2 - ${sound.key})`} className="soundEffect-sound-container soundEffect-sound-smm2-container col-12 col-lg-6 col-xl-4 col-xxl-3">
-                            <SimpleSoundComponent file={sound} title={`${englishName} (${sound.key})`}/>
-                        </div>)}
-                    </div>}
-            </div>
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
+        }
+
+    }()
+    public static readonly SOUNDS_IN_SMM1_AND_3DS_ONLY = new class GameStyleAppOption_SoundsInSMM1And3DSOnly extends SoundEffectAppOption {
+
+        protected override _createContentOption(enumeration: SoundEffects,) {
+            return <SMM1And3DSOnlySoundEffectSoundsComponent reference={enumeration}/>
+        }
+
+        protected override _createTableHeaderOption(): SingleHeaderContent {
+            return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
+        }
+
+    }()
+    public static readonly SOUNDS_IN_SMM2_ONLY = new class GameStyleAppOption_SoundsInSMM2Only extends SoundEffectAppOption {
+
+        protected override _createContentOption(enumeration: SoundEffects,) {
+            return <SMM2OnlySoundEffectSoundsComponent reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {

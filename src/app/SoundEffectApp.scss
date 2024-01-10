@@ -97,22 +97,9 @@
 
 //region -------------------- Sound effect sounds --------------------
 
-.soundEffect-sounds-smm1-container {
-  margin-bottom: var(--bs-spacer-md);
-  border-bottom: {
-    width: var(--bs-border-width-1);
-    color: var(--bs-gray-500);
-    style: solid;
-  };
+.soundEffect-sounds-container hr {
+  color: var(--bs-gray);
 }
-
-.soundEffect-sounds-smm1-only-container .soundEffect-sounds-smm1-container {
-  margin-bottom: inherit;
-  border-bottom: {
-    style: none;
-  };
-}
-
 
 .soundEffect-sounds-smm1-container, .soundEffect-sounds-smm2-container, {
   display: flex;
