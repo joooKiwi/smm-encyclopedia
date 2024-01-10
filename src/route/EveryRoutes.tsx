@@ -2,9 +2,9 @@ import type {Singleton}        from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
 import {lazy}                  from 'react'
 
-import type {ClassUsedInRoute}                                                                                                                                           from 'route/ClassUsedInRoute'
-import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleRouteName, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
-import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                       from 'route/EveryRoutes.companionEnumDeclaration'
+import type {ClassUsedInRoute}                                                                                                                                                                  from 'route/ClassUsedInRoute'
+import type {EveryPossibleRoutes, GameRouteCallback, Names, NothingRouteCallback, Ordinals, PossibleGamePath, PossibleGameStylePath, PossibleRouteName, PossibleViewDisplayPath, RouteCallback} from 'route/EveryRoutes.types'
+import type {CompanionEnumDeclaration_EveryRoutes}                                                                                                                                              from 'route/EveryRoutes.companionEnumDeclaration'
 
 import {CourseTagTypes}            from 'app/property/CourseTagTypes'
 import {LimitTypes}                from 'app/property/LimitTypes'
@@ -12,11 +12,14 @@ import {PowerUpPriorityTypes}      from 'app/property/PowerUpPriorityTypes'
 import {ThemeTypes}                from 'app/property/ThemeTypes'
 import {ViewDisplays}              from 'app/withInterpreter/ViewDisplays'
 import {Games}                     from 'core/game/Games'
+import {GameStyles}                from 'core/gameStyle/GameStyles'
 import {ProjectLanguages}          from 'lang/ProjectLanguages'
 import {SimpleRoute}               from 'route/SimpleRoute'
 import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
 import {GameCollection}            from 'util/collection/GameCollection'
+import {GameStyleCollection}       from 'util/collection/GameStyleCollection'
 import {ViewDisplayCollection}     from 'util/collection/ViewDisplayCollection'
+import {NullOr}                    from '@joookiwi/enumerable/dist/types/general type'
 
 //region -------------------- Dynamic imports --------------------
 
@@ -52,6 +55,7 @@ const SIMPLE_LIST_VIEW_DISPLAY = new ViewDisplayCollection([ViewDisplays.SIMPLE_
 const NOT_TABLE_VIEW_DISPLAY = new ViewDisplayCollection([ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST,],)
 const ALL_VIEW_DISPLAY = new ViewDisplayCollection(ViewDisplays.CompanionEnum.get.values,)
 
+
 const GamePossibilities = Games.GamePossibilitiesCompanion.get
 
 const SMM1_GAMES_ARRAY = GamePossibilities.SMM1_ONLY
@@ -62,12 +66,49 @@ const SMM3DS_AND_2_GAMES_ARRAY = GamePossibilities.SMM3DS_AND_2
 const SMM2_GAMES_ARRAY = GamePossibilities.SMM2_ONLY
 const ALL_GAMES_ARRAY = GamePossibilities.ALL_GAMES
 
-
 const NO_GAMES_COLLECTION = new GameCollection(EMPTY_ARRAY,)
 const SMM1_GAMES_COLLECTION = new GameCollection(SMM1_GAMES_ARRAY,)
 // const SMM3DS_GAMES_COLLECTION = new GameCollection(SMM3DS_GAMES_ARRAY,)
 const SMM2_GAMES_COLLECTION = new GameCollection(SMM2_GAMES_ARRAY,)
-const ALL_GAMES_COLLECTION = new GameCollection(Games.CompanionEnum.get.values,)
+const ALL_GAMES_COLLECTION = new GameCollection(ALL_GAMES_ARRAY,)
+
+
+const GameStylePossibilities = GameStyles.Possibilities.get
+
+const SMB = GameStylePossibilities.SMB_ONLY
+const SMB_SMB3 = GameStylePossibilities.SMB_AND_SMB3
+const SMB_SMB3_SMW = GameStylePossibilities.SMB_AND_SMB3_AND_SMW
+const SMB_SMB3_SMW_NSMBU = GameStylePossibilities.NOT_SM3DW
+const SMB_SMB3_SMW_SM3DW = GameStylePossibilities.NOT_NSMBU
+const SMB_SMB3_NSMBU = GameStylePossibilities.SMB_AND_SMB3_AND_NSMBU
+const SMB_SMB3_NSMBU_SM3DW = GameStylePossibilities.NOT_SMW
+const SMB_SMB3_SM3DW = GameStylePossibilities.SMB_AND_SMB3_AND_SM3DW
+const SMB_SMW = GameStylePossibilities.SMB_AND_SMW
+const SMB_SMW_NSMBU = GameStylePossibilities.SMB_AND_SMW_AND_NSMBU
+const SMB_SMW_NSMBU_SM3DW = GameStylePossibilities.NOT_SMB3
+const SMB_SMW_SM3DW = GameStylePossibilities.SMB_AND_SMW_AND_SM3DW
+const SMB_NSMBU = GameStylePossibilities.SMB_AND_NSMBU
+const SMB_NSMBU_SM3DW = GameStylePossibilities.SMB_AND_NSMBU_AND_SM3DW
+const SMB_SM3DW = GameStylePossibilities.SMB_AND_SM3DW
+const SMB3 = GameStylePossibilities.SMB3_ONLY
+const SMB3_SMW = GameStylePossibilities.SMB3_AND_SMW
+const SMB3_SMW_NSMBU = GameStylePossibilities.SMB3_AND_SMW_AND_NSMBU
+const SMB3_SMW_NSMBU_SM3DW = GameStylePossibilities.NOT_SMB
+const SMB3_SMW_SM3DW = GameStylePossibilities.SMB3_AND_SMW_AND_SM3DW
+const SMB3_NSMBU = GameStylePossibilities.SMB3_AND_NSMBU
+const SMB3_NSMBU_SM3DW = GameStylePossibilities.SMB3_AND_NSMBU_AND_SM3DW
+const SMB3_SM3DW = GameStylePossibilities.SMB3_AND_SM3DW
+const SMW = GameStylePossibilities.SMW_ONLY
+const SMW_NSMBU = GameStylePossibilities.SMW_AND_NSMBU
+const SMW_NSMBU_SM3DW = GameStylePossibilities.SMW_AND_NSMBU_AND_SM3DW
+const SMW_SM3DW = GameStylePossibilities.SMW_AND_SM3DW
+const NSMBU = GameStylePossibilities.NSMBU_ONLY
+const NSMBU_SM3DW = GameStylePossibilities.NSMBU_AND_SM3DW
+const SM3DW = GameStylePossibilities.SM3DW_ONLY
+const ALL_GAME_STYLES = GameStylePossibilities.ALL_GAME_STYLES
+
+const NO_GAME_STYLES_COLLECTION = new GameStyleCollection(EMPTY_ARRAY,)
+const ALL_GAME_STYLES_COLLECTION = new GameStyleCollection(ALL_GAME_STYLES,)
 
 //endregion -------------------- Helper constants --------------------
 
@@ -77,6 +118,7 @@ const ALL_GAMES_COLLECTION = new GameCollection(Games.CompanionEnum.get.values,)
  * @see SimpleRoute
  * @see ViewDisplays
  * @see Games
+ * @see GameStyles
  */
 export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string, const out SIMPLE_PATH extends string = string, >
     extends Enum<Ordinals, Names>
@@ -88,15 +130,19 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly Straight_EveryRoutes = class Straight_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, routeCallback: NothingRouteCallback,) {
-            super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES_COLLECTION, null, routeCallback,)
+            super(name, path, NO_VIEW_DISPLAY, null, NO_GAMES_COLLECTION, null, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
         protected override _createEveryRoutes(): readonly SimpleRoute[] {
-            return [new SimpleRoute(this.simpleName, this.simplePath, null, null, this.routeCallback,),]
+            return [new SimpleRoute(this.simpleName, this.simplePath, null, null, null, this.routeCallback,),]
         }
 
         protected override _getPartialPathFromGames() {
+            return EMPTY_STRING
+        }
+
+        protected override _getPartialPathFromGameStyles() {
             return EMPTY_STRING
         }
 
@@ -109,7 +155,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly EveryPath_EveryRoutes = class EveryPath_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
         protected override _createEveryRoutes(): readonly SimpleRoute[] {
@@ -118,29 +164,588 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=all)`,    `/game-all/list${simplePath}`,    ALL_GAMES_ARRAY,          ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1)`,      `/game-1/list${simplePath}`,      SMM1_GAMES_ARRAY,         ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=3DS)`,    `/game-3ds/list${simplePath}`,    SMM3DS_GAMES_ARRAY,       ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=2)`,      `/game-2/list${simplePath}`,      SMM2_GAMES_ARRAY,         ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1&3DS)`,  `/game-1,3ds/list${simplePath}`,  SMM1_AND_3DS_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1&2)`,    `/game-1,2/list${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=3DS&2)`,  `/game-3ds,2/list${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all)`,    `/game-all/list${simplePath}`,    ALL_GAMES_ARRAY,          null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1)`,      `/game-1/list${simplePath}`,      SMM1_GAMES_ARRAY,         null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS)`,    `/game-3ds/list${simplePath}`,    SMM3DS_GAMES_ARRAY,       null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2)`,      `/game-2/list${simplePath}`,      SMM2_GAMES_ARRAY,         null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS)`,  `/game-1,3ds/list${simplePath}`,  SMM1_AND_3DS_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2)`,    `/game-1,2/list${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2)`,  `/game-3ds,2/list${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
 
-                new SimpleRoute(`${simpleName} (card Game=all)`,    `/game-all/card${simplePath}`,    ALL_GAMES_ARRAY,          ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1)`,      `/game-1/card${simplePath}`,      SMM1_GAMES_ARRAY,         ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=3DS)`,    `/game-3ds/card${simplePath}`,    SMM3DS_GAMES_ARRAY,       ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=2)`,      `/game-2/card${simplePath}`,      SMM2_GAMES_ARRAY,         ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1&3DS)`,  `/game-1,3ds/card${simplePath}`,  SMM1_AND_3DS_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1&2)`,    `/game-1,2/card${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=3DS&2)`,  `/game-3ds,2/card${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all)`,    `/game-all/card${simplePath}`,    ALL_GAMES_ARRAY,          null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1)`,      `/game-1/card${simplePath}`,      SMM1_GAMES_ARRAY,         null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS)`,    `/game-3ds/card${simplePath}`,    SMM3DS_GAMES_ARRAY,       null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2)`,      `/game-2/card${simplePath}`,      SMM2_GAMES_ARRAY,         null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS)`,  `/game-1,3ds/card${simplePath}`,  SMM1_AND_3DS_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2)`,    `/game-1,2/card${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2)`,  `/game-3ds,2/card${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
 
-                new SimpleRoute(`${simpleName} (table Game=all)`,   `/game-all/table${simplePath}`,   ALL_GAMES_ARRAY,          ViewDisplays.TABLE,       routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1)`,     `/game-1/table${simplePath}`,     SMM1_GAMES_ARRAY,         ViewDisplays.TABLE,       routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=3DS)`,   `/game-3ds/table${simplePath}`,   SMM3DS_GAMES_ARRAY,       ViewDisplays.TABLE,       routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=2)`,     `/game-2/table${simplePath}`,     SMM2_GAMES_ARRAY,         ViewDisplays.TABLE,       routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1&3DS)`, `/game-1,3ds/table${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, ViewDisplays.TABLE,       routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1&2)`,   `/game-1,2/table${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   ViewDisplays.TABLE,       routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=3DS&2)`, `/game-3ds,2/table${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all)`,   `/game-all/table${simplePath}`,   ALL_GAMES_ARRAY,          null, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1)`,     `/game-1/table${simplePath}`,     SMM1_GAMES_ARRAY,         null, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS)`,   `/game-3ds/table${simplePath}`,   SMM3DS_GAMES_ARRAY,       null, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2)`,     `/game-2/table${simplePath}`,     SMM2_GAMES_ARRAY,         null, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS)`, `/game-1,3ds/table${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, null, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2)`,   `/game-1,2/table${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   null, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2)`, `/game-3ds,2/table${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, null, ViewDisplays.TABLE,       routeCallback,),
+            ]
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
+        }
+
+    }
+    /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection} and {@link GameStyleCollection}) */
+    private static readonly EveryPath_EveryRoutesWithGameStyle = class EveryPath_EveryRoutesWithGameStyle<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+
+        constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, routeCallback,)
+        }
+
+        protected override _createEveryRoutes(): readonly SimpleRoute[] {
+            const simpleName = this.simpleName
+            const simplePath = this.simplePath
+            const routeCallback = this.routeCallback
+
+            return [
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=all)`,          `/game-all/game-style-all/list${simplePath}`,          ALL_GAMES_ARRAY,          ALL_GAME_STYLES,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1)`,            `/game-all/game-style-1/list${simplePath}`,            ALL_GAMES_ARRAY,          SMB,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3)`,            `/game-all/game-style-3/list${simplePath}`,            ALL_GAMES_ARRAY,          SMB3,                 ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=W)`,            `/game-all/game-style-w/list${simplePath}`,            ALL_GAMES_ARRAY,          SMW,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=U)`,            `/game-all/game-style-u/list${simplePath}`,            ALL_GAMES_ARRAY,          NSMBU,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3DW)`,          `/game-all/game-style-3dw/list${simplePath}`,          ALL_GAMES_ARRAY,          SM3DW,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3)`,          `/game-all/game-style-1,3/list${simplePath}`,          ALL_GAMES_ARRAY,          SMB_SMB3,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&W)`,          `/game-all/game-style-1,w/list${simplePath}`,          ALL_GAMES_ARRAY,          SMB_SMW,              ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&U)`,          `/game-all/game-style-1,u/list${simplePath}`,          ALL_GAMES_ARRAY,          SMB_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3DW)`,        `/game-all/game-style-1,3dw/list${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3&W)`,          `/game-all/game-style-3,w/list${simplePath}`,          ALL_GAMES_ARRAY,          SMB3_SMW,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3&U)`,          `/game-all/game-style-3,u/list${simplePath}`,          ALL_GAMES_ARRAY,          SMB3_NSMBU,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3&3DW)`,        `/game-all/game-style-3,3dw/list${simplePath}`,        ALL_GAMES_ARRAY,          SMB3_SM3DW,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=W&U)`,          `/game-all/game-style-w,u/list${simplePath}`,          ALL_GAMES_ARRAY,          SMW_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=W&3DW)`,        `/game-all/game-style-w,3dw/list${simplePath}`,        ALL_GAMES_ARRAY,          SMW_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=U&3DW)`,        `/game-all/game-style-u,3dw/list${simplePath}`,        ALL_GAMES_ARRAY,          NSMBU_SM3DW,          ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3&W)`,        `/game-all/game-style-1,3,w/list${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SMB3_SMW,         ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3&U)`,        `/game-all/game-style-1,3,u/list${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SMB3_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3&3DW)`,      `/game-all/game-style-1,3,3dw/list${simplePath}`,      ALL_GAMES_ARRAY,          SMB_SMB3_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&W&U)`,        `/game-all/game-style-1,w,u/list${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SMW_NSMBU,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&W&3DW)`,      `/game-all/game-style-1,w,3dw/list${simplePath}`,      ALL_GAMES_ARRAY,          SMB_SMW_SM3DW,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&U&3DW)`,      `/game-all/game-style-1,u,3dw/list${simplePath}`,      ALL_GAMES_ARRAY,          SMB_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3&W&U)`,        `/game-all/game-style-3,w,u/list${simplePath}`,        ALL_GAMES_ARRAY,          SMB3_SMW_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3&W&3DW)`,      `/game-all/game-style-3,w,3dw/list${simplePath}`,      ALL_GAMES_ARRAY,          SMB3_SMW_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3&U&3DW)`,      `/game-all/game-style-3,u,3dw/list${simplePath}`,      ALL_GAMES_ARRAY,          SMB3_NSMBU_SM3DW,     ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=W&U&3DW)`,      `/game-all/game-style-w,u,3dw/list${simplePath}`,      ALL_GAMES_ARRAY,          SMW_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3&W&U)`,      `/game-all/game-style-1,3,w,u/list${simplePath}`,      ALL_GAMES_ARRAY,          SMB_SMB3_SMW_NSMBU,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3&W&3DW)`,    `/game-all/game-style-1,3,w,3dw/list${simplePath}`,    ALL_GAMES_ARRAY,          SMB_SMB3_SMW_SM3DW,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&3&U&3DW)`,    `/game-all/game-style-1,3,u,3dw/list${simplePath}`,    ALL_GAMES_ARRAY,          SMB_SMB3_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=1&W&U&3DW)`,    `/game-all/game-style-1,w,u,3dw/list${simplePath}`,    ALL_GAMES_ARRAY,          SMB_SMW_NSMBU_SM3DW,  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all GameStyle=3&W&U&3DW)`,    `/game-all/game-style-3,w,u,3dw/list${simplePath}`,    ALL_GAMES_ARRAY,          SMB3_SMW_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=all)`,            `/game-1/game-style-all/list${simplePath}`,            SMM1_GAMES_ARRAY,         ALL_GAME_STYLES,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1)`,              `/game-1/game-style-1/list${simplePath}`,              SMM1_GAMES_ARRAY,         SMB,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=3)`,              `/game-1/game-style-3/list${simplePath}`,              SMM1_GAMES_ARRAY,         SMB3,                 ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=W)`,              `/game-1/game-style-w/list${simplePath}`,              SMM1_GAMES_ARRAY,         SMW,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=U)`,              `/game-1/game-style-u/list${simplePath}`,              SMM1_GAMES_ARRAY,         NSMBU,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1&3)`,            `/game-1/game-style-1,3/list${simplePath}`,            SMM1_GAMES_ARRAY,         SMB_SMB3,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1&W)`,            `/game-1/game-style-1,w/list${simplePath}`,            SMM1_GAMES_ARRAY,         SMB_SMW,              ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1&U)`,            `/game-1/game-style-1,u/list${simplePath}`,            SMM1_GAMES_ARRAY,         SMB_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=3&W)`,            `/game-1/game-style-3,w/list${simplePath}`,            SMM1_GAMES_ARRAY,         SMB3_SMW,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=3&U)`,            `/game-1/game-style-3,u/list${simplePath}`,            SMM1_GAMES_ARRAY,         SMB3_NSMBU,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=W&U)`,            `/game-1/game-style-w,u/list${simplePath}`,            SMM1_GAMES_ARRAY,         SMW_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1&3&W)`,          `/game-1/game-style-1,3,w/list${simplePath}`,          SMM1_GAMES_ARRAY,         SMB_SMB3_SMW,         ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1&3&U)`,          `/game-1/game-style-1,3,u/list${simplePath}`,          SMM1_GAMES_ARRAY,         SMB_SMB3_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1&W&U)`,          `/game-1/game-style-1,w,u/list${simplePath}`,          SMM1_GAMES_ARRAY,         SMB_SMW_NSMBU,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=3&W&U)`,          `/game-1/game-style-3,w,u/list${simplePath}`,          SMM1_GAMES_ARRAY,         SMB3_SMW_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1 GameStyle=1&3&W&U)`,        `/game-1/game-style-1,3,w,u/list${simplePath}`,        SMM1_GAMES_ARRAY,         SMB_SMB3_SMW_NSMBU,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=all)`,          `/game-3ds/game-style-all/list${simplePath}`,          SMM3DS_GAMES_ARRAY,       ALL_GAME_STYLES,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1)`,            `/game-3ds/game-style-1/list${simplePath}`,            SMM3DS_GAMES_ARRAY,       SMB,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=3)`,            `/game-3ds/game-style-3/list${simplePath}`,            SMM3DS_GAMES_ARRAY,       SMB3,                 ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=W)`,            `/game-3ds/game-style-w/list${simplePath}`,            SMM3DS_GAMES_ARRAY,       SMW,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=U)`,            `/game-3ds/game-style-u/list${simplePath}`,            SMM3DS_GAMES_ARRAY,       NSMBU,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1&3)`,          `/game-3ds/game-style-1,3/list${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB_SMB3,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1&W)`,          `/game-3ds/game-style-1,w/list${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB_SMW,              ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1&U)`,          `/game-3ds/game-style-1,u/list${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=3&W)`,          `/game-3ds/game-style-3,w/list${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB3_SMW,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=3&U)`,          `/game-3ds/game-style-3,u/list${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB3_NSMBU,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=W&U)`,          `/game-3ds/game-style-w,u/list${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMW_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1&3&W)`,        `/game-3ds/game-style-1,3,w/list${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB_SMB3_SMW,         ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1&3&U)`,        `/game-3ds/game-style-1,3,u/list${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB_SMB3_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1&W&U)`,        `/game-3ds/game-style-1,w,u/list${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB_SMW_NSMBU,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=3&W&U)`,        `/game-3ds/game-style-3,w,u/list${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB3_SMW_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS GameStyle=1&3&W&U)`,      `/game-3ds/game-style-1,3,w,u/list${simplePath}`,      SMM3DS_GAMES_ARRAY,       SMB_SMB3_SMW_NSMBU,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=all)`,            `/game-2/game-style-all/list${simplePath}`,            SMM2_GAMES_ARRAY,         ALL_GAME_STYLES,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1)`,              `/game-2/game-style-1/list${simplePath}`,              SMM2_GAMES_ARRAY,         SMB,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3)`,              `/game-2/game-style-3/list${simplePath}`,              SMM2_GAMES_ARRAY,         SMB3,                 ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=W)`,              `/game-2/game-style-w/list${simplePath}`,              SMM2_GAMES_ARRAY,         SMW,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=U)`,              `/game-2/game-style-u/list${simplePath}`,              SMM2_GAMES_ARRAY,         NSMBU,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3DW)`,            `/game-2/game-style-3dw/list${simplePath}`,            SMM2_GAMES_ARRAY,         SM3DW,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3)`,            `/game-2/game-style-1,3/list${simplePath}`,            SMM2_GAMES_ARRAY,         SMB_SMB3,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&W)`,            `/game-2/game-style-1,w/list${simplePath}`,            SMM2_GAMES_ARRAY,         SMB_SMW,              ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&U)`,            `/game-2/game-style-1,u/list${simplePath}`,            SMM2_GAMES_ARRAY,         SMB_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3DW)`,          `/game-2/game-style-1,3dw/list${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3&W)`,            `/game-2/game-style-3,w/list${simplePath}`,            SMM2_GAMES_ARRAY,         SMB3_SMW,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3&U)`,            `/game-2/game-style-3,u/list${simplePath}`,            SMM2_GAMES_ARRAY,         SMB3_NSMBU,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3&3DW)`,          `/game-2/game-style-3,3dw/list${simplePath}`,          SMM2_GAMES_ARRAY,         SMB3_SM3DW,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=W&U)`,            `/game-2/game-style-w,u/list${simplePath}`,            SMM2_GAMES_ARRAY,         SMW_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=W&3DW)`,          `/game-2/game-style-w,3dw/list${simplePath}`,          SMM2_GAMES_ARRAY,         SMW_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=U&3DW)`,          `/game-2/game-style-u,3dw/list${simplePath}`,          SMM2_GAMES_ARRAY,         NSMBU_SM3DW,          ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3&W)`,          `/game-2/game-style-1,3,w/list${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SMB3_SMW,         ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3&U)`,          `/game-2/game-style-1,3,u/list${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SMB3_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3&3DW)`,        `/game-2/game-style-1,3,3dw/list${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_SMB3_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&W&U)`,          `/game-2/game-style-1,w,u/list${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SMW_NSMBU,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&W&3DW)`,        `/game-2/game-style-1,w,3dw/list${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_SMW_SM3DW,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&U&3DW)`,        `/game-2/game-style-1,u,3dw/list${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3&W&U)`,          `/game-2/game-style-3,w,u/list${simplePath}`,          SMM2_GAMES_ARRAY,         SMB3_SMW_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3&W&3DW)`,        `/game-2/game-style-3,w,3dw/list${simplePath}`,        SMM2_GAMES_ARRAY,         SMB3_SMW_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3&U&3DW)`,        `/game-2/game-style-3,u,3dw/list${simplePath}`,        SMM2_GAMES_ARRAY,         SMB3_NSMBU_SM3DW,     ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=W&U&3DW)`,        `/game-2/game-style-w,u,3dw/list${simplePath}`,        SMM2_GAMES_ARRAY,         SMW_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3&W&U)`,        `/game-2/game-style-1,3,w,u/list${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_SMB3_SMW_NSMBU,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3&W&3DW)`,      `/game-2/game-style-1,3,w,3dw/list${simplePath}`,      SMM2_GAMES_ARRAY,         SMB_SMB3_SMW_SM3DW,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&3&U&3DW)`,      `/game-2/game-style-1,3,u,3dw/list${simplePath}`,      SMM2_GAMES_ARRAY,         SMB_SMB3_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=1&W&U&3DW)`,      `/game-2/game-style-1,w,u,3dw/list${simplePath}`,      SMM2_GAMES_ARRAY,         SMB_SMW_NSMBU_SM3DW,  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2 GameStyle=3&W&U&3DW)`,      `/game-2/game-style-3,w,u,3dw/list${simplePath}`,      SMM2_GAMES_ARRAY,         SMB3_SMW_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=all)`,        `/game-1,3ds/game-style-all/list${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, ALL_GAME_STYLES,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1)`,          `/game-1,3ds/game-style-1/list${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, SMB,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=3)`,          `/game-1,3ds/game-style-3/list${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, SMB3,                 ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=W)`,          `/game-1,3ds/game-style-w/list${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, SMW,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=U)`,          `/game-1,3ds/game-style-u/list${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, NSMBU,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1&3)`,        `/game-1,3ds/game-style-1,3/list${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1&W)`,        `/game-1,3ds/game-style-1,w/list${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB_SMW,              ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1&U)`,        `/game-1,3ds/game-style-1,u/list${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=3&W)`,        `/game-1,3ds/game-style-3,w/list${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB3_SMW,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=3&U)`,        `/game-1,3ds/game-style-3,u/list${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB3_NSMBU,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=W&U)`,        `/game-1,3ds/game-style-w,u/list${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMW_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1&3&W)`,      `/game-1,3ds/game-style-1,3,w/list${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_SMW,         ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1&3&U)`,      `/game-1,3ds/game-style-1,3,u/list${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1&W&U)`,      `/game-1,3ds/game-style-1,w,u/list${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB_SMW_NSMBU,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=3&W&U)`,      `/game-1,3ds/game-style-3,w,u/list${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB3_SMW_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS GameStyle=1&3&W&U)`,    `/game-1,3ds/game-style-1,3,w,u/list${simplePath}`,    SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_SMW_NSMBU,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=all)`,          `/game-1,2/game-style-all/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   ALL_GAME_STYLES,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1)`,            `/game-1,2/game-style-1/list${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   SMB,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3)`,            `/game-1,2/game-style-3/list${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   SMB3,                 ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=W)`,            `/game-1,2/game-style-w/list${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   SMW,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=U)`,            `/game-1,2/game-style-u/list${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   NSMBU,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3DW)`,          `/game-1,2/game-style-3dw/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SM3DW,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3)`,          `/game-1,2/game-style-1,3/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&W)`,          `/game-1,2/game-style-1,w/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB_SMW,              ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&U)`,          `/game-1,2/game-style-1,u/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3DW)`,        `/game-1,2/game-style-1,3dw/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3&W)`,          `/game-1,2/game-style-3,w/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3&U)`,          `/game-1,2/game-style-3,u/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB3_NSMBU,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3&3DW)`,        `/game-1,2/game-style-3,3dw/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB3_SM3DW,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=W&U)`,          `/game-1,2/game-style-w,u/list${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMW_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=W&3DW)`,        `/game-1,2/game-style-w,3dw/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMW_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=U&3DW)`,        `/game-1,2/game-style-u,3dw/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   NSMBU_SM3DW,          ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3&W)`,        `/game-1,2/game-style-1,3,w/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW,         ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3&U)`,        `/game-1,2/game-style-1,3,u/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3&3DW)`,      `/game-1,2/game-style-1,3,3dw/list${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&W&U)`,        `/game-1,2/game-style-1,w,u/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_NSMBU,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&W&3DW)`,      `/game-1,2/game-style-1,w,3dw/list${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_SM3DW,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&U&3DW)`,      `/game-1,2/game-style-1,u,3dw/list${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3&W&U)`,        `/game-1,2/game-style-3,w,u/list${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3&W&3DW)`,      `/game-1,2/game-style-3,w,3dw/list${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3&U&3DW)`,      `/game-1,2/game-style-3,u,3dw/list${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB3_NSMBU_SM3DW,     ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=W&U&3DW)`,      `/game-1,2/game-style-w,u,3dw/list${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMW_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3&W&U)`,      `/game-1,2/game-style-1,3,w,u/list${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW_NSMBU,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3&W&3DW)`,    `/game-1,2/game-style-1,3,w,3dw/list${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW_SM3DW,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&3&U&3DW)`,    `/game-1,2/game-style-1,3,u,3dw/list${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=1&W&U&3DW)`,    `/game-1,2/game-style-1,w,u,3dw/list${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_NSMBU_SM3DW,  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2 GameStyle=3&W&U&3DW)`,    `/game-1,2/game-style-3,w,u,3dw/list${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=all)`,        `/game-3ds,2/game-style-all/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, ALL_GAME_STYLES,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1)`,          `/game-3ds,2/game-style-1/list${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, SMB,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3)`,          `/game-3ds,2/game-style-3/list${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, SMB3,                 ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=W)`,          `/game-3ds,2/game-style-w/list${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, SMW,                  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=U)`,          `/game-3ds,2/game-style-u/list${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, NSMBU,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3DW)`,        `/game-3ds,2/game-style-3dw/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SM3DW,                ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3)`,        `/game-3ds,2/game-style-1,3/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&W)`,        `/game-3ds,2/game-style-1,w/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW,              ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&U)`,        `/game-3ds,2/game-style-1,u/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3DW)`,      `/game-3ds,2/game-style-1,3dw/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3&W)`,        `/game-3ds,2/game-style-3,w/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW,             ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3&U)`,        `/game-3ds,2/game-style-3,u/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB3_NSMBU,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3&3DW)`,      `/game-3ds,2/game-style-3,3dw/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB3_SM3DW,           ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=W&U)`,        `/game-3ds,2/game-style-w,u/list${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMW_NSMBU,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=W&3DW)`,      `/game-3ds,2/game-style-w,3dw/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMW_SM3DW,            ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=U&3DW)`,      `/game-3ds,2/game-style-u,3dw/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, NSMBU_SM3DW,          ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3&W)`,      `/game-3ds,2/game-style-1,3,w/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW,         ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3&U)`,      `/game-3ds,2/game-style-1,3,u/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3&3DW)`,    `/game-3ds,2/game-style-1,3,3dw/list${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&W&U)`,      `/game-3ds,2/game-style-1,w,u/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_NSMBU,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&W&3DW)`,    `/game-3ds,2/game-style-1,w,3dw/list${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_SM3DW,        ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&U&3DW)`,    `/game-3ds,2/game-style-1,u,3dw/list${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3&W&U)`,      `/game-3ds,2/game-style-3,w,u/list${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_NSMBU,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3&W&3DW)`,    `/game-3ds,2/game-style-3,w,3dw/list${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_SM3DW,       ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3&U&3DW)`,    `/game-3ds,2/game-style-3,u,3dw/list${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB3_NSMBU_SM3DW,     ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=W&U&3DW)`,    `/game-3ds,2/game-style-w,u,3dw/list${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMW_NSMBU_SM3DW,      ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3&W&U)`,    `/game-3ds,2/game-style-1,3,w,u/list${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW_NSMBU,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3&W&3DW)`,  `/game-3ds,2/game-style-1,3,w,3dw/list${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW_SM3DW,   ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&3&U&3DW)`,  `/game-3ds,2/game-style-1,3,u,3dw/list${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=1&W&U&3DW)`,  `/game-3ds,2/game-style-1,w,u,3dw/list${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_NSMBU_SM3DW,  ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2 GameStyle=3&W&U&3DW)`,  `/game-3ds,2/game-style-3,w,u,3dw/list${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_NSMBU_SM3DW, ViewDisplays.SIMPLE_LIST, routeCallback,),
+
+
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=all)`,          `/game-all/game-style-all/card${simplePath}`,          ALL_GAMES_ARRAY,          ALL_GAME_STYLES,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1)`,            `/game-all/game-style-1/card${simplePath}`,            ALL_GAMES_ARRAY,          SMB,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3)`,            `/game-all/game-style-3/card${simplePath}`,            ALL_GAMES_ARRAY,          SMB3,                 ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=W)`,            `/game-all/game-style-w/card${simplePath}`,            ALL_GAMES_ARRAY,          SMW,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=U)`,            `/game-all/game-style-u/card${simplePath}`,            ALL_GAMES_ARRAY,          NSMBU,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3DW)`,          `/game-all/game-style-3dw/card${simplePath}`,          ALL_GAMES_ARRAY,          SM3DW,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3)`,          `/game-all/game-style-1,3/card${simplePath}`,          ALL_GAMES_ARRAY,          SMB_SMB3,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&W)`,          `/game-all/game-style-1,w/card${simplePath}`,          ALL_GAMES_ARRAY,          SMB_SMW,              ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&U)`,          `/game-all/game-style-1,u/card${simplePath}`,          ALL_GAMES_ARRAY,          SMB_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3DW)`,        `/game-all/game-style-1,3dw/card${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3&W)`,          `/game-all/game-style-3,w/card${simplePath}`,          ALL_GAMES_ARRAY,          SMB3_SMW,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3&U)`,          `/game-all/game-style-3,u/card${simplePath}`,          ALL_GAMES_ARRAY,          SMB3_NSMBU,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3&3DW)`,        `/game-all/game-style-3,3dw/card${simplePath}`,        ALL_GAMES_ARRAY,          SMB3_SM3DW,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=W&U)`,          `/game-all/game-style-w,u/card${simplePath}`,          ALL_GAMES_ARRAY,          SMW_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=W&3DW)`,        `/game-all/game-style-w,3dw/card${simplePath}`,        ALL_GAMES_ARRAY,          SMW_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=U&3DW)`,        `/game-all/game-style-u,3dw/card${simplePath}`,        ALL_GAMES_ARRAY,          NSMBU_SM3DW,          ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3&W)`,        `/game-all/game-style-1,3,w/card${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SMB3_SMW,         ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3&U)`,        `/game-all/game-style-1,3,u/card${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SMB3_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3&3DW)`,      `/game-all/game-style-1,3,3dw/card${simplePath}`,      ALL_GAMES_ARRAY,          SMB_SMB3_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&W&U)`,        `/game-all/game-style-1,w,u/card${simplePath}`,        ALL_GAMES_ARRAY,          SMB_SMW_NSMBU,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&W&3DW)`,      `/game-all/game-style-1,w,3dw/card${simplePath}`,      ALL_GAMES_ARRAY,          SMB_SMW_SM3DW,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&U&3DW)`,      `/game-all/game-style-1,u,3dw/card${simplePath}`,      ALL_GAMES_ARRAY,          SMB_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3&W&U)`,        `/game-all/game-style-3,w,u/card${simplePath}`,        ALL_GAMES_ARRAY,          SMB3_SMW_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3&W&3DW)`,      `/game-all/game-style-3,w,3dw/card${simplePath}`,      ALL_GAMES_ARRAY,          SMB3_SMW_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3&U&3DW)`,      `/game-all/game-style-3,u,3dw/card${simplePath}`,      ALL_GAMES_ARRAY,          SMB3_NSMBU_SM3DW,     ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=W&U&3DW)`,      `/game-all/game-style-w,u,3dw/card${simplePath}`,      ALL_GAMES_ARRAY,          SMW_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3&W&U)`,      `/game-all/game-style-1,3,w,u/card${simplePath}`,      ALL_GAMES_ARRAY,          SMB_SMB3_SMW_NSMBU,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3&W&3DW)`,    `/game-all/game-style-1,3,w,3dw/card${simplePath}`,    ALL_GAMES_ARRAY,          SMB_SMB3_SMW_SM3DW,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&3&U&3DW)`,    `/game-all/game-style-1,3,u,3dw/card${simplePath}`,    ALL_GAMES_ARRAY,          SMB_SMB3_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=1&W&U&3DW)`,    `/game-all/game-style-1,w,u,3dw/card${simplePath}`,    ALL_GAMES_ARRAY,          SMB_SMW_NSMBU_SM3DW,  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all GameStyle=3&W&U&3DW)`,    `/game-all/game-style-3,w,u,3dw/card${simplePath}`,    ALL_GAMES_ARRAY,          SMB3_SMW_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=all)`,            `/game-1/game-style-all/card${simplePath}`,            SMM1_GAMES_ARRAY,         ALL_GAME_STYLES,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1)`,              `/game-1/game-style-1/card${simplePath}`,              SMM1_GAMES_ARRAY,         SMB,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=3)`,              `/game-1/game-style-3/card${simplePath}`,              SMM1_GAMES_ARRAY,         SMB3,                 ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=W)`,              `/game-1/game-style-w/card${simplePath}`,              SMM1_GAMES_ARRAY,         SMW,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=U)`,              `/game-1/game-style-u/card${simplePath}`,              SMM1_GAMES_ARRAY,         NSMBU,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1&3)`,            `/game-1/game-style-1,3/card${simplePath}`,            SMM1_GAMES_ARRAY,         SMB_SMB3,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1&W)`,            `/game-1/game-style-1,w/card${simplePath}`,            SMM1_GAMES_ARRAY,         SMB_SMW,              ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1&U)`,            `/game-1/game-style-1,u/card${simplePath}`,            SMM1_GAMES_ARRAY,         SMB_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=3&W)`,            `/game-1/game-style-3,w/card${simplePath}`,            SMM1_GAMES_ARRAY,         SMB3_SMW,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=3&U)`,            `/game-1/game-style-3,u/card${simplePath}`,            SMM1_GAMES_ARRAY,         SMB3_NSMBU,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=W&U)`,            `/game-1/game-style-w,u/card${simplePath}`,            SMM1_GAMES_ARRAY,         SMW_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1&3&W)`,          `/game-1/game-style-1,3,w/card${simplePath}`,          SMM1_GAMES_ARRAY,         SMB_SMB3_SMW,         ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1&3&U)`,          `/game-1/game-style-1,3,u/card${simplePath}`,          SMM1_GAMES_ARRAY,         SMB_SMB3_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1&W&U)`,          `/game-1/game-style-1,w,u/card${simplePath}`,          SMM1_GAMES_ARRAY,         SMB_SMW_NSMBU,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=3&W&U)`,          `/game-1/game-style-3,w,u/card${simplePath}`,          SMM1_GAMES_ARRAY,         SMB3_SMW_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1 GameStyle=1&3&W&U)`,        `/game-1/game-style-1,3,w,u/card${simplePath}`,        SMM1_GAMES_ARRAY,         SMB_SMB3_SMW_NSMBU,   ViewDisplays.CARD_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=all)`,          `/game-3ds/game-style-all/card${simplePath}`,          SMM3DS_GAMES_ARRAY,       ALL_GAME_STYLES,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1)`,            `/game-3ds/game-style-1/card${simplePath}`,            SMM3DS_GAMES_ARRAY,       SMB,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=3)`,            `/game-3ds/game-style-3/card${simplePath}`,            SMM3DS_GAMES_ARRAY,       SMB3,                 ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=W)`,            `/game-3ds/game-style-w/card${simplePath}`,            SMM3DS_GAMES_ARRAY,       SMW,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=U)`,            `/game-3ds/game-style-u/card${simplePath}`,            SMM3DS_GAMES_ARRAY,       NSMBU,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1&3)`,          `/game-3ds/game-style-1,3/card${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB_SMB3,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1&W)`,          `/game-3ds/game-style-1,w/card${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB_SMW,              ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1&U)`,          `/game-3ds/game-style-1,u/card${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=3&W)`,          `/game-3ds/game-style-3,w/card${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB3_SMW,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=3&U)`,          `/game-3ds/game-style-3,u/card${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMB3_NSMBU,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=W&U)`,          `/game-3ds/game-style-w,u/card${simplePath}`,          SMM3DS_GAMES_ARRAY,       SMW_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1&3&W)`,        `/game-3ds/game-style-1,3,w/card${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB_SMB3_SMW,         ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1&3&U)`,        `/game-3ds/game-style-1,3,u/card${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB_SMB3_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1&W&U)`,        `/game-3ds/game-style-1,w,u/card${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB_SMW_NSMBU,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=3&W&U)`,        `/game-3ds/game-style-3,w,u/card${simplePath}`,        SMM3DS_GAMES_ARRAY,       SMB3_SMW_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS GameStyle=1&3&W&U)`,      `/game-3ds/game-style-1,3,w,u/card${simplePath}`,      SMM3DS_GAMES_ARRAY,       SMB_SMB3_SMW_NSMBU,   ViewDisplays.CARD_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=all)`,            `/game-2/game-style-all/card${simplePath}`,            SMM2_GAMES_ARRAY,         ALL_GAME_STYLES,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1)`,              `/game-2/game-style-1/card${simplePath}`,              SMM2_GAMES_ARRAY,         SMB,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3)`,              `/game-2/game-style-3/card${simplePath}`,              SMM2_GAMES_ARRAY,         SMB3,                 ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=W)`,              `/game-2/game-style-w/card${simplePath}`,              SMM2_GAMES_ARRAY,         SMW,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=U)`,              `/game-2/game-style-u/card${simplePath}`,              SMM2_GAMES_ARRAY,         NSMBU,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3DW)`,            `/game-2/game-style-3dw/card${simplePath}`,            SMM2_GAMES_ARRAY,         SM3DW,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3)`,            `/game-2/game-style-1,3/card${simplePath}`,            SMM2_GAMES_ARRAY,         SMB_SMB3,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&W)`,            `/game-2/game-style-1,w/card${simplePath}`,            SMM2_GAMES_ARRAY,         SMB_SMW,              ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&U)`,            `/game-2/game-style-1,u/card${simplePath}`,            SMM2_GAMES_ARRAY,         SMB_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3DW)`,          `/game-2/game-style-1,3dw/card${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3&W)`,            `/game-2/game-style-3,w/card${simplePath}`,            SMM2_GAMES_ARRAY,         SMB3_SMW,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3&U)`,            `/game-2/game-style-3,u/card${simplePath}`,            SMM2_GAMES_ARRAY,         SMB3_NSMBU,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3&3DW)`,          `/game-2/game-style-3,3dw/card${simplePath}`,          SMM2_GAMES_ARRAY,         SMB3_SM3DW,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=W&U)`,            `/game-2/game-style-w,u/card${simplePath}`,            SMM2_GAMES_ARRAY,         SMW_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=W&3DW)`,          `/game-2/game-style-w,3dw/card${simplePath}`,          SMM2_GAMES_ARRAY,         SMW_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=U&3DW)`,          `/game-2/game-style-u,3dw/card${simplePath}`,          SMM2_GAMES_ARRAY,         NSMBU_SM3DW,          ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3&W)`,          `/game-2/game-style-1,3,w/card${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SMB3_SMW,         ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3&U)`,          `/game-2/game-style-1,3,u/card${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SMB3_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3&3DW)`,        `/game-2/game-style-1,3,3dw/card${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_SMB3_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&W&U)`,          `/game-2/game-style-1,w,u/card${simplePath}`,          SMM2_GAMES_ARRAY,         SMB_SMW_NSMBU,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&W&3DW)`,        `/game-2/game-style-1,w,3dw/card${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_SMW_SM3DW,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&U&3DW)`,        `/game-2/game-style-1,u,3dw/card${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3&W&U)`,          `/game-2/game-style-3,w,u/card${simplePath}`,          SMM2_GAMES_ARRAY,         SMB3_SMW_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3&W&3DW)`,        `/game-2/game-style-3,w,3dw/card${simplePath}`,        SMM2_GAMES_ARRAY,         SMB3_SMW_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3&U&3DW)`,        `/game-2/game-style-3,u,3dw/card${simplePath}`,        SMM2_GAMES_ARRAY,         SMB3_NSMBU_SM3DW,     ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=W&U&3DW)`,        `/game-2/game-style-w,u,3dw/card${simplePath}`,        SMM2_GAMES_ARRAY,         SMW_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3&W&U)`,        `/game-2/game-style-1,3,w,u/card${simplePath}`,        SMM2_GAMES_ARRAY,         SMB_SMB3_SMW_NSMBU,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3&W&3DW)`,      `/game-2/game-style-1,3,w,3dw/card${simplePath}`,      SMM2_GAMES_ARRAY,         SMB_SMB3_SMW_SM3DW,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&3&U&3DW)`,      `/game-2/game-style-1,3,u,3dw/card${simplePath}`,      SMM2_GAMES_ARRAY,         SMB_SMB3_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=1&W&U&3DW)`,      `/game-2/game-style-1,w,u,3dw/card${simplePath}`,      SMM2_GAMES_ARRAY,         SMB_SMW_NSMBU_SM3DW,  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2 GameStyle=3&W&U&3DW)`,      `/game-2/game-style-3,w,u,3dw/card${simplePath}`,      SMM2_GAMES_ARRAY,         SMB3_SMW_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=all)`,        `/game-1,3ds/game-style-all/card${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, ALL_GAME_STYLES,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1)`,          `/game-1,3ds/game-style-1/card${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, SMB,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=3)`,          `/game-1,3ds/game-style-3/card${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, SMB3,                 ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=W)`,          `/game-1,3ds/game-style-w/card${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, SMW,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=U)`,          `/game-1,3ds/game-style-u/card${simplePath}`,          SMM1_AND_3DS_GAMES_ARRAY, NSMBU,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1&3)`,        `/game-1,3ds/game-style-1,3/card${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1&W)`,        `/game-1,3ds/game-style-1,w/card${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB_SMW,              ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1&U)`,        `/game-1,3ds/game-style-1,u/card${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=3&W)`,        `/game-1,3ds/game-style-3,w/card${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB3_SMW,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=3&U)`,        `/game-1,3ds/game-style-3,u/card${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMB3_NSMBU,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=W&U)`,        `/game-1,3ds/game-style-w,u/card${simplePath}`,        SMM1_AND_3DS_GAMES_ARRAY, SMW_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1&3&W)`,      `/game-1,3ds/game-style-1,3,w/card${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_SMW,         ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1&3&U)`,      `/game-1,3ds/game-style-1,3,u/card${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1&W&U)`,      `/game-1,3ds/game-style-1,w,u/card${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB_SMW_NSMBU,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=3&W&U)`,      `/game-1,3ds/game-style-3,w,u/card${simplePath}`,      SMM1_AND_3DS_GAMES_ARRAY, SMB3_SMW_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS GameStyle=1&3&W&U)`,    `/game-1,3ds/game-style-1,3,w,u/card${simplePath}`,    SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_SMW_NSMBU,   ViewDisplays.CARD_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=all)`,          `/game-1,2/game-style-all/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   ALL_GAME_STYLES,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1)`,            `/game-1,2/game-style-1/card${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   SMB,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3)`,            `/game-1,2/game-style-3/card${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   SMB3,                 ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=W)`,            `/game-1,2/game-style-w/card${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   SMW,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=U)`,            `/game-1,2/game-style-u/card${simplePath}`,            SMM1_AND_2_GAMES_ARRAY,   NSMBU,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3DW)`,          `/game-1,2/game-style-3dw/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SM3DW,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3)`,          `/game-1,2/game-style-1,3/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&W)`,          `/game-1,2/game-style-1,w/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB_SMW,              ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&U)`,          `/game-1,2/game-style-1,u/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3DW)`,        `/game-1,2/game-style-1,3dw/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3&W)`,          `/game-1,2/game-style-3,w/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3&U)`,          `/game-1,2/game-style-3,u/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMB3_NSMBU,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3&3DW)`,        `/game-1,2/game-style-3,3dw/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB3_SM3DW,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=W&U)`,          `/game-1,2/game-style-w,u/card${simplePath}`,          SMM1_AND_2_GAMES_ARRAY,   SMW_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=W&3DW)`,        `/game-1,2/game-style-w,3dw/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMW_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=U&3DW)`,        `/game-1,2/game-style-u,3dw/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   NSMBU_SM3DW,          ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3&W)`,        `/game-1,2/game-style-1,3,w/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW,         ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3&U)`,        `/game-1,2/game-style-1,3,u/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3&3DW)`,      `/game-1,2/game-style-1,3,3dw/card${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&W&U)`,        `/game-1,2/game-style-1,w,u/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_NSMBU,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&W&3DW)`,      `/game-1,2/game-style-1,w,3dw/card${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_SM3DW,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&U&3DW)`,      `/game-1,2/game-style-1,u,3dw/card${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3&W&U)`,        `/game-1,2/game-style-3,w,u/card${simplePath}`,        SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3&W&3DW)`,      `/game-1,2/game-style-3,w,3dw/card${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3&U&3DW)`,      `/game-1,2/game-style-3,u,3dw/card${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB3_NSMBU_SM3DW,     ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=W&U&3DW)`,      `/game-1,2/game-style-w,u,3dw/card${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMW_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3&W&U)`,      `/game-1,2/game-style-1,3,w,u/card${simplePath}`,      SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW_NSMBU,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3&W&3DW)`,    `/game-1,2/game-style-1,3,w,3dw/card${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW_SM3DW,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&3&U&3DW)`,    `/game-1,2/game-style-1,3,u,3dw/card${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=1&W&U&3DW)`,    `/game-1,2/game-style-1,w,u,3dw/card${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_NSMBU_SM3DW,  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2 GameStyle=3&W&U&3DW)`,    `/game-1,2/game-style-3,w,u,3dw/card${simplePath}`,    SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=all)`,        `/game-3ds,2/game-style-all/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, ALL_GAME_STYLES,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1)`,          `/game-3ds,2/game-style-1/card${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, SMB,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3)`,          `/game-3ds,2/game-style-3/card${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, SMB3,                 ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=W)`,          `/game-3ds,2/game-style-w/card${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, SMW,                  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=U)`,          `/game-3ds,2/game-style-u/card${simplePath}`,          SMM3DS_AND_2_GAMES_ARRAY, NSMBU,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3DW)`,        `/game-3ds,2/game-style-3dw/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SM3DW,                ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3)`,        `/game-3ds,2/game-style-1,3/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&W)`,        `/game-3ds,2/game-style-1,w/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW,              ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&U)`,        `/game-3ds,2/game-style-1,u/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3DW)`,      `/game-3ds,2/game-style-1,3dw/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3&W)`,        `/game-3ds,2/game-style-3,w/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW,             ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3&U)`,        `/game-3ds,2/game-style-3,u/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMB3_NSMBU,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3&3DW)`,      `/game-3ds,2/game-style-3,3dw/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB3_SM3DW,           ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=W&U)`,        `/game-3ds,2/game-style-w,u/card${simplePath}`,        SMM3DS_AND_2_GAMES_ARRAY, SMW_NSMBU,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=W&3DW)`,      `/game-3ds,2/game-style-w,3dw/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMW_SM3DW,            ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=U&3DW)`,      `/game-3ds,2/game-style-u,3dw/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, NSMBU_SM3DW,          ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3&W)`,      `/game-3ds,2/game-style-1,3,w/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW,         ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3&U)`,      `/game-3ds,2/game-style-1,3,u/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3&3DW)`,    `/game-3ds,2/game-style-1,3,3dw/card${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&W&U)`,      `/game-3ds,2/game-style-1,w,u/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_NSMBU,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&W&3DW)`,    `/game-3ds,2/game-style-1,w,3dw/card${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_SM3DW,        ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&U&3DW)`,    `/game-3ds,2/game-style-1,u,3dw/card${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3&W&U)`,      `/game-3ds,2/game-style-3,w,u/card${simplePath}`,      SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_NSMBU,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3&W&3DW)`,    `/game-3ds,2/game-style-3,w,3dw/card${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_SM3DW,       ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3&U&3DW)`,    `/game-3ds,2/game-style-3,u,3dw/card${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB3_NSMBU_SM3DW,     ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=W&U&3DW)`,    `/game-3ds,2/game-style-w,u,3dw/card${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMW_NSMBU_SM3DW,      ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3&W&U)`,    `/game-3ds,2/game-style-1,3,w,u/card${simplePath}`,    SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW_NSMBU,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3&W&3DW)`,  `/game-3ds,2/game-style-1,3,w,3dw/card${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW_SM3DW,   ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&3&U&3DW)`,  `/game-3ds,2/game-style-1,3,u,3dw/card${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=1&W&U&3DW)`,  `/game-3ds,2/game-style-1,w,u,3dw/card${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_NSMBU_SM3DW,  ViewDisplays.CARD_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2 GameStyle=3&W&U&3DW)`,  `/game-3ds,2/game-style-3,w,u,3dw/card${simplePath}`,  SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_NSMBU_SM3DW, ViewDisplays.CARD_LIST, routeCallback,),
+
+
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=all)`,         `/game-all/game-style-all/table${simplePath}`,         ALL_GAMES_ARRAY,          ALL_GAME_STYLES,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1)`,           `/game-all/game-style-1/table${simplePath}`,           ALL_GAMES_ARRAY,          SMB,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3)`,           `/game-all/game-style-3/table${simplePath}`,           ALL_GAMES_ARRAY,          SMB3,                 ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=W)`,           `/game-all/game-style-w/table${simplePath}`,           ALL_GAMES_ARRAY,          SMW,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=U)`,           `/game-all/game-style-u/table${simplePath}`,           ALL_GAMES_ARRAY,          NSMBU,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3DW)`,         `/game-all/game-style-3dw/table${simplePath}`,         ALL_GAMES_ARRAY,          SM3DW,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3)`,         `/game-all/game-style-1,3/table${simplePath}`,         ALL_GAMES_ARRAY,          SMB_SMB3,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&W)`,         `/game-all/game-style-1,w/table${simplePath}`,         ALL_GAMES_ARRAY,          SMB_SMW,              ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&U)`,         `/game-all/game-style-1,u/table${simplePath}`,         ALL_GAMES_ARRAY,          SMB_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3DW)`,       `/game-all/game-style-1,3dw/table${simplePath}`,       ALL_GAMES_ARRAY,          SMB_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3&W)`,         `/game-all/game-style-3,w/table${simplePath}`,         ALL_GAMES_ARRAY,          SMB3_SMW,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3&U)`,         `/game-all/game-style-3,u/table${simplePath}`,         ALL_GAMES_ARRAY,          SMB3_NSMBU,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3&3DW)`,       `/game-all/game-style-3,3dw/table${simplePath}`,       ALL_GAMES_ARRAY,          SMB3_SM3DW,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=W&U)`,         `/game-all/game-style-w,u/table${simplePath}`,         ALL_GAMES_ARRAY,          SMW_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=W&3DW)`,       `/game-all/game-style-w,3dw/table${simplePath}`,       ALL_GAMES_ARRAY,          SMW_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=U&3DW)`,       `/game-all/game-style-u,3dw/table${simplePath}`,       ALL_GAMES_ARRAY,          NSMBU_SM3DW,          ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3&W)`,       `/game-all/game-style-1,3,w/table${simplePath}`,       ALL_GAMES_ARRAY,          SMB_SMB3_SMW,         ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3&U)`,       `/game-all/game-style-1,3,u/table${simplePath}`,       ALL_GAMES_ARRAY,          SMB_SMB3_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3&3DW)`,     `/game-all/game-style-1,3,3dw/table${simplePath}`,     ALL_GAMES_ARRAY,          SMB_SMB3_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&W&U)`,       `/game-all/game-style-1,w,u/table${simplePath}`,       ALL_GAMES_ARRAY,          SMB_SMW_NSMBU,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&W&3DW)`,     `/game-all/game-style-1,w,3dw/table${simplePath}`,     ALL_GAMES_ARRAY,          SMB_SMW_SM3DW,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&U&3DW)`,     `/game-all/game-style-1,u,3dw/table${simplePath}`,     ALL_GAMES_ARRAY,          SMB_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3&W&U)`,       `/game-all/game-style-3,w,u/table${simplePath}`,       ALL_GAMES_ARRAY,          SMB3_SMW_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3&W&3DW)`,     `/game-all/game-style-3,w,3dw/table${simplePath}`,     ALL_GAMES_ARRAY,          SMB3_SMW_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3&U&3DW)`,     `/game-all/game-style-3,u,3dw/table${simplePath}`,     ALL_GAMES_ARRAY,          SMB3_NSMBU_SM3DW,     ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=W&U&3DW)`,     `/game-all/game-style-w,u,3dw/table${simplePath}`,     ALL_GAMES_ARRAY,          SMW_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3&W&U)`,     `/game-all/game-style-1,3,w,u/table${simplePath}`,     ALL_GAMES_ARRAY,          SMB_SMB3_SMW_NSMBU,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3&W&3DW)`,   `/game-all/game-style-1,3,w,3dw/table${simplePath}`,   ALL_GAMES_ARRAY,          SMB_SMB3_SMW_SM3DW,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&3&U&3DW)`,   `/game-all/game-style-1,3,u,3dw/table${simplePath}`,   ALL_GAMES_ARRAY,          SMB_SMB3_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=1&W&U&3DW)`,   `/game-all/game-style-1,w,u,3dw/table${simplePath}`,   ALL_GAMES_ARRAY,          SMB_SMW_NSMBU_SM3DW,  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=all GameStyle=3&W&U&3DW)`,   `/game-all/game-style-3,w,u,3dw/table${simplePath}`,   ALL_GAMES_ARRAY,          SMB3_SMW_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=all)`,           `/game-1/game-style-all/table${simplePath}`,           SMM1_GAMES_ARRAY,         ALL_GAME_STYLES,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1)`,             `/game-1/game-style-1/table${simplePath}`,             SMM1_GAMES_ARRAY,         SMB,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=3)`,             `/game-1/game-style-3/table${simplePath}`,             SMM1_GAMES_ARRAY,         SMB3,                 ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=W)`,             `/game-1/game-style-w/table${simplePath}`,             SMM1_GAMES_ARRAY,         SMW,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=U)`,             `/game-1/game-style-u/table${simplePath}`,             SMM1_GAMES_ARRAY,         NSMBU,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1&3)`,           `/game-1/game-style-1,3/table${simplePath}`,           SMM1_GAMES_ARRAY,         SMB_SMB3,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1&W)`,           `/game-1/game-style-1,w/table${simplePath}`,           SMM1_GAMES_ARRAY,         SMB_SMW,              ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1&U)`,           `/game-1/game-style-1,u/table${simplePath}`,           SMM1_GAMES_ARRAY,         SMB_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=3&W)`,           `/game-1/game-style-3,w/table${simplePath}`,           SMM1_GAMES_ARRAY,         SMB3_SMW,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=3&U)`,           `/game-1/game-style-3,u/table${simplePath}`,           SMM1_GAMES_ARRAY,         SMB3_NSMBU,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=W&U)`,           `/game-1/game-style-w,u/table${simplePath}`,           SMM1_GAMES_ARRAY,         SMW_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1&3&W)`,         `/game-1/game-style-1,3,w/table${simplePath}`,         SMM1_GAMES_ARRAY,         SMB_SMB3_SMW,         ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1&3&U)`,         `/game-1/game-style-1,3,u/table${simplePath}`,         SMM1_GAMES_ARRAY,         SMB_SMB3_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1&W&U)`,         `/game-1/game-style-1,w,u/table${simplePath}`,         SMM1_GAMES_ARRAY,         SMB_SMW_NSMBU,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=3&W&U)`,         `/game-1/game-style-3,w,u/table${simplePath}`,         SMM1_GAMES_ARRAY,         SMB3_SMW_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1 GameStyle=1&3&W&U)`,       `/game-1/game-style-1,3,w,u/table${simplePath}`,       SMM1_GAMES_ARRAY,         SMB_SMB3_SMW_NSMBU,   ViewDisplays.TABLE, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=all)`,         `/game-3ds/game-style-all/table${simplePath}`,         SMM3DS_GAMES_ARRAY,       ALL_GAME_STYLES,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1)`,           `/game-3ds/game-style-1/table${simplePath}`,           SMM3DS_GAMES_ARRAY,       SMB,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=3)`,           `/game-3ds/game-style-3/table${simplePath}`,           SMM3DS_GAMES_ARRAY,       SMB3,                 ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=W)`,           `/game-3ds/game-style-w/table${simplePath}`,           SMM3DS_GAMES_ARRAY,       SMW,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=U)`,           `/game-3ds/game-style-u/table${simplePath}`,           SMM3DS_GAMES_ARRAY,       NSMBU,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1&3)`,         `/game-3ds/game-style-1,3/table${simplePath}`,         SMM3DS_GAMES_ARRAY,       SMB_SMB3,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1&W)`,         `/game-3ds/game-style-1,w/table${simplePath}`,         SMM3DS_GAMES_ARRAY,       SMB_SMW,              ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1&U)`,         `/game-3ds/game-style-1,u/table${simplePath}`,         SMM3DS_GAMES_ARRAY,       SMB_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=3&W)`,         `/game-3ds/game-style-3,w/table${simplePath}`,         SMM3DS_GAMES_ARRAY,       SMB3_SMW,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=3&U)`,         `/game-3ds/game-style-3,u/table${simplePath}`,         SMM3DS_GAMES_ARRAY,       SMB3_NSMBU,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=W&U)`,         `/game-3ds/game-style-w,u/table${simplePath}`,         SMM3DS_GAMES_ARRAY,       SMW_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1&3&W)`,       `/game-3ds/game-style-1,3,w/table${simplePath}`,       SMM3DS_GAMES_ARRAY,       SMB_SMB3_SMW,         ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1&3&U)`,       `/game-3ds/game-style-1,3,u/table${simplePath}`,       SMM3DS_GAMES_ARRAY,       SMB_SMB3_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1&W&U)`,       `/game-3ds/game-style-1,w,u/table${simplePath}`,       SMM3DS_GAMES_ARRAY,       SMB_SMW_NSMBU,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=3&W&U)`,       `/game-3ds/game-style-3,w,u/table${simplePath}`,       SMM3DS_GAMES_ARRAY,       SMB3_SMW_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS GameStyle=1&3&W&U)`,     `/game-3ds/game-style-1,3,w,u/table${simplePath}`,     SMM3DS_GAMES_ARRAY,       SMB_SMB3_SMW_NSMBU,   ViewDisplays.TABLE, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=all)`,           `/game-2/game-style-all/table${simplePath}`,           SMM2_GAMES_ARRAY,         ALL_GAME_STYLES,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1)`,             `/game-2/game-style-1/table${simplePath}`,             SMM2_GAMES_ARRAY,         SMB,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3)`,             `/game-2/game-style-3/table${simplePath}`,             SMM2_GAMES_ARRAY,         SMB3,                 ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=W)`,             `/game-2/game-style-w/table${simplePath}`,             SMM2_GAMES_ARRAY,         SMW,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=U)`,             `/game-2/game-style-u/table${simplePath}`,             SMM2_GAMES_ARRAY,         NSMBU,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3DW)`,           `/game-2/game-style-3dw/table${simplePath}`,           SMM2_GAMES_ARRAY,         SM3DW,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3)`,           `/game-2/game-style-1,3/table${simplePath}`,           SMM2_GAMES_ARRAY,         SMB_SMB3,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&W)`,           `/game-2/game-style-1,w/table${simplePath}`,           SMM2_GAMES_ARRAY,         SMB_SMW,              ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&U)`,           `/game-2/game-style-1,u/table${simplePath}`,           SMM2_GAMES_ARRAY,         SMB_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3DW)`,         `/game-2/game-style-1,3dw/table${simplePath}`,         SMM2_GAMES_ARRAY,         SMB_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3&W)`,           `/game-2/game-style-3,w/table${simplePath}`,           SMM2_GAMES_ARRAY,         SMB3_SMW,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3&U)`,           `/game-2/game-style-3,u/table${simplePath}`,           SMM2_GAMES_ARRAY,         SMB3_NSMBU,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3&3DW)`,         `/game-2/game-style-3,3dw/table${simplePath}`,         SMM2_GAMES_ARRAY,         SMB3_SM3DW,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=W&U)`,           `/game-2/game-style-w,u/table${simplePath}`,           SMM2_GAMES_ARRAY,         SMW_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=W&3DW)`,         `/game-2/game-style-w,3dw/table${simplePath}`,         SMM2_GAMES_ARRAY,         SMW_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=U&3DW)`,         `/game-2/game-style-u,3dw/table${simplePath}`,         SMM2_GAMES_ARRAY,         NSMBU_SM3DW,          ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3&W)`,         `/game-2/game-style-1,3,w/table${simplePath}`,         SMM2_GAMES_ARRAY,         SMB_SMB3_SMW,         ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3&U)`,         `/game-2/game-style-1,3,u/table${simplePath}`,         SMM2_GAMES_ARRAY,         SMB_SMB3_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3&3DW)`,       `/game-2/game-style-1,3,3dw/table${simplePath}`,       SMM2_GAMES_ARRAY,         SMB_SMB3_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&W&U)`,         `/game-2/game-style-1,w,u/table${simplePath}`,         SMM2_GAMES_ARRAY,         SMB_SMW_NSMBU,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&W&3DW)`,       `/game-2/game-style-1,w,3dw/table${simplePath}`,       SMM2_GAMES_ARRAY,         SMB_SMW_SM3DW,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&U&3DW)`,       `/game-2/game-style-1,u,3dw/table${simplePath}`,       SMM2_GAMES_ARRAY,         SMB_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3&W&U)`,         `/game-2/game-style-3,w,u/table${simplePath}`,         SMM2_GAMES_ARRAY,         SMB3_SMW_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3&W&3DW)`,       `/game-2/game-style-3,w,3dw/table${simplePath}`,       SMM2_GAMES_ARRAY,         SMB3_SMW_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3&U&3DW)`,       `/game-2/game-style-3,u,3dw/table${simplePath}`,       SMM2_GAMES_ARRAY,         SMB3_NSMBU_SM3DW,     ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=W&U&3DW)`,       `/game-2/game-style-w,u,3dw/table${simplePath}`,       SMM2_GAMES_ARRAY,         SMW_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3&W&U)`,       `/game-2/game-style-1,3,w,u/table${simplePath}`,       SMM2_GAMES_ARRAY,         SMB_SMB3_SMW_NSMBU,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3&W&3DW)`,     `/game-2/game-style-1,3,w,3dw/table${simplePath}`,     SMM2_GAMES_ARRAY,         SMB_SMB3_SMW_SM3DW,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&3&U&3DW)`,     `/game-2/game-style-1,3,u,3dw/table${simplePath}`,     SMM2_GAMES_ARRAY,         SMB_SMB3_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=1&W&U&3DW)`,     `/game-2/game-style-1,w,u,3dw/table${simplePath}`,     SMM2_GAMES_ARRAY,         SMB_SMW_NSMBU_SM3DW,  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2 GameStyle=3&W&U&3DW)`,     `/game-2/game-style-3,w,u,3dw/table${simplePath}`,     SMM2_GAMES_ARRAY,         SMB3_SMW_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=all)`,       `/game-1,3ds/game-style-all/table${simplePath}`,       SMM1_AND_3DS_GAMES_ARRAY, ALL_GAME_STYLES,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1)`,         `/game-1,3ds/game-style-1/table${simplePath}`,         SMM1_AND_3DS_GAMES_ARRAY, SMB,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=3)`,         `/game-1,3ds/game-style-3/table${simplePath}`,         SMM1_AND_3DS_GAMES_ARRAY, SMB3,                 ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=W)`,         `/game-1,3ds/game-style-w/table${simplePath}`,         SMM1_AND_3DS_GAMES_ARRAY, SMW,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=U)`,         `/game-1,3ds/game-style-u/table${simplePath}`,         SMM1_AND_3DS_GAMES_ARRAY, NSMBU,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1&3)`,       `/game-1,3ds/game-style-1,3/table${simplePath}`,       SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1&W)`,       `/game-1,3ds/game-style-1,w/table${simplePath}`,       SMM1_AND_3DS_GAMES_ARRAY, SMB_SMW,              ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1&U)`,       `/game-1,3ds/game-style-1,u/table${simplePath}`,       SMM1_AND_3DS_GAMES_ARRAY, SMB_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=3&W)`,       `/game-1,3ds/game-style-3,w/table${simplePath}`,       SMM1_AND_3DS_GAMES_ARRAY, SMB3_SMW,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=3&U)`,       `/game-1,3ds/game-style-3,u/table${simplePath}`,       SMM1_AND_3DS_GAMES_ARRAY, SMB3_NSMBU,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=W&U)`,       `/game-1,3ds/game-style-w,u/table${simplePath}`,       SMM1_AND_3DS_GAMES_ARRAY, SMW_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1&3&W)`,     `/game-1,3ds/game-style-1,3,w/table${simplePath}`,     SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_SMW,         ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1&3&U)`,     `/game-1,3ds/game-style-1,3,u/table${simplePath}`,     SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1&W&U)`,     `/game-1,3ds/game-style-1,w,u/table${simplePath}`,     SMM1_AND_3DS_GAMES_ARRAY, SMB_SMW_NSMBU,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=3&W&U)`,     `/game-1,3ds/game-style-3,w,u/table${simplePath}`,     SMM1_AND_3DS_GAMES_ARRAY, SMB3_SMW_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&3DS GameStyle=1&3&W&U)`,   `/game-1,3ds/game-style-1,3,w,u/table${simplePath}`,   SMM1_AND_3DS_GAMES_ARRAY, SMB_SMB3_SMW_NSMBU,   ViewDisplays.TABLE, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=all)`,         `/game-1,2/game-style-all/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   ALL_GAME_STYLES,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1)`,           `/game-1,2/game-style-1/table${simplePath}`,           SMM1_AND_2_GAMES_ARRAY,   SMB,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3)`,           `/game-1,2/game-style-3/table${simplePath}`,           SMM1_AND_2_GAMES_ARRAY,   SMB3,                 ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=W)`,           `/game-1,2/game-style-w/table${simplePath}`,           SMM1_AND_2_GAMES_ARRAY,   SMW,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=U)`,           `/game-1,2/game-style-u/table${simplePath}`,           SMM1_AND_2_GAMES_ARRAY,   NSMBU,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3DW)`,         `/game-1,2/game-style-3dw/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   SM3DW,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3)`,         `/game-1,2/game-style-1,3/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&W)`,         `/game-1,2/game-style-1,w/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   SMB_SMW,              ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&U)`,         `/game-1,2/game-style-1,u/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   SMB_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3DW)`,       `/game-1,2/game-style-1,3dw/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   SMB_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3&W)`,         `/game-1,2/game-style-3,w/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3&U)`,         `/game-1,2/game-style-3,u/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   SMB3_NSMBU,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3&3DW)`,       `/game-1,2/game-style-3,3dw/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   SMB3_SM3DW,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=W&U)`,         `/game-1,2/game-style-w,u/table${simplePath}`,         SMM1_AND_2_GAMES_ARRAY,   SMW_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=W&3DW)`,       `/game-1,2/game-style-w,3dw/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   SMW_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=U&3DW)`,       `/game-1,2/game-style-u,3dw/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   NSMBU_SM3DW,          ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3&W)`,       `/game-1,2/game-style-1,3,w/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW,         ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3&U)`,       `/game-1,2/game-style-1,3,u/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3&3DW)`,     `/game-1,2/game-style-1,3,3dw/table${simplePath}`,     SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&W&U)`,       `/game-1,2/game-style-1,w,u/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_NSMBU,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&W&3DW)`,     `/game-1,2/game-style-1,w,3dw/table${simplePath}`,     SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_SM3DW,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&U&3DW)`,     `/game-1,2/game-style-1,u,3dw/table${simplePath}`,     SMM1_AND_2_GAMES_ARRAY,   SMB_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3&W&U)`,       `/game-1,2/game-style-3,w,u/table${simplePath}`,       SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3&W&3DW)`,     `/game-1,2/game-style-3,w,3dw/table${simplePath}`,     SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3&U&3DW)`,     `/game-1,2/game-style-3,u,3dw/table${simplePath}`,     SMM1_AND_2_GAMES_ARRAY,   SMB3_NSMBU_SM3DW,     ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=W&U&3DW)`,     `/game-1,2/game-style-w,u,3dw/table${simplePath}`,     SMM1_AND_2_GAMES_ARRAY,   SMW_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3&W&U)`,     `/game-1,2/game-style-1,3,w,u/table${simplePath}`,     SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW_NSMBU,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3&W&3DW)`,   `/game-1,2/game-style-1,3,w,3dw/table${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_SMW_SM3DW,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&3&U&3DW)`,   `/game-1,2/game-style-1,3,u,3dw/table${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   SMB_SMB3_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=1&W&U&3DW)`,   `/game-1,2/game-style-1,w,u,3dw/table${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   SMB_SMW_NSMBU_SM3DW,  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1&2 GameStyle=3&W&U&3DW)`,   `/game-1,2/game-style-3,w,u,3dw/table${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   SMB3_SMW_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
+
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=all)`,       `/game-3ds,2/game-style-all/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, ALL_GAME_STYLES,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1)`,         `/game-3ds,2/game-style-1/table${simplePath}`,         SMM3DS_AND_2_GAMES_ARRAY, SMB,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3)`,         `/game-3ds,2/game-style-3/table${simplePath}`,         SMM3DS_AND_2_GAMES_ARRAY, SMB3,                 ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=W)`,         `/game-3ds,2/game-style-w/table${simplePath}`,         SMM3DS_AND_2_GAMES_ARRAY, SMW,                  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=U)`,         `/game-3ds,2/game-style-u/table${simplePath}`,         SMM3DS_AND_2_GAMES_ARRAY, NSMBU,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3DW)`,       `/game-3ds,2/game-style-3dw/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, SM3DW,                ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3)`,       `/game-3ds,2/game-style-1,3/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&W)`,       `/game-3ds,2/game-style-1,w/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW,              ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&U)`,       `/game-3ds,2/game-style-1,u/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, SMB_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3DW)`,     `/game-3ds,2/game-style-1,3dw/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, SMB_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3&W)`,       `/game-3ds,2/game-style-3,w/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW,             ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3&U)`,       `/game-3ds,2/game-style-3,u/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, SMB3_NSMBU,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3&3DW)`,     `/game-3ds,2/game-style-3,3dw/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, SMB3_SM3DW,           ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=W&U)`,       `/game-3ds,2/game-style-w,u/table${simplePath}`,       SMM3DS_AND_2_GAMES_ARRAY, SMW_NSMBU,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=W&3DW)`,     `/game-3ds,2/game-style-w,3dw/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, SMW_SM3DW,            ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=U&3DW)`,     `/game-3ds,2/game-style-u,3dw/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, NSMBU_SM3DW,          ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3&W)`,     `/game-3ds,2/game-style-1,3,w/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW,         ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3&U)`,     `/game-3ds,2/game-style-1,3,u/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3&3DW)`,   `/game-3ds,2/game-style-1,3,3dw/table${simplePath}`,   SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&W&U)`,     `/game-3ds,2/game-style-1,w,u/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_NSMBU,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&W&3DW)`,   `/game-3ds,2/game-style-1,w,3dw/table${simplePath}`,   SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_SM3DW,        ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&U&3DW)`,   `/game-3ds,2/game-style-1,u,3dw/table${simplePath}`,   SMM3DS_AND_2_GAMES_ARRAY, SMB_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3&W&U)`,     `/game-3ds,2/game-style-3,w,u/table${simplePath}`,     SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_NSMBU,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3&W&3DW)`,   `/game-3ds,2/game-style-3,w,3dw/table${simplePath}`,   SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_SM3DW,       ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3&U&3DW)`,   `/game-3ds,2/game-style-3,u,3dw/table${simplePath}`,   SMM3DS_AND_2_GAMES_ARRAY, SMB3_NSMBU_SM3DW,     ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=W&U&3DW)`,   `/game-3ds,2/game-style-w,u,3dw/table${simplePath}`,   SMM3DS_AND_2_GAMES_ARRAY, SMW_NSMBU_SM3DW,      ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3&W&U)`,   `/game-3ds,2/game-style-1,3,w,u/table${simplePath}`,   SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW_NSMBU,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3&W&3DW)`, `/game-3ds,2/game-style-1,3,w,3dw/table${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_SMW_SM3DW,   ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&3&U&3DW)`, `/game-3ds,2/game-style-1,3,u,3dw/table${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, SMB_SMB3_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=1&W&U&3DW)`, `/game-3ds,2/game-style-1,w,u,3dw/table${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, SMB_SMW_NSMBU_SM3DW,  ViewDisplays.TABLE, routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=3DS&2 GameStyle=3&W&U&3DW)`, `/game-3ds,2/game-style-3,w,u,3dw/table${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, SMB3_SMW_NSMBU_SM3DW, ViewDisplays.TABLE, routeCallback,),
             ]
         }
 
@@ -149,7 +754,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly AnyGame_EveryRoutes = class AnyGame_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, routeCallback: GameRouteCallback,) {
-            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, (_, games,) => routeCallback(games,),)
+            super(name, path, NO_VIEW_DISPLAY, null, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, (_, games,) => routeCallback(games,),)
         }
 
 
@@ -159,14 +764,18 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (Game=all)`,   `/game-all${simplePath}`,   ALL_GAMES_ARRAY,          null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=1)`,     `/game-1${simplePath}`,     SMM1_GAMES_ARRAY,         null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=3DS)`,   `/game-3ds${simplePath}`,   SMM3DS_GAMES_ARRAY,       null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=2)`,     `/game-2${simplePath}`,     SMM2_GAMES_ARRAY,         null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=1&3DS)`, `/game-1,3ds${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=1&2)`,   `/game-1,2${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   null, routeCallback,),
-                new SimpleRoute(`${simpleName} (Game=3DS&2)`, `/game-3ds,2${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, null, routeCallback,),
+                new SimpleRoute(`${simpleName} (Game=all)`,   `/game-all${simplePath}`,   ALL_GAMES_ARRAY,          null, null, routeCallback,),
+                new SimpleRoute(`${simpleName} (Game=1)`,     `/game-1${simplePath}`,     SMM1_GAMES_ARRAY,         null, null, routeCallback,),
+                new SimpleRoute(`${simpleName} (Game=3DS)`,   `/game-3ds${simplePath}`,   SMM3DS_GAMES_ARRAY,       null, null, routeCallback,),
+                new SimpleRoute(`${simpleName} (Game=2)`,     `/game-2${simplePath}`,     SMM2_GAMES_ARRAY,         null, null, routeCallback,),
+                new SimpleRoute(`${simpleName} (Game=1&3DS)`, `/game-1,3ds${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, null, null, routeCallback,),
+                new SimpleRoute(`${simpleName} (Game=1&2)`,   `/game-1,2${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   null, null, routeCallback,),
+                new SimpleRoute(`${simpleName} (Game=3DS&2)`, `/game-3ds,2${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, null, null, routeCallback,),
             ]
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
         }
 
         protected override _getPartialPathFromViewDisplay() {
@@ -178,7 +787,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly AnyViewDisplayOnlyInSMM1_EveryRoutes = class AnyViewDisplayOnlyInSMM1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM1_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_1, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM1_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -188,14 +797,18 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=1)`,  `/game-1/list${simplePath}`,  SMM1_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1)`,  `/game-1/card${simplePath}`,  SMM1_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=1)`, `/game-1/table${simplePath}`, SMM1_GAMES_ARRAY, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1)`,  `/game-1/list${simplePath}`,  SMM1_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1)`,  `/game-1/card${simplePath}`,  SMM1_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=1)`, `/game-1/table${simplePath}`, SMM1_GAMES_ARRAY, null, ViewDisplays.TABLE,       routeCallback,),
             ]
         }
 
         protected override _getPartialPathFromGames() {
             return '/game-1' as const satisfies PossibleGamePath
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
         }
 
         protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
@@ -211,7 +824,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly AnyViewDisplayOnlyInSMM2_EveryRoutes = class AnyViewDisplayOnlyInSMM2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, routeCallback,)
+            super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -221,14 +834,18 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=2)`,  `/game-2/list${simplePath}`,  SMM2_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=2)`,  `/game-2/card${simplePath}`,  SMM2_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (table Game=2)`, `/game-2/table${simplePath}`, SMM2_GAMES_ARRAY, ViewDisplays.TABLE,       routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2)`,  `/game-2/list${simplePath}`,  SMM2_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2)`,  `/game-2/card${simplePath}`,  SMM2_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (table Game=2)`, `/game-2/table${simplePath}`, SMM2_GAMES_ARRAY, null, ViewDisplays.TABLE,       routeCallback,),
             ]
         }
 
         protected override _getPartialPathFromGames() {
             return `/game-2` as const satisfies PossibleGamePath
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
         }
 
         protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
@@ -244,7 +861,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly AnyListViewDisplayInAnyGame_EveryRoutes = class AnyListViewDisplay_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, routeCallback,)
+            super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -254,30 +871,34 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=all)`,   `/game-all/list${simplePath}`,   ALL_GAMES_ARRAY,          ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1)`,     `/game-1/list${simplePath}`,     SMM1_GAMES_ARRAY,         ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=3DS)`,   `/game-3ds/list${simplePath}`,   SMM3DS_GAMES_ARRAY,       ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=2)`,     `/game-2/list${simplePath}`,     SMM2_GAMES_ARRAY,         ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1&3DS)`, `/game-1,3ds/list${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=1&2)`,   `/game-1,2/list${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (list Game=3DS&2)`, `/game-3ds,2/list${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=all)`,   `/game-all/list${simplePath}`,   ALL_GAMES_ARRAY,          null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1)`,     `/game-1/list${simplePath}`,     SMM1_GAMES_ARRAY,         null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS)`,   `/game-3ds/list${simplePath}`,   SMM3DS_GAMES_ARRAY,       null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2)`,     `/game-2/list${simplePath}`,     SMM2_GAMES_ARRAY,         null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&3DS)`, `/game-1,3ds/list${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1&2)`,   `/game-1,2/list${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=3DS&2)`, `/game-3ds,2/list${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
 
-                new SimpleRoute(`${simpleName} (card Game=all)`,   `/game-all/card${simplePath}`,   ALL_GAMES_ARRAY,          ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1)`,     `/game-1/card${simplePath}`,     SMM1_GAMES_ARRAY,         ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=3DS)`,   `/game-3ds/card${simplePath}`,   SMM3DS_GAMES_ARRAY,       ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=2)`,     `/game-2/card${simplePath}`,     SMM2_GAMES_ARRAY,         ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1&3DS)`, `/game-1,3ds/card${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1&2)`,   `/game-1,2/card${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   ViewDisplays.CARD_LIST,   routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=3DS&2)`, `/game-3ds,2/card${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=all)`,   `/game-all/card${simplePath}`,   ALL_GAMES_ARRAY,          null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1)`,     `/game-1/card${simplePath}`,     SMM1_GAMES_ARRAY,         null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS)`,   `/game-3ds/card${simplePath}`,   SMM3DS_GAMES_ARRAY,       null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2)`,     `/game-2/card${simplePath}`,     SMM2_GAMES_ARRAY,         null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&3DS)`, `/game-1,3ds/card${simplePath}`, SMM1_AND_3DS_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1&2)`,   `/game-1,2/card${simplePath}`,   SMM1_AND_2_GAMES_ARRAY,   null, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=3DS&2)`, `/game-3ds,2/card${simplePath}`, SMM3DS_AND_2_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
             ]
         }
 
         protected override _getPartialPathFromGames(value: NullOr<readonly Games[]>,): PossibleGamePath {
             if (value == null)
-                value = Games.selectedGames.toArray()
+                value = Games.selected.toArray()
             if (value.length === 0)
                 return EMPTY_STRING
             return `/game-${Games.getGroupUrlValue(value,)}` as PossibleGamePath
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
         }
 
         protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
@@ -295,7 +916,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly AnyListViewDisplayOnlyInSMM1_EveryRoutes = class AnyListViewDisplayOnlyInSMM1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, SMM1_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_1, routeCallback,)
+            super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, SMM1_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -305,13 +926,17 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=1)`, `/game-1/list${simplePath}`, SMM1_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=1)`, `/game-1/card${simplePath}`, SMM1_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=1)`, `/game-1/list${simplePath}`, SMM1_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=1)`, `/game-1/card${simplePath}`, SMM1_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
             ]
         }
 
         protected override _getPartialPathFromGames() {
             return '/game-1' as const satisfies PossibleGamePath
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
         }
 
         protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
@@ -329,7 +954,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly AnyListViewDisplayOnlyInSMM2_EveryRoutes = class AnyListViewDisplayOnlyInSMM2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
-            super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, routeCallback,)
+            super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
@@ -339,13 +964,17 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             const routeCallback = this.routeCallback
 
             return [
-                new SimpleRoute(`${simpleName} (list Game=2)`, `/game-2/list${simplePath}`, SMM2_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, routeCallback,),
-                new SimpleRoute(`${simpleName} (card Game=2)`, `/game-2/card${simplePath}`, SMM2_GAMES_ARRAY, ViewDisplays.CARD_LIST,   routeCallback,),
+                new SimpleRoute(`${simpleName} (list Game=2)`, `/game-2/list${simplePath}`, SMM2_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, routeCallback,),
+                new SimpleRoute(`${simpleName} (card Game=2)`, `/game-2/card${simplePath}`, SMM2_GAMES_ARRAY, null, ViewDisplays.CARD_LIST,   routeCallback,),
             ]
         }
 
         protected override _getPartialPathFromGames() {
             return '/game-2' as const satisfies PossibleGamePath
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
         }
 
         protected override _getPartialPathFromViewDisplay(value: NullOr<ViewDisplays>,): PossibleViewDisplayPath {
@@ -363,18 +992,20 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private static readonly OnlySimpleViewDisplayOnlyInSMM2_EveryRoutes = class OnlySimpleViewDisplayOnlyInSMM2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, routeCallback: RouteCallback,) {
-            super(name, path, SIMPLE_LIST_VIEW_DISPLAY, ViewDisplays.SIMPLE_LIST, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, routeCallback,)
+            super(name, path, SIMPLE_LIST_VIEW_DISPLAY, ViewDisplays.SIMPLE_LIST, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
         }
 
 
         protected override _createEveryRoutes(): readonly SimpleRoute[] {
-            return [
-                new SimpleRoute(`${this.simpleName} (list Game=2)`, `/game-2/list${this.simplePath}`, SMM2_GAMES_ARRAY, ViewDisplays.SIMPLE_LIST, this.routeCallback,),
-            ]
+            return [new SimpleRoute(`${this.simpleName} (list Game=2)`, `/game-2/list${this.simplePath}`, SMM2_GAMES_ARRAY, null, ViewDisplays.SIMPLE_LIST, this.routeCallback,),]
         }
 
         protected override _getPartialPathFromGames() {
             return '/game-2' as const satisfies PossibleGamePath
+        }
+
+        protected override _getPartialPathFromGameStyles() {
+            return EMPTY_STRING
         }
 
         protected override _getPartialPathFromViewDisplay() {
@@ -404,7 +1035,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
     public static readonly EVERY_GAME_STYLE = new EveryRoutes.EveryPath_EveryRoutes('everyGameStyle', '/every/game-style', ViewDisplays.CARD_LIST, (viewDisplay, games) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
 
-    public static readonly EVERY_ENTITY = new EveryRoutes.EveryPath_EveryRoutes('everyEntity', '/every/entity', null, (viewDisplay, games) => <EntityApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_ENTITY = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everyEntity', '/every/entity', null, (viewDisplay, games) => <EntityApp viewDisplay={viewDisplay} games={games}/>,)
     public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everyEntityCategory', '/every/entity-category', null, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
@@ -416,7 +1047,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_COURSE_THEME = new EveryRoutes.EveryPath_EveryRoutes('courseTheme', '/course/theme', ViewDisplays.CARD_LIST, (viewDisplay, games) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.COURSE}/>,)
     public static readonly EVERY_WORLD_THEME = new EveryRoutes.EveryPath_EveryRoutes('worldTheme', '/world/theme', ViewDisplays.CARD_LIST, (viewDisplay, games) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.WORLD}/>,)
 
-    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.EveryPath_EveryRoutes('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games) => <SoundEffectApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games) => <SoundEffectApp viewDisplay={viewDisplay} games={games}/>,)
     public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', null, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
 
     public static readonly EVERY_MII_COSTUME = new EveryRoutes.AnyViewDisplayOnlyInSMM2_EveryRoutes('everyMiiCostume', '/every/mii-costume', null, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
@@ -498,22 +1129,29 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                 const value = values[index1]!
                 if (value.simpleName === name) {
                     const everyRoute = value.everyRoute
+                    //region -------------------- Route by direct name --------------------
+
                     const size2 = everyRoute.length
                     let index2 = -1
                     while (++index2 < size2) {
                         const route = everyRoute[index2]
                         if (route.name === name)
-                            return value.getPath(language, route.games, route.viewDisplay,)
+                            return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
                     }
 
-                    const pathToFind = `${value._getPartialPathFromGames(Games.selectedGames.toArray(),)}${value._getPartialPathFromViewDisplay(ViewDisplays.CompanionEnum.get.currentOrNull,)}${value.simplePath}`
+                    //endregion -------------------- Route by direct name --------------------
+                    //region -------------------- Route by direct path --------------------
+
+                    const pathToFind = `${value._getPartialPathFromGames(Games.selected.toArray(),)}${value._getPartialPathFromGameStyles(GameStyles.selected.toArray(),)}${value._getPartialPathFromViewDisplay(ViewDisplays.CompanionEnum.get.currentOrNull,)}${value.simplePath}`
 
                     let index3 = -1
                     while (++index3 < size2) {
                         const route = everyRoute[index3]
                         if (route.path === pathToFind)
-                            return value.getPath(language, route.games, route.viewDisplay,)
+                            return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
                     }
+
+                    //endregion -------------------- Route by direct path --------------------
 
                     throw new ReferenceError(`No route is findable by the direct name "${name}".`,)
                 }
@@ -524,8 +1162,9 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
                 if (name.startsWith(`${value.simpleName} `,)) {
                     const gamesToFind = this.#getGamesInName(name,)
+                    const gameStylesToFind = this.#getGameStylesInName(name,)
                     const viewDisplayToFind = this.#getViewDisplayInName(name,)
-                    const pathToFind = `${value._getPartialPathFromGames(gamesToFind,)}${value._getPartialPathFromViewDisplay(viewDisplayToFind,)}${value.simplePath}`
+                    const pathToFind = `${value._getPartialPathFromGames(gamesToFind,)}${value._getPartialPathFromGameStyles(gameStylesToFind,)}${value._getPartialPathFromViewDisplay(viewDisplayToFind,)}${value.simplePath}`
 
                     const everyRoute = value.everyRoute
                     const size2 = everyRoute.length
@@ -533,7 +1172,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                     while (++index2 < size2) {
                         const route = everyRoute[index2]
                         if (route.path === pathToFind)
-                            return value.getPath(language, route.games, route.viewDisplay,)
+                            return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
                     }
                     throw new ReferenceError(`No route is findable by the name starting by "${name}".`,)
                 }
@@ -555,13 +1194,13 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                 return null
             if (viewDisplays.hasSimpleList)
                 if (`${value.simpleName} (list)` === name)
-                    return value.getPath(language, null, ViewDisplays.SIMPLE_LIST,)
+                    return value.getPath(language, null, null, ViewDisplays.SIMPLE_LIST,)
             if (viewDisplays.hasCardList)
                 if (`${value.simpleName} (card)` === name)
-                    return value.getPath(language, null, ViewDisplays.CARD_LIST,)
+                    return value.getPath(language, null, null, ViewDisplays.CARD_LIST,)
             if (viewDisplays.hasCardList)
                 if (`${value.simpleName} (table)` === name)
-                    return value.getPath(language, null, ViewDisplays.TABLE,)
+                    return value.getPath(language, null, null, ViewDisplays.TABLE,)
             return null
         }
 
@@ -583,6 +1222,21 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             while (--index > 0)
                 games[index] = Companion.getValueBySimpleValue(selectedGames[index],)
             return games
+        }
+
+        #getGameStylesInName(name: PossibleRouteName,): readonly GameStyles[] {
+            const indexOfGame = name.indexOf('GameStyle=',)
+            if (indexOfGame === -1)
+                return EMPTY_ARRAY
+
+            const Companion = GameStyles.CompanionEnum.get
+            const selectedGames = name.substring(indexOfGame, -1,).split(Companion.NAME_ARGUMENT_SEPARATOR,)
+            const size = selectedGames.length
+            const gameStyles = new Array<GameStyles>(size,)
+            let index = size
+            while (--index > 0)
+                gameStyles[index] = Companion.getValueBySimpleValue(selectedGames[index],)
+            return gameStyles
         }
 
         /**
@@ -610,7 +1264,9 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     readonly #viewDisplays
     readonly #defaultViewDisplay
     readonly #games
+    readonly #gameStyles
     readonly #defaultGame
+    readonly #defaultGameStyles
     readonly #routeCallback
 
     #everyRoutes?: readonly SimpleRoute[]
@@ -621,6 +1277,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     private constructor(name: SIMPLE_NAME, path: SIMPLE_PATH,
                         viewDisplays: ViewDisplayCollection, defaultViewDisplay: NullOr<ViewDisplays>,
                         games: GameCollection, defaultGame: NullOr<Games>,
+                        gameStyles: GameStyleCollection, defaultGameStyles: NullOr<readonly GameStyles[]>,
                         routeCallback: RouteCallback,) {
         super()
         this.#simpleName = name
@@ -629,6 +1286,8 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         this.#defaultViewDisplay = defaultViewDisplay
         this.#games = games
         this.#defaultGame = defaultGame
+        this.#gameStyles = gameStyles
+        this.#defaultGameStyles = defaultGameStyles
         this.#routeCallback = routeCallback
     }
 
@@ -663,6 +1322,14 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         return this.#defaultGame
     }
 
+    public get gameStyles(): GameStyleCollection {
+        return this.#gameStyles
+    }
+
+    public get defaultGameStyles(): NullOr<readonly GameStyles[]> {
+        return this.#defaultGameStyles
+    }
+
     public get routeCallback(): RouteCallback {
         return this.#routeCallback
     }
@@ -684,17 +1351,30 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
      */
     protected _getPartialPathFromGames(value: NullOr<readonly Games[]>,): PossibleGamePath {
         if (value == null)
-            value = Games.selectedGames.toArray()
+            return `/game-${Games.getGroupUrlValue(Games.selected,)}` as PossibleGamePath
         if (value.length === 0) {
             const defaultGame = this.defaultGame
             if (defaultGame == null)
-                value = EMPTY_ARRAY
-            else
-                value = [defaultGame,]
+                return EMPTY_STRING
+            return `/game-${defaultGame.urlValue}`
         }
         if (value.length === 0)
             return EMPTY_STRING
         return `/game-${Games.getGroupUrlValue(value,)}` as PossibleGamePath
+    }
+
+    protected _getPartialPathFromGameStyles(values: NullOr<readonly GameStyles[]>,): PossibleGameStylePath {
+        if (values == null)
+            return `/game-style-${GameStyles.getGroupUrlValue(GameStyles.selected,)}` as PossibleGameStylePath
+        if (values.length === 0) {
+            const defaultGameStyles = this.defaultGameStyles
+            if (defaultGameStyles == null)
+                return EMPTY_STRING
+            values = defaultGameStyles
+        }
+        if (values.length === 0)
+            return EMPTY_STRING
+        return `/game-style-${GameStyles.getGroupUrlValue(values,)}` as PossibleGameStylePath
     }
 
     /**
@@ -712,14 +1392,17 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         return `/${value.urlValue}`
     }
 
-    public getPath(language: NullOr<ProjectLanguages>, games: NullOr<readonly Games[]>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
+    public getPath(language: NullOr<ProjectLanguages>, games: NullOr<readonly Games[]>, gameStyles: NullOr<readonly GameStyles[]>, viewDisplay: NullOr<ViewDisplays>,): EveryPossibleRoutes {
         if (language == null)
             language = ProjectLanguages.CompanionEnum.get.current
-        return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.simplePath}` as unknown as EveryPossibleRoutes
+        return `/${language.projectAcronym}${this._getPartialPathFromGames(games,)}${this._getPartialPathFromGameStyles(gameStyles,)}${this._getPartialPathFromViewDisplay(viewDisplay,)}${this.simplePath}` as unknown as EveryPossibleRoutes
     }
 
     //endregion -------------------- Methods --------------------
 
 }
 
-// console.table(EveryRoutes.CompanionEnum.get.everyRoutes.map(it => ({name: it.name, path: it.path,}),),)
+// const everyRoute = EveryRoutes.CompanionEnum.get.everyRoute
+// console.table(everyRoute.filter((_, i,) => i < 500,).map(it => ({name: it.name, path: it.path,}),),)
+// console.table(everyRoute.filter((_, i,) => i >= 500 && i < 1000,).map(it => ({name: it.name, path: it.path,}),),)
+// console.table(everyRoute.filter((_, i,) => i >= 1000,).map(it => ({name: it.name, path: it.path,}),),)
