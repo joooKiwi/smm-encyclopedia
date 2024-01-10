@@ -14,6 +14,7 @@ import {EveryRoutes}      from 'route/EveryRoutes'
 import {routeFromName}    from 'route/route'
 import {GameCollection}   from 'util/collection/GameCollection'
 import {EMPTY_ARRAY}      from 'util/emptyVariables'
+import {GameStyles}       from 'core/gameStyle/GameStyles'
 
 /** Every {@link ProjectLanguages project language} as an {@link Array} */
 const languages = ProjectLanguages.CompanionEnum.get.values.toArray()
@@ -36,6 +37,7 @@ const everyViewDisplay = ViewDisplays.CompanionEnum.get.values
  * Then, by using the routes ({@link EveryRoutes}), the path are applied in the parameter.
  *
  * @see https://reactrouter.com/main/routers/create-hash-router
+ * @todo add GameStyles handling
  */
 const router = createHashRouter([{
     caseSensitive: false,
@@ -46,7 +48,7 @@ const router = createHashRouter([{
         {
             path: '/',
             loader() {
-                throw redirect(EveryRoutes.HOME.getPath(ProjectLanguages.CompanionEnum.get.currentOrNull ?? getUserLanguage(), null, null,),)
+                throw redirect(EveryRoutes.HOME.getPath(ProjectLanguages.CompanionEnum.get.currentOrNull ?? getUserLanguage(), null, null, null,),)
             },
         } satisfies RouteObject,
 
@@ -56,7 +58,7 @@ const router = createHashRouter([{
         everyRouteInstanceWithMoreThat1Element.map<RouteObject>(routeInstance => ({
             path: routeInstance.simplePath,
             loader() {
-                throw redirect(routeInstance.getPath(ProjectLanguages.CompanionEnum.get.currentOrNull ?? getUserLanguage(), null, null,),)
+                throw redirect(routeInstance.getPath(ProjectLanguages.CompanionEnum.get.currentOrNull ?? getUserLanguage(), null, null, null,),)
             },
         }),).toArray(),
 
@@ -83,7 +85,7 @@ const router = createHashRouter([{
                     {
                         path: pathFromLanguage,
                         loader() {
-                            throw redirect(EveryRoutes.HOME.getPath(language, null, null,),)
+                            throw redirect(EveryRoutes.HOME.getPath(language, null, null, null,),)
                         },
                     },
 
@@ -93,7 +95,7 @@ const router = createHashRouter([{
                     everyRouteInstanceWithMoreThat1Element.map<RouteObject>(routeInstance => ({
                         path: `${pathFromLanguage}${routeInstance.simplePath}`,
                         loader() {
-                            throw redirect(routeInstance.getPath(language, null, null,),)
+                            throw redirect(routeInstance.getPath(language, null, null, null,),)
                         },
                     }),).toArray(),
 
@@ -106,7 +108,7 @@ const router = createHashRouter([{
                         loader: () => {
                             const games = route.games
                             if (games != null)
-                                Games.setSelected(games,)
+                                Games.selected = games
                             return null
                         },
                     }),),
@@ -124,7 +126,7 @@ const router = createHashRouter([{
                                 {
                                     path: pathFromLanguageAndGame,
                                     loader() {
-                                        throw redirect(EveryRoutes.HOME.getPath(language, games, null,),)
+                                        throw redirect(EveryRoutes.HOME.getPath(language, games, null, null,),)
                                     },
                                 },
 
@@ -141,7 +143,7 @@ const router = createHashRouter([{
                                             {
                                                 path: pathFromLanguageAndGameAndViewDisplay,
                                                 loader() {
-                                                    throw redirect(EveryRoutes.HOME.getPath(language, games, viewDisplay,),)
+                                                    throw redirect(EveryRoutes.HOME.getPath(language, games, null, viewDisplay,),)
                                                 },
                                             },
 
@@ -151,7 +153,7 @@ const router = createHashRouter([{
                                             everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
                                                 path: `${pathFromLanguageAndGameAndViewDisplay}${routeInstance.simplePath}`,
                                                 loader() {
-                                                    throw redirect(routeInstance.getPath(language, games, viewDisplay,),)
+                                                    throw redirect(routeInstance.getPath(language, games, null, viewDisplay,),)
                                                 },
                                             }),).toArray(),
 
@@ -178,7 +180,7 @@ const router = createHashRouter([{
                                 everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
                                     path: `${pathFromLanguageAndGame}${routeInstance.simplePath}`,
                                     loader() {
-                                        throw redirect(routeInstance.getPath(language, games, null,),)
+                                        throw redirect(routeInstance.getPath(language, games, null, null,),)
                                     },
                                 }),).toArray(),
 
@@ -193,7 +195,7 @@ const router = createHashRouter([{
                                 //endregion -------------------- Fallback if nothing was found --------------------
                             ].flat(),
                             loader() {
-                                Games.setSelected(games,)
+                                Games.selected = games
                                 return null
                             },
                         }
@@ -212,7 +214,7 @@ const router = createHashRouter([{
                                 {
                                     path: pathFromLanguageAndViewDisplay,
                                     loader() {
-                                        throw redirect(EveryRoutes.HOME.getPath(language, null, viewDisplay,),)
+                                        throw redirect(EveryRoutes.HOME.getPath(language, null, null, viewDisplay,),)
                                     },
                                 },
 
@@ -222,7 +224,7 @@ const router = createHashRouter([{
                                 everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
                                     path: `${pathFromLanguageAndViewDisplay}${routeInstance.simplePath}`,
                                     loader() {
-                                        throw redirect(routeInstance.getPath(language, null, viewDisplay,),)
+                                        throw redirect(routeInstance.getPath(language, null, null, viewDisplay,),)
                                     },
                                 }),).toArray(),
 
@@ -294,6 +296,7 @@ function redirectToCorrectPathWithNoArguments(loaderArguments: LoaderFunctionArg
         EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
         ProjectLanguages.CompanionEnum.get.getValueInUrl(url,),
         Games.CompanionEnum.get.getValueInUrl(url,),
+        GameStyles.CompanionEnum.get.getValueInUrl(url,),
         ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
     )
 }
@@ -312,6 +315,7 @@ function redirectToCorrectPathWithNoRoute1(loaderArguments: LoaderFunctionArgs, 
         EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
         language,
         games,
+        GameStyles.CompanionEnum.get.getValueInUrl(url,),
         ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
     )
 }
@@ -331,6 +335,7 @@ function redirectToCorrectPathWithNoRoute2(loaderArguments: LoaderFunctionArgs, 
         EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
         language,
         games,
+        GameStyles.CompanionEnum.get.getValueInUrl(url,),
         viewDisplay,
     )
 }
@@ -348,6 +353,7 @@ function redirectToCorrectPathWithNoRouteAndGame1(loaderArguments: LoaderFunctio
         EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
         language,
         Games.CompanionEnum.get.getValueInUrl(url,),
+        GameStyles.CompanionEnum.get.getValueInUrl(url,),
         ViewDisplays.CompanionEnum.get.getValueInUrl(url,),
     )
 }
@@ -366,20 +372,23 @@ function redirectToCorrectPathWithNoRouteAndGame2(loaderArguments: LoaderFunctio
         EveryRoutes.CompanionEnum.get.getValueInUrl(url,),
         language,
         Games.CompanionEnum.get.getValueInUrl(url,),
+        GameStyles.CompanionEnum.get.getValueInUrl(url,),
         viewDisplay,
     )
 }
 /**
- * Redirect to the correct path from a value with only a {@link route} {@link language}, a {@link viewDisplay} and the {@link games}
+ * Redirect to the correct path from a value with only a {@link route} {@link language},
+ * a {@link viewDisplay}, the {@link games} and the {@link gameStyles}
  *
  * @param route The nullable simple route
  * @param language The nullable route language
  * @param viewDisplay The nullable view display in the route
  * @param games The games in the route
+ * @param gameStyles The game styles in the route
  * @throws {Response} The route encapsulated in a response
  */
-function redirectToCorrectPathWithEveryArguments(route: NullOr<EveryRoutes>, language: NullOr<ProjectLanguages>, games: readonly Games[], viewDisplay: NullOr<ViewDisplays>,): never {
+function redirectToCorrectPathWithEveryArguments(route: NullOr<EveryRoutes>, language: NullOr<ProjectLanguages>, games: readonly Games[], gameStyles: readonly GameStyles[], viewDisplay: NullOr<ViewDisplays>,): never {
     if (route == null)
         route = EveryRoutes.HOME
-    throw redirect(route.getPath(language, games, viewDisplay,),)
+    throw redirect(route.getPath(language, games, gameStyles, viewDisplay,),)
 }
