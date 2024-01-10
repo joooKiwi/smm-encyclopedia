@@ -43,6 +43,17 @@ export function isArrayEquals(firstArray: readonly any[], secondArray: readonly 
     return true
 }
 
+export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): CollectionHolder<T> {
+    const secondSize = second.length
+    return first.filter(it => {
+        let index = -1
+        while (++index < secondSize)
+            if (second[index] === it)
+                return true
+        return false
+    },)
+}
+
 //region -------------------- filter game --------------------
 
 /**
