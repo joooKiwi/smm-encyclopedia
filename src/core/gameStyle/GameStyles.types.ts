@@ -14,7 +14,7 @@ enum Enum {
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
-//region -------------------- Acronym / name / image ----------------------------------------
+//region -------------------- Acronym / name / image --------------------
 
 export type PossibleAcronym = PossibleAcronym_GameStyle
 export type PossibleEnglishName = PossibleEnglishName_GameStyle
@@ -28,7 +28,7 @@ export type PossibleAcronym_InFile = | PossibleAcronym_InFile_SMM1 | '3W'
 /** The possible acronym that are used within the file system of the {@link Games.SUPER_MARIO_MAKER_1 Super Mario Maker 1 game} */
 export type PossibleAcronym_InFile_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'
 
-//endregion -------------------- Acronym / name / image ----------------------------------------
+//endregion -------------------- Acronym / name / image --------------------
 //region -------------------- URL --------------------
 
 type GroupValidUrlSimpleValue = | PossibleSimpleValue

@@ -226,7 +226,7 @@ export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(valu
     return valueFound
 }
 
-export function getValueInUrl<const T extends EnumerableUsedInRoute,>(url: string, companionEnum: CompanionEnumRetrievableInUrl<T, any>,):NullOr<T>{
+export function getValueInUrl<const T extends EnumerableUsedInRoute, >(url: string, companionEnum: CompanionEnumRetrievableInUrl<T, any>,): NullOr<T> {
     if (!companionEnum.URL_REGEX.test(url,))
         return null
 
