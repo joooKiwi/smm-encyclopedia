@@ -1035,7 +1035,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
     public static readonly EVERY_GAME_STYLE = new EveryRoutes.EveryPath_EveryRoutes('everyGameStyle', '/every/game-style', ViewDisplays.CARD_LIST, (viewDisplay, games) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
 
-    public static readonly EVERY_ENTITY = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everyEntity', '/every/entity', null, (viewDisplay, games) => <EntityApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_ENTITY = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
     public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everyEntityCategory', '/every/entity-category', null, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
@@ -1047,7 +1047,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_COURSE_THEME = new EveryRoutes.EveryPath_EveryRoutes('courseTheme', '/course/theme', ViewDisplays.CARD_LIST, (viewDisplay, games) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.COURSE}/>,)
     public static readonly EVERY_WORLD_THEME = new EveryRoutes.EveryPath_EveryRoutes('worldTheme', '/world/theme', ViewDisplays.CARD_LIST, (viewDisplay, games) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.WORLD}/>,)
 
-    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games) => <SoundEffectApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games, gameStyles,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
     public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', null, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
 
     public static readonly EVERY_MII_COSTUME = new EveryRoutes.AnyViewDisplayOnlyInSMM2_EveryRoutes('everyMiiCostume', '/every/mii-costume', null, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)

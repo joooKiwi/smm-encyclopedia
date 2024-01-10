@@ -5,6 +5,7 @@ import type {FullGroupValidUrlSimpleValue as FullGroupValidUrlSimpleValue_GameSt
 import type {PossibleAcronym}                                                                                                                                                                                                                                            from 'lang/ProjectLanguages.types'
 import type {EveryRoutes}                                                                                                                                                                                                                                                from 'route/EveryRoutes'
 import type {GameCollection}                                                                                                                                                                                                                                             from 'util/collection/GameCollection'
+import type {GameStyleCollection}                                                                                                                                                                                                                                        from 'util/collection/GameStyleCollection'
 
 enum Enum {
     HOME,
@@ -219,7 +220,7 @@ export type PossibleSimpleRoutePath = typeof EveryRoutes[Names]['simplePath']
 export type PossibleRoutePath = SimpleRouteMap[Names][1]
 
 
-export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection,) => ReactJSXElement
+export type RouteCallback = (viewDisplay: ViewDisplays, games: GameCollection, gameStyles: GameStyleCollection,) => ReactJSXElement
 export type GameRouteCallback = (games: GameCollection,) => ReactJSXElement
 export type NothingRouteCallback = () => ReactJSXElement
 

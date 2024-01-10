@@ -4,6 +4,7 @@ import type {PowerUpPriorityTypes} from 'app/property/PowerUpPriorityTypes'
 import type {ThemeTypes}           from 'app/property/ThemeTypes'
 import type {ViewDisplays}         from 'app/withInterpreter/ViewDisplays'
 import type {GameCollection}       from 'util/collection/GameCollection'
+import type {GameStyleCollection}  from 'util/collection/GameStyleCollection'
 import type {ReactProperties}      from 'util/react/ReactProperties'
 
 export interface AppProperties
@@ -20,6 +21,13 @@ export interface AppWithGamesProperties
     extends AppProperties {
 
     readonly games: GameCollection
+
+}
+
+export interface AppWithGameStylesProperties
+    extends AppProperties {
+
+    readonly gameStyles: GameStyleCollection
 
 }
 
@@ -41,7 +49,7 @@ export interface GameStyleProperties
     extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 export interface EntityProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
 
 //entity category
 
@@ -62,7 +70,7 @@ export interface ThemeAppProperties
 }
 
 export interface SoundEffectProperties
-    extends AppWithInterpreterProperties, AppWithGamesProperties {}
+    extends AppWithInterpreterProperties, AppWithGamesProperties, AppWithGameStylesProperties {}
 
 //sound effect category
 

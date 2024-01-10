@@ -5,16 +5,17 @@ import {Suspense}                             from 'react'
 
 import type {PossibleRouteName} from 'route/EveryRoutes.types'
 
-import LoadingApp         from 'app/LoadingApp'
-import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
-import {Games}            from 'core/game/Games'
-import {getUserLanguage}  from 'lang/getUserLanguage'
-import {ProjectLanguages} from 'lang/ProjectLanguages'
-import {EveryRoutes}      from 'route/EveryRoutes'
-import {routeFromName}    from 'route/route'
-import {GameCollection}   from 'util/collection/GameCollection'
-import {EMPTY_ARRAY}      from 'util/emptyVariables'
-import {GameStyles}       from 'core/gameStyle/GameStyles'
+import LoadingApp            from 'app/LoadingApp'
+import {ViewDisplays}        from 'app/withInterpreter/ViewDisplays'
+import {Games}               from 'core/game/Games'
+import {GameStyles}          from 'core/gameStyle/GameStyles'
+import {getUserLanguage}     from 'lang/getUserLanguage'
+import {ProjectLanguages}    from 'lang/ProjectLanguages'
+import {EveryRoutes}         from 'route/EveryRoutes'
+import {routeFromName}       from 'route/route'
+import {EMPTY_ARRAY}         from 'util/emptyVariables'
+import {GameCollection}      from 'util/collection/GameCollection'
+import {GameStyleCollection} from 'util/collection/GameStyleCollection'
 
 /** Every {@link ProjectLanguages project language} as an {@link Array} */
 const languages = ProjectLanguages.CompanionEnum.get.values.toArray()
@@ -104,7 +105,7 @@ const router = createHashRouter([{
 
                     everyRoute.map<RouteObject>(route => ({
                         path: `${pathFromLanguage}${route.path}`,
-                        element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(route.viewDisplay!, new GameCollection(route.games ?? EMPTY_ARRAY,),)}</Suspense>,
+                        element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(route.viewDisplay!, new GameCollection(route.games ?? EMPTY_ARRAY,), new GameStyleCollection(route.gameStyles ?? EMPTY_ARRAY,),)}</Suspense>,
                         loader: () => {
                             const games = route.games
                             if (games != null)
