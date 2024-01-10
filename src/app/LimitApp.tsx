@@ -134,7 +134,7 @@ export default class LimitApp
             }
 
 
-            public createNewTableContent(content: Limits, option: LimitAppOption,) {
+            public createTableContent(content: Limits, option: LimitAppOption,) {
                 return option.renderContent(content,)
             }
 

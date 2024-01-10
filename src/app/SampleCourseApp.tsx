@@ -92,7 +92,7 @@ export default class SampleCourseApp
                 ]
             }
 
-            public createNewTableContent(content: SampleCourses, option: SampleCourseAppOption,) {
+            public createTableContent(content: SampleCourses, option: SampleCourseAppOption,) {
                 return option.renderContent(content,)
             }
 

@@ -32,7 +32,7 @@ export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
      * @param content The content to display
      * @param option the application option
      */
-    createNewTableContent(content: CONTENT, option: OPTION,): readonly ReactElement[]
+    createTableContent(content: CONTENT, option: OPTION,): readonly ReactElement[]
 
     /**
      * Get the {@link SingleHeaderContent table header} or null

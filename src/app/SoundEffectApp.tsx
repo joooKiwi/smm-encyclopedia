@@ -109,7 +109,7 @@ export default class SoundEffectApp
             }
 
 
-            public createNewTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
+            public createTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
                 return option.renderContent(content,)
             }
 

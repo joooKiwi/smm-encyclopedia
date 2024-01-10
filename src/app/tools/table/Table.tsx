@@ -163,7 +163,7 @@ function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly
         const tableContent: SingleTableContent = [contentValue.englishName,]
         let index2 = -1
         while (++index2 < size2) {
-            const tableContentCreated = interpreter.createNewTableContent(contentValue, options[index2],)
+            const tableContentCreated = interpreter.createTableContent(contentValue, options[index2],)
             const size3 = tableContentCreated.length
             let index3 = -1
             while (++index3 < size3)

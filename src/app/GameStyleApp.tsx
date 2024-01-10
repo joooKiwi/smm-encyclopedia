@@ -86,7 +86,7 @@ export default class GameStyleApp
                 ]
             }
 
-            public createNewTableContent(content: GameStyles, option: GameStyleAppOption,) {
+            public createTableContent(content: GameStyles, option: GameStyleAppOption,) {
                 return option.renderContent(content,)
             }
 

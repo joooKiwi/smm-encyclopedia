@@ -137,7 +137,7 @@ export default class ThemeApp
             }
 
 
-            public createNewTableContent(content: Themes, option: ThemeAppOption,) {
+            public createTableContent(content: Themes, option: ThemeAppOption,) {
                 return option.renderContent(content,)
             }
 

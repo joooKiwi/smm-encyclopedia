@@ -143,7 +143,7 @@ export default class MysteryMushroomApp
             }
 
 
-            public createNewTableContent(content: MysteryMushrooms, option: MysteryMushroomAppOption,) {
+            public createTableContent(content: MysteryMushrooms, option: MysteryMushroomAppOption,) {
                 return option.renderContent(content,)
             }
 

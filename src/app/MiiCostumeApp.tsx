@@ -103,7 +103,7 @@ export default class MiiCostumeApp
             }
 
 
-            public createNewTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
+            public createTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
                 return option.renderContent(content,)
             }
 
