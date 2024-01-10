@@ -1,5 +1,6 @@
 import type {ViewDisplays}  from 'app/withInterpreter/ViewDisplays'
 import type {Games}         from 'core/game/Games'
+import type {GameStyles}    from 'core/gameStyle/GameStyles'
 import type {RouteCallback} from 'route/EveryRoutes.types'
 
 /**
@@ -19,16 +20,18 @@ export class SimpleRoute {
     readonly #path
     readonly #viewDisplay
     readonly #games
+    readonly #gameStyles
     readonly #renderCallback
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: string, path: string, games: NullOr<readonly Games[]>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
+    public constructor(name: string, path: string, games: NullOr<readonly Games[]>, gameStyles: NullOr<readonly GameStyles[]>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
         this.#name = name
         this.#path = path
         this.#viewDisplay = viewDisplay
         this.#games = games
+        this.#gameStyles = gameStyles
         this.#renderCallback = renderCallback
     }
 
@@ -49,6 +52,10 @@ export class SimpleRoute {
 
     public get games(): NullOr<readonly Games[]> {
         return this.#games
+    }
+
+    public get gameStyles(): NullOr<readonly GameStyles[]> {
+        return this.#gameStyles
     }
 
     public get renderCallback(): RouteCallback {
