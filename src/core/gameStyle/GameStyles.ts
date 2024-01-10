@@ -461,6 +461,7 @@ export abstract class GameStyles
         return this.#imageFile ??= gameStyleImage(this.acronymInFile, this.englishName,)
     }
 
+    /** @deprecated It should be replaced with {@link GameStyles.acronymInFile} for a file path */
     public get shortImagePath(): PossibleShortImagePath {
         return this.#shortImagePath ??= `${this.ordinal + 1} - ${this.acronym}` as PossibleShortImagePath
     }
