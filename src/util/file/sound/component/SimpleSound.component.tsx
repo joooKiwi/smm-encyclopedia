@@ -89,13 +89,13 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
      * and initialising it upon creating the audio element
      */
     protected get _audio(): SimpleSoundPlayer<FILE, TITLE> {
-        if (this.#audio == null) {
-            const source = this.file
-            this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
-                .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
-                .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}))
-        }
-        return this.#audio
+        if (this.#audio != null)
+            return this.#audio
+
+        const source = this.file
+        return this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
+            .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
+            .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}))
     }
 
     //endregion -------------------- Getter methods --------------------

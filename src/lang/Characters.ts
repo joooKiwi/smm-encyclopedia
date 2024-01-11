@@ -383,22 +383,22 @@ export class Characters
      * An equivalence {@link Object object map} of every character used in the {@link Characters} enum.
      */
     public static get equivalenceMapObject(): CharactersEquivalencesMap {
-        if (this.#SPACE_EVEN_OBJECT_MAP == null) {
-            const spaceEvenObjectMap: Partial<CharactersEquivalencesMap> = {}
-            const values = this.CompanionEnum.get.values
-            for (const enumerable of values) {
-                const [spaceEvenCharacter1, spaceEvenCharacter2,] = enumerable.spaceEvenCharacters
-                const [spaceUnevenCharacter1, spaceUnevenCharacter2,] = enumerable.spaceUnevenCharacters
-                Reflect.set(spaceEvenObjectMap, spaceEvenCharacter1, spaceUnevenCharacter1,)
-                Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter1, spaceEvenCharacter1,)
-                if (spaceUnevenCharacter2 != null) {
-                    Reflect.set(spaceEvenObjectMap, spaceEvenCharacter2!, spaceUnevenCharacter2,)
-                    Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter2, spaceEvenCharacter2,)
-                }
+        if (this.#SPACE_EVEN_OBJECT_MAP != null)
+            return this.#SPACE_EVEN_OBJECT_MAP
+
+        const spaceEvenObjectMap: Partial<CharactersEquivalencesMap> = {}
+        const values = this.CompanionEnum.get.values
+        for (const enumerable of values) {
+            const [spaceEvenCharacter1, spaceEvenCharacter2,] = enumerable.spaceEvenCharacters
+            const [spaceUnevenCharacter1, spaceUnevenCharacter2,] = enumerable.spaceUnevenCharacters
+            Reflect.set(spaceEvenObjectMap, spaceEvenCharacter1, spaceUnevenCharacter1,)
+            Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter1, spaceEvenCharacter1,)
+            if (spaceUnevenCharacter2 != null) {
+                Reflect.set(spaceEvenObjectMap, spaceEvenCharacter2!, spaceUnevenCharacter2,)
+                Reflect.set(spaceEvenObjectMap, spaceUnevenCharacter2, spaceEvenCharacter2,)
             }
-            this.#SPACE_EVEN_OBJECT_MAP = spaceEvenObjectMap as CharactersEquivalencesMap
         }
-        return this.#SPACE_EVEN_OBJECT_MAP
+        return this.#SPACE_EVEN_OBJECT_MAP = spaceEvenObjectMap as CharactersEquivalencesMap
     }
 
     //region -------------------- Transformation methods --------------------

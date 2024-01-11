@@ -1218,39 +1218,34 @@ export abstract class SoundEffects
 
     /** The "sound effect" exclusive sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
     public get soundsContainer_exclusiveSmm1(): SMM1ExclusiveSoundEffectSound {
-        if (this.#sounds_exclusiveSmm1 == null) {
-            const value = this._createExclusiveSMM1Sounds()
-            if (value == null)
-                return this.#sounds_exclusiveSmm1 = EmptySound.get
-            if (value instanceof Array)
-                return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, value[0],)
-            return this.#sounds_exclusiveSmm1 = value
-        }
-        return this.#sounds_exclusiveSmm1
+        if (this.#sounds_exclusiveSmm1 != null)
+            return this.#sounds_exclusiveSmm1
+
+        const value = this._createExclusiveSMM1Sounds()
+        if (value == null)
+            return this.#sounds_exclusiveSmm1 = EmptySound.get
+        if (value instanceof Array)
+            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, value[0],)
+        return this.#sounds_exclusiveSmm1 = value
     }
 
     /** The "sound effect" sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_1 SMM1} game (& {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} inclusively) */
     public get soundsContainer_standaloneSMM1(): SMM1StandaloneSoundEffectSound {
-        if (this.#sounds_standaloneSmm1 == null) {
-            const smm1 = this.soundsContainer_exclusiveSmm1
-            const smm2 = this.soundsContainer_smm2
-            const valueToCreate = smm2 instanceof SoundEffectFromMusicAdaptorContainer
-                ? this._createStandaloneSMM1Sounds(smm1, EmptySound.get, smm2,)
-                : this._createStandaloneSMM1Sounds(smm1, smm2 as SMM2SoundEffectSound, EmptySoundEffectFromMusicAdaptor.get,)
+        if (this.#sounds_standaloneSmm1 != null)
+            return this.#sounds_standaloneSmm1
 
-            if (valueToCreate != null) {
-                if ('build' in valueToCreate) {
-                    console.info({name: this.englishName, value: valueToCreate.build(), sounds: valueToCreate.build().sounds.map(it => it.name), editor: valueToCreate.build().editorSound?.name, link: valueToCreate.build().linkSounds.map(it => it.name), smb2: valueToCreate.build().smb2Sounds.map(it => it.name),},)
-                    return this.#sounds_standaloneSmm1 = valueToCreate.build()
-                }
-                return this.#sounds_standaloneSmm1 = valueToCreate
-            }
-            if (smm1 === EmptySound.get)
-                return this.#sounds_standaloneSmm1 = EmptySound.get
+        const smm1 = this.soundsContainer_exclusiveSmm1
+        const smm2 = this.soundsContainer_smm2
+        const valueToCreate = smm2 instanceof SoundEffectFromMusicAdaptorContainer
+            ? this._createStandaloneSMM1Sounds(smm1, EmptySound.get, smm2,)
+            : this._createStandaloneSMM1Sounds(smm1, smm2 as SMM2SoundEffectSound, EmptySoundEffectFromMusicAdaptor.get,)
 
-            return this.#sounds_standaloneSmm1 = new SMM1StandaloneSound(smm1.sounds, smm1.editorSound, smm1, EmptySound.get,)
-        }
-        return this.#sounds_standaloneSmm1
+        if (valueToCreate != null)
+            return this.#sounds_standaloneSmm1 = valueToCreate
+        if (smm1 === EmptySound.get)
+            return this.#sounds_standaloneSmm1 = EmptySound.get
+
+        return this.#sounds_standaloneSmm1 = new SMM1StandaloneSound(smm1.sounds, smm1.editorSound, smm1, EmptySound.get,)
     }
 
     /** Every "sound effect" sound for {@link Games.SUPER_MARIO_MAKER_1 SMM1}/{@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} exclusively */
@@ -1304,17 +1299,17 @@ export abstract class SoundEffects
 
     /** The "sound effect" sounds (in a container) of the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game */
     public get soundsContainer_smm2(): | SMM2SoundEffectSound | SoundEffectFromMusicAdaptor {
-        if (this.#sounds_smm2 == null) {
-            const value = this._createSMM2Sounds()
-            if (value == null)
-                return this.#sounds_smm2 = EmptySound.get
-            if (value instanceof Array)
-                return this.#sounds_smm2 = new SMM2Sound(value, value[0], EMPTY_ARRAY, EMPTY_ARRAY,)
-            if (value instanceof Import.Musics)
-                return this.#sounds_smm2 = new SoundEffectFromMusicAdaptor(value,)
-            return this.#sounds_smm2 = value
-        }
-        return this.#sounds_smm2
+        if (this.#sounds_smm2 != null)
+            return this.#sounds_smm2
+
+        const value = this._createSMM2Sounds()
+        if (value == null)
+            return this.#sounds_smm2 = EmptySound.get
+        if (value instanceof Array)
+            return this.#sounds_smm2 = new SMM2Sound(value, value[0], EMPTY_ARRAY, EMPTY_ARRAY,)
+        if (value instanceof Import.Musics)
+            return this.#sounds_smm2 = new SoundEffectFromMusicAdaptorContainer(value,)
+        return this.#sounds_smm2 = value
     }
 
     /** Every "sound effect" sounds stored in a {@link SMM2SoundEffectSound SMM2 "sound effect" sound} */

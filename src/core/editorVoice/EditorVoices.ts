@@ -644,15 +644,15 @@ export abstract class EditorVoices
     }
 
     public get characterNameReferences(): readonly CharacterNames[] {
-        if (this.#characterNameReference == null) {
-            const reference = this._createCharacterNameReference()
-            if (reference instanceof Array)
-                return this.#characterNameReference = reference
-            if (Import.CharacterNames.CompanionEnum.get.hasValueByName(reference,))
-                return this.#characterNameReference = [Import.CharacterNames.CompanionEnum.get.getValueByName(reference,),]
-            return this.#characterNameReference = EMPTY_ARRAY
-        }
-        return this.#characterNameReference
+        if (this.#characterNameReference != null)
+            return this.#characterNameReference
+
+        const reference = this._createCharacterNameReference()
+        if (reference instanceof Array)
+            return this.#characterNameReference = reference
+        if (Import.CharacterNames.CompanionEnum.get.hasValueByName(reference,))
+            return this.#characterNameReference = [Import.CharacterNames.CompanionEnum.get.getValueByName(reference,),]
+        return this.#characterNameReference = EMPTY_ARRAY
     }
 
     //endregion -------------------- Character name references --------------------
@@ -677,15 +677,15 @@ export abstract class EditorVoices
      *  multiple {@link Entities entity instance} (from 2 to 4) associated to {@link EditorVoices this instance}.
      */
     public get entityReferences(): readonly Entities[] {
-        if (this.#entityReferences == null) {
-            const reference = this._createEntityReferences()
-            if (reference instanceof Array)
-                return this.#entityReferences = reference
-            if (Import.Entities.CompanionEnum.get.hasValueByName(reference,))
-                return this.#entityReferences = [Import.Entities.CompanionEnum.get.getValueByName(reference,),]
-            return this.#entityReferences = EMPTY_ARRAY
-        }
-        return this.#entityReferences
+        if (this.#entityReferences != null)
+            return this.#entityReferences
+
+        const reference = this._createEntityReferences()
+        if (reference instanceof Array)
+            return this.#entityReferences = reference
+        if (Import.Entities.CompanionEnum.get.hasValueByName(reference,))
+            return this.#entityReferences = [Import.Entities.CompanionEnum.get.getValueByName(reference,),]
+        return this.#entityReferences = EMPTY_ARRAY
     }
 
     //endregion -------------------- Entity references --------------------

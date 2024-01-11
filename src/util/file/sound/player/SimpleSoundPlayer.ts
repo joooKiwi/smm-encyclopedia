@@ -75,34 +75,35 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     //region -------------------- Getter & setter methods (audio) --------------------
 
     public get audio(): HTMLAudioElement {
-        if (this.#audio == null) {
-            const audio = this.#audio = new Audio(this.source.fullName)
-            audio.onplaying = event => {
-                switch (this.history.current.state) {
-                    case STANDBY:
-                        return this.stop()
-                    case PAUSED:
-                        return this.pause()
-                }
-                this.setState(new HistoryState(PLAYING, false, true,),)
-                this.onPlayingEvent?.(this, event,)
+        if (this.#audio != null)
+            return this.#audio
+
+        const audio = new Audio(this.source.fullName,)
+        audio.onplaying = event => {
+            switch (this.history.current.state) {
+                case STANDBY:
+                    return this.stop()
+                case PAUSED:
+                    return this.pause()
             }
-            audio.onpause = event => {
-                this.setState(new HistoryState(PAUSED, false, true,),)
-                this.onPauseEvent?.(this, event,)
-            }
-            audio.onplay = event => {
-                this.setState(new HistoryState(PLAYING, true, true,),)
-                this.onPlayEvent?.(this, event,)
-            }
-            audio.onended = event => {
-                this.setState(new HistoryState(STANDBY, false, true,),)
-                this.onEndEvent?.(this, event,)
-            }
-            audio.title = this.title
-            audio.loop = this.doesLoop
+            this.setState(new HistoryState(PLAYING, false, true,),)
+            this.onPlayingEvent?.(this, event,)
         }
-        return this.#audio
+        audio.onpause = event => {
+            this.setState(new HistoryState(PAUSED, false, true,),)
+            this.onPauseEvent?.(this, event,)
+        }
+        audio.onplay = event => {
+            this.setState(new HistoryState(PLAYING, true, true,),)
+            this.onPlayEvent?.(this, event,)
+        }
+        audio.onended = event => {
+            this.setState(new HistoryState(STANDBY, false, true,),)
+            this.onEndEvent?.(this, event,)
+        }
+        audio.title = this.title
+        audio.loop = this.doesLoop
+        return this.#audio = audio
     }
 
     /** The audio element has been initialised (by calling its getter) */
@@ -125,12 +126,12 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
      * @onlyInitialisedOnce
      */
     public get isDurationValid(): boolean {
-        if (this.#isDurationValid == null) {
-            if (!this.isAudioExistant)
-                return false
-            this.#isDurationValid = Number.isFinite(this.audio.duration)
-        }
-        return this.#isDurationValid
+        if (this.#isDurationValid != null)
+            return this.#isDurationValid
+
+        if (!this.isAudioExistant)
+            return false
+        return this.#isDurationValid = Number.isFinite(this.audio.duration)
     }
 
     //region -------------------- Getter & setter methods (audio event) --------------------

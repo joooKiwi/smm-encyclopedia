@@ -45,15 +45,15 @@ export default class GameReferenceApp
     //region -------------------- Getter & initialisation methods --------------------
 
     private static get __otherGameReferences(): readonly GameReferences[] {
-        if (this.#otherGameReferences == null) {
-            const alreadyIncludedNames = [
-                ...Games.CompanionEnum.get.values.map(game => game.englishName,),
-                ...GameStyles.CompanionEnum.get.values.map(game => game.englishName,),
-                ...SoundEffects.soundEffect_games.map(game => game.englishName,) as PossibleEnglishName_Games[],
-            ]
-            this.#otherGameReferences = GameReferences.CompanionEnum.get.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),).toArray()
-        }
-        return this.#otherGameReferences
+        if (this.#otherGameReferences != null)
+            return this.#otherGameReferences
+
+        const alreadyIncludedNames = [
+            ...Games.CompanionEnum.get.values.map(game => game.englishName,),
+            ...GameStyles.CompanionEnum.get.values.map(game => game.englishName,),
+            ...SoundEffects.soundEffect_games.map(game => game.englishName,) as PossibleEnglishName_Games[],
+        ]
+        return this.#otherGameReferences = GameReferences.CompanionEnum.get.values.filter(it => !alreadyIncludedNames.includes(it.englishName as never,),).toArray()
     }
 
     //endregion -------------------- Getter & initialisation methods --------------------
