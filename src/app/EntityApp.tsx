@@ -1,19 +1,19 @@
 import './EntityApp.scss'
 import './options/EntityAppOption.scss'
 
-import type {EntityProperties}           from 'app/AppProperties.types'
+import type {EntityProperties}        from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
-import {EntityAppOption}         from 'app/options/EntityAppOption'
-import {AbstractTableApp}        from 'app/withInterpreter/AbstractTableApp'
-import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
-import {Entities}                from 'core/entity/Entities'
-import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}  from 'lang/components/translationMethods'
-import {unfinishedText}          from 'app/tools/text/UnfinishedText'
-import {filterGame}              from 'util/utilitiesMethods'
+import {EntityAppOption}             from 'app/options/EntityAppOption'
+import {AbstractTableApp}            from 'app/withInterpreter/AbstractTableApp'
+import EditorVoiceSoundComponent     from 'core/editorVoice/EditorVoiceSound.component'
+import {Entities}                    from 'core/entity/Entities'
+import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {gameContentTranslation}      from 'lang/components/translationMethods'
+import {unfinishedText}              from 'app/tools/text/UnfinishedText'
+import {filterGame, filterGameStyle} from 'util/utilitiesMethods'
 
 //region -------------------- Deconstruction imports --------------------
 
@@ -62,7 +62,7 @@ export default class EntityApp
         return new class EntityAppInterpreter implements AppInterpreterWithTable<Entities, EntityAppOption> {
 
             public get content() {
-                return filterGame(Entities.CompanionEnum.get.values, $this.props.games,)
+                return filterGameStyle(filterGame(Entities.CompanionEnum.get.values, $this.props.games,), $this.props.gameStyles,)
             }
 
             //region -------------------- List interpreter --------------------
@@ -107,16 +107,20 @@ export default class EntityApp
 
             public get tableOptions(): readonly EntityAppOption[] {
                 const games = $this.props.games
-                const hasSMM1Or3DSGames = games.hasSMM1Or3DS
-                const hasSMM2Games = games.hasSMM2
+                const gameStyles = $this.props.gameStyles
+                const hasSMM1Or3DS = games.hasSMM1Or3DS
+                const hasSMM2 = games.hasSMM2
 
-                const options: EntityAppOption[] = [
-                    EntityAppOption.IMAGE_IN_SMB,
-                    EntityAppOption.IMAGE_IN_SMB3,
-                    EntityAppOption.IMAGE_IN_SMW,
-                    EntityAppOption.IMAGE_IN_NSMBU,
-                ]
-                if (hasSMM2Games)
+                const options: EntityAppOption[] = []
+                if (gameStyles.hasSMB)
+                    options.push(EntityAppOption.IMAGE_IN_SMB,)
+                if (gameStyles.hasSMB3)
+                    options.push(EntityAppOption.IMAGE_IN_SMB3,)
+                if (gameStyles.hasSMW)
+                    options.push(EntityAppOption.IMAGE_IN_SMW,)
+                if (gameStyles.hasNSMBU)
+                    options.push(EntityAppOption.IMAGE_IN_NSMBU,)
+                if (gameStyles.hasSM3DW && hasSMM2) // The SMM2 validation is a fail-safe
                     options.push(EntityAppOption.IMAGE_IN_SM3DW,)
                 options.push(
                     EntityAppOption.NAME,
@@ -126,12 +130,12 @@ export default class EntityApp
                     // EntityAppOption.TIME,
                     EntityAppOption.CATEGORY,
                 )
-                if (hasSMM1Or3DSGames && hasSMM2Games)
+                if (hasSMM1Or3DS && hasSMM2)
                     options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS, EntityAppOption.EDITOR_LIMIT_IN_SMM2,)
                 else {
-                    if (hasSMM1Or3DSGames)
+                    if (hasSMM1Or3DS)
                         options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY,)
-                    if (hasSMM2Games)
+                    if (hasSMM2)
                         options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
                 }
                 options.push(EntityAppOption.PLAY_LIMIT,)
