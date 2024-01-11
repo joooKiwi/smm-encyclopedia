@@ -213,7 +213,7 @@ export class SimpleNameBuilder<T extends NonNullable<unknown>, >
 
     public build(): SimpleNameContainer<T> {
         const {english,} = this
-        assert(english != null, 'The english reference has not been initialised.',)
+        assert(english != null, 'The english reference has not been initialized.',)
 
         return new SimpleNameContainer(
             english,

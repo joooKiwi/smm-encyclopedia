@@ -86,7 +86,7 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
 
     /**
      * Get the audio element (lazily)
-     * and initialising it upon creating the audio element
+     * and initializing it upon creating the audio element
      */
     protected get _audio(): SimpleSoundPlayer<FILE, TITLE> {
         if (this.#audio != null)

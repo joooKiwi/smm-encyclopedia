@@ -106,14 +106,14 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
         return this.#audio = audio
     }
 
-    /** The audio element has been initialised (by calling its getter) */
+    /** The audio element has been initialized (by calling its getter) */
     public get isAudioExistant(): boolean {
         return this.#audio != null
     }
 
     /**
      * The element is paused.
-     * If the elements has not been initialised, then it is <b>false</b>.
+     * If the elements have not been initialized, then it is <b>false</b>.
      */
     public get isPaused(): boolean {
         return this.#audio?.paused ?? false
@@ -123,7 +123,7 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
      * The element has a valid duration time.
      * And if the element {@link isAudioExistant is not existant}, then it will always return <b>false</b>.
      *
-     * @onlyInitialisedOnce
+     * @onlyInitializedOnce
      */
     public get isDurationValid(): boolean {
         if (this.#isDurationValid != null)
