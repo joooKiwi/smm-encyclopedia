@@ -5,6 +5,7 @@ import type {ClassWithReference}                                                
 import type {MusicSoundFile}                                                                                                                         from 'core/music/file/MusicSoundFile'
 import type {PossibleSoundEffectMusicEditorName}                                                                                                     from 'core/music/soundEffect/SoundEffectMusic'
 import type {SoundEffect}                                                                                                                            from 'core/soundEffect/SoundEffect'
+import type {SoundEffectFromMusicAdaptor}                                                                                                            from 'core/soundEffect/SoundEffectFromMusicAdaptor'
 import type {Names, Ordinals, PossibleEnglishName, PossibleSMM1ImageFiles, SoundEffectGames, SoundEffectImageName_SMM2, SoundEffectImageNumber_SMM1} from 'core/soundEffect/SoundEffects.types'
 import type {SMM2SoundEffectImageFile}                                                                                                               from 'core/soundEffect/file/SoundEffectImageFile'
 import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile, SoundEffectSoundFile}                                                               from 'core/soundEffect/file/SoundEffectSoundFile'
@@ -12,12 +13,12 @@ import type {PossibleValueOnLinkOrSMB2Value_SMM2, SMM2SoundEffectSound}         
 import type {SMM1ExclusiveSoundEffectSound}                                                                                                          from 'core/soundEffect/sound/SMM1ExclusiveSoundEffectSound'
 import type {SMM1StandaloneSoundEffectSound}                                                                                                         from 'core/soundEffect/sound/SMM1StandaloneSoundEffectSound'
 import type {SoundEffectSoundNamesForTwistyTurnyAndWoozy}                                                                                            from 'core/soundEffect/sound/types'
-import type {Builder}                                                                                                                                from 'util/builder/Builder'
 import type {CompanionEnumByNameSingleton}                                                                                                           from 'util/enumerable/Singleton.types'
 
 import type {Musics}                                                    from 'core/music/Musics'
+import {EmptySoundEffectFromMusicAdaptor}                               from 'core/soundEffect/EmptySoundEffectFromMusicAdaptor'
 import SoundEffectComponent                                             from 'core/soundEffect/SoundEffect.component'
-import {SoundEffectFromMusicAdaptor}                                    from 'core/soundEffect/SoundEffectFromMusicAdaptor'
+import {SoundEffectFromMusicAdaptorContainer}                           from 'core/soundEffect/SoundEffectFromMusicAdaptor.container'
 import {SoundEffectLoader}                                              from 'core/soundEffect/SoundEffect.loader'
 import * as FileCreator                                                 from 'core/soundEffect/file/fileCreator'
 import {EmptySMMSoundEffectSound as EmptySound}                         from 'core/soundEffect/sound/EmptySMMSoundEffectSound'
@@ -954,6 +955,13 @@ export abstract class SoundEffects
         }
 
 
+        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound, smm2Adaptor: SoundEffectFromMusicAdaptor,) {
+            const sounds = smm2Adaptor.sounds
+
+            // @ts-ignore: TODO handle the music sound file as a valid possible instance
+            return new SMM1StandaloneSound([sounds[5], sounds[8], sounds[9], sounds[10], sounds[13], sounds[16], sounds[17], sounds[18],], smm2Adaptor.editorSound, smm1, smm2Adaptor,)
+        }
+
         protected override _createSMM2Sounds(): Musics {
             return Import.Musics.BONUS
         }
@@ -969,6 +977,13 @@ export abstract class SoundEffects
             return 'Boss' as const satisfies SoundEffectImageName_SMM2
         }
 
+
+        protected override _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound, smm2Adaptor: SoundEffectFromMusicAdaptor,) {
+            const sounds = smm2Adaptor.sounds
+
+            // @ts-ignore: TODO handle the music sound file as a valid possible instance
+            return new SMM1StandaloneSound([sounds[5], sounds[8], sounds[9], sounds[10], sounds[12], sounds[15], sounds[16], sounds[17],], smm2Adaptor.editorSound, smm1, smm2Adaptor,)
+        }
 
         protected override _createSMM2Sounds(): Musics {
             return Import.Musics.BOSS
@@ -1192,12 +1207,12 @@ export abstract class SoundEffects
 
     /**
      * Create a standalone {@link SMM1StandaloneSoundEffectSound}
-     * from a {@link SMM1ExclusiveSoundEffectSound} and a {@link SMM2SoundEffectSound}
+     * from a {@link SMM1ExclusiveSoundEffectSound}, a {@link SMM2SoundEffectSound} and a {@link SoundEffectFromMusicAdaptor}
      *
      * @onlyCalledOnce
      * @onlyCalledBy soundsContainer_standaloneSMM1
      */
-    protected _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound,): NullOr<|Builder<SMM1StandaloneSoundEffectSound>|SMM1StandaloneSoundEffectSound> {
+    protected _createStandaloneSMM1Sounds(smm1: SMM1ExclusiveSoundEffectSound, smm2: SMM2SoundEffectSound, smm2Adaptor: SoundEffectFromMusicAdaptor,): NullOr<SMM1StandaloneSoundEffectSound> {
         return null
     }
 
@@ -1219,7 +1234,9 @@ export abstract class SoundEffects
         if (this.#sounds_standaloneSmm1 == null) {
             const smm1 = this.soundsContainer_exclusiveSmm1
             const smm2 = this.soundsContainer_smm2
-            const valueToCreate = this._createStandaloneSMM1Sounds(smm1, smm2 instanceof SoundEffectFromMusicAdaptor ? EmptySound.get : smm2,)
+            const valueToCreate = smm2 instanceof SoundEffectFromMusicAdaptorContainer
+                ? this._createStandaloneSMM1Sounds(smm1, EmptySound.get, smm2,)
+                : this._createStandaloneSMM1Sounds(smm1, smm2 as SMM2SoundEffectSound, EmptySoundEffectFromMusicAdaptor.get,)
 
             if (valueToCreate != null) {
                 if ('build' in valueToCreate) {
