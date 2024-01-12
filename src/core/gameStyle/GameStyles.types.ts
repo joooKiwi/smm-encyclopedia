@@ -33,7 +33,7 @@ export type PossibleAcronym_InFile_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'
 
 type GroupValidUrlSimpleValue = | PossibleSimpleValue
                                        | '1&3' | '1&W' | '1&U' | '1&3DW' | '3&W' | '3&U' | '3&3DW' | 'W&U' | 'W&3DW' | 'U&3DW'
-                                       | '1&3&W' | '1&3&U' | '1&3&3DW' | '1&W&U' | '1&W&3DW' | '3&W&U' | '3&W&3DW' | 'W&W&3DW'
+                                       | '1&3&W' | '1&3&U' | '1&3&3DW' | '1&W&U' | '1&W&3DW' | '1&U&3DW' | '3&W&U' | '3&W&3DW' | '3&U&3DW' | 'W&U&3DW'
                                        | '1&3&W&U' | '1&3&W&3DW' | '1&3&U&3DW' | '1&W&U&3DW' | '3&W&U&3DW'
                                        | 'all'
 type GroupValidUrlSimpleValue_SMM1 = | PossibleSimpleValue_SMM1
@@ -54,7 +54,7 @@ export type GroupUrlValue = | PossibleSimpleUrlValue
                             | 'all'
 type GroupValidUrlValue = | PossibleSimpleUrlValue
                           | '1,3' | '1,w' | '1,u' | '1,3dw' | '3,w' | '3,u' | '3,3dw' | 'w,u' | 'w,3dw' | 'u,3dw'
-                          | '1,3,w' | '1,3,u' | '1,3,3dw' | '1,w,u' | '1,w,3dw' | '3,w,u' | '3,w,3dw' | 'w,w,3dw'
+                          | '1,3,w' | '1,3,u' | '1,3,3dw' | '1,w,u' | '1,w,3dw' | '1,u,3dw' | '3,w,u' | '3,w,3dw' | '3,u,3dw' | 'w,u,3dw'
                           | '1,3,w,u' | '1,3,w,3dw' | '1,3,u,3dw' | '1,w,u,3dw' | '3,w,u,3dw'
                           | 'all'
 type GroupValidUrlValue_SMM1 = | PossibleSimpleUrlValue_SMM1
