@@ -46,6 +46,7 @@ const SampleCourseApp = lazy(() => import('app/SampleCourseApp'))
 const MedalApp = lazy(() => import('app/MedalApp'))
 const HomeApp = lazy(() => import('app/HomeApp'))
 const SourcesApp = lazy(() => import('app/SourcesApp'))
+const RouteApp = lazy(() => import('app/RouteApp'))
 
 //endregion -------------------- Dynamic imports --------------------
 //region -------------------- Helper constants --------------------
@@ -1069,6 +1070,8 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_INSTRUMENT = new EveryRoutes.AnyListViewDisplayInAnyGame_EveryRoutes('everyInstrument', '/every/instrument', null, viewDisplay => <InstrumentApp viewDisplay={viewDisplay}/>,)//TODO add the games on the InstrumentApp
 
     public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.AnyListViewDisplayInAnyGame_EveryRoutes('everyEditorVoice', '/every/editor-voice', null, (viewDisplay, games,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games}/>,)
+
+    public static readonly EVERY_ROUTE = new EveryRoutes.Straight_EveryRoutes('everyRoute', '/debug/every-route', () => <RouteApp/>,)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------

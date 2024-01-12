@@ -47,6 +47,8 @@ enum Enum {
     EVERY_INSTRUMENT,
 
     EVERY_EDITOR_VOICE,
+
+    EVERY_ROUTE,
 }
 
 export type Ordinals = typeof Enum[Names]
@@ -107,6 +109,8 @@ interface SimpleRouteMap {
     EVERY_INSTRUMENT: InCardAndAnyGame<'EVERY_INSTRUMENT'>
 
     EVERY_EDITOR_VOICE: InCardAndAnyGame<'EVERY_EDITOR_VOICE'>
+
+    EVERY_ROUTE: Direct<'EVERY_ROUTE'>
 }
 
 //region -------------------- Simple route map types --------------------
