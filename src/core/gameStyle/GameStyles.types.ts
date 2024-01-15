@@ -32,14 +32,14 @@ export type PossibleAcronym_InFile_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'
 //region -------------------- URL --------------------
 
 type GroupValidUrlSimpleValue = | PossibleSimpleValue
-                                       | '1&3' | '1&W' | '1&U' | '1&3DW' | '3&W' | '3&U' | '3&3DW' | 'W&U' | 'W&3DW' | 'U&3DW'
-                                       | '1&3&W' | '1&3&U' | '1&3&3DW' | '1&W&U' | '1&W&3DW' | '1&U&3DW' | '3&W&U' | '3&W&3DW' | '3&U&3DW' | 'W&U&3DW'
-                                       | '1&3&W&U' | '1&3&W&3DW' | '1&3&U&3DW' | '1&W&U&3DW' | '3&W&U&3DW'
-                                       | 'all'
+                                | '1&3' | '1&W' | '1&U' | '1&3DW' | '3&W' | '3&U' | '3&3DW' | 'W&U' | 'W&3DW' | 'U&3DW'
+                                | '1&3&W' | '1&3&U' | '1&3&3DW' | '1&W&U' | '1&W&3DW' | '1&U&3DW' | '3&W&U' | '3&W&3DW' | '3&U&3DW' | 'W&U&3DW'
+                                | '1&3&W&U' | '1&3&W&3DW' | '1&3&U&3DW' | '1&W&U&3DW' | '3&W&U&3DW'
+                                | 'all'
 type GroupValidUrlSimpleValue_SMM1 = | PossibleSimpleValue_SMM1
-                                            | '1&3' | '1&W' | '1&U' | '3&W' | '3&U' | 'W&U'
-                                            | '1&3&W' | '1&3&U' | '1&W&U' | '3&W&U'
-                                            | 'all'
+                                     | '1&3' | '1&W' | '1&U' | '3&W' | '3&U' | 'W&U'
+                                     | '1&3&W' | '1&3&U' | '1&W&U' | '3&W&U'
+                                     | 'all'
 export type FullGroupValidUrlSimpleValue = `GameStyle=${GroupValidUrlSimpleValue}`
 export type FullGroupValidUrlSimpleValue_SMM1 = `GameStyle=${GroupValidUrlSimpleValue_SMM1}`
 
@@ -47,22 +47,16 @@ export type FullGroupValidUrlSimpleValue_SMM1 = `GameStyle=${GroupValidUrlSimple
 export type PossibleSimpleUrlValue = Lowercase<PossibleSimpleValue>
 export type PossibleSimpleUrlValue_SMM1 = Lowercase<PossibleSimpleValue_SMM1>
 export type GroupUrlValue = | PossibleSimpleUrlValue
-                            | `${PossibleSimpleUrlValue},${PossibleSimpleUrlValue}`
-                            | `${PossibleSimpleUrlValue},${PossibleSimpleUrlValue},${PossibleSimpleUrlValue}`
-                            | `${PossibleSimpleUrlValue},${PossibleSimpleUrlValue},${PossibleSimpleUrlValue},${PossibleSimpleUrlValue}`
-                            | `${PossibleSimpleUrlValue},${PossibleSimpleUrlValue},${PossibleSimpleUrlValue},${PossibleSimpleUrlValue},${PossibleSimpleUrlValue}`
+                            | '1,3' | '1,w' | '1,u' | '1,3dw' | '3,w' | '3,u' | '3,3dw' | 'w,u' | 'w,3dw' | 'u,3dw'
+                            | '1,3,w' | '1,3,u' | '1,3,3dw' | '1,w,u' | '1,w,3dw' | '1,u,3dw' | '3,w,u' | '3,w,3dw' | '3,u,3dw' | 'w,u,3dw'
+                            | '1,3,w,u' | '1,3,w,3dw' | '1,3,u,3dw' | '1,w,u,3dw' | '3,w,u,3dw'
                             | 'all'
-type GroupValidUrlValue = | PossibleSimpleUrlValue
-                          | '1,3' | '1,w' | '1,u' | '1,3dw' | '3,w' | '3,u' | '3,3dw' | 'w,u' | 'w,3dw' | 'u,3dw'
-                          | '1,3,w' | '1,3,u' | '1,3,3dw' | '1,w,u' | '1,w,3dw' | '1,u,3dw' | '3,w,u' | '3,w,3dw' | '3,u,3dw' | 'w,u,3dw'
-                          | '1,3,w,u' | '1,3,w,3dw' | '1,3,u,3dw' | '1,w,u,3dw' | '3,w,u,3dw'
+type GroupUrlValue_SMM1 = | PossibleSimpleUrlValue_SMM1
+                          | '1,3' | '1,w' | '1,u' | '3,w' | '3,u' | 'w,u'
+                          | '1,3,w' | '1,3,u' | '1,w,u' | '3,w,u'
                           | 'all'
-type GroupValidUrlValue_SMM1 = | PossibleSimpleUrlValue_SMM1
-                               | '1,3' | '1,w' | '1,u' | '3,w' | '3,u' | 'w,u'
-                               | '1,3,w' | '1,3,u' | '1,w,u' | '3,w,u'
-                               | 'all'
-export type FullValidUrlValue = `game-style-${GroupValidUrlValue}`
-export type FullValidUrlValue_SMM1 = `game-style-${GroupValidUrlValue_SMM1}`
+export type FullValidUrlValue = `game-style-${GroupUrlValue}`
+export type FullValidUrlValue_SMM1 = `game-style-${GroupUrlValue_SMM1}`
 
 //endregion -------------------- URL --------------------
 //region -------------------- Array types --------------------

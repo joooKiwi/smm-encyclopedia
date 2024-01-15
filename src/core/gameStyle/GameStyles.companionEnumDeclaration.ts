@@ -1,4 +1,7 @@
+import type {CollectionHolder} from '@joookiwi/collection'
+
 import type {GameStyles}                   from 'core/gameStyle/GameStyles'
+import type {GroupUrlValue}                from 'core/gameStyle/GameStyles.types'
 import type {GameStyleCollection}          from 'util/collection/GameStyleCollection'
 import type {CompanionEnumByAcronymOrName} from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
 import type {CompanionEnumByUrlValue}      from 'util/enumerable/companion/CompanionEnumByUrlValue'
@@ -19,10 +22,13 @@ export interface CompanionEnumDeclaration_GameStyles
 
     getValueInUrl(url: string,): readonly GameStyles[]
 
+    getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue
+
     getValueBySimpleValue(value: Nullable<| GameStyles | string | number>,): GameStyles
 
 
     get selected(): GameStyleCollection
 
     set selected(value: readonly GameStyles[],)
+
 }

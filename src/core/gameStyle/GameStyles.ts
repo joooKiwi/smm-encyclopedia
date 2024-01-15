@@ -1,5 +1,6 @@
-import type {Singleton} from '@joookiwi/enumerable'
-import {Enum}           from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Singleton}        from '@joookiwi/enumerable'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                                                                                  from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                                                                                              from 'core/ClassWithEnglishName'
@@ -216,6 +217,127 @@ export abstract class GameStyles
             return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
 
             //endregion -------------------- Valid possibilities from unknown amount of arguments --------------------
+        }
+
+        public getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue {
+            let withSmb = false
+            const smb = GameStyles.SUPER_MARIO_BROS
+            for (let gameStyle of gameStyles)
+                if (gameStyle === smb) {
+                    withSmb = true
+                    break
+                }
+
+            let withSmb3 = false
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            for (let gameStyle of gameStyles)
+                if (gameStyle === smb3) {
+                    withSmb3 = true
+                    break
+                }
+
+            let withSmw = false
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            for (let gameStyle of gameStyles)
+                if (gameStyle === smw) {
+                    withSmw = true
+                    break
+                }
+
+            let withNsmbu = false
+            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
+            for (let gameStyle of gameStyles)
+                if (gameStyle === nsmbu) {
+                    withNsmbu = true
+                    break
+                }
+
+            let withSm3dw = false
+            const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
+            for (let gameStyle of gameStyles)
+                if (gameStyle === sm3dw) {
+                    withSm3dw = true
+                    break
+                }
+
+            if (withSmb) {
+                if (withSmb3) {
+                    if (withSmw) {
+                        if (withNsmbu) {
+                            if (withSm3dw)
+                                return 'all'
+                            return '1,3,w,u'
+                        }
+                        if (withSm3dw)
+                            return '1,3,w,3dw'
+                        return '1,3,w'
+                    }
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return '1,3,u,3dw'
+                        return '1,3,u'
+                    }
+                    if (withSm3dw)
+                        return '1,3,3dw'
+                    return '1,3'
+                }
+                if (withSmw) {
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return '1,w,u,3dw'
+                        return '1,w,u'
+                    }
+                    if (withSm3dw)
+                        return '1,w,3dw'
+                    return '1,w'
+                }
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return '1,u,3dw'
+                    return '1,u'
+                }
+                if (withSm3dw)
+                    return '1,3dw'
+                return '1'
+            }
+            if (withSmb3) {
+                if (withSmw) {
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return '3,w,u,3dw'
+                        return '3,w,u'
+                    }
+                    if (withSm3dw)
+                        return '3,w,3dw'
+                    return '3,w'
+                }
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return '3,u,3dw'
+                    return '3,u'
+                }
+                if (withSm3dw)
+                    return '3,3dw'
+                return '3'
+            }
+            if (withSmw) {
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return 'w,u,3dw'
+                    return 'w,u'
+                }
+                if (withSm3dw)
+                    return 'w,3dw'
+                return 'w'
+            }
+            if (withNsmbu) {
+                if (withSm3dw)
+                    return 'u,3dw'
+                return 'u'
+            }
+            if (withSm3dw)
+                return '3dw'
+            throw new ReferenceError('No game style group url value is findable from empty array or collection.',)
         }
 
         public get selected(): GameStyleCollection {
@@ -500,11 +622,8 @@ export abstract class GameStyles
     }
 
 
-    public static getGroupUrlValue(gameStyles: Iterable<GameStyles>,): GroupUrlValue {
-        const gameStylesFiltered = new Set(gameStyles,)
-        if (gameStylesFiltered.size === 5)
-            return 'all'
-        return Array.from(gameStylesFiltered, it => it.urlValue,).join(',',) as GroupUrlValue
+    public static getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue {
+        return GameStyles.CompanionEnum.get.getGroupUrlValue(gameStyles,)
     }
 
     public static get selected(): GameStyleCollection {
