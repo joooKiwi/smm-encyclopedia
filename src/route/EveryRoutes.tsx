@@ -1354,7 +1354,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
      */
     protected _getPartialPathFromGames(value: NullOr<readonly Games[]>,): PossibleGamePath {
         if (value == null)
-            return `/game-${Games.getGroupUrlValue(Games.selected,)}` as PossibleGamePath
+            return `/game-${Games.getGroupUrlValue(Games.selected,)}`
         if (value.length === 0) {
             const defaultGame = this.defaultGame
             if (defaultGame == null)
@@ -1363,7 +1363,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
         if (value.length === 0)
             return EMPTY_STRING
-        return `/game-${Games.getGroupUrlValue(value,)}` as PossibleGamePath
+        return `/game-${Games.getGroupUrlValue(value,)}`
     }
 
     protected _getPartialPathFromGameStyles(values: NullOr<readonly GameStyles[]>,): PossibleGameStylePath {

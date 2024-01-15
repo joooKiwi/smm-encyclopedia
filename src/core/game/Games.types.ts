@@ -28,12 +28,11 @@ export type FullGroupValidUrlSimpleValue_WithNotSMM2 = `Game=${GroupValidUrlSimp
 export type FullGroupValidUrlSimpleValue_WithSMM2 = `Game=${GroupValidUrlSimpleValue_WithSMM2}`
 
 export type PossibleSimpleUrlValue = Lowercase<PossibleSimpleValue>
-export type GroupUrlValue = | PossibleSimpleUrlValue | `${PossibleSimpleUrlValue},${PossibleSimpleUrlValue}` | 'all'
-type GroupValidUrlValue = | PossibleSimpleUrlValue | '1,3ds' | '1,2' | '3ds,2' | 'all'
-type GroupValidUrlValue_WithNotSMM2 = | '1' | '3ds' | '1,3ds'
-type GroupValidUrlValue_WithSMM2 = | '2' | '1,2' | '3ds,2' | 'all'
-export type FullValidUrlValue = `game-${GroupValidUrlValue}`
-export type FullValidUrlValue_WithNotSMM2 = `game-${GroupValidUrlValue_WithNotSMM2}`
-export type FullValidUrlValue_WithSMM2 = `game-${GroupValidUrlValue_WithSMM2}`
+export type GroupUrlValue = | PossibleSimpleUrlValue | '1,3ds' | '1,2' | '3ds,2' | 'all'
+type GroupUrlValue_WithNotSMM2 = | '1' | '3ds' | '1,3ds'
+type GroupUrlValue_WithSMM2 = | '2' | '1,2' | '3ds,2' | 'all'
+export type FullValidUrlValue = `game-${GroupUrlValue}`
+export type FullValidUrlValue_WithNotSMM2 = `game-${GroupUrlValue_WithNotSMM2}`
+export type FullValidUrlValue_WithSMM2 = `game-${GroupUrlValue_WithSMM2}`
 
 //endregion -------------------- URL --------------------

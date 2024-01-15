@@ -1,12 +1,13 @@
-import type {Singleton}      from '@joookiwi/enumerable'
-import {CompanionEnum, Enum} from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Singleton}        from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                  from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                              from 'core/ClassWithEnglishName'
 import type {PropertyGetter}                                                                                                    from 'core/PropertyGetter'
 import type {GameProperty}                                                                                                      from 'core/entity/properties/game/GameProperty'
 import type {CompanionEnumDeclaration_Games}                                                                                    from 'core/game/Games.companionEnumDeclaration'
-import type {Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleSimpleValue, PossibleSimpleUrlValue, GroupUrlValue} from 'core/game/Games.types'
+import type {GroupUrlValue, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleSimpleUrlValue, PossibleSimpleValue} from 'core/game/Games.types'
 import type {GameImageFile}                                                                                                     from 'core/game/file/GameImageFile'
 import type {ClassUsedInRoute}                                                                                                  from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                from 'util/file/image/ClassWithImageFile'
@@ -104,6 +105,51 @@ export abstract class Games
 
         public getValueByUrlValue(value: Nullable<| Games | string>,): Games {
             return getValueByUrlValue(value, this,)
+        }
+
+        public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
+            let withSmm1 = false
+            const smm1 = Games.SUPER_MARIO_MAKER_1
+            for (let game of games)
+                if (game === smm1) {
+                    withSmm1 = true
+                    break
+                }
+
+            let withSmm3ds = false
+            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+            for (let game of games)
+                if (game === smm3ds) {
+                    withSmm3ds = true
+                    break
+                }
+
+            let withSmm2 = false
+            const smm2 = Games.SUPER_MARIO_MAKER_2
+            for (let game of games)
+                if (game === smm2) {
+                    withSmm2 = true
+                    break
+                }
+
+            if (withSmm1) {
+                if (withSmm3ds) {
+                    if (withSmm2)
+                        return 'all'
+                    return '1,3ds'
+                }
+                if (withSmm2)
+                    return '1,2'
+                return '1'
+            }
+            if (withSmm3ds) {
+                if (withSmm2)
+                    return '3ds,2'
+                return '3ds'
+            }
+            if (withSmm2)
+                return '2'
+            throw new ReferenceError('No game group url value is findable from empty array or collection.',)
         }
 
         public getValueByAcronym(value: Nullable<| Games | string>,): Games {
@@ -322,11 +368,8 @@ export abstract class Games
 
 
 
-    public static getGroupUrlValue(games: Iterable<Games>,): GroupUrlValue {
-        const gamesFiltered = new Set(games,)
-        if (gamesFiltered.size === 3)
-            return 'all'
-        return Array.from(gamesFiltered, it => it.urlValue,).join(',') as GroupUrlValue
+    public static getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
+        return Games.CompanionEnum.get.getGroupUrlValue(games,)
     }
 
     public static get selected(): GameCollection {
