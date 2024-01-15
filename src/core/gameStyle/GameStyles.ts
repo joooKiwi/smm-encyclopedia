@@ -627,7 +627,16 @@ export abstract class GameStyles
     }
 
     public static get selected(): GameStyleCollection {
-        return new GameStyleCollection(GameStyles.CompanionEnum.get.values.filter(it => it.isSelected,),)
+        return GameStyles.CompanionEnum.get.selected
+    }
+
+    public static set selected(value: readonly GameStyles[],) {
+        GameStyles.CompanionEnum.get.selected = value
+    }
+
+    public static setSelected(value: readonly GameStyles[],): typeof GameStyles {
+        GameStyles.CompanionEnum.get.selected = value
+        return this
     }
 
     //endregion -------------------- Methods --------------------
