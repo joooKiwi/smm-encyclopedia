@@ -1368,7 +1368,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     protected _getPartialPathFromGameStyles(values: NullOr<readonly GameStyles[]>,): PossibleGameStylePath {
         if (values == null)
-            return `/game-style-${GameStyles.getGroupUrlValue(GameStyles.selected,)}` as PossibleGameStylePath
+            return `/game-style-${GameStyles.getGroupUrlValue(GameStyles.selected,)}`
         if (values.length === 0) {
             const defaultGameStyles = this.defaultGameStyles
             if (defaultGameStyles == null)
@@ -1377,7 +1377,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
         }
         if (values.length === 0)
             return EMPTY_STRING
-        return `/game-style-${GameStyles.getGroupUrlValue(values,)}` as PossibleGameStylePath
+        return `/game-style-${GameStyles.getGroupUrlValue(values,)}`
     }
 
     /**

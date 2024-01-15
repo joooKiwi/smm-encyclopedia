@@ -29,6 +29,7 @@ const everyRouteInstanceWithMoreThat1Element = everyRouteInstance.filter(it => i
 const everyRouteInstanceWithGameAndViewDisplay = everyRouteInstance.filter(it => it.everyRoute.find(it => it.games == null && it.viewDisplay == null,) == null,)
 const everyRoute = EveryRouteCompanion.everyRoute
 const everyGames = Games.GamePossibilitiesCompanion.get.everyFields
+// const everyGameStyles = GameStyles.Possibilities.get.everyFields
 const everyViewDisplay = ViewDisplayCompanion.values
 /**
  * Every route encapsulated in a hash router (for GitHub).
