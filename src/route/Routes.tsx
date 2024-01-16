@@ -11,6 +11,8 @@ import {getUserLanguage}                               from 'lang/getUserLanguag
 import {ProjectLanguages}                              from 'lang/ProjectLanguages'
 import {EveryRoutes}                                   from 'route/EveryRoutes'
 import {redirectTo, redirectToByName, redirectToByUrl} from 'route/redirectionMethods'
+import {StraightFallbackRouteObject}                   from 'route/StraightFallbackRouteObject'
+import {StraightRouteObject}                           from 'route/StraightRouteObject'
 import {EMPTY_ARRAY}                                   from 'util/emptyVariables'
 import {GameCollection}                                from 'util/collection/GameCollection'
 import {GameStyleCollection}                           from 'util/collection/GameStyleCollection'
@@ -47,28 +49,19 @@ const router = createHashRouter([{
     caseSensitive: false,
     path: '/',
     children: [
-        //region -------------------- Path from nothing --------------------
-
-        {
-            path: '/',
-            loader: () => redirectTo(homeRoute, ProjectLanguageCompanion.currentOrNull ?? getUserLanguage(),),
-        } satisfies RouteObject,
-
-        //endregion -------------------- Path from nothing --------------------
+        new StraightRouteObject('/', () => redirectTo(homeRoute, ProjectLanguageCompanion.currentOrNull ?? getUserLanguage(),),),
         //region -------------------- Path from simple route path --------------------
 
-        everyRouteInstanceWithMoreThat1Element.map<RouteObject>(routeInstance => ({
-            path: routeInstance.simplePath,
-            loader: () => redirectTo(routeInstance, ProjectLanguageCompanion.currentOrNull ?? getUserLanguage(),),
-        }),).toArray(),
+        everyRouteInstanceWithMoreThat1Element.map(routeInstance =>
+            new StraightRouteObject(routeInstance.simplePath, () => redirectTo(routeInstance, ProjectLanguageCompanion.currentOrNull ?? getUserLanguage(),),),
+        ).toArray(),
 
         //endregion -------------------- Path from simple route path --------------------
         //region -------------------- Path from route path --------------------
 
-        everyRoute.map<RouteObject>(route => ({
-            path: route.path,
-            loader: () => redirectToByName(route, ProjectLanguageCompanion.currentOrNull ?? getUserLanguage(),),
-        }),),
+        everyRoute.map(route =>
+            new StraightRouteObject(route.path, () => redirectToByName(route, ProjectLanguageCompanion.currentOrNull ?? getUserLanguage(),),),
+        ),
 
         //endregion -------------------- Path from route path --------------------
         //region -------------------- Path from language --------------------
@@ -78,20 +71,12 @@ const router = createHashRouter([{
             return {
                 path: pathFromLanguage,
                 children: [
-                    //region -------------------- Path from nothing --------------------
-
-                    {
-                        path: pathFromLanguage,
-                        loader: () => redirectTo(homeRoute, language,),
-                    } satisfies RouteObject,
-
-                    //endregion -------------------- Path from nothing --------------------
+                    new StraightRouteObject(pathFromLanguage, () => redirectTo(homeRoute, language,),),
                     //region -------------------- Path from simple route path --------------------
 
-                    everyRouteInstanceWithMoreThat1Element.map<RouteObject>(routeInstance => ({
-                        path: `${pathFromLanguage}${routeInstance.simplePath}`,
-                        loader: () => redirectTo(routeInstance, language,),
-                    }),).toArray(),
+                    everyRouteInstanceWithMoreThat1Element.map(routeInstance =>
+                        new StraightRouteObject(`${pathFromLanguage}${routeInstance.simplePath}`, () => redirectTo(routeInstance, language,),),
+                    ).toArray(),
 
                     //endregion -------------------- Path from simple route path --------------------
                     //region -------------------- Path from route path --------------------
@@ -115,14 +100,7 @@ const router = createHashRouter([{
                         return {
                             path: pathFromLanguageAndGame,
                             children: [
-                                //region -------------------- Path from nothing --------------------
-
-                                {
-                                    path: pathFromLanguageAndGame,
-                                    loader: () => redirectTo(homeRoute, language, games,),
-                                } satisfies RouteObject,
-
-                                //endregion -------------------- Path from nothing --------------------
+                                new StraightRouteObject(pathFromLanguageAndGame, () => redirectTo(homeRoute, language, games,),),
                                 //region -------------------- Path from view display --------------------
 
                                 everyViewDisplay.map<RouteObject>(viewDisplay => {
@@ -130,30 +108,15 @@ const router = createHashRouter([{
                                     return {
                                         path: pathFromLanguageAndGameAndViewDisplay,
                                         children: [
-                                            //region -------------------- Path from nothing --------------------
-
-                                            {
-                                                path: pathFromLanguageAndGameAndViewDisplay,
-                                                loader: () => redirectTo(homeRoute, language, games, null, viewDisplay,),
-                                            } satisfies RouteObject,
-
-                                            //endregion -------------------- Path from nothing --------------------
+                                            new StraightRouteObject(pathFromLanguageAndGameAndViewDisplay, () => redirectTo(homeRoute, language, games, null, viewDisplay,),),
                                             //region -------------------- Path from simple route path --------------------
 
-                                            everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
-                                                path: `${pathFromLanguageAndGameAndViewDisplay}${routeInstance.simplePath}`,
-                                                loader: () => redirectTo(routeInstance, language, games, null, viewDisplay,),
-                                            }),).toArray(),
+                                            everyRouteInstanceWithGameAndViewDisplay.map(routeInstance =>
+                                                new StraightRouteObject(`${pathFromLanguageAndGameAndViewDisplay}${routeInstance.simplePath}`, () => redirectTo(routeInstance, language, games, null, viewDisplay,),),
+                                            ).toArray(),
 
                                             //endregion -------------------- Path from simple route path --------------------
-                                            //region -------------------- Fallback if nothing was found --------------------
-
-                                            {
-                                                path: `${pathFromLanguageAndGameAndViewDisplay}*`,
-                                                loader: loaderArguments => redirectToByUrl(loaderArguments, language, games, null, viewDisplay,),
-                                            } satisfies RouteObject,
-
-                                            //endregion -------------------- Fallback if nothing was found --------------------
+                                            new StraightFallbackRouteObject(pathFromLanguageAndGameAndViewDisplay, loaderArguments => redirectToByUrl(loaderArguments, language, games, null, viewDisplay,),),
                                         ].flat(),
                                         loader() {
                                             ViewDisplayCompanion.current = viewDisplay
@@ -165,20 +128,12 @@ const router = createHashRouter([{
                                 //endregion -------------------- Path from view display --------------------
                                 //region -------------------- Path from simple route path --------------------
 
-                                everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
-                                    path: `${pathFromLanguageAndGame}${routeInstance.simplePath}`,
-                                    loader: () => redirectTo(routeInstance, language, games,),
-                                }),).toArray(),
+                                everyRouteInstanceWithGameAndViewDisplay.map(routeInstance =>
+                                    new StraightRouteObject(`${pathFromLanguageAndGame}${routeInstance.simplePath}`, () => redirectTo(routeInstance, language, games,),),
+                                ).toArray(),
 
                                 //endregion -------------------- Path from simple route path --------------------
-                                //region -------------------- Fallback if nothing was found --------------------
-
-                                {
-                                    path: `${pathFromLanguageAndGame}*`,
-                                    loader: loaderArguments => redirectToByUrl(loaderArguments, language, games,),
-                                } satisfies RouteObject,
-
-                                //endregion -------------------- Fallback if nothing was found --------------------
+                                new StraightFallbackRouteObject(pathFromLanguageAndGame, loaderArguments => redirectToByUrl(loaderArguments, language, games,),),
                             ].flat(),
                             loader() {
                                 Games.selected = games
@@ -195,30 +150,15 @@ const router = createHashRouter([{
                         return {
                             path: pathFromLanguageAndViewDisplay,
                             children: [
-                                //region -------------------- Path from nothing --------------------
-
-                                {
-                                    path: pathFromLanguageAndViewDisplay,
-                                    loader: () => redirectTo(homeRoute, language, null, null, viewDisplay,),
-                                } satisfies RouteObject,
-
-                                //endregion -------------------- Path from nothing --------------------
+                                new StraightRouteObject(pathFromLanguageAndViewDisplay, () => redirectTo(homeRoute, language, null, null, viewDisplay,),),
                                 //region -------------------- Path from simple route path --------------------
 
-                                everyRouteInstanceWithGameAndViewDisplay.map<RouteObject>(routeInstance => ({
-                                    path: `${pathFromLanguageAndViewDisplay}${routeInstance.simplePath}`,
-                                    loader: () => redirectTo(routeInstance, language, null, null, viewDisplay,),
-                                }),).toArray(),
+                                everyRouteInstanceWithGameAndViewDisplay.map(routeInstance =>
+                                    new StraightRouteObject(`${pathFromLanguageAndViewDisplay}${routeInstance.simplePath}`, () => redirectTo(routeInstance, language, null, null, viewDisplay,),),
+                                ).toArray(),
 
                                 //endregion -------------------- Path from simple route path --------------------
-                                //region -------------------- Fallback if nothing was found --------------------
-
-                                {
-                                    path: `${pathFromLanguageAndViewDisplay}*`,
-                                    loader: loaderArguments => redirectToByUrl(loaderArguments, language, null, null, viewDisplay,),
-                                } satisfies RouteObject,
-
-                                //endregion -------------------- Fallback if nothing was found --------------------
+                                new StraightFallbackRouteObject(pathFromLanguageAndViewDisplay, loaderArguments => redirectToByUrl(loaderArguments, language, null, null, viewDisplay,),),
                             ].flat(),
                             loader() {
                                 ViewDisplayCompanion.current = viewDisplay
@@ -228,14 +168,7 @@ const router = createHashRouter([{
                     },).toArray(),
 
                     //endregion -------------------- Path from view display --------------------
-                    //region -------------------- Fallback if nothing was found --------------------
-
-                    {
-                        path: `${pathFromLanguage}/*`,
-                        loader: loaderArguments => redirectToByUrl(loaderArguments, language,),
-                    } satisfies RouteObject,
-
-                    //endregion -------------------- Fallback if nothing was found --------------------
+                    new StraightFallbackRouteObject(pathFromLanguage, loaderArguments => redirectToByUrl(loaderArguments, language,),),
                 ].flat(),
                 loader() {
                     ProjectLanguageCompanion.current = language
@@ -245,14 +178,7 @@ const router = createHashRouter([{
         },),
 
         //endregion -------------------- Path from language --------------------
-        //region -------------------- Fallback if nothing was found --------------------
-
-        {
-            path: '/*',
-            loader: loaderArguments => redirectToByUrl(loaderArguments,),
-        } satisfies RouteObject,
-
-        //endregion -------------------- Fallback if nothing was found --------------------
+        new StraightFallbackRouteObject('/', loaderArguments => redirectToByUrl(loaderArguments,),),
     ].flat(),
 } satisfies RouteObject,], {basename: '/',},)
 
