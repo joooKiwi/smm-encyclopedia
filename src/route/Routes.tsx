@@ -83,7 +83,7 @@ const router = createHashRouter([{
                     {
                         path: pathFromLanguage,
                         loader: () => redirectTo(homeRoute, language,),
-                    },
+                    } satisfies RouteObject,
 
                     //endregion -------------------- Path from nothing --------------------
                     //region -------------------- Path from simple route path --------------------
@@ -120,7 +120,7 @@ const router = createHashRouter([{
                                 {
                                     path: pathFromLanguageAndGame,
                                     loader: () => redirectTo(homeRoute, language, games,),
-                                },
+                                } satisfies RouteObject,
 
                                 //endregion -------------------- Path from nothing --------------------
                                 //region -------------------- Path from view display --------------------
@@ -135,7 +135,7 @@ const router = createHashRouter([{
                                             {
                                                 path: pathFromLanguageAndGameAndViewDisplay,
                                                 loader: () => redirectTo(homeRoute, language, games, null, viewDisplay,),
-                                            },
+                                            } satisfies RouteObject,
 
                                             //endregion -------------------- Path from nothing --------------------
                                             //region -------------------- Path from simple route path --------------------
@@ -200,7 +200,7 @@ const router = createHashRouter([{
                                 {
                                     path: pathFromLanguageAndViewDisplay,
                                     loader: () => redirectTo(homeRoute, language, null, null, viewDisplay,),
-                                },
+                                } satisfies RouteObject,
 
                                 //endregion -------------------- Path from nothing --------------------
                                 //region -------------------- Path from simple route path --------------------
