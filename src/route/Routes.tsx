@@ -1,22 +1,19 @@
-import type {LoaderFunctionArgs, RouteObject} from 'react-router/dist'
-import {RouterProvider, redirect}             from 'react-router/dist'
-import {createHashRouter}                     from 'react-router-dom/dist'
-import {Suspense}                             from 'react'
+import type {RouteObject} from 'react-router/dist'
+import {RouterProvider}   from 'react-router/dist'
+import {createHashRouter} from 'react-router-dom/dist'
+import {Suspense}         from 'react'
 
-import type {PossibleRouteName} from 'route/EveryRoutes.types'
-import type {SimpleRoute}       from 'route/SimpleRoute'
-
-import LoadingApp            from 'app/LoadingApp'
-import {ViewDisplays}        from 'app/withInterpreter/ViewDisplays'
-import {Games}               from 'core/game/Games'
-import {GameStyles}          from 'core/gameStyle/GameStyles'
-import {getUserLanguage}     from 'lang/getUserLanguage'
-import {ProjectLanguages}    from 'lang/ProjectLanguages'
-import {EveryRoutes}         from 'route/EveryRoutes'
-import {routeFromName}       from 'route/route'
-import {EMPTY_ARRAY}         from 'util/emptyVariables'
-import {GameCollection}      from 'util/collection/GameCollection'
-import {GameStyleCollection} from 'util/collection/GameStyleCollection'
+import LoadingApp                                      from 'app/LoadingApp'
+import {ViewDisplays}                                  from 'app/withInterpreter/ViewDisplays'
+import {Games}                                         from 'core/game/Games'
+import {GameStyles}                                    from 'core/gameStyle/GameStyles'
+import {getUserLanguage}                               from 'lang/getUserLanguage'
+import {ProjectLanguages}                              from 'lang/ProjectLanguages'
+import {EveryRoutes}                                   from 'route/EveryRoutes'
+import {redirectTo, redirectToByName, redirectToByUrl} from 'route/redirectionMethods'
+import {EMPTY_ARRAY}                                   from 'util/emptyVariables'
+import {GameCollection}                                from 'util/collection/GameCollection'
+import {GameStyleCollection}                           from 'util/collection/GameStyleCollection'
 
 const ProjectLanguageCompanion = ProjectLanguages.CompanionEnum.get
 const EveryRouteCompanion = EveryRoutes.CompanionEnum.get
@@ -266,25 +263,3 @@ const router = createHashRouter([{
 export default function Routes() {
     return <RouterProvider router={router} fallbackElement={<LoadingApp/>}/>//TODO change the loading app to have a different visual than afterward
 }
-
-//region -------------------- Redirect method helper --------------------
-
-function redirectTo(route: EveryRoutes, language: ProjectLanguages, games: NullOr<readonly Games[]> = null, gameStyles: NullOr<readonly GameStyles[]> = null, viewDisplay: NullOr<ViewDisplays> = null,): never {
-    throw redirect(route.getPath(language, games, gameStyles, viewDisplay,),)
-}
-
-function redirectToByUrl(loaderArguments: LoaderFunctionArgs, language: NullOr<ProjectLanguages> = null, games: NullOr<readonly Games[]> = null, gameStyles: NullOr<readonly GameStyles[]> = null, viewDisplay: NullOr<ViewDisplays> = null,): never {
-    const url = loaderArguments.request.url
-    throw redirect((EveryRouteCompanion.getValueInUrl(url,) ?? homeRoute).getPath(
-        language ?? ProjectLanguageCompanion.getValueInUrl(url,),
-        games ?? Games.CompanionEnum.get.getValueInUrl(url,),
-        gameStyles ?? GameStyles.CompanionEnum.get.getValueInUrl(url,),
-        viewDisplay ?? ViewDisplayCompanion.getValueInUrl(url,),
-    ),)
-}
-
-function redirectToByName(route: SimpleRoute, language: ProjectLanguages,): never {
-    throw redirect(routeFromName(route.name as PossibleRouteName, language,),)
-}
-
-//endregion -------------------- Redirect method helper --------------------
