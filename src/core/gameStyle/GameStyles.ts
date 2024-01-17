@@ -170,50 +170,197 @@ export abstract class GameStyles
             return valueFound    }
 
         public getValueInUrl(url: string,): readonly GameStyles[] {
-            //region -------------------- Valid possibilities --------------------
+            //region -------------------- "all" possibility --------------------
 
             const lowerCasedUrl = url.toLowerCase()
 
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
                 return this.ALL
 
+            //endregion -------------------- "all" possibility --------------------
+
             const prefix = this.PREFIX
             if (!lowerCasedUrl.includes(prefix,))
                 return EMPTY_ARRAY
 
-            const singleValueFound = this.singleFields.find(it => lowerCasedUrl.includes(`${prefix}${it[0].urlValue}`,),)
-            if (singleValueFound != null)
-                return singleValueFound
+            //region -------------------- Possibilities from 1 to 5 arguments --------------------
 
-            const separator = this.NAME_ARGUMENT_SEPARATOR
-            const doubleValueFound = this.doubleFields.find(it => lowerCasedUrl.includes(`${prefix}${it[0].urlValue}${separator}${it[1].urlValue}`,),)
-            if (doubleValueFound != null)
-                return doubleValueFound
+            const valuesFound = lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,)[0]
+            const separatedValuesFound = valuesFound.split(this.NAME_ARGUMENT_SEPARATOR,)
+            const amountOfValues = separatedValuesFound.length
 
-            const tripleValueFound = this.tripleFields.find(it => lowerCasedUrl.includes(`${prefix}${it[0].urlValue}${separator}${it[1].urlValue}${separator}${it[2].urlValue}`,),)
-            if (tripleValueFound != null)
-                return tripleValueFound
+            if (amountOfValues === 1) {
+                if (valuesFound === 'smb')
+                    return GameStyles.Possibilities.get.SMB_ONLY
+                if (valuesFound === 'smb3')
+                    return GameStyles.Possibilities.get.SMB3_ONLY
+                if (valuesFound === 'smw')
+                    return GameStyles.Possibilities.get.SMW_ONLY
+                if (valuesFound === 'nsmbu')
+                    return GameStyles.Possibilities.get.NSMBU_ONLY
+                if (valuesFound === 'sm3dw')
+                    return GameStyles.Possibilities.get.SM3DW_ONLY
 
-            const quadrupleValueFound = this.quadrupleFields.find(it => lowerCasedUrl.includes(`${prefix}${it[0].urlValue}${separator}${it[1].urlValue}${separator}${it[2].urlValue}${separator}${it[3].urlValue}`,),)
-            if (quadrupleValueFound != null)
-                return quadrupleValueFound
+                return EMPTY_ARRAY
+            }
 
-            //endregion -------------------- Valid possibilities --------------------
+            if (amountOfValues === 2) {
+                if (valuesFound === 'smb,smb')
+                    return GameStyles.Possibilities.get.SMB_ONLY
+                if (valuesFound === 'smb3,smb3')
+                    return GameStyles.Possibilities.get.SMB3_ONLY
+                if (valuesFound === 'smw,smw')
+                    return GameStyles.Possibilities.get.SMW_ONLY
+                if (valuesFound === 'nsmbu,nsmbu')
+                    return GameStyles.Possibilities.get.NSMBU_ONLY
+                if (valuesFound === 'sm3dw,sm3dw')
+                    return GameStyles.Possibilities.get.SM3DW_ONLY
+
+                if (valuesFound === 'smb,smb3' || valuesFound === 'smb3,smb')
+                    return GameStyles.Possibilities.get.SMB_AND_SMB3
+                if (valuesFound === 'smb,smw' || valuesFound === 'smw,smb')
+                    return GameStyles.Possibilities.get.SMB_AND_SMW
+                if (valuesFound === 'smb,nsmbu' || valuesFound === 'nsmbu,smb')
+                    return GameStyles.Possibilities.get.SMB_AND_NSMBU
+                if (valuesFound === 'smb,sm3dw' || valuesFound === 'sm3dw,smb')
+                    return GameStyles.Possibilities.get.SMB_AND_SM3DW
+                if (valuesFound === 'smb3,smw' || valuesFound === 'smw,smb3')
+                    return GameStyles.Possibilities.get.SMB3_AND_SMW
+                if (valuesFound === 'smb3,nsmbu' || valuesFound === 'nsmbu,smb3')
+                    return GameStyles.Possibilities.get.SMB3_AND_NSMBU
+                if (valuesFound === 'smb3,sm3dw' || valuesFound === 'sm3dw,smb3')
+                    return GameStyles.Possibilities.get.SMB3_AND_SM3DW
+                if (valuesFound === 'smw,nsmbu' || valuesFound === 'nsmbu,smw')
+                    return GameStyles.Possibilities.get.SMW_AND_NSMBU
+                if (valuesFound === 'smw,sm3dw' || valuesFound === 'sm3dw,smw')
+                    return GameStyles.Possibilities.get.SMW_AND_SM3DW
+                if (valuesFound === 'nsmbu,sm3dw' || valuesFound === 'sm3dw,nsmbu')
+                    return GameStyles.Possibilities.get.NSMBU_AND_SM3DW
+
+                return EMPTY_ARRAY
+            }
+
+            if (amountOfValues === 3) {
+                if (valuesFound === 'smb,smb,smb')
+                    return GameStyles.Possibilities.get.SMB_ONLY
+                if (valuesFound === 'smb3,smb3,smb3')
+                    return GameStyles.Possibilities.get.SMB3_ONLY
+                if (valuesFound === 'smw,smw,smw')
+                    return GameStyles.Possibilities.get.SMW_ONLY
+                if (valuesFound === 'nsmbu,nsmbu,nsmbu')
+                    return GameStyles.Possibilities.get.NSMBU_ONLY
+                if (valuesFound === 'sm3dw,sm3dw,sm3dw')
+                    return GameStyles.Possibilities.get.SM3DW_ONLY
+
+                const tripleValuesFound = this.tripleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,)
+                    && separatedValuesFound.includes(it[2].urlValue,),)
+                if (tripleValuesFound != null)
+                    return tripleValuesFound
+
+                const doubleValuesFound = this.doubleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,),)
+                if (doubleValuesFound != null)
+                    return doubleValuesFound
+
+                return EMPTY_ARRAY
+            }
+
+            if (amountOfValues === 4) {
+                if (valuesFound === 'smb,smb,smb,smb')
+                    return GameStyles.Possibilities.get.SMB_ONLY
+                if (valuesFound === 'smb3,smb3,smb3,smb3')
+                    return GameStyles.Possibilities.get.SMB3_ONLY
+                if (valuesFound === 'smw,smw,smw,smw')
+                    return GameStyles.Possibilities.get.SMW_ONLY
+                if (valuesFound === 'nsmbu,nsmbu,nsmbu,nsmbu')
+                    return GameStyles.Possibilities.get.NSMBU_ONLY
+                if (valuesFound === 'sm3dw,sm3dw,sm3dw,sm3dw')
+                    return GameStyles.Possibilities.get.SM3DW_ONLY
+
+                const quadrupleValuesFound = this.quadrupleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,)
+                    && separatedValuesFound.includes(it[2].urlValue,)
+                    && separatedValuesFound.includes(it[3].urlValue,),)
+                if (quadrupleValuesFound != null)
+                    return quadrupleValuesFound
+
+                const tripleValuesFound = this.tripleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,)
+                    && separatedValuesFound.includes(it[2].urlValue,),)
+                if (tripleValuesFound != null)
+                    return tripleValuesFound
+
+                const doubleValuesFound = this.doubleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,),)
+                if (doubleValuesFound != null)
+                    return doubleValuesFound
+
+                return EMPTY_ARRAY
+            }
+
+            if (amountOfValues === 5) {
+                const all = this.ALL
+                if (separatedValuesFound.includes(all[0].urlValue,)
+                    && separatedValuesFound.includes(all[1].urlValue,)
+                    && separatedValuesFound.includes(all[2].urlValue,)
+                    && separatedValuesFound.includes(all[3].urlValue,)
+                    && separatedValuesFound.includes(all[4].urlValue,))
+                    return all
+
+                if (valuesFound === 'smb,smb,smb,smb,smb')
+                    return GameStyles.Possibilities.get.SMB_ONLY
+                if (valuesFound === 'smb3,smb3,smb3,smb3,smb3')
+                    return GameStyles.Possibilities.get.SMB3_ONLY
+                if (valuesFound === 'smw,smw,smw,smw,smw')
+                    return GameStyles.Possibilities.get.SMW_ONLY
+                if (valuesFound === 'nsmbu,nsmbu,nsmbu,nsmbu,nsmbu')
+                    return GameStyles.Possibilities.get.NSMBU_ONLY
+                if (valuesFound === 'sm3dw,sm3dw,sm3dw,sm3dw,sm3dw')
+                    return GameStyles.Possibilities.get.SM3DW_ONLY
+
+                const quadrupleValuesFound = this.quadrupleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,)
+                    && separatedValuesFound.includes(it[2].urlValue,)
+                    && separatedValuesFound.includes(it[3].urlValue,),)
+                if (quadrupleValuesFound != null)
+                    return quadrupleValuesFound
+
+                const tripleValuesFound = this.tripleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,)
+                    && separatedValuesFound.includes(it[2].urlValue,),)
+                if (tripleValuesFound != null)
+                    return tripleValuesFound
+
+                const doubleValuesFound = this.doubleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,),)
+                if (doubleValuesFound != null)
+                    return doubleValuesFound
+
+                return EMPTY_ARRAY
+            }
+
+            //endregion -------------------- Possibilities from 1 to 5 arguments --------------------
 
             if (!this.URL_REGEX.test(url,))
                 return EMPTY_ARRAY
 
             //region -------------------- Valid possibilities from unknown amount of arguments --------------------
 
-            const prefixWithoutSlash = this.PREFIX_WITHOUT_SLASH
-            const valuesInUrlsFound = lowerCasedUrl.split(this.URL_NAME_SEPARATOR,).find(it => it.startsWith(prefixWithoutSlash,) && (it.endsWith('1',) || it.endsWith('3',) || it.endsWith('w',) || it.endsWith('u',) || it.endsWith('3dw',)),)!.substring(prefixWithoutSlash.length,).split(this.NAME_ARGUMENT_SEPARATOR,)
-            const size = valuesInUrlsFound.length
-            const valuesFound = new Array<GameStyles>(size,)
-            let index = size
+            const valuesFoundAsGameStyle = new Array<GameStyles>(amountOfValues,)
+            let index = amountOfValues
             while (index-- > 0)
-                valuesFound[index] = this.getValueByUrlValue(valuesInUrlsFound[index],)
+                valuesFoundAsGameStyle[index] = this.getValueByUrlValue(separatedValuesFound[index],)
 
-            const uniqueValuesFound = intersect(this.values, valuesFound,).toArray()
+            const uniqueValuesFound = intersect(this.values, valuesFoundAsGameStyle,).toArray()
             return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
 
             //endregion -------------------- Valid possibilities from unknown amount of arguments --------------------
@@ -339,6 +486,7 @@ export abstract class GameStyles
                 return '3dw'
             throw new ReferenceError('No game style group url value is findable from empty array or collection.',)
         }
+
 
         public get selected(): GameStyleCollection {
             return new GameStyleCollection(this.values.filter(it => it.isSelected,),)

@@ -173,42 +173,90 @@ export abstract class Games
         }
 
         public getValueInUrl(url: string,): readonly Games[] {
-            //region -------------------- Valid possibilities --------------------
+            //region -------------------- "all" possibility --------------------
 
             const lowerCasedUrl = url.toLowerCase()
 
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
                 return this.ALL
 
+            //endregion -------------------- "all" possibility --------------------
+
             const prefix = this.PREFIX
             if (!lowerCasedUrl.includes(prefix,))
                 return EMPTY_ARRAY
 
-            const singleValueFound = this.singleFields.find(it => lowerCasedUrl.includes(`${prefix}${it[0].urlValue}`,),)
-            if (singleValueFound != null)
-                return singleValueFound
+            //region -------------------- Possibilities from 1 to 3 arguments --------------------
 
-            const separator = this.NAME_ARGUMENT_SEPARATOR
-            const doubleValueFound = this.doubleFields.find(it => lowerCasedUrl.includes(`${prefix}${it[0].urlValue}${separator}${it[1].urlValue}`,),)
-            if (doubleValueFound != null)
-                return doubleValueFound
+            const valuesFound = lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,)[0]
+            const separatedValuesFound = valuesFound.split(this.NAME_ARGUMENT_SEPARATOR,)
+            const amountOfValues = separatedValuesFound.length
 
-            //endregion -------------------- Valid possibilities --------------------
+            if (amountOfValues === 1) {
+                if (valuesFound === '1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                if (valuesFound === '3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                if (valuesFound === '2')
+                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+
+                return EMPTY_ARRAY
+            }
+
+            if (amountOfValues === 2) {
+                if (valuesFound === '1,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                if (valuesFound === '3ds,3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                if (valuesFound === '2,2')
+                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+
+                if (valuesFound === '1,3ds' || valuesFound === '3ds,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_3DS
+                if (valuesFound === '1,2' || valuesFound === '2,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+                if (valuesFound === '3ds,2' || valuesFound === '2,3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+
+                return EMPTY_ARRAY
+            }
+
+            if (amountOfValues === 3) {
+                const all = this.ALL
+                if (separatedValuesFound.includes(all[0].urlValue,)
+                    && separatedValuesFound.includes(all[1].urlValue,)
+                    && separatedValuesFound.includes(all[2].urlValue,))
+                    return all
+
+                if (valuesFound === '1,1,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                if (valuesFound === '3ds,3ds,3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                if (valuesFound === '2,2,2')
+                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+
+                const doubleValuesFound = this.doubleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,),)
+                if (doubleValuesFound != null)
+                    return doubleValuesFound
+
+                return EMPTY_ARRAY
+            }
+
+            //endregion -------------------- Possibilities from 1 to 3 arguments --------------------
 
             if (!this.URL_REGEX.test(url,))
                 return EMPTY_ARRAY
 
             //region -------------------- Valid possibilities from unknown amount of arguments --------------------
 
-            const prefixWithoutSlash = this.PREFIX_WITHOUT_SLASH
-            const valuesInUrlsFound = lowerCasedUrl.split(this.URL_NAME_SEPARATOR,).find(it => it.startsWith(prefixWithoutSlash,) && (it.endsWith('1',) || it.endsWith('2',) || it.endsWith('3ds',)),)!.substring(prefixWithoutSlash.length,).split(this.NAME_ARGUMENT_SEPARATOR,)
-            const size = valuesInUrlsFound.length
-            const valuesFound = new Array<Games>(size,)
-            let index = size
+            const valuesFoundAsGame = new Array<Games>(amountOfValues,)
+            let index = amountOfValues
             while (index-- > 0)
-                valuesFound[index] = this.getValueByUrlValue(valuesInUrlsFound[index],)
+                valuesFoundAsGame[index] = this.getValueByUrlValue(separatedValuesFound[index],)
 
-            const uniqueValuesFound = intersect(this.values, valuesFound,).toArray()
+            const uniqueValuesFound = intersect(this.values, valuesFoundAsGame,).toArray()
             return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
 
             //endregion -------------------- Valid possibilities --------------------
