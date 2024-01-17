@@ -114,6 +114,7 @@ export default class SoundEffectApp
             }
 
             public createTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
+                //TODO add content based on the game style parameter
                 return option.renderContent(content,)
             }
 
