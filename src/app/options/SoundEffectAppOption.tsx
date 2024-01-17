@@ -31,7 +31,7 @@ export abstract class SoundEffectAppOption
             return CommonOptions.get.smm1And3dsGameHeader
         }
 
-    }()
+    }('smm1AndSmm3ds-icon',)
     public static readonly SMM2_ICON =            new class GameStyleAppOption_SMM2Icon extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
@@ -42,7 +42,7 @@ export abstract class SoundEffectAppOption
             return CommonOptions.get.smm2GameHeader
         }
 
-    }()
+    }('smm2-icon',)
     public static readonly NAME =                 new class GameStyleAppOption_Name extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
@@ -53,7 +53,7 @@ export abstract class SoundEffectAppOption
             return CommonOptions.get.nameHeader
         }
 
-    }()
+    }('name',)
     public static readonly CATEGORY =             new class GameStyleAppOption_Category extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
@@ -66,7 +66,7 @@ export abstract class SoundEffectAppOption
             return CommonOptions.get.categoryHeader
         }
 
-    }()
+    }('category',)
     public static readonly PLAYER_BEHAVIOUR =     new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
@@ -77,7 +77,7 @@ export abstract class SoundEffectAppOption
             return {key: 'player behaviour', element: unfinishedText('Player behaviour'),}//TODO add Player behaviour
         }
 
-    }()
+    }('playerBehaviour',)
     public static readonly SOUNDS =               new class GameStyleAppOption_Sounds extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
@@ -88,7 +88,7 @@ export abstract class SoundEffectAppOption
             return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
         }
 
-    }()
+    }('sounds',)
     public static readonly SOUNDS_IN_SMM1_AND_3DS_ONLY = new class GameStyleAppOption_SoundsInSMM1And3DSOnly extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
@@ -99,7 +99,7 @@ export abstract class SoundEffectAppOption
             return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
         }
 
-    }()
+    }('sounds',)
     public static readonly SOUNDS_IN_SMM2_ONLY = new class GameStyleAppOption_SoundsInSMM2Only extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
@@ -110,7 +110,7 @@ export abstract class SoundEffectAppOption
             return {key: 'sounds', element: <UnfinishedText>Sounds</UnfinishedText>,}//TODO add sounds
         }
 
-    }()
+    }('sounds',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -136,15 +136,29 @@ export abstract class SoundEffectAppOption
 
     //endregion -------------------- Companion enum --------------------
     //region -------------------- Fields --------------------
+
+    readonly #associatedClass
+    readonly #additionalClasses
+
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor() {
+    private constructor(associatedClass: string,) {
         super()
+        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
+
+    public get associatedClass(): string {
+        return this.#associatedClass
+    }
+
+    public get additionalClasses(): readonly [string,] {
+        return this.#additionalClasses
+    }
+
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 

@@ -1,34 +1,22 @@
 #soundEffect-table {
 
-  tbody {
-    //td {
-    //  min-height: 2cm;
-    //}
+  .tcell {
 
-    tr > {
-      //region -------------------- 1 & 2 - SMM1 & SMM2 --------------------
+    &.smm1And3ds-icon,
+    &.smm2-icon, {
+      width: 1.5cm;
+      text-align: center;
+    }
 
-      :nth-child(1), :nth-child(2) {
-        width: 1.5cm;
-        text-align: center;
-      }
+    &.name {}
 
-      //endregion -------------------- 1 & 2 - SMM1 & SMM2 --------------------
-      //region -------------------- 3 - name --------------------
-      //endregion -------------------- 3 - name --------------------
-      //region -------------------- 4 - category --------------------
-      //endregion -------------------- 4 - category --------------------
-      //region -------------------- 5 - player behaviour --------------------
-      //endregion -------------------- 5 - player behaviour
-      //region -------------------- 6 - sounds --------------------
+    &.category {}
 
-      :nth-child(6) {
-        min-width: calc(1cm + var(--bs-spacer-sm) * 2);
-        width: 8.5cm;
-      }
+    &.playerBehaviour {}
 
-      //endregion -------------------- 6 - sounds --------------------
-
+    &.sounds {
+      min-width: calc(1cm + var(--bs-spacer-sm) * 2);
+      width: 8.5cm;
     }
 
   }

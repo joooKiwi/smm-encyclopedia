@@ -109,6 +109,10 @@ export default class SoundEffectApp
             }
 
 
+            public getAdditionalClass(option: SoundEffectAppOption,) {
+                return option.additionalClasses
+            }
+
             public createTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
                 return option.renderContent(content,)
             }
