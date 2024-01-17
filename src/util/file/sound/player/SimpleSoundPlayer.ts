@@ -90,7 +90,8 @@ export class SimpleSoundPlayer<const SOURCE extends SoundFile = SoundFile, const
             this.onPlayingEvent?.(this, event,)
         }
         audio.onpause = event => {
-            this.setState(new HistoryState(PAUSED, false, true,),)
+            if (this.history.current.state !== STANDBY)
+                this.setState(new HistoryState(PAUSED, false, true,),)
             this.onPauseEvent?.(this, event,)
         }
         audio.onplay = event => {
