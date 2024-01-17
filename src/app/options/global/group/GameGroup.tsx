@@ -2,12 +2,12 @@ import './GameGroup.scss'
 
 import {Link, useLocation} from 'react-router-dom'
 
-import type {PossibleRoutePath} from 'route/EveryRoutes.types'
-import type {ReactProperties}   from 'util/react/ReactProperties'
-import type {GameCollection}    from 'util/collection/GameCollection'
+import type {ReactProperties} from 'util/react/ReactProperties'
+import type {GameCollection}  from 'util/collection/GameCollection'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {Games}                    from 'core/game/Games'
+import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 
 interface GameLinkProperties
@@ -33,22 +33,24 @@ export default function GameGroup() {
 /** @reactComponent */
 function GameLink({game, selected,}: GameLinkProperties,) {
     const pathname = useLocation().pathname
-
     const id = `gameLink-${game.englishNameInHtml}-button`
 
-    if (selected.length === 0) //FIXME: Find a better way to handle this. This is a temporary solution to handle empty arrays
+    if (game.isSelected && selected.size === 1)
         return <button type="button" id={id} className="btn btn-secondary link-button disabled">
             {game.renderSingleComponent}
         </button>
 
-    if (game.isSelected && selected.length === 1)
-        return <button type="button" id={id} className="btn btn-secondary link-button disabled">
-            {game.renderSingleComponent}
-        </button>
-
-    const gamesAsUrl = Games.getGroupUrlValue(selected,)
-    const gamesFromSelectionAsUrl = game.isSelected && selected.length === 1 ? gamesAsUrl : Games.getGroupUrlValue(game.isSelected ? selected.filter(it => it !== game) : [...selected, game,],)
-    const newPath = pathname.replace(`game-${gamesAsUrl}`, `game-${gamesFromSelectionAsUrl}`,) as PossibleRoutePath
+    const GameCompanion = Games.CompanionEnum.get
+    const pathToReplace = game.isSelected
+        ? `game-${GameCompanion.getGroupUrlValue(selected.filterNot(it => it === game,),)}` as const
+        : `game-${GameCompanion.getGroupUrlValue([...selected, game,],)}` as const
+    let newPath: string
+    if (pathname.includes('game-1',) || pathname.includes('game-3ds',) || pathname.includes('game-2',))
+        newPath = pathname.replace(`game-${GameCompanion.getGroupUrlValue(selected,)}`, pathToReplace,)
+    else {
+        const languagesInPath = `/${ProjectLanguages.CompanionEnum.get.current.urlValue}` as const
+        newPath = pathname.replace(languagesInPath, `${languagesInPath}/${pathToReplace}`,)
+    }
 
     return <Link type="button" id={id} className={`btn btn-${game.isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID)?.instance.hide()}>
