@@ -16,7 +16,7 @@ export function redirectTo(route: EveryRoutes, language: ProjectLanguages, games
     throw redirect(route.getPath(language, games, gameStyles, viewDisplay,),)
 }
 
-export function redirectToByUrl(loaderArguments: LoaderFunctionArgs, language: NullOr<ProjectLanguages> = null, games: NullOr<readonly Games[]> = null, gameStyles: NullOr<readonly GameStyles[]> = null, viewDisplay: NullOr<ViewDisplays> = null,): never {
+export function redirectToByUrl<const CONTEXT = unknown,>(loaderArguments: LoaderFunctionArgs<CONTEXT>, language: NullOr<ProjectLanguages> = null, games: NullOr<readonly Games[]> = null, gameStyles: NullOr<readonly GameStyles[]> = null, viewDisplay: NullOr<ViewDisplays> = null,): never {
     const url = loaderArguments.request.url
     throw redirect(
         (EveryRoutes.CompanionEnum.get.getValueInUrl(url,) ?? EveryRoutes.HOME).getPath(
