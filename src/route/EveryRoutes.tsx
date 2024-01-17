@@ -1208,35 +1208,114 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
          * Get the {@link Games} selected in the {@link name} received
          *
          * @param name The name to retrieve the {@link Games}
+         * @arrayReutilization
          */
         #getGamesInName(name: PossibleRouteName,): readonly Games[] {
-            const indexOfGame = name.indexOf('Game=',)
-            if (indexOfGame === -1)
+            const startingIndex = name.indexOf('Game=',)
+            if (startingIndex === -1)
                 return EMPTY_ARRAY
 
-            const Companion = Games.CompanionEnum.get
-            const selectedGames = name.substring(indexOfGame, -1,).split(Companion.NAME_ARGUMENT_SEPARATOR,)
-            const size = selectedGames.length
-            const games = new Array<Games>(size,)
-            let index = size
-            while (--index > 0)
-                games[index] = Companion.getValueBySimpleValue(selectedGames[index],)
-            return games
+            const nameFromGame = name.substring(startingIndex + 5,)
+            if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
+                return Games.GamePossibilitiesCompanion.get.ALL_GAMES
+
+            if (nameFromGame === '1)' || nameFromGame.startsWith('1 ',))
+                return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+            if (nameFromGame === '3DS)' || nameFromGame.startsWith('3DS ',))
+                return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+            if (nameFromGame === '2)' || nameFromGame.startsWith('2 ',))
+                return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+
+            if (nameFromGame === '1&3DS)' || nameFromGame.startsWith('1&3DS ',))
+                return Games.GamePossibilitiesCompanion.get.SMM1_AND_3DS
+            if (nameFromGame === '1&2)' || nameFromGame.startsWith('1&2 ',))
+                return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+            if (nameFromGame === '3DS&2)' || nameFromGame.startsWith('3DS&2 ',))
+                return Games.GamePossibilitiesCompanion.get.SMM3DS_AND_2
+
+            throw new ReferenceError(`No games have a name associated to the name "${name}".`,)
         }
 
+        /**
+         * Get the {@link GameStyles} selected in the {@link name} received
+         *
+         * @param name The name to retrieve the {@link GameStyles}
+         * @arrayReutilization
+         */
         #getGameStylesInName(name: PossibleRouteName,): readonly GameStyles[] {
-            const indexOfGame = name.indexOf('GameStyle=',)
-            if (indexOfGame === -1)
+            const startingIndex = name.indexOf('GameStyle=',)
+            if (startingIndex === -1)
                 return EMPTY_ARRAY
 
-            const Companion = GameStyles.CompanionEnum.get
-            const selectedGames = name.substring(indexOfGame, -1,).split(Companion.NAME_ARGUMENT_SEPARATOR,)
-            const size = selectedGames.length
-            const gameStyles = new Array<GameStyles>(size,)
-            let index = size
-            while (--index > 0)
-                gameStyles[index] = Companion.getValueBySimpleValue(selectedGames[index],)
-            return gameStyles
+            const nameFromGameStyle = name.substring(startingIndex + 10,)
+            if (nameFromGameStyle === 'all)' || nameFromGameStyle.startsWith('all ',))
+                return GameStyles.Possibilities.get.ALL_GAME_STYLES
+
+            if (nameFromGameStyle === '1)' || nameFromGameStyle.startsWith('1 ',))
+                return GameStyles.Possibilities.get.SMB_ONLY
+            if (nameFromGameStyle === '3)' || nameFromGameStyle.startsWith('3 ',))
+                return GameStyles.Possibilities.get.SMB3_ONLY
+            if (nameFromGameStyle === 'W)' || nameFromGameStyle.startsWith('W ',))
+                return GameStyles.Possibilities.get.SMW_ONLY
+            if (nameFromGameStyle === 'U)' || nameFromGameStyle.startsWith('U ',))
+                return GameStyles.Possibilities.get.NSMBU_ONLY
+            if (nameFromGameStyle === '3DW)' || nameFromGameStyle.startsWith('3DW ',))
+                return GameStyles.Possibilities.get.SM3DW_ONLY
+
+            if (nameFromGameStyle === '1&3)' || nameFromGameStyle.startsWith('1&3 ',))
+                return GameStyles.Possibilities.get.SMB_AND_SMB3
+            if (nameFromGameStyle === '1&W)' || nameFromGameStyle.startsWith('1&W ',))
+                return GameStyles.Possibilities.get.SMB_AND_SMW
+            if (nameFromGameStyle === '1&U)' || nameFromGameStyle.startsWith('1&U ',))
+                return GameStyles.Possibilities.get.SMB_AND_NSMBU
+            if (nameFromGameStyle === '1&3DW)' || nameFromGameStyle.startsWith('1&3DW ',))
+                return GameStyles.Possibilities.get.SMB_AND_SM3DW
+            if (nameFromGameStyle === '3&W)' || nameFromGameStyle.startsWith('3&W ',))
+                return GameStyles.Possibilities.get.SMB3_AND_SMW
+            if (nameFromGameStyle === '3&U)' || nameFromGameStyle.startsWith('3&U ',))
+                return GameStyles.Possibilities.get.SMB3_AND_NSMBU
+            if (nameFromGameStyle === '3&3DW)' || nameFromGameStyle.startsWith('3&3DW ',))
+                return GameStyles.Possibilities.get.SMB3_AND_SM3DW
+            if (nameFromGameStyle === 'W&U)' || nameFromGameStyle.startsWith('W&U ',))
+                return GameStyles.Possibilities.get.SMW_AND_NSMBU
+            if (nameFromGameStyle === 'W&3DW)' || nameFromGameStyle.startsWith('W&3DW ',))
+                return GameStyles.Possibilities.get.SMW_AND_SM3DW
+            if (nameFromGameStyle === 'U&3DW)' || nameFromGameStyle.startsWith('U&3DW ',))
+                return GameStyles.Possibilities.get.NSMBU_AND_SM3DW
+
+            if (nameFromGameStyle === '1&3&W)' || nameFromGameStyle.startsWith('1&3&W ',))
+                return GameStyles.Possibilities.get.SMB_AND_SMB3_AND_SMW
+            if (nameFromGameStyle === '1&3&U)' || nameFromGameStyle.startsWith('1&3&U ',))
+                return GameStyles.Possibilities.get.SMB_AND_SMB3_AND_NSMBU
+            if (nameFromGameStyle === '1&3&3DW)' || nameFromGameStyle.startsWith('1&3&3DW ',))
+                return GameStyles.Possibilities.get.SMB_AND_SMB3_AND_SM3DW
+            if (nameFromGameStyle === '1&W&U)' || nameFromGameStyle.startsWith('1&W&U ',))
+                return GameStyles.Possibilities.get.SMB_AND_SMW_AND_NSMBU
+            if (nameFromGameStyle === '1&W&3DW)' || nameFromGameStyle.startsWith('1&W&3DW ',))
+                return GameStyles.Possibilities.get.SMB_AND_SMW_AND_SM3DW
+            if (nameFromGameStyle === '1&U&3DW)' || nameFromGameStyle.startsWith('1&U&3DW ',))
+                return GameStyles.Possibilities.get.SMB_AND_NSMBU_AND_SM3DW
+            if (nameFromGameStyle === '3&W&U)' || nameFromGameStyle.startsWith('3&W&U ',))
+                return GameStyles.Possibilities.get.SMB3_AND_SMW_AND_NSMBU
+            if (nameFromGameStyle === '3&W&3DW)' || nameFromGameStyle.startsWith('3&W&3DW ',))
+                return GameStyles.Possibilities.get.SMB3_AND_SMW_AND_SM3DW
+            if (nameFromGameStyle === '3&U&3DW)' || nameFromGameStyle.startsWith('3&U&3DW ',))
+                return GameStyles.Possibilities.get.SMB3_AND_NSMBU_AND_SM3DW
+            if (nameFromGameStyle === 'W&U&3DW)' || nameFromGameStyle.startsWith('W&U&3DW ',))
+                return GameStyles.Possibilities.get.SMW_AND_NSMBU_AND_SM3DW
+
+            if (nameFromGameStyle === '1&3&W&U)' || nameFromGameStyle.startsWith('1&3&W&U ',))
+                return GameStyles.Possibilities.get.NOT_SM3DW
+            if (nameFromGameStyle === '1&3&W&3DW)' || nameFromGameStyle.startsWith('1&3&W&3DW ',))
+                return GameStyles.Possibilities.get.NOT_NSMBU
+            if (nameFromGameStyle === '1&3&U&3DW)' || nameFromGameStyle.startsWith('1&3&U&3DW ',))
+                return GameStyles.Possibilities.get.NOT_SMW
+            if (nameFromGameStyle === '1&W&U&3DW)' || nameFromGameStyle.startsWith('1&W&U&3DW ',))
+                return GameStyles.Possibilities.get.NOT_SMB3
+            if (nameFromGameStyle === '3&W&U&3DW)' || nameFromGameStyle.startsWith('3&W&U&3DW ',))
+                return GameStyles.Possibilities.get.NOT_SMB
+
+            throw new ReferenceError(`No game styles have a name associated to the name "${name}".`,)
         }
 
         /**
@@ -1245,11 +1324,11 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
          * @param name The name to retrieve the {@link ViewDisplays}
          */
         #getViewDisplayInName(name: PossibleRouteName,): NullOr<ViewDisplays> {
-            if (name.includes('(list'))
+            if (name.endsWith('(list)',) || name.includes('(list',))
                 return ViewDisplays.SIMPLE_LIST
-            if (name.includes('(card'))
+            if (name.endsWith('(card)',) || name.includes('(card',))
                 return ViewDisplays.CARD_LIST
-            if (name.includes('(table'))
+            if (name.endsWith('(table)',) || name.includes('(table',))
                 return ViewDisplays.TABLE
             return null
         }
