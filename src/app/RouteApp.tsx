@@ -309,7 +309,7 @@ function ListCardTableAllGameAllGameStyleSection({partialId, name, route,}: Fill
         `${partialId}-tableAndSmm3dsAndSmm2LinkPaths`,
     ] as const
 
-    return <div id="entity-paths" className="container bg-dark-subtle rounded pt-1 pb-3 mb-3">
+    return <div id="entity-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
         <SectionTitle name={name} target={linkPaths} route={route}/>
         <div id={linkPaths} className="row row-cols-auto justify-content-center collapse">
             <div>
