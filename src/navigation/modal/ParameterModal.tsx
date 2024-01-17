@@ -20,7 +20,7 @@ export default function ParameterModal({reference}: ParameterModalProperties,) {
     return <>
         <Modal modalReference={modal}/>
         <div ref={modal} id={PARAMETER_MODAL_ID} className="modal fade">
-            <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-dialog modal-dialog-centered modal-lg">
                 <div className="modal-content">
                     <div className="modal-header">
                         <h4 className="modal-title w-100 text-center">{contentTranslation('Options')}</h4>
