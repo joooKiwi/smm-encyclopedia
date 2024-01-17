@@ -167,7 +167,8 @@ export abstract class GameStyles
             const valueFound = this.values.find(it => it.simpleValue === stringValue,)
             if (valueFound == null)
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
-            return valueFound    }
+            return valueFound
+        }
 
         public getValueInUrl(url: string,): readonly GameStyles[] {
             //region -------------------- "all" possibility --------------------
