@@ -20,6 +20,7 @@ import {GameStyleCollection}                           from 'util/collection/Gam
 const ProjectLanguageCompanion = ProjectLanguages.CompanionEnum.get
 const EveryRouteCompanion = EveryRoutes.CompanionEnum.get
 const ViewDisplayCompanion = ViewDisplays.CompanionEnum.get
+const GameCompanion = Games.CompanionEnum.get
 const GameStyleCompanion = GameStyles.CompanionEnum.get
 const homeRoute = EveryRoutes.HOME
 /** Every {@link ProjectLanguages project language} as an {@link Array} */
@@ -85,10 +86,10 @@ const router = createHashRouter([{
                     everyRoute.map<RouteObject>(route => ({
                         path: `${pathFromLanguage}${route.path}`,
                         element: <Suspense fallback={<LoadingApp/>}>{route.renderCallback(route.viewDisplay!, new GameCollection(route.games ?? EMPTY_ARRAY,), new GameStyleCollection(route.gameStyles ?? EMPTY_ARRAY,),)}</Suspense>,
-                        loader: () => {
+                        loader() {
                             const games = route.games
                             if (games != null)
-                                Games.selected = games
+                                GameCompanion.selected = games
 
                             const gameStyles = route.gameStyles
                             if (gameStyles != null)
@@ -102,7 +103,7 @@ const router = createHashRouter([{
                     //region -------------------- Path from game --------------------
 
                     everyGames.map<RouteObject>(games => {
-                        const pathFromLanguageAndGame = `${pathFromLanguage}/game-${Games.getGroupUrlValue(games,)}` as const
+                        const pathFromLanguageAndGame = `${pathFromLanguage}/game-${GameCompanion.getGroupUrlValue(games,)}` as const
                         return {
                             path: pathFromLanguageAndGame,
                             children: [
@@ -142,7 +143,7 @@ const router = createHashRouter([{
                                 new StraightFallbackRouteObject(pathFromLanguageAndGame, loaderArguments => redirectToByUrl(loaderArguments, language, games,),),
                             ].flat(),
                             loader() {
-                                Games.selected = games
+                                GameCompanion.selected = games
                                 return null
                             },
                         }
