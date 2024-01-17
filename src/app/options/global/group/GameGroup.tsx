@@ -36,6 +36,11 @@ function GameLink({game, gamesInUrl,}: GameLinkProperties,) {
 
     const id = `gameLink-${game.englishNameInHtml}-button`
 
+    if (gamesInUrl.length === 0) //FIXME: Find a better way to handle this. This is a temporary solution to handle empty arrays
+        return <button type="button" id={id} className="btn btn-secondary link-button disabled">
+            {game.renderSingleComponent}
+        </button>
+
     if (game.isSelected && gamesInUrl.length === 1)
         return <button type="button" id={id} className="btn btn-secondary link-button disabled">
             {game.renderSingleComponent}
