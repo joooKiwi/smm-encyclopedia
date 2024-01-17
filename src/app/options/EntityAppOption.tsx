@@ -41,7 +41,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SMB - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -61,7 +61,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SMB3 - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -81,7 +81,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SMW - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -101,7 +101,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - NSMBU - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -121,7 +121,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SM3DW - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
