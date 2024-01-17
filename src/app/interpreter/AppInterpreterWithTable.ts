@@ -26,6 +26,13 @@ export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
     get tableOptions(): readonly Nullable<OPTION>[]
 
     /**
+     * Get the additional {@link Element.classList classes} for a selected {@link option}
+     *
+     * @param option The application option
+     */
+    getAdditionalClass?(option: OPTION,): readonly string[]
+
+    /**
      * Get the table content as an array of {@link ReactElement}
      * from the {@link Enumerable application option} received.
      *
