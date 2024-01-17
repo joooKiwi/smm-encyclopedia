@@ -28,6 +28,7 @@ const languages = ProjectLanguageCompanion.values.toArray()
 const everyRouteInstance = EveryRouteCompanion.values
 const everyRouteInstanceWithMoreThat1Element = everyRouteInstance.filter(it => it.everyRoute.length !== 1,)
 const everyRouteInstanceWithGameAndViewDisplay = everyRouteInstance.filter(it => it.everyRoute.find(it => it.games == null && it.viewDisplay == null,) == null,)
+// const everyRouteInstanceWithGameAndGameStyleAndViewDisplay = everyRouteInstance.filter(it => it.everyRoute.find(it => it.games == null && it.gameStyles != null && it.viewDisplay == null,) == null,)
 const everyRoute = EveryRouteCompanion.everyRoute
 const everyGames = Games.GamePossibilitiesCompanion.get.everyFields
 // const everyGameStyles = GameStyles.Possibilities.get.everyFields
@@ -108,6 +109,51 @@ const router = createHashRouter([{
                             path: pathFromLanguageAndGame,
                             children: [
                                 new StraightRouteObject(pathFromLanguageAndGame, () => redirectTo(homeRoute, language, games,),),
+                                // FIXME: Those paths do not work normally, it is put in comment to a possible eventual use
+                                // //region -------------------- Path from game style --------------------
+                                //
+                                // everyGameStyles.map<RouteObject>(gameStyles => {
+                                //     const pathFromLanguageAndGameAndGameStyle = `${pathFromLanguageAndGame}/game-style-${GameStyleCompanion.getGroupUrlValue(gameStyles,)}` as const
+                                //     return {
+                                //         path: pathFromLanguageAndGameAndGameStyle,
+                                //         children: [
+                                //             new StraightRouteObject(pathFromLanguageAndGameAndGameStyle, () => redirectTo(homeRoute, language, games, gameStyles,),),
+                                //             //region -------------------- Path from view display --------------------
+                                //
+                                //             everyViewDisplay.map<RouteObject>(viewDisplay => {
+                                //                 const pathFromLanguageAndGameAndGameStyleAndViewDisplay = `${pathFromLanguageAndGameAndGameStyle}/${viewDisplay.urlValue}` as const
+                                //                 return {
+                                //                     path: pathFromLanguageAndGameAndGameStyleAndViewDisplay,
+                                //                     children: [
+                                //                         new StraightRouteObject(pathFromLanguageAndGameAndGameStyleAndViewDisplay, () => redirectTo(homeRoute, language, games, gameStyles, viewDisplay,),),
+                                //
+                                //                         new StraightFallbackRouteObject(pathFromLanguageAndGameAndGameStyleAndViewDisplay, loaderArguments => redirectToByUrl(loaderArguments, language, games, gameStyles, viewDisplay,),),
+                                //                     ],
+                                //                     loader() {
+                                //                         ViewDisplayCompanion.current = viewDisplay
+                                //                         return null
+                                //                     },
+                                //                 }
+                                //             },).toArray(),
+                                //
+                                //             //endregion -------------------- Path from view display --------------------
+                                //             //region -------------------- Path from simple route path --------------------
+                                //
+                                //             everyRouteInstanceWithGameAndGameStyleAndViewDisplay.map(routeInstance =>
+                                //                 new StraightRouteObject(`${pathFromLanguageAndGameAndGameStyle}${routeInstance.simplePath}`, () => redirectTo(routeInstance, language, games, gameStyles,),),
+                                //             ).toArray(),
+                                //
+                                //             //endregion -------------------- Path from simple route path --------------------
+                                //             new StraightFallbackRouteObject(pathFromLanguageAndGameAndGameStyle, loaderArguments => redirectToByUrl(loaderArguments, language, games, gameStyles,),),
+                                //         ].flat(),
+                                //         loader() {
+                                //             GameStyleCompanion.selected = gameStyles
+                                //             return null
+                                //         },
+                                //     }
+                                // },),
+                                //
+                                // //endregion -------------------- Path from game style --------------------
                                 //region -------------------- Path from view display --------------------
 
                                 everyViewDisplay.map<RouteObject>(viewDisplay => {
