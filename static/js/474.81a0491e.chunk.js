@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksmm_encyclopedia=self.webpackChunksmm_encyclopedia||[]).push([[474],{21474:(e,n,s)=>{s.r(n),s.d(n,{default:()=>c});var t=s(60124),a=s(80184);class c extends t.Z{_mainContent(){return(0,a.jsx)(a.Fragment,{children:"every entity groups"})}}}}]);
+//# sourceMappingURL=474.81a0491e.chunk.js.map
