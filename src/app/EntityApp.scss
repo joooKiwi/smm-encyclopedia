@@ -18,112 +18,33 @@
 
 #entity-table {
 
-  .tcontent {
-    //td {
-    //  min-height: 2cm;
-    //}
+  .tcell {
 
-    .trow > {
-      $index: 0;
-      //region -------------------- image - SMB --------------------
-      $index: $index + 1;
+    &.smb-images,
+    &.smb3-images,
+    &.smw-images,
+    &.nsmbu-images,
+    &.sm3dw-images, { max-width: 2cm }
 
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
+    &.name { min-width: 5cm }
 
-      //endregion -------------------- image - SMB --------------------
-      //region -------------------- image - SMB3 --------------------
-      $index: $index + 1;
+    &.game { min-width: 2.5cm }
 
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
+    &.gameStyle { max-width: 4cm }
 
-      //endregion -------------------- image - SMB3 --------------------
-      //region -------------------- image - SMW --------------------
-      $index: $index + 1;
+    &.courseTheme {
+      min-width: 4cm;
+      max-width: 6cm;
+    }
 
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
+    &.time { min-width: 1.5cm }
 
-      //endregion -------------------- image - SMW --------------------
-      //region -------------------- image - NSMBU --------------------
-      $index: $index + 1;
+    &.category {}
 
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image - NSMBU --------------------
-      //region -------------------- image - SM3DW --------------------
-      $index: $index + 1;
-
-      :nth-child(#{$index}) {
-        max-width: 2cm;
-      }
-
-      //endregion -------------------- image - SM3DW --------------------
-      //region -------------------- name --------------------
-      $index: $index + 1;
-
-      :nth-child(#{$index}) {
-        min-width: 5cm;
-      }
-
-      //endregion -------------------- name --------------------
-      ////region -------------------- game --------------------
-      //$index: $index + 1;
-      //
-      //:nth-child(#{$index}) {
-      //  min-width: 2.5cm;
-      //}
-      //
-      ////endregion -------------------- game --------------------
-      ////region -------------------- game style --------------------
-      //$index: $index + 1;
-      //
-      //:nth-child(#{$index}) {
-      //  max-width: 4cm;
-      //}
-      //
-      ////endregion -------------------- game style --------------------
-      ////region -------------------- course theme --------------------
-      //$index: $index + 1;
-      //
-      //:nth-child(#{$index}) {
-      //  min-width: 4cm;
-      //  max-width: 6cm;
-      //}
-      //
-      ////endregion -------------------- course theme --------------------
-      ////region -------------------- time --------------------
-      //$index: $index + 1;
-      //
-      //:nth-child(#{$index}) {
-      //  min-width: 1.5cm;
-      //}
-      //
-      ////endregion -------------------- time --------------------
-      //region -------------------- entity category --------------------
-      $index: $index + 1;
-
-      :nth-child(#{$index}) {
-        min-width: 3cm;
-      }
-
-      //endregion -------------------- entity category --------------------
-      ////region -------------------- limit (editor) --------------------
-      //$index: $index + 1;
-      //
-      //:nth-child(#{$index}) {
-      //  min-width: 5cm;
-      //  max-width: 7.5cm;
-      //}
-      //
-      ////endregion -------------------- limit (editor) --------------------
-
+    &.editorLimit,
+    &.playLimit, {
+      min-width: 5cm;
+      max-width: 7.5cm;
     }
 
   }

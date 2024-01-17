@@ -143,6 +143,10 @@ export default class EntityApp
             }
 
 
+            public getAdditionalClass(option: EntityAppOption,) {
+                return option.additionalClasses
+            }
+
             public createTableContent(content: Entities, option: EntityAppOption,) {
                 return option.renderContent(content,)
             }
