@@ -8,8 +8,8 @@ import ShellAndYoshiMountablePriority from 'app/powerUp/priority/predefined/Shel
 import SimplePowerUpPriority          from 'app/powerUp/priority/predefined/SimplePowerUpPriority'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 
-const GAME_STYLE = GameStyles.NEW_SUPER_MARIO_BROS_U,
-    IMAGE_CALLBACK: ImagesCallbackByPriority<NSMBUPowerUpPriority> = priority => priority.nsmbuImages
+const GAME_STYLE = GameStyles.NEW_SUPER_MARIO_BROS_U
+const IMAGE_CALLBACK: ImagesCallbackByPriority<NSMBUPowerUpPriority> = priority => priority.nsmbuImages
 
 export default function PowerUpPriorityInNSMBU({children: [superStar, lakituCloud, juniorClownCar, fireJuniorClownCar, buzzyShell, spinyShell, dryBonesShell, yoshi, redYoshi, superMushroom, fireFlower, propellerMushroom, superAcorn,], games,}: PropertiesWithGames<NSMBUPowerUpPriorities>,) {
     return <GroupOf4PowerUpPriority id="powerUpPriority-group-nsmbu" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>

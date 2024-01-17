@@ -1,18 +1,19 @@
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppStates}                    from 'app/AppStates.types'
-import type {ValueByApp}                   from 'app/interpreter/AppInterpreter'
+import type {Content}                      from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {PossibleRouteName}            from 'route/EveryRoutes.types'
 
 import {AbstractSimpleListApp} from 'app/withInterpreter/AbstractSimpleListApp'
-import {ListDimensionCreator}  from 'app/withInterpreter/ListDimension.creator'
 import {ViewDisplays}          from 'app/withInterpreter/ViewDisplays'
 import NameComponent           from 'lang/name/component/Name.component'
 
-export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList,
-    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
-    extends AbstractSimpleListApp<APP, T, S> {
+export abstract class AbstractCardListApp<const out CONTENT extends Content,
+    const out APP extends AppInterpreterWithCardList<CONTENT>,
+    const out T extends AppWithInterpreterProperties = AppWithInterpreterProperties,
+    const S extends AppStates = AppStates, >
+    extends AbstractSimpleListApp<CONTENT, APP, T, S> {
 
     //region -------------------- Fields --------------------
 
@@ -34,7 +35,7 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
 
     protected abstract _createCardListRouteName(): PossibleRouteName
 
-    protected _createUniqueNameOnCardList(enumerable: ValueByApp<APP>,): string {
+    protected _createUniqueNameOnCardList(enumerable: CONTENT,): string {
         return enumerable.englishName
     }
 
@@ -48,8 +49,8 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
     public createCardList(): ReactElement {
         const optionInterpreter = this._appOptionInterpreter
         const key = this._key
-        const cardListDimension = optionInterpreter.createCardListDimension()
-        const dimensions = new ListDimensionCreator(cardListDimension === 'list' ? optionInterpreter.createListDimension() : cardListDimension,).createDimensions()
+        const {default: df, small: sm, medium: md, large: lg, extraLarge: xl, extraExtraLarge: xxl,} = optionInterpreter.createCardListDimension()
+        const dimensions = `row-cols-${df}${sm == null ? '' : ` row-cols-sm-${sm}`}${md == null ? '' : ` row-cols-md-${md}`}${lg == null ? '' : ` row-cols-lg-${lg}`}${xl == null ? '' : ` row-cols-xl-${xl}`}${xxl == null ? '' : ` row-cols-xxl-${xxl}`}`
         const content = optionInterpreter.content
 
         const size = content.length
@@ -61,14 +62,14 @@ export abstract class AbstractCardListApp<APP extends AppInterpreterWithCardList
 
             //TODO change the popover to be on the id instead of the name directly
             contentToDisplay[index] =
-                <div key={`${uniqueEnglishName} - main card list container`} id={`${key}-${enumerable.englishNameInHtml}-container`} className={`${key}-container listElement-container ${dimensions}`}>
-                    <div key={`${uniqueEnglishName} - main card list sub-container`} className="cardListElement-container rounded-pill">
+                <div key={`${uniqueEnglishName} - main card list container`} id={`${key}-${enumerable.englishNameInHtml}-container`} className={`${key}-container`}>
+                    <div key={`${uniqueEnglishName} - main card list sub-container`} className="listElement-container cardListElement-container rounded-pill">
                         <NameComponent key={`${uniqueEnglishName} - text container`} id="name" name={enumerable.reference.nameContainer} popoverOrientation="left"/>
                         <div className="cardListName-content-container">{optionInterpreter.createCardListContent(enumerable)}</div>
                     </div>
                 </div>
         }
-        return <>{contentToDisplay}</>
+        return <div className={`row ${dimensions} align-items-center flex-grow-1 gx-0`}>{contentToDisplay}</div>
     }
 
     //endregion -------------------- Render methods --------------------

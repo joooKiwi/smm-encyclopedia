@@ -12,8 +12,8 @@ describe('Theme (file test)', () => {
     const excludedLanguages_SMM1: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
-        const isSMM1Exclusive = it.isInSuperMarioMaker2 && !it.isInSuperMarioMaker1And3DS,
-            isWorldOnly = !it.isInCourseTheme && it.isInWorldTheme
+        const isSMM1Exclusive = it.isInSuperMarioMaker2 && !it.isInSuperMarioMaker1And3DS
+        const isWorldOnly = !it.isInCourseTheme && it.isInWorldTheme
         //TODO Complete the german, italian, dutch, spanish, portuguese & russian for the game reference:
         //  - (Pokémon Green Version)
         //  - Zelda II: The Adventure of Link

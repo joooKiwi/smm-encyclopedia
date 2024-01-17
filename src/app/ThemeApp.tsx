@@ -1,15 +1,15 @@
 import './ThemeApp.scss'
 
-import type {ThemeAppProperties}                                   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {ThemeTypes}                                           from 'app/property/ThemeTypes'
-import type {Themes}                                               from 'core/theme/Themes'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {ThemeAppProperties}      from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {Themes}                  from 'core/theme/Themes'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
+import {ThemeTypes}                                      from 'app/property/ThemeTypes'
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
 import {AbstractTableApp}                                from 'app/withInterpreter/AbstractTableApp'
@@ -18,7 +18,7 @@ import {filterGame}                                      from 'util/utilitiesMet
 
 /** @reactComponent */
 export default class ThemeApp
-    extends AbstractTableApp<AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
+    extends AbstractTableApp<Themes, AppInterpreterWithTable<Themes, ThemeAppOption>, ThemeAppProperties> {
 
     //region -------------------- Getter methods --------------------
 
@@ -78,20 +78,33 @@ export default class ThemeApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
+                if ($this.type === ThemeTypes.COURSE)
+                    return {
+                        default: 1,
+                        small: 2,
+                        medium: 5,
+                    }
+                if ($this.type === ThemeTypes.WORLD)
+                    return {
+                        default: 1,
+                        small: 2,
+                        medium: 4,
+                    }
                 return {
-                    small: 6,
-                    medium: 4,
-                    large: 3,
-                    extraLarge: 2,
+                    default: 1,
+                    small: 2,
+                    medium: 3,
+                    large: 4,
+                    extraLarge: 6,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: Themes,) {
@@ -124,7 +137,7 @@ export default class ThemeApp
             }
 
 
-            public createNewTableContent(content: Themes, option: ThemeAppOption,) {
+            public createTableContent(content: Themes, option: ThemeAppOption,) {
                 return option.renderContent(content,)
             }
 

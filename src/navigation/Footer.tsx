@@ -17,7 +17,7 @@ export default function Footer() {
             </div>
             <div className="row">
                 <small id="version" className="text-center text-light">
-                    {contentTranslation('Version')} 0.21 <sub className="opacity-50">beta</sub>
+                    {contentTranslation('Version')} 0.22 <sub className="opacity-50">beta</sub>
                 </small>
                 <small id="copyright" className="text-center text-light">
                     {contentTranslation('Copyright')}<sup className="opacity-50">©</sup> Nintendo<span className="opacity-50">™</span>
@@ -26,7 +26,7 @@ export default function Footer() {
                     <small>{contentTranslation('React application made by')}: </small>JóôòKiwi
                 </span>
                 <small id="copyright_lastEdited" className="text-center text-light">
-                    {contentTranslation('Last update')}: <i><SimpleDate day={12} month={10} year={2023}/></i>
+                    {contentTranslation('Last update')}: <i><SimpleDate day={17} month={1} year={2024}/></i>
                 </small>
             </div>
         </div>

@@ -10,8 +10,8 @@ import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
  *
  * @todo Change The requirement of the "Content" to not use the english name as a requirement
  */
-export interface AppInterpreterWithTable<CONTENT extends Content = Content,
-    OPTION extends Enumerable = Enumerable<any, any>, >
+export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
+    out OPTION extends Enumerable = Enumerable<any, any>, >
     extends AppInterpreterWithCardList<CONTENT> {
 
     readonly tableHeadersColor?: Nullable<BootstrapThemeColor>
@@ -26,13 +26,20 @@ export interface AppInterpreterWithTable<CONTENT extends Content = Content,
     get tableOptions(): readonly Nullable<OPTION>[]
 
     /**
+     * Get the additional {@link Element.classList classes} for a selected {@link option}
+     *
+     * @param option The application option
+     */
+    getAdditionalClass?(option: OPTION,): readonly string[]
+
+    /**
      * Get the table content as an array of {@link ReactElement}
      * from the {@link Enumerable application option} received.
      *
      * @param content The content to display
      * @param option the application option
      */
-    createNewTableContent(content: CONTENT, option: OPTION,): readonly ReactElement[]
+    createTableContent(content: CONTENT, option: OPTION,): readonly ReactElement[]
 
     /**
      * Get the {@link SingleHeaderContent table header} or null

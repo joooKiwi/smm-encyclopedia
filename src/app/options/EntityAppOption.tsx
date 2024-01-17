@@ -41,7 +41,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SMB - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -49,7 +49,7 @@ export class EntityAppOption
             return {key: `image-smb`, element: GameStyles.SUPER_MARIO_BROS.renderSingleComponent,} satisfies SingleHeaderContent
         }
 
-    }()
+    }('smb-images',)
     public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
@@ -61,7 +61,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SMB3 - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -69,7 +69,7 @@ export class EntityAppOption
             return {key: `image-smb3`, element: GameStyles.SUPER_MARIO_BROS_3.renderSingleComponent,} satisfies SingleHeaderContent
         }
 
-    }()
+    }('smb3-images',)
     public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
@@ -81,7 +81,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SMW - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -89,7 +89,7 @@ export class EntityAppOption
             return {key: `image-smw`, element: GameStyles.SUPER_MARIO_WORLD.renderSingleComponent,} satisfies SingleHeaderContent
         }
 
-    }()
+    }('smw-images',)
     public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
@@ -101,7 +101,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - NSMBU - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -109,7 +109,7 @@ export class EntityAppOption
             return {key: `image-nsmbu`, element: GameStyles.NEW_SUPER_MARIO_BROS_U.renderSingleComponent,} satisfies SingleHeaderContent
         }
 
-    }()
+    }('nsmbu-images',)
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
@@ -121,7 +121,7 @@ export class EntityAppOption
             const images = new Array<ReactJSXElement>(size,)
             let index = size
             while (index-- > 0)
-                images[index] = <Image className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+                images[index] = <Image key={`Entity image (${englishName} - SM3DW - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -129,17 +129,17 @@ export class EntityAppOption
             return {key: `image-sm3dw`, element: GameStyles.SUPER_MARIO_3D_WORLD.renderSingleComponent,} satisfies SingleHeaderContent
         }
 
-    }()
+    }('sm3dw-images',)
     /**
      * Display an animation or not.
      *
      * If the value is "separated", then, it will display every image animation separated.
      * @see AnimatedImages
      */
-    public static readonly IMAGES_ON_EDITOR = new EntityAppOption()
-    public static readonly IMAGES_ON_CLEAR_CONDITION = new EntityAppOption()
-    public static readonly IMAGES_ON_WHILE_PLAYING = new EntityAppOption()
-    public static readonly IMAGES_ON_UNUSED = new EntityAppOption()
+    public static readonly IMAGES_ON_EDITOR = new EntityAppOption('editor-images',)
+    public static readonly IMAGES_ON_CLEAR_CONDITION = new EntityAppOption('clearCondition-images',)
+    public static readonly IMAGES_ON_WHILE_PLAYING = new EntityAppOption('play-images',)
+    public static readonly IMAGES_ON_UNUSED = new EntityAppOption('unused-images',)
 
     public static readonly NAME = new class EntityAppOption_Name extends EntityAppOption {
 
@@ -157,7 +157,7 @@ export class EntityAppOption
             return CommonOptions.get.nameHeader
         }
 
-    }()
+    }('name',)
 
     public static readonly GAME = new class EntityAppOption_Game extends EntityAppOption {
 
@@ -169,8 +169,8 @@ export class EntityAppOption
             return CommonOptions.get.gameHeader
         }
 
-    }()
-    public static readonly WHEN_ALL_SELECTED_GAME = new EntityAppOption()
+    }('game',)
+    public static readonly WHEN_ALL_SELECTED_GAME = new EntityAppOption('???',)
 
     public static readonly GAME_STYLE = new class EntityAppOption_GameStyle extends EntityAppOption {
 
@@ -182,8 +182,8 @@ export class EntityAppOption
             return {key: 'gameStyle', element: gameContentTranslation('game style.singular'),} satisfies SingleHeaderContent
         }
 
-    }()
-    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new EntityAppOption()
+    }('gameStyle',)
+    public static readonly WHEN_ALL_SELECTED_GAME_STYLE = new EntityAppOption('???',)
 
     public static readonly COURSE_THEME = new class EntityAppOption_CourseTheme extends EntityAppOption {
 
@@ -195,8 +195,8 @@ export class EntityAppOption
             return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular'),} satisfies SingleHeaderContent
         }
 
-    }()
-    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new EntityAppOption()
+    }('courseTheme',)
+    public static readonly WHEN_ALL_SELECTED_COURSE_THEME = new EntityAppOption('???',)
 
     public static readonly TIME = new class EntityAppOption_Time extends EntityAppOption {
 
@@ -208,8 +208,8 @@ export class EntityAppOption
             return {key: 'time', element: gameContentTranslation('time.singular'),} satisfies SingleHeaderContent
         }
 
-    }()
-    public static readonly WHEN_ALL_SELECTED_TIME = new EntityAppOption()
+    }('time',)
+    public static readonly WHEN_ALL_SELECTED_TIME = new EntityAppOption('???',)
 
     public static readonly CATEGORY = new class EntityAppOption_Category extends EntityAppOption {
 
@@ -223,12 +223,12 @@ export class EntityAppOption
             return CommonOptions.get.categoryHeader
         }
 
-    }()
+    }('category',)
     /**
      * Tell whenever a {@link EntityAppOption.CATEGORY category} is displayed
      * as a text (<i>true</i>) or an image (<i>false</i>).
      */
-    public static readonly CATEGORY_AS_TEXT = new EntityAppOption()
+    public static readonly CATEGORY_AS_TEXT = new EntityAppOption('???',)
 
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
@@ -240,7 +240,7 @@ export class EntityAppOption
             return CommonOptions.get.completeEditorLimitInSmm1And3dsHeader
         }
 
-    }()
+    }('smm1And3ds-editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY = new class EntityAppOption_LimitInSMM1And3DS extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
@@ -251,7 +251,7 @@ export class EntityAppOption
             return CommonOptions.get.completeEditorLimitHeader
         }
 
-    }()
+    }('editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM2 = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
@@ -262,7 +262,7 @@ export class EntityAppOption
             return CommonOptions.get.completeEditorLimitInSmm2Header
         }
 
-    }()
+    }('smm2-editorLimit',)
     public static readonly EDITOR_LIMIT_IN_SMM2_ONLY = new class EntityAppOption_LimitInSMM2 extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
@@ -273,7 +273,7 @@ export class EntityAppOption
             return CommonOptions.get.completeEditorLimitHeader
         }
 
-    }()
+    }('editorLimit',)
     public static readonly PLAY_LIMIT = new class EntityAppOption_PlayLimit extends EntityAppOption {
 
         protected override _createContentOption(enumeration: Entities,) {
@@ -283,7 +283,7 @@ export class EntityAppOption
         protected override _createTableHeaderOption() {
             return CommonOptions.get.completePlayLimitHeader
         }
-    }()
+    }('playLimit',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -315,15 +315,28 @@ export class EntityAppOption
     static #times?: readonly Times[]
     static #themes?: readonly Themes[]
 
+    readonly #associatedClass
+    readonly #additionalClasses
+
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor() {
+    private constructor(associatedClass: string,) {
         super()
+        this.#additionalClasses = [this.#associatedClass = associatedClass,] as const
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
+
+    public get associatedClass(): string {
+        return this.#associatedClass
+    }
+
+    public get additionalClasses(): readonly [string,] {
+        return this.#additionalClasses
+    }
+
 
     protected static get _gameStyles(): readonly GameStyles[] {
         return this.#gameStyles ??= GameStyles.CompanionEnum.get.values.toArray()

@@ -1,6 +1,6 @@
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {SampleCourseAppOption}  from 'app/options/SampleCourseAppOption'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
@@ -16,7 +16,7 @@ const {COURSE,} = OtherWordInTheGames
 //endregion -------------------- Deconstruction imports --------------------
 
 export default class SampleCourseApp
-    extends AbstractTableApp<AppInterpreterWithTable<SampleCourses>> {
+    extends AbstractTableApp<SampleCourses, AppInterpreterWithTable<SampleCourses>> {
 
     //region -------------------- Create methods --------------------
 
@@ -53,19 +53,19 @@ export default class SampleCourseApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    medium: 3,
-                    large: null,
-                    extraLarge: null,
+                    default: 1,
+                    small: 2,
+                    medium: 4,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: SampleCourses,) {
@@ -92,7 +92,7 @@ export default class SampleCourseApp
                 ]
             }
 
-            public createNewTableContent(content: SampleCourses, option: SampleCourseAppOption,) {
+            public createTableContent(content: SampleCourses, option: SampleCourseAppOption,) {
                 return option.renderContent(content,)
             }
 

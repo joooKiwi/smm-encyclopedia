@@ -35,7 +35,7 @@ export class HistoryState {
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Equals methods --------------------
 
-    public equals(other: any,): boolean {
+    public equals(other: unknown,): boolean {
         if (other == null)
             return false
         if (!(other instanceof HistoryState))

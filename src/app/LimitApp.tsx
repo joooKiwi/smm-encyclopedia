@@ -1,12 +1,12 @@
 import './LimitApp.scss'
 
-import type {LimitAppProperties}                                   from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {LimitTypes}                                           from 'app/property/LimitTypes'
-import type {ClassWithType}                                        from 'core/ClassWithType'
-import type {Limits}                                               from 'core/limit/Limits'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {LimitAppProperties}      from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {LimitTypes}              from 'app/property/LimitTypes'
+import type {ClassWithType}           from 'core/ClassWithType'
+import type {Limits}                  from 'core/limit/Limits'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {LimitAppOption}                             from 'app/options/LimitAppOption'
 import {COURSE_THEME_IMAGE_FILE}                    from 'app/options/file/themeImageFiles'
@@ -17,7 +17,7 @@ import {contentTranslation, gameContentTranslation} from 'lang/components/transl
 import {filterGame}                                 from 'util/utilitiesMethods'
 
 export default class LimitApp
-    extends AbstractTableApp<AppInterpreterWithTable<Limits, LimitAppOption>, LimitAppProperties>
+    extends AbstractTableApp<Limits, AppInterpreterWithTable<Limits, LimitAppOption>, LimitAppProperties>
     implements ClassWithType<LimitTypes> {
 
     //region -------------------- Getter methods --------------------
@@ -74,19 +74,21 @@ export default class LimitApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    large: null,
-                    extraLarge: 2,
+                    default: 1,
+                    small: 2,
+                    medium: 4,
+                    large: 5,
+                    extraLarge: 6,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumeration: Limits,) {
@@ -112,16 +114,16 @@ export default class LimitApp
             public readonly tableCaption = gameContentTranslation(`limit.${$this.type.type}.all`) satisfies ReactElementOrString
 
             public get tableOptions(): readonly LimitAppOption[] {
-                const games = $this.props.games,
-                    hasSMM1Or3DSGames = games.hasSMM1Or3DS,
-                    hasSMM2Games = games.hasSMM2
+                const games = $this.props.games
+                const hasSMM1Or3DSGames = games.hasSMM1Or3DS
+                const hasSMM2Games = games.hasSMM2
 
                 const options: LimitAppOption[] = [
                     LimitAppOption.ACRONYM,
                     LimitAppOption.NAME,
                 ]
                 if (hasSMM1Or3DSGames && hasSMM2Games)
-                   options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
+                    options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
                 else {
                     if (hasSMM1Or3DSGames)
                         options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
@@ -132,7 +134,7 @@ export default class LimitApp
             }
 
 
-            public createNewTableContent(content: Limits, option: LimitAppOption,) {
+            public createTableContent(content: Limits, option: LimitAppOption,) {
                 return option.renderContent(content,)
             }
 

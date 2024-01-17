@@ -1,8 +1,8 @@
 import './MiiCostumeApp.scss'
 
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
 import Image                    from 'app/tools/images/Image'
@@ -20,7 +20,7 @@ const {MII_COSTUME,} = OtherWordInTheGames
 //endregion -------------------- Import from deconstruction --------------------
 
 export default class MiiCostumeApp
-    extends AbstractTableApp<AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>> {
+    extends AbstractTableApp<MiiCostumes, AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>> {
 
     //region -------------------- Create methods --------------------
 
@@ -58,20 +58,22 @@ export default class MiiCostumeApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    medium: 4,
-                    large: 3,
-                    extraExtraLarge: 2,
+                    default: 1,
+                    small: 2,
+                    medium: 3,
+                    large: 4,
+                    extraLarge: 5,
+                    extraExtraLarge: 6,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent({reference, imageFile,}: MiiCostumes,) {
@@ -101,7 +103,7 @@ export default class MiiCostumeApp
             }
 
 
-            public createNewTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
+            public createTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
                 return option.renderContent(content,)
             }
 

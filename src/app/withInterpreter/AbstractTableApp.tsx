@@ -7,10 +7,13 @@ import type {PossibleRouteName}            from 'route/EveryRoutes.types'
 import Table                 from 'app/tools/table/Table'
 import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
 import {ViewDisplays}        from 'app/withInterpreter/ViewDisplays'
+import {Content}             from 'app/interpreter/AppInterpreter'
 
-export abstract class AbstractTableApp<APP extends AppInterpreterWithTable,
-    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
-    extends AbstractCardListApp<APP, T, S> {
+export abstract class AbstractTableApp<const out CONTENT extends Content,
+    const out APP extends AppInterpreterWithTable<CONTENT>,
+    const out T extends AppWithInterpreterProperties = AppWithInterpreterProperties,
+    const S extends AppStates = AppStates, >
+    extends AbstractCardListApp<CONTENT, APP, T, S> {
 
     //region -------------------- Fields --------------------
 

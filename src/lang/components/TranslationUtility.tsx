@@ -40,8 +40,8 @@ export class TranslationUtility {
         }
 
         const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX).filter(splitValue => !argumentsFound.includes(splitValue))
-        let finalArguments: ReactElementOrString[] = [],
-            containsOnlyString = true
+        let finalArguments: ReactElementOrString[] = []
+        let containsOnlyString = true
         for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++) {
             const replacementArgument = keyMap[argumentsFound[i]]
             this.#addArgumentToArray(finalArguments, splitArguments[j], replacementArgument,)

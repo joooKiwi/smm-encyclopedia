@@ -1,4 +1,8 @@
+import type {CollectionHolder} from '@joookiwi/collection'
+
 import type {Games}                   from 'core/game/Games'
+import type {GroupUrlValue}           from 'core/game/Games.types'
+import type {GameCollection}          from 'util/collection/GameCollection'
 import type {CompanionEnumByAcronym}  from 'util/enumerable/companion/CompanionEnumByAcronym'
 import type {CompanionEnumByName}     from 'util/enumerable/companion/CompanionEnumByName'
 import type {CompanionEnumByUrlValue} from 'util/enumerable/companion/CompanionEnumByUrlValue'
@@ -13,14 +17,22 @@ export interface CompanionEnumDeclaration_Games
     /** The separator the names */
     readonly NAME_ARGUMENT_SEPARATOR: ','
 
+    readonly URL_REGEX: RegExp
     readonly SINGLE_URL_REGEX: RegExp
-    readonly PREFIX: string
-    readonly PREFIX_WITHOUT_SLASH: string
-    readonly ALL_PREFIX_GROUP: string
-    readonly AMOUNT_OF_VALUES: number
+    readonly DOUBLE_URL_REGEX: RegExp
+    readonly PREFIX: '/game-'
+    readonly PREFIX_WITHOUT_SLASH: 'game-'
+    readonly ALL_PREFIX_GROUP: '/game-all/'
 
     getValueInUrl(url: string,): readonly Games[]
 
+    getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue
+
     getValueBySimpleValue(value: Nullable<| Games | string | number>,): Games
+
+
+    get selected(): GameCollection
+
+    set selected(value: readonly Games[],)
 
 }

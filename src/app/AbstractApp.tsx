@@ -8,11 +8,16 @@ import type {ReactComponent} from 'util/react/ReactComponent'
 
 import GlobalOptionComponent from 'app/options/global/GlobalOption.component'
 import Footer                from 'navigation/Footer'
-import ModalContainers       from 'navigation/ModalContainers'
 import Navigation            from 'navigation/Navigation'
+import LanguageModal         from 'navigation/modal/LanguageModal'
+import ParameterModal        from 'navigation/modal/ParameterModal'
+import DisplayViewModal      from 'navigation/modal/DisplayViewModal'
+import SearchModal           from 'navigation/modal/SearchModal'
+import ColorModal            from 'navigation/modal/ColorModal'
 
 /** @reactComponent */
-export default abstract class AbstractApp<T extends AppProperties = AppProperties, S extends AppStates = AppStates, >
+export default abstract class AbstractApp<const out T extends AppProperties = AppProperties,
+    const S extends AppStates = AppStates, >
     extends Component<T, S>
     implements ReactComponent {
 
@@ -24,9 +29,15 @@ export default abstract class AbstractApp<T extends AppProperties = AppPropertie
 
     public override render(): ReactJSXElement {
         return <>
-            <ModalContainers parameter={this._parameterContent()}/>
+            <aside id="modal-container">
+                <LanguageModal/>
+                <ParameterModal reference={this._parameterContent()}/>
+                <DisplayViewModal/>
+                <SearchModal/>
+                <ColorModal/>
+            </aside>
             <Navigation/>
-            <main id="main-container" className="pt-3 pb-5 align-bottom container-fluid">
+            <main id="main-container" className="container-fluid flex-grow-1 align-bottom pt-3 pb-5">
                 {this._mainContent()}
             </main>
             <Footer/>

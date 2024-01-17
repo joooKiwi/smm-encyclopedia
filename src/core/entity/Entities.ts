@@ -3186,29 +3186,29 @@ export class Entities
             return this.#uniqueImage
 
         const value = this._createUniqueImage()
-        if (value == null) {
-            const editorImage = this.editorImage
-            const clearConditionImage = this.clearConditionImage
-            const inGameImage = this.inGameImage
+        if (value != null)
+            return this.#uniqueImage = value
 
-            const isEmptyEditor = editorImage instanceof EmptyEditorImage
-            const isEmptyClearCondition = clearConditionImage instanceof EmptyClearConditionImage
-            const isEmptyInGame = inGameImage instanceof EmptyInGameImage
-            if (isEmptyEditor && isEmptyClearCondition && isEmptyInGame)
-                return this.#uniqueImage = EmptyUniqueImage.get
+        const editorImage = this.editorImage
+        const clearConditionImage = this.clearConditionImage
+        const inGameImage = this.inGameImage
 
-            if (!isEmptyEditor && isEmptyClearCondition && isEmptyInGame)
-                return this.#uniqueImage = ImageCreator.uniqueImageFromEditor(this, editorImage, clearConditionImage, inGameImage,)
-            if (isEmptyEditor && !isEmptyClearCondition && isEmptyInGame)
-                return this.#uniqueImage = ImageCreator.uniqueImageFromClearCondition(this, editorImage, clearConditionImage, inGameImage,)
-
-            if (isEmptyEditor && isEmptyClearCondition && !isEmptyInGame)
-                return this.#uniqueImage = ImageCreator.uniqueImageFromInGame(this, editorImage, clearConditionImage, inGameImage,)
-
-            console.error(`The unique image could not be determined for the "Entities.${this.name}". Please specify the type in the "Entities._createUniqueImage()".`,)
+        const isEmptyEditor = editorImage instanceof EmptyEditorImage
+        const isEmptyClearCondition = clearConditionImage instanceof EmptyClearConditionImage
+        const isEmptyInGame = inGameImage instanceof EmptyInGameImage
+        if (isEmptyEditor && isEmptyClearCondition && isEmptyInGame)
             return this.#uniqueImage = EmptyUniqueImage.get
-        }
-        return this.#uniqueImage = value
+
+        if (!isEmptyEditor && isEmptyClearCondition && isEmptyInGame)
+            return this.#uniqueImage = ImageCreator.uniqueImageFromEditor(this, editorImage, clearConditionImage, inGameImage,)
+        if (isEmptyEditor && !isEmptyClearCondition && isEmptyInGame)
+            return this.#uniqueImage = ImageCreator.uniqueImageFromClearCondition(this, editorImage, clearConditionImage, inGameImage,)
+
+        if (isEmptyEditor && isEmptyClearCondition && !isEmptyInGame)
+            return this.#uniqueImage = ImageCreator.uniqueImageFromInGame(this, editorImage, clearConditionImage, inGameImage,)
+
+        console.error(`The unique image could not be determined for the "Entities.${this.name}". Please specify the type in the "Entities._createUniqueImage()".`,)
+        return this.#uniqueImage = EmptyUniqueImage.get
     }
 
     //endregion -------------------- unique image --------------------

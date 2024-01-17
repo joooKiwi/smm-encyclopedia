@@ -1,7 +1,7 @@
-import type {CharacterNameProperties}                              from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {CharacterNameProperties}    from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 
 import {AbstractCardListApp}     from 'app/withInterpreter/AbstractCardListApp'
 import {CharacterNames}          from 'core/characterName/CharacterNames'
@@ -10,7 +10,7 @@ import {gameContentTranslation}  from 'lang/components/translationMethods'
 import {filterGame}              from 'util/utilitiesMethods'
 
 export default class CharacterNameApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<CharacterNames>, CharacterNameProperties> {
+    extends AbstractCardListApp<CharacterNames, AppInterpreterWithCardList<CharacterNames>, CharacterNameProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -49,15 +49,20 @@ export default class CharacterNameApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
-                return null
+            public createListDimension(): DimensionOnList {
+                return {
+                    default:1,
+                    small: 2,
+                    medium: 4,
+                    large: 6,
+                }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {

@@ -620,14 +620,13 @@ export abstract class EveryLanguages
     }
 
     private get __spaceParameters(): SpaceParameters {
-        if (this.#spaceParameter == null) {
-            const spaceParameters = this._spaceParameters
-            if (spaceParameters.length === 3)
-                this.#spaceParameter = spaceParameters
-            else
-                this.#spaceParameter = [spaceParameters[0], spaceParameters[1], spaceParameters[1],]
-        }
-        return this.#spaceParameter
+        if (this.#spaceParameter != null)
+            return this.#spaceParameter
+
+        const spaceParameters = this._spaceParameters
+        if (spaceParameters.length === 3)
+            return this.#spaceParameter = spaceParameters
+        return this.#spaceParameter = [spaceParameters[0], spaceParameters[1], spaceParameters[1],]
     }
 
     public get hasSpace(): boolean {

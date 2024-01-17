@@ -22,7 +22,7 @@ const {STANDBY, LOADING,} = SoundStates
 
 //endregion -------------------- Import from deconstruction --------------------
 
-export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TITLE extends string = string, >
+export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFile, const TITLE extends string = string, >
     extends Component<SimpleSoundProperties<FILE, TITLE>, SimpleSoundState>
     implements ReactComponent {
 
@@ -46,8 +46,8 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
             isSourceRetrieved: false,
         }
         this.#isSourceFoundCallback = value => {
-            const audio = this._audio,
-                isDurationValid = audio.isDurationValid
+            const audio = this._audio
+            const isDurationValid = audio.isDurationValid
             value ?? isDurationValid
                 ? this.setState({isSourceRetrieved: true,})
                 : this.setState({isSourceRetrieved: true, /*state: audio.setState(new HistoryState(EXCEPTION, audio.history.current,)).history.current,*/})
@@ -86,16 +86,16 @@ export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TI
 
     /**
      * Get the audio element (lazily)
-     * and initialising it upon creating the audio element
+     * and initializing it upon creating the audio element
      */
     protected get _audio(): SimpleSoundPlayer<FILE, TITLE> {
-        if (this.#audio == null) {
-            const source = this.file
-            this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
-                .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
-                .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}))
-        }
-        return this.#audio
+        if (this.#audio != null)
+            return this.#audio
+
+        const source = this.file
+        return this.#audio = SoundPlayerFactory.createSimple(source, this.title,)
+            .setOnBeforePlay(() => this.validator.onPlay(this.#isSourceFoundCallback))
+            .setOnAfterStateChanged(soundPlayer => this.setState({state: soundPlayer.history.current,}))
     }
 
     //endregion -------------------- Getter methods --------------------

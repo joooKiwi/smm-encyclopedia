@@ -8,8 +8,8 @@ import ShellAndYoshiMountablePriority from 'app/powerUp/priority/predefined/Shel
 import SimplePowerUpPriority          from 'app/powerUp/priority/predefined/SimplePowerUpPriority'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
 
-const GAME_STYLE = GameStyles.SUPER_MARIO_WORLD,
-    IMAGE_CALLBACK: ImagesCallbackByPriority<SMWPowerUpPriority> = priority => priority.smwImages
+const GAME_STYLE = GameStyles.SUPER_MARIO_WORLD
+const IMAGE_CALLBACK: ImagesCallbackByPriority<SMWPowerUpPriority> = priority => priority.smwImages
 
 export default function PowerUpPriorityInSMW({children: [superStar, lakituCloud, koopaClownCar, fireKoopaClownCar, buzzyShell, spinyShell, dryBonesShell, yoshi, redYoshi, superMushroom, fireFlower, capeFeather, powerBalloon,], games,}: PropertiesWithGames<SMWPowerUpPriorities>,) {
     return <GroupOf4PowerUpPriority id="powerUpPriority-group-smw" isTopArrowSeparated isFirstDiagonalArrowSeparated isSecondDiagonalArrowSeparated isRightArrowSeparated>

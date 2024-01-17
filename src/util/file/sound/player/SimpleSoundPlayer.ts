@@ -16,7 +16,7 @@ const {STANDBY, PAUSED, PLAYING, EXCEPTION,} = SoundStates
  * @see https://www.w3schools.com/tags/ref_av_dom.asp Audio DOM reference (W3School.com)
  * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio Embed audio element (Mozilla.org)
  */
-export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE extends string = string, DOES_LOOP extends boolean = false, >
+export class SimpleSoundPlayer<const SOURCE extends SoundFile = SoundFile, const TITLE extends string = string, const DOES_LOOP extends boolean = false, >
     extends AbstractSoundPlayer<SOURCE['key']> {
 
     //region -------------------- Fields --------------------
@@ -75,44 +75,46 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     //region -------------------- Getter & setter methods (audio) --------------------
 
     public get audio(): HTMLAudioElement {
-        if (this.#audio == null) {
-            const audio = this.#audio = new Audio(this.source.fullName)
-            audio.onplaying = event => {
-                switch (this.history.current.state) {
-                    case STANDBY:
-                        return this.stop()
-                    case PAUSED:
-                        return this.pause()
-                }
-                this.setState(new HistoryState(PLAYING, false, true,),)
-                this.onPlayingEvent?.(this, event,)
+        if (this.#audio != null)
+            return this.#audio
+
+        const audio = new Audio(this.source.fullName,)
+        audio.onplaying = event => {
+            switch (this.history.current.state) {
+                case STANDBY:
+                    return this.stop()
+                case PAUSED:
+                    return this.pause()
             }
-            audio.onpause = event => {
-                this.setState(new HistoryState(PAUSED, false, true,),)
-                this.onPauseEvent?.(this, event,)
-            }
-            audio.onplay = event => {
-                this.setState(new HistoryState(PLAYING, true, true,),)
-                this.onPlayEvent?.(this, event,)
-            }
-            audio.onended = event => {
-                this.setState(new HistoryState(STANDBY, false, true,),)
-                this.onEndEvent?.(this, event,)
-            }
-            audio.title = this.title
-            audio.loop = this.doesLoop
+            this.setState(new HistoryState(PLAYING, false, true,),)
+            this.onPlayingEvent?.(this, event,)
         }
-        return this.#audio
+        audio.onpause = event => {
+            if (this.history.current.state !== STANDBY)
+                this.setState(new HistoryState(PAUSED, false, true,),)
+            this.onPauseEvent?.(this, event,)
+        }
+        audio.onplay = event => {
+            this.setState(new HistoryState(PLAYING, true, true,),)
+            this.onPlayEvent?.(this, event,)
+        }
+        audio.onended = event => {
+            this.setState(new HistoryState(STANDBY, false, true,),)
+            this.onEndEvent?.(this, event,)
+        }
+        audio.title = this.title
+        audio.loop = this.doesLoop
+        return this.#audio = audio
     }
 
-    /** The audio element has been initialised (by calling its getter) */
+    /** The audio element has been initialized (by calling its getter) */
     public get isAudioExistant(): boolean {
         return this.#audio != null
     }
 
     /**
      * The element is paused.
-     * If the elements has not been initialised, then it is <b>false</b>.
+     * If the elements have not been initialized, then it is <b>false</b>.
      */
     public get isPaused(): boolean {
         return this.#audio?.paused ?? false
@@ -122,15 +124,15 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
      * The element has a valid duration time.
      * And if the element {@link isAudioExistant is not existant}, then it will always return <b>false</b>.
      *
-     * @onlyInitialisedOnce
+     * @onlyInitializedOnce
      */
     public get isDurationValid(): boolean {
-        if (this.#isDurationValid == null) {
-            if (!this.isAudioExistant)
-                return false
-            this.#isDurationValid = Number.isFinite(this.audio.duration)
-        }
-        return this.#isDurationValid
+        if (this.#isDurationValid != null)
+            return this.#isDurationValid
+
+        if (!this.isAudioExistant)
+            return false
+        return this.#isDurationValid = Number.isFinite(this.audio.duration)
     }
 
     //region -------------------- Getter & setter methods (audio event) --------------------
@@ -353,9 +355,9 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
      * @doesNotTriggerIfIsSameState
      */
     public override pause(): this {
-        const currentState = this.history.current,
-            isLoading = currentState.isLoading,
-            isPaused = currentState.state === PAUSED
+        const currentState = this.history.current
+        const isLoading = currentState.isLoading
+        const isPaused = currentState.state === PAUSED
 
         if (!isLoading || !isPaused) {
             if (isLoading)
@@ -379,9 +381,9 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
      * @doesNotTriggerIfIsSameState
      */
     public override stop(): this {
-        const currentState = this.history.current,
-            isLoading = currentState.isLoading,
-            isStandby = currentState.state === STANDBY
+        const currentState = this.history.current
+        const isLoading = currentState.isLoading
+        const isStandby = currentState.state === STANDBY
 
         if (!isLoading || !isStandby) {
             if (isLoading)
@@ -400,8 +402,8 @@ export class SimpleSoundPlayer<SOURCE extends SoundFile = SoundFile, TITLE exten
     }
 
     public setState(value: HistoryState,): this {
-        const history = this.history,
-            currentState = history.current
+        const history = this.history
+        const currentState = history.current
         if (currentState.equals(value))
             return this
         this.onBeforeStateChanged?.(this, value, currentState,)

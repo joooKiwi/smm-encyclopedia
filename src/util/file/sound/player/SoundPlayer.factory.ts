@@ -12,7 +12,7 @@ export class SoundPlayerFactory {
      * @param title The title displayed for the audio element
      * @param doesLoop The audio element loop (by default false)
      */
-    public static createSimple<SOURCE extends SoundFile = SoundFile, TITLE extends string = string, DOES_LOOP extends boolean = false, >(source: SOURCE, title: TITLE, doesLoop?: Nullable<DOES_LOOP>,) {
+    public static createSimple<const SOURCE extends SoundFile = SoundFile, const TITLE extends string = string, const DOES_LOOP extends boolean = false, >(source: SOURCE, title: TITLE, doesLoop?: Nullable<DOES_LOOP>,) {
         return new SimpleSoundPlayer(source, title, doesLoop ?? AbstractSoundPlayer.DEFAULT_DOES_LOOP,)
     }
 

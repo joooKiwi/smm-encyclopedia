@@ -10,8 +10,9 @@ import UnfinishedText     from 'app/tools/text/UnfinishedText'
 import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
 import DisplayButtonGroup from 'app/withInterpreter/DisplayButtonGroup'
 
-export abstract class AbstractAppWithInterpreter<APP extends AppInterpreter,
-    T extends AppWithInterpreterProperties = AppWithInterpreterProperties, S extends AppStates = AppStates, >
+export abstract class AbstractAppWithInterpreter<const out APP extends AppInterpreter,
+    const out T extends AppWithInterpreterProperties = AppWithInterpreterProperties,
+    const S extends AppStates = AppStates, >
     extends AbstractApp<T, S> {
 
     //region -------------------- Fields --------------------

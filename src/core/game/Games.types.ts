@@ -15,20 +15,24 @@ export type Names = keyof typeof Enum
 
 export type PossibleAcronym = PossibleAcronym_Game
 export type PossibleEnglishName = PossibleEnglishName_Game
-export type PossibleSimpleValue = `${| 1 | 2}` | '3DS'
+export type PossibleSimpleValue = '1' | '2' | '3DS'
 
-//endregion -------------------- Name / acronym / image --------------------~
-//region -------------------- URL --------------------~
+//endregion -------------------- Name / acronym / image --------------------
+//region -------------------- URL --------------------
 
-export type GroupUrlSimpleValue = | PossibleSimpleValue | `${PossibleSimpleValue}&${PossibleSimpleValue}` | 'all'
-export type FullUrlSimpleValue = `Game=${GroupUrlSimpleValue}`
-export type GroupValidUrlSimpleValue = | PossibleSimpleValue | `1&${| '3DS' | 2}` | '3DS&2' | 'all'
-export type FullValidUrlSimpleValue = `Game=${GroupValidUrlSimpleValue}`
+type GroupValidUrlSimpleValue = | PossibleSimpleValue | '1&3DS' | '1&2' | '3DS&2' | 'all'
+type GroupValidUrlSimpleValue_WithNotSMM2 = | '1' | '3DS' | '1&3DS'
+type GroupValidUrlSimpleValue_WithSMM2 = | '2' | '1&2' | '3DS&2' | 'all'
+export type FullGroupValidUrlSimpleValue = `Game=${GroupValidUrlSimpleValue}`
+export type FullGroupValidUrlSimpleValue_WithNotSMM2 = `Game=${GroupValidUrlSimpleValue_WithNotSMM2}`
+export type FullGroupValidUrlSimpleValue_WithSMM2 = `Game=${GroupValidUrlSimpleValue_WithSMM2}`
 
 export type PossibleSimpleUrlValue = Lowercase<PossibleSimpleValue>
-export type GroupUrlValue = | PossibleSimpleUrlValue | `${PossibleSimpleUrlValue},${PossibleSimpleUrlValue}` | 'all'
-export type FullUrlValue = `game-${GroupUrlValue}`
-export type GroupValidUrlValue = | PossibleSimpleUrlValue | `1,${| '3ds' | 2}` | '3ds,2' | 'all'
-export type FullValidUrlValue = `game-${GroupValidUrlValue}`
+export type GroupUrlValue = | PossibleSimpleUrlValue | '1,3ds' | '1,2' | '3ds,2' | 'all'
+type GroupUrlValue_WithNotSMM2 = | '1' | '3ds' | '1,3ds'
+type GroupUrlValue_WithSMM2 = | '2' | '1,2' | '3ds,2' | 'all'
+export type FullValidUrlValue = `game-${GroupUrlValue}`
+export type FullValidUrlValue_WithNotSMM2 = `game-${GroupUrlValue_WithNotSMM2}`
+export type FullValidUrlValue_WithSMM2 = `game-${GroupUrlValue_WithSMM2}`
 
-//endregion -------------------- URL --------------------~
+//endregion -------------------- URL --------------------

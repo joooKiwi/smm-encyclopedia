@@ -1,9 +1,9 @@
 import './GameStyleApp.scss'
 
-import type {GameStyleProperties}                                  from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {GameStyleProperties}     from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
@@ -12,7 +12,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
 
 export default class GameStyleApp
-    extends AbstractTableApp<AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
+    extends AbstractTableApp<GameStyles, AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -49,19 +49,20 @@ export default class GameStyleApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    medium: 4,
-                    large: null,
+                    default: 1,
+                    small: 2,
+                    medium: 3,
+                    extraLarge: 5,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: GameStyles,) {
@@ -85,7 +86,7 @@ export default class GameStyleApp
                 ]
             }
 
-            public createNewTableContent(content: GameStyles, option: GameStyleAppOption,) {
+            public createTableContent(content: GameStyles, option: GameStyleAppOption,) {
                 return option.renderContent(content,)
             }
 

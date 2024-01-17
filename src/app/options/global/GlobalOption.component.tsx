@@ -1,4 +1,5 @@
-import GameGroup from 'app/options/global/group/GameGroup'
+import GameGroup      from 'app/options/global/group/GameGroup'
+import GameStyleGroup from 'app/options/global/group/GameStyleGroup'
 
 export default function GlobalOptionComponent() {
     //TODO move the groups into multiple different sub components.
@@ -39,13 +40,8 @@ export default function GlobalOptionComponent() {
         {/*</div>*/}
         {/*<div className="option-separator"/>*/}
         <GameGroup/>
-        {/*<GameStyleGroup id="gameStyles" isHidden={isNoGame} elements={[*/}
-        {/*    [GameStyles.SUPER_MARIO_BROS, GlobalAppOption.SMB,],*/}
-        {/*    [GameStyles.SUPER_MARIO_BROS_3, GlobalAppOption.SMB3,],*/}
-        {/*    [GameStyles.SUPER_MARIO_WORLD, GlobalAppOption.SMW,],*/}
-        {/*    [GameStyles.NEW_SUPER_MARIO_BROS_U, GlobalAppOption.NSMBU,],*/}
-        {/*    [GameStyles.SUPER_MARIO_3D_WORLD, GlobalAppOption.SM3DW, null, isSmm1Or3DSExclusive,],*/}
-        {/*]}/>*/}
+        <hr className="text-body-secondary"/>
+        <GameStyleGroup/>
         {/*<ThemeGroup id="themes" isHidden={isNoGame} elements={[*/}
         {/*    [Themes.GROUND, GlobalAppOption.GROUND, smm2Value,],*/}
         {/*    [Themes.UNDERGROUND, GlobalAppOption.UNDERGROUND, smm2Value,],*/}

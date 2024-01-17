@@ -1,8 +1,8 @@
 import './SoundEffectCategoryApp.scss'
 
-import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
@@ -10,7 +10,7 @@ import {SoundEffectCategories}  from 'core/soundEffectCategory/SoundEffectCatego
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 export default class SoundEffectCategoryApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<SoundEffectCategories>> {
+    extends AbstractCardListApp<SoundEffectCategories, AppInterpreterWithCardList<SoundEffectCategories>> {
 
     //region -------------------- Create methods --------------------
 
@@ -41,19 +41,20 @@ export default class SoundEffectCategoryApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    medium: null,
-                    large: null,
+                    default: 1,
+                    small: 2,
+                    medium: 3,
+                    large: 5,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: SoundEffectCategories,) {

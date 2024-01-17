@@ -448,13 +448,13 @@ export class Limits
     }
 
     public get groupLink(): object {
-        if (this.#groupLink == null) {
-            const link = this._groupLink
-            this.#groupLink = link == null
-                ? {}
-                : link//.reference
-        }
-        return this.#groupLink
+        if (this.#groupLink != null)
+            return this.#groupLink
+
+        const link = this._groupLink
+        return this.#groupLink = link == null
+            ? {}
+            : link//.reference
     }
 
     //endregion -------------------- Group link --------------------
@@ -465,15 +465,15 @@ export class Limits
     }
 
     public get entityLink(): PossibleEntityLink {
-        if (this.#entityLink == null) {
-            const link = this._entityLink
-            this.#entityLink = link == null
-                ? EMPTY_ARRAY
-                : link instanceof Array
-                    ? [link[0].reference, link[1].reference,]
-                    : [link.reference,]
-        }
-        return this.#entityLink
+        if (this.#entityLink != null)
+            return this.#entityLink
+
+        const link = this._entityLink
+        return this.#entityLink = link == null
+            ? EMPTY_ARRAY
+            : link instanceof Array
+                ? [link[0].reference, link[1].reference,]
+                : [link.reference,]
     }
 
     //endregion -------------------- Entity link --------------------

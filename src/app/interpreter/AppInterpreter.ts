@@ -8,7 +8,7 @@ import type {Name}                 from 'lang/name/Name'
  * An application interpreter when using {@link AbstractAppWithInterpreter}
  * to encapsulate a content list.
  */
-export interface AppInterpreter<CONTENT extends Content = Content, > {
+export interface AppInterpreter<out CONTENT extends Content = Content, > {
 
     /** Get all the content */
     get content(): readonly CONTENT[]
@@ -17,5 +17,3 @@ export interface AppInterpreter<CONTENT extends Content = Content, > {
 
 //TODO change the ClassWithReference<{nameContainer}> to be ClassHavingReferenceWithName
 export type Content = Enumerable<any, any> & ClassWithEnglishName<string> & ClassWithReference<{ get nameContainer(): Name<string> }>
-//TODO find a better way to use the enumerable type than the complicated name
-export type ValueByApp<APP extends AppInterpreter, > = APP['content'][number]

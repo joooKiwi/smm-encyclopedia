@@ -1,8 +1,8 @@
 import './EntityCategoryApp.scss'
 
-import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 
 import Image                    from 'app/tools/images/Image'
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
@@ -18,7 +18,7 @@ const {ENTITY,} = OtherWordInTheGames
 //endregion -------------------- Deconstruction imports --------------------
 
 export default class EntityCategoryApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<EntityCategories>> {
+    extends AbstractCardListApp<EntityCategories, AppInterpreterWithCardList<EntityCategories>> {
 
     //region -------------------- Create methods --------------------
 
@@ -50,19 +50,19 @@ export default class EntityCategoryApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    small: 6,
-                    medium: null,
-                    large: 3,
+                    default: 1,
+                    small: 2,
+                    large: 4,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: EntityCategories,) {

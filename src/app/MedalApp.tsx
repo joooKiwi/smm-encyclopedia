@@ -1,6 +1,6 @@
-import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 
 import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
 import {Medals}                 from 'core/medal/Medals'
@@ -8,7 +8,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import Image                    from 'app/tools/images/Image'
 
 export default class MedalApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<Medals>> {
+    extends AbstractCardListApp<Medals, AppInterpreterWithCardList<Medals>> {
 
     //region -------------------- Create methods --------------------
 
@@ -37,21 +37,19 @@ export default class MedalApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    default: 6,
-                    small: 3,
-                    medium: 2,
-                    large: null,
-                    extraExtraLarge: 1,
+                    default: 2,
+                    small: 4,
+                    medium: 5,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: Medals,): ReactElement {

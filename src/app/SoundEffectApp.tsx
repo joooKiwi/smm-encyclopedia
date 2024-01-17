@@ -1,9 +1,9 @@
 import './SoundEffectApp.scss'
 
-import type {SoundEffectProperties}                                from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                              from 'app/interpreter/AppInterpreterWithTable'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {SoundEffectProperties}   from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
 import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
@@ -12,7 +12,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
 
 export default class SoundEffectApp
-    extends AbstractTableApp<AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
+    extends AbstractTableApp<SoundEffects, AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
 
     //region -------------------- Create methods --------------------
 
@@ -49,15 +49,21 @@ export default class SoundEffectApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
-                return null
+            public createListDimension(): DimensionOnList {
+                return {
+                    default: 1,
+                    small: 3,
+                    medium: 4,
+                    large: 5,
+                    extraLarge: 6,
+                }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: SoundEffects,) {
@@ -78,23 +84,37 @@ export default class SoundEffectApp
 
             public get tableOptions(): readonly SoundEffectAppOption[] {
                 const games = $this.props.games
+                const hasSMM1Or3DS = games.hasSMM1Or3DS
+                const hasSMM2 = games.hasSMM2
 
                 const options = [] as SoundEffectAppOption[]
-                if (games.hasSMM1Or3DS)
+                if (hasSMM1Or3DS)
                     options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
-                if (games.hasSMM2)
+                if (hasSMM2)
                     options.push(SoundEffectAppOption.SMM2_ICON,)
                 options.push(
                     SoundEffectAppOption.NAME,
                     SoundEffectAppOption.CATEGORY,
                     SoundEffectAppOption.PLAYER_BEHAVIOUR,
-                    SoundEffectAppOption.SOUNDS,
                 )
+                if (hasSMM1Or3DS && hasSMM2)
+                    options.push(SoundEffectAppOption.SOUNDS,)
+                else {
+                    if (hasSMM1Or3DS)
+                        options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
+                    if (hasSMM2)
+                        options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
+                }
                 return options
             }
 
 
-            public createNewTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
+            public getAdditionalClass(option: SoundEffectAppOption,) {
+                return option.additionalClasses
+            }
+
+            public createTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
+                //TODO add content based on the game style parameter
                 return option.renderContent(content,)
             }
 

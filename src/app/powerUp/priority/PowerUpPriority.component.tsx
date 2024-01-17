@@ -26,8 +26,8 @@ export default function PowerUpPriorityComponent<T extends PowerUpPriority, >({i
     const priorities = value instanceof Array ? value : [value]
     return <div key={`Power-up priority (${id})`} id={id}>
         {priorities.map((priority, index,) => {
-                const priorityName = priority.name,
-                    priorityEnglishName = priorityName.english
+                const priorityName = priority.name
+                const priorityEnglishName = priorityName.english
 
                 return <Fragment key={`Power-up priority (group - ${priorityEnglishName} #${index + 1})`}>
                     {imagesCallback(priority).map((image, index2,) =>

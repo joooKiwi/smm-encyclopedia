@@ -11,9 +11,9 @@ import {OtherSimplePowerUpPriorityInSMBInSMM3DS} from 'app/powerUp/priority/pred
 import ShellAndShoeMountablePriority             from 'app/powerUp/priority/predefined/ShellAndShoeMountablePriority'
 import {GameStyles}                              from 'core/gameStyle/GameStyles'
 
-const ID = 'powerUpPriority-group-smb',
-    GAME_STYLE = GameStyles.SUPER_MARIO_BROS,
-    IMAGE_CALLBACK: ImagesCallbackByPriority<SMBPowerUpPriority> = priority => priority.smbImages
+const ID = 'powerUpPriority-group-smb'
+const GAME_STYLE = GameStyles.SUPER_MARIO_BROS
+const IMAGE_CALLBACK: ImagesCallbackByPriority<SMBPowerUpPriority> = priority => priority.smbImages
 
 export default function PowerUpPriorityInSMB({games, children: [superStar, lakituCloud, koopaClownCar, fireKoopaClownCar, buzzyShell, spinyShell, dryBonesShell, shoe, stiletto, superMushroom, weirdMushroom, fireFlower, mysteryMushroom, bigMushroomClassic, bigMushroomModern, masterSword, bigMushroom, smb2Mushroom, superballFlower,],}: PropertiesWithGames<SMBPowerUpPriorities>,) {
     const {hasSMM1, hasSMM2, hasSMM3DS,} = games

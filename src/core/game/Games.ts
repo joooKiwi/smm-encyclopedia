@@ -1,23 +1,24 @@
-import type {Singleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}           from '@joookiwi/enumerable'
+import type {CollectionHolder} from '@joookiwi/collection'
+import type {Singleton}        from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                                                   from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                               from 'core/ClassWithEnglishName'
-import type {PropertyGetter}                                                                                                                                     from 'core/PropertyGetter'
-import type {GameProperty}                                                                                                                                       from 'core/entity/properties/game/GameProperty'
-import type {CompanionEnumDeclaration_Games}                                                                                                                     from 'core/game/Games.companionEnumDeclaration'
-import type {FullUrlValue, FullValidUrlValue, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleSimpleValue, PossibleSimpleUrlValue, GroupUrlValue} from 'core/game/Games.types'
-import type {GameImageFile}                                                                                                                                      from 'core/game/file/GameImageFile'
-import type {ClassUsedInRoute}                                                                                                                                   from 'route/ClassUsedInRoute'
-import type {ClassWithImageFile}                                                                                                                                 from 'util/file/image/ClassWithImageFile'
-import type {Selectable}                                                                                                                                         from 'util/types/Selectable'
+import type {ClassWithAcronym}                                                                                                  from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                              from 'core/ClassWithEnglishName'
+import type {PropertyGetter}                                                                                                    from 'core/PropertyGetter'
+import type {GameProperty}                                                                                                      from 'core/entity/properties/game/GameProperty'
+import type {CompanionEnumDeclaration_Games}                                                                                    from 'core/game/Games.companionEnumDeclaration'
+import type {GroupUrlValue, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleSimpleUrlValue, PossibleSimpleValue} from 'core/game/Games.types'
+import type {GameImageFile}                                                                                                     from 'core/game/file/GameImageFile'
+import type {ClassUsedInRoute}                                                                                                  from 'route/ClassUsedInRoute'
+import type {ClassWithImageFile}                                                                                                from 'util/file/image/ClassWithImageFile'
+import type {Selectable}                                                                                                        from 'util/types/Selectable'
 
-import GameComponent                                                  from 'core/game/Game.component'
-import {gameImage}                                                    from 'core/game/file/fileCreator'
-import {StringContainer}                                              from 'util/StringContainer'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
-import {GameCollection}                                               from 'util/collection/GameCollection'
-import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
+import GameComponent                                                                            from 'core/game/Game.component'
+import {gameImage}                                                                              from 'core/game/file/fileCreator'
+import {StringContainer}                                                                        from 'util/StringContainer'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
+import {GameCollection}                                                                         from 'util/collection/GameCollection'
+import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
 
 /** @usedByTheRouting */
 export abstract class Games
@@ -73,20 +74,82 @@ export abstract class Games
         }
 
         //endregion -------------------- Singleton usage --------------------
+        //region -------------------- Fields --------------------
+
+        public readonly ALL = Games.GamePossibilitiesCompanion.get.ALL_GAMES
+
+        public get singleFields() {
+            return Games.GamePossibilitiesCompanion.get.everySingleGameFields
+        }
+
+        public get doubleFields() {
+            return Games.GamePossibilitiesCompanion.get.everyDoubleGameFields
+        }
+
+        public get fields() {
+            return Games.GamePossibilitiesCompanion.get.everyFields
+        }
+
 
         public readonly URL_NAME_SEPARATOR = '/'
         public readonly NAME_ARGUMENT_SEPARATOR = ','
 
-        public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))+|(all))(\/|$)/i
-        // public readonly ALL_URL_REGEX = /.*\/game-all(\/|$)/i
+        public readonly URL_REGEX = /.*\/game-((1|3ds|2)(,(1|3ds|2))*|(all))(\/|$)/i
         public readonly SINGLE_URL_REGEX = /.*\/game-(1|3ds|2)(\/|$)/i
+        public readonly DOUBLE_URL_REGEX = /.*\/game-(1|3ds),2(\/|$)/i
         public readonly PREFIX_WITHOUT_SLASH = 'game-'
         public readonly PREFIX = '/game-'
         public readonly ALL_PREFIX_GROUP = '/game-all/'
-        public readonly AMOUNT_OF_VALUES = 3
+
+        //endregion -------------------- Fields --------------------
 
         public getValueByUrlValue(value: Nullable<| Games | string>,): Games {
             return getValueByUrlValue(value, this,)
+        }
+
+        public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
+            let withSmm1 = false
+            const smm1 = Games.SUPER_MARIO_MAKER_1
+            for (let game of games)
+                if (game === smm1) {
+                    withSmm1 = true
+                    break
+                }
+
+            let withSmm3ds = false
+            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+            for (let game of games)
+                if (game === smm3ds) {
+                    withSmm3ds = true
+                    break
+                }
+
+            let withSmm2 = false
+            const smm2 = Games.SUPER_MARIO_MAKER_2
+            for (let game of games)
+                if (game === smm2) {
+                    withSmm2 = true
+                    break
+                }
+
+            if (withSmm1) {
+                if (withSmm3ds) {
+                    if (withSmm2)
+                        return 'all'
+                    return '1,3ds'
+                }
+                if (withSmm2)
+                    return '1,2'
+                return '1'
+            }
+            if (withSmm3ds) {
+                if (withSmm2)
+                    return '3ds,2'
+                return '3ds'
+            }
+            if (withSmm2)
+                return '2'
+            throw new ReferenceError('No game group url value is findable from empty array or collection.',)
         }
 
         public getValueByAcronym(value: Nullable<| Games | string>,): Games {
@@ -110,39 +173,102 @@ export abstract class Games
         }
 
         public getValueInUrl(url: string,): readonly Games[] {
+            //region -------------------- "all" possibility --------------------
+
+            const lowerCasedUrl = url.toLowerCase()
+
+            if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
+                return this.ALL
+
+            //endregion -------------------- "all" possibility --------------------
+
+            const prefix = this.PREFIX
+            if (!lowerCasedUrl.includes(prefix,))
+                return EMPTY_ARRAY
+
+            //region -------------------- Possibilities from 1 to 3 arguments --------------------
+
+            const valuesFound = lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,)[0]
+            const separatedValuesFound = valuesFound.split(this.NAME_ARGUMENT_SEPARATOR,)
+            const amountOfValues = separatedValuesFound.length
+
+            if (amountOfValues === 1) {
+                if (valuesFound === '1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                if (valuesFound === '3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                if (valuesFound === '2')
+                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+
+                return EMPTY_ARRAY
+            }
+
+            if (amountOfValues === 2) {
+                if (valuesFound === '1,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                if (valuesFound === '3ds,3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                if (valuesFound === '2,2')
+                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+
+                if (valuesFound === '1,3ds' || valuesFound === '3ds,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_3DS
+                if (valuesFound === '1,2' || valuesFound === '2,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+                if (valuesFound === '3ds,2' || valuesFound === '2,3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+
+                return EMPTY_ARRAY
+            }
+
+            if (amountOfValues === 3) {
+                const all = this.ALL
+                if (separatedValuesFound.includes(all[0].urlValue,)
+                    && separatedValuesFound.includes(all[1].urlValue,)
+                    && separatedValuesFound.includes(all[2].urlValue,))
+                    return all
+
+                if (valuesFound === '1,1,1')
+                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                if (valuesFound === '3ds,3ds,3ds')
+                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                if (valuesFound === '2,2,2')
+                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+
+                const doubleValuesFound = this.doubleFields.find(it =>
+                    separatedValuesFound.includes(it[0].urlValue,)
+                    && separatedValuesFound.includes(it[1].urlValue,),)
+                if (doubleValuesFound != null)
+                    return doubleValuesFound
+
+                return EMPTY_ARRAY
+            }
+
+            //endregion -------------------- Possibilities from 1 to 3 arguments --------------------
+
             if (!this.URL_REGEX.test(url,))
                 return EMPTY_ARRAY
 
-            if (url.includes(this.ALL_PREFIX_GROUP,))
-                return this.values.toArray()
+            //region -------------------- Valid possibilities from unknown amount of arguments --------------------
 
-            const prefix = this.PREFIX
-            const lowerCasedUrl = url.toLowerCase()
-            if (this.SINGLE_URL_REGEX.test(url,)) {
-                const valueFound = this.values.find(it => lowerCasedUrl.includes(`${prefix}${it.urlValue}`,),)
-                if (valueFound == null)
-                    throw new ReferenceError(`No "${this.instance.name}" was found by the url "${url}".`,)
-                return [valueFound,]
-            }
-
-            const prefixWithoutSlash = this.PREFIX_WITHOUT_SLASH
-            const gameUrlsFound = lowerCasedUrl.split(this.URL_NAME_SEPARATOR,).find(it => it.startsWith(prefixWithoutSlash,) && (it.endsWith('1',) || it.endsWith('2',) || it.endsWith('3ds',)),)!.substring(prefixWithoutSlash.length,).split(this.NAME_ARGUMENT_SEPARATOR,)
-            const size = gameUrlsFound.length
-            const valuesFound = new Array<Games>(size,)
-            let index = size
+            const valuesFoundAsGame = new Array<Games>(amountOfValues,)
+            let index = amountOfValues
             while (index-- > 0)
-                valuesFound[index] = this.getValueByUrlValue(gameUrlsFound[index],)
+                valuesFoundAsGame[index] = this.getValueByUrlValue(separatedValuesFound[index],)
 
-            const gamesFound = this.values.filter(it => {
-                let index = -1
-                while (++index < size)
-                    if (valuesFound[index] === it)
-                        return true
-                return false
-            },)
-            if (gamesFound.size === this.AMOUNT_OF_VALUES)
-                return this.values.toArray()
-            return gamesFound.toArray()
+            const uniqueValuesFound = intersect(this.values, valuesFoundAsGame,).toArray()
+            return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
+
+            //endregion -------------------- Valid possibilities --------------------
+        }
+
+
+        public get selected(): GameCollection {
+            return new GameCollection(this.values.filter(it => it.isSelected,),)
+        }
+
+        public set selected(value: readonly Games[],) {
+            this.values.forEach(it => it.isSelected = value.includes(it,),)
         }
 
     }
@@ -154,17 +280,18 @@ export abstract class Games
      * A simple companion class to the {@link Games} but for the game possibilities (in stored {@link Array}).
      *
      * @note This class is only used in the {@link EveryRoutes}
+     * @todo Rename to Possibilities
      */
-    public static readonly GamePossibilitiesCompanion = class Companion_GamePossibilities {
+    public static readonly GamePossibilitiesCompanion = class Companion_Possibilities {
 
         //region -------------------- Singleton usage --------------------
 
-        static #instance?: Companion_GamePossibilities
+        static #instance?: Companion_Possibilities
 
         private constructor() {}
 
         public static get get() {
-            return Companion_GamePossibilities.#instance ??= new Companion_GamePossibilities()
+            return Companion_Possibilities.#instance ??= new Companion_Possibilities()
         }
 
         //endregion -------------------- Singleton usage --------------------
@@ -174,46 +301,40 @@ export abstract class Games
         #everyDoubleFields?: readonly (readonly [Games, Games,])[]
         #everyFields?: readonly (readonly Games[])[]
 
-        //region -------------------- Array fields --------------------
-
-        //region -------------------- Non-redirection array fields --------------------
-
         /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
         public readonly SMM1_ONLY = [Games.SUPER_MARIO_MAKER_1,] as const
         /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} */
         public readonly SMM3DS_ONLY = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
         /** An array representing the games with only {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
         public readonly SMM2_ONLY = [Games.SUPER_MARIO_MAKER_2,] as const
+
         /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} */
         public readonly SMM1_AND_3DS = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,] as const
         /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_1 1} & {@link Games.SUPER_MARIO_MAKER_2 2} */
         public readonly SMM1_AND_2 = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_2,] as const
         /** An array representing the games with SMM {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2} */
         public readonly SMM3DS_AND_2 = [Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
+
         /**
          * An array representing the games with every SMM games
          * ({@link Games.SUPER_MARIO_MAKER_1 1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS 3DS} & {@link Games.SUPER_MARIO_MAKER_2 2})
          */
         public readonly ALL_GAMES = [Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,] as const
 
-        //endregion -------------------- Non-redirection array fields --------------------
-
-        //endregion -------------------- Array fields --------------------
-
         //endregion -------------------- Fields --------------------
         //region -------------------- Getter methods --------------------
 
-        /** Every single {@link Games} fields in the {@link Companion_GamePossibilities current instance} */
-        private get __everySingleGameFields(): readonly (readonly [Games,])[] {
+        /** Every single (1x) {@link Games} fields in the {@link Companion_Possibilities current instance} */
+        public get everySingleGameFields(): readonly (readonly [Games,])[] {
             return this.#everySingleFields ??= [this.SMM1_ONLY, this.SMM3DS_ONLY, this.SMM2_ONLY,]
         }
 
-        /** Every double {@link Games} fields in the {@link Companion_GamePossibilities current instance} */
-        private get __everyDoubleGameFields(): readonly (readonly [Games, Games,])[] {
+        /** Every double (2x) {@link Games} fields in the {@link Companion_Possibilities current instance} */
+        public get everyDoubleGameFields(): readonly (readonly [Games, Games,])[] {
             return this.#everyDoubleFields ??= [this.SMM1_AND_3DS, this.SMM1_AND_2, this.SMM3DS_AND_2,]
         }
 
-        public get everyFields(): readonly (readonly Games[])[]{
+        public get everyFields(): readonly (readonly Games[])[] {
             return this.#everyFields ??= [
                 this.ALL_GAMES,
                 this.SMM1_ONLY, this.SMM3DS_ONLY, this.SMM2_ONLY,
@@ -222,27 +343,6 @@ export abstract class Games
         }
 
         //endregion -------------------- Getter methods --------------------
-        //region -------------------- Methods --------------------
-
-        public getFromPath(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
-            if (path === 'game-all' || path === 'all')
-                return this.ALL_GAMES
-            const pathFiltered = path.replace('game-', '',) as GroupUrlValue,
-                gamesFound = pathFiltered.split(',',),
-                gamesFoundSize = gamesFound.length
-
-            const gameFound1 = Games.CompanionEnum.get.getValueByUrlValue(gamesFound[0],)
-            if (gamesFoundSize === 1)
-                return this.__everySingleGameFields.find(it => it[0] === gameFound1)!
-
-            const gameFound2 = Games.CompanionEnum.get.getValueByUrlValue(gamesFound[1],)
-            if (gamesFoundSize === 2)
-                return this.__everyDoubleGameFields.find(it => it[0] === gameFound1 && it[1] === gameFound2)!
-
-            throw new ReferenceError(`No games could be found using the path "${path}"`,)
-        }
-
-        //endregion -------------------- Methods --------------------
 
     }
 
@@ -263,7 +363,7 @@ export abstract class Games
     private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleSimpleUrlValue, englishName: PossibleEnglishName, isSelected: boolean,) {
         super()
         this.#acronym = acronym
-        this.#englishName = new StringContainer(englishName)
+        this.#englishName = new StringContainer(englishName,)
         this.#simpleValue = simpleValue
         this.#urlValue = urlValue
         this.#isSelected = isSelected
@@ -288,11 +388,9 @@ export abstract class Games
         return this.#simpleValue
     }
 
-
     public get imageFile(): GameImageFile {
         return this.#imageFile ??= gameImage(this.englishName,)
     }
-
 
     public get urlValue(): PossibleSimpleUrlValue {
         return this.#urlValue
@@ -317,33 +415,22 @@ export abstract class Games
     }
 
 
-    public static getFromPath(path: | FullUrlValue | GroupUrlValue,): readonly Games[] {
-        return Games.GamePossibilitiesCompanion.get.getFromPath(path,)
+
+    public static getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
+        return Games.CompanionEnum.get.getGroupUrlValue(games,)
+    }
+
+    public static get selected(): GameCollection {
+        return Games.CompanionEnum.get.selected
+    }
+
+    public static set selected(value: readonly Games[],) {
+        Games.CompanionEnum.get.selected = value
     }
 
     public static setSelected(games: readonly Games[],): typeof Games {
-        const values = Games.CompanionEnum.get.values
-        for (let game of values)
-            game.isSelected = games.includes(game,)
+        Games.CompanionEnum.get.selected = games
         return this
-    }
-
-    public static getGroupUrlValue(games: Iterable<Games>,): GroupUrlValue {
-        const gamesFiltered = new Set(games)
-        if (gamesFiltered.size === 3)
-            return 'all'
-        return Array.from(gamesFiltered, it => it.urlValue,).join(',') as GroupUrlValue
-    }
-
-    public static get selectedGames(): GameCollection {
-        return new GameCollection(this.CompanionEnum.get.values.filter(it => it.isSelected,),)
-    }
-
-    public static get selectedGamesAsUrlValue(): FullValidUrlValue {
-        const selectedGames = this.selectedGames
-        return selectedGames.hasAllGames
-            ? 'game-all'
-            : `game-${selectedGames.join(',', '', '', null, null, it => it.urlValue,)}` as FullValidUrlValue
     }
 
     //endregion -------------------- Methods --------------------

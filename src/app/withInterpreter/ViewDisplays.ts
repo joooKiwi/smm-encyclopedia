@@ -1,6 +1,10 @@
 import type {Singleton} from '@joookiwi/enumerable'
 import {Enum}           from '@joookiwi/enumerable'
 
+import type {AppInterpreter, Content}      from 'app/interpreter/AppInterpreter'
+import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
+import type {AppInterpreterWithCardList}                        from 'app/interpreter/AppInterpreterWithCardList'
+import type {AppInterpreterWithTable}                           from 'app/interpreter/AppInterpreterWithTable'
 import type {AbstractAppWithInterpreter}                        from 'app/withInterpreter/AbstractAppWithInterpreter'
 import type {AbstractCardListApp}                               from 'app/withInterpreter/AbstractCardListApp'
 import type {AbstractSimpleListApp}                             from 'app/withInterpreter/AbstractSimpleListApp'
@@ -162,4 +166,7 @@ export abstract class ViewDisplays
 
 type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
 type PossibleListRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card'})`
-type PossibleApp = | AbstractAppWithInterpreter<any> | AbstractSimpleListApp<any> | AbstractCardListApp<any> | AbstractTableApp<any>
+type PossibleApp = | AbstractAppWithInterpreter<AppInterpreter>
+                   | AbstractSimpleListApp<Content, AppInterpreterWithSimpleList>
+                   | AbstractCardListApp<Content, AppInterpreterWithCardList>
+                   | AbstractTableApp<Content, AppInterpreterWithTable>

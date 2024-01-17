@@ -38,8 +38,8 @@ export class SoundStateHistory {
     public set current(value: Nullable<HistoryState>,) {
         if (value == null)
             return
-        this.setLast(this.current)
-            ._history.push(this.#current = value)
+        this.last = this.current
+        this._history.push(this.#current = value)
     }
 
     public setCurrent(value: Nullable<HistoryState>,): this {

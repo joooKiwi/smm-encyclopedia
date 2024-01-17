@@ -1,6 +1,6 @@
-import type {AppInterpreterWithCardList}                           from 'app/interpreter/AppInterpreterWithCardList'
-import type {PossibleDimensionOnCardList, PossibleDimensionOnList} from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}                                    from 'route/EveryRoutes.types'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 
 import Image                    from 'app/tools/images/Image'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
@@ -16,7 +16,7 @@ const {MII_COSTUME,} = OtherWordInTheGames
 //endregion -------------------- Import from deconstruction --------------------
 
 export default class MiiCostumeCategoryApp
-    extends AbstractCardListApp<AppInterpreterWithCardList<MiiCostumeCategories>> {
+    extends AbstractCardListApp<MiiCostumeCategories, AppInterpreterWithCardList<MiiCostumeCategories>> {
 
     //region -------------------- Create methods --------------------
 
@@ -50,20 +50,19 @@ export default class MiiCostumeCategoryApp
 
             //region -------------------- List interpreter --------------------
 
-            public createListDimension(): PossibleDimensionOnList {
+            public createListDimension(): DimensionOnList {
                 return {
-                    default: 12,
-                    small: 6,
-                    medium: 3,
-                    large: null,
+                    default: 1,
+                    small: 2,
+                    medium: 4,
                 }
             }
 
             //endregion -------------------- List interpreter --------------------
             //region -------------------- Card list interpreter --------------------
 
-            public createCardListDimension(): PossibleDimensionOnCardList {
-                return 'list'
+            public createCardListDimension() {
+                return this.createListDimension()
             }
 
             public createCardListContent(enumerable: MiiCostumeCategories,) {

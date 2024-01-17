@@ -18,8 +18,8 @@ export interface SimplePowerUpPriorityProperties<T extends PowerUpPriority, >
 }
 
 export default function SimplePowerUpPriority<T extends PowerUpPriority, >({games: {hasSMM2,}, gameStyle, images, children: [superMushroom, fireFlower, specialPowerUp1, specialPowerUp2,],}: SimplePowerUpPriorityProperties<T>,) {
-    const {acronym,} = gameStyle,
-        lowerCasedAcronym = acronym.toLowerCase()
+    const {acronym,} = gameStyle
+    const lowerCasedAcronym = acronym.toLowerCase()
 
     return hasSMM2 ? <GroupOf4PowerUpPriority id={`powerUpPriority-group-${lowerCasedAcronym}-simplePowerUps`} topArrow={Arrows.RIGHT} leftArrow={Arrows.DOWN} firstDiagonalArrow={Arrows.DOWN}>
         <PowerUpPriorityComponent key={`Power-up priority (${acronym} - Super Mushroom)`}     id={`powerUpPriority-${lowerCasedAcronym}-superMushroom`}   value={superMushroom}     images={images}/>
