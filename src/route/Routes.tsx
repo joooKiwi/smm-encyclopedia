@@ -20,6 +20,7 @@ import {GameStyleCollection}                           from 'util/collection/Gam
 const ProjectLanguageCompanion = ProjectLanguages.CompanionEnum.get
 const EveryRouteCompanion = EveryRoutes.CompanionEnum.get
 const ViewDisplayCompanion = ViewDisplays.CompanionEnum.get
+const GameStyleCompanion = GameStyles.CompanionEnum.get
 const homeRoute = EveryRoutes.HOME
 /** Every {@link ProjectLanguages project language} as an {@link Array} */
 const languages = ProjectLanguageCompanion.values.toArray()
@@ -88,6 +89,11 @@ const router = createHashRouter([{
                             const games = route.games
                             if (games != null)
                                 Games.selected = games
+
+                            const gameStyles = route.gameStyles
+                            if (gameStyles != null)
+                                GameStyleCompanion.selected = gameStyles
+
                             return null
                         },
                     }),),
