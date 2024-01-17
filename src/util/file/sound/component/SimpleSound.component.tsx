@@ -22,7 +22,7 @@ const {STANDBY, LOADING,} = SoundStates
 
 //endregion -------------------- Import from deconstruction --------------------
 
-export default class SimpleSoundComponent<FILE extends SoundFile = SoundFile, TITLE extends string = string, >
+export default class SimpleSoundComponent<const FILE extends SoundFile = SoundFile, const TITLE extends string = string, >
     extends Component<SimpleSoundProperties<FILE, TITLE>, SimpleSoundState>
     implements ReactComponent {
 
