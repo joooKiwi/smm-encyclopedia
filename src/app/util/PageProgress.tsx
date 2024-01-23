@@ -22,7 +22,8 @@ interface PageProgressProperties
 }
 
 
-type PageProgressType = | 'completed' | 'page almost done' | 'page in progress'
+type PageProgressType = | 'completed' | 'completed with missing data'
+                        | 'page almost done' | 'page in progress'
                         | 'data in progress' | 'data done'
                         | 'not created'
 
@@ -49,6 +50,8 @@ function createPageProgressType(type: PageProgressType,) {
     switch (type) {
         case 'completed':
             return <small className="pageProgress pageProgress-completed d-block text-center text-light bg-green-teal rounded px-1 me-1">{contentTranslation('home.progress.Completed')}</small>
+        case 'completed with missing data':
+            return <small className="pageProgress pageProgress-completedWithMissingData d-block text-center text-light bg-green-red rounded px-1 me-1">{contentTranslation('home.progress.Completed with missing data')}</small>
         case 'page almost done':
             return <small className="pageProgress pageProgress-pageAlmostDone d-block text-center text-light bg-green-yellow rounded px-1 me-1">{contentTranslation('home.progress.Page almost done')}</small>
         case 'page in progress':

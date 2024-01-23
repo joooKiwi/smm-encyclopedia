@@ -28,12 +28,13 @@
         "color mode":         "A dark & color-blind mode",
         "more info":          "More informations are shown on the {{gitHubLink}}."
       },
-      "Completed":        "Completed",
-      "Page in progress": "Page in progress",
-      "Page almost done": "Page almost done",
-      "Data in progress": "Data in progress",
-      "Data done":        "Data done",
-      "Not created":      "Not created"
+      "Completed":                   "Completed",
+      "Completed with missing data": "Completed with missing data",
+      "Page in progress":            "Page in progress",
+      "Page almost done":            "Page almost done",
+      "Data in progress":            "Data in progress",
+      "Data done":                   "Data done",
+      "Not created":                 "Not created"
     }
   },
 

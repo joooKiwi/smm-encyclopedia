@@ -56,36 +56,38 @@ export default class HomeApp
                 </ol>
             </div>
             <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 justify-content-center px-0 px-sm-5 px-md-3 px-lg-2 px-xl-4 px-xxl-5 gx-2 gy-1">
-                <PageProgress progress="page in progress" link={routeFromName('everyEntity')}                   content={singularEntityName}/>
-                <PageProgress progress="page in progress" link={routeFromName('everyCharacterName')}            content={gameContentTranslation('character name.singular')}/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Clear condition')} exclusiveGame="SMM2"/>
-                <PageProgress progress="data done"                                                                    content={unfinishedText('Clear condition category')} exclusiveGame="SMM2"/>
-                <PageProgress progress="completed"        link={routeFromName('everyLimit')}                    content={gameContentTranslation('limit.singular')}/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Projectile')}/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Object')}/>
-                <PageProgress progress="completed"        link={routeFromName('everyEntityCategory')}           content={gameContentTranslation('entity category.singular', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)}/>
-                <PageProgress progress="data in progress"                                                             content={gameContentTranslation('entity group.singular', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)}/>
-                <PageProgress progress="page almost done" link={routeFromName('everyTheme')}                    content={gameContentTranslation('theme.singular')}/>
-                <PageProgress progress="not created"                                                                  content={gameContentTranslation('time.singular')} exclusiveGame="SMM2"/>
-                <PageProgress progress="page in progress" link={routeFromName('everyGameReference')}            content={gameContentTranslation('game reference.singular')}/>
-                <PageProgress progress="page almost done" link={routeFromName('everyGameStyle')}                content={gameContentTranslation('game style.singular')}/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Entity behaviour')}/>
-                <PageProgress progress="page almost done" link={routeFromName('everySoundEffect')}              content={gameContentTranslation('sound effect.singular')}/>
-                <PageProgress progress="page in progress" link={routeFromName('everySoundEffectCategory')}      content={gameContentTranslation('sound effect category.singular')}/>
-                <PageProgress progress="completed"        link={routeFromName('everyCourseTag')}                content={gameContentTranslation('course tag.singular', {Course: singularCourseName, course: singularCourseLowerCaseName, Tag: singularTagName, tag: singularTagLowerCaseName,},)} exclusiveGame="SMM2"/>
-                <PageProgress progress="completed"        link={routeFromName('everyPredefinedMessage')}        content={unfinishedText('Predefined message')} exclusiveGame="SMM2"/>
-                <PageProgress progress="completed"        link={routeFromName('everySampleCourse')}             content={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)} exclusiveGame="SMM1"/>
-                <PageProgress progress="page almost done" link={routeFromName('everyMedal')}                    content={gameContentTranslation('medal.singular')} exclusiveGame="SMM1"/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Super Mario Challenges levels')} exclusiveGame="SMM3DS"/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText("Job")} exclusiveGame="SMM2"/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Official notification')} exclusiveGame="SMM2"/>
-                <PageProgress progress="data in progress"                                                             content={unfinishedText('Ninji speedrun')} exclusiveGame="SMM2"/>
-                <PageProgress progress="page almost done" link={routeFromName('everyMysteryMushroom')}          content={singularMysteryMushroomName} exclusiveGame="SMM1"/>
-                <PageProgress progress="completed"        link={routeFromName('everyMiiCostume')}               content={singularMiiCostumeName} exclusiveGame="SMM2"/>
-                <PageProgress progress="completed"        link={routeFromName('everyMiiCostumeCategory')}       content={gameContentTranslation('mii costume category.singular', {SingularName: singularMiiCostumeName, singularName: singularMiiCostumeLowerCaseName, PluralName: pluralMiiCostumeName, pluralName: pluralMiiCostumeLowerCaseName,},)} exclusiveGame="SMM2"/>
-                <PageProgress progress="page in progress" link={routeFromName('everyEditorVoice')}              content={gameContentTranslation('editor voice.singular')}/>
-                <PageProgress progress="page in progress" link={routeFromName('everyInstrument')}               content={gameContentTranslation('instrument.singular')}/>
-                <PageProgress progress="page in progress" link={routeFromName('everyPowerUp&Ride&HatPriority')} content={gameContentTranslation('power-up, ride & hat priority.all.singular', {PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName, Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),},)}/>
+                <PageProgress progress="page in progress"            link={routeFromName('everyEntity')}                   content={singularEntityName}/>
+                <PageProgress progress="page in progress"            link={routeFromName('everyCharacterName')}            content={gameContentTranslation('character name.singular')}/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Clear condition')} exclusiveGame="SMM2"/>
+                <PageProgress progress="data done"                                                                               content={unfinishedText('Clear condition category')} exclusiveGame="SMM2"/>
+                <PageProgress progress="completed"                   link={routeFromName('everyLimit')}                    content={gameContentTranslation('limit.singular')}/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Projectile')}/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Object')}/>
+                <PageProgress progress="completed"                   link={routeFromName('everyEntityCategory')}           content={gameContentTranslation('entity category.singular', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)}/>
+                <PageProgress progress="data in progress"                                                                        content={gameContentTranslation('entity group.singular', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)}/>
+                <PageProgress progress="page almost done"            link={routeFromName('everyTheme')}                    content={gameContentTranslation('theme.singular')}/>
+                <PageProgress progress="not created"                                                                             content={gameContentTranslation('time.singular')} exclusiveGame="SMM2"/>
+                <PageProgress progress="page in progress"            link={routeFromName('everyGameReference')}            content={gameContentTranslation('game reference.singular')}/>
+                <PageProgress progress="page almost done"            link={routeFromName('everyGameStyle')}                content={gameContentTranslation('game style.singular')}/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Entity behaviour')}/>
+                <PageProgress progress="page almost done"            link={routeFromName('everySoundEffect')}              content={gameContentTranslation('sound effect.singular')}/>
+                <PageProgress progress="page in progress"            link={routeFromName('everySoundEffectCategory')}      content={gameContentTranslation('sound effect category.singular')}/>
+                <PageProgress progress="completed"                   link={routeFromName('everyCourseTag')}                content={gameContentTranslation('course tag.singular', {Course: singularCourseName, course: singularCourseLowerCaseName, Tag: singularTagName, tag: singularTagLowerCaseName,},)} exclusiveGame="SMM2"/>
+                <PageProgress progress="completed"                   link={routeFromName('everyPredefinedMessage')}        content={unfinishedText('Predefined message')} exclusiveGame="SMM2"/>
+                <PageProgress progress="completed"                   link={routeFromName('everySampleCourse')}             content={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)} exclusiveGame="SMM1"/>
+                <PageProgress progress="page almost done"            link={routeFromName('everyMedal')}                    content={gameContentTranslation('medal.singular')} exclusiveGame="SMM1"/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Super Mario Challenges levels')} exclusiveGame="SMM3DS"/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText("Job")} exclusiveGame="SMM2"/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Official notification')} exclusiveGame="SMM2"/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Official courses')}/>
+                <PageProgress progress="data in progress"                                                                        content={unfinishedText('Ninji speedrun')} exclusiveGame="SMM2"/>
+                <PageProgress progress="page almost done"            link={routeFromName('everyMysteryMushroom')}          content={singularMysteryMushroomName} exclusiveGame="SMM1"/>
+                <PageProgress progress="completed with missing data"                                                             content={unfinishedText('Event courses (for the Mystery Mushrooms)')} exclusiveGame="SMM1"/>
+                <PageProgress progress="completed"                   link={routeFromName('everyMiiCostume')}               content={singularMiiCostumeName} exclusiveGame="SMM2"/>
+                <PageProgress progress="completed"                   link={routeFromName('everyMiiCostumeCategory')}       content={gameContentTranslation('mii costume category.singular', {SingularName: singularMiiCostumeName, singularName: singularMiiCostumeLowerCaseName, PluralName: pluralMiiCostumeName, pluralName: pluralMiiCostumeLowerCaseName,},)} exclusiveGame="SMM2"/>
+                <PageProgress progress="page in progress"            link={routeFromName('everyEditorVoice')}              content={gameContentTranslation('editor voice.singular')}/>
+                <PageProgress progress="page in progress"            link={routeFromName('everyInstrument')}               content={gameContentTranslation('instrument.singular')}/>
+                <PageProgress progress="page in progress"            link={routeFromName('everyPowerUp&Ride&HatPriority')} content={gameContentTranslation('power-up, ride & hat priority.all.singular', {PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName, Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),},)}/>
             </div>
         </>
     }

@@ -29,12 +29,13 @@
         "more info":          "Pour plus d'informations, se référer au {{gitHubLink}}."
       },
 
-      "Completed":        "Complété",
-      "Page in progress": "Page en progrès",
-      "Page almost done": "Page presque terminé",
-      "Data in progress": "Données en progrès",
-      "Data done":        "Données terminé",
-      "Not created":      "Non créé"
+      "Completed":                   "Complété",
+      "Completed with missing data": "Complété avec des données manquantes",
+      "Page in progress":            "Page en progrès",
+      "Page almost done":            "Page presque terminé",
+      "Data in progress":            "Données en progrès",
+      "Data done":                   "Données terminé",
+      "Not created":                 "Non créé"
     }
   },
 
