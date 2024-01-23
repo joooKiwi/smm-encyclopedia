@@ -2,18 +2,19 @@ import './PageProgress.scss'
 
 import {Link} from 'react-router-dom'
 
-import type {EveryPossibleRoutes} from 'route/EveryRoutes.types'
-import type {ReactProperties}     from 'util/react/ReactProperties'
+import type {PossibleRouteName} from 'route/EveryRoutes.types'
+import type {ReactProperties}   from 'util/react/ReactProperties'
 
 import {ProjectLanguages}   from 'lang/ProjectLanguages'
 import {contentTranslation} from 'lang/components/translationMethods'
+import {routeFromName}      from 'route/route'
 
 interface PageProgressProperties
     extends ReactProperties {
 
     readonly progress: PageProgressType
 
-    readonly link?: EveryPossibleRoutes
+    readonly link?: PossibleRouteName
 
     readonly content: string
 
@@ -39,10 +40,10 @@ export default function PageProgress({progress, link, content, exclusiveGame,}: 
     const exclusiveGameComponent = exclusiveGame == null ? null : <sup className="fst-italic text-dark text-opacity-25">{currentLanguage.space}{currentLanguage.textInParentheses(exclusiveGame)}</sup>
 
     return <div className="pageProgress-container">
-        {createPageProgressType(progress)}
+        {createPageProgressType(progress,)}
         {link == null
             ? <span>{content}{exclusiveGameComponent}</span>
-            : <Link to={link} className="link-info">{content}{exclusiveGameComponent}</Link>}
+            : <Link to={routeFromName(link,)} className="link-info">{content}{exclusiveGameComponent}</Link>}
     </div>
 }
 
