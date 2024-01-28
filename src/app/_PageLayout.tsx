@@ -1,3 +1,5 @@
+import './_PageLayout.scss'
+
 import {Fragment} from 'react'
 import {Outlet}   from 'react-router-dom/dist'
 
