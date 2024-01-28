@@ -3,6 +3,7 @@ import {RouterProvider}   from 'react-router/dist'
 import {createHashRouter} from 'react-router-dom/dist'
 import {Suspense}         from 'react'
 
+import PageLayout                    from 'app/_PageLayout'
 import LoadingApp                    from 'app/LoadingApp'
 import {Games}                       from 'core/game/Games'
 import {GameStyles}                  from 'core/gameStyle/GameStyles'
@@ -48,6 +49,7 @@ const everyRoute = EveryRouteCompanion.everyRoute
 const router = createHashRouter([{
     caseSensitive: false,
     path: '/',
+    element: <PageLayout/>,
     children: [
         new StraightRouteObject('/', () => redirectTo(homeRoute,),),
         //region -------------------- Path from route path --------------------

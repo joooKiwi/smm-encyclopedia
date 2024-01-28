@@ -1,19 +1,26 @@
 import './AbstractAppWithInterpreter.scss'
 
+import {Component} from 'react'
+
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
 import type {AppStates}                    from 'app/AppStates.types'
 import type {AppInterpreter}               from 'app/interpreter/AppInterpreter'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ReactComponent}               from 'util/react/ReactComponent'
 
-import AbstractApp        from 'app/AbstractApp'
 import UnfinishedText     from 'app/tools/text/UnfinishedText'
 import {ViewDisplays}     from 'app/withInterpreter/ViewDisplays'
 import DisplayButtonGroup from 'app/withInterpreter/DisplayButtonGroup'
 
+/**
+ * @reactComponent
+ * @todo Replace to a functional-based component
+ */
 export abstract class AbstractAppWithInterpreter<const out APP extends AppInterpreter,
     const out T extends AppWithInterpreterProperties = AppWithInterpreterProperties,
     const S extends AppStates = AppStates, >
-    extends AbstractApp<T, S> {
+    extends Component<T, S>
+    implements ReactComponent {
 
     //region -------------------- Fields --------------------
 
@@ -75,7 +82,7 @@ export abstract class AbstractAppWithInterpreter<const out APP extends AppInterp
         return <UnfinishedText isHidden>description</UnfinishedText>//TODO add description
     }
 
-    protected override _mainContent(): ReactElement {
+    public override render() {
         const {viewDisplay, _key: key,} = this
 
         return <div key={`${key} (sub main container)`} id="subMain-container">
