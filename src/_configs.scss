@@ -1117,6 +1117,8 @@
   border-radius: var(--bs-border-circle-radius);
 }
 
+.btn.bi::before, .btn .bi, { margin-right: var(--bs-spacer-sm) }
+
 //region -------------------- Button colors --------------------
 
 @each $color, $value in $theme-colors {
