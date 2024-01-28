@@ -2,6 +2,8 @@ import type {CompanionEnumDeclaration, Enumerable, EnumerableConstructor, Possib
 import type {Dispatch, SetStateAction}                                                               from 'react'
 import {CompanionEnum}                                                                               from '@joookiwi/enumerable'
 
+import {EMPTY_MAP} from 'util/emptyVariables'
+
 /**
  * A simple {@link CompanionEnum} that hold a "current" value as well as a "current event"
  */
@@ -12,7 +14,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enume
     //region -------------------- Fields --------------------
 
     #current?: ENUM
-    #onSetCurrentEvent?: Dispatch<SetStateAction<NullOr<ENUM>>>
+    #onSetCurrentEvents?: Map<string, Dispatch<SetStateAction<NullOr<ENUM>>>>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter & setter methods --------------------
@@ -44,19 +46,20 @@ export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enume
         const selectedValue = this.getValue(value,) as ENUM
         if (selectedValue === this.currentOrNull)
             return
-        this.onSetCurrentEventOrNull?.(selectedValue,)
+        this.onSetCurrentEventOrEmpty.forEach(it => it(selectedValue,),)
         this._onSetCurrent(selectedValue,)
         this.#current = selectedValue
     }
 
-    protected _onSetCurrent(value: ENUM,): void {}
+    protected _onSetCurrent(value: ENUM,): void {
+    }
 
     //region -------------------- Current --------------------
     //region -------------------- Event --------------------
 
     /** Get the current {@link Enumerable instance} event listener or <b>null</b> if it has not been initialized */
-    public get onSetCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<ENUM>>>> {
-        return this.#onSetCurrentEvent ?? null
+    public get onSetCurrentEventOrEmpty(): ReadonlyMap<string, Dispatch<SetStateAction<NullOr<ENUM>>>> {
+        return this.#onSetCurrentEvents ?? EMPTY_MAP
     }
 
     /**
@@ -64,20 +67,21 @@ export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enume
      *
      * @throws {ReferenceError} The event listener has not been initialized
      */
-    public get onSetCurrentEvent(): Dispatch<SetStateAction<NullOr<ENUM>>> {
-        if (this.#onSetCurrentEvent == null)
-            throw new ReferenceError(`The event to set the current value in "${this.instance.name}" has not been initialized yet.`,)
-        return this.#onSetCurrentEvent
+    public get onSetCurrentEvent(): ReadonlyMap<string, Dispatch<SetStateAction<NullOr<ENUM>>>> {
+        if (this.#onSetCurrentEvents == null)
+            throw new ReferenceError(`The events to set the current value in "${this.instance.name}" has not been initialized yet.`,)
+        return this.#onSetCurrentEvents
     }
 
     /**
      * Initialize the event listener on the setting of the current {@link Enumerable instance}
      *
+     * @param key The key associated to the event listener
      * @param value The event listener to set
      * @shouldOnlyBeCalledOnce
      */
-    public set onSetCurrentEvent(value: Dispatch<SetStateAction<NullOr<ENUM>>>,) {
-        this.#onSetCurrentEvent = value
+    public setOnCurrentEvent(key: string, value: Dispatch<SetStateAction<NullOr<ENUM>>>,) {
+        (this.#onSetCurrentEvents ??= new Map()).set(key, value,)
     }
 
     //region -------------------- Event --------------------

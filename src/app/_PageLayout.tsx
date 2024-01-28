@@ -1,12 +1,14 @@
-import {Outlet} from 'react-router-dom/dist'
+import {Fragment} from 'react'
+import {Outlet}   from 'react-router-dom/dist'
 
-import Footer                        from 'navigation/Footer'
-import Navigation                    from 'navigation/Navigation'
-import LanguageModal                 from 'navigation/modal/LanguageModal'
-import ParameterModal                from 'navigation/modal/ParameterModal'
-import DisplayViewModal              from 'navigation/modal/DisplayViewModal'
-import SearchModal                   from 'navigation/modal/SearchModal'
-import ColorModal                    from 'navigation/modal/ColorModal'
+import {useCurrentLanguage} from 'lang/languageHook'
+import Footer               from 'navigation/Footer'
+import Navigation           from 'navigation/Navigation'
+import LanguageModal        from 'navigation/modal/LanguageModal'
+import ParameterModal       from 'navigation/modal/ParameterModal'
+import DisplayViewModal     from 'navigation/modal/DisplayViewModal'
+import SearchModal          from 'navigation/modal/SearchModal'
+import ColorModal           from 'navigation/modal/ColorModal'
 
 /**
  * A component representing the basic page structure.
@@ -15,7 +17,9 @@ import ColorModal                    from 'navigation/modal/ColorModal'
  * @reactComponent
  */
 export default function PageLayout() {
-    return <>
+    const currentLanguage = useCurrentLanguage('page layout',)
+
+    return <Fragment key={`page layout (${currentLanguage?.projectAcronym})`}>
         <aside id="modal-container">
             <LanguageModal/>
             <ParameterModal/>
@@ -28,5 +32,5 @@ export default function PageLayout() {
             <Outlet/>
         </main>
         <Footer/>
-    </>
+    </Fragment>
 }

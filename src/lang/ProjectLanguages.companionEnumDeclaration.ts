@@ -36,24 +36,6 @@ export interface CompanionEnumDeclaration_ProjectLanguages
      */
     set current(value: PossibleEnumerableValueBy<| ProjectLanguages | EveryLanguages>,)
 
-    /** Get the event listener on the setting of {@link current} or <b>null</b> (if it has not been initialized) */
-    get onSetCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<EveryLanguages>>>>
-
-    /**
-     * Get the event listener on the setting of {@link current}
-     *
-     * @throws {ReferenceError} The event listener has not been initialized
-     */
-    get onSetCurrentEvent(): Dispatch<SetStateAction<NullOr<EveryLanguages>>>
-
-    /**
-     * Initialize the event listener to set the {@link current}
-     *
-     * @param value The event listener to set
-     * @shouldOnlyBeCalledOnce
-     */
-    set onSetCurrentEvent(value: Dispatch<SetStateAction<NullOr<EveryLanguages>>>,)
-
 
     getValueByLanguage(value: PossibleEnumerableValueBy<| EveryLanguages | ProjectLanguages>,): ProjectLanguages
 
