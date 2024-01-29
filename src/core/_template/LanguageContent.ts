@@ -1,5 +1,5 @@
 /**
- * A content that has every possible languages
+ * A content that has every possible language
  * with optional languages (Hebrew, Polish, Ukrainian & Greek)
  *
  * @see EveryLanguages
