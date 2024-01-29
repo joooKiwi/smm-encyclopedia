@@ -4,12 +4,13 @@ import type {LanguageContent}           from 'core/_template/LanguageContent'
 import type {EmptyableLanguage}         from 'lang/name/containers/EmptyableLanguage'
 import type {EmptyableOptionalLanguage} from 'lang/name/containers/EmptyableOptionalLanguage'
 
-import {EveryLanguages}            from 'lang/EveryLanguages'
-import {NameContainer}             from 'lang/name/Name.container'
-import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguage.container'
-import {LanguageContainer}         from 'lang/name/containers/Language.container'
-import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguage.container'
-import {isInProduction}            from 'variables'
+import {EveryLanguages}             from 'lang/EveryLanguages'
+import {NameContainer}              from 'lang/name/Name.container'
+import {EmptyLanguageContainer}     from 'lang/name/containers/EmptyLanguage.container'
+import {LanguageContainer}          from 'lang/name/containers/Language.container'
+import {OptionalLanguageContainer}  from 'lang/name/containers/OptionalLanguage.container'
+import {isInProduction}             from 'variables'
+import {DescriptionLanguageContent} from 'core/_template/DescriptionLanguageContent'
 
 type PossibleGame = | '1' | 1 | '2' | 2 | '3DS' | 'all' | 'notSMM2' | 'notSMM1' | 'notSMM3DS'
 type IsACompleteNameCallback = (language: EveryLanguages,) => boolean
@@ -31,43 +32,7 @@ const IS_NOT_A_COMPLETE_NAME: IsACompleteNameCallback = () => false
  * @param isACompleteName It is a complete name
  */
 export function createNameFromContent(content: LanguageContent, game: PossibleGame, isACompleteName: boolean,): Name<string> {
-    let isACompleteNameCallback: IsACompleteNameCallback
-    initialization: { // eslint-disable-line no-labels
-        if (isInProduction) { // We ignore validation in production
-            isACompleteNameCallback = IS_NOT_A_COMPLETE_NAME
-            break initialization // eslint-disable-line no-labels
-        }
-        switch (game) {
-            case 'all':
-            case 'notSMM1':
-            case 'notSMM3DS':
-                if (isACompleteName) {
-                    isACompleteNameCallback = IS_A_COMPLETE_NAME
-                    break initialization // eslint-disable-line no-labels
-                }
-                isACompleteNameCallback = IS_NOT_A_COMPLETE_NAME
-                break initialization // eslint-disable-line no-labels
-            case 'notSMM2':
-            case 1:
-            case '1':
-            case '3DS':
-                if (isACompleteName) {
-                    isACompleteNameCallback = IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM1_OR_SMM3DS
-                    break initialization // eslint-disable-line no-labels
-                }
-                isACompleteNameCallback = IS_NOT_A_COMPLETE_NAME
-                break initialization // eslint-disable-line no-labels
-            case 2:
-            case '2':
-                if (isACompleteName) {
-                    isACompleteNameCallback = IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM2
-                    break initialization // eslint-disable-line no-labels
-                }
-                isACompleteNameCallback = IS_NOT_A_COMPLETE_NAME
-                break initialization // eslint-disable-line no-labels
-        }
-        throw new ReferenceError(`The game "${game}" is not a valid value (1, 2, 3DS, all, notSMM1, notSMM3DS or notSMM2).`,)
-    }
+    const isACompleteNameCallback = getIsACompleteNameCallback(game, isACompleteName,)
 
     const originalLanguages = [] as EveryLanguages[]
     return new NameContainer(
@@ -89,6 +54,58 @@ export function createNameFromContent(content: LanguageContent, game: PossibleGa
         getFromOptionalLanguage(originalLanguages, EveryLanguages.GREEK, content.greek,),
     )
 
+}
+
+export function createNameFromContentDescription(content: DescriptionLanguageContent, game: PossibleGame, isACompleteName: boolean,): Name<string> {
+    const isACompleteNameCallback = getIsACompleteNameCallback(game, isACompleteName,)
+
+    const originalLanguages = [] as EveryLanguages[]
+    return new NameContainer(
+        originalLanguages,
+        getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.ENGLISH, content.english_description, content.americanEnglish_description, content.europeanEnglish_description,),
+        getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.FRENCH, content.french_description, content.canadianFrench_description, content.europeanFrench_description,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.GERMAN, content.german_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom3Values(originalLanguages, EveryLanguages.SPANISH, content.spanish_description, content.americanSpanish_description, content.europeanSpanish_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.ITALIAN, content.italian_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.DUTCH, content.dutch_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom3Values(originalLanguages, EveryLanguages.PORTUGUESE, content.portuguese_description, content.americanPortuguese_description, content.europeanPortuguese_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.RUSSIAN, content.russian_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.JAPANESE, content.japanese_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom3Values(originalLanguages, EveryLanguages.CHINESE, content.chinese_description, content.simplifiedChinese_description, content.traditionalChinese_description, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.KOREAN, content.korean_description, isACompleteNameCallback,),
+        EmptyLanguageContainer.get,
+        EmptyLanguageContainer.get,
+        EmptyLanguageContainer.get,
+        EmptyLanguageContainer.get,
+    )
+
+}
+
+
+function getIsACompleteNameCallback(game: PossibleGame, isACompleteName: boolean,): IsACompleteNameCallback {
+    if (isInProduction)  // We ignore validation in production
+        return IS_NOT_A_COMPLETE_NAME
+    switch (game) {
+        case 'all':
+        case 'notSMM1':
+        case 'notSMM3DS':
+            if (isACompleteName)
+                return IS_A_COMPLETE_NAME
+            return IS_NOT_A_COMPLETE_NAME
+        case 'notSMM2':
+        case 1:
+        case '1':
+        case '3DS':
+            if (isACompleteName)
+                return IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM1_OR_SMM3DS
+            return IS_NOT_A_COMPLETE_NAME
+        case 2:
+        case '2':
+            if (isACompleteName)
+                return IS_A_COMPLETE_NAME_BASED_ON_GAME_IN_SMM2
+            return IS_NOT_A_COMPLETE_NAME
+    }
+    throw new ReferenceError(`The game "${game}" is not a valid value (1, 2, 3DS, all, notSMM1, notSMM3DS or notSMM2).`,)
 }
 
 
