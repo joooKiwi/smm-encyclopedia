@@ -21,6 +21,8 @@ import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryM
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
 import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                               from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                       from 'core/nightEffect/NightEffects.types'
+import type {PossibleReleaseDate as PossibleReleaseDate_OfficialCourse, PossibleRemovalDate as PossibleRemovalDate_OfficialCourse, PossibleReward as PossibleReward_OfficialCourse}                                                              from 'core/officialCourse/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_OfficialCourse}                                                                                                                                                                          from 'core/officialCourse/OfficialCourses.types'
 import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                     from 'core/officialNotification/OfficialNotifications.types'
 import type {PossibleEnglishName as PossibleEnglishName_OtherWordInTheGame, PossibleEnglishName_Plural as PossiblePluralEnglishName_OtherWordInTheGame, PossibleEnglishName_Singular as PossibleSingularEnglishName_OtherWordInTheGame}          from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                       from 'core/predefinedMessage/PredefinedMessages.types'
@@ -45,6 +47,7 @@ import {NightEffects}                from 'core/nightEffect/NightEffects'
 import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
 import {MiiCostumes}                 from 'core/miiCostume/MiiCostumes'
 import {MysteryMushrooms}            from 'core/mysteryMushroom/MysteryMushrooms'
+import {OfficialCourses}             from 'core/officialCourse/OfficialCourses'
 import {OfficialNotifications}       from 'core/officialNotification/OfficialNotifications'
 import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {PredefinedMessages}          from 'core/predefinedMessage/PredefinedMessages'
@@ -155,6 +158,11 @@ export class EveryTypes {
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: readonly PossibleConditionToUnlockIt_MysteryMushroom[]
     #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom
     #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom
+
+    #everyPossibleEnglishName_officialCourse?: readonly PossibleEnglishName_OfficialCourse[]
+    #everyPossibleReward_officialCourse?: readonly PossibleReward_OfficialCourse[]
+    #everyPossibleReleaseDate_officialCourse?: readonly PossibleReleaseDate_OfficialCourse[]
+    #everyPossibleRemovalDate_officialCourse?: readonly NonNullable<Exclude<PossibleRemovalDate_OfficialCourse, UnknownReference>>[]
 
     #everyPossibleNameWithAmount_officialNotification?: readonly PossibleNameWithEveryAmount_OfficialNotification[]
 
@@ -463,6 +471,52 @@ export class EveryTypes {
     }
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Official course --------------------
+
+    public get everyPossibleEnglishName_officialCourse() {
+        return this.#everyPossibleEnglishName_officialCourse ??= OfficialCourses.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+    }
+
+    public get everyPossibleReward_officialCourse() {
+        return this.#everyPossibleReward_officialCourse ??= [
+            'Dr. Kawashima', 'Undodog', 'Callie / Marie',
+            'Shaun the Sheep', 'Kitty White / Melody', 'Popo & Nana',
+            'BABYMETAL', 'Starfy', 'Yu Ayasaki',
+            'Toadette', 'Wolf Link', 'Mary O.',
+            'Statue Mario', 'Barbara the Bat', 'Chitoge Kirisaki',
+            'Bulbasaur / Charmander / Squirtle',
+            'Professor E. Gadd', 'Daisy', 'Yamamura',
+            'Bike', 'Sky Pop', 'Birdo',
+            'Captain Toad', 'Mr. Saturn', 'Master Belch',
+            'Arcade bunny', 'Felyne', 'GLA',
+            'Mario Trio', 'Frog Mario',
+            'Necky', 'Cat Mario', 'Cat Peach',
+            'SUPER MARIO KUN', 'Totem Link', 'Arino KACHO',
+        ]
+    }
+
+    public get everyPossibleReleaseDate_officialCourse() {
+        return this.#everyPossibleReleaseDate_officialCourse ??= [
+            '2017-10-27',
+            '2016-12-21',
+            '2016-11-25',
+            '2016-07-08',
+            '2016-06-03',
+            '2016-05-27', '2016-05-13',
+            '2016-04-08', '2016-04-01',
+            '2016-03-21', '2016-03-18', '2016-03-10', '2016-03-09', '2016-03-04', '2016-02-26',
+            '2016-02-19', '2016-02-12', '2016-02-05',
+            '2016-01-30', '2016-01-15', '2016-01-13', '2016-01-07',
+            '2015-12-31', '2015-12-25', '2015-12-19', '2015-12-18', '2015-12-16', '2015-12-10', '2015-12-03',
+            '2015-11-27', '2015-11-12', '2015-11-11', '2015-11-06', '2015-11-05',
+        ]
+    }
+
+    public get everyPossibleRemovalDate_officialCourse() {
+        return this.#everyPossibleRemovalDate_officialCourse ??= ['2016-02-22',]
+    }
+
+    //endregion -------------------- Official course --------------------
     //region -------------------- Official notification --------------------
 
     public get everyPossibleNameWithAmount_officialNotification() {

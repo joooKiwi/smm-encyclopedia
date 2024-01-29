@@ -101,6 +101,7 @@ export default function RouteApp() {
         <EmptySection id="ninjiSpeedrun-paths" name="Ninji speedrun"/>
 
         <SimpleListCardTableSMM1Section partialId="mysteryMushroom" name="Mystery mushroom" route={EveryRoutes.EVERY_MYSTERY_MUSHROOM}/>
+        <SimpleListCardTableSMM1Section partialId="officialCourse" name="Official course" route={EveryRoutes.EVERY_OFFICIAL_COURSE}/>
         <SimpleListCardTableSMM2Section partialId="miiCostume" name="Mii costume" route={EveryRoutes.EVERY_MII_COSTUME}/>
         <SimpleListCardSMM2Section partialId="miiCostumeCategory" name="Mii costume category" route={EveryRoutes.EVERY_MII_COSTUME_CATEGORY}/>
 
@@ -2569,7 +2570,7 @@ function SimpleListCardSMM2Section({partialId, name, route,}: FilledSectionPrope
     </div>
 }
 
-function SimpleListCardTableSMM1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM'>,) {
+function SimpleListCardTableSMM1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM' | 'EVERY_OFFICIAL_COURSE'>,) {
     const simpleName = route.simpleName
     const linkPaths = `${partialId}-linkPaths`
 

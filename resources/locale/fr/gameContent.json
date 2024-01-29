@@ -176,6 +176,10 @@
     "all":         "Tous les {{pluralName}}",
     "display all": "Afficher tous les {{pluralName}}"
   },
+  "official course": {
+    "all":         "Tous les {{pluralName}} officiels (pour les {{MysteryMushroomIcon}})",
+    "display all": "Afficher tous les {{pluralName}} officiels (pour les {{MysteryMushroomIcon}})"
+  },
   "game reference": {
     "singular": "Référence de jeu",
     "plural":   "Références de jeu",

@@ -1,0 +1,15 @@
+#officialCourse-table{
+  width: auto;
+  margin-left:auto;
+  margin-right:auto;
+
+  .tcell {
+
+    &.reward { max-width: 3cm }
+    &.name { max-width: 5cm }
+    &.description { max-width: 20cm }
+    &.gameStyleAndThemes { max-width: 3cm }
+    &.time { max-width: 3cm }
+    &.availability {}
+  }
+}

@@ -176,6 +176,10 @@
     "all":         "Every {{singularName}}",
     "display all": "Display every {{singularName}}"
   },
+  "official course": {
+    "all":         "Every official {{singularName}} (for the {{MysteryMushroomIcon}})",
+    "display all": "Display every official {{singularName}} (for the {{MysteryMushroomIcon}})"
+  },
   "game reference": {
     "singular": "Game reference",
     "plural":   "Game references",

@@ -31,6 +31,7 @@ const EditorVoiceApp = lazy(() => import('app/EditorVoiceApp'))
 const EntityApp = lazy(() => import('app/EntityApp'))
 const EntityCategoryApp = lazy(() => import('app/EntityCategoryApp'))
 const EntityGroupApp = lazy(() => import('app/EntityGroupApp'))
+const OfficialCourseApp = lazy(() => import('app/OfficialCourseApp'))
 const GameStyleApp = lazy(() => import('app/GameStyleApp'))
 const GameReferenceApp = lazy(() => import('app/GameReferenceApp'))
 const InstrumentApp = lazy(() => import('app/InstrumentApp'))
@@ -1055,6 +1056,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everyMiiCostumeCategory', '/every/mii-costume-category', null, viewDisplay => <MiiCostumeCategoryApp viewDisplay={viewDisplay}/>,)
 
     public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.AnyViewDisplayOnlyInSMM1_EveryRoutes('everyMysteryMushroom', '/every/mystery-mushroom', ViewDisplays.CARD_LIST, viewDisplay => <MysteryMushroomApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.AnyViewDisplayOnlyInSMM1_EveryRoutes('everyOfficialCourse', '/every/official-course', null, viewDisplay => <OfficialCourseApp viewDisplay={viewDisplay}/>,)
 
     public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.OnlySimpleViewDisplayOnlyInSMM2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
 
