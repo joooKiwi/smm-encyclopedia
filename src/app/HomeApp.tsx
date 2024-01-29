@@ -1,8 +1,11 @@
+import {Link} from 'react-router-dom'
+
 import {unfinishedText}                                                                from 'app/tools/text/UnfinishedText'
 import PageProgress                                                                    from 'app/util/PageProgress'
 import {OtherWordInTheGames}                                                           from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}                                    from 'lang/components/translationMethods'
 import {MARIO_MAKER_2_WIKI_FANDOM_LINK, SUPER_MARIO_WIKI_LINK, THE_CUTTING_FLOOR_LINK} from 'external/WikiLinks'
+import {routeFromName}                                                                 from 'route/route'
 
 //region -------------------- Deconstruction imports --------------------
 
@@ -15,6 +18,7 @@ export default function HomeApp() {
     const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
     const singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference
     const singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = COURSE.singularLowerCaseNameOnReferenceOrNull ?? singularCourseName.toLowerCase()
+    const pluralCourseName = COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName), pluralCourseLowerCaseName = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? pluralCourseName.toLowerCase()
     const singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName)
     const singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)
     const pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!), pluralMiiCostumeLowerCaseName = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!)
@@ -22,6 +26,16 @@ export default function HomeApp() {
 
     return <>
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('home.title')}</h1>
+        <div className="container-md alert alert-danger" role="alert">
+            <small className="fst-italic text-body-secondary">(Due to a specific condition, this warning will not be translated)</small>
+            <p>
+                <span>Super Mario Maker for the WiiU & 3DS will no longer be playable online on <strong>April 2024</strong>. </span>
+                <br className="d-none d-md-block"/>
+                <span>If you can provide some informations about the <Link to={routeFromName('everyOfficialCourse')}>Official notifications</Link>, </span>
+                <br className="d-none d-md-block"/>
+                <span>join <a href="https://discord.gg/r8AGYXtExy">Geitje</a>, <a href="https://discord.gg/UZTJxHM">Psycrow</a> or <a href="https://discord.gg/kEnbJ9GDtZ">my</a> <span className="bi bi-discord">Discord</span> server to help. </span>
+            </p>
+        </div>
         <div className="container-lg alert alert-warning" role="alert">
             {contentTranslation('home.warning.in construction')}
             {contentTranslation('home.warning.more details')}
@@ -77,7 +91,7 @@ export default function HomeApp() {
             <PageProgress progress="data in progress"                                                 content={unfinishedText('Official courses')}/>
             <PageProgress progress="data in progress"                                                 content={unfinishedText('Ninji speedrun')} exclusiveGame="SMM2"/>
             <PageProgress progress="page almost done"            link="everyMysteryMushroom"          content={singularMysteryMushroomName} exclusiveGame="SMM1"/>
-            <PageProgress progress="completed with missing data"                                      content={unfinishedText('Event courses (for the Mystery Mushrooms)')} exclusiveGame="SMM1"/>
+            <PageProgress progress="completed with missing data" link="everyOfficialCourse"           content={gameContentTranslation('official course.all', {singularName: singularCourseLowerCaseName, pluralName: pluralCourseLowerCaseName, MysteryMushroomIcon: <i className="mystery-mushroom-image"/>,})} exclusiveGame="SMM1"/>
             <PageProgress progress="completed"                   link="everyMiiCostume"               content={singularMiiCostumeName} exclusiveGame="SMM2"/>
             <PageProgress progress="completed"                   link="everyMiiCostumeCategory"       content={gameContentTranslation('mii costume category.singular', {SingularName: singularMiiCostumeName, singularName: singularMiiCostumeLowerCaseName, PluralName: pluralMiiCostumeName, pluralName: pluralMiiCostumeLowerCaseName,},)} exclusiveGame="SMM2"/>
             <PageProgress progress="page in progress"            link="everyEditorVoice"              content={gameContentTranslation('editor voice.singular')}/>
