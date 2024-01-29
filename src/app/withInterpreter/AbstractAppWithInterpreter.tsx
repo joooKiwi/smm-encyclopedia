@@ -29,11 +29,6 @@ export abstract class AbstractAppWithInterpreter<const out APP extends AppInterp
     #appInterpreter?: APP
 
     //endregion -------------------- Fields --------------------
-
-    public constructor(props: T,) {
-        super(props,)
-    }
-
     //region -------------------- Getter & create methods --------------------
 
     /** The {@link ViewDisplays view display} property held by this instance */
@@ -82,12 +77,18 @@ export abstract class AbstractAppWithInterpreter<const out APP extends AppInterp
         return <UnfinishedText isHidden>description</UnfinishedText>//TODO add description
     }
 
+    protected _createAlert(): ReactElementOrString {
+        return null
+    }
+
     public override render() {
         const {viewDisplay, _key: key,} = this
+        const alert = this._createAlert()
 
         return <div key={`${key} (sub main container)`} id="subMain-container">
             <div id={`${key}-container`} className={`${viewDisplay.htmlType}-container`}>
                 <h1 key={`${key} (title)`} id={`${key}-title`} className="app-title">{this._createTitleContent()}</h1>
+                {alert == null ? null : <aside key={`${key} (alert)`} id="alert-container">{alert}</aside>}
                 <aside key={`${key} (view changer)`} id="viewChanger-container">
                     <DisplayButtonGroup reactKey={key} views={this.__possibleViewDisplay} currentView={viewDisplay}/>
                     {this._createAsideContent()}
