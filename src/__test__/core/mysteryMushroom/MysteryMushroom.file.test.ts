@@ -12,22 +12,22 @@ import {getEnglishName, testEnglish, testLanguages} from '__test__/helperMethods
 import {UNKNOWN_REFERENCE}                          from 'util/commonVariables'
 
 describe('Mystery Mushroom (file test)', () => {
-    const convertor = EveryTypes.get
-    const everyConditionToUnlock = convertor.everyPossibleConditionToUnlockIt_mysteryMushroom
-    const everyVersion = convertor.everyPossibleName_version_smm
-    const everyGameReferenceAcronymWithPokemon = [...convertor.everyPossibleAcronym_gameReference, ...convertor.everyPossiblePokemonGeneration_gameReference,]                                           as const
-    const everyGameReferenceAcronymWithPokemonAndNullAndUnknown = [null, UNKNOWN_REFERENCE, ...convertor.everyPossibleAcronym_gameReference, ...convertor.everyPossiblePokemonGeneration_gameReference,] as const
-    const everyGameReferenceAcronymsWithNull = [null, ...convertor.everyPossibleAcronym_gameReference,]                                                                                                  as const
-    const everySoundEffectOnGoalPoleSmallDefinition = [null, ...convertor.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom,]                                                           as const
-    const everySoundEffectOnDeathSmallDefinition = [null, ...convertor.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom,]                                                                 as const
-    const possibleSoundEffectOnJump = [true, false, 2, '3 images',]                                                                                                                                      as const satisfies readonly PossibleSoundEffectOnJump[]
-    const possibleSoundEffectOnMovement = [null, 'Twinkle', 'Engine sound',]                                                                                                                             as const satisfies readonly PossibleSoundEffectOnMovement[]
-    const possibleSpecialMusicInStarMode = [false, 'Flying Mario', 'Metal Mario', 'Super Star',]                                                                                                         as const satisfies readonly PossibleSpecialMusicInStarMode[]
-    const possibleSoundEffectOnGoalPoleType = [null, 'Marimba', 'Rock',]                                                                                                                                 as const satisfies readonly TypeOfMusicOnGoalPole[]
-    const possibleSoundEffectOnGoalPole = [null, true, false, '+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',]                                                   as const satisfies readonly PossibleSoundEffectOnGoalPole[]
-    const possibleSoundEffectOnDeathType = [null, 'Marimba', 'Techno',]                                                                                                                                  as const satisfies readonly TypeOfSoundEffectOnDeath[]
-    const possibleSoundEffectOnDeath = [null, true, false, '+ "Rooo…"', '+ "Oh no!"', '+ "Nooo!"', '+ "Woah!"', '+ "Yaha!"',]                                                                            as const satisfies readonly PossibleSoundEffectOnDeath[]
-    const everyNames = convertor.everyPossibleUniqueEnglishName_mysteryMushroom
+    const types = EveryTypes.get
+    const everyConditionToUnlock = types.everyPossibleConditionToUnlockIt_mysteryMushroom
+    const everyVersion = types.everyPossibleName_version_smm
+    const everyGameReferenceAcronymWithPokemon = [...types.everyPossibleAcronym_gameReference, ...types.everyPossiblePokemonGeneration_gameReference,]                                           as const
+    const everyGameReferenceAcronymWithPokemonAndNullAndUnknown = [null, UNKNOWN_REFERENCE, ...types.everyPossibleAcronym_gameReference, ...types.everyPossiblePokemonGeneration_gameReference,] as const
+    const everyGameReferenceAcronymsWithNull = [null, ...types.everyPossibleAcronym_gameReference,]                                                                                              as const
+    const everySoundEffectOnGoalPoleSmallDefinition = [null, ...types.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom,]                                                       as const
+    const everySoundEffectOnDeathSmallDefinition = [null, ...types.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom,]                                                             as const
+    const possibleSoundEffectOnJump = [true, false, 2, '3 images',]                                                                                                                              as const satisfies readonly PossibleSoundEffectOnJump[]
+    const possibleSoundEffectOnMovement = [null, 'Twinkle', 'Engine sound',]                                                                                                                     as const satisfies readonly PossibleSoundEffectOnMovement[]
+    const possibleSpecialMusicInStarMode = [false, 'Flying Mario', 'Metal Mario', 'Super Star',]                                                                                                 as const satisfies readonly PossibleSpecialMusicInStarMode[]
+    const possibleSoundEffectOnGoalPoleType = [null, 'Marimba', 'Rock',]                                                                                                                         as const satisfies readonly TypeOfMusicOnGoalPole[]
+    const possibleSoundEffectOnGoalPole = [null, true, false, '+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',]                                           as const satisfies readonly PossibleSoundEffectOnGoalPole[]
+    const possibleSoundEffectOnDeathType = [null, 'Marimba', 'Techno',]                                                                                                                          as const satisfies readonly TypeOfSoundEffectOnDeath[]
+    const possibleSoundEffectOnDeath = [null, true, false, '+ "Rooo…"', '+ "Oh no!"', '+ "Nooo!"', '+ "Woah!"', '+ "Yaha!"',]                                                                    as const satisfies readonly PossibleSoundEffectOnDeath[]
+    const everyNames = types.everyPossibleUniqueEnglishName_mysteryMushroom
     const excludedLanguages: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
