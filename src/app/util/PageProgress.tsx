@@ -16,7 +16,7 @@ interface PageProgressProperties
 
     readonly link?: PossibleRouteName
 
-    readonly content: string
+    readonly content: ReactElementOrString
 
     readonly exclusiveGame?: | 'SMM1' | 'SMM2' | 'SMM3DS'
 
