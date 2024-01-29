@@ -11,7 +11,7 @@ import type {Name} from 'lang/name/Name'
  *  with a reference to the method {@link NameTrait.nameContainer nameContainer(): Name}.
  * </p>
  */
-export interface NameTrait<T, >
+export interface NameTrait<out T, >
     extends Name<T> {
 
     get nameContainer(): Name<T>

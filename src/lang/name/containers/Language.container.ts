@@ -2,7 +2,7 @@ import type {Language} from 'lang/name/containers/Language'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-export class LanguageContainer<T, S extends T = T, A extends readonly T[] = EmptyArray, >
+export class LanguageContainer<const out T, const out S extends T = T, const out A extends readonly T[] = EmptyArray, >
     implements Language<T, S, A> {
 
     //region -------------------- Fields --------------------

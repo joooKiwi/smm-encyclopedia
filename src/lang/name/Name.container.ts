@@ -16,7 +16,7 @@ const {ENGLISH, FRENCH, GERMAN, SPANISH, ITALIAN, DUTCH, PORTUGUESE, RUSSIAN, JA
 
 //endregion -------------------- Import from deconstruction --------------------
 
-export class NameContainer<T, >
+export class NameContainer<const out T, >
     implements Name<T> {
 
     //region -------------------- Fields --------------------

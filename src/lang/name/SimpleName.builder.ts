@@ -4,7 +4,7 @@ import type {Builder}                                                           
 import {SimpleNameContainer} from 'lang/name/SimpleName.container'
 import {assert}              from 'util/utilitiesMethods'
 
-export class SimpleNameBuilder<T extends NonNullable<unknown>, >
+export class SimpleNameBuilder<const out T extends NonNullable<unknown>, >
     implements Builder<SimpleNameContainer<T>> {
 
     //region -------------------- Fields --------------------

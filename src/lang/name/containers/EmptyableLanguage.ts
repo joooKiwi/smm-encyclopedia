@@ -1,5 +1,5 @@
-export interface EmptyableLanguage<T, S extends T = T, A extends readonly T[] = EmptyArray,
-    ORIGINAL extends null = null, GET_SINGLE extends null = null, GET_INDEX extends null = null, > {
+export interface EmptyableLanguage<out T, out S extends T = T, out A extends readonly T[] = EmptyArray,
+    out ORIGINAL extends null = null, out GET_SINGLE extends null = null, out GET_INDEX extends null = null, > {
 
     get original(): | S | A | ORIGINAL
 

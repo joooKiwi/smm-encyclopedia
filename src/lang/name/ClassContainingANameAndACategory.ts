@@ -7,7 +7,7 @@ import type {NameTraitFromACategory} from 'lang/name/NameTraitFromACategory'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
-export class ClassContainingANameAndACategory<T, U, CATEGORY extends NameTrait<U>, >
+export class ClassContainingANameAndACategory<const out T, const out U, const out CATEGORY extends NameTrait<U>, >
     extends ClassContainingAName<T>
     implements NameTraitFromACategory<U, CATEGORY> {
 
