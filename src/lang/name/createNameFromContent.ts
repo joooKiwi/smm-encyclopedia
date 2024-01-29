@@ -1,8 +1,15 @@
-import {LanguageContent} from 'core/_template/LanguageContent'
-import {Name}            from 'lang/name/Name'
-import {EveryLanguages}  from 'lang/EveryLanguages'
-import {NameContainer}   from 'lang/name/Name.container'
-import {isInProduction}  from 'variables'
+import type {Language}                  from 'lang/name/containers/Language'
+import type {Name}                      from 'lang/name/Name'
+import type {LanguageContent}           from 'core/_template/LanguageContent'
+import type {EmptyableLanguage}         from 'lang/name/containers/EmptyableLanguage'
+import type {EmptyableOptionalLanguage} from 'lang/name/containers/EmptyableOptionalLanguage'
+
+import {EveryLanguages}            from 'lang/EveryLanguages'
+import {NameContainer}             from 'lang/name/Name.container'
+import {EmptyLanguageContainer}    from 'lang/name/containers/EmptyLanguage.container'
+import {LanguageContainer}         from 'lang/name/containers/Language.container'
+import {OptionalLanguageContainer} from 'lang/name/containers/OptionalLanguage.container'
+import {isInProduction}            from 'variables'
 
 type PossibleGame = | '1' | 1 | '2' | 2 | '3DS' | 'all' | 'notSMM2' | 'notSMM1' | 'notSMM3DS'
 type IsACompleteNameCallback = (language: EveryLanguages,) => boolean
@@ -62,22 +69,24 @@ export function createNameFromContent(content: LanguageContent, game: PossibleGa
         throw new ReferenceError(`The game "${game}" is not a valid value (1, 2, 3DS, all, notSMM1, notSMM3DS or notSMM2).`,)
     }
 
+    const originalLanguages = [] as EveryLanguages[]
     return new NameContainer(
-        getFromCompletedLanguageFrom3Values(EveryLanguages.ENGLISH, content.english, content.americanEnglish, content.europeanEnglish,),
-        getFromCompletedLanguageFrom3Values(EveryLanguages.FRENCH, content.french, content.canadianFrench, content.europeanFrench,),
-        getFromIncompleteLanguageFrom1Value(EveryLanguages.GERMAN, content.german, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom3Values(EveryLanguages.SPANISH, content.spanish, content.americanSpanish, content.europeanSpanish, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom1Value(EveryLanguages.ITALIAN, content.italian, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom1Value(EveryLanguages.DUTCH, content.dutch, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom3Values(EveryLanguages.PORTUGUESE, content.portuguese, content.americanPortuguese, content.europeanPortuguese, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom1Value(EveryLanguages.RUSSIAN, content.russian, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom1Value(EveryLanguages.JAPANESE, content.japanese, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom3Values(EveryLanguages.CHINESE, content.chinese, content.simplifiedChinese, content.traditionalChinese, isACompleteNameCallback,),
-        getFromIncompleteLanguageFrom1Value(EveryLanguages.KOREAN, content.korean, isACompleteNameCallback,),
-        getFromOptionalLanguage(content.hebrew,),
-        getFromOptionalLanguage(content.polish,),
-        getFromOptionalLanguage(content.ukrainian,),
-        getFromOptionalLanguage(content.greek,),
+        originalLanguages,
+        getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.ENGLISH, content.english, content.americanEnglish, content.europeanEnglish,),
+        getFromCompletedLanguageFrom3Values(originalLanguages, EveryLanguages.FRENCH, content.french, content.canadianFrench, content.europeanFrench,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.GERMAN, content.german, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom3Values(originalLanguages, EveryLanguages.SPANISH, content.spanish, content.americanSpanish, content.europeanSpanish, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.ITALIAN, content.italian, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.DUTCH, content.dutch, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom3Values(originalLanguages, EveryLanguages.PORTUGUESE, content.portuguese, content.americanPortuguese, content.europeanPortuguese, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.RUSSIAN, content.russian, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.JAPANESE, content.japanese, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom3Values(originalLanguages, EveryLanguages.CHINESE, content.chinese, content.simplifiedChinese, content.traditionalChinese, isACompleteNameCallback,),
+        getFromIncompleteLanguageFrom1Value(originalLanguages, EveryLanguages.KOREAN, content.korean, isACompleteNameCallback,),
+        getFromOptionalLanguage(originalLanguages, EveryLanguages.HEBREW, content.hebrew,),
+        getFromOptionalLanguage(originalLanguages, EveryLanguages.POLISH, content.polish,),
+        getFromOptionalLanguage(originalLanguages, EveryLanguages.UKRAINIAN, content.ukrainian,),
+        getFromOptionalLanguage(originalLanguages, EveryLanguages.GREEK, content.greek,),
     )
 
 }
@@ -89,7 +98,7 @@ export function createNameFromContent(content: LanguageContent, game: PossibleGa
 //     return value
 // }
 
-function getFromCompletedLanguageFrom3Values(language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>,): | string | readonly [string, string,] {
+function getFromCompletedLanguageFrom3Values(originalLanguages: EveryLanguages[], language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>,): Language<string, string, | readonly [string, string,]> {
     if (value1 == null) {
         if (value2 == null) {
             if (value3 == null)
@@ -98,41 +107,47 @@ function getFromCompletedLanguageFrom3Values(language: EveryLanguages, value1: N
         }
         if (value3 == null)
             throw new TypeError(`The third value of ${language.englishName} cannot be null.`,)
-        return [value2, value3,]
+        originalLanguages.push(...language.children,)
+        return new LanguageContainer<string, string, readonly [string, string,]>([value2, value3,],)
     }
-    return value1
+    originalLanguages.push(language,)
+    return new LanguageContainer<string, string, readonly [string, string,]>(value1,)
 }
 
 
-function getFromIncompleteLanguageFrom1Value(language: EveryLanguages, value: NullOr<string>, isACompleteName: IsACompleteNameCallback,): NullOr<string> {
+function getFromIncompleteLanguageFrom1Value(originalLanguages: EveryLanguages[], language: EveryLanguages, value: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, never> {
     if (value == null) {
         if (isACompleteName(language,))
-            throw new TypeError(`The value of ${language.englishName} cannot be null`,)
-        return value
+            throw new TypeError(`The value of ${language.englishName} cannot be null.`,)
+        return EmptyLanguageContainer.get
     }
-    return value
+    originalLanguages.push(language,)
+    return new LanguageContainer<string, string, never>(value,)
 }
 
-function getFromIncompleteLanguageFrom3Values(language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>, isACompleteName: IsACompleteNameCallback,): NullOr<| string | readonly [string, string,]> {
+function getFromIncompleteLanguageFrom3Values(originalLanguages: EveryLanguages[], language: EveryLanguages, value1: NullOr<string>, value2: NullOr<string>, value3: NullOr<string>, isACompleteName: IsACompleteNameCallback,): EmptyableLanguage<string, string, readonly [string, string,]> {
     if (value1 == null) {
         if (value2 == null) {
             if (value3 == null) {
                 if (isACompleteName(language,))
-                    throw new TypeError(`All 3 values of ${language.englishName} cannot be null`,)
-                return null
+                    throw new TypeError(`All 3 values of ${language.englishName} cannot be null.`,)
+                return EmptyLanguageContainer.get
             }
-            throw new TypeError(`The second value of ${language.englishName} cannot be null`,)
+            throw new TypeError(`The second value of ${language.englishName} cannot be null.`,)
         }
         if (value3 == null)
             throw new TypeError(`The third value of ${language.englishName} cannot be null.`,)
-        return [value2, value3,]
+        originalLanguages.push(...language.children,)
+        return new LanguageContainer<string, string, readonly [string, string,]>([value2, value3,],)
     }
-    return value1
+    originalLanguages.push(language,)
+    return new LanguageContainer<string, string, readonly [string, string,]>(value1,)
 }
 
 
-function getFromOptionalLanguage(value: Nullable<string>,): NullOr<string> {
+function getFromOptionalLanguage(originalLanguages: EveryLanguages[], language: EveryLanguages, value: Nullable<string>,): EmptyableOptionalLanguage<string, string, never> {
     if (value == null)
-        return null
-    return value
+        return EmptyLanguageContainer.get
+    originalLanguages.push(language,)
+    return new OptionalLanguageContainer<string, string, never>(value,)
 }

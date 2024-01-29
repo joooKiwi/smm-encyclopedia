@@ -1,111 +1,76 @@
+import type {EveryLanguages}                                                                                                                                    from 'lang/EveryLanguages'
 import type {Name}                                                                                                                                              from 'lang/name/Name'
 import type {EmptyableOptionalLanguage}                                                                                                                         from 'lang/name/containers/EmptyableOptionalLanguage'
 import type {EmptyableLanguage}                                                                                                                                 from 'lang/name/containers/EmptyableLanguage'
 import type {AmericanOrEuropeanArray, AmericanOrEuropeanOriginal, CanadianOrEuropeanArray, CanadianOrEuropeanOriginal, ChineseArray, ChineseOriginal, Language} from 'lang/name/containers/Language'
-import type {OptionalLanguage}                                                                                                                                  from 'lang/name/containers/OptionalLanguage'
 
-import {EveryLanguages}                   from 'lang/EveryLanguages'
-import {ProjectLanguages}                 from 'lang/ProjectLanguages'
-import {EmptyLanguageContainer}           from 'lang/name/containers/EmptyLanguage.container'
-import {newLanguage, newOptionalLanguage} from 'lang/name/containers/Language.provider'
-import {assert}                           from 'util/utilitiesMethods'
-
-//region -------------------- Import from deconstruction --------------------
-
-const {ENGLISH, FRENCH, GERMAN, SPANISH, ITALIAN, DUTCH, PORTUGUESE, RUSSIAN, JAPANESE, CHINESE, KOREAN, HEBREW, POLISH, UKRAINIAN, GREEK,} = EveryLanguages
-
-//endregion -------------------- Import from deconstruction --------------------
+import {ProjectLanguages} from 'lang/ProjectLanguages'
 
 export class NameContainer<const out T, >
     implements Name<T> {
 
     //region -------------------- Fields --------------------
 
-    static readonly #OPTIONAL_LANGUAGES = [HEBREW, POLISH, UKRAINIAN, GREEK,] as const
-
-    readonly #originalLanguages: readonly EveryLanguages[]
+    readonly #originalLanguages
     #map?: Map<EveryLanguages, T>
 
-    readonly #englishContainer: Language<T, T, AmericanOrEuropeanArray<T>>
-    readonly #frenchContainer: Language<T, T, CanadianOrEuropeanArray<T>>
-    readonly #germanContainer: EmptyableLanguage<T, T, never>
-    readonly #spanishContainer: EmptyableLanguage<T, T, AmericanOrEuropeanArray<T>>
-    readonly #italianContainer: EmptyableLanguage<T, T, never>
-    readonly #dutchContainer: EmptyableLanguage<T, T, never>
-    readonly #portugueseContainer: EmptyableLanguage<T, T, AmericanOrEuropeanArray<T>>
-    readonly #russianContainer: EmptyableLanguage<T, T, never>
-    readonly #japaneseContainer: EmptyableLanguage<T, T, never>
-    readonly #chineseContainer: EmptyableLanguage<T, T, ChineseArray<T>>
-    readonly #koreanContainer: EmptyableLanguage<T, T, never>
-    readonly #hebrewContainer: EmptyableOptionalLanguage<T, T, never>
-    readonly #polishContainer: EmptyableOptionalLanguage<T, T, never>
-    readonly #ukrainianContainer: EmptyableOptionalLanguage<T, T, never>
-    readonly #greekContainer: EmptyableOptionalLanguage<T, T, never>
+    readonly #englishContainer
+    readonly #frenchContainer
+    readonly #germanContainer
+    readonly #spanishContainer
+    readonly #italianContainer
+    readonly #dutchContainer
+    readonly #portugueseContainer
+    readonly #russianContainer
+    readonly #japaneseContainer
+    readonly #chineseContainer
+    readonly #koreanContainer
+    readonly #hebrewContainer
+    readonly #polishContainer
+    readonly #ukrainianContainer
+    readonly #greekContainer
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    public constructor(english: AmericanOrEuropeanOriginal<T>,
-                       french: CanadianOrEuropeanOriginal<T>,
-                       german: NullOr<T>,
-                       spanish: NullOr<AmericanOrEuropeanOriginal<T>>,
-                       italian: NullOr<T>,
-                       dutch: NullOr<T>,
-                       portuguese: NullOr<AmericanOrEuropeanOriginal<T>>,
-                       russian: NullOr<T>,
-                       japanese: NullOr<T>,
-                       chinese: NullOr<ChineseOriginal<T>>,
-                       korean: NullOr<T>,
-                       hebrew: NullOr<T>,
-                       polish: NullOr<T>,
-                       ukrainian: NullOr<T>,
-                       greek: NullOr<T>,) {
-        const originalLanguages: EveryLanguages[] = []
-
-        this.#englishContainer = NameContainer.#newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(ENGLISH, originalLanguages, english,)
-        this.#frenchContainer = NameContainer.#newLanguageContainer<T, T, CanadianOrEuropeanArray<T>>(FRENCH, originalLanguages, french,)
-        this.#germanContainer = NameContainer.#newLanguageContainer<T, T>(GERMAN, originalLanguages, german,)
-        this.#spanishContainer = NameContainer.#newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(SPANISH, originalLanguages, spanish,)
-        this.#italianContainer = NameContainer.#newLanguageContainer<T, T>(ITALIAN, originalLanguages, italian,)
-        this.#dutchContainer = NameContainer.#newLanguageContainer<T, T>(DUTCH, originalLanguages, dutch,)
-        this.#portugueseContainer = NameContainer.#newLanguageContainer<T, T, AmericanOrEuropeanArray<T>>(PORTUGUESE, originalLanguages, portuguese,)
-        this.#russianContainer = NameContainer.#newLanguageContainer<T, T>(RUSSIAN, originalLanguages, russian,)
-        this.#japaneseContainer = NameContainer.#newLanguageContainer<T, T>(JAPANESE, originalLanguages, japanese,)
-        this.#chineseContainer = NameContainer.#newLanguageContainer<T, T, ChineseArray<T>>(CHINESE, originalLanguages, chinese,)
-        this.#koreanContainer = NameContainer.#newLanguageContainer<T, T>(KOREAN, originalLanguages, korean,)
-        this.#hebrewContainer = NameContainer.#newLanguageContainer<T, T>(HEBREW, originalLanguages, hebrew,)
-        this.#polishContainer = NameContainer.#newLanguageContainer<T, T>(POLISH, originalLanguages, polish,)
-        this.#ukrainianContainer = NameContainer.#newLanguageContainer<T, T>(UKRAINIAN, originalLanguages, ukrainian,)
-        this.#greekContainer = NameContainer.#newLanguageContainer<T, T>(GREEK, originalLanguages, greek,)
-
+    public constructor(originalLanguages: readonly EveryLanguages[],
+                       english: Language<T, T, AmericanOrEuropeanArray<T>>,
+                       french: Language<T, T, CanadianOrEuropeanArray<T>>,
+                       german: EmptyableLanguage<T, T, never>,
+                       spanish: EmptyableLanguage<T, T, AmericanOrEuropeanArray<T>>,
+                       italian: EmptyableLanguage<T, T, never>,
+                       dutch: EmptyableLanguage<T, T, never>,
+                       portuguese: EmptyableLanguage<T, T, AmericanOrEuropeanArray<T>>,
+                       russian: EmptyableLanguage<T, T, never>,
+                       japanese: EmptyableLanguage<T, T, never>,
+                       chinese: EmptyableLanguage<T, T, ChineseArray<T>>,
+                       korean: EmptyableLanguage<T, T, never>,
+                       hebrew: EmptyableOptionalLanguage<T, T, never>,
+                       polish: EmptyableOptionalLanguage<T, T, never>,
+                       ukrainian: EmptyableOptionalLanguage<T, T, never>,
+                       greek: EmptyableOptionalLanguage<T, T, never>,) {
         this.#originalLanguages = originalLanguages
+        this.#englishContainer = english
+        this.#frenchContainer = french
+        this.#germanContainer = german
+        this.#spanishContainer = spanish
+        this.#italianContainer = italian
+        this.#dutchContainer = dutch
+        this.#portugueseContainer = portuguese
+        this.#russianContainer = russian
+        this.#japaneseContainer = japanese
+        this.#chineseContainer = chinese
+        this.#koreanContainer = korean
+        this.#hebrewContainer = hebrew
+        this.#polishContainer = polish
+        this.#ukrainianContainer = ukrainian
+        this.#greekContainer = greek
     }
 
+    //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
     //region -------------------- Name properties --------------------
-
-    /**
-     * The optional languages on the {@link Name} used in the project:
-     * <ol>
-     *  <li>{@link EveryLanguages.HEBREW}</li>
-     *  <li>{@link EveryLanguages.POLISH}</li>
-     *  <li>{@link EveryLanguages.UKRAINIAN}</li>
-     *  <li>{@link EveryLanguages.GREEK}</li>
-     * </ol>
-     *
-     * @see ProjectLanguages.isInEverySuperMarioMakerGame
-     */
-    public static get optionalLanguages(): readonly [EveryLanguages, EveryLanguages, EveryLanguages, EveryLanguages,] {
-        return this._optionalLanguages
-    }
-
-    /**
-     * The options languages on the {@link NameContainer},
-     * but as the type used by the private static fields.
-     */
-    protected static get _optionalLanguages(): OptionalLanguagesArray {
-        return this.#OPTIONAL_LANGUAGES
-    }
 
     public get languageValue(): T {
         return ProjectLanguages.current.get<T>(this)
@@ -308,49 +273,4 @@ export class NameContainer<const out T, >
 
     //endregion -------------------- Convertor methods --------------------
 
-    static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: S,): EmptyableOptionalLanguage<T, S, never>
-    static #newLanguageContainer<T, S extends T, >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: Nullable<S>,): OptionalLanguage<T, S, never>
-    static #newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S,): EmptyableLanguage<T, S, never>
-    static #newLanguageContainer<T, S extends T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<S>,): Language<T, S, never>
-    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: | S | A,): OptionalLanguage<T, S, A>
-    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: OptionalLanguages, originalLanguages: EveryLanguages[], value: Nullable<| S | A>,): EmptyableOptionalLanguage<T, S, A>
-    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<| S | A>,): Language<T, S, A>
-    static #newLanguageContainer<T, S extends T, A extends readonly T[], >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: | S | A,): EmptyableLanguage<T, S, A>
-    static #newLanguageContainer<T, >(language: EveryLanguages, originalLanguages: EveryLanguages[], value: Nullable<| T | readonly T[]>,) {
-        if (value == null) {
-            assert(!language.isACompleteLanguage, `The language "${language.englishName}" cannot be null if it is a complete language.`,)
-            return EmptyLanguageContainer.get
-        }
-
-        const languageContainer = this.optionalLanguages.includes(language) ? newOptionalLanguage(value,) : newLanguage(value,)
-        const isValueArray = value instanceof Array
-
-        switch (language) {
-            case ENGLISH:
-            case FRENCH:
-            case SPANISH:
-            case CHINESE:
-            case PORTUGUESE:
-                if (isValueArray)
-                    originalLanguages.push(...language.children)
-                else
-                    originalLanguages.push(language)
-                break
-            case HEBREW:
-            case POLISH:
-            case UKRAINIAN:
-            case GREEK:
-                if ((languageContainer as OptionalLanguage<T>).isUsed)
-                    originalLanguages.push(language)
-                break
-            default:
-                originalLanguages.push(language)
-        }
-
-        return languageContainer
-    }
-
 }
-
-type OptionalLanguages = typeof NameContainer['optionalLanguages'][number]
-type OptionalLanguagesArray = readonly [typeof EveryLanguages['HEBREW'], typeof EveryLanguages['POLISH'], typeof EveryLanguages['UKRAINIAN'], typeof EveryLanguages['GREEK'],]
