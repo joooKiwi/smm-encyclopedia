@@ -43,7 +43,6 @@ export default class OfficialCourseApp
         return gameContentTranslation('official course.all', {
             singularName: COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,).toLowerCase(),
             pluralName: COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase(),
-            MysteryMushroomIcon: <i className="mystery-mushroom-image"/>,
         },)
     }
 
@@ -125,7 +124,6 @@ export default class OfficialCourseApp
             public readonly tableCaption = gameContentTranslation('official course.all', {
                 singularName: COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName,).toLowerCase(),
                 pluralName: COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName,).toLowerCase(),
-                MysteryMushroomIcon: <i className="mystery-mushroom-image"/>,
             },) satisfies ReactElementOrString
 
             public get tableOptions(): readonly OfficialCourseAppOption[] {
