@@ -3,7 +3,7 @@ import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 import type {LanguageContent}                                                                                                                                                                                                    from 'core/_template/LanguageContent'
 import type {UniqueNameContent}                                                                                                                                                                                                  from 'core/_template/UniqueNameContent'
 import type {PossibleAcronym as PossibleAcronym_GameReference}                                                                                                                                                                   from 'core/gameReference/GameReferences.types'
-import type {PokemonGeneration}                                                                                                                                                                                                  from 'core/mysteryMushroom/loader.types'
+import type {PokemonGeneration, PossibleFirstAppearance}                                                                                                                                                                         from 'core/mysteryMushroom/loader.types'
 import type {MysteryMushroom, MysteryMushroomGames}                                                                                                                                                                              from 'core/mysteryMushroom/MysteryMushroom'
 import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {PossibleConditionToUnlockIt}                                                                                                                                                                                        from 'core/mysteryMushroom/properties/UnlockProperty'
@@ -16,7 +16,6 @@ import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}           
 import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
 import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
 import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
-import type {PossibleName_SMM1 as PossibleVersionNameInSMM}                                                                                                                                                                      from 'core/version/Versions.types'
 import type {Loader}                                                                                                                                                                                                             from 'util/loader/Loader'
 
 import {isInProduction}                       from 'variables'
@@ -87,7 +86,7 @@ interface Content
     readonly conditionToUnlockIt: PossibleConditionToUnlockIt
     readonly canBeUnlockedByAnAmiibo: boolean
 
-    readonly firstAppearanceInMarioMaker: PossibleVersionNameInSMM
+    readonly firstAppearanceInMarioMaker: PossibleFirstAppearance
 
     readonly reference: | PossibleAcronym_GameReference | PokemonGeneration
 

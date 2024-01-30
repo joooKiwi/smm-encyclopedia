@@ -14,7 +14,7 @@ import {UNKNOWN_REFERENCE}                          from 'util/commonVariables'
 describe('Mystery Mushroom (file test)', () => {
     const types = EveryTypes.get
     const everyConditionToUnlock = types.everyPossibleConditionToUnlockIt_mysteryMushroom
-    const everyVersion = types.everyPossibleName_version_smm
+    const everyVersionOrDate = [...types.everyPossibleName_version_smm, ...types.everyPossibleReleaseDate_officialCourse,]                                                                       as const
     const everyGameReferenceAcronymWithPokemon = [...types.everyPossibleAcronym_gameReference, ...types.everyPossiblePokemonGeneration_gameReference,]                                           as const
     const everyGameReferenceAcronymWithPokemonAndNullAndUnknown = [null, UNKNOWN_REFERENCE, ...types.everyPossibleAcronym_gameReference, ...types.everyPossiblePokemonGeneration_gameReference,] as const
     const everyGameReferenceAcronymsWithNull = [null, ...types.everyPossibleAcronym_gameReference,]                                                                                              as const
@@ -38,7 +38,10 @@ describe('Mystery Mushroom (file test)', () => {
         describe('Type validation', () => {
             test('Condition to unlock it', () => expect(it.conditionToUnlockIt,).toBeOneOf(everyConditionToUnlock,),)
             test('Can be unlocked by an Amiibo', () => expect(it.canBeUnlockedByAnAmiibo,).toBeBoolean(),)
-            test.skip('First appearance', () => expect(it.firstAppearanceInMarioMaker,).toBeOneOf(everyVersion,),)//TODO add the first appearance for each mystery mushroom
+            if (it.firstAppearanceInMarioMaker == null) //TODO make the test work for a non-null value instead of ignoring it
+                test.skip('First appearance (skipped)',() => { throw new Error('This test should not work in normal circumstance!',) },)
+            else
+                test('First appearance', () => expect(it.firstAppearanceInMarioMaker,).toBeOneOf(everyVersionOrDate,),)
             test('Reference', () => expect(it.reference).toBeOneOf(everyGameReferenceAcronymWithPokemon,),)
 
             test('Unique name', () => expect(it.uniqueName).toBeOneOf(everyNames,),)
