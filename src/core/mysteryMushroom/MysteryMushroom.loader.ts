@@ -16,6 +16,7 @@ import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}           
 import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
 import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
 import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
+import type {CompanionEnumByAcronymOrName}                                                                                                                                                                                       from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
 import type {Loader}                                                                                                                                                                                                             from 'util/loader/Loader'
 
 import {isInProduction}                       from 'variables'
@@ -60,11 +61,13 @@ export class MysteryMushroomLoader
         if (this.#map != null)
             return this.#map
 
+        const GameReferenceCompanion = GameReferences.CompanionEnum.get
+
         const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
         let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            references.set(content.uniqueName, createReference(content,),)
+            references.set(content.uniqueName, createReference(content,GameReferenceCompanion,),)
         }
 
         if (!isInProduction)
@@ -121,10 +124,13 @@ interface Content
 
 }
 
-function createReference(content: Content,): MysteryMushroom {
+/** A type-alias for the {@link GameReferences.CompanionEnum} */
+type GameReferenceCompanion = CompanionEnumByAcronymOrName<GameReferences, typeof GameReferences>
+
+function createReference(content: Content, gameReferenceCompanion: GameReferenceCompanion,): MysteryMushroom {
     return new MysteryMushroomContainer(
         createNameFromContent(content, 1, true,),
-        retrieveGames(content.reference,),
+        retrieveGames(content.reference, gameReferenceCompanion,),
         new MysteryMushroomPropertyContainer(
             UnlockPropertyProvider.get.get(content.conditionToUnlockIt, content.canBeUnlockedByAnAmiibo,),
             new SoundPropertyContainer(
@@ -142,7 +148,7 @@ function createReference(content: Content,): MysteryMushroom {
     )
 }
 
-function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneration,): MysteryMushroomGames {
+function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneration,gameReferenceCompanion: GameReferenceCompanion,): MysteryMushroomGames {
     switch (value) {
         case 'Pokémon gen 1':
             return [GameReferences.POKEMON_RED, GameReferences.POKEMON_GREEN, GameReferences.POKEMON_BLUE, GameReferences.POKEMON_YELLOW,]
@@ -151,6 +157,6 @@ function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneratio
         case 'Pokémon gen 6':
             return [GameReferences.POKEMON_X, GameReferences.POKEMON_Y,]
         default:
-            return [GameReferences.CompanionEnum.get.getValueByAcronym(value,),]
+            return [gameReferenceCompanion.getValueByAcronym(value,),]
     }
 }
