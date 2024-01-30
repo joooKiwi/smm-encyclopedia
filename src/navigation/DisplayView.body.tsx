@@ -101,6 +101,11 @@ export default function DisplayViewBody() {
                                         tooltipValue={gameContentTranslation('medal.display all',)}
                                         elementId="displayView-medal-button"/>
             </div> : null}
+            {isSMM1Selected ? <div key="button group (official course)" id="officialCourse-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everyOfficialCourse" value={gameContentTranslation('official course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('official course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
+                                        elementId="displayView-officialCourse-button" />
+            </div> : null}
         </div> : null}
         <div id="display-sound-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Sound</UnfinishedText></h3>
