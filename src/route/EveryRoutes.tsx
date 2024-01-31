@@ -225,7 +225,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays} and {@link GameCollection}) */
-    private static readonly EveryPath_EveryRoutes = class EveryPath_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_AnyGame_EveryRoutes = class ListCardTable_AnyGame_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
@@ -269,7 +269,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance with everything in its route ({@link ViewDisplays}, {@link GameCollection} and {@link GameStyleCollection}) */
-    private static readonly EveryPath_EveryRoutesWithGameStyle = class EveryPath_EveryRoutesWithGameStyle<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_AnyGame_AnyGameStyle_EveryRoutes = class ListCardTable_AnyGames_AnyGameStyle_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, ALL_GAME_STYLES_COLLECTION, ALL_GAME_STYLES, routeCallback,)
@@ -344,7 +344,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
-    private static readonly AnyViewDisplayOnlyInSMM1_EveryRoutes = class AnyViewDisplayOnlyInSMM1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_Smm1_EveryRoutes = class ListCardTable_Smm1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM1_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
@@ -381,7 +381,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance as any possible {@link ViewDisplays} in its route only in {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
-    private static readonly AnyViewDisplayOnlyInSMM2_EveryRoutes = class AnyViewDisplayOnlyInSMM2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCardTable_Smm2_EveryRoutes = class ListCardTable_Smm2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, ALL_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.TABLE, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
@@ -418,7 +418,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance as only not the {@link ViewDisplays.TABLE} in its route in any {@link Games} */
-    private static readonly AnyListViewDisplayInAnyGame_EveryRoutes = class AnyListViewDisplay_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCard_AnyGame_EveryRoutes = class ListCard_AnyGame_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, ALL_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
@@ -473,7 +473,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance as only not the {@link ViewDisplays.TABLE} in its route only in {@link Games.SUPER_MARIO_MAKER_1 SMM1} */
-    private static readonly AnyListViewDisplayOnlyInSMM1_EveryRoutes = class AnyListViewDisplayOnlyInSMM1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCard_Smm1_EveryRoutes = class ListCard_Smm1_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, SMM1_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_1, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
@@ -511,7 +511,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance as only not the {@link ViewDisplays.TABLE} in its route only in {@link Games.SUPER_MARIO_MAKER_2 SMM2} */
-    private static readonly AnyListViewDisplayOnlyInSMM2_EveryRoutes = class AnyListViewDisplayOnlyInSMM2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly ListCard_Smm2_EveryRoutes = class ListCard_Smm2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, defaultViewDisplay: NullOr<ViewDisplays>, routeCallback: RouteCallback,) {
             super(name, path, NOT_TABLE_VIEW_DISPLAY, defaultViewDisplay ?? ViewDisplays.CARD_LIST, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
@@ -549,7 +549,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
     }
     /** A representation of an {@link EveryRoutes} instance as only the {@link ViewDisplays.SIMPLE_LIST} in its route */
-    private static readonly OnlySimpleViewDisplayOnlyInSMM2_EveryRoutes = class OnlySimpleViewDisplayOnlyInSMM2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
+    private static readonly List_Smm2_EveryRoutes = class List_Smm2_EveryRoutes<const out SIMPLE_NAME extends string, const out SIMPLE_PATH extends string, > extends EveryRoutes<SIMPLE_NAME, SIMPLE_PATH> {
 
         constructor(name: SIMPLE_NAME, path: SIMPLE_PATH, routeCallback: RouteCallback,) {
             super(name, path, SIMPLE_LIST_VIEW_DISPLAY, ViewDisplays.SIMPLE_LIST, SMM2_GAMES_COLLECTION, Games.SUPER_MARIO_MAKER_2, NO_GAME_STYLES_COLLECTION, null, routeCallback,)
@@ -590,46 +590,46 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_HAT_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('everyHatPriority', '/every/hat/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.HAT}/>,)
     public static readonly NO_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('noPriority', '/no/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.NONE}/>,)
 
-    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.AnyListViewDisplayInAnyGame_EveryRoutes('everyCharacterName', '/every/character-name', null, (viewDisplay, games,) => <CharacterNameApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_CHARACTER_NAME = new EveryRoutes.ListCard_AnyGame_EveryRoutes('everyCharacterName', '/every/character-name', null, (viewDisplay, games,) => <CharacterNameApp viewDisplay={viewDisplay} games={games}/>,)
 
     public static readonly EVERY_GAME_REFERENCE = new EveryRoutes.AnyGame_EveryRoutes('everyGameReference', '/every/game-reference', () => <GameReferenceApp/>,)
-    public static readonly EVERY_GAME_STYLE = new EveryRoutes.EveryPath_EveryRoutes('everyGameStyle', '/every/game-style', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_GAME_STYLE = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyGameStyle', '/every/game-style', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <GameStyleApp viewDisplay={viewDisplay} games={games}/>,)
 
-    public static readonly EVERY_ENTITY = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
-    public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everyEntityCategory', '/every/entity-category', null, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_ENTITY = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everyEntity', '/every/entity', null, (viewDisplay, games, gameStyles,) => <EntityApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
+    public static readonly EVERY_ENTITY_CATEGORY = new EveryRoutes.ListCard_Smm2_EveryRoutes('everyEntityCategory', '/every/entity-category', null, viewDisplay => <EntityCategoryApp viewDisplay={viewDisplay}/>,)
     public static readonly EVERY_GROUP = new EveryRoutes.Straight_EveryRoutes('everyGroup', '/every/entity-group', () => <EntityGroupApp/>)
 
-    public static readonly EVERY_LIMIT = new EveryRoutes.EveryPath_EveryRoutes('everyLimit', '/every/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.ALL}/>,)
-    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.EveryPath_EveryRoutes('playLimit', '/play/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.PLAY}/>,)
-    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.EveryPath_EveryRoutes('editorLimit', '/editor/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.EDITOR}/>,)
+    public static readonly EVERY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyLimit', '/every/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.ALL}/>,)
+    public static readonly EVERY_PLAY_LIMIT = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('playLimit', '/play/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.PLAY}/>,)
+    public static readonly EVERY_EDITOR_LIMIT = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('editorLimit', '/editor/limit', null, (viewDisplay, games,) => <LimitApp viewDisplay={viewDisplay} games={games} type={LimitTypes.EDITOR}/>,)
 
-    public static readonly EVERY_THEME = new EveryRoutes.EveryPath_EveryRoutes('everyTheme', '/every/theme', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.ALL}/>,)
-    public static readonly EVERY_COURSE_THEME = new EveryRoutes.EveryPath_EveryRoutes('courseTheme', '/course/theme', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.COURSE}/>,)
-    public static readonly EVERY_WORLD_THEME = new EveryRoutes.EveryPath_EveryRoutes('worldTheme', '/world/theme', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.WORLD}/>,)
+    public static readonly EVERY_THEME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyTheme', '/every/theme', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.ALL}/>,)
+    public static readonly EVERY_COURSE_THEME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('courseTheme', '/course/theme', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.COURSE}/>,)
+    public static readonly EVERY_WORLD_THEME = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('worldTheme', '/world/theme', ViewDisplays.CARD_LIST, (viewDisplay, games,) => <ThemeApp viewDisplay={viewDisplay} games={games} type={ThemeTypes.WORLD}/>,)
 
-    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.EveryPath_EveryRoutesWithGameStyle('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games, gameStyles,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
-    public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', null, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
+    public static readonly EVERY_SOUND_EFFECT = new EveryRoutes.ListCardTable_AnyGame_AnyGameStyle_EveryRoutes('everySoundEffect', '/every/sound-effect', null, (viewDisplay, games, gameStyles,) => <SoundEffectApp viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>,)
+    public static readonly EVERY_SOUND_EFFECT_CATEGORY = new EveryRoutes.ListCard_Smm2_EveryRoutes('everySoundEffectCategory', '/every/sound-effect-category', null, viewDisplay => <SoundEffectCategoryApp viewDisplay={viewDisplay}/>)
 
-    public static readonly EVERY_MII_COSTUME = new EveryRoutes.AnyViewDisplayOnlyInSMM2_EveryRoutes('everyMiiCostume', '/every/mii-costume', null, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
-    public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everyMiiCostumeCategory', '/every/mii-costume-category', null, viewDisplay => <MiiCostumeCategoryApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MII_COSTUME = new EveryRoutes.ListCardTable_Smm2_EveryRoutes('everyMiiCostume', '/every/mii-costume', null, viewDisplay => <MiiCostumeApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MII_COSTUME_CATEGORY = new EveryRoutes.ListCard_Smm2_EveryRoutes('everyMiiCostumeCategory', '/every/mii-costume-category', null, viewDisplay => <MiiCostumeCategoryApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.AnyViewDisplayOnlyInSMM1_EveryRoutes('everyMysteryMushroom', '/every/mystery-mushroom', ViewDisplays.CARD_LIST, viewDisplay => <MysteryMushroomApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MYSTERY_MUSHROOM = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everyMysteryMushroom', '/every/mystery-mushroom', ViewDisplays.CARD_LIST, viewDisplay => <MysteryMushroomApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.OnlySimpleViewDisplayOnlyInSMM2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_PREDEFINED_MESSAGE = new EveryRoutes.List_Smm2_EveryRoutes('everyPredefinedMessage', '/every/predefined-message', viewDisplay => <PredefinedMessageApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.AnyViewDisplayOnlyInSMM1_EveryRoutes('everySampleCourse', '/every/sample-course', null, viewDisplay => <SampleCourseApp viewDisplay={viewDisplay}/>,)
-    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.EveryPath_EveryRoutes('everyOfficialCourse', '/every/official-course', null, viewDisplay => <OfficialCourseApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_SAMPLE_COURSE = new EveryRoutes.ListCardTable_Smm1_EveryRoutes('everySampleCourse', '/every/sample-course', null, viewDisplay => <SampleCourseApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE = new EveryRoutes.ListCardTable_AnyGame_EveryRoutes('everyOfficialCourse', '/every/official-course', null, viewDisplay => <OfficialCourseApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_MEDAL = new EveryRoutes.AnyListViewDisplayOnlyInSMM1_EveryRoutes('everyMedal', '/every/medal', null, viewDisplay => <MedalApp viewDisplay={viewDisplay}/>,)
+    public static readonly EVERY_MEDAL = new EveryRoutes.ListCard_Smm1_EveryRoutes('everyMedal', '/every/medal', null, viewDisplay => <MedalApp viewDisplay={viewDisplay}/>,)
 
-    public static readonly EVERY_COURSE_TAG = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('everyCourseTag', '/every/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.ALL}/>,)
-    public static readonly EVERY_OFFICIAL_COURSE_TAG = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('officialCourseTag', '/official/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.OFFICIAL}/>,)
-    public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
-    public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.AnyListViewDisplayOnlyInSMM2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
+    public static readonly EVERY_COURSE_TAG = new EveryRoutes.ListCard_Smm2_EveryRoutes('everyCourseTag', '/every/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.ALL}/>,)
+    public static readonly EVERY_OFFICIAL_COURSE_TAG = new EveryRoutes.ListCard_Smm2_EveryRoutes('officialCourseTag', '/official/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.OFFICIAL}/>,)
+    public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.ListCard_Smm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
+    public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.ListCard_Smm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
 
-    public static readonly EVERY_INSTRUMENT = new EveryRoutes.AnyListViewDisplayInAnyGame_EveryRoutes('everyInstrument', '/every/instrument', null, viewDisplay => <InstrumentApp viewDisplay={viewDisplay}/>,)//TODO add the games on the InstrumentApp
+    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCard_AnyGame_EveryRoutes('everyInstrument', '/every/instrument', null, viewDisplay => <InstrumentApp viewDisplay={viewDisplay}/>,)//TODO add the games on the InstrumentApp
 
-    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.AnyListViewDisplayInAnyGame_EveryRoutes('everyEditorVoice', '/every/editor-voice', null, (viewDisplay, games,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games}/>,)
+    public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.ListCard_AnyGame_EveryRoutes('everyEditorVoice', '/every/editor-voice', null, (viewDisplay, games,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games}/>,)
 
     public static readonly EVERY_ROUTE = new EveryRoutes.Straight_EveryRoutes('everyRoute', '/debug/every-route', () => <RouteApp/>,)
 
