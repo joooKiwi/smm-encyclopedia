@@ -318,8 +318,8 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
     if (isInSMM1 && !isInSMM3DS && !isInSMM2)
         return new ExclusiveSMM1EntityContainer(
             createNameFromContent(content, 1, false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
+            getEntityCategoryInSmm1(content.categoryInTheEditor,),
+            createPropertyInSmm1(content,),
             createReferences(content, referenceLinks,),
         )
     if (!isInSMM1 && !isInSMM3DS && isInSMM2) {
@@ -387,6 +387,20 @@ function getEntityCategory(value: NullOr<PossibleEnglishName_Category>,): Entity
         return EmptyEntityCategory.get
     return EntityCategoryLoader.get.load().get(value,)!
 }
+
+/**
+ * Get the @link EmptyEntityCategory empty category} reference from the {@link EntityTemplate template}
+ * associated to the {@link Games.SUPER_MARIO_MAKER_1 SMM1 game}
+ */
+function getEntityCategoryInSmm1(value: NullOr<PossibleEnglishName_Category>,): EmptyEntityCategory {
+    if (isInProduction)
+        return EmptyEntityCategory.get
+
+    if (value == null)
+        return EmptyEntityCategory.get
+    throw new TypeError('An exclusive SMM1 entity should not have any cateogry.',)
+}
+
 
 function getLimitProperty(value: Nullable<| PossibleEnglishName_Limit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<Limits, false, null> | NotApplicableProperty | UnknownProperty {
     if (value == null)
@@ -476,6 +490,102 @@ function createProperty(content: Content,): Property {
         getOrCreateInstrumentProperty(content,),
     )
 }
+
+/**
+ * Create the {@link Property property} from the {@link content}
+ * with the games, game style, theme, time & limit
+ * applicable to only the {@link Games.SUPER_MARIO_MAKER_1 SMM1 game}
+ */
+function createPropertyInSmm1(content: Content,): Property {
+    if (!isInProduction) {
+        if (!content.isInSuperMarioMaker1)
+            throw new TypeError('An exclusive SMM1 entity should always have the "isInSuperMarioMaker1" set to true.',)
+        if (content.isInSuperMarioMakerFor3DS)
+            throw new TypeError('An exclusive SMM1 entity should always have the "isInSuperMarioMakerFor3DS" set to false.',)
+        if (content.isInSuperMarioMaker2)
+            throw new TypeError('An exclusive SMM1 entity should always have the "isInSuperMarioMaker2" set to false.',)
+
+        if (content.inSM3DWGameStyle != null)
+            throw new TypeError('An exclusive SMM1 entity should never have a SM3DW reference.',)
+
+        if (content.inGroundTheme == null)
+            throw new TypeError('An exclusive SMM1 entity should always have a ground reference.',)
+        if (content.inUndergroundTheme == null)
+            throw new TypeError('An exclusive SMM1 entity should always have an underground reference.',)
+        if (content.inUnderwaterTheme == null)
+            throw new TypeError('An exclusive SMM1 entity should always have an underwater reference.',)
+        if (content.inDesertTheme != null)
+            throw new TypeError('An exclusive SMM1 entity should never have a desert reference.',)
+        if (content.inSnowTheme != null)
+            throw new TypeError('An exclusive SMM1 entity should never have a snow reference.',)
+        if (content.inSkyTheme != null)
+            throw new TypeError('An exclusive SMM1 entity should never have a sky reference.',)
+        if (content.inForestTheme != null)
+            throw new TypeError('An exclusive SMM1 entity should never have a forest reference.',)
+        if (content.inGhostHouseTheme == null)
+            throw new TypeError('An exclusive SMM1 entity should always have a ghost house reference.',)
+        if (content.inAirshipTheme == null)
+            throw new TypeError('An exclusive SMM1 entity should always have an airship reference.',)
+        if (content.inCastleTheme == null)
+            throw new TypeError('An exclusive SMM1 entity should always have a castle reference.',)
+
+        if (content.inDayTheme == null)
+            throw new TypeError('An exclusive SMM1 entity should always have a day reference.',)
+        if (content.inNightTheme != null)
+            throw new TypeError('An exclusive SMM1 entity should never have a night reference.',)
+
+        if (content.editorLimit_SMM2 != null)
+            throw new TypeError('An exclusive SMM1 entity should never have a SMM2 editor limit.',)
+        if (content.whilePlaying_isInGEL != null)
+            throw new TypeError('No exclusive SMM1 entity have a general limit.',)
+        if (content.whilePlaying_isInGEL_isSuperGlobal != null)
+            throw new TypeError('No exclusive SMM1 entity have a global general limit.',)
+        if (content.whilePlaying_isInPL != null)
+            throw new TypeError('No exclusive SMM1 entity have a power-up limit.',)
+        if (content.whilePlaying_isInPJL != null)
+            throw new TypeError('No exclusive SMM1 entity have a projectile limit.',)
+        if (content.whilePlaying_isInObjectRenderedLimit != null)
+            throw new TypeError('No exclusive SMM1 entity have an object rendered limit.',)
+        if (content.whilePlaying_isInCollectedCoinLimit != null)
+            throw new TypeError('No exclusive SMM1 entity have an collected coin limit.',)
+        if (content.whilePlaying_otherLimit != null)
+            throw new TypeError('No exclusive SMM1 entity have an other limit.',)
+        if (content.whilePlaying_otherLimit_comment != null)
+            throw new TypeError('No exclusive SMM1 entity have an other limit comment.',)
+    }
+    const editorLimit_SMM1And3DS = content.editorLimit_SMM1And3DS
+
+    return new PropertyInstanceContainer(
+        GamePropertyProvider.get.get(true, false, false,),
+        GameStylePropertyProvider.get.get(
+            hasThisReferenced(content.inSMBGameStyle,),
+            hasThisReferenced(content.inSMB3GameStyle,),
+            hasThisReferenced(content.inSMWGameStyle,),
+            hasThisReferenced(content.inNSMBUGameStyle,),
+            null,
+        ),
+        ThemePropertyProvider.get.get(true, true, true, null, null, null, null, true, true, true,),
+        TimePropertyProvider.get.get(true, null,),
+        LimitPropertyProvider.get.get(
+            [[editorLimit_SMM1And3DS, null,], [null, null,], null, null, null, null, [null, null,],],
+            GameStructureProvider.get.get(
+                getLimitByNameOrAcronymOrNull(editorLimit_SMM1And3DS,),
+                PropertyContainer.NOT_APPLICABLE_CONTAINER,
+            ),
+            [
+                PropertyContainer.NOT_APPLICABLE_CONTAINER,
+                PropertyContainer.NOT_APPLICABLE_CONTAINER,
+            ],
+            PropertyContainer.NOT_APPLICABLE_CONTAINER,
+            PropertyContainer.NOT_APPLICABLE_CONTAINER,
+            PropertyContainer.NOT_APPLICABLE_CONTAINER,
+            PropertyContainer.NOT_APPLICABLE_CONTAINER,
+            PropertyContainer.NOT_APPLICABLE_CONTAINER,
+        ),
+        getOrCreateInstrumentProperty(content,),
+    )
+}
+
 
 /**
  * Get the {@link LimitProperty limit property} from the {@link content}
