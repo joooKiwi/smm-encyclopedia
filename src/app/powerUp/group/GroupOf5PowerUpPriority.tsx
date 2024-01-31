@@ -10,13 +10,13 @@ import {Arrows} from 'app/tools/arrow/Arrows'
 interface GroupOf5PowerUpPriorityProperties
     extends ReactProperties {
 
-    id: string
+    readonly id: string
 
-    children: readonly [ReactElement, ReactElement, ReactElement, ReactElement, ReactElement,]
+    readonly children: readonly [ReactElement, ReactElement, ReactElement, ReactElement, ReactElement,]
 
-    arrow?: GroupOf5PowerUpPriorityArrowProperties
+    readonly arrow?: GroupOf5PowerUpPriorityArrowProperties
 
-    hasSeparatedLines?: boolean
+    readonly hasSeparatedLines?: boolean
 
 }
 

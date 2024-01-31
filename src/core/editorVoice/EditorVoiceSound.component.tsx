@@ -8,9 +8,9 @@ import SimpleSoundComponent from 'util/file/sound/component/SimpleSound.componen
 interface EditorVoiceSoundComponentProperties
     extends ReactProperties {
 
-    editorVoiceSound: Nullable<EditorVoiceSound>
+    readonly editorVoiceSound: Nullable<EditorVoiceSound>
 
-    name: string
+    readonly name: string
 
 }
 

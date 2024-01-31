@@ -9,7 +9,7 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 interface InstrumentPropertyProperties
     extends ReactProperties {
 
-    value: Entities
+    readonly value: Entities
 
 }
 

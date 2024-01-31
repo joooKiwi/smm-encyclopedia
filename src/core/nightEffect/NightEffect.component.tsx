@@ -7,14 +7,14 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 interface NightEffectComponentProperties_GameStyle
     extends ReactProperties {
 
-    gameStyle: GameStyle
+    readonly gameStyle: GameStyle
 
 }
 
 interface NightEffectComponentProperties_Theme
     extends ReactProperties {
 
-    theme: CourseTheme
+    readonly theme: CourseTheme
 
 }
 

@@ -1,18 +1,16 @@
 import type {ImagesCallbackByPriority, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {GameStyles}                                from 'core/gameStyle/GameStyles'
-import type {ReactProperties}                           from 'util/react/ReactProperties'
+import type {SimpleReactPropertiesWithChildren}         from 'util/react/ReactProperties'
 
 import GroupOf3PowerUpPriority  from 'app/powerUp/group/GroupOf3PowerUpPriority'
 import PowerUpPriorityComponent from 'app/powerUp/priority/PowerUpPriority.component'
 
 interface MountableObjectPriorityProperties<T extends PowerUpPriority, >
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<readonly [lakituCloud: T, clownCar: T, fireClownCar: T,]> {
 
-    gameStyle: GameStyles
+    readonly gameStyle: GameStyles
 
-    images: ImagesCallbackByPriority<T>
-
-    children: readonly [lakituCloud: T, clownCar: T, fireClownCar: T,]
+    readonly images: ImagesCallbackByPriority<T>
 
 }
 

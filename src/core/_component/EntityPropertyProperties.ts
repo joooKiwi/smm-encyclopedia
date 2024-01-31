@@ -4,10 +4,10 @@ import {Name}            from 'lang/name/Name'
 export interface EntityPropertyProperties<R>
     extends ReactProperties {
 
-    reference: R
+    readonly reference: R
 
-    name: Name<string>
+    readonly name: Name<string>
 
-    displayAllAsText: boolean
+    readonly displayAllAsText: boolean
 
 }

@@ -6,17 +6,17 @@ import type {HTMLDivProperties}       from 'util/react/html/HTMLDivProperties'
 export interface AnimatedImagesProperties
     extends ReactProperties, Omit<HTMLDivProperties, | 'key' | 'id'> {
 
-    partialId: string
+    readonly partialId: string
 
     /**
      * Multiple images
      *
      * @note, the length of the array is required to be between 2 & 10 items
      */
-    images: readonly (| ImageProperties | ImageFromFileProperties)[]
+    readonly images: readonly (| ImageProperties | ImageFromFileProperties)[]
 
-    displayAnimations?: boolean
+    readonly displayAnimations?: boolean
 
-    displayEveryImages?: boolean
+    readonly displayEveryImages?: boolean
 
 }

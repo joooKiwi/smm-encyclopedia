@@ -9,11 +9,11 @@ import Arrow from 'app/tools/arrow/Arrow'
 interface GroupOf2PowerUpPriorityProperties
     extends ReactProperties {
 
-    id: string
+    readonly id: string
 
-    children: readonly [ReactElement, ReactElement,]
+    readonly children: readonly [ReactElement, ReactElement,]
 
-    arrow: Arrows
+    readonly arrow: Arrows
 
 }
 

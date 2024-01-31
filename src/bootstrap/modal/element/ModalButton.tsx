@@ -6,7 +6,7 @@ import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 interface ModalButtonProperties
     extends ReactProperties, Omit<HTMLButtonProperties, | 'type' | 'onClick'> {
 
-    elementToShow: string
+    readonly elementToShow: string
 
 }
 

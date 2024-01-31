@@ -9,27 +9,27 @@ import {Arrows} from 'app/tools/arrow/Arrows'
 interface GroupOf4PowerUpPriorityProperties
     extends ReactProperties {
 
-    id: string
+    readonly id: string
 
-    children: readonly [ReactElement, ReactElement, ReactElement, ReactElement,]
+    readonly children: readonly [ReactElement, ReactElement, ReactElement, ReactElement,]
 
-    topArrow?: Arrows
-    isTopArrowSeparated?: boolean
+    readonly topArrow?: Arrows
+    readonly isTopArrowSeparated?: boolean
 
-    leftArrow?: Arrows
-    isLeftArrowSeparated?: boolean
+    readonly leftArrow?: Arrows
+    readonly isLeftArrowSeparated?: boolean
 
-    firstDiagonalArrow?: Arrows
-    isFirstDiagonalArrowSeparated?: boolean
+    readonly firstDiagonalArrow?: Arrows
+    readonly isFirstDiagonalArrowSeparated?: boolean
 
-    secondDiagonalArrow?: Arrows
-    isSecondDiagonalArrowSeparated?: boolean
+    readonly secondDiagonalArrow?: Arrows
+    readonly isSecondDiagonalArrowSeparated?: boolean
 
-    rightArrow?: Arrows
-    isRightArrowSeparated?: boolean
+    readonly rightArrow?: Arrows
+    readonly isRightArrowSeparated?: boolean
 
-    bottomArrow?: Arrows
-    isBottomArrowSeparated?: boolean
+    readonly bottomArrow?: Arrows
+    readonly isBottomArrowSeparated?: boolean
 
 }
 

@@ -6,10 +6,10 @@ interface UnfinishedTextProperties
     extends ReactProperties {
 
     /** Tell if the text is hidden in production */
-    isHidden?: boolean
+    readonly isHidden?: boolean
 
     /** The type of text (by default it is a text)*/
-    type?: | 'paragraph' | 'text'
+    readonly type?: | 'paragraph' | 'text'
 
 }
 

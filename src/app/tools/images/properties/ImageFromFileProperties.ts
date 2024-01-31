@@ -5,6 +5,6 @@ import type {ImageFile}           from 'util/file/image/ImageFile'
 export interface ImageFromFileProperties
     extends ReactProperties, Omit<HTMLImageProperties, | 'src' | 'alt'> {
 
-    file: Nullable<ImageFile>
+    readonly file: Nullable<ImageFile>
 
 }

@@ -8,11 +8,11 @@ import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
 interface ModalHeaderProperties
     extends ReactProperties, HTMLDivProperties {
 
-    modalTitle: | string | ReactElement
+    readonly modalTitle: | string | ReactElement
 
-    titleProperties?: HTMLHeadingProperties
+    readonly titleProperties?: HTMLHeadingProperties
 
-    closeButtonProperties?: Omit<HTMLButtonProperties, | 'type' | 'data-bs-dismiss' | 'aria-label'>
+    readonly closeButtonProperties?: Omit<HTMLButtonProperties, | 'type' | 'data-bs-dismiss' | 'aria-label'>
 
 }
 

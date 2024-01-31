@@ -10,17 +10,17 @@ interface ModalContainerProperties
     extends ReactProperties, Omit<HTMLDivProperties, 'key'> {
 
     /** The reference to associate on the div having the {@link id} received */
-    modalReference: MutableRefObject<NullOr<HTMLDivElement>>
+    readonly modalReference: MutableRefObject<NullOr<HTMLDivElement>>
 
-    id: string
+    readonly id: string
 
-    verticallyCentered?: boolean
+    readonly verticallyCentered?: boolean
 
-    modalSize?: PossibleModalSize
+    readonly modalSize?: PossibleModalSize
 
-    modalDialogProperties?: Omit<HTMLDivProperties, 'key'>
+    readonly modalDialogProperties?: Omit<HTMLDivProperties, 'key'>
 
-    modalContentProperties?: HTMLDivProperties
+    readonly modalContentProperties?: HTMLDivProperties
 
 }
 

@@ -11,9 +11,9 @@ import {Arrows}                 from 'app/tools/arrow/Arrows'
 export interface SimplePowerUpPriorityProperties<T extends PowerUpPriority, >
     extends ReactProperties, SimplePowerUpPriorityBySingleGameStyleProperties<T> {
 
-    gameStyle: GameStyles
+    readonly gameStyle: GameStyles
 
-    images: ImagesCallbackByPriority<T>
+    readonly images: ImagesCallbackByPriority<T>
 
 }
 
