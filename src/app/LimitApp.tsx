@@ -69,15 +69,13 @@ class LimitAppInterpreter
     }
 
     public createCardListContent(enumeration: Limits,) {
-        return enumeration.isEditorLimit
-            ? <div className="card-bodyWithEditor-container">
+        if (enumeration.isEditorLimit)
+            return <div className="card-bodyWithEditor-container">
                 <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 bottom-0"/>
-                {this.#createBody(enumeration)}
+                <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
+                    {LimitAppOption.AMOUNT_IN_ALL_GAMES.renderContent(enumeration,)}
+                </div>
             </div>
-            : this.#createBody(enumeration)
-    }
-
-    #createBody(enumeration: Limits,) {
         return <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
             {LimitAppOption.AMOUNT_IN_ALL_GAMES.renderContent(enumeration,)}
         </div>
