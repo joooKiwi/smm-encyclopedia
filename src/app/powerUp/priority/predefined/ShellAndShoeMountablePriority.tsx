@@ -7,7 +7,7 @@ import GroupOf4PowerUpPriority  from 'app/powerUp/group/GroupOf4PowerUpPriority'
 import GroupOf5PowerUpPriority  from 'app/powerUp/group/GroupOf5PowerUpPriority'
 import PowerUpPriorityComponent from 'app/powerUp/priority/PowerUpPriority.component'
 
-type ShellAndShoeMountablePriority<T extends PowerUpPriority, > = readonly [
+type ShellAndShoeMountablePriorities<T extends PowerUpPriority, > = readonly [
     buzzyShell: T,
     spimnyShell: T,
 
@@ -16,7 +16,7 @@ type ShellAndShoeMountablePriority<T extends PowerUpPriority, > = readonly [
     stiletto: T,
 ]
 interface ShellAndShoeMountablePriorityProperties<T extends PowerUpPriority,>
-    extends SimpleReactPropertiesWithChildren<ShellAndShoeMountablePriority<T>> {
+    extends SimpleReactPropertiesWithChildren<ShellAndShoeMountablePriorities<T>> {
 
     readonly games: GameCollection
 

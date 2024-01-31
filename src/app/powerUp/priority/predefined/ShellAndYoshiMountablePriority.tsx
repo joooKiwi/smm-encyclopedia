@@ -7,7 +7,7 @@ import GroupOf4PowerUpPriority  from 'app/powerUp/group/GroupOf4PowerUpPriority'
 import GroupOf5PowerUpPriority  from 'app/powerUp/group/GroupOf5PowerUpPriority'
 import PowerUpPriorityComponent from 'app/powerUp/priority/PowerUpPriority.component'
 
-type ShellAndYoshiMountablePriority<T extends PowerUpPriority, > = readonly [
+type ShellAndYoshiMountablePriorities<T extends PowerUpPriority, > = readonly [
     buzzyShell: T,
     spinyShell: T,
 
@@ -16,7 +16,7 @@ type ShellAndYoshiMountablePriority<T extends PowerUpPriority, > = readonly [
     redYoshi: T,
 ]
 interface ShellAndYoshiMountablePriorityProperties<T extends PowerUpPriority, >
-    extends SimpleReactPropertiesWithChildren<ShellAndYoshiMountablePriority<T>> {
+    extends SimpleReactPropertiesWithChildren<ShellAndYoshiMountablePriorities<T>> {
 
     readonly games: GameCollection
 
