@@ -1,82 +1,83 @@
 import type {CharacterNameProperties}    from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
+import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {GameCollection}             from 'util/collection/GameCollection'
 
-import {AbstractCardListApp}     from 'app/withInterpreter/AbstractCardListApp'
+import SubMainContainer          from 'app/_SubMainContainer'
+import CardList                  from 'app/withInterpreter/CardList'
+import SimpleList                from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}          from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
-import {filterGame}              from 'util/utilitiesMethods'
+import {assert, filterGame}      from 'util/utilitiesMethods'
 
-export default class CharacterNameApp
-    extends AbstractCardListApp<CharacterNames, AppInterpreterWithCardList<CharacterNames>, CharacterNameProperties> {
+class CharacterNameAppInterpreter
+    implements AppInterpreterWithCardList<CharacterNames> {
 
-    //region -------------------- Create methods --------------------
+    //region -------------------- Fields --------------------
 
-    protected override _createKey() {
-        return 'characterName'
+    readonly #games
+
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(games: GameCollection,) {
+        this.#games = games
     }
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everyCharacterName (list)'
+    //endregion -------------------- Constructor --------------------
+
+    public get content() {
+        return filterGame(CharacterNames.CompanionEnum.get.values, this.#games,)
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everyCharacterName (card)'
+    //region -------------------- List interpreter --------------------
+
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 1,
+            small: 2,
+            medium: 4,
+            large: 6,
+        }
     }
 
-    protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('character name.all',)
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
+
+    public createCardListDimension() {
+        return this.createListDimension()
     }
 
-    protected override _createUniqueNameOnSimpleList(enumerable: CharacterNames,): string {
-        return enumerable.uniqueEnglishName
+    public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {
+        return <div className="card-body">
+            <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
+        </div>
     }
 
-    protected override _createUniqueNameOnCardList(enumerable: CharacterNames,): string {
-        return enumerable.uniqueEnglishName
-    }
+    //endregion -------------------- Card list interpreter --------------------
 
-    protected override _createAppOptionInterpreter() {
-        const $this = this
+}
 
-        return new class CharacterNameAppInterpreter implements AppInterpreterWithCardList<CharacterNames> {
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everyCharacterName (list)',],
+    [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = gameContentTranslation('character name.all',)
+const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
-            public get content() {
-                return filterGame(CharacterNames.CompanionEnum.get.values, $this.props.games,)
-            }
+/** @reactComponent */
+export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
+    assert(viewDisplay !== ViewDisplays.TABLE, 'The CharacterNameApp only handle the "simple list" or "card list" as a possible view display.',)
+    const appInterpreter = new CharacterNameAppInterpreter(games,)
 
-            //region -------------------- List interpreter --------------------
-
-            public createListDimension(): DimensionOnList {
-                return {
-                    default:1,
-                    small: 2,
-                    medium: 4,
-                    large: 6,
-                }
-            }
-
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent({uniqueEnglishName: name, editorVoiceSoundFileHolder,}: CharacterNames,) {
-                return <div className="card-body">
-                    <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
-                </div>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-
-        }()
-    }
-
-    //endregion -------------------- Create methods --------------------
-
-
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    </SubMainContainer>
 }

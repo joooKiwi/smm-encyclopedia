@@ -1,121 +1,111 @@
 import './MiiCostumeApp.scss'
 
-import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 
+import SubMainContainer         from 'app/_SubMainContainer'
 import {MiiCostumeAppOption}    from 'app/options/MiiCostumeAppOption'
 import Image                    from 'app/tools/images/Image'
+import Table                    from 'app/tools/table/Table'
 import TextComponent            from 'app/tools/text/TextComponent'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
-import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import CardList                 from 'app/withInterpreter/CardList'
+import SimpleList               from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {MiiCostumes}            from 'core/miiCostume/MiiCostumes'
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-//region -------------------- Import from deconstruction --------------------
+class MiiCostumeAppInterpreter
+    implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
 
-const {MII_COSTUME,} = OtherWordInTheGames
+    public get content() {
+        return MiiCostumes.CompanionEnum.get.values.toArray()
+    }
 
-//endregion -------------------- Import from deconstruction --------------------
+    //region -------------------- List interpreter --------------------
 
-export default class MiiCostumeApp
-    extends AbstractTableApp<MiiCostumes, AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption>> {
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 1,
+            small: 2,
+            medium: 3,
+            large: 4,
+            extraLarge: 5,
+            extraExtraLarge: 6,
+        }
+    }
 
-    //region -------------------- Create methods --------------------
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
 
-    protected override _createKey() {
-        return 'miiCostume'
+    public createCardListDimension() {
+        return this.createListDimension()
+    }
+
+    public createCardListContent({reference, imageFile,}: MiiCostumes,) {
+        const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
+        return <div className={category}>
+            <Image file={imageFile}/>
+        </div>
+    }
+
+    //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('mii costume.all', {
+        singularName: <TextComponent key="miiCostume-singularName" content={OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)} className="text-decoration-underline"/>,
+        pluralName: <TextComponent key="miiCostume-pluralName" content={OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)} className="text-decoration-underline"/>,
+    },) satisfies ReactElementOrString
+
+    public get tableOptions(): readonly MiiCostumeAppOption[] {
+        return [
+            MiiCostumeAppOption.IMAGE,
+            MiiCostumeAppOption.NAME,
+            MiiCostumeAppOption.OFFICIAL_NOTIFICATION,
+            MiiCostumeAppOption.CATEGORY,
+        ]
     }
 
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everyMiiCostume (list)'
+    public createTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
+        return option.renderContent(content,)
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everyMiiCostume (card)'
+    public createTableHeader(option: MiiCostumeAppOption,) {
+        return option.renderTableHeader()
     }
 
-    protected override _createTableRouteName(): PossibleRouteName {
-        return 'everyMiiCostume (table)'
-    }
+    //endregion -------------------- Table interpreter --------------------
 
+}
 
-    protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('mii costume.all', {
-            singularName: MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName),
-            pluralName: MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName),
-        },)
-    }
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everyMiiCostume (list)',],
+    [ViewDisplays.CARD_LIST, 'everyMiiCostume (card)',],
+    [ViewDisplays.TABLE, 'everyMiiCostume (table)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = gameContentTranslation('mii costume.all', {
+    singularName: OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,),
+    pluralName: OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,),
+},)
+const appInterpreter = new MiiCostumeAppInterpreter()
 
-    protected override _createAppOptionInterpreter() {
-        return new class MiiCostumeAppInterpreter implements AppInterpreterWithTable<MiiCostumes, MiiCostumeAppOption> {
-
-            public get content() {
-                return MiiCostumes.CompanionEnum.get.values.toArray()
-            }
-
-            //region -------------------- List interpreter --------------------
-
-            public createListDimension(): DimensionOnList {
-                return {
-                    default: 1,
-                    small: 2,
-                    medium: 3,
-                    large: 4,
-                    extraLarge: 5,
-                    extraExtraLarge: 6,
-                }
-            }
-
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent({reference, imageFile,}: MiiCostumes,) {
-                const category = reference.categoryEnglish === '' ? '' : `entityCategory-${reference.categoryEnglish}`//TODO move to the parent container className.
-                return <div className={`${category}`}>
-                    <Image file={imageFile}/>
-                </div>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-            //region -------------------- Table interpreter --------------------
-
-            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
-            public readonly tableCaption = gameContentTranslation('mii costume.all', {
-                singularName: <TextComponent key="miiCostume-singularName" content={MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)} className="text-decoration-underline"/>,
-                pluralName: <TextComponent key="miiCostume-pluralName" content={MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName)} className="text-decoration-underline"/>,
-            },) satisfies ReactElementOrString
-
-            public get tableOptions(): readonly MiiCostumeAppOption[] {
-                return [
-                    MiiCostumeAppOption.IMAGE,
-                    MiiCostumeAppOption.NAME,
-                    MiiCostumeAppOption.OFFICIAL_NOTIFICATION,
-                    MiiCostumeAppOption.CATEGORY,
-                ]
-            }
-
-
-            public createTableContent(content: MiiCostumes, option: MiiCostumeAppOption,) {
-                return option.renderContent(content,)
-            }
-
-            public createTableHeader(option: MiiCostumeAppOption,) {
-                return option.renderTableHeader()
-            }
-
-            //endregion -------------------- Table interpreter --------------------
-
-        }()
-    }
-
-    //endregion -------------------- Create methods --------------------
-
+/** @reactComponent */
+export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="miiCostume" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <CardList reactKey="miiCostume" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <Table id="miiCostume-table" interpreter={appInterpreter}/>
+    </SubMainContainer>
 }

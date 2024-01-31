@@ -5,8 +5,11 @@ import type {ClassWithReference}   from 'core/ClassWithReference'
 import type {Name}                 from 'lang/name/Name'
 
 /**
- * An application interpreter when using {@link AbstractAppWithInterpreter}
- * to encapsulate a content list.
+ * An application interpreter when using a basic content as an {@link ReadonlyArray array}
+ *
+ * @see AppInterpreterWithSimpleList
+ * @see AppInterpreterWithCardList
+ * @see AppInterpreterWithTable
  */
 export interface AppInterpreter<out CONTENT extends Content = Content, > {
 

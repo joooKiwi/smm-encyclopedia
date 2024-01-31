@@ -1,6 +1,6 @@
-@import '../../functions';
-@import '../../variables';
-@import '../../mixin';
+@import '../functions';
+@import '../variables';
+@import '../mixin';
 
 .app-title {
   width: 100%;
@@ -46,11 +46,11 @@
 
 @include media-breakpoint-up($grid-breakpoint-md) {
 
-  #subMain-container {
+  .subMain-container {
     position: relative;
   }
 
-  #viewChanger-container {
+  .viewChanger-container {
     position: absolute;
     width: 100%;
     top: var(--bs-spacer-md);
@@ -58,7 +58,7 @@
 
 }
 
-#viewChanger-container {
+.viewChanger-container {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;

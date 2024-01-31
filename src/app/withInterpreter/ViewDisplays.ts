@@ -1,14 +1,6 @@
 import type {Singleton} from '@joookiwi/enumerable'
 import {Enum}           from '@joookiwi/enumerable'
 
-import type {AppInterpreter, Content}      from 'app/interpreter/AppInterpreter'
-import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
-import type {AppInterpreterWithCardList}                        from 'app/interpreter/AppInterpreterWithCardList'
-import type {AppInterpreterWithTable}                           from 'app/interpreter/AppInterpreterWithTable'
-import type {AbstractAppWithInterpreter}                        from 'app/withInterpreter/AbstractAppWithInterpreter'
-import type {AbstractCardListApp}                               from 'app/withInterpreter/AbstractCardListApp'
-import type {AbstractSimpleListApp}                             from 'app/withInterpreter/AbstractSimpleListApp'
-import type {AbstractTableApp}                                  from 'app/withInterpreter/AbstractTableApp'
 import type {CompanionEnumDeclaration_ViewDisplays}             from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
 import type {HTMLType, Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
 import type {ClassWithType}                                     from 'core/ClassWithType'
@@ -29,11 +21,6 @@ export abstract class ViewDisplays
 
     public static readonly TABLE =       new class ViewDisplays_Table extends ViewDisplays {
 
-        public override createComponent(app: PossibleApp,): ReactElement {
-            assert('createTable' in app, 'The application does not handle a table creation.',)
-            return app.createTable()
-        }
-
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (table)` as const
         }
@@ -41,22 +28,12 @@ export abstract class ViewDisplays
     }('table', 'table', 'table',)
     public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
 
-        public override createComponent(app: PossibleApp,): ReactElement {
-            assert('createList' in app, 'The application does not handle a "simple list" creation.',)
-            return app.createList()
-        }
-
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (list)` as const
         }
 
     }('simple-list', 'list', 'list',)
     public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
-
-        public override createComponent(app: PossibleApp,): ReactElement {
-            assert('createCardList' in app, 'The application does not handle a "card list" creation.',)
-            return app.createCardList()
-        }
 
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (card)` as const
@@ -134,8 +111,6 @@ export abstract class ViewDisplays
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public abstract createComponent(app: PossibleApp,): ReactElement
-
     /**
      * Get a route path with the type in parentheses
      *
@@ -166,7 +141,3 @@ export abstract class ViewDisplays
 
 type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
 type PossibleListRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card'})`
-type PossibleApp = | AbstractAppWithInterpreter<AppInterpreter>
-                   | AbstractSimpleListApp<Content, AppInterpreterWithSimpleList>
-                   | AbstractCardListApp<Content, AppInterpreterWithCardList>
-                   | AbstractTableApp<Content, AppInterpreterWithTable>
