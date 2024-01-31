@@ -337,7 +337,7 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
         return new ExclusiveSMM2EntityContainer(
             createNameFromContent(content, 2, false,),
             getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
+            createPropertyInSmm2ButNotSm3dw(content,),
             createReferences(content, referenceLinks,),
         )
     }
@@ -581,6 +581,77 @@ function createPropertyInSmm1(content: Content,): Property {
             PropertyContainer.NOT_APPLICABLE_CONTAINER,
             PropertyContainer.NOT_APPLICABLE_CONTAINER,
             PropertyContainer.NOT_APPLICABLE_CONTAINER,
+        ),
+        getOrCreateInstrumentProperty(content,),
+    )
+}
+
+/**
+ * Create the {@link Property property} from the {@link content}
+ * with the games, game style, theme, time & limit
+ * applicable to only the {@link Games.SUPER_MARIO_MAKER_2 SMM2 game},
+ * but not specifically exclusive to {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}.
+ */
+function createPropertyInSmm2ButNotSm3dw(content: Content,): Property {
+    if (!isInProduction) {
+        if (content.isInSuperMarioMaker1)
+            throw new TypeError('An exclusive SMM2 entity should always have the "isInSuperMarioMaker1" set to false.',)
+        if (content.isInSuperMarioMakerFor3DS)
+            throw new TypeError('An exclusive SMM2 entity should always have the "isInSuperMarioMakerFor3DS" set to false.',)
+        if (!content.isInSuperMarioMaker2)
+            throw new TypeError('An exclusive SMM2 entity should always have the "isInSuperMarioMaker2" set to true.',)
+
+        if (content.editorLimit_SMM1And3DS != null)
+            throw new TypeError('An exclusive SMM2 entity should never have a SMM1/SMM3DS editor limit.',)
+    }
+
+    const editorLimit_SMM2 = content.editorLimit_SMM2
+    const isInGeneralLimit = content.whilePlaying_isInGEL
+    const isInSuperGlobalGeneralLimit = content.whilePlaying_isInGEL_isSuperGlobal
+    const isInPowerUpLimit = content.whilePlaying_isInPL
+    const isInProjectileLimit = content.whilePlaying_isInPJL
+    const isInRenderedObjectLimit = content.whilePlaying_isInObjectRenderedLimit
+    const isInCollectedObjectLimit = content.whilePlaying_isInCollectedCoinLimit
+    const isInOtherLimit = content.whilePlaying_otherLimit
+    const isInOtherLimitComment = content.whilePlaying_otherLimit_comment
+
+    return new PropertyInstanceContainer(
+        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
+        GameStylePropertyProvider.get.get(
+            hasThisReferenced(content.inSMBGameStyle,),
+            hasThisReferenced(content.inSMB3GameStyle,),
+            hasThisReferenced(content.inSMWGameStyle,),
+            hasThisReferenced(content.inNSMBUGameStyle,),
+            hasThisReferenced(content.inSM3DWGameStyle,),
+        ),
+        ThemePropertyProvider.get.get(
+            hasThisReferenced(content.inGroundTheme,),
+            hasThisReferenced(content.inUndergroundTheme,),
+            hasThisReferenced(content.inUnderwaterTheme,),
+            nullOrHasThisReferenced(content.inDesertTheme,),
+            nullOrHasThisReferenced(content.inSnowTheme,),
+            nullOrHasThisReferenced(content.inSkyTheme,),
+            nullOrHasThisReferenced(content.inForestTheme,),
+            hasThisReferenced(content.inGhostHouseTheme,),
+            hasThisReferenced(content.inAirshipTheme,),
+            hasThisReferenced(content.inCastleTheme,),
+        ),
+        TimePropertyProvider.get.get(
+            hasThisReferenced(content.inDayTheme,),
+            hasThisReferenced(content.inNightTheme,),
+        ),
+        LimitPropertyProvider.get.get(
+            [[null, editorLimit_SMM2,], [isInGeneralLimit, isInSuperGlobalGeneralLimit,], isInPowerUpLimit, isInProjectileLimit, isInRenderedObjectLimit, isInCollectedObjectLimit, [isInOtherLimit, isInOtherLimitComment,],],
+            GameStructureProvider.get.get(null, getLimitProperty(editorLimit_SMM2,),),
+            [
+                newBooleanWithCommentCommentContainer(isInGeneralLimit,),
+                newBooleanWithCommentCommentContainer(isInSuperGlobalGeneralLimit,),
+            ],
+            newBooleanContainer(isInPowerUpLimit,),
+            newBooleanWithCommentThatCanBeUnknownContainer(isInProjectileLimit,),
+            newBooleanWithCommentCommentContainer(isInRenderedObjectLimit,),
+            newBooleanContainer(isInCollectedObjectLimit,),
+            getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment,),
         ),
         getOrCreateInstrumentProperty(content,),
     )
