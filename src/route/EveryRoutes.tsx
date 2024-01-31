@@ -57,7 +57,7 @@ const NOT_TABLE_VIEW_DISPLAY = new ViewDisplayCollection([ViewDisplays.SIMPLE_LI
 const ALL_VIEW_DISPLAY = new ViewDisplayCollection(ViewDisplays.CompanionEnum.get.values,)
 
 
-const GamePossibilities = Games.GamePossibilitiesCompanion.get
+const GamePossibilities = Games.Possibilities.get
 
 const SMM1_GAMES_ARRAY = GamePossibilities.SMM1_ONLY
 const SMM1_AND_3DS_GAMES_ARRAY = GamePossibilities.SMM1_AND_3DS
@@ -170,7 +170,7 @@ const gameStylePossibilitiesWithNotSmm2 = [
     [SMB_SMB3_SMW_NSMBU,   'GameStyle=1&3&W&U',   'game-style-1,3,w,u',],
 ] as const
 
-/** Every {@link Games.GamePossibilitiesCompanion} */
+/** Every {@link Games.Possibilities} */
 const gamePossibilities = [
     [ALL_GAMES_ARRAY,          'Game=all',   'game-all',   gameStylePossibilitiesWithSmm2,    31,],
     [SMM1_GAMES_ARRAY,         'Game=1',     'game-1',     gameStylePossibilitiesWithNotSmm2, 16,],
@@ -777,21 +777,21 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
             const nameFromGame = name.substring(startingIndex + 5,)
             if (nameFromGame === 'all)' || nameFromGame.startsWith('all ',))
-                return Games.GamePossibilitiesCompanion.get.ALL_GAMES
+                return GamePossibilities.ALL_GAMES
 
             if (nameFromGame === '1)' || nameFromGame.startsWith('1 ',))
-                return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                return GamePossibilities.SMM1_ONLY
             if (nameFromGame === '3DS)' || nameFromGame.startsWith('3DS ',))
-                return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                return GamePossibilities.SMM3DS_ONLY
             if (nameFromGame === '2)' || nameFromGame.startsWith('2 ',))
-                return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+                return GamePossibilities.SMM2_ONLY
 
             if (nameFromGame === '1&3DS)' || nameFromGame.startsWith('1&3DS ',))
-                return Games.GamePossibilitiesCompanion.get.SMM1_AND_3DS
+                return GamePossibilities.SMM1_AND_3DS
             if (nameFromGame === '1&2)' || nameFromGame.startsWith('1&2 ',))
-                return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+                return GamePossibilities.SMM1_AND_2
             if (nameFromGame === '3DS&2)' || nameFromGame.startsWith('3DS&2 ',))
-                return Games.GamePossibilitiesCompanion.get.SMM3DS_AND_2
+                return GamePossibilities.SMM3DS_AND_2
 
             throw new ReferenceError(`No games have a name associated to the name "${name}".`,)
         }

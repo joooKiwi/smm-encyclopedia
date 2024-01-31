@@ -26,7 +26,7 @@ const homeRoute = EveryRoutes.HOME
 const languages = ProjectLanguageCompanion.values
 const everyRouteInstance = EveryRouteCompanion.values
 const everyRoute = EveryRouteCompanion.everyRoute
-// const everyGames = Games.GamePossibilitiesCompanion.get.everyFields
+// const everyGames = Games.Possibilities.get.everyFields
 // const everyGamesAsUrl = everyGames.map(it => GameCompanion.getGroupUrlValue(it,),)
 // const everyGameStyles = GameStyles.Possibilities.get.everyFields
 // const everyGameStylesAsUrl = everyGameStyles.map(it => GameStyleCompanion.getGroupUrlValue(it,),)
