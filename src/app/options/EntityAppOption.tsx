@@ -145,9 +145,11 @@ export class EntityAppOption
 
         protected override _createContentOption(enumeration: Entities,) {
             return <div className="nameAndEditorVoiceSound-container container">
-                {CommonOptions.get.getNameContent(enumeration)}
-                <div className="properties">
-                    <InstrumentPropertyComponent value={enumeration}/>
+                <div className="nameAndEditorVoiceSound-nameAndProperties-container">
+                    <div className="properties">
+                        <InstrumentPropertyComponent value={enumeration}/>
+                    </div>
+                    {CommonOptions.get.getNameContent(enumeration)}
                 </div>
                 <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
             </div>

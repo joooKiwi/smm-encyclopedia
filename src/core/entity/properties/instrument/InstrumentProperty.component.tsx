@@ -17,14 +17,19 @@ interface InstrumentPropertyProperties
  * @todo add on click event to play the music block sound (randomly if more than one)
  * @reactComponent
  */
-export default function InstrumentPropertyComponent({value: {englishNameInHtml, reference: {canMakeASoundOutOfAMusicBlock: value, canMakeASoundOutOfAMusicBlockComment: comment,},},}: InstrumentPropertyProperties,) {
+export default function InstrumentPropertyComponent(properties: InstrumentPropertyProperties,) {
+    const entity = properties.value
+    const reference = entity.reference
+    const value = reference.canMakeASoundOutOfAMusicBlock
     if (value !== true)
         return null
-    const id = `${englishNameInHtml}-instrumentProperty`
+
+    const comment = reference.canMakeASoundOutOfAMusicBlockComment
+    const id = `${entity.englishNameInHtml}-instrumentProperty`
 
     if (comment == null)
-        return <i id={id} className="music-block"/>
+        return <i id={id} className="instrumentProperty music-block"/>
     return <Tooltip option={{title: gameContentTranslation(`instrument.${comment}`),}} elementId={id}>
-        <i id={id} className="music-block-with-comment"/>
+        <i id={id} className="instrumentProperty music-block music-block-with-comment"/>
     </Tooltip>
 }
