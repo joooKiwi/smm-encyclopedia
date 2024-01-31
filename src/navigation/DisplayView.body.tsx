@@ -17,7 +17,7 @@ const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWor
 /** @reactComponent */
 export default function DisplayViewBody() {
     const isSMM1Selected = Games.SUPER_MARIO_MAKER_1.isSelected
-    const isSMM3DSSelected = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.isSelected
+    // const isSMM3DSSelected = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.isSelected
     const isSMM2Selected = Games.SUPER_MARIO_MAKER_2.isSelected
     const singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference
     const /*pluralTagName = TAG.pluralNameOnReference, */pluralTagLowerCaseName = TAG.pluralLowerCaseNameOnReference
@@ -95,17 +95,17 @@ export default function DisplayViewBody() {
                 <DisplayViewRouteButton routeName="everyOfficialCourse" value={gameContentTranslation('official course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
                                         tooltipValue={gameContentTranslation('official course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
                                         elementId="displayView-officialCourse-button" />
-                {isSMM1Selected ? <div key="button group (sample course)" id="sampleCourse-buttonGroup" className="btn-group col-12" role="group">
-                    <DisplayViewRouteButton routeName="everySampleCourse" value={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
-                                            tooltipValue={gameContentTranslation('sample course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
-                                            elementId="displayView-sampleCourse-button"/>
-                </div> : null}
-                {isSMM1Selected ? <div key="button group (medal)" id="medal-buttonGroup" className="btn-group col-12" role="group">
-                    <DisplayViewRouteButton routeName="everyMedal" value={gameContentTranslation('medal.singular',)}
-                                            tooltipValue={gameContentTranslation('medal.display all',)}
-                                            elementId="displayView-medal-button"/>
-                </div> : null}
             </div>
+            {isSMM1Selected ? <div key="button group (sample course)" id="sampleCourse-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everySampleCourse" value={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('sample course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
+                                        elementId="displayView-sampleCourse-button"/>
+            </div> : null}
+            {isSMM1Selected ? <div key="button group (medal)" id="medal-buttonGroup" className="btn-group col-12" role="group">
+                <DisplayViewRouteButton routeName="everyMedal" value={gameContentTranslation('medal.singular',)}
+                                        tooltipValue={gameContentTranslation('medal.display all',)}
+                                        elementId="displayView-medal-button"/>
+            </div> : null}
         </div>
         <div id="display-sound-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Sound</UnfinishedText></h3>
