@@ -24,9 +24,7 @@ interface ModalSuccessButtonProperties
 }
 
 interface ModalCancelButtonProperties
-    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {
-
-}
+    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {}
 
 /**
  *
