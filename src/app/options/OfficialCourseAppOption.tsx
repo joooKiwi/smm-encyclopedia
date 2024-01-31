@@ -1,4 +1,6 @@
-import {CompanionEnum, CompanionEnumSingleton, Enum} from '@joookiwi/enumerable'
+import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import {Fragment}                    from 'react'
 
 import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/OfficialCourseAppOption.types'
@@ -22,7 +24,10 @@ export abstract class OfficialCourseAppOption
     public static readonly REWARD = new class OfficialCourseAppOption_Reward extends OfficialCourseAppOption {
 
         protected override _createContentOption(enumeration: OfficialCourses,): ReactElement {
-            return <>{enumeration.reference.reward.map(it => <Image partialId="mysteryMushroomImage" file={it.waitingImage[0]}/>,)}</>
+            const englishName = enumeration.englishName
+
+            return <Fragment key={`Reward (${englishName})`}>{enumeration.reference.reward.map(it =>
+                <Image key={`Reward (${englishName} - ${it.englishName})`} file={it.waitingImage[0]}/>,)}</Fragment>
         }
 
         protected override _createTableHeaderOption() {
@@ -104,10 +109,20 @@ export abstract class OfficialCourseAppOption
             const removalDate = reference.removalDate
 
             if (removalDate == null)
-                return <div><SimpleDate date={releaseDate}/>{unfinishedText(' to the game end-life',)}</div>
+                return <div key={`Availability (${enumeration.englishName} release to end-life)`}>
+                    <SimpleDate date={releaseDate}/>
+                    {unfinishedText(' to the game end-life',)}
+                </div>
             if (removalDate === UNKNOWN_REFERENCE)
-                return <div><SimpleDate date={releaseDate}/>{unfinishedText(' to an unknown date',)}</div>
-            return <div><SimpleDate date={releaseDate}/>{unfinishedText(' to ',)}<SimpleDate date={removalDate}/></div>
+                return <div key={`Availability (${enumeration.englishName} release to unknown)`}>
+                    <SimpleDate date={releaseDate}/>
+                    {unfinishedText(' to an unknown date',)}
+                </div>
+            return <div key={`Availability (${enumeration.englishName} release to removal)`}>
+                <SimpleDate date={releaseDate}/>
+                {unfinishedText(' to ',)}
+                <SimpleDate date={removalDate}/>
+            </div>
         }
 
         protected override _createTableHeaderOption() {
