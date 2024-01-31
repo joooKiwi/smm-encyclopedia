@@ -330,10 +330,12 @@ interface ImageNameMap {
     'Wendy': ['Wendy', Name<'Wendy'>,]
     'Wendy\'s Wand': NoImages
     'Candy Ring thrown by a Wendy': NoImages
+    '(Wendy\'s projectile)': NoImages
 
     'Lemmy': ['Lemmy', Name<'Lemmy'>,]
     'Lemmy\'s Wand': NoImages
     'Magic Ball thrown by a Lemmy': NoImages
+    '(Lemmy\'s projectile)': NoImages
 
     'Roy': ['Roy', Name<'Roy'>,]
     'Roy\'s Wand': NoImages
@@ -365,12 +367,17 @@ interface ImageNameMap {
     'Vine': NoImages
     'Tree': ['BellTree', Name<'BellTree'>,]
 
+    'Starting Arrow': NoImages
     'Arrow Sign': NoImages
 
     'Checkpoint Flag': NoImages
     'Goal Pole': NoImages
     'Cards Roulette': NoImages
     'Giant Gate': NoImages
+
+    'Castle': NoImages
+    'Ending Castle Door': NoImages
+    'Axe': NoImages
 
     'Dash Block': NoImages
 

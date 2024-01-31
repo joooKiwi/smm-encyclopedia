@@ -334,10 +334,12 @@ interface ImageNameMap {
     'Wendy': NoImages
     'Wendy\'s Wand': NoImages
     'Candy Ring thrown by a Wendy': NoImages
+    '(Wendy\'s projectile)': NoImages
 
     'Lemmy': NoImages
     'Lemmy\'s Wand': NoImages
     'Magic Ball thrown by a Lemmy': NoImages
+    '(Lemmy\'s projectile)': NoImages
 
     'Roy': NoImages
     'Roy\'s Wand': NoImages
@@ -369,12 +371,17 @@ interface ImageNameMap {
     'Vine': ['Tuta', ObjectBlock<'Tuta'>,]
     'Tree': NoImages
 
+    'Starting Arrow': NoImages
     'Arrow Sign': NoImages
 
     'Checkpoint Flag': NoImages
     'Goal Pole': ['Goalpole', Object<'Goalpole'>,]
     'Cards Roulette': NoImages
     'Giant Gate': NoImages
+
+    'Castle': NoImages
+    'Ending Castle Door': NoImages
+    'Axe': NoImages
 
     'Dash Block': NoImages
 

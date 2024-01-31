@@ -2423,7 +2423,8 @@ export class Entities
         }
 
     }('Candy Ring thrown by a Wendy',)
-    //TODO add unused Wendy projectile (SMB, SMB3, SMW)
+    public static readonly WENDY_PROJECTILE =                              new Entities('(Wendy\'s projectile)',)// An only unused projectile //TODO add unused Wendy projectile (SMB, SMB3, SMW)
+
 
     public static readonly LEMMY =                                         new class Entities_Lemmy extends Entities {
 
@@ -2454,7 +2455,7 @@ export class Entities
         }
 
     }('Magic Ball thrown by a Lemmy',)
-    //TODO add unused Lemmy projectile (SMB)
+    public static readonly LEMMY_PROJECTILE =                              new Entities('(Lemmy\'s projectile)',)// An only unused projectile //TODO add unused Lemmy projectile (SMB)
 
     public static readonly ROY =                                           new class Entities_Roy extends Entities {
 
@@ -2669,7 +2670,7 @@ export class Entities
 
     }('Tree',)
 
-    // public static readonly STARTING_ARROW =                                new Entities('Starting Arrow',)//A background entity
+    public static readonly STARTING_ARROW =                                new Entities('Starting Arrow',)//A background entity
     public static readonly ARROW_SIGN =                                    new class Entities_ArrowSign extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
@@ -2703,9 +2704,9 @@ export class Entities
     public static readonly GOAL_WITH_CARDS =                               new Entities('Cards Roulette',)//An interactable background entity
     public static readonly GIANT_GATE =                                    new Entities('Giant Gate',)//An interactable background entity
 
-    // public static readonly CASTLE =                                        new Entities('Castle',)//A background entity
-    // public static readonly ENDING_CASTLE_DOOR =                            new Entities('Ending Castle Door',)//A background entity
-    // public static readonly AXE =                                           new Entities('Axe',)//An interactable partially solid & background entity
+    public static readonly CASTLE =                                        new Entities('Castle',)//A background entity
+    public static readonly ENDING_CASTLE_DOOR =                            new Entities('Ending Castle Door',)//A background entity
+    public static readonly AXE =                                           new Entities('Axe',)//An interactable partially solid & background entity
 
     public static readonly DASH_BLOCK =                                    new class Entities_DashBlock extends Entities {
 

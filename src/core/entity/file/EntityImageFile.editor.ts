@@ -334,10 +334,12 @@ interface ImageNameMap {
     'Wendy': SimpleName<'Wendy'>
     'Wendy\'s Wand': NoImages
     'Candy Ring thrown by a Wendy': NoImages
+    '(Wendy\'s projectile)': NoImages
 
     'Lemmy': SimpleName<'Lemmy'>
     'Lemmy\'s Wand': NoImages
     'Magic Ball thrown by a Lemmy': NoImages
+    '(Lemmy\'s projectile)': NoImages
 
     'Roy': SimpleName<'Roy'>
     'Roy\'s Wand': NoImages
@@ -369,12 +371,17 @@ interface ImageNameMap {
     'Vine': SimpleName<'TsutaBlock'>
     'Tree': ['BellTree', Name_0<Style<'BellTree', | 'underground' | 'water' | 'desert' | 'snow' | 'woods'>>,]
 
+    'Starting Arrow': NoImages
     'Arrow Sign': SimpleName<'Yajirushi'>
 
     'Checkpoint Flag': SimpleName<'MiddleFlag'>
     'Goal Pole': NoImages
     'Cards Roulette': NoImages
     'Giant Gate': NoImages
+
+    'Castle': NoImages
+    'Ending Castle Door': NoImages
+    'Axe': NoImages
 
     'Dash Block': SimpleName<'DashBlock'>
 
