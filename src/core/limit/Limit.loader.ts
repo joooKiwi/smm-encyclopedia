@@ -7,7 +7,6 @@ import type {AlternativeLimit, Limit}                                           
 import type {PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName}                                     from 'core/limit/Limits.types'
 import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                 from 'core/limit/LimitTypes.types'
 import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS, PossibleLimitAmount_SMM2, PossibleLimitAmount_SMM2_UnknownAmount_Amount} from 'core/limit/loader.types'
-import type {LimitAmount}                                                                                                                          from 'core/limit/properties/LimitAmount'
 import type {Loader}                                                                                                                               from 'util/loader/Loader'
 
 import {isInProduction}                    from 'variables'
@@ -17,8 +16,6 @@ import {EmptyLimit}                        from 'core/limit/EmptyLimit'
 import {LimitContainer}                    from 'core/limit/Limit.container'
 import {Limits}                            from 'core/limit/Limits'
 import {LimitTypes}                        from 'core/limit/LimitTypes'
-import {LimitAmountContainer}              from 'core/limit/properties/LimitAmount.container'
-import {EmptyLimitAmount}                  from 'core/limit/properties/EmptyLimitAmount'
 import {createNameFromContent}             from 'lang/name/createNameFromContent'
 import {NOT_APPLICABLE, UNKNOWN_CHARACTER} from 'util/commonVariables'
 
@@ -96,21 +93,44 @@ interface Content
 
 
 function createReference(content: Content, alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeLimit>,): Limit {
+    const amountInSMM1And3DS = content.limit_SMM1And3DS
+    const amountInSMM2 = content.limit_SMM2
+    const comment = content.limit_comment
+
+    if (amountInSMM1And3DS == null || amountInSMM2 == null)
+        return new LimitContainer(
+            createNameFromContent(content, 2, false,),
+            content.acronym as NullOr<PossibleAcronym>,
+            getAlternativeLimitBy(content.alternative, alternativeReferences),
+            LimitTypes.CompanionEnum.get.getValueByName(content.type,),
+            PropertyContainer.NULL_CONTAINER, PropertyContainer.NULL_CONTAINER, null,
+        )
     return new LimitContainer(
         createNameFromContent(content, 2, false,),
         content.acronym as NullOr<PossibleAcronym>,
         getAlternativeLimitBy(content.alternative, alternativeReferences),
         LimitTypes.CompanionEnum.get.getValueByName(content.type,),
-        createLimitAmount(content,),
+        createLimitTemplateInSMM1And3DS(amountInSMM1And3DS,), createLimitTemplateInSMM2(amountInSMM2,), comment,
     )
 }
 
 function createAlternativeReference(content: Content, regularReferences: Map<PossibleEnglishName, Limit>,): AlternativeLimit {
+    const amountInSMM1And3DS = content.limit_SMM1And3DS
+    const amountInSMM2 = content.limit_SMM2
+    const comment = content.limit_comment
+
+    if (amountInSMM1And3DS == null || amountInSMM2 == null)
+        return new AlternativeLimitContainer(
+            createNameFromContent(content, 2, false,),
+            content.acronym as NullOr<PossibleAlternativeAcronym>,
+            lazy(() => Limits.CompanionEnum.get.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
+            PropertyContainer.NULL_CONTAINER, PropertyContainer.NULL_CONTAINER, null,
+        )
     return new AlternativeLimitContainer(
         createNameFromContent(content, 2, false,),
         content.acronym as NullOr<PossibleAlternativeAcronym>,
         lazy(() => Limits.CompanionEnum.get.getValueByName(content.english ?? content.americanEnglish,).reference.type,),
-        createLimitAmount(content,),
+        createLimitTemplateInSMM1And3DS(amountInSMM1And3DS,), createLimitTemplateInSMM2(amountInSMM2,), comment,
     )
 }
 
@@ -139,26 +159,4 @@ function getAlternativeLimitBy(value: Nullable<PossibleAlternativeEnglishName>, 
     if (alternativeReferenceFound == null)
         throw new ReferenceError(`No alternative reference ${value} could be found.`,)
     return alternativeReferenceFound
-}
-
-
-/**
- * Create the {@link LimitAmount} from the proper amount
- *
- *
- * @param content The content to retrieve the limit fields
- * @canContainDuplicateObjects
- */
-function createLimitAmount(content: Content,): LimitAmount {
-    const amountInSMM1And3DS = content.limit_SMM1And3DS
-    const amountInSMM2 = content.limit_SMM2
-    const comment = content.limit_comment
-
-    if (amountInSMM1And3DS == null || amountInSMM2 == null)
-        return EmptyLimitAmount.get
-    return new LimitAmountContainer(
-        createLimitTemplateInSMM1And3DS(amountInSMM1And3DS,),
-        createLimitTemplateInSMM2(amountInSMM2,),
-        comment,
-    )
 }

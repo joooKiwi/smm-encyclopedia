@@ -1,13 +1,13 @@
 import {lazyOf} from '@joookiwi/lazy'
 
-import type {PropertyThatCanBeUnknown}                                               from 'core/_properties/PropertyThatCanBeUnknown'
-import type {NotApplicableProperty, UnknownProperty}                                 from 'core/_properties/PropertyWithEverything'
-import type {AlternativeLimit, Limit, LimitWithPossibleAlternativeLimit}             from 'core/limit/Limit'
-import type {PossibleAcronym}                                                        from 'core/limit/Limits.types'
-import type {LimitTypes}                                                             from 'core/limit/LimitTypes'
-import type {PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/limit/loader.types'
-import type {LimitAmount}                                                            from 'core/limit/properties/LimitAmount'
-import type {Name}                                                                   from 'lang/name/Name'
+import type {PropertyThatCanBeUnknown}                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
+import type {NotApplicableProperty, NullProperty, UnknownProperty}                                                from 'core/_properties/PropertyWithEverything'
+import type {Games}                                                                                               from 'core/game/Games'
+import type {AlternativeLimit, Limit, LimitWithPossibleAlternativeLimit}                                          from 'core/limit/Limit'
+import type {PossibleAcronym}                                                                                     from 'core/limit/Limits.types'
+import type {LimitTypes}                                                                                          from 'core/limit/LimitTypes'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount} from 'core/limit/loader.types'
+import type {Name}                                                                                                from 'lang/name/Name'
 
 import {NOT_APPLICABLE}                       from 'util/commonVariables'
 import {GameMap}                              from 'util/collection/GameMap'
@@ -21,7 +21,9 @@ export class LimitContainer
 
     readonly #acronym
     readonly #type
-    readonly #limitAmount
+    readonly #limitInSMM1AndSMM3DS
+    readonly #limitInSMM2
+    readonly #amountComment
 
     #isInSMM1OrSMM3DS?: boolean
     #gameMap?: GameMap<boolean, Limit>
@@ -33,11 +35,15 @@ export class LimitContainer
                        acronym: NullOr<PossibleAcronym>,
                        alternative: AlternativeLimit,
                        type: LimitTypes,
-                       limitAmount: LimitAmount,) {
+                       limitInSMM1AndSMM3DS: | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NullProperty | NotApplicableProperty | UnknownProperty,
+                       limitInSMM2: | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | NullProperty | UnknownProperty,
+                       amountComment: PossibleLimitAmount_Comment,) {
         super(name, lazyOf(alternative,),)
         this.#acronym = acronym
         this.#type = type
-        this.#limitAmount = limitAmount
+        this.#limitInSMM1AndSMM3DS = limitInSMM1AndSMM3DS
+        this.#limitInSMM2 = limitInSMM2
+        this.#amountComment = amountComment
     }
 
     //endregion -------------------- Constructor --------------------
@@ -51,22 +57,14 @@ export class LimitContainer
         return this.#acronym
     }
 
-    public get limitContainer(): LimitAmount {
-        return this.#limitAmount
-    }
-
-    public get amountComment(): this['limitContainer']['comment'] {
-        return this.limitContainer.comment
+    public get amountComment(): PossibleLimitAmount_Comment {
+        return this.#amountComment
     }
 
     //region -------------------- Alternative entity limit --------------------
 
     public get alternativeAcronym(): this['alternativeContainer']['acronym'] {
         return this.alternativeContainer.acronym
-    }
-
-    public get alternativeLimitContainer(): this['alternativeContainer']['limitContainer'] {
-        return this.alternativeContainer.limitContainer
     }
 
     public get alternativeAmountComment(): this['alternativeContainer']['amountComment'] {
@@ -107,31 +105,31 @@ export class LimitContainer
     //endregion -------------------- Alternative entity limit --------------------
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    public get limitContainerInSMM1AndSMM3DS(): | PropertyThatCanBeUnknown<NullOr<PossibleLimitAmount_SMM1And3DS_Amount>> | NotApplicableProperty | UnknownProperty {
-        return this.limitContainer.limitContainerInSMM1AndSMM3DS
+    public get limitContainerInSMM1AndSMM3DS(): | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NullProperty | NotApplicableProperty | UnknownProperty {
+        return this.#limitInSMM1AndSMM3DS
     }
 
     public get limitAmountInSMM1AndSMM3DS(): | NullOr<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicable {
-        return this.limitContainer.limitAmountInSMM1AndSMM3DS
+        return this.limitContainerInSMM1AndSMM3DS.value
     }
 
     public get isUnknownLimitInSMM1AndSMM3DS(): boolean {
-        return this.limitContainer.isUnknownLimitInSMM1AndSMM3DS
+        return this.limitContainerInSMM1AndSMM3DS.isUnknown
     }
 
     //endregion -------------------- SMM1 & SMM3DS limit --------------------
     //region -------------------- SMM2 limit --------------------
 
-    public get limitContainerInSMM2(): | PropertyThatCanBeUnknown<NullOr<PossibleLimitAmount_SMM2_Amount>> | UnknownProperty {
-        return this.limitContainer.limitContainerInSMM2
+    public get limitContainerInSMM2(): | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | NullProperty | UnknownProperty {
+        return this.#limitInSMM2
     }
 
     public get limitAmountInSMM2(): NullOr<PossibleLimitAmount_SMM2_Amount> {
-        return this.limitContainer.limitAmountInSMM2
+        return this.limitContainerInSMM2.value
     }
 
     public get isUnknownLimitInSMM2(): boolean {
-        return this.limitContainer.isUnknownLimitInSMM2
+        return this.limitContainerInSMM2.isUnknown
     }
 
     //endregion -------------------- SMM2 limit --------------------
@@ -140,7 +138,7 @@ export class LimitContainer
     //region -------------------- Game properties --------------------
 
     public get isInSuperMarioMaker1Or3DS() {
-        return this.#isInSMM1OrSMM3DS ??= this.limitContainer.limitAmountInSMM1AndSMM3DS !== NOT_APPLICABLE
+        return this.#isInSMM1OrSMM3DS ??= this.limitAmountInSMM1AndSMM3DS !== NOT_APPLICABLE
     }
 
     public get isInSuperMarioMaker1(): boolean {
@@ -155,7 +153,7 @@ export class LimitContainer
         return true
     }
 
-    public toGameMap(): GameMap<boolean, Limit> {
+    public toGameMap(): ReadonlyMap<Games, boolean> {
         return this.#gameMap ??= new GameMap(this,)
     }
 

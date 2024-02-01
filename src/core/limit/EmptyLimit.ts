@@ -3,7 +3,7 @@ import {lazy} from '@joookiwi/lazy'
 import type {Limit}                                      from 'core/limit/Limit'
 import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
 
-import {EmptyLimitAmount}                     from 'core/limit/properties/EmptyLimitAmount'
+import {PropertyContainer}                    from 'core/_properties/Property.container'
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {EmptyStringName}                      from 'lang/name/EmptyStringName'
 import {EMPTY_MAP}                            from 'util/emptyVariables'
@@ -27,67 +27,52 @@ export class EmptyLimit
     }
 
     //endregion -------------------- Singleton usage --------------------
-
-    //region -------------------- Type --------------------
+    //region -------------------- Getter methods --------------------
 
     public get type(): never {
         throw assert(false, `No types is compatible with an ${this}.`,)
     }
 
-    //endregion -------------------- Type --------------------
-    //region -------------------- Acronym --------------------
 
     public readonly acronym = null
 
-    //endregion -------------------- Acronym --------------------
-    //region -------------------- Alternative entity limit --------------------
+    public readonly limitContainerInSMM1AndSMM3DS = PropertyContainer.NULL_CONTAINER
+    public readonly limitAmountInSMM1AndSMM3DS = null
+    public readonly isUnknownLimitInSMM1AndSMM3DS = false
+
+    public readonly limitContainerInSMM2 = PropertyContainer.NULL_CONTAINER
+    public readonly limitAmountInSMM2 = null
+    public readonly isUnknownLimitInSMM2 = false
+
+    public readonly amountComment = null
+
 
     public readonly alternativeAcronym = null
 
-    //region -------------------- Limit amount --------------------
+    public readonly alternativeLimitContainerInSMM1AndSMM3DS = PropertyContainer.NULL_CONTAINER
+    public readonly alternativeLimitAmountInSMM1AndSMM3DS = null
+    public readonly isUnknownAlternativeLimitInSMM1AndSMM3DS = false
 
-    public readonly alternativeLimitContainer = EmptyLimitAmount.get
+    public readonly alternativeLimitContainerInSMM2 = PropertyContainer.NULL_CONTAINER
+    public readonly alternativeLimitAmountInSMM2 = null
+    public readonly isUnknownAlternativeLimitInSMM2 = false
 
-    public readonly alternativeLimitContainerInSMM1AndSMM3DS = this.alternativeLimitContainer.limitContainerInSMM1AndSMM3DS
-    public readonly alternativeLimitAmountInSMM1AndSMM3DS = this.alternativeLimitContainerInSMM1AndSMM3DS.value
-    public readonly isUnknownAlternativeLimitInSMM1AndSMM3DS = this.alternativeLimitContainerInSMM1AndSMM3DS.isUnknown
+    public readonly alternativeAmountComment = null
 
-    public readonly alternativeLimitContainerInSMM2 = this.alternativeLimitContainer.limitContainerInSMM2
-    public readonly alternativeLimitAmountInSMM2 = this.alternativeLimitContainerInSMM2.value
-    public readonly isUnknownAlternativeLimitInSMM2 = this.alternativeLimitContainerInSMM2.isUnknown
-
-    public readonly alternativeAmountComment = this.alternativeLimitContainer.comment
-
-    //endregion -------------------- Limit amount --------------------
-
-    //endregion -------------------- Alternative entity limit --------------------
-    //region -------------------- Limit amount --------------------
-
-    public readonly limitContainer = EmptyLimitAmount.get
-
-    public readonly limitContainerInSMM1AndSMM3DS = this.limitContainer.limitContainerInSMM1AndSMM3DS
-    public readonly limitAmountInSMM1AndSMM3DS = this.limitContainerInSMM1AndSMM3DS.value
-    public readonly isUnknownLimitInSMM1AndSMM3DS = this.limitContainerInSMM1AndSMM3DS.isUnknown
-
-    public readonly limitContainerInSMM2 = this.limitContainer.limitContainerInSMM2
-    public readonly limitAmountInSMM2 = this.limitContainerInSMM2.value
-    public readonly isUnknownLimitInSMM2 = this.limitContainerInSMM2.isUnknown
-
-    public readonly amountComment = this.limitContainer.comment
-
-    //endregion -------------------- Limit amount --------------------
-    //region -------------------- Game properties --------------------
 
     public readonly isInSuperMarioMaker1Or3DS = false
     public readonly isInSuperMarioMaker1 = false
     public readonly isInSuperMarioMakerFor3DS = false
     public readonly isInSuperMarioMaker2 = false
 
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
     public toGameMap() {
         return EMPTY_MAP
     }
 
-    //endregion -------------------- Game properties --------------------
+    //endregion -------------------- Convertor methods --------------------
 
     public override toString(): EmptyLimitName {
         return 'Empty limit'
