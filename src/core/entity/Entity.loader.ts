@@ -331,7 +331,7 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
             return new ExclusiveSM3DWEntityContainer(
                 createNameFromContent(content, 2, false,),
                 getEntityCategory(content.categoryInTheEditor,),
-                createProperty(content,),
+                createPropertyInSmm2InSm3dw(content,),
                 createReferences(content, referenceLinks,),
             )
         return new ExclusiveSMM2EntityContainer(
@@ -640,6 +640,73 @@ function createPropertyInSmm2ButNotSm3dw(content: Content,): Property {
             hasThisReferenced(content.inDayTheme,),
             hasThisReferenced(content.inNightTheme,),
         ),
+        LimitPropertyProvider.get.get(
+            [[null, editorLimit_SMM2,], [isInGeneralLimit, isInSuperGlobalGeneralLimit,], isInPowerUpLimit, isInProjectileLimit, isInRenderedObjectLimit, isInCollectedObjectLimit, [isInOtherLimit, isInOtherLimitComment,],],
+            GameStructureProvider.get.get(null, getLimitProperty(editorLimit_SMM2,),),
+            [
+                newBooleanWithCommentCommentContainer(isInGeneralLimit,),
+                newBooleanWithCommentCommentContainer(isInSuperGlobalGeneralLimit,),
+            ],
+            newBooleanContainer(isInPowerUpLimit,),
+            newBooleanWithCommentThatCanBeUnknownContainer(isInProjectileLimit,),
+            newBooleanWithCommentCommentContainer(isInRenderedObjectLimit,),
+            newBooleanContainer(isInCollectedObjectLimit,),
+            getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment,),
+        ),
+        getOrCreateInstrumentProperty(content,),
+    )
+}
+
+/**
+ * Create the {@link Property property} from the {@link content}
+ * with the games, game style, theme, time & limit
+ * applicable to only the {@link Games.SUPER_MARIO_MAKER_2 SMM2 game},
+ * but exclusive to only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}.
+ */
+function createPropertyInSmm2InSm3dw(content: Content,): Property {
+    if (!isInProduction) {
+        if (content.isInSuperMarioMaker1)
+            throw new TypeError('An exclusive SMM2 entity in SM3DW should always have the "isInSuperMarioMaker1" set to false.',)
+        if (content.isInSuperMarioMakerFor3DS)
+            throw new TypeError('An exclusive SMM2 entity in SM3DW should always have the "isInSuperMarioMakerFor3DS" set to false.',)
+        if (!content.isInSuperMarioMaker2)
+            throw new TypeError('An exclusive SMM2 entity in SM3DW should always have the "isInSuperMarioMaker2" set to true.',)
+
+        if (content.inDayTheme == null)
+            throw new TypeError('An exclusive SMM2 entity in SM3DW should always have a day reference.',)
+        if (content.inNightTheme != null)
+            throw new TypeError('An exclusive SMM2 entity in SM3DW should never have a night reference.',)
+
+        if (content.editorLimit_SMM1And3DS != null)
+            throw new TypeError('An exclusive SMM2 entity in SM3DW should never have a SMM1/SMM3DS editor limit.',)
+    }
+
+    const editorLimit_SMM2 = content.editorLimit_SMM2
+    const isInGeneralLimit = content.whilePlaying_isInGEL
+    const isInSuperGlobalGeneralLimit = content.whilePlaying_isInGEL_isSuperGlobal
+    const isInPowerUpLimit = content.whilePlaying_isInPL
+    const isInProjectileLimit = content.whilePlaying_isInPJL
+    const isInRenderedObjectLimit = content.whilePlaying_isInObjectRenderedLimit
+    const isInCollectedObjectLimit = content.whilePlaying_isInCollectedCoinLimit
+    const isInOtherLimit = content.whilePlaying_otherLimit
+    const isInOtherLimitComment = content.whilePlaying_otherLimit_comment
+
+    return new PropertyInstanceContainer(
+        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
+        GameStylePropertyProvider.get.get(false, false, false, false, true,),
+        ThemePropertyProvider.get.get(
+            hasThisReferenced(content.inGroundTheme,),
+            hasThisReferenced(content.inUndergroundTheme,),
+            hasThisReferenced(content.inUnderwaterTheme,),
+            nullOrHasThisReferenced(content.inDesertTheme,),
+            nullOrHasThisReferenced(content.inSnowTheme,),
+            nullOrHasThisReferenced(content.inSkyTheme,),
+            nullOrHasThisReferenced(content.inForestTheme,),
+            hasThisReferenced(content.inGhostHouseTheme,),
+            hasThisReferenced(content.inAirshipTheme,),
+            hasThisReferenced(content.inCastleTheme,),
+        ),
+        TimePropertyProvider.get.get(true, null,),
         LimitPropertyProvider.get.get(
             [[null, editorLimit_SMM2,], [isInGeneralLimit, isInSuperGlobalGeneralLimit,], isInPowerUpLimit, isInProjectileLimit, isInRenderedObjectLimit, isInCollectedObjectLimit, [isInOtherLimit, isInOtherLimitComment,],],
             GameStructureProvider.get.get(null, getLimitProperty(editorLimit_SMM2,),),
