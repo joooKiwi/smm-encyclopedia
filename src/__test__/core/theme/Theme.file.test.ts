@@ -23,7 +23,7 @@ describe('Theme (file test)', () => {
             test('Is in course theme', () => expect(it.isInCourseTheme).toBeBoolean(),)
             test('Is in world theme', () => expect(it.isInCourseTheme).toBeBoolean(),)
             test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS).toBeBoolean(),)
-            test('Is in SMM2', () => expect(it.isInSuperMarioMaker2).toBeBoolean(),)
+            test('Is in SMM2', () => expect(it.isInSuperMarioMaker2).toBeTrue())
             test('Is available from the start (SMM1)', () => expect(it.isAvailableFromTheStart_SMM1).toBeBooleanOrNull(),)
             isWorldOnly
                 ? test('Effect in the night theme', () => expect(it.effectInNightTheme).toBeNull())
