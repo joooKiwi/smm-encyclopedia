@@ -9,7 +9,6 @@ import type {GameContentFromAllGames}   from 'core/game/Loader.types'
 
 import {isInProduction}         from 'variables'
 import {CharacterNameContainer} from 'core/characterName/CharacterName.container'
-import {GamePropertyProvider}   from 'core/entity/properties/game/GameProperty.provider'
 import {createNameFromContent}  from 'lang/name/createNameFromContent'
 
 export class CharacterNameLoader
@@ -62,6 +61,7 @@ interface Content
 function createReference(content: Content,): CharacterName {
     return new CharacterNameContainer(
         createNameFromContent(content, 'all', false,),
-        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
+        content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,
+        content.hasNameSaidInTheEditor,
     )
 }

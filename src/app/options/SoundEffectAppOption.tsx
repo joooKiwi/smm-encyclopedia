@@ -70,7 +70,7 @@ export abstract class SoundEffectAppOption
     public static readonly PLAYER_BEHAVIOUR =     new class GameStyleAppOption_PlayerBehaviour extends SoundEffectAppOption {
 
         protected override _createContentOption(enumeration: SoundEffects,) {
-            return enumeration.reference.playerSoundEffectTriggerContainer.createNewComponent(enumeration.englishName,)
+            return enumeration.reference.playerSoundEffectTrigger.createNewComponent(enumeration.englishName,)
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
