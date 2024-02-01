@@ -9,12 +9,10 @@ import type {PossibleAcronym, PossibleEnglishName}                              
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
 import type {Loader}                                                             from 'util/loader/Loader'
 
-import {isInProduction}                           from 'variables'
-import {GameStyleContainer}                       from 'core/gameStyle/GameStyle.container'
-import {GameReferences}                           from 'core/gameReference/GameReferences'
-import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
-import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {Import}                                   from 'util/DynamicImporter'
+import {isInProduction}     from 'variables'
+import {GameStyleContainer} from 'core/gameStyle/GameStyle.container'
+import {GameReferences}     from 'core/gameReference/GameReferences'
+import {Import}             from 'util/DynamicImporter'
 
 /**
  * @dependsOn<{@link GameReferences}>
@@ -69,6 +67,8 @@ export class GameStyleLoader
 interface Content
     extends GameContentFrom1And2 {
 
+    readonly isInSuperMarioMaker2: true
+
     readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
     readonly reference: PossibleAcronym
     readonly nightDesertWindDirection: PossibleNightDesertWindDirection
@@ -79,8 +79,7 @@ interface Content
 function createReference(content: Content,): GameStyle {
     return new GameStyleContainer(
         GameReferences.CompanionEnum.get.getValueByAcronym(content.reference,).reference.nameContainer,
-        content.isInSuperMarioMaker1And3DS ? GamePropertyProvider.get.all : GamePropertyProvider.get.smm2Only,
-        ClassThatIsAvailableFromTheStartProvider.get.get(content.isAvailableFromTheStart_SMM1,),
+        content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
         lazy(() => {
             const gameStyle = Import.GameStyles.CompanionEnum.get.getValueByAcronym(content.reference,)
 

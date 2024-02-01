@@ -1,12 +1,12 @@
 import type {Lazy} from '@joookiwi/lazy'
 
-import type {ClassThatIsAvailableFromTheStart}                 from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
 import type {Entity}                                           from 'core/entity/Entity'
-import type {GameProperty}                                     from 'core/entity/properties/game/GameProperty'
+import type {Games}                                            from 'core/game/Games'
 import type {GameStyle, PossibleNightDesertWindTranslationKey} from 'core/gameStyle/GameStyle'
 import type {Name}                                             from 'lang/name/Name'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {GameMap}              from 'util/collection/GameMap'
 
 export class GameStyleContainer
     extends ClassContainingAName<string>
@@ -14,22 +14,27 @@ export class GameStyleContainer
 
     //region -------------------- Fields --------------------
 
-    readonly #isInPropertyHolder
+    readonly #isInSuperMarioMaker1And3DS
     readonly #entitiesHolder
-    readonly #isAvailableFromTheStartHolder
+    readonly #isAvailableFromTheStartInSuperMarioMaker1
+    readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: NullOrTrue
     readonly #nightDesertWindTranslationKey
+    #gameMap?: GameMap<boolean, GameStyle>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
-                       isInProperty: GameProperty,
-                       isAvailableFromTheStart: ClassThatIsAvailableFromTheStart,
+                       isInSuperMarioMaker1And3DS: boolean,
+                       isAvailableFromTheStartInSuperMarioMaker1: NullOrBoolean,
                        entities: Lazy<readonly Entity[]>,
                        nightDesertWindTranslationKey: PossibleNightDesertWindTranslationKey,) {
         super(name,)
-        this.#isInPropertyHolder = isInProperty
-        this.#isAvailableFromTheStartHolder = isAvailableFromTheStart
+        this.#isInSuperMarioMaker1And3DS = isInSuperMarioMaker1And3DS
+        if ((this.#isAvailableFromTheStartInSuperMarioMaker1 = isAvailableFromTheStartInSuperMarioMaker1) == null)
+            this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = null
+        else
+            this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = true
         this.#entitiesHolder = entities
         this.#nightDesertWindTranslationKey = nightDesertWindTranslationKey
     }
@@ -39,39 +44,31 @@ export class GameStyleContainer
 
     //region -------------------- Game properties --------------------
 
-    public get isInProperty() {
-        return this.#isInPropertyHolder
-    }
-
     public get isInSuperMarioMaker1() {
-        return this.isInProperty.isInSuperMarioMaker1
+        return this.#isInSuperMarioMaker1And3DS
     }
 
     public get isInSuperMarioMakerFor3DS() {
-        return this.isInProperty.isInSuperMarioMakerFor3DS
+        return this.#isInSuperMarioMaker1And3DS
     }
 
-    public get isInSuperMarioMaker2() {
-        return this.isInProperty.isInSuperMarioMaker2
+    public get isInSuperMarioMaker2(): true {
+        return true
     }
 
     //endregion -------------------- Game properties --------------------
     //region -------------------- "Is available from the start" properties --------------------
 
-    public get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart {
-        return this.#isAvailableFromTheStartHolder
-    }
-
     public get isAvailableFromTheStartInSMM1() {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1
+        return this.#isAvailableFromTheStartInSuperMarioMaker1
     }
 
     public get isAvailableFromTheStartInSMM3DS() {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS
+        return this.#isAvailableFromTheStartInSuperMarioMakerFor3DS
     }
 
-    public get isAvailableFromTheStartInSMM2() {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM2
+    public get isAvailableFromTheStartInSMM2(): true {
+        return true
     }
 
     //endregion -------------------- "Is available from the start" properties --------------------
@@ -87,8 +84,8 @@ export class GameStyleContainer
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap() {
-        return this.isInProperty.toGameMap()
+    public toGameMap(): ReadonlyMap<Games, boolean> {
+        return this.#gameMap ??= new GameMap(this,)
     }
 
     //endregion -------------------- Convertor methods --------------------
