@@ -9,7 +9,11 @@ declare global {
 
     type UndefinedOrBoolean = UndefinedOr<boolean>
     type NullOrBoolean = NullOr<boolean>
+    type NullOrTrue = NullOr<true>
+    type NullOrFalse = NullOr<false>
     type NullableBoolean = Nullable<boolean>
+    type NullableTrue = Nullable<true>
+    type NullableFalse = Nullable<false>
 
     type UndefinedOrString = UndefinedOr<string>
     type NullOrString = NullOr<string>
