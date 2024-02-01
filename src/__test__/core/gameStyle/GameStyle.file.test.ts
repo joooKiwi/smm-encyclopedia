@@ -12,24 +12,24 @@ describe('Game style (file test)', () => {
         const isSM3DW = it.reference === 'SM3DW'
 
         describe('Type validations', () => {
-            test('Reference', () => expect(it.reference).toBeOneOf(possibleAcronyms))
-            test('Is in SMM2', () => expect(it.isInSuperMarioMaker2).toBeTrue())
+            test('Reference', () => expect(it.reference,).toBeOneOf(possibleAcronyms,),)
+            test('Is in SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
 
             if (isSM3DW) {
-                test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS).toBeFalse())
+                test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS,).toBeFalse(),)
 
-                test('Is available from the start (in SMM)', () => expect(it.isAvailableFromTheStart_SMM1).toBeNull())
+                test('Is available from the start (in SMM)', () => expect(it.isAvailableFromTheStart_SMM1,).toBeNull(),)
 
-                test('Night desert wind direction', () => expect(it.nightDesertWindDirection).toBeNull())
-                test('Night desert wind frequency', () => expect(it.nightDesertWindFrequency).toBeNull())
+                test('Night desert wind direction', () => expect(it.nightDesertWindDirection,).toBeNull(),)
+                test('Night desert wind frequency', () => expect(it.nightDesertWindFrequency,).toBeNull(),)
             } else {
                 /* eslint-disable jest/no-identical-title */
-                test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS).toBeTrue())
+                test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS,).toBeTrue(),)
 
-                test('Is available from the start (in SMM)', () => expect(it.isAvailableFromTheStart_SMM1).toBeBoolean())
+                test('Is available from the start (in SMM)', () => expect(it.isAvailableFromTheStart_SMM1,).toBeBoolean(),)
 
-                test('Night desert wind direction', () => expect(it.nightDesertWindDirection).toBeOneOf(possibleNightWindDirection))
-                test('Night desert wind frequency', () => expect(it.nightDesertWindFrequency).toBeOneOf(possibleNightWindFrequency))
+                test('Night desert wind direction', () => expect(it.nightDesertWindDirection,).toBeOneOf(possibleNightWindDirection,),)
+                test('Night desert wind frequency', () => expect(it.nightDesertWindFrequency,).toBeOneOf(possibleNightWindFrequency,),)
                 /* eslint-enable jest/no-identical-title */
             }
 
