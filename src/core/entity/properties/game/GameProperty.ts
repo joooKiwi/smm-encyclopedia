@@ -7,5 +7,3 @@ export interface GameProperty<out SMM1 extends boolean = boolean, out SMM3DS ext
     toGameMap(): ReadonlyMap<Games, boolean>
 
 }
-
-/**@deprecated*/export type AbstractExclusiveSMM2GameProperty = GameProperty<false, false, true>
