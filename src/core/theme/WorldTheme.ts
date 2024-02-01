@@ -1,16 +1,19 @@
-import type {AbstractExclusiveSMM2GameProperty} from 'core/entity/properties/game/GameProperty'
-import type {Theme}                             from 'core/theme/Theme'
+import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
+import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
+import type {Theme}                            from 'core/theme/Theme'
 
 export interface WorldTheme
-    extends Theme, AbstractExclusiveSMM2GameProperty {
+    extends Theme, GameProperty<false, false, true>, ClassThatIsAvailableFromTheStart<null, null, NullOrTrue> {
 
-    get isInProperty(): AbstractExclusiveSMM2GameProperty
+    get isInSuperMarioMaker1(): false
+
+    get isInSuperMarioMakerFor3DS(): false
+
+    get isInSuperMarioMaker2(): true
 
 
-    get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1']
+    get isAvailableFromTheStartInSMM1(): null
 
-    get isInSuperMarioMakerFor3DS(): this['isInProperty']['isInSuperMarioMakerFor3DS']
-
-    get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2']
+    get isAvailableFromTheStartInSMM3DS(): null
 
 }

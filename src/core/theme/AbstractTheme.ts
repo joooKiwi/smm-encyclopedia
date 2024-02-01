@@ -1,76 +1,66 @@
-import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
-import type {Theme}                            from 'core/theme/Theme'
-import type {Name}                             from 'lang/name/Name'
+import type {Theme} from 'core/theme/Theme'
+import type {Games} from 'core/game/Games'
+import type {Name}  from 'lang/name/Name'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {GameMap}              from 'util/collection/GameMap'
 
-export class AbstractTheme<PROPERTY extends GameProperty = GameProperty, >
+export class AbstractTheme<const out SMM1_AND_SMM3DS extends boolean = boolean, const out AVAILABLE_FROM_START_SMM1 extends NullOrBoolean = NullOrBoolean, const out AVAILABLE_FROM_START_SMM3DS extends NullOrTrue = NullOrTrue,>
     extends ClassContainingAName<string>
     implements Theme {
 
     //region -------------------- Fields --------------------
 
-    readonly #isInProperty
-    readonly #isAvailableFromTheStartHolder
+    readonly #isInSuperMarioMaker1And3DS
+    readonly #isAvailableFromTheStartInSuperMarioMaker1: AVAILABLE_FROM_START_SMM1
+    readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: AVAILABLE_FROM_START_SMM3DS
+    #gameMap?: GameMap<boolean, Theme>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     protected constructor(name: Name<string>,
-                          isInProperty: PROPERTY,
-                          isAvailableFromTheStart: ClassThatIsAvailableFromTheStart,) {
+                          isInSuperMarioMaker1And3DS: SMM1_AND_SMM3DS,
+                          isAvailableFromTheStartInSuperMarioMaker1: AVAILABLE_FROM_START_SMM1, isAvailableFromTheStartInSuperMarioMakerFor3DS: AVAILABLE_FROM_START_SMM3DS,) {
         super(name,)
-        this.#isInProperty = isInProperty
-        this.#isAvailableFromTheStartHolder = isAvailableFromTheStart
+        this.#isInSuperMarioMaker1And3DS = isInSuperMarioMaker1And3DS
+        this.#isAvailableFromTheStartInSuperMarioMaker1 = isAvailableFromTheStartInSuperMarioMaker1
+        this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = isAvailableFromTheStartInSuperMarioMakerFor3DS
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    //region -------------------- Game properties --------------------
-
-    public get isInProperty(): PROPERTY {
-        return this.#isInProperty
+    public get isInSuperMarioMaker1(): SMM1_AND_SMM3DS {
+        return this.#isInSuperMarioMaker1And3DS
     }
 
-    public get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1'] {
-        return this.isInProperty.isInSuperMarioMaker1
+    public get isInSuperMarioMakerFor3DS(): SMM1_AND_SMM3DS {
+        return this.#isInSuperMarioMaker1And3DS
     }
 
-    public get isInSuperMarioMakerFor3DS(): this['isInProperty']['isInSuperMarioMakerFor3DS'] {
-        return this.isInProperty.isInSuperMarioMakerFor3DS
+    public get isInSuperMarioMaker2(): true {
+        return true
     }
 
-    public get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2'] {
-        return this.isInProperty.isInSuperMarioMaker2
+
+    public get isAvailableFromTheStartInSMM1(): AVAILABLE_FROM_START_SMM1 {
+        return this.#isAvailableFromTheStartInSuperMarioMaker1
     }
 
-    //endregion -------------------- Game properties --------------------
-    //region -------------------- "Is available from the start" properties --------------------
-
-    public get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart {
-        return this.#isAvailableFromTheStartHolder
+    public get isAvailableFromTheStartInSMM3DS(): AVAILABLE_FROM_START_SMM3DS {
+        return this.#isAvailableFromTheStartInSuperMarioMakerFor3DS
     }
 
-    public get isAvailableFromTheStartInSMM1() {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1
+    public get isAvailableFromTheStartInSMM2(): true {
+        return true
     }
 
-    public get isAvailableFromTheStartInSMM3DS() {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS
-    }
-
-    public get isAvailableFromTheStartInSMM2() {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM2
-    }
-
-    //endregion -------------------- "Is available from the start" properties --------------------
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap() {
-        return this.isInProperty.toGameMap()
+    public toGameMap(): ReadonlyMap<Games, boolean> {
+        return this.#gameMap ??= new GameMap(this,)
     }
 
     //endregion -------------------- Convertor methods --------------------

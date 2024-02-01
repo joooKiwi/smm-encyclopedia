@@ -1,18 +1,14 @@
-import type {ClassThatIsAvailableFromTheStart}                from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {AbstractExclusiveSMM2GameProperty, GameProperty} from 'core/entity/properties/game/GameProperty'
-import type {WorldTheme}                                      from 'core/theme/WorldTheme'
-import type {Name}                                            from 'lang/name/Name'
+import type {WorldTheme} from 'core/theme/WorldTheme'
+import type {Name}       from 'lang/name/Name'
 
 import {AbstractTheme} from 'core/theme/AbstractTheme'
 
 export class WorldThemeContainer
-    extends AbstractTheme<AbstractExclusiveSMM2GameProperty>
+    extends AbstractTheme<false, null, null>
     implements WorldTheme {
 
-    public constructor(name: Name<string>,
-                       isInProperty: GameProperty<false, false, true>,
-                       isAvailableFromTheStart: ClassThatIsAvailableFromTheStart<null, null, true>,) {
-        super(name, isInProperty, isAvailableFromTheStart,)
+    public constructor(name: Name<string>,) {
+        super(name, false, null, null,)
     }
 
 }

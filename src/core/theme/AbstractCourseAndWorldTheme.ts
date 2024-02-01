@@ -1,9 +1,8 @@
-import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
-import type {CourseAndWorldTheme}              from 'core/theme/CourseAndWorldTheme'
-import type {CourseTheme}                      from 'core/theme/CourseTheme'
-import type {WorldTheme}                       from 'core/theme/WorldTheme'
-import type {Name}                             from 'lang/name/Name'
+import type {Games}               from 'core/game/Games'
+import type {CourseAndWorldTheme} from 'core/theme/CourseAndWorldTheme'
+import type {CourseTheme}         from 'core/theme/CourseTheme'
+import type {WorldTheme}          from 'core/theme/WorldTheme'
+import type {Name}                from 'lang/name/Name'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
@@ -45,45 +44,27 @@ export abstract class AbstractCourseAndWorldTheme
 
     //region -------------------- Game properties --------------------
 
-    public abstract get isInProperty(): GameProperty
+    public abstract get isInSuperMarioMaker1(): boolean
 
-    public get isInSuperMarioMaker1(): this['isInProperty']['isInSuperMarioMaker1'] {
-        return this.isInProperty.isInSuperMarioMaker1
-    }
+    public abstract get isInSuperMarioMakerFor3DS(): boolean
 
-    public get isInSuperMarioMakerFor3DS(): this['isInProperty']['isInSuperMarioMakerFor3DS'] {
-        return this.isInProperty.isInSuperMarioMakerFor3DS
-    }
-
-    public get isInSuperMarioMaker2(): this['isInProperty']['isInSuperMarioMaker2'] {
-        return this.isInProperty.isInSuperMarioMaker2
-    }
+    public abstract get isInSuperMarioMaker2(): boolean
 
     //endregion -------------------- Game properties --------------------
     //region -------------------- "Is available from the start" properties --------------------
 
-    public abstract get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart
+    public abstract get isAvailableFromTheStartInSMM1(): NullOrBoolean
 
-    public get isAvailableFromTheStartInSMM1(): this['isAvailableFromTheStartContainer']['isAvailableFromTheStartInSMM1'] {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1
-    }
+    public abstract get isAvailableFromTheStartInSMM3DS(): NullOrTrue
 
-    public get isAvailableFromTheStartInSMM3DS(): this['isAvailableFromTheStartContainer']['isAvailableFromTheStartInSMM3DS'] {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS
-    }
-
-    public get isAvailableFromTheStartInSMM2(): this['isAvailableFromTheStartContainer']['isAvailableFromTheStartInSMM2'] {
-        return this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM2
-    }
+    public abstract get isAvailableFromTheStartInSMM2(): NullOrTrue
 
     //endregion -------------------- "Is available from the start" properties --------------------
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap() {
-        return this.isInProperty.toGameMap()
-    }
+    public abstract toGameMap(): ReadonlyMap<Games, boolean>
 
     //endregion -------------------- Convertor methods --------------------
 

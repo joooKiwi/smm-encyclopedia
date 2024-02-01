@@ -1,36 +1,40 @@
-import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {CourseTheme}                      from 'core/theme/CourseTheme'
-import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
-import type {WorldTheme}                       from 'core/theme/WorldTheme'
-import type {Name}                             from 'lang/name/Name'
+import type {Games}               from 'core/game/Games'
+import type {CourseTheme}         from 'core/theme/CourseTheme'
+import type {CourseAndWorldTheme} from 'core/theme/CourseAndWorldTheme'
+import type {WorldTheme}          from 'core/theme/WorldTheme'
+import type {Name}                from 'lang/name/Name'
 
 import {AbstractCourseAndWorldTheme} from 'core/theme/AbstractCourseAndWorldTheme'
+import {GameMap}                     from 'util/collection/GameMap'
 
 export class CourseAndWorldThemeContainer
     extends AbstractCourseAndWorldTheme {
 
     //region -------------------- Fields --------------------
 
-    readonly #isInPropertyHolder
-    readonly #isAvailableFromTheStartHolder
+    readonly #isInSuperMarioMaker1And3DS
+    readonly #isAvailableFromTheStartInSuperMarioMaker1
+    readonly #isAvailableFromTheStartInSuperMarioMakerFor3DS: NullOrTrue
+    #gameMap?: GameMap<boolean, CourseAndWorldTheme>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
-                       gameProperty: GameProperty,
-                       isAvailableFromTheStart: ClassThatIsAvailableFromTheStart,
+                       isInSuperMarioMaker1And3DS: boolean,
+                       isAvailableFromTheStartInSuperMarioMaker1: NullOrBoolean,
                        courseTheme: CourseTheme,
                        worldTheme: WorldTheme,) {
         super(name, courseTheme, worldTheme,)
-        this.#isInPropertyHolder = gameProperty
-        this.#isAvailableFromTheStartHolder = isAvailableFromTheStart
+        this.#isInSuperMarioMaker1And3DS = isInSuperMarioMaker1And3DS
+        if ((this.#isAvailableFromTheStartInSuperMarioMaker1 = isAvailableFromTheStartInSuperMarioMaker1) == null)
+            this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = null
+        else
+            this.#isAvailableFromTheStartInSuperMarioMakerFor3DS = true
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
-
-    //region -------------------- Theme properties --------------------
 
     public override get isInCourseTheme(): true {
         return true
@@ -41,22 +45,38 @@ export class CourseAndWorldThemeContainer
         return true
     }
 
-    //endregion -------------------- Theme properties --------------------
-    //region -------------------- Game properties --------------------
 
-    public override get isInProperty(): GameProperty {
-        return this.#isInPropertyHolder
+    public override get isInSuperMarioMaker1() {
+        return this.#isInSuperMarioMaker1And3DS
     }
 
-    //endregion -------------------- Game properties --------------------
-    //region -------------------- "Is available from the start" properties --------------------
-
-    public override get isAvailableFromTheStartContainer() {
-        return this.#isAvailableFromTheStartHolder
+    public override get isInSuperMarioMakerFor3DS() {
+        return this.#isInSuperMarioMaker1And3DS
     }
 
-    //endregion -------------------- "Is available from the start" properties --------------------
+    public override get isInSuperMarioMaker2(): true {
+        return true
+    }
+
+
+    public override get isAvailableFromTheStartInSMM1() {
+        return this.#isAvailableFromTheStartInSuperMarioMaker1
+    }
+
+    public override get isAvailableFromTheStartInSMM3DS() {
+        return this.#isAvailableFromTheStartInSuperMarioMakerFor3DS
+    }
+
+    public override get isAvailableFromTheStartInSMM2(): true {
+        return true
+    }
 
     //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
 
+    public toGameMap(): ReadonlyMap<Games, boolean> {
+        return this.#gameMap ??= new GameMap(this,)
+    }
+
+    //endregion -------------------- Convertor methods --------------------
 }
