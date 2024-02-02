@@ -16,10 +16,8 @@ import type {PossibleEnglishName as PossibleEnglishName_Medal}                  
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}                                                                                                                                                                              from 'core/miiCostume/MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                      from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                     from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {PokemonGeneration}                                                                                                                                                                                                                  from 'core/mysteryMushroom/loader.types'
-import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                         from 'core/mysteryMushroom/properties/UnlockProperty'
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                               from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
+import type {PokemonGeneration, PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                      from 'core/mysteryMushroom/loader.types'
+import type {TranslationKeyOnDeath as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom,TranslationKeyOnGoalPole as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                        from 'core/mysteryMushroom/MysteryMushroom.types'
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                       from 'core/nightEffect/NightEffects.types'
 import type {PossibleReleaseDate as PossibleReleaseDate_OfficialCourse, PossibleRemovalDate as PossibleRemovalDate_OfficialCourse, PossibleReward as PossibleReward_OfficialCourse}                                                              from 'core/officialCourse/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_OfficialCourse}                                                                                                                                                                          from 'core/officialCourse/OfficialCourses.types'
@@ -156,8 +154,8 @@ export class EveryTypes {
 
     #everyPossibleEnglishNameOnFile_mysteryMushroom?: readonly UniqueEnglishName_MysteryMushroom[]
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: readonly PossibleConditionToUnlockIt_MysteryMushroom[]
-    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom
-    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom
+    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom[]
+    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom[]
 
     #everyPossibleEnglishName_officialCourse?: readonly PossibleEnglishName_OfficialCourse[]
     #everyPossibleReward_officialCourse?: readonly PossibleReward_OfficialCourse[]
@@ -444,7 +442,6 @@ export class EveryTypes {
 
     public get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom() {
         return this.#everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom ??= [
-            UNKNOWN_REFERENCE,
             'Introduction', 'Startup', 'Game over',
             'Level finished', 'Level finished?', 'Race finished',
             'Airship completed', 'Timed event completed', 'Course completed',
@@ -459,7 +456,6 @@ export class EveryTypes {
 
     public get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom() {
         return this.#everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom ??= [
-            UNKNOWN_REFERENCE,
             'Game over', 'Defeated', 'Error sound',
             'Boss defeated', 'Dog laughing',
             'Lost a life', 'Lost an Arwing', 'Falling offscreen',
@@ -597,13 +593,6 @@ export class EveryTypes {
 
 type EveryPossibleName_EntityGroup = readonly string[]
 
-//region -------------------- Mystery Mushroom --------------------
-
-type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
-
-type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
-
-//endregion -------------------- Mystery Mushroom --------------------
 //region -------------------- Official notification --------------------
 
 type PossibleNameWithEveryAmount_OfficialNotification = PossibleEnglishName_OfficialNotification | PossibleEnglishName_OfficialNotificationWithEveryAmount

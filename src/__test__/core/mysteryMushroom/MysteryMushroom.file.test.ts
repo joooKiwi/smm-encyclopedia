@@ -1,11 +1,8 @@
 import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
-import type {PossibleExcludedLanguages}                                                                               from '__test__/helperMethods.types'
-import type {PossibleValuesReceived as PossibleSpecialMusicInStarMode}                                                from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode'
-import type {PossibleTypesReceived as TypeOfSoundEffectOnDeath, PossibleValuesReceived as PossibleSoundEffectOnDeath} from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
-import type {PossibleTypesReceived as TypeOfMusicOnGoalPole, PossibleValuesReceived as PossibleSoundEffectOnGoalPole} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
-import type {PossibleValuesReceived as PossibleSoundEffectOnJump}                                                     from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump'
-import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}                                                 from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
+import type {PossibleExcludedLanguages}                                                                                                                           from '__test__/helperMethods.types'
+import type {PossibleSoundEffectOnDeath, PossibleSoundEffectOnGoalPole, PossibleSoundEffectOnJump, PossibleSoundEffectOnMovement, PossibleSpecialMusicInStarMode} from 'core/mysteryMushroom/loader.types'
+import type {TypeOfSoundOnDeath, TypeOfSoundOnGoalPole}                                                                                                           from 'core/mysteryMushroom/MysteryMushroom.types'
 
 import {EveryTypes}                                 from '__test__/EveryTypes'
 import {getEnglishName, testEnglish, testLanguages} from '__test__/helperMethods'
@@ -18,14 +15,14 @@ describe('Mystery Mushroom (file test)', () => {
     const everyGameReferenceAcronymWithPokemon = [...types.everyPossibleAcronym_gameReference, ...types.everyPossiblePokemonGeneration_gameReference,]                                           as const
     const everyGameReferenceAcronymWithPokemonAndNullAndUnknown = [null, UNKNOWN_REFERENCE, ...types.everyPossibleAcronym_gameReference, ...types.everyPossiblePokemonGeneration_gameReference,] as const
     const everyGameReferenceAcronymsWithNull = [null, ...types.everyPossibleAcronym_gameReference,]                                                                                              as const
-    const everySoundEffectOnGoalPoleSmallDefinition = [null, ...types.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom,]                                                       as const
-    const everySoundEffectOnDeathSmallDefinition = [null, ...types.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom,]                                                             as const
+    const everySoundEffectOnGoalPoleSmallDefinition = [null, UNKNOWN_REFERENCE, ...types.everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom,]                                    as const
+    const everySoundEffectOnDeathSmallDefinition = [null, UNKNOWN_REFERENCE, ...types.everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom,]                                          as const
     const possibleSoundEffectOnJump = [true, false, 2, '3 images',]                                                                                                                              as const satisfies readonly PossibleSoundEffectOnJump[]
     const possibleSoundEffectOnMovement = [null, 'Twinkle', 'Engine sound',]                                                                                                                     as const satisfies readonly PossibleSoundEffectOnMovement[]
     const possibleSpecialMusicInStarMode = [false, 'Flying Mario', 'Metal Mario', 'Super Star',]                                                                                                 as const satisfies readonly PossibleSpecialMusicInStarMode[]
-    const possibleSoundEffectOnGoalPoleType = [null, 'Marimba', 'Rock',]                                                                                                                         as const satisfies readonly TypeOfMusicOnGoalPole[]
+    const possibleSoundEffectOnGoalPoleType = [null, 'Marimba', 'Rock',]                                                                                                                         as const satisfies readonly NullOr<TypeOfSoundOnGoalPole>[]
     const possibleSoundEffectOnGoalPole = [null, true, false, '+ sound', '+ "Yatta"', '+ barks', '+ "Yeah"', '+ humming', '+ singing', '+ Car sound',]                                           as const satisfies readonly PossibleSoundEffectOnGoalPole[]
-    const possibleSoundEffectOnDeathType = [null, 'Marimba', 'Techno',]                                                                                                                          as const satisfies readonly TypeOfSoundEffectOnDeath[]
+    const possibleSoundEffectOnDeathType = [null, 'Marimba', 'Techno',]                                                                                                                          as const satisfies readonly NullOr<TypeOfSoundOnDeath>[]
     const possibleSoundEffectOnDeath = [null, true, false, '+ "Rooo…"', '+ "Oh no!"', '+ "Nooo!"', '+ "Woah!"', '+ "Yaha!"',]                                                                    as const satisfies readonly PossibleSoundEffectOnDeath[]
     const everyNames = types.everyPossibleUniqueEnglishName_mysteryMushroom
     const excludedLanguages: readonly PossibleExcludedLanguages[] = ['chinese', 'korean',]
@@ -55,6 +52,7 @@ describe('Mystery Mushroom (file test)', () => {
 
                 test('Have a sound effect on a jump (game)', () => expect(it.haveASoundEffectOnJump_game,).toBeNull(),)
                 test('Have a sound effect on a jump', () => expect(it.haveASoundEffectOnJump,).toBeNull(),)
+
                 test('Have a sound effect on the ground after a jump (game)', () => expect(it.haveASoundEffectOnGroundAfterJump_game,).toBeNull(),)
                 test('Have a sound effect on the ground after a jump', () => expect(it.haveASoundEffectOnGroundAfterJump,).toBeNull(),)
 
@@ -84,6 +82,7 @@ describe('Mystery Mushroom (file test)', () => {
 
                 test('Have a sound effect on a jump (game)', () => expect(it.haveASoundEffectOnJump_game,).toBeOneOf(everyGameReferenceAcronymsWithNull,),)
                 test('Have a sound effect on a jump', () => expect(it.haveASoundEffectOnJump,).toBeOneOf(possibleSoundEffectOnJump,),)
+
                 test('Have a sound effect on the ground after a jump (game)', () => expect(it.haveASoundEffectOnGroundAfterJump_game,).toBeOneOf(everyGameReferenceAcronymsWithNull,),)
                 test('Have a sound effect on the ground after a jump', () => expect(it.haveASoundEffectOnGroundAfterJump,).toBeBoolean(),)
 
