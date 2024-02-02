@@ -23,6 +23,7 @@ import type {GameContentFromAllGames,}                                          
 import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/instrument/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'core/limit/Limits.types'
 import type {PossibleName as PossibleMarioMakerVersion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'core/version/Versions.types'
+import type {CompanionEnumByName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'util/enumerable/companion/CompanionEnumByName'
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'util/loader/Loader'
 
 import {isInProduction}                                                                                             from 'variables'
@@ -78,6 +79,8 @@ export class EntityLoader
         if (this.#map != null)
             return this.#map
 
+        const entityCategoryMap = EntityCategoryLoader.get.load()
+        const limitCompanion = Limits.CompanionEnum.get
         const references = new Map<PossibleEnglishName, Entity>()
         const referenceLinks = new ReferenceLinks()
         let index = file.length
@@ -105,7 +108,7 @@ export class EntityLoader
                 content.inAirshipTheme,
                 content.inCastleTheme,
             )
-            references.set(englishName, createReference(content, referenceLinks,),)
+            references.set(englishName, createReference(content, referenceLinks, entityCategoryMap, limitCompanion,),)
         }
 
         if (!isInProduction)
@@ -281,6 +284,11 @@ interface Content
 
 }
 
+/** A type-alias definition of the {@link EntityCategories} name-reference {@link ReadonlyMap map} */
+type EntityCategoryMap = ReadonlyMap<PossibleEnglishName_Category, EntityCategory>
+/** A type-alias definition of the {@link Limits.CompanionEnum} */
+type LimitCompanion = CompanionEnumByName<Limits, typeof Limits>
+
 //region -------------------- Create template --------------------
 
 /**
@@ -307,7 +315,7 @@ function nullOrHasThisReferenced(link: Nullable<EntityLink>,): NullOrBoolean {
 
 const EMPTY_ENTITIES = lazy(() => [EmptyEntity.get,] as const,)
 
-function createReference(content: Content, referenceLinks: ReferenceLinks,): Entity {
+function createReference(content: Content, referenceLinks: ReferenceLinks, entityCategoryMap: EntityCategoryMap, limitCompanion: LimitCompanion,): Entity {
     const isInSMM1 = content.isInSuperMarioMaker1
     const isInSMM3DS = content.isInSuperMarioMakerFor3DS
     const isInSMM2 = content.isInSuperMarioMaker2
@@ -316,7 +324,7 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
         return new EntityContainer(
             createNameFromContent(content, 1, false,),
             getEntityCategoryInSmm1(content.categoryInTheEditor,),
-            createPropertyInSmm1(content,),
+            createPropertyInSmm1(content, limitCompanion,),
             createReferences(content, referenceLinks,),
         )
     if (!isInSMM1 && !isInSMM3DS && isInSMM2) {
@@ -327,49 +335,49 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
             && hasThisReferenced(content.inSM3DWGameStyle,))
             return new EntityContainer(
                 createNameFromContent(content, 2, false,),
-                getEntityCategory(content.categoryInTheEditor,),
-                createPropertyInSmm2InSm3dw(content,),
+                getEntityCategory(content.categoryInTheEditor, entityCategoryMap,),
+                createPropertyInSmm2InSm3dw(content, limitCompanion,),
                 createReferences(content, referenceLinks,),
             )
         return new EntityContainer(
             createNameFromContent(content, 2, false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createPropertyInSmm2ButNotSm3dw(content,),
+            getEntityCategory(content.categoryInTheEditor, entityCategoryMap,),
+            createPropertyInSmm2ButNotSm3dw(content, limitCompanion,),
             createReferences(content, referenceLinks,),
         )
     }
     if (!isInSMM1 && isInSMM3DS && !isInSMM2)
         return new EntityContainer(
             createNameFromContent(content, '3DS', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
+            getEntityCategory(content.categoryInTheEditor, entityCategoryMap,),
+            createProperty(content, limitCompanion,),
             createReferences(content, referenceLinks,),
         )
     if (isInSMM1 && isInSMM3DS && !isInSMM2)
         return new EntityContainer(
             createNameFromContent(content, 'notSMM2', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
+            getEntityCategory(content.categoryInTheEditor, entityCategoryMap,),
+            createProperty(content, limitCompanion,),
             createReferences(content, referenceLinks,),
         )
     if (isInSMM1 && !isInSMM3DS && isInSMM2)
         return new EntityContainer(
             createNameFromContent(content, 'notSMM3DS', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
+            getEntityCategory(content.categoryInTheEditor, entityCategoryMap,),
+            createProperty(content, limitCompanion,),
             createReferences(content, referenceLinks,),
         )
     if (!isInSMM1 && isInSMM3DS && isInSMM2)
         return new EntityContainer(
             createNameFromContent(content, 'notSMM1', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
+            getEntityCategory(content.categoryInTheEditor, entityCategoryMap,),
+            createProperty(content, limitCompanion,),
             createReferences(content, referenceLinks,),
         )
     return new EntityContainer(
         createNameFromContent(content, 'all', false,),
-        getEntityCategory(content.categoryInTheEditor,),
-        createProperty(content,),
+        getEntityCategory(content.categoryInTheEditor, entityCategoryMap,),
+        createProperty(content, limitCompanion,),
         createReferences(content, referenceLinks,),
     )
 }
@@ -379,10 +387,10 @@ function createReference(content: Content, referenceLinks: ReferenceLinks,): Ent
  * Get the entity category reference from the {@link EntityTemplate template}
  * or return an {@link EmptyEntityCategory empty category}.
  */
-function getEntityCategory(value: NullOr<PossibleEnglishName_Category>,): EntityCategory {
+function getEntityCategory(value: NullOr<PossibleEnglishName_Category>, entityCategoryMap: EntityCategoryMap,): EntityCategory {
     if (value == null)
         return EmptyEntityCategory.get
-    return EntityCategoryLoader.get.load().get(value,)!
+    return entityCategoryMap.get(value,)!
 }
 
 /**
@@ -399,26 +407,26 @@ function getEntityCategoryInSmm1(value: NullOr<PossibleEnglishName_Category>,): 
 }
 
 
-function getLimitProperty(value: Nullable<| PossibleEnglishName_Limit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<Limits, false, null> | NotApplicableProperty | UnknownProperty {
+function getLimitProperty(value: Nullable<| PossibleEnglishName_Limit | UnknownCharacter>, limitCompanion: LimitCompanion,): PropertyThatCanBeUnknownWithComment<Limits, false, null> | NotApplicableProperty | UnknownProperty {
     if (value == null)
         return PropertyContainer.NOT_APPLICABLE_CONTAINER
     if (value === UNKNOWN_CHARACTER)
         return PropertyContainer.UNKNOWN_CONTAINER
-    return new PropertyContainer(Limits.CompanionEnum.get.getValueByName(value,), false, null, null,)
+    return new PropertyContainer(limitCompanion.getValueByName(value,), false, null, null,)
 }
 
-function getLimitPropertyWithComment<COMMENT extends NullOrString, >(value: Nullable<| PossibleEnglishName_Limit | UnknownCharacter>, comment: COMMENT,): PropertyThatCanBeUnknownWithComment<Limits, boolean, COMMENT> | UnknownProperty | NotApplicableProperty {
+function getLimitPropertyWithComment<COMMENT extends NullOrString, >(value: Nullable<| PossibleEnglishName_Limit | UnknownCharacter>, comment: COMMENT, limitCompanion: LimitCompanion,): PropertyThatCanBeUnknownWithComment<Limits, boolean, COMMENT> | UnknownProperty | NotApplicableProperty {
     if (value == null)
         return PropertyContainer.NOT_APPLICABLE_CONTAINER
     if (value === UNKNOWN_CHARACTER)
         return PropertyContainer.UNKNOWN_CONTAINER
-    return new PropertyContainer(Limits.CompanionEnum.get.getValueByName(value,), false, null, comment,)
+    return new PropertyContainer(limitCompanion.getValueByName(value,), false, null, comment,)
 }
 
-function getLimitByNameOrAcronymOrNull(value: Nullable<PossibleEnglishName_Limit>,): NullOr<Limits> {
+function getLimitByNameOrAcronymOrNull(value: Nullable<PossibleEnglishName_Limit>, limitCompanion: LimitCompanion,): NullOr<Limits> {
     if (value == null)
         return null
-    return Limits.CompanionEnum.get.getValueByName(value,)
+    return limitCompanion.getValueByName(value,)
 }
 
 /**
@@ -449,7 +457,7 @@ function getOrCreateGroupReference(references: readonly PossibleEnglishName[],):
  *
  * @todo change every theme, time & style to have a nullable boolean instead of just boolean or nullable boolean
  */
-function createProperty(content: Content,): Property {
+function createProperty(content: Content, limitCompanion: LimitCompanion,): Property {
     const isExclusiveToSMM1 = content.isInSuperMarioMaker1 && !content.isInSuperMarioMakerFor3DS && !content.isInSuperMarioMaker2
     const isInSMB = hasThisReferenced(content.inSMBGameStyle,)
     const isInSMB3 = hasThisReferenced(content.inSMB3GameStyle,)
@@ -483,7 +491,7 @@ function createProperty(content: Content,): Property {
             hasThisReferenced(content.inDayTheme,),
             isExclusiveToSMM1 || isExclusiveToSM3DW ? nullOrHasThisReferenced(content.inNightTheme,) : hasThisReferenced(content.inNightTheme,),
         ),
-        getLimitPropertyFields(content,),
+        getLimitPropertyFields(content, limitCompanion,),
         getOrCreateInstrumentProperty(content,),
     )
 }
@@ -493,7 +501,7 @@ function createProperty(content: Content,): Property {
  * with the games, game style, theme, time & limit
  * applicable to only the {@link Games.SUPER_MARIO_MAKER_1 SMM1 game}
  */
-function createPropertyInSmm1(content: Content,): Property {
+function createPropertyInSmm1(content: Content, limitCompanion: LimitCompanion,): Property {
     if (!isInProduction) {
         if (!content.isInSuperMarioMaker1)
             throw new TypeError('An exclusive SMM1 entity should always have the "isInSuperMarioMaker1" set to true.',)
@@ -566,7 +574,7 @@ function createPropertyInSmm1(content: Content,): Property {
         LimitPropertyProvider.get.get(
             [[editorLimit_SMM1And3DS, null,], [null, null,], null, null, null, null, [null, null,],],
             GameStructureProvider.get.get(
-                getLimitByNameOrAcronymOrNull(editorLimit_SMM1And3DS,),
+                getLimitByNameOrAcronymOrNull(editorLimit_SMM1And3DS, limitCompanion,),
                 PropertyContainer.NOT_APPLICABLE_CONTAINER,
             ),
             [
@@ -589,7 +597,7 @@ function createPropertyInSmm1(content: Content,): Property {
  * applicable to only the {@link Games.SUPER_MARIO_MAKER_2 SMM2 game},
  * but not specifically exclusive to {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}.
  */
-function createPropertyInSmm2ButNotSm3dw(content: Content,): Property {
+function createPropertyInSmm2ButNotSm3dw(content: Content, limitCompanion: LimitCompanion,): Property {
     if (!isInProduction) {
         if (content.isInSuperMarioMaker1)
             throw new TypeError('An exclusive SMM2 entity should always have the "isInSuperMarioMaker1" set to false.',)
@@ -639,7 +647,7 @@ function createPropertyInSmm2ButNotSm3dw(content: Content,): Property {
         ),
         LimitPropertyProvider.get.get(
             [[null, editorLimit_SMM2,], [isInGeneralLimit, isInSuperGlobalGeneralLimit,], isInPowerUpLimit, isInProjectileLimit, isInRenderedObjectLimit, isInCollectedObjectLimit, [isInOtherLimit, isInOtherLimitComment,],],
-            GameStructureProvider.get.get(null, getLimitProperty(editorLimit_SMM2,),),
+            GameStructureProvider.get.get(null, getLimitProperty(editorLimit_SMM2, limitCompanion,),),
             [
                 newBooleanWithCommentCommentContainer(isInGeneralLimit,),
                 newBooleanWithCommentCommentContainer(isInSuperGlobalGeneralLimit,),
@@ -648,7 +656,7 @@ function createPropertyInSmm2ButNotSm3dw(content: Content,): Property {
             newBooleanWithCommentThatCanBeUnknownContainer(isInProjectileLimit,),
             newBooleanWithCommentCommentContainer(isInRenderedObjectLimit,),
             newBooleanContainer(isInCollectedObjectLimit,),
-            getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment,),
+            getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment, limitCompanion,),
         ),
         getOrCreateInstrumentProperty(content,),
     )
@@ -660,7 +668,7 @@ function createPropertyInSmm2ButNotSm3dw(content: Content,): Property {
  * applicable to only the {@link Games.SUPER_MARIO_MAKER_2 SMM2 game},
  * but exclusive to only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}.
  */
-function createPropertyInSmm2InSm3dw(content: Content,): Property {
+function createPropertyInSmm2InSm3dw(content: Content, limitCompanion: LimitCompanion,): Property {
     if (!isInProduction) {
         if (content.isInSuperMarioMaker1)
             throw new TypeError('An exclusive SMM2 entity in SM3DW should always have the "isInSuperMarioMaker1" set to false.',)
@@ -706,7 +714,7 @@ function createPropertyInSmm2InSm3dw(content: Content,): Property {
         TimePropertyProvider.get.get(true, null,),
         LimitPropertyProvider.get.get(
             [[null, editorLimit_SMM2,], [isInGeneralLimit, isInSuperGlobalGeneralLimit,], isInPowerUpLimit, isInProjectileLimit, isInRenderedObjectLimit, isInCollectedObjectLimit, [isInOtherLimit, isInOtherLimitComment,],],
-            GameStructureProvider.get.get(null, getLimitProperty(editorLimit_SMM2,),),
+            GameStructureProvider.get.get(null, getLimitProperty(editorLimit_SMM2, limitCompanion,),),
             [
                 newBooleanWithCommentCommentContainer(isInGeneralLimit,),
                 newBooleanWithCommentCommentContainer(isInSuperGlobalGeneralLimit,),
@@ -715,7 +723,7 @@ function createPropertyInSmm2InSm3dw(content: Content,): Property {
             newBooleanWithCommentThatCanBeUnknownContainer(isInProjectileLimit,),
             newBooleanWithCommentCommentContainer(isInRenderedObjectLimit,),
             newBooleanContainer(isInCollectedObjectLimit,),
-            getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment,),
+            getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment, limitCompanion,),
         ),
         getOrCreateInstrumentProperty(content,),
     )
@@ -726,8 +734,9 @@ function createPropertyInSmm2InSm3dw(content: Content,): Property {
  * Get the {@link LimitProperty limit property} from the {@link content}
  *
  * @param content the content to retrieve the limit fields
+ * @param limitCompanion The {@link Limits.CompanionEnum} reference
  */
-function getLimitPropertyFields(content: Content,): LimitProperty {
+function getLimitPropertyFields(content: Content, limitCompanion: LimitCompanion,): LimitProperty {
     const editorLimit_SMM1And3DS = content.editorLimit_SMM1And3DS
     const editorLimit_SMM2 = content.editorLimit_SMM2
     const isInGeneralLimit = content.whilePlaying_isInGEL
@@ -742,8 +751,8 @@ function getLimitPropertyFields(content: Content,): LimitProperty {
     return LimitPropertyProvider.get.get(
         [[editorLimit_SMM1And3DS, editorLimit_SMM2,], [isInGeneralLimit, isInSuperGlobalGeneralLimit,], isInPowerUpLimit, isInProjectileLimit, isInRenderedObjectLimit, isInCollectedObjectLimit, [isInOtherLimit, isInOtherLimitComment,],],
         GameStructureProvider.get.get(
-            getLimitByNameOrAcronymOrNull(editorLimit_SMM1And3DS,),
-            getLimitProperty(editorLimit_SMM2,),
+            getLimitByNameOrAcronymOrNull(editorLimit_SMM1And3DS, limitCompanion,),
+            getLimitProperty(editorLimit_SMM2, limitCompanion,),
         ),
         [
             newBooleanWithCommentCommentContainer(isInGeneralLimit,),
@@ -753,7 +762,7 @@ function getLimitPropertyFields(content: Content,): LimitProperty {
         newBooleanWithCommentThatCanBeUnknownContainer(isInProjectileLimit,),
         newBooleanWithCommentCommentContainer(isInRenderedObjectLimit,),
         newBooleanContainer(isInCollectedObjectLimit,),
-        getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment,),
+        getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment, limitCompanion,),
     )
 }
 
