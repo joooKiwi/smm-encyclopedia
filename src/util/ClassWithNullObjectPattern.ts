@@ -32,9 +32,6 @@ export type EmptyEntityCategoryName = 'Empty entity category'
 export type EmptyLimitPropertyName = 'Empty limit property'
 export type EmptyLimitName = 'Empty limit'
 
-export type EmptyLimitAmountName = 'Empty limit (amount)'
-export type EmptyLimitLinkName = 'Empty limit (link)'
-
 //endregion -------------------- Limit types --------------------
 //region -------------------- Game style types --------------------
 
@@ -80,9 +77,6 @@ export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category'
 
 //endregion -------------------- Mii costume category types --------------------
 //region -------------------- Official notification types --------------------
-
-export type EmptyOfficialNotificationName = 'Empty official notification'
-
 //endregion -------------------- Official notification types --------------------
 //region -------------------- Predefined message types --------------------
 
@@ -106,7 +100,7 @@ export type EveryPossibleEmptyName =
 
     | EmptyEntityCategoryName
 
-    | EmptyLimitPropertyName | EmptyLimitName | EmptyLimitAmountName | EmptyLimitLinkName
+    | EmptyLimitPropertyName | EmptyLimitName
 
     | EmptyGameStyleName
 
@@ -121,8 +115,6 @@ export type EveryPossibleEmptyName =
 
     | EmptyMiiCostumeName
     | EmptyMiiCostumeCategoryName
-
-    | EmptyOfficialNotificationName
 
     | EmptyPredefinedMessageName
 
