@@ -320,7 +320,7 @@ export class Limits
     //region -------------------- Companion enum --------------------
 
     public static readonly CompanionEnum: CompanionEnumByNameSingleton<Limits, typeof Limits> = class CompanionEnum_Limits
-        extends CompanionEnumByName<Limits, typeof Limits>{
+        extends CompanionEnumByName<Limits, typeof Limits> {
 
         //region -------------------- Singleton usage --------------------
 

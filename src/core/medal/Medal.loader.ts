@@ -63,9 +63,9 @@ export class MedalLoader
 
 interface Content {
 
-    amountOfAllowedLevelToUpload: PossibleMaximumAmountAllowedToUploadALevel
-    amountOfStarReceived: PossibleAmountOfStarReceivedToUnlockIt
-    image: PossibleEnglishName
+    readonly amountOfAllowedLevelToUpload: PossibleMaximumAmountAllowedToUploadALevel
+    readonly amountOfStarReceived: PossibleAmountOfStarReceivedToUnlockIt
+    readonly image: PossibleEnglishName
 
 }
 
