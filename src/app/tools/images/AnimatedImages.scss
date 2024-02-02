@@ -66,20 +66,20 @@ $last-possible-amount-of-frames: 10;
 
 }
 
-@for $amount-of-frames from 2 to  ($last-possible-amount-of-frames + 1) {
+@for $amount-of-frames from 2 to ($last-possible-amount-of-frames + 1) {
 
   @keyframes animation-from-#{$amount-of-frames}-images {
     $single-frame-percentage: math.div(100%, $amount-of-frames,);
     from {
       @include list-of-background-size($amount-of-frames, 1,);
     }
-    @for $i from 2 to $amount-of-frames {
-      #{$single-frame-percentage * $i} {
+    @for $i from 2 to ($amount-of-frames + 1) {
+      #{$single-frame-percentage * ($i - 1)} {
         @include list-of-background-size($amount-of-frames, $i,);
       }
     }
     to {
-      @include list-of-background-size($amount-of-frames, $amount-of-frames,);
+      @include list-of-background-size($amount-of-frames, 1,);
     }
   }
 
