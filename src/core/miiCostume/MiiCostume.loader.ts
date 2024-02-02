@@ -45,10 +45,13 @@ export class MiiCostumeLoader
         if (this.#map != null)
             return this.#map
 
+        const versionCompanion = Versions.CompanionEnum.get
+        const miiCostumeCategoryMap = MiiCostumeCategoryLoader.get.load()
+        const officialNotificationCompanion = OfficialNotifications.CompanionEnum.get
         const references = new Map<PossibleEnglishName, MiiCostume>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+            const reference = createReference(file[index] as Content, versionCompanion, miiCostumeCategoryMap, officialNotificationCompanion,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -74,7 +77,14 @@ interface Content
 
 }
 
-function createReference(content: Content,): MiiCostume {
+/** A type-alias definition of the {@link Versions.CompanionEnum} */
+type VersionCompanion = CompanionEnumByName<Versions, typeof Versions>
+/** A type-alias definition of the {@link MiiCostumes} name-reference {@link ReadonlyMap map} */
+type MiiCostumeCategoryMap = ReadonlyMap<PossibleEnglishName_Category, MiiCostumeCategory>
+/** A type-alias definition of the {@link OfficialNotifications.CompanionEnum} */
+type OfficialNotificationCompanion = CompanionEnumByName<OfficialNotifications, typeof OfficialNotifications>
+
+function createReference(content: Content, versionCompanion: VersionCompanion, miiCostumeCategoryMap: MiiCostumeCategoryMap, officialNotificationCompanion: OfficialNotificationCompanion,): MiiCostume {
     const version = content.MM2_version
     const notificationIfUnlocked = content.notificationIfUnlocked
 
@@ -82,24 +92,24 @@ function createReference(content: Content,): MiiCostume {
         return new MiiCostumeContainer(
             createNameFromContent(content, 2, true,),
             null, null,
-            version == null ? null : Versions.CompanionEnum.get.getValueByName(`v${version}`,),
-            MiiCostumeCategoryLoader.get.load().get(content.category,)!,
+            version == null ? null : versionCompanion.getValueByName(`v${version}`,),
+            miiCostumeCategoryMap.get(content.category,)!,
         )
 
-    const officialNotification = OfficialNotifications.CompanionEnum.get.getValueByName(notificationIfUnlocked,)
+    const officialNotification = officialNotificationCompanion.getValueByName(notificationIfUnlocked,)
     if (officialNotification === OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_1 || officialNotification === OfficialNotifications.RECEIVE_A_LOT_OF_FEEDBACK_2)
         return new MiiCostumeContainer(
             createNameFromContent(content, 2, true,),
             officialNotification, null,
-            version == null ? null : Versions.CompanionEnum.get.getValueByName(`v${version}`,),
-            MiiCostumeCategoryLoader.get.load().get(content.category,)!,
+            version == null ? null : versionCompanion.getValueByName(`v${version}`,),
+            miiCostumeCategoryMap.get(content.category,)!,
         )
 
     const numberFoundInOfficialNotificationFound = notificationIfUnlocked.split(SPACE,).find(value => NUMBER_ONLY_REGEX.test(value,),)
     return new MiiCostumeContainer(
         createNameFromContent(content, 2, true,),
         officialNotification, numberFoundInOfficialNotificationFound == null ? null : Number(numberFoundInOfficialNotificationFound,),
-        version == null ? null : Versions.CompanionEnum.get.getValueByName(`v${version}`,),
-        MiiCostumeCategoryLoader.get.load().get(content.category,)!,
+        version == null ? null : versionCompanion.getValueByName(`v${version}`,),
+        miiCostumeCategoryMap.get(content.category,)!,
     )
 }
