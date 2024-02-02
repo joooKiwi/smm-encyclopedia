@@ -7,3 +7,5 @@ export const COMMA_SPACE = ', '
 export const NOT_APPLICABLE = 'N/A'
 export const INFINITY = '∞'
 export const SUSPENSION_POINT = '…'
+
+export const NUMBER_ONLY_REGEX = /^\d+$/
