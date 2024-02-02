@@ -7,6 +7,7 @@ import type {GameContentFrom1And2}                                              
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                   from 'core/gameStyle/GameStyle'
 import type {PossibleAcronym, PossibleEnglishName}                               from 'core/gameStyle/GameStyles.types'
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
+import type {CompanionEnumByAcronymOrName}                                       from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
 import type {Loader}                                                             from 'util/loader/Loader'
 
 import {isInProduction}     from 'variables'
@@ -44,10 +45,11 @@ export class GameStyleLoader
         if (this.#map != null)
             return this.#map
 
+        const gameReferenceCompanion = GameReferences.CompanionEnum.get
         const references = new Map<PossibleEnglishName, GameStyle>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+            const reference = createReference(file[index] as Content, gameReferenceCompanion,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -76,9 +78,12 @@ interface Content
 
 }
 
-function createReference(content: Content,): GameStyle {
+/** A type-alias definition of the {@link GameReferences.CompanionEnum} */
+type GameReferenceCompanion = CompanionEnumByAcronymOrName<GameReferences, typeof GameReferences>
+
+function createReference(content: Content, gameReferenceCompanion: GameReferenceCompanion,): GameStyle {
     return new GameStyleContainer(
-        GameReferences.CompanionEnum.get.getValueByAcronym(content.reference,).reference.nameContainer,
+        gameReferenceCompanion.getValueByAcronym(content.reference,).reference.nameContainer,
         content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
         lazy(() => {
             const gameStyle = Import.GameStyles.CompanionEnum.get.getValueByAcronym(content.reference,)
