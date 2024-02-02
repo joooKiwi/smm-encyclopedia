@@ -4,16 +4,13 @@ import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
-import type {EntityBehaviourLink}                      from 'core/behaviour/properties/EntityBehaviourLink'
 import type {PossibleGroupName}                        from 'core/entityTypes'
 import type {PossibleEnglishName as EntityName}        from 'core/entity/Entities.types'
 import type {Loader}                                   from 'util/loader/Loader'
 
-import {isInProduction}                  from 'variables'
-import {EntityBehaviourContainer}        from 'core/behaviour/EntityBehaviour.container'
-import {EntityBehaviourIsInOnlyProvider} from 'core/behaviour/properties/EntityBehaviourIsInOnly.provider'
-import {EntityBehaviourLinkProvider}     from 'core/behaviour/properties/EntityBehaviourLink.provider'
-import {Import}                          from 'util/DynamicImporter'
+import {isInProduction}           from 'variables'
+import {EntityBehaviourContainer} from 'core/behaviour/EntityBehaviour.container'
+import {Import}                   from 'util/DynamicImporter'
 
 /**
  * @dependsOn<{@link EntityLoader}>
@@ -74,21 +71,13 @@ interface Content {
 }
 
 function createReference(content: Content,): EntityBehaviour {
-    return new EntityBehaviourContainer(
-        content.acronym,
-        content.translationKey,
-        EntityBehaviourIsInOnlyProvider.get.get(content.isOnlineOnly, content.isMultiplayerOnly,),
-        createLinks(content,),
-    )
-}
-
-function createLinks(content: Content,): EntityBehaviourLink {
     const group = content.link_group
     const entity = content.link_entity
 
-    if (group == null && entity == null)
-        return EntityBehaviourLinkProvider.get.null
-    return EntityBehaviourLinkProvider.get.get([group, entity,],
+    return new EntityBehaviourContainer(
+        content.acronym,
+        content.translationKey,
+        content.isOnlineOnly, content.isMultiplayerOnly,
         group == null ? CommonLazy.NULL : lazy(() => ({}),),//TODO implement the get entity by group name once it is implemented
         entity == null ? CommonLazy.NULL : lazy(() => Import.EntityLoader.get.load().get(entity,)!,),
     )
