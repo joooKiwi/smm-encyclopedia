@@ -2,25 +2,28 @@ export {}
 
 declare global {
 
-    type UndefinedOr<T, > = | T | undefined
-    type NullOr<T, > = | T | null
-    type Nullable<T, > = | T | null | undefined
     type NullOrUndefined = | null | undefined
 
-    type UndefinedOrBoolean = UndefinedOr<boolean>
-    type NullOrBoolean = NullOr<boolean>
-    type NullOrTrue = NullOr<true>
-    type NullOrFalse = NullOr<false>
-    type NullableBoolean = Nullable<boolean>
-    type NullableTrue = Nullable<true>
-    type NullableFalse = Nullable<false>
+    type UndefinedOr<T, > = | T | undefined
+    type NullOr<T, > =      | T | null
+    type Nullable<T, > =    | T | null | undefined
 
-    type UndefinedOrString = UndefinedOr<string>
-    type NullOrString = NullOr<string>
-    type NullableString = Nullable<string>
+    type UndefinedOrBoolean =   | boolean   | undefined
+    type UndefinedOrTrue =      | true      | undefined
+    type UndefinedOrFalse =     | false     | undefined
+    type NullOrBoolean =        | boolean   | null
+    type NullOrTrue =           | true      | null
+    type NullOrFalse =          | false     | null
+    type NullableBoolean =      | boolean   | null | undefined
+    type NullableTrue =         | true      | null | undefined
+    type NullableFalse =        | false     | null | undefined
 
-    type UndefinedOrNumber = UndefinedOr<number>
-    type NullOrNumber = NullOr<number>
-    type NullableNumber = Nullable<number>
+    type UndefinedOrString = | string | undefined
+    type NullOrString =      | string | null
+    type NullableString =    | string | null | undefined
+
+    type UndefinedOrNumber =    | number | undefined
+    type NullOrNumber =         | number | null
+    type NullableNumber =       | number | null | undefined
 
 }
