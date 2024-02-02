@@ -43,7 +43,7 @@ export interface MysteryMushroom
 
     get amountOnSoundEffectOnJump(): NullOr<PossibleAmountOfSoundEffectOnJump>
 
-    get haveMultipleImagesOnJump(): boolean
+    get haveMultipleImagesOnJump(): BooleanOrNotApplicable
 
     get gameOnSoundEffectOnJump(): NullOr<GameReferences>
 

@@ -22,6 +22,7 @@ export type TranslationKeyOnGoalPole = | 'Introduction' | 'Startup' | 'Game over
                                        | 'New technique acquired' | 'Gym Leader victory' | 'Rank up' | 'Secret area discovered' | 'Declaring the Splatfest\'s winning team'
                                        | 'Bowser\'s arrival' | 'Link meets Zelda for the 1st time' | 'Ganon encounter'
                                        | '3DS preview jingle'
+/** @todo Remove once the unknown reference is no longer present */
 export type PossibleTranslationKeyOnGoalPole = NullOr<| TranslationKeyOnGoalPole | UnknownReference>
 export type TypeOfSoundOnGoalPole = | 'Marimba' | 'Rock'
 

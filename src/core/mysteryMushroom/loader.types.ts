@@ -1,30 +1,10 @@
-import type {PossibleName_SMM1}                                                                                from 'core/version/Versions.types'
-import type {AdditionalSoundOnDeath, AdditionalSoundOnGoalPole, SoundEffectOnMovement, SpecialMusicInStarMode} from 'core/mysteryMushroom/MysteryMushroom.types'
+import type {PossibleName_SMM1} from 'core/version/Versions.types'
 
 /** Every possibility for a way to unlock a {@link MysteryMushrooms} */
 export type PossibleConditionToUnlockIt = | 'Unlock Mystery Mushroom'
                                           | `100 Mario (${| 'easy' | 'normal' | 'expert' | 'super expert'})`
                                           | `Gnat Attack (${| 'normal' | 'hard'})`
                                           | 'Complete Event' | 'Complete 3 Events (by Arino)'
-
-//region -------------------- Sound types --------------------
-
-/**@deprecated This should be separated in the CSV file */
-export type PossibleSoundEffectOnMovement = NullOr<| boolean | SoundEffectOnMovement>
-
-/**@deprecated This should be separated in the CSV file */
-export type PossibleSoundEffectOnJump = NullOr<| boolean | 2 | '3 images'>
-
-/**@deprecated This should be separated in the CSV file */
-export type PossibleSpecialMusicInStarMode = NullOr<| false | SpecialMusicInStarMode>
-
-/**@deprecated This should be separated in the CSV file */
-export type PossibleSoundEffectOnGoalPole = NullOr<| boolean | AdditionalSoundOnGoalPole>
-
-/**@deprecated This should be separated in the CSV file */
-export type PossibleSoundEffectOnDeath = NullOr<| boolean | AdditionalSoundOnDeath>
-
-//endregion -------------------- Sound types --------------------
 
 /** The first appearance of a {@link MysteryMushrooms} (as a version or a date) */
 export type PossibleFirstAppearance = NullOr<| PossibleName_SMM1

@@ -61,7 +61,7 @@ export class MysteryMushroomContainer
                        haveASoundEffectWhenCollected: BooleanOrNotApplicable, gameOnSoundEffectWhenCollected: NullOr<GameReferences>,
                        haveASoundEffectOnTaunt: BooleanOrNotApplicable, gameOnSoundEffectOnTaunt: NullOr<GameReferences>,
                        haveASoundEffectOnMovement: BooleanOrNotApplicable, translationKeyOnSoundEffectOnMovement: NullOr<SoundEffectOnMovement>,
-                       haveASoundEffectOnJump: BooleanOrNotApplicable, amountOnSoundEffectOnJump: NullOr<PossibleAmountOfSoundEffectOnJump>, haveMultipleImagesOnJump: boolean, gameOnSoundEffectOnJump: NullOr<GameReferences>,
+                       haveASoundEffectOnJump: BooleanOrNotApplicable, amountOnSoundEffectOnJump: NullOr<PossibleAmountOfSoundEffectOnJump>, haveMultipleImagesOnJump: BooleanOrNotApplicable, gameOnSoundEffectOnJump: NullOr<GameReferences>,
                        haveASoundEffectOnGroundAfterJump: BooleanOrNotApplicable, gameOnSoundEffectOnGroundAfterJump: NullOr<GameReferences>,
                        haveASoundEffectOnTurnAfterRun: BooleanOrNotApplicable,
                        haveASpecialMusicInStarMode: BooleanOrNotApplicable, translationKeyOnSpecialMusicInStarMode: NullOr<SpecialMusicInStarMode>, gameOnSpecialMusicInStarMode: NullOr<GameReferences>,
