@@ -1,133 +1,99 @@
-import type {GameReferences}          from 'core/gameReference/GameReferences'
-import type {MysteryMushroomProperty} from 'core/mysteryMushroom/properties/MysteryMushroomProperty'
-import type {NameTrait}               from 'lang/name/NameTrait'
+import type {GameReferences}                                                                                                                                                                                                                                                        from 'core/gameReference/GameReferences'
+import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                           from 'core/mysteryMushroom/loader.types'
+import type {AdditionalSoundOnDeath, AdditionalSoundOnGoalPole, MysteryMushroomGames, PossibleAmountOfSoundEffectOnJump, PossibleTranslationKeyOnDeath, PossibleTranslationKeyOnGoalPole, SoundEffectOnMovement, SpecialMusicInStarMode, TypeOfSoundOnDeath, TypeOfSoundOnGoalPole} from 'core/mysteryMushroom/MysteryMushroom.types'
+import type {NameTrait}                                                                                                                                                                                                                                                             from 'lang/name/NameTrait'
 
 /** @todo Add a "firstAppearanceInMarioMaker" field */
 export interface MysteryMushroom
-    extends NameTrait<string>,
-        MysteryMushroomProperty {
+    extends NameTrait<string> {
 
     get games(): MysteryMushroomGames
 
-    //region -------------------- Properties --------------------
-
-    get propertyContainer(): MysteryMushroomProperty
-
     //region -------------------- Unlock properties --------------------
 
-    get unlockPropertyContainer(): this['propertyContainer']['unlockPropertyContainer']
+    get conditionToUnlockIt(): PossibleConditionToUnlockIt
 
-    get conditionToUnlockIt(): this['unlockPropertyContainer']['conditionToUnlockIt']
-
-    get canBeUnlockedByAnAmiibo(): this['unlockPropertyContainer']['canBeUnlockedByAnAmiibo']
+    get canBeUnlockedByAnAmiibo(): boolean
 
     //endregion -------------------- Unlock properties --------------------
-    //region -------------------- Sound properties --------------------
-
-    get soundPropertyContainer(): this['propertyContainer']['soundPropertyContainer']
-
     //region -------------------- Sound effect (when collected) --------------------
 
-    get soundEffectWhenCollectedContainer(): this['soundPropertyContainer']['soundEffectWhenCollectedContainer']
+    get haveASoundEffectWhenCollected(): BooleanOrNotApplicable
 
-    get haveASoundEffectWhenCollected(): this['soundEffectWhenCollectedContainer']['value']
-
-    get gameOnSoundEffectWhenCollected(): this['soundEffectWhenCollectedContainer']['gameReference']
+    get gameOnSoundEffectWhenCollected(): NullOr<GameReferences>
 
     //endregion -------------------- Sound effect (when collected) --------------------
     //region -------------------- Sound effect (taunt) --------------------
 
-    get soundEffectOnTauntContainer(): this['soundPropertyContainer']['soundEffectOnTauntContainer']
+    get haveASoundEffectOnTaunt(): BooleanOrNotApplicable
 
-    get haveASoundEffectOnTaunt(): this['soundEffectOnTauntContainer']['value']
+    get gameOnSoundEffectOnTaunt(): NullOr<GameReferences>
 
     //endregion -------------------- Sound effect (taunt) --------------------
     //region -------------------- Sound effect (movement) --------------------
 
-    get soundEffectOnMovementContainer(): this['soundPropertyContainer']['soundEffectOnMovementContainer']
+    get haveASoundEffectOnMovement(): BooleanOrNotApplicable
 
-    get haveASoundEffectOnMovement(): this['soundEffectOnMovementContainer']['value']
-
-    get translationKeyOnSoundEffectOnMovement(): this['soundEffectOnMovementContainer']['translationKey']
+    get translationKeyOnSoundEffectOnMovement(): NullOr<SoundEffectOnMovement>
 
     //endregion -------------------- Sound effect (movement) --------------------
     //region -------------------- Sound effect (jump) --------------------
 
-    get soundEffectOnJumpContainer(): this['soundPropertyContainer']['soundEffectOnJumpContainer']
+    get haveASoundEffectOnJump(): BooleanOrNotApplicable
 
-    get haveASoundEffectOnJump(): this['soundEffectOnJumpContainer']['value']
+    get amountOnSoundEffectOnJump(): NullOr<PossibleAmountOfSoundEffectOnJump>
 
-    get amountOnSoundEffectOnJump(): this['soundEffectOnJumpContainer']['amount']
+    get haveMultipleImagesOnJump(): boolean
 
-    get haveMultipleImagesOnJump(): this['soundEffectOnJumpContainer']['haveMultipleImages']
-
-    get gameOnSoundEffectOnJump(): this['soundEffectOnJumpContainer']['gameReference']
+    get gameOnSoundEffectOnJump(): NullOr<GameReferences>
 
     //endregion -------------------- Sound effect (jump) --------------------
     //region -------------------- Sound effect (ground after jump) --------------------
 
-    get soundEffectOnGroundAfterJumpContainer(): this['soundPropertyContainer']['soundEffectOnGroundAfterJumpContainer']
+    get haveASoundEffectOnGroundAfterJump(): BooleanOrNotApplicable
 
-    get haveASoundEffectOnGroundAfterJump(): this['soundEffectOnGroundAfterJumpContainer']['value']
-
-    get gameOnSoundEffectOnGroundAfterJump(): this['soundEffectOnGroundAfterJumpContainer']['gameReference']
+    get gameOnSoundEffectOnGroundAfterJump(): NullOr<GameReferences>
 
     //endregion -------------------- Sound effect (ground after jump) --------------------
     //region -------------------- Sound effect (turn after run) --------------------
 
-    get soundEffectOnTurnAfterRunContainer(): this['soundPropertyContainer']['soundEffectOnTurnAfterRunContainer']
-
-    get haveASoundEffectOnTurnAfterRun(): this['soundEffectOnTurnAfterRunContainer']['value']
+    get haveASoundEffectOnTurnAfterRun(): BooleanOrNotApplicable
 
     //endregion -------------------- Sound effect (turn after run) --------------------
     //region -------------------- Special music (star mode) --------------------
 
-    get specialMusicInStarModeContainer(): this['soundPropertyContainer']['specialMusicInStarModeContainer']
+    get haveASpecialMusicInStarMode(): BooleanOrNotApplicable
 
-    get haveASpecialMusicInStarMode(): this['specialMusicInStarModeContainer']['value']
+    get translationKeyOnSpecialMusicInStarMode(): NullOr<SpecialMusicInStarMode>
 
-    get gameOnSpecialMusicInStarMode(): this['specialMusicInStarModeContainer']['gameReference']
-
-    get translationKeyOnSpecialMusicInStarMode(): this['specialMusicInStarModeContainer']['translationKey']
+    get gameOnSpecialMusicInStarMode(): NullOr<GameReferences>
 
     //endregion -------------------- Special music (star mode) --------------------
     //region -------------------- Sound effect (goal pole) --------------------
 
-    get soundEffectOnGoalPoleContainer(): this['soundPropertyContainer']['soundEffectOnGoalPoleContainer']
+    get haveASoundEffectOnGoalPole(): BooleanOrNotApplicable
 
-    get haveASoundEffectOnGoalPole(): this['soundEffectOnGoalPoleContainer']['value']
+    get simpleTranslationKeyOnSoundEffectOnGoalPole(): NullOr<AdditionalSoundOnGoalPole>
 
-    get gameOnSoundEffectOnGoalPole(): this['soundEffectOnGoalPoleContainer']['gameReference']
+    get translationKeyOnSoundEffectOnGoalPole(): PossibleTranslationKeyOnGoalPole
 
-    get translationKeyOnSoundEffectOnGoalPole(): this['soundEffectOnGoalPoleContainer']['translationKey']
+    get typeOfMusicOnGoalPole(): NullOr<TypeOfSoundOnGoalPole>
 
-    get simpleTranslationKeyOnSoundEffectOnGoalPole(): this['soundEffectOnGoalPoleContainer']['simpleTranslationKey']
-
-    get typeOfMusicOnGoalPole(): this['soundEffectOnGoalPoleContainer']['type']
+    get gameOnSoundEffectOnGoalPole(): NullOr<GameReferences>
 
     //endregion -------------------- Sound effect (goal pole) --------------------
     //region -------------------- Sound effect (death) --------------------
 
-    get soundEffectOnDeathContainer(): this['soundPropertyContainer']['soundEffectOnDeathContainer']
+    get haveASoundEffectOnDeath(): BooleanOrNotApplicable
 
-    get haveASoundEffectOnDeath(): this['soundEffectOnDeathContainer']['value']
+    get simpleTranslationKeyOnSoundEffectOnDeath(): NullOr<AdditionalSoundOnDeath>
 
-    get gameOnSoundEffectOnDeath(): this['soundEffectOnDeathContainer']['gameReference']
+    get translationKeyOnSoundEffectOnDeath(): PossibleTranslationKeyOnDeath
 
-    get translationKeyOnSoundEffectOnDeath(): this['soundEffectOnDeathContainer']['translationKey']
+    get typeOfSoundEffectOnDeath(): NullOr<TypeOfSoundOnDeath>
 
-    get simpleTranslationKeyOnSoundEffectOnDeath(): this['soundEffectOnDeathContainer']['simpleTranslationKey']
-
-    get typeOfSoundEffectOnDeath(): this['soundEffectOnDeathContainer']['type']
+    get gameOnSoundEffectOnDeath(): NullOr<GameReferences>
 
     //endregion -------------------- Sound effect (death) --------------------
 
-    //endregion -------------------- Sound properties --------------------
-
-    //endregion -------------------- Properties --------------------
-
 }
-
-export type MysteryMushroomGames = | readonly [GameReferences,]
-                                   | readonly [GameReferences, GameReferences,]
-                                   | readonly [GameReferences, GameReferences, GameReferences, GameReferences,]

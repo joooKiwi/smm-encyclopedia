@@ -1,40 +1,20 @@
 import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
-import type {LanguageContent}                                                                                                                                                                                                    from 'core/_template/LanguageContent'
-import type {UniqueNameContent}                                                                                                                                                                                                  from 'core/_template/UniqueNameContent'
-import type {PossibleAcronym as PossibleAcronym_GameReference}                                                                                                                                                                   from 'core/gameReference/GameReferences.types'
-import type {PokemonGeneration, PossibleFirstAppearance}                                                                                                                                                                         from 'core/mysteryMushroom/loader.types'
-import type {MysteryMushroom, MysteryMushroomGames}                                                                                                                                                                              from 'core/mysteryMushroom/MysteryMushroom'
-import type {PossibleUniqueEnglishName}                                                                                                                                                                                          from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {PossibleConditionToUnlockIt}                                                                                                                                                                                        from 'core/mysteryMushroom/properties/UnlockProperty'
-import type {PossibleGamesReceived as GameInStarMode, PossibleValuesReceived as PossibleSpecialMusicInStarMode}                                                                                                                  from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode'
-import type {PossibleGamesReceived as GameOnSoundEffectOnDeath, PossibleTranslationKeys as TranslationKeyOnDeath, PossibleTypesReceived as TypeOfSoundEffectOnDeath, PossibleValuesReceived as PossibleSoundEffectOnDeath}       from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
-import type {PossibleGamesReceived as GameOnSoundEffectOnGoalPole, PossibleTranslationKeys as TranslationKeyOnGoalPole, PossibleTypesReceived as TypeOfMusicOnGoalPole, PossibleValuesReceived as PossibleSoundEffectOnGoalPole} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
-import type {PossibleGamesReceived as GameOnSoundEffectOnGroundAfterJump, PossibleValuesReceived as PossibleSoundEffectOnGroundAfterJump}                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump'
-import type {PossibleGamesReceived as GameOnSoundEffectOnJump, PossibleValuesReceived as PossibleSoundEffectOnJump}                                                                                                              from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump'
-import type {PossibleValuesReceived as PossibleSoundEffectOnMovement}                                                                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement'
-import type {PossibleGamesReceived as GameOnSoundEffectOnTaunt, PossibleValuesReceived as PossibleSoundEffectOnTaunt}                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt'
-import type {PossibleValuesReceived as PossibleSoundEffectOnTurnAfterRun}                                                                                                                                                        from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun'
-import type {PossibleGamesReceived as GameOnSoundEffectWhenCollected, PossibleValuesReceived as PossibleSoundEffectWhenCollected}                                                                                                from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected'
-import type {CompanionEnumByAcronymOrName}                                                                                                                                                                                       from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
-import type {Loader}                                                                                                                                                                                                             from 'util/loader/Loader'
+import type {LanguageContent}                                                                                                                                                                                                                                                                       from 'core/_template/LanguageContent'
+import type {UniqueNameContent}                                                                                                                                                                                                                                                                     from 'core/_template/UniqueNameContent'
+import type {PossibleAcronym as PossibleAcronym_GameReference}                                                                                                                                                                                                                                      from 'core/gameReference/GameReferences.types'
+import type {PokemonGeneration, PossibleConditionToUnlockIt, PossibleFirstAppearance, PossibleSoundEffectOnDeath, PossibleSoundEffectOnGoalPole, PossibleSoundEffectOnJump, PossibleSoundEffectOnMovement, PossibleSpecialMusicInStarMode}                                                          from 'core/mysteryMushroom/loader.types'
+import type {MysteryMushroom}                                                                                                                                                                                                                                                                       from 'core/mysteryMushroom/MysteryMushroom'
+import type {PossibleUniqueEnglishName}                                                                                                                                                                                                                                                             from 'core/mysteryMushroom/MysteryMushrooms.types'
+import type {CompanionEnumByAcronymOrName}                                                                                                                                                                                                                                                          from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
+import type {Loader}                                                                                                                                                                                                                                                                                from 'util/loader/Loader'
+import type {AdditionalSoundOnDeath, AdditionalSoundOnGoalPole, GameInStarMode, MysteryMushroomGames, PossibleAmountOfSoundEffectOnJump, PossibleTranslationKeyOnDeath, PossibleTranslationKeyOnGoalPole, SoundEffectOnMovement, SpecialMusicInStarMode, TypeOfSoundOnDeath, TypeOfSoundOnGoalPole} from 'core/mysteryMushroom/MysteryMushroom.types'
 
-import {isInProduction}                       from 'variables'
-import {GameReferences}                       from 'core/gameReference/GameReferences'
-import {MysteryMushroomContainer}             from 'core/mysteryMushroom/MysteryMushroom.container'
-import {MysteryMushroomPropertyContainer}     from 'core/mysteryMushroom/properties/MysteryMushroomProperty.container'
-import {UnlockPropertyProvider}               from 'core/mysteryMushroom/properties/UnlockProperty.provider'
-import {SoundEffectOnDeathProvider}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath.provider'
-import {SoundEffectOnGoalPoleProvider}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole.provider'
-import {SoundEffectOnGroundAfterJumpProvider} from 'core/mysteryMushroom/properties/sound/SoundEffectOnGroundAfterJump.provider'
-import {SoundEffectOnJumpProvider}            from 'core/mysteryMushroom/properties/sound/SoundEffectOnJump.provider'
-import {SoundEffectOnMovementProvider}        from 'core/mysteryMushroom/properties/sound/SoundEffectOnMovement.provider'
-import {SoundEffectOnTauntProvider}           from 'core/mysteryMushroom/properties/sound/SoundEffectOnTaunt.provider'
-import {SoundEffectOnTurnAfterRunProvider}    from 'core/mysteryMushroom/properties/sound/SoundEffectOnTurnAfterRun.provider'
-import {SoundEffectWhenCollectedProvider}     from 'core/mysteryMushroom/properties/sound/SoundEffectWhenCollected.provider'
-import {SoundPropertyContainer}               from 'core/mysteryMushroom/properties/sound/SoundProperty.container'
-import {SpecialMusicInStarModeProvider}       from 'core/mysteryMushroom/properties/sound/SpecialMusicInStarMode.provider'
-import {createNameFromContent}                from 'lang/name/createNameFromContent'
+import {isInProduction}                    from 'variables'
+import {GameReferences}                    from 'core/gameReference/GameReferences'
+import {MysteryMushroomContainer}          from 'core/mysteryMushroom/MysteryMushroom.container'
+import {createNameFromContent}             from 'lang/name/createNameFromContent'
+import {NOT_APPLICABLE, UNKNOWN_REFERENCE} from 'util/commonVariables'
 
 /**
  * @dependsOn<{@link GameReferences}>
@@ -62,12 +42,11 @@ export class MysteryMushroomLoader
             return this.#map
 
         const GameReferenceCompanion = GameReferences.CompanionEnum.get
-
         const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
         let index = file.length
         while (index-- > 0) {
             const content = file[index] as Content
-            references.set(content.uniqueName, createReference(content,GameReferenceCompanion,),)
+            references.set(content.uniqueName, createReference(content, GameReferenceCompanion,),)
         }
 
         if (!isInProduction)
@@ -94,32 +73,33 @@ interface Content
     readonly reference: | PossibleAcronym_GameReference | PokemonGeneration
 
 
-    readonly haveASoundEffectWhenCollected_game: GameOnSoundEffectWhenCollected
-    readonly haveASoundEffectWhenCollected: PossibleSoundEffectWhenCollected
+    readonly haveASoundEffectWhenCollected_game: NullOr<PossibleAcronym_GameReference>
+    readonly haveASoundEffectWhenCollected: NullOrBoolean
 
-    readonly haveASoundEffectOnTaunt_game: GameOnSoundEffectOnTaunt
-    readonly haveASoundEffectOnTaunt: PossibleSoundEffectOnTaunt
+    readonly haveASoundEffectOnTaunt_game: NullOr<PossibleAcronym_GameReference>
+    readonly haveASoundEffectOnTaunt: NullOrBoolean
 
-    readonly haveASoundEffectOnJump_game: GameOnSoundEffectOnJump
+    readonly haveASoundEffectOnJump_game: NullOr<PossibleAcronym_GameReference>
     readonly haveASoundEffectOnJump: PossibleSoundEffectOnJump
-    readonly haveASoundEffectOnGroundAfterJump_game: GameOnSoundEffectOnGroundAfterJump
-    readonly haveASoundEffectOnGroundAfterJump: PossibleSoundEffectOnGroundAfterJump
+
+    readonly haveASoundEffectOnGroundAfterJump_game: NullOr<PossibleAcronym_GameReference>
+    readonly haveASoundEffectOnGroundAfterJump: NullOrBoolean
 
     readonly soundEffectOnMovement: PossibleSoundEffectOnMovement
 
-    readonly haveASoundEffectOnTurnAfterRun: PossibleSoundEffectOnTurnAfterRun
+    readonly haveASoundEffectOnTurnAfterRun: NullOrBoolean
 
-    readonly haveASpecialMusicInStarMode_game: GameInStarMode
+    readonly haveASpecialMusicInStarMode_game: NullOr<GameInStarMode>
     readonly haveASpecialMusicInStarMode: PossibleSpecialMusicInStarMode
 
-    readonly haveASoundEffectWhenOnGoalPole_type: TypeOfMusicOnGoalPole
-    readonly haveASoundEffectWhenOnGoalPole_game: GameOnSoundEffectOnGoalPole
-    readonly haveASoundEffectWhenOnGoalPole_smallDefinition: TranslationKeyOnGoalPole
+    readonly haveASoundEffectWhenOnGoalPole_game: NullOr<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>
+    readonly haveASoundEffectWhenOnGoalPole_type: NullOr<TypeOfSoundOnGoalPole>
+    readonly haveASoundEffectWhenOnGoalPole_smallDefinition: PossibleTranslationKeyOnGoalPole
     readonly haveASoundEffectWhenOnGoalPole: PossibleSoundEffectOnGoalPole
 
-    readonly haveASoundEffectOnDeath_type: TypeOfSoundEffectOnDeath
-    readonly haveASoundEffectOnDeath_game: GameOnSoundEffectOnDeath
-    readonly haveASoundEffectOnDeath_smallDefinition: TranslationKeyOnDeath
+    readonly haveASoundEffectOnDeath_game: NullOr<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>
+    readonly haveASoundEffectOnDeath_type: NullOr<TypeOfSoundOnDeath>
+    readonly haveASoundEffectOnDeath_smallDefinition: PossibleTranslationKeyOnDeath
     readonly haveASoundEffectOnDeath: PossibleSoundEffectOnDeath
 
 }
@@ -128,27 +108,29 @@ interface Content
 type GameReferenceCompanion = CompanionEnumByAcronymOrName<GameReferences, typeof GameReferences>
 
 function createReference(content: Content, gameReferenceCompanion: GameReferenceCompanion,): MysteryMushroom {
+    const soundEffectOnMovement = retrieveSoundEffectOnMovement(content,)
+    const soundEffectOnJump = retrieveSoundEffectOnJump(content,)
+    const specialMusicInStarMode = retrieveSpecialMusicInStarMode(content,)
+    const soundEffectOnGoalPole = retrieveSoundEffectOnGoalPole(content,)
+    const soundEffectOnDeath = retrieveSoundEffectOnDeath(content,)
+
     return new MysteryMushroomContainer(
         createNameFromContent(content, 1, true,),
         retrieveGames(content.reference, gameReferenceCompanion,),
-        new MysteryMushroomPropertyContainer(
-            UnlockPropertyProvider.get.get(content.conditionToUnlockIt, content.canBeUnlockedByAnAmiibo,),
-            new SoundPropertyContainer(
-                SoundEffectWhenCollectedProvider.get.get(content.haveASoundEffectWhenCollected, content.haveASoundEffectWhenCollected_game,),
-                SoundEffectOnTauntProvider.get.get(content.haveASoundEffectOnTaunt, content.haveASoundEffectOnTaunt_game,),
-                SoundEffectOnMovementProvider.get.get(content.soundEffectOnMovement,),
-                SoundEffectOnJumpProvider.get.get(content.haveASoundEffectOnJump, content.haveASoundEffectOnJump_game,),
-                SoundEffectOnGroundAfterJumpProvider.get.get(content.haveASoundEffectOnGroundAfterJump, content.haveASoundEffectOnGroundAfterJump_game,),
-                SoundEffectOnTurnAfterRunProvider.get.get(content.haveASoundEffectOnTurnAfterRun,),
-                SpecialMusicInStarModeProvider.get.get(content.haveASpecialMusicInStarMode, content.haveASpecialMusicInStarMode_game,),
-                SoundEffectOnGoalPoleProvider.get.get(content.haveASoundEffectWhenOnGoalPole, content.haveASoundEffectWhenOnGoalPole_type, content.haveASoundEffectWhenOnGoalPole_game, content.haveASoundEffectWhenOnGoalPole_smallDefinition,),
-                SoundEffectOnDeathProvider.get.get(content.haveASoundEffectOnDeath, content.haveASoundEffectOnDeath_type, content.haveASoundEffectOnDeath_game, content.haveASoundEffectOnDeath_smallDefinition,),
-            ),
-        ),
+        content.conditionToUnlockIt, content.canBeUnlockedByAnAmiibo,
+        valueOrNotApplicable(content.haveASoundEffectWhenCollected,), retrieveGameReference(content.haveASoundEffectWhenCollected_game, gameReferenceCompanion,),
+        valueOrNotApplicable(content.haveASoundEffectOnTaunt,), retrieveGameReference(content.haveASoundEffectOnTaunt_game, gameReferenceCompanion,),
+        soundEffectOnMovement[0], soundEffectOnMovement[1],
+        soundEffectOnJump[0], soundEffectOnJump[1], soundEffectOnJump[2], retrieveGameReference(content.haveASoundEffectOnJump_game, gameReferenceCompanion,),
+        valueOrNotApplicable(content.haveASoundEffectOnGroundAfterJump,), retrieveGameReference(content.haveASoundEffectOnGroundAfterJump_game, gameReferenceCompanion,),
+        valueOrNotApplicable(content.haveASoundEffectOnTurnAfterRun,),
+        specialMusicInStarMode[0], specialMusicInStarMode[1], retrieveGameReference(content.haveASpecialMusicInStarMode_game, gameReferenceCompanion,),
+        soundEffectOnGoalPole[0], soundEffectOnGoalPole[1], content.haveASoundEffectWhenOnGoalPole_smallDefinition, content.haveASoundEffectWhenOnGoalPole_type, retrieveGameReferenceOrPokemonGenerationOrUnknown(content.haveASoundEffectWhenOnGoalPole_game, gameReferenceCompanion,),
+        soundEffectOnDeath[0], soundEffectOnDeath[1], content.haveASoundEffectOnDeath_smallDefinition, content.haveASoundEffectOnDeath_type, retrieveGameReferenceOrPokemonGenerationOrUnknown(content.haveASoundEffectOnDeath_game, gameReferenceCompanion,),
     )
 }
 
-function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneration,gameReferenceCompanion: GameReferenceCompanion,): MysteryMushroomGames {
+function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneration, gameReferenceCompanion: GameReferenceCompanion,): MysteryMushroomGames {
     switch (value) {
         case 'Pokémon gen 1':
             return [GameReferences.POKEMON_RED, GameReferences.POKEMON_GREEN, GameReferences.POKEMON_BLUE, GameReferences.POKEMON_YELLOW,]
@@ -159,4 +141,80 @@ function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneratio
         default:
             return [gameReferenceCompanion.getValueByAcronym(value,),]
     }
+}
+
+function valueOrNotApplicable(value: NullableBoolean,): BooleanOrNotApplicable {
+    if (value == null)
+        return NOT_APPLICABLE
+    return value
+}
+
+function retrieveGameReference(value: Nullable<PossibleAcronym_GameReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
+    if (value == null)
+        return null
+    return gameReferenceCompanion.getValueByNameOrAcronym(value,)
+}
+
+function retrieveGameReferenceOrPokemonGenerationOrUnknown(value: NullOr<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
+    if (value == null)
+        return null
+    if (value === UNKNOWN_REFERENCE)
+        return null //TODO Try finding the references of the games
+    if (value.startsWith('Pokémon gen'))
+        return null //TODO return each values of the pokémon games
+    return gameReferenceCompanion.getValueByNameOrAcronym(value,)
+}
+
+
+/**@deprecated This should already be separated in the CSV file */
+function retrieveSoundEffectOnMovement(content: Content,): readonly [value: BooleanOrNotApplicable, translationKey: NullOr<SoundEffectOnMovement>,] {
+    const value = content.soundEffectOnMovement
+
+    if (value == null)
+        return [NOT_APPLICABLE, null,]
+    if (typeof value == 'boolean')
+        return [value, null,]
+    return [true, value,]
+}
+
+/**@deprecated This should already be separated in the CSV file */
+function retrieveSoundEffectOnJump(content: Content,): readonly [value: BooleanOrNotApplicable, amount: NullOr<PossibleAmountOfSoundEffectOnJump>, haveMultipleImage: boolean,] {
+    const value = content.haveASoundEffectOnJump
+
+    if (value == null)
+        return [NOT_APPLICABLE, null, false,]
+    if (typeof value == 'boolean')
+        return [value, value ? 0 : 1, false,]
+    return [true, typeof value == 'string' ? 3 : 2, true,]
+}
+
+/**@deprecated This should already be separated in the CSV file */
+function retrieveSpecialMusicInStarMode(content: Content,): readonly [value: BooleanOrNotApplicable, translationKey: NullOr<SpecialMusicInStarMode>,] {
+    const value = content.haveASpecialMusicInStarMode
+
+    if (value == null)
+        return [NOT_APPLICABLE, null,]
+    if (typeof value == 'boolean')
+        return [value, null,]
+    return [true, value,]
+}
+
+/**@deprecated This should already be separated in the CSV file */
+function retrieveSoundEffectOnGoalPole(content: Content,): readonly [value: BooleanOrNotApplicable, translationKey: NullOr<AdditionalSoundOnGoalPole>,] {
+    const value = content.haveASoundEffectWhenOnGoalPole
+    if (value == null)
+        return [NOT_APPLICABLE, null,]
+    if (typeof value == 'boolean')
+        return [value, null,]
+    return [true, value,]
+}
+
+/**@deprecated This should already be separated in the CSV file */
+function retrieveSoundEffectOnDeath(content: Content,): readonly [BooleanOrNotApplicable, NullOr<AdditionalSoundOnDeath>,] {
+    const value = content.haveASoundEffectOnDeath
+    if (value == null)
+        return [NOT_APPLICABLE, null,]
+    if (typeof value == 'boolean')
+        return [value, null,]
+    return [true, value,]
 }

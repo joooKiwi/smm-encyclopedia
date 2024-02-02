@@ -1,6 +1,8 @@
-import type {MysteryMushroom, MysteryMushroomGames} from 'core/mysteryMushroom/MysteryMushroom'
-import type {MysteryMushroomProperty}               from 'core/mysteryMushroom/properties/MysteryMushroomProperty'
-import type {Name}                                  from 'lang/name/Name'
+import type {GameReferences}                                                                                                                                                                                                                                                        from 'core/gameReference/GameReferences'
+import type {MysteryMushroom}                                                                                                                                                                                                                                                       from 'core/mysteryMushroom/MysteryMushroom'
+import type {PossibleConditionToUnlockIt}                                                                                                                                                                                                                                           from 'core/mysteryMushroom/loader.types'
+import type {AdditionalSoundOnDeath, AdditionalSoundOnGoalPole, MysteryMushroomGames, PossibleAmountOfSoundEffectOnJump, PossibleTranslationKeyOnDeath, PossibleTranslationKeyOnGoalPole, SoundEffectOnMovement, SpecialMusicInStarMode, TypeOfSoundOnDeath, TypeOfSoundOnGoalPole} from 'core/mysteryMushroom/MysteryMushroom.types'
+import type {Name}                                                                                                                                                                                                                                                                  from 'lang/name/Name'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
@@ -11,222 +13,241 @@ export class MysteryMushroomContainer
     //region -------------------- Fields --------------------
 
     readonly #games
-    readonly #propertyContainer
+
+    readonly #conditionToUnlockIt
+    readonly #canBeUnlockedByAnAmiibo
+
+    readonly #haveASoundEffectWhenCollected
+    readonly #gameOnSoundEffectWhenCollected
+
+    readonly #haveASoundEffectOnTaunt
+    readonly #gameOnSoundEffectOnTaunt
+
+    readonly #haveASoundEffectOnMovement
+    readonly #translationKeyOnSoundEffectOnMovement
+
+    readonly #haveASoundEffectOnJump
+    readonly #amountOnSoundEffectOnJump
+    readonly #haveMultipleImagesOnJump
+    readonly #gameOnSoundEffectOnJump
+
+    readonly #haveASoundEffectOnGroundAfterJump
+    readonly #gameOnSoundEffectOnGroundAfterJump
+
+    readonly #haveASoundEffectOnTurnAfterRun
+
+    readonly #haveASpecialMusicInStarMode
+    readonly #translationKeyOnSpecialMusicInStarMode
+    readonly #gameOnSpecialMusicInStarMode
+
+    readonly #haveASoundEffectOnGoalPole
+    readonly #simpleTranslationKeyOnSoundEffectOnGoalPole
+    readonly #translationKeyOnSoundEffectOnGoalPole
+    readonly #typeOfMusicOnGoalPole
+    readonly #gameOnSoundEffectOnGoalPole
+
+    readonly #haveASoundEffectOnDeath
+    readonly #simpleTranslationKeyOnSoundEffectOnDeath
+    readonly #translationKeyOnSoundEffectOnDeath
+    readonly #typeOfSoundEffectOnDeath
+    readonly #gameOnSoundEffectOnDeath
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
+
     public constructor(name: Name<string>,
                        games: MysteryMushroomGames,
-                       property: MysteryMushroomProperty,) {
+                       conditionToUnlockIt: PossibleConditionToUnlockIt, canBeUnlockedByAnAmiibo: boolean,
+                       haveASoundEffectWhenCollected: BooleanOrNotApplicable, gameOnSoundEffectWhenCollected: NullOr<GameReferences>,
+                       haveASoundEffectOnTaunt: BooleanOrNotApplicable, gameOnSoundEffectOnTaunt: NullOr<GameReferences>,
+                       haveASoundEffectOnMovement: BooleanOrNotApplicable, translationKeyOnSoundEffectOnMovement: NullOr<SoundEffectOnMovement>,
+                       haveASoundEffectOnJump: BooleanOrNotApplicable, amountOnSoundEffectOnJump: NullOr<PossibleAmountOfSoundEffectOnJump>, haveMultipleImagesOnJump: boolean, gameOnSoundEffectOnJump: NullOr<GameReferences>,
+                       haveASoundEffectOnGroundAfterJump: BooleanOrNotApplicable, gameOnSoundEffectOnGroundAfterJump: NullOr<GameReferences>,
+                       haveASoundEffectOnTurnAfterRun: BooleanOrNotApplicable,
+                       haveASpecialMusicInStarMode: BooleanOrNotApplicable, translationKeyOnSpecialMusicInStarMode: NullOr<SpecialMusicInStarMode>, gameOnSpecialMusicInStarMode: NullOr<GameReferences>,
+                       haveASoundEffectOnGoalPole: BooleanOrNotApplicable, simpleTranslationKeyOnSoundEffectOnGoalPole: NullOr<AdditionalSoundOnGoalPole>, translationKeyOnSoundEffectOnGoalPole: PossibleTranslationKeyOnGoalPole, typeOfMusicOnGoalPole: NullOr<TypeOfSoundOnGoalPole>, gameOnSoundEffectOnGoalPole: NullOr<GameReferences>,
+                       haveASoundEffectOnDeath: BooleanOrNotApplicable, simpleTranslationKeyOnSoundEffectOnDeath: NullOr<AdditionalSoundOnDeath>, translationKeyOnSoundEffectOnDeath: PossibleTranslationKeyOnDeath, typeOfSoundEffectOnDeath: NullOr<TypeOfSoundOnDeath>, gameOnSoundEffectOnDeath: NullOr<GameReferences>,) {
         super(name,)
         this.#games = games
-        this.#propertyContainer = property
+        this.#conditionToUnlockIt = conditionToUnlockIt
+        this.#canBeUnlockedByAnAmiibo = canBeUnlockedByAnAmiibo
+        this.#haveASoundEffectWhenCollected = haveASoundEffectWhenCollected
+        this.#gameOnSoundEffectWhenCollected = gameOnSoundEffectWhenCollected
+        this.#haveASoundEffectOnTaunt = haveASoundEffectOnTaunt
+        this.#gameOnSoundEffectOnTaunt = gameOnSoundEffectOnTaunt
+        this.#haveASoundEffectOnMovement = haveASoundEffectOnMovement
+        this.#translationKeyOnSoundEffectOnMovement = translationKeyOnSoundEffectOnMovement
+        this.#haveASoundEffectOnJump = haveASoundEffectOnJump
+        this.#amountOnSoundEffectOnJump = amountOnSoundEffectOnJump
+        this.#haveMultipleImagesOnJump = haveMultipleImagesOnJump
+        this.#gameOnSoundEffectOnJump = gameOnSoundEffectOnJump
+        this.#haveASoundEffectOnGroundAfterJump = haveASoundEffectOnGroundAfterJump
+        this.#gameOnSoundEffectOnGroundAfterJump = gameOnSoundEffectOnGroundAfterJump
+        this.#haveASoundEffectOnTurnAfterRun = haveASoundEffectOnTurnAfterRun
+        this.#haveASpecialMusicInStarMode = haveASpecialMusicInStarMode
+        this.#translationKeyOnSpecialMusicInStarMode = translationKeyOnSpecialMusicInStarMode
+        this.#gameOnSpecialMusicInStarMode = gameOnSpecialMusicInStarMode
+        this.#haveASoundEffectOnGoalPole = haveASoundEffectOnGoalPole
+        this.#simpleTranslationKeyOnSoundEffectOnGoalPole = simpleTranslationKeyOnSoundEffectOnGoalPole
+        this.#translationKeyOnSoundEffectOnGoalPole = translationKeyOnSoundEffectOnGoalPole
+        this.#typeOfMusicOnGoalPole = typeOfMusicOnGoalPole
+        this.#gameOnSoundEffectOnGoalPole = gameOnSoundEffectOnGoalPole
+        this.#haveASoundEffectOnDeath = haveASoundEffectOnDeath
+        this.#simpleTranslationKeyOnSoundEffectOnDeath = simpleTranslationKeyOnSoundEffectOnDeath
+        this.#translationKeyOnSoundEffectOnDeath = translationKeyOnSoundEffectOnDeath
+        this.#typeOfSoundEffectOnDeath = typeOfSoundEffectOnDeath
+        this.#gameOnSoundEffectOnDeath = gameOnSoundEffectOnDeath
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    //region -------------------- Games --------------------
-
     public get games(): MysteryMushroomGames {
         return this.#games
     }
 
-    //endregion -------------------- Games --------------------
-    //region -------------------- Properties --------------------
-
-    public get propertyContainer() {
-        return this.#propertyContainer
-    }
-
     //region -------------------- Unlock properties --------------------
 
-    public get unlockPropertyContainer() {
-        return this.propertyContainer.unlockPropertyContainer
-    }
-
     public get conditionToUnlockIt() {
-        return this.unlockPropertyContainer.conditionToUnlockIt
+        return this.#conditionToUnlockIt
     }
 
     public get canBeUnlockedByAnAmiibo() {
-        return this.unlockPropertyContainer.canBeUnlockedByAnAmiibo
+        return this.#canBeUnlockedByAnAmiibo
     }
 
     //endregion -------------------- Unlock properties --------------------
-    //region -------------------- Sound properties --------------------
-
-    public get soundPropertyContainer() {
-        return this.propertyContainer.soundPropertyContainer
-    }
-
     //region -------------------- Sound effect (when collected) --------------------
 
-    public get soundEffectWhenCollectedContainer() {
-        return this.soundPropertyContainer.soundEffectWhenCollectedContainer
-    }
-
     public get haveASoundEffectWhenCollected() {
-        return this.soundEffectWhenCollectedContainer.value
+        return this.#haveASoundEffectWhenCollected
     }
 
     public get gameOnSoundEffectWhenCollected() {
-        return this.soundEffectWhenCollectedContainer.gameReference
+        return this.#gameOnSoundEffectWhenCollected
     }
 
     //endregion -------------------- Sound effect (when collected) --------------------
     //region -------------------- Sound effect (taunt) --------------------
 
-    public get soundEffectOnTauntContainer() {
-        return this.soundPropertyContainer.soundEffectOnTauntContainer
+    public get haveASoundEffectOnTaunt() {
+        return this.#haveASoundEffectOnTaunt
     }
 
-    public get haveASoundEffectOnTaunt() {
-        return this.soundEffectOnTauntContainer.value
+    public get gameOnSoundEffectOnTaunt(): NullOr<GameReferences> {
+        return this.#gameOnSoundEffectOnTaunt
     }
 
     //endregion -------------------- Sound effect (taunt) --------------------
     //region -------------------- Sound effect (movement) --------------------
 
-    public get soundEffectOnMovementContainer() {
-        return this.soundPropertyContainer.soundEffectOnMovementContainer
-    }
-
     public get haveASoundEffectOnMovement() {
-        return this.soundEffectOnMovementContainer.value
+        return this.#haveASoundEffectOnMovement
     }
 
     public get translationKeyOnSoundEffectOnMovement() {
-        return this.soundEffectOnMovementContainer.translationKey
+        return this.#translationKeyOnSoundEffectOnMovement
     }
 
     //endregion -------------------- Sound effect (movement) --------------------
     //region -------------------- Sound effect (jump) --------------------
 
-    public get soundEffectOnJumpContainer() {
-        return this.soundPropertyContainer.soundEffectOnJumpContainer
-    }
-
     public get haveASoundEffectOnJump() {
-        return this.soundEffectOnJumpContainer.value
+        return this.#haveASoundEffectOnJump
     }
 
     public get amountOnSoundEffectOnJump() {
-        return this.soundEffectOnJumpContainer.amount
+        return this.#amountOnSoundEffectOnJump
     }
 
     public get haveMultipleImagesOnJump() {
-        return this.soundEffectOnJumpContainer.haveMultipleImages
+        return this.#haveMultipleImagesOnJump
     }
 
     public get gameOnSoundEffectOnJump() {
-        return this.soundEffectOnJumpContainer.gameReference
+        return this.#gameOnSoundEffectOnJump
     }
 
     //endregion -------------------- Sound effect (jump) --------------------
     //region -------------------- Sound effect (ground after jump) --------------------
 
-    public get soundEffectOnGroundAfterJumpContainer() {
-        return this.soundPropertyContainer.soundEffectOnGroundAfterJumpContainer
-    }
-
     public get haveASoundEffectOnGroundAfterJump() {
-        return this.soundEffectOnGroundAfterJumpContainer.value
+        return this.#haveASoundEffectOnGroundAfterJump
     }
 
     public get gameOnSoundEffectOnGroundAfterJump() {
-        return this.soundEffectOnGroundAfterJumpContainer.gameReference
+        return this.#gameOnSoundEffectOnGroundAfterJump
     }
 
     //endregion -------------------- Sound effect (ground after jump) --------------------
     //region -------------------- Sound effect (turn after run) --------------------
 
-    public get soundEffectOnTurnAfterRunContainer() {
-        return this.soundPropertyContainer.soundEffectOnTurnAfterRunContainer
-    }
-
     public get haveASoundEffectOnTurnAfterRun() {
-        return this.soundEffectOnTurnAfterRunContainer.value
+        return this.#haveASoundEffectOnTurnAfterRun
     }
 
     //endregion -------------------- Sound effect (turn after run) --------------------
     //region -------------------- Special music (star mode) --------------------
 
-    public get specialMusicInStarModeContainer() {
-        return this.soundPropertyContainer.specialMusicInStarModeContainer
-    }
-
     public get haveASpecialMusicInStarMode() {
-        return this.specialMusicInStarModeContainer.value
-    }
-
-    public get gameOnSpecialMusicInStarMode() {
-        return this.specialMusicInStarModeContainer.gameReference
+        return this.#haveASpecialMusicInStarMode
     }
 
     public get translationKeyOnSpecialMusicInStarMode() {
-        return this.specialMusicInStarModeContainer.translationKey
+        return this.#translationKeyOnSpecialMusicInStarMode
+    }
+
+    public get gameOnSpecialMusicInStarMode() {
+        return this.#gameOnSpecialMusicInStarMode
     }
 
     //endregion -------------------- Special music (star mode) --------------------
     //region -------------------- Sound effect (goal pole) --------------------
 
-    public get soundEffectOnGoalPoleContainer() {
-        return this.soundPropertyContainer.soundEffectOnGoalPoleContainer
-    }
-
     public get haveASoundEffectOnGoalPole() {
-        return this.soundEffectOnGoalPoleContainer.value
-    }
-
-    public get gameOnSoundEffectOnGoalPole() {
-        return this.soundEffectOnGoalPoleContainer.gameReference
-    }
-
-    public get translationKeyOnSoundEffectOnGoalPole() {
-        return this.soundEffectOnGoalPoleContainer.translationKey
+        return this.#haveASoundEffectOnGoalPole
     }
 
     public get simpleTranslationKeyOnSoundEffectOnGoalPole() {
-        return this.soundEffectOnGoalPoleContainer.simpleTranslationKey
+        return this.#simpleTranslationKeyOnSoundEffectOnGoalPole
+    }
+
+    public get translationKeyOnSoundEffectOnGoalPole() {
+        return this.#translationKeyOnSoundEffectOnGoalPole
     }
 
     public get typeOfMusicOnGoalPole() {
-        return this.soundEffectOnGoalPoleContainer.type
+        return this.#typeOfMusicOnGoalPole
+    }
+
+    public get gameOnSoundEffectOnGoalPole() {
+        return this.#gameOnSoundEffectOnGoalPole
     }
 
     //endregion -------------------- Sound effect (goal pole) --------------------
     //region -------------------- Sound effect (death) --------------------
 
-    public get soundEffectOnDeathContainer() {
-        return this.soundPropertyContainer.soundEffectOnDeathContainer
-    }
-
     public get haveASoundEffectOnDeath() {
-        return this.soundEffectOnDeathContainer.value
-    }
-
-    public get gameOnSoundEffectOnDeath() {
-        return this.soundEffectOnDeathContainer.gameReference
-    }
-
-    public get translationKeyOnSoundEffectOnDeath() {
-        return this.soundEffectOnDeathContainer.translationKey
+        return this.#haveASoundEffectOnDeath
     }
 
     public get simpleTranslationKeyOnSoundEffectOnDeath() {
-        return this.soundEffectOnDeathContainer.simpleTranslationKey
+        return this.#simpleTranslationKeyOnSoundEffectOnDeath
+    }
+
+    public get translationKeyOnSoundEffectOnDeath() {
+        return this.#translationKeyOnSoundEffectOnDeath
     }
 
     public get typeOfSoundEffectOnDeath() {
-        return this.soundEffectOnDeathContainer.type
+        return this.#typeOfSoundEffectOnDeath
+    }
+
+    public get gameOnSoundEffectOnDeath() {
+        return this.#gameOnSoundEffectOnDeath
     }
 
     //endregion -------------------- Sound effect (death) --------------------
-
-    //endregion -------------------- Sound properties --------------------
-
-    //endregion -------------------- Properties --------------------
 
     //endregion -------------------- Getter methods --------------------
 
