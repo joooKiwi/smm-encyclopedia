@@ -13,21 +13,16 @@ export type LimitAmountType = NullOr<| 1 | 2 | `${| 1 | ''}?` | Infinity | Possi
 //region -------------------- Entity limit --------------------
 
 export type PossibleGeneralLimitComment = | 'Only when collected (30 frames)' | 'As a group' | `Can ${| 'overflow' | 'overfill'} limit` | 'Continue firing → GEL is max'
-export type GeneralLimitType = NullOr<| boolean | PossibleGeneralLimitComment>
 
 export type PossibleGeneralGlobalLimitComment = | 'Not on track' | 'While holding an entity'
-export type GeneralGlobalLimitType = NullOr<| boolean | PossibleGeneralGlobalLimitComment>
 
 
 export type PossibleProjectileLimitComment = | 'Temporary as it comes out' | 'Each one separated' | 'Always reserve 1 projectile' | 'By player, can overfill limit' | 'Can only spawn (available) based → limits'
-export type ProjectileLimitType = NullOr<| boolean | UnknownCharacter | PossibleProjectileLimitComment>
 
 export type PossibleRenderedObjectLimitTypeComment = | 'Only when not dotted' | `Only if not hit${| '' | UnknownCharacter}`
-export type RenderedObjectLimitType = NullOr<| boolean | PossibleRenderedObjectLimitTypeComment>
 
 export type PossibleOtherLimit = Exclude<PossibleEnglishName, `${`${'General' | 'Power-up'} Entity` | 'Projectile' | 'Rendered Object'} Limit`>
 export type PossibleOtherLimitComment = 'Only falling coin'
-export type OtherLimitCommentType = NullOr<PossibleOtherLimitComment>
 
 //endregion -------------------- Entity limit --------------------
 //region -------------------- Spawning / Despawning range --------------------
