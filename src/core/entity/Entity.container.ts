@@ -2,6 +2,7 @@ import type {Lazy} from '@joookiwi/lazy'
 import {lazyOf}    from '@joookiwi/lazy'
 
 import type {Entity, PossibleOtherEntities}                                                                                                                                     from 'core/entity/Entity'
+import type {LCL_Play}                                                                                                                                                          from 'core/entity/properties/basic/BasicProperty'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                     from 'core/entity/properties/instrument/loader.types'
 import type {PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
 import type {EntityCategory}                                                                                                                                                    from 'core/entityCategory/EntityCategory'
@@ -26,6 +27,13 @@ export class EntityContainer
     implements Entity {
 
     //region -------------------- Fields --------------------
+
+    readonly #hasAMushroomVariant
+    readonly #canBeInAParachute
+    readonly #canBeInAParachuteComment
+    readonly #canHaveWings
+    readonly #canHaveWingsComment
+
 
     readonly #isInSuperMarioMaker1
     readonly #isInSuperMarioMakerFor3DS
@@ -119,6 +127,9 @@ export class EntityContainer
 
     public constructor(
         name: Name<string>, category: EntityCategory,
+
+        hasAMushroomVariant: BooleanOrNotApplicable, canBeInAParachute: BooleanOrNotApplicable, canBeInAParachuteComment: NullOr<LCL_Play>, canHaveWings: BooleanOrNotApplicable, canHaveWingsComment: NullOr<LCL_Play>,
+
         isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
         isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: BooleanOrNotApplicable,
         isInGroundTheme: boolean, isInUndergroundTheme: boolean, isInUnderwaterTheme: boolean, isInDesertTheme: BooleanOrNotApplicable, isInSnowTheme: BooleanOrNotApplicable, isInSkyTheme: BooleanOrNotApplicable, isInForestTheme: BooleanOrNotApplicable, isInGhostHouseTheme: boolean, isInAirshipTheme: boolean, isInCastleTheme: boolean,
@@ -141,6 +152,12 @@ export class EntityContainer
         everyGameStyleReferences: Lazy<readonly Entity[]>, everyThemeReferences: Lazy<readonly Entity[]>, everyTimeReferences: Lazy<readonly Entity[]>, everyReferences: Lazy<readonly Entity[]>,
     ) {
         super(name, lazyOf(category,),)
+        this.#hasAMushroomVariant = hasAMushroomVariant
+        this.#canBeInAParachute = canBeInAParachute
+        this.#canBeInAParachuteComment = canBeInAParachuteComment
+        this.#canHaveWings = canHaveWings
+        this.#canHaveWingsComment = canHaveWingsComment
+
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
         this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS
         this.#isInSuperMarioMaker2 = isInSuperMarioMaker2
@@ -224,6 +241,16 @@ export class EntityContainer
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
+
+    //region -------------------- Basic --------------------
+
+    public get hasAMushroomVariant() {      return this.#hasAMushroomVariant }
+    public get canBeInAParachute() {        return this.#canBeInAParachute }
+    public get canBeInAParachuteComment() { return this.#canBeInAParachuteComment }
+    public get canHaveWings() {             return this.#canHaveWings }
+    public get canHaveWingsComment() {      return this.#canHaveWingsComment }
+
+    //endregion -------------------- Basic --------------------
 
     //region -------------------- Game --------------------
 

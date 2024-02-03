@@ -3,7 +3,7 @@ import file from 'resources/compiled/Entity.json'
 import type {PossibleExcludedLanguages}                                                                                                                                                                                                                                                                                                                                                                                                                    from '__test__/helperMethods.types'
 import type {CanRespawnType}                                                                                                                                                                                                                                                                                                                                                                                                                               from 'core/behaviour/loader.types'
 import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleWeight} from 'core/entityTypes'
-import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                 from 'core/entity/properties/basic/BasicProperty'
+import type {LCL_Play}                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/entity/properties/basic/BasicProperty'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                                                                                                                from 'core/entity/properties/instrument/loader.types'
 import type {LimitAmountType, OffscreenSpawningAndDespawningReferencePoint, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                                                                                                                                             from 'core/entity/properties/limit/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                          from 'core/entityCategory/EntityCategories.types'
@@ -28,7 +28,7 @@ describe('Entity (file test)', () => {
     // const everyPlayLimits = types.everyPossibleName_playLimit, everyPlayLimitsWithNull = [null, ...types.everyPossibleName_playLimit,],
     const everyPlayLimitsWithNullAndUnknown = [null, UNKNOWN_CHARACTER, ...types.everyPossibleName_playLimit,]
     const everyPlayLimitsWithNullAndNotApplicable = [null, NOT_APPLICABLE, ...types.everyPossibleName_playLimit,]                                                        as const satisfies readonly NullOr<| NotApplicable | PossibleEnglishName_Limit>[]
-    const possibleBasicProperty = [null, true, false, 'While playing → LCL',]                                                                                            as const satisfies readonly (| PossibleHasAMushroomVariant | PossibleCanBeInAParachute | PossibleCanHaveWings)[]
+    const possibleBasicPropertyComment = [null, 'While playing → LCL',]                                                                                                  as const satisfies readonly NullOr<LCL_Play>[]
     const possibleAffectedByOnOffState = [null, NOT_APPLICABLE, true, false, 'Only some variants',]                                                                      as const satisfies readonly IsAffectedDirectlyByAnOnOrOffState[]
     const everyWeight = [null, UNKNOWN_CHARACTER, ...types.everyPossibleWeight_entity,]                                                                                  as const satisfies readonly PossibleWeight[]
     const everyLightSources = [null, UNKNOWN_CHARACTER, ...types.everyPossibleLightSource_entity,]                                                                       as const satisfies readonly PossibleLightSource[]
@@ -97,9 +97,17 @@ describe('Entity (file test)', () => {
             describe('Basic properties', () => {
                 test('Category in the editor', () => expect(it.categoryInTheEditor).toBeOneOf(everyPossibleCategory))
 
-                test('Has a mushroom variant', () => expect(it.hasAMushroomVariant).toBeBooleanOrNull())
-                test('Can be in a parachute', () => expect(it.canBeInAParachute).toBeOneOf(possibleBasicProperty))
-                test('Can have wings', () => expect(it.canHaveWings).toBeOneOf(possibleBasicProperty))
+                test('Has a mushroom variant', () => expect(it.hasAMushroomVariant,).toBeBooleanOrNotApplicable(),)
+                describe('Can be in a parachute', () => {
+                    test('value', () => expect(it.canBeInAParachute,).toBeBooleanOrNotApplicable(),)
+                    test('comment', () => expect(it.canBeInAParachute_comment,).toBeOneOf(possibleBasicPropertyComment,),)
+                    //TODO add coherence test
+                },)
+                describe('Can have wings', () => {
+                    test('value', () => expect(it.canHaveWings,).toBeBooleanOrNotApplicable(),)
+                    test('comment', () => expect(it.canHaveWings_comment,).toBeOneOf(possibleBasicPropertyComment,),)
+                    //TODO add coherence test
+                },)
             },)
             describe('Specific properties', () => {
                 test('Can contain / spawn a key', () => expect(it.canContainOrSpawnAKey,).toBeBooleanOrNullOrNotApplicable(),)

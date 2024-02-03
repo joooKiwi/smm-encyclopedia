@@ -1,4 +1,5 @@
 import type {EntityReferences}       from 'core/entity/properties/EntityReferences'
+import type {BasicProperty}          from 'core/entity/properties/basic/BasicProperty'
 import type {GameProperty}           from 'core/entity/properties/game/GameProperty'
 import type {GameStyleProperty}      from 'core/entity/properties/gameStyle/GameStyleProperty'
 import type {InstrumentProperty}     from 'core/entity/properties/instrument/InstrumentProperty'
@@ -11,6 +12,7 @@ import type {NameTraitFromACategory} from 'lang/name/NameTraitFromACategory'
 
 export interface Entity
     extends NameTrait<string>, NameTraitFromACategory<string, EntityCategory>,
+        BasicProperty,
         GameProperty,
         GameStyleProperty<boolean, boolean, boolean, boolean, BooleanOrNotApplicable>,
         ThemeProperty<boolean, boolean, boolean, BooleanOrNotApplicable, BooleanOrNotApplicable, BooleanOrNotApplicable, BooleanOrNotApplicable>,

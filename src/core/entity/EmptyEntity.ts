@@ -33,6 +33,15 @@ export class EmptyEntity
     //endregion -------------------- Singleton usage --------------------
     //region -------------------- Getter methods --------------------
 
+    //region -------------------- Basic --------------------
+
+    public readonly hasAMushroomVariant = NOT_APPLICABLE
+    public readonly canBeInAParachute = NOT_APPLICABLE
+    public readonly canBeInAParachuteComment = null
+    public readonly canHaveWings = NOT_APPLICABLE
+    public readonly canHaveWingsComment = null
+
+    //endregion -------------------- Basic --------------------
     //region -------------------- Game properties --------------------
 
     public readonly isInSuperMarioMaker1 = false
