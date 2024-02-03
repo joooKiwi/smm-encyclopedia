@@ -1,7 +1,5 @@
 import type {ClassWithNullableAcronym}                                                                            from 'core/ClassWithAcronym'
 import type {ClassWithType}                                                                                       from 'core/ClassWithType'
-import type {PropertyThatCanBeUnknown}                                                                            from 'core/_properties/PropertyThatCanBeUnknown'
-import type {NotApplicableProperty, NullProperty, UnknownProperty}                                                from 'core/_properties/PropertyWithEverything'
 import type {GameProperty}                                                                                        from 'core/entity/properties/game/GameProperty'
 import type {PossibleAcronym, PossibleAlternativeAcronym}                                                         from 'core/limit/Limits.types'
 import type {LimitTypes}                                                                                          from 'core/limit/LimitTypes'
@@ -24,18 +22,14 @@ export interface Limit
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    get alternativeLimitContainerInSMM1AndSMM3DS(): | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NullProperty | NotApplicableProperty | UnknownProperty
-
-    get alternativeLimitAmountInSMM1AndSMM3DS(): | NullOr<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicable
+    get alternativeLimitAmountInSMM1AndSMM3DS(): NullOr<| PossibleLimitAmount_SMM1And3DS_Amount | NotApplicable>
 
     get isUnknownAlternativeLimitInSMM1AndSMM3DS(): boolean
 
     //endregion -------------------- SMM1 & SMM3DS limit --------------------
     //region -------------------- SMM2 limit --------------------
 
-    get alternativeLimitContainerInSMM2(): | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | NullProperty | UnknownProperty
-
-    get alternativeLimitAmountInSMM2(): NullOr<PossibleLimitAmount_SMM2_Amount>
+    get alternativeLimitAmountInSMM2(): NullOr<| PossibleLimitAmount_SMM2_Amount | NotApplicable>
 
     get isUnknownAlternativeLimitInSMM2(): boolean
 
@@ -47,16 +41,12 @@ export interface Limit
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
-    get limitContainerInSMM1AndSMM3DS(): | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM1And3DS_Amount> | NullProperty | NotApplicableProperty | UnknownProperty
-
-    get limitAmountInSMM1AndSMM3DS(): | NullOr<PossibleLimitAmount_SMM1And3DS_Amount> | NotApplicable
+    get limitAmountInSMM1AndSMM3DS(): NullOr<| PossibleLimitAmount_SMM1And3DS_Amount | NotApplicable>
 
     get isUnknownLimitInSMM1AndSMM3DS(): boolean
 
     //endregion -------------------- SMM1 & SMM3DS limit --------------------
     //region -------------------- SMM2 limit --------------------
-
-    get limitContainerInSMM2(): | PropertyThatCanBeUnknown<PossibleLimitAmount_SMM2_Amount> | NullProperty | UnknownProperty
 
     get limitAmountInSMM2(): NullOr<PossibleLimitAmount_SMM2_Amount>
 

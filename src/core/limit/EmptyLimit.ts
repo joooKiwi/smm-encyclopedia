@@ -3,9 +3,9 @@ import {lazy} from '@joookiwi/lazy'
 import type {Limit}                                      from 'core/limit/Limit'
 import type {ClassWithNullObjectPattern, EmptyLimitName} from 'util/ClassWithNullObjectPattern'
 
-import {PropertyContainer}                    from 'core/_properties/Property.container'
 import {ClassContainingANameAndAnAlternative} from 'lang/name/ClassContainingANameAndAnAlternative'
 import {EmptyStringName}                      from 'lang/name/EmptyStringName'
+import {NOT_APPLICABLE}                       from 'util/commonVariables'
 import {EMPTY_MAP}                            from 'util/emptyVariables'
 import {assert}                               from 'util/utilitiesMethods'
 
@@ -36,11 +36,9 @@ export class EmptyLimit
 
     public readonly acronym = null
 
-    public readonly limitContainerInSMM1AndSMM3DS = PropertyContainer.NULL_CONTAINER
-    public readonly limitAmountInSMM1AndSMM3DS = null
+    public readonly limitAmountInSMM1AndSMM3DS = NOT_APPLICABLE
     public readonly isUnknownLimitInSMM1AndSMM3DS = false
 
-    public readonly limitContainerInSMM2 = PropertyContainer.NULL_CONTAINER
     public readonly limitAmountInSMM2 = null
     public readonly isUnknownLimitInSMM2 = false
 
@@ -49,11 +47,9 @@ export class EmptyLimit
 
     public readonly alternativeAcronym = null
 
-    public readonly alternativeLimitContainerInSMM1AndSMM3DS = PropertyContainer.NULL_CONTAINER
-    public readonly alternativeLimitAmountInSMM1AndSMM3DS = null
+    public readonly alternativeLimitAmountInSMM1AndSMM3DS = NOT_APPLICABLE
     public readonly isUnknownAlternativeLimitInSMM1AndSMM3DS = false
 
-    public readonly alternativeLimitContainerInSMM2 = PropertyContainer.NULL_CONTAINER
     public readonly alternativeLimitAmountInSMM2 = null
     public readonly isUnknownAlternativeLimitInSMM2 = false
 

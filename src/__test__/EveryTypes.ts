@@ -11,7 +11,7 @@ import type {PossibleEnglishName as PossibleEnglishName_Instrument}             
 import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                            from 'core/instrument/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                                                               from 'core/limit/LimitTypes.types'
 import type {PossibleAcronym as PossibleAcronym_Limit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_Limit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_Limit, PossibleEnglishName as PossibleEnglishName_Limit} from 'core/limit/Limits.types'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount, PossibleLimitAmount_SMM2_UnknownAmount}                                                                                        from 'core/limit/loader.types'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount}                                                                                                                                from 'core/limit/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Medal}                                                                                                                                                                                   from 'core/medal/Medals.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}                                                                                                                                                                              from 'core/miiCostume/MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                      from 'core/miiCostumeCategory/MiiCostumeCategories.types'
@@ -139,7 +139,7 @@ export class EveryTypes {
     #everyPossibleName_playLimit?: readonly PossibleEnglishName_Limit[]
     #everyPossibleAlternativeName_limit?: readonly PossibleAlternativeEnglishName_Limit[]
     #everyPossibleAmount_smm1And3ds_limit?: readonly PossibleLimitAmount_SMM1And3DS_Amount[]
-    #everyPossibleAmount_smm2_limit?: readonly (| PossibleLimitAmount_SMM2_Amount | PossibleLimitAmount_SMM2_UnknownAmount)[]
+    #everyPossibleAmount_smm2_limit?: readonly PossibleLimitAmount_SMM2_Amount[]
     #everyPossibleComment_limit?: readonly NonNullable<PossibleLimitAmount_Comment>[]
     #everyPossibleName_limitType?: readonly PossibleEnglishName_LimitType[]
 
@@ -364,8 +364,8 @@ export class EveryTypes {
     public get everyPossibleAmount_smm2_limit() {
         return this.#everyPossibleAmount_smm2_limit ??= [
             1, 2, 3, 4, 5, 6, 7, 8,
-            10, '10?', 50,
-            100, 200, 300, 400, '400?', 483, 500, '500?', 999,
+            10, 50,
+            100, 200, 300, 400, 483, 500, 999,
             1500, 2000, 4000,
         ]
     }
