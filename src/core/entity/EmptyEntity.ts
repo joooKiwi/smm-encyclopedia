@@ -42,14 +42,14 @@ export class EmptyEntity
     public readonly canHaveWingsComment = null
 
     //endregion -------------------- Basic --------------------
-    //region -------------------- Game properties --------------------
+    //region -------------------- Game --------------------
 
     public readonly isInSuperMarioMaker1 = false
     public readonly isInSuperMarioMakerFor3DS = false
     public readonly isInSuperMarioMaker2 = false
 
-    //endregion -------------------- Game properties --------------------
-    //region -------------------- Game style properties --------------------
+    //endregion -------------------- Game --------------------
+    //region -------------------- Game style --------------------
 
     public readonly isInSuperMarioBrosStyle = false
     public readonly isInSuperMarioBros3Style = false
@@ -57,8 +57,8 @@ export class EmptyEntity
     public readonly isInNewSuperMarioBrosUStyle = false
     public readonly isInSuperMario3DWorldStyle = NOT_APPLICABLE
 
-    //endregion -------------------- Game style properties --------------------
-    //region -------------------- Theme properties --------------------
+    //endregion -------------------- Game style --------------------
+    //region -------------------- Theme --------------------
 
     public readonly isInGroundTheme = false
     public readonly isInUndergroundTheme = false
@@ -71,14 +71,14 @@ export class EmptyEntity
     public readonly isInAirshipTheme = false
     public readonly isInCastleTheme = false
 
-    //endregion -------------------- Theme properties --------------------
-    //region -------------------- Time properties --------------------
+    //endregion -------------------- Theme --------------------
+    //region -------------------- Time --------------------
 
     public readonly isInDayTheme = false
     public readonly isInNightTheme = NOT_APPLICABLE
 
-    //endregion -------------------- Time properties --------------------
-    //region -------------------- Limit properties --------------------
+    //endregion -------------------- Time --------------------
+    //region -------------------- Limit --------------------
 
     public readonly editorLimit_smm1And3ds = null
     public readonly editorLimit_smm2 = NOT_APPLICABLE
@@ -104,14 +104,14 @@ export class EmptyEntity
     public readonly otherLimitComment = null
     public readonly isUnknown_otherLimit = false
 
-    //endregion -------------------- Limit properties --------------------
-    //region -------------------- Instrument properties --------------------
+    //endregion -------------------- Limit --------------------
+    //region -------------------- Instrument --------------------
 
     public readonly instruments = EMPTY_ARRAY
     public readonly canMakeASoundOutOfAMusicBlock = NOT_APPLICABLE
     public readonly canMakeASoundOutOfAMusicBlockComment = null
 
-    //endregion -------------------- Instrument properties --------------------
+    //endregion -------------------- Instrument --------------------
     //region -------------------- References --------------------
 
     public readonly referenceInSuperMarioBrosStyle = EMPTY_ARRAY
