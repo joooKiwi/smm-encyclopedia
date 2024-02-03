@@ -28,26 +28,26 @@ export interface LimitProperty {
     //endregion -------------------- Global general limit --------------------
     //region -------------------- Power-up limit --------------------
 
-    get isInPowerUpLimit(): NullOr<BooleanOrNotApplicable>
+    get isInPowerUpLimit(): NullOrBooleanOrNotApplicable
 
     //endregion -------------------- Power-up limit --------------------
     //region -------------------- Projectile limit --------------------
 
-    get isInProjectileLimit(): NullOr<BooleanOrNotApplicable>
+    get isInProjectileLimit(): NullOrBooleanOrNotApplicable
 
     get isInProjectileLimitComment(): NullOr<PossibleProjectileLimitComment>
 
     //endregion -------------------- Projectile limit --------------------
     //region -------------------- Rendered object limit --------------------
 
-    get isInRenderedObjectLimit(): NullOr<BooleanOrNotApplicable>
+    get isInRenderedObjectLimit(): NullOrBooleanOrNotApplicable
 
     get isInRenderedObjectLimitComment(): NullOr<PossibleRenderedObjectLimitTypeComment>
 
     //endregion -------------------- Rendered object limit --------------------
     //region -------------------- Collected object limit --------------------
 
-    get isInCollectedCoinLimit(): NullOr<BooleanOrNotApplicable>
+    get isInCollectedCoinLimit(): NullOrBooleanOrNotApplicable
 
     //endregion -------------------- Collected object limit --------------------
     //region -------------------- Other limit --------------------

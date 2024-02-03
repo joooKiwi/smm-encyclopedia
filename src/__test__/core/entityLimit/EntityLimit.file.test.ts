@@ -23,10 +23,10 @@ describe('Limit (file test)', () => {
 
         describe('Type validations', () => {
             if (isAlternativeLimit) {
-                test('Alternative', () => expect(it.alternative).toBeNull())
+                test('Alternative', () => expect(it.alternative,).toBeNull(),)
 
-                test('Type', () => expect(it.type).toBeNull())
-                test('Acronym', () => expect(it.acronym).toBeOneOf(everyAlternativeAcronyms))
+                test('Type', () => expect(it.type,).toBeNull(),)
+                test('Acronym', () => expect(it.acronym,).toBeOneOf(everyAlternativeAcronyms,),)
 
                 describe('Limit in SMM & SMM3DW', () => {
                     test('value', () => expect(it.limit_SMM1And3DS,).toBeNull(),)
@@ -41,10 +41,10 @@ describe('Limit (file test)', () => {
                 testOnlyEnglish(it, everyAlternativeNames,)
             } else {
                 /* eslint-disable jest/no-identical-title */
-                test('Alternative', () => expect(it.alternative).toBeOneOf(everyAlternativeNamesOrNull,))
+                test('Alternative', () => expect(it.alternative,).toBeOneOf(everyAlternativeNamesOrNull,),)
 
-                test('Type', () => expect(it.type).toBeOneOf(everyTypes))
-                test('Acronym', () => expect(it.acronym).toBeOneOf(everyAcronyms))
+                test('Type', () => expect(it.type,).toBeOneOf(everyTypes,),)
+                test('Acronym', () => expect(it.acronym,).toBeOneOf(everyAcronyms,),)
 
                 describe('Limit in SMM & SMM3DW', () => {
                     test('value', () => expect(it.limit_SMM1And3DS,).toBeOneOf(everyLimitInSMM1And3DS,),)
