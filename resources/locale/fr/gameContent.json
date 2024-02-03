@@ -1,7 +1,11 @@
 {
   "entity": {
     "all":         "Toutes les {{entities}}",
-    "display all": "Afficher toutes les {{entities}}"
+    "display all": "Afficher toutes les {{entities}}",
+
+    "property": {
+      "While playing → LCL": "En jouant, c'est dans la {{acronym}} ({{limit}})"
+    }
   },
   "character name": {
     "singular": "Nom de personnage",

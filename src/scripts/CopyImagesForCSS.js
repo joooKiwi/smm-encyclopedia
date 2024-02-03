@@ -9,6 +9,9 @@ const logger = Logger.get;
     new ImageTemplate('game',                                       'Super Mario Maker for Nintendo 3DS', 'Super Mario Maker for Nintendo 3DS', 'svg',),
     new ImageTemplate('game',                                       'Super Mario Maker 2',                'Super Mario Maker 2',                'svg',),
 
+    new ImageTemplate('entity/editor',                              'MW_Lyt_P_parachute_00',              'Parachute',                          'tiff',),
+    new ImageTemplate('entity/editor',                              'MW_Lyt_P_Wing_00',                   'Wing',                               'tiff',),
+
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_OnpuBlock_01',              'Music Block',                        'tiff',),
     new ImageTemplate('entity/editor',                              '3W_Lyt_P_HatenaBlock_00',            'Question Block (SM3DW)',             'tiff',),
 

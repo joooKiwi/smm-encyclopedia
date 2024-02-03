@@ -1,7 +1,11 @@
 {
   "entity": {
     "all":         "Every {{entity}}",
-    "display all": "Display every {{entity}}"
+    "display all": "Display every {{entity}}",
+
+    "property": {
+      "While playing → LCL": "While we play, it is in the {{acronym}} ({{limit}})"
+    }
   },
   "character name": {
     "singular": "Character name",
