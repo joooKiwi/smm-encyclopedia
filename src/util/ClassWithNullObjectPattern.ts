@@ -29,7 +29,6 @@ export type EmptyEntityCategoryName = 'Empty entity category'
 //endregion -------------------- Entity category types --------------------
 //region -------------------- Limit types --------------------
 
-export type EmptyLimitPropertyName = 'Empty limit property'
 export type EmptyLimitName = 'Empty limit'
 
 //endregion -------------------- Limit types --------------------
@@ -50,12 +49,6 @@ export type EmptyCourseAndWorldThemeName = 'Empty course & world theme'
 export type EmptyNameName = 'Empty name'
 
 //endregion -------------------- Name types --------------------
-//region -------------------- Entity property types --------------------
-
-export type EmptyIsInPropertyName = 'Empty "is in property"'
-export type EmptyEntityReferenceName = 'Empty entity reference'
-
-//endregion -------------------- Entity property types --------------------
 //region -------------------- Sound effect types --------------------
 
 export type EmptySMMSoundEffectSoundName = 'Empty sound effect sound'
@@ -83,11 +76,6 @@ export type EmptyMiiCostumeCategoryName = 'Empty Mii costume category'
 export type EmptyPredefinedMessageName = 'Empty predefined message'
 
 //endregion -------------------- Predefined message types --------------------
-//region -------------------- Instrument types --------------------
-
-export type EmptyInstrumentName = 'Empty instrument'
-
-//endregion -------------------- Instrument types --------------------
 //region -------------------- Music types --------------------
 
 export type EmptySingleBackgroundMusicName = 'Empty single "background music"'
@@ -100,15 +88,13 @@ export type EveryPossibleEmptyName =
 
     | EmptyEntityCategoryName
 
-    | EmptyLimitPropertyName | EmptyLimitName
+     | EmptyLimitName
 
     | EmptyGameStyleName
 
     | EmptyCourseThemeName | EmptyWorldThemeName | EmptyCourseAndWorldThemeName
 
     | EmptyNameName
-
-    | EmptyIsInPropertyName | EmptyEntityReferenceName
 
     | EmptySMMSoundEffectSoundName
     | EmptySoundEffectCategoryName
@@ -117,8 +103,6 @@ export type EveryPossibleEmptyName =
     | EmptyMiiCostumeCategoryName
 
     | EmptyPredefinedMessageName
-
-    | EmptyInstrumentName
 
     | EmptySingleBackgroundMusicName
 

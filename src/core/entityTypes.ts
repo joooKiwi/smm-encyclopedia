@@ -1,7 +1,7 @@
 /** @temporaryVariable */
 export type PossibleGroupName = string
 
-/** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Object'
+/** @temporaryVariable */export type PossibleEntityType = | '(Entity)' | 'Entity' | 'Projectile' | 'Unused projectile' | 'Object'
 
 /** @temporaryVariable */export type PossibleFirstAppearanceInMarioMaker = | 1 | 2
 
@@ -9,7 +9,7 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type CanContainOrSpawnAKey = NullOrBoolean
 
-/** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = NullOrBoolean | 'Only some variants'
+/** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = | NullOrBooleanOrNotApplicable | 'Only some variants'
 
 /** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
 
@@ -36,14 +36,14 @@ export type PossibleGroupName = string
 /** @temporaryLocation */export type CanIgniteABobOmb = | boolean | 'NSMBU' | 'Castle'
 /** @temporaryLocation */export type CanBeBrokenOrKilledByABobOmb = | boolean | 'Koopa Troopa' | 'Unchained Chomp' | 'Standing on top of block that get destroyed'
 
-/** @temporaryLocation */export type CanBeAffectedByATwister = NullOr<| boolean | 'When falling' | 'Parachute'>
+/** @temporaryLocation */export type CanBeAffectedByATwister = NullOr<| boolean | NotApplicable | 'When falling' | 'Parachute'>
 
 /** @temporaryLocation */export type CanGoThroughWalls = NullOrBoolean
 /** @temporaryLocation */export type CanGoThroughWallsInSM3DW = NullOr<| boolean | 'on down curve'>
 
 /** @temporaryLocation */export type CanBeStacked = NullOrBoolean
 
-/** @temporaryLocation */export type IsGlobalGroundOrGlobal = NullOr<| boolean | 'SM3DW'>
+/** @temporaryLocation */export type IsGlobalGroundOrGlobal = NullOr<| boolean | NotApplicable | 'SM3DW'>
 
 /** @temporaryLocation */export type PossibleLightSource = NullOr<| `${'Dim' | 'Full'} light`
                                                                   | `Full light when ${| 'falling' | 'collected' | 'shooting'}`
