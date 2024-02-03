@@ -3,7 +3,7 @@ import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTransla
 import type {PossibleEnglishName as PossibleEnglishName_CharacterName, PossibleUniqueEnglishName as PossibleUniqueEnglishName_CharacterName}                                                                                                     from 'core/characterName/CharacterNames.types'
 import type {PossibleEnglishName as PossibleEnglishName_CourseTag, PossibleMakerCentralName}                                                                                                                                                     from 'core/courseTag/CourseTags.types'
 import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                  from 'core/entity/Entities.types'
-import type {LimitAmountType, PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                 from 'core/entity/properties/limit/loader.types'
+import type {LimitAmountType, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                 from 'core/entity/properties/limit/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                          from 'core/entityCategory/EntityCategories.types'
 import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                         from 'core/gameReference/GameReferences.types'
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                       from 'core/gameStyle/GameStyles.types'
@@ -17,7 +17,7 @@ import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}             
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                      from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                     from 'core/mysteryMushroom/MysteryMushrooms.types'
 import type {PokemonGeneration, PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                      from 'core/mysteryMushroom/loader.types'
-import type {TranslationKeyOnDeath as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom,TranslationKeyOnGoalPole as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                        from 'core/mysteryMushroom/MysteryMushroom.types'
+import type {TranslationKeyOnDeath as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, TranslationKeyOnGoalPole as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                       from 'core/mysteryMushroom/MysteryMushroom.types'
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                       from 'core/nightEffect/NightEffects.types'
 import type {PossibleReleaseDate as PossibleReleaseDate_OfficialCourse, PossibleRemovalDate as PossibleRemovalDate_OfficialCourse, PossibleReward as PossibleReward_OfficialCourse}                                                              from 'core/officialCourse/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_OfficialCourse}                                                                                                                                                                          from 'core/officialCourse/OfficialCourses.types'
@@ -30,33 +30,33 @@ import type {PossibleEnglishName as PossibleEnglishName_SoundEffectCategory}    
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                   from 'core/theme/Themes.types'
 import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                            from 'core/version/Versions.types'
 
-import {EntityBehaviours}            from 'core/behaviour/EntityBehaviours'
-import {CharacterNames}              from 'core/characterName/CharacterNames'
-import {Entities}                    from 'core/entity/Entities'
-import {EntityCategories}            from 'core/entityCategory/EntityCategories'
-import {Games}                       from 'core/game/Games'
-import {GameStyles}                  from 'core/gameStyle/GameStyles'
-import {GameReferences}              from 'core/gameReference/GameReferences'
-import {Instruments}                 from 'core/instrument/Instruments'
-import {LimitTypes}                  from 'core/limit/LimitTypes'
-import {Limits}                      from 'core/limit/Limits'
-import {Medals}                      from 'core/medal/Medals'
-import {NightEffects}                from 'core/nightEffect/NightEffects'
-import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
-import {MiiCostumes}                 from 'core/miiCostume/MiiCostumes'
-import {MysteryMushrooms}            from 'core/mysteryMushroom/MysteryMushrooms'
-import {OfficialCourses}             from 'core/officialCourse/OfficialCourses'
-import {OfficialNotifications}       from 'core/officialNotification/OfficialNotifications'
-import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {PredefinedMessages}          from 'core/predefinedMessage/PredefinedMessages'
-import {SampleCourses}               from 'core/sampleCourse/SampleCourses'
-import {SoundEffects}                from 'core/soundEffect/SoundEffects'
-import {SoundEffectCategories}       from 'core/soundEffectCategory/SoundEffectCategories'
-import {Themes}                      from 'core/theme/Themes'
-import {Versions}                    from 'core/version/Versions'
-import {CourseTags}                  from 'core/courseTag/CourseTags'
-import {INFINITY, UNKNOWN_REFERENCE} from 'util/commonVariables'
-import {nonNull}                     from 'util/utilitiesMethods'
+import {EntityBehaviours}      from 'core/behaviour/EntityBehaviours'
+import {CharacterNames}        from 'core/characterName/CharacterNames'
+import {Entities}              from 'core/entity/Entities'
+import {EntityCategories}      from 'core/entityCategory/EntityCategories'
+import {Games}                 from 'core/game/Games'
+import {GameStyles}            from 'core/gameStyle/GameStyles'
+import {GameReferences}        from 'core/gameReference/GameReferences'
+import {Instruments}           from 'core/instrument/Instruments'
+import {LimitTypes}            from 'core/limit/LimitTypes'
+import {Limits}                from 'core/limit/Limits'
+import {Medals}                from 'core/medal/Medals'
+import {NightEffects}          from 'core/nightEffect/NightEffects'
+import {MiiCostumeCategories}  from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {MiiCostumes}           from 'core/miiCostume/MiiCostumes'
+import {MysteryMushrooms}      from 'core/mysteryMushroom/MysteryMushrooms'
+import {OfficialCourses}       from 'core/officialCourse/OfficialCourses'
+import {OfficialNotifications} from 'core/officialNotification/OfficialNotifications'
+import {OtherWordInTheGames}   from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {PredefinedMessages}    from 'core/predefinedMessage/PredefinedMessages'
+import {SampleCourses}         from 'core/sampleCourse/SampleCourses'
+import {SoundEffects}          from 'core/soundEffect/SoundEffects'
+import {SoundEffectCategories} from 'core/soundEffectCategory/SoundEffectCategories'
+import {Themes}                from 'core/theme/Themes'
+import {Versions}              from 'core/version/Versions'
+import {CourseTags}            from 'core/courseTag/CourseTags'
+import {INFINITY}              from 'util/commonVariables'
+import {nonNull}               from 'util/utilitiesMethods'
 
 /**
  * @singleton
@@ -115,10 +115,10 @@ export class EveryTypes {
     #everyPossibleLightSource_entity?: readonly NonNullable<Exclude<PossibleLightSource, UnknownCharacter>>[]
     #everyPossibleSurviveConditionInDeadlyLiquid_entity?: readonly NonNullable<Exclude<CanSurviveInTheLavaOrThePoison, | boolean | UnknownCharacter>>[]
     #everyPossibleLimitAmountType_entity?: readonly NonNullable<Exclude<LimitAmountType, | boolean | UnknownCharacter>>[]
-    #everyPossibleGEL_entity?: readonly PossibleGeneralLimitComment[]
-    #everyPossibleGELGlobal_entity?: readonly PossibleGeneralGlobalLimitComment[]
-    #everyPossiblePJL_entity?: readonly PossibleProjectileLimitComment[]
-    #everyPossibleObjectRenderedLimit_entity?: readonly PossibleRenderedObjectLimitTypeComment[]
+    #everyPossibleGELComment_entity?: readonly PossibleGeneralLimitComment[]
+    #everyPossibleGELGlobalComment_entity?: readonly PossibleGeneralGlobalLimitComment[]
+    #everyPossiblePJLComment_entity?: readonly PossibleProjectileLimitComment[]
+    #everyPossibleObjectRenderedLimitComment_entity?: readonly PossibleRenderedObjectLimitTypeComment[]
     #everyPossibleOtherLimitComment_entity?: readonly PossibleOtherLimitComment[]
 
     #everyPossibleAcronym_entityBehaviour?: readonly PossibleAcronym_EntityBehaviour[]
@@ -259,20 +259,20 @@ export class EveryTypes {
     }
 
 
-    public get everyPossibleGEL_entity() {
-        return this.#everyPossibleGEL_entity ??= ['Only when collected (30 frames)', 'As a group', 'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',]
+    public get everyPossibleGELComment_entity() {
+        return this.#everyPossibleGELComment_entity ??= ['Only when collected (30 frames)', 'As a group', 'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',]
     }
 
-    public get everyPossibleGELGlobal_entity() {
-        return this.#everyPossibleGELGlobal_entity ??= ['Not on track', 'While holding an entity',]
+    public get everyPossibleGELGlobalComment_entity() {
+        return this.#everyPossibleGELGlobalComment_entity ??= ['Not on track', 'While holding an entity',]
     }
 
-    public get everyPossiblePJL_entity() {
-        return this.#everyPossiblePJL_entity ??= ['Temporary as it comes out', 'Each one separated', 'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',]
+    public get everyPossiblePJLComment_entity() {
+        return this.#everyPossiblePJLComment_entity ??= ['Temporary as it comes out', 'Each one separated', 'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',]
     }
 
-    public get everyPossibleObjectRenderedLimit_entity() {
-        return this.#everyPossibleObjectRenderedLimit_entity ??= ['Only when not dotted', 'Only if not hit', 'Only if not hit?',]
+    public get everyPossibleObjectRenderedLimitComment_entity() {
+        return this.#everyPossibleObjectRenderedLimitComment_entity ??= ['Only when not dotted', 'Only if not hit', 'Only if not hit?',]
     }
 
     public get everyPossibleOtherLimitComment_entity() {
