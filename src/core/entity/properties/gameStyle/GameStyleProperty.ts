@@ -1,6 +1,10 @@
 import type {GameStyles} from 'core/gameStyle/GameStyles'
 
-export interface GameStyleProperty<SMB extends boolean = boolean, SMB3 extends boolean = boolean, SMW extends boolean = boolean, NSMBU extends boolean = boolean, SM3DW extends NullOrBoolean = NullOrBoolean, > {
+export interface GameStyleProperty<out SMB extends boolean = boolean,
+    out SMB3 extends boolean = boolean,
+    out SMW extends boolean = boolean,
+    out NSMBU extends boolean = boolean,
+    out SM3DW extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable, > {
 
     get isInSuperMarioBrosStyle(): SMB
 

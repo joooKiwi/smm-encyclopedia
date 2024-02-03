@@ -1,15 +1,15 @@
 import type {Themes} from 'core/theme/Themes'
 
-export interface ThemeProperty<GROUND extends boolean = boolean,
-    UNDERGROUND extends boolean = boolean,
-    UNDERWATER extends boolean = boolean,
-    DESERT extends NullOrBoolean = NullOrBoolean,
-    SNOW extends NullOrBoolean = NullOrBoolean,
-    SKY extends NullOrBoolean = NullOrBoolean,
-    FOREST extends NullOrBoolean = NullOrBoolean,
-    GHOST_HOUSE extends boolean = boolean,
-    AIRSHIP extends boolean = boolean,
-    CASTLE extends boolean = boolean, > {
+export interface ThemeProperty<out GROUND extends boolean = boolean,
+    out UNDERGROUND extends boolean = boolean,
+    out UNDERWATER extends boolean = boolean,
+    out DESERT extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable,
+    out SNOW extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable,
+    out SKY extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable,
+    out FOREST extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable,
+    out GHOST_HOUSE extends boolean = boolean,
+    out AIRSHIP extends boolean = boolean,
+    out CASTLE extends boolean = boolean, > {
 
     get isInGroundTheme(): GROUND
 
