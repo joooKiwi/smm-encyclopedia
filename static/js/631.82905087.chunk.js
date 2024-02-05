@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunksmm_encyclopedia=self.webpackChunksmm_encyclopedia||[]).push([[631],{5631:(e,c,n)=>{n.r(c),n.d(c,{default:()=>s});var a=n(184);function s(){return(0,a.jsx)(a.Fragment,{children:"About page"})}}}]);
+//# sourceMappingURL=631.82905087.chunk.js.map
