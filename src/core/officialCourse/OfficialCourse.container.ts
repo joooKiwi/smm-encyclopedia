@@ -44,37 +44,17 @@ export class OfficialCourseContainer
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get reward(): readonly MysteryMushrooms[] {
-        return this.#reward
-    }
+    public get reward() { return this.#reward }
 
+    public get releaseDate() { return this.#releaseDate }
+    public get removalDate() { return this.#removalDate }
 
-    public get releaseDate(): Date {
-        return this.#releaseDate
-    }
+    public get gameStyle() { return this.#gameStyle }
 
-    public get removalDate(): NullOr<| Date | UnknownReference> {
-        return this.#removalDate
-    }
+    public get courseThemeInTheMainArea() { return this.#courseThemeInTheMainArea }
+    public get courseThemeInTheSubArea() {  return this.#courseThemeInTheSubArea }
 
-
-    public get gameStyle(): GameStyles {
-        return this.#gameStyle
-    }
-
-
-    public get courseThemeInTheMainArea(): Themes {
-        return this.#courseThemeInTheMainArea
-    }
-
-    public get courseThemeInTheSubArea(): NullOr<Themes> {
-        return this.#courseThemeInTheSubArea
-    }
-
-
-    public get amountOfTime(): PossibleAmountOfTime {
-        return this.#amountOfTime
-    }
+    public get amountOfTime() { return this.#amountOfTime }
 
     //endregion -------------------- Getter methods --------------------
 
