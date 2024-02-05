@@ -26,7 +26,7 @@ export default function Footer() {
                     <small>{contentTranslation('React application made by')}: </small>JóôòKiwi
                 </span>
                 <small id="copyright_lastEdited" className="text-center text-light">
-                    {contentTranslation('Last update')}: <i><SimpleDate day={17} month={1} year={2024}/></i>
+                    {contentTranslation('Last update')}: <i><SimpleDate day={4} month={2} year={2025}/></i>
                 </small>
             </div>
         </div>
