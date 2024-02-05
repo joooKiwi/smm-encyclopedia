@@ -18,13 +18,13 @@ export type ReactPropertiesWithOptionalChildren<T extends object, CHILDREN, > = 
 export interface SimpleReactPropertiesWithChildren<T, >
     extends ReactProperties {
 
-    children: T
+    readonly children: T
 
 }
 
 export interface SimpleReactPropertiesWithOptionalChildren<T, >
     extends ReactProperties {
 
-    children?: T
+    readonly children?: T
 
 }

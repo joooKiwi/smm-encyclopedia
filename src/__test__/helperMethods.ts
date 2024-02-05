@@ -1,5 +1,6 @@
-import type {PossibleExcludedLanguages} from '__test__/helperMethods.types'
-import type {LanguageContent}           from 'core/_template/LanguageContent'
+import type {PossibleExcludedLanguages}  from '__test__/helperMethods.types'
+import type {LanguageContent}            from 'core/_template/LanguageContent'
+import type {DescriptionLanguageContent} from 'core/_template/DescriptionLanguageContent'
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
@@ -54,6 +55,65 @@ export function testLanguages({
                               }: LanguageContent, excludedLanguages?: Nullable<readonly PossibleExcludedLanguages[]>,) {
     const excludedLanguages2 = excludedLanguages ?? EMPTY_ARRAY
     describe('Not null language reference', () => {
+        test('English (America)', () => expect(english ?? americanEnglish).not.toBeNull(),)
+        test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)
+        test('French (Canada)', () => expect(french ?? canadianFrench).not.toBeNull(),)
+        test('French (Europe)', () => expect(french ?? europeanFrench).not.toBeNull(),)
+        if (!excludedLanguages2.includes('german'))
+            test('German', () => expect(german).not.toBeNull(),)
+        if (!excludedLanguages2.includes('spanish')) {
+            if (!excludedLanguages2.includes('spanish (america)'))
+                test('Spanish (America)', () => expect(spanish ?? americanSpanish).not.toBeNull(),)
+            if (!excludedLanguages2.includes('spanish (europe)'))
+                test('Spanish (Europe)', () => expect(spanish ?? europeanSpanish).not.toBeNull(),)
+        }
+        if (!excludedLanguages2.includes('italian'))
+            test('Italian', () => expect(italian).not.toBeNull(),)
+        if (!excludedLanguages2.includes('dutch'))
+            test('Dutch', () => expect(dutch).not.toBeNull(),)
+        if (!excludedLanguages2.includes('portuguese')) {
+            if (!excludedLanguages2.includes('portuguese (america)'))
+                test('Portuguese (America)', () => expect(portuguese ?? americanPortuguese).not.toBeNull(),)
+            if (!excludedLanguages2.includes('portuguese (europe)'))
+                test('Portuguese (Europe)', () => expect(portuguese ?? europeanPortuguese).not.toBeNull(),)
+        }
+        if (!excludedLanguages2.includes('russian'))
+            test('Russian', () => expect(russian).not.toBeNull(),)
+        if (!excludedLanguages2.includes('japanese'))
+            test('Japanese', () => expect(japanese).not.toBeNull(),)
+        if (!(excludedLanguages2.includes('chinese'))) {
+            if (!excludedLanguages2.includes('traditional chinese'))
+                test('Traditional chinese', () => expect(chinese ?? traditionalChinese).not.toBeNull(),)
+            if (!excludedLanguages2.includes('simplified chinese'))
+                test('Simplified chinese', () => expect(chinese ?? simplifiedChinese).not.toBeNull(),)
+        }
+        if (!excludedLanguages2.includes('korean'))
+            test('Korean', () => expect(korean).not.toBeNull(),)
+    },)
+}
+
+/**
+ * Test every language description (if not excluded) as a group of test
+ *
+ * @param content The content with at least every required languages
+ * @param excludedLanguages The languages to not test
+ * @see testLanguages
+ */
+export function testLanguagesDescription({
+                                             english_description: english, americanEnglish_description: americanEnglish, europeanEnglish_description: europeanEnglish,
+                                             french_description: french, canadianFrench_description: canadianFrench, europeanFrench_description: europeanFrench,
+                                             german_description: german,
+                                             spanish_description: spanish, americanSpanish_description: americanSpanish, europeanSpanish_description: europeanSpanish,
+                                             italian_description: italian,
+                                             dutch_description: dutch,
+                                             portuguese_description: portuguese, americanPortuguese_description: americanPortuguese, europeanPortuguese_description: europeanPortuguese,
+                                             russian_description: russian,
+                                             japanese_description: japanese,
+                                             chinese_description: chinese, traditionalChinese_description: traditionalChinese, simplifiedChinese_description: simplifiedChinese,
+                                             korean_description: korean,
+                                         }: DescriptionLanguageContent, excludedLanguages?: Nullable<readonly PossibleExcludedLanguages[]>,) {
+    const excludedLanguages2 = excludedLanguages ?? EMPTY_ARRAY
+    describe('Not null language description reference', () => {
         test('English (America)', () => expect(english ?? americanEnglish).not.toBeNull(),)
         test('English (Europe)', () => expect(english ?? europeanEnglish).not.toBeNull(),)
         test('French (Canada)', () => expect(french ?? canadianFrench).not.toBeNull(),)

@@ -1,20 +1,19 @@
 import file from 'resources/compiled/Sound effect.json'
 
-import type {LanguageContent}                                               from 'core/_template/LanguageContent'
-import type {GameContentFrom1And2}                                          from 'core/game/Loader.types'
-import type {SoundEffect}                                                   from 'core/soundEffect/SoundEffect'
-import type {PossibleEnglishName}                                           from 'core/soundEffect/SoundEffects.types'
-import type {PossibleEnglishName as PossibleSoundEffectCategoryEnglishName} from 'core/soundEffectCategory/SoundEffectCategories.types'
-import type {Loader}                                                        from 'util/loader/Loader'
+import type {LanguageContent}                                     from 'core/_template/LanguageContent'
+import type {GameContentFrom1And2}                                from 'core/game/Loader.types'
+import type {SoundEffect}                                         from 'core/soundEffect/SoundEffect'
+import type {PossibleEnglishName}                                 from 'core/soundEffect/SoundEffects.types'
+import type {PossibleEnglishName as PossibleEnglishName_Category} from 'core/soundEffectCategory/SoundEffectCategories.types'
+import type {Loader}                                              from 'util/loader/Loader'
+import type {SoundEffectCategory}                                 from 'core/soundEffectCategory/SoundEffectCategory'
 
-import {isInProduction}                  from 'variables'
-import {GamePropertyProvider}            from 'core/entity/properties/game/GameProperty.provider'
-import {SoundEffectContainer}            from 'core/soundEffect/SoundEffect.container'
-import {PlayerSoundEffectTriggers}       from 'core/soundEffect/property/PlayerSoundEffectTriggers'
-import {SoundEffectPropertyContainer}    from 'core/soundEffect/property/SoundEffectProperty.container'
-import {EmptySoundEffectCategory}        from 'core/soundEffectCategory/EmptySoundEffectCategory'
-import {SoundEffectCategoryLoader}       from 'core/soundEffectCategory/SoundEffectCategory.loader'
-import {createNameFromContent}           from 'lang/name/createNameFromContent'
+import {isInProduction}            from 'variables'
+import {SoundEffectContainer}      from 'core/soundEffect/SoundEffect.container'
+import {PlayerSoundEffectTriggers} from 'core/soundEffect/property/PlayerSoundEffectTriggers'
+import {EmptySoundEffectCategory}  from 'core/soundEffectCategory/EmptySoundEffectCategory'
+import {SoundEffectCategoryLoader} from 'core/soundEffectCategory/SoundEffectCategory.loader'
+import {createNameFromContent}     from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link PlayerSoundEffectTriggers}>
@@ -42,10 +41,11 @@ export class SoundEffectLoader
         if (this.#map != null)
             return this.#map
 
+        const soundEffectCategoryMap = SoundEffectCategoryLoader.get.load()
         const references = new Map<PossibleEnglishName, SoundEffect>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+            const reference = createReference(file[index] as Content, soundEffectCategoryMap,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -81,23 +81,59 @@ interface Content
 
     //endregion -------------------- Triggers --------------------
 
-    readonly category: NullOr<PossibleSoundEffectCategoryEnglishName>
+    readonly category: NullOr<PossibleEnglishName_Category>
 
 }
 
-function createReference(content: Content,): SoundEffect {
+/** A type-alias definition of the {@link SoundEffectCategories} name-reference {@link ReadonlyMap map} */
+type SoundEffectCategoryMap = ReadonlyMap<PossibleEnglishName_Category, SoundEffectCategory>
+
+function createReference(content: Content, soundEffectCategoryMap: SoundEffectCategoryMap,): SoundEffect {
     const category = content.category
 
     return new SoundEffectContainer(
         createNameFromContent(content, 2, false,),
-        category == null ? EmptySoundEffectCategory.get : SoundEffectCategoryLoader.get.load().get(category,)!,
-        new SoundEffectPropertyContainer(
-            GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),
-            PlayerSoundEffectTriggers.getValueByTrigger(//TODO replace PlayerSoundEffectTriggers.getValueByTrigger in "SoundEffect.loader.ts" in a simple function
-                content.doesTrigger_player_jumpAfterLanding, content.doesTrigger_player_turnAroundAfterBeingAtFullSpeed, content.doesTrigger_player_crouch, content.doesTrigger_player_after3SecondsRepeatedly,
-                content.doesTrigger_player_collectPowerUp, content.doesTrigger_player_getIntoAnEntity,
-                content.doesTrigger_player_spawn, content.doesTrigger_player_damage, content.doesTrigger_player_lostALife,
-            ),
-        ),
+        content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,
+        category == null ? EmptySoundEffectCategory.get : soundEffectCategoryMap.get(category,)!,
+        getValueByTrigger(content,),
     )
+}
+
+/**
+ * Return only one possible instance based on the boolean received.
+ * It cannot receive any dual true since only the first boolean will be considered.
+ *
+ * Note that only the arguments ({@link content.doesTrigger_player_damage onDamageTaken}
+ * & {@link content.doesTrigger_player_lostALife whenLosingALife}) can be both true.
+ *
+ * @param content The sound effect csv content
+ */
+function getValueByTrigger(content: Content,): PlayerSoundEffectTriggers {
+    if (content.doesTrigger_player_jumpAfterLanding)
+        return PlayerSoundEffectTriggers.JUMP_AFTER_LANDING
+    if (content.doesTrigger_player_turnAroundAfterBeingAtFullSpeed)
+        return PlayerSoundEffectTriggers.TURN_AROUND_AFTER_BEING_AT_FULL_SPEED
+    if (content.doesTrigger_player_crouch)
+        return PlayerSoundEffectTriggers.ON_CROUCH
+    if (content.doesTrigger_player_after3SecondsRepeatedly)
+        return PlayerSoundEffectTriggers.AFTER_3_SECONDS_OF_NON_MOVEMENT
+
+    if (content.doesTrigger_player_collectPowerUp)
+        return PlayerSoundEffectTriggers.COLLECT_POWER_UP
+    if (content.doesTrigger_player_getIntoAnEntity)
+        return PlayerSoundEffectTriggers.GET_INTO_AN_ENTITY
+
+    if (content.doesTrigger_player_spawn)
+        return PlayerSoundEffectTriggers.AT_SPAWN
+
+    const whenLosingALife = content.doesTrigger_player_lostALife
+    if (content.doesTrigger_player_damage)
+        if (whenLosingALife)
+            return PlayerSoundEffectTriggers.TAKE_DAMAGE_OR_LOSE_A_LIFE
+        else
+            return PlayerSoundEffectTriggers.TAKE_DAMAGE
+    if (whenLosingALife)
+        return PlayerSoundEffectTriggers.LOSE_A_LIFE
+
+    throw new TypeError('There is no player sound effect trigger usable with no possible property.',)
 }

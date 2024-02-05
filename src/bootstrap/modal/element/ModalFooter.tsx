@@ -10,23 +10,21 @@ import {EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
 interface ModalFooterProperties
     extends ReactProperties, HTMLDivProperties {
 
-    successButton?: ModalSuccessButtonProperties
+    readonly successButton?: ModalSuccessButtonProperties
 
-    cancelButton?: ModalCancelButtonProperties
+    readonly cancelButton?: ModalCancelButtonProperties
 
 }
 
 interface ModalSuccessButtonProperties
     extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {
 
-    children: ReactNode
+    readonly children: ReactNode
 
 }
 
 interface ModalCancelButtonProperties
-    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {
-
-}
+    extends ReactProperties, Omit<HTMLButtonProperties, 'type'> {}
 
 /**
  *

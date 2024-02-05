@@ -1,12 +1,14 @@
 import 'app/PowerUpRideAndHatPriorityApp.scss'
 
+import {Component} from 'react'
+
 import type {PowerUpAndRidePriorityProperties}                                                                                                                                         from 'app/AppProperties.types'
 import type {NSMBUPowerUpPriority, PowerUpByAllGameStylesPriority, PowerUpBySMM1GameStylesPriority, SM3DWPowerUpPriority, SMB3PowerUpPriority, SMBPowerUpPriority, SMWPowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {NSMBUPowerUpPriorities, SM3DWPowerUpPriorities, SMB3PowerUpPriorities, SMBPowerUpPriorities, SMWPowerUpPriorities}                                                        from 'app/powerUp/priority/predefined/types'
 import type {PowerUpPriorityTypes}                                                                                                                                                     from 'app/property/PowerUpPriorityTypes'
 import type {ClassWithType}                                                                                                                                                            from 'core/ClassWithType'
+import type {ReactComponent}                                                                                                                                                           from 'util/react/ReactComponent'
 
-import AbstractApp                                  from 'app/AbstractApp'
 import {AbstractPowerUpPriority}                    from 'app/powerUp/priority/AbstractPowerUpPriority'
 import {AllGamesPowerUpPriority}                    from 'app/powerUp/priority/AllGamesPowerUpPriority'
 import {SMM1PowerUpPriority}                        from 'app/powerUp/priority/SMM1PowerUpPriority'
@@ -50,10 +52,14 @@ const {POWER_UP,} = OtherWordInTheGames
 
 //endregion -------------------- Import from deconstruction --------------------
 
-/** @todo Replace the state with a property */
+/**
+ * @reactComponent
+ * @todo Replace the state with a property
+ * @todo Replace to a functional-based component
+ */
 export default class PowerUpRideAndHatPriorityApp
-    extends AbstractApp<PowerUpAndRidePriorityProperties, { gameStyle: NullOr<GameStyles>, }>
-    implements ClassWithType<PowerUpPriorityTypes> {
+    extends Component<PowerUpAndRidePriorityProperties, { gameStyle: NullOr<GameStyles>, }>
+    implements ReactComponent, ClassWithType<PowerUpPriorityTypes> {
 
     //region -------------------- Power-up priority holders --------------------
 
@@ -290,7 +296,7 @@ export default class PowerUpRideAndHatPriorityApp
         </div>
     }
 
-    protected override _mainContent(): ReactElement {
+    public override render() {
         const games = this.props.games
 
         return <>

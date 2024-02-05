@@ -8,11 +8,11 @@ import {routeFromName} from 'route/route'
 interface LinkButtonsProperties
     extends ReactProperties {
 
-    partialId: string
+    readonly partialId: string
 
-    routeName: Nullable<PossibleRouteName>
+    readonly routeName: Nullable<PossibleRouteName>
 
-    color: BootstrapColor
+    readonly color: BootstrapColor
 
 }
 

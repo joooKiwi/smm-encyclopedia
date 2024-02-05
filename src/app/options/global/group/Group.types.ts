@@ -9,11 +9,11 @@ import type {ReactProperties}   from 'util/react/ReactProperties'
 export interface GroupProperties<T extends PossibleElement, U extends PossibleOptionValue, >
     extends ReactProperties {
 
-    id: PossibleId
+    readonly id: PossibleId
 
-    isHidden?: boolean
+    readonly isHidden?: boolean
 
-    elements: readonly SingleElement<T, U>[]
+    readonly elements: readonly SingleElement<T, U>[]
 
 }
 

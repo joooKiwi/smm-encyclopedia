@@ -4,6 +4,7 @@ import type {LanguageContent}                               from 'core/_template
 import type {CourseTag}                                     from 'core/courseTag/CourseTag'
 import type {PossibleEnglishName, PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
 import type {PossibleFirstAppearanceInMarioMaker}           from 'core/courseTag/loader.types'
+import type {CompanionEnumByName}                           from 'util/enumerable/companion/CompanionEnumByName'
 import type {Loader}                                        from 'util/loader/Loader'
 
 import {isInProduction}        from 'variables'
@@ -36,10 +37,11 @@ export class CourseTagLoader
         if (this.#map != null)
             return this.#map
 
+        const versionCompanion = Versions.CompanionEnum.get
         const references = new Map<PossibleEnglishName, CourseTag>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+            const reference = createReference(file[index] as Content, versionCompanion,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -65,7 +67,10 @@ interface Content
 
 }
 
-function createReference(content: Content,): CourseTag {
+/** A type-alias definition of the {@link Versions.CompanionEnum} */
+type VersionCompanionType = CompanionEnumByName<Versions, typeof Versions>
+
+function createReference(content: Content, versionCompanion: VersionCompanionType,): CourseTag {
     const firstAppearance = content.firstAppearanceInMarioMaker
     const isAnOfficialTag = content.isAnOfficialTag
 
@@ -73,6 +78,6 @@ function createReference(content: Content,): CourseTag {
         createNameFromContent(content, 2, isAnOfficialTag,),
         isAnOfficialTag,
         content.makerCentralName,
-        firstAppearance == null ? null : Versions.CompanionEnum.get.getValueByName(firstAppearance,),
+        firstAppearance == null ? null : versionCompanion.getValueByName(firstAppearance,),
     )
 }

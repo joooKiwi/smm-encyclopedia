@@ -2,12 +2,11 @@ import type {Entity}                                      from 'core/entity/Enti
 import type {EmptyEntityCategory}                         from 'core/entityCategory/EmptyEntityCategory'
 import type {ClassWithNullObjectPattern, EmptyEntityName} from 'util/ClassWithNullObjectPattern'
 
-import {EmptyEntityReference}             from 'core/entity/properties/EmptyEntityReference'
-import {EmptyIsInProperty}                from 'core/entity/properties/EmptyIsInProperty'
 import {LAZY_EMPTY_ENTITY_CATEGORY}       from 'core/entityCategory/EmptyEntityCategory.lazy'
 import {ClassContainingANameAndACategory} from 'lang/name/ClassContainingANameAndACategory'
 import {EmptyStringName}                  from 'lang/name/EmptyStringName'
-import {EMPTY_MAP}                        from 'util/emptyVariables'
+import {NOT_APPLICABLE}                   from 'util/commonVariables'
+import {EMPTY_ARRAY, EMPTY_MAP}           from 'util/emptyVariables'
 
 /**
  * An empty entity with the default values of nothing
@@ -34,137 +33,116 @@ export class EmptyEntity
     //endregion -------------------- Singleton usage --------------------
     //region -------------------- Getter methods --------------------
 
-    //region -------------------- Properties --------------------
+    //region -------------------- Basic --------------------
 
-    public readonly propertyContainer = EmptyIsInProperty.get
+    public readonly hasAMushroomVariant = NOT_APPLICABLE
+    public readonly canBeInAParachute = NOT_APPLICABLE
+    public readonly canBeInAParachuteComment = null
+    public readonly canHaveWings = NOT_APPLICABLE
+    public readonly canHaveWingsComment = null
 
-    //region -------------------- Game properties --------------------
+    //endregion -------------------- Basic --------------------
+    //region -------------------- Game --------------------
 
-    public readonly gameContainer = this.propertyContainer.gameContainer
+    public readonly isInSuperMarioMaker1 = false
+    public readonly isInSuperMarioMakerFor3DS = false
+    public readonly isInSuperMarioMaker2 = false
 
-    public readonly isInSuperMarioMaker1 = this.gameContainer.isInSuperMarioMaker1
-    public readonly isInSuperMarioMakerFor3DS = this.gameContainer.isInSuperMarioMakerFor3DS
-    public readonly isInSuperMarioMaker2 = this.gameContainer.isInSuperMarioMaker2
+    //endregion -------------------- Game --------------------
+    //region -------------------- Game style --------------------
 
-    //endregion -------------------- Game properties --------------------
-    //region -------------------- Game style properties --------------------
+    public readonly isInSuperMarioBrosStyle = false
+    public readonly isInSuperMarioBros3Style = false
+    public readonly isInSuperMarioWorldStyle = false
+    public readonly isInNewSuperMarioBrosUStyle = false
+    public readonly isInSuperMario3DWorldStyle = NOT_APPLICABLE
 
-    public readonly gameStyleContainer = this.propertyContainer.gameStyleContainer
+    //endregion -------------------- Game style --------------------
+    //region -------------------- Theme --------------------
 
-    public readonly isInSuperMarioBrosStyle = this.gameStyleContainer.isInSuperMarioBrosStyle
-    public readonly isInSuperMarioBros3Style = this.gameStyleContainer.isInSuperMarioBros3Style
-    public readonly isInSuperMarioWorldStyle = this.gameStyleContainer.isInSuperMarioWorldStyle
-    public readonly isInNewSuperMarioBrosUStyle = this.gameStyleContainer.isInNewSuperMarioBrosUStyle
-    public readonly isInSuperMario3DWorldStyle = this.gameStyleContainer.isInSuperMario3DWorldStyle
+    public readonly isInGroundTheme = false
+    public readonly isInUndergroundTheme = false
+    public readonly isInUnderwaterTheme = false
+    public readonly isInDesertTheme = NOT_APPLICABLE
+    public readonly isInSnowTheme = NOT_APPLICABLE
+    public readonly isInSkyTheme = NOT_APPLICABLE
+    public readonly isInForestTheme = NOT_APPLICABLE
+    public readonly isInGhostHouseTheme = false
+    public readonly isInAirshipTheme = false
+    public readonly isInCastleTheme = false
 
-    //endregion -------------------- Game style properties --------------------
-    //region -------------------- Theme properties --------------------
+    //endregion -------------------- Theme --------------------
+    //region -------------------- Time --------------------
 
-    public readonly themeContainer = this.propertyContainer.themeContainer
+    public readonly isInDayTheme = false
+    public readonly isInNightTheme = NOT_APPLICABLE
 
-    public readonly isInGroundTheme = this.themeContainer.isInGroundTheme
-    public readonly isInUndergroundTheme = this.themeContainer.isInUndergroundTheme
-    public readonly isInUnderwaterTheme = this.themeContainer.isInUnderwaterTheme
-    public readonly isInDesertTheme = this.themeContainer.isInDesertTheme
-    public readonly isInSnowTheme = this.themeContainer.isInSnowTheme
-    public readonly isInSkyTheme = this.themeContainer.isInSkyTheme
-    public readonly isInForestTheme = this.themeContainer.isInForestTheme
-    public readonly isInGhostHouseTheme = this.themeContainer.isInGhostHouseTheme
-    public readonly isInAirshipTheme = this.themeContainer.isInAirshipTheme
-    public readonly isInCastleTheme = this.themeContainer.isInCastleTheme
+    //endregion -------------------- Time --------------------
+    //region -------------------- Limit --------------------
 
-    //endregion -------------------- Theme properties --------------------
-    //region -------------------- Time properties --------------------
+    public readonly editorLimit_smm1And3ds = null
+    public readonly editorLimit_smm2 = NOT_APPLICABLE
+    public readonly isUnknown_editorLimit_smm2 = false
 
-    public readonly timeContainer = this.propertyContainer.timeContainer
+    public readonly isInGeneralLimit = NOT_APPLICABLE
+    public readonly isInGeneralLimitComment = null
 
-    public readonly isInDayTheme = this.timeContainer.isInDayTheme
-    public readonly isInNightTheme = this.timeContainer.isInNightTheme
+    public readonly isInGlobalGeneralLimit = NOT_APPLICABLE
+    public readonly isInGlobalGeneralLimitComment = null
 
-    //endregion -------------------- Time properties --------------------
-    //region -------------------- Limit properties --------------------
+    public readonly isInPowerUpLimit = NOT_APPLICABLE
 
-    public readonly limitContainer = this.propertyContainer.limitContainer
+    public readonly isInProjectileLimit = NOT_APPLICABLE
+    public readonly isInProjectileLimitComment = null
 
-    public readonly editorLimitContainer = this.limitContainer.editorLimitContainer
-    public readonly editorLimit_smm1And3ds = this.limitContainer.editorLimit_smm1And3ds
-    public readonly editorLimit_smm2 = this.limitContainer.editorLimit_smm2
-    public readonly isUnknown_editorLimit_smm2 = this.limitContainer.isUnknown_editorLimit_smm2
+    public readonly isInRenderedObjectLimit = NOT_APPLICABLE
+    public readonly isInRenderedObjectLimitComment = null
 
-    public readonly isInGeneralLimitContainer = this.limitContainer.isInGeneralLimitContainer
-    public readonly isInGeneralLimit = this.limitContainer.isInGeneralLimit
-    public readonly isInGeneralLimitComment = this.limitContainer.isInGeneralLimitComment
+    public readonly isInCollectedCoinLimit = NOT_APPLICABLE
 
-    public readonly isInGlobalGeneralLimitContainer = this.limitContainer.isInGlobalGeneralLimitContainer
-    public readonly isInGlobalGeneralLimit = this.limitContainer.isInGlobalGeneralLimit
-    public readonly isInGlobalGeneralLimitComment = this.limitContainer.isInGlobalGeneralLimitComment
+    public readonly otherLimit = NOT_APPLICABLE
+    public readonly otherLimitComment = null
+    public readonly isUnknown_otherLimit = false
 
-    public readonly isInPowerUpLimitContainer = this.limitContainer.isInPowerUpLimitContainer
-    public readonly isInPowerUpLimit = this.limitContainer.isInPowerUpLimit
+    //endregion -------------------- Limit --------------------
+    //region -------------------- Instrument --------------------
 
-    public readonly isInProjectileLimitContainer = this.limitContainer.isInProjectileLimitContainer
-    public readonly isInProjectileLimit = this.limitContainer.isInProjectileLimit
-    public readonly isInProjectileLimitComment = this.limitContainer.isInProjectileLimitComment
+    public readonly instruments = EMPTY_ARRAY
+    public readonly canMakeASoundOutOfAMusicBlock = NOT_APPLICABLE
+    public readonly canMakeASoundOutOfAMusicBlockComment = null
 
-    public readonly isInRenderedObjectLimitContainer = this.limitContainer.isInRenderedObjectLimitContainer
-    public readonly isInRenderedObjectLimit = this.limitContainer.isInRenderedObjectLimit
-    public readonly isInRenderedObjectLimitComment = this.limitContainer.isInRenderedObjectLimitComment
-
-    public readonly isInCollectedCoinLimitContainer = this.limitContainer.isInCollectedCoinLimitContainer
-    public readonly isInCollectedCoinLimit = this.limitContainer.isInCollectedCoinLimit
-
-    public readonly otherLimitContainer = this.limitContainer.otherLimitContainer
-    public readonly otherLimit = this.limitContainer.otherLimit
-    public readonly otherLimitComment = this.limitContainer.otherLimitComment
-
-    //endregion -------------------- Limit properties --------------------
-    //region -------------------- Instrument properties --------------------
-
-    public readonly instrumentContainer = this.propertyContainer.instrumentContainer
-
-    public readonly instruments = this.instrumentContainer.instruments
-
-    public readonly canMakeASoundOutOfAMusicBlockContainer = this.instrumentContainer.canMakeASoundOutOfAMusicBlockContainer
-    public readonly canMakeASoundOutOfAMusicBlock = this.instrumentContainer.canMakeASoundOutOfAMusicBlock
-    public readonly canMakeASoundOutOfAMusicBlockComment = this.instrumentContainer.canMakeASoundOutOfAMusicBlockComment
-
-    //endregion -------------------- Instrument properties --------------------
-
-    //endregion -------------------- Properties --------------------
+    //endregion -------------------- Instrument --------------------
     //region -------------------- References --------------------
 
-    public readonly referencesContainer = EmptyEntityReference.get
+    public readonly referenceInSuperMarioBrosStyle = EMPTY_ARRAY
+    public readonly referenceInSuperMarioBros3Style = EMPTY_ARRAY
+    public readonly referenceInSuperMarioWorldStyle = EMPTY_ARRAY
+    public readonly referenceInNewSuperMarioBrosUStyle = EMPTY_ARRAY
+    public readonly referenceInSuperMario3DWorldStyle = EMPTY_ARRAY
+
+    public readonly referenceInGroundTheme = EMPTY_ARRAY
+    public readonly referenceInUndergroundTheme = EMPTY_ARRAY
+    public readonly referenceInUnderwaterTheme = EMPTY_ARRAY
+    public readonly referenceInDesertTheme = EMPTY_ARRAY
+    public readonly referenceInSnowTheme = EMPTY_ARRAY
+    public readonly referenceInSkyTheme = EMPTY_ARRAY
+    public readonly referenceInForestTheme = EMPTY_ARRAY
+    public readonly referenceInGhostHouseTheme = EMPTY_ARRAY
+    public readonly referenceInAirshipTheme = EMPTY_ARRAY
+    public readonly referenceInCastleTheme = EMPTY_ARRAY
 
 
-    public readonly referenceInSuperMarioBrosStyle = this.referencesContainer.referenceInSuperMarioBrosStyle
-    public readonly referenceInSuperMarioBros3Style = this.referencesContainer.referenceInSuperMarioBros3Style
-    public readonly referenceInSuperMarioWorldStyle = this.referencesContainer.referenceInSuperMarioWorldStyle
-    public readonly referenceInNewSuperMarioBrosUStyle = this.referencesContainer.referenceInNewSuperMarioBrosUStyle
-    public readonly referenceInSuperMario3DWorldStyle = this.referencesContainer.referenceInSuperMario3DWorldStyle
-
-    public readonly referenceInGroundTheme = this.referencesContainer.referenceInGroundTheme
-    public readonly referenceInUndergroundTheme = this.referencesContainer.referenceInUndergroundTheme
-    public readonly referenceInUnderwaterTheme = this.referencesContainer.referenceInUnderwaterTheme
-    public readonly referenceInDesertTheme = this.referencesContainer.referenceInDesertTheme
-    public readonly referenceInSnowTheme = this.referencesContainer.referenceInSnowTheme
-    public readonly referenceInSkyTheme = this.referencesContainer.referenceInSkyTheme
-    public readonly referenceInForestTheme = this.referencesContainer.referenceInForestTheme
-    public readonly referenceInGhostHouseTheme = this.referencesContainer.referenceInGhostHouseTheme
-    public readonly referenceInAirshipTheme = this.referencesContainer.referenceInAirshipTheme
-    public readonly referenceInCastleTheme = this.referencesContainer.referenceInCastleTheme
-
-
-    public readonly referenceInDayTheme = this.referencesContainer.referenceInDayTheme
-    public readonly referenceInNightTheme = this.referencesContainer.referenceInNightTheme
+    public readonly referenceInDayTheme = EMPTY_ARRAY
+    public readonly referenceInNightTheme = EMPTY_ARRAY
 
     public getReferenceFrom(): EmptyArray {
-        return this.referencesContainer.getReferenceFrom()
+        return EMPTY_ARRAY
     }
 
-    public readonly everyGameStyleReferences = this.referencesContainer.everyGameStyleReferences
-    public readonly everyThemeReferences = this.referencesContainer.everyThemeReferences
-    public readonly everyTimeReferences = this.referencesContainer.everyTimeReferences
-    public readonly everyReferences = this.referencesContainer.everyReferences
+    public readonly everyGameStyleReferences = EMPTY_ARRAY
+    public readonly everyThemeReferences = EMPTY_ARRAY
+    public readonly everyTimeReferences = EMPTY_ARRAY
+    public readonly everyReferences = EMPTY_ARRAY
 
     //endregion -------------------- References --------------------
 

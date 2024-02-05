@@ -16,6 +16,7 @@ declare global {
 
     type NotApplicable = typeof NOT_APPLICABLE
     type BooleanOrNotApplicable = | boolean | NotApplicable
+    type NullOrBooleanOrNotApplicable = | null | boolean | NotApplicable
     type Infinity = typeof INFINITY
     type SuspensionPoint = typeof SUSPENSION_POINT
 

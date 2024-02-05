@@ -1,29 +1,28 @@
 import type {ImagesCallbackByPriority, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
-import type {ReactProperties}                           from 'util/react/ReactProperties'
-import type {GameCollection}                            from 'util/collection/GameCollection'
 import type {GameStyles}                                from 'core/gameStyle/GameStyles'
+import type {SimpleReactPropertiesWithChildren}         from 'util/react/ReactProperties'
+import type {GameCollection}                            from 'util/collection/GameCollection'
 
 import GroupOf4PowerUpPriority  from 'app/powerUp/group/GroupOf4PowerUpPriority'
 import GroupOf5PowerUpPriority  from 'app/powerUp/group/GroupOf5PowerUpPriority'
 import PowerUpPriorityComponent from 'app/powerUp/priority/PowerUpPriority.component'
 
+type ShellAndShoeMountablePriorities<T extends PowerUpPriority, > = readonly [
+    buzzyShell: T,
+    spimnyShell: T,
+
+    dryBonesShell: T,
+    shoe: T,
+    stiletto: T,
+]
 interface ShellAndShoeMountablePriorityProperties<T extends PowerUpPriority,>
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<ShellAndShoeMountablePriorities<T>> {
 
     readonly games: GameCollection
 
     readonly gameStyle: GameStyles
 
     readonly images: ImagesCallbackByPriority<T>
-
-    readonly children: readonly [
-        buzzyShell: T,
-        spimnyShell: T,
-
-        dryBonesShell: T,
-        shoe: T,
-        stiletto: T,
-    ]
 
 }
 

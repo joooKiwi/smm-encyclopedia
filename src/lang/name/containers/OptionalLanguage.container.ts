@@ -3,7 +3,7 @@ import type {OptionalLanguage} from 'lang/name/containers/OptionalLanguage'
 import {LanguageContainer}     from 'lang/name/containers/Language.container'
 import {isNullableEmptyString} from 'util/utilitiesMethods'
 
-export class OptionalLanguageContainer<T, S extends T = T, A extends readonly T[] = EmptyArray, U extends boolean = boolean, >
+export class OptionalLanguageContainer<const out T, const out S extends T = T, const out A extends readonly T[] = EmptyArray, const out U extends boolean = boolean, >
     extends LanguageContainer<T, S, A>
     implements OptionalLanguage<T, S, A, U> {
 

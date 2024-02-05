@@ -1,11 +1,8 @@
-import type {Lazy} from '@joookiwi/lazy'
-
-import type {ClassThatIsAvailableFromTheStart} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
-import type {Entity}                           from 'core/entity/Entity'
-import type {GameProperty}                     from 'core/entity/properties/game/GameProperty'
-import type {NightEffects}                     from 'core/nightEffect/NightEffects'
-import type {CourseTheme}                      from 'core/theme/CourseTheme'
-import type {Name}                             from 'lang/name/Name'
+import type {Lazy}         from '@joookiwi/lazy'
+import type {Entity}       from 'core/entity/Entity'
+import type {NightEffects} from 'core/nightEffect/NightEffects'
+import type {CourseTheme}  from 'core/theme/CourseTheme'
+import type {Name}         from 'lang/name/Name'
 
 import {AbstractTheme} from 'core/theme/AbstractTheme'
 
@@ -22,11 +19,11 @@ export class CourseThemeContainer
     //region -------------------- Constructor --------------------
 
     public constructor(name: Name<string>,
-                       isInProperty: GameProperty,
-                       isAvailableFromTheStart: ClassThatIsAvailableFromTheStart,
+                       isInSuperMarioMaker1And3ds: boolean,
+                       isAvailableFromTheStartInSuperMarioMaker1: NullOrBoolean,
                        entities: Lazy<readonly Entity[]>,
                        effect: NightEffects,) {
-        super(name, isInProperty, isAvailableFromTheStart,)
+        super(name, isInSuperMarioMaker1And3ds, isAvailableFromTheStartInSuperMarioMaker1, isAvailableFromTheStartInSuperMarioMaker1 == null ? null : true,)
         this.#entitiesHolder = entities
         this.#effectHolder = effect
     }

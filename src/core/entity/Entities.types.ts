@@ -132,9 +132,10 @@ enum Enum {
     ONE_WAY_WALL,
     TRACK, TRACK_BLOCK,
     VINE, TREE,
-    ARROW_SIGN,
+    STARTING_ARROW, ARROW_SIGN,
     CHECKPOINT_FLAG,
     GOAL_POLE, GOAL_WITH_CARDS, GIANT_GATE,
+    CASTLE, ENDING_CASTLE_DOOR, AXE,
     DASH_BLOCK,
     SNAKE_BLOCK, FAST_SNAKE_BLOCK,
     CONVEYOR_BELT, FAST_CONVEYOR_BELT,
@@ -265,7 +266,7 @@ export type PossibleEnglishName =
     | 'Bowser Jr.' | 'Fire thrown by a Bowser Jr.'
     | 'Boom Boom' | `Pom Pom${| '' | '\'s clone'}` | 'Shuriken thrown by a Pom Pom'
     | `${| 'Larry' | 'Iggy' | 'Wendy' | 'Lemmy' | 'Roy' | 'Morton' | 'Ludwig'}${| '' | '\'s Wand'}`
-    | `(${| 'Larry\'s' | 'Iggy\'s' | 'Roy\'s' | `Morton's ${| 'Thrown' | 'Ground'}` | 'Ludwig\'s'} projectile)` | 'Candy Ring thrown by a Wendy' | 'Magic Ball thrown by a Lemmy'
+    | `(${| 'Larry\'s' | 'Iggy\'s' | 'Wendy\'s' | 'Lemmy\'s' | 'Roy\'s' | `Morton's ${| 'Thrown' | 'Ground'}` | 'Ludwig\'s'} projectile)` | 'Candy Ring thrown by a Wendy' | 'Magic Ball thrown by a Lemmy'
 
     | 'Bumper'
     | 'Swinging Claw'
@@ -273,8 +274,9 @@ export type PossibleEnglishName =
     | 'One-Way Wall'
     | `Track${| '' | ' Block'}`
     | 'Vine' | 'Tree'
-    | 'Arrow Sign'
+    | 'Starting Arrow' | 'Arrow Sign'
     | 'Checkpoint Flag' | PossibleEnglishName_Goals
+    | 'Castle' | 'Ending Castle Door' | 'Axe'
     | 'Dash Block'
     | `${| '' | 'Fast '}Snake Block`
     | `${| '' | 'Fast '}Conveyor Belt`

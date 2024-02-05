@@ -9,18 +9,18 @@ import {Arrows} from 'app/tools/arrow/Arrows'
 interface GroupOf3PowerUpPriorityProperties
     extends ReactProperties {
 
-    id: string
+    readonly id: string
 
-    children: readonly [ReactElement, ReactElement, ReactElement,]
+    readonly children: readonly [ReactElement, ReactElement, ReactElement,]
 
-    leftArrow?: Arrows
-    isLeftArrowSeparated?: boolean
+    readonly leftArrow?: Arrows
+    readonly isLeftArrowSeparated?: boolean
 
-    rightArrow?: Arrows
-    isRightArrowSeparated?: boolean
+    readonly rightArrow?: Arrows
+    readonly isRightArrowSeparated?: boolean
 
-    bottomArrow?: Arrows
-    isBottomArrowSeparated?: boolean
+    readonly bottomArrow?: Arrows
+    readonly isBottomArrowSeparated?: boolean
 
 }
 

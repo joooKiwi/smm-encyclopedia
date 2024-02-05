@@ -1,9 +1,9 @@
 import type {CharacterName} from 'core/characterName/CharacterName'
-import type {GameProperty}  from 'core/entity/properties/game/GameProperty'
 import type {Games}         from 'core/game/Games'
 import type {Name}          from 'lang/name/Name'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {GameMap}              from 'util/collection/GameMap'
 
 export class CharacterNameContainer
     extends ClassContainingAName<string>
@@ -11,44 +11,50 @@ export class CharacterNameContainer
 
     //region -------------------- Fields --------------------
 
-    readonly #gameProperty
+    readonly #isInSuperMarioMaker1
+    readonly #isInSuperMarioMakerFor3DS
+    readonly #isInSuperMarioMaker2
+    readonly #hasNameSaidInTheEditor
+    #gameMap?: GameMap<boolean, CharacterName>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: Name<string>, gameProperty: GameProperty,) {
+    public constructor(name: Name<string>,
+                       isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
+                       hasNameSaidInTheEditor: boolean,) {
         super(name,)
-        this.#gameProperty = gameProperty
+        this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
+        this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS
+        this.#isInSuperMarioMaker2 = isInSuperMarioMaker2
+        this.#hasNameSaidInTheEditor = hasNameSaidInTheEditor
     }
 
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    //region -------------------- Properties --------------------
-
-    public get gamePropertyContainer() {
-        return this.#gameProperty
-    }
-
     public get isInSuperMarioMaker1(): boolean {
-        return this.gamePropertyContainer.isInSuperMarioMaker1
+        return this.#isInSuperMarioMaker1
     }
 
     public get isInSuperMarioMakerFor3DS(): boolean {
-        return this.gamePropertyContainer.isInSuperMarioMakerFor3DS
+        return this.#isInSuperMarioMakerFor3DS
     }
 
     public get isInSuperMarioMaker2(): boolean {
-        return this.gamePropertyContainer.isInSuperMarioMaker2
+        return this.#isInSuperMarioMaker2
     }
 
-    //endregion -------------------- Properties --------------------
+
+    public get hasNameSaidInTheEditor(): boolean {
+        return this.#hasNameSaidInTheEditor
+    }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
     public toGameMap(): ReadonlyMap<Games, boolean> {
-        return this.gamePropertyContainer.toGameMap()
+        return this.#gameMap ??= new GameMap(this,)
     }
 
     //endregion -------------------- Methods --------------------

@@ -1,11 +1,10 @@
 import './GameReferenceApp.scss'
 
-import {Fragment} from 'react'
+import {Component, Fragment} from 'react'
 
 import type {PossibleEnglishName_Games} from 'core/soundEffect/SoundEffects.types'
 import type {GameContentTranslationKey} from 'lang/components/TranslationProperty'
 
-import AbstractApp              from 'app/AbstractApp'
 import {Games}                  from 'core/game/Games'
 import {GameReferences}         from 'core/gameReference/GameReferences'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
@@ -13,9 +12,12 @@ import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import NameComponent            from 'lang/name/component/Name.component'
 
-/** @reactComponent */
+/**
+ * @reactComponent
+ * @todo Replace to a functional-based component
+ */
 export default class GameReferenceApp
-    extends AbstractApp {
+    extends Component {
 
     //region -------------------- Fields --------------------
 
@@ -81,7 +83,7 @@ export default class GameReferenceApp
 
     //endregion -------------------- Methods --------------------
 
-    protected override _mainContent() {
+    public override render() {
         return <div id="gameReference-container" className="container-fluid main-container">
             <h2 id="main-names-title" className="col-12 names-title">{gameContentTranslation('game reference.plural')}</h2>
             {this._getContainer('game', 'game.plural', Games.CompanionEnum.get.values.toArray(),)}

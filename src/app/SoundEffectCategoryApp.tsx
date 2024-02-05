@@ -1,71 +1,68 @@
 import './SoundEffectCategoryApp.scss'
 
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 
+import SubMainContainer         from 'app/_SubMainContainer'
 import Image                    from 'app/tools/images/Image'
-import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
+import CardList                 from 'app/withInterpreter/CardList'
+import SimpleList               from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {SoundEffectCategories}  from 'core/soundEffectCategory/SoundEffectCategories'
 import {gameContentTranslation} from 'lang/components/translationMethods'
+import {assert}                 from 'util/utilitiesMethods'
 
-export default class SoundEffectCategoryApp
-    extends AbstractCardListApp<SoundEffectCategories, AppInterpreterWithCardList<SoundEffectCategories>> {
+class SoundEffectCategoryAppInterpreter
+    implements AppInterpreterWithCardList<SoundEffectCategories> {
 
-    //region -------------------- Create methods --------------------
-
-    protected override _createKey() {
-        return 'soundEffectCategory'
+    public get content() {
+        return SoundEffectCategories.CompanionEnum.get.values.toArray()
     }
 
+    //region -------------------- List interpreter --------------------
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everySoundEffectCategory (list)'
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 1,
+            small: 2,
+            medium: 3,
+            large: 5,
+        }
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everySoundEffectCategory (card)'
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
+
+    public createCardListDimension() {
+        return this.createListDimension()
     }
 
-
-    protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('sound effect category.all')
+    public createCardListContent(enumerable: SoundEffectCategories,) {
+        return <Image file={enumerable.imageFile}/>
     }
 
-    protected override _createAppOptionInterpreter() {
-        return new class SoundEffectCategoryAppInterpreter implements AppInterpreterWithCardList<SoundEffectCategories> {
+    //endregion -------------------- Card list interpreter --------------------
 
-            public get content() {
-                return SoundEffectCategories.CompanionEnum.get.values.toArray()
-            }
+}
 
-            //region -------------------- List interpreter --------------------
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everySoundEffectCategory (list)',],
+    [ViewDisplays.CARD_LIST, 'everySoundEffectCategory (card)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = gameContentTranslation('sound effect category.all',)
+const appInterpreter = new SoundEffectCategoryAppInterpreter()
 
-            public createListDimension(): DimensionOnList {
-                return {
-                    default: 1,
-                    small: 2,
-                    medium: 3,
-                    large: 5,
-                }
-            }
+/** @reactComponent */
+export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    assert(viewDisplay !== ViewDisplays.TABLE, 'The SoundEffectCategoryApp only handle the "simple list" or "card list" as a possible view display.',)
 
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent(enumerable: SoundEffectCategories,) {
-                return <Image file={enumerable.imageFile}/>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-
-        }()
-    }
-
-    //endregion -------------------- Create methods --------------------
-
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
+    </SubMainContainer>
 }

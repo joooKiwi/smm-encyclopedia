@@ -27,6 +27,7 @@ const largeBufferSize = {highWaterMark: 256 * 1024,};
     'Sample course (SMM)',
     'Medals (SMM)',
     'Mystery Mushroom (SMM)',
+    'Official course (SMM)',
     'Mii Costume (SMM2)',
     'Mii Costume category (SMM2)',
     'Instrument',

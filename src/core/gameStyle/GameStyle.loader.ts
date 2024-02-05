@@ -7,14 +7,13 @@ import type {GameContentFrom1And2}                                              
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                   from 'core/gameStyle/GameStyle'
 import type {PossibleAcronym, PossibleEnglishName}                               from 'core/gameStyle/GameStyles.types'
 import type {PossibleNightDesertWindDirection, PossibleNightDesertWindFrequency} from 'core/gameStyle/loader.types'
+import type {CompanionEnumByAcronymOrName}                                       from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
 import type {Loader}                                                             from 'util/loader/Loader'
 
-import {isInProduction}                           from 'variables'
-import {GameStyleContainer}                       from 'core/gameStyle/GameStyle.container'
-import {GameReferences}                           from 'core/gameReference/GameReferences'
-import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
-import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {Import}                                   from 'util/DynamicImporter'
+import {isInProduction}     from 'variables'
+import {GameStyleContainer} from 'core/gameStyle/GameStyle.container'
+import {GameReferences}     from 'core/gameReference/GameReferences'
+import {Import}             from 'util/DynamicImporter'
 
 /**
  * @dependsOn<{@link GameReferences}>
@@ -46,10 +45,11 @@ export class GameStyleLoader
         if (this.#map != null)
             return this.#map
 
+        const gameReferenceCompanion = GameReferences.CompanionEnum.get
         const references = new Map<PossibleEnglishName, GameStyle>()
         let index = file.length
         while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+            const reference = createReference(file[index] as Content, gameReferenceCompanion,)
             references.set(reference.english as PossibleEnglishName, reference,)
         }
 
@@ -69,6 +69,8 @@ export class GameStyleLoader
 interface Content
     extends GameContentFrom1And2 {
 
+    readonly isInSuperMarioMaker2: true
+
     readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
     readonly reference: PossibleAcronym
     readonly nightDesertWindDirection: PossibleNightDesertWindDirection
@@ -76,11 +78,13 @@ interface Content
 
 }
 
-function createReference(content: Content,): GameStyle {
+/** A type-alias definition of the {@link GameReferences.CompanionEnum} */
+type GameReferenceCompanion = CompanionEnumByAcronymOrName<GameReferences, typeof GameReferences>
+
+function createReference(content: Content, gameReferenceCompanion: GameReferenceCompanion,): GameStyle {
     return new GameStyleContainer(
-        GameReferences.CompanionEnum.get.getValueByAcronym(content.reference,).reference.nameContainer,
-        content.isInSuperMarioMaker1And3DS ? GamePropertyProvider.get.all : GamePropertyProvider.get.smm2Only,
-        ClassThatIsAvailableFromTheStartProvider.get.get(content.isAvailableFromTheStart_SMM1,),
+        gameReferenceCompanion.getValueByAcronym(content.reference,).reference.nameContainer,
+        content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
         lazy(() => {
             const gameStyle = Import.GameStyles.CompanionEnum.get.getValueByAcronym(content.reference,)
 

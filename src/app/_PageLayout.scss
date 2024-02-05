@@ -1,0 +1,22 @@
+#root {
+  scroll-behavior: smooth;
+
+  //@include gradient-y-three-colors($cyan, cornFlowerBlue, null, $blue);
+}
+
+.listElement-container, .cardListElement-container, { .name-container { text-align: center } }
+
+.animated-image,
+.non-animated-image, {
+  --amount-of-blocks: 0;
+  --single-height: 0;
+  --single-width: var(--single-height);
+  height: calc(var(--amount-of-blocks) * var(--single-height));
+  width: calc(var(--amount-of-blocks) * var(--single-width));
+}
+
+.time-image,
+.theme-image,
+.gameStyle-image, { border-radius: var(--bs-border-radius) }
+
+.mystery-mushroom-image::after { content: var(--mystery-mushroom-image) }

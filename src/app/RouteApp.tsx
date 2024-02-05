@@ -4,209 +4,203 @@ import {Link} from 'react-router-dom'
 
 import type {Names, PossibleRouteName} from 'route/EveryRoutes.types'
 import type {ReactProperties}          from 'util/react/ReactProperties'
-
-import AbstractApp   from 'app/AbstractApp'
-import {EveryRoutes} from 'route/EveryRoutes'
+import {EveryRoutes}                   from 'route/EveryRoutes'
 
 /**
  * A component made to debug the routes from every possible path
  *
  * @reactComponent
  */
-export default class RouteApp
-    extends AbstractApp {
+export default function RouteApp() {
+    return <>
+        <h1 className="text-center fw-bold text-decoration-underline">Every paths in the application</h1>
+        <UniqueSection id="home-paths" target="home-linkPaths" name="Home" path="home"/>
+        <UniqueSection id="about-paths" target="about-linkPaths" name="About" path="about"/>
+        <UniqueSection id="sources-paths" target="sources-linkPaths" name="Sources" path="sources"/>
 
-    protected override _mainContent() {
-        return <>
-            <h1 className="text-center fw-bold text-decoration-underline">Every paths in the application</h1>
-            <UniqueSection id="home-paths" target="home-linkPaths" name="Home" path="home"/>
-            <UniqueSection id="about-paths" target="about-linkPaths" name="About" path="about"/>
-            <UniqueSection id="sources-paths" target="sources-linkPaths" name="Sources" path="sources"/>
+        <ListCardTableAllGameAllGameStyleSection partialId="entity" name="Entity" route={EveryRoutes.EVERY_ENTITY}/>
 
-            <ListCardTableAllGameAllGameStyleSection partialId="entity" name="Entity" route={EveryRoutes.EVERY_ENTITY}/>
+        <ListCardSection partialId="characterName" name="Character name" route={EveryRoutes.EVERY_CHARACTER_NAME}/>
+        <EmptySection id="clearCondition-paths" name="Clear condition"/>
+        <EmptySection id="clearConditionCategory-paths" name="Clear condition category"/>
+        <ListCardTableAllGameSection partialId="limit" name="Limit" names={['Play', 'Editor',]} routes={[EveryRoutes.EVERY_LIMIT, EveryRoutes.EVERY_EDITOR_LIMIT, EveryRoutes.EVERY_PLAY_LIMIT,]}/>
+        <EmptySection id="projectile-paths" name="Projectile"/>
+        <EmptySection id="object-paths" name="Object"/>
+        <SimpleListCardSMM2Section partialId="entityCategory" name="Entity category" route={EveryRoutes.EVERY_ENTITY_CATEGORY}/>
+        <EmptySection id="entityGroup-paths" name="Entity group"/>
 
-            <ListCardSection partialId="characterName" name="Character name" route={EveryRoutes.EVERY_CHARACTER_NAME}/>
-            <EmptySection id="clearCondition-paths" name="Clear condition"/>
-            <EmptySection id="clearConditionCategory-paths" name="Clear condition category"/>
-            <ListCardTableAllGameSection partialId="limit" name="Limit" names={['Play', 'Editor',]} routes={[EveryRoutes.EVERY_LIMIT, EveryRoutes.EVERY_EDITOR_LIMIT, EveryRoutes.EVERY_PLAY_LIMIT,]}/>
-            <EmptySection id="projectile-paths" name="Projectile"/>
-            <EmptySection id="object-paths" name="Object"/>
-            <SimpleListCardSMM2Section partialId="entityCategory" name="Entity category" route={EveryRoutes.EVERY_ENTITY_CATEGORY}/>
-            <EmptySection id="entityGroup-paths" name="Entity group"/>
+        <ListCardTableAllGameSection partialId="theme" name="Theme" names={['Course', 'World',]} routes={[EveryRoutes.EVERY_THEME, EveryRoutes.EVERY_COURSE_THEME, EveryRoutes.EVERY_WORLD_THEME,]}/>
+        <EmptySection id="time-paths" name="Time"/>
 
-            <ListCardTableAllGameSection partialId="theme" name="Theme" names={['Course', 'World',]} routes={[EveryRoutes.EVERY_THEME, EveryRoutes.EVERY_COURSE_THEME, EveryRoutes.EVERY_WORLD_THEME,]}/>
-            <EmptySection id="time-paths" name="Time"/>
+        <SimpleAllGamesSection partialId="gameReference" name="Game reference" route={EveryRoutes.EVERY_GAME_REFERENCE}/>
+        <ListCardTableSection partialId="gameStyle" name="Game style" route={EveryRoutes.EVERY_GAME_STYLE}/>
+        <EmptySection id="entityBehaviour-paths" name="Entity behaviour"/>
 
-            <SimpleAllGamesSection partialId="gameReference" name="Game reference" route={EveryRoutes.EVERY_GAME_REFERENCE}/>
-            <ListCardTableSection partialId="gameStyle" name="Game style" route={EveryRoutes.EVERY_GAME_STYLE}/>
-            <EmptySection id="entityBehaviour-paths" name="Entity behaviour"/>
+        <ListCardTableAllGameAllGameStyleSection partialId="soundEffect" name="Sound effect" route={EveryRoutes.EVERY_SOUND_EFFECT}/>
+        <SimpleListCardSMM2Section partialId="soundEffectCategory" name="Sound effect category" route={EveryRoutes.EVERY_SOUND_EFFECT_CATEGORY}/>
 
-            <ListCardTableAllGameAllGameStyleSection partialId="soundEffect" name="Sound effect" route={EveryRoutes.EVERY_SOUND_EFFECT}/>
-            <SimpleListCardSMM2Section partialId="soundEffectCategory" name="Sound effect category" route={EveryRoutes.EVERY_SOUND_EFFECT_CATEGORY}/>
+        <div id="courseTag-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
+            <SectionTitle name="Course tag" target="courseTag-linkPaths" route={EveryRoutes.EVERY_COURSE_TAG} multiplyBy={4}/>
+            <div id="courseTag-linkPaths" className="row row-cols-auto justify-content-center collapse">
+                <div>
+                    <span>Default: </span>
+                    <PathFromDefault path="everyCourseTag" name="All"/><Separator/>
+                    <PathFromDefault path="officialCourseTag" name="Official"/><Separator/>
+                    <PathFromDefault path="unofficialCourseTag" name="Unofficial"/><Separator/>
+                    <PathFromDefault path="makerCentralCourseTag" name="Maker Central"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span>List: </span>
+                    <PathFromViewDisplay path="everyCourseTag (list)" name="All"/><Separator/>
+                    <PathFromViewDisplay path="officialCourseTag (list)" name="Official"/><Separator/>
+                    <PathFromViewDisplay path="unofficialCourseTag (list)" name="Unofficial"/><Separator/>
+                    <PathFromViewDisplay path="makerCentralCourseTag (list)" name="Maker Central"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span>Card: </span>
+                    <PathFromViewDisplay path="everyCourseTag (card)" name="All"/><Separator/>
+                    <PathFromViewDisplay path="officialCourseTag (card)" name="Official"/><Separator/>
+                    <PathFromViewDisplay path="unofficialCourseTag (card)" name="Unofficial"/><Separator/>
+                    <PathFromViewDisplay path="makerCentralCourseTag (card)" name="Maker Central"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span><SMM2/>: </span>
+                    <PathFromGame path="everyCourseTag (Game=2)" name="All"/><Separator/>
+                    <PathFromGame path="officialCourseTag (Game=2)" name="Official"/><Separator/>
+                    <PathFromGame path="unofficialCourseTag (Game=2)" name="Unofficial"/><Separator/>
+                    <PathFromGame path="makerCentralCourseTag (Game=2)" name="Maker Central"/>
+                </div>
+                <div className="w-100"/>
 
-            <div id="courseTag-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
-                <SectionTitle name="Course tag" target="courseTag-linkPaths" route={EveryRoutes.EVERY_COURSE_TAG} multiplyBy={4}/>
-                <div id="courseTag-linkPaths" className="row row-cols-auto justify-content-center collapse">
-                    <div>
-                        <span>Default: </span>
-                        <PathFromDefault         path="everyCourseTag" name="All"/><Separator/>
-                        <PathFromDefault      path="officialCourseTag" name="Official"/><Separator/>
-                        <PathFromDefault    path="unofficialCourseTag" name="Unofficial"/><Separator/>
-                        <PathFromDefault  path="makerCentralCourseTag" name="Maker Central"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span>List: </span>
-                        <PathFromViewDisplay         path="everyCourseTag (list)" name="All"/><Separator/>
-                        <PathFromViewDisplay      path="officialCourseTag (list)" name="Official"/><Separator/>
-                        <PathFromViewDisplay    path="unofficialCourseTag (list)" name="Unofficial"/><Separator/>
-                        <PathFromViewDisplay  path="makerCentralCourseTag (list)" name="Maker Central"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span>Card: </span>
-                        <PathFromViewDisplay         path="everyCourseTag (card)" name="All"/><Separator/>
-                        <PathFromViewDisplay      path="officialCourseTag (card)" name="Official"/><Separator/>
-                        <PathFromViewDisplay    path="unofficialCourseTag (card)" name="Unofficial"/><Separator/>
-                        <PathFromViewDisplay  path="makerCentralCourseTag (card)" name="Maker Central"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span><SMM2/>: </span>
-                        <PathFromGame         path="everyCourseTag (Game=2)" name="All"/><Separator/>
-                        <PathFromGame      path="officialCourseTag (Game=2)" name="Official"/><Separator/>
-                        <PathFromGame    path="unofficialCourseTag (Game=2)" name="Unofficial"/><Separator/>
-                        <PathFromGame  path="makerCentralCourseTag (Game=2)" name="Maker Central"/>
-                    </div>
-                    <div className="w-100"/>
-
-                    <div>
-                        <span>List: </span>
-                        <RealPath         path="everyCourseTag (list Game=2)" name="All"/><Separator/>
-                        <RealPath      path="officialCourseTag (list Game=2)" name="Official"/><Separator/>
-                        <RealPath    path="unofficialCourseTag (list Game=2)" name="Unofficial"/><Separator/>
-                        <RealPath  path="makerCentralCourseTag (list Game=2)" name="Maker Central"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span>Card: </span>
-                        <RealPath         path="everyCourseTag (card Game=2)" name="All"/><Separator/>
-                        <RealPath      path="officialCourseTag (card Game=2)" name="Official"/><Separator/>
-                        <RealPath    path="unofficialCourseTag (card Game=2)" name="Unofficial"/><Separator/>
-                        <RealPath  path="makerCentralCourseTag (card Game=2)" name="Maker Central"/>
-                    </div>
+                <div>
+                    <span>List: </span>
+                    <RealPath path="everyCourseTag (list Game=2)" name="All"/><Separator/>
+                    <RealPath path="officialCourseTag (list Game=2)" name="Official"/><Separator/>
+                    <RealPath path="unofficialCourseTag (list Game=2)" name="Unofficial"/><Separator/>
+                    <RealPath path="makerCentralCourseTag (list Game=2)" name="Maker Central"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span>Card: </span>
+                    <RealPath path="everyCourseTag (card Game=2)" name="All"/><Separator/>
+                    <RealPath path="officialCourseTag (card Game=2)" name="Official"/><Separator/>
+                    <RealPath path="unofficialCourseTag (card Game=2)" name="Unofficial"/><Separator/>
+                    <RealPath path="makerCentralCourseTag (card Game=2)" name="Maker Central"/>
                 </div>
             </div>
-            <SimpleListSMM2Section partialId="predefinedMessage" name="Predefined message" route={EveryRoutes.EVERY_PREDEFINED_MESSAGE}/>
-            <SimpleListCardTableSMM1Section partialId="sampleCourse" name="Sample course" route={EveryRoutes.EVERY_SAMPLE_COURSE}/>
-            <SimpleListCardSMM1Section partialId="medal" name="Medal" route={EveryRoutes.EVERY_MEDAL}/>
-            <EmptySection id="superMarioChallengeLevel-paths" name="Super Mario Challenges level"/>
-            <EmptySection id="job-paths" name="Job"/>
-            <EmptySection id="officialNotification-paths" name="Official notification"/>
-            <EmptySection id="ninjiSpeedrun-paths" name="Ninji speedrun"/>
+        </div>
+        <SimpleListSMM2Section partialId="predefinedMessage" name="Predefined message" route={EveryRoutes.EVERY_PREDEFINED_MESSAGE}/>
+        <SimpleListCardTableSMM1Section partialId="sampleCourse" name="Sample course" route={EveryRoutes.EVERY_SAMPLE_COURSE}/>
+        <SimpleListCardSMM1Section partialId="medal" name="Medal" route={EveryRoutes.EVERY_MEDAL}/>
+        <EmptySection id="superMarioChallengeLevel-paths" name="Super Mario Challenges level"/>
+        <EmptySection id="job-paths" name="Job"/>
+        <EmptySection id="officialNotification-paths" name="Official notification"/>
+        <EmptySection id="ninjiSpeedrun-paths" name="Ninji speedrun"/>
 
-            <SimpleListCardTableSMM1Section partialId="mysteryMushroom" name="Mystery mushroom" route={EveryRoutes.EVERY_MYSTERY_MUSHROOM}/>
-            <SimpleListCardTableSMM2Section partialId="miiCostume" name="Mii costume" route={EveryRoutes.EVERY_MII_COSTUME}/>
-            <SimpleListCardSMM2Section partialId="miiCostumeCategory" name="Mii costume category" route={EveryRoutes.EVERY_MII_COSTUME_CATEGORY}/>
+        <SimpleListCardTableSMM1Section partialId="mysteryMushroom" name="Mystery mushroom" route={EveryRoutes.EVERY_MYSTERY_MUSHROOM}/>
+        <SimpleListCardTableSMM1Section partialId="officialCourse" name="Official course" route={EveryRoutes.EVERY_OFFICIAL_COURSE}/>
+        <SimpleListCardTableSMM2Section partialId="miiCostume" name="Mii costume" route={EveryRoutes.EVERY_MII_COSTUME}/>
+        <SimpleListCardSMM2Section partialId="miiCostumeCategory" name="Mii costume category" route={EveryRoutes.EVERY_MII_COSTUME_CATEGORY}/>
 
-            <ListCardSection partialId="editorVoice" name="Editor voice" route={EveryRoutes.EVERY_EDITOR_VOICE}/>
-            <ListCardSection partialId="instrument" name="Instrument" route={EveryRoutes.EVERY_INSTRUMENT}/>
-            <div id="powerUpRideHatPriority-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
-                <SectionTitle name="Power-up/ride/hat priority" target="powerUpRideHatPriority-linkPaths" route={EveryRoutes.EVERY_POWER_UP_RIDE_AND_HAT_PRIORITY} multiplyBy={8}/>
-                <div id="powerUpRideHatPriority-linkPaths" className="row row-cols-auto justify-content-center collapse">
-                    <div>
-                        <span>Default: </span>
-                        <PathFromDefault path="everyPowerUp&Ride&HatPriority" name="All"/><Separator/>
-                        <PathFromDefault     path="everyPowerUp&RidePriority" name="Power-up + Ride"/><Separator/>
-                        <PathFromDefault      path="everyPowerUp&HatPriority" name="Power-up + Hat"/><Separator/>
-                        <PathFromDefault         path="everyRide&HatPriority" name="Ride + Hat"/><Separator/>
-                        <PathFromDefault          path="everyPowerUpPriority" name="Power-up"/><Separator/>
-                        <PathFromDefault             path="everyRidePriority" name="Ride"/><Separator/>
-                        <PathFromDefault              path="everyHatPriority" name="Hat"/>
-                    </div>
-                    <div className="w-100"/>
+        <ListCardSection partialId="editorVoice" name="Editor voice" route={EveryRoutes.EVERY_EDITOR_VOICE}/>
+        <ListCardSection partialId="instrument" name="Instrument" route={EveryRoutes.EVERY_INSTRUMENT}/>
+        <div id="powerUpRideHatPriority-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
+            <SectionTitle name="Power-up/ride/hat priority" target="powerUpRideHatPriority-linkPaths" route={EveryRoutes.EVERY_POWER_UP_RIDE_AND_HAT_PRIORITY} multiplyBy={8}/>
+            <div id="powerUpRideHatPriority-linkPaths" className="row row-cols-auto justify-content-center collapse">
+                <div>
+                    <span>Default: </span>
+                    <PathFromDefault path="everyPowerUp&Ride&HatPriority" name="All"/><Separator/>
+                    <PathFromDefault path="everyPowerUp&RidePriority" name="Power-up + Ride"/><Separator/>
+                    <PathFromDefault path="everyPowerUp&HatPriority" name="Power-up + Hat"/><Separator/>
+                    <PathFromDefault path="everyRide&HatPriority" name="Ride + Hat"/><Separator/>
+                    <PathFromDefault path="everyPowerUpPriority" name="Power-up"/><Separator/>
+                    <PathFromDefault path="everyRidePriority" name="Ride"/><Separator/>
+                    <PathFromDefault path="everyHatPriority" name="Hat"/>
+                </div>
+                <div className="w-100"/>
 
-                    <div>
-                        <span>All game: </span>
-                        <RealPath path="everyPowerUp&Ride&HatPriority (Game=all)" name="All"/><Separator/>
-                        <RealPath     path="everyPowerUp&RidePriority (Game=all)" name="Power-up + Ride"/><Separator/>
-                        <RealPath      path="everyPowerUp&HatPriority (Game=all)" name="Power-up + Hat"/><Separator/>
-                        <RealPath         path="everyRide&HatPriority (Game=all)" name="Ride + Hat"/><Separator/>
-                        <RealPath          path="everyPowerUpPriority (Game=all)" name="Power-up"/><Separator/>
-                        <RealPath             path="everyRidePriority (Game=all)" name="Ride"/><Separator/>
-                        <RealPath              path="everyHatPriority (Game=all)" name="Hat"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span><SMM1/>: </span>
-                        <RealPath path="everyPowerUp&Ride&HatPriority (Game=1)" name="All"/><Separator/>
-                        <RealPath     path="everyPowerUp&RidePriority (Game=1)" name="Power-up + Ride"/><Separator/>
-                        <RealPath      path="everyPowerUp&HatPriority (Game=1)" name="Power-up + Hat"/><Separator/>
-                        <RealPath         path="everyRide&HatPriority (Game=1)" name="Ride + Hat"/><Separator/>
-                        <RealPath          path="everyPowerUpPriority (Game=1)" name="Power-up"/><Separator/>
-                        <RealPath             path="everyRidePriority (Game=1)" name="Ride"/><Separator/>
-                        <RealPath              path="everyHatPriority (Game=1)" name="Hat"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span><SMM3DS/>: </span>
-                        <RealPath path="everyPowerUp&Ride&HatPriority (Game=3DS)" name="All"/><Separator/>
-                        <RealPath     path="everyPowerUp&RidePriority (Game=3DS)" name="Power-up + Ride"/><Separator/>
-                        <RealPath      path="everyPowerUp&HatPriority (Game=3DS)" name="Power-up + Hat"/><Separator/>
-                        <RealPath         path="everyRide&HatPriority (Game=3DS)" name="Ride + Hat"/><Separator/>
-                        <RealPath          path="everyPowerUpPriority (Game=3DS)" name="Power-up"/><Separator/>
-                        <RealPath             path="everyRidePriority (Game=3DS)" name="Ride"/><Separator/>
-                        <RealPath              path="everyHatPriority (Game=3DS)" name="Hat"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span><SMM2/>: </span>
-                        <RealPath path="everyPowerUp&Ride&HatPriority (Game=2)" name="All"/><Separator/>
-                        <RealPath     path="everyPowerUp&RidePriority (Game=2)" name="Power-up + Ride"/><Separator/>
-                        <RealPath      path="everyPowerUp&HatPriority (Game=2)" name="Power-up + Hat"/><Separator/>
-                        <RealPath         path="everyRide&HatPriority (Game=2)" name="Ride + Hat"/><Separator/>
-                        <RealPath          path="everyPowerUpPriority (Game=2)" name="Power-up"/><Separator/>
-                        <RealPath             path="everyRidePriority (Game=2)" name="Ride"/><Separator/>
-                        <RealPath              path="everyHatPriority (Game=2)" name="Hat"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span><SMM1And3DS/>: </span>
-                        <RealPath path="everyPowerUp&Ride&HatPriority (Game=1&3DS)" name="All"/><Separator/>
-                        <RealPath     path="everyPowerUp&RidePriority (Game=1&3DS)" name="Power-up + Ride"/><Separator/>
-                        <RealPath      path="everyPowerUp&HatPriority (Game=1&3DS)" name="Power-up + Hat"/><Separator/>
-                        <RealPath         path="everyRide&HatPriority (Game=1&3DS)" name="Ride + Hat"/><Separator/>
-                        <RealPath          path="everyPowerUpPriority (Game=1&3DS)" name="Power-up"/><Separator/>
-                        <RealPath             path="everyRidePriority (Game=1&3DS)" name="Ride"/><Separator/>
-                        <RealPath              path="everyHatPriority (Game=1&3DS)" name="Hat"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span><SMM1And2/>: </span>
-                        <RealPath path="everyPowerUp&Ride&HatPriority (Game=1&2)" name="All"/><Separator/>
-                        <RealPath     path="everyPowerUp&RidePriority (Game=1&2)" name="Power-up + Ride"/><Separator/>
-                        <RealPath      path="everyPowerUp&HatPriority (Game=1&2)" name="Power-up + Hat"/><Separator/>
-                        <RealPath         path="everyRide&HatPriority (Game=1&2)" name="Ride + Hat"/><Separator/>
-                        <RealPath          path="everyPowerUpPriority (Game=1&2)" name="Power-up"/><Separator/>
-                        <RealPath             path="everyRidePriority (Game=1&2)" name="Ride"/><Separator/>
-                        <RealPath              path="everyHatPriority (Game=1&2)" name="Hat"/>
-                    </div>
-                    <div className="w-100"/>
-                    <div>
-                        <span><SMM3DSAnd2/>: </span>
-                        <RealPath path="everyPowerUp&Ride&HatPriority (Game=3DS&2)" name="All"/><Separator/>
-                        <RealPath     path="everyPowerUp&RidePriority (Game=3DS&2)" name="Power-up + Ride"/><Separator/>
-                        <RealPath      path="everyPowerUp&HatPriority (Game=3DS&2)" name="Power-up + Hat"/><Separator/>
-                        <RealPath         path="everyRide&HatPriority (Game=3DS&2)" name="Ride + Hat"/><Separator/>
-                        <RealPath          path="everyPowerUpPriority (Game=3DS&2)" name="Power-up"/><Separator/>
-                        <RealPath             path="everyRidePriority (Game=3DS&2)" name="Ride"/><Separator/>
-                        <RealPath              path="everyHatPriority (Game=3DS&2)" name="Hat"/>
-                    </div>
+                <div>
+                    <span>All game: </span>
+                    <RealPath path="everyPowerUp&Ride&HatPriority (Game=all)" name="All"/><Separator/>
+                    <RealPath path="everyPowerUp&RidePriority (Game=all)" name="Power-up + Ride"/><Separator/>
+                    <RealPath path="everyPowerUp&HatPriority (Game=all)" name="Power-up + Hat"/><Separator/>
+                    <RealPath path="everyRide&HatPriority (Game=all)" name="Ride + Hat"/><Separator/>
+                    <RealPath path="everyPowerUpPriority (Game=all)" name="Power-up"/><Separator/>
+                    <RealPath path="everyRidePriority (Game=all)" name="Ride"/><Separator/>
+                    <RealPath path="everyHatPriority (Game=all)" name="Hat"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span><SMM1/>: </span>
+                    <RealPath path="everyPowerUp&Ride&HatPriority (Game=1)" name="All"/><Separator/>
+                    <RealPath path="everyPowerUp&RidePriority (Game=1)" name="Power-up + Ride"/><Separator/>
+                    <RealPath path="everyPowerUp&HatPriority (Game=1)" name="Power-up + Hat"/><Separator/>
+                    <RealPath path="everyRide&HatPriority (Game=1)" name="Ride + Hat"/><Separator/>
+                    <RealPath path="everyPowerUpPriority (Game=1)" name="Power-up"/><Separator/>
+                    <RealPath path="everyRidePriority (Game=1)" name="Ride"/><Separator/>
+                    <RealPath path="everyHatPriority (Game=1)" name="Hat"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span><SMM3DS/>: </span>
+                    <RealPath path="everyPowerUp&Ride&HatPriority (Game=3DS)" name="All"/><Separator/>
+                    <RealPath path="everyPowerUp&RidePriority (Game=3DS)" name="Power-up + Ride"/><Separator/>
+                    <RealPath path="everyPowerUp&HatPriority (Game=3DS)" name="Power-up + Hat"/><Separator/>
+                    <RealPath path="everyRide&HatPriority (Game=3DS)" name="Ride + Hat"/><Separator/>
+                    <RealPath path="everyPowerUpPriority (Game=3DS)" name="Power-up"/><Separator/>
+                    <RealPath path="everyRidePriority (Game=3DS)" name="Ride"/><Separator/>
+                    <RealPath path="everyHatPriority (Game=3DS)" name="Hat"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span><SMM2/>: </span>
+                    <RealPath path="everyPowerUp&Ride&HatPriority (Game=2)" name="All"/><Separator/>
+                    <RealPath path="everyPowerUp&RidePriority (Game=2)" name="Power-up + Ride"/><Separator/>
+                    <RealPath path="everyPowerUp&HatPriority (Game=2)" name="Power-up + Hat"/><Separator/>
+                    <RealPath path="everyRide&HatPriority (Game=2)" name="Ride + Hat"/><Separator/>
+                    <RealPath path="everyPowerUpPriority (Game=2)" name="Power-up"/><Separator/>
+                    <RealPath path="everyRidePriority (Game=2)" name="Ride"/><Separator/>
+                    <RealPath path="everyHatPriority (Game=2)" name="Hat"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span><SMM1And3DS/>: </span>
+                    <RealPath path="everyPowerUp&Ride&HatPriority (Game=1&3DS)" name="All"/><Separator/>
+                    <RealPath path="everyPowerUp&RidePriority (Game=1&3DS)" name="Power-up + Ride"/><Separator/>
+                    <RealPath path="everyPowerUp&HatPriority (Game=1&3DS)" name="Power-up + Hat"/><Separator/>
+                    <RealPath path="everyRide&HatPriority (Game=1&3DS)" name="Ride + Hat"/><Separator/>
+                    <RealPath path="everyPowerUpPriority (Game=1&3DS)" name="Power-up"/><Separator/>
+                    <RealPath path="everyRidePriority (Game=1&3DS)" name="Ride"/><Separator/>
+                    <RealPath path="everyHatPriority (Game=1&3DS)" name="Hat"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span><SMM1And2/>: </span>
+                    <RealPath path="everyPowerUp&Ride&HatPriority (Game=1&2)" name="All"/><Separator/>
+                    <RealPath path="everyPowerUp&RidePriority (Game=1&2)" name="Power-up + Ride"/><Separator/>
+                    <RealPath path="everyPowerUp&HatPriority (Game=1&2)" name="Power-up + Hat"/><Separator/>
+                    <RealPath path="everyRide&HatPriority (Game=1&2)" name="Ride + Hat"/><Separator/>
+                    <RealPath path="everyPowerUpPriority (Game=1&2)" name="Power-up"/><Separator/>
+                    <RealPath path="everyRidePriority (Game=1&2)" name="Ride"/><Separator/>
+                    <RealPath path="everyHatPriority (Game=1&2)" name="Hat"/>
+                </div>
+                <div className="w-100"/>
+                <div>
+                    <span><SMM3DSAnd2/>: </span>
+                    <RealPath path="everyPowerUp&Ride&HatPriority (Game=3DS&2)" name="All"/><Separator/>
+                    <RealPath path="everyPowerUp&RidePriority (Game=3DS&2)" name="Power-up + Ride"/><Separator/>
+                    <RealPath path="everyPowerUp&HatPriority (Game=3DS&2)" name="Power-up + Hat"/><Separator/>
+                    <RealPath path="everyRide&HatPriority (Game=3DS&2)" name="Ride + Hat"/><Separator/>
+                    <RealPath path="everyPowerUpPriority (Game=3DS&2)" name="Power-up"/><Separator/>
+                    <RealPath path="everyRidePriority (Game=3DS&2)" name="Ride"/><Separator/>
+                    <RealPath path="everyHatPriority (Game=3DS&2)" name="Hat"/>
                 </div>
             </div>
-        </>
-    }
-
+        </div>
+    </>
 }
 
 //region -------------------- Helper route --------------------
@@ -2576,7 +2570,7 @@ function SimpleListCardSMM2Section({partialId, name, route,}: FilledSectionPrope
     </div>
 }
 
-function SimpleListCardTableSMM1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM'>,) {
+function SimpleListCardTableSMM1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM' | 'EVERY_OFFICIAL_COURSE'>,) {
     const simpleName = route.simpleName
     const linkPaths = `${partialId}-linkPaths`
 

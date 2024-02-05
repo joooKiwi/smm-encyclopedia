@@ -8,11 +8,11 @@ import Image from 'app/tools/images/Image'
 interface PowerUpPriorityProperties<T extends PowerUpPriority, >
     extends ReactProperties {
 
-    id: string
+    readonly id: string
 
-    value: | T | readonly T[]
+    readonly value: | T | readonly T[]
 
-    images?: ImagesCallbackByPriority<T>
+    readonly images?: ImagesCallbackByPriority<T>
 
 }
 

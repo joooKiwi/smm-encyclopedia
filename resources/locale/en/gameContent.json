@@ -1,7 +1,11 @@
 {
   "entity": {
     "all":         "Every {{entity}}",
-    "display all": "Display every {{entity}}"
+    "display all": "Display every {{entity}}",
+
+    "property": {
+      "While playing → LCL": "While we play, it is in the {{acronym}} ({{limit}})"
+    }
   },
   "character name": {
     "singular": "Character name",
@@ -175,6 +179,13 @@
   "mystery mushroom": {
     "all":         "Every {{singularName}}",
     "display all": "Display every {{singularName}}"
+  },
+  "official course": {
+    "singular": "Official {{singularName}}",
+    "plural":   "Official {{pluralName}}",
+
+    "all":         "Every official {{singularName}}",
+    "display all": "Display every official {{singularName}}"
   },
   "game reference": {
     "singular": "Game reference",

@@ -5,11 +5,7 @@ import type {NameTrait}                        from 'lang/name/NameTrait'
 
 export interface GameStyle
     extends NameTrait<string>, GameProperty,
-        ClassThatIsAvailableFromTheStart {
-
-    get isInProperty(): GameProperty
-
-    get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart
+        ClassThatIsAvailableFromTheStart<NullOrBoolean, NullOrTrue, NullOrTrue> {
 
     get entities(): readonly Entity[]
 

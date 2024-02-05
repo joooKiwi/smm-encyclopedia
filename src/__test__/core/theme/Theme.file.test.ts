@@ -11,7 +11,7 @@ describe('Theme (file test)', () => {
     const everyNames = types.everyPossibleName_theme
     const excludedLanguages_SMM1: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
-    file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isSMM1Exclusive = it.isInSuperMarioMaker2 && !it.isInSuperMarioMaker1And3DS
         const isWorldOnly = !it.isInCourseTheme && it.isInWorldTheme
         //TODO Complete the german, italian, dutch, spanish, portuguese & russian for the game reference:
@@ -20,16 +20,16 @@ describe('Theme (file test)', () => {
         testLanguages(it, isSMM1Exclusive ? excludedLanguages_SMM1 : null,)
 
         describe('Type validation', () => {
-            test('Is in course theme', () => expect(it.isInCourseTheme).toBeBoolean(),)
-            test('Is in world theme', () => expect(it.isInCourseTheme).toBeBoolean(),)
-            test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS).toBeBoolean(),)
-            test('Is in SMM2', () => expect(it.isInSuperMarioMaker2).toBeBoolean(),)
-            test('Is available from the start (SMM1)', () => expect(it.isAvailableFromTheStart_SMM1).toBeBooleanOrNull(),)
+            test('Is in course theme', () => expect(it.isInCourseTheme,).toBeBoolean(),)
+            test('Is in world theme', () => expect(it.isInCourseTheme,).toBeBoolean(),)
+            test('Is in SMM & SMM3DS', () => expect(it.isInSuperMarioMaker1And3DS,).toBeBoolean(),)
+            test('Is in SMM2', () => expect(it.isInSuperMarioMaker2,).toBeTrue(),)
+            test('Is available from the start (SMM1)', () => expect(it.isAvailableFromTheStart_SMM1,).toBeBooleanOrNull(),)
             isWorldOnly
-                ? test('Effect in the night theme', () => expect(it.effectInNightTheme).toBeNull())
-                : test('Effect in the night theme', () => expect(it.effectInNightTheme).toBeOneOf(everyNames_nightEffect),)// eslint-disable-line jest/no-identical-title
+                ? test('Effect in the night theme', () => expect(it.effectInNightTheme,).toBeNull(),)
+                : test('Effect in the night theme', () => expect(it.effectInNightTheme,).toBeOneOf(everyNames_nightEffect,),)// eslint-disable-line jest/no-identical-title
             testOnlyEnglish(it, everyNames,)
         },)
-    }))
+    },),)
 
 },)

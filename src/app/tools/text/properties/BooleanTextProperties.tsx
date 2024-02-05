@@ -4,12 +4,12 @@ import type {HTMLSpanProperties} from 'util/react/html/HTMLSpanProperties'
 export interface BooleanTextProperties
     extends ReactProperties, Omit<HTMLSpanProperties, | 'content' | 'className'> {
 
-    boolean: boolean
+    readonly boolean: boolean
 
-    true: string
+    readonly true: string
 
-    false: string
+    readonly false: string
 
-    classes?: NullOr<string[]>
+    readonly classes?: NullOr<string[]>
 
 }

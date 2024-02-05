@@ -6,7 +6,7 @@ import type {ReactProperties} from 'util/react/ReactProperties'
 interface SingleArrowProperties
     extends ReactProperties {
 
-    value: Arrows
+    readonly value: Arrows
 
 }
 

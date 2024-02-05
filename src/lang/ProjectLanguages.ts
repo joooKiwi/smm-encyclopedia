@@ -1,5 +1,4 @@
 import type {ImpossibleNames, PossibleEnumerableValue, PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
-import type {Dispatch, SetStateAction}                                                       from 'react'
 import {Enum, NullReferenceException}                                                        from '@joookiwi/enumerable'
 
 import type {ClassInAnySuperMarioMakerGame}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/game/ClassInAnySuperMarioMakerGame'
@@ -137,19 +136,6 @@ export class ProjectLanguages
                 return
             }
             EveryLanguages.CompanionEnum.get.current = value
-        }
-
-
-        public get onSetCurrentEventOrNull(): NullOr<Dispatch<SetStateAction<NullOr<EveryLanguages>>>> {
-            return EveryLanguages.CompanionEnum.get.onSetCurrentEventOrNull
-        }
-
-        public get onSetCurrentEvent(): Dispatch<SetStateAction<NullOr<EveryLanguages>>> {
-            return EveryLanguages.CompanionEnum.get.onSetCurrentEvent
-        }
-
-        public set onSetCurrentEvent(value: Dispatch<SetStateAction<NullOr<EveryLanguages>>>,) {
-            EveryLanguages.CompanionEnum.get.onSetCurrentEvent = value
         }
 
 

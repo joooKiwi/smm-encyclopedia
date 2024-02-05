@@ -76,18 +76,18 @@ export abstract class Games
         //endregion -------------------- Singleton usage --------------------
         //region -------------------- Fields --------------------
 
-        public readonly ALL = Games.GamePossibilitiesCompanion.get.ALL_GAMES
+        public readonly ALL = Games.Possibilities.get.ALL_GAMES
 
         public get singleFields() {
-            return Games.GamePossibilitiesCompanion.get.everySingleGameFields
+            return Games.Possibilities.get.everySingleGameFields
         }
 
         public get doubleFields() {
-            return Games.GamePossibilitiesCompanion.get.everyDoubleGameFields
+            return Games.Possibilities.get.everyDoubleGameFields
         }
 
         public get fields() {
-            return Games.GamePossibilitiesCompanion.get.everyFields
+            return Games.Possibilities.get.everyFields
         }
 
 
@@ -194,29 +194,29 @@ export abstract class Games
 
             if (amountOfValues === 1) {
                 if (valuesFound === '1')
-                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                    return Games.Possibilities.get.SMM1_ONLY
                 if (valuesFound === '3ds')
-                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                    return Games.Possibilities.get.SMM3DS_ONLY
                 if (valuesFound === '2')
-                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+                    return Games.Possibilities.get.SMM2_ONLY
 
                 return EMPTY_ARRAY
             }
 
             if (amountOfValues === 2) {
                 if (valuesFound === '1,1')
-                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                    return Games.Possibilities.get.SMM1_ONLY
                 if (valuesFound === '3ds,3ds')
-                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                    return Games.Possibilities.get.SMM3DS_ONLY
                 if (valuesFound === '2,2')
-                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+                    return Games.Possibilities.get.SMM2_ONLY
 
                 if (valuesFound === '1,3ds' || valuesFound === '3ds,1')
-                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_3DS
+                    return Games.Possibilities.get.SMM1_AND_3DS
                 if (valuesFound === '1,2' || valuesFound === '2,1')
-                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+                    return Games.Possibilities.get.SMM1_AND_2
                 if (valuesFound === '3ds,2' || valuesFound === '2,3ds')
-                    return Games.GamePossibilitiesCompanion.get.SMM1_AND_2
+                    return Games.Possibilities.get.SMM1_AND_2
 
                 return EMPTY_ARRAY
             }
@@ -229,11 +229,11 @@ export abstract class Games
                     return all
 
                 if (valuesFound === '1,1,1')
-                    return Games.GamePossibilitiesCompanion.get.SMM1_ONLY
+                    return Games.Possibilities.get.SMM1_ONLY
                 if (valuesFound === '3ds,3ds,3ds')
-                    return Games.GamePossibilitiesCompanion.get.SMM3DS_ONLY
+                    return Games.Possibilities.get.SMM3DS_ONLY
                 if (valuesFound === '2,2,2')
-                    return Games.GamePossibilitiesCompanion.get.SMM2_ONLY
+                    return Games.Possibilities.get.SMM2_ONLY
 
                 const doubleValuesFound = this.doubleFields.find(it =>
                     separatedValuesFound.includes(it[0].urlValue,)
@@ -280,9 +280,8 @@ export abstract class Games
      * A simple companion class to the {@link Games} but for the game possibilities (in stored {@link Array}).
      *
      * @note This class is only used in the {@link EveryRoutes}
-     * @todo Rename to Possibilities
      */
-    public static readonly GamePossibilitiesCompanion = class Companion_Possibilities {
+    public static readonly Possibilities = class Companion_Possibilities {
 
         //region -------------------- Singleton usage --------------------
 

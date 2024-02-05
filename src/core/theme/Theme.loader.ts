@@ -9,22 +9,19 @@ import type {CourseAndWorldTheme}             from 'core/theme/CourseAndWorldThe
 import type {CourseTheme}                     from 'core/theme/CourseTheme'
 import type {PossibleEnglishName}             from 'core/theme/Themes.types'
 import type {PossibleEffectInNightTheme}      from 'core/theme/loader.types'
-import type {WorldTheme}                      from 'core/theme/WorldTheme'
 import type {Name}                            from 'lang/name/Name'
 import type {Loader}                          from 'util/loader/Loader'
 
-import {isInProduction}                           from 'variables'
-import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {Entities}                                 from 'core/entity/Entities'
-import {GamePropertyProvider}                     from 'core/entity/properties/game/GameProperty.provider'
-import {CourseAndWorldThemeContainer}             from 'core/theme/CourseAndWorldTheme.container'
-import {CourseOnlyThemeContainer}                 from 'core/theme/CourseOnlyTheme.container'
-import {CourseThemeContainer}                     from 'core/theme/CourseTheme.container'
-import {Themes}                                   from 'core/theme/Themes'
-import {WorldOnlyThemeContainer}                  from 'core/theme/WorldOnlyTheme.container'
-import {WorldThemeContainer}                      from 'core/theme/WorldTheme.container'
-import {NightEffects}                             from 'core/nightEffect/NightEffects'
-import {createNameFromContent}                    from 'lang/name/createNameFromContent'
+import {isInProduction}               from 'variables'
+import {Entities}                     from 'core/entity/Entities'
+import {CourseAndWorldThemeContainer} from 'core/theme/CourseAndWorldTheme.container'
+import {CourseOnlyThemeContainer}     from 'core/theme/CourseOnlyTheme.container'
+import {CourseThemeContainer}         from 'core/theme/CourseTheme.container'
+import {Themes}                       from 'core/theme/Themes'
+import {WorldOnlyThemeContainer}      from 'core/theme/WorldOnlyTheme.container'
+import {WorldThemeContainer}          from 'core/theme/WorldTheme.container'
+import {NightEffects}                 from 'core/nightEffect/NightEffects'
+import {createNameFromContent}        from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link Entities}>
@@ -76,6 +73,8 @@ export class ThemeLoader
 interface Content
     extends LanguageContent, GameContentFrom1And2 {
 
+    readonly isInSuperMarioMaker2: true
+
     readonly isInCourseTheme: boolean
     readonly isInWorldTheme: boolean
 
@@ -93,27 +92,21 @@ function createReference(content: Content,): CourseAndWorldTheme {
         : createNameFromContent(content, 2, true,)
 
     if (isInCourseTheme && isInWorldTheme)
-        return createCourseAndWorldTheme(content, name,)
+        return new CourseAndWorldThemeContainer(
+            name,
+            content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
+            createCourseTheme(content, name,),
+            new WorldThemeContainer(name,),
+        )
     if (isInCourseTheme)
         return new CourseOnlyThemeContainer(name, createCourseTheme(content, name,),)
-    return new WorldOnlyThemeContainer(name, createWorldTheme(name,),)
-}
-
-function createCourseAndWorldTheme(content: Content, name: Name<string>,): CourseAndWorldTheme {
-    return new CourseAndWorldThemeContainer(
-        name,
-        GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),
-        ClassThatIsAvailableFromTheStartProvider.get.get(content.isAvailableFromTheStart_SMM1,),
-        createCourseTheme(content, name,),
-        createWorldTheme(name,),
-    )
+    return new WorldOnlyThemeContainer(name, new WorldThemeContainer(name,),)
 }
 
 function createCourseTheme(content: Content, name: Name<string>,): CourseTheme {
     return new CourseThemeContainer(
         name,
-        GamePropertyProvider.get.get(content.isInSuperMarioMaker1And3DS, content.isInSuperMarioMaker2,),
-        ClassThatIsAvailableFromTheStartProvider.get.get(content.isAvailableFromTheStart_SMM1,),
+        content.isInSuperMarioMaker1And3DS, content.isAvailableFromTheStart_SMM1,
         lazy(() => {
             const theme = Themes.CompanionEnum.get.getValueByName(name.english,)
 
@@ -122,13 +115,5 @@ function createCourseTheme(content: Content, name: Name<string>,): CourseTheme {
                 .toArray()
         },),
         NightEffects.CompanionEnum.get.getValueByName(content.effectInNightTheme,),
-    )
-}
-
-function createWorldTheme(name: Name<string>,): WorldTheme {
-    return new WorldThemeContainer(
-        name,
-        GamePropertyProvider.get.smm2Only,
-        ClassThatIsAvailableFromTheStartProvider.get.get(null,),
     )
 }

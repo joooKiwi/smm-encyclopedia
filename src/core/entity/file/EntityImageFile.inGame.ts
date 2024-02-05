@@ -341,10 +341,12 @@ interface ImageNameMap {
     'Wendy': ['Wendy', Enemy<'Wendy'>]
     'Wendy\'s Wand': this['Wendy']
     'Candy Ring thrown by a Wendy': this['Wendy']
+    '(Wendy\'s projectile)': this['Wendy']
 
     'Lemmy': ['Lemmy', Enemy<'Lemmy'>]
     'Lemmy\'s Wand': this['Lemmy']
     'Magic Ball thrown by a Lemmy': this['Lemmy']
+    '(Lemmy\'s projectile)': this['Lemmy']
 
     'Roy': ['Roy', Enemy<'Roy'>]
     'Roy\'s Wand': this['Roy']
@@ -376,12 +378,17 @@ interface ImageNameMap {
     'Vine': NoImages
     'Tree': NoImages
 
+    'Starting Arrow': NoImages
     'Arrow Sign': NoImages
 
     'Checkpoint Flag': NoImages
     'Goal Pole': NoImages
     'Cards Roulette': NoImages
     'Giant Gate': NoImages
+
+    'Castle': NoImages
+    'Ending Castle Door': NoImages
+    'Axe': NoImages
 
     'Dash Block': NoImages
 

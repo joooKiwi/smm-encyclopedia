@@ -1,11 +1,4 @@
-import AbstractApp from 'app/AbstractApp'
-
 /** @reactComponent */
-export default class SourcesApp
-    extends AbstractApp {
-
-    protected override _mainContent() {
-        return <>Every sources</>
-    }
-
+export default function SourcesApp() {
+    return <>Every sources</>
 }

@@ -3,130 +3,141 @@ import './SoundEffectApp.scss'
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {GameCollection}          from 'util/collection/GameCollection'
+import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
 
+import SubMainContainer         from 'app/_SubMainContainer'
 import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
-import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import Table                    from 'app/tools/table/Table'
+import CardList                 from 'app/withInterpreter/CardList'
+import SimpleList               from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {SoundEffects}           from 'core/soundEffect/SoundEffects'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
 
-export default class SoundEffectApp
-    extends AbstractTableApp<SoundEffects, AppInterpreterWithTable<SoundEffects, SoundEffectAppOption>, SoundEffectProperties> {
+class SoundEffectAppInterpreter
+    implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
 
-    //region -------------------- Create methods --------------------
+    //region -------------------- Fields --------------------
 
-    protected override _createKey() {
-        return 'soundEffect'
+    readonly #games
+    readonly #gameStyles
+
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(games: GameCollection, gameStyles: GameStyleCollection,) {
+        this.#games = games
+        this.#gameStyles = gameStyles
+    }
+
+    //endregion -------------------- Constructor --------------------
+
+    public get content() {
+        return filterGame(SoundEffects.CompanionEnum.get.values, this.#games,)
+    }
+
+    //region -------------------- List interpreter --------------------
+
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 1,
+            small: 3,
+            medium: 4,
+            large: 5,
+            extraLarge: 6,
+        }
+    }
+
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
+
+    public createCardListDimension() {
+        return this.createListDimension()
+    }
+
+    public createCardListContent(enumerable: SoundEffects,) {
+        return <div>
+            <div className="soundEffect-images-container">
+                {SoundEffectAppOption.renderSMM1And3DSImage(enumerable,)}
+                {SoundEffectAppOption.renderSMM2Image(enumerable,)}
+            </div>
+        </div>
+    }
+
+    //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('sound effect.all',) satisfies ReactElementOrString
+
+    public get tableOptions(): readonly SoundEffectAppOption[] {
+        const games = this.#games
+        const hasSMM1Or3DS = games.hasSMM1Or3DS
+        const hasSMM2 = games.hasSMM2
+
+        const options = [] as SoundEffectAppOption[]
+        if (hasSMM1Or3DS)
+            options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
+        if (hasSMM2)
+            options.push(SoundEffectAppOption.SMM2_ICON,)
+        options.push(
+            SoundEffectAppOption.NAME,
+            SoundEffectAppOption.CATEGORY,
+            SoundEffectAppOption.PLAYER_BEHAVIOUR,
+        )
+        if (hasSMM1Or3DS && hasSMM2)
+            options.push(SoundEffectAppOption.SOUNDS,)
+        else {
+            if (hasSMM1Or3DS)
+                options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
+            if (hasSMM2)
+                options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
+        }
+        return options
     }
 
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everySoundEffect (list)'
+    public getAdditionalClass(option: SoundEffectAppOption,) {
+        return option.additionalClasses
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everySoundEffect (card)'
+    public createTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
+        //TODO add content based on the game style parameter
+        return option.renderContent(content,)
     }
 
-    protected override _createTableRouteName(): PossibleRouteName {
-        return 'everySoundEffect (table)'
+    public createTableHeader(option: SoundEffectAppOption,) {
+        return option.renderTableHeader()
     }
 
+    //endregion -------------------- Table interpreter --------------------
 
-    protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('sound effect.all')
-    }
+}
 
-    protected override _createAppOptionInterpreter() {
-        const $this = this
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everySoundEffect (list)',],
+    [ViewDisplays.CARD_LIST, 'everySoundEffect (card)',],
+    [ViewDisplays.TABLE, 'everySoundEffect (table)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = gameContentTranslation('sound effect.all',)
 
-        return new class SoundEffectAppInterpreter implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
+/** @reactComponent */
+export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
+    const appInterpreter = new SoundEffectAppInterpreter(games, gameStyles,)
 
-            public get content() {
-                return filterGame(SoundEffects.CompanionEnum.get.values, $this.props.games,)
-            }
-
-            //region -------------------- List interpreter --------------------
-
-            public createListDimension(): DimensionOnList {
-                return {
-                    default: 1,
-                    small: 3,
-                    medium: 4,
-                    large: 5,
-                    extraLarge: 6,
-                }
-            }
-
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent(enumerable: SoundEffects,) {
-                return <div>
-                    <div className="soundEffect-images-container">
-                        {SoundEffectAppOption.renderSMM1And3DSImage(enumerable)}
-                        {SoundEffectAppOption.renderSMM2Image(enumerable)}
-                    </div>
-                </div>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-            //region -------------------- Table interpreter --------------------
-
-            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
-            public readonly tableCaption = gameContentTranslation('sound effect.all') satisfies ReactElementOrString
-
-            public get tableOptions(): readonly SoundEffectAppOption[] {
-                const games = $this.props.games
-                const hasSMM1Or3DS = games.hasSMM1Or3DS
-                const hasSMM2 = games.hasSMM2
-
-                const options = [] as SoundEffectAppOption[]
-                if (hasSMM1Or3DS)
-                    options.push(SoundEffectAppOption.SMM1_AND_SMM3DS_ICON,)
-                if (hasSMM2)
-                    options.push(SoundEffectAppOption.SMM2_ICON,)
-                options.push(
-                    SoundEffectAppOption.NAME,
-                    SoundEffectAppOption.CATEGORY,
-                    SoundEffectAppOption.PLAYER_BEHAVIOUR,
-                )
-                if (hasSMM1Or3DS && hasSMM2)
-                    options.push(SoundEffectAppOption.SOUNDS,)
-                else {
-                    if (hasSMM1Or3DS)
-                        options.push(SoundEffectAppOption.SOUNDS_IN_SMM1_AND_3DS_ONLY,)
-                    if (hasSMM2)
-                        options.push(SoundEffectAppOption.SOUNDS_IN_SMM2_ONLY,)
-                }
-                return options
-            }
-
-
-            public getAdditionalClass(option: SoundEffectAppOption,) {
-                return option.additionalClasses
-            }
-
-            public createTableContent(content: SoundEffects, option: SoundEffectAppOption,) {
-                //TODO add content based on the game style parameter
-                return option.renderContent(content,)
-            }
-
-            public createTableHeader(option: SoundEffectAppOption,) {
-                return option.renderTableHeader()
-            }
-
-            //endregion -------------------- Table interpreter --------------------
-
-        }()
-    }
-
-    //endregion -------------------- Create methods --------------------
-
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <Table id="soundEffect-table" interpreter={appInterpreter}/>
+    </SubMainContainer>
 }

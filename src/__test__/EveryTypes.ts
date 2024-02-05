@@ -3,7 +3,7 @@ import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTransla
 import type {PossibleEnglishName as PossibleEnglishName_CharacterName, PossibleUniqueEnglishName as PossibleUniqueEnglishName_CharacterName}                                                                                                     from 'core/characterName/CharacterNames.types'
 import type {PossibleEnglishName as PossibleEnglishName_CourseTag, PossibleMakerCentralName}                                                                                                                                                     from 'core/courseTag/CourseTags.types'
 import type {PossibleEnglishName as PossibleEnglishName_Entity}                                                                                                                                                                                  from 'core/entity/Entities.types'
-import type {LimitAmountType, PossibleGeneralLimitComment, PossibleGeneralGlobalLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                 from 'core/entity/properties/limit/loader.types'
+import type {LimitAmountType, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                 from 'core/entity/properties/limit/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_EntityCategory}                                                                                                                                                                          from 'core/entityCategory/EntityCategories.types'
 import type {PossibleAcronym as PossibleAcronym_GameReference, PossibleEnglishName as PossibleEnglishName_GameReference}                                                                                                                         from 'core/gameReference/GameReferences.types'
 import type {PossibleAcronym as PossibleAcronym_GameStyle}                                                                                                                                                                                       from 'core/gameStyle/GameStyles.types'
@@ -11,16 +11,16 @@ import type {PossibleEnglishName as PossibleEnglishName_Instrument}             
 import type {PossibleMixedInstrument as PossibleMixedName_Instrument}                                                                                                                                                                            from 'core/instrument/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_LimitType}                                                                                                                                                                               from 'core/limit/LimitTypes.types'
 import type {PossibleAcronym as PossibleAcronym_Limit, PossibleAlternativeAcronym as PossibleAlternativeAcronym_Limit, PossibleAlternativeEnglishName as PossibleAlternativeEnglishName_Limit, PossibleEnglishName as PossibleEnglishName_Limit} from 'core/limit/Limits.types'
-import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount, PossibleLimitAmount_SMM2_UnknownAmount}                                                                                        from 'core/limit/loader.types'
+import type {PossibleLimitAmount_Comment, PossibleLimitAmount_SMM1And3DS_Amount, PossibleLimitAmount_SMM2_Amount}                                                                                                                                from 'core/limit/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Medal}                                                                                                                                                                                   from 'core/medal/Medals.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostume}                                                                                                                                                                              from 'core/miiCostume/MiiCostumes.types'
 import type {PossibleEnglishName as PossibleEnglishName_MiiCostumeCategory}                                                                                                                                                                      from 'core/miiCostumeCategory/MiiCostumeCategories.types'
 import type {PossibleUniqueEnglishName as UniqueEnglishName_MysteryMushroom}                                                                                                                                                                     from 'core/mysteryMushroom/MysteryMushrooms.types'
-import type {PokemonGeneration}                                                                                                                                                                                                                  from 'core/mysteryMushroom/loader.types'
-import type {PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                                         from 'core/mysteryMushroom/properties/UnlockProperty'
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                                                                                                            from 'core/mysteryMushroom/properties/sound/SoundEffectOnGoalPole'
-import type {PossibleTranslationKeys as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom}                                                                                                                                               from 'core/mysteryMushroom/properties/sound/SoundEffectOnDeath'
+import type {PokemonGeneration, PossibleConditionToUnlockIt as PossibleConditionToUnlockIt_MysteryMushroom}                                                                                                                                      from 'core/mysteryMushroom/loader.types'
+import type {TranslationKeyOnDeath as PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, TranslationKeyOnGoalPole as PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom}                                                       from 'core/mysteryMushroom/MysteryMushroom.types'
 import type {PossibleEnglishName as PossibleEnglishName_Theme_NightEffect}                                                                                                                                                                       from 'core/nightEffect/NightEffects.types'
+import type {PossibleReleaseDate as PossibleReleaseDate_OfficialCourse, PossibleRemovalDate as PossibleRemovalDate_OfficialCourse, PossibleReward as PossibleReward_OfficialCourse}                                                              from 'core/officialCourse/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_OfficialCourse}                                                                                                                                                                          from 'core/officialCourse/OfficialCourses.types'
 import type {PossibleEnglishName as PossibleEnglishName_OfficialNotification, PossibleEnglishNameWithEveryAmount as PossibleEnglishName_OfficialNotificationWithEveryAmount}                                                                     from 'core/officialNotification/OfficialNotifications.types'
 import type {PossibleEnglishName as PossibleEnglishName_OtherWordInTheGame, PossibleEnglishName_Plural as PossiblePluralEnglishName_OtherWordInTheGame, PossibleEnglishName_Singular as PossibleSingularEnglishName_OtherWordInTheGame}          from 'core/otherWordInTheGame/OtherWordInTheGames.types'
 import type {PossibleEnglishName as PossibleEnglishName_PredefinedMessage}                                                                                                                                                                       from 'core/predefinedMessage/PredefinedMessages.types'
@@ -30,32 +30,33 @@ import type {PossibleEnglishName as PossibleEnglishName_SoundEffectCategory}    
 import type {PossibleEnglishName as PossibleEnglishName_Theme}                                                                                                                                                                                   from 'core/theme/Themes.types'
 import type {PossibleName as PossibleName_Version, PossibleName_SMM1 as PossibleName_Version_SMM, PossibleName_SMM2 as PossibleName_Version_SMM2, PossibleName_SMM3DS as PossibleName_Version_SMM3DS}                                            from 'core/version/Versions.types'
 
-import {EntityBehaviours}            from 'core/behaviour/EntityBehaviours'
-import {CharacterNames}              from 'core/characterName/CharacterNames'
-import {Entities}                    from 'core/entity/Entities'
-import {EntityCategories}            from 'core/entityCategory/EntityCategories'
-import {Games}                       from 'core/game/Games'
-import {GameStyles}                  from 'core/gameStyle/GameStyles'
-import {GameReferences}              from 'core/gameReference/GameReferences'
-import {Instruments}                 from 'core/instrument/Instruments'
-import {LimitTypes}                  from 'core/limit/LimitTypes'
-import {Limits}                      from 'core/limit/Limits'
-import {Medals}                      from 'core/medal/Medals'
-import {NightEffects}                from 'core/nightEffect/NightEffects'
-import {MiiCostumeCategories}        from 'core/miiCostumeCategory/MiiCostumeCategories'
-import {MiiCostumes}                 from 'core/miiCostume/MiiCostumes'
-import {MysteryMushrooms}            from 'core/mysteryMushroom/MysteryMushrooms'
-import {OfficialNotifications}       from 'core/officialNotification/OfficialNotifications'
-import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {PredefinedMessages}          from 'core/predefinedMessage/PredefinedMessages'
-import {SampleCourses}               from 'core/sampleCourse/SampleCourses'
-import {SoundEffects}                from 'core/soundEffect/SoundEffects'
-import {SoundEffectCategories}       from 'core/soundEffectCategory/SoundEffectCategories'
-import {Themes}                      from 'core/theme/Themes'
-import {Versions}                    from 'core/version/Versions'
-import {CourseTags}                  from 'core/courseTag/CourseTags'
-import {INFINITY, UNKNOWN_REFERENCE} from 'util/commonVariables'
-import {nonNull}                     from 'util/utilitiesMethods'
+import {EntityBehaviours}      from 'core/behaviour/EntityBehaviours'
+import {CharacterNames}        from 'core/characterName/CharacterNames'
+import {Entities}              from 'core/entity/Entities'
+import {EntityCategories}      from 'core/entityCategory/EntityCategories'
+import {Games}                 from 'core/game/Games'
+import {GameStyles}            from 'core/gameStyle/GameStyles'
+import {GameReferences}        from 'core/gameReference/GameReferences'
+import {Instruments}           from 'core/instrument/Instruments'
+import {LimitTypes}            from 'core/limit/LimitTypes'
+import {Limits}                from 'core/limit/Limits'
+import {Medals}                from 'core/medal/Medals'
+import {NightEffects}          from 'core/nightEffect/NightEffects'
+import {MiiCostumeCategories}  from 'core/miiCostumeCategory/MiiCostumeCategories'
+import {MiiCostumes}           from 'core/miiCostume/MiiCostumes'
+import {MysteryMushrooms}      from 'core/mysteryMushroom/MysteryMushrooms'
+import {OfficialCourses}       from 'core/officialCourse/OfficialCourses'
+import {OfficialNotifications} from 'core/officialNotification/OfficialNotifications'
+import {OtherWordInTheGames}   from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {PredefinedMessages}    from 'core/predefinedMessage/PredefinedMessages'
+import {SampleCourses}         from 'core/sampleCourse/SampleCourses'
+import {SoundEffects}          from 'core/soundEffect/SoundEffects'
+import {SoundEffectCategories} from 'core/soundEffectCategory/SoundEffectCategories'
+import {Themes}                from 'core/theme/Themes'
+import {Versions}              from 'core/version/Versions'
+import {CourseTags}            from 'core/courseTag/CourseTags'
+import {INFINITY}              from 'util/commonVariables'
+import {nonNull}               from 'util/utilitiesMethods'
 
 /**
  * @singleton
@@ -114,10 +115,10 @@ export class EveryTypes {
     #everyPossibleLightSource_entity?: readonly NonNullable<Exclude<PossibleLightSource, UnknownCharacter>>[]
     #everyPossibleSurviveConditionInDeadlyLiquid_entity?: readonly NonNullable<Exclude<CanSurviveInTheLavaOrThePoison, | boolean | UnknownCharacter>>[]
     #everyPossibleLimitAmountType_entity?: readonly NonNullable<Exclude<LimitAmountType, | boolean | UnknownCharacter>>[]
-    #everyPossibleGEL_entity?: readonly PossibleGeneralLimitComment[]
-    #everyPossibleGELGlobal_entity?: readonly PossibleGeneralGlobalLimitComment[]
-    #everyPossiblePJL_entity?: readonly PossibleProjectileLimitComment[]
-    #everyPossibleObjectRenderedLimit_entity?: readonly PossibleRenderedObjectLimitTypeComment[]
+    #everyPossibleGELComment_entity?: readonly PossibleGeneralLimitComment[]
+    #everyPossibleGELGlobalComment_entity?: readonly PossibleGeneralGlobalLimitComment[]
+    #everyPossiblePJLComment_entity?: readonly PossibleProjectileLimitComment[]
+    #everyPossibleObjectRenderedLimitComment_entity?: readonly PossibleRenderedObjectLimitTypeComment[]
     #everyPossibleOtherLimitComment_entity?: readonly PossibleOtherLimitComment[]
 
     #everyPossibleAcronym_entityBehaviour?: readonly PossibleAcronym_EntityBehaviour[]
@@ -138,7 +139,7 @@ export class EveryTypes {
     #everyPossibleName_playLimit?: readonly PossibleEnglishName_Limit[]
     #everyPossibleAlternativeName_limit?: readonly PossibleAlternativeEnglishName_Limit[]
     #everyPossibleAmount_smm1And3ds_limit?: readonly PossibleLimitAmount_SMM1And3DS_Amount[]
-    #everyPossibleAmount_smm2_limit?: readonly (| PossibleLimitAmount_SMM2_Amount | PossibleLimitAmount_SMM2_UnknownAmount)[]
+    #everyPossibleAmount_smm2_limit?: readonly PossibleLimitAmount_SMM2_Amount[]
     #everyPossibleComment_limit?: readonly NonNullable<PossibleLimitAmount_Comment>[]
     #everyPossibleName_limitType?: readonly PossibleEnglishName_LimitType[]
 
@@ -153,8 +154,13 @@ export class EveryTypes {
 
     #everyPossibleEnglishNameOnFile_mysteryMushroom?: readonly UniqueEnglishName_MysteryMushroom[]
     #everyPossibleConditionToUnlockIt_mysteryMushroom?: readonly PossibleConditionToUnlockIt_MysteryMushroom[]
-    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom
-    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom
+    #everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom[]
+    #everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom?: readonly PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom[]
+
+    #everyPossibleEnglishName_officialCourse?: readonly PossibleEnglishName_OfficialCourse[]
+    #everyPossibleReward_officialCourse?: readonly PossibleReward_OfficialCourse[]
+    #everyPossibleReleaseDate_officialCourse?: readonly PossibleReleaseDate_OfficialCourse[]
+    #everyPossibleRemovalDate_officialCourse?: readonly NonNullable<Exclude<PossibleRemovalDate_OfficialCourse, UnknownReference>>[]
 
     #everyPossibleNameWithAmount_officialNotification?: readonly PossibleNameWithEveryAmount_OfficialNotification[]
 
@@ -253,20 +259,20 @@ export class EveryTypes {
     }
 
 
-    public get everyPossibleGEL_entity() {
-        return this.#everyPossibleGEL_entity ??= ['Only when collected (30 frames)', 'As a group', 'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',]
+    public get everyPossibleGELComment_entity() {
+        return this.#everyPossibleGELComment_entity ??= ['Only when collected (30 frames)', 'As a group', 'Can overflow limit', 'Can overfill limit', 'Continue firing → GEL is max',]
     }
 
-    public get everyPossibleGELGlobal_entity() {
-        return this.#everyPossibleGELGlobal_entity ??= ['Not on track', 'While holding an entity',]
+    public get everyPossibleGELGlobalComment_entity() {
+        return this.#everyPossibleGELGlobalComment_entity ??= ['Not on track', 'While holding an entity',]
     }
 
-    public get everyPossiblePJL_entity() {
-        return this.#everyPossiblePJL_entity ??= ['Temporary as it comes out', 'Each one separated', 'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',]
+    public get everyPossiblePJLComment_entity() {
+        return this.#everyPossiblePJLComment_entity ??= ['Temporary as it comes out', 'Each one separated', 'Always reserve 1 projectile', 'By player, can overfill limit', 'Can only spawn (available) based → limits',]
     }
 
-    public get everyPossibleObjectRenderedLimit_entity() {
-        return this.#everyPossibleObjectRenderedLimit_entity ??= ['Only when not dotted', 'Only if not hit', 'Only if not hit?',]
+    public get everyPossibleObjectRenderedLimitComment_entity() {
+        return this.#everyPossibleObjectRenderedLimitComment_entity ??= ['Only when not dotted', 'Only if not hit', 'Only if not hit?',]
     }
 
     public get everyPossibleOtherLimitComment_entity() {
@@ -358,8 +364,8 @@ export class EveryTypes {
     public get everyPossibleAmount_smm2_limit() {
         return this.#everyPossibleAmount_smm2_limit ??= [
             1, 2, 3, 4, 5, 6, 7, 8,
-            10, '10?', 50,
-            100, 200, 300, 400, '400?', 483, 500, '500?', 999,
+            10, 50,
+            100, 200, 300, 400, 483, 500, 999,
             1500, 2000, 4000,
         ]
     }
@@ -436,7 +442,6 @@ export class EveryTypes {
 
     public get everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom() {
         return this.#everyPossibleSmallDefinition_soundEffectOnGoalPole_mysteryMushroom ??= [
-            UNKNOWN_REFERENCE,
             'Introduction', 'Startup', 'Game over',
             'Level finished', 'Level finished?', 'Race finished',
             'Airship completed', 'Timed event completed', 'Course completed',
@@ -451,7 +456,6 @@ export class EveryTypes {
 
     public get everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom() {
         return this.#everyPossibleSmallDefinition_soundEffectOnDeath_mysteryMushroom ??= [
-            UNKNOWN_REFERENCE,
             'Game over', 'Defeated', 'Error sound',
             'Boss defeated', 'Dog laughing',
             'Lost a life', 'Lost an Arwing', 'Falling offscreen',
@@ -463,6 +467,52 @@ export class EveryTypes {
     }
 
     //endregion -------------------- Mystery Mushroom --------------------
+    //region -------------------- Official course --------------------
+
+    public get everyPossibleEnglishName_officialCourse() {
+        return this.#everyPossibleEnglishName_officialCourse ??= OfficialCourses.CompanionEnum.get.values.map(it => it.englishName,).toArray()
+    }
+
+    public get everyPossibleReward_officialCourse() {
+        return this.#everyPossibleReward_officialCourse ??= [
+            'Dr. Kawashima', 'Undodog', 'Callie / Marie',
+            'Shaun the Sheep', 'Kitty White / Melody', 'Popo & Nana',
+            'BABYMETAL', 'Starfy', 'Yu Ayasaki',
+            'Toadette', 'Wolf Link', 'Mary O.',
+            'Statue Mario', 'Barbara the Bat', 'Chitoge Kirisaki',
+            'Bulbasaur / Charmander / Squirtle',
+            'Professor E. Gadd', 'Daisy', 'Yamamura',
+            'Bike', 'Sky Pop', 'Birdo',
+            'Captain Toad', 'Mr. Saturn', 'Master Belch',
+            'Arcade bunny', 'Felyne', 'GLA',
+            'Mario Trio', 'Frog Mario',
+            'Necky', 'Cat Mario', 'Cat Peach',
+            'SUPER MARIO KUN', 'Totem Link', 'Arino KACHO',
+        ]
+    }
+
+    public get everyPossibleReleaseDate_officialCourse() {
+        return this.#everyPossibleReleaseDate_officialCourse ??= [
+            '2017-10-27',
+            '2016-12-21',
+            '2016-11-25',
+            '2016-07-08',
+            '2016-06-03',
+            '2016-05-27', '2016-05-13',
+            '2016-04-08', '2016-04-01',
+            '2016-03-21', '2016-03-18', '2016-03-10', '2016-03-09', '2016-03-04', '2016-02-26',
+            '2016-02-19', '2016-02-12', '2016-02-05',
+            '2016-01-30', '2016-01-15', '2016-01-13', '2016-01-07',
+            '2015-12-31', '2015-12-25', '2015-12-19', '2015-12-18', '2015-12-16', '2015-12-10', '2015-12-03',
+            '2015-11-27', '2015-11-12', '2015-11-11', '2015-11-06', '2015-11-05',
+        ]
+    }
+
+    public get everyPossibleRemovalDate_officialCourse() {
+        return this.#everyPossibleRemovalDate_officialCourse ??= ['2016-02-22',]
+    }
+
+    //endregion -------------------- Official course --------------------
     //region -------------------- Official notification --------------------
 
     public get everyPossibleNameWithAmount_officialNotification() {
@@ -543,13 +593,6 @@ export class EveryTypes {
 
 type EveryPossibleName_EntityGroup = readonly string[]
 
-//region -------------------- Mystery Mushroom --------------------
-
-type EverySmallDefinition_SoundEffectOnGoalPole_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnGoalPole_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
-
-type EverySmallDefinition_SoundEffectOnDeath_MysteryMushroom = readonly (| Exclude<PossibleTranslationKey_SoundEffectOnDeath_MysteryMushroom, NullOr<UnknownReference>> | UnknownReference)[]
-
-//endregion -------------------- Mystery Mushroom --------------------
 //region -------------------- Official notification --------------------
 
 type PossibleNameWithEveryAmount_OfficialNotification = PossibleEnglishName_OfficialNotification | PossibleEnglishName_OfficialNotificationWithEveryAmount

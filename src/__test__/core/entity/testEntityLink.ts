@@ -17,10 +17,8 @@ export function testEntityLink(name: string, value: NullOrString,): void {
             expect(value).toBeOneOf(everyNamesWithThis,),)
         return
     }
-    describe(name, () => {// eslint-disable-line jest/valid-title
-        describe.each(value.split(ENTITY_LINK_SEPARATOR,),)('%s', it => {
+    describe(name, () => // eslint-disable-line jest/valid-title
+        describe.each(value.split(ENTITY_LINK_SEPARATOR,),)('%s', it =>
             test(it, () =>// eslint-disable-line jest/valid-title
-                expect(it).toBeOneOf(everyNamesWithThis,),)
-        },)
-    },)
+                expect(it).toBeOneOf(everyNamesWithThis,),),),)
 }

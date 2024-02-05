@@ -1,87 +1,89 @@
 import type {NSMBUPowerUpPriority, PowerUpPriority, SM3DWPowerUpPriority, SMB3PowerUpPriority, SMBPowerUpPriority, SMWPowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {GameStyles}                                                                                                               from 'core/gameStyle/GameStyles'
 import type {GameCollection}                                                                                                           from 'util/collection/GameCollection'
-import type {ReactProperties, SimpleReactPropertiesWithChildren}                                                                       from 'util/react/ReactProperties'
+import type {SimpleReactPropertiesWithChildren}                                                                                        from 'util/react/ReactProperties'
+
+//region -------------------- Priority types --------------------
+
+type NonPowerUpPriorityPropertiesBySingleGameStyle<T extends PowerUpPriority,> = readonly [
+    superStar: T,
+
+    lakituCloud: T,
+    clownCar: T,
+    fireClownCar: T,
+
+    buzzyShell: T,
+    spinyShell: T,
+
+    dryBonesShell: T,
+    shoeOrYoshi: T,
+    stilettoOrRedYoshi: T,
+]
+type NonPowerUpPriorityPropertiesBySingleGameStyleAndShoe<T extends PowerUpPriority,> = readonly [
+    superStar: T,
+
+    lakituCloud: T,
+    clownCar: T,
+    fireClownCar: T,
+
+    buzzyShell: T,
+    spinyShell: T,
+
+    dryBonesShell: T,
+    shoe: T,
+    stiletto: T,
+]
+type NonPowerUpPriorityPropertiesBySingleGameStyleAndYoshi<T extends PowerUpPriority,> = readonly [
+    superStar: T,
+
+    lakituCloud: T,
+    clownCar: T,
+    fireClownCar: T,
+
+    buzzyShell: T,
+    spinyShell: T,
+
+    dryBonesShell: T,
+    yoshi: T,
+    redYoshi: T,
+]
+
+//endregion -------------------- Priority types --------------------
 
 export interface NonPowerUpPriorityPropertiesBySingleGameStyleProperties<T extends PowerUpPriority, >
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<NonPowerUpPriorityPropertiesBySingleGameStyle<T>> {
 
     readonly games: GameCollection
-
-    readonly children: readonly [
-        superStar: T,
-
-        lakituCloud: T,
-        clownCar: T,
-        fireClownCar: T,
-
-        buzzyShell: T,
-        spinyShell: T,
-
-        dryBonesShell: T,
-        shoeOrYoshi: T,
-        stilettoOrRedYoshi: T,
-    ]
 
 }
 
 export interface NonPowerUpPriorityPropertiesBySingleGameStyleAndShoeProperties<T extends PowerUpPriority, >
-    extends NonPowerUpPriorityPropertiesBySingleGameStyleProperties<T> {
+    extends NonPowerUpPriorityPropertiesBySingleGameStyleProperties<T>,
+        SimpleReactPropertiesWithChildren<NonPowerUpPriorityPropertiesBySingleGameStyleAndShoe<T>> {
 
     readonly gameStyle: GameStyles
-
-    readonly children: readonly [
-        superStar: T,
-
-        lakituCloud: T,
-        clownCar: T,
-        fireClownCar: T,
-
-        buzzyShell: T,
-        spinyShell: T,
-
-        dryBonesShell: T,
-        shoe: T,
-        stiletto: T,
-    ]
 
 }
 
 export interface NonPowerUpPriorityPropertiesBySingleGameStyleAndYoshiProperties<T extends PowerUpPriority, >
-    extends NonPowerUpPriorityPropertiesBySingleGameStyleProperties<T> {
+    extends NonPowerUpPriorityPropertiesBySingleGameStyleProperties<T>,
+        SimpleReactPropertiesWithChildren<NonPowerUpPriorityPropertiesBySingleGameStyleAndYoshi<T>> {
 
     readonly gameStyle: GameStyles
-
-    readonly children: readonly [
-        superStar: T,
-
-        lakituCloud: T,
-        clownCar: T,
-        fireClownCar: T,
-
-        buzzyShell: T,
-        spinyShell: T,
-
-        dryBonesShell: T,
-        yoshi: T,
-        redYoshi: T,
-    ]
 
 }
 
 export interface SimplePowerUpPriorityBySingleGameStyleProperties<T extends PowerUpPriority, >
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<readonly [superMushroom: T, fireFlower: T, specialPowerUp1: T, specialPowerUp2: T,]> {
 
-    games: GameCollection
-
-    readonly children: readonly [superMushroom: T, fireFlower: T, specialPowerUp1: T, specialPowerUp2: T,]
+    readonly games: GameCollection
 
 }
 
 export interface PropertiesWithGames<T extends readonly PowerUpPriority[], >
     extends SimpleReactPropertiesWithChildren<T> {
 
-    games: GameCollection
+    readonly games: GameCollection
 
 }
 

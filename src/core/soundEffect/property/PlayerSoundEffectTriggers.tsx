@@ -11,7 +11,6 @@ import Image                            from 'app/tools/images/Image'
 import TextComponent                    from 'app/tools/text/TextComponent'
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
-import {assert}                         from 'util/utilitiesMethods'
 import {CompanionEnumByTranslationKey}  from 'util/enumerable/companion/CompanionEnumByTranslationKey'
 
 //region -------------------- Import from deconstruction --------------------
@@ -320,47 +319,6 @@ export class PlayerSoundEffectTriggers
     }
 
     //endregion -------------------- Component methods --------------------
-
-    /**
-     * Return only one possible instance based on the boolean received.
-     * It cannot receive any dual true since only the first boolean will be considered.
-     *
-     * Note that only the arguments (<b>onDamageTaken</b> & <b>whenLosingALife</b>) can be both true.
-     *
-     * @param onJumpAfterLanding
-     * @param onTurnAroundAfterBeingAtFullSpeed
-     * @param onCrouch
-     * @param after3SecondsOfNonMovementRepeatedly
-     * @param onPowerUpCollected
-     * @param whenGettingIntoAEntity
-     * @param atSpawn
-     * @param onDamageTaken
-     * @param whenLosingALife
-     */
-    public static getValueByTrigger(onJumpAfterLanding: boolean, onTurnAroundAfterBeingAtFullSpeed: boolean, onCrouch: boolean, after3SecondsOfNonMovementRepeatedly: boolean, onPowerUpCollected: boolean, whenGettingIntoAEntity: boolean, atSpawn: boolean, onDamageTaken: boolean, whenLosingALife: boolean,): PlayerSoundEffectTriggers {
-        if (onJumpAfterLanding)
-            return this.JUMP_AFTER_LANDING
-        if (onTurnAroundAfterBeingAtFullSpeed)
-            return this.TURN_AROUND_AFTER_BEING_AT_FULL_SPEED
-        if (onCrouch)
-            return this.ON_CROUCH
-        if (after3SecondsOfNonMovementRepeatedly)
-            return this.AFTER_3_SECONDS_OF_NON_MOVEMENT
-
-        if (onPowerUpCollected)
-            return this.COLLECT_POWER_UP
-        if (whenGettingIntoAEntity)
-            return this.GET_INTO_AN_ENTITY
-
-        if (atSpawn)
-            return this.AT_SPAWN
-        if (onDamageTaken)
-            return whenLosingALife ? this.TAKE_DAMAGE_OR_LOSE_A_LIFE : this.TAKE_DAMAGE
-        if (whenLosingALife)
-            return this.LOSE_A_LIFE
-
-        assert(false, 'There is no player sound effect trigger usable with no possible property.',)
-    }
 
     //endregion -------------------- Methods --------------------
 

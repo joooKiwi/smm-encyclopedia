@@ -1,7 +1,8 @@
-import {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
-import {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
-import {EntityBehaviourLink}                      from 'core/behaviour/properties/EntityBehaviourLink'
-import {EntityBehaviourIsInOnly}                  from 'core/behaviour/properties/EntityBehaviourIsInOnly'
+import type {Lazy} from '@joookiwi/lazy'
+
+import type {EntityBehaviour, PossibleGroup}           from 'core/behaviour/EntityBehaviour'
+import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
+import type {Entity}                                   from 'core/entity/Entity'
 
 export class EntityBehaviourContainer
     implements EntityBehaviour {
@@ -10,18 +11,28 @@ export class EntityBehaviourContainer
 
     readonly #acronym
     readonly #translationKey
-    readonly #isInOnlyContainer
-    readonly #linkContainer
+    readonly #isOnlineOnly
+    readonly #isMultiplayerOnly
+    readonly #groupLink
+    readonly #entityLink
 
     //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
 
-    public constructor(acronym: PossibleAcronym, translationKey: PossibleTranslationKeys, isInOnly: EntityBehaviourIsInOnly, link: EntityBehaviourLink,) {
+    public constructor(acronym: PossibleAcronym,
+                       translationKey: PossibleTranslationKeys,
+                       isOnlineOnly: boolean, isMultiplayerOnly: boolean,
+                       groupLink: Lazy<PossibleGroup>, entityLink: Lazy<NullOr<Entity>>,) {
         this.#acronym = acronym
         this.#translationKey = translationKey
-        this.#isInOnlyContainer = isInOnly
-        this.#linkContainer = link
+        this.#isOnlineOnly = isOnlineOnly
+        this.#isMultiplayerOnly = isMultiplayerOnly
+        this.#groupLink = groupLink
+        this.#entityLink = entityLink
     }
 
+    //endregion -------------------- Constructor --------------------
+    //region -------------------- Getter methods --------------------
 
     public get acronym(): PossibleAcronym {
         return this.#acronym
@@ -31,35 +42,24 @@ export class EntityBehaviourContainer
         return this.#translationKey
     }
 
-    //region -------------------- Is in only --------------------
-
-    public get isInOnlyContainer() {
-        return this.#isInOnlyContainer
-    }
 
     public get isOnlineOnly() {
-        return this.isInOnlyContainer.isOnlineOnly
+        return this.#isOnlineOnly
     }
 
     public get isMultiplayerOnly() {
-        return this.isInOnlyContainer.isMultiplayerOnly
+        return this.#isMultiplayerOnly
     }
 
-    //endregion -------------------- Is in only --------------------
-    //region -------------------- Links --------------------
-
-    public get linkContainer() {
-        return this.#linkContainer
-    }
 
     public get groupLink() {
-        return this.linkContainer.groupLink
+        return this.#groupLink.value
     }
 
     public get entityLink() {
-        return this.linkContainer.entityLink
+        return this.#entityLink.value
     }
 
-    //endregion -------------------- Links --------------------
+    //endregion -------------------- Getter methods --------------------
 
 }

@@ -5,10 +5,10 @@ export interface ImageFromVariableProperties
     extends ReactProperties, HTMLIProperties {
 
     /** Any variable from the css variables */
-    variable: PossibleVariableImage
+    readonly variable: PossibleVariableImage
 
     /** Define if the height is equivalent to the width */
-    isSquared?: boolean
+    readonly isSquared?: boolean
 
 }
 

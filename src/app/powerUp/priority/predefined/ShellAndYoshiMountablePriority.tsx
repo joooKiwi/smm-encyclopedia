@@ -1,29 +1,28 @@
 import type {ImagesCallbackByPriority, PowerUpPriority} from 'app/powerUp/priority/PowerUpPriority'
 import type {GameStyles}                                from 'core/gameStyle/GameStyles'
 import type {GameCollection}                            from 'util/collection/GameCollection'
-import type {ReactProperties}                           from 'util/react/ReactProperties'
+import type {SimpleReactPropertiesWithChildren}         from 'util/react/ReactProperties'
 
 import GroupOf4PowerUpPriority  from 'app/powerUp/group/GroupOf4PowerUpPriority'
 import GroupOf5PowerUpPriority  from 'app/powerUp/group/GroupOf5PowerUpPriority'
 import PowerUpPriorityComponent from 'app/powerUp/priority/PowerUpPriority.component'
 
+type ShellAndYoshiMountablePriorities<T extends PowerUpPriority, > = readonly [
+    buzzyShell: T,
+    spinyShell: T,
+
+    dryBonesShell: T,
+    yoshi: T,
+    redYoshi: T,
+]
 interface ShellAndYoshiMountablePriorityProperties<T extends PowerUpPriority, >
-    extends ReactProperties {
+    extends SimpleReactPropertiesWithChildren<ShellAndYoshiMountablePriorities<T>> {
 
     readonly games: GameCollection
 
     readonly gameStyle: GameStyles
 
     readonly images: ImagesCallbackByPriority<T>
-
-    children: readonly [
-        buzzyShell: T,
-        spinyShell: T,
-
-        dryBonesShell: T,
-        yoshi: T,
-        redYoshi: T,
-    ]
 
 }
 

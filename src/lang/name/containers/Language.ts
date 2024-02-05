@@ -9,7 +9,5 @@ export type CanadianOrEuropeanArray<T, > = readonly [canadian: T, european: T,]
 export type ChineseOriginal<T, > = | T | ChineseArray<T>
 export type ChineseArray<T, > = readonly [simplified: T, traditional: T,]
 
-export interface Language<T, S extends T = T, A extends readonly T[] = EmptyArray, >
-    extends EmptyableLanguage<T, S, A, never, never, never> {
-
-}
+export interface Language<out T, out S extends T = T, out A extends readonly T[] = EmptyArray, >
+    extends EmptyableLanguage<T, S, A, never, never, never> {}

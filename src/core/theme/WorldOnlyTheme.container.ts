@@ -1,3 +1,4 @@
+import type {Games}      from 'core/game/Games'
 import type {WorldTheme} from 'core/theme/WorldTheme'
 import type {Name}       from 'lang/name/Name'
 
@@ -11,7 +12,7 @@ export class WorldOnlyThemeContainer
         super(name, EmptyCourseTheme.get, worldTheme,)
     }
 
-    //region -------------------- Theme properties --------------------
+    //region -------------------- Getter methods --------------------
 
     public override get isInCourseTheme(): false {
         return false
@@ -22,20 +23,39 @@ export class WorldOnlyThemeContainer
         return true
     }
 
-    //endregion -------------------- Theme properties --------------------
-    //region -------------------- Game properties --------------------
 
-    public override get isInProperty() {
-        return this.worldTheme.isInProperty
+    public override get isInSuperMarioMaker1() {
+        return this.worldTheme.isInSuperMarioMaker1
     }
 
-    //endregion -------------------- Game properties --------------------
-    //region -------------------- "Is available from the start" properties --------------------
-
-    public override get isAvailableFromTheStartContainer() {
-        return this.worldTheme.isAvailableFromTheStartContainer
+    public override get isInSuperMarioMakerFor3DS() {
+        return this.worldTheme.isInSuperMarioMakerFor3DS
     }
 
-    //endregion -------------------- "Is available from the start" properties --------------------
+    public override get isInSuperMarioMaker2() {
+        return this.worldTheme.isInSuperMarioMaker2
+    }
+
+
+    public override get isAvailableFromTheStartInSMM1() {
+        return this.worldTheme.isAvailableFromTheStartInSMM1
+    }
+
+    public override get isAvailableFromTheStartInSMM3DS() {
+        return this.worldTheme.isAvailableFromTheStartInSMM3DS
+    }
+
+    public override get isAvailableFromTheStartInSMM2() {
+        return this.worldTheme.isAvailableFromTheStartInSMM2
+    }
+
+    //endregion -------------------- Getter methods --------------------
+    //region -------------------- Convertor methods --------------------
+
+    public toGameMap(): ReadonlyMap<Games, boolean> {
+        return this.worldTheme.toGameMap()
+    }
+
+    //endregion -------------------- Convertor methods --------------------
 
 }

@@ -20,7 +20,7 @@ import {EMPTY_ARRAY}                    from 'util/emptyVariables'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
 
-export class Themes
+export abstract class Themes
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CourseAndWorldTheme>,
         ClassWithEnglishName<PossibleEnglishName>,
@@ -31,7 +31,7 @@ export class Themes
 
     public static readonly GROUND =      new class Themes_Ground extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
+        public override get(property: ThemeProperty,) {
             return property.isInGroundTheme
         }
 
@@ -42,7 +42,7 @@ export class Themes
     }('Ground', 'plain',)
     public static readonly UNDERGROUND = new class Themes_Underground extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
+        public override get(property: ThemeProperty,) {
             return property.isInUndergroundTheme
         }
 
@@ -53,7 +53,7 @@ export class Themes
     }('Underground', 'underground',)
     public static readonly UNDERWATER =  new class Themes_Underwater extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
+        public override get(property: ThemeProperty,) {
             return property.isInUnderwaterTheme
         }
 
@@ -64,8 +64,8 @@ export class Themes
     }('Underwater', 'water',)
     public static readonly DESERT =      new class Themes_Desert extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
-            return property.isInDesertTheme
+        public override get(property: ThemeProperty,) {
+            return property.isInDesertTheme === true
         }
 
         public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInDesertTheme'] {
@@ -75,8 +75,8 @@ export class Themes
     }('Desert', 'desert',)
     public static readonly SNOW =        new class Themes_Snow extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
-            return property.isInSnowTheme
+        public override get(property: ThemeProperty,) {
+            return property.isInSnowTheme === true
         }
 
         public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSnowTheme'] {
@@ -86,8 +86,8 @@ export class Themes
     }('Snow', 'snow',)
     public static readonly SKY =         new class Themes_Sky extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
-            return property.isInSkyTheme
+        public override get(property: ThemeProperty,) {
+            return property.isInSkyTheme === true
         }
 
         public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSkyTheme'] {
@@ -97,8 +97,8 @@ export class Themes
     }('Sky', 'athletic',)
     public static readonly FOREST =      new class Themes_Forest extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
-            return property.isInForestTheme
+        public override get(property: ThemeProperty,) {
+            return property.isInForestTheme === true
         }
 
         public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInForestTheme'] {
@@ -108,7 +108,7 @@ export class Themes
     }('Forest', 'woods',)
     public static readonly GHOST_HOUSE = new class Themes_GhostHouse extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
+        public override get(property: ThemeProperty,) {
             return property.isInGhostHouseTheme
         }
 
@@ -119,7 +119,7 @@ export class Themes
     }('Ghost House', 'hauntedhouse',)
     public static readonly AIRSHIP =     new class Themes_Airship extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
+        public override get(property: ThemeProperty,) {
             return property.isInAirshipTheme
         }
 
@@ -130,7 +130,7 @@ export class Themes
     }('Airship', 'airship',)
     public static readonly CASTLE =      new class Themes_Castle extends Themes {
 
-        protected override _get(property: ThemeProperty,) {
+        public override get(property: ThemeProperty,) {
             return property.isInCastleTheme
         }
 
@@ -142,12 +142,20 @@ export class Themes
 
     public static readonly VOLCANO =     new class Themes_Volcano extends Themes {
 
+        public override get(property: ThemeProperty,) {
+            return false
+        }
+
         public override get endlessMarioImageFile() {
             return null
         }
 
     }('Volcano', 'magma',)
     public static readonly SPACE =       new class Themes_Space extends Themes   {
+
+        public override get(property: ThemeProperty,) {
+            return false
+        }
 
         public override get endlessMarioImageFile() {
             return null
@@ -253,13 +261,7 @@ export class Themes
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    protected _get(property: ThemeProperty,): NullOrBoolean {
-        return false
-    }
-
-    public get(property: ThemeProperty,): boolean {
-        return this._get(property) ?? false
-    }
+    public abstract get(property: ThemeProperty,): boolean
 
     public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
         return EMPTY_ARRAY

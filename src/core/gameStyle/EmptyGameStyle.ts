@@ -1,11 +1,9 @@
 import type {GameStyle}                                      from 'core/gameStyle/GameStyle'
 import type {ClassWithNullObjectPattern, EmptyGameStyleName} from 'util/ClassWithNullObjectPattern'
 
-import {ClassThatIsAvailableFromTheStartProvider} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
-import {EmptyIsInProperty}                        from 'core/entity/properties/EmptyIsInProperty'
-import {ClassContainingAName}                     from 'lang/name/ClassContainingAName'
-import {EmptyStringName}                          from 'lang/name/EmptyStringName'
-import {EMPTY_ARRAY, EMPTY_MAP}                   from 'util/emptyVariables'
+import {ClassContainingAName}   from 'lang/name/ClassContainingAName'
+import {EmptyStringName}        from 'lang/name/EmptyStringName'
+import {EMPTY_ARRAY, EMPTY_MAP} from 'util/emptyVariables'
 
 /** @singleton */
 export class EmptyGameStyle
@@ -27,24 +25,15 @@ export class EmptyGameStyle
     //endregion -------------------- Singleton usage --------------------
     //region -------------------- Getter methods --------------------
 
-    //region -------------------- Game properties --------------------
+    public readonly isInSuperMarioMaker1 = false
+    public readonly isInSuperMarioMakerFor3DS = false
+    public readonly isInSuperMarioMaker2 = false
 
-    public readonly isInProperty = EmptyIsInProperty.get
 
-    public readonly isInSuperMarioMaker1 = this.isInProperty.isInSuperMarioMaker1
-    public readonly isInSuperMarioMakerFor3DS = this.isInProperty.isInSuperMarioMakerFor3DS
-    public readonly isInSuperMarioMaker2 = this.isInProperty.isInSuperMarioMaker2
+    public readonly isAvailableFromTheStartInSMM1 = null
+    public readonly isAvailableFromTheStartInSMM3DS = null
+    public readonly isAvailableFromTheStartInSMM2 = null
 
-    //endregion -------------------- Game properties --------------------
-    //region -------------------- "Is available from the start" properties --------------------
-
-    public readonly isAvailableFromTheStartContainer = ClassThatIsAvailableFromTheStartProvider.get.null
-
-    public readonly isAvailableFromTheStartInSMM1 = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM1
-    public readonly isAvailableFromTheStartInSMM3DS = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM3DS
-    public readonly isAvailableFromTheStartInSMM2 = this.isAvailableFromTheStartContainer.isAvailableFromTheStartInSMM2
-
-    //endregion -------------------- "Is available from the start" properties --------------------
 
     public readonly entities = EMPTY_ARRAY
 

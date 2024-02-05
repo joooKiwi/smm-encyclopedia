@@ -4,7 +4,8 @@ import type {Builder}                                                           
 import {SimpleNameContainer} from 'lang/name/SimpleName.container'
 import {assert}              from 'util/utilitiesMethods'
 
-export class SimpleNameBuilder<T extends NonNullable<unknown>, >
+/** @deprecated Use the class directly or a child name instead */
+export class SimpleNameBuilder<const out T extends NonNullable<unknown>, >
     implements Builder<SimpleNameContainer<T>> {
 
     //region -------------------- Fields --------------------

@@ -4,9 +4,9 @@ import type {ReactProperties}       from 'util/react/ReactProperties'
 export interface BooleanResultTextProperties
     extends ReactProperties, Omit<BooleanTextProperties, `${boolean}`> {
 
-    true: BooleanValue
+    readonly true: BooleanValue
 
-    false: BooleanValue
+    readonly false: BooleanValue
 
 }
 

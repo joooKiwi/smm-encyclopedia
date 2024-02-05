@@ -80,7 +80,7 @@ export abstract class LimitAppOption
             if (limitAmountInSMM1AndSMM3DS === limitAmountInSMM2)
                 return <TextComponent key={`${englishName} - text component`} content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
 
-            return <span className="space-pre">
+            return <span key={`Amount in all games (${englishName})`} className="space-pre">
                 {LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS.renderContent(enumeration,)}
                 {ProjectLanguages.current.space}{ProjectLanguages.current.slash}{ProjectLanguages.current.space}
                 {LimitAppOption.AMOUNT_IN_SMM2.renderContent(enumeration,)}

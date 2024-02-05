@@ -14,13 +14,27 @@ import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 /** @reactComponent */
 export default function GameStyleGroup() {
     const selected = GameStyles.CompanionEnum.get.selected
+    const isSmm2Selected = Games.SUPER_MARIO_MAKER_2.isSelected
 
-    return <div key="option container (Game styles)" id="gameStyles-option-container" className="btn-group" role="group">
-        <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS} selected={selected}/>
-        <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS_3} selected={selected}/>
-        <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_WORLD} selected={selected}/>
-        <GameStyleLink gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U} selected={selected}/>
-        <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_3D_WORLD} selected={selected} disabled={!Games.SUPER_MARIO_MAKER_2.isSelected}/>
+    return <div key="option container (Game styles)" id="gameStyles-option-container">
+        <div className="btn-group-vertical d-lg-none">
+            <div className="btn-group" role="group">
+                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS} selected={selected}/>
+                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS_3} selected={selected}/>
+                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_WORLD} selected={selected}/>
+            </div>
+            <div className="btn-group" role="group">
+                <GameStyleLink gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U} selected={selected}/>
+                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_3D_WORLD} selected={selected} disabled={!isSmm2Selected}/>
+            </div>
+        </div>
+        <div className="btn-group d-none d-lg-inline-flex" role="group">
+            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS} selected={selected}/>
+            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS_3} selected={selected}/>
+            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_WORLD} selected={selected}/>
+            <GameStyleLink gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U} selected={selected}/>
+            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_3D_WORLD} selected={selected} disabled={!isSmm2Selected}/>
+        </div>
     </div>
 }
 

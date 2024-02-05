@@ -9,31 +9,31 @@ import type {HTMLSpanProperties} from 'util/react/html/HTMLSpanProperties'
 export interface NameProperties
     extends ReactProperties, Omit<HTMLSpanProperties, | 'key' | 'id' | 'name'> {
 
-    popoverOrientation?: PopoverOrientation
+    readonly popoverOrientation?: PopoverOrientation
 
-    id: string
+    readonly id: string
 
-    name: Name<string>
+    readonly name: Name<string>
 
 }
 
 export interface NamePopoverProperties
     extends ReactProperties {
 
-    id: string
+    readonly id: string
 
-    listId: string
+    readonly listId: string
 
-    setDoesDisplayPopover: Dispatch<SetStateAction<boolean>>
+    readonly setDoesDisplayPopover: Dispatch<SetStateAction<boolean>>
 
-    otherProperties: Omit<NameProperties, 'id'>
+    readonly otherProperties: Omit<NameProperties, 'id'>
 
 }
 
 export interface NamePopoverStates
     extends ReactState {
 
-    element: NonNullable<ReactElement>
+    readonly element: NonNullable<ReactElement>
 
 }
 
@@ -41,15 +41,15 @@ export interface NameListProperties
     extends ReactProperties {
 
     /** The key applicable to every component */
-    id: string
+    readonly id: string
 
     /** The container ID */
-    listId: string
+    readonly listId: string
 
     /** The class having a {@link Name} to retrieve its languages values */
-    name: Name<string>
+    readonly name: Name<string>
 
     /** The popover is displayed */
-    doesDisplayPopover: boolean
+    readonly doesDisplayPopover: boolean
 
 }

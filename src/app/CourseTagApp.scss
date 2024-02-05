@@ -35,7 +35,7 @@
 //endregion  -------------------- Link buttons --------------------
 
 @include media-breakpoint-up($grid-breakpoint-md) {
-  #courseTag-container > p {
+  #courseTag-app-container > p {
     margin-top: 1.75cm;
   }
 }

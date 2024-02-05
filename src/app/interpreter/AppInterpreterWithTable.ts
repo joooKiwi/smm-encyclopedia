@@ -5,10 +5,9 @@ import type {Content}                    from 'app/interpreter/AppInterpreter'
 import type {SingleHeaderContent}        from 'app/tools/table/SimpleHeader'
 
 /**
- * An application interpreter when using {@link AbstractTableApp}
- * to encapsulate a {@link HTMLTableElement table-like element}
+ * An application interpreter when using a {@link ViewDisplays.TABLE} as the visual represented
  *
- * @todo Change The requirement of the "Content" to not use the english name as a requirement
+ * @todo Change The requirement of the "Content" to not use the english name
  */
 export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
     out OPTION extends Enumerable = Enumerable<any, any>, >

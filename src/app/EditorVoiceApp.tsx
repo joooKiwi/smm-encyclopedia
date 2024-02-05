@@ -1,75 +1,82 @@
-import {AbstractCardListApp} from 'app/withInterpreter/AbstractCardListApp'
-
 import type {EditorVoiceProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
+import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {GameCollection}             from 'util/collection/GameCollection'
 
+import SubMainContainer          from 'app/_SubMainContainer'
+import CardList                  from 'app/withInterpreter/CardList'
+import SimpleList                from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
 import {EditorVoices}            from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
 import {gameContentTranslation}  from 'lang/components/translationMethods'
-import {filterGame}              from 'util/utilitiesMethods'
+import {assert, filterGame}      from 'util/utilitiesMethods'
 
-export default class EditorVoiceApp
-    extends AbstractCardListApp<EditorVoices, AppInterpreterWithCardList<EditorVoices>, EditorVoiceProperties> {
+class EditorVoiceAppInterpreter
+    implements AppInterpreterWithCardList<EditorVoices> {
 
-    //region -------------------- Create methods --------------------
+    //region -------------------- Fields --------------------
 
-    protected override _createKey(): string {
-        return 'editorVoice'
+    readonly #games
+
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(games: GameCollection,) {
+        this.#games = games
     }
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everyEditorVoice (list)'
+    //endregion -------------------- Constructor --------------------
+
+    public get content() {
+        return filterGame(EditorVoices.CompanionEnum.get.values, this.#games,)
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everyEditorVoice (card)'
+    //region -------------------- List interpreter --------------------
+
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 1,
+            small: 3,
+            medium: 4,
+            large: 6,
+        }
     }
 
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
 
-    protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('editor voice.all')
+    public createCardListDimension() {
+        return this.createListDimension()
     }
 
-    protected override _createAppOptionInterpreter() {
-        const $this = this
-
-        return new class EditorVoiceAppInterpreter implements AppInterpreterWithCardList<EditorVoices> {
-
-            public get content() {
-                return filterGame(EditorVoices.CompanionEnum.get.values, $this.props.games,)
-            }
-
-            //region -------------------- List interpreter --------------------
-
-            public createListDimension(): DimensionOnList {
-                return {
-                    default: 1,
-                    small: 3,
-                    medium: 4,
-                    large: 6,
-                }
-            }
-
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent({englishName: name, editorVoiceSoundFileHolder,}: EditorVoices,) {
-                return <div className="editorVoices-container">
-                    <EditorVoiceSoundComponent editorVoiceSound={editorVoiceSoundFileHolder} name={name}/>
-                </div>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-
-        }()
+    public createCardListContent(enumerable: EditorVoices,) {
+        return <div className="editorVoices-container">
+            <EditorVoiceSoundComponent editorVoiceSound={enumerable.editorVoiceSoundFileHolder} name={enumerable.englishName}/>
+        </div>
     }
 
-    //endregion -------------------- Create methods --------------------
+    //endregion -------------------- Card list interpreter --------------------
 
+}
+
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everyEditorVoice (list)',],
+    [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = gameContentTranslation('editor voice.all',)
+
+/** @reactComponent */
+export default function EditorVoiceApp({viewDisplay, games,}: EditorVoiceProperties,) {
+    assert(viewDisplay !== ViewDisplays.TABLE, 'The EditorVoiceApp only handle the "simple list" or "card list" as a possible view display.',)
+    const appInterpreter = new EditorVoiceAppInterpreter(games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
+    </SubMainContainer>
 }

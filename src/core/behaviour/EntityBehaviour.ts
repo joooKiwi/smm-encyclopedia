@@ -1,35 +1,26 @@
 import type {ClassWithAcronym}                         from 'core/ClassWithAcronym'
 import type {ClassWithTranslationKey}                  from 'lang/ClassWithTranslationKey'
 import type {PossibleAcronym, PossibleTranslationKeys} from 'core/behaviour/EntityBehaviours.types'
-import type {EntityBehaviourIsInOnly}                  from 'core/behaviour/properties/EntityBehaviourIsInOnly'
-import type {EntityBehaviourLink}                      from 'core/behaviour/properties/EntityBehaviourLink'
+import type {Entity}                                   from 'core/entity/Entity'
 
 export interface EntityBehaviour
-    extends EntityBehaviourIsInOnly, EntityBehaviourLink,
-        ClassWithTranslationKey<PossibleTranslationKeys>, ClassWithAcronym<PossibleAcronym> {
-
-    get acronym(): PossibleAcronym
-
-    get translationKey(): PossibleTranslationKeys
+    extends ClassWithTranslationKey<PossibleTranslationKeys>, ClassWithAcronym<PossibleAcronym> {
 
     //region -------------------- Is in only --------------------
 
-    get isInOnlyContainer(): EntityBehaviourIsInOnly
+    get isOnlineOnly(): boolean
 
-    get isOnlineOnly(): this['isInOnlyContainer']['isOnlineOnly']
-
-    get isMultiplayerOnly(): this['isInOnlyContainer']['isMultiplayerOnly']
+    get isMultiplayerOnly(): boolean
 
     //endregion -------------------- Is in only --------------------
     //region -------------------- Links --------------------
 
-    get linkContainer(): EntityBehaviourLink
+    get groupLink(): PossibleGroup
 
-    get groupLink(): this['linkContainer']['groupLink']
-
-    get entityLink(): this['linkContainer']['entityLink']
+    get entityLink(): NullOr<Entity>
 
     //endregion -------------------- Links --------------------
 
-
 }
+
+export type PossibleGroup = NullOr<object>//TODO once there is group, replace the occurrences with NullOr<EntityGroup>

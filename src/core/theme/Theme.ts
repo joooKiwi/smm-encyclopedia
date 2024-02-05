@@ -4,10 +4,4 @@ import type {NameTrait}                        from 'lang/name/NameTrait'
 
 export interface Theme
     extends NameTrait<string>/*, ClassWithEnglishName<PossibleTheme>*/, GameProperty,
-        ClassThatIsAvailableFromTheStart {
-
-    get isInProperty(): GameProperty
-
-    get isAvailableFromTheStartContainer(): ClassThatIsAvailableFromTheStart
-
-}
+        ClassThatIsAvailableFromTheStart<NullOrBoolean, NullOrTrue, NullOrTrue> {}

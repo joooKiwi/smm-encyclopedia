@@ -11,7 +11,10 @@ import {CommonOptions}                from 'app/options/CommonOptions'
 import Image                          from 'app/tools/images/Image'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent      from 'core/editorVoice/EditorVoiceSound.component'
-import InstrumentPropertyComponent    from 'core/entity/properties/instrument/InstrumentProperty.component'
+import CanBeInAParachute              from 'core/entity/properties/component/CanBeInAParachute'
+import CanHaveWings                   from 'core/entity/properties/component/CanHaveWings'
+import CanMakeASoundOutOfAMusicBlock  from 'core/entity/properties/component/CanMakeASoundOutOfAMusicBlock'
+import HasAMushroomVariant            from 'core/entity/properties/component/HasAMushroomVariant'
 import {EntityCategories}             from 'core/entityCategory/EntityCategories'
 import GameComponent                  from 'core/game/Game.component'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
@@ -145,9 +148,14 @@ export class EntityAppOption
 
         protected override _createContentOption(enumeration: Entities,) {
             return <div className="nameAndEditorVoiceSound-container container">
-                {CommonOptions.get.getNameContent(enumeration)}
-                <div className="properties">
-                    <InstrumentPropertyComponent value={enumeration}/>
+                <div className="nameAndEditorVoiceSound-nameAndProperties-container">
+                    <div className="properties">
+                        <HasAMushroomVariant value={enumeration}/>
+                        <CanBeInAParachute value={enumeration}/>
+                        <CanHaveWings value={enumeration}/>
+                        <CanMakeASoundOutOfAMusicBlock value={enumeration}/>
+                    </div>
+                    {CommonOptions.get.getNameContent(enumeration)}
                 </div>
                 <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
             </div>

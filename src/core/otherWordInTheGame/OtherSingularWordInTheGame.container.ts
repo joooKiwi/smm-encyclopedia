@@ -1,4 +1,3 @@
-import type {GameProperty}               from 'core/entity/properties/game/GameProperty'
 import type {OtherPluralWordInTheGame}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
 import type {OtherSingularWordInTheGame} from 'core/otherWordInTheGame/OtherSingularWordInTheGame'
 import type {Name}                       from 'lang/name/Name'
@@ -9,25 +8,15 @@ export class OtherSingularWordInTheGameContainer
     extends AbstractOtherWordInTheGame
     implements OtherSingularWordInTheGame {
 
-    //region -------------------- Fields --------------------
-
     readonly #pluralForm
 
-    //endregion -------------------- Fields --------------------
-    //region -------------------- Constructor --------------------
-
-    public constructor(name: Name<string>, isInProperty: GameProperty, pluralForm: NullOr<OtherPluralWordInTheGame>,) {
-        super(name, isInProperty,)
+    public constructor(name: Name<string>, isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean, pluralForm: NullOr<OtherPluralWordInTheGame>,) {
+        super(name, isInSuperMarioMaker1, isInSuperMarioMakerFor3DS, isInSuperMarioMaker2,)
         this.#pluralForm = pluralForm
     }
-
-    //endregion -------------------- Constructor --------------------
-    //region -------------------- Getter methods --------------------
 
     public override get pluralForm(): NullOr<OtherPluralWordInTheGame> {
         return this.#pluralForm
     }
-
-    //endregion -------------------- Getter methods --------------------
 
 }

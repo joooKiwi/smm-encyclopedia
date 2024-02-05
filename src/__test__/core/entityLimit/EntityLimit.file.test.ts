@@ -12,8 +12,8 @@ describe('Limit (file test)', () => {
     const everyAcronyms = [null, ...types.everyPossibleAcronym_limit,] as const
     const everyAlternativeAcronyms = [null, ...types.everyPossibleAlternativeAcronym_limit,] as const
     const everyTypes = types.everyPossibleName_limitType
-    const everyLimitInSMM1And3DS = [null, UNKNOWN_CHARACTER, NOT_APPLICABLE, ...types.everyPossibleAmount_smm1And3ds_limit,] as const
-    const everyLimitInSMM2 = [null, UNKNOWN_CHARACTER, ...types.everyPossibleAmount_smm2_limit,] as const
+    const everyLimitInSMM1And3DS = [null, NOT_APPLICABLE, ...types.everyPossibleAmount_smm1And3ds_limit,] as const
+    const everyLimitInSMM2 = [null, ...types.everyPossibleAmount_smm2_limit,] as const
     const everyComment = [null, ...types.everyPossibleComment_limit,] as const
 
     file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
@@ -23,26 +23,38 @@ describe('Limit (file test)', () => {
 
         describe('Type validations', () => {
             if (isAlternativeLimit) {
-                test('Alternative', () => expect(it.alternative).toBeNull())
+                test('Alternative', () => expect(it.alternative,).toBeNull(),)
 
-                test('Type', () => expect(it.type).toBeNull())
-                test('Acronym', () => expect(it.acronym).toBeOneOf(everyAlternativeAcronyms))
+                test('Type', () => expect(it.type,).toBeNull(),)
+                test('Acronym', () => expect(it.acronym,).toBeOneOf(everyAlternativeAcronyms,),)
 
-                test('Limit in SMM & SMM3DS', () => expect(it.limit_SMM1And3DS).toBeNull())
-                test('Limit in SMM2', () => expect(it.limit_SMM2).toBeNull())
-                test('Limit comment', () => expect(it.limit_comment).toBeNull())
+                describe('Limit in SMM & SMM3DW', () => {
+                    test('value', () => expect(it.limit_SMM1And3DS,).toBeNull(),)
+                    test('isUnknown', () => expect(it.limit_SMM1And3DS_isUnknown,).toBeNull(),)
+                },)
+                describe('Limit in SMM2', () => {
+                    test('value', () => expect(it.limit_SMM2,).toBeNull(),)
+                    test('isUnknown', () => expect(it.limit_SMM2_isUnknown,).toBeNull(),)
+                },)
+                test('Limit comment', () => expect(it.limit_comment,).toBeNull(),)
 
                 testOnlyEnglish(it, everyAlternativeNames,)
             } else {
                 /* eslint-disable jest/no-identical-title */
-                test('Alternative', () => expect(it.alternative).toBeOneOf(everyAlternativeNamesOrNull,))
+                test('Alternative', () => expect(it.alternative,).toBeOneOf(everyAlternativeNamesOrNull,),)
 
-                test('Type', () => expect(it.type).toBeOneOf(everyTypes))
-                test('Acronym', () => expect(it.acronym).toBeOneOf(everyAcronyms))
+                test('Type', () => expect(it.type,).toBeOneOf(everyTypes,),)
+                test('Acronym', () => expect(it.acronym,).toBeOneOf(everyAcronyms,),)
 
-                test('Limit in SMM & SMM3DS', () => expect(it.limit_SMM1And3DS).toBeOneOf(everyLimitInSMM1And3DS))
-                test('Limit in SMM2', () => expect(it.limit_SMM2).toBeOneOf(everyLimitInSMM2))
-                test('Limit comment', () => expect(it.limit_comment).toBeOneOf(everyComment))
+                describe('Limit in SMM & SMM3DW', () => {
+                    test('value', () => expect(it.limit_SMM1And3DS,).toBeOneOf(everyLimitInSMM1And3DS,),)
+                    test('isUnknown', () => expect(it.limit_SMM1And3DS_isUnknown,).toBeBoolean(),)
+                },)
+                describe('Limit in SMM2', () => {
+                    test('value', () => expect(it.limit_SMM2,).toBeOneOf(everyLimitInSMM2,),)
+                    test('isUnknown', () => expect(it.limit_SMM2_isUnknown,).toBeBoolean(),)
+                },)
+                test('Limit comment', () => expect(it.limit_comment,).toBeOneOf(everyComment,),)
                 /* eslint-enable jest/no-identical-title */
 
                 testOnlyEnglish(it, everyNames,)

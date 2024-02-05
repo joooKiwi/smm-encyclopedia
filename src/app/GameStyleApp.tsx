@@ -3,102 +3,110 @@ import './GameStyleApp.scss'
 import type {GameStyleProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {GameCollection}          from 'util/collection/GameCollection'
 
+import SubMainContainer         from 'app/_SubMainContainer'
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
-import {AbstractTableApp}       from 'app/withInterpreter/AbstractTableApp'
+import Table                    from 'app/tools/table/Table'
+import CardList                 from 'app/withInterpreter/CardList'
+import SimpleList               from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
 
-export default class GameStyleApp
-    extends AbstractTableApp<GameStyles, AppInterpreterWithTable<GameStyles, GameStyleAppOption>, GameStyleProperties> {
+class GameStyleAppInterpreter
+    implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
 
-    //region -------------------- Create methods --------------------
+    //region -------------------- Fields --------------------
 
-    protected override _createKey(): string {
-        return 'gameStyle'
+    readonly #games
+
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(games: GameCollection,) {
+        this.#games = games
     }
 
+    //endregion -------------------- Constructor --------------------
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everyGameStyle (list)'
+    public get content() {
+        return filterGame(GameStyles.CompanionEnum.get.values, this.#games,)
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everyGameStyle (card)'
+    //region -------------------- List interpreter --------------------
+
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 1,
+            small: 2,
+            medium: 3,
+            extraLarge: 5,
+        }
     }
 
-    protected override _createTableRouteName(): PossibleRouteName {
-        return 'everyGameStyle (table)'
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
+
+    public createCardListDimension() {
+        return this.createListDimension()
     }
 
-
-    protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('game style.all')
+    public createCardListContent(enumerable: GameStyles,) {
+        return <div className="card-body" id={`gameStyle-${enumerable.englishNameInHtml}`}>
+            {enumerable.renderSingleComponent}
+        </div>
     }
 
-    protected override _createAppOptionInterpreter() {
-        const $this = this
+    //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
 
-        return new class GameStyleAppInterpreter implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('game style.all',) satisfies ReactElementOrString
 
-            public get content() {
-                return filterGame(GameStyles.CompanionEnum.get.values, $this.props.games,)
-            }
-
-            //region -------------------- List interpreter --------------------
-
-            public createListDimension(): DimensionOnList {
-                return {
-                    default: 1,
-                    small: 2,
-                    medium: 3,
-                    extraLarge: 5,
-                }
-            }
-
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent(enumerable: GameStyles,) {
-                return <div className="card-body" id={`gameStyle-${enumerable.englishNameInHtml}`}>
-                    {enumerable.renderSingleComponent}
-                </div>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-            //region -------------------- Table interpreter --------------------
-
-            public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-            public readonly tableColor = 'primary' satisfies BootstrapThemeColor
-            public readonly tableCaption = gameContentTranslation('game style.all') satisfies ReactElementOrString
-
-            public get tableOptions(): readonly GameStyleAppOption[] {
-                return [
-                    GameStyleAppOption.ICON,
-                    GameStyleAppOption.NAME,
-                    GameStyleAppOption.NIGHT_DESERT_WIND,
-                ]
-            }
-
-            public createTableContent(content: GameStyles, option: GameStyleAppOption,) {
-                return option.renderContent(content,)
-            }
-
-            public createTableHeader(option: GameStyleAppOption,) {
-                return option.renderTableHeader()
-            }
-
-            //endregion -------------------- Table interpreter --------------------
-
-        }()
+    public get tableOptions(): readonly GameStyleAppOption[] {
+        return [
+            GameStyleAppOption.ICON,
+            GameStyleAppOption.NAME,
+            GameStyleAppOption.NIGHT_DESERT_WIND,
+        ]
     }
 
-    //endregion -------------------- Create methods --------------------
+    public createTableContent(content: GameStyles, option: GameStyleAppOption,) {
+        return option.renderContent(content,)
+    }
 
+    public createTableHeader(option: GameStyleAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table interpreter --------------------
+
+}
+
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everyGameStyle (list)',],
+    [ViewDisplays.CARD_LIST, 'everyGameStyle (card)',],
+    [ViewDisplays.TABLE, 'everyGameStyle (table)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = gameContentTranslation('game style.all',)
+
+/** @reactComponent */
+export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
+    const appInterpreter = new GameStyleAppInterpreter(games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="gameStyle" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <Table id="gameStyle-table" interpreter={appInterpreter}/>
+    </SubMainContainer>
 }

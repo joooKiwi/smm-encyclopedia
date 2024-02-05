@@ -11,9 +11,9 @@ import {StringContainer}     from 'util/StringContainer'
 interface SingleLanguageChangerLinkProperties
     extends ReactProperties {
 
-    language: ProjectLanguages
+    readonly language: ProjectLanguages
 
-    callbackToSetLanguage: (language: ProjectLanguages,) => void
+    readonly callbackToSetLanguage: (language: ProjectLanguages,) => void
 
 }
 

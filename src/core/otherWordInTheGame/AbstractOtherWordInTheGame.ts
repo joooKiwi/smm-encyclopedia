@@ -1,9 +1,10 @@
-import type {GameProperty}             from 'core/entity/properties/game/GameProperty'
+import type {Games}                    from 'core/game/Games'
 import type {OtherPluralWordInTheGame} from 'core/otherWordInTheGame/OtherPluralWordInTheGame'
 import type {OtherWordInTheGame}       from 'core/otherWordInTheGame/OtherWordInTheGame'
 import type {Name}                     from 'lang/name/Name'
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
+import {GameMap}              from 'util/collection/GameMap'
 
 export abstract class AbstractOtherWordInTheGame
     extends ClassContainingAName<string>
@@ -11,14 +12,19 @@ export abstract class AbstractOtherWordInTheGame
 
     //region -------------------- Fields --------------------
 
-    readonly #isInProperty
+    readonly #isInSuperMarioMaker1
+    readonly #isInSuperMarioMakerFor3DS
+    readonly #isInSuperMarioMaker2
+    #map?: GameMap<boolean, OtherWordInTheGame>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    protected constructor(name: Name<string>, isInProperty: GameProperty,) {
+    protected constructor(name: Name<string>, isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,) {
         super(name,)
-        this.#isInProperty = isInProperty
+        this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
+        this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS
+        this.#isInSuperMarioMaker2 = isInSuperMarioMaker2
     }
 
     //endregion -------------------- Constructor --------------------
@@ -28,20 +34,16 @@ export abstract class AbstractOtherWordInTheGame
 
     //region -------------------- Game properties --------------------
 
-    public get isInProperty(): GameProperty {
-        return this.#isInProperty
-    }
-
     public get isInSuperMarioMaker1(): boolean {
-        return this.isInProperty.isInSuperMarioMaker1
+        return this.#isInSuperMarioMaker1
     }
 
     public get isInSuperMarioMakerFor3DS(): boolean {
-        return this.isInProperty.isInSuperMarioMakerFor3DS
+        return this.#isInSuperMarioMakerFor3DS
     }
 
     public get isInSuperMarioMaker2(): boolean {
-        return this.isInProperty.isInSuperMarioMaker2
+        return this.#isInSuperMarioMaker2
     }
 
     //endregion -------------------- Game properties --------------------
@@ -49,8 +51,8 @@ export abstract class AbstractOtherWordInTheGame
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Convertor methods --------------------
 
-    public toGameMap() {
-        return this.isInProperty.toGameMap()
+    public toGameMap(): ReadonlyMap<Games, boolean> {
+        return this.#map ??= new GameMap(this,)
     }
 
     //endregion -------------------- Convertor methods --------------------

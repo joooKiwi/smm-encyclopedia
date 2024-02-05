@@ -8,7 +8,7 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
      * The content used for the {@link TextComponent}
      * @see PossibleTextContent
      */
-    content: Nullable<T>
+    readonly content: Nullable<T>
 
     /**
      * Tell whenever the value is unknown or not.
@@ -16,7 +16,7 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
      * @note It will add a "?" after the content as a CSS attribute (--is-unknown)
      * @see DEFAULT_IS_UNKNOWN
      */
-    isUnknown?: Nullable<boolean>
+    readonly isUnknown?: Nullable<boolean>
 
 }
 

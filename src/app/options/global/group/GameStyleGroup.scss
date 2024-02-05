@@ -1,7 +1,7 @@
 #gameStyles-option-container {
 
-  .gameStyle-image {
-    max-height: 1cm;
-  }
+  .btn-group-vertical .btn-group:last-child { width: calc(100% - 1px) } // It is in order to fiz the 1 pixel overflow
+
+  .gameStyle-image { max-height: 1cm }
 
 }

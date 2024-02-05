@@ -2,53 +2,53 @@ import type {Arrows} from 'app/tools/arrow/Arrows'
 
 export interface GroupOf6PowerUpPriorityArrowProperties {
 
-    topLeftTo?: {
-        topRight?: Arrows
-        centerLeft?: Arrows
-        centerRight?: Arrows
-        bottomLeft?: Arrows
-        bottomRight?: Arrows
+    readonly topLeftTo?: {
+        readonly topRight?: Arrows
+        readonly centerLeft?: Arrows
+        readonly centerRight?: Arrows
+        readonly bottomLeft?: Arrows
+        readonly bottomRight?: Arrows
     }
-    topRightTo?: {
-        centerLeft?: Arrows
-        centerRight?: Arrows
-        bottomLeft?: Arrows
-        bottomRight?: Arrows
+    readonly topRightTo?: {
+        readonly centerLeft?: Arrows
+        readonly centerRight?: Arrows
+        readonly bottomLeft?: Arrows
+        readonly bottomRight?: Arrows
     }
-    centerLeftTo?: {
-        centerRight?: Arrows
-        bottomLeft?: Arrows
-        bottomRight?: Arrows
+    readonly centerLeftTo?: {
+        readonly centerRight?: Arrows
+        readonly bottomLeft?: Arrows
+        readonly bottomRight?: Arrows
     }
-    centerRightTo?: {
-        bottomLeft?: Arrows
-        bottomRight?: Arrows
+    readonly centerRightTo?: {
+        readonly bottomLeft?: Arrows
+        readonly bottomRight?: Arrows
     }
-    bottomLeftTo?: {
-        bottomRight?: Arrows
+    readonly bottomLeftTo?: {
+        readonly bottomRight?: Arrows
     }
 
 }
 
 export interface GroupOf5PowerUpPriorityArrowProperties {
 
-    topTo?: {
-        centerLeft?: Arrows
-        centerRight?: Arrows
-        bottomLeft?: Arrows
-        bottomRight?: Arrows
+    readonly topTo?: {
+        readonly centerLeft?: Arrows
+        readonly centerRight?: Arrows
+        readonly bottomLeft?: Arrows
+        readonly bottomRight?: Arrows
     }
-    centerLeftTo?: {
-        centerRight?: Arrows
-        bottomLeft?: Arrows
-        bottomRight?: Arrows
+    readonly centerLeftTo?: {
+        readonly centerRight?: Arrows
+        readonly bottomLeft?: Arrows
+        readonly bottomRight?: Arrows
     }
-    centerRightTo?: {
-        bottomLeft?: Arrows
-        bottomRight?: Arrows
+    readonly centerRightTo?: {
+        readonly bottomLeft?: Arrows
+        readonly bottomRight?: Arrows
     }
-    bottomLeftTo?: {
-        bottomRight?: Arrows
+    readonly bottomLeftTo?: {
+        readonly bottomRight?: Arrows
     }
 
 }

@@ -2,10 +2,7 @@ import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterW
 import type {Content}                      from 'app/interpreter/AppInterpreter'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 
-/**
- * An application interpreter when using {@link AbstractCardListApp}
- * to encapsulate the card list.
- */
+/** An application interpreter when using a {@link ViewDisplays.CARD_LIST} as the visual represented */
 export interface AppInterpreterWithCardList<out CONTENT extends Content = Content, >
     extends AppInterpreterWithSimpleList<CONTENT> {
 

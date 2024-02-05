@@ -1,7 +1,11 @@
 {
   "entity": {
     "all":         "Toutes les {{entities}}",
-    "display all": "Afficher toutes les {{entities}}"
+    "display all": "Afficher toutes les {{entities}}",
+
+    "property": {
+      "While playing → LCL": "En jouant, c'est dans la {{acronym}} ({{limit}})"
+    }
   },
   "character name": {
     "singular": "Nom de personnage",
@@ -175,6 +179,13 @@
   "mystery mushroom": {
     "all":         "Tous les {{pluralName}}",
     "display all": "Afficher tous les {{pluralName}}"
+  },
+  "official course": {
+    "singular": "{{SingularName}} officiel",
+    "plural":   "{{PluralName}} officiels",
+
+    "all":         "Tous les {{pluralName}} officiels",
+    "display all": "Afficher tous les {{pluralName}} officiels"
   },
   "game reference": {
     "singular": "Référence de jeu",

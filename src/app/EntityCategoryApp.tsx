@@ -1,79 +1,73 @@
 import './EntityCategoryApp.scss'
 
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 
+import SubMainContainer         from 'app/_SubMainContainer'
 import Image                    from 'app/tools/images/Image'
-import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
+import {unfinishedText}         from 'app/tools/text/UnfinishedText'
+import CardList                 from 'app/withInterpreter/CardList'
+import SimpleList               from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {EntityCategories}       from 'core/entityCategory/EntityCategories'
 import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import {unfinishedText}         from 'app/tools/text/UnfinishedText'
+import {assert}                 from 'util/utilitiesMethods'
 
-//region -------------------- Deconstruction imports --------------------
+class EntityCategoryAppInterpreter
+    implements AppInterpreterWithCardList<EntityCategories> {
 
-const {ENTITY,} = OtherWordInTheGames
-
-//endregion -------------------- Deconstruction imports --------------------
-
-export default class EntityCategoryApp
-    extends AbstractCardListApp<EntityCategories, AppInterpreterWithCardList<EntityCategories>> {
-
-    //region -------------------- Create methods --------------------
-
-    protected override _createKey() {
-        return 'entityCategory'
+    public get content() {
+        return EntityCategories.CompanionEnum.get.values.toArray()
     }
 
+    //region -------------------- List interpreter --------------------
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everyEntityCategory (list)'
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 1,
+            small: 2,
+            large: 4,
+        }
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everyEntityCategory (card)'
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
+
+    public createCardListDimension() {
+        return this.createListDimension()
     }
 
-
-    protected override _createTitleContent(): ReactElementOrString {
-        const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-        return gameContentTranslation('entity category.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
+    public createCardListContent(enumerable: EntityCategories,) {
+        return <Image file={enumerable.imageFile}/>
     }
 
-    protected override _createAppOptionInterpreter() {
-        return new class EntityCategoryAppInterpreter implements AppInterpreterWithCardList<EntityCategories> {
+    //endregion -------------------- Card list interpreter --------------------
 
-            public get content() {
-                return EntityCategories.CompanionEnum.get.values.toArray()
-            }
+}
 
-            //region -------------------- List interpreter --------------------
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everyEntityCategory (list)',],
+    [ViewDisplays.CARD_LIST, 'everyEntityCategory (card)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = (() => {
+    const singularEntityName = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
+    const singularEntityLowerCaseName = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
+    return gameContentTranslation('entity category.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
+})()
+const appInterpreter = new EntityCategoryAppInterpreter()
 
-            public createListDimension(): DimensionOnList {
-                return {
-                    default: 1,
-                    small: 2,
-                    large: 4,
-                }
-            }
+/** @reactComponent */
+export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    assert(viewDisplay !== ViewDisplays.TABLE, 'The EntityCategoryApp only handle the "simple list" or "card list" as a possible view display.',)
 
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent(enumerable: EntityCategories,) {
-                return <Image file={enumerable.imageFile}/>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-
-        }()
-    }
-
-    //region -------------------- Create methods --------------------
-
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="entityCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="entityCategory" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="entityCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <CardList reactKey="entityCategory" interpreter={appInterpreter}/>
+    </SubMainContainer>
 }

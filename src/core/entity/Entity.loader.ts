@@ -5,52 +5,35 @@ import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeFiredOutOfABulletLauncher, CanBePutInABlock, CanBePutInAClownCar, CanBePutInALakituCloud, CanBePutInASwingingClaw, CanBePutInATree, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeStacked, CanBeThrownByALakitu, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanContainOrSpawnAKey, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSpawnOutOfAPipe, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, IsAffectedDirectlyByAnOnOrOffState, IsGlobalGroundOrGlobal, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from 'core/entityTypes'
 import type {LanguageContent}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'core/_template/LanguageContent'
-import type {NotApplicableProperty, UnknownProperty}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'core/_properties/PropertyWithEverything'
-import type {PropertyThatCanBeUnknownWithComment}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/_properties/PropertyThatCanBeUnknownWithComment'
 import type {CanRespawnOnlineOutOfABlockType, CanRespawnOnlineType, CanRespawnType, PossibleBehaviourType}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/behaviour/loader.types'
 import type {Entity, PossibleOtherEntities}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'core/entity/Entity'
 import type {EntityLink}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from 'core/entity/loader.types'
 import type {PossibleEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/entity/Entities.types'
-import type {Property}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'core/entity/properties/Property'
-import type {PossibleCanBeInAParachute, PossibleCanHaveWings, PossibleHasAMushroomVariant}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/entity/properties/basic/BasicProperty'
-import type {CollectedCoinLimitType, EditorLimitType_SMM1And3DS, EditorLimitType_SMM2, GeneralLimitType, GeneralGlobalLimitType, LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, OtherLimitCommentType, OtherLimitType, PowerUpLimitType, ProjectileLimitType, RenderedObjectLimitType}                                                                                                                                                                                                                                                                                                                                   from 'core/entity/properties/limit/loader.types'
-import type {LimitProperty}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'core/entity/properties/limit/LimitProperty'
-import type {CanMakeASoundOutOfAMusicBlock}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'core/entity/properties/instrument/loader.types'
-import type {InstrumentProperty}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/entity/properties/instrument/InstrumentProperty'
+import type {LCL_Play}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'core/entity/properties/basic/BasicProperty'
+import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          from 'core/entity/properties/instrument/loader.types'
+import type {LimitAmountType, OffscreenDespawningDownwardVerticalRangeLimitType, OffscreenDespawningHorizontalRangeLimitType, OffscreenDespawningUpwardVerticalRangeLimitType, OffscreenSpawningAndDespawningReferencePoint, OffscreenSpawningDownwardVerticalRangeLimitType, OffscreenSpawningHorizontalRangeLimitType, OffscreenSpawningUpwardVerticalRangeLimitType, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimit, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                                                                                                                                                                                                                                                                                                       from 'core/entity/properties/limit/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'core/entityCategory/EntityCategories.types'
 import type {EntityCategory}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         from 'core/entityCategory/EntityCategory'
 import type {GameContentFromAllGames,}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               from 'core/game/Loader.types'
+import type {Instrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             from 'core/instrument/Instrument'
 import type {PossibleInstrument}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/instrument/loader.types'
 import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       from 'core/limit/Limits.types'
 import type {PossibleName as PossibleMarioMakerVersion}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              from 'core/version/Versions.types'
+import type {CompanionEnumByName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    from 'util/enumerable/companion/CompanionEnumByName'
 import type {Loader}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 from 'util/loader/Loader'
+import type {Name}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   from 'lang/name/Name'
 
-import {isInProduction}                                                                                             from 'variables'
-import {PropertyContainer}                                                                                          from 'core/_properties/Property.container'
-import {newBooleanContainer, newBooleanWithCommentCommentContainer, newBooleanWithCommentThatCanBeUnknownContainer} from 'core/_properties/propertyCreator'
-import {EmptyEntity}                                                                                                from 'core/entity/EmptyEntity'
-import {EntityContainer}                                                                                            from 'core/entity/Entity.container'
-import {Entities}                                                                                                   from 'core/entity/Entities'
-import {ExclusiveSM3DWEntityContainer}                                                                              from 'core/entity/ExclusiveSM3DWEntity.container'
-import {ExclusiveSMM1EntityContainer}                                                                               from 'core/entity/ExclusiveSMM1Entity.container'
-import {ExclusiveSMM2EntityContainer}                                                                               from 'core/entity/ExclusiveSMM2Entity.container'
-import {ReferenceLinks}                                                                                             from 'core/entity/ReferenceLinks'
-import {EntityReferencesContainer}                                                                                  from 'core/entity/properties/EntityReferences.container'
-import {PropertyContainer as PropertyInstanceContainer}                                                             from 'core/entity/properties/Property.container'
-import {GamePropertyProvider}                                                                                       from 'core/entity/properties/game/GameProperty.provider'
-import {GameStylePropertyProvider}                                                                                  from 'core/entity/properties/gameStyle/GameStyleProperty.provider'
-import {EmptyInstrumentProperty}                                                                                    from 'core/entity/properties/instrument/EmptyInstrumentProperty'
-import {InstrumentPropertyProvider}                                                                                 from 'core/entity/properties/instrument/InstrumentProperty.provider'
-import {LimitPropertyProvider}                                                                                      from 'core/entity/properties/limit/LimitProperty.provider'
-import {ThemePropertyProvider}                                                                                      from 'core/entity/properties/theme/ThemeProperty.provider'
-import {TimePropertyProvider}                                                                                       from 'core/entity/properties/time/TimeProperty.provider'
-import {EntityCategoryLoader}                                                                                       from 'core/entityCategory/EntityCategory.loader'
-import {EmptyEntityCategory}                                                                                        from 'core/entityCategory/EmptyEntityCategory'
-import {GameStructureProvider}                                                                                      from 'core/game/GameStructure.provider'
-import {Instruments}                                                                                                from 'core/instrument/Instruments'
-import {Limits}                                                                                                     from 'core/limit/Limits'
-import {UNKNOWN_CHARACTER}                                                                                          from 'util/commonVariables'
-import {createNameFromContent}                                                                                      from 'lang/name/createNameFromContent'
+import {isInProduction}        from 'variables'
+import {EmptyEntity}           from 'core/entity/EmptyEntity'
+import {EntityContainer}       from 'core/entity/Entity.container'
+import {Entities}              from 'core/entity/Entities'
+import {ReferenceLinks}        from 'core/entity/ReferenceLinks'
+import {EntityCategoryLoader}  from 'core/entityCategory/EntityCategory.loader'
+import {EmptyEntityCategory}   from 'core/entityCategory/EmptyEntityCategory'
+import {Instruments}           from 'core/instrument/Instruments'
+import {Limits}                from 'core/limit/Limits'
+import {NOT_APPLICABLE}        from 'util/commonVariables'
+import {createNameFromContent} from 'lang/name/createNameFromContent'
 
 /**
  * @dependsOn<{@link EntityCategoryLoader}>
@@ -81,6 +64,8 @@ export class EntityLoader
         if (this.#map != null)
             return this.#map
 
+        const entityCategoryMap = EntityCategoryLoader.get.load()
+        const limitCompanion = Limits.CompanionEnum.get
         const references = new Map<PossibleEnglishName, Entity>()
         const referenceLinks = new ReferenceLinks()
         let index = file.length
@@ -90,8 +75,8 @@ export class EntityLoader
 
             referenceLinks.addSubReference(
                 englishName,
-                content.inDayTheme,
-                content.inNightTheme,
+                content.inDayTime,
+                content.inNightTime,
                 content.inSMBGameStyle,
                 content.inSMB3GameStyle,
                 content.inSMWGameStyle,
@@ -108,7 +93,7 @@ export class EntityLoader
                 content.inAirshipTheme,
                 content.inCastleTheme,
             )
-            references.set(englishName, createReference(content, referenceLinks,),)
+            references.set(englishName, createReference(content, referenceLinks, entityCategoryMap, limitCompanion,),)
         }
 
         if (!isInProduction)
@@ -127,19 +112,49 @@ export class EntityLoader
 interface Content
     extends LanguageContent, GameContentFromAllGames {
 
+    readonly english: NullOr<PossibleEnglishName>
+    readonly americanEnglish: NullOr<PossibleEnglishName>
+
     readonly entityType: PossibleEntityType
 
     readonly firstAppearanceInMarioMaker: PossibleFirstAppearanceInMarioMaker
     readonly firstAppearanceInMarioMaker_version: PossibleMarioMakerVersion
 
 
+    //region -------------------- Is in properties --------------------
+
+    readonly isInSMBGameStyle: boolean
+    readonly isInSMB3GameStyle: boolean
+    readonly isInSMWGameStyle: boolean
+    readonly isInNSMBUGameStyle: boolean
+    readonly isInSM3DWGameStyle: BooleanOrNotApplicable
+
+    readonly isInGroundTheme: boolean
+    readonly isInUndergroundTheme: boolean
+    readonly isInUnderwaterTheme: boolean
+    readonly isInDesertTheme: BooleanOrNotApplicable
+    readonly isInSnowTheme: BooleanOrNotApplicable
+    readonly isInSkyTheme: BooleanOrNotApplicable
+    readonly isInForestTheme: BooleanOrNotApplicable
+    readonly isInGhostHouseTheme: boolean
+    readonly isInAirshipTheme: boolean
+    readonly isInCastleTheme: boolean
+
+    readonly isInDayTime: boolean
+    readonly isInNightTime: BooleanOrNotApplicable
+
+    //endregion -------------------- Is in properties --------------------
     //region -------------------- Basic properties --------------------
 
     readonly categoryInTheEditor: NullOr<PossibleEnglishName_Category>
 
-    readonly hasAMushroomVariant: PossibleHasAMushroomVariant
-    readonly canBeInAParachute: PossibleCanBeInAParachute
-    readonly canHaveWings: PossibleCanHaveWings
+    readonly hasAMushroomVariant: BooleanOrNotApplicable
+
+    readonly canBeInAParachute: BooleanOrNotApplicable
+    readonly canBeInAParachute_comment: NullOr<LCL_Play>
+
+    readonly canHaveWings: BooleanOrNotApplicable
+    readonly canHaveWings_comment: NullOr<LCL_Play>
 
     //endregion -------------------- Basic properties --------------------
     //region -------------------- Specific properties --------------------
@@ -187,7 +202,8 @@ interface Content
     readonly isGlobalGroundOrGlobal: IsGlobalGroundOrGlobal
 
     readonly instrument: PossibleInstrument
-    readonly canMakeASoundOutOfAMusicBlock: CanMakeASoundOutOfAMusicBlock
+    readonly canMakeASoundOutOfAMusicBlock: BooleanOrNotApplicable
+    readonly canMakeASoundOutOfAMusicBlock_comment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
 
     //endregion -------------------- Specific properties --------------------
     //region -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
@@ -202,28 +218,34 @@ interface Content
     readonly canBeSpawnedByWingedMagikoopa: CanBeSpawnedByWingedMagikoopa
 
     //endregion -------------------- Bowser / Bowser Jr. / Magikoopa properties --------------------
-    //region -------------------- Entity limit properties --------------------
+    //region -------------------- Limit properties --------------------
 
     readonly limitAmount: LimitAmountType
 
-    readonly editorLimit_SMM1And3DS: EditorLimitType_SMM1And3DS
-    readonly editorLimit_SMM2: EditorLimitType_SMM2
+    readonly editorLimit_SMM1And3DS: NullOr<| PossibleEnglishName_Limit | NotApplicable>
+    readonly editorLimit_SMM2: NullOr<| PossibleEnglishName_Limit | NotApplicable>
+    readonly editorLimit_SMM2_isUnknown: boolean
 
-    readonly whilePlaying_isInGEL: GeneralLimitType
-    readonly whilePlaying_isInGEL_isSuperGlobal: GeneralGlobalLimitType
+    readonly whilePlaying_isInGEL: BooleanOrNotApplicable
+    readonly whilePlaying_isInGEL_comment: NullOr<PossibleGeneralLimitComment>
+    readonly whilePlaying_isInGEL_isSuperGlobal: BooleanOrNotApplicable
+    readonly whilePlaying_isInGEL_isSuperGlobal_comment: NullOr<PossibleGeneralGlobalLimitComment>
 
-    readonly whilePlaying_isInPL: PowerUpLimitType
+    readonly whilePlaying_isInPL: BooleanOrNotApplicable
 
-    readonly whilePlaying_isInPJL: ProjectileLimitType
+    readonly whilePlaying_isInPJL: BooleanOrNotApplicable
+    readonly whilePlaying_isInPJL_comment: NullOr<PossibleProjectileLimitComment>
 
-    readonly whilePlaying_isInObjectRenderedLimit: RenderedObjectLimitType
+    readonly whilePlaying_isInObjectRenderedLimit: BooleanOrNotApplicable
+    readonly whilePlaying_isInObjectRenderedLimit_comment: NullOr<PossibleRenderedObjectLimitTypeComment>
 
-    readonly whilePlaying_isInCollectedCoinLimit: CollectedCoinLimitType
+    readonly whilePlaying_isInCollectedCoinLimit: BooleanOrNotApplicable
 
-    readonly whilePlaying_otherLimit: OtherLimitType
-    readonly whilePlaying_otherLimit_comment: OtherLimitCommentType
+    readonly whilePlaying_otherLimit: NullOr<PossibleOtherLimit>
+    readonly whilePlaying_otherLimit_comment: NullOr<PossibleOtherLimitComment>
+    readonly whilePlaying_otherLimit_isUnknown: boolean
 
-    //endregion -------------------- Entity limit properties --------------------
+    //endregion -------------------- Limit properties --------------------
     //region -------------------- Spawning / Despawning range properties --------------------
 
     readonly canRespawn: CanRespawnType
@@ -258,8 +280,8 @@ interface Content
     //endregion -------------------- Dimension properties --------------------
     //region -------------------- Reference on specific condition properties -------------------
 
-    readonly inDayTheme: NullOr<EntityLink>
-    readonly inNightTheme: NullOr<EntityLink>
+    readonly inDayTime: NullOr<EntityLink>
+    readonly inNightTime: NullOr<EntityLink>
 
     readonly inGroundTheme: NullOr<EntityLink>
     readonly inUndergroundTheme: NullOr<EntityLink>
@@ -284,140 +306,134 @@ interface Content
 
 }
 
-//region -------------------- Create template --------------------
+/** A type-alias definition of the {@link EntityCategories} name-reference {@link ReadonlyMap map} */
+type EntityCategoryMap = ReadonlyMap<PossibleEnglishName_Category, EntityCategory>
+/** A type-alias definition of the {@link Limits.CompanionEnum} */
+type LimitCompanion = CompanionEnumByName<Limits, typeof Limits>
 
-/**
- * Tell if a {@link Nullable} {@link EntityLink} has "this"
- *
- * @param link The {@link Nullable} {@link EntityLink} to test
- */
-function hasThisReferenced(link: Nullable<EntityLink>,): boolean {
-    return link != null && link.includes('this',)
-}
-
-/**
- * Tell if the {@link Nullable} {@link EntityLink} has "this".
- * And if the {@link EntityLink} is <b>null</b>, then <b>null</b> is returned
- *
- * @param link The {@link EntityLink} to test
- */
-function nullOrHasThisReferenced(link: Nullable<EntityLink>,): NullOrBoolean {
-    return link == null ? null : link.includes('this',)
-}
-
-//endregion -------------------- Create template --------------------
 //region -------------------- Create reference --------------------
 
 const EMPTY_ENTITIES = lazy(() => [EmptyEntity.get,] as const,)
 
-function createReference(content: Content, referenceLinks: ReferenceLinks,): Entity {
+function createReference(content: Content, referenceLinks: ReferenceLinks, entityCategoryMap: EntityCategoryMap, limitCompanion: LimitCompanion,): Entity {
+    const englishName = (content.english ?? content.americanEnglish)!
+
+    let everyGameStyleReferences: Lazy<readonly Entity[]>
+    let everyThemeReferences: Lazy<readonly Entity[]>
+    let everyTimeReferences: Lazy<readonly Entity[]>
+    let everyReferences: Lazy<readonly Entity[]>
+    if (referenceLinks.hasAnyReferences(englishName,)) {
+        everyGameStyleReferences = getOrCreateGroupReference(referenceLinks.getGameStyleReferenceLinks(englishName,),)
+        everyThemeReferences = getOrCreateGroupReference(referenceLinks.getThemeReferenceLinks(englishName,),)
+        everyTimeReferences = getOrCreateGroupReference(referenceLinks.getTimeReferenceLinks(englishName,),)
+        everyReferences = getOrCreateGroupReference(referenceLinks.getEveryReferenceLinks(englishName,),)
+    } else
+        everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = CommonLazy.EMPTY_ARRAY
+
+    return new EntityContainer(
+        createName(content,),
+        getCategory(content, entityCategoryMap,),
+
+        content.hasAMushroomVariant, content.canBeInAParachute, content.canBeInAParachute_comment, content.canHaveWings, content.canHaveWings_comment,
+
+        content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,
+        content.isInSMBGameStyle, content.isInSMB3GameStyle, content.isInSMWGameStyle, content.isInNSMBUGameStyle, content.isInSM3DWGameStyle,
+        content.isInGroundTheme, content.isInUndergroundTheme, content.isInUnderwaterTheme, content.isInDesertTheme, content.isInSnowTheme, content.isInSkyTheme, content.isInForestTheme, content.isInGhostHouseTheme, content.isInAirshipTheme, content.isInCastleTheme,
+        content.isInDayTime, content.isInNightTime,
+
+        getLimit(content.editorLimit_SMM1And3DS, limitCompanion,), getLimit(content.editorLimit_SMM2, limitCompanion,), content.editorLimit_SMM2_isUnknown,
+        content.whilePlaying_isInGEL, content.whilePlaying_isInGEL_comment, content.whilePlaying_isInGEL_isSuperGlobal, content.whilePlaying_isInGEL_isSuperGlobal_comment,
+        content.whilePlaying_isInPL,
+        content.whilePlaying_isInPJL, content.whilePlaying_isInPJL_comment,
+        content.whilePlaying_isInObjectRenderedLimit, content.whilePlaying_isInObjectRenderedLimit_comment,
+        content.whilePlaying_isInCollectedCoinLimit,
+        getLimit(content.whilePlaying_otherLimit, limitCompanion,), content.whilePlaying_otherLimit_comment, content.whilePlaying_otherLimit_isUnknown,
+
+        createInstruments(content,), content.canMakeASoundOutOfAMusicBlock, content.canMakeASoundOutOfAMusicBlock_comment,
+
+        getOtherEntityReferences(content.inSMBGameStyle, englishName,), getOtherEntityReferences(content.inSMB3GameStyle, englishName,), getOtherEntityReferences(content.inSMWGameStyle, englishName,), getOtherEntityReferences(content.inNSMBUGameStyle, englishName,), getOtherEntityReferences(content.inSM3DWGameStyle, englishName,),
+        getOtherEntityReferences(content.inGroundTheme, englishName,), getOtherEntityReferences(content.inUndergroundTheme, englishName,), getOtherEntityReferences(content.inUnderwaterTheme, englishName,), getOtherEntityReferences(content.inDesertTheme, englishName,), getOtherEntityReferences(content.inSnowTheme, englishName,), getOtherEntityReferences(content.inSkyTheme, englishName,), getOtherEntityReferences(content.inForestTheme, englishName,), getOtherEntityReferences(content.inGhostHouseTheme, englishName,), getOtherEntityReferences(content.inAirshipTheme, englishName,), getOtherEntityReferences(content.inCastleTheme, englishName,),
+        getOtherEntityReferences(content.inDayTime, englishName,), getOtherEntityReferences(content.inNightTime, englishName,),
+        everyGameStyleReferences, everyThemeReferences, everyTimeReferences, everyReferences,
+    )
+}
+
+//endregion -------------------- Create reference --------------------
+//region -------------------- Create name --------------------
+
+function createName(content: Content,): Name<string> {
     const isInSMM1 = content.isInSuperMarioMaker1
     const isInSMM3DS = content.isInSuperMarioMakerFor3DS
     const isInSMM2 = content.isInSuperMarioMaker2
 
     if (isInSMM1 && !isInSMM3DS && !isInSMM2)
-        return new ExclusiveSMM1EntityContainer(
-            createNameFromContent(content, 1, false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
-            createReferences(content, referenceLinks,),
-        )
-    if (!isInSMM1 && !isInSMM3DS && isInSMM2) {
-        if (!hasThisReferenced(content.inSMBGameStyle,)
-            && !hasThisReferenced(content.inSMB3GameStyle,)
-            && !hasThisReferenced(content.inSMWGameStyle,)
-            && !hasThisReferenced(content.inNSMBUGameStyle,)
-            && hasThisReferenced(content.inSM3DWGameStyle,))
-            return new ExclusiveSM3DWEntityContainer(
-                createNameFromContent(content, 2, false,),
-                getEntityCategory(content.categoryInTheEditor,),
-                createProperty(content,),
-                createReferences(content, referenceLinks,),
-            )
-        return new ExclusiveSMM2EntityContainer(
-            createNameFromContent(content, 2, false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
-            createReferences(content, referenceLinks,),
-        )
-    }
+        return createNameFromContent(content, 1, false,)
+    if (!isInSMM1 && !isInSMM3DS && isInSMM2)
+        return createNameFromContent(content, 2, false,)
     if (!isInSMM1 && isInSMM3DS && !isInSMM2)
-        return new EntityContainer(
-            createNameFromContent(content, '3DS', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
-            createReferences(content, referenceLinks,),
-        )
+        return createNameFromContent(content, '3DS', false,)
     if (isInSMM1 && isInSMM3DS && !isInSMM2)
-        return new EntityContainer(
-            createNameFromContent(content, 'notSMM2', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
-            createReferences(content, referenceLinks,),
-        )
+        return createNameFromContent(content, 'notSMM2', false,)
     if (isInSMM1 && !isInSMM3DS && isInSMM2)
-        return new EntityContainer(
-            createNameFromContent(content, 'notSMM3DS', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
-            createReferences(content, referenceLinks,),
-        )
+        return createNameFromContent(content, 'notSMM3DS', false,)
     if (!isInSMM1 && isInSMM3DS && isInSMM2)
-        return new EntityContainer(
-            createNameFromContent(content, 'notSMM1', false,),
-            getEntityCategory(content.categoryInTheEditor,),
-            createProperty(content,),
-            createReferences(content, referenceLinks,),
-        )
-    return new EntityContainer(
-        createNameFromContent(content, 'all', false,),
-        getEntityCategory(content.categoryInTheEditor,),
-        createProperty(content,),
-        createReferences(content, referenceLinks,),
-    )
+        return createNameFromContent(content, 'notSMM1', false,)
+    return createNameFromContent(content, 'all', false,)
 }
 
+//endregion -------------------- Create name --------------------
+//region -------------------- Get entity category --------------------
 
 /**
  * Get the entity category reference from the {@link EntityTemplate template}
  * or return an {@link EmptyEntityCategory empty category}.
  */
-function getEntityCategory(value: NullOr<PossibleEnglishName_Category>,): EntityCategory {
+function getCategory(content: Content, entityCategoryMap: EntityCategoryMap,): EntityCategory {
+    const value = content.categoryInTheEditor
     if (value == null)
         return EmptyEntityCategory.get
-    return EntityCategoryLoader.get.load().get(value,)!
+    return entityCategoryMap.get(value,)!
 }
 
-function getLimitProperty(value: Nullable<| PossibleEnglishName_Limit | UnknownCharacter>,): PropertyThatCanBeUnknownWithComment<Limits, false, null> | NotApplicableProperty | UnknownProperty {
-    if (value == null)
-        return PropertyContainer.NOT_APPLICABLE_CONTAINER
-    if (value === UNKNOWN_CHARACTER)
-        return PropertyContainer.UNKNOWN_CONTAINER
-    return new PropertyContainer(Limits.CompanionEnum.get.getValueByName(value,), false, null, null,)
-}
+//endregion -------------------- Get entity category --------------------
+//region -------------------- Create limit --------------------
 
-function getLimitPropertyWithComment<COMMENT extends NullOrString, >(value: Nullable<| PossibleEnglishName_Limit | UnknownCharacter>, comment: COMMENT,): PropertyThatCanBeUnknownWithComment<Limits, boolean, COMMENT> | UnknownProperty | NotApplicableProperty {
-    if (value == null)
-        return PropertyContainer.NOT_APPLICABLE_CONTAINER
-    if (value === UNKNOWN_CHARACTER)
-        return PropertyContainer.UNKNOWN_CONTAINER
-    return new PropertyContainer(Limits.CompanionEnum.get.getValueByName(value,), false, null, comment,)
-}
-
-function getLimitByNameOrAcronymOrNull(value: Nullable<PossibleEnglishName_Limit>,): NullOr<Limits> {
+function getLimit(value: Nullable<| PossibleEnglishName_Limit | NotApplicable>, limitCompanion: LimitCompanion,): NullOr<| Limits | NotApplicable> {
     if (value == null)
         return null
-    return Limits.CompanionEnum.get.getValueByName(value,)
+    if (value === NOT_APPLICABLE)
+        return value
+    return limitCompanion.getValueByName(value,)
 }
+
+//endregion -------------------- Create limit --------------------
+//region -------------------- Create instrument --------------------
+
+function createInstruments(content: Content,): Lazy<readonly Instrument[]> {
+    const value = content.instrument
+    if (value == null)
+        return CommonLazy.EMPTY_ARRAY
+    return lazy(() => {
+        const singleInstrument = Instruments.CompanionEnum.get.getValueByName(value,)
+        if (singleInstrument != null)
+            return [singleInstrument.reference,]
+        return Instruments.CompanionEnum.get.values.filter(it => value.includes(it.englishName,),)
+            .map(it => it.reference,)
+            .toArray()
+    },)
+}
+
+//endregion -------------------- Create instrument --------------------
+//region -------------------- Create references --------------------
 
 /**
  * Create a {@link Lazy} entity with returning type 1 or 2 entity.
  * It can contain 'this' that will return itself in the callback.
  *
- * @param name The entity name
  * @param link the entity link or null
+ * @param name The entity name
  */
-function getOtherEntityReferences(name: string, link: Nullable<EntityLink>,): Lazy<PossibleOtherEntities> {
+function getOtherEntityReferences(link: Nullable<EntityLink>, name: PossibleEnglishName,): Lazy<PossibleOtherEntities> {
     if (link == null)
         return EMPTY_ENTITIES
     if (link === 'this')
@@ -429,161 +445,6 @@ function getOrCreateGroupReference(references: readonly PossibleEnglishName[],):
     if (references == null)
         return CommonLazy.EMPTY_ARRAY
     return lazy(() => references.map(it => Entities.CompanionEnum.get.getValueByName(it,).reference,),)
-}
-
-
-/**
- * Create the {@link Property property} from the {@link content}
- * with the games, game style, theme, time & limit
- *
- * @todo change every theme, time & style to have a nullable boolean instead of just boolean or nullable boolean
- */
-function createProperty(content: Content,): Property {
-    const isExclusiveToSMM1 = content.isInSuperMarioMaker1 && !content.isInSuperMarioMakerFor3DS && !content.isInSuperMarioMaker2
-    const isInSMB = hasThisReferenced(content.inSMBGameStyle,)
-    const isInSMB3 = hasThisReferenced(content.inSMB3GameStyle,)
-    const isInSMW = hasThisReferenced(content.inSMWGameStyle,)
-    const isInNSMBU = hasThisReferenced(content.inNSMBUGameStyle,)
-    const isInSM3DW = isExclusiveToSMM1 ? nullOrHasThisReferenced(content.inSM3DWGameStyle) : hasThisReferenced(content.inSM3DWGameStyle,)
-    const isExclusiveToSM3DW = !isInSMB && !isInSMB3 && !isInSMW && !isInNSMBU && isInSM3DW === true
-
-    return new PropertyInstanceContainer(
-        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
-        GameStylePropertyProvider.get.get(
-            isInSMB,
-            isInSMB3,
-            isInSMW,
-            isInNSMBU,
-            isInSM3DW,
-        ),
-        ThemePropertyProvider.get.get(
-            hasThisReferenced(content.inGroundTheme,),
-            hasThisReferenced(content.inUndergroundTheme,),
-            hasThisReferenced(content.inUnderwaterTheme,),
-            nullOrHasThisReferenced(content.inDesertTheme,),
-            nullOrHasThisReferenced(content.inSnowTheme,),
-            nullOrHasThisReferenced(content.inSkyTheme,),
-            nullOrHasThisReferenced(content.inForestTheme,),
-            hasThisReferenced(content.inGhostHouseTheme,),
-            hasThisReferenced(content.inAirshipTheme,),
-            hasThisReferenced(content.inCastleTheme,),
-        ),
-        TimePropertyProvider.get.get(
-            hasThisReferenced(content.inDayTheme,),
-            isExclusiveToSMM1 || isExclusiveToSM3DW ? nullOrHasThisReferenced(content.inNightTheme,) : hasThisReferenced(content.inNightTheme,),
-        ),
-        getLimitPropertyFields(content,),
-        getOrCreateInstrumentProperty(content,),
-    )
-}
-
-/**
- * Get the {@link LimitProperty limit property} from the {@link content}
- *
- * @param content the content to retrieve the limit fields
- */
-function getLimitPropertyFields(content: Content,): LimitProperty {
-    const editorLimit_SMM1And3DS = content.editorLimit_SMM1And3DS
-    const editorLimit_SMM2 = content.editorLimit_SMM2
-    const isInGeneralLimit = content.whilePlaying_isInGEL
-    const isInSuperGlobalGeneralLimit = content.whilePlaying_isInGEL_isSuperGlobal
-    const isInPowerUpLimit = content.whilePlaying_isInPL
-    const isInProjectileLimit = content.whilePlaying_isInPJL
-    const isInRenderedObjectLimit = content.whilePlaying_isInObjectRenderedLimit
-    const isInCollectedObjectLimit = content.whilePlaying_isInCollectedCoinLimit
-    const isInOtherLimit = content.whilePlaying_otherLimit
-    const isInOtherLimitComment = content.whilePlaying_otherLimit_comment
-
-    return LimitPropertyProvider.get.get(
-        [[editorLimit_SMM1And3DS, editorLimit_SMM2,], [isInGeneralLimit, isInSuperGlobalGeneralLimit,], isInPowerUpLimit, isInProjectileLimit, isInRenderedObjectLimit, isInCollectedObjectLimit, [isInOtherLimit, isInOtherLimitComment,],],
-        GameStructureProvider.get.get(
-            getLimitByNameOrAcronymOrNull(editorLimit_SMM1And3DS,),
-            getLimitProperty(editorLimit_SMM2,),
-        ),
-        [
-            newBooleanWithCommentCommentContainer(isInGeneralLimit,),
-            newBooleanWithCommentCommentContainer(isInSuperGlobalGeneralLimit,),
-        ],
-        newBooleanContainer(isInPowerUpLimit,),
-        newBooleanWithCommentThatCanBeUnknownContainer(isInProjectileLimit,),
-        newBooleanWithCommentCommentContainer(isInRenderedObjectLimit,),
-        newBooleanContainer(isInCollectedObjectLimit,),
-        getLimitPropertyWithComment(isInOtherLimit, isInOtherLimitComment,),
-    )
-}
-
-/**
- * Get the instrument properties of an {@link Entity entity}
- *
- * @param content the content to retrieve the instrument fields
- * @returns InstrumentProperty An object holder containing the properties for the instrument part of an {@link Entity entity}
- * @see InstrumentPropertyProvider
- * @see EmptyInstrumentProperty
- */
-function getOrCreateInstrumentProperty(content: Content,): InstrumentProperty {
-    const instrument = content.instrument
-    const canMakeASoundOutOfAMusicBlock = content.canMakeASoundOutOfAMusicBlock
-
-    if (instrument == null)
-        return EmptyInstrumentProperty.get
-    return InstrumentPropertyProvider.get.get(
-        [instrument, canMakeASoundOutOfAMusicBlock,],
-        lazy(() => {
-            const singleInstrument = Instruments.CompanionEnum.get.getValueByName(instrument,)
-            if (singleInstrument != null)
-                return [singleInstrument.reference,]
-            return Instruments.CompanionEnum.get.values.filter(it => instrument.includes(it.englishName,),)
-                .map(it => it.reference,)
-                .toArray()
-        },),
-        newBooleanWithCommentCommentContainer(canMakeASoundOutOfAMusicBlock,),
-    )
-}
-
-
-/**
- * Create every entity references possible applicable to a single entity.
- * It gets the single references (game, game style, theme & time),
- * but it can also get every reference from the {@link EntityTemplate template}.
- */
-function createReferences(content: Content, referenceLinks: ReferenceLinks,) {
-    const name = (content.english ?? content.americanEnglish) as PossibleEnglishName
-
-    let everyGameStyleReferences: Lazy<readonly Entity[]>
-    let everyThemeReferences: Lazy<readonly Entity[]>
-    let everyTimeReferences: Lazy<readonly Entity[]>
-    let everyReferences: Lazy<readonly Entity[]>
-    if (referenceLinks.hasAnyReferences(name,)) {
-        everyGameStyleReferences = getOrCreateGroupReference(referenceLinks.getGameStyleReferenceLinks(name,),)
-        everyThemeReferences = getOrCreateGroupReference(referenceLinks.getThemeReferenceLinks(name,),)
-        everyTimeReferences = getOrCreateGroupReference(referenceLinks.getTimeReferenceLinks(name,),)
-        everyReferences = getOrCreateGroupReference(referenceLinks.getEveryReferenceLinks(name,),)
-    } else
-        everyGameStyleReferences = everyThemeReferences = everyTimeReferences = everyReferences = CommonLazy.EMPTY_ARRAY
-
-    return new EntityReferencesContainer(
-        getOtherEntityReferences(name, content.inSMBGameStyle,),
-        getOtherEntityReferences(name, content.inSMB3GameStyle,),
-        getOtherEntityReferences(name, content.inSMWGameStyle,),
-        getOtherEntityReferences(name, content.inNSMBUGameStyle,),
-        getOtherEntityReferences(name, content.inSM3DWGameStyle,),
-
-        getOtherEntityReferences(name, content.inGroundTheme,),
-        getOtherEntityReferences(name, content.inUndergroundTheme,),
-        getOtherEntityReferences(name, content.inUnderwaterTheme,),
-        getOtherEntityReferences(name, content.inDesertTheme,),
-        getOtherEntityReferences(name, content.inSnowTheme,),
-        getOtherEntityReferences(name, content.inSkyTheme,),
-        getOtherEntityReferences(name, content.inForestTheme,),
-        getOtherEntityReferences(name, content.inGhostHouseTheme,),
-        getOtherEntityReferences(name, content.inAirshipTheme,),
-        getOtherEntityReferences(name, content.inCastleTheme,),
-
-        getOtherEntityReferences(name, content.inDayTheme,),
-        getOtherEntityReferences(name, content.inNightTheme,),
-
-        everyGameStyleReferences, everyThemeReferences, everyTimeReferences, everyReferences,
-    )
 }
 
 //endregion -------------------- Create reference --------------------

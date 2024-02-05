@@ -1,66 +1,65 @@
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
+import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 
-import {AbstractCardListApp}    from 'app/withInterpreter/AbstractCardListApp'
+import SubMainContainer         from 'app/_SubMainContainer'
+import Image                    from 'app/tools/images/Image'
+import CardList                 from 'app/withInterpreter/CardList'
+import SimpleList               from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import {Medals}                 from 'core/medal/Medals'
 import {gameContentTranslation} from 'lang/components/translationMethods'
-import Image                    from 'app/tools/images/Image'
+import {assert}                 from 'util/utilitiesMethods'
 
-export default class MedalApp
-    extends AbstractCardListApp<Medals, AppInterpreterWithCardList<Medals>> {
+class MedalAppInterpreter
+    implements AppInterpreterWithCardList<Medals> {
 
-    //region -------------------- Create methods --------------------
-
-    protected override _createKey(): string {
-        return 'medal'
+    public get content() {
+        return Medals.CompanionEnum.get.values.toArray()
     }
 
-    protected override _createSimpleListRouteName(): PossibleRouteName {
-        return 'everyMedal (list)'
+    //region -------------------- List interpreter --------------------
+
+    public createListDimension(): DimensionOnList {
+        return {
+            default: 2,
+            small: 4,
+            medium: 5,
+        }
     }
 
-    protected override _createCardListRouteName(): PossibleRouteName {
-        return 'everyMedal (card)'
+    //endregion -------------------- List interpreter --------------------
+    //region -------------------- Card list interpreter --------------------
+
+    public createCardListDimension() {
+        return this.createListDimension()
     }
 
-    protected override _createTitleContent(): ReactElementOrString {
-        return gameContentTranslation('medal.all',)
+    public createCardListContent(enumerable: Medals,): ReactElement {
+        return <Image file={enumerable.imageFile}/>
     }
 
-    protected override _createAppOptionInterpreter() {
-        return new class MedalAppInterpreter implements AppInterpreterWithCardList<Medals> {
+    //endregion -------------------- Card list interpreter --------------------
 
-            public get content() {
-                return Medals.CompanionEnum.get.values.toArray()
-            }
+}
 
-            //region -------------------- List interpreter --------------------
+const viewDisplayAndRouteName = [
+    [ViewDisplays.SIMPLE_LIST, 'everyMedal (list)',],
+    [ViewDisplays.CARD_LIST, 'everyMedal (card)',],
+] as const satisfies readonly ViewAndRouteName[]
+const titleContent = gameContentTranslation('medal.all',)
+const appInterpreter = new MedalAppInterpreter()
 
-            public createListDimension(): DimensionOnList {
-                return {
-                    default: 2,
-                    small: 4,
-                    medium: 5,
-                }
-            }
+/** @reactComponent */
+export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    assert(viewDisplay !== ViewDisplays.TABLE, 'The MedalApp only handle the "simple list" or "card list" as a possible view display.',)
 
-            //endregion -------------------- List interpreter --------------------
-            //region -------------------- Card list interpreter --------------------
-
-            public createCardListDimension() {
-                return this.createListDimension()
-            }
-
-            public createCardListContent(enumerable: Medals,): ReactElement {
-                return <Image file={enumerable.imageFile}/>
-            }
-
-            //endregion -------------------- Card list interpreter --------------------
-
-        }()
-    }
-
-    //endregion -------------------- Create methods --------------------
-
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SubMainContainer reactKey="medal" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+            <SimpleList reactKey="medal" interpreter={appInterpreter}/>
+        </SubMainContainer>
+    return <SubMainContainer reactKey="medal" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        <CardList reactKey="medal" interpreter={appInterpreter}/>
+    </SubMainContainer>
 }

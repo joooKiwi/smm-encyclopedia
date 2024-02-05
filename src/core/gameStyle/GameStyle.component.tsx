@@ -21,7 +21,7 @@ export default class GameStyleComponent
             && this.reference.isInSuperMarioBros3Style
             && this.reference.isInSuperMarioWorldStyle
             && this.reference.isInNewSuperMarioBrosUStyle
-            && (this.reference.isInSuperMario3DWorldStyle ?? false)
+            && this.reference.isInSuperMario3DWorldStyle === true
     }
 
     protected override _renderSingleComponent(gameStyle: GameStyles,) {

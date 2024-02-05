@@ -8,7 +8,6 @@ import type {PossibleEnglishName, PossibleEnglishName_Plural, PossibleEnglishNam
 import type {Loader}                                                                        from 'util/loader/Loader'
 
 import {isInProduction}                      from 'variables'
-import {GamePropertyProvider}                from 'core/entity/properties/game/GameProperty.provider'
 import {OtherPluralWordInTheGameContainer}   from 'core/otherWordInTheGame/OtherPluralWordInTheGame.container'
 import {OtherSingularWordInTheGameContainer} from 'core/otherWordInTheGame/OtherSingularWordInTheGame.container'
 import {createNameFromContent}               from 'lang/name/createNameFromContent'
@@ -75,20 +74,19 @@ interface Content
 function createSingularContent(content: Content, pluralContents: ReadonlyMap<PossibleEnglishName_Plural, OtherPluralWordInTheGame>,): OtherSingularWordInTheGame {
     const pluralForm = content.pluralForm
     const name = createNameFromContent(content, 'all', false,)//TODO change it to true once other translations are completed
-    const gameProperty = GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,)
 
     if (pluralForm == null)
-        return new OtherSingularWordInTheGameContainer(name, gameProperty, null,)
+        return new OtherSingularWordInTheGameContainer(name, content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2, null,)
 
     const pluralFormFound = pluralContents.get(pluralForm,)
     if (pluralFormFound == null)
         throw new ReferenceError(`No plural reference "${pluralForm}" was found for the singular "${content.english ?? content.americanEnglish}".`,)
-    return new OtherSingularWordInTheGameContainer(name, gameProperty, pluralFormFound,)
+    return new OtherSingularWordInTheGameContainer(name, content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2, pluralFormFound,)
 }
 
 function createPluralContent(content: Content,): OtherPluralWordInTheGame {
     return new OtherPluralWordInTheGameContainer(
         createNameFromContent(content, 'all', false,),//TODO change it to true once other translations are completed
-        GamePropertyProvider.get.get(content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,),
+        content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,
     )
 }

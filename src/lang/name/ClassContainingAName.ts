@@ -6,7 +6,7 @@ import type {NameTrait}       from 'lang/name/NameTrait'
  * A simple implementation of the {@link NameTrait}
  * to remove duplicate code.
  */
-export class ClassContainingAName<T, >
+export class ClassContainingAName<const out T, >
     implements NameTrait<T> {
 
     //region -------------------- Fields --------------------

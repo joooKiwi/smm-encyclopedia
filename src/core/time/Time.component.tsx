@@ -13,7 +13,7 @@ export default class TimeComponent
 
     protected override get _isInAll() {
         return this.reference.isInDayTheme
-            && (this.reference.isInNightTheme ?? false)
+            && this.reference.isInNightTheme === true
     }
 
     protected override get _isInFirst() {

@@ -1,6 +1,7 @@
 import type {Times} from 'core/time/Times'
 
-export interface TimeProperty<DAY extends boolean = boolean, NIGHT extends NullOrBoolean = NullOrBoolean, > {
+export interface TimeProperty<out DAY extends boolean = boolean,
+    out NIGHT extends NullOrBooleanOrNotApplicable = NullOrBooleanOrNotApplicable, > {
 
     get isInDayTheme(): DAY
 

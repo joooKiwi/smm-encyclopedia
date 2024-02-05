@@ -7,7 +7,7 @@ import type {NameTraitFromAnAlternativeContainer} from 'lang/name/NameTraitFromA
 
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 
-export class ClassContainingANameAndAnAlternative<T, U, ALTERNATIVE extends NameTrait<U>, >
+export class ClassContainingANameAndAnAlternative<const out T, const out U, const out ALTERNATIVE extends NameTrait<U>, >
     extends ClassContainingAName<T>
     implements NameTraitFromAnAlternativeContainer<U, ALTERNATIVE> {
 

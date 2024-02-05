@@ -18,8 +18,8 @@ interface ModalProperties<T extends ReactElement, >
 /**
  * Create a new {@link bootstrap.Modal Modal} instance.
  *
- * @reactComponent the properties received (containing the content, the option, the triggers & the id)
- * @param properties
+ * @reactComponent
+ * @param properties the properties received (containing the content, the option, the triggers & the id)
  * @see https://getbootstrap.com/docs/5.2/components/modals
  */
 export default function Modal<const T extends ReactElement = ReactElement, >({modalReference, children, option, on: triggers,}: ModalProperties<T>,) {
