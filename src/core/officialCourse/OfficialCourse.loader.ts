@@ -131,10 +131,8 @@ function createReference(content: Content, GameStyleCompanion: GameStyleCompanio
         createReleaseDate(content.releaseDate,),
         createRemovalDate(content.removalDate,),
         GameStyleCompanion.getValueByAcronym(content.gameStyle,),
-        [
-            ThemeCompanion.getValueByName(content.courseTheme_mainArea,),
-            subArea == null ? null : ThemeCompanion.getValueByName(subArea,),
-        ],
+        ThemeCompanion.getValueByName(content.courseTheme_mainArea,),
+        subArea == null ? null : ThemeCompanion.getValueByName(subArea,),
         content.amountOfTime,
     )
 }

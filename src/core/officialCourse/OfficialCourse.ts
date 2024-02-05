@@ -19,8 +19,6 @@ export interface OfficialCourse
     get gameStyle(): GameStyles
 
 
-    get courseThemes(): readonly [Themes, NullOr<Themes>,]
-
     get courseThemeInTheMainArea(): Themes
 
     get courseThemeInTheSubArea(): NullOr<Themes>

@@ -17,7 +17,6 @@ export class OfficialCourseContainer
     readonly #releaseDate
     readonly #removalDate
     readonly #gameStyle
-    readonly #courseTheme
     readonly #courseThemeInTheMainArea
     readonly #courseThemeInTheSubArea
     readonly #amountOfTime
@@ -30,16 +29,15 @@ export class OfficialCourseContainer
         reward: readonly MysteryMushrooms[],
         releaseDate: Date, removalDate: NullOr<| Date | UnknownReference>,
         gameStyle: GameStyles,
-        courseTheme: readonly [Themes, NullOr<Themes>,],
+        courseThemeInMainArea: Themes, courseThemeInSubArea: NullOr<Themes>,
         amountOfTime: PossibleAmountOfTime,) {
         super(name, description,)
         this.#reward = reward
         this.#releaseDate = releaseDate
         this.#removalDate = removalDate
         this.#gameStyle = gameStyle
-        this.#courseTheme = courseTheme
-        this.#courseThemeInTheMainArea = courseTheme[0]
-        this.#courseThemeInTheSubArea = courseTheme[1]
+        this.#courseThemeInTheMainArea = courseThemeInMainArea
+        this.#courseThemeInTheSubArea = courseThemeInSubArea
         this.#amountOfTime = amountOfTime
     }
 
@@ -64,10 +62,6 @@ export class OfficialCourseContainer
         return this.#gameStyle
     }
 
-
-    public get courseThemes(): readonly [Themes, NullOr<Themes>,] {
-        return this.#courseTheme
-    }
 
     public get courseThemeInTheMainArea(): Themes {
         return this.#courseThemeInTheMainArea
