@@ -26,7 +26,6 @@ export default function HomeApp() {
     return <>
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('home.title')}</h1>
         <div className="container-md alert alert-danger" role="alert">
-            <small className="fst-italic text-body-secondary">(Due to a specific condition, this warning will not be translated)</small>
             <p>
                 <span>Super Mario Maker for the WiiU & 3DS will no longer be playable online on <strong>April 2024</strong>. </span>
                 <br className="d-none d-md-block"/>

@@ -125,7 +125,6 @@ export default function OfficialCourseApp({viewDisplay,}: AppWithInterpreterProp
 /** @reactComponent */
 function OfficialCourseAlertContent() {
     return <div className="container-md alert alert-danger" role="alert">
-        <small className="fst-italic text-body-secondary">(Due to a specific condition, this warning will not be translated)</small>
         <p>
             <span>Some data are missing and cannot be retrieved from me personally since I only have an american account and the levels are not inside the game. </span>
             <br className="d-none d-xl-block"/>
