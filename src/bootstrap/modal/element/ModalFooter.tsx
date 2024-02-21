@@ -51,5 +51,5 @@ function createCancelButton(properties: ModalCancelButtonProperties = EMPTY_OBJE
     if (children != null)
         return <button {...otherProperties} type="button" className={`btn btn-danger ${className}`} data-bs-dismiss="modal">{children}</button>
 
-    return <button {...otherProperties} type="button" className={`btn btn-danger ${className}`} data-bs-dismiss="modal">{contentTranslation('Cancel')}</button>
+    return <button {...otherProperties} type="button" className={`btn btn-danger ${className}`} data-bs-dismiss="modal">{contentTranslation('Cancel',)}</button>
 }

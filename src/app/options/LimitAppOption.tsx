@@ -40,7 +40,7 @@ export abstract class LimitAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'acronym', element: contentTranslation('Acronym(s)'),}
+            return {key: 'acronym', element: contentTranslation('Acronym(s)',),}
         }
 
     }()

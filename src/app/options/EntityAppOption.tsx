@@ -187,7 +187,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: 'gameStyle', element: gameContentTranslation('game style.singular'),} satisfies SingleHeaderContent
+            return {key: 'gameStyle', element: gameContentTranslation('game style.singular',),} satisfies SingleHeaderContent
         }
 
     }('gameStyle',)
@@ -200,7 +200,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular'),} satisfies SingleHeaderContent
+            return {key: 'courseTheme', element: gameContentTranslation('theme.course.singular',),} satisfies SingleHeaderContent
         }
 
     }('courseTheme',)
@@ -213,7 +213,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: 'time', element: gameContentTranslation('time.singular'),} satisfies SingleHeaderContent
+            return {key: 'time', element: gameContentTranslation('time.singular',),} satisfies SingleHeaderContent
         }
 
     }('time',)

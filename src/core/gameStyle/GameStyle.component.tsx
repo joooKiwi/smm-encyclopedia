@@ -37,7 +37,7 @@ export default class GameStyleComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <TextComponent content={gameContentTranslation('game style.all')}/>
+        return <TextComponent content={gameContentTranslation('game style.all',)}/>
     }
 
     protected override _renderComponentForAllAsImages() {

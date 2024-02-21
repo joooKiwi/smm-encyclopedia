@@ -8,7 +8,7 @@ const ID = 'search-button'
 
 /** @reactComponent */
 export default function SearchButton() {
-    const content = `${contentTranslation('Search')}${SUSPENSION_POINT}`
+    const content = `${contentTranslation('Search',)}${SUSPENSION_POINT}`
 
     return <Tooltip elementId={ID} option={({title: content, placement: 'bottom',})}>
         <ModalButton key={`navigation button (search)`} id={ID} elementToShow={SEARCH_MODAL_ID} className="btn btn-lg btn-outline-primary btn-navigation rounded-pill bi bi-search" disabled>

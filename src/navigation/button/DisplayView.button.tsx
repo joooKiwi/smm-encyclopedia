@@ -8,7 +8,7 @@ const ID = 'displayView-button'
 
 /** @reactComponent */
 export default function DisplayViewButton() {
-    const content = `${contentTranslation('Display')}${SUSPENSION_POINT}`
+    const content = `${contentTranslation('Display',)}${SUSPENSION_POINT}`
 
     return <Tooltip elementId={ID} option={({title: content, placement: 'bottom',})}>
         <ModalButton key={`navigation button (display view)`} id={ID} elementToShow={DISPLAY_VIEW_MODAL_ID} className="btn btn-lg btn-outline-primary btn-navigation rounded-pill">

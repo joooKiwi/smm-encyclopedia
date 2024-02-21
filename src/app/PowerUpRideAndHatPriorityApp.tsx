@@ -227,12 +227,12 @@ export default class PowerUpRideAndHatPriorityApp
         const {type,} = this
 
         return <h1 key="title (power-up, ride & hat priority)" className="text-center">{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
-            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName).toLowerCase(),
-            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference).toLowerCase(),
-            ride: gameContentTranslation('ride.singular').toLowerCase(),
-            rides: gameContentTranslation('ride.plural').toLowerCase(),
-            hat: gameContentTranslation('hat.singular').toLowerCase(),
-            hats: gameContentTranslation('hat.plural').toLowerCase(),
+            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
+            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference,).toLowerCase(),
+            ride: gameContentTranslation('ride.singular',).toLowerCase(),
+            rides: gameContentTranslation('ride.plural',).toLowerCase(),
+            hat: gameContentTranslation('hat.singular',).toLowerCase(),
+            hats: gameContentTranslation('hat.plural',).toLowerCase(),
         },)}</h1>
     }
 
@@ -265,14 +265,14 @@ export default class PowerUpRideAndHatPriorityApp
         const type = this.type
 
         return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
-            <button className="btn disabled">{unfinishedText('Feature in progress')}</button>
-            <LinkButton partialId="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <button className="btn disabled">{unfinishedText('Feature in progress',)}</button>
+            <LinkButton partialId="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
             <div className="btn-group btn-group-sm" role="group">
-                <LinkButton partialId="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular')}</LinkButton>
-                <LinkButton partialId="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular')}</LinkButton>
-                <LinkButton partialId="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular')}</LinkButton>
+                <LinkButton partialId="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
+                <LinkButton partialId="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
+                <LinkButton partialId="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
             </div>
-            <LinkButton partialId="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None')}</LinkButton>
+            <LinkButton partialId="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None',)}</LinkButton>
         </div>
     }
 

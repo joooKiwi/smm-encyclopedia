@@ -48,7 +48,7 @@ export class CommonOptions {
     //endregion -------------------- Fields --------------------
 
     public get nameHeader(): SimpleReactHeader {
-        return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name'),}
+        return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name',),}
     }
 
     public getNameContent(enumeration: EnumerationWithReference,): ReactElement {
@@ -57,7 +57,7 @@ export class CommonOptions {
 
 
     public get categoryHeader(): SimpleReactHeader {
-        return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category'),}
+        return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category',),}
     }
 
     public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | ImageFile | Name<string>,): ReactElement {
@@ -75,7 +75,7 @@ export class CommonOptions {
 
 
     public get gameHeader(): SimpleReactHeader {
-        return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('game.singular'),}
+        return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('game.singular',),}
     }
 
     public get smm1And3dsGameHeader(): SimpleImageHeader {
@@ -116,14 +116,14 @@ export class CommonOptions {
 
 
     public get limitHeader(): SimpleReactHeader {
-        return this.#limitHeader ??= {key: 'limit', element: gameContentTranslation('limit.singular'),}
+        return this.#limitHeader ??= {key: 'limit', element: gameContentTranslation('limit.singular',),}
     }
 
     public get completePlayLimitHeader(): SimpleReactHeader {
-        return this.#completePlayLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.complete'),}
+        return this.#completePlayLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.complete',),}
     }
     public get completeEditorLimitHeader(): SimpleReactHeader {
-        return this.#completeEditorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.complete'),}
+        return this.#completeEditorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.complete',),}
     }
 
     public get completeEditorLimitInSmm1And3dsHeader(): SingleHeaderContent {

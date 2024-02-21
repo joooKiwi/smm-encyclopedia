@@ -708,7 +708,7 @@ export class OfficialNotifications
 
 
     protected _addPosition(position: | 1 | 2 | 3, type: | 'job' | 'place', key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        const upperText = gameContentTranslation(`Official notification.position.${type}.${position}`)
+        const upperText = gameContentTranslation(`Official notification.position.${type}.${position}`,)
         keyMap.position = <Fragment key={`${key} - position (${type})`}>
             {position}
             {upperText === EMPTY_STRING ? null : <sup>{upperText}</sup>}

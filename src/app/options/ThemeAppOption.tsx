@@ -74,7 +74,7 @@ implements AppOption<Themes>{
                     {Themes.DESERT.renderSingleComponent(false)}
                     {Times.NIGHT.renderSingleComponent}
                 </div>,
-                tooltip: gameContentTranslation('Effect (night)', {night: unfinishedText('night effect name'),},)//TODO add translation for the night effect name
+                tooltip: gameContentTranslation('Effect (night)', {night: unfinishedText('night effect name',),},)//TODO add translation for the night effect name
             }
         }
 

@@ -39,37 +39,37 @@ export default function DisplayViewBody() {
                 <DisplayViewRouteButton routeName="everyEntity" value={singularEntityName}
                                         tooltipValue={gameContentTranslation('entity.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
                                         elementId="displayView-entity-button"/>
-                <DisplayViewRouteButton routeName="everyEntityCategory" value={gameContentTranslation('Category')}
+                <DisplayViewRouteButton routeName="everyEntityCategory" value={gameContentTranslation('Category',)}
                                         tooltipValue={gameContentTranslation('entity category.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
                                         elementId="displayView-entityCategory-button"/>
-                {/*<DisplayViewRouteButton routeName="everyGroup" value={gameContentTranslation('Group')}
+                {/*<DisplayViewRouteButton routeName="everyGroup" value={gameContentTranslation('Group',)}
                                         tooltipValue={gameContentTranslation('entity group.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
                                         elementId="displayView-entityGroup-button"/>*/}
                 {/*TODO add other predefined group of entities*/}
             </div>
             <div key="button group (limit)" id="limit-buttonGroup" className="btn-group-vertical col-6" role="group">
-                <DisplayViewRouteButton routeName="everyLimit" value={gameContentTranslation('limit.singular')}
-                                        tooltipValue={gameContentTranslation('limit.all.display all')}
+                <DisplayViewRouteButton routeName="everyLimit" value={gameContentTranslation('limit.singular',)}
+                                        tooltipValue={gameContentTranslation('limit.all.display all',)}
                                         elementId="displayView-limit-button"/>
                 <div key="button group (specific limit in group)" id="specificLimitInGroup-buttonGroup" className="btn-group" role="group">
-                    <DisplayViewRouteButton routeName="playLimit" value={gameContentTranslation('limit.play.simple')}
-                                            tooltipValue={gameContentTranslation('limit.play.display all')}
+                    <DisplayViewRouteButton routeName="playLimit" value={gameContentTranslation('limit.play.simple',)}
+                                            tooltipValue={gameContentTranslation('limit.play.display all',)}
                                             elementId="displayView-playLimit-button"/>
-                    <DisplayViewRouteButton routeName="editorLimit" value={gameContentTranslation('limit.editor.simple')}
-                                            tooltipValue={gameContentTranslation('limit.editor.display all')}
+                    <DisplayViewRouteButton routeName="editorLimit" value={gameContentTranslation('limit.editor.simple',)}
+                                            tooltipValue={gameContentTranslation('limit.editor.display all',)}
                                             elementId="displayView-editorLimit-button"/>
                 </div>
             </div>
             <div key="button group (theme)" id="theme-buttonGroup" className="btn-group-vertical col-6" role="group">
-                <DisplayViewRouteButton routeName="everyTheme" value={gameContentTranslation('theme.singular')}
-                                        tooltipValue={gameContentTranslation('theme.all.display all')}
+                <DisplayViewRouteButton routeName="everyTheme" value={gameContentTranslation('theme.singular',)}
+                                        tooltipValue={gameContentTranslation('theme.all.display all',)}
                                         elementId="displayView-theme-button"/>
                 <div key="button group (specific theme type)" id="specificThemeType-buttonGroup" className="btn-group" role="group">
                     <DisplayViewRouteButton routeName="courseTheme" value={<Image id="displayView-courseTheme-image" file={COURSE_THEME_IMAGE_FILE} className="displayView-theme-image"/>}
-                                            tooltipValue={gameContentTranslation('theme.course.display all')}
+                                            tooltipValue={gameContentTranslation('theme.course.display all',)}
                                             elementId="displayView-courseTheme-button"/>
                     <DisplayViewRouteButton routeName="worldTheme" value={<Image id="displayView-worldTheme-image" file={WORLD_THEME_IMAGE_FILE} className="displayView-theme-image"/>}
-                                            tooltipValue={gameContentTranslation('theme.world.display all')}
+                                            tooltipValue={gameContentTranslation('theme.world.display all',)}
                                             elementId="displayView-worldTheme-button"/>
                 </div>
             </div>
@@ -77,11 +77,11 @@ export default function DisplayViewBody() {
         <div id="display-game-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2">{gameContentTranslation('game.singular')}</h3>
             <div key="button group (game)" id="game-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyGameReference" value={gameContentTranslation('game reference.singular')}
-                                        tooltipValue={gameContentTranslation('game reference.display all')}
+                <DisplayViewRouteButton routeName="everyGameReference" value={gameContentTranslation('game reference.singular',)}
+                                        tooltipValue={gameContentTranslation('game reference.display all',)}
                                         elementId="displayView-gameReference-button"/>
-                <DisplayViewRouteButton routeName="everyGameStyle" value={gameContentTranslation('game style.singular')}
-                                        tooltipValue={gameContentTranslation('game style.display all')}
+                <DisplayViewRouteButton routeName="everyGameStyle" value={gameContentTranslation('game style.singular',)}
+                                        tooltipValue={gameContentTranslation('game style.display all',)}
                                         elementId="displayView-gameStyle-button"/>
             </div>
         </div>
@@ -106,29 +106,29 @@ export default function DisplayViewBody() {
         <div id="display-sound-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Sound</UnfinishedText></h3>
             <div key="button group (sound effect)" id="soundEffect-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everySoundEffect" value={gameContentTranslation('sound effect.singular')}
-                                        tooltipValue={gameContentTranslation('sound effect.display all')}
+                <DisplayViewRouteButton routeName="everySoundEffect" value={gameContentTranslation('sound effect.singular',)}
+                                        tooltipValue={gameContentTranslation('sound effect.display all',)}
                                         elementId="displayView-soundEffect-button"/>
-                {isSMM2Selected ? <DisplayViewRouteButton routeName="everySoundEffectCategory" value={gameContentTranslation('Category')}
-                                                          tooltipValue={gameContentTranslation('sound effect category.display all')}
+                {isSMM2Selected ? <DisplayViewRouteButton routeName="everySoundEffectCategory" value={gameContentTranslation('Category',)}
+                                                          tooltipValue={gameContentTranslation('sound effect category.display all',)}
                                                           elementId="displayView-soundEffectCategory-button"/> : null}
             </div>
             <div key="button group (instrument)" id="instrument-buttonGroup" className="btn-group col-12 col-md-6" role="group">
-                <DisplayViewRouteButton routeName="everyInstrument" value={gameContentTranslation('instrument.singular')}
-                                        tooltipValue={gameContentTranslation('instrument.display all')}
+                <DisplayViewRouteButton routeName="everyInstrument" value={gameContentTranslation('instrument.singular',)}
+                                        tooltipValue={gameContentTranslation('instrument.display all',)}
                                         elementId="displayView-instrument-button"/>
             </div>
             <div key="button group (editor voice)" id="editorVoice-buttonGroup" className="btn-group col-12 col-md-6" role="group">
-                <DisplayViewRouteButton routeName="everyEditorVoice" value={gameContentTranslation('editor voice.singular')}
-                                        tooltipValue={gameContentTranslation('editor voice.display all')}
+                <DisplayViewRouteButton routeName="everyEditorVoice" value={gameContentTranslation('editor voice.singular',)}
+                                        tooltipValue={gameContentTranslation('editor voice.display all',)}
                                         elementId="displayView-editorVoice-button"/>
             </div>
         </div>
         <div id="display-nameOrWord-container" className="container">
-            <h3 className="text-center text-decoration-underline pb-2">{contentTranslation('Name or word')}</h3>
+            <h3 className="text-center text-decoration-underline pb-2">{contentTranslation('Name or word',)}</h3>
             <div key="button group (character name)" id="characterName-buttonGroup" className="btn-group col-12 col-lg-4" role="group">
-                <DisplayViewRouteButton routeName="everyCharacterName" value={gameContentTranslation('character name.singular')}
-                                        tooltipValue={gameContentTranslation('character name.display all')}
+                <DisplayViewRouteButton routeName="everyCharacterName" value={gameContentTranslation('character name.singular',)}
+                                        tooltipValue={gameContentTranslation('character name.display all',)}
                                         elementId="displayView-characterName-button"/>
             </div>
             {isSMM2Selected ? <div key="button group (course tag - SMM2)" id="courseTag-buttonGroup" className="btn-group col-12 col-sm-6 col-lg-4" role="group">
@@ -148,31 +148,31 @@ export default function DisplayViewBody() {
                 <DisplayViewRouteButton routeName="everyMiiCostume" value={singularMiiCostumeName}
                                         tooltipValue={gameContentTranslation('mii costume.display all', {singularName: singularMiiCostumeLowerCaseName, pluralName: pluralMiiCostumeLowerCaseName,},)}
                                         elementId="displayView-miiCostume-button"/>
-                <DisplayViewRouteButton routeName="everyMiiCostumeCategory" value={gameContentTranslation('Category')}
+                <DisplayViewRouteButton routeName="everyMiiCostumeCategory" value={gameContentTranslation('Category',)}
                                         tooltipValue={gameContentTranslation('mii costume category.display all', {singularName: singularMiiCostumeLowerCaseName, pluralName: pluralMiiCostumeLowerCaseName,},)}
                                         elementId="displayView-miiCostumeCategory-button"/>
             </div> : null}
             <div key="button group (power-up, ride & hat priority)" id="powerUpRideAndHat-buttonGroup" className="btn-group-vertical col-12" role="group">
                 <DisplayViewRouteButton routeName="everyPowerUp&Ride&HatPriority" value={gameContentTranslation('power-up, ride & hat priority.all.singular', {
                     PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName,
-                    Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(),
-                    Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),
+                    Ride: gameContentTranslation('ride.singular',), ride: gameContentTranslation('ride.singular',).toLowerCase(),
+                    Hat: gameContentTranslation('hat.singular',), hat: gameContentTranslation('hat.singular',).toLowerCase(),
                 },)}
                                         tooltipValue={gameContentTranslation('power-up, ride & hat priority.all.display all', {
                                             powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,
-                                            ride: gameContentTranslation('ride.singular').toLowerCase(), rides: gameContentTranslation('ride.plural').toLowerCase(),
-                                            hat: gameContentTranslation('hat.singular').toLowerCase(), hats: gameContentTranslation('hat.plural').toLowerCase(),
+                                            ride: gameContentTranslation('ride.singular',).toLowerCase(), rides: gameContentTranslation('ride.plural',).toLowerCase(),
+                                            hat: gameContentTranslation('hat.singular',).toLowerCase(), hats: gameContentTranslation('hat.plural',).toLowerCase(),
                                         },)}
                                         elementId="displayView-powerUpAndRide-button"/>
                 <div key="button group (power-up & ride priority separately)" id="powerUpAndRideSeparately-buttonGroup" className="btn-group" role="group">
                     <DisplayViewRouteButton routeName="everyPowerUpPriority" value={singularPowerUpName}
                                             tooltipValue={gameContentTranslation('power-up, ride & hat priority.power-up.display all', {powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,},)}
                                             elementId="displayView-powerUp-button"/>
-                    <DisplayViewRouteButton routeName="everyRidePriority" value={gameContentTranslation('ride.singular')}
-                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.ride.display all', {ride: gameContentTranslation('ride.singular').toLowerCase(), rides: gameContentTranslation('ride.plural').toLowerCase(),},)}
+                    <DisplayViewRouteButton routeName="everyRidePriority" value={gameContentTranslation('ride.singular',)}
+                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.ride.display all', {ride: gameContentTranslation('ride.singular',).toLowerCase(), rides: gameContentTranslation('ride.plural',).toLowerCase(),},)}
                                             elementId="displayView-ride-button"/>
-                    <DisplayViewRouteButton routeName="everyHatPriority" value={gameContentTranslation('hat.singular')}
-                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.hat.display all', {hat: gameContentTranslation('hat.singular').toLowerCase(), hats: gameContentTranslation('hat.plural').toLowerCase(),},)}
+                    <DisplayViewRouteButton routeName="everyHatPriority" value={gameContentTranslation('hat.singular',)}
+                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.hat.display all', {hat: gameContentTranslation('hat.singular',).toLowerCase(), hats: gameContentTranslation('hat.plural',).toLowerCase(),},)}
                                             elementId="displayView-hat-button"/>
                 </div>
             </div>

@@ -66,7 +66,7 @@ export default class NamePopoverComponent
         const setDoesDisplayPopover = this.setDoesDisplayPopover
 
         this.setState({
-            element: <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, contentTranslation('In other languages'),)}
+            element: <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, contentTranslation('In other languages',),)}
                                   {...this.otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
                 {this.#currentLanguageTextContent}
             </TextPopover>,

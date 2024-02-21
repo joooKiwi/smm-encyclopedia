@@ -164,10 +164,10 @@ interface LimitAsideContentProperties
 /** @reactComponent */
 function LimitAsideContent({viewDisplay, type,}: LimitAsideContentProperties,) {
     return <div id="limit-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allLimit" routeName={viewDisplay.getRoutePath(type.allRouteName)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allLimit" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="playLimit" routeName={viewDisplay.getRoutePath(type.playRouteName)} color={type.playColor}>{gameContentTranslation('limit.play.simple',)}</LinkButton>
-            <LinkButton partialId="editorLimit" routeName={viewDisplay.getRoutePath(type.editorRouteName)} color={type.editorColor}>{gameContentTranslation('limit.editor.simple',)}</LinkButton>
+            <LinkButton partialId="playLimit" routeName={viewDisplay.getRoutePath(type.playRouteName,)} color={type.playColor}>{gameContentTranslation('limit.play.simple',)}</LinkButton>
+            <LinkButton partialId="editorLimit" routeName={viewDisplay.getRoutePath(type.editorRouteName,)} color={type.editorColor}>{gameContentTranslation('limit.editor.simple',)}</LinkButton>
         </div>
     </div>
 }

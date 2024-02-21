@@ -97,7 +97,7 @@ export abstract class OfficialCourseAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: 'time', element: gameContentTranslation('time.singular'),} satisfies SingleHeaderContent
+            return {key: 'time', element: gameContentTranslation('time.singular',),} satisfies SingleHeaderContent
         }
 
     }('time',)

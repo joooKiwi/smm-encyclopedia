@@ -11,11 +11,11 @@ export default function SearchModal() {
     return <>
         <Modal modalReference={modal}/>
         <ModalContainer modalReference={modal} key="modal - search (container)" id={SEARCH_MODAL_ID} verticallyCentered modalSize="lg">
-            {/*    <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search')}${SUSPENSION_POINT}`}/>*/}
+            {/*    <ModalHeader key="modal - search (header)" modalTitle={`${contentTranslation('Search',)}${SUSPENSION_POINT}`}/>*/}
             {/*    <ModalBody key="modal - search (body)">*/}
             {/*        <SearchBody/>*/}
             {/*    </ModalBody>*/}
-            {/*    <ModalFooter key="modal - search (footer)" successButton={({children: contentTranslation('Search')})}/>*/}
+            {/*    <ModalFooter key="modal - search (footer)" successButton={{children: contentTranslation('Search',)}}/>*/}
         </ModalContainer>
     </>
 }

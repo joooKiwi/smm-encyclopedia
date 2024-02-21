@@ -41,7 +41,7 @@ export default class TimeComponent
     }
 
     protected override _renderComponentForAllAsText() {
-        return <TextComponent content={gameContentTranslation('time.all')}/>
+        return <TextComponent content={gameContentTranslation('time.all',)}/>
     }
 
     protected override _renderComponentForAllAsImages() {
