@@ -102,7 +102,6 @@ class ThemeAppInterpreter
     //region -------------------- Table interpreter --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
     public readonly tableCaption = gameContentTranslation('theme.all.all',) satisfies ReactElementOrString
 
     public get tableOptions(): readonly ThemeAppOption[] {

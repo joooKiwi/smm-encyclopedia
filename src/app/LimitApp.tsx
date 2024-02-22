@@ -88,7 +88,6 @@ class LimitAppInterpreter
     //region -------------------- Table interpreter --------------------
 
     public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
-    public readonly tableColor = 'primary' satisfies BootstrapThemeColor
 
     public get tableCaption() {
         return gameContentTranslation(`limit.${this.type.type}.all`,) satisfies ReactElementOrString
