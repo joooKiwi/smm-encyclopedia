@@ -8,5 +8,5 @@ enum Enum {
 export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
-/** A type (not forwarded to the {@link import('route/EveryRoutes.types').PossibleRouteName} variable) */
+/** A possible route name (not forwarded to the {@link import('route/EveryRoutes.types').PossibleRouteName} variable) */
 export type PossibleRouteName = `everyCharacterName (${| 'list' | 'card'} Game=${| 'all' | 1 | '3DS' | 2})`
