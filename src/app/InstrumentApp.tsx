@@ -1,22 +1,41 @@
-import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
+import 'core/game/GameAsideContent.scss'
+
+import type {InstrumentAppProperties}    from 'app/AppProperties.types'
+import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
+import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {GameCollection}             from 'util/collection/GameCollection'
+import type {ReactProperties}            from 'util/react/ReactProperties'
 
 import SubMainContainer         from 'app/_SubMainContainer'
 import CardList                 from 'app/withInterpreter/CardList'
 import SimpleList               from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import LinkButton               from 'app/tools/button/LinkButton'
+import {Games}                  from 'core/game/Games'
 import {Instruments}            from 'core/instrument/Instruments'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import SimpleSoundComponent     from 'util/file/sound/component/SimpleSound.component'
-import {assert}                 from 'util/utilitiesMethods'
+import {assert, filterGame}     from 'util/utilitiesMethods'
 
 class InstrumentAppInterpreter
     implements AppInterpreterWithCardList<Instruments> {
 
+    //region -------------------- Fields --------------------
+
+    readonly #games
+
+    //endregion -------------------- Fields --------------------
+    //region -------------------- Constructor --------------------
+
+    public constructor(games: GameCollection,) {
+        this.#games = games
+    }
+
+    //endregion -------------------- Constructor --------------------
+
     public get content() {
-        return Instruments.CompanionEnum.get.values.toArray()
+        return filterGame(Instruments.CompanionEnum.get.values.toArray(), this.#games,)
     }
 
     //region -------------------- List interpreter --------------------
@@ -56,10 +75,10 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyInstrument (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
 const titleContent = gameContentTranslation('instrument.all',)
-const appInterpreter = new InstrumentAppInterpreter()
 
 /** @reactComponent */
-export default function InstrumentApp({viewDisplay,}: AppWithInterpreterProperties,) {
+export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProperties,) {
+    const appInterpreter = new InstrumentAppInterpreter(games,)
     assert(viewDisplay !== ViewDisplays.TABLE, 'The InstrumentApp only handle the "simple list" or "card list" as a possible view display.',)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
