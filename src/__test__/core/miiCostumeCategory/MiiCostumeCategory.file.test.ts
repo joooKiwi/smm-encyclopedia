@@ -7,7 +7,7 @@ describe('Mii costume category (file test)', () => {
     const types = EveryTypes.get
     const everyNames = types.everyPossibleName_MiiCostumeCategory
 
-    file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it,)
 
         describe('Type validations', () => {

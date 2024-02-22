@@ -14,14 +14,14 @@ describe('Mii costume (file test)', () => {
     const everyCategories = types.everyPossibleName_MiiCostumeCategory
     const excludedLanguages: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
-    file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedLanguages,)
 
         describe('Type validations', () => {
-            test('Notification when it is unlocked', () => expect(it.notificationIfUnlocked).toBeOneOf(everyOfficialNotifications))
-            test('Version', () => expect(it.MM2_version).toBeOneOf(possibleVersion))
+            test('Notification when it is unlocked', () => expect(it.notificationIfUnlocked,).toBeOneOf(everyOfficialNotifications,),)
+            test('Version', () => expect(it.MM2_version,).toBeOneOf(possibleVersion,),)
 
-            test('Category', () => expect(it.category).toBeOneOf(everyCategories))
+            test('Category', () => expect(it.category,).toBeOneOf(everyCategories,),)
             testEnglish(it, everyNames,)
         },)
     },),)

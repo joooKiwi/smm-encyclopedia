@@ -55,14 +55,14 @@ describe('Entity (file test)', () => {
     const possibleHasNameReferencedInMarioMaker = [null, true, false, UNKNOWN_CHARACTER, 'Only spoken (in english) in Editor',]                                          as const satisfies readonly HasAReferenceInMarioMaker[]
     const excludedLanguages: readonly PossibleExcludedLanguages[] = ['german', 'spanish', 'italian', 'dutch', 'portuguese', 'russian', 'japanese', 'chinese', 'korean',]
 
-    file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedLanguages,)
 
         describe('Type validation', () => {
-            test('Entity type', () => expect(it.entityType).toBeOneOf(possibleEntityType))
+            test('Entity type', () => expect(it.entityType,).toBeOneOf(possibleEntityType,),)
             describe('1st appearance', () => {
-                test('value', () => expect(it.firstAppearanceInMarioMaker).toBeOneOf(possibleFirstAppearance))
-                test('version', () => expect(it.firstAppearanceInMarioMaker_version).toBeOneOf(everyVersion))
+                test('value', () => expect(it.firstAppearanceInMarioMaker,).toBeOneOf(possibleFirstAppearance,),)
+                test('version', () => expect(it.firstAppearanceInMarioMaker_version,).toBeOneOf(everyVersion,),)
             },)
             describe('Is in …', () => {
                 describe('Game', () => {
@@ -95,7 +95,7 @@ describe('Entity (file test)', () => {
                 },)
             },)
             describe('Basic properties', () => {
-                test('Category in the editor', () => expect(it.categoryInTheEditor).toBeOneOf(everyPossibleCategory))
+                test('Category in the editor', () => expect(it.categoryInTheEditor,).toBeOneOf(everyPossibleCategory,),)
 
                 test('Has a mushroom variant', () => expect(it.hasAMushroomVariant,).toBeBooleanOrNotApplicable(),)
                 describe('Can be in a parachute', () => {
@@ -111,11 +111,11 @@ describe('Entity (file test)', () => {
             },)
             describe('Specific properties', () => {
                 test('Can contain / spawn a key', () => expect(it.canContainOrSpawnAKey,).toBeBooleanOrNullOrNotApplicable(),)
-                test('Is affected directly by an ON/OFF state', () => expect(it.isAffectedDirectlyByAnOnOrOffState).toBeOneOf(possibleAffectedByOnOffState))
+                test('Is affected directly by an ON/OFF state', () => expect(it.isAffectedDirectlyByAnOnOrOffState,).toBeOneOf(possibleAffectedByOnOffState,),)
                 describe('Can be put on a Track', () => {
                     test('value', () => expect(it.canBePutOnATrack,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
-                    test('editor limit', () => expect(it.editorLimit_canBePutOnATrack).toBeOneOf(everyEditorLimitsWithNullAndNotApplicable))
-                    test('play limit', () => expect(it.whilePlaying_canBePutOnATrack).toBeOneOf(everyPlayLimitsWithNullAndUnknown))
+                    test('editor limit', () => expect(it.editorLimit_canBePutOnATrack,).toBeOneOf(everyEditorLimitsWithNullAndNotApplicable,),)
+                    test('play limit', () => expect(it.whilePlaying_canBePutOnATrack,).toBeOneOf(everyPlayLimitsWithNullAndUnknown,),)
                     //TODO add coherence test
                 },)
                 test('Can spawn out of a Pipe', () => expect(it.canSpawnOutOfAPipe,).toBeBooleanOrNullOrNotApplicable(),)
@@ -125,22 +125,22 @@ describe('Entity (file test)', () => {
                 test('Can be put in a Clown Car', () => expect(it.canBePutInAClownCar,).toBeBooleanOrNullOrNotApplicable(),)
                 test('Can be thrown by a Bullet Launcher', () => expect(it.canBeFiredOutOfABulletLauncher,).toBeBooleanOrNullOrNotApplicable(),)
                 test('Can be put in a Block', () => expect(it.canBePutInABlock,).toBeBooleanOrNullOrNotApplicable(),)
-                test('Can be put in a Tree', () => expect(it.canBePutInATree).toBeBooleanOrNull())
+                test('Can be put in a Tree', () => expect(it.canBePutInATree,).toBeBooleanOrNull(),)
 
-                test('Weight', () => expect(it.weight).toBeOneOf(everyWeight))
+                test('Weight', () => expect(it.weight,).toBeOneOf(everyWeight,),)
                 describe('Light source emitted', () => {
-                    test('value', () => expect(it.lightSourceEmitted).toBeOneOf(everyLightSources))
-                    test('Is in SMB', () => expect(it.lightSourceEmitted_isInSMB).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER))
+                    test('value', () => expect(it.lightSourceEmitted,).toBeOneOf(everyLightSources,),)
+                    test('Is in SMB', () => expect(it.lightSourceEmitted_isInSMB,).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER,),)
                 },)
-                test('Can survive in the Lava / Poison', () => expect(it.canSurviveInTheLavaOrThePoison).toBeOneOf(everySurviveConditionsInDeadlyLiquid))
+                test('Can survive in the Lava / Poison', () => expect(it.canSurviveInTheLavaOrThePoison,).toBeOneOf(everySurviveConditionsInDeadlyLiquid,),)
                 describe('Bob-omb', () => {
-                    test('Can ignite', () => expect(it.canIgniteABobOmb).toBeOneOf(possibleCanIgniteByBobOmb))
-                    test('Can be broken / killed', () => expect(it.canBeBrokenOrKilledByABobOmb).toBeOneOf(possibleCanBeBrokenOrKilledByBobOmb))
+                    test('Can ignite', () => expect(it.canIgniteABobOmb,).toBeOneOf(possibleCanIgniteByBobOmb,),)
+                    test('Can be broken / killed', () => expect(it.canBeBrokenOrKilledByABobOmb,).toBeOneOf(possibleCanBeBrokenOrKilledByBobOmb,),)
                 },)
-                test('Can be affected by a Twister', () => expect(it.canBeAffectedByATwister).toBeOneOf(possibleAffectedByTwister))
+                test('Can be affected by a Twister', () => expect(it.canBeAffectedByATwister,).toBeOneOf(possibleAffectedByTwister,),)
                 describe('Can go through a wall', () => {
-                    test('value', () => expect(it.canGoThroughWalls).toBeBooleanOrNull())
-                    test('in SM3DW', () => expect(it.canGoThroughWalls_SM3DW).toBeOneOf(possibleCanGoThroughWallsInSM3DW))
+                    test('value', () => expect(it.canGoThroughWalls,).toBeBooleanOrNull(),)
+                    test('in SM3DW', () => expect(it.canGoThroughWalls_SM3DW,).toBeOneOf(possibleCanGoThroughWallsInSM3DW,),)
                     //TODO add coherence test
                 },)
                 test('Can be stacked', () => expect(it.canBeStacked,).toBeBooleanOrNullOrNotApplicable(),)
@@ -154,13 +154,13 @@ describe('Entity (file test)', () => {
                 },)
             },)
             describe('Bowser / Bowser Jr. / Magikoopa properties', () => {
-                test('Can be thrown by a Bowser in a Clown Car', () => expect(it.canBeThrownByBowserInClownCar).toBeOneOf(possibleCanBeThrownByBowserInClownCar))
-                test('Can be thrown by a Bowser Jr.', () => expect(it.canBeThrownByBowserJr).toBeOneOf(possibleCanBeThrownByBowserJr))
-                test('Can be thrown by a Bowser Jr. in a Clown Car', () => expect(it.canBeThrownByBowserJrInClownCar).toBeOneOf(possibleCanBeThrownByBowserJrInClownCar))
+                test('Can be thrown by a Bowser in a Clown Car', () => expect(it.canBeThrownByBowserInClownCar,).toBeOneOf(possibleCanBeThrownByBowserInClownCar,),)
+                test('Can be thrown by a Bowser Jr.', () => expect(it.canBeThrownByBowserJr,).toBeOneOf(possibleCanBeThrownByBowserJr,),)
+                test('Can be thrown by a Bowser Jr. in a Clown Car', () => expect(it.canBeThrownByBowserJrInClownCar,).toBeOneOf(possibleCanBeThrownByBowserJrInClownCar,),)
 
-                test('Can be transformed by Magikoopa', () => expect(it.canBeTransformedByMagikoopa).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER))
-                test('Can be spawned by Magikoopa', () => expect(it.canBeSpawnedByMagikoopa).toBeBooleanOrNull())
-                test('Can be spawned by Winged Magikoopa', () => expect(it.canBeSpawnedByWingedMagikoopa).toBeOneOf(possibleCanBeSpawnedByWingedMagikoopa))
+                test('Can be transformed by Magikoopa', () => expect(it.canBeTransformedByMagikoopa,).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER,),)
+                test('Can be spawned by Magikoopa', () => expect(it.canBeSpawnedByMagikoopa,).toBeBooleanOrNull(),)
+                test('Can be spawned by Winged Magikoopa', () => expect(it.canBeSpawnedByWingedMagikoopa,).toBeOneOf(possibleCanBeSpawnedByWingedMagikoopa,),)
             },)
             describe('Entity limit properties', () => {
                 test('Amount', () => expect(it.limitAmount,).toBeOneOf(everyLimitAmountType,),)
@@ -203,31 +203,31 @@ describe('Entity (file test)', () => {
             },)
             describe('Spawning / Despawning range properties', () => {
                 describe('Can respawn', () => {
-                    test('value', () => expect(it.canRespawn).toBeOneOf(possibleCanRespawn))
-                    test('online', () => expect(it.canRespawn_online).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER))
-                    test('online inside a Block', () => expect(it.canRespawn_online_inABlock).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER))
+                    test('value', () => expect(it.canRespawn,).toBeOneOf(possibleCanRespawn,),)
+                    test('online', () => expect(it.canRespawn_online,).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER,),)
+                    test('online inside a Block', () => expect(it.canRespawn_online_inABlock,).toBeOneOf(NULL_OR_BOOLEAN_OR_UNKNOWN_CHARACTER,),)
                 },)
                 describe.skip('Behaviour', () => {//TODO add spawning & despawning behaviour validations
-                    test('solo', () => expect(it.behaviour_solo).toBeOneOf([]))
-                    test('local coop', () => expect(it.behaviour_localCoop).toBeOneOf([]))
-                    test('online coop', () => expect(it.behaviour_onlineCoop).toBeOneOf([]))
-                    test('online versus', () => expect(it.behaviour_onlineVS).toBeOneOf([]))
+                    test('solo', () => expect(it.behaviour_solo,).toBeOneOf([],),)
+                    test('local coop', () => expect(it.behaviour_localCoop,).toBeOneOf([],),)
+                    test('online coop', () => expect(it.behaviour_onlineCoop,).toBeOneOf([],),)
+                    test('online versus', () => expect(it.behaviour_onlineVS,).toBeOneOf([],),)
                 },)
-                test('Reference point', () => expect(it.offscreenSpawningAndDespawningReferencePoint).toBeOneOf(possibleOffscreenReferencePoint))
+                test('Reference point', () => expect(it.offscreenSpawningAndDespawningReferencePoint,).toBeOneOf(possibleOffscreenReferencePoint,),)
                 describe.skip('Range', () => {//TODO add the spawning & despawning range properties validations
-                    test('Spawning horizontal', () => expect(it.offscreenSpawningHorizontalRange).toBeOneOf([]))
-                    test('Despawning horizontal', () => expect(it.offscreenDespawningHorizontalRange).toBeOneOf([]))
-                    test('Spawning ↑ vertical', () => expect(it.offscreenSpawningUpwardVerticalRange).toBeOneOf([]))
-                    test('Despawning ↑ vertical', () => expect(it.offscreenDespawningUpwardVerticalRange).toBeOneOf([]))
-                    test('Spawning ↓ vertical', () => expect(it.offscreenSpawningDownwardVerticalRange).toBeOneOf([]))
-                    test('Despawning ↓ vertical', () => expect(it.offscreenDespawningDownwardVerticalRange).toBeOneOf([]))
+                    test('Spawning horizontal', () => expect(it.offscreenSpawningHorizontalRange,).toBeOneOf([],),)
+                    test('Despawning horizontal', () => expect(it.offscreenDespawningHorizontalRange,).toBeOneOf([],),)
+                    test('Spawning ↑ vertical', () => expect(it.offscreenSpawningUpwardVerticalRange,).toBeOneOf([],),)
+                    test('Despawning ↑ vertical', () => expect(it.offscreenDespawningUpwardVerticalRange,).toBeOneOf([],),)
+                    test('Spawning ↓ vertical', () => expect(it.offscreenSpawningDownwardVerticalRange,).toBeOneOf([],),)
+                    test('Despawning ↓ vertical', () => expect(it.offscreenDespawningDownwardVerticalRange,).toBeOneOf([],),)
                 },)
             },)
             describe.skip('Dimension', () => {//TODO add dimension validations
-                test('value', () => expect(it.dimension).toBeOneOf([]))
-                test('maximum', () => expect(it.dimension_maximum).toBeOneOf([]))
-                test('value (different in SM3DW)', () => expect(it.dimension_differentSM3DW).toBeOneOf([]))
-                test('maximum (different in SM3DW)', () => expect(it.dimension_maximum_differentSM3DW).toBeOneOf([]))
+                test('value', () => expect(it.dimension,).toBeOneOf([],),)
+                test('maximum', () => expect(it.dimension_maximum,).toBeOneOf([],),)
+                test('value (different in SM3DW)', () => expect(it.dimension_differentSM3DW,).toBeOneOf([],),)
+                test('maximum (different in SM3DW)', () => expect(it.dimension_maximum_differentSM3DW,).toBeOneOf([],),)
             },)
             describe('Reference on specific condition properties', () => {
                 describe('Game style', () => {
@@ -254,7 +254,7 @@ describe('Entity (file test)', () => {
                     testEntityLink('night', it.inNightTime,)
                 },)
             },)
-            test('Has a name referenced directly in a Super Mario Maker game', () => expect(it.hasANameReferencedInMarioMaker).toBeOneOf(possibleHasNameReferencedInMarioMaker))
+            test('Has a name referenced directly in a Super Mario Maker game', () => expect(it.hasANameReferencedInMarioMaker,).toBeOneOf(possibleHasNameReferencedInMarioMaker,),)
 
             testEnglish(it, everyNames,)
         },)

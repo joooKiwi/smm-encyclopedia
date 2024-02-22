@@ -10,7 +10,7 @@ describe('Entity category (file test)', () => {
     const everyNames = types.everyPossibleName_entityCategory
     const excludedNames: readonly PossibleExcludedLanguages[] = ['portuguese',]
 
-    file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         testLanguages(it, excludedNames,)
 
         describe('Type validations', () => {
