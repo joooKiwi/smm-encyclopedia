@@ -6,5 +6,6 @@ declare global {
     type ReactJSXElement = React.JSX.Element
     type ReactElement = Nullable<React.ReactElement>
     type ReactElementOrString = | ReactElement | string
+    type ReactElementOrStringOrArray = | ReactElement | string | readonly (| ReactElement | string)[]
 
 }
