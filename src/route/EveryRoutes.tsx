@@ -627,7 +627,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly EVERY_UNOFFICIAL_COURSE_TAG = new EveryRoutes.ListCard_Smm2_EveryRoutes('unofficialCourseTag', '/unofficial/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.UNOFFICIAL}/>,)
     public static readonly EVERY_MAKER_CENTRAL_COURSE_TAG = new EveryRoutes.ListCard_Smm2_EveryRoutes('makerCentralCourseTag', '/maker-central/course-tag', null, viewDisplay => <CourseTagApp viewDisplay={viewDisplay} type={CourseTagTypes.MAKER_CENTRAL}/>,)
 
-    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCard_AnyGame_EveryRoutes('everyInstrument', '/every/instrument', null, viewDisplay => <InstrumentApp viewDisplay={viewDisplay}/>,)//TODO add the games on the InstrumentApp
+    public static readonly EVERY_INSTRUMENT = new EveryRoutes.ListCard_AnyGame_EveryRoutes('everyInstrument', '/every/instrument', null, (viewDisplay, games,) => <InstrumentApp viewDisplay={viewDisplay} games={games}/>,)
 
     public static readonly EVERY_EDITOR_VOICE = new EveryRoutes.ListCard_AnyGame_EveryRoutes('everyEditorVoice', '/every/editor-voice', null, (viewDisplay, games,) => <EditorVoiceApp viewDisplay={viewDisplay} games={games}/>,)
 
