@@ -1,17 +1,22 @@
 import './GameStyleApp.scss'
+import 'core/game/GameAsideContent.scss'
 
 import type {GameStyleProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
+import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import SubMainContainer         from 'app/_SubMainContainer'
 import {GameStyleAppOption}     from 'app/options/GameStyleAppOption'
+import {GameStyleGames}         from 'app/property/GameStyleGames'
+import LinkButton               from 'app/tools/button/LinkButton'
 import Table                    from 'app/tools/table/Table'
 import CardList                 from 'app/withInterpreter/CardList'
 import SimpleList               from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import {Games}                  from 'core/game/Games'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
@@ -99,14 +104,43 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
     const appInterpreter = new GameStyleAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay}/>}>
             <SimpleList reactKey="gameStyle" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay}/>}>
             <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
         </SubMainContainer>
-    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                             asideContent={<GameStyleAsideContent viewDisplay={viewDisplay}/>}>
         <Table id="gameStyle-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
+
+//region -------------------- Aside content --------------------
+
+interface GameStyleAsideContentProperties
+    extends ReactProperties {
+
+    readonly viewDisplay: ViewDisplays
+
+}
+
+const smm1 = Games.SUPER_MARIO_MAKER_1
+const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+const smm2 = Games.SUPER_MARIO_MAKER_2
+
+function GameStyleAsideContent({viewDisplay,}: GameStyleAsideContentProperties,) {
+    const gameStyleGame = smm2.isSelected
+        ? GameStyleGames.SUPER_MARIO_MAKER_2
+        : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
+        <LinkButton partialId="smm1Or3dsGame" routeName={gameStyleGame.getSmm1Or3dsRouteName(viewDisplay,)} color={gameStyleGame.smm1Or3dsColor}>{smm1.renderSingleComponent}{smm3ds.renderSingleComponent}</LinkButton>
+        <LinkButton partialId="smm2Game" routeName={gameStyleGame.getSmm2RouteName(viewDisplay,)} color={gameStyleGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+    </div>
+}
+
+//endregion -------------------- Aside content --------------------

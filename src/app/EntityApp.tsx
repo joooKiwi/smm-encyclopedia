@@ -1,5 +1,6 @@
 import './EntityApp.scss'
-import './options/EntityAppOption.scss'
+import 'app/options/EntityAppOption.scss'
+import 'core/game/GameAsideContent.scss'
 
 import type {EntityProperties}        from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -7,19 +8,23 @@ import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
 import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
+import type {ReactProperties}         from 'util/react/ReactProperties'
 
-import SubMainContainer              from 'app/_SubMainContainer'
-import {EntityAppOption}             from 'app/options/EntityAppOption'
-import Table                         from 'app/tools/table/Table'
-import {unfinishedText}              from 'app/tools/text/UnfinishedText'
-import CardList                      from 'app/withInterpreter/CardList'
-import SimpleList                    from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}                from 'app/withInterpreter/ViewDisplays'
-import EditorVoiceSoundComponent     from 'core/editorVoice/EditorVoiceSound.component'
-import {Entities}                    from 'core/entity/Entities'
-import {OtherWordInTheGames}         from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}      from 'lang/components/translationMethods'
-import {filterGame, filterGameStyle} from 'util/utilitiesMethods'
+import SubMainContainer                             from 'app/_SubMainContainer'
+import {EntityAppOption}                            from 'app/options/EntityAppOption'
+import {EntityGames}                                from 'app/property/EntityGames'
+import LinkButton                                   from 'app/tools/button/LinkButton'
+import Table                                        from 'app/tools/table/Table'
+import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import CardList                                     from 'app/withInterpreter/CardList'
+import SimpleList                                   from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import {Entities}                                   from 'core/entity/Entities'
+import {Games}                                      from 'core/game/Games'
+import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {filterGame, filterGameStyle}                from 'util/utilitiesMethods'
 
 class EntityAppInterpreter
     implements AppInterpreterWithTable<Entities, EntityAppOption> {
@@ -162,14 +167,53 @@ export default function EntityApp({viewDisplay, games, gameStyles,}: EntityPrope
     const appInterpreter = new EntityAppInterpreter(games, gameStyles,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 asideContent={<EntityAsideContent viewDisplay={viewDisplay}/>}>
             <SimpleList reactKey="entity" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 asideContent={<EntityAsideContent viewDisplay={viewDisplay}/>}>
             <CardList reactKey="entity" interpreter={appInterpreter}/>
         </SubMainContainer>
-    return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+    return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                             asideContent={<EntityAsideContent viewDisplay={viewDisplay}/>}>
         <Table id="entity-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
+
+//region -------------------- Aside content --------------------
+
+interface EntityAsideContentProperties
+    extends ReactProperties {
+
+    readonly viewDisplay: ViewDisplays
+
+}
+
+const GamePossibilities = Games.Possibilities.get
+const allGames = GamePossibilities.ALL_GAMES
+const smm1 = Games.SUPER_MARIO_MAKER_1
+const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+const smm2 = Games.SUPER_MARIO_MAKER_2
+
+function EntityAsideContent({viewDisplay,}: EntityAsideContentProperties,) {
+    const editorVoiceGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)
+        ? EntityGames.ALL_GAMES
+        : smm2.isSelected
+            ? EntityGames.SUPER_MARIO_MAKER_2
+            : smm1.isSelected
+                ? EntityGames.SUPER_MARIO_MAKER
+                : EntityGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allGameLimit" routeName={editorVoiceGame.getAllRouteName(viewDisplay,)} color={editorVoiceGame.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
+            <LinkButton partialId="smm1Game" routeName={editorVoiceGame.getSmm1RouteName(viewDisplay,)} color={editorVoiceGame.smm1Color}>{smm1.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm3dsGame" routeName={editorVoiceGame.getSmm3dsRouteName(viewDisplay,)} color={editorVoiceGame.smm3dsColor}>{smm3ds.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm2Game" routeName={editorVoiceGame.getSmm2RouteName(viewDisplay,)} color={editorVoiceGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+        </div>
+    </div>
+}
+
+//endregion -------------------- Aside content --------------------

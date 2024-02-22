@@ -1,4 +1,5 @@
 import './SoundEffectApp.scss'
+import 'core/game/GameAsideContent.scss'
 
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -6,16 +7,20 @@ import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}          from 'util/collection/GameCollection'
 import type {GameStyleCollection}     from 'util/collection/GameStyleCollection'
+import type {ReactProperties}         from 'util/react/ReactProperties'
 
-import SubMainContainer         from 'app/_SubMainContainer'
-import {SoundEffectAppOption}   from 'app/options/SoundEffectAppOption'
-import Table                    from 'app/tools/table/Table'
-import CardList                 from 'app/withInterpreter/CardList'
-import SimpleList               from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
-import {SoundEffects}           from 'core/soundEffect/SoundEffects'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame}             from 'util/utilitiesMethods'
+import SubMainContainer                             from 'app/_SubMainContainer'
+import {SoundEffectAppOption}                       from 'app/options/SoundEffectAppOption'
+import LinkButton                                   from 'app/tools/button/LinkButton'
+import Table                                        from 'app/tools/table/Table'
+import {SoundEffectGames}                           from 'app/property/SoundEffectGames'
+import CardList                                     from 'app/withInterpreter/CardList'
+import SimpleList                                   from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import {Games}                                      from 'core/game/Games'
+import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {filterGame}                                 from 'util/utilitiesMethods'
 
 class SoundEffectAppInterpreter
     implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -130,14 +135,50 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundE
     const appInterpreter = new SoundEffectAppInterpreter(games, gameStyles,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay}/>}>
             <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay}/>}>
             <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
         </SubMainContainer>
-    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                             asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay}/>}>
         <Table id="soundEffect-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
+
+//region -------------------- Aside content --------------------
+
+interface SoundEffectAsideContentProperties
+    extends ReactProperties {
+
+    readonly viewDisplay: ViewDisplays
+
+}
+
+const GamePossibilities = Games.Possibilities.get
+const allGames = GamePossibilities.ALL_GAMES
+const smm1 = Games.SUPER_MARIO_MAKER_1
+const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+const smm2 = Games.SUPER_MARIO_MAKER_2
+
+function SoundEffectAsideContent({viewDisplay,}: SoundEffectAsideContentProperties,) {
+    const soundEffectGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)
+        ? SoundEffectGames.ALL_GAMES
+        : smm2.isSelected
+            ? SoundEffectGames.SUPER_MARIO_MAKER_2
+            : SoundEffectGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    return <div id="soundEffect-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allGameLimit" routeName={soundEffectGame.getAllRouteName(viewDisplay,)} color={soundEffectGame.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div id="soundEffect-gamesButton-singularGame-container" className="btn-group btn-group-sm">
+            <LinkButton partialId="smm1Or3dsGame" routeName={soundEffectGame.getSmm1Or3dsRouteName(viewDisplay,)} color={soundEffectGame.smm1Or3dsColor}>{smm1.renderSingleComponent}{smm3ds.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm2Game" routeName={soundEffectGame.getSmm2RouteName(viewDisplay,)} color={soundEffectGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+        </div>
+    </div>
+}
+
+//endregion -------------------- Aside content --------------------

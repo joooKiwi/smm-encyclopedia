@@ -1,17 +1,23 @@
+import 'core/game/GameAsideContent.scss'
+
 import type {EditorVoiceProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {GameCollection}             from 'util/collection/GameCollection'
+import type {ReactProperties}            from 'util/react/ReactProperties'
 
-import SubMainContainer          from 'app/_SubMainContainer'
-import CardList                  from 'app/withInterpreter/CardList'
-import SimpleList                from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
-import {EditorVoices}            from 'core/editorVoice/EditorVoices'
-import EditorVoiceSoundComponent from 'core/editorVoice/EditorVoiceSound.component'
-import {gameContentTranslation}  from 'lang/components/translationMethods'
-import {assert, filterGame}      from 'util/utilitiesMethods'
+import SubMainContainer                             from 'app/_SubMainContainer'
+import {EditorVoiceGames}                           from 'app/property/EditorVoiceGames'
+import CardList                                     from 'app/withInterpreter/CardList'
+import SimpleList                                   from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import LinkButton                                   from 'app/tools/button/LinkButton'
+import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
+import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import {Games}                                      from 'core/game/Games'
+import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
+import {assert, filterGame}                         from 'util/utilitiesMethods'
 
 class EditorVoiceAppInterpreter
     implements AppInterpreterWithCardList<EditorVoices> {
@@ -73,10 +79,48 @@ export default function EditorVoiceApp({viewDisplay, games,}: EditorVoicePropert
     const appInterpreter = new EditorVoiceAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+        return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay}/>}>
             <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>
         </SubMainContainer>
-    return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
+    return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                             asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay}/>}>
         <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
+
+//region -------------------- Aside content --------------------
+
+interface EditorVoiceAsideContentProperties
+    extends ReactProperties {
+
+    readonly viewDisplay: ViewDisplays
+
+}
+
+const GamePossibilities = Games.Possibilities.get
+const allGames = GamePossibilities.ALL_GAMES
+const smm1 = Games.SUPER_MARIO_MAKER_1
+const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+const smm2 = Games.SUPER_MARIO_MAKER_2
+
+function EditorVoiceAsideContent({viewDisplay,}: EditorVoiceAsideContentProperties,) {
+    const editorVoiceGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)
+        ? EditorVoiceGames.ALL_GAMES
+        : smm2.isSelected
+            ? EditorVoiceGames.SUPER_MARIO_MAKER_2
+            : smm1.isSelected
+                ? EditorVoiceGames.SUPER_MARIO_MAKER
+                : EditorVoiceGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+        <LinkButton partialId="allGameLimit" routeName={editorVoiceGame.getAllRouteName(viewDisplay,)} color={editorVoiceGame.allColor}>{contentTranslation('All',)}</LinkButton>
+        <div id="editorVoice-gamesButton-singularGame-container" className="btn-group btn-group-sm">
+            <LinkButton partialId="smm1Game" routeName={editorVoiceGame.getSmm1RouteName(viewDisplay,)} color={editorVoiceGame.smm1Color}>{smm1.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm3dsGame" routeName={editorVoiceGame.getSmm3dsRouteName(viewDisplay,)} color={editorVoiceGame.smm3dsColor}>{smm3ds.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm2Game" routeName={editorVoiceGame.getSmm2RouteName(viewDisplay,)} color={editorVoiceGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+        </div>
+    </div>
+}
+
+//endregion -------------------- Aside content --------------------

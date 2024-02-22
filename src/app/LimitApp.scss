@@ -31,31 +31,7 @@
   }
 }
 
-//region  -------------------- Link buttons --------------------
-
-#limit-linkButton-playAndEditor-container {
-  margin-left: 0;
 }
-
-#allLimit-button {
-  border: {
-    top-right-radius: vaR(--bs-btn-border-radius);
-    bottom: {
-      left-radius: 0;
-      right-radius: 0;
-    }
-  };
-}
-
-#playLimit-button {
-  border-bottom-left-radius: var(--bs-btn-border-radius);
-}
-
-#editorLimit-button {
-  border-bottom-right-radius: var(--bs-btn-border-radius);
-}
-
-//endregion  -------------------- Link buttons --------------------
 
 @include media-breakpoint-up($grid-breakpoint-md) {
   #limit-container > p {

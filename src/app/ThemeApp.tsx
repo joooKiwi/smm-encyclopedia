@@ -1,4 +1,5 @@
 import './ThemeApp.scss'
+import 'core/game/GameAsideContent.scss'
 
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
@@ -13,6 +14,7 @@ import SubMainContainer                                  from 'app/_SubMainConta
 import {CommonOptions}                                   from 'app/options/CommonOptions'
 import {ThemeAppOption}                                  from 'app/options/ThemeAppOption'
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
+import {ThemeGames}                                      from 'app/property/ThemeGames'
 import {ThemeTypes}                                      from 'app/property/ThemeTypes'
 import LinkButton                                        from 'app/tools/button/LinkButton'
 import Image                                             from 'app/tools/images/Image'
@@ -20,6 +22,7 @@ import Table                                             from 'app/tools/table/T
 import CardList                                          from 'app/withInterpreter/CardList'
 import SimpleList                                        from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
+import {Games}                                           from 'core/game/Games'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {filterGame}                                      from 'util/utilitiesMethods'
 
@@ -152,6 +155,7 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
     </SubMainContainer>
 }
 
+//region -------------------- Aside content --------------------
 
 interface ThemeAsideContentProperties
     extends ReactProperties {
@@ -164,6 +168,15 @@ interface ThemeAsideContentProperties
 
 /** @reactComponent */
 function ThemeAsideContent({viewDisplay, type,}: ThemeAsideContentProperties,) {
+    return <div className="theme-asideContent-container">
+        <TypeAsideContent viewDisplay={viewDisplay} type={type}/>
+        <div className="d-inline mx-1"/>
+        <GameAsideContent viewDisplay={viewDisplay} type={type}/>
+    </div>
+}
+
+/** @reactComponent */
+function TypeAsideContent({viewDisplay, type,}: ThemeAsideContentProperties,) {
     return <div id="theme-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
         <LinkButton partialId="allTheme" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="theme-linkButton-courseAndWorld-container" className="btn-group btn-group-sm">
@@ -176,3 +189,21 @@ function ThemeAsideContent({viewDisplay, type,}: ThemeAsideContentProperties,) {
         </div>
     </div>
 }
+
+const smm1 = Games.SUPER_MARIO_MAKER_1
+const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+const smm2 = Games.SUPER_MARIO_MAKER_2
+
+/** @reactComponent */
+function GameAsideContent({viewDisplay, type,}: ThemeAsideContentProperties,) {
+    const themeGame = smm2.isSelected
+        ? ThemeGames.SUPER_MARIO_MAKER_2
+        : ThemeGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
+    return <div id="theme-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
+        <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type, viewDisplay,)} color={themeGame.smm1Or3dsColor}>{smm1.renderSingleComponent}{smm3ds.renderSingleComponent}</LinkButton>
+        <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type, viewDisplay,)} color={themeGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+    </div>
+}
+
+//endregion -------------------- Aside content --------------------
