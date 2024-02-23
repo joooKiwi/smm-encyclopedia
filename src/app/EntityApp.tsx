@@ -1,6 +1,6 @@
+import 'app/_GameAsideContent.scss'
 import './EntityApp.scss'
 import 'app/options/EntityAppOption.scss'
-import 'core/game/GameAsideContent.scss'
 
 import type {EntityProperties}        from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'

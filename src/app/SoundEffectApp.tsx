@@ -1,5 +1,5 @@
+import 'app/_GameAsideContent.scss'
 import './SoundEffectApp.scss'
-import 'core/game/GameAsideContent.scss'
 
 import type {SoundEffectProperties}   from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'

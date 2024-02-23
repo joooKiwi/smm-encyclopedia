@@ -1,4 +1,4 @@
-import 'core/game/GameAsideContent.scss'
+import 'app/_GameAsideContent.scss'
 
 import type {EditorVoiceProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'

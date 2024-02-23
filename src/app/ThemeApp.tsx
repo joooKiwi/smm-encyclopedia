@@ -1,5 +1,5 @@
+import 'app/_GameAsideContent.scss'
 import './ThemeApp.scss'
-import 'core/game/GameAsideContent.scss'
 
 import type {ThemeAppProperties}      from 'app/AppProperties.types'
 import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
