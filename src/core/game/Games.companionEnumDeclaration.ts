@@ -1,16 +1,17 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 
-import type {Games}                   from 'core/game/Games'
-import type {GroupUrlValue}           from 'core/game/Games.types'
-import type {GameCollection}          from 'util/collection/GameCollection'
-import type {CompanionEnumByAcronym}  from 'util/enumerable/companion/CompanionEnumByAcronym'
-import type {CompanionEnumByName}     from 'util/enumerable/companion/CompanionEnumByName'
-import type {CompanionEnumByUrlValue} from 'util/enumerable/companion/CompanionEnumByUrlValue'
+import type {Games}                                                  from 'core/game/Games'
+import type {GroupUrlValue}                                          from 'core/game/Games.types'
+import type {CompanionEnumByAcronym}                                 from 'util/enumerable/companion/CompanionEnumByAcronym'
+import type {CompanionEnumByName}                                    from 'util/enumerable/companion/CompanionEnumByName'
+import type {CompanionEnumByUrlValue}                                from 'util/enumerable/companion/CompanionEnumByUrlValue'
+import type {CompanionEnumWithCurrentAndSetCurrentEventAsCollection} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 export interface CompanionEnumDeclaration_Games
     extends CompanionEnumByAcronym<Games, typeof Games>,
         CompanionEnumByName<Games, typeof Games>,
-        CompanionEnumByUrlValue<Games, typeof Games> {
+        CompanionEnumByUrlValue<Games, typeof Games>,
+        CompanionEnumWithCurrentAndSetCurrentEventAsCollection<Games, typeof Games> {
 
     /** The separator the every url parts */
     readonly URL_NAME_SEPARATOR: '/'
@@ -29,10 +30,5 @@ export interface CompanionEnumDeclaration_Games
     getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue
 
     getValueBySimpleValue(value: Nullable<| Games | string | number>,): Games
-
-
-    get selected(): GameCollection
-
-    set selected(value: readonly Games[],)
 
 }

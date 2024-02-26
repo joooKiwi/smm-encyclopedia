@@ -1,6 +1,6 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
+import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                  from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                              from 'core/ClassWithEnglishName'
@@ -17,8 +17,8 @@ import GameComponent                                                            
 import {gameImage}                                                                              from 'core/game/file/fileCreator'
 import {StringContainer}                                                                        from 'util/StringContainer'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
-import {GameCollection}                                                                         from 'util/collection/GameCollection'
 import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                 from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 /** @usedByTheRouting */
 export abstract class Games
@@ -58,7 +58,7 @@ export abstract class Games
     //region -------------------- Companion enum --------------------
 
     public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_Games> = class CompanionEnum_Games
-        extends CompanionEnum<Games, typeof Games>
+        extends CompanionEnumWithCurrentAndSetCurrentEventAsCollection<Games, typeof Games>
         implements CompanionEnumDeclaration_Games {
 
         //region -------------------- Singleton usage --------------------
@@ -263,12 +263,9 @@ export abstract class Games
         }
 
 
-        public get selected(): GameCollection {
-            return new GameCollection(this.values.filter(it => it.isSelected,),)
-        }
-
-        public set selected(value: readonly Games[],) {
-            this.values.forEach(it => it.isSelected = value.includes(it,),)
+        protected override _onSetCurrent(value: CollectionHolder<Games>,) {
+            super._onSetCurrent(value,)
+            this.values.forEach(it => it.isSelected = value.hasOne(it,),)
         }
 
     }
@@ -413,25 +410,10 @@ export abstract class Games
         return GameComponent.renderSingleComponent(this)
     }
 
-
-
-    public static getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
-        return Games.CompanionEnum.get.getGroupUrlValue(games,)
-    }
-
-    public static get selected(): GameCollection {
-        return Games.CompanionEnum.get.selected
-    }
-
-    public static set selected(value: readonly Games[],) {
-        Games.CompanionEnum.get.selected = value
-    }
-
-    public static setSelected(games: readonly Games[],): typeof Games {
-        Games.CompanionEnum.get.selected = games
-        return this
-    }
-
     //endregion -------------------- Methods --------------------
 
 }
+
+// TODO remove this test variable when the application will be complete
+// @ts-ignore
+(window.test ??= {}).Games = Games

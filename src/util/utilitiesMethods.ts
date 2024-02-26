@@ -1,4 +1,5 @@
 import type {CollectionHolder} from '@joookiwi/collection'
+import {isCollectionHolder}    from '@joookiwi/collection'
 import {AssertionError}        from 'assert'
 
 import type {ClassWithReference}                                                                                  from 'core/ClassWithReference'
@@ -17,28 +18,63 @@ import {isInProduction} from 'variables'
 import {EMPTY_STRING}   from 'util/emptyVariables'
 
 /**
- * Validate if an array is equals to another one.
+ * Validate if an {@link ReadonlyArray} is equals to another one.
  *
  * It will validate recursively if every item within the array are equals (whenever the type it is).
  *
- * @param firstArray
- * @param secondArray
+ * @param first The first {@link ReadonlyArray} to compare
+ * @param second The second {@link ReadonlyArray} to compare
  */
-export function isArrayEquals(firstArray: readonly any[], secondArray: readonly any[],): boolean {
-    if (firstArray === secondArray)
+export function isArrayEquals(first: readonly unknown[], second: readonly unknown[],): boolean {
+    if (first === second)
         return true
-    if (firstArray.length !== secondArray.length)
+    if (first.length !== second.length)
         return false
 
-    const length = firstArray.length
+    const size = first.length
 
-    for (let i = 0; i < length; i++) {
-        const elementInFirstArray = firstArray[i]
-        const elementInSecondArray = secondArray[i]
-        if (elementInFirstArray instanceof Array && elementInSecondArray instanceof Array)
-            if (!isArrayEquals(elementInFirstArray, elementInSecondArray,))
+    for (let i = 0; i < size; i++) {
+        const elementInFirst = first[i]
+        const elementInSecond = second[i]
+        if (elementInFirst instanceof Array && elementInSecond instanceof Array)
+            if (!isArrayEquals(elementInFirst, elementInSecond,))
                 return false
-        if (firstArray[i] !== secondArray[i])
+        if (isCollectionHolder(elementInFirst,) && isCollectionHolder(elementInSecond,))
+            if (!isCollectionEquals(elementInFirst, elementInSecond,))
+                return false
+        if (first[i] !== second[i])
+            return false
+    }
+
+    return true
+}
+
+/**
+ * Validate if a {@link CollectionHolder} is equals to another one.
+ *
+ * It will validate recursively if every item within the array are equals (whenever the type it is).
+ *
+ * @param first The first {@link CollectionHolder} to compare
+ * @param second The second {@link CollectionHolder} to compare
+ */
+export function isCollectionEquals(first: CollectionHolder<unknown>, second: CollectionHolder<unknown>,): boolean {
+    if (first === second)
+        return true
+    if (first.size !== second.size)
+        return false
+
+    const size = first.size
+
+    for (let i = 0; i < size; i++) {
+        const elementInFirst = first[i]
+        const elementInSecond = second[i]
+        if (elementInFirst instanceof Array && elementInSecond instanceof Array)
+            if (!isArrayEquals(elementInFirst, elementInSecond,))
+                return false
+        if (isCollectionHolder(elementInFirst,) && isCollectionHolder(elementInSecond,))
+            if (!isCollectionEquals(elementInFirst, elementInSecond,))
+                return false
+        if (first[i] !== second[i])
             return false
     }
 

@@ -17,14 +17,13 @@ import type {ClassUsedInRoute}                                                  
 import type {ClassWithImageFile}                                                                                                                                                                                                from 'util/file/image/ClassWithImageFile'
 import type {Selectable}                                                                                                                                                                                                        from 'util/types/Selectable'
 
-import GameStyleComponent                             from 'core/gameStyle/GameStyle.component'
-import {GameStyleLoader}                              from 'core/gameStyle/GameStyle.loader'
-import {gameStyleImage}                               from 'core/gameStyle/file/fileCreator'
-import {StringContainer}                              from 'util/StringContainer'
-import {EMPTY_ARRAY}                                  from 'util/emptyVariables'
-import {getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
-import {GameStyleCollection}                          from 'util/collection/GameStyleCollection'
-import {CompanionEnumByAcronymOrName}                 from 'util/enumerable/companion/CompanionEnumByAcronymOrName'
+import GameStyleComponent                                                                       from 'core/gameStyle/GameStyle.component'
+import {GameStyleLoader}                                                                        from 'core/gameStyle/GameStyle.loader'
+import {gameStyleImage}                                                                         from 'core/gameStyle/file/fileCreator'
+import {StringContainer}                                                                        from 'util/StringContainer'
+import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                 from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 /**
  * @recursiveReference<{@link GameStyleLoader}>
@@ -103,7 +102,7 @@ export abstract class GameStyles
     //region -------------------- Companion enum --------------------
 
     public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_GameStyles> = class CompanionEnum_GameStyles
-        extends CompanionEnumByAcronymOrName<GameStyles, typeof GameStyles>
+        extends CompanionEnumWithCurrentAndSetCurrentEventAsCollection<GameStyles, typeof GameStyles>
         implements CompanionEnumDeclaration_GameStyles {
 
         //region -------------------- Singleton usage --------------------
@@ -156,6 +155,14 @@ export abstract class GameStyles
 
         public getValueByUrlValue(value: Nullable<| GameStyles | string>,): GameStyles {
             return getValueByUrlValue(value, this,);
+        }
+
+        public getValueByAcronym(value: Nullable<| GameStyles | string>,): GameStyles {
+            return getValueByAcronym(value, this,)
+        }
+
+        public getValueByName(value: Nullable<| GameStyles | string>,): GameStyles {
+            return getValueByEnglishName(value, this,)
         }
 
         public getValueBySimpleValue(value: Nullable<| GameStyles | string | number>,): GameStyles {
@@ -489,12 +496,9 @@ export abstract class GameStyles
         }
 
 
-        public get selected(): GameStyleCollection {
-            return new GameStyleCollection(this.values.filter(it => it.isSelected,),)
-        }
-
-        public set selected(value: readonly GameStyles[],) {
-            this.values.forEach(it => it.isSelected = value.includes(it,),)
+        protected override _onSetCurrent(value: CollectionHolder<GameStyles>,) {
+            super._onSetCurrent(value,)
+            this.values.forEach(it => it.isSelected = value.hasOne(it,),)
         }
 
     }
@@ -770,24 +774,10 @@ export abstract class GameStyles
         return this.#GAME_STYLES_SMM2 ??= this.CompanionEnum.get.values.toArray() as GameStyles_ArrayInSMM2
     }
 
-
-    public static getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue {
-        return GameStyles.CompanionEnum.get.getGroupUrlValue(gameStyles,)
-    }
-
-    public static get selected(): GameStyleCollection {
-        return GameStyles.CompanionEnum.get.selected
-    }
-
-    public static set selected(value: readonly GameStyles[],) {
-        GameStyles.CompanionEnum.get.selected = value
-    }
-
-    public static setSelected(value: readonly GameStyles[],): typeof GameStyles {
-        GameStyles.CompanionEnum.get.selected = value
-        return this
-    }
-
     //endregion -------------------- Methods --------------------
 
 }
+
+// TODO remove this test variable when the application will be complete
+// @ts-ignore
+(window.test ??= {}).GameStyles = GameStyles
