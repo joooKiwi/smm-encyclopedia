@@ -1,9 +1,9 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
-import  {ViewDisplays}                       from 'app/withInterpreter/ViewDisplays'
+import {ViewDisplays}                            from 'app/withInterpreter/ViewDisplays'
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EntityGameStyles.types'
-import {NullOr} from '@joookiwi/enumerable/dist/types/general type'
+import type {FullGroupValidUrlName}              from 'core/game/Games.types'
 
 export class EntityGameStyles
     extends Enum<Ordinals, Names> {
@@ -218,28 +218,29 @@ export class EntityGameStyles
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getAllRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} GameStyle=all)`
+    public getAllRouteName(viewDisplay: ViewDisplays, gameName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=all)`
     }
 
-    public getSmbRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} GameStyle=1)`
+    public getSmbRouteName(viewDisplay: ViewDisplays, gameName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=1)`
     }
 
-    public getSmb3RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} GameStyle=3)`
+    public getSmb3RouteName(viewDisplay: ViewDisplays, gameName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=3)`
     }
 
-    public getSmwRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} GameStyle=W)`
+    public getSmwRouteName(viewDisplay: ViewDisplays, gameName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=W)`
     }
 
-    public getNsmbuRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} GameStyle=U)`
+    public getNsmbuRouteName(viewDisplay: ViewDisplays, gameName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=U)`
     }
 
-    public getSm3dwRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} GameStyle=3DW)`
+    public getSm3dwRouteName(viewDisplay: ViewDisplays, gameName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        // README: We imply that the game cannot be in SMM1 or SMM3DS with SM3DW for this path in the EntityApp itself
+        return `everyEntity (${viewDisplay.urlValue} ${gameName} GameStyle=3DW)` as PossibleRouteName
     }
 
     //endregion -------------------- Methods --------------------

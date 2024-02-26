@@ -3,6 +3,7 @@ import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 
 import {ViewDisplays}                            from 'app/withInterpreter/ViewDisplays'
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EntityGames.types'
+import type {FullGroupValidUrlName}              from 'core/gameStyle/GameStyles.types'
 
 export class EntityGames
     extends Enum<Ordinals, Names> {
@@ -123,20 +124,22 @@ export class EntityGames
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public getAllRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} Game=all)`
+    public getAllRouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        return `everyEntity (${viewDisplay.urlValue} Game=all ${gameStyleName})`
     }
 
-    public getSmm1RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} Game=1)`
+    public getSmm1RouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        // README: We imply that the game cannot be in SM3DW with SMM1 for this path in the EntityApp itself
+        return `everyEntity (${viewDisplay.urlValue} Game=1 ${gameStyleName})` as PossibleRouteName
     }
 
-    public getSmm3dsRouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} Game=3DS)`
+    public getSmm3dsRouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        // README: We imply that the game cannot be in SM3DW with SMM3DS for this path in the EntityApp itself
+        return `everyEntity (${viewDisplay.urlValue} Game=3DS ${gameStyleName})` as PossibleRouteName
     }
 
-    public getSmm2RouteName(viewDisplay: ViewDisplays,): NullOr<PossibleRouteName> {
-        return `everyEntity (${viewDisplay.urlValue} Game=2)`
+    public getSmm2RouteName(viewDisplay: ViewDisplays, gameStyleName: FullGroupValidUrlName,): NullOr<PossibleRouteName> {
+        return `everyEntity (${viewDisplay.urlValue} Game=2 ${gameStyleName})`
     }
 
     //endregion -------------------- Methods --------------------
