@@ -23,15 +23,19 @@ export class EntityGameStyles
         public override get allColor(): PossibleColor {
             return 'warning'
         }
+
         public override smb3Color(): PossibleColor {
             return 'warning'
         }
+
         public override smwColor(): PossibleColor {
             return 'warning'
         }
+
         public override nsmbuColor(): PossibleColor {
             return 'warning'
         }
+
         public override sm3dwColor(): PossibleColor {
             return 'warning'
         }
@@ -46,15 +50,19 @@ export class EntityGameStyles
         public override get allColor(): PossibleColor {
             return 'warning'
         }
+
         public override smbColor(): PossibleColor {
             return 'warning'
         }
+
         public override smwColor(): PossibleColor {
             return 'warning'
         }
+
         public override nsmbuColor(): PossibleColor {
             return 'warning'
         }
+
         public override sm3dwColor(): PossibleColor {
             return 'warning'
         }
@@ -69,15 +77,19 @@ export class EntityGameStyles
         public override get allColor(): PossibleColor {
             return 'warning'
         }
+
         public override smbColor(): PossibleColor {
             return 'warning'
         }
+
         public override smb3Color(): PossibleColor {
             return 'warning'
         }
+
         public override nsmbuColor(): PossibleColor {
             return 'warning'
         }
+
         public override sm3dwColor(): PossibleColor {
             return 'warning'
         }
@@ -92,15 +104,19 @@ export class EntityGameStyles
         public override get allColor(): PossibleColor {
             return 'warning'
         }
+
         public override smbColor(): PossibleColor {
             return 'warning'
         }
+
         public override smb3Color(): PossibleColor {
             return 'warning'
         }
+
         public override smwColor(): PossibleColor {
             return 'warning'
         }
+
         public override sm3dwColor(): PossibleColor {
             return 'warning'
         }
@@ -115,15 +131,19 @@ export class EntityGameStyles
         public override get allColor(): PossibleColor {
             return 'warning'
         }
+
         public override smbColor(): PossibleColor {
             return 'warning'
         }
+
         public override smb3Color(): PossibleColor {
             return 'warning'
         }
+
         public override smwColor(): PossibleColor {
             return 'warning'
         }
+
         public override nsmbuColor(): PossibleColor {
             return 'warning'
         }
@@ -139,18 +159,23 @@ export class EntityGameStyles
         public override get allColor(): PossibleColor {
             return 'warning'
         }
+
         public override smbColor(isSelected: boolean,): PossibleColor {
             return isSelected ? 'success' : 'warning'
         }
+
         public override smb3Color(isSelected: boolean,): PossibleColor {
             return isSelected ? 'success' : 'warning'
         }
+
         public override smwColor(isSelected: boolean,): PossibleColor {
             return isSelected ? 'success' : 'warning'
         }
+
         public override nsmbuColor(isSelected: boolean,): PossibleColor {
             return isSelected ? 'success' : 'warning'
         }
+
         public override sm3dwColor(isSelected: boolean,): PossibleColor {
             return isSelected ? 'success' : 'warning'
         }
