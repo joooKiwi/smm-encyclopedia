@@ -28,12 +28,12 @@ export class GameCollection<const out T extends Games = Games, const out REFEREN
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} type in its values */
     public get hasSMM1(): boolean {
-        return this.#hasSMM1 ??= this.hasOne(Games.SUPER_MARIO_MAKER_1)
+        return this.#hasSMM1 ??= this.hasOne(Games.SUPER_MARIO_MAKER_1,)
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
     public get hasSMM3DS(): boolean {
-        return this.#hasSMM3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS)
+        return this.#hasSMM3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
@@ -43,7 +43,7 @@ export class GameCollection<const out T extends Games = Games, const out REFEREN
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_2 SMM2} type in its values */
     public get hasSMM2(): boolean {
-        return this.#hasSMM2 ??= this.hasOne(Games.SUPER_MARIO_MAKER_2)
+        return this.#hasSMM2 ??= this.hasOne(Games.SUPER_MARIO_MAKER_2,)
     }
 
     //endregion -------------------- Getter methods --------------------

@@ -66,7 +66,7 @@ export abstract class ViewDisplays
         public readonly PREFIX = null
 
         public getValueInUrl(url: string): NullOr<ViewDisplays> {
-            return getValueInUrl(url, this,);
+            return getValueInUrl(url, this,)
         }
 
     }

@@ -154,7 +154,7 @@ export abstract class GameStyles
         //endregion -------------------- Fields --------------------
 
         public getValueByUrlValue(value: Nullable<| GameStyles | string>,): GameStyles {
-            return getValueByUrlValue(value, this,);
+            return getValueByUrlValue(value, this,)
         }
 
         public getValueByAcronym(value: Nullable<| GameStyles | string>,): GameStyles {
@@ -176,6 +176,7 @@ export abstract class GameStyles
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
         }
+
 
         public getValueInUrl(url: string,): readonly GameStyles[] {
             //region -------------------- "all" possibility --------------------
