@@ -31,17 +31,17 @@ export type PossibleAcronym_InFile_SMM1 = | 'M1' | 'M3' | 'MW' | 'WU'
 //endregion -------------------- Acronym / name / image --------------------
 //region -------------------- URL --------------------
 
-type GroupValidUrlSimpleValue = | PossibleSimpleValue
-                                | '1&3' | '1&W' | '1&U' | '1&3DW' | '3&W' | '3&U' | '3&3DW' | 'W&U' | 'W&3DW' | 'U&3DW'
-                                | '1&3&W' | '1&3&U' | '1&3&3DW' | '1&W&U' | '1&W&3DW' | '1&U&3DW' | '3&W&U' | '3&W&3DW' | '3&U&3DW' | 'W&U&3DW'
-                                | '1&3&W&U' | '1&3&W&3DW' | '1&3&U&3DW' | '1&W&U&3DW' | '3&W&U&3DW'
-                                | 'all'
-type GroupValidUrlSimpleValue_SMM1 = | PossibleSimpleValue_SMM1
-                                     | '1&3' | '1&W' | '1&U' | '3&W' | '3&U' | 'W&U'
-                                     | '1&3&W' | '1&3&U' | '1&W&U' | '3&W&U'
-                                     | 'all'
-export type FullGroupValidUrlSimpleValue = `GameStyle=${GroupValidUrlSimpleValue}`
-export type FullGroupValidUrlSimpleValue_SMM1 = `GameStyle=${GroupValidUrlSimpleValue_SMM1}`
+export type GroupUrlName = | PossibleSimpleValue
+                           | '1&3' | '1&W' | '1&U' | '1&3DW' | '3&W' | '3&U' | '3&3DW' | 'W&U' | 'W&3DW' | 'U&3DW'
+                           | '1&3&W' | '1&3&U' | '1&3&3DW' | '1&W&U' | '1&W&3DW' | '1&U&3DW' | '3&W&U' | '3&W&3DW' | '3&U&3DW' | 'W&U&3DW'
+                           | '1&3&W&U' | '1&3&W&3DW' | '1&3&U&3DW' | '1&W&U&3DW' | '3&W&U&3DW'
+                           | 'all'
+type GroupUrlName_SMM1 = | PossibleSimpleValue_SMM1
+                         | '1&3' | '1&W' | '1&U' | '3&W' | '3&U' | 'W&U'
+                         | '1&3&W' | '1&3&U' | '1&W&U' | '3&W&U'
+                         | 'all'
+export type FullGroupValidUrlName = `GameStyle=${GroupUrlName}`
+export type FullGroupValidUrlName_SMM1 = `GameStyle=${GroupUrlName_SMM1}`
 
 
 export type PossibleSimpleUrlValue = Lowercase<PossibleSimpleValue>

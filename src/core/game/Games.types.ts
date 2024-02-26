@@ -20,12 +20,12 @@ export type PossibleSimpleValue = '1' | '2' | '3DS'
 //endregion -------------------- Name / acronym / image --------------------
 //region -------------------- URL --------------------
 
-type GroupValidUrlSimpleValue = | PossibleSimpleValue | '1&3DS' | '1&2' | '3DS&2' | 'all'
-type GroupValidUrlSimpleValue_WithNotSMM2 = | '1' | '3DS' | '1&3DS'
-type GroupValidUrlSimpleValue_WithSMM2 = | '2' | '1&2' | '3DS&2' | 'all'
-export type FullGroupValidUrlSimpleValue = `Game=${GroupValidUrlSimpleValue}`
-export type FullGroupValidUrlSimpleValue_WithNotSMM2 = `Game=${GroupValidUrlSimpleValue_WithNotSMM2}`
-export type FullGroupValidUrlSimpleValue_WithSMM2 = `Game=${GroupValidUrlSimpleValue_WithSMM2}`
+export type GroupUrlName = | PossibleSimpleValue | '1&3DS' | '1&2' | '3DS&2' | 'all'
+type GroupUrlName_WithNotSMM2 = | '1' | '3DS' | '1&3DS'
+type GroupUrlName_WithSMM2 = | '2' | '1&2' | '3DS&2' | 'all'
+export type FullGroupValidUrlName = `Game=${GroupUrlName}`
+export type FullGroupValidUrlName_WithNotSMM2 = `Game=${GroupUrlName_WithNotSMM2}`
+export type FullGroupValidUrlName_WithSMM2 = `Game=${GroupUrlName_WithSMM2}`
 
 export type PossibleSimpleUrlValue = Lowercase<PossibleSimpleValue>
 export type GroupUrlValue = | PossibleSimpleUrlValue | '1,3ds' | '1,2' | '3ds,2' | 'all'

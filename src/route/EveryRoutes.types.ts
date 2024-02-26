@@ -1,11 +1,11 @@
-import type {ViewDisplays}                                                                                                                                                                                                                                               from 'app/withInterpreter/ViewDisplays'
-import type {PossibleUrlValue}                                                                                                                                                                                                                                           from 'app/withInterpreter/ViewDisplays.types'
-import type {FullGroupValidUrlSimpleValue as FullGroupValidUrlSimpleValue_Game, FullGroupValidUrlSimpleValue_WithNotSMM2, FullGroupValidUrlSimpleValue_WithSMM2, FullValidUrlValue as FullValidUrlValue_Game, FullValidUrlValue_WithNotSMM2, FullValidUrlValue_WithSMM2} from 'core/game/Games.types'
-import type {FullGroupValidUrlSimpleValue as FullGroupValidUrlSimpleValue_GameStyle, FullGroupValidUrlSimpleValue_SMM1, FullValidUrlValue as FullValidUrlValue_GameStyle, FullValidUrlValue_SMM1}                                                                        from 'core/gameStyle/GameStyles.types'
-import type {PossibleAcronym}                                                                                                                                                                                                                                            from 'lang/ProjectLanguages.types'
-import type {EveryRoutes}                                                                                                                                                                                                                                                from 'route/EveryRoutes'
-import type {GameCollection}                                                                                                                                                                                                                                             from 'util/collection/GameCollection'
-import type {GameStyleCollection}                                                                                                                                                                                                                                        from 'util/collection/GameStyleCollection'
+import type {ViewDisplays}                                                                                                                                                                                                                          from 'app/withInterpreter/ViewDisplays'
+import type {PossibleUrlValue}                                                                                                                                                                                                                      from 'app/withInterpreter/ViewDisplays.types'
+import type {FullGroupValidUrlName as FullGroupValidUrlSimpleValue_Game, FullGroupValidUrlName_WithNotSMM2, FullGroupValidUrlName_WithSMM2, FullValidUrlValue as FullValidUrlValue_Game, FullValidUrlValue_WithNotSMM2, FullValidUrlValue_WithSMM2} from 'core/game/Games.types'
+import type {FullGroupValidUrlName as FullGroupValidUrlSimpleValue_GameStyle, FullGroupValidUrlName_SMM1, FullValidUrlValue as FullValidUrlValue_GameStyle, FullValidUrlValue_SMM1}                                                                 from 'core/gameStyle/GameStyles.types'
+import type {PossibleAcronym}                                                                                                                                                                                                                       from 'lang/ProjectLanguages.types'
+import type {EveryRoutes}                                                                                                                                                                                                                           from 'route/EveryRoutes'
+import type {GameCollection}                                                                                                                                                                                                                        from 'util/collection/GameCollection'
+import type {GameStyleCollection}                                                                                                                                                                                                                   from 'util/collection/GameStyleCollection'
 
 enum Enum {
     HOME,
@@ -134,9 +134,9 @@ type NameJoin3<NAME extends string, FIRST extends string, SECOND extends string,
 type NameInSMM1 = 'Game=1'
 type NameInSMM2 = 'Game=2'
 type NameInAllGame = FullGroupValidUrlSimpleValue_Game
-type NameInSMM1Or3DS = FullGroupValidUrlSimpleValue_WithNotSMM2
-type NameInAllGameOrRelatedToSMM2 = FullGroupValidUrlSimpleValue_WithSMM2
-type NameInAllGameStyleInSMM1Or3DS = FullGroupValidUrlSimpleValue_SMM1
+type NameInSMM1Or3DS = FullGroupValidUrlName_WithNotSMM2
+type NameInAllGameOrRelatedToSMM2 = FullGroupValidUrlName_WithSMM2
+type NameInAllGameStyleInSMM1Or3DS = FullGroupValidUrlName_SMM1
 type NameInAllGameStyle = FullGroupValidUrlSimpleValue_GameStyle
 
 // type NameInSMM1<NAME extends string, > =                           NameJoin1<NAME, NameInSMM1>

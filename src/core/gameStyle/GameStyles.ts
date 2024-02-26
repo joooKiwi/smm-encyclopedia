@@ -2,20 +2,20 @@ import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
 import {Enum}                  from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                                                                                                                  from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                                                                                              from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                           from 'core/PropertyGetter'
-import type {CompanionEnumDeclaration_GameStyles}                                                                                                                                                                               from 'core/gameStyle/GameStyles.companionEnumDeclaration'
-import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleShortImagePath, PossibleSimpleValue, PossibleSimpleUrlValue, GroupUrlValue} from 'core/gameStyle/GameStyles.types'
-import type {GameStyle}                                                                                                                                                                                                         from 'core/gameStyle/GameStyle'
-import type {GameStyleImageFile}                                                                                                                                                                                                from 'core/gameStyle/file/GameStyleImageFile'
-import type {PossibleOtherEntities}                                                                                                                                                                                             from 'core/entity/Entity'
-import type {GameStyleProperty}                                                                                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {GameStyleReferences}                                                                                                                                                                                               from 'core/entity/properties/gameStyle/GameStyleReferences'
-import type {ClassUsedInRoute}                                                                                                                                                                                                  from 'route/ClassUsedInRoute'
-import type {ClassWithImageFile}                                                                                                                                                                                                from 'util/file/image/ClassWithImageFile'
-import type {Selectable}                                                                                                                                                                                                        from 'util/types/Selectable'
+import type {ClassWithAcronym}                                                                                                                                                                                                                from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                                                                                                                            from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                                                                              from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                         from 'core/PropertyGetter'
+import type {CompanionEnumDeclaration_GameStyles}                                                                                                                                                                                             from 'core/gameStyle/GameStyles.companionEnumDeclaration'
+import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleShortImagePath, PossibleSimpleValue, PossibleSimpleUrlValue, GroupUrlValue, GroupUrlName} from 'core/gameStyle/GameStyles.types'
+import type {GameStyle}                                                                                                                                                                                                                       from 'core/gameStyle/GameStyle'
+import type {GameStyleImageFile}                                                                                                                                                                                                              from 'core/gameStyle/file/GameStyleImageFile'
+import type {PossibleOtherEntities}                                                                                                                                                                                                           from 'core/entity/Entity'
+import type {GameStyleProperty}                                                                                                                                                                                                               from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {GameStyleReferences}                                                                                                                                                                                                             from 'core/entity/properties/gameStyle/GameStyleReferences'
+import type {ClassUsedInRoute}                                                                                                                                                                                                                from 'route/ClassUsedInRoute'
+import type {ClassWithImageFile}                                                                                                                                                                                                              from 'util/file/image/ClassWithImageFile'
+import type {Selectable}                                                                                                                                                                                                                      from 'util/types/Selectable'
 
 import GameStyleComponent                                                                       from 'core/gameStyle/GameStyle.component'
 import {GameStyleLoader}                                                                        from 'core/gameStyle/GameStyle.loader'
@@ -493,6 +493,127 @@ export abstract class GameStyles
             if (withSm3dw)
                 return '3dw'
             throw new ReferenceError('No game style group url value is findable from empty array or collection.',)
+        }
+
+        public getGroupUrlName(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlName {
+            let withSmb = false
+            const smb = GameStyles.SUPER_MARIO_BROS
+            for (let gameStyle of gameStyles)
+                if (gameStyle === smb) {
+                    withSmb = true
+                    break
+                }
+
+            let withSmb3 = false
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            for (let gameStyle of gameStyles)
+                if (gameStyle === smb3) {
+                    withSmb3 = true
+                    break
+                }
+
+            let withSmw = false
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            for (let gameStyle of gameStyles)
+                if (gameStyle === smw) {
+                    withSmw = true
+                    break
+                }
+
+            let withNsmbu = false
+            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
+            for (let gameStyle of gameStyles)
+                if (gameStyle === nsmbu) {
+                    withNsmbu = true
+                    break
+                }
+
+            let withSm3dw = false
+            const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
+            for (let gameStyle of gameStyles)
+                if (gameStyle === sm3dw) {
+                    withSm3dw = true
+                    break
+                }
+
+            if (withSmb) {
+                if (withSmb3) {
+                    if (withSmw) {
+                        if (withNsmbu) {
+                            if (withSm3dw)
+                                return 'all'
+                            return '1&3&W&U'
+                        }
+                        if (withSm3dw)
+                            return '1&3&W&3DW'
+                        return '1&3&W'
+                    }
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return '1&3&U&3DW'
+                        return '1&3&U'
+                    }
+                    if (withSm3dw)
+                        return '1&3&3DW'
+                    return '1&3'
+                }
+                if (withSmw) {
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return '1&W&U&3DW'
+                        return '1&W&U'
+                    }
+                    if (withSm3dw)
+                        return '1&W&3DW'
+                    return '1&W'
+                }
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return '1&U&3DW'
+                    return '1&U'
+                }
+                if (withSm3dw)
+                    return '1&3DW'
+                return '1'
+            }
+            if (withSmb3) {
+                if (withSmw) {
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return '3&W&U&3DW'
+                        return '3&W&U'
+                    }
+                    if (withSm3dw)
+                        return '3&W&3DW'
+                    return '3&W'
+                }
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return '3&U&3DW'
+                    return '3&U'
+                }
+                if (withSm3dw)
+                    return '3&3DW'
+                return '3'
+            }
+            if (withSmw) {
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return 'W&U&3DW'
+                    return 'W&U'
+                }
+                if (withSm3dw)
+                    return 'W&3DW'
+                return 'W'
+            }
+            if (withNsmbu) {
+                if (withSm3dw)
+                    return 'U&3DW'
+                return 'U'
+            }
+            if (withSm3dw)
+                return '3DW'
+            throw new ReferenceError('No game style group url name is findable from empty array or collection.',)
         }
 
 
