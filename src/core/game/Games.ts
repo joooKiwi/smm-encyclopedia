@@ -107,96 +107,6 @@ export abstract class Games
             return getValueByUrlValue(value, this,)
         }
 
-        public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
-            let withSmm1 = false
-            const smm1 = Games.SUPER_MARIO_MAKER_1
-            for (let game of games)
-                if (game === smm1) {
-                    withSmm1 = true
-                    break
-                }
-
-            let withSmm3ds = false
-            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-            for (let game of games)
-                if (game === smm3ds) {
-                    withSmm3ds = true
-                    break
-                }
-
-            let withSmm2 = false
-            const smm2 = Games.SUPER_MARIO_MAKER_2
-            for (let game of games)
-                if (game === smm2) {
-                    withSmm2 = true
-                    break
-                }
-
-            if (withSmm1) {
-                if (withSmm3ds) {
-                    if (withSmm2)
-                        return 'all'
-                    return '1,3ds'
-                }
-                if (withSmm2)
-                    return '1,2'
-                return '1'
-            }
-            if (withSmm3ds) {
-                if (withSmm2)
-                    return '3ds,2'
-                return '3ds'
-            }
-            if (withSmm2)
-                return '2'
-            throw new ReferenceError('No game group url value is findable from empty array or collection.',)
-        }
-
-        public getGroupUrlName(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlName {
-            let withSmm1 = false
-            const smm1 = Games.SUPER_MARIO_MAKER_1
-            for (let game of games)
-                if (game === smm1) {
-                    withSmm1 = true
-                    break
-                }
-
-            let withSmm3ds = false
-            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-            for (let game of games)
-                if (game === smm3ds) {
-                    withSmm3ds = true
-                    break
-                }
-
-            let withSmm2 = false
-            const smm2 = Games.SUPER_MARIO_MAKER_2
-            for (let game of games)
-                if (game === smm2) {
-                    withSmm2 = true
-                    break
-                }
-
-            if (withSmm1) {
-                if (withSmm3ds) {
-                    if (withSmm2)
-                        return 'all'
-                    return '1&3DS'
-                }
-                if (withSmm2)
-                    return '1&2'
-                return '1'
-            }
-            if (withSmm3ds) {
-                if (withSmm2)
-                    return '3DS&2'
-                return '3DS'
-            }
-            if (withSmm2)
-                return '2'
-            throw new ReferenceError('No game group url name is findable from empty array or collection.',)
-        }
-
         public getValueByAcronym(value: Nullable<| Games | string>,): Games {
             return getValueByAcronym(value, this,)
         }
@@ -216,6 +126,7 @@ export abstract class Games
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
         }
+
 
         public getValueInUrl(url: string,): readonly Games[] {
             //region -------------------- "all" possibility --------------------
@@ -305,6 +216,96 @@ export abstract class Games
             return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
 
             //endregion -------------------- Valid possibilities --------------------
+        }
+
+        public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
+            let withSmm1 = false
+            const smm1 = Games.SUPER_MARIO_MAKER_1
+            for (let game of games)
+                if (game === smm1) {
+                    withSmm1 = true
+                    break
+                }
+
+            let withSmm3ds = false
+            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+            for (let game of games)
+                if (game === smm3ds) {
+                    withSmm3ds = true
+                    break
+                }
+
+            let withSmm2 = false
+            const smm2 = Games.SUPER_MARIO_MAKER_2
+            for (let game of games)
+                if (game === smm2) {
+                    withSmm2 = true
+                    break
+                }
+
+            if (withSmm1) {
+                if (withSmm3ds) {
+                    if (withSmm2)
+                        return 'all'
+                    return '1,3ds'
+                }
+                if (withSmm2)
+                    return '1,2'
+                return '1'
+            }
+            if (withSmm3ds) {
+                if (withSmm2)
+                    return '3ds,2'
+                return '3ds'
+            }
+            if (withSmm2)
+                return '2'
+            throw new ReferenceError('No game group url value is findable from empty array or collection.',)
+        }
+
+        public getGroupUrlName(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlName {
+            let withSmm1 = false
+            const smm1 = Games.SUPER_MARIO_MAKER_1
+            for (let game of games)
+                if (game === smm1) {
+                    withSmm1 = true
+                    break
+                }
+
+            let withSmm3ds = false
+            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+            for (let game of games)
+                if (game === smm3ds) {
+                    withSmm3ds = true
+                    break
+                }
+
+            let withSmm2 = false
+            const smm2 = Games.SUPER_MARIO_MAKER_2
+            for (let game of games)
+                if (game === smm2) {
+                    withSmm2 = true
+                    break
+                }
+
+            if (withSmm1) {
+                if (withSmm3ds) {
+                    if (withSmm2)
+                        return 'all'
+                    return '1&3DS'
+                }
+                if (withSmm2)
+                    return '1&2'
+                return '1'
+            }
+            if (withSmm3ds) {
+                if (withSmm2)
+                    return '3DS&2'
+                return '3DS'
+            }
+            if (withSmm2)
+                return '2'
+            throw new ReferenceError('No game group url name is findable from empty array or collection.',)
         }
 
 
