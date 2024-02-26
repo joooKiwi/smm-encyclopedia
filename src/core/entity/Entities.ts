@@ -3360,6 +3360,6 @@ export class Entities
 // Entities.values.filter(it => it.unusedRegularImage.all.size !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, [...it.unusedRegularImage.all.entries(),].map(it => it[1]).flat(2),),);
 // Entities.values.filter(it => it.unusedBigMushroomImage.all.length !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, it.unusedBigMushroomImage.all.flat(),),);
 
-// TODO remove this test variable when the entities will be complete
+// TODO remove this test variable when the application will be complete
 // @ts-ignore
 (window.test ??= {}).Entities = Entities

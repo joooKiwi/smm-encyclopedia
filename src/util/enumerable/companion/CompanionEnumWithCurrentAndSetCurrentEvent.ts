@@ -4,11 +4,9 @@ import {CompanionEnum}                                                          
 
 import {EMPTY_MAP} from 'util/emptyVariables'
 
-/**
- * A simple {@link CompanionEnum} that hold a "current" value as well as a "current event"
- */
+/** A {@link CompanionEnum} that hold a "current" value as well as a "current event" */
 export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enumerable,
-    const ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
+    const out ENUM_CONSTRUCTOR extends EnumerableConstructor<ENUM, CompanionEnumDeclaration<ENUM, ENUM_CONSTRUCTOR>>, >
     extends CompanionEnum<ENUM, ENUM_CONSTRUCTOR> {
 
     //region -------------------- Fields --------------------
