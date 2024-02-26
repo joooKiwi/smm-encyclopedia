@@ -81,16 +81,24 @@ export function isCollectionEquals(first: CollectionHolder<unknown>, second: Col
     return true
 }
 
-export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): CollectionHolder<T> {
+//region -------------------- filter game --------------------
+
+export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): CollectionHolder<T>
+export function intersect<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): CollectionHolder<T>
+export function intersect<const T, >(first: readonly T[], second: readonly T[],): readonly T[]
+export function intersect<const T, >(first: readonly T[], second: CollectionHolder<T>,): readonly T[]
+export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],): CollectionHolder<T> | readonly T[] {
     const secondSize = second.length
     return first.filter(it => {
         let index = -1
         while (++index < secondSize)
-            if (second[index] === it)
+            if (second.at(index,) === it)
                 return true
         return false
     },)
 }
+
+//endregion -------------------- filter game --------------------
 
 //region -------------------- filter game --------------------
 
