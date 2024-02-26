@@ -2,9 +2,11 @@ import {useState} from 'react'
 
 import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 
+const ViewDisplayCompanion = ViewDisplays.CompanionEnum.get
+
 /** @reactHook */
 export function useCurrentViewDisplay(key: string,): NullOr<ViewDisplays> {
-    const [currentValue, setCurrentValue,] = useState(ViewDisplays.CompanionEnum.get.currentOrNull,)
-    ViewDisplays.CompanionEnum.get.setOnCurrentEvent(key, setCurrentValue,)
+    const [currentValue, setCurrentValue,] = useState(ViewDisplayCompanion.currentOrNull,)
+    ViewDisplayCompanion.setOnCurrentEvent(key, setCurrentValue,)
     return currentValue
 }
