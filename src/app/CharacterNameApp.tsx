@@ -1,3 +1,4 @@
+import './CharacterNameApp.scss'
 import 'app/_GameAsideContent.scss'
 
 import type {CharacterNameProperties}    from 'app/AppProperties.types'

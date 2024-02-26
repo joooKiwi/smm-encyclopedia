@@ -3,9 +3,16 @@
 @import '../mixin';
 
 #theme-app-container {
+
   .theme-button-image {
     max-height: .75cm;
   }
+
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
+  }
+
 }
 
 #theme-table {
@@ -127,9 +134,3 @@
 }
 
 //endregion  -------------------- Link buttons --------------------
-
-@include media-breakpoint-up($grid-breakpoint-md) {
-  #theme-container > p {
-    margin-top: 1.25cm;
-  }
-}

@@ -1,4 +1,5 @@
 import 'app/_GameAsideContent.scss'
+import './InstrumentApp.scss'
 
 import type {InstrumentAppProperties}    from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
