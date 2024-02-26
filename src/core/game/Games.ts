@@ -2,16 +2,16 @@ import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
 import {Enum}                  from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                                from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                            from 'core/ClassWithEnglishName'
-import type {PropertyGetter}                                                                                                                  from 'core/PropertyGetter'
-import type {GameProperty}                                                                                                                    from 'core/entity/properties/game/GameProperty'
-import type {CompanionEnumDeclaration_Games}                                                                                                  from 'core/game/Games.companionEnumDeclaration'
-import type {GroupUrlName, GroupUrlValue, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleSimpleUrlValue, PossibleSimpleValue} from 'core/game/Games.types'
-import type {GameImageFile}                                                                                                                   from 'core/game/file/GameImageFile'
-import type {ClassUsedInRoute}                                                                                                                from 'route/ClassUsedInRoute'
-import type {ClassWithImageFile}                                                                                                              from 'util/file/image/ClassWithImageFile'
-import type {Selectable}                                                                                                                      from 'util/types/Selectable'
+import type {ClassWithAcronym}                                                                                                          from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                      from 'core/ClassWithEnglishName'
+import type {PropertyGetter}                                                                                                            from 'core/PropertyGetter'
+import type {GameProperty}                                                                                                              from 'core/entity/properties/game/GameProperty'
+import type {CompanionEnumDeclaration_Games}                                                                                            from 'core/game/Games.companionEnumDeclaration'
+import type {GroupUrlName, GroupUrlValue, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleUrlValue, PossibleSimpleValue} from 'core/game/Games.types'
+import type {GameImageFile}                                                                                                             from 'core/game/file/GameImageFile'
+import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
+import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
+import type {Selectable}                                                                                                                from 'util/types/Selectable'
 
 import GameComponent                                                                            from 'core/game/Game.component'
 import {gameImage}                                                                              from 'core/game/file/fileCreator'
@@ -26,7 +26,7 @@ export abstract class Games
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithAcronym<PossibleAcronym>,
         ClassWithImageFile<GameImageFile>,
-        ClassUsedInRoute<PossibleSimpleUrlValue>,
+        ClassUsedInRoute<PossibleUrlValue>,
         Selectable,
         PropertyGetter<GameProperty> {
 
@@ -402,7 +402,7 @@ export abstract class Games
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleSimpleUrlValue, englishName: PossibleEnglishName, isSelected: boolean,) {
+    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleUrlValue, englishName: PossibleEnglishName, isSelected: boolean,) {
         super()
         this.#acronym = acronym
         this.#englishName = new StringContainer(englishName,)
@@ -434,7 +434,7 @@ export abstract class Games
         return this.#imageFile ??= gameImage(this.englishName,)
     }
 
-    public get urlValue(): PossibleSimpleUrlValue {
+    public get urlValue(): PossibleUrlValue {
         return this.#urlValue
     }
 

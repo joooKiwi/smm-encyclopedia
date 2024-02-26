@@ -1,5 +1,5 @@
-import type {PossibleUrlValue}                                  from 'app/withInterpreter/ViewDisplays.types'
-import type {FullGroupValidUrlName, FullGroupValidUrlName_SMM1} from 'core/gameStyle/GameStyles.types'
+import type {PossibleUrlValue}                        from 'app/withInterpreter/ViewDisplays.types'
+import type {FullGroupUrlName, FullGroupUrlName_SMM1} from 'core/gameStyle/GameStyles.types'
 
 enum Enum {
     ALL,
@@ -12,5 +12,5 @@ export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
 /** A possible route name (not forwarded to the {@link import('route/EveryRoutes.types').PossibleRouteName} variable) */
-export type PossibleRouteName = | `everyEntity (${PossibleUrlValue} Game=${| 'all' | 2} ${FullGroupValidUrlName})`
-                                | `everyEntity (${PossibleUrlValue} Game=${| 1 | '3DS'} ${FullGroupValidUrlName_SMM1})`
+export type PossibleRouteName = | `everyEntity (${PossibleUrlValue} Game=${| 'all' | 2} ${FullGroupUrlName})`
+                                | `everyEntity (${PossibleUrlValue} Game=${| 1 | '3DS'} ${FullGroupUrlName_SMM1})`

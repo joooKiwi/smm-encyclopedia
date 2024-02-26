@@ -3,15 +3,15 @@ import 'app/_GameStyleAsideContent.scss'
 import './EntityApp.scss'
 import 'app/options/EntityAppOption.scss'
 
-import type {EntityProperties}                                         from 'app/AppProperties.types'
-import type {AppInterpreterWithTable}                                  from 'app/interpreter/AppInterpreterWithTable'
-import type {DimensionOnList}                                          from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}                                         from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {FullGroupValidUrlName as FullGroupValidUrlName_Game}      from 'core/game/Games.types'
-import type {FullGroupValidUrlName as FullGroupValidUrlName_GameStyle} from 'core/gameStyle/GameStyles.types'
-import type {GameCollection}                                           from 'util/collection/GameCollection'
-import type {GameStyleCollection}                                      from 'util/collection/GameStyleCollection'
-import type {ReactProperties}                                          from 'util/react/ReactProperties'
+import type {EntityProperties}                               from 'app/AppProperties.types'
+import type {AppInterpreterWithTable}                        from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}                                from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}                               from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {FullGroupUrlName as FullGroupUrlName_Game}      from 'core/game/Games.types'
+import type {FullGroupUrlName as FullGroupUrlName_GameStyle} from 'core/gameStyle/GameStyles.types'
+import type {GameCollection}                                 from 'util/collection/GameCollection'
+import type {GameStyleCollection}                            from 'util/collection/GameStyleCollection'
+import type {ReactProperties}                                from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {EntityAppOption}                            from 'app/options/EntityAppOption'
@@ -220,7 +220,7 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
 function GameAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentProperties,) {
-    const gameStyleName = `GameStyle=${GameStyleCompanion.getGroupUrlName(gameStyles,)}` as const satisfies FullGroupValidUrlName_GameStyle
+    const gameStyleName = `GameStyle=${GameStyleCompanion.getGroupUrlName(gameStyles,)}` as const satisfies FullGroupUrlName_GameStyle
     const entityGame = intersect(allGames, games,).length === 3
         ? EntityGames.ALL_GAMES
         : games.hasSMM2
@@ -249,7 +249,7 @@ const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
 
 /** @reactComponent */
 function GameStyleAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentProperties,) {
-    const gameName = `Game=${GameCompanion.getGroupUrlName(games,)}` as const satisfies FullGroupValidUrlName_Game
+    const gameName = `Game=${GameCompanion.getGroupUrlName(games,)}` as const satisfies FullGroupUrlName_Game
     const amountOfSelectedGameStyles = intersect(allGameStyles, gameStyles,).length
     const isSmbSelected = gameStyles.hasSMB
     const isSmb3Selected = gameStyles.hasSMB3
