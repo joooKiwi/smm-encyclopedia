@@ -229,6 +229,15 @@ function GameAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentP
                 ? EntityGames.SUPER_MARIO_MAKER
                 : EntityGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
+    if (gameStyles.hasSM3DW) {
+        const amountOfGameStyles = gameStyles.size
+        if (!(amountOfGameStyles === 5 || amountOfGameStyles === 4))
+            return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
+                <LinkButton partialId="allGameLimit" routeName={entityGame.getAllRouteName(viewDisplay, gameStyleName,)} color={entityGame.allColor}>{contentTranslation('All',)}</LinkButton>
+                <LinkButton partialId="smm2Game" routeName={entityGame.getSmm2RouteName(viewDisplay, gameStyleName,)} color={entityGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+            </div>
+    }
+
     return <div id="entity-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={entityGame.getAllRouteName(viewDisplay, gameStyleName,)} color={entityGame.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="entity-gamesButton-singularGame-container" className="btn-group btn-group-sm">
