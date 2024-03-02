@@ -12,7 +12,13 @@
     "plural":   "Noms de personnage",
 
     "all":         "Tous les noms de personnage",
-    "display all": "Afficher tous les noms de personnage"
+    "display all": "Afficher tous les noms de personnage",
+
+    "description": {
+      "intro page":       "Sur cette page, tous les noms sont référencés ou utilisé dans les jeux ({{smm1Link}} {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro references": "Ces derniers sont utilisés dans le {{StoryMode}} ({{smm2Link}} exclusif), par un {{mysteryMushroom}} ({{smm1Link}} exclusif) ou dans l'éditeur (en général). ",
+      "intro viewable":   "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+    }
   },
   "entity group": {
     "singular": "Groupe d'{{entity}}",
@@ -257,6 +263,11 @@
   "power-up": {"singular": "Amélioration", "plural": "Améliorations" },
   "ride":     {"singular": "Monture",      "plural": "Montures" },
   "hat":      {"singular": "Chapeau",      "plural": "Chapeaux" },
+  "view type": {
+    "list":  {"singular": "Liste",   "plural": "Listes"},
+    "card":  {"singular": "Carte",   "plural": "Cartes"},
+    "table": {"singular": "Tableau", "plural": "Tableaux"}
+  },
 
   "Official notification": {
     "position": {

@@ -12,7 +12,13 @@
     "plural":   "Character names",
 
     "all":         "Every character name",
-    "display all": "Display every character name"
+    "display all": "Display every character name",
+
+    "description": {
+      "intro page":       "On this page, all of the names are referenced or used in the games ({{smm1Link}} {{smm3dsLink}} or {{smm2Link}}). ",
+      "intro references": "The names are used in the {{StoryMode}} ({{smm2Link}} exclusive), by a {{MysteryMushroom}} ({{smm1Link}} exclusive) or in the editor (in general). ",
+      "intro viewable":   "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
+    }
   },
   "entity group": {
     "singular": "{{Entity}} group",
@@ -257,6 +263,11 @@
   "power-up": {"singular": "Power-up", "plural": "Power-ups" },
   "ride":     {"singular": "Ride",     "plural": "Rides" },
   "hat":      {"singular": "Hat",      "plural": "Hats" },
+  "view type": {
+    "list":  {"singular": "List",  "plural": "Lists"},
+    "card":  {"singular": "Card",  "plural": "Cards"},
+    "table": {"singular": "Table", "plural": "Tables"}
+  },
 
   "Official notification": {
     "position": {
