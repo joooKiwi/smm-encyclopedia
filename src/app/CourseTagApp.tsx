@@ -98,6 +98,7 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
     </SubMainContainer>
 }
 
+//region -------------------- Aside content --------------------
 
 interface CourseTagAsideContentProperties
     extends ReactProperties {
@@ -119,3 +120,5 @@ function CourseTagAsideContent({viewDisplay, type,}: CourseTagAsideContentProper
         <LinkButton partialId="makerCentralCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName,)} color={type.makerCentralColor}>Maker Central</LinkButton>
     </div>
 }
+
+//endregion -------------------- Aside content --------------------

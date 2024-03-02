@@ -1,41 +1,28 @@
-@import '../functions';
-@import '../variables';
-@import '../mixin';
+#courseTag-app-container {
 
-#courseTag-container {
-
-  .cardListName-content-container {
-    color: rgba(var(--bs-dark-rgb), 50%,);
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
   }
+
+  .cardListName-content-container { color: rgba(var(--bs-dark-rgb), 50%,) }
 
 }
 
 //region  -------------------- Link buttons --------------------
 
-#allCourseTag-button {
-  border-bottom: {
+#allCourseTag-button { border-bottom: {
     left-radius: 0;
     right-radius: 0;
-  }
-}
+} }
 
-#officialCourseTag-button {
-}
+#officialCourseTag-button {}
 
-#unofficialCourseTag-button {
-}
+#unofficialCourseTag-button {}
 
-#makerCentralCourseTag-button {
-  border-top: {
+#makerCentralCourseTag-button { border-top: {
     left-radius: 0;
     right-radius: 0;
-  }
-}
+} }
 
 //endregion  -------------------- Link buttons --------------------
-
-@include media-breakpoint-up($grid-breakpoint-md) {
-  #courseTag-app-container > p {
-    margin-top: 1.75cm;
-  }
-}
