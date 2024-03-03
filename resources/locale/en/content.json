@@ -28,6 +28,7 @@
         "color mode":         "A dark & color-blind mode",
         "more info":          "More informations are shown on the {{gitHubLink}}."
       },
+
       "Completed":                   "Completed",
       "Completed with missing data": "Completed with missing data",
       "Page in progress":            "Page in progress",

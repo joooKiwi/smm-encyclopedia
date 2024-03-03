@@ -1,5 +1,225 @@
 {
+  "entity": {
+
+
+
+
+
+
+  },
+  "character name": {
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "entity group": {
+
+
+
+
+
+  },
+  "entity category": {
+
+
+
+
+
+  },
+  "entity reference": {
+
+
+  },
+  "limit": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "theme": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "time": {
+
+
+
+
+
+
+
+
+  },
+  "sound effect": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "sound effect category": {
+
+
+
+
+
+  },
+  "mii costume": {
+
+
+  },
+  "mii costume category": {
+
+
+
+
+
+  },
+  "power-up, ride & hat priority": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "mystery mushroom": {
+
+
+  },
+  "official course": {
+
+
+
+
+
+  },
+  "game reference": {
+
+
+
+
+
+
+  },
+  "game": {
+
+
+
+
+
+  },
+  "game style": {
+
+
+
+
+
+  },
   "course tag": {
+
+
+
     "all":         "Toutes les {{tags}} de {{course}}",
     "display all": "Afficher toutes les {{tags}} de {{course}}",
 
@@ -9,6 +229,141 @@
       "intro page (unofficial)":   "Sur cette page, toutes les {{courses}} {{tags}} {{unofficials}} sont seulement utilisées dans {{smm2Image}}. ",
       "intro page (makerCentral)": "Sur cette page, toutes les {{courses}} {{tags}} sur {{MakerCentralLink}} sont seulement utilisées dans {{smm2Image}}. ",
       "intro references":          "Ces dernières sont utilisées pour représenter des {{courses}} qui sont {{officialsLink}}, {{unofficialsLink}} ou sur {{MakerCentralLink}}."
+
+
     }
+  },
+  "predefined message": {
+
+
+  },
+  "sample course": {
+
+
+
+
+
+  },
+  "medal": {
+
+
+
+
+
+  },
+  "editor voice": {
+
+
+
+
+
+  },
+  "instrument": {
+
+
+
+
+
+
+
+  },
+
+
+
+
+  "power-up": {},
+  "ride": {},
+  "hat": {},
+
+  "Official notification": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+
+  "nightEffect": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
+
+
+
 }
