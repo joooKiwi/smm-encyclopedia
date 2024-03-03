@@ -263,11 +263,6 @@
   "power-up": {"singular": "Power-up", "plural": "Power-ups" },
   "ride":     {"singular": "Ride",     "plural": "Rides" },
   "hat":      {"singular": "Hat",      "plural": "Hats" },
-  "view type": {
-    "list":  {"singular": "List",  "plural": "Lists"},
-    "card":  {"singular": "Card",  "plural": "Cards"},
-    "table": {"singular": "Table", "plural": "Tables"}
-  },
 
   "Official notification": {
     "position": {

@@ -22,6 +22,7 @@ import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {assert, filterGame}                         from 'util/utilitiesMethods'
+import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 
 class CharacterNameAppInterpreter
     implements AppInterpreterWithCardList<CharacterNames> {
@@ -130,6 +131,9 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : viewDisplayAndRouteName[0][1]
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : viewDisplayAndRouteName[1][1]
 
+    const singularMysteryMushroomName = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
+    const singularMysteryMushroomLowerCaseName = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
+
     return <>
         <p>
             {gameContentTranslation('character name.description.intro page', {
@@ -140,17 +144,17 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
             {gameContentTranslation('character name.description.intro references', {
                 //TODO: Add a editor "character name" link
                 StoryMode: <i key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</i>,//TODO: Add a mystery mushroom "character name" link
-                mysteryMushroom: <i key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReference}</i>,
-                MysteryMushroom: <i key="mysteryMushroom" className="mystery-mushroom-image">{OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReference}</i>,
+                mysteryMushroom: <i key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{singularMysteryMushroomLowerCaseName}</i>,
+                MysteryMushroom: <i key="mysteryMushroom" className="mystery-mushroom-image">{singularMysteryMushroomName}</i>,
                 smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description">{smm1.renderSingleComponent}</span>,
                 smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description">{smm2.renderSingleComponent}</span>,
             },)}
         </p>
         <p>
             {gameContentTranslation('character name.description.intro viewable', {
-                listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{gameContentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-                cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{gameContentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-                cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{gameContentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+                listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
+                cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
+                cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
             },)}
         </p>
     </>

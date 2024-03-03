@@ -81,6 +81,11 @@
     "Yes": "Official",
     "No":  "Unofficial"
   },
+  "view type": {
+    "list":  {"singular": "List",  "plural": "Lists"},
+    "card":  {"singular": "Card",  "plural": "Cards"},
+    "table": {"singular": "Table", "plural": "Tables"}
+  },
 
   "In other languages":          "In other languages",
   "Change the language":         "Change the language",

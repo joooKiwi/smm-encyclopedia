@@ -263,11 +263,6 @@
   "power-up": {"singular": "Amélioration", "plural": "Améliorations" },
   "ride":     {"singular": "Monture",      "plural": "Montures" },
   "hat":      {"singular": "Chapeau",      "plural": "Chapeaux" },
-  "view type": {
-    "list":  {"singular": "Liste",   "plural": "Listes"},
-    "card":  {"singular": "Carte",   "plural": "Cartes"},
-    "table": {"singular": "Tableau", "plural": "Tableaux"}
-  },
 
   "Official notification": {
     "position": {
