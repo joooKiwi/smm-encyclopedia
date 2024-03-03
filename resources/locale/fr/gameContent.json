@@ -219,7 +219,7 @@
     "singular": "{{Tag}} de {{course}}",
     "plural":   "{{Tags}} de {{course}}",
 
-    "all":         "Tous les {{tags}} de {{course}}"
+
 
   },
   "predefined message": {

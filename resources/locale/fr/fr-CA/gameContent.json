@@ -1,5 +1,6 @@
 {
   "course tag": {
+    "all":         "Toutes les {{tags}} de {{course}}",
     "display all": "Afficher toutes les {{tags}} de {{course}}"
   }
 }
