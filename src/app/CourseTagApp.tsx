@@ -1,21 +1,27 @@
 import './CourseTagApp.scss'
 
+import {Link} from 'react-router-dom'
+
 import type {CourseTagAppProperties}     from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {CourseTagTypes}             from 'app/property/CourseTagTypes'
 import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {ClassWithType}              from 'core/ClassWithType'
 import type {CourseTags}                 from 'core/courseTag/CourseTags'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 import type {ReactProperties}            from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'
+import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import LinkText                                     from 'app/tools/text/LinkText'
+import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {assert}                                     from 'util/utilitiesMethods'
 
@@ -71,11 +77,14 @@ class CourseTagAppInterpreter
 
 }
 
+const singularCourse = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
+const pluralCourse = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
+const singularTag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
+const pluralTag = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
+
 const titleContent = gameContentTranslation('course tag.all', {
-    course: OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName).toLowerCase(),
-    courses: OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName).toLowerCase(),
-    tag: OtherWordInTheGames.TAG.singularLowerCaseNameOnReference,
-    tags: OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference,
+    course: singularCourse, courses: pluralCourse,
+    tag: singularTag, tags: pluralTag,
 },)
 
 /** @reactComponent */
@@ -89,15 +98,70 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="courseTag" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 description={<CourseTagDescription type={type} viewDisplay={viewDisplay}/>}
                                  asideContent={<CourseTagAsideContent type={type} viewDisplay={viewDisplay}/>}>
             <SimpleList reactKey="courseTag" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="courseTag" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                             description={<CourseTagDescription type={type} viewDisplay={viewDisplay}/>}
                              asideContent={<CourseTagAsideContent type={type} viewDisplay={viewDisplay}/>}>
         <CardList reactKey="courseTag" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
 
+//region -------------------- Description content --------------------
+
+interface CourseTagDescriptionProperties
+    extends ReactProperties {
+
+    readonly type: CourseTagTypes
+
+    readonly viewDisplay: ViewDisplays
+
+}
+
+/** @reactComponent */
+function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperties,) {
+    const officialLink = type === CourseTagTypes.OFFICIAL ? null : viewDisplay.getRoutePathAsListOnly(type.officialRouteName,)
+    const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : viewDisplay.getRoutePathAsListOnly(type.unofficialRouteName,)
+    const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName,)
+
+    const routeName = type.routeName
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : `${routeName} (list)` as const satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : `${routeName} (card)` as const satisfies PossibleRouteName
+
+    return <>
+        <p>
+            {gameContentTranslation(`course tag.description.intro page (${type.type})`, {
+                official: <b key="official (singular)">{contentTranslation('Official.singular',).toLowerCase()}</b>,
+                officials: <b key="official (plural)">{contentTranslation('Official.plural',).toLowerCase()}</b>,
+                unofficial: <b key="unofficial (singular)">{contentTranslation('Unofficial.singular',).toLowerCase()}</b>,
+                unofficials: <b key="unofficial (plural)">{contentTranslation('Unofficial.plural',).toLowerCase()}</b>,
+                MakerCentralLink: <Link key="Maker Central link" to={MAKER_CENTRAL_LEVEL_LINK} id="makerCentralLink" className="link-primary fw-bold">Maker Central</Link>,
+                course: singularCourse, courses: pluralCourse,
+                tag: singularTag, tags: pluralTag,
+                smm2Image: Games.SUPER_MARIO_MAKER_2.renderSingleComponent,
+            },)}
+            {gameContentTranslation('course tag.description.intro references', {
+                course: singularCourse, courses: pluralCourse,
+                officialLink: <LinkText key="official link (singular)" partialId="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.singular',).toLowerCase()}</LinkText>,
+                officialsLink: <LinkText key="official link (plural)" partialId="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.plural',).toLowerCase()}</LinkText>,
+                unofficialLink: <LinkText key="unofficial link (singular)" partialId="unofficialLink" routeName={unofficialLink} color="primary">{contentTranslation('Unofficial.singular',).toLowerCase()}</LinkText>,
+                unofficialsLink: <LinkText key="unofficial link (plural)" partialId="unofficialLink" routeName={unofficialLink} color="primary">{contentTranslation('Unofficial.plural',).toLowerCase()}</LinkText>,
+                MakerCentralLink: <LinkText key="Maker Central link" partialId="makerCentralLink" routeName={makerCentralLink} color="primary">Maker Central</LinkText>,
+            },)}
+        </p>
+        <p>
+            {gameContentTranslation('course tag.description.viewable', {
+                listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
+                cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
+                cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+            },)}
+        </p>
+    </>
+}
+
+//endregion -------------------- Description content --------------------
 //region -------------------- Aside content --------------------
 
 interface CourseTagAsideContentProperties

@@ -5,6 +5,8 @@
     position: initial;
   }
 
+  .description-container .game-image { height: var(--bs-font-size-base) }
+
   .cardListName-content-container { color: rgba(var(--bs-dark-rgb), 50%,) }
 
 }

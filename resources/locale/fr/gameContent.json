@@ -221,6 +221,16 @@
 
 
 
+
+    "description": {
+
+
+
+
+
+
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+    }
   },
   "predefined message": {
     "all":         "Tous les {{pluralName}}",

@@ -220,7 +220,17 @@
     "plural":   "{{Course}} {{tags}}",
 
     "all":         "Every {{course}} {{tag}}",
-    "display all": "Display every {{course}} {{tag}}"
+    "display all": "Display every {{course}} {{tag}}",
+
+    "description": {
+      "intro page (all)":          "On this page, all of the {{course}} {{tags}} are only used in {{smm2Image}}. ",
+      "intro page (official)":     "On this page, all of the {{official}} {{course}} {{tags}} are only used in {{smm2Image}}. ",
+      "intro page (unofficial)":   "On this page, all of the {{unofficial}} {{course}} {{tags}} are only used in {{smm2Image}}. ",
+      "intro page (makerCentral)": "On this page, all of the {{MakerCentralLink}} {{course}} {{tags}} are only used in {{smm2Image}}. ",
+      "intro references":          "These are used to represent {{courses}} that are {{officialLink}}, {{unofficialLink}} or in {{MakerCentralLink}}.",
+
+      "viewable": "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
+    }
   },
   "predefined message": {
     "all":         "Every {{singularName}}",

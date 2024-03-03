@@ -1,6 +1,14 @@
 {
   "course tag": {
     "all":         "Toutes les {{tags}} de {{course}}",
-    "display all": "Afficher toutes les {{tags}} de {{course}}"
+    "display all": "Afficher toutes les {{tags}} de {{course}}",
+
+    "description": {
+      "intro page (all)":          "Sur cette page, toutes les {{courses}} {{tags}} sont seulement utilisées dans {{smm2Image}}. ",
+      "intro page (official)":     "Sur cette page, toutes les {{courses}} {{tags}} {{officials}} sont seulement utilisées dans {{smm2Image}}. ",
+      "intro page (unofficial)":   "Sur cette page, toutes les {{courses}} {{tags}} {{unofficials}} sont seulement utilisées dans {{smm2Image}}. ",
+      "intro page (makerCentral)": "Sur cette page, toutes les {{courses}} {{tags}} sur {{MakerCentralLink}} sont seulement utilisées dans {{smm2Image}}. ",
+      "intro references":          "Ces dernières sont utilisées pour représenter des {{courses}} qui sont {{officialsLink}}, {{unofficialsLink}} ou sur {{MakerCentralLink}}."
+    }
   }
 }
