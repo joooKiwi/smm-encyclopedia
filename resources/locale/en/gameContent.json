@@ -16,8 +16,9 @@
 
     "description": {
       "intro page":       "On this page, all of the names are referenced or used in the games ({{smm1Link}} {{smm3dsLink}} or {{smm2Link}}). ",
-      "intro references": "The names are used in the {{StoryMode}} ({{smm2Link}} exclusive), by a {{MysteryMushroom}} ({{smm1Link}} exclusive) or in the editor (in general). ",
-      "intro viewable":   "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
+      "intro references": "These are used in the {{StoryMode}} ({{smm2Link}} exclusive), by a {{MysteryMushroom}} ({{smm1Link}} exclusive) or in the editor (in general).",
+
+      "viewable": "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
     }
   },
   "entity group": {

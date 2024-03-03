@@ -151,7 +151,7 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
             },)}
         </p>
         <p>
-            {gameContentTranslation('character name.description.intro viewable', {
+            {gameContentTranslation('character name.description.viewable', {
                 listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
                 cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
                 cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
