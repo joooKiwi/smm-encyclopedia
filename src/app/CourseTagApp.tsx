@@ -167,9 +167,9 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
 interface CourseTagAsideContentProperties
     extends ReactProperties {
 
-    readonly viewDisplay: ViewDisplays
-
     readonly type: CourseTagTypes
+
+    readonly viewDisplay: ViewDisplays
 
 }
 

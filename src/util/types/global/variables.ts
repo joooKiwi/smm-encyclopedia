@@ -14,9 +14,10 @@ declare global {
     type UnknownCharacter = typeof UNKNOWN_CHARACTER
     type UnknownReference = typeof UNKNOWN_REFERENCE
 
-    type NotApplicable = typeof NOT_APPLICABLE
-    type BooleanOrNotApplicable = | boolean | NotApplicable
-    type NullOrBooleanOrNotApplicable = | null | boolean | NotApplicable
+    type NotApplicable =                                   typeof NOT_APPLICABLE
+    type BooleanOrNotApplicable =              | boolean | typeof NOT_APPLICABLE
+    type NullOrBooleanOrNotApplicable = | null | boolean | typeof NOT_APPLICABLE
+
     type Infinity = typeof INFINITY
     type SuspensionPoint = typeof SUSPENSION_POINT
 

@@ -115,7 +115,7 @@ export default function CharacterNameApp({viewDisplay, games,}: CharacterNamePro
 //region -------------------- Description content --------------------
 
 interface CharacterNameDescriptionProperties
-extends ReactProperties {
+    extends ReactProperties {
 
     readonly viewDisplay: ViewDisplays,
 
