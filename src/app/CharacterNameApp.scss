@@ -3,12 +3,7 @@
     //TODO change the view changer default position to not have be absolute
     position: initial;
   }
+
+  .description-container .game-image { height: var(--bs-font-size-base) }
+
 }
-
-
-#smm1Game-description,
-#smm1Game-mysteryMushroom-description,
-#smm3dsGame-description,
-#smm2Game-description,
-#smm2Game-storyMode-description, {
-  .game-image { height: var(--bs-font-size-base) } }
