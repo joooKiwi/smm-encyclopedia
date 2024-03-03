@@ -36,7 +36,7 @@ export default function SubMainContainer({reactKey, viewDisplayAndRouteName, vie
                 <DisplayButtonGroup reactKey={reactKey} views={viewDisplayAndRouteName} currentView={viewDisplay}/>
                 {asideContent}
             </aside>
-            {description == null ? <UnfinishedText type="paragraph" isHidden>description</UnfinishedText> : <p className="description-container">{description}</p>}
+            {description == null ? <UnfinishedText type="paragraph" isHidden>description</UnfinishedText> : <div className="description-container">{description}</div>}
             <div id={`${reactKey}-app-content`} className="app-content">{children}</div>
         </div>
     </div>
