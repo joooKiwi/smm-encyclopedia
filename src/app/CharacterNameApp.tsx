@@ -5,6 +5,7 @@ import type {CharacterNameProperties}    from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {PossibleRouteName}          from 'route/EveryRoutes.types'
 import type {GameCollection}             from 'util/collection/GameCollection'
 import type {ReactProperties}            from 'util/react/ReactProperties'
 
@@ -128,8 +129,8 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
     const smm2Link = game.getSmm2RouteName(viewDisplay,)
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : viewDisplayAndRouteName[0][1]
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : viewDisplayAndRouteName[1][1]
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyCharacterName (list)' as const satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyCharacterName (card)' as const satisfies PossibleRouteName
 
     const singularMysteryMushroomName = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
     const singularMysteryMushroomLowerCaseName = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
