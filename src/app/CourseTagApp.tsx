@@ -178,8 +178,8 @@ function CourseTagAsideContent({viewDisplay, type,}: CourseTagAsideContentProper
     return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
         <LinkButton partialId="everyCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="officialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.officialRouteName,)} color={type.officialColor}>{contentTranslation('Official.Yes',)}</LinkButton>
-            <LinkButton partialId="unofficialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.unofficialRouteName,)} color={type.unofficialColor}>{contentTranslation('Official.No',)}</LinkButton>
+            <LinkButton partialId="officialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.officialRouteName,)} color={type.officialColor}>{contentTranslation('Official.singular',)}</LinkButton>
+            <LinkButton partialId="unofficialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.unofficialRouteName,)} color={type.unofficialColor}>{contentTranslation('Unofficial.singular',)}</LinkButton>
         </div>
         <LinkButton partialId="makerCentralCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName,)} color={type.makerCentralColor}>Maker Central</LinkButton>
     </div>

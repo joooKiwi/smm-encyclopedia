@@ -77,10 +77,8 @@
 
   "Type":  "Type",
   "All":   "All",
-  "Official": {
-    "Yes": "Official",
-    "No":  "Unofficial"
-  },
+  "Official":   {"singular": "Official",   "plural": "Officials"},
+  "Unofficial": {"singular": "Unofficial", "plural": "Unofficial"},
   "view type": {
     "list":  {"singular": "List",  "plural": "Lists"},
     "card":  {"singular": "Card",  "plural": "Cards"},
