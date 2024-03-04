@@ -18,7 +18,7 @@ const {PORTUGUESE, AMERICAN_PORTUGUESE, EUROPEAN_PORTUGUESE, CHINESE, KOREAN,} =
 
 //endregion -------------------- Import from deconstruction --------------------
 
-export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, IS_A_COMPLETE_WORD extends boolean = boolean, >
+export class OtherWordInTheGames<const out SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, const out PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, const out IS_A_COMPLETE_WORD extends boolean = boolean, >
     extends Enum<Ordinals, Names>
     implements ClassWithReference<OtherWordInTheGame>,
         ClassWithEnglishName<PossibleEnglishName_Singular> {
@@ -26,7 +26,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
     //region -------------------- Sub class --------------------
 
     /** A complete {@link OtherWordInTheGames} for every language (from any {@link Games game}) */
-    private static readonly CompleteOtherWordInTheGame = class CompleteOtherWordInTheGame<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, > extends OtherWordInTheGames<SINGULAR, PLURAL, true> {
+    private static readonly CompleteOtherWordInTheGame = class CompleteOtherWordInTheGame<const out SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, const out PLURAL extends NullOr<PossibleEnglishName_Plural> = null, > extends OtherWordInTheGames<SINGULAR, PLURAL, true> {
 
         constructor(singularEnglishName: SINGULAR,)
         constructor(singularEnglishName: SINGULAR, pluralEnglishName: PLURAL,)
@@ -67,7 +67,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
      * Meaning that translations from chinese ({@link ProjectLanguages.SIMPLIFIED_CHINESE simplified} or {@link ProjectLanguages.TRADITIONAL_CHINESE traditional}) or {@link ProjectLanguages.KOREAN korean}
      * are defaulted to the {@link ProjectLanguages.AMERICAN_ENGLISH american english} value.
      */
-    private static readonly CompleteInSMM1OtherWordInTheGame = class CompleteInSMM1OtherWordInTheGame<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, > extends OtherWordInTheGames.CompleteOtherWordInTheGame<SINGULAR, PLURAL> {
+    private static readonly CompleteInSMM1OtherWordInTheGame = class CompleteInSMM1OtherWordInTheGame<const out SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, const out PLURAL extends NullOr<PossibleEnglishName_Plural> = null, > extends OtherWordInTheGames.CompleteOtherWordInTheGame<SINGULAR, PLURAL> {
 
         /**
          * Get the {@link singularEnglishName} (on the {@link EveryLanguages.current current language})
@@ -102,7 +102,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
      * Meaning that translations from portuguese ({@link ProjectLanguages.AMERICAN_PORTUGUESE american} or {@link ProjectLanguages.EUROPEAN_PORTUGUESE european})
      * are defaulted to the english ({@link ProjectLanguages.AMERICAN_ENGLISH american} or {@link ProjectLanguages.EUROPEAN_PORTUGUESE european}) value respectively.
      */
-    private static readonly CompleteInSMM2OtherWordInTheGame = class CompleteInSMM2OtherWordInTheGame<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, > extends OtherWordInTheGames.CompleteOtherWordInTheGame<SINGULAR, PLURAL> {
+    private static readonly CompleteInSMM2OtherWordInTheGame = class CompleteInSMM2OtherWordInTheGame<const out SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, const out PLURAL extends NullOr<PossibleEnglishName_Plural> = null, > extends OtherWordInTheGames.CompleteOtherWordInTheGame<SINGULAR, PLURAL> {
 
         /**
          * Get the {@link singularEnglishName} (on the {@link EveryLanguages.current current language})
@@ -134,7 +134,7 @@ export class OtherWordInTheGames<SINGULAR extends PossibleEnglishName_Singular =
 
     }
     /** An unfinished {@link OtherWordInTheGames} having one or more {@link ProjectLanguages language} not completed */
-    private static readonly UnfinishedOtherWordInTheGame = class UnfinishedOtherWordInTheGame<SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, PLURAL extends NullOr<PossibleEnglishName_Plural> = NullOr<PossibleEnglishName_Plural>, > extends OtherWordInTheGames<SINGULAR, PLURAL, false> {
+    private static readonly UnfinishedOtherWordInTheGame = class UnfinishedOtherWordInTheGame<const out SINGULAR extends PossibleEnglishName_Singular = PossibleEnglishName_Singular, const out PLURAL extends NullOr<PossibleEnglishName_Plural> = null, > extends OtherWordInTheGames<SINGULAR, PLURAL, false> {
 
         constructor(singularEnglishName: SINGULAR, pluralEnglishName?: PLURAL,) {
             super(false, singularEnglishName, pluralEnglishName,)
