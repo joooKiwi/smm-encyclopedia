@@ -86,12 +86,9 @@ class EntityAppInterpreter
     public readonly tableHeadersColor = 'secondary' satisfies BootstrapThemeColor
 
     public get tableCaption() {
-        const singularEntityName = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-        const singularEntityLowerCaseName = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-        return gameContentTranslation('entity.all', {
-            Entity: singularEntityName,
-            entity: singularEntityLowerCaseName,
-        },) satisfies ReactElementOrString
+        const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
+        const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+        return gameContentTranslation('entity.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
     }
 
     public get tableOptions(): readonly EntityAppOption[] {

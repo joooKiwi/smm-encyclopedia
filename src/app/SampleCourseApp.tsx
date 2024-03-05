@@ -49,9 +49,9 @@ class SampleCourseInterpreter
     public readonly tableColor = 'primary' satisfies BootstrapThemeColor
 
     public get tableCaption() {
-        const singularCourseName = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
-        const singularCourseLowerCaseName = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? singularCourseName.toLowerCase()
-        return gameContentTranslation('sample course.all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},) satisfies ReactElementOrString
+        const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
+        const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+        return gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},) satisfies ReactElementOrString
     }
 
     public get tableOptions(): readonly SampleCourseAppOption[] {

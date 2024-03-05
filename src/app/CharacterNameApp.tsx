@@ -132,8 +132,8 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyCharacterName (list)' as const satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyCharacterName (card)' as const satisfies PossibleRouteName
 
-    const singularMysteryMushroomName = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
-    const singularMysteryMushroomLowerCaseName = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
+    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
+    const mysteryMushroomAsLowerCase = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
 
     return <>
         <p>
@@ -145,8 +145,8 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
             {gameContentTranslation('character name.description.intro references', {
                 //TODO: Add a editor "character name" link
                 StoryMode: <i key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</i>,//TODO: Add a mystery mushroom "character name" link
-                mysteryMushroom: <i key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{singularMysteryMushroomLowerCaseName}</i>,
-                MysteryMushroom: <i key="mysteryMushroom" className="mystery-mushroom-image">{singularMysteryMushroomName}</i>,
+                mysteryMushroom: <i key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{mysteryMushroomAsLowerCase}</i>,
+                MysteryMushroom: <i key="mysteryMushroom" className="mystery-mushroom-image">{mysteryMushroom}</i>,
                 smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description">{smm1.renderSingleComponent}</span>,
                 smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description">{smm2.renderSingleComponent}</span>,
             },)}

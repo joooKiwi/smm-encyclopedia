@@ -8,42 +8,48 @@ import {OtherWordInTheGames}                             from 'core/otherWordInT
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
 
-//region -------------------- Deconstruction imports --------------------
-
-const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWordInTheGames
-
-//endregion -------------------- Deconstruction imports --------------------
-
 /** @reactComponent */
 export default function DisplayViewBody() {
     const isSMM1Selected = Games.SUPER_MARIO_MAKER_1.isSelected
     // const isSMM3DSSelected = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.isSelected
     const isSMM2Selected = Games.SUPER_MARIO_MAKER_2.isSelected
-    const singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference
-    const /*pluralTagName = TAG.pluralNameOnReference, */pluralTagLowerCaseName = TAG.pluralLowerCaseNameOnReference
-    const singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName), singularMysteryMushroomLowerCaseName = singularMysteryMushroomName.toLowerCase()
-    const pluralMysteryMushroomName = MYSTERY_MUSHROOM.pluralNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.pluralEnglishName), pluralMysteryMushroomLowerCaseName = pluralMysteryMushroomName.toLowerCase()
-    const singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)
-    const /*pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!), */pluralMiiCostumeLowerCaseName = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!)
-    const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-    const pluralEntityName = ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(ENTITY.pluralEnglishName), pluralEntityLowerCaseName = ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? pluralEntityName.toLowerCase()
-    const singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = COURSE.singularLowerCaseNameOnReference
-    const pluralCourseName = COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName), pluralCourseLowerCaseName = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? pluralCourseName.toLowerCase()
-    const singularPowerUpName = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName), singularPowerUpLowerCaseName = singularPowerUpName.toLowerCase()
-    const pluralPowerUpName = POWER_UP.pluralNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralEnglishName), pluralPowerUpLowerCaseName = pluralPowerUpName.toLowerCase()
+    const tag = OtherWordInTheGames.TAG.singularNameOnReference
+    const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
+    // const tags = OtherWordInTheGames.TAG.pluralNameOnReference
+    const tagsAsLowerCase = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
+    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
+    const mysteryMushroomAsLowerCase = mysteryMushroom.toLowerCase()
+    const mysteryMushrooms = OtherWordInTheGames.MYSTERY_MUSHROOM.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName,)
+    const mysteryMushroomsAsLowerCase = mysteryMushrooms.toLowerCase()
+    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
+    const miiCostumeAsLowerCase = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
+    // const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+    const miiCostumesAsLowerCase = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
+    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
+    const entitiesAsLowerCase = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
+    const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
+    const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReference
+    const courses = OtherWordInTheGames.COURSE.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,)
+    const coursesAsLowerCase = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? courses.toLowerCase()
+    const powerUp = OtherWordInTheGames.POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.POWER_UP.singularEnglishName,)
+    const powerUpAsLowerCase = powerUp.toLowerCase()
+    const powerUps = OtherWordInTheGames.POWER_UP.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.POWER_UP.pluralEnglishName,)
+    const powerUpsAsLowerCase = powerUps.toLowerCase()
 
     return <div id="display-modal-body-container" className="container">
         <div id="display-entity-container" className="container">
-            <h3 className="text-center text-decoration-underline pb-2">{singularEntityName}</h3>
+            <h3 className="text-center text-decoration-underline pb-2">{entity}</h3>
             <div key="button group (entity)" id="entity-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyEntity" value={singularEntityName}
-                                        tooltipValue={gameContentTranslation('entity.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
+                <DisplayViewRouteButton routeName="everyEntity" value={entity}
+                                        tooltipValue={gameContentTranslation('entity.display all', {Entity: entity, entity: entityAsLowerCase, Entities: entities, entities: entitiesAsLowerCase,},)}
                                         elementId="displayView-entity-button"/>
                 <DisplayViewRouteButton routeName="everyEntityCategory" value={gameContentTranslation('Category',)}
-                                        tooltipValue={gameContentTranslation('entity category.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('entity category.display all', {Entity: entity, entity: entityAsLowerCase, Entities: entities, entities: entitiesAsLowerCase,},)}
                                         elementId="displayView-entityCategory-button"/>
                 {/*<DisplayViewRouteButton routeName="everyGroup" value={gameContentTranslation('Group',)}
-                                        tooltipValue={gameContentTranslation('entity group.display all', {Entity: singularEntityName, entity: singularEntityLowerCaseName, Entities: pluralEntityName, entities: pluralEntityLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('entity group.display all', {Entity: entity, entity: entityAsLowerCase, Entities: entities, entities: entitiesAsLowerCase,},)}
                                         elementId="displayView-entityGroup-button"/>*/}
                 {/*TODO add other predefined group of entities*/}
             </div>
@@ -88,13 +94,13 @@ export default function DisplayViewBody() {
         <div id="display-level-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2">{unfinishedText('Level')}</h3>
             <div key="button group (official course)" id="officialCourse-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyOfficialCourse" value={gameContentTranslation('official course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
-                                        tooltipValue={gameContentTranslation('official course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
+                <DisplayViewRouteButton routeName="everyOfficialCourse" value={gameContentTranslation('official course.singular', {SingularName: course, singularName: courseAsLowerCase,},)}
+                                        tooltipValue={gameContentTranslation('official course.display all', {SingularName: course, singularName: courseAsLowerCase, PluralName: courses, pluralName: coursesAsLowerCase,},)}
                                         elementId="displayView-officialCourse-button" />
             </div>
             {isSMM1Selected ? <div key="button group (sample course)" id="sampleCourse-buttonGroup" className="btn-group col-12 col-md-6" role="group">
-                <DisplayViewRouteButton routeName="everySampleCourse" value={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}
-                                        tooltipValue={gameContentTranslation('sample course.display all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName, PluralName: pluralCourseName, pluralName: pluralCourseLowerCaseName,},)}
+                <DisplayViewRouteButton routeName="everySampleCourse" value={gameContentTranslation('sample course.singular', {SingularName: course, singularName: courseAsLowerCase,},)}
+                                        tooltipValue={gameContentTranslation('sample course.display all', {SingularName: course, singularName: courseAsLowerCase, PluralName: courses, pluralName: coursesAsLowerCase,},)}
                                         elementId="displayView-sampleCourse-button"/>
             </div> : null}
             {isSMM1Selected ? <div key="button group (medal)" id="medal-buttonGroup" className="btn-group col-12 col-md-6" role="group">
@@ -132,8 +138,8 @@ export default function DisplayViewBody() {
                                         elementId="displayView-characterName-button"/>
             </div>
             {isSMM2Selected ? <div key="button group (course tag - SMM2)" id="courseTag-buttonGroup" className="btn-group col-12 col-sm-6 col-lg-4" role="group">
-                <DisplayViewRouteButton routeName="officialCourseTag" value={gameContentTranslation('course tag.singular', {Course: singularCourseName, course: singularCourseLowerCaseName, Tag: singularTagName, tag: singularTagLowerCaseName,},)}
-                                        tooltipValue={gameContentTranslation('course tag.display all', {course: singularCourseLowerCaseName, courses: pluralCourseLowerCaseName, tag: singularTagLowerCaseName, tags: pluralTagLowerCaseName,})}
+                <DisplayViewRouteButton routeName="officialCourseTag" value={gameContentTranslation('course tag.singular', {Course: course, course: courseAsLowerCase, Tag: tag, tag: tagAsLowerCase,},)}
+                                        tooltipValue={gameContentTranslation('course tag.display all', {course: courseAsLowerCase, courses: coursesAsLowerCase, tag: tagAsLowerCase, tags: tagsAsLowerCase,})}
                                         elementId="displayView-courseTag-button"/>
             </div> : null}
             {isSMM2Selected ? <div key="button group (predefined message - SMM2)" id="predefinedMessage-buttonGroup" className="btn-group col-12 col-sm-6 col-lg-4" role="group">
@@ -145,28 +151,28 @@ export default function DisplayViewBody() {
         <div id="display-other-container" className="container">
             <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Other</UnfinishedText></h3>
             {isSMM2Selected ? <div key="button group (mii costume)" id="miiCostume-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyMiiCostume" value={singularMiiCostumeName}
-                                        tooltipValue={gameContentTranslation('mii costume.display all', {singularName: singularMiiCostumeLowerCaseName, pluralName: pluralMiiCostumeLowerCaseName,},)}
+                <DisplayViewRouteButton routeName="everyMiiCostume" value={miiCostume}
+                                        tooltipValue={gameContentTranslation('mii costume.display all', {singularName: miiCostumeAsLowerCase, pluralName: miiCostumesAsLowerCase,},)}
                                         elementId="displayView-miiCostume-button"/>
                 <DisplayViewRouteButton routeName="everyMiiCostumeCategory" value={gameContentTranslation('Category',)}
-                                        tooltipValue={gameContentTranslation('mii costume category.display all', {singularName: singularMiiCostumeLowerCaseName, pluralName: pluralMiiCostumeLowerCaseName,},)}
+                                        tooltipValue={gameContentTranslation('mii costume category.display all', {singularName: miiCostumeAsLowerCase, pluralName: miiCostumesAsLowerCase,},)}
                                         elementId="displayView-miiCostumeCategory-button"/>
             </div> : null}
             <div key="button group (power-up, ride & hat priority)" id="powerUpRideAndHat-buttonGroup" className="btn-group-vertical col-12" role="group">
                 <DisplayViewRouteButton routeName="everyPowerUp&Ride&HatPriority" value={gameContentTranslation('power-up, ride & hat priority.all.singular', {
-                    PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName,
+                    PowerUp: powerUp, powerUp: powerUpAsLowerCase,
                     Ride: gameContentTranslation('ride.singular',), ride: gameContentTranslation('ride.singular',).toLowerCase(),
                     Hat: gameContentTranslation('hat.singular',), hat: gameContentTranslation('hat.singular',).toLowerCase(),
                 },)}
                                         tooltipValue={gameContentTranslation('power-up, ride & hat priority.all.display all', {
-                                            powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,
+                                            powerUp: powerUpAsLowerCase, powerUps: powerUpsAsLowerCase,
                                             ride: gameContentTranslation('ride.singular',).toLowerCase(), rides: gameContentTranslation('ride.plural',).toLowerCase(),
                                             hat: gameContentTranslation('hat.singular',).toLowerCase(), hats: gameContentTranslation('hat.plural',).toLowerCase(),
                                         },)}
                                         elementId="displayView-powerUpAndRide-button"/>
                 <div key="button group (power-up & ride priority separately)" id="powerUpAndRideSeparately-buttonGroup" className="btn-group" role="group">
-                    <DisplayViewRouteButton routeName="everyPowerUpPriority" value={singularPowerUpName}
-                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.power-up.display all', {powerUp: singularPowerUpLowerCaseName, powerUps: pluralPowerUpLowerCaseName,},)}
+                    <DisplayViewRouteButton routeName="everyPowerUpPriority" value={powerUp}
+                                            tooltipValue={gameContentTranslation('power-up, ride & hat priority.power-up.display all', {powerUp: powerUpAsLowerCase, powerUps: powerUpsAsLowerCase,},)}
                                             elementId="displayView-powerUp-button"/>
                     <DisplayViewRouteButton routeName="everyRidePriority" value={gameContentTranslation('ride.singular',)}
                                             tooltipValue={gameContentTranslation('power-up, ride & hat priority.ride.display all', {ride: gameContentTranslation('ride.singular',).toLowerCase(), rides: gameContentTranslation('ride.plural',).toLowerCase(),},)}
@@ -177,8 +183,8 @@ export default function DisplayViewBody() {
                 </div>
             </div>
             {isSMM1Selected ? <div key="button group (mystery mushroom - SMM1)" id="mysteryMushroom-buttonGroup" className="btn-group col-12" role="group">
-                <DisplayViewRouteButton routeName="everyMysteryMushroom" value={<span className="mystery-mushroom-image">{singularMysteryMushroomName}</span>}
-                                        tooltipValue={gameContentTranslation('mystery mushroom.display all', {singularName: singularMysteryMushroomLowerCaseName, pluralName: pluralMysteryMushroomLowerCaseName,},)}
+                <DisplayViewRouteButton routeName="everyMysteryMushroom" value={<span className="mystery-mushroom-image">{mysteryMushroom}</span>}
+                                        tooltipValue={gameContentTranslation('mystery mushroom.display all', {singularName: mysteryMushroomAsLowerCase, pluralName: mysteryMushroomsAsLowerCase,},)}
                                         elementId="displayView-mysteryMushroom-button"/>
                 {/*TODO add other options for the Mystery Mushroom*/}
             </div> : null}

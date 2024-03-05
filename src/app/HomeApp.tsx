@@ -7,21 +7,21 @@ import {contentTranslation, gameContentTranslation}                             
 import {MARIO_MAKER_2_WIKI_FANDOM_LINK, SUPER_MARIO_WIKI_LINK, THE_CUTTING_FLOOR_LINK} from 'external/WikiLinks'
 import {routeFromName}                                                                 from 'route/route'
 
-//region -------------------- Deconstruction imports --------------------
-
-const {TAG, MYSTERY_MUSHROOM, MII_COSTUME, ENTITY, COURSE, POWER_UP,} = OtherWordInTheGames
-
-//endregion -------------------- Deconstruction imports --------------------
-
 /** @reactComponent */
 export default function HomeApp() {
-    const singularEntityName = ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(ENTITY.singularEnglishName), singularEntityLowerCaseName = ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-    const singularTagName = TAG.singularNameOnReference, singularTagLowerCaseName = TAG.singularLowerCaseNameOnReference
-    const singularCourseName = COURSE.singularNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName), singularCourseLowerCaseName = COURSE.singularLowerCaseNameOnReferenceOrNull ?? singularCourseName.toLowerCase()
-    const singularMysteryMushroomName = MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(MYSTERY_MUSHROOM.singularEnglishName)
-    const singularMiiCostumeName = MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName), singularMiiCostumeLowerCaseName = MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.singularEnglishName)
-    const pluralMiiCostumeName = MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!), pluralMiiCostumeLowerCaseName = MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(MII_COSTUME.pluralEnglishName!)
-    const singularPowerUpName = POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName), singularPowerUpLowerCaseName = singularPowerUpName.toLowerCase()
+    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
+    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const tag = OtherWordInTheGames.TAG.singularNameOnReference
+    const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
+    const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
+    const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,)
+    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
+    const miiCostumeAsLowerCase = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? miiCostume.toLowerCase()
+    const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+    const miiCostumesAsLowerCase = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+    const powerUp = OtherWordInTheGames.POWER_UP.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.POWER_UP.singularEnglishName,)
+    const powerUpAsLowerCase = powerUp.toLowerCase()
 
     return <>
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('home.title',)}</h1>
@@ -63,15 +63,15 @@ export default function HomeApp() {
             </ol>
         </div>
         <div className="row row-cols-1 row-cols-md-2 row-cols-xl-3 row-cols-xxl-4 justify-content-center px-0 px-sm-5 px-md-3 px-lg-2 px-xl-4 px-xxl-5 gx-2 gy-1">
-            <PageProgress progress="page in progress"            link="everyEntity"                                          content={singularEntityName}/>
+            <PageProgress progress="page in progress"            link="everyEntity"                                          content={entity}/>
             <PageProgress progress="page in progress"            link="everyCharacterName"                                   content={gameContentTranslation('character name.singular',)}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Clear condition',)}/>
             <PageProgress progress="data done"                                                        exclusiveGame="SMM2"   content={unfinishedText('Clear condition category',)}/>
             <PageProgress progress="completed"                   link="everyLimit"                                           content={gameContentTranslation('limit.singular',)}/>
             <PageProgress progress="data in progress"                                                                        content={unfinishedText('Projectile',)}/>
             <PageProgress progress="data in progress"                                                                        content={unfinishedText('Object',)}/>
-            <PageProgress progress="completed"                   link="everyEntityCategory"                                  content={gameContentTranslation('entity category.singular', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)}/>
-            <PageProgress progress="data in progress"                                                                        content={gameContentTranslation('entity group.singular', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)}/>
+            <PageProgress progress="completed"                   link="everyEntityCategory"                                  content={gameContentTranslation('entity category.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
+            <PageProgress progress="data in progress"                                                                        content={gameContentTranslation('entity group.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
             <PageProgress progress="page almost done"            link="everyTheme"                                           content={gameContentTranslation('theme.singular',)}/>
             <PageProgress progress="not created"                                                      exclusiveGame="SMM2"   content={gameContentTranslation('time.singular',)}/>
             <PageProgress progress="page in progress"            link="everyGameReference"                                   content={gameContentTranslation('game reference.singular',)}/>
@@ -79,21 +79,21 @@ export default function HomeApp() {
             <PageProgress progress="data in progress"                                                                        content={unfinishedText('Entity behaviour',)}/>
             <PageProgress progress="page almost done"            link="everySoundEffect"                                     content={gameContentTranslation('sound effect.singular',)}/>
             <PageProgress progress="page in progress"            link="everySoundEffectCategory"      exclusiveGame="SMM2"   content={gameContentTranslation('sound effect category.singular',)}/>
-            <PageProgress progress="completed"                   link="everyCourseTag"                exclusiveGame="SMM2"   content={gameContentTranslation('course tag.singular', {Course: singularCourseName, course: singularCourseLowerCaseName, Tag: singularTagName, tag: singularTagLowerCaseName,},)}/>
+            <PageProgress progress="completed"                   link="everyCourseTag"                exclusiveGame="SMM2"   content={gameContentTranslation('course tag.singular', {Course: course, course: courseAsLowerCase, Tag: tag, tag: tagAsLowerCase,},)}/>
             <PageProgress progress="completed"                   link="everyPredefinedMessage"        exclusiveGame="SMM2"   content={unfinishedText('Predefined message',)}/>
-            <PageProgress progress="completed"                   link="everySampleCourse"             exclusiveGame="SMM1"   content={gameContentTranslation('sample course.singular', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)}/>
+            <PageProgress progress="completed"                   link="everySampleCourse"             exclusiveGame="SMM1"   content={gameContentTranslation('sample course.singular', {SingularName: course, singularName: courseAsLowerCase,},)}/>
             <PageProgress progress="page almost done"            link="everyMedal"                    exclusiveGame="SMM1"   content={gameContentTranslation('medal.singular',)}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM3DS" content={unfinishedText('Super Mario Challenges levels',)}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Job',)}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Official notification',)}/>
-            <PageProgress progress="page with missing data"      link="everyOfficialCourse"                                  content={gameContentTranslation('official course.singular', {singularName: singularCourseLowerCaseName, SingularName: singularCourseName,})}/>
+            <PageProgress progress="page with missing data"      link="everyOfficialCourse"                                  content={gameContentTranslation('official course.singular', {singularName: courseAsLowerCase, SingularName: course,})}/>
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Ninji speedrun',)}/>
-            <PageProgress progress="page almost done"            link="everyMysteryMushroom"          exclusiveGame="SMM1"   content={singularMysteryMushroomName}/>
-            <PageProgress progress="completed"                   link="everyMiiCostume"               exclusiveGame="SMM2"   content={singularMiiCostumeName}/>
-            <PageProgress progress="completed"                   link="everyMiiCostumeCategory"       exclusiveGame="SMM2"   content={gameContentTranslation('mii costume category.singular', {SingularName: singularMiiCostumeName, singularName: singularMiiCostumeLowerCaseName, PluralName: pluralMiiCostumeName, pluralName: pluralMiiCostumeLowerCaseName,},)}/>
+            <PageProgress progress="page almost done"            link="everyMysteryMushroom"          exclusiveGame="SMM1"   content={mysteryMushroom}/>
+            <PageProgress progress="completed"                   link="everyMiiCostume"               exclusiveGame="SMM2"   content={miiCostume}/>
+            <PageProgress progress="completed"                   link="everyMiiCostumeCategory"       exclusiveGame="SMM2"   content={gameContentTranslation('mii costume category.singular', {SingularName: miiCostume, singularName: miiCostumeAsLowerCase, PluralName: miiCostumes, pluralName: miiCostumesAsLowerCase,},)}/>
             <PageProgress progress="page in progress"            link="everyEditorVoice"                                     content={gameContentTranslation('editor voice.singular',)}/>
             <PageProgress progress="page in progress"            link="everyInstrument"                                      content={gameContentTranslation('instrument.singular',)}/>
-            <PageProgress progress="page in progress"            link="everyPowerUp&Ride&HatPriority"                        content={gameContentTranslation('power-up, ride & hat priority.all.singular', {PowerUp: singularPowerUpName, powerUp: singularPowerUpLowerCaseName, Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),},)}/>
+            <PageProgress progress="page in progress"            link="everyPowerUp&Ride&HatPriority"                        content={gameContentTranslation('power-up, ride & hat priority.all.singular', {PowerUp: powerUp, powerUp: powerUpAsLowerCase, Ride: gameContentTranslation('ride.singular'), ride: gameContentTranslation('ride.singular').toLowerCase(), Hat: gameContentTranslation('hat.singular'), hat: gameContentTranslation('hat.singular').toLowerCase(),},)}/>
         </div>
     </>
 }
