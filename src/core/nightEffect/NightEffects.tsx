@@ -47,6 +47,7 @@ export class NightEffects
         protected override _createReplaceComponent(): TranslationReplaceKeysMap {
             //TODO change the entities to be only for the entities with dark light
             return {
+                course: OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),),
                 entities: NightEffects._createEntitiesLink(this, 'everyEntity',),
                 players: NightEffects._createPlayersLink(this),
             }

@@ -347,7 +347,7 @@
   "nightEffect": {
     "Special effect on entities": "Change the behaviour of some {{entities}}.",
     "Screen upside down":         "Turn the screen upside down.",
-    "Dark":                       "Makes the level dark (except the {{players}} & some {{entities}})",
+    "Dark":                       "Makes the {{course}} dark (except the {{players}} & some {{entities}})",
 
     "Wind":                       "Depending on the {{gameStyle}}, there is different wind effect.",
     "nightDesertWindEffect": {
