@@ -1,4 +1,4 @@
-export interface ClassWithType<T, > {
+export interface ClassWithType<out T, > {
 
     get type(): T
 

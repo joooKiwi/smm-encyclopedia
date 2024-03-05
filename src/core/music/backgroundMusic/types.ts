@@ -51,7 +51,10 @@ type UniqueLinkNameFor<UNIQUE_NAME extends string, > = `Otoasobi_Link_${UNIQUE_N
 type UniqueSMB2NameFor<UNIQUE_NAME extends string, > = `USA_${UNIQUE_NAME}`
 
 
-interface BackgroundMusic_SMB2AndLink<UNIQUE_NAME extends string, LINK_UNIQUE_NAME extends string, FAST_LINK_UNIQUE_NAME extends string, SMB2_UNIQUE_NAME extends string = UniqueSMB2NameFor<UNIQUE_NAME>, > {
+interface BackgroundMusic_SMB2AndLink<out UNIQUE_NAME extends string,
+    out LINK_UNIQUE_NAME extends string,
+    out FAST_LINK_UNIQUE_NAME extends string,
+    out SMB2_UNIQUE_NAME extends string = UniqueSMB2NameFor<UNIQUE_NAME>, > {
     editor: never
     regular: never
     fast: never
@@ -68,7 +71,10 @@ interface BackgroundMusic_SMB2AndLink<UNIQUE_NAME extends string, LINK_UNIQUE_NA
     'sm3dw (underwater)': never
 }
 
-interface BackgroundMusic_NSMBUYoshi_SMB2AndLink<UNIQUE_NAME extends string, LINK_UNIQUE_NAME extends string, FAST_LINK_UNIQUE_NAME extends string, SMB2_UNIQUE_NAME extends string, > {
+interface BackgroundMusic_NSMBUYoshi_SMB2AndLink<out UNIQUE_NAME extends string,
+    out LINK_UNIQUE_NAME extends string,
+    out FAST_LINK_UNIQUE_NAME extends string,
+    out SMB2_UNIQUE_NAME extends string, > {
     editor: never
     regular: never
     fast: never
@@ -85,7 +91,10 @@ interface BackgroundMusic_NSMBUYoshi_SMB2AndLink<UNIQUE_NAME extends string, LIN
     'sm3dw (underwater)': never
 }
 
-interface BackgroundMusic_SMBAsSMB3_SMWIcon_SMB2AndLink<UNIQUE_NAME extends string, LINK_UNIQUE_NAME extends string, FAST_LINK_UNIQUE_NAME extends string, SMB2_UNIQUE_NAME extends string, > {
+interface BackgroundMusic_SMBAsSMB3_SMWIcon_SMB2AndLink<out UNIQUE_NAME extends string,
+    out LINK_UNIQUE_NAME extends string,
+    out FAST_LINK_UNIQUE_NAME extends string,
+    out SMB2_UNIQUE_NAME extends string, > {
     editor: never
     regular: never
     fast: never
@@ -102,7 +111,8 @@ interface BackgroundMusic_SMBAsSMB3_SMWIcon_SMB2AndLink<UNIQUE_NAME extends stri
     'sm3dw (underwater)': never
 }
 
-interface SingleSoundEffectBackgroundMusic<LINK_UNIQUE_NAME extends string, SMB2_UNIQUE_NAME extends string, > {
+interface SingleSoundEffectBackgroundMusic<out LINK_UNIQUE_NAME extends string,
+    out SMB2_UNIQUE_NAME extends string, > {
     editor: never
     regular: never
     fast: never
@@ -119,7 +129,8 @@ interface SingleSoundEffectBackgroundMusic<LINK_UNIQUE_NAME extends string, SMB2
     'sm3dw (underwater)': never
 }
 
-interface SimpleBackgroundMusic<UNIQUE_NAME_PART_1 extends string, UNIQUE_NAME_PART_2 extends string, > {
+interface SimpleBackgroundMusic<out UNIQUE_NAME_PART_1 extends string,
+    out UNIQUE_NAME_PART_2 extends string, > {
     editor: this['regular']
     regular: `BGM_Otoasobi_${UNIQUE_NAME_PART_1}_${UNIQUE_NAME_PART_2}`
     fast: `BGM_Otoasobi_${UNIQUE_NAME_PART_1}Hurry_${UNIQUE_NAME_PART_2}`

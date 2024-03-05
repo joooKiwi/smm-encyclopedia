@@ -3,7 +3,8 @@ import type {SingleFileName}   from 'core/mysteryMushroom/file/name/SingleFileNa
 
 import {AbstractFileName} from 'core/mysteryMushroom/file/name/AbstractFileName'
 
-export class SingleFileNameContainer<IMAGE_FILE_NAME extends PossibleFileName, SOUND_FILE_NAME extends PossibleFileName = IMAGE_FILE_NAME, >
+export class SingleFileNameContainer<const out IMAGE_FILE_NAME extends PossibleFileName,
+    const out SOUND_FILE_NAME extends PossibleFileName = IMAGE_FILE_NAME, >
     extends AbstractFileName<readonly [IMAGE_FILE_NAME,], readonly [SOUND_FILE_NAME,]>
     implements SingleFileName<IMAGE_FILE_NAME, SOUND_FILE_NAME> {
 

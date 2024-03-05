@@ -1,7 +1,8 @@
 import type {MusicSoundFile}                                                                                                                        from 'core/music/file/MusicSoundFile'
 import type {PossibleMusicArray, PossibleSoundEffectEditorOnly_EditorName, PossibleSoundEffectEditorOnly_Name, SoundEffectMusicWithDifferentEditor} from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor'
 
-export class SoundEffectMusicWithDifferentEditorContainer<NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_Name>, EDITOR_NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_EditorName>, >
+export class SoundEffectMusicWithDifferentEditorContainer<const out NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_Name>,
+    const out EDITOR_NAME extends MusicSoundFile<PossibleSoundEffectEditorOnly_EditorName>, >
     implements SoundEffectMusicWithDifferentEditor<NAME, EDITOR_NAME> {
 
     readonly #everyMusic

@@ -6,11 +6,11 @@ import type {MusicSoundFile}                                                    
  *
  * The return value used in {@link SingleBackgroundMusic.all all()} returns the values with the null excluded.
  */
-export interface SingleBackgroundMusic<SMB_MUSIC extends PossibleSMB_Music_SingleContainer = PossibleSMB_Music_SingleContainer,
-    SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer = PossibleSMB3_Music_SingleContainer,
-    SMW_MUSIC extends PossibleSMW_Music_SingleContainer = PossibleSMW_Music_SingleContainer,
-    NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer = PossibleNSMBU_Music_SingleContainer,
-    SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer = PossibleSM3DW_Music_SingleContainer, > {
+export interface SingleBackgroundMusic<out SMB_MUSIC extends PossibleSMB_Music_SingleContainer = PossibleSMB_Music_SingleContainer,
+    out SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer = PossibleSMB3_Music_SingleContainer,
+    out SMW_MUSIC extends PossibleSMW_Music_SingleContainer = PossibleSMW_Music_SingleContainer,
+    out NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer = PossibleNSMBU_Music_SingleContainer,
+    out SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer = PossibleSM3DW_Music_SingleContainer, > {
 
     get all(): PossibleMusicArray<readonly [SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC,]>
 

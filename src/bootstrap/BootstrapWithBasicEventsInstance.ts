@@ -10,10 +10,10 @@ export abstract class BootstrapWithBasicEventsInstance<const out INSTANCE extend
     const out OPTION extends ComponentOptions,
     const ELEMENT extends HTMLElement = HTMLElement,
     const out ID extends string = string,
-    SHOW_EVENT_TYPE extends string = string,
-    SHOWN_EVENT_TYPE extends string = string,
-    HIDE_EVENT_TYPE extends string = string,
-    HIDDEN_EVENT_TYPE extends string = string, >
+    const SHOW_EVENT_TYPE extends string = string,
+    const SHOWN_EVENT_TYPE extends string = string,
+    const HIDE_EVENT_TYPE extends string = string,
+    const HIDDEN_EVENT_TYPE extends string = string, >
     extends BootstrapInstance<INSTANCE, OPTION, ELEMENT, ID>
     implements BootstrapWithBasicEventInstanceDeclaration<INSTANCE, ELEMENT, ID, SHOW_EVENT_TYPE, SHOWN_EVENT_TYPE, HIDE_EVENT_TYPE, HIDDEN_EVENT_TYPE> {
 
