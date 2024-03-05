@@ -91,8 +91,8 @@ export default function DisplayViewBody() {
                                         elementId="displayView-gameStyle-button"/>
             </div>
         </div>
-        <div id="display-level-container" className="container">
-            <h3 className="text-center text-decoration-underline pb-2">{unfinishedText('Level')}</h3>
+        <div id="display-course-container" className="container">
+            <h3 className="text-center text-decoration-underline pb-2">{course}</h3>
             <div key="button group (official course)" id="officialCourse-buttonGroup" className="btn-group col-12" role="group">
                 <DisplayViewRouteButton routeName="everyOfficialCourse" value={gameContentTranslation('official course.singular', {SingularName: course, singularName: courseAsLowerCase,},)}
                                         tooltipValue={gameContentTranslation('official course.display all', {SingularName: course, singularName: courseAsLowerCase, PluralName: courses, pluralName: coursesAsLowerCase,},)}
