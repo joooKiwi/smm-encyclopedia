@@ -1,12 +1,4 @@
 {
-  "entity": {
-
-
-
-
-
-
-  },
   "character name": {
 
 
@@ -21,7 +13,32 @@
 
 
   },
-  "entity group": {
+  "course tag": {
+
+
+
+    "all":         "Tous les {{tags}} de {{course}}",
+    "display all": "Afficher tous les {{tags}} de {{course}}",
+
+    "description": {
+      "intro page (all)":          "Sur cette page, tous les {{tags}} de {{course}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro page (official)":     "Sur cette page, tous les {{tags}} de {{course}} {{officials}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro page (unofficial)":   "Sur cette page, tous les {{tags}} de {{course}} {{unofficials}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro page (makerCentral)": "Sur cette page, tous les {{tags}} de {{course}} sur {{MakerCentralLink}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro references":          "Ces derniers sont utilisé pour représenter des {{courses}} qui sont {{officialsLink}}, {{unofficialsLink}} ou sur {{MakerCentralLink}}."
+
+
+    }
+  },
+  "editor voice": {
+
+
+
+
+
+  },
+  "entity": {
+
 
 
 
@@ -35,7 +52,45 @@
 
 
   },
+  "entity group": {
+
+
+
+
+
+  },
   "entity reference": {
+
+
+  },
+  "game": {
+
+
+
+
+
+  },
+  "game reference": {
+
+
+
+
+
+
+  },
+  "game style": {
+
+
+
+
+
+  },
+  "instrument": {
+
+
+
+
+
 
 
   },
@@ -64,66 +119,7 @@
 
 
   },
-  "theme": {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  },
-  "time": {
-
-
-
-
-
-
-
-
-  },
-  "sound effect": {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  },
-  "sound effect category": {
+  "medal": {
 
 
 
@@ -135,6 +131,17 @@
 
   },
   "mii costume category": {
+
+
+
+
+
+  },
+  "mystery mushroom": {
+
+
+  },
+  "official course": {
 
 
 
@@ -183,56 +190,6 @@
 
 
   },
-  "mystery mushroom": {
-
-
-  },
-  "official course": {
-
-
-
-
-
-  },
-  "game reference": {
-
-
-
-
-
-
-  },
-  "game": {
-
-
-
-
-
-  },
-  "game style": {
-
-
-
-
-
-  },
-  "course tag": {
-
-
-
-    "all":         "Tous les {{tags}} de {{course}}",
-    "display all": "Afficher tous les {{tags}} de {{course}}",
-
-    "description": {
-      "intro page (all)":          "Sur cette page, tous les {{tags}} de {{course}} sont seulement utilisés dans {{smm2Image}}. ",
-      "intro page (official)":     "Sur cette page, tous les {{tags}} de {{course}} {{officials}} sont seulement utilisés dans {{smm2Image}}. ",
-      "intro page (unofficial)":   "Sur cette page, tous les {{tags}} de {{course}} {{unofficials}} sont seulement utilisés dans {{smm2Image}}. ",
-      "intro page (makerCentral)": "Sur cette page, tous les {{tags}} de {{course}} sur {{MakerCentralLink}} sont seulement utilisés dans {{smm2Image}}. ",
-      "intro references":          "Ces derniers sont utilisé pour représenter des {{courses}} qui sont {{officialsLink}}, {{unofficialsLink}} ou sur {{MakerCentralLink}}."
-
-
-    }
-  },
   "predefined message": {
 
 
@@ -244,21 +201,64 @@
 
 
   },
-  "medal": {
+  "sound effect": {
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
 
   },
-  "editor voice": {
+  "sound effect category": {
 
 
 
 
 
   },
-  "instrument": {
+  "theme": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "time": {
+
 
 
 
