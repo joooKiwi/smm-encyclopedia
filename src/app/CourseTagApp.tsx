@@ -77,19 +77,19 @@ class CourseTagAppInterpreter
 
 }
 
-const singularCourse = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
-const pluralCourse = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
-const singularTag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
-const pluralTag = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
-
-const titleContent = gameContentTranslation('course tag.all', {
-    course: singularCourse, courses: pluralCourse,
-    tag: singularTag, tags: pluralTag,
-},)
-
 /** @reactComponent */
 export default function CourseTagApp({viewDisplay, type,}: CourseTagAppProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The CourseTagApp only handle the "simple list" or "card list" as a possible view display.',)
+
+    const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
+    const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
+    const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
+    const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
+
+    const titleContent = gameContentTranslation('course tag.all', {
+        course: course, courses: courses,
+        tag: tag, tags: tags,
+    },)
     const appInterpreter = new CourseTagAppInterpreter(type,)
     const viewDisplayAndRouteName = [
         [ViewDisplays.SIMPLE_LIST, `${type.routeName} (list)`,],
@@ -122,6 +122,11 @@ interface CourseTagDescriptionProperties
 
 /** @reactComponent */
 function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperties,) {
+    const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
+    const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
+    const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
+    const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
+
     const officialLink = type === CourseTagTypes.OFFICIAL ? null : viewDisplay.getRoutePathAsListOnly(type.officialRouteName,)
     const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : viewDisplay.getRoutePathAsListOnly(type.unofficialRouteName,)
     const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName,)
@@ -138,12 +143,12 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
                 unofficial: <b key="unofficial (singular)">{contentTranslation('Unofficial.singular',).toLowerCase()}</b>,
                 unofficials: <b key="unofficial (plural)">{contentTranslation('Unofficial.plural',).toLowerCase()}</b>,
                 MakerCentralLink: <Link key="Maker Central link" to={MAKER_CENTRAL_LEVEL_LINK} id="makerCentralLink" className="link-primary fw-bold">Maker Central</Link>,
-                course: singularCourse, courses: pluralCourse,
-                tag: singularTag, tags: pluralTag,
+                course: course, courses: courses,
+                tag: tag, tags: tags,
                 smm2Image: Games.SUPER_MARIO_MAKER_2.renderSingleComponent,
             },)}
             {gameContentTranslation('course tag.description.intro references', {
-                course: singularCourse, courses: pluralCourse,
+                course: course, courses: courses,
                 officialLink: <LinkText key="official link (singular)" partialId="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.singular',).toLowerCase()}</LinkText>,
                 officialsLink: <LinkText key="official link (plural)" partialId="officialLink" routeName={officialLink} color="primary">{contentTranslation('Official.plural',).toLowerCase()}</LinkText>,
                 unofficialLink: <LinkText key="unofficial link (singular)" partialId="unofficialLink" routeName={unofficialLink} color="primary">{contentTranslation('Unofficial.singular',).toLowerCase()}</LinkText>,

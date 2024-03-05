@@ -96,10 +96,10 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyGameStyle (card)',],
     [ViewDisplays.TABLE, 'everyGameStyle (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('game style.all',)
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
+    const titleContent = gameContentTranslation('game style.all',)
     const appInterpreter = new GameStyleAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

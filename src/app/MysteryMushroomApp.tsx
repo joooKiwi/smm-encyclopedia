@@ -121,15 +121,16 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyMysteryMushroom (card)',],
     [ViewDisplays.TABLE, 'everyMysteryMushroom (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('mystery mushroom.all', {
-    singularName: OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName,).toLowerCase(),
-    pluralName: OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName,).toLowerCase(),
-},)
 const appInterpreter = new MysteryMushroomAppInterpreter()
 const keyRetriever: (mysteryMushroom: MysteryMushrooms,) => string = it => it.uniqueEnglishName
 
 /** @reactComponent */
 export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName.toLowerCase(),)
+    const mysteryMushrooms = OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
+
+    const titleContent = gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)
+
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
             <SimpleList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>

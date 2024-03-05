@@ -126,8 +126,6 @@ class ThemeAppInterpreter
 
 }
 
-const titleContent = gameContentTranslation('theme.all.all',)
-
 /** @reactComponent */
 export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties,) {
     const routeName = type.routeName
@@ -136,6 +134,7 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
         [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
         [ViewDisplays.TABLE, `${routeName} (table)`,],
     ] as const satisfies readonly ViewAndRouteName[]
+    const titleContent = gameContentTranslation('theme.all.all',)
     const appInterpreter = new ThemeAppInterpreter(type, games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

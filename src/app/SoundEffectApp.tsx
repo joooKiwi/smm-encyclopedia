@@ -127,10 +127,10 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everySoundEffect (card)',],
     [ViewDisplays.TABLE, 'everySoundEffect (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('sound effect.all',)
 
 /** @reactComponent */
 export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
+    const titleContent = gameContentTranslation('sound effect.all',)
     const appInterpreter = new SoundEffectAppInterpreter(games, gameStyles,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

@@ -80,15 +80,15 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everySampleCourse (card)',],
     [ViewDisplays.TABLE, 'everySampleCourse (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = (() => {
-    const singularCourseName = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
-    const singularCourseLowerCaseName = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? singularCourseName.toLowerCase()
-    return gameContentTranslation('sample course.all', {SingularName: singularCourseName, singularName: singularCourseLowerCaseName,},)
-})()
 const appInterpreter = new SampleCourseInterpreter()
 
 /** @reactComponent */
 export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
+    const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
+
+    const titleContent = gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)
+
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="sampleCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
             <SimpleList reactKey="sampleCourse" interpreter={appInterpreter}/>

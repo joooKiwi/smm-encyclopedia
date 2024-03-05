@@ -72,11 +72,11 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEditorVoice (list)',],
     [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('editor voice.all',)
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games,}: EditorVoiceProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The EditorVoiceApp only handle the "simple list" or "card list" as a possible view display.',)
+    const titleContent = gameContentTranslation('editor voice.all',)
     const appInterpreter = new EditorVoiceAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

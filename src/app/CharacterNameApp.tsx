@@ -77,7 +77,6 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyCharacterName (list)',],
     [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('character name.all',)
 const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
 const GamePossibilities = Games.Possibilities.get
@@ -89,6 +88,7 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The CharacterNameApp only handle the "simple list" or "card list" as a possible view display.',)
+    const titleContent = gameContentTranslation('character name.all',)
     const appInterpreter = new CharacterNameAppInterpreter(games,)
     // const characterNameGame = intersect(allGames, games,).length === 3
     const characterNameGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)

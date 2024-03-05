@@ -153,22 +153,15 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyEntity (card)',],
     [ViewDisplays.TABLE, 'everyEntity (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = (() => {
-    const singularEntityName = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const singularEntityLowerCaseName = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-    const pluralEntityName = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
-    const pluralEntityLowerCaseName = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? pluralEntityName.toLowerCase()
-
-    return gameContentTranslation('entity.all', {
-        Entity: singularEntityName,
-        Entities: pluralEntityName,
-        entity: singularEntityLowerCaseName,
-        entities: pluralEntityLowerCaseName,
-    },)
-})()
 
 /** @reactComponent */
 export default function EntityApp({viewDisplay, games, gameStyles,}: EntityProperties,) {
+    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
+    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+    const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
+    const entitiesAsLowerCase = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
+
+    const titleContent = gameContentTranslation('entity.all', {Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,},)
     const appInterpreter = new EntityAppInterpreter(games, gameStyles,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)

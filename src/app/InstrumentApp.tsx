@@ -76,12 +76,13 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyInstrument (list)',],
     [ViewDisplays.CARD_LIST, 'everyInstrument (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('instrument.all',)
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProperties,) {
-    const appInterpreter = new InstrumentAppInterpreter(games,)
     assert(viewDisplay !== ViewDisplays.TABLE, 'The InstrumentApp only handle the "simple list" or "card list" as a possible view display.',)
+
+    const titleContent = gameContentTranslation('instrument.all',)
+    const appInterpreter = new InstrumentAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}

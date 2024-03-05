@@ -98,14 +98,15 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyOfficialCourse (card)',],
     [ViewDisplays.TABLE, 'everyOfficialCourse (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('official course.all', {
-    singularName: OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase(),
-    pluralName: OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase(),
-},)
 const appInterpreter = new EventCourseAppInterpreter()
 
 /** @reactComponent */
 export default function OfficialCourseApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
+    const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
+
+    const titleContent = gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)
+
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
                                  alert={<OfficialCourseAlertContent/>}>

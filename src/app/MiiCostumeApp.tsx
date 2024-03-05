@@ -89,14 +89,15 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyMiiCostume (card)',],
     [ViewDisplays.TABLE, 'everyMiiCostume (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('mii costume.all', {
-    singularName: OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,),
-    pluralName: OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,),
-},)
 const appInterpreter = new MiiCostumeAppInterpreter()
 
 /** @reactComponent */
 export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
+    const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+
+    const titleContent = gameContentTranslation('mii costume.all', {singularName: miiCostume, pluralName: miiCostumes,},)
+
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
             <SimpleList reactKey="miiCostume" interpreter={appInterpreter}/>
