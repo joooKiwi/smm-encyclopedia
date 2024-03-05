@@ -1,5 +1,3 @@
-import type {ClassThatIsAvailableFromTheStartContainer} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container'
-import type {ClassThatIsAvailableFromTheStartProvider}  from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider'
 import type {EntityBehaviours}                          from 'core/behaviour/EntityBehaviours'
 import type {CharacterNames}                            from 'core/characterName/CharacterNames'
 import type {CourseTags}                                from 'core/courseTag/CourseTags'
@@ -151,12 +149,6 @@ export class DynamicImporter {
     #Versions?: typeof Versions
 
     //endregion -------------------- Version fields --------------------
-    //region -------------------- Other fields --------------------
-
-    #ClassThatIsAvailableFromTheStartContainer?: typeof ClassThatIsAvailableFromTheStartContainer
-    #ClassThatIsAvailableFromTheStartProvider?: typeof ClassThatIsAvailableFromTheStartProvider
-
-    //endregion -------------------- Other fields --------------------
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Getter methods --------------------
@@ -311,17 +303,6 @@ export class DynamicImporter {
     }
 
     //endregion -------------------- "Version" getter methods --------------------
-    //region -------------------- Other getter methods --------------------
-
-    public get ClassThatIsAvailableFromTheStartContainer(): typeof ClassThatIsAvailableFromTheStartContainer {
-        return this.#ClassThatIsAvailableFromTheStartContainer ??= require('../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.container').ClassThatIsAvailableFromTheStartContainer
-    }
-
-    public get ClassThatIsAvailableFromTheStartProvider(): typeof ClassThatIsAvailableFromTheStartProvider {
-        return this.#ClassThatIsAvailableFromTheStartProvider ??= require('../core/availableFromTheStart/ClassThatIsAvailableFromTheStart.provider').ClassThatIsAvailableFromTheStartProvider
-    }
-
-    //endregion -------------------- Other getter methods --------------------
 
     //endregion -------------------- Getter methods --------------------
 
