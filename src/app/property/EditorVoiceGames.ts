@@ -1,11 +1,13 @@
-import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
-import {ViewDisplays}                            from 'app/withInterpreter/ViewDisplays'
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EditorVoiceGames.types'
 
+import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import {Games}        from 'core/game/Games'
+
 export class EditorVoiceGames
-    extends Enum<Ordinals, Names> {
+    extends EnumWithParent<Games, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
@@ -73,15 +75,15 @@ export class EditorVoiceGames
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EditorVoiceGames, typeof EditorVoiceGames> = class CompanionEnum_EditorVoiceGames
-        extends CompanionEnum<EditorVoiceGames, typeof EditorVoiceGames> {
+    public static readonly CompanionEnum: CompanionEnumWithParentSingleton<EditorVoiceGames, typeof EditorVoiceGames, Games, typeof Games> = class CompanionEnum_EditorVoiceGames
+        extends CompanionEnumWithParent<EditorVoiceGames, typeof EditorVoiceGames, Games, typeof Games> {
 
         //region -------------------- Singleton usage --------------------
 
         static #instance?: CompanionEnum_EditorVoiceGames
 
         private constructor() {
-            super(EditorVoiceGames,)
+            super(EditorVoiceGames, Games,)
         }
 
         public static get get() {

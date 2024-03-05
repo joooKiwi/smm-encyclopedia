@@ -1,12 +1,14 @@
-import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
-import {ViewDisplays}                            from 'app/withInterpreter/ViewDisplays'
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EntityGameStyles.types'
 import type {FullGroupUrlName}                   from 'core/game/Games.types'
 
+import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
+import {GameStyles}   from 'core/gameStyle/GameStyles'
+
 export class EntityGameStyles
-    extends Enum<Ordinals, Names> {
+    extends EnumWithParent<GameStyles, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
@@ -185,15 +187,15 @@ export class EntityGameStyles
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumSingleton<EntityGameStyles, typeof EntityGameStyles> = class CompanionEnum_EntityGameStyles
-        extends CompanionEnum<EntityGameStyles, typeof EntityGameStyles> {
+    public static readonly CompanionEnum: CompanionEnumWithParentSingleton<EntityGameStyles, typeof EntityGameStyles, GameStyles, typeof GameStyles> = class CompanionEnum_EntityGameStyles
+        extends CompanionEnumWithParent<EntityGameStyles, typeof EntityGameStyles, GameStyles, typeof GameStyles> {
 
         //region -------------------- Singleton usage --------------------
 
         static #instance?: CompanionEnum_EntityGameStyles
 
         private constructor() {
-            super(EntityGameStyles,)
+            super(EntityGameStyles, GameStyles,)
         }
 
         public static get get() {
