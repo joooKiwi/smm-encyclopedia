@@ -11,7 +11,6 @@ import type {GroupUrlName, GroupUrlValue, Names, Ordinals, PossibleAcronym, Poss
 import type {GameImageFile}                                                                                                             from 'core/game/file/GameImageFile'
 import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
-import type {Selectable}                                                                                                                from 'util/types/Selectable'
 
 import GameComponent                                                                            from 'core/game/Game.component'
 import {gameImage}                                                                              from 'core/game/file/fileCreator'
@@ -27,7 +26,6 @@ export abstract class Games
         ClassWithAcronym<PossibleAcronym>,
         ClassWithImageFile<GameImageFile>,
         ClassUsedInRoute<PossibleUrlValue>,
-        Selectable,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -38,21 +36,21 @@ export abstract class Games
             return property.isInSuperMarioMaker1
         }
 
-    }('SMM', '1', '1', 'Super Mario Maker', false,)
+    }('SMM', '1', '1', 'Super Mario Maker',)
     public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMakerFor3DS
         }
 
-    }('SMM3DS', '3DS', '3ds', 'Super Mario Maker for Nintendo 3DS', false,)
+    }('SMM3DS', '3DS', '3ds', 'Super Mario Maker for Nintendo 3DS',)
     public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMaker2
         }
 
-    }('SMM2', '2', '2', 'Super Mario Maker 2', true,)
+    }('SMM2', '2', '2', 'Super Mario Maker 2',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
@@ -308,12 +306,6 @@ export abstract class Games
             throw new ReferenceError('No game group url name is findable from empty array or collection.',)
         }
 
-
-        protected override _onSetCurrent(value: CollectionHolder<Games>,) {
-            super._onSetCurrent(value,)
-            this.values.forEach(it => it.isSelected = value.hasOne(it,),)
-        }
-
     }
 
     //endregion -------------------- Companion enum --------------------
@@ -397,18 +389,15 @@ export abstract class Games
     #imageFile?: GameImageFile
     readonly #urlValue
 
-    #isSelected
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleUrlValue, englishName: PossibleEnglishName, isSelected: boolean,) {
+    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleUrlValue, englishName: PossibleEnglishName,) {
         super()
         this.#acronym = acronym
         this.#englishName = new StringContainer(englishName,)
         this.#simpleValue = simpleValue
         this.#urlValue = urlValue
-        this.#isSelected = isSelected
     }
 
     //endregion -------------------- Constructor --------------------
@@ -436,15 +425,6 @@ export abstract class Games
 
     public get urlValue(): PossibleUrlValue {
         return this.#urlValue
-    }
-
-
-    public get isSelected(): boolean {
-        return this.#isSelected
-    }
-
-    public set isSelected(value: boolean,) {
-        this.#isSelected = value
     }
 
     //endregion -------------------- Getter & setter methods --------------------

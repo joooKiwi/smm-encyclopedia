@@ -18,7 +18,7 @@ import {EditorVoices}                               from 'core/editorVoice/Edito
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {assert, filterGame}                         from 'util/utilitiesMethods'
+import {assert, filterGame, intersect}              from 'util/utilitiesMethods'
 
 class EditorVoiceAppInterpreter
     implements AppInterpreterWithCardList<EditorVoices> {
@@ -81,11 +81,11 @@ export default function EditorVoiceApp({viewDisplay, games,}: EditorVoicePropert
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay}/>}>
+                                 asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay} games={games}/>}>
             <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay}/>}>
+                             asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay} games={games}/>}>
         <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
@@ -97,6 +97,8 @@ interface EditorVoiceAsideContentProperties
 
     readonly viewDisplay: ViewDisplays
 
+    readonly games: GameCollection
+
 }
 
 const GamePossibilities = Games.Possibilities.get
@@ -105,12 +107,12 @@ const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
-function EditorVoiceAsideContent({viewDisplay,}: EditorVoiceAsideContentProperties,) {
-    const editorVoiceGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)
+function EditorVoiceAsideContent({viewDisplay, games,}: EditorVoiceAsideContentProperties,) {
+    const editorVoiceGame = intersect(allGames, games,).length === 3
         ? EditorVoiceGames.ALL_GAMES
-        : smm2.isSelected
+        : games.hasSMM2
             ? EditorVoiceGames.SUPER_MARIO_MAKER_2
-            : smm1.isSelected
+            : games.hasSMM1
                 ? EditorVoiceGames.SUPER_MARIO_MAKER
                 : EditorVoiceGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

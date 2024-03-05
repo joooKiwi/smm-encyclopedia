@@ -139,16 +139,16 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type}/>}>
+                                 asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
             <SimpleList reactKey="theme" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type}/>}>
+                                 asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
             <CardList reactKey="theme" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type}/>}>
+                             asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
         <Table id="theme-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
@@ -162,19 +162,30 @@ interface ThemeAsideContentProperties
 
     readonly type: ThemeTypes
 
+    readonly games: GameCollection
+
 }
 
 /** @reactComponent */
-function ThemeAsideContent({viewDisplay, type,}: ThemeAsideContentProperties,) {
+function ThemeAsideContent({viewDisplay, type, games,}: ThemeAsideContentProperties,) {
     return <div className="theme-asideContent-container">
         <TypeAsideContent viewDisplay={viewDisplay} type={type}/>
         <div className="d-inline mx-1"/>
-        <GameAsideContent viewDisplay={viewDisplay} type={type}/>
+        <GameAsideContent viewDisplay={viewDisplay} type={type} games={games}/>
     </div>
 }
 
+interface ThemeTypeAsideContentProperties
+    extends ReactProperties {
+
+    readonly viewDisplay: ViewDisplays
+
+    readonly type: ThemeTypes
+
+}
+
 /** @reactComponent */
-function TypeAsideContent({viewDisplay, type,}: ThemeAsideContentProperties,) {
+function TypeAsideContent({viewDisplay, type,}: ThemeTypeAsideContentProperties,) {
     return <div id="theme-linkButton-container" className="btn-group btn-group-vertical btn-group-sm">
         <LinkButton partialId="allTheme" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="theme-linkButton-courseAndWorld-container" className="btn-group btn-group-sm">
@@ -193,8 +204,8 @@ const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
-function GameAsideContent({viewDisplay, type,}: ThemeAsideContentProperties,) {
-    const themeGame = smm2.isSelected
+function GameAsideContent({viewDisplay, type, games,}: ThemeAsideContentProperties,) {
+    const themeGame = games.hasSMM2
         ? ThemeGames.SUPER_MARIO_MAKER_2
         : ThemeGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

@@ -20,7 +20,7 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import {Games}                                      from 'core/game/Games'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame}                                 from 'util/utilitiesMethods'
+import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
 class SoundEffectAppInterpreter
     implements AppInterpreterWithTable<SoundEffects, SoundEffectAppOption> {
@@ -135,16 +135,16 @@ export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundE
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay}/>}>
+                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
             <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay}/>}>
+                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
             <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay}/>}>
+                             asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
         <Table id="soundEffect-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
@@ -156,6 +156,8 @@ interface SoundEffectAsideContentProperties
 
     readonly viewDisplay: ViewDisplays
 
+    readonly games: GameCollection
+
 }
 
 const GamePossibilities = Games.Possibilities.get
@@ -164,10 +166,10 @@ const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
-function SoundEffectAsideContent({viewDisplay,}: SoundEffectAsideContentProperties,) {
-    const soundEffectGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)
+function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentProperties,) {
+    const soundEffectGame = intersect(allGames, games,).length === 3
         ? SoundEffectGames.ALL_GAMES
-        : smm2.isSelected
+        : games.hasSMM2
             ? SoundEffectGames.SUPER_MARIO_MAKER_2
             : SoundEffectGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

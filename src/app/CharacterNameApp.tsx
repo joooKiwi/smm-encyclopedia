@@ -22,7 +22,7 @@ import EditorVoiceSoundComponent                    from 'core/editorVoice/Edito
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {assert, filterGame}                         from 'util/utilitiesMethods'
+import {assert, filterGame, intersect}              from 'util/utilitiesMethods'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 
 class CharacterNameAppInterpreter
@@ -90,12 +90,11 @@ export default function CharacterNameApp({viewDisplay, games,}: CharacterNamePro
     assert(viewDisplay !== ViewDisplays.TABLE, 'The CharacterNameApp only handle the "simple list" or "card list" as a possible view display.',)
     const titleContent = gameContentTranslation('character name.all',)
     const appInterpreter = new CharacterNameAppInterpreter(games,)
-    // const characterNameGame = intersect(allGames, games,).length === 3
-    const characterNameGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)
+    const characterNameGame = intersect(allGames, games,).length === 3
         ? CharacterNameGames.ALL_GAMES
-        : smm2.isSelected
+        : games.hasSMM2
             ? CharacterNameGames.SUPER_MARIO_MAKER_2
-            : smm1.isSelected
+            : games.hasSMM1
                 ? CharacterNameGames.SUPER_MARIO_MAKER
                 : CharacterNameGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

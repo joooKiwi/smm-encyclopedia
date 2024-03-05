@@ -104,16 +104,16 @@ export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay}/>}>
+                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} games={games}/>}>
             <SimpleList reactKey="gameStyle" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay}/>}>
+                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} games={games}/>}>
             <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<GameStyleAsideContent viewDisplay={viewDisplay}/>}>
+                             asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} games={games}/>}>
         <Table id="gameStyle-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
@@ -125,14 +125,16 @@ interface GameStyleAsideContentProperties
 
     readonly viewDisplay: ViewDisplays
 
+    readonly games: GameCollection
+
 }
 
 const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
-function GameStyleAsideContent({viewDisplay,}: GameStyleAsideContentProperties,) {
-    const gameStyleGame = smm2.isSelected
+function GameStyleAsideContent({viewDisplay, games,}: GameStyleAsideContentProperties,) {
+    const gameStyleGame = games.hasSMM2
         ? GameStyleGames.SUPER_MARIO_MAKER_2
         : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

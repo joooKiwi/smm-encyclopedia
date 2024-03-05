@@ -86,11 +86,11 @@ export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProper
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<InstrumentAsideContent viewDisplay={viewDisplay}/>}>
+                                 asideContent={<InstrumentAsideContent viewDisplay={viewDisplay} games={games}/>}>
             <SimpleList reactKey="instrument" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<InstrumentAsideContent viewDisplay={viewDisplay}/>}>
+                             asideContent={<InstrumentAsideContent viewDisplay={viewDisplay} games={games}/>}>
         <CardList reactKey="instrument" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
@@ -102,16 +102,18 @@ interface InstrumentAsideContentProperties
 
     readonly viewDisplay: ViewDisplays
 
+    readonly games: GameCollection
+
 }
 
 const smm1 = Games.SUPER_MARIO_MAKER_1
 const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
-function InstrumentAsideContent({viewDisplay,}: InstrumentAsideContentProperties,) {
-    const instrumentGame = smm2.isSelected
+function InstrumentAsideContent({viewDisplay, games,}: InstrumentAsideContentProperties,) {
+    const instrumentGame = games.hasSMM2
         ? InstrumentGames.SUPER_MARIO_MAKER_2
-        : smm1.isSelected
+        : games.hasSMM1
             ? InstrumentGames.SUPER_MARIO_MAKER
             : InstrumentGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 

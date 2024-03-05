@@ -15,7 +15,6 @@ import type {GameStyleProperty}                                                 
 import type {GameStyleReferences}                                                                                                                                                                                                       from 'core/entity/properties/gameStyle/GameStyleReferences'
 import type {ClassUsedInRoute}                                                                                                                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                                                                                                                        from 'util/file/image/ClassWithImageFile'
-import type {Selectable}                                                                                                                                                                                                                from 'util/types/Selectable'
 
 import GameStyleComponent                                                                       from 'core/gameStyle/GameStyle.component'
 import {GameStyleLoader}                                                                        from 'core/gameStyle/GameStyle.loader'
@@ -36,7 +35,6 @@ export abstract class GameStyles
         ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImageFile<GameStyleImageFile>,
         ClassUsedInRoute<PossibleUrlValue>,
-        Selectable,
         PropertyReferenceGetter<GameStyleReferences, PossibleOtherEntities>,
         PropertyGetter<GameStyleProperty> {
 
@@ -617,12 +615,6 @@ export abstract class GameStyles
             throw new ReferenceError('No game style group url name is findable from empty array or collection.',)
         }
 
-
-        protected override _onSetCurrent(value: CollectionHolder<GameStyles>,) {
-            super._onSetCurrent(value,)
-            this.values.forEach(it => it.isSelected = value.hasOne(it,),)
-        }
-
     }
 
     //endregion -------------------- Companion enum --------------------
@@ -803,8 +795,6 @@ export abstract class GameStyles
     #shortImagePath?: PossibleShortImagePath
     readonly #urlValue
 
-    #isSelected
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
@@ -815,7 +805,6 @@ export abstract class GameStyles
         this.#englishName = new StringContainer(englishName,)
         this.#simpleValue = simpleValue
         this.#urlValue = urlValue
-        this.#isSelected = true
     }
 
     //endregion -------------------- Constructor --------------------
@@ -865,15 +854,6 @@ export abstract class GameStyles
 
     public get urlValue(): PossibleUrlValue {
         return this.#urlValue
-    }
-
-
-    public get isSelected(): boolean {
-        return this.#isSelected
-    }
-
-    public set isSelected(value: boolean,) {
-        this.#isSelected = value
     }
 
     //endregion -------------------- Getter methods --------------------

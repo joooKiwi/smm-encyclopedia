@@ -39,14 +39,15 @@ export default function GameGroup() {
 function GameLink({game, selected,}: GameLinkProperties,) {
     const pathname = useLocation().pathname
     const id = `gameLink-${game.englishNameInHtml}-button`
+    const isSelected = selected.hasOne(game,)
 
-    if (game.isSelected && selected.size === 1)
+    if (isSelected && selected.size === 1)
         return <button type="button" id={id} className="btn btn-secondary link-button disabled">
             {game.renderSingleComponent}
         </button>
 
     const GameCompanion = Games.CompanionEnum.get
-    const pathToReplace = game.isSelected
+    const pathToReplace = isSelected
         ? `game-${GameCompanion.getGroupUrlValue(selected.filterNot(it => it === game,),)}` as const
         : `game-${GameCompanion.getGroupUrlValue([...selected, game,],)}` as const
     let newPath: string
@@ -57,7 +58,7 @@ function GameLink({game, selected,}: GameLinkProperties,) {
         newPath = pathname.replace(languagesInPath, `${languagesInPath}/${pathToReplace}`,)
     }
 
-    return <Link type="button" id={id} className={`btn btn-${game.isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
+    return <Link type="button" id={id} className={`btn btn-${isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID)?.instance.hide()}>
         {game.renderSingleComponent}
     </Link>

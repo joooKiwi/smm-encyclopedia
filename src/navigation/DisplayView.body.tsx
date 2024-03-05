@@ -1,18 +1,23 @@
 import './DisplayView.scss'
 
+import {CollectionConstants}                             from '@joookiwi/collection'
+
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
 import UnfinishedText, {unfinishedText}                  from 'app/tools/text/UnfinishedText'
 import {Games}                                           from 'core/game/Games'
+import {useCurrentGames}                                 from 'core/game/gamesHook'
 import {OtherWordInTheGames}                             from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import DisplayViewRouteButton                            from 'navigation/DisplayView.routeButton'
 
 /** @reactComponent */
 export default function DisplayViewBody() {
-    const isSMM1Selected = Games.SUPER_MARIO_MAKER_1.isSelected
-    // const isSMM3DSSelected = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.isSelected
-    const isSMM2Selected = Games.SUPER_MARIO_MAKER_2.isSelected
+    const games = useCurrentGames('display view body',) ?? CollectionConstants.EMPTY_COLLECTION_HOLDER
+
+    const isSMM1Selected = games.hasOne(Games.SUPER_MARIO_MAKER_1,)
+    // const isSMM3DSSelected = games.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+    const isSMM2Selected = games.hasOne(Games.SUPER_MARIO_MAKER_2,)
     const tag = OtherWordInTheGames.TAG.singularNameOnReference
     const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
     // const tags = OtherWordInTheGames.TAG.pluralNameOnReference

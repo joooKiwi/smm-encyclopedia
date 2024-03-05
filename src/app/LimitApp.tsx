@@ -23,7 +23,7 @@ import SimpleList                                   from 'app/withInterpreter/Si
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {filterGame}                                 from 'util/utilitiesMethods'
+import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
 class LimitAppInterpreter
     implements AppInterpreterWithTable<Limits, LimitAppOption>,
@@ -139,16 +139,16 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type}/>}>
+                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
             <SimpleList reactKey="limit" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type}/>}>
+                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
             <CardList reactKey="limit" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type}/>}>
+                             asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
         <Table id="limit-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
@@ -162,19 +162,30 @@ interface LimitAsideContentProperties
 
     readonly type: LimitTypes
 
+    readonly games: GameCollection
+
 }
 
 /** @reactComponent */
-function LimitAsideContent({viewDisplay, type,}: LimitAsideContentProperties,) {
+function LimitAsideContent({viewDisplay, type, games,}: LimitAsideContentProperties,) {
     return <div id="limit-asideContent-container">
         <TypeAsideContent viewDisplay={viewDisplay} type={type}/>
         <div className="d-inline mx-1"/>
-        <GameAsideContent viewDisplay={viewDisplay} type={type}/>
+        <GameAsideContent viewDisplay={viewDisplay} type={type} games={games}/>
     </div>
 }
 
+interface LimitTypeAsideContentProperties
+    extends ReactProperties {
+
+    readonly viewDisplay: ViewDisplays
+
+    readonly type: LimitTypes
+
+}
+
 /** @reactComponent */
-function TypeAsideContent({viewDisplay, type,}: LimitAsideContentProperties,) {
+function TypeAsideContent({viewDisplay, type,}: LimitTypeAsideContentProperties,) {
     return <div id="limit-linkButton-container" className="btn-group-vertical btn-group-sm">
         <LinkButton partialId="allLimit" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="limit-linkButton-playAndEditor-container" className="btn-group btn-group-sm">
@@ -191,10 +202,10 @@ const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
-function GameAsideContent({viewDisplay, type,}: LimitAsideContentProperties,) {
-    const limitGame = allGames.reduce((isSelected, it) => isSelected && it.isSelected, true,)
+function GameAsideContent({viewDisplay, type, games,}: LimitAsideContentProperties,) {
+    const limitGame = intersect(allGames, games,).length === 3
         ? LimitGames.ALL_GAMES
-        : smm2.isSelected
+        : games.hasSMM2
             ? LimitGames.SUPER_MARIO_MAKER_2
             : LimitGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
