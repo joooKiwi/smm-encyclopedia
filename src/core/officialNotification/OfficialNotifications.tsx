@@ -23,15 +23,6 @@ import {EMPTY_ARRAY, EMPTY_STRING}                                              
 import {StringContainer}                                                         from 'util/StringContainer'
 import {CompanionEnumByName}                                                     from 'util/enumerable/companion/CompanionEnumByName'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {
-    ENDLESS_CHALLENGE, EASY, NORMAL, EXPERT, SUPER_EXPERT,
-    STORY_MODE, MULTIPLAYER_VERSUS, MULTIPLAYER_COOP, LEADERBOARD, NINJI_SPEEDRUNS, SUPER_WORLD,
-    COURSE, WORLD_RECORD,
-} = OtherWordInTheGames
-
-//endregion -------------------- Import from deconstruction --------------------
 //region -------------------- Constructor constants --------------------
 
 const translationKey_finishAllCharacterJob: PossibleTranslationKey = 'finish all 3 job (character)'
@@ -600,44 +591,44 @@ export class OfficialNotifications
 
 
     protected _addCourse(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.course = COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.singularEnglishName).toLowerCase()
+        keyMap.course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
         return keyMap
     }
 
     protected _addCourses(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.courses = COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(COURSE.pluralEnglishName).toLowerCase()
+        keyMap.courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
         return keyMap
     }
 
 
     protected _addWorldRecord(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.worldRecord = WORLD_RECORD.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(WORLD_RECORD.singularEnglishName).toLowerCase()
+        keyMap.worldRecord = OtherWordInTheGames.WORLD_RECORD.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.WORLD_RECORD.singularEnglishName.toLowerCase(),)
         return keyMap
     }
 
     protected _addWorldRecords(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.worldRecords = WORLD_RECORD.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(WORLD_RECORD.pluralEnglishName).toLowerCase()
+        keyMap.worldRecords = OtherWordInTheGames.WORLD_RECORD.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.WORLD_RECORD.pluralEnglishName.toLowerCase(),)
         return keyMap
     }
 
     protected _addLeaderboard(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.leaderboard = <TextComponent key={`${key} - leaderboard`} content={LEADERBOARD.singularNameOnReference.toLowerCase()} className="text-decoration-underline"/>
+        keyMap.leaderboard = <TextComponent key={`${key} - leaderboard`} content={OtherWordInTheGames.LEADERBOARD.singularNameOnReference.toLowerCase()} className="text-decoration-underline"/>
         return keyMap
     }
 
 
     protected _addMultiplayerVS(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.MultiplayerVersus = <TextComponent key={`${key} - Multiplayer Versus`} content={MULTIPLAYER_VERSUS.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap.MultiplayerVersus = <TextComponent key={`${key} - Multiplayer Versus`} content={OtherWordInTheGames.MULTIPLAYER_VERSUS.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addMultiplayerCoop(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.MultiplayerCoop = <TextComponent key={`${key} - Multiplayer Co-op`} content={MULTIPLAYER_COOP.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap.MultiplayerCoop = <TextComponent key={`${key} - Multiplayer Co-op`} content={OtherWordInTheGames.MULTIPLAYER_COOP.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addStoryMode(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.StoryMode = <TextComponent key={`${key} - Story Mode`} content={STORY_MODE.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap.StoryMode = <TextComponent key={`${key} - Story Mode`} content={OtherWordInTheGames.STORY_MODE.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
@@ -647,22 +638,22 @@ export class OfficialNotifications
     }
 
     protected _addEndlessChallenge(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.EndlessChallenge = <TextComponent key={`${key} - Endless Challenge`} content={ENDLESS_CHALLENGE.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap.EndlessChallenge = <TextComponent key={`${key} - Endless Challenge`} content={OtherWordInTheGames.ENDLESS_CHALLENGE.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addNinjiSpeedruns(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.NinjiSpeedruns = <TextComponent key={`${key} - Ninji Speedruns`} content={NINJI_SPEEDRUNS.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap.NinjiSpeedruns = <TextComponent key={`${key} - Ninji Speedruns`} content={OtherWordInTheGames.NINJI_SPEEDRUNS.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addSuperWorld(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.SuperWorld = <TextComponent key={`${key} - Super World`} content={SUPER_WORLD.singularNameOnReference} className="text-decoration-underline"/>
+        keyMap.SuperWorld = <TextComponent key={`${key} - Super World`} content={OtherWordInTheGames.SUPER_WORLD.singularNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
     protected _addSuperWorlds(key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
-        keyMap.SuperWorlds = <TextComponent key={`${key} - Super World`} content={SUPER_WORLD.pluralNameOnReference} className="text-decoration-underline"/>
+        keyMap.SuperWorlds = <TextComponent key={`${key} - Super World`} content={OtherWordInTheGames.SUPER_WORLD.pluralNameOnReference} className="text-decoration-underline"/>
         return keyMap
     }
 
@@ -696,13 +687,13 @@ export class OfficialNotifications
 
     protected _addDifficulty(difficulty: | 'easy' | 'normal' | `${| '' | 'super '}expert`, key: string, keyMap: TranslationReplaceKeysMap,): TranslationReplaceKeysMap {
         if (difficulty === 'easy')
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={EASY.singularNameOnReference.toLowerCase()}/>
+            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.EASY.singularNameOnReference.toLowerCase()}/>
         else if (difficulty === 'normal')
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={NORMAL.singularNameOnReference.toLowerCase()}/>
+            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.NORMAL.singularNameOnReference.toLowerCase()}/>
         else if (difficulty === 'expert')
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={EXPERT.singularNameOnReference.toLowerCase()}/>
+            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.EXPERT.singularNameOnReference.toLowerCase()}/>
         else
-            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={SUPER_EXPERT.singularNameOnReference.toLowerCase()}/>
+            keyMap.difficulty = <TextComponent key={`${key} - difficulty`} content={OtherWordInTheGames.SUPER_EXPERT.singularNameOnReference.toLowerCase()}/>
         return keyMap
     }
 
