@@ -2,7 +2,6 @@ import file from 'resources/compiled/Game style.json'
 
 import {lazy} from '@joookiwi/lazy'
 
-import type {PossibleIsAvailableFromTheStart}                                    from 'core/availableFromTheStart/loader.types'
 import type {GameContentFrom1And2}                                               from 'core/game/Loader.types'
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                   from 'core/gameStyle/GameStyle'
 import type {PossibleAcronym, PossibleEnglishName}                               from 'core/gameStyle/GameStyles.types'
@@ -71,7 +70,7 @@ interface Content
 
     readonly isInSuperMarioMaker2: true
 
-    readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+    readonly isAvailableFromTheStart_SMM1: NullOrBoolean
     readonly reference: PossibleAcronym
     readonly nightDesertWindDirection: PossibleNightDesertWindDirection
     readonly nightDesertWindFrequency: PossibleNightDesertWindFrequency

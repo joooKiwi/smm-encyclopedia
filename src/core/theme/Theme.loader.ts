@@ -3,7 +3,6 @@ import file from 'resources/compiled/Theme.json'
 import {lazy} from '@joookiwi/lazy'
 
 import type {LanguageContent}                 from 'core/_template/LanguageContent'
-import type {PossibleIsAvailableFromTheStart} from 'core/availableFromTheStart/loader.types'
 import type {GameContentFrom1And2}            from 'core/game/Loader.types'
 import type {CourseAndWorldTheme}             from 'core/theme/CourseAndWorldTheme'
 import type {CourseTheme}                     from 'core/theme/CourseTheme'
@@ -78,7 +77,7 @@ interface Content
     readonly isInCourseTheme: boolean
     readonly isInWorldTheme: boolean
 
-    readonly isAvailableFromTheStart_SMM1: PossibleIsAvailableFromTheStart
+    readonly isAvailableFromTheStart_SMM1: NullOrBoolean
     readonly effectInNightTheme: PossibleEffectInNightTheme
 
 }
