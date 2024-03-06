@@ -2,7 +2,8 @@ import type {ErrorInfo}       from 'react'
 import React, {PureComponent} from 'react'
 import {IntlProvider}         from 'react-intl'
 
-import type {ReactState} from 'util/react/ReactState'
+import type {ReactComponent} from 'util/react/ReactComponent'
+import type {ReactState}     from 'util/react/ReactState'
 
 import {useCurrentViewDisplay} from 'app/withInterpreter/viewDisplayHook'
 import {useCurrentLanguage}    from 'lang/languageHook'
@@ -30,7 +31,8 @@ interface IndexState
 }
 
 export default class IndexComponent
-    extends PureComponent<{}, IndexState> {
+    extends PureComponent<{}, IndexState>
+    implements ReactComponent {
 
     public constructor(props: {},) {
         super(props)
