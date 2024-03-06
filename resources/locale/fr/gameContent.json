@@ -92,7 +92,15 @@
     "plural":   "Styles de jeu",
 
     "all":         "Tous les styles de jeu",
-    "display all": "Afficher tous les styles de jeu"
+    "display all": "Afficher tous les styles de jeu",
+
+    "description": {
+      "intro page":   "Sur cette page, tous les {{gameStyles}} sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro sm3dw":  "Mais, il y a seulement {{smm3dwLink}} qui est spécifique à {{smm2Link}}. ",
+      "intro entity": "Aussi, il a des {{entitiesLink}} spécifiques à des styles de jeux ({{smbLink}}, {{smb3Link}}, {{smwLink}}, {{nsmbuLink}}, {{sm3dwLink}}).",
+
+      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+    }
   },
   "instrument": {
     "singular": "Instrument",
