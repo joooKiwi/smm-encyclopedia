@@ -35,7 +35,16 @@
     "plural":   "Voix de l'éditeur",
 
     "all":         "Toutes les voix de l'éditeur",
-    "display all": "Afficher toutes les voix de l'éditeur"
+    "display all": "Afficher toutes les voix de l'éditeur",
+    "description": {
+      "intro page":        "Sur cette page, toutes les voix sont seulement utilisées dans l'éditeur. ",
+      "intro games":       "Elles sont aussi sur tous les jeux ({{smm1Link}} {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro smm1" :       "Il y en a certaines qui sont dans {{smm1Link}}, mais qui ne sont plus utilisé dans {{smm2Link}}. ",
+      "intro characters" : "Il y en a d'autres qui ne sont qu'applicable au personnages. ",
+      "intro variants":    "Il y a au travers de ces derniers des variant d'une même {{entityLink}} dans l'{{underwaterLink}} ou en tant qu'un {{europeanVariantLink}}.",
+
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+    }
   },
   "entity": {
     "all":         "Toutes les {{entities}}",

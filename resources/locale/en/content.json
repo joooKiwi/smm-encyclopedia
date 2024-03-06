@@ -85,6 +85,11 @@
     "card":  {"singular": "Card",  "plural": "Cards"},
     "table": {"singular": "Table", "plural": "Tables"}
   },
+  "variant": {
+    "European": "European variant",
+    "American": "American variant",
+    "Japanese": "Japanese variant"
+  },
 
   "In other languages":          "In other languages",
   "Change the language":         "Change the language",

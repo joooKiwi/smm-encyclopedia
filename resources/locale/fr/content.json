@@ -85,6 +85,11 @@
     "card":  {"singular": "Carte",   "plural": "Cartes"},
     "table": {"singular": "Tableau", "plural": "Tableaux"}
   },
+  "variant": {
+    "European": "variant d'Europe",
+    "American": "variant d'Amérique",
+    "Japanese": "variant du Japon"
+  },
 
   "In other languages":          "Dans d'autres langues",
   "Change the language":         "Changer la langue",

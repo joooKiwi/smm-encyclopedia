@@ -35,7 +35,16 @@
     "plural":   "Editor voices",
 
     "all":         "Every editor voice",
-    "display all": "Display every editor voice"
+    "display all": "Display every editor voice",
+    "description": {
+      "intro page":        "On this page, all of the voices are used only in the editor. ",
+      "intro games":       "They are also on every games ({{smm1Link}} {{smm3dsLink}} or {{smm2Link}}). ",
+      "intro smm1" :       "There are some voices in {{smm1Link}} that are no longer used in {{smm2Link}}. ",
+      "intro characters" : "Some that are only applicable to the characters. ",
+      "intro variants":    "There might be variant of a same {{entityLink}} in the {{underwaterLink}} or as an {{europeanVariantLink}}.",
+
+      "viewable": "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
+    }
   },
   "entity": {
     "all":         "Every {{entity}}",
