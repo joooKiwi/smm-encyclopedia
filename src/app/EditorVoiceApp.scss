@@ -4,8 +4,7 @@
     position: initial;
   }
 
-  .description-container .game-image { height: var(--bs-font-size-base) }
-
-  .description-container .theme-image { height: var(--bs-font-size-lg) }
+  .description-container .game-image,
+  .description-container .theme-image, { height: var(--bs-font-size-lg) }
 
 }
