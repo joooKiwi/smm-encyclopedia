@@ -21,7 +21,8 @@ export interface ReactComponentWithState<S extends ReactState, > {
      * @param state_or_stateCallback
      * @param callback The callback to call after the current
      * @see Component.setState
-     * @see https://reactjs.org/docs/react-component.html#setstate
+     * @see https://reactjs.org/docs/react-component.html#setstate Old Component.setState
+     * @see https://react.dev/reference/react/Component#setstate New Component.setState
      */
     setState<K extends keyof S, >(
         state_or_stateCallback: ((previousState: Readonly<S>, properties: Readonly<{}>,) => PossibleState<K, S>) | PossibleState<K, S>,
