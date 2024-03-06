@@ -54,7 +54,7 @@ export default function GameReferenceApp() {
                     <div id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameImage reference={it}/>
-                            <NameComponent id="game-name" name={GameReferences.CompanionEnum.get.getValueByName(it.name,).reference}/>
+                            <NameComponent id="game-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
                         </div>
                     </div>,)}
             </div>
@@ -66,7 +66,7 @@ export default function GameReferenceApp() {
                     <div id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameStyleImage reference={it}/>
-                            <NameComponent id="gameStyle-name" name={GameReferences.CompanionEnum.get.getValueByName(it.name,).reference}/>
+                            <NameComponent id="gameStyle-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
                         </div>
                     </div>,)}
             </div>
