@@ -1,44 +1,29 @@
-import type {GameProperty} from 'core/entity/properties/game/GameProperty'
+import type {GameProperty}             from 'core/entity/properties/game/GameProperty'
+import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 
-import Image                             from 'app/tools/images/Image'
-import TextComponent                     from 'app/tools/text/TextComponent'
-import {AbstractEntityPropertyComponent} from 'core/_component/AbstractEntityPropertyComponent'
-import {Games}                           from 'core/game/Games'
-import {gameContentTranslation}          from 'lang/components/translationMethods'
-import {StringContainer}                 from 'util/StringContainer'
+import TextComponent            from 'app/tools/text/TextComponent'
+import GameImage                from 'core/game/GameImage'
+import {Games}                  from 'core/game/Games'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/** @reactComponent */
-export default class GameComponent
-    extends AbstractEntityPropertyComponent<GameProperty, Games> {
-
-    protected override get _map() {
-        return this.reference.toGameMap()
+/**
+ * @deprecated This component should be replaced to something else
+ * @reactComponent
+ */
+export default function GameComponent({reference, name, displayAllAsText,}: EntityPropertyProperties<GameProperty>,) {
+    if (reference.isInSuperMarioMaker1 && reference.isInSuperMarioMakerFor3DS && reference.isInSuperMarioMaker2) {
+        if (displayAllAsText)
+            return <TextComponent content={gameContentTranslation('game.all',)}/>
+        return <div key={`${name.english} (every games)`}>{Games.CompanionEnum.get.values.map(it =>
+            <GameImage reference={it}/>,)}</div>
     }
 
-    protected override get _isInAll() {
-        return this.reference.isInSuperMarioMaker1
-            && this.reference.isInSuperMarioMakerFor3DS
-            && this.reference.isInSuperMarioMaker2
-    }
-
-    protected override _renderSingleComponent(game: Games,) {
-        return GameComponent.renderSingleComponent(game, this.name.english,)
-    }
-
-    public static renderSingleComponent(game: Games, identifier?: string,) {
-        const gameEnglishNameInHtml = game.englishNameInHtml
-        const key = identifier == null ? game.englishName : `${identifier} - ${game.englishName}`
-        const id = identifier == null ? `${gameEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${gameEnglishNameInHtml}-game-image`
-
-        return <Image key={key} id={id} file={game.imageFile} className={`game-image ${gameEnglishNameInHtml}-image`}/>
-    }
-
-    protected override _renderComponentForAllAsText() {
-        return <TextComponent content={gameContentTranslation('game.all',)}/>
-    }
-
-    protected override _renderComponentForAllAsImages() {
-        return <div key={`${this.name.english} (every games)`}>{Games.CompanionEnum.get.values.map(game => this._renderSingleComponent(game,),)}</div>
-    }
-
+    const games = [] as Games[]
+    reference.toGameMap().forEach((isSelected, game,) => {
+        if (isSelected)
+            games.push(game,)
+    },)
+    if (games.length === 1)
+        return <GameImage reference={games[0]}/>
+    return <div key={`${name.english} - group`}>{games.map(it => <GameImage reference={it}/>)}</div>
 }
