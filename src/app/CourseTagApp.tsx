@@ -157,13 +157,11 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
                 MakerCentralLink: <LinkText key="Maker Central link" partialId="makerCentralLink" routeName={makerCentralLink} color="primary">Maker Central</LinkText>,
             },)}
         </p>
-        <p>
-            {gameContentTranslation('course tag.description.viewable', {
-                listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-                cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-                cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
-            },)}
-        </p>
+        <p>{gameContentTranslation('course tag.description.viewable', {
+            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
+            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
+            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+        },)}</p>
     </>
 }
 

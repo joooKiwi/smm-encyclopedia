@@ -132,8 +132,8 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
     const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
     const smm2Link = game.getSmm2RouteName(viewDisplay,)
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : `everyEditorVoice (list)` as const satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : `everyEditorVoice (card)` as const satisfies PossibleRouteName
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyEditorVoice (list)' as const satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyEditorVoice (card)' as const satisfies PossibleRouteName
 
     return <>
         <p>
@@ -156,13 +156,11 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
                 europeanVariantLink: <LinkText key="europeanVariantLink" partialId="europeanEntityLink" routeName="everyEntity" color="primary">{contentTranslation('variant.European',)}</LinkText>,
             },)}
         </p>
-        <p>
-            {gameContentTranslation('editor voice.description.viewable', {
-                listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
-                cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
-                cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
-            },)}
-        </p>
+        <p>{gameContentTranslation('editor voice.description.viewable', {
+            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
+            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
+            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+        },)}</p>
     </>
 }
 

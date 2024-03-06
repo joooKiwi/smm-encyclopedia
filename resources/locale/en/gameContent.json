@@ -36,6 +36,7 @@
 
     "all":         "Every editor voice",
     "display all": "Display every editor voice",
+
     "description": {
       "intro page":        "On this page, all of the voices are used only in the editor. ",
       "intro games":       "They are also on every games ({{smm1Link}} {{smm3dsLink}} or {{smm2Link}}). ",
