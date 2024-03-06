@@ -18,6 +18,7 @@ import HasAMushroomVariant            from 'core/entity/properties/component/Has
 import {EntityCategories}             from 'core/entityCategory/EntityCategories'
 import GameComponent                  from 'core/game/Game.component'
 import {GameStyles}                   from 'core/gameStyle/GameStyles'
+import GameStyleImage                 from 'core/gameStyle/GameStyleImage'
 import GameStyleComponent             from 'core/gameStyle/GameStyle.component'
 import PlayLimitComponent             from 'core/limit/PlayLimit.component'
 import SMM1And3DSEditorLimitComponent from 'core/limit/SMM1And3DSEditorLimit.component'
@@ -49,7 +50,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smb`, element: GameStyles.SUPER_MARIO_BROS.renderSingleComponent,} satisfies SingleHeaderContent
+            return {key: `image-smb`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/>,} satisfies SingleHeaderContent
         }
 
     }('smb-images',)
@@ -69,7 +70,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smb3`, element: GameStyles.SUPER_MARIO_BROS_3.renderSingleComponent,} satisfies SingleHeaderContent
+            return {key: `image-smb3`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/>,} satisfies SingleHeaderContent
         }
 
     }('smb3-images',)
@@ -89,7 +90,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smw`, element: GameStyles.SUPER_MARIO_WORLD.renderSingleComponent,} satisfies SingleHeaderContent
+            return {key: `image-smw`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/>,} satisfies SingleHeaderContent
         }
 
     }('smw-images',)
@@ -109,7 +110,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-nsmbu`, element: GameStyles.NEW_SUPER_MARIO_BROS_U.renderSingleComponent,} satisfies SingleHeaderContent
+            return {key: `image-nsmbu`, element: <GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/>,} satisfies SingleHeaderContent
         }
 
     }('nsmbu-images',)
@@ -129,7 +130,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-sm3dw`, element: GameStyles.SUPER_MARIO_3D_WORLD.renderSingleComponent,} satisfies SingleHeaderContent
+            return {key: `image-sm3dw`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/>,} satisfies SingleHeaderContent
         }
 
     }('sm3dw-images',)

@@ -1,5 +1,4 @@
 import {Enum}     from '@joookiwi/enumerable'
-import {Fragment} from 'react'
 import {Link}     from 'react-router-dom'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
@@ -10,6 +9,7 @@ import type {CompanionEnumByNameSingleton}         from 'util/enumerable/Singlet
 
 import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {unfinishedText}                 from 'app/tools/text/UnfinishedText'
+import ThemeImage                       from 'core/theme/ThemeImage'
 import {Themes}                         from 'core/theme/Themes'
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
@@ -157,7 +157,7 @@ export class NightEffects
     //region -------------------- Methods --------------------
 
     protected static _createUnderwaterImage(instance: NightEffects,): ReactElement {
-        return <Fragment key={`${instance.englishName} (underwater)`}>{Themes.UNDERWATER.renderSingleComponent(true)}</Fragment>
+        return <ThemeImage key={`${instance.englishName} (underwater)`} reference={Themes.UNDERWATER} isSmallPath/>
     }
 
     protected static _createEntitiesLink(instance: NightEffects, routeName: PossibleRouteName,): ReactElement {

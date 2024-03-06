@@ -17,6 +17,7 @@ import {SoundEffectGames}                           from 'app/property/SoundEffe
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
+import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {SoundEffects}                               from 'core/soundEffect/SoundEffects'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
@@ -176,8 +177,13 @@ function SoundEffectAsideContent({viewDisplay, games,}: SoundEffectAsideContentP
     return <div id="soundEffect-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={soundEffectGame.getAllRouteName(viewDisplay,)} color={soundEffectGame.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="soundEffect-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Or3dsGame" routeName={soundEffectGame.getSmm1Or3dsRouteName(viewDisplay,)} color={soundEffectGame.smm1Or3dsColor}>{smm1.renderSingleComponent}{smm3ds.renderSingleComponent}</LinkButton>
-            <LinkButton partialId="smm2Game" routeName={soundEffectGame.getSmm2RouteName(viewDisplay,)} color={soundEffectGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm1Or3dsGame" routeName={soundEffectGame.getSmm1Or3dsRouteName(viewDisplay,)} color={soundEffectGame.smm1Or3dsColor}>
+                <GameImage reference={smm1}/>
+                <GameImage reference={smm3ds}/>
+            </LinkButton>
+            <LinkButton partialId="smm2Game" routeName={soundEffectGame.getSmm2RouteName(viewDisplay,)} color={soundEffectGame.smm2Color}>
+                <GameImage reference={smm2}/>
+            </LinkButton>
         </div>
     </div>
 }

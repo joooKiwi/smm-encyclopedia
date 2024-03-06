@@ -19,6 +19,7 @@ import LinkText                                     from 'app/tools/text/LinkTex
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
@@ -137,17 +138,17 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
     return <>
         <p>
             {gameContentTranslation('character name.description.intro page', {
-                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}>{smm1.renderSingleComponent}</TextOrLink>,
-                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm3dsLink}>{smm3ds.renderSingleComponent}</TextOrLink>,
-                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}>{smm2.renderSingleComponent}</TextOrLink>,
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Link}><GameImage reference={smm1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
             },)}
             {gameContentTranslation('character name.description.intro references', {
                 //TODO: Add a editor "character name" link
                 StoryMode: <i key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</i>,//TODO: Add a mystery mushroom "character name" link
                 mysteryMushroom: <i key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{mysteryMushroomAsLowerCase}</i>,
                 MysteryMushroom: <i key="mysteryMushroom" className="mystery-mushroom-image">{mysteryMushroom}</i>,
-                smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description">{smm1.renderSingleComponent}</span>,
-                smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description">{smm2.renderSingleComponent}</span>,
+                smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description"><GameImage reference={smm1}/></span>,
+                smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description"><GameImage reference={smm2}/></span>,
             },)}
         </p>
         <p>
@@ -177,9 +178,9 @@ function CharacterNameAsideContent({viewDisplay, game,}: CharacterNameAsideConte
     return <div id="characterName-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="characterName-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}>{smm1.renderSingleComponent}</LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={game.getSmm3dsRouteName(viewDisplay,)} color={game.smm3dsColor}>{smm3ds.renderSingleComponent}</LinkButton>
-            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}><GameImage reference={smm1}/></LinkButton>
+            <LinkButton partialId="smm3dsGame" routeName={game.getSmm3dsRouteName(viewDisplay,)} color={game.smm3dsColor}><GameImage reference={smm3ds}/></LinkButton>
+            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(viewDisplay,)} color={game.smm2Color}><GameImage reference={smm2}/></LinkButton>
         </div>
     </div>
 }

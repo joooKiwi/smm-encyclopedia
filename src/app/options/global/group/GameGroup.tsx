@@ -6,6 +6,7 @@ import {Link, useLocation}     from 'react-router-dom'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
+import GameImage                  from 'core/game/GameImage'
 import {Games}                    from 'core/game/Games'
 import {useCurrentGames}          from 'core/game/gamesHook'
 import {ProjectLanguages}         from 'lang/ProjectLanguages'
@@ -43,7 +44,7 @@ function GameLink({game, selected,}: GameLinkProperties,) {
 
     if (isSelected && selected.size === 1)
         return <button type="button" id={id} className="btn btn-secondary link-button disabled">
-            {game.renderSingleComponent}
+            <GameImage reference={game}/>
         </button>
 
     const GameCompanion = Games.CompanionEnum.get
@@ -60,6 +61,6 @@ function GameLink({game, selected,}: GameLinkProperties,) {
 
     return <Link type="button" id={id} className={`btn btn-${isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID)?.instance.hide()}>
-        {game.renderSingleComponent}
+        <GameImage reference={game}/>
     </Link>
 }

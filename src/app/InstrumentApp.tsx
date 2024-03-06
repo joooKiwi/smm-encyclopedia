@@ -14,6 +14,7 @@ import CardList                 from 'app/withInterpreter/CardList'
 import SimpleList               from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
 import LinkButton               from 'app/tools/button/LinkButton'
+import GameImage                from 'core/game/GameImage'
 import {Games}                  from 'core/game/Games'
 import {Instruments}            from 'core/instrument/Instruments'
 import {gameContentTranslation} from 'lang/components/translationMethods'
@@ -118,9 +119,15 @@ function InstrumentAsideContent({viewDisplay, games,}: InstrumentAsideContentPro
             : InstrumentGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
     return <div id="instrument-gamesButton-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Game" routeName={instrumentGame.getSmm1RouteName(viewDisplay,)} color={instrumentGame.smm1Color}>{smm1.renderSingleComponent}</LinkButton>
-        <LinkButton partialId="smm3dsGame" routeName={instrumentGame.getSmm3dsRouteName(viewDisplay,)} color={instrumentGame.smm3dsColor}>{smm3ds.renderSingleComponent}</LinkButton>
-        <LinkButton partialId="smm2Game" routeName={instrumentGame.getSmm2RouteName(viewDisplay,)} color={instrumentGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+        <LinkButton partialId="smm1Game" routeName={instrumentGame.getSmm1RouteName(viewDisplay,)} color={instrumentGame.smm1Color}>
+            <GameImage reference={smm1}/>
+        </LinkButton>
+        <LinkButton partialId="smm3dsGame" routeName={instrumentGame.getSmm3dsRouteName(viewDisplay,)} color={instrumentGame.smm3dsColor}>
+            <GameImage reference={smm3ds}/>
+        </LinkButton>
+        <LinkButton partialId="smm2Game" routeName={instrumentGame.getSmm2RouteName(viewDisplay,)} color={instrumentGame.smm2Color}>
+            <GameImage reference={smm2}/>
+        </LinkButton>
     </div>
 }
 

@@ -9,7 +9,9 @@ import {CommonOptions}          from 'app/options/CommonOptions'
 import Image                    from 'app/tools/images/Image'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
+import ThemeImage               from 'core/theme/ThemeImage'
 import {Themes}                 from 'core/theme/Themes'
+import TimeImage                from 'core/time/TimeImage'
 import {Times}                  from 'core/time/Times'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
@@ -19,14 +21,14 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
  */
 export abstract class ThemeAppOption
     extends Enum<Ordinals, Names>
-implements AppOption<Themes>{
+    implements AppOption<Themes> {
 
     //region -------------------- Enum instances --------------------
 
     public static readonly ICON =                  new class ThemeAppOption_Image extends ThemeAppOption {
 
         protected override _createContentOption(enumeration: Themes,) {
-            return enumeration.renderSingleComponent(false,)
+            return <ThemeImage reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -71,8 +73,8 @@ implements AppOption<Themes>{
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'effect', element: <div className="nightDesert-header-image-container position-relative mx-auto">
-                    {Themes.DESERT.renderSingleComponent(false)}
-                    {Times.NIGHT.renderSingleComponent}
+                    <ThemeImage reference={Themes.DESERT}/>
+                    <TimeImage reference={Times.NIGHT}/>
                 </div>,
                 tooltip: gameContentTranslation('Effect (night)', {night: unfinishedText('night effect name',),},)//TODO add translation for the night effect name
             }

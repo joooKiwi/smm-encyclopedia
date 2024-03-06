@@ -8,6 +8,8 @@ import type {SampleCourses}       from 'core/sampleCourse/SampleCourses'
 
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import GameStyleImage                   from 'core/gameStyle/GameStyleImage'
+import ThemeImage                       from 'core/theme/ThemeImage'
 import {ProjectLanguages}               from 'lang/ProjectLanguages'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 
@@ -51,18 +53,19 @@ export abstract class SampleCourseAppOption
             const themeInSubArea = reference.themeInSubArea
             if (themeInSubArea == null)
                 return <div className="gameStyleAndAreas-container d-flex">
-                    {reference.gameStyle.renderSingleComponent}
+                    <GameStyleImage reference={reference.gameStyle}/>
                     <div className="ps-2">
-                        {reference.themeInMainArea.renderSingleComponent(true,)}
+                        <ThemeImage reference={reference.themeInMainArea} isSmallPath/>
                     </div>
                 </div>
+
             return <div className="gameStyleAndAreas-container d-flex">
-                {reference.gameStyle.renderSingleComponent}
+                <GameStyleImage reference={reference.gameStyle}/>
                 <div className="ps-2">
-                    {reference.themeInMainArea.renderSingleComponent(true,)}
+                    <ThemeImage reference={reference.themeInMainArea} isSmallPath/>
                 </div>
                 <div className="ps-1">
-                    {themeInSubArea.renderSingleComponent(true,)}
+                    <ThemeImage reference={themeInSubArea} isSmallPath/>
                 </div>
             </div>
         }

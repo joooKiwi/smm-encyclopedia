@@ -19,6 +19,7 @@ import CardList                                     from 'app/withInterpreter/Ca
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import LinkText                                     from 'app/tools/text/LinkText'
+import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
@@ -145,7 +146,7 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
                 MakerCentralLink: <Link key="Maker Central link" to={MAKER_CENTRAL_LEVEL_LINK} id="makerCentralLink" className="link-primary fw-bold">Maker Central</Link>,
                 course: course, courses: courses,
                 tag: tag, tags: tags,
-                smm2Image: Games.SUPER_MARIO_MAKER_2.renderSingleComponent,
+                smm2Image: <GameImage reference={Games.SUPER_MARIO_MAKER_2}/>,
             },)}
             {gameContentTranslation('course tag.description.intro references', {
                 course: course, courses: courses,

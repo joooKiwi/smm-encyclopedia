@@ -22,7 +22,9 @@ import Table                                             from 'app/tools/table/T
 import CardList                                          from 'app/withInterpreter/CardList'
 import SimpleList                                        from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                                    from 'app/withInterpreter/ViewDisplays'
+import GameImage                                         from 'core/game/GameImage'
 import {Games}                                           from 'core/game/Games'
+import ThemeImage                                        from 'core/theme/ThemeImage'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {filterGame}                                      from 'util/utilitiesMethods'
 
@@ -91,7 +93,7 @@ class ThemeAppInterpreter
         return <div className="card-body" id={`theme-${englishNameInHtml}`}>
             <div className="col-2">{CommonOptions.get.getGameContent(enumerable,)}</div>
             <div className="images-container col-7">
-                {enumerable.renderSingleComponent(true,)}
+                <ThemeImage reference={enumerable} isSmallPath/>
                 <Image file={endlessMarioImageFile}/>
             </div>
             <div className="col-2">{CommonOptions.get.getThemeContent(enumerable,)}</div>
@@ -210,8 +212,13 @@ function GameAsideContent({viewDisplay, type, games,}: ThemeAsideContentProperti
         : ThemeGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
     return <div id="theme-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type, viewDisplay,)} color={themeGame.smm1Or3dsColor}>{smm1.renderSingleComponent}{smm3ds.renderSingleComponent}</LinkButton>
-        <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type, viewDisplay,)} color={themeGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+        <LinkButton partialId="smm1Or3dsGame" routeName={themeGame.getSmm1Or3dsRouteName(type, viewDisplay,)} color={themeGame.smm1Or3dsColor}>
+            <GameImage reference={smm1}/>
+            <GameImage reference={smm3ds}/>
+        </LinkButton>
+        <LinkButton partialId="smm2Game" routeName={themeGame.getSmm2RouteName(type, viewDisplay,)} color={themeGame.smm2Color}>
+            <GameImage reference={smm2}/>
+        </LinkButton>
     </div>
 }
 

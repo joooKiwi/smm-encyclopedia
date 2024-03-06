@@ -16,7 +16,6 @@ import type {GameStyleReferences}                                               
 import type {ClassUsedInRoute}                                                                                                                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import GameStyleComponent                                                                       from 'core/gameStyle/GameStyle.component'
 import {GameStyleLoader}                                                                        from 'core/gameStyle/GameStyle.loader'
 import {gameStyleImage}                                                                         from 'core/gameStyle/file/fileCreator'
 import {StringContainer}                                                                        from 'util/StringContainer'
@@ -862,10 +861,6 @@ export abstract class GameStyles
     public abstract get(property: GameStyleProperty,): boolean
 
     public abstract getReference(referenceProperty: GameStyleReferences,): PossibleOtherEntities
-
-    public get renderSingleComponent() {
-        return GameStyleComponent.renderSingleComponent(this)
-    }
 
 
     public static get gameStyles_smm1(): GameStyles_ArrayInSMM1 {

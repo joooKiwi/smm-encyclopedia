@@ -12,7 +12,6 @@ import type {GameImageFile}                                                     
 import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import GameComponent                                                                            from 'core/game/Game.component'
 import {gameImage}                                                                              from 'core/game/file/fileCreator'
 import {StringContainer}                                                                        from 'util/StringContainer'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
@@ -431,10 +430,6 @@ export abstract class Games
     //region -------------------- Methods --------------------
 
     public abstract get(property: GameProperty,): boolean
-
-    public get renderSingleComponent() {
-        return GameComponent.renderSingleComponent(this)
-    }
 
     //endregion -------------------- Methods --------------------
 

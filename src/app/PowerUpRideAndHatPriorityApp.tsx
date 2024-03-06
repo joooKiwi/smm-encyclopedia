@@ -23,6 +23,7 @@ import {Arrows}                                     from 'app/tools/arrow/Arrows
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
 import {Entities}                                   from 'core/entity/Entities'
+import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
@@ -247,15 +248,21 @@ export default class PowerUpRideAndHatPriorityApp
         //TODO replace the div by links (when changed from state to property)
         return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
             <div className="d-flex flex-wrap justify-content-center">
-                <div className={`btn ${this.hasSMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS}>{SUPER_MARIO_BROS.renderSingleComponent}</div>
-                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                     onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>{SUPER_MARIO_BROS_3.renderSingleComponent}</div>
-                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                     onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>{SUPER_MARIO_WORLD.renderSingleComponent}</div>
-                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                     onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>{NEW_SUPER_MARIO_BROS_U.renderSingleComponent}</div>
-                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                                     onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>{SUPER_MARIO_3D_WORLD.renderSingleComponent}</div> : null}
+                <div className={`btn ${this.hasSMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS}>
+                    <GameStyleImage reference={SUPER_MARIO_BROS}/>
+                </div>
+                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>
+                    <GameStyleImage reference={SUPER_MARIO_BROS_3}/>
+                </div>
+                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>
+                    <GameStyleImage reference={SUPER_MARIO_WORLD}/>
+                </div>
+                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>
+                    <GameStyleImage reference={NEW_SUPER_MARIO_BROS_U}/>
+                </div>
+                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>
+                    <GameStyleImage reference={SUPER_MARIO_3D_WORLD}/>
+                </div> : null}
             </div>
             <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom w-100`} onClick={() => this.__gameStyle = null}>{unfinishedText('None')}</div>
         </div>

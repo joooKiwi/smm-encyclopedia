@@ -8,8 +8,11 @@ import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
 import {CommonOptions}          from 'app/options/CommonOptions'
 import {unfinishedText}         from 'app/tools/text/UnfinishedText'
+import GameStyleImage           from 'core/gameStyle/GameStyleImage'
 import NightEffectComponent     from 'core/nightEffect/NightEffect.component'
+import ThemeImage               from 'core/theme/ThemeImage'
 import {Themes}                 from 'core/theme/Themes'
+import TimeImage                from 'core/time/TimeImage'
 import {Times}                  from 'core/time/Times'
 import {ProjectLanguages}       from 'lang/ProjectLanguages'
 import {gameContentTranslation} from 'lang/components/translationMethods'
@@ -23,7 +26,7 @@ export abstract class GameStyleAppOption
     public static readonly ICON =             new class GameStyleAppOption_Images extends GameStyleAppOption {
 
         protected override _createContentOption(enumeration: GameStyles,) {
-            return enumeration.renderSingleComponent
+            return <GameStyleImage reference={enumeration}/>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -51,7 +54,10 @@ export abstract class GameStyleAppOption
         protected override _createTableHeaderOption(): SingleHeaderContent {
             return {
                 key: 'nightDesertWind',
-                element: <div className="night-desert-wind-effect-container">{Themes.DESERT.renderSingleComponent(false)}{Times.NIGHT.renderSingleComponent}</div>,
+                element: <div className="night-desert-wind-effect-container">
+                    <ThemeImage reference={Themes.DESERT}/>
+                    <TimeImage reference={Times.NIGHT}/>
+                </div>,
                 tooltip: gameContentTranslation('Wind effect (night desert)', {
                     night: unfinishedText('night'),//TODO add night reference
                     desert: ProjectLanguages.current.get(Themes.DESERT.reference)!.toLowerCase(),

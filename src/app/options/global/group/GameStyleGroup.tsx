@@ -7,6 +7,7 @@ import {Link, useLocation}     from 'react-router-dom'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
+import GameStyleImage             from 'core/gameStyle/GameStyleImage'
 import {GameStyles}               from 'core/gameStyle/GameStyles'
 import {useCurrentGameStyles}     from 'core/gameStyle/gameStylesHook'
 import {Games}                    from 'core/game/Games'
@@ -65,7 +66,7 @@ function GameStyleLink({gameStyle, disabled = false, selected,}: GameStyleLinkPr
 
     if (isSelected && selected.size === 1)
         return <button type="button" id={id} className="btn btn-secondary link-button" disabled>
-            {gameStyle.renderSingleComponent}
+            <GameStyleImage reference={gameStyle}/>
         </button>
 
     const GameStyleCompanion = GameStyles.CompanionEnum.get
@@ -87,6 +88,6 @@ function GameStyleLink({gameStyle, disabled = false, selected,}: GameStyleLinkPr
 
     return <Link type="button" id={id} className={`btn btn${isSelected ? '' : '-outline'}-secondary link-button ${disabled ? 'disabled' : ''}`} to={newPath}
                  onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID)?.instance.hide()}>
-        {gameStyle.renderSingleComponent}
+        <GameStyleImage reference={gameStyle}/>
     </Link>
 }

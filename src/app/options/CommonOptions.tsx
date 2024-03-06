@@ -12,6 +12,7 @@ import type {ImageFile}                                                 from 'ut
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
+import GameImage                                         from 'core/game/GameImage'
 import {Games}                                           from 'core/game/Games'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {EmptyStringName}                                 from 'lang/name/EmptyStringName'
@@ -93,14 +94,11 @@ export class CommonOptions {
      */
     public getGameContent(enumeration: EnumerationWithInSuperMarioMakerGameReference,): ReactElement {
         const reference = enumeration.reference
-        const isInSMM1 = reference.isInSuperMarioMaker1
-        const isInSMM3DS = reference.isInSuperMarioMakerFor3DS
-        const isInSMM2 = reference.isInSuperMarioMaker2
 
         return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
-            {isInSMM1 ? Games.SUPER_MARIO_MAKER_1.renderSingleComponent : null}
-            {isInSMM3DS ? Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.renderSingleComponent : null}
-            {isInSMM2 ? Games.SUPER_MARIO_MAKER_2.renderSingleComponent : null}
+            {reference.isInSuperMarioMaker1 ? <GameImage reference={Games.SUPER_MARIO_MAKER_1}/> : null}
+            {reference.isInSuperMarioMakerFor3DS ? <GameImage reference={Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS}/> : null}
+            {reference.isInSuperMarioMaker2 ? <GameImage reference={Games.SUPER_MARIO_MAKER_2}/> : null}
         </div>
     }
 

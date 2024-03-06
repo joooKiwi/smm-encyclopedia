@@ -16,7 +16,9 @@ import Table                    from 'app/tools/table/Table'
 import CardList                 from 'app/withInterpreter/CardList'
 import SimpleList               from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
+import GameImage                from 'core/game/GameImage'
 import {Games}                  from 'core/game/Games'
+import GameStyleImage           from 'core/gameStyle/GameStyleImage'
 import {GameStyles}             from 'core/gameStyle/GameStyles'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame}             from 'util/utilitiesMethods'
@@ -61,7 +63,7 @@ class GameStyleAppInterpreter
 
     public createCardListContent(enumerable: GameStyles,) {
         return <div className="card-body" id={`gameStyle-${enumerable.englishNameInHtml}`}>
-            {enumerable.renderSingleComponent}
+            <GameStyleImage reference={enumerable}/>
         </div>
     }
 
@@ -139,8 +141,13 @@ function GameStyleAsideContent({viewDisplay, games,}: GameStyleAsideContentPrope
         : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
     return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
-        <LinkButton partialId="smm1Or3dsGame" routeName={gameStyleGame.getSmm1Or3dsRouteName(viewDisplay,)} color={gameStyleGame.smm1Or3dsColor}>{smm1.renderSingleComponent}{smm3ds.renderSingleComponent}</LinkButton>
-        <LinkButton partialId="smm2Game" routeName={gameStyleGame.getSmm2RouteName(viewDisplay,)} color={gameStyleGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+        <LinkButton partialId="smm1Or3dsGame" routeName={gameStyleGame.getSmm1Or3dsRouteName(viewDisplay,)} color={gameStyleGame.smm1Or3dsColor}>
+            <GameImage reference={smm1}/>
+            <GameImage reference={smm3ds}/>
+        </LinkButton>
+        <LinkButton partialId="smm2Game" routeName={gameStyleGame.getSmm2RouteName(viewDisplay,)} color={gameStyleGame.smm2Color}>
+            <GameImage reference={smm2}/>
+        </LinkButton>
     </div>
 }
 

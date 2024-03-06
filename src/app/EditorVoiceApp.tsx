@@ -16,6 +16,7 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import {EditorVoices}                               from 'core/editorVoice/EditorVoices'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
+import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {assert, filterGame, intersect}              from 'util/utilitiesMethods'
@@ -119,9 +120,9 @@ function EditorVoiceAsideContent({viewDisplay, games,}: EditorVoiceAsideContentP
     return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={editorVoiceGame.getAllRouteName(viewDisplay,)} color={editorVoiceGame.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="editorVoice-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Game" routeName={editorVoiceGame.getSmm1RouteName(viewDisplay,)} color={editorVoiceGame.smm1Color}>{smm1.renderSingleComponent}</LinkButton>
-            <LinkButton partialId="smm3dsGame" routeName={editorVoiceGame.getSmm3dsRouteName(viewDisplay,)} color={editorVoiceGame.smm3dsColor}>{smm3ds.renderSingleComponent}</LinkButton>
-            <LinkButton partialId="smm2Game" routeName={editorVoiceGame.getSmm2RouteName(viewDisplay,)} color={editorVoiceGame.smm2Color}>{smm2.renderSingleComponent}</LinkButton>
+            <LinkButton partialId="smm1Game" routeName={editorVoiceGame.getSmm1RouteName(viewDisplay,)} color={editorVoiceGame.smm1Color}><GameImage reference={smm1}/></LinkButton>
+            <LinkButton partialId="smm3dsGame" routeName={editorVoiceGame.getSmm3dsRouteName(viewDisplay,)} color={editorVoiceGame.smm3dsColor}><GameImage reference={smm3ds}/></LinkButton>
+            <LinkButton partialId="smm2Game" routeName={editorVoiceGame.getSmm2RouteName(viewDisplay,)} color={editorVoiceGame.smm2Color}><GameImage reference={smm2}/></LinkButton>
         </div>
     </div>
 }

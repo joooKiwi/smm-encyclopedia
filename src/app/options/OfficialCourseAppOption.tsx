@@ -5,12 +5,14 @@ import {Fragment}                    from 'react'
 import type {AppOption}           from 'app/options/AppOption'
 import type {Names, Ordinals}     from 'app/options/OfficialCourseAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
-import {OfficialCourses}          from 'core/officialCourse/OfficialCourses'
+import type {OfficialCourses}     from 'core/officialCourse/OfficialCourses'
 
 import {CommonOptions}                  from 'app/options/CommonOptions'
 import Image                            from 'app/tools/images/Image'
 import TextComponent                    from 'app/tools/text/TextComponent'
 import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
+import GameStyleImage                   from 'core/gameStyle/GameStyleImage'
+import ThemeImage                       from 'core/theme/ThemeImage'
 import {gameContentTranslation}         from 'lang/components/translationMethods'
 import SimpleDate                       from 'lang/date/SimpleDate'
 import {UNKNOWN_REFERENCE}              from 'util/commonVariables'
@@ -66,21 +68,22 @@ export abstract class OfficialCourseAppOption
 
         protected override _createContentOption(enumeration: OfficialCourses,): ReactElement {
             const reference = enumeration.reference
-            const subArea = reference.courseThemeInTheSubArea
+            const courseThemeInSubArea = reference.courseThemeInTheSubArea
 
-            if(subArea == null)
+            if (courseThemeInSubArea == null)
                 return <div className="d-flex flex-column align-items-center">
-                    {reference.gameStyle.renderSingleComponent}
+                    <GameStyleImage reference={reference.gameStyle}/>
                     <div className="w-100 my-1"/>
-                    {reference.courseThemeInTheMainArea.renderSingleComponent(true,)}
+                    <ThemeImage reference={reference.courseThemeInTheMainArea} isSmallPath/>
                 </div>
+
             return <div className="d-flex flex-column align-items-center">
-                {reference.gameStyle.renderSingleComponent}
+                <GameStyleImage reference={reference.gameStyle}/>
                 <div className="w-100 my-1"/>
                 <div className="d-flex">
-                    {reference.courseThemeInTheMainArea.renderSingleComponent(true,)}
+                    <ThemeImage reference={reference.courseThemeInTheMainArea} isSmallPath/>
                     <div className="me-1"/>
-                    {reference.courseThemeInTheSubArea?.renderSingleComponent(true,)}
+                    <ThemeImage reference={courseThemeInSubArea} isSmallPath/>
                 </div>
             </div>
         }
