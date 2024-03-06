@@ -41,12 +41,12 @@ export default class IndexComponent
     }
 
     public static getDerivedStateFromError(error: Error,) {
-        return {hasError: true,}
+        return {hasError: true,} as const satisfies Readonly<IndexState>
     }
 
     public override componentDidCatch(error: Error, errorInfo: ErrorInfo,): void {
-        console.warn(error.message)
-        console.warn(errorInfo.componentStack)
+        console.warn(error.message,)
+        console.warn(errorInfo.componentStack,)
     }
 
     public override render() {
