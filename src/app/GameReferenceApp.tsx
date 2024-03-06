@@ -51,7 +51,7 @@ export default function GameReferenceApp() {
             <h3 id="game-names-title" className="names-title">{gameContentTranslation('game.plural',)}</h3>
             <div id="game-name-container" className="container-fluid name-container">
                 {Games.CompanionEnum.get.values.map(it =>
-                    <div id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
+                    <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameImage reference={it}/>
                             <NameComponent id="game-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
@@ -63,7 +63,7 @@ export default function GameReferenceApp() {
             <h3 id="gameStyle-names-title" className="names-title">{gameContentTranslation('game style.plural',)}</h3>
             <div id="gameStyle-name-container" className="container-fluid name-container">
                 {GameStyles.CompanionEnum.get.values.map(it =>
-                    <div id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
+                    <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <GameStyleImage reference={it}/>
                             <NameComponent id="gameStyle-name" name={GameReferences.CompanionEnum.get.getValue(it.name,).reference}/>
@@ -75,7 +75,7 @@ export default function GameReferenceApp() {
             <h3 id="soundEffect-names-title" className="col-12 names-title">{gameContentTranslation('sound effect.plural',)}</h3>
             <div id="soundEffect-name-container" className="container-fluid name-container">{
                 SoundEffects.soundEffect_games.map(it =>
-                    <div id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
+                    <div key={`single name container (${it.englishName})`} id={`${it.englishNameInHtml}-name-container`} className="col single-name-container">
                         <div className="single-name-sub-container">
                             <SoundEffectImage reference={it}/>
                             <NameComponent id="soundEffect-name" name={GameReferences.CompanionEnum.get.getValueByName(it.englishName,).reference}/>
