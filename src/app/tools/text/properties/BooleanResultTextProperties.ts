@@ -11,4 +11,4 @@ export interface BooleanResultTextProperties
 }
 
 export type TextColor = `text-${string}`
-export type BooleanValue = string | [value: string, color: TextColor,]
+export type BooleanValue = | string | [value: string, color: TextColor,]

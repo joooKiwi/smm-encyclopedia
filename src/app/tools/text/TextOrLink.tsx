@@ -10,7 +10,7 @@ interface TextOrLinkProperties
 
     readonly id: string
 
-    readonly routeName: Nullable<PossibleRouteName>
+    readonly routeName: NullableString<PossibleRouteName>
 
 }
 

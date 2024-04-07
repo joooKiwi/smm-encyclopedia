@@ -52,7 +52,7 @@ export function testLanguages({
                                   japanese,
                                   chinese, traditionalChinese, simplifiedChinese,
                                   korean,
-                              }: LanguageContent, excludedLanguages?: Nullable<readonly PossibleExcludedLanguages[]>,) {
+                              }: LanguageContent, excludedLanguages?: NullableArray<PossibleExcludedLanguages>,) {
     const excludedLanguages2 = excludedLanguages ?? EMPTY_ARRAY
     describe('Not null language reference', () => {
         test('English (America)', () => expect(english ?? americanEnglish).not.toBeNull(),)
@@ -111,7 +111,7 @@ export function testLanguagesDescription({
                                              japanese_description: japanese,
                                              chinese_description: chinese, traditionalChinese_description: traditionalChinese, simplifiedChinese_description: simplifiedChinese,
                                              korean_description: korean,
-                                         }: DescriptionLanguageContent, excludedLanguages?: Nullable<readonly PossibleExcludedLanguages[]>,) {
+                                         }: DescriptionLanguageContent, excludedLanguages?: NullableArray<PossibleExcludedLanguages>,) {
     const excludedLanguages2 = excludedLanguages ?? EMPTY_ARRAY
     describe('Not null language description reference', () => {
         test('English (America)', () => expect(english ?? americanEnglish).not.toBeNull(),)

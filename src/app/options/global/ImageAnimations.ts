@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {StringOrBoolean} from '@joookiwi/type'
+import {Enum}                 from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleImageAnimation} from 'app/options/global/ImageAnimations.types'
 import type {ClassWithValue}                          from 'util/types/ClassWithValue'
@@ -28,8 +29,8 @@ export class ImageAnimations
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
-    public static readonly CompanionEnum: CompanionEnumByValueSingleton<| boolean | string, ImageAnimations, typeof ImageAnimations> = class CompanionEnum_ImageAnimations
-        extends CompanionEnumByValue<| boolean | string, ImageAnimations, typeof ImageAnimations> {
+    public static readonly CompanionEnum: CompanionEnumByValueSingleton<StringOrBoolean, ImageAnimations, typeof ImageAnimations> = class CompanionEnum_ImageAnimations
+        extends CompanionEnumByValue<StringOrBoolean, ImageAnimations, typeof ImageAnimations> {
 
         //region -------------------- Singleton usage --------------------
 

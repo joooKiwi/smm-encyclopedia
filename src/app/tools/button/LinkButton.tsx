@@ -10,7 +10,7 @@ interface LinkButtonsProperties
 
     readonly partialId: string
 
-    readonly routeName: Nullable<PossibleRouteName>
+    readonly routeName: NullableString<PossibleRouteName>
 
     readonly color: BootstrapColor
 

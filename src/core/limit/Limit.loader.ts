@@ -115,7 +115,7 @@ function createAlternativeReference(content: Content, regularReferences: Map<Pos
 }
 
 
-function getAlternativeLimitBy(value: Nullable<PossibleAlternativeEnglishName>, alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeLimit>): AlternativeLimit {
+function getAlternativeLimitBy(value: NullableString<PossibleAlternativeEnglishName>, alternativeReferences: ReadonlyMap<PossibleAlternativeEnglishName, AlternativeLimit>): AlternativeLimit {
     if (value == null)
         return EmptyLimit.get
 

@@ -13,8 +13,8 @@ export interface AppInterpreterWithTable<out CONTENT extends Content = Content,
     out OPTION extends Enumerable = Enumerable<any, any>, >
     extends AppInterpreterWithCardList<CONTENT> {
 
-    readonly tableHeadersColor?: Nullable<BootstrapThemeColor>
-    readonly tableColor?: Nullable<BootstrapThemeColor>
+    readonly tableHeadersColor?: NullableString<BootstrapThemeColor>
+    readonly tableColor?: NullableString<BootstrapThemeColor>
     readonly tableCaption: ReactElementOrString
 
     /**

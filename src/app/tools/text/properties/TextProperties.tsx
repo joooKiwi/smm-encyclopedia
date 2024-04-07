@@ -16,7 +16,7 @@ export interface TextProperties<T extends PossibleTextContent = PossibleTextCont
      * @note It will add a "?" after the content as a CSS attribute (--is-unknown)
      * @see DEFAULT_IS_UNKNOWN
      */
-    readonly isUnknown?: Nullable<boolean>
+    readonly isUnknown?: NullableBoolean
 
 }
 

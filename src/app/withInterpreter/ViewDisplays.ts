@@ -116,7 +116,7 @@ export abstract class ViewDisplays
      *
      * @param path The nullable path to get its types
      */
-    public getRoutePath<const PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleRoutePath<PATH>> {
+    public getRoutePath<const PATH extends string, >(path: NullableString<PATH>,): NullOrString<PossibleRoutePath<PATH>> {
         return path == null ? null : this._getRoutePath(path)
     }
 
@@ -126,8 +126,8 @@ export abstract class ViewDisplays
      * @param path The nullable path to get its types
      * @throws {AssertionError} (only in development) It is the {@link ViewDisplays.TABLE} calling it
      */
-    public getRoutePathAsListOnly<const PATH extends string, >(path: Nullable<PATH>,): NullOr<PossibleListRoutePath<PATH>>
-    public getRoutePathAsListOnly(path: Nullable<string>,) {
+    public getRoutePathAsListOnly<const PATH extends string, >(path: NullableString<PATH>,): NullOr<PossibleListRoutePath<PATH>>
+    public getRoutePathAsListOnly(path: NullableString,) {
         // @ts-ignore
         assert(this !== ViewDisplays.TABLE, 'The view display cannot be retrieved for a list only (simple & card) display',)
         return this.getRoutePath(path,)

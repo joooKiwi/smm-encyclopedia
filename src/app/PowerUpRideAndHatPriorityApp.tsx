@@ -242,7 +242,7 @@ export default class PowerUpRideAndHatPriorityApp
      *
      * Note that the implementation uses the state temporary until it is implemented in the route.
      */
-    #createGameStyleContent(): NonNullable<ReactElement> {
+    #createGameStyleContent(): NonNullReactElement {
         const gameStyle = this.__gameStyle
 
         //TODO replace the div by links (when changed from state to property)
@@ -268,7 +268,7 @@ export default class PowerUpRideAndHatPriorityApp
         </div>
     }
 
-    #createOtherPathsContent(): NonNullable<ReactElement> {
+    #createOtherPathsContent(): NonNullReactElement {
         const type = this.type
 
         return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
@@ -283,7 +283,7 @@ export default class PowerUpRideAndHatPriorityApp
         </div>
     }
 
-    #createLegend(): NonNullable<ReactElement> {
+    #createLegend(): NonNullReactElement {
         return <div id="powerUpRideAndHatPriority-legend-container" className="border rounded border-dark border-opacity-25 ms-auto">
             <h3 className="text-center border border-0 border-bottom border-dark border-opacity-25 pb-1 mb-0">{unfinishedText('Can be obtained …')}</h3>
             <div id="powerUpRideAndHatPriority-information-container" className="px-3 d-flex flex-column flex-sm-row flex-lg-column flex-xl-row">

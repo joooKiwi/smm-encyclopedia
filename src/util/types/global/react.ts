@@ -5,6 +5,7 @@ declare global {
     /** A simple alias of the {@link React}.{@link React.JSX JSX}.{@link React.JSX.Element Element} */
     type ReactJSXElement = React.JSX.Element
     type ReactElement = Nullable<React.ReactElement>
+    type NonNullReactElement = React.ReactElement
     type ReactElementOrString = | ReactElement | string
     type ReactElementOrStringOrArray = | ReactElement | string | readonly (| ReactElement | string)[]
 
