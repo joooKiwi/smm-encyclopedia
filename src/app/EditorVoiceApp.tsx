@@ -125,6 +125,7 @@ interface EditorVoiceDescriptionProperties
 
 }
 
+/** @reactComponent */
 function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProperties,) {
     const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
 
@@ -176,6 +177,7 @@ interface EditorVoiceAsideContentProperties
 
 }
 
+/** @reactComponent */
 function EditorVoiceAsideContent({viewDisplay, game,}: EditorVoiceAsideContentProperties,) {
     return <div id="editorVoice-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
         <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>

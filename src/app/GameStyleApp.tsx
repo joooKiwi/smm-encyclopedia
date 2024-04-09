@@ -147,6 +147,7 @@ interface GameStyleDescriptionProperties
 
 }
 
+/** @reactComponent */
 function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperties,) {
     const entity = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName.toLowerCase(),)
     const entities = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName.toLowerCase(),)
@@ -201,6 +202,7 @@ interface GameStyleAsideContentProperties
 
 }
 
+/** @reactComponent */
 function GameStyleAsideContent({viewDisplay, game,}: GameStyleAsideContentProperties,) {
     return <div id="gameStyle-gamesButton-singularGame-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(viewDisplay,)} color={game.smm1Or3dsColor}>

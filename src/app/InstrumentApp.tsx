@@ -122,6 +122,7 @@ interface InstrumentDescriptionProperties
 
 }
 
+/** @reactComponent */
 function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProperties,) {
     const smm1Link = game.getSmm1RouteName(viewDisplay,)
     const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
@@ -163,6 +164,7 @@ interface InstrumentAsideContentProperties
 
 }
 
+/** @reactComponent */
 function InstrumentAsideContent({viewDisplay, game,}: InstrumentAsideContentProperties,) {
     return <div id="instrument-gamesButton-container" className="gameAsideContent-container btn-group btn-group-sm">
         <LinkButton partialId="smm1Game" routeName={game.getSmm1RouteName(viewDisplay,)} color={game.smm1Color}>
