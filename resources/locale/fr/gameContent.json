@@ -110,7 +110,14 @@
     "all":         "Tous les instruments",
     "display all": "Afficher tous les instruments",
 
-    "Excluding the top 3 notes": "Excluant les 3 notes du haut"
+    "Excluding the top 3 notes": "Excluant les 3 notes du haut",
+
+    "description": {
+      "intro page":     "Sur cette page, tous les instruments sont présent dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro variants": "Et quelques instruments dans {{smm2Link}} sont les mêmes que dans {{smm1Link}} / {{smm3dsLink}}.",
+
+      "viewable": "LE contenu peut être vu comme une {{listLink}} ou des {{cardsLink}}."
+    }
   },
   "limit": {
     "singular": "Limite",
