@@ -87,6 +87,16 @@ export function isCollectionEquals(first: CollectionHolder<unknown>, second: Col
     return true
 }
 
+
+/**
+ * Define if the value is an empty string or nullable (<b>null</b> / <b>undefined</b>)
+ *
+ * @param value The value to compare
+ */
+export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyString> {
+    return value === EMPTY_STRING || value == null
+}
+
 //endregion -------------------- is --------------------
 //region -------------------- intersect --------------------
 
@@ -235,16 +245,6 @@ export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): 
 }
 
 //endregion -------------------- to non null --------------------
-
-/**
- * Define if the value is an empty string or nullable (<b>null</b> / <b>undefined</b>)
- *
- * @param value The value to compare
- */
-export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyString> {
-    return value === EMPTY_STRING || value == null
-}
-
 //region -------------------- assert --------------------
 
 export function assert(condition: boolean, message: string,): asserts condition {
