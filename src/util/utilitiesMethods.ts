@@ -17,6 +17,8 @@ import type {CompanionEnumRetrievableInUrl}                                     
 import {isInProduction} from 'variables'
 import {EMPTY_STRING}   from 'util/emptyVariables'
 
+//region -------------------- is --------------------
+
 /**
  * Validate if an {@link ReadonlyArray} is equals to another one.
  *
@@ -36,12 +38,14 @@ export function isArrayEquals(first: readonly unknown[], second: readonly unknow
     for (let i = 0; i < size; i++) {
         const elementInFirst = first[i]
         const elementInSecond = second[i]
-        if (elementInFirst instanceof Array && elementInSecond instanceof Array)
-            if (!isArrayEquals(elementInFirst, elementInSecond,))
-                return false
-        if (isCollectionHolder(elementInFirst,) && isCollectionHolder(elementInSecond,))
-            if (!isCollectionEquals(elementInFirst, elementInSecond,))
-                return false
+        if (elementInFirst instanceof Array)
+            if (elementInSecond instanceof Array)
+                if (!isArrayEquals(elementInFirst, elementInSecond,))
+                    return false
+        if (isCollectionHolder(elementInFirst,))
+            if (isCollectionHolder(elementInSecond,))
+                if (!isCollectionEquals(elementInFirst, elementInSecond,))
+                    return false
         if (first[i] !== second[i])
             return false
     }
@@ -68,12 +72,14 @@ export function isCollectionEquals(first: CollectionHolder<unknown>, second: Col
     for (let i = 0; i < size; i++) {
         const elementInFirst = first[i]
         const elementInSecond = second[i]
-        if (elementInFirst instanceof Array && elementInSecond instanceof Array)
-            if (!isArrayEquals(elementInFirst, elementInSecond,))
-                return false
-        if (isCollectionHolder(elementInFirst,) && isCollectionHolder(elementInSecond,))
-            if (!isCollectionEquals(elementInFirst, elementInSecond,))
-                return false
+        if (elementInFirst instanceof Array)
+            if (elementInSecond instanceof Array)
+                if (!isArrayEquals(elementInFirst, elementInSecond,))
+                    return false
+        if (isCollectionHolder(elementInFirst,))
+            if (isCollectionHolder(elementInSecond,))
+                if (!isCollectionEquals(elementInFirst, elementInSecond,))
+                    return false
         if (first[i] !== second[i])
             return false
     }
@@ -81,6 +87,7 @@ export function isCollectionEquals(first: CollectionHolder<unknown>, second: Col
     return true
 }
 
+//endregion -------------------- is --------------------
 //region -------------------- intersect --------------------
 
 export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): readonly T[]
