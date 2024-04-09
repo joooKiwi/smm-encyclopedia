@@ -116,7 +116,7 @@
       "intro page":     "Sur cette page, tous les instruments sont présent dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
       "intro variants": "Et quelques instruments dans {{smm2Link}} sont les mêmes que dans {{smm1Link}} / {{smm3dsLink}}.",
 
-      "viewable": "LE contenu peut être vu comme une {{listLink}} ou des {{cardsLink}}."
+      "viewable": "Le contenu peut être vu comme une {{listLink}} ou des {{cardsLink}}."
     }
   },
   "limit": {
