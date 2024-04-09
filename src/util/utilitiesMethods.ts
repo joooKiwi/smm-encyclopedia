@@ -177,6 +177,7 @@ export function filterGameStyle<const T extends ClassWithReference<GameStyleProp
 }
 
 //endregion -------------------- filter --------------------
+//region -------------------- reverse --------------------
 
 /**
  * Reverse the array fields
@@ -193,6 +194,9 @@ export function reverse<const T, >(array: readonly T[],): T[] {
         newArray.push(array[index],)
     return newArray
 }
+
+//endregion -------------------- reverse --------------------
+//region -------------------- to non null --------------------
 
 /**
  * Convert the {@link Array} to a non-null {@link Array}
@@ -230,6 +234,8 @@ export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): 
     return newSet
 }
 
+//endregion -------------------- to non null --------------------
+
 /**
  * Define if the value is an empty string or nullable (<b>null</b> / <b>undefined</b>)
  *
@@ -238,6 +244,8 @@ export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): 
 export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyString> {
     return value === EMPTY_STRING || value == null
 }
+
+//region -------------------- assert --------------------
 
 export function assert(condition: boolean, message: string,): asserts condition {
     if (isInProduction)
