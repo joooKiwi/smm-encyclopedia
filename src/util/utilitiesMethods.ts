@@ -81,54 +81,53 @@ export function isCollectionEquals(first: CollectionHolder<unknown>, second: Col
     return true
 }
 
-//region -------------------- filter game --------------------
+//region -------------------- intersect --------------------
 
-export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): CollectionHolder<T>
-export function intersect<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): CollectionHolder<T>
+export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): readonly T[]
+export function intersect<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): readonly T[]
 export function intersect<const T, >(first: readonly T[], second: readonly T[],): readonly T[]
 export function intersect<const T, >(first: readonly T[], second: CollectionHolder<T>,): readonly T[]
-export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],): CollectionHolder<T> | readonly T[] {
+export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],): readonly T[] {
+    const newArray = [] as T[]
+    let firstIndex = -1
+    const firstSize = first.length
     const secondSize = second.length
-    return first.filter(it => {
-        let index = -1
-        while (++index < secondSize)
-            if (second.at(index,) === it)
-                return true
-        return false
-    },)
+    while (++firstIndex < firstSize) {
+        const firstValue = first[firstIndex] as T
+        let secondIndex = -1
+        while (++secondIndex < secondSize)
+            if (second[secondIndex] === firstValue) {
+                newArray.push(firstValue,)
+                break
+            }
+    }
+    return newArray
 }
 
-//endregion -------------------- filter game --------------------
-
-//region -------------------- filter game --------------------
+//endregion -------------------- intersect --------------------
+//region -------------------- filter --------------------
 
 /**
- * Create a new {@link ReadonlyArray array} that are in the {@link games}
+ * Create a new {@link ReadonlyArray Array} that are in the {@link games}
  *
  * @param values The {@link CollectionHolder} to loop over and retrieve them in the {@link Games.get}
- * @param games The {@link CollectionHolder collection} of game to get if they can be used
+ * @param games The {@link CollectionHolder Collection} of game to get if they can be used
  */
 export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: CollectionHolder<Games>,): readonly T[]
 /**
- * Create a new {@link ReadonlyArray array} that are in the {@link games}
+ * Create a new {@link ReadonlyArray Array} that are in the {@link games}
  *
- * @param values The {@link ReadonlyArray} to loop over and retrieve them in the {@link Games.get}
- * @param games The {@link CollectionHolder collection} of game to get if they can be used
+ * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link Games.get}
+ * @param games The {@link CollectionHolder Collection} of game to get if they can be used
  */
 export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: CollectionHolder<Games>,): readonly T[]
 export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | readonly T[], games: CollectionHolder<Games>,): readonly T[] {
-    if (values instanceof Array)
-        return filterGameByArray(values, games,)
-    return filterGameByCollection(values, games,)
-}
-
-function filterGameByCollection<const T extends ClassWithReference<GameProperty>, >(values: CollectionHolder<T>, games: CollectionHolder<Games>,): readonly T[] {
     const newArray = [] as T[]
     const gameSize = games.size
-    const valuesSize = values.size
+    const valuesSize = values.length
     let valuesIndex = -1
     while (++valuesIndex < valuesSize) {
-        const value = values.get(valuesIndex,)
+        const value = values[valuesIndex] as T
         let gameIndex = -1
         while (++gameIndex < gameSize)
             if (games[gameIndex]!.get(value.reference,)) {
@@ -139,16 +138,30 @@ function filterGameByCollection<const T extends ClassWithReference<GameProperty>
     return newArray
 }
 
-function filterGameByArray<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: CollectionHolder<Games>,): readonly T[] {
+/**
+ * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
+ *
+ * @param values The {@link CollectionHolder Collection} to loop over and retrieve them in the {@link GameStyles.get}
+ * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+ */
+export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: CollectionHolder<T>, gameStyles: CollectionHolder<GameStyles>,): readonly T[]
+/**
+ * Create a new {@link ReadonlyArray Array} that are in the {@link gameStyles}
+ *
+ * @param values The {@link ReadonlyArray Array} to loop over and retrieve them in the {@link GameStyles.get}
+ * @param games The {@link CollectionHolder Collection} of game to get if they can be used
+ */
+export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: readonly T[], gameStyles: CollectionHolder<GameStyles>,): readonly T[]
+export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | readonly T[], gameStyles: CollectionHolder<GameStyles>,): readonly T[] {
     const newArray = [] as T[]
-    const size = games.size
+    const gameSize = gameStyles.size
     const valuesSize = values.length
     let valuesIndex = -1
     while (++valuesIndex < valuesSize) {
-        const value = values[valuesIndex]
-        let index = -1
-        while (++index < size)
-            if (games[index]!.get(value.reference,)) {
+        const value = values[valuesIndex] as T
+        let gameIndex = -1
+        while (++gameIndex < gameSize)
+            if (gameStyles[gameIndex]!.get(value.reference,)) {
                 newArray.push(value,)
                 break
             }
@@ -156,27 +169,7 @@ function filterGameByArray<const T extends ClassWithReference<GameProperty>, >(v
     return newArray
 }
 
-//endregion -------------------- filter game --------------------
-//region -------------------- filter game style --------------------
-
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: readonly T[], gameStyles: CollectionHolder<GameStyles>,): readonly T[] {
-    const newArray = [] as T[]
-    const size = gameStyles.size
-    const valuesSize = values.length
-    let valuesIndex = -1
-    while (++valuesIndex < valuesSize) {
-        const value = values[valuesIndex]
-        let index = -1
-        while (++index < size)
-            if (gameStyles[index]!.get(value.reference,)) {
-                newArray.push(value,)
-                break
-            }
-    }
-    return newArray
-}
-
-//endregion -------------------- filter game style --------------------
+//endregion -------------------- filter --------------------
 
 /**
  * Reverse the array fields
@@ -246,6 +239,7 @@ export function assert(condition: boolean, message: string,): asserts condition 
         throw new AssertionError({message: message,})
 }
 
+//endregion -------------------- assert --------------------
 //region -------------------- get value by … --------------------
 
 export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, companionEnum: CompanionEnumByName<T, any>,): T {
