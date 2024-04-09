@@ -249,7 +249,7 @@ export function assert(condition: boolean, message: string,): asserts condition 
 //endregion -------------------- assert --------------------
 //region -------------------- get value by … --------------------
 
-export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| T | string>, companionEnum: CompanionEnumByName<T, any>,): T {
+export function getValueByEnglishName<const T extends EnumerableWithEnglishName, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumByName<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null name.`,)
     if (value instanceof companionEnum.instance)
@@ -260,7 +260,7 @@ export function getValueByEnglishName<const T extends EnumerableWithEnglishName,
     return valueFound
 }
 
-export function getValueByAcronym<const T extends EnumerableWithNullableAcronym, >(value: Nullable<| T | string>, companionEnum: CompanionEnumByAcronym<T, any>,): T {
+export function getValueByAcronym<const T extends EnumerableWithNullableAcronym, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumByAcronym<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null acronym.`,)
     if (value instanceof companionEnum.instance)
@@ -271,7 +271,7 @@ export function getValueByAcronym<const T extends EnumerableWithNullableAcronym,
     return valueFound
 }
 
-export function getValueByType<const T extends EnumerableWithType<unknown>, >(value: Nullable<| T | T['type']>, companionEnum: CompanionEnumByType<T['type'], T, any>,): T {
+export function getValueByType<const T extends EnumerableWithType<unknown>, >(value: Nullable<NoInfer<| T | T['type']>>, companionEnum: CompanionEnumByType<T['type'], T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null type.`,)
     if (value instanceof companionEnum.instance)
@@ -282,7 +282,7 @@ export function getValueByType<const T extends EnumerableWithType<unknown>, >(va
     return valueFound
 }
 
-export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(value: Nullable<| T | string>, companionEnum: CompanionEnumByUrlValue<T, any>,): T {
+export function getValueByUrlValue<const T extends EnumerableUsedInRoute, >(value: Nullable<| NoInfer<T> | string>, companionEnum: CompanionEnumByUrlValue<T, any>,): T {
     if (value == null)
         throw new TypeError(`No "${companionEnum.instance.name}" could be found by a null url value.`,)
     if (value instanceof companionEnum.instance)
