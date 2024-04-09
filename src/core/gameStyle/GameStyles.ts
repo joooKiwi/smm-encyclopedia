@@ -366,7 +366,7 @@ export abstract class GameStyles
             while (index-- > 0)
                 valuesFoundAsGameStyle[index] = this.getValueByUrlValue(separatedValuesFound[index],)
 
-            const uniqueValuesFound = intersect(this.values, valuesFoundAsGameStyle,).toArray()
+            const uniqueValuesFound = intersect(this.values, valuesFoundAsGameStyle,)
             return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
 
             //endregion -------------------- Valid possibilities from unknown amount of arguments --------------------

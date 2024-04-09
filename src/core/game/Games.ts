@@ -209,7 +209,7 @@ export abstract class Games
             while (index-- > 0)
                 valuesFoundAsGame[index] = this.getValueByUrlValue(separatedValuesFound[index],)
 
-            const uniqueValuesFound = intersect(this.values, valuesFoundAsGame,).toArray()
+            const uniqueValuesFound = intersect(this.values, valuesFoundAsGame,)
             return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
 
             //endregion -------------------- Valid possibilities --------------------
