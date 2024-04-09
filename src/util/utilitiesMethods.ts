@@ -251,7 +251,7 @@ export function assert(condition: boolean, message: string,): asserts condition 
     if (isInProduction)
         return
     if (!condition)
-        throw new AssertionError({message: message,})
+        throw new AssertionError({message: message,},)
 }
 
 //endregion -------------------- assert --------------------

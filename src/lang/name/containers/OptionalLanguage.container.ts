@@ -11,7 +11,7 @@ export class OptionalLanguageContainer<const out T, const out S extends T = T, c
 
     public constructor(value: | S | A,) {
         super(value)
-        this.#isUsed = !isNullableEmptyString(this.get()) && !isNullableEmptyString(this.get(0)) && !isNullableEmptyString(this.get(2))
+        this.#isUsed = !isNullableEmptyString(this.get(),) && !isNullableEmptyString(this.get(0,),) && !isNullableEmptyString(this.get(2,),)
     }
 
     public get isUsed(): U {
