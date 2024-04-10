@@ -60,4 +60,4 @@ type KeyOn<T extends object, > = {
  *
  * @note This has nothing with the React translation utilities.
  */
-export type TranslationReplaceKeysMap<T extends ReactElementOrString = ReactElementOrString, > = { [key: string]: T }
+export type TranslationReplaceKeysMap<T extends ReactElementOrStringOrNumeric = ReactElementOrStringOrNumeric, > = { [key: string]: T }
