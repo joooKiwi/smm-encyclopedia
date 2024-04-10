@@ -129,6 +129,7 @@
     },
     "editor": {
       "simple":               "Editor",
+      "simplified":           "In the editor",
       "complete":             "Limit in the editor",
       "complete in SMM2":     "Limit in the editor ({{Name}})",
       "complete in SMM1&3DS": "Limit in the editor ({{Name1}} & {{Name3ds}})",
@@ -137,8 +138,9 @@
       "display all": "Display every editor limit"
     },
     "play": {
-      "simple":   "Play",
-      "complete": "Limit while playing",
+      "simple":     "Play",
+      "simplified": "While playing",
+      "complete":   "Limit while playing",
 
       "all":         "Every play limit",
       "display all": "Display every play limit"
@@ -150,6 +152,17 @@
       "Per player":          "Per player (1✕{{amount}} to 4✕{{amount}})",
       "Per pair":            "Per pair (1✕2 to 4✕2)",
       "Per section":         "Per section (1✕2 to 10✕2)"
+    },
+
+    "description": {
+      "intro page (all)":     "On this page, all of the limits are used in the games ({{smm1Link}}, {{smm3dsLink}} or {{smm2Link}}). ",
+      "intro page (editor)":  "On this page, all of the editor limits are used in the games ({{smm1Link}}, {{smm3dsLink}} or {{smm2Link}}). ",
+      "intro page (play)":    "On this page, all of the play limits are used in the games ({{smm1Link}}, {{smm3dsLink}} or {{smm2Link}}). ",
+      "intro game changes":   "From {{smm1Link}} and {{smm3dsLink}} to {{smm2Link}}, some limits were added. ",
+      "intro other entities": "And other entities have a different limit associated to them. ",
+      "intro references":     "These are used to represent limits that are {{playLink}} or {{editorLink}}.",
+
+      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
     }
   },
   "medal": {

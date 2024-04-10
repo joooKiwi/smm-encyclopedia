@@ -8,6 +8,7 @@ import type {LimitTypes}              from 'app/property/LimitTypes'
 import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
 import type {ClassWithType}           from 'core/ClassWithType'
 import type {Limits}                  from 'core/limit/Limits'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 import type {GameCollection}          from 'util/collection/GameCollection'
 import type {ReactProperties}         from 'util/react/ReactProperties'
 
@@ -18,6 +19,8 @@ import {LimitGames}                                 from 'app/property/LimitGame
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import Image                                        from 'app/tools/images/Image'
 import Table                                        from 'app/tools/table/Table'
+import LinkText                                     from 'app/tools/text/LinkText'
+import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
@@ -159,20 +162,75 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
                                  asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
             <SimpleList reactKey="limit" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                                 description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
                                  asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
             <CardList reactKey="limit" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+                             description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
                              asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
         <Table id="limit-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
 
+//region -------------------- Description content --------------------
+
+interface LimitDescriptionProperties
+    extends ReactProperties {
+
+    readonly viewDisplay: ViewDisplays
+
+    readonly type: LimitTypes
+
+    readonly game: LimitGames
+
+}
+
+function LimitDescription({viewDisplay, type, game,}: LimitDescriptionProperties,) {
+    const smm1Or3dsLink = game.getSmm1Or3dsRouteName(type, viewDisplay,)
+    const smm2Link = game.getSmm2RouteName(type, viewDisplay,)
+
+    const playLink = viewDisplay.getRoutePath(type.playRouteName,)
+    const editorLink = viewDisplay.getRoutePath(type.editorRouteName,)
+
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyLimit (list)' satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyLimit (card)' satisfies PossibleRouteName
+    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyLimit (table)' satisfies PossibleRouteName
+
+    return <>
+        <p>
+            {gameContentTranslation(`limit.description.intro page (${type.type})`, {
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1Or3dsLink}><GameImage reference={smm1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1Or3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+            },)}
+            {gameContentTranslation('limit.description.intro game changes', {
+                smm1Link: <TextOrLink key="smm1Link" id="smm1Game-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={smm1}/></TextOrLink>,
+                smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-gameChanges-description" routeName={smm1Or3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
+                smm2Link: <TextOrLink key="smm2Link" id="smm2Game-gameChanges-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,
+            },)}
+            {gameContentTranslation('limit.description.intro other entities',)}
+            {gameContentTranslation('limit.description.intro references', {
+                playLink: <LinkText key="playLink" partialId="playLink" routeName={playLink} color="primary">{gameContentTranslation('limit.play.simplified',).toLowerCase()}</LinkText>,
+                editorLink: <LinkText key="editorLink" partialId="editorLink" routeName={editorLink} color="primary">{gameContentTranslation('limit.editor.simplified',).toLowerCase()}</LinkText>,
+            },)}
+        </p>
+        <p>{gameContentTranslation('limit.description.viewable', {
+            listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
+            cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
+            cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
+        },)}</p>
+    </>
+}
+
+//endregion -------------------- Description content --------------------
 //region -------------------- Aside content --------------------
 
 interface LimitAsideContentProperties

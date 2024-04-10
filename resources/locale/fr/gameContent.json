@@ -129,6 +129,7 @@
     },
     "editor": {
       "simple":               "Éditeur",
+      "simplified":           "Dans l'éditeur",
       "complete":             "Limite dans l'éditeur",
       "complete in SMM2":     "Limite dans l'éditeur ({{Name}})",
       "complete in SMM1&3DS": "Limite dans l'éditeur ({{Name1}} & {{Name3ds}})",
@@ -137,8 +138,9 @@
       "display all": "Afficher toutes les limites dans l'éditeur"
     },
     "play": {
-      "simple":   "En jouant",
-      "complete": "Limite en jouant",
+      "simple":     "En jouant",
+      "simplified": "En jouant",
+      "complete":   "Limite en jouant",
 
       "all":         "Toutes les limites en jouant",
       "display all": "Afficher toutes les limites en jouant"
@@ -150,6 +152,17 @@
       "Per player":          "Par joueur (1✕{{amount}} à 4✕{{amount}})",
       "Per pair":            "Par paire (1✕2 à 4✕2)",
       "Per section":         "Par section (1✕2 à 10✕2)"
+    },
+
+    "description": {
+      "intro page (all)":     "Sur cette page, toutes les limites sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro page (editor)":  "Sur cette page, toutes les limites d'éditeurs sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro page (play)":    "Sur cette page, toutes les limites en jouant sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro game changes":   "De {{smm1Link}} et {{smm3dsLink}} à {{smm2Link}}, des limites ont été ajoutées. ",
+      "intro other entities": "Et d'autres entités ont différentes limites qui leur sont associés. ",
+      "intro references":     "Ces dernières sont utilités pour représenter les limites qui sont {{playLink}} ou {{editorLink}}.",
+
+      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
     }
   },
   "medal": {
