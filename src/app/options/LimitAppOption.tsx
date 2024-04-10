@@ -9,14 +9,15 @@ import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Limit}               from 'core/limit/Limit'
 import type {Limits}              from 'core/limit/Limits'
 
-import {CommonOptions}           from 'app/options/CommonOptions'
-import {COURSE_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
-import TextComponent             from 'app/tools/text/TextComponent'
-import Image                     from 'app/tools/images/Image'
-import {EmptyLimit}              from 'core/limit/EmptyLimit'
-import {ProjectLanguages}        from 'lang/ProjectLanguages'
-import {contentTranslation}      from 'lang/components/translationMethods'
-import NameComponent             from 'lang/name/component/Name.component'
+import {CommonOptions}                from 'app/options/CommonOptions'
+import LimitWithPossibleTooltipOnNote from 'app/options/LimitWithPossibleTooltipOnNote'
+import {COURSE_THEME_IMAGE_FILE}      from 'app/options/file/themeImageFiles'
+import TextComponent                  from 'app/tools/text/TextComponent'
+import Image                          from 'app/tools/images/Image'
+import {EmptyLimit}                   from 'core/limit/EmptyLimit'
+import {ProjectLanguages}             from 'lang/ProjectLanguages'
+import {contentTranslation}           from 'lang/components/translationMethods'
+import NameComponent                  from 'lang/name/component/Name.component'
 
 export abstract class LimitAppOption
     extends Enum<Ordinals, Names>
@@ -76,15 +77,18 @@ export abstract class LimitAppOption
     public static readonly AMOUNT_IN_ALL_GAMES = new class LimitAppOption_Amount extends LimitAppOption {
 
         protected override _createContentOption(enumeration: Limits,) {
-            const {reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName,} = enumeration
-            if (limitAmountInSMM1AndSMM3DS === limitAmountInSMM2)
-                return <TextComponent key={`${englishName} - text component`} content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
-
-            return <span key={`Amount in all games (${englishName})`} className="space-pre">
-                {LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS.renderContent(enumeration,)}
-                {ProjectLanguages.current.space}{ProjectLanguages.current.slash}{ProjectLanguages.current.space}
-                {LimitAppOption.AMOUNT_IN_SMM2.renderContent(enumeration,)}
-            </span>
+            const reference = enumeration.reference
+            const amountInSMM2 = reference.limitAmountInSMM2
+            const {englishName,} = enumeration
+            if (reference.limitAmountInSMM1AndSMM3DS === amountInSMM2)
+                return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${englishName} - limit amount in all games, but displayed as the same value`}>
+                    <TextComponent content={amountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+                </LimitWithPossibleTooltipOnNote>
+            return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${englishName} - limit amount in all games`}>
+                <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+                <span className="space-pre">{ProjectLanguages.current.space}{ProjectLanguages.current.slash}{ProjectLanguages.current.space}</span>
+                <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+            </LimitWithPossibleTooltipOnNote>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -93,8 +97,11 @@ export abstract class LimitAppOption
     }()
     public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class LimitAppOption_AmountInSMM1AndSMM3DS extends LimitAppOption {
 
-        protected override _createContentOption({reference, englishName,}: Limits,) {
-            return <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+        protected override _createContentOption(enumeration: Limits,) {
+            const reference = enumeration.reference
+            return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM1 & SMM3DS`}>
+                <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+            </LimitWithPossibleTooltipOnNote>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -104,8 +111,11 @@ export abstract class LimitAppOption
     }()
     public static readonly AMOUNT_IN_SMM2 = new class LimitAppOption_AmountInSMM2 extends LimitAppOption {
 
-        protected override _createContentOption({reference, englishName,}: Limits,) {
-            return <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+        protected override _createContentOption(enumeration: Limits,) {
+            const reference = enumeration.reference
+            return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM2`}>
+                <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+            </LimitWithPossibleTooltipOnNote>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
