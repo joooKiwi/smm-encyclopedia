@@ -28,16 +28,17 @@ export abstract class LimitAppOption
     public static readonly ACRONYM = new class LimitAppOption_Acronym extends LimitAppOption {
 
         protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: Limits,) {
-            return alternativeAcronym == null
-                ? acronym == null
-                    ? null
-                    : <TextComponent content={acronym}/>
-                : <div className="acronyms-container d-flex flex-column flex-md-row">
-                    <TextComponent content={acronym}/>
-                    <div className="vertical-separator vr mx-2 d-none d-md-inline-block"/>
-                    <hr className="horizontal-separator my-1 d-block d-md-none"/>
-                    <TextComponent content={alternativeAcronym}/>
-                </div>
+            if (alternativeAcronym == null) {
+                if (acronym == null)
+                    return null
+                return <TextComponent content={acronym}/>
+            }
+            return <div className="acronyms-container d-flex flex-column flex-md-row">
+                <TextComponent content={acronym}/>
+                <div className="vertical-separator vr mx-2 d-none d-md-inline-block"/>
+                <hr className="horizontal-separator my-1 d-block d-md-none"/>
+                <TextComponent content={alternativeAcronym}/>
+            </div>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -48,24 +49,24 @@ export abstract class LimitAppOption
     public static readonly NAME = new class LimitAppOption_Name extends LimitAppOption {
 
         protected override _createContentOption({reference, isEditorLimit,}: Limits,) {
-            const {alternativeContainer} = reference
-            return alternativeContainer instanceof EmptyLimit
-                ? this.#createNameComponent(reference, isEditorLimit,)
-                : <div className="names-container d-flex flex-column flex-md-row">
-                    {this.#createNameComponent(reference, isEditorLimit,)}
-                    <div className="vertical-separator vr mx-3 d-none d-md-inline-block"/>
-                    <hr className="horizontal-separator my-1 d-block d-md-none"/>
-                    <NameComponent id="alternativeName" name={alternativeContainer} popoverOrientation="bottom"/>
-                </div>
+            const alternativeContainer = reference.alternativeContainer
+            if (alternativeContainer instanceof EmptyLimit)
+                return this.#createNameComponent(reference, isEditorLimit,)
+            return <div className="names-container d-flex flex-column flex-md-row">
+                {this.#createNameComponent(reference, isEditorLimit,)}
+                <div className="vertical-separator vr mx-3 d-none d-md-inline-block"/>
+                <hr className="horizontal-separator my-1 d-block d-md-none"/>
+                <NameComponent id="alternativeName" name={alternativeContainer} popoverOrientation="bottom"/>
+            </div>
         }
 
         #createNameComponent(reference: Limit, isEditorLimit: boolean,): ReactElement {
-            return isEditorLimit
-                ? <div className="nameWithImage-container d-flex position-relative">
+            if (isEditorLimit)
+                return <div className="nameWithImage-container d-flex position-relative">
                     <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image badge bg-transparent position-absolute top-0 start-0"/>
                     <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
                 </div>
-                : <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
+            return <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
         }
 
 
