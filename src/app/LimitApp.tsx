@@ -134,6 +134,12 @@ class LimitAppInterpreter
 
 }
 
+const GamePossibilities = Games.Possibilities.get
+const allGames = GamePossibilities.ALL_GAMES
+const smm1 = Games.SUPER_MARIO_MAKER_1
+const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+const smm2 = Games.SUPER_MARIO_MAKER_2
+
 /** @reactComponent */
 export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties,) {
     const routeName = type.routeName
@@ -145,18 +151,24 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
     const titleContent = gameContentTranslation(`limit.${type.type}.all`,)
     const appInterpreter = new LimitAppInterpreter(type, games,)
 
+    const game = intersect(allGames, games,).length === 3
+        ? LimitGames.ALL_GAMES
+        : games.hasSMM2
+            ? LimitGames.SUPER_MARIO_MAKER_2
+            : LimitGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
+                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
             <SimpleList reactKey="limit" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
         return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
+                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
             <CardList reactKey="limit" interpreter={appInterpreter}/>
         </SubMainContainer>
     return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
+                             asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
         <Table id="limit-table" interpreter={appInterpreter}/>
     </SubMainContainer>
 }
@@ -170,16 +182,16 @@ interface LimitAsideContentProperties
 
     readonly type: LimitTypes
 
-    readonly games: GameCollection
+    readonly game: LimitGames
 
 }
 
 /** @reactComponent */
-function LimitAsideContent({viewDisplay, type, games,}: LimitAsideContentProperties,) {
+function LimitAsideContent({viewDisplay, type, game,}: LimitAsideContentProperties,) {
     return <div id="limit-asideContent-container">
         <TypeAsideContent viewDisplay={viewDisplay} type={type}/>
         <div className="d-inline mx-1"/>
-        <GameAsideContent viewDisplay={viewDisplay} type={type} games={games}/>
+        <GameAsideContent viewDisplay={viewDisplay} type={type} game={game}/>
     </div>
 }
 
@@ -203,28 +215,16 @@ function TypeAsideContent({viewDisplay, type,}: LimitTypeAsideContentProperties,
     </div>
 }
 
-const GamePossibilities = Games.Possibilities.get
-const allGames = GamePossibilities.ALL_GAMES
-const smm1 = Games.SUPER_MARIO_MAKER_1
-const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-const smm2 = Games.SUPER_MARIO_MAKER_2
-
 /** @reactComponent */
-function GameAsideContent({viewDisplay, type, games,}: LimitAsideContentProperties,) {
-    const limitGame = intersect(allGames, games,).length === 3
-        ? LimitGames.ALL_GAMES
-        : games.hasSMM2
-            ? LimitGames.SUPER_MARIO_MAKER_2
-            : LimitGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-
+function GameAsideContent({viewDisplay, type, game,}: LimitAsideContentProperties,) {
     return <div id="limit-gamesButton-container" className="gameAsideContent-container btn-group-vertical btn-group-sm">
-        <LinkButton partialId="allGameLimit" routeName={limitGame.getAllRouteName(type, viewDisplay,)} color={limitGame.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="allGameLimit" routeName={game.getAllRouteName(type, viewDisplay,)} color={game.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="limit-gamesButton-singularGame-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="smm1Or3dsGame" routeName={limitGame.getSmm1Or3dsRouteName(type, viewDisplay,)} color={limitGame.smm1Or3dsColor}>
+            <LinkButton partialId="smm1Or3dsGame" routeName={game.getSmm1Or3dsRouteName(type, viewDisplay,)} color={game.smm1Or3dsColor}>
                 <GameImage reference={smm1}/>
                 <GameImage reference={smm3ds}/>
             </LinkButton>
-            <LinkButton partialId="smm2Game" routeName={limitGame.getSmm2RouteName(type, viewDisplay,)} color={limitGame.smm2Color}>
+            <LinkButton partialId="smm2Game" routeName={game.getSmm2RouteName(type, viewDisplay,)} color={game.smm2Color}>
                 <GameImage reference={smm2}/>
             </LinkButton>
         </div>
