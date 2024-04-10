@@ -94,7 +94,7 @@ class SoundEffectAppInterpreter
             SoundEffectAppOption.CATEGORY,
             SoundEffectAppOption.PLAYER_BEHAVIOUR,
         )
-        if (hasSMM1Or3DS && hasSMM2)
+        if (games.hasAllGames)
             options.push(SoundEffectAppOption.SOUNDS,)
         else {
             if (hasSMM1Or3DS)

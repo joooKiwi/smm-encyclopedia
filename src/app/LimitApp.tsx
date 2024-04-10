@@ -96,19 +96,17 @@ class LimitAppInterpreter
 
     public get tableOptions(): readonly LimitAppOption[] {
         const games = this.#games
-        const hasSMM1Or3DSGames = games.hasSMM1Or3DS
-        const hasSMM2Games = games.hasSMM2
 
         const options: LimitAppOption[] = [
             LimitAppOption.ACRONYM,
             LimitAppOption.NAME,
         ]
-        if (hasSMM1Or3DSGames && hasSMM2Games)
+        if (games.hasAllGames)
             options.push(LimitAppOption.AMOUNT_IN_ALL_GAMES,)
         else {
-            if (hasSMM1Or3DSGames)
+            if (games.hasSMM1Or3DS)
                 options.push(LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS,)
-            if (hasSMM2Games)
+            if (games.hasSMM2)
                 options.push(LimitAppOption.AMOUNT_IN_SMM2,)
         }
         return options

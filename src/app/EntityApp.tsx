@@ -96,7 +96,6 @@ class EntityAppInterpreter
     public get tableOptions(): readonly EntityAppOption[] {
         const games = this.#games
         const gameStyles = this.#gameStyles
-        const hasSMM1Or3DS = games.hasSMM1Or3DS
         const hasSMM2 = games.hasSMM2
 
         const options: EntityAppOption[] = []
@@ -118,10 +117,10 @@ class EntityAppInterpreter
             // EntityAppOption.TIME,
             EntityAppOption.CATEGORY,
         )
-        if (hasSMM1Or3DS && hasSMM2)
+        if (games.hasAllGames)
             options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS, EntityAppOption.EDITOR_LIMIT_IN_SMM2,)
         else {
-            if (hasSMM1Or3DS)
+            if (games.hasSMM1Or3DS)
                 options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM1_AND_3DS_ONLY,)
             if (hasSMM2)
                 options.push(EntityAppOption.EDITOR_LIMIT_IN_SMM2_ONLY,)
