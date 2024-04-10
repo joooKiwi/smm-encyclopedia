@@ -73,15 +73,24 @@ class LimitAppInterpreter
     }
 
     public createCardListContent(enumeration: Limits,) {
+        const games = this.#games
+        const option = games.hasAllGames
+            ? LimitAppOption.AMOUNT_IN_ALL_GAMES
+            : games.hasSMM1Or3DS
+                ? LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS
+                : games.hasSMM2
+                    ? LimitAppOption.AMOUNT_IN_SMM2
+                    : null
+
         if (enumeration.isEditorLimit)
             return <div className="card-bodyWithEditor-container">
                 <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image position-absolute start-0 bottom-0"/>
                 <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
-                    {LimitAppOption.AMOUNT_IN_ALL_GAMES.renderContent(enumeration,)}
+                    {option?.renderContent(enumeration,)}
                 </div>
             </div>
         return <div className="card-body" id={`limit-${enumeration.englishNameInHtml}`}>
-            {LimitAppOption.AMOUNT_IN_ALL_GAMES.renderContent(enumeration,)}
+            {option?.renderContent(enumeration,)}
         </div>
     }
 
