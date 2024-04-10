@@ -89,7 +89,7 @@ interface Content
     readonly limit_SMM1And3DS_isUnknown: NullOrBoolean
     readonly limit_SMM2: NullOr<PossibleLimitAmount_SMM2_Amount>
     readonly limit_SMM2_isUnknown: NullOrBoolean
-    readonly limit_comment: PossibleLimitAmount_Comment
+    readonly limit_comment: NullOr<PossibleLimitAmount_Comment>
 
 }
 
