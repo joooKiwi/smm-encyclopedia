@@ -154,15 +154,15 @@ function getHeaderKey(header: SingleHeaderContent,): string {
  * @param options The displayed options in the table
  * @private
  */
-function retrieveAdditionalClasses(interpreter: AppInterpreterWithTable, options: readonly Enumerable[],): readonly string[] {
-    if (interpreter.getAdditionalClass == null)
+function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly string[] {
+    if (getAdditionalClass == null)
         return Array.from({length: options.length,}, () => EMPTY_STRING,)
 
     const size1 = options.length
     const additionalClasses = new Array<string>(size1,)
     let index1 = size1
     while (index1-- > 0) {
-        const additionalClass = interpreter.getAdditionalClass(options[index1],)
+        const additionalClass = getAdditionalClass(options[index1],)
         if (additionalClass.length === 0) {
             additionalClasses[index1] = EMPTY_STRING
             continue
@@ -185,9 +185,8 @@ function retrieveAdditionalClasses(interpreter: AppInterpreterWithTable, options
  * @param options The displayed options in the table
  * @private
  */
-function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleTableContent[] {
+function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleTableContent[] {
     const size2 = options.length
-    const content = interpreter.content
     const size1 = content.length
     const tableContents = new Array<SingleTableContent>(size1,)
     let index1 = size1
@@ -197,7 +196,7 @@ function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly
         const tableContent: SingleTableContent = [contentValue.englishName,]
         let index2 = -1
         while (++index2 < size2) {
-            const tableContentCreated = interpreter.createTableContent(contentValue, options[index2],)
+            const tableContentCreated = createTableContent(contentValue, options[index2],)
             const size3 = tableContentCreated.length
             let index3 = -1
             while (++index3 < size3)
@@ -216,12 +215,12 @@ function retrieveContent(interpreter: AppInterpreterWithTable, options: readonly
  * @param options The displayed options in the table
  * @private
  */
-function retrieveHeader(interpreter: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleHeaderContent[] {
+function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleHeaderContent[] {
     const headerContent = [] as SingleHeaderContent[]
     const size = options.length
     let index = -1
     while (++index < size) {
-        const tableHeader = interpreter.createTableHeader(options[index],)
+        const tableHeader = createTableHeader(options[index],)
         if (tableHeader == null)
             continue
         headerContent.push(tableHeader,)
