@@ -133,8 +133,8 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
     const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName,)
 
     const routeName = type.routeName
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : `${routeName} (list)` as const satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : `${routeName} (card)` as const satisfies PossibleRouteName
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : `${routeName} (list)` satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : `${routeName} (card)` satisfies PossibleRouteName
 
     return <>
         <p>

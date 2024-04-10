@@ -155,9 +155,9 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
     const smm1OrSmm3dsLink = game.getSmm1Or3dsRouteName(viewDisplay,)
     const smm2Link = game.getSmm2RouteName(viewDisplay,)
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyGameStyle (list)' as const satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyGameStyle (card)' as const satisfies PossibleRouteName
-    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyGameStyle (table)' as const satisfies PossibleRouteName
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyGameStyle (list)' satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyGameStyle (card)' satisfies PossibleRouteName
+    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyGameStyle (table)' satisfies PossibleRouteName
 
     return <>
         <p>

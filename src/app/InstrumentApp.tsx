@@ -128,8 +128,8 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
     const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
     const smm2Link = game.getSmm2RouteName(viewDisplay,)
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyInstrument (list)' as const satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyInstrument (card)' as const satisfies PossibleRouteName
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyInstrument (list)' satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyInstrument (card)' satisfies PossibleRouteName
 
     return <>
         <p>

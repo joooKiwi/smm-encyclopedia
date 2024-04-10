@@ -133,8 +133,8 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
     const smm3dsLink = game.getSmm3dsRouteName(viewDisplay,)
     const smm2Link = game.getSmm2RouteName(viewDisplay,)
 
-    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyEditorVoice (list)' as const satisfies PossibleRouteName
-    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyEditorVoice (card)' as const satisfies PossibleRouteName
+    const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyEditorVoice (list)' satisfies PossibleRouteName
+    const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyEditorVoice (card)' satisfies PossibleRouteName
 
     return <>
         <p>
