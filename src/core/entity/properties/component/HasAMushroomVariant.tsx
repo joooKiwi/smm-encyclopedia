@@ -9,5 +9,5 @@ export default function HasAMushroomVariant({value: entity,}: EntityOnlyProperti
     if (value !== true)
         return null
 
-    return <i id={`${entity.englishNameInHtml}-hasAMushroom-property`} className="hasAMushroom-property mushroom-image-property"/>
+    return <em className="hasAMushroom-property mushroom-image-property"/>
 }

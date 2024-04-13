@@ -144,9 +144,9 @@ function CharacterNameDescription({viewDisplay, game,}: CharacterNameDescription
             },)}
             {gameContentTranslation('character name.description.intro references', {
                 //TODO: Add a editor "character name" link
-                StoryMode: <i key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</i>,//TODO: Add a mystery mushroom "character name" link
-                mysteryMushroom: <i key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{mysteryMushroomAsLowerCase}</i>,
-                MysteryMushroom: <i key="mysteryMushroom" className="mystery-mushroom-image">{mysteryMushroom}</i>,
+                StoryMode: <em key="StoryMode">{OtherWordInTheGames.STORY_MODE.singularNameOnReference}</em>,//TODO: Add a mystery mushroom "character name" link
+                mysteryMushroom: <em key="mysteryMushroom (lowercase)" className="mystery-mushroom-image">{mysteryMushroomAsLowerCase}</em>,
+                MysteryMushroom: <em key="mysteryMushroom" className="mystery-mushroom-image">{mysteryMushroom}</em>,
                 smm1Link: <span key="smm1Link" id="smm1Game-mysteryMushroom-description"><GameImage reference={smm1}/></span>,
                 smm2Link: <span key="smm2Link" id="smm2Game-storyMode-description"><GameImage reference={smm2}/></span>,
             },)}

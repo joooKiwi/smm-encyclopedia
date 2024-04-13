@@ -13,11 +13,10 @@ export default function CanMakeASoundOutOfAMusicBlock({value: entity,}: EntityOn
         return null
 
     const comment = reference.canMakeASoundOutOfAMusicBlockComment
-    const id = `${entity.englishNameInHtml}-canMakeASoundOutOfAMusicBlock-property`
-
     if (comment == null)
-        return <i id={id} className="canMakeASoundOutOfAMusicBlock-property music-block-property"/>
-    return <Tooltip option={{title: gameContentTranslation(`instrument.${comment}`),}} elementId={id}>
-        <i id={id} className="canMakeASoundOutOfAMusicBlock-property music-block-property property-with-comment"/>
+        return <em className="canMakeASoundOutOfAMusicBlock-property music-block-property"/>
+
+    return <Tooltip option={{title: gameContentTranslation(`instrument.${comment}`),}} reference={htmlElement}>
+        <em ref={htmlElement} className="canMakeASoundOutOfAMusicBlock-property music-block-property property-with-comment"/>
     </Tooltip>
 }

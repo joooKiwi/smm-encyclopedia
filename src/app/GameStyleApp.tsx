@@ -162,7 +162,7 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
     return <>
         <p>
             {gameContentTranslation('game style.description.intro page', {
-                gameStyles: <i key="gameStyles">{gameContentTranslation('game style.plural',).toLowerCase()}</i>,
+                gameStyles: <em key="gameStyles">{gameContentTranslation('game style.plural',).toLowerCase()}</em>,
                 smm1Link: <TextOrLink key="smm1Link" id="smm1Game-description" routeName={smm1OrSmm3dsLink}><GameImage reference={smm1}/></TextOrLink>,
                 smm3dsLink: <TextOrLink key="smm3dsLink" id="smm3dsGame-description" routeName={smm1OrSmm3dsLink}><GameImage reference={smm3ds}/></TextOrLink>,
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={smm2}/></TextOrLink>,

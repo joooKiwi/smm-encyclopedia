@@ -18,10 +18,10 @@ export default function CanBeInAParachute({value: entity,}: EntityOnlyProperties
     const id = `${entity.englishNameInHtml}-canBeInAParachute-property`
 
     if (comment == null)
-        return <i id={id} className="canBeInAParachute-property parachute-image-property"/>
+        return <em className="canBeInAParachute-property parachute-image-property"/>
 
     const limit = Limits.LOOSE_COIN_LIMIT
-    return <Tooltip option={{title: gameContentTranslation(`entity.property.${comment}`, {acronym: limit.acronym!, limit: limit.reference.languageValue,},),}} elementId={id}>
-        <i id={id} className="canBeInAParachute-property parachute-image-property property-with-comment"/>
+    return <Tooltip option={{title: gameContentTranslation(`entity.property.${comment}`, {acronym: limit.acronym!, limit: limit.reference.languageValue,},),}} reference={htmlElement}>
+        <em ref={htmlElement} className="canBeInAParachute-property parachute-image-property property-with-comment"/>
     </Tooltip>
 }

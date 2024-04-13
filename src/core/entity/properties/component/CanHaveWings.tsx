@@ -18,10 +18,10 @@ export default function CanHaveWings({value: entity,}: EntityOnlyProperties,) {
     const id = `${entity.englishNameInHtml}-canHaveWings-property`
 
     if (comment == null)
-        return <i id={id} className="canHaveWings wing-image-property"/>
+        return <em className="canHaveWings wing-image-property"/>
 
     const limit = Limits.LOOSE_COIN_LIMIT
-    return <Tooltip option={{title: gameContentTranslation(`entity.property.${comment}`, {acronym: limit.acronym!, limit: limit.reference.languageValue,},),}} elementId={id}>
-        <i id={id} className="canHaveWings wing-image-property property-with-comment"/>
+    return <Tooltip option={{title: gameContentTranslation(`entity.property.${comment}`, {acronym: limit.acronym!, limit: limit.reference.languageValue,},),}} reference={htmlElement}>
+        <em ref={htmlElement} className="canHaveWings wing-image-property property-with-comment"/>
     </Tooltip>
 }
