@@ -60,7 +60,7 @@ function GameLink({game, selected,}: GameLinkProperties,) {
     }
 
     return <Link type="button" id={id} className={`btn btn-${isSelected ? '' : 'outline-'}secondary link-button`} to={newPath}
-                 onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID)?.instance.hide()}>
+                 onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID,)?.instance.hide()}>
         <GameImage reference={game}/>
     </Link>
 }

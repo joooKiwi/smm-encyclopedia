@@ -87,7 +87,7 @@ function GameStyleLink({gameStyle, disabled = false, selected,}: GameStyleLinkPr
 
 
     return <Link type="button" id={id} className={`btn btn${isSelected ? '' : '-outline'}-secondary link-button ${disabled ? 'disabled' : ''}`} to={newPath}
-                 onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID)?.instance.hide()}>
+                 onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(PARAMETER_MODAL_ID,)?.instance.hide()}>
         <GameStyleImage reference={gameStyle}/>
     </Link>
 }
