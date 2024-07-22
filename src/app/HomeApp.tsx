@@ -1,11 +1,8 @@
-import {Link} from 'react-router-dom'
-
 import {unfinishedText}                                                                from 'app/tools/text/UnfinishedText'
 import PageProgress                                                                    from 'app/util/PageProgress'
 import {OtherWordInTheGames}                                                           from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation}                                    from 'lang/components/translationMethods'
 import {MARIO_MAKER_2_WIKI_FANDOM_LINK, SUPER_MARIO_WIKI_LINK, THE_CUTTING_FLOOR_LINK} from 'external/WikiLinks'
-import {routeFromName}                                                                 from 'route/route'
 
 /** @reactComponent */
 export default function HomeApp() {
@@ -25,15 +22,6 @@ export default function HomeApp() {
 
     return <>
         <h1 className="text-center fw-bold text-decoration-underline">{contentTranslation('home.title',)}</h1>
-        <div className="container-md alert alert-danger" role="alert">
-            <p>
-                <span>Super Mario Maker for the WiiU & 3DS will no longer be playable online on <strong>April 2024</strong>. </span>
-                <br className="d-none d-md-block"/>
-                <span>If you can provide some informations about the <Link to={routeFromName('everyOfficialCourse (Game=1)')}>Official notifications</Link>, </span>
-                <br className="d-none d-md-block"/>
-                <span>join <a href="https://discord.gg/r8AGYXtExy">Geitje</a>, <a href="https://discord.gg/UZTJxHM">Psycrow</a> or <a href="https://discord.gg/kEnbJ9GDtZ">my</a> <span className="bi bi-discord">Discord</span> server to help. </span>
-            </p>
-        </div>
         <div className="container-lg alert alert-warning" role="alert">
             {contentTranslation('home.warning.in construction',)}
             {contentTranslation('home.warning.more details',)}
