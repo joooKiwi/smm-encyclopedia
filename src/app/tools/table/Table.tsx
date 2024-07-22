@@ -111,7 +111,7 @@ function HeaderTooltip({children, elementId,}: ReactPropertiesWithChildren<{ rea
     const tooltip = children.tooltip
     if (tooltip == null)
         return null
-    return <Tooltip elementId={elementId} option={{title: tooltip, placement: 'bottom',}}/>
+    return <Tooltip option={{title: tooltip, placement: 'bottom',}} reference={elementId}/>
 }
 
 function FooterTooltip({children, elementId,}: ReactPropertiesWithChildren<{ readonly elementId: string, }, SingleHeaderContent>,) {
@@ -120,7 +120,7 @@ function FooterTooltip({children, elementId,}: ReactPropertiesWithChildren<{ rea
     const tooltip = children.tooltip
     if (tooltip == null)
         return null
-    return <Tooltip elementId={elementId} option={{title: tooltip, placement: 'top',}}/>
+    return <Tooltip option={{title: tooltip, placement: 'top',}} reference={elementId}/>
 }
 
 function HeaderOrFooterContent({children,}: SimpleReactPropertiesWithChildren<SingleHeaderContent>,) {

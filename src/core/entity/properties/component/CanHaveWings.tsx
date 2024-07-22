@@ -1,6 +1,8 @@
 import './CanHaveWings.scss'
 import './PropertyWithComment.scss'
 
+import {useRef} from 'react'
+
 import type {EntityOnlyProperties} from 'core/entity/properties/EntityOnlyProperties'
 
 import Tooltip                  from 'bootstrap/tooltip/Tooltip'
@@ -9,14 +11,13 @@ import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /** @reactComponent */
 export default function CanHaveWings({value: entity,}: EntityOnlyProperties,) {
+    const htmlElement = useRef<HTMLElement>(null,)
     const reference = entity.reference
     const value = reference.canHaveWings
     if (value !== true)
         return null
 
     const comment = reference.canHaveWingsComment
-    const id = `${entity.englishNameInHtml}-canHaveWings-property`
-
     if (comment == null)
         return <em className="canHaveWings wing-image-property"/>
 

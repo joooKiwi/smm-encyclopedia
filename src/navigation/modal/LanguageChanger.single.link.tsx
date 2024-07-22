@@ -24,18 +24,12 @@ export function LanguageChangerSingleLink({language, callbackToSetLanguage,}: Si
     const buttonId = `single-languageChanger-${englishNameAsId}`
 
     if (language.isCurrent)
-        return createTooltip(language, buttonId,
-            <button key={`single language changer link (${language.englishName}) - button`} id={buttonId} className="btn btn-lg btn-outline-primary active w-100">{language.originalName}</button>,
-            )
-    return createTooltip(language, buttonId,
-        <Link key={`single language changer link (${language.englishName} - link)`} id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
-              onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>,
-        )
-}
+        return <Tooltip option={({title: languageTranslation(language.englishName), placement: 'top',})} reference={buttonId}>
+            <button id={buttonId} className="btn btn-lg btn-outline-primary active w-100">{language.originalName}</button>
+        </Tooltip>
 
-function createTooltip(language: ProjectLanguages, id: string, element: ReactElement,) {
-    const englishName = language.englishName
-
-    return <Tooltip key={`single language changer link (tooltip - ${englishName} - in ${ProjectLanguages.current.englishName})`} elementId={id}
-                    option={({title: languageTranslation(englishName), placement: 'top',})}>{element}</Tooltip>
+    return <Tooltip option={({title: languageTranslation(language.englishName), placement: 'top',})} reference={buttonId} >
+        <Link id={buttonId} to={routeFromLocation(location, language,)} className="btn btn-lg btn-outline-primary w-100"
+              onClick={() => callbackToSetLanguage(language)}>{language.originalName}</Link>
+    </Tooltip>
 }

@@ -1,9 +1,11 @@
 import 'app/tools/text/TextWithInformativeTooltip.scss'
 
+import {useRef} from 'react'
+
 import type {Limits}                            from 'core/limit/Limits'
 import type {SimpleReactPropertiesWithChildren} from 'util/react/ReactProperties'
 
-import Tooltip from 'bootstrap/tooltip/Tooltip'
+import Tooltip                  from 'bootstrap/tooltip/Tooltip'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 interface LimitAmountNoteProperties
@@ -15,13 +17,13 @@ interface LimitAmountNoteProperties
 
 /** @reactComponent */
 export default function LimitWithPossibleTooltipOnNote({value, children,}: LimitAmountNoteProperties,) {
-    const id = `${value.englishNameInHtml}-limitWithPossibleTooltipOnNote-container`
+    const htmlElement = useRef<HTMLDivElement>(null,)
     const note = value.reference.amountComment
 
     if (note == null)
         return children
-    return <Tooltip elementId={id} option={{title: gameContentTranslation(`limit.note.${note}`, value.noteForTranslation,),}}>
-        <div id={id} className="limitWithPossibleTooltipOnNote-container text-withInformativeTooltip-container d-inline">
+    return <Tooltip option={{title: gameContentTranslation(`limit.note.${note}`, value.noteForTranslation,),}} reference={htmlElement}>
+        <div ref={htmlElement} className="limitWithPossibleTooltipOnNote-container text-withInformativeTooltip-container d-inline">
             {children}
         </div>
     </Tooltip>

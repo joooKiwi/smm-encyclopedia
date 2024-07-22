@@ -1,19 +1,20 @@
 import './BottomLanguageChanger.button.scss'
 
+import {useRef}                    from 'react'
 import TranslateIcon               from 'bootstrap/icon/TranslateIcon'
-import ModalButton                 from 'bootstrap/modal/element/ModalButton'
 import Tooltip                     from 'bootstrap/tooltip/Tooltip'
 import {contentTranslation}        from 'lang/components/translationMethods'
 import {LANGUAGE_CHANGER_MODAL_ID} from 'navigation/button/modalIds'
-
-const ID = 'bottomLanguageChanger-button'
+import ModalButton                 from 'bootstrap/modal/element/ModalButton'
 
 /** @reactComponent */
-export default function BottomLanguageChangerButton(){
-    return <Tooltip elementId={ID} option={({title: contentTranslation('Change the language',), placement: 'left', customClass: 'bottomLanguage-tooltip',})}>
-        <ModalButton key={`navigation button (bottom language changer)`} id={ID} elementToShow={LANGUAGE_CHANGER_MODAL_ID} className="btn btn-lg btn-outline-light btn-navigation rounded-pill">
+export default function BottomLanguageChangerButton() {
+    const htmlElement = useRef<HTMLButtonElement>(null,)
+
+    return <Tooltip option={({title: contentTranslation('Change the language',), placement: 'left', customClass: 'bottomLanguage-tooltip',})} reference={htmlElement}>
+        <ModalButton ref={htmlElement} id="bottomLanguageChanger-button" className="btn btn-lg btn-outline-light btn-navigation rounded-pill" elementToShow={LANGUAGE_CHANGER_MODAL_ID}>
             <TranslateIcon/>
-            <span key={`navigation text button (bottom language changer)`} className="btn-navigation-text d-none d-lg-inline-block">{contentTranslation('Change the language',)}</span>
+            <span className="btn-navigation-text d-none d-lg-inline-block">{contentTranslation('Change the language',)}</span>
         </ModalButton>
     </Tooltip>
 }
