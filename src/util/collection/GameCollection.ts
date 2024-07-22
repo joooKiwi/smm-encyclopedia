@@ -1,9 +1,10 @@
-import type {PossibleIterable}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {Games} from 'core/game/Games'
 
-export class GameCollection<const out T extends Games = Games, const out REFERENCE extends PossibleIterable<T> = PossibleIterable<T>, >
+export class GameCollection<const T extends Games = Games,
+    const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
     extends GenericCollectionHolder<T, REFERENCE> {
 
     //region -------------------- Fields --------------------
@@ -23,27 +24,27 @@ export class GameCollection<const out T extends Games = Games, const out REFEREN
      * type in its values
      */
     public get hasAllGames(): boolean {
-        return this.#hasAllGames ??= this.hasAll(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,)
+        return this.#hasAllGames ??= this.hasAll([Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS, Games.SUPER_MARIO_MAKER_2,],)
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} type in its values */
     public get hasSMM1(): boolean {
-        return this.#hasSMM1 ??= this.hasOne(Games.SUPER_MARIO_MAKER_1,)
+        return this.#hasSMM1 ??= this.has(Games.SUPER_MARIO_MAKER_1,)
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
     public get hasSMM3DS(): boolean {
-        return this.#hasSMM3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+        return this.#hasSMM3DS ??= this.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_1 SMM1} or {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} type in its values */
     public get hasSMM1Or3DS(): boolean {
-        return this.#hasSMM1Or3DS ??= this.hasOne(Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+        return this.#hasSMM1Or3DS ??= this.hasOne([Games.SUPER_MARIO_MAKER_1, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,],)
     }
 
     /** The collection has the {@link Games.SUPER_MARIO_MAKER_2 SMM2} type in its values */
     public get hasSMM2(): boolean {
-        return this.#hasSMM2 ??= this.hasOne(Games.SUPER_MARIO_MAKER_2,)
+        return this.#hasSMM2 ??= this.has(Games.SUPER_MARIO_MAKER_2,)
     }
 
     //endregion -------------------- Getter methods --------------------
