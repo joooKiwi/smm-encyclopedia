@@ -23,7 +23,7 @@ export default function GameStyleGroup() {
         return null
     if (gameStyles.isEmpty)
         return null
-    const isSmm2Selected = games.hasOne(Games.SUPER_MARIO_MAKER_2,)
+    const isSmm2Selected = games.has(Games.SUPER_MARIO_MAKER_2,)
 
     return <div key="option container (Game styles)" id="gameStyles-option-container">
         <div className="btn-group-vertical d-lg-none">
@@ -62,7 +62,7 @@ interface GameStyleLinkProperties
 function GameStyleLink({gameStyle, disabled = false, selected,}: GameStyleLinkProperties,) {
     const pathname = useLocation().pathname
     const id = `gameStyleLink-${gameStyle.englishNameInHtml}-button`
-    const isSelected = selected.hasOne(gameStyle,)
+    const isSelected = selected.has(gameStyle,)
 
     if (isSelected && selected.size === 1)
         return <button type="button" id={id} className="btn btn-secondary link-button" disabled>

@@ -38,7 +38,7 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
      * types in its values
      */
     public get hasAllGameStylesInSMM1(): boolean {
-        return this.#hasAllGameStylesInSMM1 ??= this.hasAll(GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,)
+        return this.#hasAllGameStylesInSMM1 ??= this.hasAll([GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,],)
     }
 
     /** The collection has the {@link GameStyles.SUPER_MARIO_BROS SMB} type in its values */

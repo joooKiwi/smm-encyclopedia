@@ -15,9 +15,9 @@ import DisplayViewRouteButton                            from 'navigation/Displa
 export default function DisplayViewBody() {
     const games = useCurrentGames('display view body',) ?? CollectionConstants.EMPTY_COLLECTION_HOLDER
 
-    const isSMM1Selected = games.hasOne(Games.SUPER_MARIO_MAKER_1,)
-    // const isSMM3DSSelected = games.hasOne(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
-    const isSMM2Selected = games.hasOne(Games.SUPER_MARIO_MAKER_2,)
+    const isSMM1Selected = games.has(Games.SUPER_MARIO_MAKER_1,)
+    // const isSMM3DSSelected = games.has(Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+    const isSMM2Selected = games.has(Games.SUPER_MARIO_MAKER_2,)
     const tag = OtherWordInTheGames.TAG.singularNameOnReference
     const tagAsLowerCase = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
     // const tags = OtherWordInTheGames.TAG.pluralNameOnReference

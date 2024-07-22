@@ -40,7 +40,7 @@ export default function GameGroup() {
 function GameLink({game, selected,}: GameLinkProperties,) {
     const pathname = useLocation().pathname
     const id = `gameLink-${game.englishNameInHtml}-button`
-    const isSelected = selected.hasOne(game,)
+    const isSelected = selected.has(game,)
 
     if (isSelected && selected.size === 1)
         return <button type="button" id={id} className="btn btn-secondary link-button disabled">
