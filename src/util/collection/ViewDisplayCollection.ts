@@ -1,9 +1,10 @@
-import type {PossibleIterable}   from '@joookiwi/collection'
-import {GenericCollectionHolder} from '@joookiwi/collection'
+import type {PossibleIterableArraySetOrCollectionHolder, PossibleIterableOrCollection} from '@joookiwi/collection'
+import {GenericCollectionHolder}                                                       from '@joookiwi/collection'
 
 import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 
-export class ViewDisplayCollection<const out T extends ViewDisplays = ViewDisplays, const out REFERENCE extends PossibleIterable<T> = PossibleIterable<T>, >
+export class ViewDisplayCollection<const T extends ViewDisplays = ViewDisplays,
+    const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>, >
     extends GenericCollectionHolder<T, REFERENCE> {
 
     //region -------------------- Fields --------------------
@@ -23,27 +24,27 @@ export class ViewDisplayCollection<const out T extends ViewDisplays = ViewDispla
      * type in its values
      */
     public get hasAllViewDisplay(): boolean {
-        return this.#hasAllViewDisplay ??= this.hasAll(ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST, ViewDisplays.TABLE,)
+        return this.#hasAllViewDisplay ??= this.hasAll([ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST, ViewDisplays.TABLE,],)
     }
 
     /** The collection has the {@link ViewDisplays.SIMPLE_LIST} type in its values */
     public get hasSimpleList(): boolean {
-        return this.#hasSimpleList ??= this.hasOne(ViewDisplays.SIMPLE_LIST,)
+        return this.#hasSimpleList ??= this.has(ViewDisplays.SIMPLE_LIST,)
     }
 
     /** The collection has the {@link ViewDisplays.CARD_LIST} type in its values */
     public get hasCardList(): boolean {
-        return this.#hasCardList ??= this.hasOne(ViewDisplays.CARD_LIST,)
+        return this.#hasCardList ??= this.has(ViewDisplays.CARD_LIST,)
     }
 
     /** The collection has the {@link ViewDisplays.SIMPLE_LIST} or {@link ViewDisplays.CARD_LIST} type in its values */
     public get hasSimpleOrCardList(): boolean {
-        return this.#hasSimpleOrCardList ??= this.hasOne(ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST,)
+        return this.#hasSimpleOrCardList ??= this.hasOne([ViewDisplays.SIMPLE_LIST, ViewDisplays.CARD_LIST,],)
     }
 
     /** The collection has the {@link ViewDisplays.TABLE} type in its values */
     public get hasSMM2(): boolean {
-        return this.#hasTable ??= this.hasOne(ViewDisplays.TABLE,)
+        return this.#hasTable ??= this.has(ViewDisplays.TABLE,)
     }
 
     //endregion -------------------- Getter methods --------------------

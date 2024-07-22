@@ -1,47 +1,33 @@
-import type {GameStyleProperty} from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
+import type {GameStyleProperty}        from 'core/entity/properties/gameStyle/GameStyleProperty'
 
-import TextComponent                     from 'app/tools/text/TextComponent'
-import {AbstractEntityPropertyComponent} from 'core/_component/AbstractEntityPropertyComponent'
-import {GameStyles}                      from 'core/gameStyle/GameStyles'
-import Image                             from 'app/tools/images/Image'
-import {gameContentTranslation}          from 'lang/components/translationMethods'
-import {StringContainer}                 from 'util/StringContainer'
+import TextComponent            from 'app/tools/text/TextComponent'
+import GameStyleImage           from 'core/gameStyle/GameStyleImage'
+import {GameStyles}             from 'core/gameStyle/GameStyles'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/** @reactComponent */
-export default class GameStyleComponent
-    extends AbstractEntityPropertyComponent<GameStyleProperty, GameStyles> {
-
-
-    protected override get _map() {
-        return this.reference.toGameStyleMap()
+/**
+ * @deprecated This component should be replaced to something else
+ * @reactComponent
+ */
+export default function GameStyleComponent({reference, name, displayAllAsText,}: EntityPropertyProperties<GameStyleProperty>,) {
+    if (reference.isInSuperMarioBrosStyle
+        && reference.isInSuperMarioBros3Style
+        && reference.isInSuperMarioWorldStyle
+        && reference.isInNewSuperMarioBrosUStyle
+        && reference.isInSuperMario3DWorldStyle === true) {
+        if (displayAllAsText)
+            return <TextComponent content={gameContentTranslation('game style.all',)}/>
+        return <div key={`${name.english} (every game styles)`}>{GameStyles.CompanionEnum.get.values.map(it =>
+            <GameStyleImage reference={it}/>,)}</div>
     }
 
-    protected override get _isInAll() {
-        return this.reference.isInSuperMarioBrosStyle
-            && this.reference.isInSuperMarioBros3Style
-            && this.reference.isInSuperMarioWorldStyle
-            && this.reference.isInNewSuperMarioBrosUStyle
-            && this.reference.isInSuperMario3DWorldStyle === true
-    }
-
-    protected override _renderSingleComponent(gameStyle: GameStyles,) {
-        return GameStyleComponent.renderSingleComponent(gameStyle, this.name.english,)
-    }
-
-    public static renderSingleComponent(gameStyle: GameStyles, identifier?: string,) {
-        const gameStyleEnglishNameInHtml = gameStyle.englishNameInHtml
-        const key = identifier == null ? gameStyle.englishName : `${identifier} - ${gameStyle.englishName}`
-        const id = identifier == null ? `${gameStyleEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${gameStyleEnglishNameInHtml}-gameStyle-image`
-
-        return <Image key={key} id={id} file={gameStyle.imageFile} className={`gameStyle-image ${gameStyleEnglishNameInHtml}-image`}/>
-    }
-
-    protected override _renderComponentForAllAsText() {
-        return <TextComponent content={gameContentTranslation('game style.all')}/>
-    }
-
-    protected override _renderComponentForAllAsImages() {
-        return <div key={`${this.name.english} (every game styles)`}>{GameStyles.CompanionEnum.get.values.map(gameStyle => this._renderSingleComponent(gameStyle),)}</div>
-    }
-
+    const gameStyles = [] as GameStyles[]
+    reference.toGameStyleMap().forEach((isSelected, gameStyle,) => {
+        if (isSelected)
+            gameStyles.push(gameStyle,)
+    },)
+    if (gameStyles.length === 1)
+        return <GameStyleImage reference={gameStyles[0]}/>
+    return <div key={`${name.english} - group`}>{gameStyles.map(it => <GameStyleImage reference={it}/>)}</div>
 }

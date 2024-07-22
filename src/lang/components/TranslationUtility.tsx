@@ -1,3 +1,4 @@
+import type {StringOrNumeric} from '@joookiwi/type'
 import type {TOptions} from 'i18next'
 
 import type {TranslationReplaceKeysMap} from 'lang/components/TranslationProperty'
@@ -28,49 +29,73 @@ export class TranslationUtility {
         return value
     }
 
-    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<string>,): string
+    public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<StringOrNumeric>,): string
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap<ReactElement>,): ReactElement
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString
     public static replaceInTranslation(value: string, keyMap: TranslationReplaceKeysMap,): ReactElementOrString {
-        let argumentsFound: string[] = []
-        for (const replaceKey of value.matchAll(this.STARTING_REGEX)) {
+        let argumentsFound = [] as string[]
+        for (const replaceKey of value.matchAll(this.STARTING_REGEX,)) {
             const startingIndex = replaceKey.index!
             const endingIndex = value.indexOf(this.ENDING_CHARACTER, startingIndex,)
-            argumentsFound.push(value.substring(startingIndex + this.STARTING_LENGTH, endingIndex))
+            argumentsFound.push(value.substring(startingIndex + this.STARTING_LENGTH, endingIndex,),)
         }
 
-        const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX).filter(splitValue => !argumentsFound.includes(splitValue))
-        let finalArguments: ReactElementOrString[] = []
-        let containsOnlyString = true
-        for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++) {
-            const replacementArgument = keyMap[argumentsFound[i]]
-            this.#addArgumentToArray(finalArguments, splitArguments[j], replacementArgument,)
-            if (containsOnlyString && replacementArgument != null && typeof replacementArgument != 'string')
-                containsOnlyString = false
+        let containsOnlyStringOrNumeric = true
+        for (let i = 0; i < argumentsFound.length; i++) {
+            const value = keyMap[argumentsFound[i]]
+            if (value == null) {
+                containsOnlyStringOrNumeric = false
+                break
+            }
+
+            const typeOfValue = typeof value
+            if (typeOfValue === 'string')
+                continue
+            if (typeOfValue === 'number')
+                continue
+            if (typeOfValue === 'bigint')
+                continue
+
+            containsOnlyStringOrNumeric = false
+            break
         }
-        return containsOnlyString ? finalArguments.join('') : <>{finalArguments}</>
+
+        const splitArguments = value.split(this.STARTING_OR_ENDING_REGEX,).filter(splitValue => !argumentsFound.includes(splitValue,),)
+        let finalArguments = [] as ReactElementOrStringOrNumeric[]
+        for (let i = 0, j = 0; i < argumentsFound.length || j < splitArguments.length; i++, j++)
+            this.#addArgumentToArray(finalArguments, splitArguments[j], keyMap[argumentsFound[i]],)
+
+        if (containsOnlyStringOrNumeric)
+            return finalArguments.join('',)
+        return <>{finalArguments}</>
     }
 
     /**
      * Adds the arguments in the array provided in the first argument.
      *
      * The split argument is always added.
-     * But, the replacement argument can be null (& is not added).
+     * But the replacement argument can be null (& is not added).
      *
      * @param finalArguments the final array of arguments without any null values
-     * @param splitArgument the the split argument
+     * @param splitArgument the split argument
      * @param replacementArgument the replacement argument
      */
-    static #addArgumentToArray(finalArguments: ReactElementOrString[], splitArgument: string, replacementArgument: | ReactElementOrString | undefined,): void {
-        finalArguments.push(splitArgument)
+    static #addArgumentToArray(finalArguments: ReactElementOrStringOrNumeric[], splitArgument: string, replacementArgument: UndefinedOr<ReactElementOrStringOrNumeric>,): void {
+        finalArguments.push(splitArgument,)
         if (replacementArgument == null)
             return
-        finalArguments.push(replacementArgument)
+        finalArguments.push(replacementArgument,)
 
         if (isInProduction)
             return
 
-        if (typeof replacementArgument != 'string' && replacementArgument?.key == null)
+        if (typeof replacementArgument == 'string')
+            return
+        if (typeof replacementArgument == 'number')
+            return
+        if (typeof replacementArgument == 'bigint')
+            return
+        if (replacementArgument?.key == null)
             console.warn(`The react element ${replacementArgument.type} doesn't contain a key.`)
     }
 

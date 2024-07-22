@@ -16,7 +16,7 @@ describe('Limit (file test)', () => {
     const everyLimitInSMM2 = [null, ...types.everyPossibleAmount_smm2_limit,] as const
     const everyComment = [null, ...types.everyPossibleComment_limit,] as const
 
-    file.forEach(it => describe(getEnglishName(it), () => {// eslint-disable-line jest/valid-title
+    file.forEach(it => describe(getEnglishName(it,), () => {// eslint-disable-line jest/valid-title
         const isAlternativeLimit = it.type == null
 
         testOnlyEnglishAndFrench(it,)

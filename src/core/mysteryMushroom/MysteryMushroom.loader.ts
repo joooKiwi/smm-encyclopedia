@@ -147,7 +147,7 @@ function retrieveGames(value: | PossibleAcronym_GameReference | PokemonGeneratio
 function retrieveGameReference(value: Nullable<PossibleAcronym_GameReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
     if (value == null)
         return null
-    return gameReferenceCompanion.getValueByNameOrAcronym(value,)
+    return gameReferenceCompanion.getValueByAcronym(value,)
 }
 
 function retrieveGameReferenceOrPokemonGenerationOrUnknown(value: NullOr<| PossibleAcronym_GameReference | PokemonGeneration | UnknownReference>, gameReferenceCompanion: GameReferenceCompanion,): NullOr<GameReferences> {
@@ -157,5 +157,5 @@ function retrieveGameReferenceOrPokemonGenerationOrUnknown(value: NullOr<| Possi
         return null //TODO Try finding the references of the games
     if (value.startsWith('Pokémon gen'))
         return null //TODO return each values of the pokémon games
-    return gameReferenceCompanion.getValueByNameOrAcronym(value,)
+    return gameReferenceCompanion.getValueByAcronym(value,)
 }

@@ -1,20 +1,11 @@
-@import '../functions';
-@import '../variables';
-@import '../mixin';
-
-.card-body {
-  span {
-    &::before {
-      color: var(--bs-body-color);
-    }
-
-    &:first-child::before {
-      content: none;
-    }
-  }
-}
-
 #limit-app-container {
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
+  }
+
+  .description-container .game-image { height: var(--bs-font-size-lg) }
+
   .course-theme-image {
     background-image: none;
     padding: 0;
@@ -31,34 +22,20 @@
   }
 }
 
-//region  -------------------- Link buttons --------------------
-
-#limit-linkButton-playAndEditor-container {
-  margin-left: 0;
-}
-
-#allLimit-button {
-  border: {
-    top-right-radius: vaR(--bs-btn-border-radius);
-    bottom: {
-      left-radius: 0;
-      right-radius: 0;
+.card-body {
+  span {
+    &::before {
+      color: var(--bs-body-color);
     }
-  };
-}
 
-#playLimit-button {
-  border-bottom-left-radius: var(--bs-btn-border-radius);
-}
-
-#editorLimit-button {
-  border-bottom-right-radius: var(--bs-btn-border-radius);
-}
-
-//endregion  -------------------- Link buttons --------------------
-
-@include media-breakpoint-up($grid-breakpoint-md) {
-  #limit-container > p {
-    margin-top: 1.25cm;
+    &:first-child::before {
+      content: none;
+    }
   }
+}
+
+#limit-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
 }

@@ -78,9 +78,17 @@
 
   "Type":  "Type",
   "All":   "Tout",
-  "Official": {
-    "Yes": "Officiel",
-    "No":  "Non-officiel"
+  "Official":   {"singular": "Officiel",   "plural": "Officiels"},
+  "Unofficial": {"singular": "Non-officiels", "plural": "Non-officiels"},
+  "view type": {
+    "list":  {"singular": "Liste",   "plural": "Listes"},
+    "card":  {"singular": "Carte",   "plural": "Cartes"},
+    "table": {"singular": "Tableau", "plural": "Tableaux"}
+  },
+  "variant": {
+    "European": "variant d'Europe",
+    "American": "variant d'Amérique",
+    "Japanese": "variant du Japon"
   },
 
   "In other languages":          "Dans d'autres langues",

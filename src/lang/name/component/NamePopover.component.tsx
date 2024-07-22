@@ -66,14 +66,14 @@ export default class NamePopoverComponent
         const setDoesDisplayPopover = this.setDoesDisplayPopover
 
         this.setState({
-            element: <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, contentTranslation('In other languages'),)}
+            element: <TextPopover key={`${id} - span popover`} elementId={id} option={createOption(this.listId, this.popoverOrientation, contentTranslation('In other languages',),)}
                                   {...this.otherProperties} on={({show: () => setDoesDisplayPopover(true), hide: () => setDoesDisplayPopover(false),})}>
                 {this.#currentLanguageTextContent}
             </TextPopover>,
         })
     }
 
-    public override render(): NonNullable<ReactElement> {
+    public override render(): NonNullReactElement {
         return this.state.element
     }
 
@@ -86,7 +86,7 @@ export default class NamePopoverComponent
  * @param popoverOrientation the {@link Popover popover} orientation
  * @param title popover title
  */
-function createOption(elementId: string, popoverOrientation: Nullable<PopoverOrientation>, title: string,): Partial<Popover.Options> {
+function createOption(elementId: string, popoverOrientation: NullableString<PopoverOrientation>, title: string,): Partial<Popover.Options> {
     const option: Partial<Popover.Options> = {
         title: title,
         content: document.getElementById(elementId)!,

@@ -1,51 +1,24 @@
-import type {TimeProperty} from 'core/entity/properties/time/TimeProperty'
+import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
+import type {TimeProperty}             from 'core/entity/properties/time/TimeProperty'
 
-import Image                                 from 'app/tools/images/Image'
-import TextComponent                         from 'app/tools/text/TextComponent'
-import {AbstractDualEntityPropertyComponent} from 'core/_component/AbstractDualEntityPropertyComponent'
-import {Times}                               from 'core/time/Times'
-import {gameContentTranslation}              from 'lang/components/translationMethods'
-import {StringContainer}                     from 'util/StringContainer'
+import TextComponent            from 'app/tools/text/TextComponent'
+import TimeImage                from 'core/time/TimeImage'
+import {Times}                  from 'core/time/Times'
+import {gameContentTranslation} from 'lang/components/translationMethods'
 
-/** @reactComponent */
-export default class TimeComponent
-    extends AbstractDualEntityPropertyComponent<TimeProperty> {
-
-    protected override get _isInAll() {
-        return this.reference.isInDayTheme
-            && this.reference.isInNightTheme === true
+/**
+ * @deprecated This component should be replaced with something else
+ * @reactComponent
+ */
+export default function TimeComponent({reference, name, displayAllAsText,}: EntityPropertyProperties<TimeProperty>,) {
+    if (reference.isInDayTheme && reference.isInNightTheme === true) {
+        if (displayAllAsText)
+            return <TextComponent content={gameContentTranslation('time.all',)}/>
+        return <div key={`Every times images (${name.english})`}>{Times.CompanionEnum.get.values.map(it =>
+            <TimeImage reference={it}/>,)}</div>
     }
 
-    protected override get _isInFirst() {
-        return this.reference.isInDayTheme
-    }
-
-    protected _renderSingleComponent(time: Times,) {
-        return TimeComponent.renderSingleComponent(time, this.name.english,)
-    }
-
-    public static renderSingleComponent(time: Times, identifier?: string,) {
-        const timeEnglishNameInHtml = time.englishNameInHtml
-        const key = identifier == null ? time.englishName : `${identifier} - ${time.englishName}`
-        const id = identifier == null ? `${timeEnglishNameInHtml}-image` : `${StringContainer.getInHtml(identifier)}-${timeEnglishNameInHtml}-time-image`
-
-        return <Image key={key} id={id} file={time.imageFile} className={`time-image ${timeEnglishNameInHtml}-image`}/>
-    }
-
-    protected override _renderFirstComponent() {
-        return this._renderSingleComponent(Times.DAY)
-    }
-
-    protected override _renderSecondComponent() {
-        return this._renderSingleComponent(Times.NIGHT)
-    }
-
-    protected override _renderComponentForAllAsText() {
-        return <TextComponent content={gameContentTranslation('time.all')}/>
-    }
-
-    protected override _renderComponentForAllAsImages() {
-        return <div key={`Every times images (${this.name.english})`}>{Times.CompanionEnum.get.values.map(time => this._renderSingleComponent(time,),)}</div>
-    }
-
+    if (reference.isInDayTheme)
+        return <TimeImage reference={Times.DAY}/>
+    return <TimeImage reference={Times.NIGHT}/>
 }

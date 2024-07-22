@@ -1,4 +1,14 @@
+#soundEffect-app-container {
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
+  }
+}
+
 #soundEffect-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
 
   .tcell {
 
@@ -43,14 +53,6 @@
       filter: var(--filter-white-to-cyan);
     }
 
-  }
-
-}
-
-.soundEffect-container {
-
-  img {
-    height: 1cm;
   }
 
 }

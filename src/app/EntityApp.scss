@@ -1,3 +1,10 @@
+#entity-app-container {
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
+  }
+}
+
 .cardListName-content-container, .simpleListName-content-container {
   &.entityCategory-Terrain {
     background-color: var(--entityCategory-terrain-bg-color);

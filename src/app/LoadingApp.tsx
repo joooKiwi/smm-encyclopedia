@@ -3,5 +3,5 @@ import {contentTranslation} from 'lang/components/translationMethods'
 import {SUSPENSION_POINT}   from 'util/commonVariables'
 
 export default function LoadingApp() {
-    return <TextComponent key="Loading text content" content={<>{contentTranslation('Loading the page')}{SUSPENSION_POINT}</>}/>
+    return <TextComponent key="Loading text content" content={<>{contentTranslation('Loading the page',)}{SUSPENSION_POINT}</>}/>
 }

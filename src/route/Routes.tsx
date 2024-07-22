@@ -74,11 +74,11 @@ const router = createHashRouter([{
                         loader() {
                             const games = route.games
                             if (games != null)
-                                GameCompanion.selected = games
+                                GameCompanion.current = games
 
                             const gameStyles = route.gameStyles
                             if (gameStyles != null)
-                                GameStyleCompanion.selected = gameStyles
+                                GameStyleCompanion.current = gameStyles
 
                             return null
                         },

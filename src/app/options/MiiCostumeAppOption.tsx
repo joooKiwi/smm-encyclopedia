@@ -28,7 +28,7 @@ export abstract class MiiCostumeAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'image', element: contentTranslation('Image'),}
+            return {key: 'image', element: contentTranslation('Image',),}
         }
 
     }()

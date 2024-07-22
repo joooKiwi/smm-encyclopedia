@@ -1,6 +1,7 @@
 import type {PossibleFileName} from 'core/mysteryMushroom/MysteryMushrooms.types'
 
-export interface FileName<IMAGE_FILE_NAMES extends PossibleImageFileNames = PossibleImageFileNames, SOUND_FILE_NAME extends PossibleSoundFileNames = PossibleSoundFileNames, > {
+export interface FileName<out IMAGE_FILE_NAMES extends PossibleImageFileNames = PossibleImageFileNames,
+    out SOUND_FILE_NAME extends PossibleSoundFileNames = PossibleSoundFileNames, > {
 
     get imageFileNames(): IMAGE_FILE_NAMES
 

@@ -37,7 +37,7 @@ export class LimitContainer
                        type: LimitTypes,
                        limitAmountInSMM1AndSMM3DS: | PossibleLimitAmount_SMM1And3DS_Amount | NotApplicable, isUnknownLimitInSMM1AndSMM3DS: boolean,
                        limitAmountInSMM2: PossibleLimitAmount_SMM2_Amount, isUnknownLimitInSMM2: boolean,
-                       amountComment: PossibleLimitAmount_Comment,) {
+                       amountComment: NullOr<PossibleLimitAmount_Comment>,) {
         super(name, lazyOf(alternative,),)
         this.#acronym = acronym
         this.#type = type
@@ -59,7 +59,7 @@ export class LimitContainer
         return this.#acronym
     }
 
-    public get amountComment(): PossibleLimitAmount_Comment {
+    public get amountComment(): NullOr<PossibleLimitAmount_Comment> {
         return this.#amountComment
     }
 
@@ -69,8 +69,8 @@ export class LimitContainer
         return this.alternativeContainer.acronym
     }
 
-    public get alternativeAmountComment(): this['alternativeContainer']['amountComment'] {
-        return this.alternativeContainer.amountComment
+    public get alternativeAmountComment(): null {
+        return null
     }
 
     //region -------------------- SMM1 & SMM3DS limit --------------------

@@ -1,18 +1,21 @@
-import {Enum} from '@joookiwi/enumerable'
+import {Enum}                 from '@joookiwi/enumerable'
+import type {StringOrNumeric} from '@joookiwi/type'
 
 import type {ClassWithNullableAcronym}                                                                                                              from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                  from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                    from 'core/ClassWithReference'
 import type {Limit, LimitWithPossibleAlternativeLimit}                                                                                              from 'core/limit/Limit'
 import type {Names, Ordinals, PossibleAcronym, PossibleAlternativeAcronym, PossibleAlternativeEnglishName, PossibleEnglishName, PossibleEntityLink} from 'core/limit/Limits.types'
+import type {TranslationReplaceKeysMap}                                                                                                             from 'lang/components/TranslationProperty'
 import type {CompanionEnumByNameSingleton}                                                                                                          from 'util/enumerable/Singleton.types'
 
-import type {Entities}             from 'core/entity/Entities'
-import {LimitLoader}               from 'core/limit/Limit.loader'
-import {Import}                    from 'util/DynamicImporter'
-import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
-import {StringContainer}           from 'util/StringContainer'
-import {CompanionEnumByName}       from 'util/enumerable/companion/CompanionEnumByName'
+import type {Entities}                           from 'core/entity/Entities'
+import {OtherWordInTheGames}                     from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {LimitLoader}                             from 'core/limit/Limit.loader'
+import {Import}                                  from 'util/DynamicImporter'
+import {EMPTY_ARRAY, EMPTY_OBJECT, EMPTY_STRING} from 'util/emptyVariables'
+import {StringContainer}                         from 'util/StringContainer'
+import {CompanionEnumByName}                     from 'util/enumerable/companion/CompanionEnumByName'
 
 /**
  * @classWithDynamicImport<{@link Entities}>
@@ -55,7 +58,16 @@ export class Limits
 
     }(['Loose Coin Limit', 'LCL',],)
     public static readonly SOUND_EFFECT_LIMIT =                             new Limits.EditorLimits(['Sound Effect Limit','SEL',],)
-    public static readonly CORPSE_LIMIT =                                   new Limits.PlayLimits(['Corpse Limit', 'CL',],)
+    public static readonly CORPSE_LIMIT =                                   new class Limits_CorpseLimit extends Limits.PlayLimits {
+
+        protected override _computeNoteForTranslation() {
+            return {
+                multiplayerVS: OtherWordInTheGames.MULTIPLAYER_VERSUS.singularLowerCaseNameOnReference,
+                multiplayerCoop: OtherWordInTheGames.MULTIPLAYER_COOP.singularLowerCaseNameOnReference,
+            } as const satisfies TranslationReplaceKeysMap<string>
+        }
+
+    }(['Corpse Limit', 'CL',],)
     public static readonly PROJECTILE_LIMIT =                               new Limits.PlayLimits(['Projectile Limit', 'PJL',],)
     public static readonly LIGHT_SOURCE_LIMIT =                             new Limits.PlayLimits(['Light Source Limit', 'LSL',],)
 
@@ -188,12 +200,24 @@ export class Limits
     public static readonly POWER_UP_LIMIT_EDITOR =                          new Limits.EditorLimits(['Power-up Limit (Editor)', 'PL (E)',],)
     public static readonly PLAYER_FIREBALL =                                new class Limits_PlayerFireballLimit extends Limits.PlayLimits {
 
+        protected override _computeNoteForTranslation() {
+            return {
+                amount: this.reference.limitAmountInSMM2!,
+            } as const satisfies TranslationReplaceKeysMap<StringOrNumeric>
+        }
+
         protected override get _entityLink() {
             return Import.Entities.FIREBALL_THROWN_BY_A_PLAYER
         }
 
     }(['Player\'s Fireball Limit',],)
     public static readonly PLAYER_SUPERBALL =                               new class Limits_PlayerSuperballLimit extends Limits.PlayLimits {
+
+        protected override _computeNoteForTranslation() {
+            return {
+                amount: this.reference.limitAmountInSMM2!,
+            } as const satisfies TranslationReplaceKeysMap<StringOrNumeric>
+        }
 
         protected override get _entityLink() {
             return Import.Entities.SUPERBALL_THROWN_BY_A_PLAYER
@@ -202,12 +226,24 @@ export class Limits
     }(['Player\'s Superball Limit',],)
     public static readonly PLAYER_BOMB =                                    new class Limits_PlayerBombLimit extends Limits.PlayLimits {
 
+        protected override _computeNoteForTranslation() {
+            return {
+                amount: this.reference.limitAmountInSMM2!,
+            } as const satisfies TranslationReplaceKeysMap<StringOrNumeric>
+        }
+
         protected override get _entityLink() {
             return Import.Entities.BOMB_THROWN_BY_A_LINK
         }
 
     }(['Player\'s Bomb Limit',],)
     public static readonly PLAYER_BUILDER_BOX =                             new class Limits_PlayerBuilderBoxLimit extends Limits.PlayLimits {
+
+        protected override _computeNoteForTranslation() {
+            return {
+                amount: this.reference.limitAmountInSMM2!,
+            } as const satisfies TranslationReplaceKeysMap<StringOrNumeric>
+        }
 
         protected override get _entityLink() {
             return Import.Entities.BUILDER_BOX_THROWN_BY_A_PLAYER
@@ -216,6 +252,12 @@ export class Limits
     }(['Player\'s Builder Box Limit',],)
     public static readonly PLAYER_BOOMERANG =                               new class Limits_PlayerBoomerangLimit extends Limits.PlayLimits {
 
+        protected override _computeNoteForTranslation() {
+            return {
+                amount: this.reference.limitAmountInSMM2!,
+            } as const satisfies TranslationReplaceKeysMap<StringOrNumeric>
+        }
+
         protected override get _entityLink() {
             return Import.Entities.BOOMERANG_THROWN_BY_A_PLAYER
         }
@@ -223,12 +265,24 @@ export class Limits
     }(['Player\'s Boomerang Limit',],)
     public static readonly PLAYER_CANNONBALL =                              new class Limits_PlayerCannonballLimit extends Limits.PlayLimits {
 
+        protected override _computeNoteForTranslation() {
+            return {
+                amount: this.reference.limitAmountInSMM2!,
+            } as const satisfies TranslationReplaceKeysMap<StringOrNumeric>
+        }
+
         protected override get _entityLink() {
             return Import.Entities.CANNONBALL_THROWN_BY_A_PLAYER
         }
 
     }(['Player\'s Cannonball Limit',],)
     public static readonly HATCHED_YOSHI_LIMIT =                            new class Limits_HatchedYoshiLimit extends Limits.PlayLimits {
+
+        protected override _computeNoteForTranslation() {
+            return {
+                amount: this.reference.limitAmountInSMM2!,
+            } as const satisfies TranslationReplaceKeysMap<StringOrNumeric>
+        }
 
         protected override get _groupLink(): PossibleGroupLinkInitialisation {
             return null//TODO change to "(Red) Yoshi" group
@@ -364,6 +418,7 @@ export class Limits
 
     #reference?: LimitWithPossibleAlternativeLimit
     readonly #isEditorLimit
+    #noteForTranslation?: TranslationReplaceKeysMap<StringOrNumeric>
     readonly #acronym: NullOr<PossibleAcronym>
     readonly #englishName: StringContainer<PossibleEnglishName>
     readonly #alternativeEnglishName: NullOr<StringContainer<PossibleAlternativeEnglishName>>
@@ -391,6 +446,8 @@ export class Limits
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
+    //region -------------------- Reference --------------------
+
     public static get REFERENCE_MAP(): ReadonlyMap<PossibleEnglishName, Limit> {
         return this.#REFERENCE_MAP ??= LimitLoader.get.load()
     }
@@ -403,6 +460,7 @@ export class Limits
         return this.#reference ??= Limits.REFERENCE_MAP.get(this.englishName)! as LimitWithPossibleAlternativeLimit
     }
 
+    //endregion -------------------- Reference --------------------
 
     /**
      * Tell whenever the {@link Limits} is an editor limit (<b>true</b>) a play limit (<b>false</b>)
@@ -415,6 +473,7 @@ export class Limits
         return this.#isEditorLimit
     }
 
+    //region -------------------- Acronym / english name --------------------
 
     public get acronym(): NullOr<PossibleAcronym> {
         return this.#acronym
@@ -441,6 +500,24 @@ export class Limits
     }
 
 
+    //endregion -------------------- Acronym / english name --------------------
+    //region -------------------- Translation --------------------
+
+    protected _computeNoteForTranslation(): TranslationReplaceKeysMap<StringOrNumeric> {
+        return EMPTY_OBJECT
+    }
+
+    /**
+     * Retrieve the {@link Limit.amountComment} ready for the translation
+     * as {@link Object} of {@link StringOrNumeric}
+     *
+     * @lateInititialization
+     */
+    public get noteForTranslation(): TranslationReplaceKeysMap<StringOrNumeric> {
+        return this.#noteForTranslation ??= this._computeNoteForTranslation()
+    }
+
+    //endregion -------------------- Translation --------------------
     //region -------------------- Group link --------------------
 
     protected get _groupLink(): PossibleGroupLinkInitialisation {

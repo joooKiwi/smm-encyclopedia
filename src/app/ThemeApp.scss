@@ -3,12 +3,22 @@
 @import '../mixin';
 
 #theme-app-container {
+
   .theme-button-image {
     max-height: .75cm;
   }
+
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
+  }
+
 }
 
 #theme-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
 
   .gameContentImages-container img {
     max-height: .4cm;
@@ -64,12 +74,13 @@
       display: flex;
       flex-direction: row;
       width: 5cm;
+      justify-content: center;
+      align-items: center;
+
       @include media-breakpoint-up($grid-breakpoint-sm) {
         flex-direction: column;
         width: auto;
       }
-      justify-content: center;
-      align-items: center;
     }
 
     .gameContentImages-container, .themeContentImages-container, {
@@ -124,9 +135,3 @@
 }
 
 //endregion  -------------------- Link buttons --------------------
-
-@include media-breakpoint-up($grid-breakpoint-md) {
-  #theme-container > p {
-    margin-top: 1.25cm;
-  }
-}

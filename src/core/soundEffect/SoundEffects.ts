@@ -17,7 +17,6 @@ import type {CompanionEnumByNameSingleton}                                      
 
 import type {Musics}                                                    from 'core/music/Musics'
 import {EmptySoundEffectFromMusicAdaptor}                               from 'core/soundEffect/EmptySoundEffectFromMusicAdaptor'
-import SoundEffectComponent                                             from 'core/soundEffect/SoundEffect.component'
 import {SoundEffectFromMusicAdaptorContainer}                           from 'core/soundEffect/SoundEffectFromMusicAdaptor.container'
 import {SoundEffectLoader}                                              from 'core/soundEffect/SoundEffect.loader'
 import * as FileCreator                                                 from 'core/soundEffect/file/fileCreator'
@@ -1343,11 +1342,6 @@ export abstract class SoundEffects
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
-
-    public get renderSingleComponent() {
-        return SoundEffectComponent.render(this)
-    }
-
     //endregion -------------------- Methods --------------------
 
 }

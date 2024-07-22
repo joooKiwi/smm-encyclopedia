@@ -12,6 +12,7 @@ import type {ImageFile}                                                 from 'ut
 
 import {COURSE_THEME_IMAGE_FILE, WORLD_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
 import Image                                             from 'app/tools/images/Image'
+import GameImage                                         from 'core/game/GameImage'
 import {Games}                                           from 'core/game/Games'
 import {contentTranslation, gameContentTranslation}      from 'lang/components/translationMethods'
 import {EmptyStringName}                                 from 'lang/name/EmptyStringName'
@@ -48,7 +49,7 @@ export class CommonOptions {
     //endregion -------------------- Fields --------------------
 
     public get nameHeader(): SimpleReactHeader {
-        return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name'),}
+        return this.#nameHeader ??= {key: 'name', element: contentTranslation('Name',),}
     }
 
     public getNameContent(enumeration: EnumerationWithReference,): ReactElement {
@@ -57,7 +58,7 @@ export class CommonOptions {
 
 
     public get categoryHeader(): SimpleReactHeader {
-        return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category'),}
+        return this.#categoryHeader ??= {key: 'category', element: gameContentTranslation('Category',),}
     }
 
     public getCategoryContent(enumeration: EnumerationWithCategoryReference, imagePath_or_nameCallback: () => | ImageFile | Name<string>,): ReactElement {
@@ -75,7 +76,7 @@ export class CommonOptions {
 
 
     public get gameHeader(): SimpleReactHeader {
-        return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('game.singular'),}
+        return this.#gameHeader ??= {key: 'game', element: gameContentTranslation('game.singular',),}
     }
 
     public get smm1And3dsGameHeader(): SimpleImageHeader {
@@ -93,14 +94,11 @@ export class CommonOptions {
      */
     public getGameContent(enumeration: EnumerationWithInSuperMarioMakerGameReference,): ReactElement {
         const reference = enumeration.reference
-        const isInSMM1 = reference.isInSuperMarioMaker1
-        const isInSMM3DS = reference.isInSuperMarioMakerFor3DS
-        const isInSMM2 = reference.isInSuperMarioMaker2
 
         return <div key={`${enumeration.englishName} (game content images)`} id={`${enumeration.englishNameInHtml}-gameContentImages-container`} className="gameContentImages-container">
-            {isInSMM1 ? Games.SUPER_MARIO_MAKER_1.renderSingleComponent : null}
-            {isInSMM3DS ? Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS.renderSingleComponent : null}
-            {isInSMM2 ? Games.SUPER_MARIO_MAKER_2.renderSingleComponent : null}
+            {reference.isInSuperMarioMaker1 ? <GameImage reference={Games.SUPER_MARIO_MAKER_1}/> : null}
+            {reference.isInSuperMarioMakerFor3DS ? <GameImage reference={Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS}/> : null}
+            {reference.isInSuperMarioMaker2 ? <GameImage reference={Games.SUPER_MARIO_MAKER_2}/> : null}
         </div>
     }
 
@@ -116,14 +114,14 @@ export class CommonOptions {
 
 
     public get limitHeader(): SimpleReactHeader {
-        return this.#limitHeader ??= {key: 'limit', element: gameContentTranslation('limit.singular'),}
+        return this.#limitHeader ??= {key: 'limit', element: gameContentTranslation('limit.singular',),}
     }
 
     public get completePlayLimitHeader(): SimpleReactHeader {
-        return this.#completePlayLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.complete'),}
+        return this.#completePlayLimitHeader ??= {key: 'limit-play', element: gameContentTranslation('limit.play.complete',),}
     }
     public get completeEditorLimitHeader(): SimpleReactHeader {
-        return this.#completeEditorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.complete'),}
+        return this.#completeEditorLimitHeader ??= {key: 'limit-editor', element: gameContentTranslation('limit.editor.complete',),}
     }
 
     public get completeEditorLimitInSmm1And3dsHeader(): SingleHeaderContent {

@@ -2,11 +2,11 @@ import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM
 
 import {nonNull} from 'util/utilitiesMethods'
 
-export class SingleBackgroundMusicContainer<SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
-    SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,
-    SMW_MUSIC extends PossibleSMW_Music_SingleContainer,
-    NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer,
-    SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer, >
+export class SingleBackgroundMusicContainer<const out SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
+    const out SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,
+    const out SMW_MUSIC extends PossibleSMW_Music_SingleContainer,
+    const out NSMBU_MUSIC extends PossibleNSMBU_Music_SingleContainer,
+    const out SM3DW_MUSIC extends PossibleSM3DW_Music_SingleContainer, >
     implements SingleBackgroundMusic<SMB_MUSIC, SMB3_MUSIC, SMW_MUSIC, NSMBU_MUSIC, SM3DW_MUSIC> {
 
     //region -------------------- Fields --------------------

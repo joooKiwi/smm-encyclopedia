@@ -1,3 +1,4 @@
+import {useRef}            from 'react'
 import {Link, useLocation} from 'react-router-dom'
 
 import type {PossibleRouteName} from 'route/EveryRoutes.types'
@@ -11,8 +12,6 @@ import {routeFromName}            from 'route/route'
 interface DisplayViewRouteButtonProperty
     extends ReactProperties {
 
-    readonly elementId: string
-
     readonly routeName: PossibleRouteName
 
     readonly value: ReactElementOrString
@@ -25,7 +24,8 @@ interface DisplayViewRouteButtonProperty
  * @param properties
  * @reactComponent
  */
-export default function DisplayViewRouteButton({routeName, value, tooltipValue, elementId,}: DisplayViewRouteButtonProperty,) {
+export default function DisplayViewRouteButton({routeName, value, tooltipValue,}: DisplayViewRouteButtonProperty,) {
+    const htmlElement = useRef<HTMLAnchorElement>(null,)
     const {pathname,} = useLocation()
 
     const key = `route button (${routeName})`
@@ -33,9 +33,10 @@ export default function DisplayViewRouteButton({routeName, value, tooltipValue, 
     const isRouteSameFromPathName = routeValue === pathname
 
     if (isRouteSameFromPathName)
-        return <button key={key} id={elementId} className="btn btn-primary" disabled>{value}</button>
-    return <Tooltip option={{placement: 'top', title: tooltipValue,}} elementId={elementId}>
-        <Link key={key} id={elementId} to={routeValue} className="btn btn-outline-primary"
-              onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(DISPLAY_VIEW_MODAL_ID)?.instance.hide()}>{value}</Link>
+        return <button key={key} className="btn btn-primary" disabled>{value}</button>
+
+    return <Tooltip option={{placement: 'top', title: tooltipValue,}} reference={htmlElement}>
+        <Link ref={htmlElement} key={key} to={routeValue} className="btn btn-outline-primary"
+              onClick={() => BootstrapInstanceHandler.get.getModalInstanceOrNull(DISPLAY_VIEW_MODAL_ID,)?.instance.hide()}>{value}</Link>
     </Tooltip>
 }

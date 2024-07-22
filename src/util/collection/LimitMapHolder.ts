@@ -33,7 +33,7 @@ export class LimitMapHolder<const out REFERENCE extends Entity, > {
      * @param values the values (null are ignored)
      */
     #newMap(...values: readonly Nullable<Limits>[]): ReadonlyMap<Limits, boolean> {
-        const newValues = nonNull(values)
+        const newValues = nonNull(values,)
         return new Map(Limits.CompanionEnum.get.values.map(limit => [limit, newValues.includes(limit,),],),)
     }
 

@@ -33,7 +33,7 @@ export interface NamePopoverProperties
 export interface NamePopoverStates
     extends ReactState {
 
-    readonly element: NonNullable<ReactElement>
+    readonly element: NonNullReactElement
 
 }
 

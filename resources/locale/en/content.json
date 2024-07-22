@@ -28,6 +28,7 @@
         "color mode":         "A dark & color-blind mode",
         "more info":          "More informations are shown on the {{gitHubLink}}."
       },
+
       "Completed":                   "Completed",
       "Completed with missing data": "Completed with missing data",
       "Page in progress":            "Page in progress",
@@ -77,9 +78,17 @@
 
   "Type":  "Type",
   "All":   "All",
-  "Official": {
-    "Yes": "Official",
-    "No":  "Unofficial"
+  "Official":   {"singular": "Official",   "plural": "Officials"},
+  "Unofficial": {"singular": "Unofficial", "plural": "Unofficial"},
+  "view type": {
+    "list":  {"singular": "List",  "plural": "Lists"},
+    "card":  {"singular": "Card",  "plural": "Cards"},
+    "table": {"singular": "Table", "plural": "Tables"}
+  },
+  "variant": {
+    "European": "European variant",
+    "American": "American variant",
+    "Japanese": "Japanese variant"
   },
 
   "In other languages":          "In other languages",

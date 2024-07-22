@@ -1,0 +1,10 @@
+#editorVoice-app-container {
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
+  }
+
+  .description-container .game-image,
+  .description-container .theme-image, { height: var(--bs-font-size-lg) }
+
+}

@@ -13,7 +13,6 @@ import type {WorldTheme}                                                        
 import type {EndlessMarioThemeImageFile, LargeThemeImageFile, SmallThemeImageFile} from 'core/theme/file/ThemeImageFile'
 import type {CompanionEnumByNameSingleton}                                         from 'util/enumerable/Singleton.types'
 
-import {ThemeComponent}                 from 'core/theme/Theme.component'
 import {ThemeLoader}                    from 'core/theme/Theme.loader'
 import * as FileCreator                 from 'core/theme/file/fileCreator'
 import {EMPTY_ARRAY}                    from 'util/emptyVariables'
@@ -265,10 +264,6 @@ export abstract class Themes
 
     public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
         return EMPTY_ARRAY
-    }
-
-    public renderSingleComponent(isSmallPath: boolean,) {
-        return ThemeComponent.renderSingleComponent(this, isSmallPath,)
     }
 
 

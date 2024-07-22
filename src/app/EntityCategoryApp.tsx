@@ -52,16 +52,16 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEntityCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everyEntityCategory (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = (() => {
-    const singularEntityName = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
-    const singularEntityLowerCaseName = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? singularEntityName.toLowerCase()
-    return gameContentTranslation('entity category.all', {Entity: singularEntityName, entity: singularEntityLowerCaseName,},)
-})()
 const appInterpreter = new EntityCategoryAppInterpreter()
 
 /** @reactComponent */
 export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The EntityCategoryApp only handle the "simple list" or "card list" as a possible view display.',)
+
+    const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
+    const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+
+    const titleContent = gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="entityCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>

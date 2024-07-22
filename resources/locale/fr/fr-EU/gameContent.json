@@ -1,5 +1,415 @@
 {
+  "character name": {
+
+
+
+
+
+
+
+
+
+
+
+
+  },
   "course tag": {
-    "display all": "Afficher tous les {{tags}} de {{course}}"
+
+
+
+    "all":         "Tous les {{tags}} de {{course}}",
+    "display all": "Afficher tous les {{tags}} de {{course}}",
+
+    "description": {
+      "intro page (all)":          "Sur cette page, tous les {{tags}} de {{course}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro page (official)":     "Sur cette page, tous les {{tags}} de {{course}} {{officials}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro page (unofficial)":   "Sur cette page, tous les {{tags}} de {{course}} {{unofficials}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro page (makerCentral)": "Sur cette page, tous les {{tags}} de {{course}} sur {{MakerCentralLink}} sont seulement utilisés dans {{smm2Image}}. ",
+      "intro references":          "Ces derniers sont utilisé pour représenter des {{courses}} qui sont {{officialsLink}}, {{unofficialsLink}} ou sur {{MakerCentralLink}}."
+
+
+    }
+  },
+  "editor voice": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "entity": {
+
+
+
+
+
+
+  },
+  "entity category": {
+
+
+
+
+
+  },
+  "entity group": {
+
+
+
+
+
+  },
+  "entity reference": {
+
+
+  },
+  "game": {
+
+
+
+
+
+  },
+  "game reference": {
+
+
+
+
+
+
+  },
+  "game style": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "instrument": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "limit": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "medal": {
+
+
+
+
+
+  },
+  "mii costume": {
+
+
+  },
+  "mii costume category": {
+
+
+
+
+
+  },
+  "mystery mushroom": {
+
+
+  },
+  "official course": {
+
+
+
+
+
+  },
+  "power-up, ride & hat priority": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "predefined message": {
+
+
+  },
+  "sample course": {
+
+
+
+
+
+  },
+  "sound effect": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "sound effect category": {
+
+
+
+
+
+  },
+  "theme": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+  "time": {
+
+
+
+
+
+
+
+
+  },
+
+
+
+
+  "power-up": {},
+  "ride": {},
+  "hat": {},
+
+  "Official notification": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  },
+
+  "nightEffect": {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
+
+
+
 }

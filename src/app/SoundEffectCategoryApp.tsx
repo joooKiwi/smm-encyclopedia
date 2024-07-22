@@ -51,12 +51,13 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySoundEffectCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everySoundEffectCategory (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('sound effect category.all',)
 const appInterpreter = new SoundEffectCategoryAppInterpreter()
 
 /** @reactComponent */
 export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The SoundEffectCategoryApp only handle the "simple list" or "card list" as a possible view display.',)
+
+    const titleContent = gameContentTranslation('sound effect category.all',)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>

@@ -398,7 +398,7 @@ function getCategory(content: Content, entityCategoryMap: EntityCategoryMap,): E
 //endregion -------------------- Get entity category --------------------
 //region -------------------- Create limit --------------------
 
-function getLimit(value: Nullable<| PossibleEnglishName_Limit | NotApplicable>, limitCompanion: LimitCompanion,): NullOr<| Limits | NotApplicable> {
+function getLimit(value: NullableString<| PossibleEnglishName_Limit | NotApplicable>, limitCompanion: LimitCompanion,): NullOr<| Limits | NotApplicable> {
     if (value == null)
         return null
     if (value === NOT_APPLICABLE)
@@ -433,7 +433,7 @@ function createInstruments(content: Content,): Lazy<readonly Instrument[]> {
  * @param link the entity link or null
  * @param name The entity name
  */
-function getOtherEntityReferences(link: Nullable<EntityLink>, name: PossibleEnglishName,): Lazy<PossibleOtherEntities> {
+function getOtherEntityReferences(link: NullableString<EntityLink>, name: PossibleEnglishName,): Lazy<PossibleOtherEntities> {
     if (link == null)
         return EMPTY_ENTITIES
     if (link === 'this')

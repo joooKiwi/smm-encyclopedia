@@ -7,11 +7,12 @@ import type {SimpleReactPropertiesWithOptionalChildren} from 'util/react/ReactPr
 import {BootstrapInstanceHandler} from 'bootstrap/BootstrapInstanceHandler'
 import {ModalInstance}            from 'bootstrap/modal/ModalInstance'
 
-interface ModalProperties<T extends ReactElement, >
-    extends Omit<ModalConfiguration, 'elementId'>, SimpleReactPropertiesWithOptionalChildren<T> {
+interface ModalProperties<out T extends ReactElement, >
+    extends Omit<ModalConfiguration, 'elementId'>,
+        SimpleReactPropertiesWithOptionalChildren<T> {
 
     /** The reference to initialize a {@link ModalInstance} */
-    modalReference: MutableRefObject<NullOr<HTMLDivElement>>
+    readonly modalReference: MutableRefObject<NullOr<HTMLDivElement>>
 
 }
 

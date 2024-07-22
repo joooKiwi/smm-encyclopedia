@@ -5,7 +5,9 @@ import type {Name}  from 'lang/name/Name'
 import {ClassContainingAName} from 'lang/name/ClassContainingAName'
 import {GameMap}              from 'util/collection/GameMap'
 
-export class AbstractTheme<const out SMM1_AND_SMM3DS extends boolean = boolean, const out AVAILABLE_FROM_START_SMM1 extends NullOrBoolean = NullOrBoolean, const out AVAILABLE_FROM_START_SMM3DS extends NullOrTrue = NullOrTrue,>
+export class AbstractTheme<const out SMM1_AND_SMM3DS extends boolean = boolean,
+    const out AVAILABLE_FROM_START_SMM1 extends NullOrBoolean = NullOrBoolean,
+    const out AVAILABLE_FROM_START_SMM3DS extends NullOrTrue = NullOrTrue, >
     extends ClassContainingAName<string>
     implements Theme {
 

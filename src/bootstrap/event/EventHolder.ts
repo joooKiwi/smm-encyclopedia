@@ -1,5 +1,5 @@
 /** The structure of an {@link EventListener} holder for a selected {@link EventHolder.element element} */
-export interface EventHolder<out ELEMENT extends Element, EVENT_TYPE extends string, > {
+export interface EventHolder<out ELEMENT extends Element, out EVENT_TYPE extends string, > {
 
     /**
      * The element to {@link Element.addEventListener add} and {@link Element.removeEventListener remove}

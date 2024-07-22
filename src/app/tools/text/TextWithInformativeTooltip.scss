@@ -1,0 +1,20 @@
+.text-withInformativeTooltip-container {
+  position: relative;
+
+  &::after {
+    position: absolute;
+    top: -2px;
+    content: var(--informative);
+    color: var(--bs-black);
+    background-color: rgba(var(--bs-red-500-rgb), 50%);
+    font-size: 0.4rem;
+    font-weight: var(--bs-font-weight-bold);
+    text-align: center;
+    width: .25cm;
+    border-radius: var(--bs-border-circle-radius);
+  }
+
+}
+
+:root { --informative: "!" }
+[lang=ja]:root, [lang=zh_T]:root, [lang=zh_S]:root, [lang=ko]:root, { --informative: "！" }

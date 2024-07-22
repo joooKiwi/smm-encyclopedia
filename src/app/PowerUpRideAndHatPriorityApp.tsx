@@ -23,6 +23,7 @@ import {Arrows}                                     from 'app/tools/arrow/Arrows
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import UnfinishedText, {unfinishedText}             from 'app/tools/text/UnfinishedText'
 import {Entities}                                   from 'core/entity/Entities'
+import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
@@ -227,12 +228,12 @@ export default class PowerUpRideAndHatPriorityApp
         const {type,} = this
 
         return <h1 key="title (power-up, ride & hat priority)" className="text-center">{gameContentTranslation(`power-up, ride & hat priority.${type.type}.all`, {
-            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName).toLowerCase(),
-            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference).toLowerCase(),
-            ride: gameContentTranslation('ride.singular').toLowerCase(),
-            rides: gameContentTranslation('ride.plural').toLowerCase(),
-            hat: gameContentTranslation('hat.singular').toLowerCase(),
-            hats: gameContentTranslation('hat.plural').toLowerCase(),
+            powerUp: POWER_UP.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.singularEnglishName,).toLowerCase(),
+            powerUps: POWER_UP.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(POWER_UP.pluralNameOnReference,).toLowerCase(),
+            ride: gameContentTranslation('ride.singular',).toLowerCase(),
+            rides: gameContentTranslation('ride.plural',).toLowerCase(),
+            hat: gameContentTranslation('hat.singular',).toLowerCase(),
+            hats: gameContentTranslation('hat.plural',).toLowerCase(),
         },)}</h1>
     }
 
@@ -241,42 +242,48 @@ export default class PowerUpRideAndHatPriorityApp
      *
      * Note that the implementation uses the state temporary until it is implemented in the route.
      */
-    #createGameStyleContent(): NonNullable<ReactElement> {
+    #createGameStyleContent(): NonNullReactElement {
         const gameStyle = this.__gameStyle
 
         //TODO replace the div by links (when changed from state to property)
         return <div id="powerUpRideAndHatPriority-gameStyle-buttonGroup-container" className="border rounded border-dark border-opacity-25">
             <div className="d-flex flex-wrap justify-content-center">
-                <div className={`btn ${this.hasSMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS}>{SUPER_MARIO_BROS.renderSingleComponent}</div>
-                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                     onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>{SUPER_MARIO_BROS_3.renderSingleComponent}</div>
-                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                     onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>{SUPER_MARIO_WORLD.renderSingleComponent}</div>
-                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                     onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>{NEW_SUPER_MARIO_BROS_U.renderSingleComponent}</div>
-                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`}
-                                     onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>{SUPER_MARIO_3D_WORLD.renderSingleComponent}</div> : null}
+                <div className={`btn ${this.hasSMB ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS}>
+                    <GameStyleImage reference={SUPER_MARIO_BROS}/>
+                </div>
+                <div className={`btn ${this.hasSMB3 ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_BROS_3}>
+                    <GameStyleImage reference={SUPER_MARIO_BROS_3}/>
+                </div>
+                <div className={`btn ${this.hasSMW ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_WORLD}>
+                    <GameStyleImage reference={SUPER_MARIO_WORLD}/>
+                </div>
+                <div className={`btn ${this.hasNSMBU ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = NEW_SUPER_MARIO_BROS_U}>
+                    <GameStyleImage reference={NEW_SUPER_MARIO_BROS_U}/>
+                </div>
+                {this.hasSMM2 ? <div className={`btn ${gameStyle === SUPER_MARIO_3D_WORLD ? 'btn-dark disabled' : 'btn-outline-dark'} m-1`} onClick={() => this.__gameStyle = SUPER_MARIO_3D_WORLD}>
+                    <GameStyleImage reference={SUPER_MARIO_3D_WORLD}/>
+                </div> : null}
             </div>
             <div className={`btn ${gameStyle == null ? 'btn-dark disabled' : 'btn-outline-dark'} rounded-0 rounded-bottom w-100`} onClick={() => this.__gameStyle = null}>{unfinishedText('None')}</div>
         </div>
     }
 
-    #createOtherPathsContent(): NonNullable<ReactElement> {
+    #createOtherPathsContent(): NonNullReactElement {
         const type = this.type
 
         return <div id="powerUpRideAndHatPriority-otherPath-buttonGroup-container" className="btn-group-vertical btn-group-sm" role="group">
-            <button className="btn disabled">{unfinishedText('Feature in progress')}</button>
-            <LinkButton partialId="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All')}</LinkButton>
+            <button className="btn disabled">{unfinishedText('Feature in progress',)}</button>
+            <LinkButton partialId="everyPriority" routeName={type.allRouteName} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
             <div className="btn-group btn-group-sm" role="group">
-                <LinkButton partialId="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular')}</LinkButton>
-                <LinkButton partialId="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular')}</LinkButton>
-                <LinkButton partialId="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular')}</LinkButton>
+                <LinkButton partialId="powerUpPriority" routeName={type.powerUpRouteName} color={type.powerUpColor}>{gameContentTranslation('power-up.singular',)}</LinkButton>
+                <LinkButton partialId="ridePriority" routeName={type.rideRouteName} color={type.rideColor}>{gameContentTranslation('ride.singular',)}</LinkButton>
+                <LinkButton partialId="hatPriority" routeName={type.hatRouteName} color={type.hatColor}>{gameContentTranslation('hat.singular',)}</LinkButton>
             </div>
-            <LinkButton partialId="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None')}</LinkButton>
+            <LinkButton partialId="noPriority" routeName={type.noneRouteName} color={type.noneColor}>{unfinishedText('None',)}</LinkButton>
         </div>
     }
 
-    #createLegend(): NonNullable<ReactElement> {
+    #createLegend(): NonNullReactElement {
         return <div id="powerUpRideAndHatPriority-legend-container" className="border rounded border-dark border-opacity-25 ms-auto">
             <h3 className="text-center border border-0 border-bottom border-dark border-opacity-25 pb-1 mb-0">{unfinishedText('Can be obtained …')}</h3>
             <div id="powerUpRideAndHatPriority-information-container" className="px-3 d-flex flex-column flex-sm-row flex-lg-column flex-xl-row">

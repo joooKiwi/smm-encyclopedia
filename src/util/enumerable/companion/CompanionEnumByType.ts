@@ -10,7 +10,7 @@ export class CompanionEnumByType<const out T,
     extends CompanionEnum<ENUM, ENUM_CONSTRUCTOR> {
 
     public getValueByType(value: Nullable<| ENUM | T>,): ENUM {
-        return getValueByType<ENUM>(value, this,)
+        return getValueByType(value, this,)
     }
 
 }

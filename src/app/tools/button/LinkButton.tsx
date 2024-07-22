@@ -10,7 +10,7 @@ interface LinkButtonsProperties
 
     readonly partialId: string
 
-    readonly routeName: Nullable<PossibleRouteName>
+    readonly routeName: NullableString<PossibleRouteName>
 
     readonly color: BootstrapColor
 
@@ -21,7 +21,7 @@ interface LinkButtonsProperties
  *
  * @reactComponent
  */
-export default function LinkButton({partialId, routeName, color, children,}: ReactPropertiesWithChildren<LinkButtonsProperties, ReactElementOrString>,) {
+export default function LinkButton({partialId, routeName, color, children,}: ReactPropertiesWithChildren<LinkButtonsProperties, ReactElementOrStringOrArray>,) {
     const id = `${partialId}-button`
     const className = `btn btn-${color} link-button`
 

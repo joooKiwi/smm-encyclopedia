@@ -50,15 +50,16 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyMiiCostumeCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everyMiiCostumeCategory (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('mii costume category.all', {
-    singularName: OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,),
-    pluralName: OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,),
-},)
 const appInterpreter = new MiiCostumeCategoryAppInterpreter()
 
 /** @reactComponent */
 export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The MedalApp only handle the "simple list" or "card list" as a possible view display.',)
+    const miiCostume = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
+    const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
+
+
+    const titleContent = gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="miiCostumeCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>

@@ -18,7 +18,7 @@ export interface Limit
 
     get alternativeAcronym(): NullOr<PossibleAlternativeAcronym>
 
-    get alternativeAmountComment(): PossibleLimitAmount_Comment
+    get alternativeAmountComment(): null
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
 
@@ -37,7 +37,7 @@ export interface Limit
 
     //endregion -------------------- Alternative entity limit --------------------
 
-    get amountComment(): PossibleLimitAmount_Comment
+    get amountComment(): NullOr<PossibleLimitAmount_Comment>
 
     //region -------------------- SMM1 & SMM3DS limit --------------------
 

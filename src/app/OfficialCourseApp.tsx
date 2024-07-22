@@ -98,55 +98,24 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.CARD_LIST, 'everyOfficialCourse (card)',],
     [ViewDisplays.TABLE, 'everyOfficialCourse (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('official course.all', {
-    singularName: OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase(),
-    pluralName: OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase(),
-},)
 const appInterpreter = new EventCourseAppInterpreter()
 
 /** @reactComponent */
 export default function OfficialCourseApp({viewDisplay,}: AppWithInterpreterProperties,) {
+    const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
+    const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
+
+    const titleContent = gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)
+
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 alert={<OfficialCourseAlertContent/>}>
+        return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
             <SimpleList reactKey="officialCourse" interpreter={appInterpreter}/>
         </SubMainContainer>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 alert={<OfficialCourseAlertContent/>}>
+        return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
             <CardList reactKey="officialCourse" interpreter={appInterpreter}/>
         </SubMainContainer>
-    return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             alert={<OfficialCourseAlertContent/>}>
+    return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
         <Table id="officialCourse-table" interpreter={appInterpreter}/>
     </SubMainContainer>
-}
-
-/** @reactComponent */
-function OfficialCourseAlertContent() {
-    return <div className="container-md alert alert-danger" role="alert">
-        <p>
-            <span>Some data are missing and cannot be retrieved from me personally since I only have an american account and the levels are not inside the game. </span>
-            <br className="d-none d-xl-block"/>
-            <span>They are only from Nintendo server. </span>
-            <br className="d-none d-lg-block"/>
-            <span>So, please, help us complete the missing data from <a href="https://discord.gg/r8AGYXtExy">Geitje</a>, <a href="https://discord.gg/UZTJxHM">Psycrow</a> or <a href="https://discord.gg/kEnbJ9GDtZ">my</a> <span className="bi bi-discord">Discord</span> server. </span>
-            <br className="d-none d-lg-block"/>
-            <span>Don't hesitate to <em>ping me</em> on <span className="bi bi-discord">Discord</span> if you have any informations regarding the official levels.</span>
-        </p>
-        <p>
-            <span>We have until <strong className="text-decoration-underline">April 2024</strong> to play to Super Mario Maker with its online functionality. </span>
-            <br className="d-none d-md-block"/>
-            <span>The missing data are mostly from the European game, but also in the Japanese version. </span>
-            <br className="d-none d-md-block"/>
-            <span>The things we need is the levels <em>(for those that we can retrieve)</em> is the level title with its description. </span>
-            <br className="d-none d-lg-block"/>
-            <span>It can be a screenshot or a video in order to complete the informations.</span>
-        </p>
-        <p>
-            <span>Most of the missing translations don't have <em>(for the most part)</em> the title, but none of them have any description from within the game. </span>
-            <br className="d-none d-xl-block"/>
-            <span>They are in <span className="text-decoration-line-through">american english, french and spanish</span>, european english, french and spanish, german, italian, dutch, portuguese, russian and finally japanese.</span>
-        </p>
-    </div>
 }

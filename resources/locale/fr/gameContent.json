@@ -1,4 +1,52 @@
 {
+  "character name": {
+    "singular": "Nom de personnage",
+    "plural":   "Noms de personnage",
+
+    "all":         "Tous les noms de personnage",
+    "display all": "Afficher tous les noms de personnage",
+
+    "description": {
+      "intro page":       "Sur cette page, tous les noms sont référencés ou utilisé dans les jeux ({{smm1Link}} {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro references": "Ces derniers sont utilisés dans le {{StoryMode}} ({{smm2Link}} exclusif), par un {{mysteryMushroom}} ({{smm1Link}} exclusif) ou dans l'éditeur (en général).",
+
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+    }
+  },
+  "course tag": {
+    "singular": "{{Tag}} de {{course}}",
+    "plural":   "{{Tags}} de {{course}}",
+
+
+
+
+    "description": {
+
+
+
+
+
+
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+    }
+  },
+  "editor voice": {
+    "singular": "Voix de l'éditeur",
+    "plural":   "Voix de l'éditeur",
+
+    "all":         "Toutes les voix de l'éditeur",
+    "display all": "Afficher toutes les voix de l'éditeur",
+
+    "description": {
+      "intro page":        "Sur cette page, toutes les voix sont seulement utilisées dans l'éditeur. ",
+      "intro games":       "Elles sont aussi sur tous les jeux ({{smm1Link}} {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro smm1" :       "Il y en a certaines qui sont dans {{smm1Link}}, mais qui ne sont plus utilisé dans {{smm2Link}}. ",
+      "intro characters" : "Il y en a d'autres qui ne sont qu'applicable au personnages. ",
+      "intro variants":    "Il y a au travers de ces derniers des variant d'une même {{entityLink}} dans l'{{underwaterLink}} ou en tant qu'un {{europeanVariantLink}}.",
+
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+    }
+  },
   "entity": {
     "all":         "Toutes les {{entities}}",
     "display all": "Afficher toutes les {{entities}}",
@@ -7,12 +55,12 @@
       "While playing → LCL": "En jouant, c'est dans la {{acronym}} ({{limit}})"
     }
   },
-  "character name": {
-    "singular": "Nom de personnage",
-    "plural":   "Noms de personnage",
+  "entity category": {
+    "singular": "Catégorie d'{{entity}}",
+    "plural":   "Catégories d'{{entity}}",
 
-    "all":         "Tous les noms de personnage",
-    "display all": "Afficher tous les noms de personnage"
+    "all":         "Toutes les catégories d'{{entity}}",
+    "display all": "Afficher toutes les catégories d'{{entity}}"
   },
   "entity group": {
     "singular": "Groupe d'{{entity}}",
@@ -21,16 +69,55 @@
     "all":         "Tous les groupes d'{{entity}}",
     "display all": "Afficher tous les groupes d'{{entity}}"
   },
-  "entity category": {
-    "singular": "Catégorie d'{{entity}}",
-    "plural":   "Catégories d'{{entity}}",
-
-    "all":         "Toutes les catégories d'{{entity}}",
-    "display all": "Afficher toutes les catégories d'{{entity}}"
-  },
   "entity reference": {
     "all":         "Toutes les références d'{{entity}}",
     "display all": "Afficher toutes les références d'{{entity}}"
+  },
+  "game": {
+    "singular": "Jeu",
+    "plural":   "Jeux",
+
+    "all":         "Tous les jeux",
+    "display all": "Afficher tous les jeux"
+  },
+  "game reference": {
+    "singular": "Référence de jeu",
+    "plural":   "Références de jeu",
+    "others":   "Autres références de jeu",
+
+    "all":         "Toutes les références de jeu",
+    "display all": "Afficher toutes les références de jeu"
+  },
+  "game style": {
+    "singular": "Style de jeu",
+    "plural":   "Styles de jeu",
+
+    "all":         "Tous les styles de jeu",
+    "display all": "Afficher tous les styles de jeu",
+
+    "description": {
+      "intro page":   "Sur cette page, tous les {{gameStyles}} sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro sm3dw":  "Mais, il y a seulement {{smm3dwLink}} qui est spécifique à {{smm2Link}}. ",
+      "intro entity": "Aussi, il a des {{entitiesLink}} spécifiques à des styles de jeux ({{smbLink}}, {{smb3Link}}, {{smwLink}}, {{nsmbuLink}}, {{sm3dwLink}}).",
+
+      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
+    }
+  },
+  "instrument": {
+    "singular": "Instrument",
+    "plural":   "Instruments",
+
+    "all":         "Tous les instruments",
+    "display all": "Afficher tous les instruments",
+
+    "Excluding the top 3 notes": "Excluant les 3 notes du haut",
+
+    "description": {
+      "intro page":     "Sur cette page, tous les instruments sont présent dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro variants": "Et quelques instruments dans {{smm2Link}} sont les mêmes que dans {{smm1Link}} / {{smm3dsLink}}.",
+
+      "viewable": "Le contenu peut être vu comme une {{listLink}} ou des {{cardsLink}}."
+    }
   },
   "limit": {
     "singular": "Limite",
@@ -42,6 +129,7 @@
     },
     "editor": {
       "simple":               "Éditeur",
+      "simplified":           "Dans l'éditeur",
       "complete":             "Limite dans l'éditeur",
       "complete in SMM2":     "Limite dans l'éditeur ({{Name}})",
       "complete in SMM1&3DS": "Limite dans l'éditeur ({{Name1}} & {{Name3ds}})",
@@ -50,78 +138,39 @@
       "display all": "Afficher toutes les limites dans l'éditeur"
     },
     "play": {
-      "simple":   "En jouant",
-      "complete": "Limite en jouant",
+      "simple":     "En jouant",
+      "simplified": "En jouant",
+      "complete":   "Limite en jouant",
 
       "all":         "Toutes les limites en jouant",
       "display all": "Afficher toutes les limites en jouant"
-    }
-  },
-  "theme": {
-    "singular": "Décor",
-    "plural":   "Décors",
-
-    "all": {
-      "all":                      "Tous les décors",
-      "all (with image)":         "Tous les décors de {{courseThemeImage}} & {{worldThemeImage}}",
-      "display all":              "Afficher tous les décors",
-      "display all (with image)": "Afficher tous les décors ({{courseThemeImage}} & {{worldThemeImage}})"
     },
-    "course": {
-      "singular": "Décor de niveau",
-      "plural":   "Décors de niveau",
 
-      "all":                      "Tous les décors de niveau",
-      "all (with image)":         "Tous les décors de {{courseThemeImage}}",
-      "display all":              "Afficher tous les décors de niveau",
-      "display all (with image)": "Afficher tous les décors de {{courseThemeImage}}"
+    "note": {
+      "Crash online if met": "Fait planter la salle en ligne ({{multiplayerVS}} / {{multiplayerCoop}}) si la limite est atteinte",
+      "In a single frame":   "Est seulement faisable en une seule image de jeu",
+      "Per player":          "Par joueur (1✕{{amount}} à 4✕{{amount}})",
+      "Per pair":            "Par paire (1✕2 à 4✕2)",
+      "Per section":         "Par section (1✕2 à 10✕2)"
     },
-    "world": {
-      "singular": "Décor de monde",
-      "plural":   "Décors de monde",
 
-      "all":                      "Tous les décors de monde",
-      "all (with image)":         "Tous les décors de {{worldThemeImage}}",
-      "display all":              "Afficher tous les décors de monde",
-      "display all (with image)": "Afficher tous les décors de {{worldThemeImage}}"
+    "description": {
+      "intro page (all)":     "Sur cette page, toutes les limites sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro page (editor)":  "Sur cette page, toutes les limites d'éditeurs sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro page (play)":    "Sur cette page, toutes les limites en jouant sont présents dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
+      "intro game changes":   "De {{smm1Link}} et {{smm3dsLink}} à {{smm2Link}}, des limites ont été ajoutées. ",
+      "intro other entities": "Et d'autres entités ont différentes limites qui leur sont associés. ",
+      "intro references":     "Ces dernières sont utilités pour représenter les limites qui sont {{playLink}} ou {{editorLink}}.",
+
+      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
     }
   },
-  "time": {
-    "singular": "Temps",
-    "plural":   "Temps",
+  "medal": {
+    "singular": "Médaille",
+    "plural":   "Médailles",
 
-    "day":   "Jour",
-    "night": "Nuit",
-
-    "all":         "Tous les temps",
-    "display all": ""
-  },
-  "sound effect": {
-    "singular": "Effet sonore",
-    "plural":   "Effets sonores",
-
-    "all":         "Tous les effets sonores",
-    "display all": "Afficher tous les effets sonores",
-
-    "trigger": {
-      "After land + jump":                          "Après qu'un {{player}} a atterrit & un saut est effectué",
-      "Turn after full speed":                      "Après qu'un {{player}} est en train de tourner (après avoir été à pleine vitesse)",
-      "Crouch":                                     "Lorsqu'un {{player}} s'accroupit",
-      "After 3 seconds → no movement (continuous)": "Après 3 secondes de non mouvement (se répète continuellement)",
-      "Power-up collected":                         "Lorsqu'une {{powerUp}} est collectée ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
-      "Get in entity":                              "Lorsqu'un {{player}} va [dans / sur / est attrapé par] {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} ou {{swingingClawImage}}",
-      "Spawn":                                      "Lorsqu'un {{player}} apparaît",
-      "Take damage":                                "Lorsqu'un {{player}} reçoit des dégâts",
-      "Lose life":                                  "Lorsqu'un {{player}} perd une vie",
-      "Take damage | Lose life":                    "Lorsqu'un {{player}} reçoit des dégâts ou perd une vie"
-    }
-  },
-  "sound effect category": {
-    "singular": "Catégorie d'effet sonore",
-    "plural":   "Catégories d'effet sonore",
-
-    "all":         "Toutes les catégories d'effet sonore",
-    "display all": "Afficher toutes les catégories d'effet sonore"
+    "all":         "Toutes les médailles",
+    "display all": "Afficher toutes les médailles"
   },
   "mii costume": {
     "all":         "Tous les {{pluralName}}",
@@ -133,6 +182,17 @@
 
     "all":         "Toutes les catégories de {{singularName}}",
     "display all": "Afficher toutes les catégories de {{singularName}}"
+  },
+  "mystery mushroom": {
+    "all":         "Tous les {{pluralName}}",
+    "display all": "Afficher tous les {{pluralName}}"
+  },
+  "official course": {
+    "singular": "{{SingularName}} officiel",
+    "plural":   "{{PluralName}} officiels",
+
+    "all":         "Tous les {{pluralName}} officiels",
+    "display all": "Afficher tous les {{pluralName}} officiels"
   },
   "power-up, ride & hat priority": {
     "power-up": {
@@ -176,46 +236,6 @@
       "display all": "Afficher toutes les priorités d'{{powerUps}}, de {{rides}} & de {{hats}}"
     }
   },
-  "mystery mushroom": {
-    "all":         "Tous les {{pluralName}}",
-    "display all": "Afficher tous les {{pluralName}}"
-  },
-  "official course": {
-    "singular": "{{SingularName}} officiel",
-    "plural":   "{{PluralName}} officiels",
-
-    "all":         "Tous les {{pluralName}} officiels",
-    "display all": "Afficher tous les {{pluralName}} officiels"
-  },
-  "game reference": {
-    "singular": "Référence de jeu",
-    "plural":   "Références de jeu",
-    "others":   "Autres références de jeu",
-
-    "all":         "Toutes les références de jeu",
-    "display all": "Afficher toutes les références de jeu"
-  },
-  "game": {
-    "singular": "Jeu",
-    "plural":   "Jeux",
-
-    "all":         "Tous les jeux",
-    "display all": "Afficher tous les jeux"
-  },
-  "game style": {
-    "singular": "Style de jeu",
-    "plural":   "Styles de jeu",
-
-    "all":         "Tous les styles de jeu",
-    "display all": "Afficher tous les styles de jeu"
-  },
-  "course tag": {
-    "singular": "{{Tag}} de {{course}}",
-    "plural":   "{{Tags}} de {{course}}",
-
-    "all":         "Tous les {{tags}} de {{course}}"
-
-  },
   "predefined message": {
     "all":         "Tous les {{pluralName}}",
     "display all": "Afficher tous les {{pluralName}}"
@@ -227,28 +247,71 @@
     "all":         "Tous les échantillons de {{singularName}}",
     "display all": "Afficher tous les échantillons de {{singularName}}"
   },
-  "medal": {
-    "singular": "Médaille",
-    "plural":   "Médailles",
+  "sound effect": {
+    "singular": "Effet sonore",
+    "plural":   "Effets sonores",
 
-    "all":         "Toutes les médailles",
-    "display all": "Afficher toutes les médailles"
+    "all":         "Tous les effets sonores",
+    "display all": "Afficher tous les effets sonores",
+
+    "trigger": {
+      "After land + jump":                          "Après qu'un {{player}} a atterrit & un saut est effectué",
+      "Turn after full speed":                      "Après qu'un {{player}} est en train de tourner (après avoir été à pleine vitesse)",
+      "Crouch":                                     "Lorsqu'un {{player}} s'accroupit",
+      "After 3 seconds → no movement (continuous)": "Après 3 secondes de non mouvement (se répète continuellement)",
+      "Power-up collected":                         "Lorsqu'une {{powerUp}} est collectée ({{mushroomImages}}{{fireFlowerImages}}{{smbImages}}{{smb3Images}}{{smwImages}}{{nsmbuImages}}{{sm3dwImages}}{{shellImages}})",
+      "Get in entity":                              "Lorsqu'un {{player}} va [dans / sur / est attrapé par] {{clownCarImage}}, {{lakituCloudImage}}, {{shoeImages}}, {{yoshiImages}}, {{dryBonesShellImage}} ou {{swingingClawImage}}",
+      "Spawn":                                      "Lorsqu'un {{player}} apparaît",
+      "Take damage":                                "Lorsqu'un {{player}} reçoit des dégâts",
+      "Lose life":                                  "Lorsqu'un {{player}} perd une vie",
+      "Take damage | Lose life":                    "Lorsqu'un {{player}} reçoit des dégâts ou perd une vie"
+    }
   },
-  "editor voice": {
-    "singular": "Voix de l'éditeur",
-    "plural":   "Voix de l'éditeur",
+  "sound effect category": {
+    "singular": "Catégorie d'effet sonore",
+    "plural":   "Catégories d'effet sonore",
 
-    "all":         "Toutes les voix de l'éditeur",
-    "display all": "Afficher toutes les voix de l'éditeur"
+    "all":         "Toutes les catégories d'effet sonore",
+    "display all": "Afficher toutes les catégories d'effet sonore"
   },
-  "instrument": {
-    "singular": "Instrument",
-    "plural":   "Instruments",
+  "theme": {
+    "singular": "Décor",
+    "plural":   "Décors",
 
-    "all":         "Tous les instruments",
-    "display all": "Afficher tous les instruments",
+    "all": {
+      "all":                      "Tous les décors",
+      "all (with image)":         "Tous les décors de {{courseThemeImage}} & {{worldThemeImage}}",
+      "display all":              "Afficher tous les décors",
+      "display all (with image)": "Afficher tous les décors ({{courseThemeImage}} & {{worldThemeImage}})"
+    },
+    "course": {
+      "singular": "Décor de niveau",
+      "plural":   "Décors de niveau",
 
-    "Excluding the top 3 notes": "Excluant les 3 notes du haut"
+      "all":                      "Tous les décors de niveau",
+      "all (with image)":         "Tous les décors de {{courseThemeImage}}",
+      "display all":              "Afficher tous les décors de niveau",
+      "display all (with image)": "Afficher tous les décors de {{courseThemeImage}}"
+    },
+    "world": {
+      "singular": "Décor de monde",
+      "plural":   "Décors de monde",
+
+      "all":                      "Tous les décors de monde",
+      "all (with image)":         "Tous les décors de {{worldThemeImage}}",
+      "display all":              "Afficher tous les décors de monde",
+      "display all (with image)": "Afficher tous les décors de {{worldThemeImage}}"
+    }
+  },
+  "time": {
+    "singular": "Temps",
+    "plural":   "Temps",
+
+    "day":   "Jour",
+    "night": "Nuit",
+
+    "all":         "Tous les temps",
+    "display all": ""
   },
 
   "Category": "Catégorie",
@@ -330,7 +393,7 @@
   "nightEffect": {
     "Special effect on entities": "Change le comportement sur certaines {{entities}}.",
     "Screen upside down":         "Vire l'écran à l'envers.",
-    "Dark":                       "Rend le niveau sombre (excepté les {{players}} & certaines {{entities}})",
+    "Dark":                       "Rend le {{course}} sombre (excepté les {{players}} & certaines {{entities}})",
 
     "Wind":                       "Tout dépendamment du {{gameStyle}}, il y a différents effets de vent.",
     "nightDesertWindEffect": {

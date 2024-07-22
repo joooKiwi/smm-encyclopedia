@@ -29,7 +29,7 @@ export default function NightEffectComponent(properties: | NightEffectComponentP
 }
 
 function NightEffectByGameStyle({gameStyle: {nightDesertWindTranslationKey: translationKey,},}: NightEffectComponentProperties_GameStyle,) {
-    return translationKey == null ? null : <>{gameContentTranslation(`nightEffect.nightDesertWindEffect.${translationKey}`)}</>
+    return translationKey == null ? null : <>{gameContentTranslation(`nightEffect.nightDesertWindEffect.${translationKey}`,)}</>
 }
 
 function NightEffectByTheme({theme: {effect,},}: NightEffectComponentProperties_Theme,) {

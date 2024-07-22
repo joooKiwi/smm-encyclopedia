@@ -2,7 +2,8 @@ import type {ErrorInfo}       from 'react'
 import React, {PureComponent} from 'react'
 import {IntlProvider}         from 'react-intl'
 
-import type {ReactState} from 'util/react/ReactState'
+import type {ReactComponent, ReactComponentWithState} from 'util/react/ReactComponent'
+import type {ReactState}                              from 'util/react/ReactState'
 
 import {useCurrentViewDisplay} from 'app/withInterpreter/viewDisplayHook'
 import {useCurrentLanguage}    from 'lang/languageHook'
@@ -30,7 +31,9 @@ interface IndexState
 }
 
 export default class IndexComponent
-    extends PureComponent<{}, IndexState> {
+    extends PureComponent<{}, IndexState>
+    implements ReactComponent,
+        ReactComponentWithState<IndexState> {
 
     public constructor(props: {},) {
         super(props)
@@ -38,12 +41,12 @@ export default class IndexComponent
     }
 
     public static getDerivedStateFromError(error: Error,) {
-        return {hasError: true,}
+        return {hasError: true,} as const satisfies Readonly<IndexState>
     }
 
     public override componentDidCatch(error: Error, errorInfo: ErrorInfo,): void {
-        console.warn(error.message)
-        console.warn(errorInfo.componentStack)
+        console.warn(error.message,)
+        console.warn(errorInfo.componentStack,)
     }
 
     public override render() {

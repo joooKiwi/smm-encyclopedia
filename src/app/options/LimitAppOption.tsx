@@ -9,14 +9,15 @@ import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Limit}               from 'core/limit/Limit'
 import type {Limits}              from 'core/limit/Limits'
 
-import {CommonOptions}           from 'app/options/CommonOptions'
-import {COURSE_THEME_IMAGE_FILE} from 'app/options/file/themeImageFiles'
-import TextComponent             from 'app/tools/text/TextComponent'
-import Image                     from 'app/tools/images/Image'
-import {EmptyLimit}              from 'core/limit/EmptyLimit'
-import {ProjectLanguages}        from 'lang/ProjectLanguages'
-import {contentTranslation}      from 'lang/components/translationMethods'
-import NameComponent             from 'lang/name/component/Name.component'
+import {CommonOptions}                from 'app/options/CommonOptions'
+import LimitWithPossibleTooltipOnNote from 'app/options/LimitWithPossibleTooltipOnNote'
+import {COURSE_THEME_IMAGE_FILE}      from 'app/options/file/themeImageFiles'
+import TextComponent                  from 'app/tools/text/TextComponent'
+import Image                          from 'app/tools/images/Image'
+import {EmptyLimit}                   from 'core/limit/EmptyLimit'
+import {ProjectLanguages}             from 'lang/ProjectLanguages'
+import {contentTranslation}           from 'lang/components/translationMethods'
+import NameComponent                  from 'lang/name/component/Name.component'
 
 export abstract class LimitAppOption
     extends Enum<Ordinals, Names>
@@ -27,44 +28,45 @@ export abstract class LimitAppOption
     public static readonly ACRONYM = new class LimitAppOption_Acronym extends LimitAppOption {
 
         protected override _createContentOption({reference: {acronym, alternativeAcronym,},}: Limits,) {
-            return alternativeAcronym == null
-                ? acronym == null
-                    ? null
-                    : <TextComponent content={acronym}/>
-                : <div className="acronyms-container d-flex flex-column flex-md-row">
-                    <TextComponent content={acronym}/>
-                    <div className="vertical-separator vr mx-2 d-none d-md-inline-block"/>
-                    <hr className="horizontal-separator my-1 d-block d-md-none"/>
-                    <TextComponent content={alternativeAcronym}/>
-                </div>
+            if (alternativeAcronym == null) {
+                if (acronym == null)
+                    return null
+                return <TextComponent content={acronym}/>
+            }
+            return <div className="acronyms-container d-flex flex-column flex-md-row">
+                <TextComponent content={acronym}/>
+                <div className="vertical-separator vr mx-2 d-none d-md-inline-block"/>
+                <hr className="horizontal-separator my-1 d-block d-md-none"/>
+                <TextComponent content={alternativeAcronym}/>
+            </div>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'acronym', element: contentTranslation('Acronym(s)'),}
+            return {key: 'acronym', element: contentTranslation('Acronym(s)',),}
         }
 
     }()
     public static readonly NAME = new class LimitAppOption_Name extends LimitAppOption {
 
         protected override _createContentOption({reference, isEditorLimit,}: Limits,) {
-            const {alternativeContainer} = reference
-            return alternativeContainer instanceof EmptyLimit
-                ? this.#createNameComponent(reference, isEditorLimit,)
-                : <div className="names-container d-flex flex-column flex-md-row">
-                    {this.#createNameComponent(reference, isEditorLimit,)}
-                    <div className="vertical-separator vr mx-3 d-none d-md-inline-block"/>
-                    <hr className="horizontal-separator my-1 d-block d-md-none"/>
-                    <NameComponent id="alternativeName" name={alternativeContainer} popoverOrientation="bottom"/>
-                </div>
+            const alternativeContainer = reference.alternativeContainer
+            if (alternativeContainer instanceof EmptyLimit)
+                return this.#createNameComponent(reference, isEditorLimit,)
+            return <div className="names-container d-flex flex-column flex-md-row">
+                {this.#createNameComponent(reference, isEditorLimit,)}
+                <div className="vertical-separator vr mx-3 d-none d-md-inline-block"/>
+                <hr className="horizontal-separator my-1 d-block d-md-none"/>
+                <NameComponent id="alternativeName" name={alternativeContainer} popoverOrientation="bottom"/>
+            </div>
         }
 
         #createNameComponent(reference: Limit, isEditorLimit: boolean,): ReactElement {
-            return isEditorLimit
-                ? <div className="nameWithImage-container d-flex position-relative">
+            if (isEditorLimit)
+                return <div className="nameWithImage-container d-flex position-relative">
                     <Image file={COURSE_THEME_IMAGE_FILE} className="course-theme-image badge bg-transparent position-absolute top-0 start-0"/>
                     <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
                 </div>
-                : <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
+            return <NameComponent id="name" name={reference} popoverOrientation="bottom"/>
         }
 
 
@@ -76,15 +78,18 @@ export abstract class LimitAppOption
     public static readonly AMOUNT_IN_ALL_GAMES = new class LimitAppOption_Amount extends LimitAppOption {
 
         protected override _createContentOption(enumeration: Limits,) {
-            const {reference: {limitAmountInSMM1AndSMM3DS, limitAmountInSMM2, isUnknownLimitInSMM2,}, englishName,} = enumeration
-            if (limitAmountInSMM1AndSMM3DS === limitAmountInSMM2)
-                return <TextComponent key={`${englishName} - text component`} content={limitAmountInSMM2} isUnknown={isUnknownLimitInSMM2}/>
-
-            return <span key={`Amount in all games (${englishName})`} className="space-pre">
-                {LimitAppOption.AMOUNT_IN_SMM1_AND_SMM3DS.renderContent(enumeration,)}
-                {ProjectLanguages.current.space}{ProjectLanguages.current.slash}{ProjectLanguages.current.space}
-                {LimitAppOption.AMOUNT_IN_SMM2.renderContent(enumeration,)}
-            </span>
+            const reference = enumeration.reference
+            const amountInSMM2 = reference.limitAmountInSMM2
+            const {englishName,} = enumeration
+            if (reference.limitAmountInSMM1AndSMM3DS === amountInSMM2)
+                return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${englishName} - limit amount in all games, but displayed as the same value`}>
+                    <TextComponent content={amountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+                </LimitWithPossibleTooltipOnNote>
+            return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${englishName} - limit amount in all games`}>
+                <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+                <span className="space-pre">{ProjectLanguages.current.space}{ProjectLanguages.current.slash}{ProjectLanguages.current.space}</span>
+                <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+            </LimitWithPossibleTooltipOnNote>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -93,8 +98,11 @@ export abstract class LimitAppOption
     }()
     public static readonly AMOUNT_IN_SMM1_AND_SMM3DS = new class LimitAppOption_AmountInSMM1AndSMM3DS extends LimitAppOption {
 
-        protected override _createContentOption({reference, englishName,}: Limits,) {
-            return <TextComponent key={`${englishName} - text component (amount SMM1&3DS)`} content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+        protected override _createContentOption(enumeration: Limits,) {
+            const reference = enumeration.reference
+            return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM1 & SMM3DS`}>
+                <TextComponent content={reference.limitAmountInSMM1AndSMM3DS} isUnknown={reference.isUnknownLimitInSMM1AndSMM3DS}/>
+            </LimitWithPossibleTooltipOnNote>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
@@ -104,8 +112,11 @@ export abstract class LimitAppOption
     }()
     public static readonly AMOUNT_IN_SMM2 = new class LimitAppOption_AmountInSMM2 extends LimitAppOption {
 
-        protected override _createContentOption({reference, englishName,}: Limits,) {
-            return <TextComponent key={`${englishName} - text component (amount SMM2)`} content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+        protected override _createContentOption(enumeration: Limits,) {
+            const reference = enumeration.reference
+            return <LimitWithPossibleTooltipOnNote value={enumeration} key={`${enumeration.englishName} - limit amount in only SMM2`}>
+                <TextComponent content={reference.limitAmountInSMM2} isUnknown={reference.isUnknownLimitInSMM2}/>
+            </LimitWithPossibleTooltipOnNote>
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {

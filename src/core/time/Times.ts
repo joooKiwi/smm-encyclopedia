@@ -10,7 +10,6 @@ import type {TimeImageFile}                                                 from
 import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
 import type {CompanionEnumByNameSingleton}                                  from 'util/enumerable/Singleton.types'
 
-import TimeComponent                    from 'core/time/Time.component'
 import {timeImage}                      from 'core/time/file/fileCreator'
 import {StringContainer}                from 'util/StringContainer'
 import {CompanionEnumByEnglishNameOnly} from 'util/enumerable/companion/CompanionEnumByEnglishNameOnly'
@@ -106,10 +105,6 @@ export abstract class Times
     public abstract get(property: TimeProperty,): boolean
 
     public abstract getReference(referenceProperty: TimeReferences,): PossibleOtherEntities
-
-    public get renderSingleComponent() {
-        return TimeComponent.renderSingleComponent(this)
-    }
 
     //endregion -------------------- Methods --------------------
 

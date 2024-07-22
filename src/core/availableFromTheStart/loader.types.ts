@@ -1,3 +1,0 @@
-import {PossibleIsAvailableFromTheStart as PossibleIsAvailableFromTheStartType} from 'core/availableFromTheStart/ClassThatIsAvailableFromTheStart'
-
-export type PossibleIsAvailableFromTheStart<T extends PossibleIsAvailableFromTheStartType = PossibleIsAvailableFromTheStartType, > = T

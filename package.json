@@ -1,6 +1,6 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.23.0-beta",
+  "version": "0.24.0-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "repository": {
@@ -25,7 +25,7 @@
     "test-file": "react-scripts test --testNamePattern=\"(file test)\" --watchAll=false",
 
     "build": "react-scripts build",
-    "deploy": "gh-pages -m \"Deployment of the version 0.23 (beta)\" -d build"
+    "deploy": "gh-pages -m \"Deployment of the version 0.24 (beta)\" -d build"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
@@ -60,37 +60,39 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@joookiwi/enumerable": "^3.3.1",
-    "@joookiwi/lazy": "^1.2.1",
+    "@joookiwi/collection": "^1.9.1",
+    "@joookiwi/enumerable": "^3.6.1",
+    "@joookiwi/lazy": "^1.5.0",
+    "@joookiwi/type": "^1.0.0",
     "assert": "^2.1.0",
-    "bootstrap": "^5.3.2",
+    "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
-    "i18next": "^23.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^14.0.1",
-    "react-intl": "^6.6.2",
-    "react-router-dom": "^6.21.3",
+    "i18next": "^23.12.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-i18next": "^15.0.0",
+    "react-intl": "^6.6.8",
+    "react-router-dom": "^6.25.1",
     "react-scripts": "^5.0.1",
-    "sass": "^1.70.0",
-    "web-vitals": "^3.5.2"
+    "sass": "^1.77.8",
+    "web-vitals": "^4.2.2"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.4.0",
-    "@testing-library/react": "^14.2.0",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.5.2",
     "@types/bootstrap": "^5.2.10",
-    "@types/jest": "^29.5.11",
-    "@types/node": "^20.11.13",
-    "@types/react": "^18.2.48",
-    "@types/react-dom": "^18.2.18",
+    "@types/jest": "^29.5.12",
+    "@types/node": "^20.14.11",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
     "@types/react-router-dom": "^5.3.3",
     "fs-extra": "^11.2.0",
     "gh-pages": "^6.1.1",
     "jest-extended": "^4.0.2",
     "npm-run-all": "^4.1.5",
     "papaparse": "^5.4.1",
-    "typescript": "^5.3.3"
+    "typescript": "^5.5.3"
   },
   "overrides": {
     "typescript": "$typescript"

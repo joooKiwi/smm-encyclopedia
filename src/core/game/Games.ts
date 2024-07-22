@@ -1,24 +1,22 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
-import {CompanionEnum, Enum}   from '@joookiwi/enumerable'
+import {Enum}                  from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                  from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                              from 'core/ClassWithEnglishName'
-import type {PropertyGetter}                                                                                                    from 'core/PropertyGetter'
-import type {GameProperty}                                                                                                      from 'core/entity/properties/game/GameProperty'
-import type {CompanionEnumDeclaration_Games}                                                                                    from 'core/game/Games.companionEnumDeclaration'
-import type {GroupUrlValue, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleSimpleUrlValue, PossibleSimpleValue} from 'core/game/Games.types'
-import type {GameImageFile}                                                                                                     from 'core/game/file/GameImageFile'
-import type {ClassUsedInRoute}                                                                                                  from 'route/ClassUsedInRoute'
-import type {ClassWithImageFile}                                                                                                from 'util/file/image/ClassWithImageFile'
-import type {Selectable}                                                                                                        from 'util/types/Selectable'
+import type {ClassWithAcronym}                                                                                                          from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                      from 'core/ClassWithEnglishName'
+import type {PropertyGetter}                                                                                                            from 'core/PropertyGetter'
+import type {GameProperty}                                                                                                              from 'core/entity/properties/game/GameProperty'
+import type {CompanionEnumDeclaration_Games}                                                                                            from 'core/game/Games.companionEnumDeclaration'
+import type {GroupUrlName, GroupUrlValue, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleUrlValue, PossibleSimpleValue} from 'core/game/Games.types'
+import type {GameImageFile}                                                                                                             from 'core/game/file/GameImageFile'
+import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
+import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import GameComponent                                                                            from 'core/game/Game.component'
 import {gameImage}                                                                              from 'core/game/file/fileCreator'
 import {StringContainer}                                                                        from 'util/StringContainer'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
-import {GameCollection}                                                                         from 'util/collection/GameCollection'
 import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                 from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 /** @usedByTheRouting */
 export abstract class Games
@@ -26,8 +24,7 @@ export abstract class Games
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithAcronym<PossibleAcronym>,
         ClassWithImageFile<GameImageFile>,
-        ClassUsedInRoute<PossibleSimpleUrlValue>,
-        Selectable,
+        ClassUsedInRoute<PossibleUrlValue>,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -38,27 +35,27 @@ export abstract class Games
             return property.isInSuperMarioMaker1
         }
 
-    }('SMM', '1', '1', 'Super Mario Maker', false,)
+    }('SMM', '1', '1', 'Super Mario Maker',)
     public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMakerFor3DS
         }
 
-    }('SMM3DS', '3DS', '3ds', 'Super Mario Maker for Nintendo 3DS', false,)
+    }('SMM3DS', '3DS', '3ds', 'Super Mario Maker for Nintendo 3DS',)
     public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMaker2
         }
 
-    }('SMM2', '2', '2', 'Super Mario Maker 2', true,)
+    }('SMM2', '2', '2', 'Super Mario Maker 2',)
 
     //endregion -------------------- Enum instances --------------------
     //region -------------------- Companion enum --------------------
 
     public static readonly CompanionEnum: Singleton<CompanionEnumDeclaration_Games> = class CompanionEnum_Games
-        extends CompanionEnum<Games, typeof Games>
+        extends CompanionEnumWithCurrentAndSetCurrentEventAsCollection<Games, typeof Games>
         implements CompanionEnumDeclaration_Games {
 
         //region -------------------- Singleton usage --------------------
@@ -107,51 +104,6 @@ export abstract class Games
             return getValueByUrlValue(value, this,)
         }
 
-        public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
-            let withSmm1 = false
-            const smm1 = Games.SUPER_MARIO_MAKER_1
-            for (let game of games)
-                if (game === smm1) {
-                    withSmm1 = true
-                    break
-                }
-
-            let withSmm3ds = false
-            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-            for (let game of games)
-                if (game === smm3ds) {
-                    withSmm3ds = true
-                    break
-                }
-
-            let withSmm2 = false
-            const smm2 = Games.SUPER_MARIO_MAKER_2
-            for (let game of games)
-                if (game === smm2) {
-                    withSmm2 = true
-                    break
-                }
-
-            if (withSmm1) {
-                if (withSmm3ds) {
-                    if (withSmm2)
-                        return 'all'
-                    return '1,3ds'
-                }
-                if (withSmm2)
-                    return '1,2'
-                return '1'
-            }
-            if (withSmm3ds) {
-                if (withSmm2)
-                    return '3ds,2'
-                return '3ds'
-            }
-            if (withSmm2)
-                return '2'
-            throw new ReferenceError('No game group url value is findable from empty array or collection.',)
-        }
-
         public getValueByAcronym(value: Nullable<| Games | string>,): Games {
             return getValueByAcronym(value, this,)
         }
@@ -171,6 +123,7 @@ export abstract class Games
                 throw new ReferenceError(`No "${this.instance.name}" could be found by this value "${value}".`,)
             return valueFound
         }
+
 
         public getValueInUrl(url: string,): readonly Games[] {
             //region -------------------- "all" possibility --------------------
@@ -256,19 +209,100 @@ export abstract class Games
             while (index-- > 0)
                 valuesFoundAsGame[index] = this.getValueByUrlValue(separatedValuesFound[index],)
 
-            const uniqueValuesFound = intersect(this.values, valuesFoundAsGame,).toArray()
+            const uniqueValuesFound = intersect(this.values, valuesFoundAsGame,)
             return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
 
             //endregion -------------------- Valid possibilities --------------------
         }
 
+        public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
+            let withSmm1 = false
+            const smm1 = Games.SUPER_MARIO_MAKER_1
+            for (let game of games)
+                if (game === smm1) {
+                    withSmm1 = true
+                    break
+                }
 
-        public get selected(): GameCollection {
-            return new GameCollection(this.values.filter(it => it.isSelected,),)
+            let withSmm3ds = false
+            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+            for (let game of games)
+                if (game === smm3ds) {
+                    withSmm3ds = true
+                    break
+                }
+
+            let withSmm2 = false
+            const smm2 = Games.SUPER_MARIO_MAKER_2
+            for (let game of games)
+                if (game === smm2) {
+                    withSmm2 = true
+                    break
+                }
+
+            if (withSmm1) {
+                if (withSmm3ds) {
+                    if (withSmm2)
+                        return 'all'
+                    return '1,3ds'
+                }
+                if (withSmm2)
+                    return '1,2'
+                return '1'
+            }
+            if (withSmm3ds) {
+                if (withSmm2)
+                    return '3ds,2'
+                return '3ds'
+            }
+            if (withSmm2)
+                return '2'
+            throw new ReferenceError('No game group url value is findable from empty array or collection.',)
         }
 
-        public set selected(value: readonly Games[],) {
-            this.values.forEach(it => it.isSelected = value.includes(it,),)
+        public getGroupUrlName(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlName {
+            let withSmm1 = false
+            const smm1 = Games.SUPER_MARIO_MAKER_1
+            for (let game of games)
+                if (game === smm1) {
+                    withSmm1 = true
+                    break
+                }
+
+            let withSmm3ds = false
+            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
+            for (let game of games)
+                if (game === smm3ds) {
+                    withSmm3ds = true
+                    break
+                }
+
+            let withSmm2 = false
+            const smm2 = Games.SUPER_MARIO_MAKER_2
+            for (let game of games)
+                if (game === smm2) {
+                    withSmm2 = true
+                    break
+                }
+
+            if (withSmm1) {
+                if (withSmm3ds) {
+                    if (withSmm2)
+                        return 'all'
+                    return '1&3DS'
+                }
+                if (withSmm2)
+                    return '1&2'
+                return '1'
+            }
+            if (withSmm3ds) {
+                if (withSmm2)
+                    return '3DS&2'
+                return '3DS'
+            }
+            if (withSmm2)
+                return '2'
+            throw new ReferenceError('No game group url name is findable from empty array or collection.',)
         }
 
     }
@@ -354,18 +388,15 @@ export abstract class Games
     #imageFile?: GameImageFile
     readonly #urlValue
 
-    #isSelected
-
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleSimpleUrlValue, englishName: PossibleEnglishName, isSelected: boolean,) {
+    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleUrlValue, englishName: PossibleEnglishName,) {
         super()
         this.#acronym = acronym
         this.#englishName = new StringContainer(englishName,)
         this.#simpleValue = simpleValue
         this.#urlValue = urlValue
-        this.#isSelected = isSelected
     }
 
     //endregion -------------------- Constructor --------------------
@@ -391,17 +422,8 @@ export abstract class Games
         return this.#imageFile ??= gameImage(this.englishName,)
     }
 
-    public get urlValue(): PossibleSimpleUrlValue {
+    public get urlValue(): PossibleUrlValue {
         return this.#urlValue
-    }
-
-
-    public get isSelected(): boolean {
-        return this.#isSelected
-    }
-
-    public set isSelected(value: boolean,) {
-        this.#isSelected = value
     }
 
     //endregion -------------------- Getter & setter methods --------------------
@@ -409,29 +431,10 @@ export abstract class Games
 
     public abstract get(property: GameProperty,): boolean
 
-    public get renderSingleComponent() {
-        return GameComponent.renderSingleComponent(this)
-    }
-
-
-
-    public static getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
-        return Games.CompanionEnum.get.getGroupUrlValue(games,)
-    }
-
-    public static get selected(): GameCollection {
-        return Games.CompanionEnum.get.selected
-    }
-
-    public static set selected(value: readonly Games[],) {
-        Games.CompanionEnum.get.selected = value
-    }
-
-    public static setSelected(games: readonly Games[],): typeof Games {
-        Games.CompanionEnum.get.selected = games
-        return this
-    }
-
     //endregion -------------------- Methods --------------------
 
 }
+
+// TODO remove this test variable when the application will be complete
+// @ts-ignore
+(window.test ??= {}).Games = Games

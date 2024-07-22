@@ -87,7 +87,8 @@ export interface CourseTagAppProperties
 
 }
 
-//instrument
+export interface InstrumentAppProperties
+    extends AppWithInterpreterProperties, AppWithGamesProperties {}
 
 export interface EditorVoiceProperties
     extends AppWithInterpreterProperties, AppWithGamesProperties {}

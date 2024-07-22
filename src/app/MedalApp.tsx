@@ -48,12 +48,13 @@ const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyMedal (list)',],
     [ViewDisplays.CARD_LIST, 'everyMedal (card)',],
 ] as const satisfies readonly ViewAndRouteName[]
-const titleContent = gameContentTranslation('medal.all',)
 const appInterpreter = new MedalAppInterpreter()
 
 /** @reactComponent */
 export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The MedalApp only handle the "simple list" or "card list" as a possible view display.',)
+
+    const titleContent = gameContentTranslation('medal.all',)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SubMainContainer reactKey="medal" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>

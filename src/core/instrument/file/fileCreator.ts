@@ -8,6 +8,6 @@ import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoun
  *
  * @param name The image name
  */
-export function instrumentSound<NAME extends PossibleFileName, >(name: NAME,): InstrumentSoundFile<NAME> {
+export function instrumentSound<const NAME extends PossibleFileName, >(name: NAME,): InstrumentSoundFile<NAME> {
     return new NonRepeatableSoundFileContainer('instrument', name, 'wav',)
 }

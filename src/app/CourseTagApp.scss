@@ -1,41 +1,12 @@
-@import '../functions';
-@import '../variables';
-@import '../mixin';
+#courseTag-app-container {
 
-#courseTag-container {
-
-  .cardListName-content-container {
-    color: rgba(var(--bs-dark-rgb), 50%,);
+  .viewChanger-container {
+    //TODO change the view changer default position to not have be absolute
+    position: initial;
   }
 
-}
+  .description-container .game-image { height: var(--bs-font-size-lg) }
 
-//region  -------------------- Link buttons --------------------
+  .cardListName-content-container { color: rgba(var(--bs-dark-rgb), 50%,) }
 
-#allCourseTag-button {
-  border-bottom: {
-    left-radius: 0;
-    right-radius: 0;
-  }
-}
-
-#officialCourseTag-button {
-}
-
-#unofficialCourseTag-button {
-}
-
-#makerCentralCourseTag-button {
-  border-top: {
-    left-radius: 0;
-    right-radius: 0;
-  }
-}
-
-//endregion  -------------------- Link buttons --------------------
-
-@include media-breakpoint-up($grid-breakpoint-md) {
-  #courseTag-app-container > p {
-    margin-top: 1.75cm;
-  }
 }

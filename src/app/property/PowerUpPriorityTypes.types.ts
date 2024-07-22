@@ -13,5 +13,5 @@ export type Ordinals = typeof Enum[Names]
 export type Names = keyof typeof Enum
 
 export type PossibleType = 'all' | 'power-up' | 'ride' | 'hat' | `power-up & ${| 'ride' | 'hat'}` | 'ride & hat'
-/** A simple name (not forwarded to the {@link EveryPossibleRouteNames variable}) */
+/** A possible route name (not forwarded to the {@link EveryPossibleRouteNames variable}) */
 export type PossibleRouteName = `every${| `PowerUp${| '' | `&${| `Ride${| '' | '&Hat'}` | 'Hat'}`}` | `Ride${| '' | '&Hat'}` | 'Hat'}Priority` | 'noPriority'
