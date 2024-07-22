@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/631.1329a6c0.chunk.js","mappings":"iKACe,SAASA,IACpB,OAAOC,EAAAA,EAAAA,KAAAC,EAAAA,SAAA,CAAAC,SAAE,cACb,C","sources":["app/AboutApp.tsx"],"sourcesContent":["/** @reactComponent */\nexport default function AboutApp() {\n    return <>About page</>\n}\n"],"names":["AboutApp","_jsx","_Fragment","children"],"sourceRoot":""}
