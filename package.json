@@ -60,8 +60,8 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@joookiwi/collection": "^1.9.1",
-    "@joookiwi/enumerable": "^3.6.1",
+    "@joookiwi/collection": "^1.9.2",
+    "@joookiwi/enumerable": "^3.6.2",
     "@joookiwi/lazy": "^1.5.0",
     "@joookiwi/type": "^1.0.0",
     "assert": "^2.1.0",
