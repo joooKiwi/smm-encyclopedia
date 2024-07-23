@@ -98,6 +98,29 @@ export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyS
 }
 
 //endregion -------------------- is --------------------
+//region -------------------- join --------------------
+
+export function join<const T, >(first: CollectionHolder<T>, second: readonly T[],): T[]
+export function join<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): T[]
+export function join<const T, >(first: readonly T[], second: readonly T[],): T[]
+export function join<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): T[]
+export function join<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],) {
+    const firstSize = first.length
+    const secondSize = second.length
+    const finalSize = firstSize + secondSize
+    const newArray = new Array<T>(finalSize,)
+
+    let index = finalSize
+    while (index-- > firstSize)
+        newArray[index] = second.at(index,) as T
+
+    while (index-- > 0)
+        newArray[index] = first.at(index,) as T
+
+    return newArray
+}
+
+//endregion -------------------- join --------------------
 //region -------------------- intersect --------------------
 
 export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): readonly T[]
@@ -139,6 +162,28 @@ export function has<const T, >(values: | CollectionHolder<T> | readonly T[], val
 }
 
 //endregion -------------------- has --------------------
+//region -------------------- has all --------------------
+
+export function hasAll<const T, >(values: readonly T[], comparedValues: readonly unknown[],): boolean {
+    const valuesSize = comparedValues.length
+    if (valuesSize === 0)
+        return true
+
+    const size = values.length
+    if (size === 0)
+        return false
+
+    valueLoop: for (let i = 0; i < size; i++) {
+        const value = values[i]
+        for (let j = 0; j < valuesSize; j++)
+            if (comparedValues[j] === value)
+                continue valueLoop
+        return false
+    }
+    return true
+}
+
+//endregion -------------------- has all --------------------
 //region -------------------- filter --------------------
 
 /**
