@@ -122,6 +122,20 @@ export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[]
 }
 
 //endregion -------------------- intersect --------------------
+//region -------------------- has --------------------
+
+export function has<const T, >(values: | CollectionHolder<T> | readonly T[], value: NoInfer<T>,): boolean {
+    const size = values.length
+    if (size === 0)
+        return false
+
+    for (let it of values)
+        if (value === it)
+            return true
+    return false
+}
+
+//endregion -------------------- has --------------------
 //region -------------------- filter --------------------
 
 /**
