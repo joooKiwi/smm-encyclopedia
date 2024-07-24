@@ -10,5 +10,5 @@ export type MusicSoundFile<NAME extends PossibleMusicName = PossibleMusicName, >
     | RepeatableDuringThePlayMusicSoundFile<NAME>
 
 export type NonRepeatableMusicSoundFile<NAME extends PossibleMusicName = PossibleMusicName, > = NonRepeatableSoundFile<'music/SMM2', NAME, 'wav'>
-export type RepeatableAtTheEndMusicSoundFile<NAME extends PossibleMusicName = PossibleMusicName, > = RepeatableAtTheEndSoundFile<'music/SMM2', NAME, 'wav'>
-export type RepeatableDuringThePlayMusicSoundFile<NAME extends PossibleMusicName = PossibleMusicName, > = RepeatableDuringThePlaySoundFile<'music/SMM2', NAME, 'wav'>
+/**@deprecated This type is no longer used */export type RepeatableAtTheEndMusicSoundFile<NAME extends PossibleMusicName = PossibleMusicName, > = RepeatableAtTheEndSoundFile<'music/SMM2', NAME, 'wav'>
+/**@deprecated This type is no longer used */export type RepeatableDuringThePlayMusicSoundFile<NAME extends PossibleMusicName = PossibleMusicName, > = RepeatableDuringThePlaySoundFile<'music/SMM2', NAME, 'wav'>
