@@ -44,6 +44,7 @@ const SoundEffectApp = lazy(() => import('app/SoundEffectApp'))
 const ThemeApp = lazy(() => import('app/ThemeApp'))
 const SampleCourseApp = lazy(() => import('app/SampleCourseApp'))
 const MedalApp = lazy(() => import('app/MedalApp'))
+const MusicApp = lazy(() => import('app/MusicApp'))
 const HomeApp = lazy(() => import('app/HomeApp'))
 const SourcesApp = lazy(() => import('app/SourcesApp'))
 const RouteApp = lazy(() => import('app/RouteApp'))
@@ -585,6 +586,8 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
     public static readonly HOME = new EveryRoutes.Straight_EveryRoutes('home', '/home', () => <HomeApp/>,)
     public static readonly ABOUT = new EveryRoutes.Straight_EveryRoutes('about', '/about', () => <AboutApp/>,)
     public static readonly SOURCES = new EveryRoutes.Straight_EveryRoutes('sources', '/sources', () => <SourcesApp/>,)
+
+    public static readonly EVERY_MUSIC = new EveryRoutes.Straight_EveryRoutes('everyMusic', '/every/music', () => <MusicApp/>,)
 
     public static readonly EVERY_POWER_UP_RIDE_AND_HAT_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('everyPowerUp&Ride&HatPriority', '/every/power-up+ride+hat/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.ALL}/>,)
     public static readonly EVERY_POWER_UP_AND_RIDE_PRIORITY = new EveryRoutes.AnyGame_EveryRoutes('everyPowerUp&RidePriority', '/every/power-up+ride/priority', games => <PowerUpRideAndHatPriorityApp games={games} type={PowerUpPriorityTypes.POWER_UP_AND_RIDE}/>,)
