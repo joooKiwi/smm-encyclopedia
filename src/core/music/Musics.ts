@@ -411,9 +411,10 @@ export class Musics
     }
 
     public get themeReference(): NullOr<Themes> {
-        if (this.#themeReference === undefined)
-            return this.#themeReference = this._createThemeReference()
-        return this.#themeReference
+        const value = this.#themeReference
+        if (value !== undefined)
+            return value
+        return this.#themeReference = this._createThemeReference()
     }
 
 
@@ -422,9 +423,10 @@ export class Musics
     }
 
     public get soundEffectReference(): NullOr<SoundEffects> {
-        if (this.#soundEffectReference === undefined)
-            return this.#soundEffectReference = this._createSoundEffectReference()
-        return this.#soundEffectReference
+        const value = this.#soundEffectReference
+        if (value !== undefined)
+            return value
+        return this.#soundEffectReference = this._createSoundEffectReference()
     }
 
     //endregion -------------------- Other reference methods --------------------
@@ -436,9 +438,10 @@ export class Musics
 
     /** @deprecated This method should no longer be used. The individual music or sound effect are better */
     public get music(): NullOr<PossibleMusic> {
-        if (this.#music === undefined)
-            return this.#music = this._createMusic()
-        return this.#music
+        const value = this.#music
+        if (value !== undefined)
+            return value
+        return this.#music = this._createMusic()
     }
 
     //endregion -------------------- Music methods --------------------
