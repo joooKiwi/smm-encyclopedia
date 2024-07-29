@@ -183,6 +183,13 @@
     "all":         "Toutes les catégories de {{singularName}}",
     "display all": "Afficher toutes les catégories de {{singularName}}"
   },
+  "music": {
+    "singular": "Musique",
+    "plural":   "Musiques",
+
+    "all":         "Toutes les musiques",
+    "display all": "Afficher toutes les musiques"
+  },
   "mystery mushroom": {
     "all":         "Tous les {{pluralName}}",
     "display all": "Afficher tous les {{pluralName}}"

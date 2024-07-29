@@ -183,6 +183,13 @@
     "all":         "Every {{singularName}} category",
     "display all": "Display every {{singularName}} category"
   },
+  "music": {
+    "singular": "Music",
+    "plural":   "Musics",
+
+    "all":         "Every music",
+    "display all": "Display every music"
+  },
   "mystery mushroom": {
     "all":         "Every {{singularName}}",
     "display all": "Display every {{singularName}}"
