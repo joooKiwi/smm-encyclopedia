@@ -7,6 +7,8 @@ declare global {
     type ReactJSXElement = React.JSX.Element
     type ReactElement = Nullable<React.ReactElement>
     type NonNullReactElement = React.ReactElement
+    type ArrayReactElement = readonly ReactElement[]
+    type ReactElementOrArray = | ReactElement | readonly ReactElement[]
     type ReactElementOrString = | ReactElement | string
     type ReactElementOrNumeric = | ReactElement | Numeric
     type ReactElementOrNumber = | ReactElement | number
