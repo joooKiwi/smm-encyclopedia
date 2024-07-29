@@ -5,6 +5,7 @@ import type {SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackg
 
 import {SingleBackgroundMusicFactory} from 'core/music/backgroundMusic/SingleBackgroundMusic.factory'
 
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used and better */
 export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends PossibleSMB_EditorMusic_GroupContainer,
     const out SMB_MUSIC extends PossibleSMB_RegularMusic_GroupContainer,
     const out SMB_FAST_MUSIC extends PossibleSMB_FastMusic_GroupContainer,

@@ -2,6 +2,7 @@ import type {PossibleMusicArray, PossibleNSMBU_Music_SingleContainer, PossibleSM
 
 import {nonNull} from 'util/utilitiesMethods'
 
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */
 export class SingleBackgroundMusicContainer<const out SMB_MUSIC extends PossibleSMB_Music_SingleContainer,
     const out SMB3_MUSIC extends PossibleSMB3_Music_SingleContainer,
     const out SMW_MUSIC extends PossibleSMW_Music_SingleContainer,

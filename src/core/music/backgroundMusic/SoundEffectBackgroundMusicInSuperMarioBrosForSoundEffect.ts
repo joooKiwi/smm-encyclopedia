@@ -6,6 +6,7 @@ import type {MusicSoundFile}                                 from 'core/music/fi
  * A "sound effect" "background music" made for a {@link SoundEffects sound effect}.
  *
  * It can have a link & {@link GameReferences.SUPER_MARIO_BROS_2 SMB2} variant.
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export interface SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect<out LINK_MUSIC extends MusicSoundFile<PossibleLink_LinkMusic> = MusicSoundFile<PossibleLink_LinkMusic>,
     out SMB2_MUSIC extends MusicSoundFile<PossibleSMB2_SMB2Music> = MusicSoundFile<PossibleSMB2_SMB2Music>, >
