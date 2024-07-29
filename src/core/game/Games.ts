@@ -12,11 +12,11 @@ import type {GameImageFile}                                                     
 import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import {gameImage}                                                                              from 'core/game/file/fileCreator'
-import {StringContainer}                                                                        from 'util/StringContainer'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
-import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
-import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                 from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {gameImage}                                                                                   from 'core/game/file/fileCreator'
+import {StringContainer}                                                                             from 'util/StringContainer'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, has, intersect, isArrayEquals} from 'util/utilitiesMethods'
+import {EMPTY_ARRAY}                                                                                 from 'util/emptyVariables'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                      from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 /** @usedByTheRouting */
 export abstract class Games
@@ -216,29 +216,9 @@ export abstract class Games
         }
 
         public getGroupUrlValue(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlValue {
-            let withSmm1 = false
-            const smm1 = Games.SUPER_MARIO_MAKER_1
-            for (let game of games)
-                if (game === smm1) {
-                    withSmm1 = true
-                    break
-                }
-
-            let withSmm3ds = false
-            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-            for (let game of games)
-                if (game === smm3ds) {
-                    withSmm3ds = true
-                    break
-                }
-
-            let withSmm2 = false
-            const smm2 = Games.SUPER_MARIO_MAKER_2
-            for (let game of games)
-                if (game === smm2) {
-                    withSmm2 = true
-                    break
-                }
+            const withSmm1 = has(games, Games.SUPER_MARIO_MAKER_1,)
+            const withSmm3ds = has(games, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+            const withSmm2 = has(games, Games.SUPER_MARIO_MAKER_2,)
 
             if (withSmm1) {
                 if (withSmm3ds) {
@@ -261,29 +241,9 @@ export abstract class Games
         }
 
         public getGroupUrlName(games: | readonly Games[] | CollectionHolder<Games>,): GroupUrlName {
-            let withSmm1 = false
-            const smm1 = Games.SUPER_MARIO_MAKER_1
-            for (let game of games)
-                if (game === smm1) {
-                    withSmm1 = true
-                    break
-                }
-
-            let withSmm3ds = false
-            const smm3ds = Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
-            for (let game of games)
-                if (game === smm3ds) {
-                    withSmm3ds = true
-                    break
-                }
-
-            let withSmm2 = false
-            const smm2 = Games.SUPER_MARIO_MAKER_2
-            for (let game of games)
-                if (game === smm2) {
-                    withSmm2 = true
-                    break
-                }
+            const withSmm1 = has(games, Games.SUPER_MARIO_MAKER_1,)
+            const withSmm3ds = has(games, Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS,)
+            const withSmm2 = has(games, Games.SUPER_MARIO_MAKER_2,)
 
             if (withSmm1) {
                 if (withSmm3ds) {

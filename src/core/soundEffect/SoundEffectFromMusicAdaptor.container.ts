@@ -7,6 +7,7 @@ import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /**
  * @todo find a better implementation than using only this (this works for now, but is not-efficient)
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export class SoundEffectFromMusicAdaptorContainer
     implements SoundEffectFromMusicAdaptor {

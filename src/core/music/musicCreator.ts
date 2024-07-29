@@ -18,6 +18,7 @@ import {SoundEffectMusicWithDifferentEditorContainer}                      from 
  *
  * @param music The normal-speed music
  * @param fastMusic The fast-speed music
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export function nonChangeableBackgroundMusic<const MUSIC extends MusicSoundFile<PossibleOther_RegularMusic>, const FAST_MUSIC extends MusicSoundFile<PossibleOther_FastMusic>, >(music: MUSIC, fastMusic: FAST_MUSIC,): NonChangeableSoundEffectBackgroundMusic<MUSIC, FAST_MUSIC> {
     return new NonChangeableSoundEffectBackgroundMusicContainer(music, fastMusic,)
@@ -28,6 +29,7 @@ export function nonChangeableBackgroundMusic<const MUSIC extends MusicSoundFile<
  *
  * @param linkMusic The link-theme music
  * @param smb2Music The SMB2-theme music
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export function linkAndSmb2BackgroundMusic<const LINK_MUSIC extends MusicSoundFile<PossibleLink_LinkMusic>, const SMB2_MUSIC extends MusicSoundFile<PossibleSMB2_SMB2Music>, >(linkMusic: LINK_MUSIC, smb2Music: SMB2_MUSIC,): SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect<LINK_MUSIC, SMB2_MUSIC> {
     return new SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer(linkMusic, smb2Music,)
@@ -69,6 +71,7 @@ export function linkAndSmb2BackgroundMusic<const LINK_MUSIC extends MusicSoundFi
  * @param sm3dwUnderwater The {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} music when playing while being {@link Themes.UNDERWATER underwater}
  * @param sm3dwFast The fast {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} music when playing
  * @param sm3dwFastUnderwater The fast {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} music when playing while being {@link Themes.UNDERWATER underwater}
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export function backgroundMusic<const SMB_EDITOR_MUSIC extends PossibleSMB_EditorMusic_GroupContainer, const SMB_MUSIC extends PossibleSMB_RegularMusic_GroupContainer, const SMB_FAST_MUSIC extends PossibleSMB_FastMusic_GroupContainer,
     const LINK_MUSIC extends PossibleLink_RegularMusic_GroupContainer, const LINK_FAST_MUSIC extends PossibleLink_FastMusic_GroupContainer,
@@ -104,6 +107,7 @@ export function backgroundMusic<const SMB_EDITOR_MUSIC extends PossibleSMB_Edito
  *
  * @param name The music when playing
  * @param editorName The editor sound effect
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export function separatedSoundEffectMusic<const NAME extends PossibleSoundEffectEditorOnly_Name, const EDITOR_NAME extends PossibleSoundEffectEditorOnly_EditorName, >(name: NAME, editorName: EDITOR_NAME,): SoundEffectMusicWithDifferentEditor<NonRepeatableMusicSoundFile<NAME>, NonRepeatableMusicSoundFile<EDITOR_NAME>> {
     return new SoundEffectMusicWithDifferentEditorContainer(nonRepeatable(name,), nonRepeatable(editorName,),)
@@ -113,6 +117,7 @@ export function separatedSoundEffectMusic<const NAME extends PossibleSoundEffect
  * Create a simple {@link SingleSoundEffectMusic} with {@link NonRepeatableSoundFile} from the {@link name} provided
  *
  * @param name The editor sound effect and music when playing
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
  */
 export function singleSoundEffectMusic<const NAME extends PossibleSoundEffectName, >(name: NAME,): SingleSoundEffectMusic<NonRepeatableMusicSoundFile<NAME>> {
     return new SingleSoundEffectMusicContainer(nonRepeatable(name,),)

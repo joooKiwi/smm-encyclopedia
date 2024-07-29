@@ -8,6 +8,7 @@ import {SingleBackgroundMusicContainer} from 'core/music/backgroundMusic/SingleB
 
 const emptyMusic = EmptySingleBackgroundMusic.get
 
+/**@deprecated The use of a more simplistic {@link IndividualMusics} is used and better*/
 export class SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffectContainer<const out LINK_MUSIC extends MusicSoundFile<PossibleLink_LinkMusic>,
     const out SMB2_MUSIC extends MusicSoundFile<PossibleSMB2_SMB2Music>, >
     implements SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect<LINK_MUSIC, SMB2_MUSIC> {

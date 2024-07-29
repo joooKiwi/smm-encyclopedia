@@ -150,78 +150,78 @@ interface SimpleBackgroundMusic<out UNIQUE_NAME_PART_1 extends string,
 //endregion -------------------- Internal types --------------------
 //region -------------------- External types --------------------
 
-export type Possible_Music = | Possible_EditorMusic | Possible_RegularMusic | Possible_FastMusic
-export type Possible_EditorMusic = | PossibleSMB_EditorMusic
-                                   | PossibleSMB3_EditorMusic
-                                   | PossibleSMW_EditorMusic
-                                   | PossibleNSMBU_EditorMusic
-                                   | PossibleSM3DW_EditorMusic
-                                   | PossibleOther_EditorMusic
-export type Possible_RegularMusic = | PossibleSMB_RegularMusic | PossibleLink_RegularMusic | PossibleLink_LinkMusic | PossibleSMB2_RegularMusic | PossibleSMB2_SMB2Music
-                                    | PossibleSMB3_RegularMusic
-                                    | PossibleSMW_RegularMusic | PossibleSMW_RegularYoshiSound
-                                    | PossibleNSMBU_RegularMusic | PossibleNSMBU_RegularYoshiSound
-                                    | PossibleSM3DW_RegularMusic | PossibleSM3DW_RegularUnderwaterMusic
-                                    | PossibleOther_RegularMusic
-export type Possible_FastMusic = | PossibleSMB_FastMusic | PossibleLink_FastMusic | PossibleSMB2_FastMusic
-                                 | PossibleSMB3_FastMusic
-                                 | PossibleSMW_FastMusic | PossibleSMW_FastYoshiSound
-                                 | PossibleNSMBU_FastMusic | PossibleNSMBU_FastYoshiSound
-                                 | PossibleSM3DW_FastMusic | PossibleSM3DW_FastUnderwaterMusic
-                                 | PossibleOther_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type Possible_Music = | Possible_EditorMusic | Possible_RegularMusic | Possible_FastMusic
+type Possible_EditorMusic = | PossibleSMB_EditorMusic
+                            | PossibleSMB3_EditorMusic
+                            | PossibleSMW_EditorMusic
+                            | PossibleNSMBU_EditorMusic
+                            | PossibleSM3DW_EditorMusic
+                            | PossibleOther_EditorMusic
+type Possible_RegularMusic = | PossibleSMB_RegularMusic | PossibleLink_RegularMusic | PossibleLink_LinkMusic | PossibleSMB2_RegularMusic | PossibleSMB2_SMB2Music
+                             | PossibleSMB3_RegularMusic
+                             | PossibleSMW_RegularMusic | PossibleSMW_RegularYoshiSound
+                             | PossibleNSMBU_RegularMusic | PossibleNSMBU_RegularYoshiSound
+                             | PossibleSM3DW_RegularMusic | PossibleSM3DW_RegularUnderwaterMusic
+                             | PossibleOther_RegularMusic
+type Possible_FastMusic = | PossibleSMB_FastMusic | PossibleLink_FastMusic | PossibleSMB2_FastMusic
+                          | PossibleSMB3_FastMusic
+                          | PossibleSMW_FastMusic | PossibleSMW_FastYoshiSound
+                          | PossibleNSMBU_FastMusic | PossibleNSMBU_FastYoshiSound
+                          | PossibleSM3DW_FastMusic | PossibleSM3DW_FastUnderwaterMusic
+                          | PossibleOther_FastMusic
 
 
 type _GetFromRegularBackgroundMusic<GAME extends | 'smb' | 'link' | 'smb2' | 'smb3' | `${| 'smw' | 'nsmbu'}${| '' | ' (yoshi)'}` | `sm3dw${| '' | ' (underwater)'}`, > = MusicTemplateMap[| 'Bonus' | 'Boss' | 'Final Boss'][GAME]
 
-export type PossibleSMB_Music = | PossibleSMB_EditorMusic | PossibleSMB_RegularMusic | PossibleSMB_FastMusic
-export type PossibleSMB_EditorMusic = _GetFromRegularBackgroundMusic<'smb'>['editor']
-export type PossibleSMB_RegularMusic = _GetFromRegularBackgroundMusic<'smb'>['regular']
-export type PossibleSMB_FastMusic = _GetFromRegularBackgroundMusic<'smb'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_Music = | PossibleSMB_EditorMusic | PossibleSMB_RegularMusic | PossibleSMB_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_EditorMusic = _GetFromRegularBackgroundMusic<'smb'>['editor']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_RegularMusic = _GetFromRegularBackgroundMusic<'smb'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB_FastMusic = _GetFromRegularBackgroundMusic<'smb'>['fast']
 
-export type PossibleLink_Music = | PossibleLink_RegularMusic | PossibleLink_LinkMusic | PossibleLink_FastMusic
-export type PossibleLink_RegularMusic = _GetFromRegularBackgroundMusic<'link'>[0]
-export type PossibleLink_LinkMusic = MusicTemplateMap['Peaceful']['link']
-export type PossibleLink_FastMusic = _GetFromRegularBackgroundMusic<'link'>[1]
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleLink_Music = | PossibleLink_RegularMusic | PossibleLink_LinkMusic | PossibleLink_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleLink_RegularMusic = _GetFromRegularBackgroundMusic<'link'>[0]
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleLink_LinkMusic = MusicTemplateMap['Peaceful']['link']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleLink_FastMusic = _GetFromRegularBackgroundMusic<'link'>[1]
 
-export type PossibleSMB2_Music = | PossibleSMB2_RegularMusic | PossibleSMB2_SMB2Music | PossibleSMB2_FastMusic
-export type PossibleSMB2_RegularMusic = _GetFromRegularBackgroundMusic<'smb2'>[0]
-export type PossibleSMB2_SMB2Music = MusicTemplateMap['Peaceful']['smb2']
-export type PossibleSMB2_FastMusic = _GetFromRegularBackgroundMusic<'smb2'>[1]
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB2_Music = | PossibleSMB2_RegularMusic | PossibleSMB2_SMB2Music | PossibleSMB2_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB2_RegularMusic = _GetFromRegularBackgroundMusic<'smb2'>[0]
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB2_SMB2Music = MusicTemplateMap['Peaceful']['smb2']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB2_FastMusic = _GetFromRegularBackgroundMusic<'smb2'>[1]
 
-export type PossibleSMB3_Music = | PossibleSMB3_EditorMusic | PossibleSMB3_RegularMusic | PossibleSMB3_FastMusic
-export type PossibleSMB3_EditorMusic = _GetFromRegularBackgroundMusic<'smb3'>['editor']
-export type PossibleSMB3_RegularMusic = _GetFromRegularBackgroundMusic<'smb3'>['regular']
-export type PossibleSMB3_FastMusic = _GetFromRegularBackgroundMusic<'smb3'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB3_Music = | PossibleSMB3_EditorMusic | PossibleSMB3_RegularMusic | PossibleSMB3_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB3_EditorMusic = _GetFromRegularBackgroundMusic<'smb3'>['editor']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB3_RegularMusic = _GetFromRegularBackgroundMusic<'smb3'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMB3_FastMusic = _GetFromRegularBackgroundMusic<'smb3'>['fast']
 
-export type PossibleSMW_Music = | PossibleSMW_EditorMusic | PossibleSMW_RegularMusic | PossibleSMW_FastMusic
-export type PossibleSMW_YoshiSound = | PossibleSMW_RegularYoshiSound | PossibleSMW_FastYoshiSound
-export type PossibleSMW_EditorMusic = _GetFromRegularBackgroundMusic<'smw'>['editor']
-export type PossibleSMW_RegularMusic = _GetFromRegularBackgroundMusic<'smw'>['regular']
-export type PossibleSMW_RegularYoshiSound = _GetFromRegularBackgroundMusic<'smw (yoshi)'>['regular']
-export type PossibleSMW_FastMusic = _GetFromRegularBackgroundMusic<'smw'>['fast']
-export type PossibleSMW_FastYoshiSound = _GetFromRegularBackgroundMusic<'smw (yoshi)'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_Music = | PossibleSMW_EditorMusic | PossibleSMW_RegularMusic | PossibleSMW_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_YoshiSound = | PossibleSMW_RegularYoshiSound | PossibleSMW_FastYoshiSound
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_EditorMusic = _GetFromRegularBackgroundMusic<'smw'>['editor']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_RegularMusic = _GetFromRegularBackgroundMusic<'smw'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_RegularYoshiSound = _GetFromRegularBackgroundMusic<'smw (yoshi)'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_FastMusic = _GetFromRegularBackgroundMusic<'smw'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSMW_FastYoshiSound = _GetFromRegularBackgroundMusic<'smw (yoshi)'>['fast']
 
-export type PossibleNSMBU_Music = | PossibleNSMBU_EditorMusic | PossibleNSMBU_RegularMusic | PossibleNSMBU_FastMusic
-export type PossibleNSMBU_YoshiSound = | PossibleNSMBU_RegularYoshiSound | PossibleNSMBU_FastYoshiSound
-export type PossibleNSMBU_EditorMusic = _GetFromRegularBackgroundMusic<'nsmbu'>['editor']
-export type PossibleNSMBU_RegularMusic = _GetFromRegularBackgroundMusic<'nsmbu'>['regular']
-export type PossibleNSMBU_RegularYoshiSound = _GetFromRegularBackgroundMusic<'nsmbu (yoshi)'>['regular']
-export type PossibleNSMBU_FastMusic = _GetFromRegularBackgroundMusic<'nsmbu'>['fast']
-export type PossibleNSMBU_FastYoshiSound = _GetFromRegularBackgroundMusic<'nsmbu (yoshi)'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_Music = | PossibleNSMBU_EditorMusic | PossibleNSMBU_RegularMusic | PossibleNSMBU_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_YoshiSound = | PossibleNSMBU_RegularYoshiSound | PossibleNSMBU_FastYoshiSound
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_EditorMusic = _GetFromRegularBackgroundMusic<'nsmbu'>['editor']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_RegularMusic = _GetFromRegularBackgroundMusic<'nsmbu'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_RegularYoshiSound = _GetFromRegularBackgroundMusic<'nsmbu (yoshi)'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_FastMusic = _GetFromRegularBackgroundMusic<'nsmbu'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleNSMBU_FastYoshiSound = _GetFromRegularBackgroundMusic<'nsmbu (yoshi)'>['fast']
 
-export type PossibleSM3DW_Music = | PossibleSM3DW_EditorMusic | PossibleSM3DW_RegularMusic | PossibleSM3DW_FastMusic
-export type PossibleSM3DW_UnderwaterMusic = | PossibleSM3DW_RegularUnderwaterMusic | PossibleSM3DW_FastUnderwaterMusic
-export type PossibleSM3DW_EditorMusic = _GetFromRegularBackgroundMusic<'sm3dw'>['editor']
-export type PossibleSM3DW_RegularMusic = _GetFromRegularBackgroundMusic<'sm3dw'>['regular']
-export type PossibleSM3DW_RegularUnderwaterMusic = _GetFromRegularBackgroundMusic<'sm3dw (underwater)'>['regular']
-export type PossibleSM3DW_FastMusic = _GetFromRegularBackgroundMusic<'sm3dw'>['fast']
-export type PossibleSM3DW_FastUnderwaterMusic = _GetFromRegularBackgroundMusic<'sm3dw (underwater)'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_Music = | PossibleSM3DW_EditorMusic | PossibleSM3DW_RegularMusic | PossibleSM3DW_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_UnderwaterMusic = | PossibleSM3DW_RegularUnderwaterMusic | PossibleSM3DW_FastUnderwaterMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_EditorMusic = _GetFromRegularBackgroundMusic<'sm3dw'>['editor']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_RegularMusic = _GetFromRegularBackgroundMusic<'sm3dw'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_RegularUnderwaterMusic = _GetFromRegularBackgroundMusic<'sm3dw (underwater)'>['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_FastMusic = _GetFromRegularBackgroundMusic<'sm3dw'>['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleSM3DW_FastUnderwaterMusic = _GetFromRegularBackgroundMusic<'sm3dw (underwater)'>['fast']
 
 
 type OtherMusicName = `Super Mario ${| 'Kart' | 64 | 'Sunshine' | 'Galaxy'}`
-export type PossibleOther_Music = | PossibleOther_EditorMusic | PossibleOther_RegularMusic | PossibleOther_FastMusic
-export type PossibleOther_EditorMusic = MusicTemplateMap[OtherMusicName]['editor']
-export type PossibleOther_RegularMusic = MusicTemplateMap[OtherMusicName]['regular']
-export type PossibleOther_FastMusic = MusicTemplateMap[OtherMusicName]['fast']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleOther_Music = | PossibleOther_EditorMusic | PossibleOther_RegularMusic | PossibleOther_FastMusic
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleOther_EditorMusic = MusicTemplateMap[OtherMusicName]['editor']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleOther_RegularMusic = MusicTemplateMap[OtherMusicName]['regular']
+/**@deprecated The use of a more simplistic structure on {@link IndividualMusics} is used */export type PossibleOther_FastMusic = MusicTemplateMap[OtherMusicName]['fast']
 
 //endregion -------------------- External types --------------------

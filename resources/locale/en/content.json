@@ -39,6 +39,15 @@
       "Not created":                 "Not created"
     }
   },
+  "music": {
+    "title": "The musics in \"Super Mario Maker\"",
+    "introduction": {
+      "1. present":          "This page contains all of the music (with their variants) that are present in the games. ",
+      "2. no sound effect":  "Some {{soundEffectsLink}} are present since they are a music in its original game.",
+      "3. organization":     "The musics are organized from the {{gameStyleLink}}, then on the {{themeLink}}. ",
+      "4. editor":           "Only the editor musics are separated in different sections."
+    }
+  },
 
   "Yes": "Yes",
   "No":  "No",

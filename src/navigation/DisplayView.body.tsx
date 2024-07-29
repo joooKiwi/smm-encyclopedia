@@ -101,8 +101,12 @@ export default function DisplayViewBody() {
             </div> : null}
         </div>
         <div id="display-sound-container" className="container">
-            <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Sound</UnfinishedText></h3>
-            <div key="button group (sound effect)" id="soundEffect-buttonGroup" className="btn-group col-12" role="group">
+            <h3 className="text-center text-decoration-underline pb-2"><UnfinishedText>Music / sound</UnfinishedText></h3>
+            <div id="music-buttonGroup" className="btn-group col-12 col-md-6">
+                <DisplayViewRouteButton routeName="everyMusic" value={gameContentTranslation('music.singular',)}
+                                        tooltipValue={gameContentTranslation('music.display all',)}/>
+            </div>
+            <div key="button group (sound effect)" id="soundEffect-buttonGroup" className="btn-group col-12 col-md-6" role="group">
                 <DisplayViewRouteButton routeName="everySoundEffect" value={gameContentTranslation('sound effect.singular',)}
                                         tooltipValue={gameContentTranslation('sound effect.display all',)}/>
                 {isSMM2Selected ? <DisplayViewRouteButton routeName="everySoundEffectCategory" value={gameContentTranslation('Category',)}

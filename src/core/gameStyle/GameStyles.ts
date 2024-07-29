@@ -16,12 +16,12 @@ import type {GameStyleReferences}                                               
 import type {ClassUsedInRoute}                                                                                                                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import {GameStyleLoader}                                                                        from 'core/gameStyle/GameStyle.loader'
-import {gameStyleImage}                                                                         from 'core/gameStyle/file/fileCreator'
-import {StringContainer}                                                                        from 'util/StringContainer'
-import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
-import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                 from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {GameStyleLoader}                                                                             from 'core/gameStyle/GameStyle.loader'
+import {gameStyleImage}                                                                              from 'core/gameStyle/file/fileCreator'
+import {StringContainer}                                                                             from 'util/StringContainer'
+import {EMPTY_ARRAY}                                                                                 from 'util/emptyVariables'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, has, intersect, isArrayEquals} from 'util/utilitiesMethods'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                      from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 /**
  * @recursiveReference<{@link GameStyleLoader}>
@@ -373,45 +373,11 @@ export abstract class GameStyles
         }
 
         public getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue {
-            let withSmb = false
-            const smb = GameStyles.SUPER_MARIO_BROS
-            for (let gameStyle of gameStyles)
-                if (gameStyle === smb) {
-                    withSmb = true
-                    break
-                }
-
-            let withSmb3 = false
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            for (let gameStyle of gameStyles)
-                if (gameStyle === smb3) {
-                    withSmb3 = true
-                    break
-                }
-
-            let withSmw = false
-            const smw = GameStyles.SUPER_MARIO_WORLD
-            for (let gameStyle of gameStyles)
-                if (gameStyle === smw) {
-                    withSmw = true
-                    break
-                }
-
-            let withNsmbu = false
-            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
-            for (let gameStyle of gameStyles)
-                if (gameStyle === nsmbu) {
-                    withNsmbu = true
-                    break
-                }
-
-            let withSm3dw = false
-            const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
-            for (let gameStyle of gameStyles)
-                if (gameStyle === sm3dw) {
-                    withSm3dw = true
-                    break
-                }
+            const withSmb = has(gameStyles, GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = has(gameStyles, GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = has(gameStyles, GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = has(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = has(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {
@@ -494,45 +460,11 @@ export abstract class GameStyles
         }
 
         public getGroupUrlName(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlName {
-            let withSmb = false
-            const smb = GameStyles.SUPER_MARIO_BROS
-            for (let gameStyle of gameStyles)
-                if (gameStyle === smb) {
-                    withSmb = true
-                    break
-                }
-
-            let withSmb3 = false
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            for (let gameStyle of gameStyles)
-                if (gameStyle === smb3) {
-                    withSmb3 = true
-                    break
-                }
-
-            let withSmw = false
-            const smw = GameStyles.SUPER_MARIO_WORLD
-            for (let gameStyle of gameStyles)
-                if (gameStyle === smw) {
-                    withSmw = true
-                    break
-                }
-
-            let withNsmbu = false
-            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
-            for (let gameStyle of gameStyles)
-                if (gameStyle === nsmbu) {
-                    withNsmbu = true
-                    break
-                }
-
-            let withSm3dw = false
-            const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
-            for (let gameStyle of gameStyles)
-                if (gameStyle === sm3dw) {
-                    withSm3dw = true
-                    break
-                }
+            const withSmb = has(gameStyles, GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = has(gameStyles, GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = has(gameStyles, GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = has(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = has(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {

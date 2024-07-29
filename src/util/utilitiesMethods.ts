@@ -14,8 +14,8 @@ import type {CompanionEnumByType}                                               
 import type {CompanionEnumByUrlValue}                                                                             from 'util/enumerable/companion/CompanionEnumByUrlValue'
 import type {CompanionEnumRetrievableInUrl}                                                                       from 'util/enumerable/companion/CompanionEnumRetrievableInUrl'
 
-import {isInProduction} from 'variables'
-import {EMPTY_STRING}   from 'util/emptyVariables'
+import {isInProduction}            from 'variables'
+import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
 
 //region -------------------- is --------------------
 
@@ -98,17 +98,43 @@ export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyS
 }
 
 //endregion -------------------- is --------------------
+//region -------------------- join --------------------
+
+export function join<const T, >(first: CollectionHolder<T>, second: readonly T[],): T[]
+export function join<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): T[]
+export function join<const T, >(first: readonly T[], second: readonly T[],): T[]
+export function join<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): T[]
+export function join<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],) {
+    const firstSize = first.length
+    const secondSize = second.length
+    const finalSize = firstSize + secondSize
+    const newArray = new Array<T>(finalSize,)
+
+    let index = finalSize
+    while (index-- > firstSize)
+        newArray[index] = second.at(index,) as T
+
+    while (index-- > 0)
+        newArray[index] = first.at(index,) as T
+
+    return newArray
+}
+
+//endregion -------------------- join --------------------
 //region -------------------- intersect --------------------
 
 export function intersect<const T, >(first: CollectionHolder<T>, second: readonly T[],): readonly T[]
 export function intersect<const T, >(first: CollectionHolder<T>, second: CollectionHolder<T>,): readonly T[]
 export function intersect<const T, >(first: readonly T[], second: readonly T[],): readonly T[]
 export function intersect<const T, >(first: readonly T[], second: CollectionHolder<T>,): readonly T[]
-export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],): readonly T[] {
+export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[], second: | CollectionHolder<T> | readonly T[],) {
+    const firstSize = first.length
+    if (firstSize === 0)
+        return EMPTY_ARRAY
+
+    const secondSize = second.length
     const newArray = [] as T[]
     let firstIndex = -1
-    const firstSize = first.length
-    const secondSize = second.length
     while (++firstIndex < firstSize) {
         const firstValue = first[firstIndex] as T
         let secondIndex = -1
@@ -122,6 +148,42 @@ export function intersect<const T, >(first: | CollectionHolder<T> | readonly T[]
 }
 
 //endregion -------------------- intersect --------------------
+//region -------------------- has --------------------
+
+export function has<const T, >(values: | CollectionHolder<T> | readonly T[], value: NoInfer<T>,): boolean {
+    const size = values.length
+    if (size === 0)
+        return false
+
+    for (let it of values)
+        if (value === it)
+            return true
+    return false
+}
+
+//endregion -------------------- has --------------------
+//region -------------------- has all --------------------
+
+export function hasAll<const T, >(values: readonly T[], comparedValues: readonly unknown[],): boolean {
+    const valuesSize = comparedValues.length
+    if (valuesSize === 0)
+        return true
+
+    const size = values.length
+    if (size === 0)
+        return false
+
+    valueLoop: for (let i = 0; i < size; i++) {
+        const value = values[i]
+        for (let j = 0; j < valuesSize; j++)
+            if (comparedValues[j] === value)
+                continue valueLoop
+        return false
+    }
+    return true
+}
+
+//endregion -------------------- has all --------------------
 //region -------------------- filter --------------------
 
 /**
@@ -138,10 +200,16 @@ export function filterGame<const T extends ClassWithReference<GameProperty>, >(v
  * @param games The {@link CollectionHolder Collection} of game to get if they can be used
  */
 export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: readonly T[], games: CollectionHolder<Games>,): readonly T[]
-export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | readonly T[], games: CollectionHolder<Games>,): readonly T[] {
-    const newArray = [] as T[]
-    const gameSize = games.size
+export function filterGame<const T extends ClassWithReference<GameProperty>, >(values: | CollectionHolder<T> | readonly T[], games: CollectionHolder<Games>,) {
     const valuesSize = values.length
+    if (valuesSize === 0)
+        return EMPTY_ARRAY
+
+    const gameSize = games.size
+    if (gameSize === 0)
+        return values instanceof Array ? values : values.toArray()
+
+    const newArray = [] as T[]
     let valuesIndex = -1
     while (++valuesIndex < valuesSize) {
         const value = values[valuesIndex] as T
@@ -169,10 +237,16 @@ export function filterGameStyle<const T extends ClassWithReference<GameStyleProp
  * @param games The {@link CollectionHolder Collection} of game to get if they can be used
  */
 export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: readonly T[], gameStyles: CollectionHolder<GameStyles>,): readonly T[]
-export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | readonly T[], gameStyles: CollectionHolder<GameStyles>,): readonly T[] {
-    const newArray = [] as T[]
-    const gameSize = gameStyles.size
+export function filterGameStyle<const T extends ClassWithReference<GameStyleProperty>, >(values: | CollectionHolder<T> | readonly T[], gameStyles: CollectionHolder<GameStyles>,) {
     const valuesSize = values.length
+    if (valuesSize === 0)
+        return EMPTY_ARRAY
+
+    const gameSize = gameStyles.size
+    if (gameSize === 0)
+        return values instanceof Array ? values : values.toArray()
+
+    const newArray = [] as T[]
     let valuesIndex = -1
     while (++valuesIndex < valuesSize) {
         const value = values[valuesIndex] as T
@@ -195,8 +269,11 @@ export function filterGameStyle<const T extends ClassWithReference<GameStyleProp
  * @param array The array reference to reverse
  * @returns A new reversed array
  */
-export function reverse<const T, >(array: readonly T[],): T[] {
+export function reverse<const T, >(array: readonly T[],): readonly T[] {
     const size = array.length
+    if (size === 0)
+        return EMPTY_ARRAY
+
     const newArray = new Array(size,)
 
     let index = array.length
@@ -213,33 +290,36 @@ export function reverse<const T, >(array: readonly T[],): T[] {
  *
  * @param array The array to remove its <b>null</b> values
  */
-export function nonNull<const T, >(array: readonly T[],): NonNullable<T>[]
+export function nonNull<const T, >(array: readonly T[],): readonly NonNullable<T>[]
 /**
  * Convert the {@link Set} to a non-null {@link Set}
  *
  * @param set The set to remove its <b>null</b> values
  */
-export function nonNull<const T, >(set: ReadonlySet<T>,): Set<NonNullable<T>>
-export function nonNull<const T, >(setOrArray: ReadonlySet<T> | readonly T[],): | Set<NonNullable<T>> | NonNullable<T>[] {
-    if (setOrArray instanceof Array) {
-        const size = setOrArray.length
-        const newArray = [] as NonNullable<T>[]
+export function nonNull<const T, >(set: ReadonlySet<T>,): ReadonlySet<NonNullable<T>>
+export function nonNull<const T, >(reference: ReadonlySet<T> | readonly T[],): | readonly NonNullable<T>[] | ReadonlySet<NonNullable<T>> {
+    if (reference instanceof Array) {
+        const size = reference.length
+        if (size === 0)
+            return EMPTY_ARRAY
+
+        const newArray: NonNullable<T>[] = []
 
         let index = -1
         while (index++ < size) {
-            const value = setOrArray[index]
+            const value = reference[index]
             if (value != null)
                 newArray.push(value,)
         }
         if (size === newArray.length)
-            return setOrArray as NonNullable<T>[]
+            return reference as NonNullable<T>[]
         return newArray
     }
 
     const newSet = new Set<NonNullable<T>>()
-    setOrArray.forEach(it => {
+    reference.forEach(it => {
         if (it == null) return
-        newSet.add(it)
+        newSet.add(it,)
     },)
     return newSet
 }

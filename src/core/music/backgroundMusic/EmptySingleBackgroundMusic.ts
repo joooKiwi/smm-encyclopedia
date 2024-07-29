@@ -3,7 +3,10 @@ import type {ClassWithNullObjectPattern, EmptySingleBackgroundMusicName} from 'u
 
 import {EMPTY_ARRAY} from 'util/emptyVariables'
 
-/** @singleton */
+/**
+ * @singleton
+ * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better
+ */
 export class EmptySingleBackgroundMusic
     implements SingleBackgroundMusic<null, null, null, null, null>,
         ClassWithNullObjectPattern<EmptySingleBackgroundMusicName> {
