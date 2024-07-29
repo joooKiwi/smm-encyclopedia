@@ -1,6 +1,6 @@
 {
   "name": "smm-encyclopedia",
-  "version": "0.24.0-beta",
+  "version": "0.25.0-beta",
   "homepage": "https://joookiwi.github.io/smm-encyclopedia/",
   "private": true,
   "repository": {
@@ -25,7 +25,7 @@
     "test-file": "react-scripts test --testNamePattern=\"(file test)\" --watchAll=false",
 
     "build": "react-scripts build",
-    "deploy": "gh-pages -m \"Deployment of the version 0.24 (beta)\" -d build"
+    "deploy": "gh-pages -m \"Deployment of the version 0.25 (beta)\" -d build"
   },
   "keywords": [
     "MarioMaker", "MarioMaker1", "MarioMaker3DS", "MarioMaker2",
@@ -79,11 +79,11 @@
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.4.8",
-    "@testing-library/react": "^14.3.1",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/bootstrap": "^5.2.10",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.14.12",
+    "@types/node": "^20.14.13",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@types/react-router-dom": "^5.3.3",
