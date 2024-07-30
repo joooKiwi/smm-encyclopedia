@@ -10,5 +10,5 @@ import {RepeatableDuringThePlayExternalSoundFileContainer} from 'util/file/sound
  * @param frame The frame (60fps) that it does loop
  */
 export function repeatableDuringThePlay<const NAME extends string, FRAME extends number, >(name: NAME, frame: FRAME,): RepeatableDuringThePlaySoundFile<`${string}/music/SMM2`, NAME, 'wav', FramePerMillisecond<FRAME>> {
-    return new RepeatableDuringThePlayExternalSoundFileContainer('https://github.com/joooKiwi/smm-encyclopedia/tree/main/resources/music/SMM2', name, 'wav', new FramePerMillisecond(frame,),)
+    return new RepeatableDuringThePlayExternalSoundFileContainer('https://github.com/joooKiwi/smm-encyclopedia/raw/main/resources/music/SMM2', name, 'wav', new FramePerMillisecond(frame,),)
 }
