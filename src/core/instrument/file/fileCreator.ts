@@ -1,7 +1,7 @@
 import type {PossibleFileName}    from 'core/instrument/Instruments.types'
 import type {InstrumentSoundFile} from 'core/instrument/file/InstrumentSoundFile'
 
-import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoundFile.container'
+import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
 /**
  * Create a simple {@link InstrumentSoundFile} from a {@link name} provided
@@ -9,5 +9,5 @@ import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoun
  * @param name The image name
  */
 export function instrumentSound<const NAME extends PossibleFileName, >(name: NAME,): InstrumentSoundFile<NAME> {
-    return new NonRepeatableSoundFileContainer('instrument', name, 'wav',)
+    return new NonRepeatableInternalSoundFileContainer('instrument', name, 'wav',)
 }

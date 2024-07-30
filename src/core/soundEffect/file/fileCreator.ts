@@ -3,8 +3,8 @@ import type {SMM1SoundEffectImageFile, SMM2SoundEffectImageFile}                
 import type {SMM1SoundEffectSoundFile, SMM2SoundEffectSoundFile}                          from 'core/soundEffect/file/SoundEffectSoundFile'
 import type {PossibleSoundEffectSoundName_SMM1, PossibleSoundEffectSoundName_SMM2}        from 'core/soundEffect/sound/types'
 
-import {SimpleImageFile}                 from 'util/file/image/SimpleImageFile'
-import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoundFile.container'
+import {SimpleImageFile}                         from 'util/file/image/SimpleImageFile'
+import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
 /**
  * Create a simple {@link ReadonlyArray array} of {@link SMM1SoundEffectImageFile} from the {@link imageNumbers} provided
@@ -35,7 +35,7 @@ export function smm2ImageFile(englishName: PossibleEnglishName, imageName: Sound
  * @param name The name of the sound file
  */
 export function smm1SoundFile<const NAME extends PossibleSoundEffectSoundName_SMM1, >(name: NAME,): SMM1SoundEffectSoundFile<NAME> {
-    return new NonRepeatableSoundFileContainer('sound/sound effect/SMM1', name, 'wav',)
+    return new NonRepeatableInternalSoundFileContainer('sound/sound effect/SMM1', name, 'wav',)
 }
 
 /**
@@ -104,7 +104,7 @@ export function smm1SoundFiles(...names: PossibleSoundEffectSoundName_SMM1[]): r
  * @param name The name of the sound file
  */
 export function smm2SoundFile<const NAME extends PossibleSoundEffectSoundName_SMM2, >(name: NAME,): SMM2SoundEffectSoundFile<NAME> {
-    return new NonRepeatableSoundFileContainer('sound/sound effect/SMM2', name, 'wav',)
+    return new NonRepeatableInternalSoundFileContainer('sound/sound effect/SMM2', name, 'wav',)
 }
 
 /**
