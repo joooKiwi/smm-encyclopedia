@@ -2,13 +2,13 @@ import type {PossibleEnglishName, PossibleFileName}                             
 import type {ClimbingImageFile, FallingAfterAJumpImageFile, GoalPoleImageFile, JumpImageFile, PressingDownImageFile, RunningImageFile, SwimmingImageFile, TauntImageFile, TurningImageFile, WaitingImageFile, WalkImageFile} from 'core/mysteryMushroom/file/MysteryMushroomImageFile'
 import type {GoalPoleSoundFile, JumpSoundFile, LostALifeSoundFile, OnGroundAfterAJumpSoundFile, PowerUpCollectedSoundFile, TauntSoundFile, TurningSoundFile}                                                                 from 'core/mysteryMushroom/file/MysteryMushroomSoundFile'
 
-import {SimpleImageFile}                 from 'util/file/image/SimpleImageFile'
-import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoundFile.container'
+import {SimpleImageFile}                         from 'util/file/image/SimpleImageFile'
+import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
 //region -------------------- Power-up collected --------------------
 
 export function powerUpCollectedSound(name: PossibleFileName,): PowerUpCollectedSoundFile {
-    return new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, 'powerup', 'wav',)
+    return new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, 'powerup', 'wav',)
 }
 
 //endregion -------------------- Power-up collected --------------------
@@ -22,7 +22,7 @@ export function waitingImage(englishName: PossibleEnglishName, name: PossibleFil
 //region -------------------- Taunt --------------------
 
 export function tauntSound(name: PossibleFileName,): TauntSoundFile {
-    return new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, 'appeal', 'wav',)
+    return new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, 'appeal', 'wav',)
 }
 
 export function tauntImage(englishName: PossibleEnglishName, name: PossibleFileName,): TauntImageFile {
@@ -76,13 +76,13 @@ export function swimmingImages(englishName: PossibleEnglishName, name: PossibleF
 //region -------------------- Jumping --------------------
 
 export function singleJumpSounds(name: PossibleFileName,): readonly [JumpSoundFile,] {
-    return [new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, `jump`, 'wav',),]
+    return [new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, `jump`, 'wav',),]
 }
 
 export function dualJumpSounds(name: PossibleFileName,): readonly [JumpSoundFile, JumpSoundFile,] {
     return [
-        new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, `jump`, 'wav',),
-        new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, `jump2`, 'wav',),
+        new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, `jump`, 'wav',),
+        new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, `jump2`, 'wav',),
     ]
 }
 
@@ -106,7 +106,7 @@ export function fallingAfterAJumpImage(englishName: PossibleEnglishName, name: P
 
 
 export function onGroundAfterAJumpSound(name: PossibleFileName,): OnGroundAfterAJumpSoundFile {
-    return new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, 'ground', 'wav',)
+    return new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, 'ground', 'wav',)
 }
 
 //endregion -------------------- Jumping --------------------
@@ -117,7 +117,7 @@ export function turningImage(englishName: PossibleEnglishName, name: PossibleFil
 }
 
 export function turningSound(name: PossibleFileName,): TurningSoundFile {
-    return new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, 'slip', 'wav',)
+    return new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, 'slip', 'wav',)
 }
 
 //endregion -------------------- Turning --------------------
@@ -142,14 +142,14 @@ export function goalPoleImages(englishName: PossibleEnglishName, name: PossibleF
 
 
 export function goalPoleSound(name: PossibleFileName,): GoalPoleSoundFile {
-    return new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, 'goal', 'wav',)
+    return new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, 'goal', 'wav',)
 }
 
 //endregion -------------------- Goal pole --------------------
 //region -------------------- Lost a life --------------------
 
 export function lostALifeSound(name: PossibleFileName,): LostALifeSoundFile {
-    return new NonRepeatableSoundFileContainer(`sound/mystery mushroom/${name}`, 'down', 'wav',)
+    return new NonRepeatableInternalSoundFileContainer(`sound/mystery mushroom/${name}`, 'down', 'wav',)
 }
 
 //endregion -------------------- Lost a life --------------------

@@ -1,13 +1,13 @@
 import type {ImageFile, PossibleImageFileExtension} from 'util/file/image/ImageFile'
 
-import {AbstractFile} from 'util/file/AbstractFile'
+import {AbstractInternalFile} from 'util/file/AbstractInternalFile'
 
 /** The base of every kind of {@link ImageFile} implementations */
 export abstract class AbstractImageFile<const out PATH extends string = string,
     const out NAME extends string = string,
     const out EXTENSION extends PossibleImageFileExtension = PossibleImageFileExtension,
     const out FALLBACK_NAME extends string = string, >
-    extends AbstractFile<PATH, NAME, EXTENSION>
+    extends AbstractInternalFile<PATH, NAME, EXTENSION>
     implements ImageFile<PATH, NAME, EXTENSION, FALLBACK_NAME> {
 
     //region -------------------- Fields --------------------

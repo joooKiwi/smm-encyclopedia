@@ -2,14 +2,14 @@ import type {PossibleSoundFileExtension, SoundFile} from 'util/file/sound/SoundF
 import type {RepeatableTypes}                       from 'util/file/sound/RepeatableTypes'
 import type {Time}                                  from 'util/file/sound/time/Time'
 
-import {AbstractFile} from 'util/file/AbstractFile'
+import {AbstractInternalFile} from 'util/file/AbstractInternalFile'
 
-/** The base of every {@link SoundFile} implementations */
-export abstract class AbstractSoundFile<const out PATH extends string = string,
+/** The base of every "internal" {@link SoundFile} implementations */
+export abstract class AbstractInternalSoundFile<const out PATH extends string = string,
     const out NAME extends string = string,
     const out EXTENSION extends PossibleSoundFileExtension = PossibleSoundFileExtension,
     const out REPEATABLE_TIME extends NullOr<Time> = NullOr<Time>, >
-    extends AbstractFile<PATH, NAME, EXTENSION>
+    extends AbstractInternalFile<PATH, NAME, EXTENSION>
     implements SoundFile<PATH, NAME, EXTENSION, REPEATABLE_TIME> {
 
     //region -------------------- Fields --------------------

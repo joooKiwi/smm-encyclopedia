@@ -1,8 +1,6 @@
-import type {File, FullFileName, FullFilePath, PossibleFileExtension} from 'util/file/File'
+import type {File, PossibleFileExtension} from 'util/file/File'
 
-import {BASE_PATH} from 'variables'
-
-/** The base of every {@link File} implementations */
+/** The base class of every {@link File} implementations */
 export abstract class AbstractFile<const out PATH extends string = string,
     const out NAME extends string = string,
     const out EXTENSION extends PossibleFileExtension = PossibleFileExtension, >
@@ -13,9 +11,7 @@ export abstract class AbstractFile<const out PATH extends string = string,
     #key?: string
 
     readonly #path
-    #fullPath?: FullFilePath<PATH>
     readonly #name
-    #fullName?: FullFileName<PATH, NAME, EXTENSION>
     readonly #extension
 
     //endregion -------------------- Fields --------------------
@@ -40,17 +36,11 @@ export abstract class AbstractFile<const out PATH extends string = string,
         return this.#path
     }
 
-    public get fullPath(): FullFilePath<PATH> {
-        return this.#fullPath ??= `/${BASE_PATH}/${this.path}`
-    }
-
     public get name(): NAME {
         return this.#name
     }
 
-    public get fullName(): FullFileName<PATH, NAME, EXTENSION> {
-        return this.#fullName ??= `${this.fullPath}/${this.name}.${this.extension}`
-    }
+    public abstract get fullName(): string
 
     public get extension(): EXTENSION {
         return this.#extension

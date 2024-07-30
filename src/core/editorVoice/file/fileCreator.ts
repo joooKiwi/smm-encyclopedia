@@ -1,7 +1,7 @@
 import type {EditorVoiceSoundFile} from 'core/editorVoice/file/EditorVoiceSoundFile'
 import type {PossibleFileName}     from 'core/editorVoice/sound/EditorVoiceSound.types'
 
-import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoundFile.container'
+import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
 /**
  * Create a simple {@link EditorVoiceSoundFile} from a {@link name} provided
@@ -9,5 +9,5 @@ import {NonRepeatableSoundFileContainer} from 'util/file/sound/NonRepeatableSoun
  * @param name The image name
  */
 export function editorVoiceSound<const NAME extends PossibleFileName, >(name: NAME,): EditorVoiceSoundFile<NAME> {
-    return new NonRepeatableSoundFileContainer('editor voice', name, 'wav',)
+    return new NonRepeatableInternalSoundFileContainer('editor voice', name, 'wav',)
 }
