@@ -9,6 +9,6 @@ import {RepeatableDuringThePlaySoundFileContainer} from 'util/file/sound/Repeata
  * @param name The file name
  * @param frame The frame (60fps) that it does loop
  */
-export function repeatableDuringThePlay<const NAME extends string, FRAME extends number, >(name: NAME, frame: FRAME,): RepeatableDuringThePlaySoundFile<'music/SMM2', NAME, 'wav', FramePerMillisecond<FRAME>> {
-    return new RepeatableDuringThePlaySoundFileContainer('music/SMM2', name, 'wav', new FramePerMillisecond(frame,),)
+export function repeatableDuringThePlay<const NAME extends string, FRAME extends number, >(name: NAME, frame: FRAME,): RepeatableDuringThePlaySoundFile<`${string}/music/SMM2`, NAME, 'wav', FramePerMillisecond<FRAME>> {
+    return new RepeatableDuringThePlaySoundFileContainer('https://github.com/joooKiwi/smm-encyclopedia/tree/main/resources/music/SMM2', name, 'wav', new FramePerMillisecond(frame,),)
 }
