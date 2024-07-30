@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/smm-encyclopedia/static/css/main.cb21c908.css",
-    "main.js": "/smm-encyclopedia/static/js/main.b8e00429.js",
+    "main.js": "/smm-encyclopedia/static/js/main.484483d0.js",
     "static/js/631.1329a6c0.chunk.js": "/smm-encyclopedia/static/js/631.1329a6c0.chunk.js",
     "static/css/41.ad7f0b52.chunk.css": "/smm-encyclopedia/static/css/41.ad7f0b52.chunk.css",
     "static/js/41.3982db8e.chunk.js": "/smm-encyclopedia/static/js/41.3982db8e.chunk.js",
@@ -85,7 +85,7 @@
     "static/media/Buzzy Shell.tiff": "/smm-encyclopedia/static/media/Buzzy Shell.00a055e9244325919e51.tiff",
     "index.html": "/smm-encyclopedia/index.html",
     "main.cb21c908.css.map": "/smm-encyclopedia/static/css/main.cb21c908.css.map",
-    "main.b8e00429.js.map": "/smm-encyclopedia/static/js/main.b8e00429.js.map",
+    "main.484483d0.js.map": "/smm-encyclopedia/static/js/main.484483d0.js.map",
     "631.1329a6c0.chunk.js.map": "/smm-encyclopedia/static/js/631.1329a6c0.chunk.js.map",
     "41.ad7f0b52.chunk.css.map": "/smm-encyclopedia/static/css/41.ad7f0b52.chunk.css.map",
     "41.3982db8e.chunk.js.map": "/smm-encyclopedia/static/js/41.3982db8e.chunk.js.map",
@@ -141,6 +141,6 @@
   },
   "entrypoints": [
     "static/css/main.cb21c908.css",
-    "static/js/main.b8e00429.js"
+    "static/js/main.484483d0.js"
   ]
 }
