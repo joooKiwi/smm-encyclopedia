@@ -20,3 +20,6 @@ export type BasePath = typeof BASE_PATH
  * Define if the application is in production.
  */
 export const isInProduction = process.env.NODE_ENV === 'production'
+
+/** The resource path from GitHub. The folder aliased is in the local project "resources" folder */
+export const RESSOURCE_PATH = 'https://github.com/joooKiwi/smm-encyclopedia/raw/main/resources/'
