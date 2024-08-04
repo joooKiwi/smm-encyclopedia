@@ -31,8 +31,10 @@ import {GameStyles}                        from 'core/gameStyle/GameStyles'
 import {StringContainer}                   from 'util/StringContainer'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
+import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
 
 /**
+ * @recursiveReference<{@link ClearConditionEntityImages}>
  * @recursiveReference<{@link EditorVoices}>
  * @recursiveReference<{@link EditorEntityImages}>
  * @recursiveReference<{@link EntityLoader}>
@@ -322,10 +324,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Coin_00',)
-        }
-
     }('Coin',)
     public static readonly FROZEN_COIN =                                   new class Entities_FrozenCoin extends Entities {
 
@@ -340,10 +338,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '10Coin_00',)
-        }
-
     }('10-Coin',)
     public static readonly THIRTY_COIN =                                   new class Entities_ThirtyCoin extends Entities {
 
@@ -351,19 +345,11 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '10Coin_01',)
-        }
-
     }('30-Coin',)
     public static readonly FIFTY_COIN =                                    new class Entities_FiftyCoin extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '10Coin_02',)
         }
 
     }('50-Coin',)
@@ -384,20 +370,12 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'SuperKinoko_00',)
-        }
-
     }('Super Mushroom',)
 
     public static readonly FIRE_FLOWER =                                   new class Entities_FireFlower extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'FireFlower_00',)
         }
 
     }('Fire Flower',)
@@ -407,10 +385,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmbImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'FireFlower_01',)
         }
 
     }('Superball Flower',)
@@ -443,10 +417,6 @@ export class Entities
             return ImageCreator.uniqueInSmbImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'SuperKinoko_01',)
-        }
-
     }('Master Sword',)
     public static readonly BOMB_THROWN_BY_A_LINK =                         new class Entities_BombThrownByALink extends Entities {
 
@@ -467,10 +437,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmbImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'DekaKinoko_00',)
         }
 
     }('Big Mushroom',)
@@ -495,20 +461,12 @@ export class Entities
             return ImageCreator.uniqueInSmbImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'KinokoUSA_00')
-        }
-
     }('SMB2 Mushroom',)
 
     public static readonly SUPER_LEAF =                                    new class Entities_SuperLeaf extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmb3ImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmb3Images(this, 'SuperKonoha_00',)
         }
 
     }('Super Leaf',)
@@ -519,20 +477,12 @@ export class Entities
             return ImageCreator.uniqueInSmb3ImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmb3Images(this, 'FrogSuit_00',)
-        }
-
     }('Frog Suit',)
 
     public static readonly CAPE_FEATHER =                                  new class Entities_CapeFeather extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'MantleWing_00',)
         }
 
     }('Cape Feather',)
@@ -543,20 +493,12 @@ export class Entities
             return ImageCreator.uniqueInSmwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'PowerBalloon_00',)
-        }
-
     }('Power Balloon',)
 
     public static readonly PROPELLER_MUSHROOM =                            new class Entities_PropellerMushroom extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'PropellerKinoko_00',)
         }
 
     }('Propeller Mushroom',)
@@ -567,10 +509,6 @@ export class Entities
             return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'SuperDonguri_00',)
-        }
-
     }('Super Acorn',)
 
     public static readonly SUPER_BELL =                                    new class Entities_SuperBell extends Entities {
@@ -579,20 +517,12 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'SuperBell_00',)
-        }
-
     }('Super Bell',)
 
     public static readonly SUPER_HAMMER =                                  new class Entities_SuperHammer extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'SuperHammer_00',)
         }
 
     }('Super Hammer',)
@@ -604,10 +534,6 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoomerangFlower_00',)
-        }
-
     }('Boomerang Flower',)
     public static readonly BOOMERANG_THROWN_BY_A_PLAYER =                  new Entities('Boomerang thrown by a player',)
 
@@ -615,10 +541,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxKiller_00',)
         }
 
     }('Cannon Box',)
@@ -630,20 +552,12 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxPropeller_00',)
-        }
-
     }('Propeller Box',)
 
     public static readonly GOOMBA_MASK =                                   new class Entities_GoombaMask extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxKuribo_00',)
         }
 
     }('Goomba Mask',)
@@ -654,20 +568,12 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxKillerPlayer_00',)
-        }
-
     }('Bullet Bill Mask',)
 
     public static readonly RED_POW_BOX =                                   new class Entities_RedPowBox extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxPow_00',)
         }
 
     }('Red POW Box',)
@@ -678,20 +584,12 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'SuperStar_00',)
-        }
-
     }('Super Star',)
 
     public static readonly ONE_UP_MUSHROOM =                               new class Entities_OneUpMushroom extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '1upKinoko_00',)
         }
 
     }('1-Up Mushroom',)
@@ -714,10 +612,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmbAndSmb3ImagesInClearCondition(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbAndSmb3Images(this, 'KutsuKuribo_00',)
         }
 
         protected override _createInGameImage(): InGameImage_SMM2 {
@@ -747,10 +641,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmwAndNsmbuImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwAndNsmbuImages(this, 'YosshiEgg_00',)
         }
 
         protected override _createInGameImage(): InGameImage_SMM2 {
@@ -799,10 +689,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Kuribo_00',)
-        }
-
 
         protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
             return ImageCreator.unusedBigMushroomImages(this, 'Kuribo D', [
@@ -820,10 +706,6 @@ export class Entities
             return ImageCreator.uniqueInSmwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Kuribo_01',)
-        }
-
     }('Galoomba',)
     public static readonly GOOMBRAT =                                      new class Entities_Goombrat extends Entities {
 
@@ -831,19 +713,11 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmwAndSm3dwImages(this, 'Kuribo_01',)
-        }
-
     }('Goombrat',)
     public static readonly GOOMBUD =                                       new class Entities_Goombud extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Kuribo_01',)
         }
 
     }('Goombud',)
@@ -854,31 +728,17 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Nokonoko_00',)
-        }
-
     }('Green Koopa Troopa',)
     public static readonly RED_KOOPA_TROOPA =                              new Entities('Red Koopa Troopa',)
     public static readonly GREEN_BEACH_KOOPA =                             new Entities('Green Beach Koopa',)
     public static readonly RED_BEACH_KOOPA =                               new Entities('Red Beach Koopa',)
-    public static readonly GREEN_KOOPA_SHELL =                             new class Entities_GreenKoopaShell extends Entities {
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmbImages(this, 'NokonokoShell_00',)
-        }
-
-    }('Green Koopa Shell',)
+    public static readonly GREEN_KOOPA_SHELL =                             new Entities('Green Koopa Shell',)
     public static readonly RED_KOOPA_SHELL =                               new Entities('Red Koopa Shell',)
 
     public static readonly DRY_BONES =                                     new class Entities_DryBones extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Karon_00',)
         }
 
     }('Dry Bones',)
@@ -890,20 +750,12 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Karon_01',)
-        }
-
     }('Dry Bones Shell',)
 
     public static readonly BUZZY_BEETLE =                                  new class Entities_BuzzyBeetle extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Met_00',)
         }
 
     }('Buzzy Beetle',)
@@ -914,20 +766,12 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Met_01',)
-        }
-
     }('Buzzy Shell',)
 
     public static readonly SPINY =                                         new class Entities_Spiny extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Togezo_00',)
         }
 
     }('Spiny',)
@@ -940,20 +784,12 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Togezo_01',)
-        }
-
     }('Spiny Shell',)
 
     public static readonly SPIKE_TOP =                                     new class Entities_SpikeTop extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'TogeMet_00',)
         }
 
     }('Spike Top',)
@@ -973,10 +809,6 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Pyonchu_00',)
-        }
-
     }('Skipsqueak',)
     public static readonly SPINY_SKIPSQUEAK =                              new class Entities_SpinySkipsqueak extends Entities {
 
@@ -990,10 +822,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Arihei_00',)
         }
 
     }('Ant Trooper',)
@@ -1011,20 +839,12 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Hacchin_00',)
-        }
-
     }('Stingby',)
 
     public static readonly CHEEP_CHEEP =                                   new class Entities_CheepCheep extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmwAndNsmbuImages(this, 'Pukupuku_00',)
         }
 
     }('Cheep Cheep',)
@@ -1034,19 +854,11 @@ export class Entities
             return ImageCreator.uniqueInSmwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Pukupuku_01',)
-        }
-
     }('Blurps',)
     public static readonly DEEP_CHEEP =                                    new class Entities_DeepCheep extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'Pukupuku_01',)
         }
 
     }('Deep Cheep',)
@@ -1056,20 +868,12 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'FishBone_00',)
-        }
-
     }('Fish Bone',)
 
     public static readonly BLOOPER =                                       new class Entities_Blooper extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Gesso_00',)
         }
 
     }('Blooper',)
@@ -1098,20 +902,12 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Fugumannen_00',)
-        }
-
     }('Porcupuffer',)
 
     public static readonly WIGGLER =                                       new class Entities_Wiggler extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Hanachan_00',)
         }
 
     }('Wiggler',)
@@ -1129,10 +925,6 @@ export class Entities
             return ImageCreator.uniqueInNotSmwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmwImages(this, 'Pakkun_00',)
-        }
-
     }('Piranha Plant',)
     public static readonly JUMPING_PIRANHA_PLANT =                         new class Entities_JumpingPiranhaPlant extends Entities {
 
@@ -1140,19 +932,11 @@ export class Entities
             return ImageCreator.uniqueInSmwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Pakkun_00',)
-        }
-
     }('Jumping Piranha Plant',)
     public static readonly FIRE_PIRANHA_PLANT =                            new class Entities_FirePiranhaPlant extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Pakkun_01',)
         }
 
     }('Fire Piranha Plant',)
@@ -1163,19 +947,11 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'BlackPakkun_00',)
-        }
-
     }('Muncher',)
     public static readonly PIRANHA_CREEPER =                               new class Entities_PiranhaCreeper extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'PackunPipe_00',)
         }
 
     }('Piranha Creeper',)
@@ -1193,10 +969,6 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Wanwan_00',)
-        }
-
     }('Unchained Chomp',)
     public static readonly CHAIN_CHOMP_STUMP =                             new Entities('Chain Chomp\'s Stump',)
 
@@ -1204,10 +976,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Gabon_00',)
         }
 
     }('Spike',)
@@ -1232,19 +1000,11 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Jugem_00',)
-        }
-
     }('Lakitu',)
     public static readonly LAKITU_CLOUD =                                  new class Entities_LakituCloud extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Jugem_01',)
         }
 
     }('Lakitu\'s Cloud',)
@@ -1253,10 +1013,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Teresa_00',)
         }
 
     }('Boo',)
@@ -1284,20 +1040,12 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Teresa_01',)
-        }
-
     }('Peepa',)
 
     public static readonly BOB_OMB =                                       new class Entities_BobOmb extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bombhei_00',)
         }
 
     }('Bob-omb',)
@@ -1315,10 +1063,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Sambo_00',)
-        }
-
     }('Pokey',)
     public static readonly SNOW_POKEY =                                    new Entities('Snow Pokey',)
 
@@ -1326,10 +1070,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Dossun_00',)
         }
 
     }('Thwomp',)
@@ -1340,19 +1080,11 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'ChoroPoo_00',)
-        }
-
     }('Monty Mole',)
     public static readonly ROCKY_WRENCH =                                  new class Entities_RockyWrench extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Poo_00',)
         }
 
     }('Rocky Wrench',)
@@ -1364,10 +1096,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Kameck_00',)
-        }
-
     }('Magikoopa',)
     public static readonly MAGIKOOPA_PROJECTILE =                          new Entities('(Magikoopa\'s projectile)',)
 
@@ -1377,19 +1105,11 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bros_00',)
-        }
-
     }('Hammer Bro',)
     public static readonly SLEDGE_BRO =                                    new class Entities_SledgeBro extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'MegaBros_00',)
         }
 
     }('Sledge Bro',)
@@ -1416,20 +1136,12 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bubble_00',)
-        }
-
     }('Lava Bubble',)
 
     public static readonly MECHAKOOPA =                                    new class Entities_Mechakoopa extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'KoopaMecha_00',)
         }
 
     }('Mechakoopa',)
@@ -1456,20 +1168,12 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'MagmaFish_00',)
-        }
-
     }('Charvaargh',)
 
     public static readonly BULLY =                                         new class Entities_Bully extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Donketsu_00',)
         }
 
     }('Bully',)
@@ -1484,13 +1188,7 @@ export class Entities
         }
 
     }('Bill Blaster',)
-    public static readonly BULLET_BILL =                                   new class Entities_BulletBill extends Entities {
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Killer_00',)
-        }
-
-    }('Bullet Bill',)
+    public static readonly BULLET_BILL =                                   new Entities('Bullet Bill',)
     public static readonly BULL_EYE_BLASTER =                              new class Entities_BullEyeBlaster extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
@@ -1505,10 +1203,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'MagnumKiller_00',)
         }
 
     }('Banzai Bill',)
@@ -1580,10 +1274,6 @@ export class Entities
             return ImageCreator.uniqueInNotNsmbuAndSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotNsmbuAndSm3dwImages(this, 'KoopaClown_00',)
-        }
-
 
         protected override _createUnusedRegularImage(): UnusedImage_Regular {
             return ImageCreator.singleUnusedRegularSMM1Images(this, 'Enemy - KoopaClown', GameStyles.SUPER_MARIO_WORLD, ['weep.4', 'weep.5', 'weep.6', 'weep.7',],)
@@ -1605,10 +1295,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'KoopaClown_00',)
         }
 
     }('Junior Clown Car',)
@@ -1634,10 +1320,6 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'KoopaCar_00',)
-        }
-
     }('Koopa Troopa Car',)
     public static readonly CAR =                                           new Entities('Car',)
 
@@ -1653,10 +1335,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'SunMoon_00',)
         }
 
     }('Angry Sun',)
@@ -1677,10 +1355,6 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Koopa_00',)
-        }
-
         protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
             return ImageCreator.singleUnusedBigMushroomImages(this, 'Koopa', 'fire.1',)
         }
@@ -1692,10 +1366,6 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Koopa_00',)
-        }
-
     }('Meowser',)
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new Entities('Fire thrown by a Bowser',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new Entities('Falling Fire thrown by a Bowser',)
@@ -1704,10 +1374,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'KoopaJr_00',)
         }
 
         protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
@@ -1723,19 +1389,11 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bunbun_00',)
-        }
-
     }('Boom Boom',)
     public static readonly POM_POM =                                       new class Entities_PomPom extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Bunbun_01',)
         }
 
     }('Pom Pom',)
@@ -1746,10 +1404,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Larry_00',)
         }
 
     }('Larry',)
@@ -1774,10 +1428,6 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Iggy_00',)
-        }
-
     }('Iggy',)
     public static readonly IGGY_WAND =                                     new class Entities_IggyWand extends Entities {
 
@@ -1798,10 +1448,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Wendy_00',)
         }
 
     }('Wendy',)
@@ -1827,10 +1473,6 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Lemmy_00',)
-        }
-
     }('Lemmy',)
     public static readonly LEMMY_WAND =                                    new class Entities_LemmyWand extends Entities {
 
@@ -1854,10 +1496,6 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Roy_00',)
-        }
-
     }('Roy',)
     public static readonly ROY_WAND =                                      new class Entities_RoyWand extends Entities {
 
@@ -1878,10 +1516,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Morton_00',)
         }
 
     }('Morton',)
@@ -1912,10 +1546,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Ludwig_00',)
         }
 
     }('Ludwig',)
@@ -1949,10 +1579,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'BurankoCrane_00',)
         }
 
     }('Swinging Claw',)
@@ -2009,10 +1635,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueTreeImages(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BellTree_00',)
         }
 
     }('Tree',)
@@ -2151,10 +1773,6 @@ export class Entities
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'WoodBox_00',)
-        }
-
     }('Crate',)
 
     public static readonly KEY =                                           new class Entities_Key extends Entities {
@@ -2185,10 +1803,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmbImages(this, 'JumpStep_00',)
-        }
-
     }('Trampoline',)
     public static readonly HOP_CHOPS =                                     new class Entities_HopChops extends Entities {
 
@@ -2204,19 +1818,11 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'PowBlock_00',)
-        }
-
     }('POW Block',)
     public static readonly RED_POW_BLOCK =                                 new class Entities_RedPowBlock extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'PowBlock_01',)
         }
 
     }('Red POW Block',)
@@ -2225,10 +1831,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'PSwitch_00',)
         }
 
 
@@ -2241,13 +1843,7 @@ export class Entities
 
     }('P Switch',)
 
-    public static readonly STONE =                                         new class Entities_Stone extends Entities {
-
-        protected override _createClearConditionImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmbImages(this, 'Stone_00',)
-        }
-
-    }('Stone',)
+    public static readonly STONE =                                         new Entities('Stone',)
 
     public static readonly WARP_DOOR =                                     new class Entities_WarpDoor extends Entities {
 
@@ -2367,6 +1963,7 @@ export class Entities
 
     #editorVoiceReference?: NullOr<EditorVoices>
     #editorEntityImageReference?: EditorEntityImages
+    #clearConditionEntityImageReference?: ClearConditionEntityImages
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -2451,25 +2048,7 @@ export class Entities
     //endregion -------------------- editor image --------------------
     //region -------------------- clear condition image --------------------
 
-    /**
-     * Create the <b>clear condition</b> image
-     *
-     * @onlyCalledBy<{@link clearConditionImage}>
-     * @onlyCalledOnce
-     */
-    protected _createClearConditionImage(): NullOr<ClearConditionImage> {
-        return null
-    }
-
-    public get clearConditionImage(): ClearConditionImage {
-        if (this.#clearConditionImage != null)
-            return this.#clearConditionImage
-
-        const value = this._createClearConditionImage()
-        if (value == null)
-            return this.#clearConditionImage = EmptyClearConditionImage.get
-        return this.#clearConditionImage = value
-    }
+    public get clearConditionImage(): ClearConditionImage { return this.#clearConditionImage ??= this.clearConditionEntityImageReference.image }
 
     //endregion -------------------- clear condition image --------------------
     //region -------------------- in game image --------------------
@@ -2577,10 +2156,7 @@ export class Entities
 
     public get entityEditorImageReference(): EditorEntityImages { return this.#editorEntityImageReference ??= EditorEntityImages[this.name] }
 
-        //@ts-ignore: This is only to retrieve the possible EditorEntityImages
-        const reference = EditorEntityImages[this.name] as UndefinedOr<EditorEntityImages>
-        return this.#editorEntityImageReference = reference ?? null
-    }
+    public get clearConditionEntityImageReference(): ClearConditionEntityImages { return this.#clearConditionEntityImageReference ??= ClearConditionEntityImages[this.name] }
 
     //endregion -------------------- Getter methods (linked reference) --------------------
 

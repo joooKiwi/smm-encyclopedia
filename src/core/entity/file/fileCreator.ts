@@ -1,3 +1,4 @@
+import type {ClearConditionEntityImages}                                                                                                                                                           from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}                                                                                                                                                                   from 'core/entity/EditorEntityImages'
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
 import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                                                                                           from 'core/entity/file/EntityImageFile.editor'
@@ -77,7 +78,7 @@ export function powerUpEditorImages(entity: EditorEntityImages, standaloneName: 
  * @param name The ending file name
  * @param gameStyle The image {@link GameStyles}
  */
-export function clearConditionImage(entity: Entities, name: ImageName_ClearCondition, gameStyle: GameStyles,): ClearConditionImageFile {
+export function clearConditionImage(entity: ClearConditionEntityImages, name: ImageName_ClearCondition, gameStyle: GameStyles,): ClearConditionImageFile {
     return new SimpleImageFile(`entity/clear condition/`, `${gameStyle.acronymInFile}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (Clear condition)`,)
 }
 

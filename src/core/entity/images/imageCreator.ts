@@ -1,7 +1,7 @@
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
 import type {EntityImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile'
 import type {EditorImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile.editor'
-import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
+import type {ClearConditionImageFile}                                                                                                                                                              from 'core/entity/file/EntityImageFile.clearCondition'
 import type {InGameImageFile, InGameSMM2ImageFile, KoopalingImageName, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1, ImageName_SMM2, DangerousImageFileName}                              from 'core/entity/file/EntityImageFile.inGame'
 import type {SimpleImageName_BigMushroom_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile, ImageName_Unused_SMM1} from 'core/entity/file/EntityImageFile.unused'
 import type {ClearConditionImage}                                                                                                                                                                  from 'core/entity/images/clearCondition/ClearConditionImage'
@@ -14,7 +14,6 @@ import type {UnusedImage_BigMushroom}                                           
 import type {UnusedImage_Regular}                                                                                                                                                                  from 'core/entity/images/unused/UnusedImage_Regular'
 
 import * as FileCreator                   from 'core/entity/file/fileCreator'
-import {ClearConditionImageContainer}     from 'core/entity/images/clearCondition/ClearConditionImage.container'
 import {InGameImage_SMM1Container}        from 'core/entity/images/inGame/InGameImage_SMM1.container'
 import {InGameImage_SMM2Container}        from 'core/entity/images/inGame/InGameImage_SMM2.container'
 import {EmptyUniqueImage}                 from 'core/entity/images/unique/EmptyUniqueImage'
@@ -419,105 +418,6 @@ export function uniqueTreeImages(entity: Entities,): UniqueImage {
 //endregion -------------------- Unique images (predefined) --------------------
 
 //endregion -------------------- Unique images --------------------
-//region -------------------- Clear condition images --------------------
-
-export function clearConditionImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
-        [GameStyles.SUPER_MARIO_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),],],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, [FileCreator.clearConditionImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),],],
-        [GameStyles.SUPER_MARIO_3D_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),],],
-    ],),)
-}
-
-
-export function clearConditionInSmbImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([[GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],],),)
-}
-export function clearConditionInSmb3Images(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([[GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],],),)
-}
-export function clearConditionInSmwImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([[GameStyles.SUPER_MARIO_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),],],],),)
-}
-export function clearConditionInNsmbuImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([[GameStyles.NEW_SUPER_MARIO_BROS_U, [FileCreator.clearConditionImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),],],],),)
-}
-export function clearConditionInSm3dwImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([[GameStyles.SUPER_MARIO_3D_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),],],],),)
-}
-
-
-export function clearConditionInSmbAndSmb3Images(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name,  GameStyles.SUPER_MARIO_BROS_3,),],],
-    ],),)
-}
-export function clearConditionInSmwAndNsmbuImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),],],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, [FileCreator.clearConditionImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),],],
-    ],),)
-}
-
-
-export function clearConditionInNotSmbImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
-        [GameStyles.SUPER_MARIO_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),],],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, [FileCreator.clearConditionImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),],],
-        [GameStyles.SUPER_MARIO_3D_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),],],
-    ],),)
-}
-export function clearConditionInNotSmwImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, [FileCreator.clearConditionImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),],],
-        [GameStyles.SUPER_MARIO_3D_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),],],
-    ],),)
-}
-export function clearConditionInNotSm3dwImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
-        [GameStyles.SUPER_MARIO_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),],],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, [FileCreator.clearConditionImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),],],
-    ],),)
-}
-
-
-export function clearConditionInNotSmwAndNsmbuImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
-        [GameStyles.SUPER_MARIO_3D_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),],],
-    ],),)
-}
-export function clearConditionInNotSmwAndSm3dwImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, [FileCreator.clearConditionImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),],],
-    ],),)
-}
-
-/**
- *
- * @param entity
- * @param name
- */
-export function clearConditionInNotNsmbuAndSm3dwImages(entity: Entities, name: ImageName_ClearCondition,): ClearConditionImage {
-    return new ClearConditionImageContainer(new Map([
-        [GameStyles.SUPER_MARIO_BROS, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
-        [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
-        [GameStyles.SUPER_MARIO_WORLD, [FileCreator.clearConditionImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),],],
-    ],),)
-}
-
-//endregion -------------------- Clear condition images --------------------
 //region -------------------- In game images --------------------
 
 //region -------------------- In game images (SMM1) --------------------
