@@ -1,7 +1,7 @@
 import type {ClearConditionEntityImages}                                                                                                                                                           from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}                                                                                                                                                                   from 'core/entity/EditorEntityImages'
-import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
 import type {InGameEntityImages}                                                                                                                                                                   from 'core/entity/InGameEntityImages'
+import type {UnusedEntityImages}                                                                                                                                                                   from 'core/entity/UnusedEntityImages'
 import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                                                                                           from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1}                                                                      from 'core/entity/file/EntityImageFile.inGame'
@@ -120,7 +120,7 @@ export function inGameImage(entity: InGameEntityImages, name: ImageName_SMM2, ga
  * @param gameStyle The image {@link GameStyles}
  * @param fileName The file name
  */
-export function unusedSmm1RegularImage(entity: Entities, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileName: ImageName_UnusedSMM1Regular,): UnusedSMM1RegularImageFile {
+export function unusedSmm1RegularImage(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileName: ImageName_UnusedSMM1Regular,): UnusedSMM1RegularImageFile {
     return new SimpleImageFile(`entity/unused/${gameStyle.acronymInFile as PossibleAcronym_InFile_SMM1} - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused)`,)
 }
 
@@ -131,7 +131,7 @@ export function unusedSmm1RegularImage(entity: Entities, name: ImageName_Unused_
  * @param name The image folder name
  * @param fileName The file name
  */
-export function unusedBigMushroomImage(entity: Entities, name: SimpleImageName_BigMushroom_Unused_SMM1, fileName: ImageName_UnusedBigMushroom,): UnusedSMM1BigMushroomImageFile {
+export function unusedBigMushroomImage(entity: UnusedEntityImages, name: SimpleImageName_BigMushroom_Unused_SMM1, fileName: ImageName_UnusedBigMushroom,): UnusedSMM1BigMushroomImageFile {
     return new SimpleImageFile(`entity/unused/M1 A - Enemy - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused Big Mushroom)`,)
 }
 

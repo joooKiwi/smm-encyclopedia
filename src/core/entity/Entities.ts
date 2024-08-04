@@ -6,7 +6,6 @@ import type {ClassWithNullableEditorVoiceSoundFileHolder} from 'core/editorVoice
 import type {EditorVoiceSound}                            from 'core/editorVoice/sound/EditorVoiceSound'
 import type {Names, Ordinals, PossibleEnglishName}        from 'core/entity/Entities.types'
 import type {Entity}                                      from 'core/entity/Entity'
-import type {ImageName_UnusedSMM1Regular}                 from 'core/entity/file/EntityImageFile.unused'
 import type {ClearConditionImage}                         from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {EditorImage}                                 from 'core/entity/images/editor/EditorImage'
 import type {InGameImage}                                 from 'core/entity/images/inGame/InGameImage'
@@ -16,21 +15,19 @@ import type {UnusedImage_Regular}                         from 'core/entity/imag
 import type {CompanionEnumByNameWithValidationSingleton}  from 'util/enumerable/Singleton.types'
 
 import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
+import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
 import {EditorEntityImages}                from 'core/entity/EditorEntityImages'
 import {EntityLoader}                      from 'core/entity/Entity.loader'
+import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
+import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
 import * as ImageCreator                   from 'core/entity/images/imageCreator'
 import {EmptyClearConditionImage}          from 'core/entity/images/clearCondition/EmptyClearConditionImage'
 import {EmptyEditorImage}                  from 'core/entity/images/editor/EmptyEditorImage'
 import {EmptyInGameImage}                  from 'core/entity/images/inGame/EmptyInGameImage'
 import {EmptyUniqueImage}                  from 'core/entity/images/unique/EmptyUniqueImage'
-import {EmptyUnusedImage_BigMushroom}      from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
-import {EmptyUnusedImage_Regular}          from 'core/entity/images/unused/EmptyUnusedImage_Regular'
-import {GameStyles}                        from 'core/gameStyle/GameStyles'
 import {StringContainer}                   from 'util/StringContainer'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
-import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
-import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
 
 /**
  * @recursiveReference<{@link ClearConditionEntityImages}>
@@ -589,16 +586,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.unusedBigMushroomImages(this, 'Kuribo D', [
-                ['damage.0',],
-                ['swim.0', 'swim.1',],
-                ['walk.0', 'walk.1',],
-                ['kutsu',],
-            ],)
-        }
-
     }('Goomba',)
     public static readonly GALOOMBA =                                      new class Entities_Galoomba extends Entities {
 
@@ -912,17 +899,7 @@ export class Entities
         }
 
     }('Boo',)
-    public static readonly STRETCH =                                       new class Entities_Stretch extends Entities {
-
-        protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.unusedRegularInMultipleStyleSMM1Images(this, 'Enemy - Necchi', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD,], ['wait.0', 'out.4',],)
-        }
-
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.unusedBigMushroomImages(this, 'Necchi', [['wait.0', 'wait.2',], ['out.4',],],)
-        }
-
-    }('Stretch',)
+    public static readonly STRETCH =                                       new Entities('Stretch',)
     public static readonly BOO_BUDDIES =                                   new class Entities_BooBuddies extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
@@ -1124,13 +1101,7 @@ export class Entities
         }
 
     }('Cannon',)
-    public static readonly CANNONBALL =                                    new class Entities_Cannonball extends Entities {
-
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleUnusedBigMushroomImages(this, 'SenkanHoudai D', 'senkan_houdai_ball',)
-        }
-
-    }('Cannonball',)
+    public static readonly CANNONBALL =                                    new Entities('Cannonball',)
     public static readonly RED_CANNON =                                    new class Entities_RedCannon extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
@@ -1168,22 +1139,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotNsmbuAndSm3dwImagesInEditor(this,)
-        }
-
-
-        protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.singleUnusedRegularSMM1Images(this, 'Enemy - KoopaClown', GameStyles.SUPER_MARIO_WORLD, ['weep.4', 'weep.5', 'weep.6', 'weep.7',],)
-        }
-
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.unusedBigMushroomImages(this, 'KoopaClown', [
-                ['wait.4', 'wait.5', 'wait.6', 'wait.7',],
-                ['anger.4', 'anger.5', 'anger.6', 'anger.7',],
-                ['blink.4', 'blink.5', 'blink.6', 'blink.7',],
-                ['weep.4', 'weep.5', 'weep.6', 'weep.7',],
-                ['iron_ball.1',],
-                ['tear.1',],
-            ],)
         }
 
     }('Koopa Clown Car',)
@@ -1251,10 +1206,6 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleUnusedBigMushroomImages(this, 'Koopa', 'fire.1',)
-        }
-
     }('Bowser',)
     public static readonly MEOWSER =                                       new class Entities_Meowser extends Entities {
 
@@ -1270,10 +1221,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleUnusedBigMushroomImages(this, 'KoopaJr', 'fire.1',)
         }
 
     }('Bowser Jr.',)
@@ -1425,16 +1372,6 @@ export class Entities
             return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
         }
 
-        protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            const wait2 = ['wait.2',] as const satisfies readonly ImageName_UnusedSMM1Regular[]
-
-            return ImageCreator.unusedRegularSMM1Images(this, 'Object Block - Tuta', [
-                [GameStyles.SUPER_MARIO_BROS, ['wait.1',],],
-                [GameStyles.SUPER_MARIO_BROS_3, wait2,],
-                [GameStyles.SUPER_MARIO_WORLD, wait2,],
-            ],)
-        }
-
     }('Vine',)
     public static readonly TREE =                                          new class Entities_Tree extends Entities {
 
@@ -1460,13 +1397,7 @@ export class Entities
         }
 
     }('Checkpoint Flag',)
-    public static readonly GOAL_POLE =                                     new class Entities_GoalPole extends Entities {
-
-        protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.singleUnusedRegularSMM1Images(this, 'Object - Goalpole', GameStyles.SUPER_MARIO_BROS, ['goalpole.1',],)
-        }
-
-    }('Goal Pole',)//An interactable partially solid & background entity
+    public static readonly GOAL_POLE =                                     new Entities('Goal Pole',)//An interactable partially solid & background entity
     public static readonly GOAL_WITH_CARDS =                               new Entities('Cards Roulette',)//An interactable background entity
     public static readonly GIANT_GATE =                                    new Entities('Giant Gate',)//An interactable background entity
 
@@ -1632,14 +1563,6 @@ export class Entities
             return ImageCreator.uniqueImagesInEditor(this,)
         }
 
-
-        protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.unusedRegularSMM1Images(this, 'Object - PSwitch', [
-                [GameStyles.SUPER_MARIO_BROS, ['wait.0', 'wait.1', 'wait.2',],],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],],
-            ],)
-        }
-
     }('P Switch',)
 
     public static readonly STONE =                                         new Entities('Stone',)
@@ -1758,6 +1681,7 @@ export class Entities
     #editorEntityImageReference?: EditorEntityImages
     #clearConditionEntityImageReference?: ClearConditionEntityImages
     #inGameEntityImageReference?: InGameEntityImages
+    #unusedEntityImageReference?: UnusedEntityImages
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -1839,63 +1763,18 @@ export class Entities
 
     public get editorImage(): EditorImage { return this.#editorImage ??= this.entityEditorImageReference.image }
 
-    //endregion -------------------- editor image --------------------
-    //region -------------------- clear condition image --------------------
-
     public get clearConditionImage(): ClearConditionImage { return this.#clearConditionImage ??= this.clearConditionEntityImageReference.image }
-
-    //endregion -------------------- clear condition image --------------------
-    //region -------------------- in game image --------------------
 
     public get inGameImage(): InGameImage { return this.#inGameImage ??= this.inGameEntityImageReference.image }
 
     //endregion -------------------- in game image --------------------
-    //region -------------------- unused image (regular) --------------------
+    //region -------------------- unused image --------------------
 
-    /**
-     * Create the <b>unused</b> regular image
-     *
-     * @onlyCalledOnce
-     * @onlyCalledBy<{@link unusedRegularImage}>
-     */
-    protected _createUnusedRegularImage(): NullOr<UnusedImage_Regular> {
-        return null
-    }
+    public get unusedRegularImage(): UnusedImage_Regular { return this.#unusedRegularImage ??= this.unusedEntityImageReference.regularImage }
 
-    public get unusedRegularImage(): UnusedImage_Regular {
-        if (this.#unusedRegularImage != null)
-            return this.#unusedRegularImage
+    public get unusedBigMushroomImage(): UnusedImage_BigMushroom { return this.#unusedBigMushroomImage ??= this.unusedEntityImageReference.bigMushroomImage }
 
-        const value = this._createUnusedRegularImage()
-        if (value == null)
-            return this.#unusedRegularImage = EmptyUnusedImage_Regular.get
-        return this.#unusedRegularImage = value
-    }
-
-    //endregion -------------------- unused image (regular) --------------------
-    //region -------------------- unused image (big mushroom) --------------------
-
-    /**
-     * Create the <b>unused</b> Big Mushroom image
-     *
-     * @onlyCalledOnce
-     * @onlyCalledBy<{@link unusedBigMushroomImage}>
-     */
-    protected _createUnusedBigMushroomImage(): NullOr<UnusedImage_BigMushroom> {
-        return null
-    }
-
-    public get unusedBigMushroomImage(): UnusedImage_BigMushroom {
-        if (this.#unusedBigMushroomImage != null)
-            return this.#unusedBigMushroomImage
-
-        const value = this._createUnusedBigMushroomImage()
-        if (value == null)
-            return this.#unusedBigMushroomImage = EmptyUnusedImage_BigMushroom.get
-        return this.#unusedBigMushroomImage = value
-    }
-
-    //endregion -------------------- unused image (big mushroom) --------------------
+    //endregion -------------------- unused image --------------------
 
     //endregion -------------------- Getter methods (image) --------------------
     //region -------------------- Getter methods (sound) --------------------
@@ -1935,6 +1814,8 @@ export class Entities
     public get clearConditionEntityImageReference(): ClearConditionEntityImages { return this.#clearConditionEntityImageReference ??= ClearConditionEntityImages[this.name] }
 
     public get inGameEntityImageReference(): InGameEntityImages { return this.#inGameEntityImageReference ??= InGameEntityImages[this.name] }
+
+    public get unusedEntityImageReference(): UnusedEntityImages { return this.#unusedEntityImageReference ??= UnusedEntityImages[this.name] }
 
     //endregion -------------------- Getter methods (linked reference) --------------------
 

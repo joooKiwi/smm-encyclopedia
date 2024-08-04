@@ -1,22 +1,16 @@
-import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
-import type {EntityImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile'
-import type {EditorImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile.editor'
-import type {ClearConditionImageFile}                                                                                                                                                              from 'core/entity/file/EntityImageFile.clearCondition'
-import type {InGameImageFile}                                                                                                                                                                      from 'core/entity/file/EntityImageFile.inGame'
-import type {SimpleImageName_BigMushroom_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile, ImageName_Unused_SMM1} from 'core/entity/file/EntityImageFile.unused'
-import type {ClearConditionImage}                                                                                                                                                                  from 'core/entity/images/clearCondition/ClearConditionImage'
-import type {EditorImage}                                                                                                                                                                          from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}                                                                                                                                                                          from 'core/entity/images/inGame/InGameImage'
-import type {UniqueImage}                                                                                                                                                                          from 'core/entity/images/unique/UniqueImage'
-import type {UnusedImage_BigMushroom}                                                                                                                                                              from 'core/entity/images/unused/UnusedImage_BigMushroom'
-import type {UnusedImage_Regular}                                                                                                                                                                  from 'core/entity/images/unused/UnusedImage_Regular'
+import type {Entities}                from 'core/entity/Entities'
+import type {EntityImageFile}         from 'core/entity/file/EntityImageFile'
+import type {EditorImageFile}         from 'core/entity/file/EntityImageFile.editor'
+import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile.clearCondition'
+import type {InGameImageFile}         from 'core/entity/file/EntityImageFile.inGame'
+import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}             from 'core/entity/images/editor/EditorImage'
+import type {InGameImage}             from 'core/entity/images/inGame/InGameImage'
+import type {UniqueImage}             from 'core/entity/images/unique/UniqueImage'
 
-import * as FileCreator                   from 'core/entity/file/fileCreator'
-import {EmptyUniqueImage}                 from 'core/entity/images/unique/EmptyUniqueImage'
-import {UniqueImageContainer}             from 'core/entity/images/unique/UniqueImage.container'
-import {UnusedImage_BigMushroomContainer} from 'core/entity/images/unused/UnusedImage_BigMushroom.container'
-import {UnusedImage_RegularContainer}     from 'core/entity/images/unused/UnusedImage_Regular.container'
-import {GameStyles}                       from 'core/gameStyle/GameStyles'
+import {EmptyUniqueImage}     from 'core/entity/images/unique/EmptyUniqueImage'
+import {UniqueImageContainer} from 'core/entity/images/unique/UniqueImage.container'
+import {GameStyles}           from 'core/gameStyle/GameStyles'
 
 //region -------------------- Unique images --------------------
 
@@ -414,76 +408,3 @@ export function uniqueTreeImages(entity: Entities,): UniqueImage {
 //endregion -------------------- Unique images (predefined) --------------------
 
 //endregion -------------------- Unique images --------------------
-//region -------------------- Unused images --------------------
-
-export function unusedRegularSMM1Images(entity: Entities, name: ImageName_Unused_SMM1, images: readonly (readonly [GameStyles, readonly ImageName_UnusedSMM1Regular[],])[]): UnusedImage_Regular {
-    const size1 = images.length
-    const newArray1 = new Array<[GameStyles, [UnusedSMM1RegularImageFile,][],]>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const gameStyle = images[index1][0]
-        const simpleImages = images[index1][1]
-
-        const size2 = simpleImages.length
-        const newArray2 = new Array<[UnusedSMM1RegularImageFile,]>(size2,)
-        let index2 = size2
-        while (index2-- > 0)
-            newArray2[index2] = [FileCreator.unusedSmm1RegularImage(entity, name, gameStyle, simpleImages[index2],),]
-        newArray1[index1] = [gameStyle, newArray2,]
-    }
-
-    return new UnusedImage_RegularContainer(new Map(newArray1,),)
-}
-
-export function unusedRegularInMultipleStyleSMM1Images(entity: Entities, name: ImageName_Unused_SMM1, gameStyles: readonly GameStyles[], fileNames: readonly ImageName_UnusedSMM1Regular[],): UnusedImage_Regular {
-    const size1 = gameStyles.length
-    const size2 = fileNames.length
-    const newArray1 = new Array<[GameStyles, [UnusedSMM1RegularImageFile,][],]>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const gameStyle = gameStyles[index1]
-
-        const newArray2 = new Array<[UnusedSMM1RegularImageFile,]>(size2,)
-        let index2 = size2
-        while (index2-- > 0)
-            newArray2[index2] = [FileCreator.unusedSmm1RegularImage(entity, name, gameStyle, fileNames[index2],),]
-        newArray1[index1] = [gameStyle, newArray2,]
-    }
-
-    return new UnusedImage_RegularContainer(new Map(newArray1,),)
-}
-
-export function singleUnusedRegularSMM1Images(entity: Entities, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileNames: readonly ImageName_UnusedSMM1Regular[],): UnusedImage_Regular {
-    const size = fileNames.length
-    const newArray = new Array<[UnusedSMM1RegularImageFile,]>(size,)
-    let index = size
-    while (index-- > 0)
-        newArray[index] = [FileCreator.unusedSmm1RegularImage(entity, name, gameStyle, fileNames[index],),]
-
-    return new UnusedImage_RegularContainer(new Map([[gameStyle, newArray,],],),)
-}
-
-
-export function unusedBigMushroomImages(entity: Entities, name: SimpleImageName_BigMushroom_Unused_SMM1, imageNames: readonly (readonly ImageName_UnusedBigMushroom[])[],): UnusedImage_BigMushroom {
-    const size1 = imageNames.length
-    const newArray1 = new Array<UnusedSMM1BigMushroomImageFile[]>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const simpleImages = imageNames[index1]
-
-        const size2 = simpleImages.length
-        const newArray2 = new Array<UnusedSMM1BigMushroomImageFile>(size2,)
-        let index2 = size2
-        while (index2-- > 0)
-            newArray2[index2] = FileCreator.unusedBigMushroomImage(entity, name, simpleImages[index2],)
-        newArray1[index1] = newArray2
-    }
-
-    return new UnusedImage_BigMushroomContainer(newArray1,)
-}
-
-export function singleUnusedBigMushroomImages(entity: Entities, name: SimpleImageName_BigMushroom_Unused_SMM1, imageName: ImageName_UnusedBigMushroom,): UnusedImage_BigMushroom {
-    return new UnusedImage_BigMushroomContainer([[FileCreator.unusedBigMushroomImage(entity, name, imageName,),],],)
-}
-
-//endregion -------------------- Unused images --------------------
