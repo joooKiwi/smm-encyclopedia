@@ -1,3 +1,4 @@
+import type {EditorEntityImages}                                                                                                                                                                   from 'core/entity/EditorEntityImages'
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
 import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                                                                                           from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
@@ -17,7 +18,7 @@ import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
  * @param name The image name
  * @param gameStyle The image {@link GameStyles}
  */
-export function editorImage(entity: Entities, name: ImageName_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
+export function editorImage(entity: EditorEntityImages, name: ImageName_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
     return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym})`,)
 }
 
@@ -31,7 +32,7 @@ export function editorImage(entity: Entities, name: ImageName_Editor, gameStyle:
  * @param name The image file name
  * @param gameStyle The image {@link GameStyles}
  */
-export function standalonePowerUpEditorImage(entity: Entities, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
+export function standalonePowerUpEditorImage(entity: EditorEntityImages, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
     return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
 }
 
@@ -43,7 +44,7 @@ export function standalonePowerUpEditorImage(entity: Entities, name: ImageName_E
  * @param name The image file name
  * @param gameStyle The image {@link GameStyles}
  */
-export function withMushroomPowerUpEditorImage(entity: Entities, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
+export function withMushroomPowerUpEditorImage(entity: EditorEntityImages, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
     return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
 }
 
@@ -57,7 +58,7 @@ export function withMushroomPowerUpEditorImage(entity: Entities, name: ImageName
  * @see standalonePowerUpEditorImage
  * @see withMushroomPowerUpEditorImage
  */
-export function powerUpEditorImages(entity: Entities, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp, gameStyle: GameStyles,): readonly [PowerUpEditorImageFile, PowerUpEditorImageFile,] {
+export function powerUpEditorImages(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp, gameStyle: GameStyles,): readonly [PowerUpEditorImageFile, PowerUpEditorImageFile,] {
     return [
         standalonePowerUpEditorImage(entity, standaloneName, gameStyle,),
         withMushroomPowerUpEditorImage(entity, nameWithMushroom, gameStyle,),
