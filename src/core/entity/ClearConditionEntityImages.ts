@@ -126,7 +126,7 @@ export abstract class ClearConditionEntityImages
     public static readonly COIN = new class ClearConditionEntityImages_Coin extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Coin_00',)
+            return ImageCreator.all(this, 'Coin_00',)
         }
 
     }()
@@ -134,21 +134,21 @@ export abstract class ClearConditionEntityImages
     public static readonly TEN_COIN = new class ClearConditionEntityImages_TenCoin extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '10Coin_00',)
+            return ImageCreator.all(this, '10Coin_00',)
         }
 
     }()
     public static readonly THIRTY_COIN = new class ClearConditionEntityImages_ThirtyCoin extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '10Coin_01',)
+            return ImageCreator.all(this, '10Coin_01',)
         }
 
     }()
     public static readonly FIFTY_COIN = new class ClearConditionEntityImages_FiftyCoin extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '10Coin_02',)
+            return ImageCreator.all(this, '10Coin_02',)
         }
 
     }()
@@ -160,7 +160,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SUPER_MUSHROOM = new class ClearConditionEntityImages_SuperMushroom extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'SuperKinoko_00',)
+            return ImageCreator.all(this, 'SuperKinoko_00',)
         }
 
     }()
@@ -168,7 +168,7 @@ export abstract class ClearConditionEntityImages
     public static readonly FIRE_FLOWER = new class ClearConditionEntityImages_FireFlower extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'FireFlower_00',)
+            return ImageCreator.all(this, 'FireFlower_00',)
         }
 
     }()
@@ -177,7 +177,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SUPERBALL_FLOWER = new class ClearConditionEntityImages_SuperballFlower extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'FireFlower_01',)
+            return ImageCreator.onlySmb(this, 'FireFlower_01',)
         }
 
     }()
@@ -189,7 +189,7 @@ export abstract class ClearConditionEntityImages
     public static readonly MASTER_SWORD = new class ClearConditionEntityImages_MasterSword extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'SuperKinoko_01',)
+            return ImageCreator.onlySmb(this, 'SuperKinoko_01',)
         }
 
     }()
@@ -199,7 +199,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BIG_MUSHROOM = new class ClearConditionEntityImages_BigMushroom extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'DekaKinoko_00',)
+            return ImageCreator.onlySmb(this, 'DekaKinoko_00',)
         }
 
     }()
@@ -209,7 +209,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SMB2_MUSHROOM = new class ClearConditionEntityImages_SMB2Mushroom extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbImages(this, 'KinokoUSA_00')
+            return ImageCreator.onlySmb(this, 'KinokoUSA_00')
         }
 
     }()
@@ -217,7 +217,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SUPER_LEAF = new class ClearConditionEntityImages_SuperLeaf extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmb3Images(this, 'SuperKonoha_00',)
+            return ImageCreator.onlySmb3(this, 'SuperKonoha_00',)
         }
 
     }()
@@ -225,7 +225,7 @@ export abstract class ClearConditionEntityImages
     public static readonly FROG_SUIT = new class ClearConditionEntityImages_FrogSuit extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmb3Images(this, 'FrogSuit_00',)
+            return ImageCreator.onlySmb3(this, 'FrogSuit_00',)
         }
 
     }()
@@ -233,7 +233,7 @@ export abstract class ClearConditionEntityImages
     public static readonly CAPE_FEATHER = new class ClearConditionEntityImages_CapeFeather extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'MantleWing_00',)
+            return ImageCreator.onlySmw(this, 'MantleWing_00',)
         }
 
     }()
@@ -241,7 +241,7 @@ export abstract class ClearConditionEntityImages
     public static readonly POWER_BALLOON = new class ClearConditionEntityImages_PowerBalloon extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'PowerBalloon_00',)
+            return ImageCreator.onlySmw(this, 'PowerBalloon_00',)
         }
 
     }()
@@ -249,7 +249,7 @@ export abstract class ClearConditionEntityImages
     public static readonly PROPELLER_MUSHROOM = new class ClearConditionEntityImages_PropellerMushroom extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'PropellerKinoko_00',)
+            return ImageCreator.onlyNsmbu(this, 'PropellerKinoko_00',)
         }
 
     }()
@@ -257,7 +257,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SUPER_ACORN = new class ClearConditionEntityImages_SuperAcorn extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'SuperDonguri_00',)
+            return ImageCreator.onlyNsmbu(this, 'SuperDonguri_00',)
         }
 
     }()
@@ -265,7 +265,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SUPER_BELL = new class ClearConditionEntityImages_SuperBell extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'SuperBell_00',)
+            return ImageCreator.onlySm3dw(this, 'SuperBell_00',)
         }
 
     }()
@@ -273,7 +273,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SUPER_HAMMER = new class ClearConditionEntityImages_SuperHammer extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'SuperHammer_00',)
+            return ImageCreator.onlySm3dw(this, 'SuperHammer_00',)
         }
 
     }()
@@ -282,7 +282,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BOOMERANG_FLOWER = new class ClearConditionEntityImages_BoomerangFlower extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoomerangFlower_00',)
+            return ImageCreator.onlySm3dw(this, 'BoomerangFlower_00',)
         }
 
     }()
@@ -291,7 +291,7 @@ export abstract class ClearConditionEntityImages
     public static readonly CANNON_BOX = new class ClearConditionEntityImages_CannonBox extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxKiller_00',)
+            return ImageCreator.onlySm3dw(this, 'BoxKiller_00',)
         }
 
     }()
@@ -300,7 +300,7 @@ export abstract class ClearConditionEntityImages
     public static readonly PROPELLER_BOX = new class ClearConditionEntityImages_PropellerBox extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxPropeller_00',)
+            return ImageCreator.onlySm3dw(this, 'BoxPropeller_00',)
         }
 
     }()
@@ -308,7 +308,7 @@ export abstract class ClearConditionEntityImages
     public static readonly GOOMBA_MASK = new class ClearConditionEntityImages_GoombaMask extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxKuribo_00',)
+            return ImageCreator.onlySm3dw(this, 'BoxKuribo_00',)
         }
 
     }()
@@ -316,7 +316,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BULLET_BILL_MASK = new class ClearConditionEntityImages_BulletBillMask extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxKillerPlayer_00',)
+            return ImageCreator.onlySm3dw(this, 'BoxKillerPlayer_00',)
         }
 
     }()
@@ -324,7 +324,7 @@ export abstract class ClearConditionEntityImages
     public static readonly RED_POW_BOX = new class ClearConditionEntityImages_RedPowBox extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BoxPow_00',)
+            return ImageCreator.onlySm3dw(this, 'BoxPow_00',)
         }
 
     }()
@@ -332,7 +332,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SUPER_STAR = new class ClearConditionEntityImages_SuperStar extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'SuperStar_00',)
+            return ImageCreator.all(this, 'SuperStar_00',)
         }
 
     }()
@@ -340,7 +340,7 @@ export abstract class ClearConditionEntityImages
     public static readonly ONE_UP_MUSHROOM = new class ClearConditionEntityImages_OneUpMushroom extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, '1upKinoko_00',)
+            return ImageCreator.all(this, '1upKinoko_00',)
         }
 
     }()
@@ -350,7 +350,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SHOE = new class ClearConditionEntityImages_Shoe extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmbAndSmb3Images(this, 'KutsuKuribo_00',)
+            return ImageCreator.onlySmbAndSmb3(this, 'KutsuKuribo_00',)
         }
 
     }()
@@ -359,7 +359,7 @@ export abstract class ClearConditionEntityImages
     public static readonly YOSHI_EGG = new class ClearConditionEntityImages_YoshiEgg extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwAndNsmbuImages(this, 'YosshiEgg_00',)
+            return ImageCreator.onlySmwAndNsmbu(this, 'YosshiEgg_00',)
         }
 
     }()
@@ -379,28 +379,28 @@ export abstract class ClearConditionEntityImages
     public static readonly GOOMBA = new class ClearConditionEntityImages_Goomba extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Kuribo_00',)
+            return ImageCreator.onlySmw(this, 'Kuribo_00',)
         }
 
     }()
     public static readonly GALOOMBA = new class ClearConditionEntityImages_Galoomba extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Kuribo_01',)
+            return ImageCreator.onlySmw(this, 'Kuribo_01',)
         }
 
     }()
     public static readonly GOOMBRAT = new class ClearConditionEntityImages_Goombrat extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmwAndSm3dwImages(this, 'Kuribo_01',)
+            return ImageCreator.notSmwAndSm3dw(this, 'Kuribo_01',)
         }
 
     }()
     public static readonly GOOMBUD = new class ClearConditionEntityImages_Goombud extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Kuribo_01',)
+            return ImageCreator.onlySmw(this, 'Kuribo_01',)
         }
 
     }()
@@ -408,7 +408,7 @@ export abstract class ClearConditionEntityImages
     public static readonly GREEN_KOOPA_TROOPA = new class ClearConditionEntityImages_GreenKoopaTroopa extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Nokonoko_00',)
+            return ImageCreator.all(this, 'Nokonoko_00',)
         }
 
     }()
@@ -418,7 +418,7 @@ export abstract class ClearConditionEntityImages
     public static readonly GREEN_KOOPA_SHELL = new class ClearConditionEntityImages_GreenKoopaShell extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmbImages(this, 'NokonokoShell_00',)
+            return ImageCreator.notSmb(this, 'NokonokoShell_00',)
         }
 
     }()
@@ -427,7 +427,7 @@ export abstract class ClearConditionEntityImages
     public static readonly DRY_BONES = new class ClearConditionEntityImages_DryBones extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Karon_00',)
+            return ImageCreator.all(this, 'Karon_00',)
         }
 
     }()
@@ -436,7 +436,7 @@ export abstract class ClearConditionEntityImages
     public static readonly DRY_BONES_SHELL = new class ClearConditionEntityImages_DryBonesShell extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Karon_01',)
+            return ImageCreator.notSm3dw(this, 'Karon_01',)
         }
 
     }()
@@ -444,7 +444,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BUZZY_BEETLE = new class ClearConditionEntityImages_BuzzyBeetle extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Met_00',)
+            return ImageCreator.notSm3dw(this, 'Met_00',)
         }
 
     }()
@@ -452,7 +452,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BUZZY_SHELL = new class ClearConditionEntityImages_BuzzyShell extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Met_01',)
+            return ImageCreator.notSm3dw(this, 'Met_01',)
         }
 
     }()
@@ -460,7 +460,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SPINY = new class ClearConditionEntityImages_Spiny extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Togezo_00',)
+            return ImageCreator.all(this, 'Togezo_00',)
         }
 
     }()
@@ -470,7 +470,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SPINY_SHELL = new class ClearConditionEntityImages_SpinyShell extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Togezo_01',)
+            return ImageCreator.notSm3dw(this, 'Togezo_01',)
         }
 
     }()
@@ -478,7 +478,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SPIKE_TOP = new class ClearConditionEntityImages_SpikeTop extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'TogeMet_00',)
+            return ImageCreator.notSm3dw(this, 'TogeMet_00',)
         }
 
     }()
@@ -489,7 +489,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SKIPSQUEAK = new class ClearConditionEntityImages_Skipsqueak extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Pyonchu_00',)
+            return ImageCreator.onlySm3dw(this, 'Pyonchu_00',)
         }
 
     }()
@@ -498,7 +498,7 @@ export abstract class ClearConditionEntityImages
     public static readonly ANT_TROOPER = new class ClearConditionEntityImages_AntTrooper extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Arihei_00',)
+            return ImageCreator.onlySm3dw(this, 'Arihei_00',)
         }
 
     }()
@@ -507,7 +507,7 @@ export abstract class ClearConditionEntityImages
     public static readonly STINGBY = new class ClearConditionEntityImages_Stingby extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Hacchin_00',)
+            return ImageCreator.onlySm3dw(this, 'Hacchin_00',)
         }
 
     }()
@@ -515,28 +515,28 @@ export abstract class ClearConditionEntityImages
     public static readonly CHEEP_CHEEP = new class ClearConditionEntityImages_CheepCheep extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmwAndNsmbuImages(this, 'Pukupuku_00',)
+            return ImageCreator.notSmwAndNsmbu(this, 'Pukupuku_00',)
         }
 
     }()
     public static readonly BLURPS = new class ClearConditionEntityImages_Blurps extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Pukupuku_01',)
+            return ImageCreator.onlySmw(this, 'Pukupuku_01',)
         }
 
     }()
     public static readonly DEEP_CHEEP = new class ClearConditionEntityImages_DeepCheep extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'Pukupuku_01',)
+            return ImageCreator.onlyNsmbu(this, 'Pukupuku_01',)
         }
 
     }()
     public static readonly FISH_BONE = new class ClearConditionEntityImages_FishBone extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'FishBone_00',)
+            return ImageCreator.all(this, 'FishBone_00',)
         }
 
     }()
@@ -544,7 +544,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BLOOPER = new class ClearConditionEntityImages_Blooper extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Gesso_00',)
+            return ImageCreator.all(this, 'Gesso_00',)
         }
 
     }()
@@ -554,7 +554,7 @@ export abstract class ClearConditionEntityImages
     public static readonly PORCUPUFFER = new class ClearConditionEntityImages_Porcupuffer extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Fugumannen_00',)
+            return ImageCreator.onlySm3dw(this, 'Fugumannen_00',)
         }
 
     }()
@@ -562,7 +562,7 @@ export abstract class ClearConditionEntityImages
     public static readonly WIGGLER = new class ClearConditionEntityImages_Wiggler extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Hanachan_00',)
+            return ImageCreator.notSm3dw(this, 'Hanachan_00',)
         }
 
     }()
@@ -571,21 +571,21 @@ export abstract class ClearConditionEntityImages
     public static readonly PIRANHA_PLANT = new class ClearConditionEntityImages_PiranhaPlant extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmwImages(this, 'Pakkun_00',)
+            return ImageCreator.notSmw(this, 'Pakkun_00',)
         }
 
     }()
     public static readonly JUMPING_PIRANHA_PLANT = new class ClearConditionEntityImages_JumpingPiranhaPlant extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Pakkun_00',)
+            return ImageCreator.onlySmw(this, 'Pakkun_00',)
         }
 
     }()
     public static readonly FIRE_PIRANHA_PLANT = new class ClearConditionEntityImages_FirePiranhaPlant extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSmwImages(this, 'Pakkun_01',)
+            return ImageCreator.onlySmw(this, 'Pakkun_01',)
         }
 
     }()
@@ -593,14 +593,14 @@ export abstract class ClearConditionEntityImages
     public static readonly MUNCHER = new class ClearConditionEntityImages_Muncher extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'BlackPakkun_00',)
+            return ImageCreator.notSm3dw(this, 'BlackPakkun_00',)
         }
 
     }()
     public static readonly PIRANHA_CREEPER = new class ClearConditionEntityImages_PiranhaCreeper extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'PackunPipe_00',)
+            return ImageCreator.onlySm3dw(this, 'PackunPipe_00',)
         }
 
     }()
@@ -609,7 +609,7 @@ export abstract class ClearConditionEntityImages
     public static readonly UNCHAINED_CHOMP = new class ClearConditionEntityImages_UnchainedChomp extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Wanwan_00',)
+            return ImageCreator.notSm3dw(this, 'Wanwan_00',)
         }
 
     }()
@@ -618,7 +618,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SPIKE = new class ClearConditionEntityImages_Spike extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Gabon_00',)
+            return ImageCreator.all(this, 'Gabon_00',)
         }
 
     }()
@@ -628,14 +628,14 @@ export abstract class ClearConditionEntityImages
     public static readonly LAKITU = new class ClearConditionEntityImages_Lakitu extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Jugem_00',)
+            return ImageCreator.notSm3dw(this, 'Jugem_00',)
         }
 
     }()
     public static readonly LAKITU_CLOUD = new class ClearConditionEntityImages_LakituCloud extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Jugem_01',)
+            return ImageCreator.notSm3dw(this, 'Jugem_01',)
         }
 
     }()
@@ -643,7 +643,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BOO = new class ClearConditionEntityImages_Boo extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Teresa_00',)
+            return ImageCreator.all(this, 'Teresa_00',)
         }
 
     }()
@@ -652,7 +652,7 @@ export abstract class ClearConditionEntityImages
     public static readonly PEEPA = new class ClearConditionEntityImages_Peepa extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Teresa_01',)
+            return ImageCreator.onlySm3dw(this, 'Teresa_01',)
         }
 
     }()
@@ -660,7 +660,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BOB_OMB = new class ClearConditionEntityImages_BobOmb extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bombhei_00',)
+            return ImageCreator.all(this, 'Bombhei_00',)
         }
 
     }()
@@ -669,7 +669,7 @@ export abstract class ClearConditionEntityImages
     public static readonly POKEY = new class ClearConditionEntityImages_Pokey extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Sambo_00',)
+            return ImageCreator.all(this, 'Sambo_00',)
         }
 
     }()
@@ -678,7 +678,7 @@ export abstract class ClearConditionEntityImages
     public static readonly THWOMP = new class ClearConditionEntityImages_Thwomp extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Dossun_00',)
+            return ImageCreator.all(this, 'Dossun_00',)
         }
 
     }()
@@ -686,14 +686,14 @@ export abstract class ClearConditionEntityImages
     public static readonly MONTY_MOLE = new class ClearConditionEntityImages_MontyMole extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'ChoroPoo_00',)
+            return ImageCreator.notSm3dw(this, 'ChoroPoo_00',)
         }
 
     }()
     public static readonly ROCKY_WRENCH = new class ClearConditionEntityImages_RockyWrench extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Poo_00',)
+            return ImageCreator.notSm3dw(this, 'Poo_00',)
         }
 
     }()
@@ -702,7 +702,7 @@ export abstract class ClearConditionEntityImages
     public static readonly MAGIKOOPA = new class ClearConditionEntityImages_Magikoopa extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Kameck_00',)
+            return ImageCreator.all(this, 'Kameck_00',)
         }
 
     }()
@@ -711,14 +711,14 @@ export abstract class ClearConditionEntityImages
     public static readonly HAMMER_BRO = new class ClearConditionEntityImages_HammerBro extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bros_00',)
+            return ImageCreator.all(this, 'Bros_00',)
         }
 
     }()
     public static readonly SLEDGE_BRO = new class ClearConditionEntityImages_SledgeBro extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'MegaBros_00',)
+            return ImageCreator.all(this, 'MegaBros_00',)
         }
 
     }()
@@ -730,7 +730,7 @@ export abstract class ClearConditionEntityImages
     public static readonly LAVA_BUBBLE = new class ClearConditionEntityImages_LavaBubble extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bubble_00',)
+            return ImageCreator.all(this, 'Bubble_00',)
         }
 
     }()
@@ -738,7 +738,7 @@ export abstract class ClearConditionEntityImages
     public static readonly MECHAKOOPA = new class ClearConditionEntityImages_Mechakoopa extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'KoopaMecha_00',)
+            return ImageCreator.notSm3dw(this, 'KoopaMecha_00',)
         }
 
     }()
@@ -750,7 +750,7 @@ export abstract class ClearConditionEntityImages
     public static readonly CHARVAARGH = new class ClearConditionEntityImages_Charvaargh extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'MagmaFish_00',)
+            return ImageCreator.onlySm3dw(this, 'MagmaFish_00',)
         }
 
     }()
@@ -758,7 +758,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BULLY = new class ClearConditionEntityImages_Bully extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Donketsu_00',)
+            return ImageCreator.onlySm3dw(this, 'Donketsu_00',)
         }
 
     }()
@@ -770,7 +770,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BULLET_BILL = new class ClearConditionEntityImages_BulletBill extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Killer_00',)
+            return ImageCreator.all(this, 'Killer_00',)
         }
 
     }()
@@ -781,7 +781,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BANZAI_BILL = new class ClearConditionEntityImages_BanzaiBill extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'MagnumKiller_00',)
+            return ImageCreator.all(this, 'MagnumKiller_00',)
         }
 
     }()
@@ -802,14 +802,14 @@ export abstract class ClearConditionEntityImages
     public static readonly KOOPA_CLOWN_CAR = new class ClearConditionEntityImages_KoopaClownCar extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotNsmbuAndSm3dwImages(this, 'KoopaClown_00',)
+            return ImageCreator.notNsmbuAndSm3dw(this, 'KoopaClown_00',)
         }
 
     }()
     public static readonly JUNIOR_CLOWN_CAR = new class ClearConditionEntityImages_JuniorClownCar extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNsmbuImages(this, 'KoopaClown_00',)
+            return ImageCreator.onlyNsmbu(this, 'KoopaClown_00',)
         }
 
     }()
@@ -820,7 +820,7 @@ export abstract class ClearConditionEntityImages
     public static readonly KOOPA_TROOPA_CAR = new class ClearConditionEntityImages_KoopaTroopaCar extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'KoopaCar_00',)
+            return ImageCreator.onlySm3dw(this, 'KoopaCar_00',)
         }
 
     }()
@@ -831,7 +831,7 @@ export abstract class ClearConditionEntityImages
     public static readonly ANGRY_SUN = new class ClearConditionEntityImages_AngrySun extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'SunMoon_00',)
+            return ImageCreator.notSm3dw(this, 'SunMoon_00',)
         }
 
     }()
@@ -843,14 +843,14 @@ export abstract class ClearConditionEntityImages
     public static readonly BOWSER = new class ClearConditionEntityImages_Bowser extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Koopa_00',)
+            return ImageCreator.notSm3dw(this, 'Koopa_00',)
         }
 
     }()
     public static readonly MEOWSER = new class ClearConditionEntityImages_Meowser extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Koopa_00',)
+            return ImageCreator.onlySm3dw(this, 'Koopa_00',)
         }
 
     }()
@@ -860,7 +860,7 @@ export abstract class ClearConditionEntityImages
     public static readonly BOWSER_JR = new class ClearConditionEntityImages_BowserJr extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'KoopaJr_00',)
+            return ImageCreator.notSm3dw(this, 'KoopaJr_00',)
         }
 
     }()
@@ -869,14 +869,14 @@ export abstract class ClearConditionEntityImages
     public static readonly BOOM_BOOM = new class ClearConditionEntityImages_BoomBoom extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'Bunbun_00',)
+            return ImageCreator.all(this, 'Bunbun_00',)
         }
 
     }()
     public static readonly POM_POM = new class ClearConditionEntityImages_PomPom extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'Bunbun_01',)
+            return ImageCreator.onlySm3dw(this, 'Bunbun_01',)
         }
 
     }()
@@ -886,7 +886,7 @@ export abstract class ClearConditionEntityImages
     public static readonly LARRY = new class ClearConditionEntityImages_Larry extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Larry_00',)
+            return ImageCreator.notSm3dw(this, 'Larry_00',)
         }
 
     }()
@@ -896,7 +896,7 @@ export abstract class ClearConditionEntityImages
     public static readonly IGGY = new class ClearConditionEntityImages_Iggy extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Iggy_00',)
+            return ImageCreator.notSm3dw(this, 'Iggy_00',)
         }
 
     }()
@@ -906,7 +906,7 @@ export abstract class ClearConditionEntityImages
     public static readonly WENDY = new class ClearConditionEntityImages_Wendy extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Wendy_00',)
+            return ImageCreator.notSm3dw(this, 'Wendy_00',)
         }
 
     }()
@@ -917,7 +917,7 @@ export abstract class ClearConditionEntityImages
     public static readonly LEMMY = new class ClearConditionEntityImages_Lemmy extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Lemmy_00',)
+            return ImageCreator.notSm3dw(this, 'Lemmy_00',)
         }
 
     }()
@@ -928,7 +928,7 @@ export abstract class ClearConditionEntityImages
     public static readonly ROY = new class ClearConditionEntityImages_Roy extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Roy_00',)
+            return ImageCreator.notSm3dw(this, 'Roy_00',)
         }
 
     }()
@@ -938,7 +938,7 @@ export abstract class ClearConditionEntityImages
     public static readonly MORTON = new class ClearConditionEntityImages_Morton extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Morton_00',)
+            return ImageCreator.notSm3dw(this, 'Morton_00',)
         }
 
     }()
@@ -949,7 +949,7 @@ export abstract class ClearConditionEntityImages
     public static readonly LUDWIG = new class ClearConditionEntityImages_Ludwig extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'Ludwig_00',)
+            return ImageCreator.notSm3dw(this, 'Ludwig_00',)
         }
 
     }()
@@ -964,7 +964,7 @@ export abstract class ClearConditionEntityImages
     public static readonly SWINGING_CLAW = new class ClearConditionEntityImages_SwingingClaw extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSm3dwImages(this, 'BurankoCrane_00',)
+            return ImageCreator.notSm3dw(this, 'BurankoCrane_00',)
         }
 
     }()
@@ -980,7 +980,7 @@ export abstract class ClearConditionEntityImages
     public static readonly TREE = new class ClearConditionEntityImages_Tree extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'BellTree_00',)
+            return ImageCreator.onlySm3dw(this, 'BellTree_00',)
         }
 
     }()
@@ -1020,7 +1020,7 @@ export abstract class ClearConditionEntityImages
     public static readonly CRATE = new class ClearConditionEntityImages_Crate extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'WoodBox_00',)
+            return ImageCreator.onlySm3dw(this, 'WoodBox_00',)
         }
 
     }()
@@ -1032,7 +1032,7 @@ export abstract class ClearConditionEntityImages
     public static readonly TRAMPOLINE = new class ClearConditionEntityImages_Trampoline extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmbImages(this, 'JumpStep_00',)
+            return ImageCreator.notSmb(this, 'JumpStep_00',)
         }
 
     }()
@@ -1041,14 +1041,14 @@ export abstract class ClearConditionEntityImages
     public static readonly POW_BLOCK = new class ClearConditionEntityImages_PowBlock extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'PowBlock_00',)
+            return ImageCreator.all(this, 'PowBlock_00',)
         }
 
     }()
     public static readonly RED_POW_BLOCK = new class ClearConditionEntityImages_RedPowBlock extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInSm3dwImages(this, 'PowBlock_01',)
+            return ImageCreator.onlySm3dw(this, 'PowBlock_01',)
         }
 
     }()
@@ -1056,7 +1056,7 @@ export abstract class ClearConditionEntityImages
     public static readonly P_SWITCH = new class ClearConditionEntityImages_PSwitch extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionImages(this, 'PSwitch_00',)
+            return ImageCreator.all(this, 'PSwitch_00',)
         }
 
     }()
@@ -1064,7 +1064,7 @@ export abstract class ClearConditionEntityImages
     public static readonly STONE = new class ClearConditionEntityImages_Stone extends ClearConditionEntityImages.Existant {
 
         protected override _createImage(): ClearConditionImage {
-            return ImageCreator.clearConditionInNotSmbImages(this, 'Stone_00',)
+            return ImageCreator.notSmb(this, 'Stone_00',)
         }
 
     }()

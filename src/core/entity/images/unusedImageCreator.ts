@@ -8,7 +8,7 @@ import {UnusedImage_BigMushroomContainer} from 'core/entity/images/unused/Unused
 import {UnusedImage_RegularContainer}     from 'core/entity/images/unused/UnusedImage_Regular.container'
 import {GameStyles}                       from 'core/gameStyle/GameStyles'
 
-export function unusedRegularSMM1Images(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, images: readonly (readonly [GameStyles, readonly ImageName_UnusedSMM1Regular[],])[]): UnusedImage_Regular {
+export function smm1(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, images: readonly (readonly [GameStyles, readonly ImageName_UnusedSMM1Regular[],])[]): UnusedImage_Regular {
     const size1 = images.length
     const newArray1 = new Array<[GameStyles, [UnusedSMM1RegularImageFile,][],]>(size1,)
     let index1 = size1
@@ -27,7 +27,7 @@ export function unusedRegularSMM1Images(entity: UnusedEntityImages, name: ImageN
     return new UnusedImage_RegularContainer(new Map(newArray1,),)
 }
 
-export function unusedRegularInMultipleStyleSMM1Images(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, gameStyles: readonly GameStyles[], fileNames: readonly ImageName_UnusedSMM1Regular[],): UnusedImage_Regular {
+export function multipleSmm1(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, gameStyles: readonly GameStyles[], fileNames: readonly ImageName_UnusedSMM1Regular[],): UnusedImage_Regular {
     const size1 = gameStyles.length
     const size2 = fileNames.length
     const newArray1 = new Array<[GameStyles, [UnusedSMM1RegularImageFile,][],]>(size1,)
@@ -45,7 +45,7 @@ export function unusedRegularInMultipleStyleSMM1Images(entity: UnusedEntityImage
     return new UnusedImage_RegularContainer(new Map(newArray1,),)
 }
 
-export function singleUnusedRegularSMM1Images(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileNames: readonly ImageName_UnusedSMM1Regular[],): UnusedImage_Regular {
+export function regularSmm1(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileNames: readonly ImageName_UnusedSMM1Regular[],): UnusedImage_Regular {
     const size = fileNames.length
     const newArray = new Array<[UnusedSMM1RegularImageFile,]>(size,)
     let index = size
@@ -56,7 +56,7 @@ export function singleUnusedRegularSMM1Images(entity: UnusedEntityImages, name: 
 }
 
 
-export function unusedBigMushroomImages(entity: UnusedEntityImages, name: SimpleImageName_BigMushroom_Unused_SMM1, imageNames: readonly (readonly ImageName_UnusedBigMushroom[])[],): UnusedImage_BigMushroom {
+export function bigMushroom(entity: UnusedEntityImages, name: SimpleImageName_BigMushroom_Unused_SMM1, imageNames: readonly (readonly ImageName_UnusedBigMushroom[])[],): UnusedImage_BigMushroom {
     const size1 = imageNames.length
     const newArray1 = new Array<UnusedSMM1BigMushroomImageFile[]>(size1,)
     let index1 = size1
@@ -74,6 +74,6 @@ export function unusedBigMushroomImages(entity: UnusedEntityImages, name: Simple
     return new UnusedImage_BigMushroomContainer(newArray1,)
 }
 
-export function singleUnusedBigMushroomImages(entity: UnusedEntityImages, name: SimpleImageName_BigMushroom_Unused_SMM1, imageName: ImageName_UnusedBigMushroom,): UnusedImage_BigMushroom {
+export function singleBigMushroom(entity: UnusedEntityImages, name: SimpleImageName_BigMushroom_Unused_SMM1, imageName: ImageName_UnusedBigMushroom,): UnusedImage_BigMushroom {
     return new UnusedImage_BigMushroomContainer([[FileCreator.unusedBigMushroomImage(entity, name, imageName,),],],)
 }

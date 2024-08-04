@@ -17,7 +17,7 @@ import {GameStyles}                from 'core/gameStyle/GameStyles'
  * @param name The image identifier name
  * @param gameStyle The image {@link GameStyles}
  */
-export function singleInGameSMM1Images(entity: InGameEntityImages, name: SimpleImageName_SMM1, gameStyle: GameStyles,): InGameImage_SMM1 {
+export function smm1(entity: InGameEntityImages, name: SimpleImageName_SMM1, gameStyle: GameStyles,): InGameImage_SMM1 {
     return new InGameImage_SMM1Container(new Map([[gameStyle, [FileCreator.inGameSMM1Image(entity, name, gameStyle,),],],],),)
 }
 
@@ -29,7 +29,7 @@ export function singleInGameSMM1Images(entity: InGameEntityImages, name: SimpleI
  * @param entity The {@link InGameEntityImages} reference
  * @param name The image identifier name
  */
-export function singleInGameInAllStyleSMM1Images(entity: InGameEntityImages, name: SimpleImageName_SMM1,): InGameImage_SMM1 {
+export function allSmm1(entity: InGameEntityImages, name: SimpleImageName_SMM1,): InGameImage_SMM1 {
     return new InGameImage_SMM1Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [FileCreator.inGameSMM1Image(entity, name, GameStyles.SUPER_MARIO_BROS,),],],
         [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.inGameSMM1Image(entity, name, GameStyles.SUPER_MARIO_BROS_3,),],],
@@ -41,27 +41,6 @@ export function singleInGameInAllStyleSMM1Images(entity: InGameEntityImages, nam
 //endregion -------------------- In game images (SMM1) --------------------
 //region -------------------- In game images (SMM2) --------------------
 
-// export function inGameImages(entity: InGameEntityImages, name: ImageName_SMM2, images: readonly (readonly [GameStyles, readonly PossibleInGameSMM2ImageFileName[],])[],) {
-//     const size1 = images.length
-//     const imagesCreated = new Array<[GameStyles, InGameSMM2ImageFile[],]>(size1,)
-//     let index1 = size1
-//     while (index1-- > 0) {
-//         const gameStyle = images[index1][0]
-//         const simpleImages = images[index1][1]
-//
-//         const size2 = simpleImages.length
-//         const imagesCreated2 = new Array<InGameSMM2ImageFile>(size2,)
-//         let index2 = size2
-//         while (index2-- > 0)
-//             imagesCreated2[index2] = FileCreator.inGameSMM2Image(entity, name, gameStyle, simpleImages[index2],)
-//
-//         imagesCreated[index1] = [gameStyle, imagesCreated2,]
-//     }
-//
-//     return new InGameImage_SMM2Container(new Map(imagesCreated,),)
-// }
-
-
 /**
  * Create a simple {@link InGameImage_SMM2} that is in every 2d style
  * ({@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3},
@@ -71,7 +50,7 @@ export function singleInGameInAllStyleSMM1Images(entity: InGameEntityImages, nam
  * @param name The image identifier name
  * @param fileName The image name
  */
-export function singleInGameIn2DStyleImages(entity: InGameEntityImages, name: ImageName_SMM2, fileName: PossibleInGameSMM2ImageFileName,): InGameImage_SMM2 {
+export function only2DStyle(entity: InGameEntityImages, name: ImageName_SMM2, fileName: PossibleInGameSMM2ImageFileName,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [FileCreator.inGameImage(entity, name, GameStyles.SUPER_MARIO_BROS, fileName,),],],
         [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.inGameImage(entity, name, GameStyles.SUPER_MARIO_BROS_3, fileName,),],],
@@ -88,7 +67,7 @@ export function singleInGameIn2DStyleImages(entity: InGameEntityImages, name: Im
  * @param gameStyle The image {@link GameStyles}
  * @param fileName The image name
  */
-export function singleInGameImages(entity: InGameEntityImages, name: ImageName_SMM2, gameStyle: GameStyles, fileName: PossibleInGameSMM2ImageFileName,): InGameImage_SMM2 {
+export function all(entity: InGameEntityImages, name: ImageName_SMM2, gameStyle: GameStyles, fileName: PossibleInGameSMM2ImageFileName,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([[gameStyle, [FileCreator.inGameImage(entity, name, gameStyle, fileName,),],],],))
 }
 
@@ -101,7 +80,7 @@ export function singleInGameImages(entity: InGameEntityImages, name: ImageName_S
  * @param gameStyle The image {@link GameStyles}
  * @param fileNames The images' name
  */
-export function multipleInGameImages(entity: InGameEntityImages, name: ImageName_SMM2, gameStyle: GameStyles, fileNames: readonly PossibleInGameSMM2ImageFileName[],): InGameImage_SMM2 {
+export function multiple(entity: InGameEntityImages, name: ImageName_SMM2, gameStyle: GameStyles, fileNames: readonly PossibleInGameSMM2ImageFileName[],): InGameImage_SMM2 {
     const size = fileNames.length
     const newArray = new Array<InGameSMM2ImageFile>(size,)
     let index = size
@@ -119,7 +98,7 @@ export function multipleInGameImages(entity: InGameEntityImages, name: ImageName
  * @param gameStyles The image {@link GameStyles}
  * @param fileNames The images' name
  */
-export function multipleInGameInMultipleStyleImages(entity: InGameEntityImages, name: ImageName_SMM2, gameStyles: readonly GameStyles[], fileNames: readonly PossibleInGameSMM2ImageFileName[],): InGameImage_SMM2 {
+export function multipleInMultiple(entity: InGameEntityImages, name: ImageName_SMM2, gameStyles: readonly GameStyles[], fileNames: readonly PossibleInGameSMM2ImageFileName[],): InGameImage_SMM2 {
     const size1 = gameStyles.length
     const size2 = fileNames.length
     const newArray1 = new Array<[GameStyles, InGameSMM2ImageFile[],]>(size1,)
@@ -146,7 +125,7 @@ export function multipleInGameInMultipleStyleImages(entity: InGameEntityImages, 
  *
  * @param entity The {@link InGameEntityImages.START_BLOCK} reference
  */
-export function inGameStartBlockImages(entity: InGameEntityImages,): InGameImage_SMM2 {
+export function startBlock(entity: InGameEntityImages,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [FileCreator.inGameImage(entity, 'Object - StartBlock', GameStyles.SUPER_MARIO_BROS, 'startblock',),],],
         [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.inGameImage(entity, 'Object - StartBlock', GameStyles.SUPER_MARIO_BROS_3, 'startblock',),],],
@@ -161,7 +140,7 @@ export function inGameStartBlockImages(entity: InGameEntityImages,): InGameImage
  *
  * @param entity The {@link InGameEntityImages.WATER} reference
  */
-export function inGameWaterImages(entity: InGameEntityImages,): InGameImage_SMM2 {
+export function water(entity: InGameEntityImages,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [
             FileCreator.inGameImage(entity, 'Object - WaterHalf', GameStyles.SUPER_MARIO_BROS, 'wait.0',),
@@ -195,7 +174,7 @@ export function inGameWaterImages(entity: InGameEntityImages,): InGameImage_SMM2
  * @param entity The {@link InGameEntityImages.LAVA} or {@link InGameEntityImages.POISON} reference
  * @param name The name of the images
  */
-export function inGameDangerousLiquidImages(entity: InGameEntityImages, name: DangerousImageFileName,): InGameImage_SMM2 {
+export function dangerousLiquid(entity: InGameEntityImages, name: DangerousImageFileName,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [
             FileCreator.inGameImage(entity, name, GameStyles.SUPER_MARIO_BROS, 'wait.0',),
@@ -225,7 +204,7 @@ export function inGameDangerousLiquidImages(entity: InGameEntityImages, name: Da
  *
  * @param entity The {@link InGameEntityImages.BABY_BLOOPER} projectile reference
  */
-export function inGameBabyBlooperProjectileImages(entity: InGameEntityImages,): InGameImage_SMM2 {
+export function babyBlooper(entity: InGameEntityImages,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [
             FileCreator.inGameImage(entity, 'Enemy - GessoMini', GameStyles.SUPER_MARIO_BROS, 'wait.0',),
@@ -252,7 +231,7 @@ export function inGameBabyBlooperProjectileImages(entity: InGameEntityImages,): 
  * @param entity The {@link InGameEntityImages.LARRY_PROJECTILE Larry}, {@link InGameEntityImages.IGGY_PROJECTILE Iggy}, {@link InGameEntityImages.ROY_PROJECTILE Roy}, {@link InGameEntityImages.MORTON_PROJECTILE Morton} or {@link InGameEntityImages.LUDWIG_PROJECTILE Ludwig} projectile reference
  * @param name The name of the images
  */
-export function inGameKoopalingProjectileImages(entity: InGameEntityImages, name: KoopalingImageName,): InGameImage_SMM2 {
+export function koopalingProjectile(entity: InGameEntityImages, name: KoopalingImageName,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [FileCreator.inGameImage(entity, name, GameStyles.SUPER_MARIO_BROS, 'effect.0',),],],
         [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.inGameImage(entity, name, GameStyles.SUPER_MARIO_BROS_3, 'effect.0',),],],
@@ -265,7 +244,7 @@ export function inGameKoopalingProjectileImages(entity: InGameEntityImages, name
  *
  * @param entity The {@link InGameEntityImages.CANDY_RING_THROWN_BY_A_WENDY} reference
  */
-export function inGameCandyRingImages(entity: InGameEntityImages,): InGameImage_SMM2 {
+export function candyRing(entity: InGameEntityImages,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [
             FileCreator.inGameImage(entity, 'Enemy - Wendy', GameStyles.SUPER_MARIO_BROS, 'ring.0',),
@@ -291,7 +270,7 @@ export function inGameCandyRingImages(entity: InGameEntityImages,): InGameImage_
  *
  * @param entity The {@link InGameEntityImages.MAGIC_BALL_THROWN_BY_A_LEMMY} reference
  */
-export function inGameMagicBallImages(entity: InGameEntityImages,): InGameImage_SMM2 {
+export function magicBall(entity: InGameEntityImages,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [FileCreator.inGameImage(entity, 'Enemy - Lemmy', GameStyles.SUPER_MARIO_BROS, 'ball.0',),],],
         [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.inGameImage(entity, 'Enemy - Lemmy', GameStyles.SUPER_MARIO_BROS_3, 'ball.0',),],],
@@ -308,7 +287,7 @@ export function inGameMagicBallImages(entity: InGameEntityImages,): InGameImage_
  *
  * @param entity The {@link InGameEntityImages.MORTON_GROUND_PROJECTILE} reference
  */
-export function inGameMortonGroundProjectileImages(entity: InGameEntityImages,): InGameImage_SMM2 {
+export function mortonGroundProjectile(entity: InGameEntityImages,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [
             FileCreator.inGameImage(entity, 'Enemy - Morton', GameStyles.SUPER_MARIO_BROS, 'fire.0',),
@@ -336,7 +315,7 @@ export function inGameMortonGroundProjectileImages(entity: InGameEntityImages,):
  * @param entity The {@link InGameEntityImages.LARRY_WAND Larry}, {@link InGameEntityImages.IGGY_WAND Iggy}, {@link InGameEntityImages.WENDY_WAND Wendy}, {@link InGameEntityImages.LEMMY_WAND Lemmy}, {@link InGameEntityImages.ROY_WAND Roy}, {@link InGameEntityImages.MORTON_WAND Morton} or {@link InGameEntityImages.LUDWIG_WAND Ludwig} wand reference
  * @param name The name of the images
  */
-export function inGameKoopalingWandImages(entity: InGameEntityImages, name: KoopalingImageName,): InGameImage_SMM2 {
+export function koopalingWand(entity: InGameEntityImages, name: KoopalingImageName,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [FileCreator.inGameImage(entity, name, GameStyles.SUPER_MARIO_BROS, 'wand',),],],
         [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.inGameImage(entity, name, GameStyles.SUPER_MARIO_BROS_3, 'wand',),],],
@@ -351,7 +330,7 @@ export function inGameKoopalingWandImages(entity: InGameEntityImages, name: Koop
  *
  * @param entity The {@link InGameEntityImages.BUBBLE} reference
  */
-export function inGameBubbleImages(entity: InGameEntityImages,): InGameImage_SMM2 {
+export function bubble(entity: InGameEntityImages,): InGameImage_SMM2 {
     return new InGameImage_SMM2Container(new Map([
         [GameStyles.SUPER_MARIO_BROS, [FileCreator.inGameImage(entity, 'Object - Balloon', GameStyles.SUPER_MARIO_BROS, 'balloon.0',),],],
         [GameStyles.SUPER_MARIO_BROS_3, [FileCreator.inGameImage(entity, 'Object - Balloon', GameStyles.SUPER_MARIO_BROS_3, 'balloon.0',),],],

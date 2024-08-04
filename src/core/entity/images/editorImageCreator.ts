@@ -9,9 +9,9 @@ import {Themes}               from 'core/theme/Themes'
 import {Times}                from 'core/time/Times'
 import {EditorEntityImages}   from 'core/entity/EditorEntityImages'
 
-//region -------------------- Editor images (simple) --------------------
+//region -------------------- Editor images (one) --------------------
 
-export function editorImages(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function one(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
@@ -29,7 +29,7 @@ export function editorImages(entity: EditorEntityImages, name: ImageName_Editor,
     ],),],],),)
 }
 
-export function editorInSnowImages(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function onlySnow(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
@@ -48,37 +48,37 @@ export function editorInSnowImages(entity: EditorEntityImages, name: ImageName_E
     ],),],],),)
 }
 
-//endregion -------------------- Editor images (simple) --------------------
+//endregion -------------------- Editor images (one) --------------------
 //region -------------------- Editor images (single) --------------------
 
-export function editorInSmbImages(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+export function onlySmb(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
     const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),] as const
 
     return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS, new Map([[theme, image,],],),],],),],],),)
 }
-export function editorInSmb3Images(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+export function onlySmb3(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
     const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),] as const
 
     return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS_3, new Map([[theme, image,],],),],],),],],),)
 }
-export function editorInSmwImages(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+export function onlySmw(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
     const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),] as const
 
     return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_WORLD, new Map([[theme, image,],],),],],),],],),)
 }
-export function editorInNsmbuImages(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+export function onlyNsmbu(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
     const image = [FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),] as const
 
     return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.NEW_SUPER_MARIO_BROS_U, new Map([[theme, image,],],),],],),],],),)
 }
-export function editorInSm3dwImages(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
+export function onlySm3dw(entity: EditorEntityImages, name: ImageName_Editor, theme: Themes = Themes.GROUND,): EditorImage {
     const image = [FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_3D_WORLD,),] as const
 
     return new EditorImageContainer(image, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map([[theme, image,],],),],],),],],),)
 }
 
 
-export function editorInSmbAndSmb3Images(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function onlySmbAndSmb3(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
@@ -90,7 +90,7 @@ export function editorInSmbAndSmb3Images(entity: EditorEntityImages, name: Image
     ],),],],),)
 }
 
-export function editorInSmwAndNsmbuImages(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function onlySmwAndNsmbu(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_WORLD,),
         FileCreator.editorImage(entity, name, GameStyles.NEW_SUPER_MARIO_BROS_U,),
@@ -103,7 +103,7 @@ export function editorInSmwAndNsmbuImages(entity: EditorEntityImages, name: Imag
 }
 
 
-export function editorInNotSmwAndSm3dwImages(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function notSmwAndSm3dw(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
@@ -117,7 +117,7 @@ export function editorInNotSmwAndSm3dwImages(entity: EditorEntityImages, name: I
     ],),],],),)
 }
 
-export function editorInNotNsmbuAndSm3dwImages(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function notNsmbuAndSm3dw(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
@@ -132,7 +132,7 @@ export function editorInNotNsmbuAndSm3dwImages(entity: EditorEntityImages, name:
 }
 
 
-export function editorInNotSmwImages(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function notSmw(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
@@ -147,7 +147,7 @@ export function editorInNotSmwImages(entity: EditorEntityImages, name: ImageName
         [GameStyles.SUPER_MARIO_3D_WORLD, new Map([[Themes.GROUND, [images[3],],],],),],
     ],),],],),)
 }
-export function editorInNotSm3dwImages(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
+export function notSm3dw(entity: EditorEntityImages, name: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS_3,),
@@ -182,7 +182,7 @@ export function editorInNotSm3dwImages(entity: EditorEntityImages, name: ImageNa
  * @param name The image name
  * @param number The image number
  */
-export function editorInBlueVariantInSmbAndSmb3Images<const NUMBER extends ImageNumber_Editor_WithBlueVariant, >(entity: EditorEntityImages, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
+export function blueVariantInSmbAndSmb3<const NUMBER extends ImageNumber_Editor_WithBlueVariant, >(entity: EditorEntityImages, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, `${name}_0${number}`, GameStyles.SUPER_MARIO_BROS,),                  // index 0
         FileCreator.editorImage(entity, `${name}_plain_night_0${number}`, GameStyles.SUPER_MARIO_BROS,),      // index 1
@@ -273,7 +273,7 @@ export function editorInBlueVariantInSmbAndSmb3Images<const NUMBER extends Image
  * @param name The image name
  * @param number The image number
  */
-export function editorInNotSm3dwAndBlueVariantInSmbAndSmb3Images<const NUMBER extends ImageNumber_Editor_WithBlueVariant, >(entity: EditorEntityImages, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
+export function notSm3dwAndBlueVariantInSmbAndSmb3<const NUMBER extends ImageNumber_Editor_WithBlueVariant, >(entity: EditorEntityImages, name: SimpleImageName_Editor_WithBlueVariant<NUMBER>, number: NUMBER,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, `${name}_0${number}`, GameStyles.SUPER_MARIO_BROS,),                  // index 0
         FileCreator.editorImage(entity, `${name}_plain_night_0${number}`, GameStyles.SUPER_MARIO_BROS,),      // index 1
@@ -353,7 +353,7 @@ export function editorInNotSm3dwAndBlueVariantInSmbAndSmb3Images<const NUMBER ex
  * @param name The image name
  * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNightSnowInSmbAndSmb3Images(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
+export function nightSnowInSmbAndSmb3(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
         FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS,),   // index 1
@@ -390,7 +390,7 @@ export function editorInNightSnowInSmbAndSmb3Images(entity: EditorEntityImages, 
  * @param name The image name
  * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNightSnowInSmb3Images(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
+export function nightSnowInSmb3(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
 
@@ -425,7 +425,7 @@ export function editorInNightSnowInSmb3Images(entity: EditorEntityImages, name: 
  * @param name The image name
  * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
+export function notSm3dwAndNightSnowInSmbAndSmb3(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
         FileCreator.editorImage(entity, nightSnowName, GameStyles.SUPER_MARIO_BROS,),   // index 1
@@ -460,7 +460,7 @@ export function editorInNotSm3dwAndNightSnowInSmbAndSmb3Images(entity: EditorEnt
  * @param name The image name
  * @param nightSnowName The image name in the {@link Times.NIGHT night} {@link Themes.SNOW snow}
  */
-export function editorInNotSm3dwAndNightSnowInSmb3Images(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
+export function notSm3dwAndNightSnowInSmb3(entity: EditorEntityImages, name: ImageName_Editor, nightSnowName: ImageName_Editor,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, name, GameStyles.SUPER_MARIO_BROS,),            // index 0
 
@@ -488,7 +488,7 @@ export function editorInNotSm3dwAndNightSnowInSmb3Images(entity: EditorEntityIma
 //endregion -------------------- Editor images (single) --------------------
 //region -------------------- Editor images (multiple) --------------------
 
-export function multipleEditorImages(entity: EditorEntityImages, names: readonly ImageName_Editor[],): EditorImage {
+export function multiple(entity: EditorEntityImages, names: readonly ImageName_Editor[],): EditorImage {
     const size = names.length
     const totalSize = size * 5
     const images = new Array<EditorImageFile>(totalSize,)
@@ -524,8 +524,7 @@ export function multipleEditorImages(entity: EditorEntityImages, names: readonly
     ],),],],),)
 }
 
-
-export function multipleEditorInSm3dwImages(entity: EditorEntityImages, names: readonly ImageName_Editor[],): EditorImage {
+export function multipleInSm3dw(entity: EditorEntityImages, names: readonly ImageName_Editor[],): EditorImage {
     const size = names.length
     const images = new Array<EditorImageFile>(size,)
     let index = size
@@ -535,8 +534,7 @@ export function multipleEditorInSm3dwImages(entity: EditorEntityImages, names: r
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, new Map([[Themes.GROUND, images,],],),],],),],],),)
 }
 
-
-export function multipleEditorInNotSm3dwImages(entity: EditorEntityImages, names: readonly ImageName_Editor[],): EditorImage {
+export function multipleInNotSm3dw(entity: EditorEntityImages, names: readonly ImageName_Editor[],): EditorImage {
     const size = names.length
     const totalSize = size * 4
     const images = new Array<EditorImageFile>(totalSize,)
@@ -577,7 +575,7 @@ export function multipleEditorInNotSm3dwImages(entity: EditorEntityImages, names
  * @param standaloneName The image name that is standalone
  * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorImages(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+export function powerUp(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
     const images = [
         FileCreator.standalonePowerUpEditorImage(entity, standaloneName, GameStyles.SUPER_MARIO_BROS,),           // index 0
         FileCreator.withMushroomPowerUpEditorImage(entity, nameWithMushroom, GameStyles.SUPER_MARIO_BROS,),       // index 1
@@ -611,7 +609,7 @@ export function powerUpEditorImages(entity: EditorEntityImages, standaloneName: 
  * @param standaloneName The image name that is standalone
  * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSmbImages(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+export function onlySmbPowerUp(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
     const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_BROS,)
 
     return new EditorImageContainer(images, new Map([[Times.DAY, new Map([[GameStyles.SUPER_MARIO_BROS, new Map([[Themes.GROUND, images,],],),],],),],],),)
@@ -624,7 +622,7 @@ export function powerUpEditorInSmbImages(entity: EditorEntityImages, standaloneN
  * @param standaloneName The image name that is standalone
  * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSmb3Images(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+export function onlySmb3PowerUp(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
     const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_BROS_3,)
 
 
@@ -638,7 +636,7 @@ export function powerUpEditorInSmb3Images(entity: EditorEntityImages, standalone
  * @param standaloneName The image name that is standalone
  * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSmwImages(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+export function onlySmwPowerUp(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
     const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_WORLD,)
 
 
@@ -652,7 +650,7 @@ export function powerUpEditorInSmwImages(entity: EditorEntityImages, standaloneN
  * @param standaloneName The image name that is standalone
  * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInNsmbuImages(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+export function onlyNsmbuPowerUp(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
     const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.NEW_SUPER_MARIO_BROS_U,)
 
 
@@ -666,7 +664,7 @@ export function powerUpEditorInNsmbuImages(entity: EditorEntityImages, standalon
  * @param standaloneName The image name that is standalone
  * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
  */
-export function powerUpEditorInSm3dwImages(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
+export function onlySm3dwPowerUp(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp,): PowerUpEditorImage {
     const images = FileCreator.powerUpEditorImages(entity, standaloneName, nameWithMushroom, GameStyles.SUPER_MARIO_3D_WORLD,)
 
 
@@ -683,7 +681,7 @@ export function powerUpEditorInSm3dwImages(entity: EditorEntityImages, standalon
  * @param entity The {@link EditorEntityImages.GROUND}, {@link EditorEntityImages.STEEP_SLOPE} or {@link EditorEntityImages.GENTLE_SLOPE} {@link EditorEntityImages entity}
  * @param name The image name
  */
-export function editorGroundOrSlopeImages(entity: EditorEntityImages, name: SimpleImageName_Editor_GroundOrSlope,): EditorImage {
+export function groundOrSlope(entity: EditorEntityImages, name: SimpleImageName_Editor_GroundOrSlope,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, `${name}_00`, GameStyles.SUPER_MARIO_BROS,),                     // index 0
         FileCreator.editorImage(entity, `${name}_underground_00`, GameStyles.SUPER_MARIO_BROS,),         // index 1
@@ -836,7 +834,7 @@ export function editorGroundOrSlopeImages(entity: EditorEntityImages, name: Simp
  *
  * @param entity The {@link EditorEntityImages.PIPE} {@link EditorEntityImages entity}
  */
-export function editorPipeImages(entity: EditorEntityImages,): EditorImage {
+export function pipe(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'Dokan_00', GameStyles.SUPER_MARIO_BROS,),              // index 0
         FileCreator.editorImage(entity, 'Dokan_01', GameStyles.SUPER_MARIO_BROS,),              // index 1
@@ -885,7 +883,7 @@ export function editorPipeImages(entity: EditorEntityImages,): EditorImage {
  *
  * @param entity The {@link EditorEntityImages.MUSHROOM_PLATFORM} {@link EditorEntityImages entity}
  */
-export function editorMushroomPlatformImages(entity: EditorEntityImages,): EditorImage {
+export function mushroomPlatform(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'GroundMushroom_00', GameStyles.SUPER_MARIO_BROS,),                  // index 0
         FileCreator.editorImage(entity, 'GroundMushroom_01', GameStyles.SUPER_MARIO_BROS,),                  // index 1
@@ -993,7 +991,7 @@ export function editorMushroomPlatformImages(entity: EditorEntityImages,): Edito
  *
  * @param entity The {@link EditorEntityImages.SEMISOLID_PLATFORM} {@link EditorEntityImages entity}
  */
-export function editorSemisolidPlatformImages(entity: EditorEntityImages,): EditorImage {
+export function semisolidPlatform(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'GroundBox_00', GameStyles.SUPER_MARIO_BROS,),                    // index 0
         FileCreator.editorImage(entity, 'GroundBox_01', GameStyles.SUPER_MARIO_BROS,),                    // index 1
@@ -1224,7 +1222,7 @@ export function editorSemisolidPlatformImages(entity: EditorEntityImages,): Edit
  *
  * @param entity The {@link EditorEntityImages.BRIDGE} {@link EditorEntityImages entity}
  */
-export function editorBridgeImages(entity: EditorEntityImages,): EditorImage {
+export function bridge(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'Bridge_00', GameStyles.SUPER_MARIO_BROS,),                    // index 0
         FileCreator.editorImage(entity, 'Bridge_snow_00', GameStyles.SUPER_MARIO_BROS,),               // index 1
@@ -1300,7 +1298,7 @@ export function editorBridgeImages(entity: EditorEntityImages,): EditorImage {
  *
  * @param entity The {@link EditorEntityImages.BRICK_BLOCK} {@link EditorEntityImages entity}
  */
-export function editorBrickBlockImages(entity: EditorEntityImages,): EditorImage {
+export function brickBlock(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'RengaBlock_00', GameStyles.SUPER_MARIO_BROS,),              // index 0
         FileCreator.editorImage(entity, 'RengaBlock_underground_00', GameStyles.SUPER_MARIO_BROS,),  // index 1
@@ -1342,7 +1340,7 @@ export function editorBrickBlockImages(entity: EditorEntityImages,): EditorImage
  *
  * @param entity The {@link EditorEntityImages.CRISTAL_BLOCK} {@link EditorEntityImages entity}
  */
-export function editorCristalBlockImages(entity: EditorEntityImages,): EditorImage {
+export function cristalBlock(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'RengaBlock_underground_00', GameStyles.SUPER_MARIO_3D_WORLD,),
         FileCreator.editorImage(entity, 'RengaBlock_woods_00', GameStyles.SUPER_MARIO_3D_WORLD,),
@@ -1359,7 +1357,7 @@ export function editorCristalBlockImages(entity: EditorEntityImages,): EditorIma
  *
  * @param entity The {@link EditorEntityImages.HARD_BLOCK} {@link EditorEntityImages entity}
  */
-export function editorHardBlockImages(entity: EditorEntityImages,): EditorImage {
+export function hardBlock(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'HardBlock_00', GameStyles.SUPER_MARIO_BROS,),                   // index 0
         FileCreator.editorImage(entity, 'HardBlock_underground_00', GameStyles.SUPER_MARIO_BROS,),       // index 1
@@ -1435,7 +1433,7 @@ export function editorHardBlockImages(entity: EditorEntityImages,): EditorImage 
  *
  * @param entity The {@link EditorEntityImages.CLOUD_BLOCK} {@link EditorEntityImages entity}
  */
-export function editorCloudBlockImages(entity: EditorEntityImages,): EditorImage {
+export function cloudBlock(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'KumoBlock_00', GameStyles.SUPER_MARIO_BROS,),              // index 0
         FileCreator.editorImage(entity, 'KumoBlock_water_00', GameStyles.SUPER_MARIO_BROS,),        // index 1
@@ -1482,7 +1480,7 @@ export function editorCloudBlockImages(entity: EditorEntityImages,): EditorImage
  *
  * @param entity The {@link EditorEntityImages.CHEEP_CHEEP} {@link EditorEntityImages entity}
  */
-export function editorCheepCheepImages(entity: EditorEntityImages,): EditorImage {
+export function cheepCheep(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'Pukupuku_00', GameStyles.SUPER_MARIO_BROS,),       // index 0
         FileCreator.editorImage(entity, 'Pukupuku_01', GameStyles.SUPER_MARIO_BROS,),       // index 1
@@ -1512,7 +1510,7 @@ export function editorCheepCheepImages(entity: EditorEntityImages,): EditorImage
  *
  * @param entity The {@link EditorEntityImages.SPIKE_BALL} {@link EditorEntityImages entity}
  */
-export function editorSpikeBallImages(entity: EditorEntityImages,): EditorImage {
+export function spikeBall(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'Gabon_01', GameStyles.SUPER_MARIO_BROS,),                  // index 0
         FileCreator.editorImage(entity, 'Gabon_plain_night_01', GameStyles.SUPER_MARIO_BROS,),      // index 1
@@ -1587,7 +1585,7 @@ export function editorSpikeBallImages(entity: EditorEntityImages,): EditorImage 
  *
  * @param entity The {@link EditorEntityImages.TREE} {@link EditorEntityImages entity}
  */
-export function editorTreeImages(entity: EditorEntityImages,): EditorImage {
+export function tree(entity: EditorEntityImages,): EditorImage {
     const images = [
         FileCreator.editorImage(entity, 'BellTree_00', GameStyles.SUPER_MARIO_3D_WORLD,),             // index 0
         FileCreator.editorImage(entity, 'BellTree_underground_00', GameStyles.SUPER_MARIO_3D_WORLD,), // index 1

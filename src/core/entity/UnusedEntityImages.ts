@@ -311,7 +311,7 @@ export abstract class UnusedEntityImages
     public static readonly GOOMBA =                                        new class UnusedEntityImages_Goomba extends UnusedEntityImages.BigMushroom {
 
         protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.unusedBigMushroomImages(this, 'Kuribo D', [
+            return ImageCreator.bigMushroom(this, 'Kuribo D', [
                 ['damage.0',],
                 ['swim.0', 'swim.1',],
                 ['walk.0', 'walk.1',],
@@ -395,11 +395,11 @@ export abstract class UnusedEntityImages
     public static readonly STRETCH =                                       new class UnusedEntityImages_Stretch extends UnusedEntityImages.Both {
 
         protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.unusedRegularInMultipleStyleSMM1Images(this, 'Enemy - Necchi', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD,], ['wait.0', 'out.4',],)
+            return ImageCreator.multipleSmm1(this, 'Enemy - Necchi', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD,], ['wait.0', 'out.4',],)
         }
 
         protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.unusedBigMushroomImages(this, 'Necchi', [['wait.0', 'wait.2',], ['out.4',],],)
+            return ImageCreator.bigMushroom(this, 'Necchi', [['wait.0', 'wait.2',], ['out.4',],],)
         }
 
     }()
@@ -457,7 +457,7 @@ export abstract class UnusedEntityImages
     public static readonly CANNONBALL =                                    new class UnusedEntityImages_Cannonball extends UnusedEntityImages.BigMushroom {
 
         protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleUnusedBigMushroomImages(this, 'SenkanHoudai D', 'senkan_houdai_ball',)
+            return ImageCreator.singleBigMushroom(this, 'SenkanHoudai D', 'senkan_houdai_ball',)
         }
 
     }()
@@ -473,11 +473,11 @@ export abstract class UnusedEntityImages
     public static readonly KOOPA_CLOWN_CAR =                               new class UnusedEntityImages_KoopaClownCar extends UnusedEntityImages.Both {
 
         protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.singleUnusedRegularSMM1Images(this, 'Enemy - KoopaClown', GameStyles.SUPER_MARIO_WORLD, ['weep.4', 'weep.5', 'weep.6', 'weep.7',],)
+            return ImageCreator.regularSmm1(this, 'Enemy - KoopaClown', GameStyles.SUPER_MARIO_WORLD, ['weep.4', 'weep.5', 'weep.6', 'weep.7',],)
         }
 
         protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.unusedBigMushroomImages(this, 'KoopaClown', [
+            return ImageCreator.bigMushroom(this, 'KoopaClown', [
                 ['wait.4', 'wait.5', 'wait.6', 'wait.7',],
                 ['anger.4', 'anger.5', 'anger.6', 'anger.7',],
                 ['blink.4', 'blink.5', 'blink.6', 'blink.7',],
@@ -507,7 +507,7 @@ export abstract class UnusedEntityImages
     public static readonly BOWSER =                                        new class UnusedEntityImages_Bowser extends UnusedEntityImages.BigMushroom {
 
         protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleUnusedBigMushroomImages(this, 'Koopa', 'fire.1',)
+            return ImageCreator.singleBigMushroom(this, 'Koopa', 'fire.1',)
         }
 
     }()
@@ -518,7 +518,7 @@ export abstract class UnusedEntityImages
     public static readonly BOWSER_JR =                                     new class UnusedEntityImages_BowserJr extends UnusedEntityImages.BigMushroom {
 
         protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleUnusedBigMushroomImages(this, 'KoopaJr', 'fire.1',)
+            return ImageCreator.singleBigMushroom(this, 'KoopaJr', 'fire.1',)
         }
 
     }()
@@ -579,7 +579,7 @@ export abstract class UnusedEntityImages
         protected override _createImage(): UnusedImage_Regular {
             const wait2 = ['wait.2',] as const satisfies readonly ImageName_UnusedSMM1Regular[]
 
-            return ImageCreator.unusedRegularSMM1Images(this, 'Object Block - Tuta', [
+            return ImageCreator.smm1(this, 'Object Block - Tuta', [
                 [GameStyles.SUPER_MARIO_BROS, ['wait.1',],],
                 [GameStyles.SUPER_MARIO_BROS_3, wait2,],
                 [GameStyles.SUPER_MARIO_WORLD, wait2,],
@@ -596,7 +596,7 @@ export abstract class UnusedEntityImages
     public static readonly GOAL_POLE =                                     new class UnusedEntityImages_GoalPole extends UnusedEntityImages.Regular {
 
         protected override _createImage(): UnusedImage_Regular {
-            return ImageCreator.singleUnusedRegularSMM1Images(this, 'Object - Goalpole', GameStyles.SUPER_MARIO_BROS, ['goalpole.1',],)
+            return ImageCreator.regularSmm1(this, 'Object - Goalpole', GameStyles.SUPER_MARIO_BROS, ['goalpole.1',],)
         }
 
     }()
@@ -642,7 +642,7 @@ export abstract class UnusedEntityImages
     public static readonly P_SWITCH =                                      new class UnusedEntityImages_PSwitch extends UnusedEntityImages.Regular {
 
         protected override _createImage(): UnusedImage_Regular {
-            return ImageCreator.unusedRegularSMM1Images(this, 'Object - PSwitch', [
+            return ImageCreator.smm1(this, 'Object - PSwitch', [
                 [GameStyles.SUPER_MARIO_BROS, ['wait.0', 'wait.1', 'wait.2',],],
                 [GameStyles.NEW_SUPER_MARIO_BROS_U, ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],],
             ],)
