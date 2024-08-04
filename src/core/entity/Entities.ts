@@ -10,8 +10,6 @@ import type {ImageName_UnusedSMM1Regular}                 from 'core/entity/file
 import type {ClearConditionImage}                         from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {EditorImage}                                 from 'core/entity/images/editor/EditorImage'
 import type {InGameImage}                                 from 'core/entity/images/inGame/InGameImage'
-import type {InGameImage_SMM1}                            from 'core/entity/images/inGame/InGameImage_SMM1'
-import type {InGameImage_SMM2}                            from 'core/entity/images/inGame/InGameImage_SMM2'
 import type {UniqueImage}                                 from 'core/entity/images/unique/UniqueImage'
 import type {UnusedImage_BigMushroom}                     from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                         from 'core/entity/images/unused/UnusedImage_Regular'
@@ -32,12 +30,14 @@ import {StringContainer}                   from 'util/StringContainer'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
 import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
+import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
 
 /**
  * @recursiveReference<{@link ClearConditionEntityImages}>
  * @recursiveReference<{@link EditorVoices}>
  * @recursiveReference<{@link EditorEntityImages}>
  * @recursiveReference<{@link EntityLoader}>
+ * @recursiveReference<{@link InGameEntityImages}>
  */
 export class Entities
     extends Enum<Ordinals, Names>
@@ -74,36 +74,12 @@ export class Entities
 
     }('Gentle Slope',)
 
-    public static readonly START_BLOCK =                                   new class Entities_StartBlock extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameStartBlockImages(this,)
-        }
-
-    }('Start Block',)
+    public static readonly START_BLOCK =                                   new Entities('Start Block',)
     public static readonly OCCLUDE_BLOCK =                                 new Entities('Occlude Block',)
 
-    public static readonly WATER =                                         new class Entities_Water extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameWaterImages(this,)
-        }
-
-    }('Water',)
-    public static readonly LAVA =                                          new class Entities_Lava extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameDangerousLiquidImages(this, 'Object - MagmaHalf',)
-        }
-
-    }('Lava',)
-    public static readonly POISON =                                        new class Entities_Poison extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameDangerousLiquidImages(this, 'Object - PoisonHalf',)
-        }
-
-    }('Poison',)
+    public static readonly WATER =                                         new Entities('Water',)
+    public static readonly LAVA =                                          new Entities('Lava',)
+    public static readonly POISON =                                        new Entities('Poison',)
 
     public static readonly PIPE =                                          new class Entities_Pipe extends Entities {
 
@@ -225,13 +201,7 @@ export class Entities
         }
 
     }('Hidden Block',)
-    public static readonly EMPTY_BLOCK =                                   new class Entities_EmptyBlock extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.singleInGameIn2DStyleImages(this, 'Object - BlockKara', 'wait.0',)
-        }
-
-    }('Empty Block',)
+    public static readonly EMPTY_BLOCK =                                   new Entities('Empty Block',)
 
     public static readonly EXCLAMATION_MARK_BLOCK =                        new class Entities_ExclamationMarkBlock extends Entities {
 
@@ -388,28 +358,10 @@ export class Entities
         }
 
     }('Superball Flower',)
-    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new class Entities_SuperballThrownByAPlayer extends Entities {
+    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',)
 
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.singleInGameImages(this, 'Object - Superball', GameStyles.SUPER_MARIO_BROS, 'superball',)
-        }
-
-    }('Superball thrown by a player',)
-
-    public static readonly MYSTERY_MUSHROOM =                              new class Entities_MysteryMushroom extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM1 {
-            return ImageCreator.singleInGameSMM1Images(this, 'Kinoko2', GameStyles.SUPER_MARIO_BROS,)
-        }
-
-    }('Mystery Mushroom',)
-    public static readonly WEIRD_MUSHROOM =                                new class Entities_WeirdMushroom extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM1 {
-            return ImageCreator.singleInGameSMM1Images(this, 'KinokoFunny', GameStyles.SUPER_MARIO_BROS,)
-        }
-
-    }('Weird Mushroom',)
+    public static readonly MYSTERY_MUSHROOM =                              new Entities('Mystery Mushroom',)
+    public static readonly WEIRD_MUSHROOM =                                new Entities('Weird Mushroom',)
 
     public static readonly MASTER_SWORD =                                  new class Entities_MasterSword extends Entities {
 
@@ -418,20 +370,8 @@ export class Entities
         }
 
     }('Master Sword',)
-    public static readonly BOMB_THROWN_BY_A_LINK =                         new class Entities_BombThrownByALink extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameImages(this, 'Enemy - LinkBomb', GameStyles.SUPER_MARIO_BROS, ['wait.0', 'walk.0', 'walk.1',],)
-        }
-
-    }('Bomb thrown by a Link',)
-    public static readonly ARROW_THROWN_BY_A_LINK =                        new class Entities_ArrowThrownByALink extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.singleInGameImages(this, 'Object - Arrow', GameStyles.SUPER_MARIO_BROS, 'arrow',)
-        }
-
-    }('Arrow thrown by a Link',)
+    public static readonly BOMB_THROWN_BY_A_LINK =                         new Entities('Bomb thrown by a Link',)
+    public static readonly ARROW_THROWN_BY_A_LINK =                        new Entities('Arrow thrown by a Link',)
 
     public static readonly BIG_MUSHROOM =                                  new class Entities_BigMushroom extends Entities {
 
@@ -440,20 +380,8 @@ export class Entities
         }
 
     }('Big Mushroom',)
-    public static readonly BIG_MUSHROOM_CLASSIC =                          new class Entities_BigMushroom_Classic extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM1 {
-            return ImageCreator.singleInGameInAllStyleSMM1Images(this, 'MegaKinoko',)
-        }
-
-    }('Big Mushroom (classic)',)
-    public static readonly BIG_MUSHROOM_MODERN =                           new class Entities_BigMushroom_Modern extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM1 {
-            return ImageCreator.singleInGameInAllStyleSMM1Images(this, 'MegaKinoko2',)
-        }
-
-    }('Big Mushroom (modern)',)
+    public static readonly BIG_MUSHROOM_CLASSIC =                          new Entities('Big Mushroom (classic)',)
+    public static readonly BIG_MUSHROOM_MODERN =                           new Entities('Big Mushroom (modern)',)
 
     public static readonly SMB2_MUSHROOM =                                 new class Entities_SMB2Mushroom extends Entities {
 
@@ -614,10 +542,6 @@ export class Entities
             return ImageCreator.uniqueInSmbAndSmb3ImagesInClearCondition(this,)
         }
 
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameInMultipleStyleImages(this, 'Enemy - KutsuKuriboA', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3,], ['wait.0', 'wait.1',],)
-        }
-
     }('Shoe',)
     public static readonly STILETTO_GOOMBA =                               new class Entities_StilettoGoomba extends Entities {
 
@@ -632,10 +556,6 @@ export class Entities
             return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
         }
 
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameInMultipleStyleImages(this, 'Enemy - KutsuKuriboB', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3,], ['wait.0', 'wait.1',],)
-        }
-
     }('Stiletto',)
     public static readonly YOSHI_EGG =                                     new class Entities_YoshiEgg extends Entities {
 
@@ -643,26 +563,10 @@ export class Entities
             return ImageCreator.uniqueInSmwAndNsmbuImagesInEditor(this,)
         }
 
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameImages(this, 'Enemy - KutsuKuriboA', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU yoshi egg (if present)
-        }
-
     }('Yoshi\'s Egg',)
     public static readonly YOSHI =                                         new Entities('Yoshi',)
-    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new class Entities_FireThrownByAYoshi extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameImages(this, 'Player - YoshiFire', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU "Yoshi fire thrown" if present
-        }
-
-    }('Fire thrown by a Yoshi',)
-    public static readonly POISON_THROWN_BY_A_YOSHI =                      new class Entities_PoisonThrownByAYoshi extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameImages(this, 'Player - YoshiPoison', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU "Yoshi poison thrown" if present
-        }
-
-    }('Poison thrown by a Yoshi',)
+    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new Entities('Fire thrown by a Yoshi',)
+    public static readonly POISON_THROWN_BY_A_YOSHI =                      new Entities('Poison thrown by a Yoshi',)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new Entities('Bone thrown by a Yoshi',)
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new Entities('Wrench thrown by a Yoshi',)
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',)
@@ -670,10 +574,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInSmwAndNsmbuImagesInEditor(this,)
-        }
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameImages(this, 'Enemy - KutsuKuriboB', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU yoshi egg (if present)
         }
 
     }('Red Yoshi\'s Egg',)
@@ -888,10 +788,6 @@ export class Entities
 
         protected override _createUniqueImage(): UniqueImage {
             return ImageCreator.uniqueInNotSm3dwImagesInInGame(this,)
-        }
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameBabyBlooperProjectileImages(this, )
         }
 
     }('Baby Blooper',)
@@ -1407,20 +1303,8 @@ export class Entities
         }
 
     }('Larry',)
-    public static readonly LARRY_WAND =                                    new class Entities_LarryWand extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingWandImages(this, 'Enemy - Larry',)
-        }
-
-    }('Larry\'s Wand',)
-    public static readonly LARRY_PROJECTILE =                              new class Entities_LarryProjectile extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingProjectileImages(this, 'Enemy - Larry',)
-        }
-
-    }('(Larry\'s projectile)',)
+    public static readonly LARRY_WAND =                                    new Entities('Larry\'s Wand',)
+    public static readonly LARRY_PROJECTILE =                              new Entities('(Larry\'s projectile)',)
 
     public static readonly IGGY =                                          new class Entities_Iggy extends Entities {
 
@@ -1429,20 +1313,8 @@ export class Entities
         }
 
     }('Iggy',)
-    public static readonly IGGY_WAND =                                     new class Entities_IggyWand extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingWandImages(this, 'Enemy - Iggy',)
-        }
-
-    }('Iggy\'s Wand',)
-    public static readonly IGGY_PROJECTILE =                               new class Entities_IggyProjectile extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingProjectileImages(this, 'Enemy - Iggy',)
-        }
-
-    }('(Iggy\'s projectile)',)
+    public static readonly IGGY_WAND =                                     new Entities('Iggy\'s Wand',)
+    public static readonly IGGY_PROJECTILE =                               new Entities('(Iggy\'s projectile)',)
 
     public static readonly WENDY =                                         new class Entities_Wendy extends Entities {
 
@@ -1451,20 +1323,8 @@ export class Entities
         }
 
     }('Wendy',)
-    public static readonly WENDY_WAND =                                    new class Entities_WendyWand extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingWandImages(this, 'Enemy - Wendy',)
-        }
-
-    }('Wendy\'s Wand',)
-    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new class Entities_CandyRingThrownByAWendy extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameCandyRingImages(this,)
-        }
-
-    }('Candy Ring thrown by a Wendy',)
+    public static readonly WENDY_WAND =                                    new Entities('Wendy\'s Wand',)
+    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new Entities('Candy Ring thrown by a Wendy',)
     public static readonly WENDY_PROJECTILE =                              new Entities('(Wendy\'s projectile)',)// An only unused projectile //TODO add unused Wendy projectile (SMB, SMB3, SMW)
 
     public static readonly LEMMY =                                         new class Entities_Lemmy extends Entities {
@@ -1474,20 +1334,8 @@ export class Entities
         }
 
     }('Lemmy',)
-    public static readonly LEMMY_WAND =                                    new class Entities_LemmyWand extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingWandImages(this, 'Enemy - Lemmy',)
-        }
-
-    }('Lemmy\'s Wand',)
-    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new class Entities_MagicBallThrownByALemmy extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameMagicBallImages(this,)
-        }
-
-    }('Magic Ball thrown by a Lemmy',)
+    public static readonly LEMMY_WAND =                                    new Entities('Lemmy\'s Wand',)
+    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new Entities('Magic Ball thrown by a Lemmy',)
     public static readonly LEMMY_PROJECTILE =                              new Entities('(Lemmy\'s projectile)',)// An only unused projectile //TODO add unused Lemmy projectile (SMB)
 
     public static readonly ROY =                                           new class Entities_Roy extends Entities {
@@ -1497,20 +1345,8 @@ export class Entities
         }
 
     }('Roy',)
-    public static readonly ROY_WAND =                                      new class Entities_RoyWand extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingWandImages(this, 'Enemy - Roy',)
-        }
-
-    }('Roy\'s Wand',)
-    public static readonly ROY_PROJECTILE =                                new class Entities_RoyProjectile extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingProjectileImages(this, 'Enemy - Roy',)
-        }
-
-    }('(Roy\'s projectile)',)
+    public static readonly ROY_WAND =                                      new Entities('Roy\'s Wand',)
+    public static readonly ROY_PROJECTILE =                                new Entities('(Roy\'s projectile)',)
 
     public static readonly MORTON =                                        new class Entities_Morton extends Entities {
 
@@ -1519,28 +1355,9 @@ export class Entities
         }
 
     }('Morton',)
-    public static readonly MORTON_WAND =                                   new class MortonWand extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingWandImages(this, 'Enemy - Morton',)
-        }
-
-    }('Morton\'s Wand',)
-    public static readonly MORTON_THROWN_PROJECTILE =                      new class Entities_MortonThrownProjectile extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingProjectileImages(this, 'Enemy - Morton',)
-        }
-
-    }('(Morton\'s Thrown projectile)',)
-    public static readonly MORTON_GROUND_PROJECTILE =                      new class Entities_MortonGroundProjectile extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameMortonGroundProjectileImages(this,)
-        }
-        //TODO add unused morton fire.2 in SMB3
-
-    }('(Morton\'s Ground projectile)',)
+    public static readonly MORTON_WAND =                                   new Entities('Morton\'s Wand',)
+    public static readonly MORTON_THROWN_PROJECTILE =                      new Entities('(Morton\'s Thrown projectile)',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new Entities('(Morton\'s Ground projectile)',)
 
     public static readonly LUDWIG =                                        new class Entities_Ludwig extends Entities {
 
@@ -1549,20 +1366,8 @@ export class Entities
         }
 
     }('Ludwig',)
-    public static readonly LUDWIG_WAND =                                   new class Entities_LudwigWand extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingWandImages(this, 'Enemy - Ludwig',)
-        }
-
-    }('Ludwig\'s Wand',)
-    public static readonly LUDWIG_PROJECTILE =                             new class Entities_LudwigProjectile extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameKoopalingProjectileImages(this, 'Enemy - Ludwig',)
-        }
-
-    }('(Ludwig\'s projectile)',)
+    public static readonly LUDWIG_WAND =                                   new Entities('Ludwig\'s Wand',)
+    public static readonly LUDWIG_PROJECTILE =                             new Entities('(Ludwig\'s projectile)',)
 
     //endregion -------------------- Bosses + projectiles --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
@@ -1789,13 +1594,7 @@ export class Entities
         }
 
     }('Cursed Key',)
-    public static readonly PHANTO =                                        new class Entities_Phanto extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInGameImages(this, 'Object - Phanto', GameStyles.SUPER_MARIO_BROS, ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
-        }
-
-    }('Phanto',)
+    public static readonly PHANTO =                                        new Entities('Phanto',)
 
     public static readonly TRAMPOLINE =                                    new class Entities_Trampoline extends Entities {
 
@@ -1900,13 +1699,7 @@ export class Entities
     public static readonly TOAD =                                          new Entities('Toad',)
     public static readonly CAGED_TOADETTE =                                new Entities('Caged Toadette',)//A background entity
 
-    public static readonly BUBBLE =                                        new class Entities_Bubble extends Entities {
-
-        protected override _createInGameImage(): InGameImage_SMM2 {
-            return ImageCreator.inGameBubbleImages(this,)
-        }
-
-    }('Bubble',)//An interactable entity
+    public static readonly BUBBLE =                                        new Entities('Bubble',)//An interactable entity
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
@@ -1964,6 +1757,7 @@ export class Entities
     #editorVoiceReference?: NullOr<EditorVoices>
     #editorEntityImageReference?: EditorEntityImages
     #clearConditionEntityImageReference?: ClearConditionEntityImages
+    #inGameEntityImageReference?: InGameEntityImages
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -2053,25 +1847,7 @@ export class Entities
     //endregion -------------------- clear condition image --------------------
     //region -------------------- in game image --------------------
 
-    /**
-     * Create the <b>in game</b> image
-     *
-     * @onlyCalledOnce
-     * @onlyCalledBy<{@link inGameImage}>
-     */
-    protected _createInGameImage(): NullOr<InGameImage> {
-        return null
-    }
-
-    public get inGameImage(): InGameImage {
-        if (this.#inGameImage != null)
-            return this.#inGameImage
-
-        const value = this._createInGameImage()
-        if (value == null)
-            return this.#inGameImage = EmptyInGameImage.get
-        return this.#inGameImage = value
-    }
+    public get inGameImage(): InGameImage { return this.#inGameImage ??= this.inGameEntityImageReference.image }
 
     //endregion -------------------- in game image --------------------
     //region -------------------- unused image (regular) --------------------
@@ -2157,6 +1933,8 @@ export class Entities
     public get entityEditorImageReference(): EditorEntityImages { return this.#editorEntityImageReference ??= EditorEntityImages[this.name] }
 
     public get clearConditionEntityImageReference(): ClearConditionEntityImages { return this.#clearConditionEntityImageReference ??= ClearConditionEntityImages[this.name] }
+
+    public get inGameEntityImageReference(): InGameEntityImages { return this.#inGameEntityImageReference ??= InGameEntityImages[this.name] }
 
     //endregion -------------------- Getter methods (linked reference) --------------------
 

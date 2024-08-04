@@ -1,6 +1,7 @@
 import type {ClearConditionEntityImages}                                                                                                                                                           from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}                                                                                                                                                                   from 'core/entity/EditorEntityImages'
 import type {Entities}                                                                                                                                                                             from 'core/entity/Entities'
+import type {InGameEntityImages}                                                                                                                                                                   from 'core/entity/InGameEntityImages'
 import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                                                                                           from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1}                                                                      from 'core/entity/file/EntityImageFile.inGame'
@@ -92,7 +93,7 @@ export function clearConditionImage(entity: ClearConditionEntityImages, name: Im
  * @param name The image folder name
  * @param gameStyle The image {@link GameStyles}
  */
-export function inGameSMM1Image(entity: Entities, name: SimpleImageName_SMM1, gameStyle: GameStyles,): InGameSMM1ImageFile {
+export function inGameSMM1Image(entity: InGameEntityImages, name: SimpleImageName_SMM1, gameStyle: GameStyles,): InGameSMM1ImageFile {
     return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/In game/SMM1/Item - ${name}/`, 'wait.0', 'png', `${entity.englishName} (In game - ${gameStyle.acronym} SMM1)`,)
 }
 
@@ -104,7 +105,7 @@ export function inGameSMM1Image(entity: Entities, name: SimpleImageName_SMM1, ga
  * @param gameStyle The image {@link GameStyles}
  * @param fileName The file name
  */
-export function inGameImage(entity: Entities, name: ImageName_SMM2, gameStyle: GameStyles, fileName: PossibleInGameSMM2ImageFileName,): InGameSMM2ImageFile {
+export function inGameImage(entity: InGameEntityImages, name: ImageName_SMM2, gameStyle: GameStyles, fileName: PossibleInGameSMM2ImageFileName,): InGameSMM2ImageFile {
     return new SimpleImageFile(`entity/in game/${gameStyle.acronymInFile} ${name}`, fileName, 'tiff', `${entity.englishName} (In game - ${gameStyle.acronym} SMM2)`,)
 }
 
