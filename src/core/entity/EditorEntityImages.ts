@@ -1,10 +1,10 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
+import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EditorImage}                          from 'core/entity/images/editor/EditorImage'
 import type {PowerUpEditorImage}                   from 'core/entity/images/editor/PowerUpEditorImage'
-import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithImage}                       from 'util/ClassWithImage'
 
 import {Entities}         from 'core/entity/Entities'

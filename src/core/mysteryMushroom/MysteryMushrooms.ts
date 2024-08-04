@@ -23,7 +23,7 @@ export class MysteryMushrooms
     implements ClassWithReference<MysteryMushroom>,
         ClassWithEnglishName<PossibleEnglishName> {
 
-    //region -------------------- Inner class --------------------
+    //region -------------------- Sub class --------------------
 
     private static readonly MysteryMushroomsWithDualJumpAndNoGroundSounds =         class MysteryMushroomsWithDualJumpAndNoGroundSounds extends MysteryMushrooms {
 
@@ -180,7 +180,7 @@ export class MysteryMushrooms
         }
 
     }
-    private static readonly MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds = class MysteryMushroomsWithNoJumpGrondTurnGoalAndLostSounds extends MysteryMushrooms {
+    private static readonly MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds = class MysteryMushroomsWithNoJumpGroundTurnGoalAndLostSounds extends MysteryMushrooms {
 
         public override get jumpSounds() {
             return EMPTY_ARRAY
@@ -216,7 +216,7 @@ export class MysteryMushrooms
 
     }
 
-    //endregion -------------------- Inner class --------------------
+    //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
 
     public static readonly MYSTERY_MUSHROOM =       new class MysteryMushrooms_MysteryMushroom extends MysteryMushrooms {

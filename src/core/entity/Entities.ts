@@ -1759,7 +1759,7 @@ export class Entities
     }
 
     //endregion -------------------- unique image --------------------
-    //region -------------------- editor image --------------------
+    //region -------------------- image --------------------
 
     public get editorImage(): EditorImage { return this.#editorImage ??= this.entityEditorImageReference.image }
 
@@ -1767,14 +1767,11 @@ export class Entities
 
     public get inGameImage(): InGameImage { return this.#inGameImage ??= this.inGameEntityImageReference.image }
 
-    //endregion -------------------- in game image --------------------
-    //region -------------------- unused image --------------------
-
     public get unusedRegularImage(): UnusedImage_Regular { return this.#unusedRegularImage ??= this.unusedEntityImageReference.regularImage }
 
     public get unusedBigMushroomImage(): UnusedImage_BigMushroom { return this.#unusedBigMushroomImage ??= this.unusedEntityImageReference.bigMushroomImage }
 
-    //endregion -------------------- unused image --------------------
+    //endregion -------------------- image --------------------
 
     //endregion -------------------- Getter methods (image) --------------------
     //region -------------------- Getter methods (sound) --------------------
