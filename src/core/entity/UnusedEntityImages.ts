@@ -3,15 +3,16 @@ import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
-import type {ImageName_UnusedSMM1Regular}          from 'core/entity/file/EntityImageFile.unused'
 import type {UnusedImage_BigMushroom}              from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                  from 'core/entity/images/unused/UnusedImage_Regular'
 
-import {Entities}                     from 'core/entity/Entities'
-import * as ImageCreator              from 'core/entity/images/unusedImageCreator'
-import {EmptyUnusedImage_BigMushroom} from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
-import {EmptyUnusedImage_Regular}     from 'core/entity/images/unused/EmptyUnusedImage_Regular'
-import {GameStyles}                   from 'core/gameStyle/GameStyles'
+import {Entities}                                             from 'core/entity/Entities'
+import {unusedBigMushroomImage, unusedImage}                  from 'core/entity/file/fileCreator'
+import {EmptyUnusedImage_BigMushroom}                         from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
+import {EmptyUnusedImage_Regular}                             from 'core/entity/images/unused/EmptyUnusedImage_Regular'
+import {UnusedImage_BigMushroomContainer as BigMushroomImage} from 'core/entity/images/unused/UnusedImage_BigMushroom.container'
+import {UnusedImage_RegularContainer as RegularImage}         from 'core/entity/images/unused/UnusedImage_Regular.container'
+import {GameStyles}                                           from 'core/gameStyle/GameStyles'
 
 /**
  * An {@link Entities} class made to hold both a {@link UnusedImage_Regular} and a {@link UnusedImage_BigMushroom}
@@ -310,12 +311,14 @@ export abstract class UnusedEntityImages
 
     public static readonly GOOMBA =                                        new class UnusedEntityImages_Goomba extends UnusedEntityImages.BigMushroom {
 
-        protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.bigMushroom(this, 'Kuribo D', [
-                ['damage.0',],
-                ['swim.0', 'swim.1',],
-                ['walk.0', 'walk.1',],
-                ['kutsu',],
+        protected override _createImage() {
+            return new BigMushroomImage([
+                unusedBigMushroomImage(this, 'Kuribo D', 'damage.0',),
+                unusedBigMushroomImage(this, 'Kuribo D', 'swim.0',),
+                unusedBigMushroomImage(this, 'Kuribo D', 'swim.1',),
+                unusedBigMushroomImage(this, 'Kuribo D', 'walk.0',),
+                unusedBigMushroomImage(this, 'Kuribo D', 'walk.1',),
+                unusedBigMushroomImage(this, 'Kuribo D', 'kutsu',),
             ],)
         }
 
@@ -394,12 +397,23 @@ export abstract class UnusedEntityImages
     public static readonly BOO =                                           new UnusedEntityImages.Null()
     public static readonly STRETCH =                                       new class UnusedEntityImages_Stretch extends UnusedEntityImages.Both {
 
-        protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.multipleSmm1(this, 'Enemy - Necchi', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD,], ['wait.0', 'out.4',],)
+        protected override _createUnusedRegularImage() {
+            return new RegularImage([
+                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Necchi', 'wait.0',),],
+                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Necchi', 'out.4',),],
+                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Necchi', 'wait.0',),],
+                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Necchi', 'out.4',),],
+                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Necchi', 'wait.0',),],
+                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Necchi', 'out.4',),],
+            ],)
         }
 
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.bigMushroom(this, 'Necchi', [['wait.0', 'wait.2',], ['out.4',],],)
+        protected override _createUnusedBigMushroomImage() {
+            return new BigMushroomImage([
+                unusedBigMushroomImage(this, 'Necchi', 'wait.0',),
+                unusedBigMushroomImage(this, 'Necchi', 'wait.2',),
+                unusedBigMushroomImage(this, 'Necchi', 'out.4',),
+            ],)
         }
 
     }()
@@ -456,8 +470,8 @@ export abstract class UnusedEntityImages
     public static readonly CANNON =                                        new UnusedEntityImages.Null()
     public static readonly CANNONBALL =                                    new class UnusedEntityImages_Cannonball extends UnusedEntityImages.BigMushroom {
 
-        protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleBigMushroom(this, 'SenkanHoudai D', 'senkan_houdai_ball',)
+        protected override _createImage() {
+            return new BigMushroomImage([unusedBigMushroomImage(this, 'SenkanHoudai D', 'senkan_houdai_ball',),],)
         }
 
     }()
@@ -472,18 +486,35 @@ export abstract class UnusedEntityImages
 
     public static readonly KOOPA_CLOWN_CAR =                               new class UnusedEntityImages_KoopaClownCar extends UnusedEntityImages.Both {
 
-        protected override _createUnusedRegularImage(): UnusedImage_Regular {
-            return ImageCreator.regularSmm1(this, 'Enemy - KoopaClown', GameStyles.SUPER_MARIO_WORLD, ['weep.4', 'weep.5', 'weep.6', 'weep.7',],)
+        protected override _createUnusedRegularImage() {
+            return new RegularImage([
+                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.4',),],
+                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.5',),],
+                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.6',),],
+                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.7',),],
+            ],)
         }
 
-        protected override _createUnusedBigMushroomImage(): UnusedImage_BigMushroom {
-            return ImageCreator.bigMushroom(this, 'KoopaClown', [
-                ['wait.4', 'wait.5', 'wait.6', 'wait.7',],
-                ['anger.4', 'anger.5', 'anger.6', 'anger.7',],
-                ['blink.4', 'blink.5', 'blink.6', 'blink.7',],
-                ['weep.4', 'weep.5', 'weep.6', 'weep.7',],
-                ['iron_ball.1',],
-                ['tear.1',],
+        protected override _createUnusedBigMushroomImage() {
+            return new BigMushroomImage([
+                unusedBigMushroomImage(this, 'KoopaClown', 'wait.4',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'wait.5',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'wait.6',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'wait.7',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'anger.4',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'anger.5',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'anger.6',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'anger.7',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'blink.4',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'blink.5',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'blink.6',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'blink.7',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'weep.4',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'weep.5',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'weep.6',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'weep.7',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'iron_ball.1',),
+                unusedBigMushroomImage(this, 'KoopaClown', 'tear.1',),
             ],)
         }
 
@@ -506,8 +537,8 @@ export abstract class UnusedEntityImages
 
     public static readonly BOWSER =                                        new class UnusedEntityImages_Bowser extends UnusedEntityImages.BigMushroom {
 
-        protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleBigMushroom(this, 'Koopa', 'fire.1',)
+        protected override _createImage() {
+            return new BigMushroomImage([unusedBigMushroomImage(this, 'Koopa', 'fire.1',),],)
         }
 
     }()
@@ -517,8 +548,8 @@ export abstract class UnusedEntityImages
 
     public static readonly BOWSER_JR =                                     new class UnusedEntityImages_BowserJr extends UnusedEntityImages.BigMushroom {
 
-        protected override _createImage(): UnusedImage_BigMushroom {
-            return ImageCreator.singleBigMushroom(this, 'KoopaJr', 'fire.1',)
+        protected override _createImage() {
+            return new BigMushroomImage([unusedBigMushroomImage(this, 'KoopaJr', 'fire.1',),],)
         }
 
     }()
@@ -576,13 +607,11 @@ export abstract class UnusedEntityImages
 
     public static readonly VINE =                                          new class UnusedEntityImages_Vine extends UnusedEntityImages.Regular {
 
-        protected override _createImage(): UnusedImage_Regular {
-            const wait2 = ['wait.2',] as const satisfies readonly ImageName_UnusedSMM1Regular[]
-
-            return ImageCreator.smm1(this, 'Object Block - Tuta', [
-                [GameStyles.SUPER_MARIO_BROS, ['wait.1',],],
-                [GameStyles.SUPER_MARIO_BROS_3, wait2,],
-                [GameStyles.SUPER_MARIO_WORLD, wait2,],
+        protected override _createImage() {
+            return new RegularImage([
+                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Object Block - Tuta', 'wait.1',),],
+                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Object Block - Tuta', 'wait.2',),],
+                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Object Block - Tuta', 'wait.2',),],
             ],)
         }
 
@@ -595,8 +624,8 @@ export abstract class UnusedEntityImages
     public static readonly CHECKPOINT_FLAG =                               new UnusedEntityImages.Null()
     public static readonly GOAL_POLE =                                     new class UnusedEntityImages_GoalPole extends UnusedEntityImages.Regular {
 
-        protected override _createImage(): UnusedImage_Regular {
-            return ImageCreator.regularSmm1(this, 'Object - Goalpole', GameStyles.SUPER_MARIO_BROS, ['goalpole.1',],)
+        protected override _createImage() {
+            return new RegularImage([[GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Object - Goalpole', 'goalpole.1',),],],)
         }
 
     }()
@@ -641,10 +670,13 @@ export abstract class UnusedEntityImages
 
     public static readonly P_SWITCH =                                      new class UnusedEntityImages_PSwitch extends UnusedEntityImages.Regular {
 
-        protected override _createImage(): UnusedImage_Regular {
-            return ImageCreator.smm1(this, 'Object - PSwitch', [
-                [GameStyles.SUPER_MARIO_BROS, ['wait.0', 'wait.1', 'wait.2',],],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],],
+        protected override _createImage() {
+            return new RegularImage([
+                [GameStyles.SUPER_MARIO_BROS,       unusedImage(this, 'M1 - Object - PSwitch', 'wait.0',),],
+                [GameStyles.SUPER_MARIO_BROS,       unusedImage(this, 'M1 - Object - PSwitch', 'wait.1',),],
+                [GameStyles.SUPER_MARIO_BROS,       unusedImage(this, 'M1 - Object - PSwitch', 'wait.2',),],
+                [GameStyles.NEW_SUPER_MARIO_BROS_U, unusedImage(this, 'WU - Object - PSwitch', 'down_switch_hatena_Alb.000',),],
+                [GameStyles.NEW_SUPER_MARIO_BROS_U, unusedImage(this, 'WU - Object - PSwitch', 'down_switch_hatena_Alb.004',),],
             ],)
         }
 

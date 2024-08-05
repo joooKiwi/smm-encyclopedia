@@ -6,11 +6,11 @@ export class UnusedImage_BigMushroomContainer
 
     readonly #all
 
-    public constructor(images: readonly (readonly UnusedSMM1BigMushroomImageFile[])[],) {
+    public constructor(images: readonly UnusedSMM1BigMushroomImageFile[],) {
         this.#all = images
     }
 
-    public get all(): readonly (readonly UnusedSMM1BigMushroomImageFile[])[] {
+    public get all(): readonly UnusedSMM1BigMushroomImageFile[] {
         return this.#all
     }
 

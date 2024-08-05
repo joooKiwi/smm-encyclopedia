@@ -13,6 +13,6 @@ import type {UnusedImage}                    from 'core/entity/images/unused/Unu
 export interface UnusedImage_BigMushroom
     extends UnusedImage {
 
-    get all(): readonly (readonly UnusedSMM1BigMushroomImageFile[])[]
+    get all(): readonly UnusedSMM1BigMushroomImageFile[]
 
 }

@@ -5,11 +5,10 @@ import type {UnusedEntityImages}                                                
 import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                                                                                           from 'core/entity/file/EntityImageFile.editor'
 import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1}                                                                      from 'core/entity/file/EntityImageFile.inGame'
-import type {ImageName_Unused_SMM1, ImageName_UnusedBigMushroom, ImageName_UnusedSMM1Regular, SimpleImageName_BigMushroom_Unused_SMM1, UnusedSMM1BigMushroomImageFile, UnusedSMM1RegularImageFile} from 'core/entity/file/EntityImageFile.unused'
 import type {GameStyles}                                                                                                                                                                           from 'core/gameStyle/GameStyles'
-import type {PossibleAcronym_InFile_SMM1}                                                                                                                                                          from 'core/gameStyle/GameStyles.types'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
+import {ImageFile}       from 'util/file/image/ImageFile'
 
 //region -------------------- Editor image --------------------
 
@@ -113,26 +112,25 @@ export function inGameImage(entity: InGameEntityImages, name: ImageName_SMM2, ga
 //region -------------------- Unused image --------------------
 
 /**
- * Create a simple {@link UnusedSMM1RegularImageFile} from the {@link name} provided
+ * Create a {@link UnusedSMM1RegularImageFile} from the {@link name} provided
  *
  * @param entity The entity to retrieve its name
- * @param name The image folder name
- * @param gameStyle The image {@link GameStyles}
+ * @param folderName The folder name
  * @param fileName The file name
  */
-export function unusedSmm1RegularImage(entity: UnusedEntityImages, name: ImageName_Unused_SMM1, gameStyle: GameStyles, fileName: ImageName_UnusedSMM1Regular,): UnusedSMM1RegularImageFile {
-    return new SimpleImageFile(`entity/unused/${gameStyle.acronymInFile as PossibleAcronym_InFile_SMM1} - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused)`,)
+export function unusedImage<const FOLDER_NAME extends string, const FILE_NAME extends string, >(entity: UnusedEntityImages, folderName: FOLDER_NAME, fileName: FILE_NAME,): ImageFile<`entity/unused/${FOLDER_NAME}`, FILE_NAME, 'tiff'> {
+    return new SimpleImageFile(`entity/unused/${folderName}`, fileName, 'tiff', `${entity.englishName} (unused)`,)
 }
 
 /**
- * Create a simple {@link UnusedSMM1BigMushroomImageFile} from the {@link name} provided
+ * Create a {@link UnusedSMM1BigMushroomImageFile} from the {@link name} provided
  *
  * @param entity The entity to retrieve its name
- * @param name The image folder name
+ * @param folderName The folder name
  * @param fileName The file name
  */
-export function unusedBigMushroomImage(entity: UnusedEntityImages, name: SimpleImageName_BigMushroom_Unused_SMM1, fileName: ImageName_UnusedBigMushroom,): UnusedSMM1BigMushroomImageFile {
-    return new SimpleImageFile(`entity/unused/M1 A - Enemy - ${name}`, fileName, 'tiff', `${entity.englishName} (Unused Big Mushroom)`,)
+export function unusedBigMushroomImage<const FOLDER_NAME extends string, const FILE_NAME extends string, >(entity: UnusedEntityImages, folderName: FOLDER_NAME, fileName: FILE_NAME,): ImageFile<`entity/unused/M1 A - Enemy - ${FOLDER_NAME}`, FILE_NAME, 'tiff'> {
+    return new SimpleImageFile(`entity/unused/M1 A - Enemy - ${folderName}`, fileName, 'tiff', `${entity.englishName} (unused Big Mushroom)`,)
 }
 
 //endregion -------------------- Unused image --------------------
