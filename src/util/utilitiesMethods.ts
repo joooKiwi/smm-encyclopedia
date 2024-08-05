@@ -98,6 +98,34 @@ export function isNullableEmptyString(value: unknown,): value is Nullable<EmptyS
 }
 
 //endregion -------------------- is --------------------
+//region -------------------- map --------------------
+
+export function map<const K1, const K2, const V1, const V2, >(values: ReadonlyMap<K1, V1>, transform: (key: K1, value: V1,) => readonly[K2, V2,],): ReadonlyMap<K2, V2> {
+    const map = new Map<K2, V2>()
+    values.forEach((value, key,) => {
+        const transformedValues = transform(key, value,)
+        map.set(transformedValues[0], transformedValues[1],)
+    },)
+    return map
+}
+
+export function mapValue<const K, const V1, const V2, >(values: ReadonlyMap<K, V1>, transform: (value: V1,) => V2,): ReadonlyMap<K, V2> {
+    const map = new Map<K, V2>()
+    values.forEach((value, key,) => {
+        map.set(key, transform(value,),)
+    },)
+    return map
+}
+
+export function mapKey<const K1, const K2, const V, >(values: ReadonlyMap<K1, V>, transform: (key: K1,) => K2,): ReadonlyMap<K2, V> {
+    const map = new Map<K2, V>()
+    values.forEach((value, key,) => {
+        map.set(transform(key,), value,)
+    },)
+    return map
+}
+
+//endregion -------------------- map --------------------
 //region -------------------- join --------------------
 
 export function join<const T, >(first: CollectionHolder<T>, second: readonly T[],): T[]

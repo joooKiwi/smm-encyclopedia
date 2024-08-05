@@ -11,6 +11,7 @@ import type {UniqueImage}             from 'core/entity/images/unique/UniqueImag
 import {EmptyUniqueImage}     from 'core/entity/images/unique/EmptyUniqueImage'
 import {UniqueImageContainer} from 'core/entity/images/unique/UniqueImage.container'
 import {GameStyles}           from 'core/gameStyle/GameStyles'
+import {mapValue}             from 'util/utilitiesMethods'
 
 //region -------------------- Unique images --------------------
 
@@ -68,7 +69,7 @@ export function uniqueImageFromClearCondition(entity: Entities, editorImage: Edi
     const images = clearConditionImage.map
 
     if (images.size !== 0)
-        return new UniqueImageContainer(editorImage, clearConditionImage, inGameImage, new Map([...images,].map(it => [it[0], [it[1],],] as const,),),)
+        return new UniqueImageContainer(editorImage, clearConditionImage, inGameImage, mapValue(images, it => [it,] as const,),)
 
     console.warn(`The images on the "Entities.${entity.name}" return an empty unique image from the clear condition,`,)
     return EmptyUniqueImage.get
