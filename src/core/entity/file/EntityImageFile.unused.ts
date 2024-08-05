@@ -8,10 +8,13 @@ export type UnusedSMM1ImageFile = | UnusedSMM1RegularImageFile | UnusedSMM1BigMu
 export type UnusedSMM1RegularImageFile = ImageFile<`entity/unused/${PossibleAcronym_InFile_SMM1_GameStyle} - ${ImageName_Unused_SMM1}`, ImageName_UnusedSMM1Regular, 'tiff'>
 
 
-type ImageName_Unused_SMM1 = | 'Enemy - Necchi' | 'Enemy - KoopaClown' | 'Object Block - Tuta'
+type ImageName_Unused_SMM1 = | 'Enemy - Necchi' | 'Enemy - Lemmy' | 'Enemy - Wendy' | 'Enemy - Morton' | 'Enemy - KoopaClown'
+                             | 'Object Block - Tuta'
                              | 'Object - Goalpole' | 'Object - PSwitch'
 
 type ImageName_UnusedSMM1Regular = | `down_switch_hatena_Alb.00${| 0 | 4}`
+                                   | `effect.${| 0 | 1 | 2}`
+                                   | 'fire.2'
                                    | `out.${| 0 | 1 | 2 | 3 | 4}`
                                    | 'goalpole.1'
                                    | `wait.${0 | 1 | 2}`

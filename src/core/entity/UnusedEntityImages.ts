@@ -571,12 +571,38 @@ export abstract class UnusedEntityImages
     public static readonly WENDY =                                         new UnusedEntityImages.Null()
     public static readonly WENDY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new UnusedEntityImages.Null()
-    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.Null()//TODO add unused Wendy projectile (SMB, SMB3, SMW)
+    public static readonly WENDY_PROJECTILE =                              new class UnusedEntityImages_WendyProjectile extends UnusedEntityImages.Regular {
+
+        protected override _createImage() {
+            return new RegularImage([
+                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Wendy', 'effect.0',),],
+                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Wendy', 'effect.1',),],
+                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Wendy', 'effect.2',),],
+                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Wendy', 'effect.0',),],
+                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Wendy', 'effect.1',),],
+                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Wendy', 'effect.2',),],
+                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Wendy', 'effect.0',),],
+                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Wendy', 'effect.1',),],
+                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Wendy', 'effect.2',),],
+            ],)
+        }
+
+    }()
 
     public static readonly LEMMY =                                         new UnusedEntityImages.Null()
     public static readonly LEMMY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new UnusedEntityImages.Null()
-    public static readonly LEMMY_PROJECTILE =                              new UnusedEntityImages.Null()//TODO add unused Lemmy projectile (SMB)
+    public static readonly LEMMY_PROJECTILE =                              new class UnusedEntityImages_LemmyProjectile extends UnusedEntityImages.Regular {
+
+        protected override _createImage() {
+            return new RegularImage([
+                [GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Enemy - Lemmy', 'effect.0',),],
+                [GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Enemy - Lemmy', 'effect.1',),],
+                [GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Enemy - Lemmy', 'effect.2',),],
+            ],)
+        }
+
+    }()
 
     public static readonly ROY =                                           new UnusedEntityImages.Null()
     public static readonly ROY_WAND =                                      new UnusedEntityImages.Null()
@@ -585,7 +611,13 @@ export abstract class UnusedEntityImages
     public static readonly MORTON =                                        new UnusedEntityImages.Null()
     public static readonly MORTON_WAND =                                   new UnusedEntityImages.Null()
     public static readonly MORTON_THROWN_PROJECTILE =                      new UnusedEntityImages.Null()
-    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.Null()
+    public static readonly MORTON_GROUND_PROJECTILE =                      new class UnusedEntityImages_GroundProjectile extends UnusedEntityImages.Regular {
+
+        protected override _createImage() {
+            return new RegularImage([[GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Morton', 'fire.2',),],],)
+        }
+
+    }()
 
     public static readonly LUDWIG =                                        new UnusedEntityImages.Null()
     public static readonly LUDWIG_WAND =                                   new UnusedEntityImages.Null()
