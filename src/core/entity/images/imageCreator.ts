@@ -68,7 +68,7 @@ export function uniqueImageFromClearCondition(entity: Entities, editorImage: Edi
     const images = clearConditionImage.map
 
     if (images.size !== 0)
-        return new UniqueImageContainer(editorImage, clearConditionImage, inGameImage, images,)
+        return new UniqueImageContainer(editorImage, clearConditionImage, inGameImage, new Map([...images,].map(it => [it[0], [it[1],],] as const,),),)
 
     console.warn(`The images on the "Entities.${entity.name}" return an empty unique image from the clear condition,`,)
     return EmptyUniqueImage.get
@@ -252,8 +252,8 @@ export function uniqueInSmbAndSmb3ImagesInClearCondition(entity: Entities,): Uni
     const image = entity.clearConditionImage
 
     return new UniqueImageContainer(entity.editorImage, image, entity.inGameImage, new Map([
-        [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
-        [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
+        [GameStyles.SUPER_MARIO_BROS, [image.get(GameStyles.SUPER_MARIO_BROS,),],],
+        [GameStyles.SUPER_MARIO_BROS_3, [image.get(GameStyles.SUPER_MARIO_BROS_3,),],],
     ],),)
 }
 

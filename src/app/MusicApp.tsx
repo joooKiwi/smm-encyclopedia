@@ -898,7 +898,7 @@ function getYoshiImage(gameStyle: GameStyles,) {
     if (gameStyle === GameStyles.SUPER_MARIO_WORLD)
         return Entities.YOSHI_EGG.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,)[0]
     if (gameStyle === GameStyles.NEW_SUPER_MARIO_BROS_U)
-        return Entities.YOSHI_EGG.clearConditionImage.get(gameStyle,)[0]
+        return Entities.YOSHI_EGG.clearConditionImage.get(gameStyle,)
     throw new TypeError(`The game style ${gameStyle.acronym} was not expected for a Yoshi.`,)
 }
 

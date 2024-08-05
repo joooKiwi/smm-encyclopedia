@@ -1,4 +1,3 @@
-import type {PossibleEnglishName}                                        from 'core/entity/Entities.types'
 import type {PossibleAcronym_InFile as PossibleAcronym_InFile_GameStyle} from 'core/gameStyle/GameStyles.types'
 import type {ImageFile}                                                  from 'util/file/image/ImageFile'
 
@@ -8,436 +7,203 @@ export type ClearConditionImageFile = ImageFile<`entity/clear condition/`, `${Po
 /** A simple map type made to associate each {@link ClearConditionImageFile} name to a specific {@link Entities} */
 interface ImageNameMap {
 
-    //region -------------------- Ground / Pipe / Spike / Platform --------------------
-
-    'Ground': NoImages
-    'Start Ground': NoImages
-    'Goal Ground': NoImages
-
-    'Steep Slope': NoImages
-    'Gentle Slope': NoImages
-
-    'Start Block': NoImages
-    'Occlude Block': NoImages
-
-    'Water': NoImages
-    'Lava': NoImages
-    'Poison': NoImages
-
-    'Pipe': NoImages
-    'Clear Pipe': NoImages
-
-    'Spike Trap': NoImages
-    'Jelectro': NoImages
-    'Sea Urchin': NoImages
-    'Spike Block': NoImages
-
-    'Semisolid Platform': NoImages
-    'Mushroom Platform': NoImages
-    'Bridge': NoImages
-
-    //endregion -------------------- Ground / Pipe / Spike / Platform --------------------
     //region -------------------- Block / Coin --------------------
 
-    'Brick Block': NoImages
-    'Cristal Block': NoImages
-    'Rotating Block': NoImages
-
-    'Hard Block': NoImages
-    'Rock Block': NoImages
-
-    '? Block': NoImages
-    'Hidden Block': NoImages
-    'Empty Block': NoImages
-
-    '! Block': NoImages
-
-    'Note Block': NoImages
-    'Music Block': NoImages
-
-    'Donut Block': NoImages
-
-    'Cloud Block': NoImages
-
-    'ON/OFF Switch': NoImages
-    'Dotted-Line Block': NoImages
-
-    'P Block': NoImages
-
-    'Blinking Block': NoImages
-
-    'Ice Block': NoImages
-    'Icicle': NoImages
-
-    'Coin': ['Coin', Name<'Coin'>,]
-    'Frozen Coin': NoImages
-    '10-Coin': ['10Coin', Name<'10Coin'>,]
-    '30-Coin': ['10Coin', Name<'10Coin', 1>,]
-    '50-Coin': ['10Coin', Name<'10Coin', 2>,]
-    'Pink Coin': NoImages
+    'Coin': Name<'Coin'>
+    '10-Coin': Name<'10Coin'>
+    '30-Coin': Name<'10Coin', 1>
+    '50-Coin': Name<'10Coin', 2>
 
     //endregion -------------------- Block / Coin --------------------
-    //region -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
+    //region -------------------- Power-up / Yoshi / Shoe + projectile --------------------
 
-    'Super Mushroom': ['SuperKinoko', Name<'SuperKinoko'>,]
+    'Super Mushroom': Name<'SuperKinoko'>
 
-    'Fire Flower': ['FireFlower', Name<'FireFlower'>,]
-    'Fireball thrown by a player': NoImages
+    'Fire Flower': Name<'FireFlower'>
 
-    'Superball Flower': ['FireFlower', Name<'FireFlower', 1>,]
-    'Superball thrown by a player': NoImages
+    'Superball Flower': Name<'FireFlower', 1>
 
-    'Mystery Mushroom': NoImages
-    'Weird Mushroom': NoImages
+    'Master Sword': Name<'SuperKinoko', 1>
 
-    'Master Sword': ['SuperKinoko', Name<'SuperKinoko', 1>,]
-    'Bomb thrown by a Link': NoImages
-    'Arrow thrown by a Link': NoImages
+    'Big Mushroom': Name<'DekaKinoko'>
 
-    'Big Mushroom': ['DekaKinoko', Name<'DekaKinoko'>,]
-    'Big Mushroom (classic)': NoImages
-    'Big Mushroom (modern)': NoImages
+    'SMB2 Mushroom': Name<'KinokoUSA'>
 
-    'SMB2 Mushroom': ['KinokoUSA', Name<'KinokoUSA'>,]
+    'Super Leaf': Name<'SuperKonoha'>
 
-    'Super Leaf': ['SuperKonoha', Name<'SuperKonoha'>,]
+    'Frog Suit': Name<'FrogSuit'>
 
-    'Frog Suit': ['FrogSuit', Name<'FrogSuit'>,]
+    'Cape Feather': Name<'MantleWing'>
 
-    'Cape Feather': ['MantleWing', Name<'MantleWing'>,]
+    'Power Balloon': Name<'PowerBalloon'>
 
-    'Power Balloon': ['PowerBalloon', Name<'PowerBalloon'>,]
+    'Propeller Mushroom': Name<'PropellerKinoko'>
 
-    'Propeller Mushroom': ['PropellerKinoko', Name<'PropellerKinoko'>,]
+    'Super Acorn': Name<'SuperDonguri'>
 
-    'Super Acorn': ['SuperDonguri', Name<'SuperDonguri'>,]
+    'Super Bell': Name<'SuperBell'>
 
-    'Super Bell': ['SuperBell', Name<'SuperBell'>,]
+    'Super Hammer': Name<'SuperHammer'>
 
-    'Super Hammer': ['SuperHammer', Name<'SuperHammer'>,]
-    'Builder Box thrown by a player': NoImages
+    'Boomerang Flower': Name<'BoomerangFlower'>
 
-    'Boomerang Flower': ['BoomerangFlower', Name<'BoomerangFlower'>,]
-    'Boomerang thrown by a player': NoImages
+    'Cannon Box': Name<'BoxKiller'>
 
-    'Cannon Box': ['BoxKiller', Name<'BoxKiller'>,]
-    'Cannonball thrown by a player': NoImages
+    'Propeller Box': Name<'BoxPropeller'>
 
-    'Propeller Box': ['BoxPropeller', Name<'BoxPropeller'>,]
+    'Goomba Mask': Name<'BoxKuribo'>
 
-    'Goomba Mask': ['BoxKuribo', Name<'BoxKuribo'>,]
+    'Bullet Bill Mask': Name<'BoxKillerPlayer'>
 
-    'Bullet Bill Mask': ['BoxKillerPlayer', Name<'BoxKillerPlayer'>,]
+    'Red POW Box': Name<'BoxPow'>
 
-    'Red POW Box': ['BoxPow', Name<'BoxPow'>,]
+    'Super Star': Name<'SuperStar'>
 
-    'Super Star': ['SuperStar', Name<'SuperStar'>,]
+    '1-Up Mushroom': Name<'1upKinoko'>
 
-    '1-Up Mushroom': ['1upKinoko', Name<'1upKinoko'>,]
-    'Rotten Mushroom': NoImages
+    'Shoe': Name<'KutsuKuribo'>
+    'Yoshi\'s Egg': Name<'YosshiEgg'>
 
-    'Shoe Goomba': NoImages
-    'Shoe': ['KutsuKuribo', Name<'KutsuKuribo'>,]
-    'Stiletto Goomba': NoImages
-    'Stiletto': NoImages
-    'Yoshi\'s Egg': ['YosshiEgg', Name<'YosshiEgg'>,]
-    'Yoshi': NoImages
-    'Fire thrown by a Yoshi': NoImages
-    'Poison thrown by a Yoshi': NoImages
-    'Bone thrown by a Yoshi': NoImages
-    'Wrench thrown by a Yoshi': NoImages
-    'Hammer thrown by a Yoshi': NoImages
-    'Red Yoshi\'s Egg': NoImages
-    'Red Yoshi': NoImages
-    'Fire thrown by a Red Yoshi': NoImages
+    //endregion -------------------- Power-up / Yoshi / Shoe + projectile --------------------
+    //region -------------------- General enemy --------------------
 
-    //endregion -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
-    //region -------------------- General enemies --------------------
-
-    'Goomba': ['Kuribo', Name<'Kuribo'>,]
+    'Goomba': Name<'Kuribo'>
     'Galoomba': this['Goomba']
-    'Goombrat': ['Kuribo', Name<'Kuribo', 1>,]
+    'Goombrat': Name<'Kuribo', 1>
     'Goombud': this['Goombrat']
 
-    'Green Koopa Troopa': ['Nokonoko', Name<'Nokonoko'>,]
-    'Red Koopa Troopa': NoImages
-    'Green Beach Koopa': NoImages
-    'Red Beach Koopa': NoImages
-    'Green Koopa Shell': ['NokonokoShell', Name<'NokonokoShell'>,]
-    'Red Koopa Shell': NoImages
+    'Green Koopa Troopa': Name<'Nokonoko'>
+    'Green Koopa Shell': Name<'NokonokoShell'>
 
-    'Dry Bones': ['Karon', Name<'Karon'>,]
-    'Parabones': NoImages
-    'Bone thrown by a Dry Bones': NoImages
-    'Dry Bones Shell': ['Karon', Name<'Karon', 1>,]
+    'Dry Bones': Name<'Karon'>
+    'Dry Bones Shell': Name<'Karon', 1>
 
-    'Buzzy Beetle': ['Met', Name<'Met'>,]
-    'Para-Beetle': NoImages
-    'Buzzy Shell': ['Met', Name<'Met', 1>,]
+    'Buzzy Beetle': Name<'Met'>
+    'Buzzy Shell': Name<'Met', 1>
 
-    'Spiny': ['Togezo', Name<'Togezo'>,]
-    'Winged Spiny': NoImages
-    '(Winged Spiny\'s projectile)': NoImages
-    'Spiny Egg': NoImages
-    'Spiny Shell': ['Togezo', Name<'Togezo', 1>,]
+    'Spiny': Name<'Togezo'>
+    'Spiny Shell': Name<'Togezo', 1>
 
-    'Spike Top': ['TogeMet', Name<'TogeMet'>,]
-    'Winged Spike Top': NoImages
-    'Fast Spike Top': NoImages
-    'Fast Winged Spike Top': NoImages
+    'Spike Top': Name<'TogeMet'>
 
-    'Skipsqueak': ['Pyonchu', Name<'Pyonchu'>,]
-    'Spiny Skipsqueak': NoImages
+    'Skipsqueak': Name<'Pyonchu'>
 
-    'Ant Trooper': ['Arihei', Name<'Arihei'>,]
-    'Horned Ant Trooper': NoImages
+    'Ant Trooper': Name<'Arihei'>
 
-    'Stingby': ['Hacchin', Name<'Hacchin'>,]
+    'Stingby': Name<'Hacchin'>
 
-    'Cheep Cheep': ['Pukupuku', Name<'Pukupuku'>,]
-    'Blurps': ['Pukupuku', Name<'Pukupuku', 1>,]
+    'Cheep Cheep': Name<'Pukupuku'>
+    'Blurps': Name<'Pukupuku', 1>
     'Deep Cheep': this['Blurps']
-    'Fish Bone': ['FishBone', Name<'FishBone'>,]
+    'Fish Bone': Name<'FishBone'>
 
-    'Blooper': ['Gesso', Name<'Gesso'>,]
-    'Blooper Nanny': NoImages
-    'Baby Blooper': NoImages
+    'Blooper': Name<'Gesso'>
 
-    'Porcupuffer': ['Fugumannen', Name<'Fugumannen'>,]
+    'Porcupuffer': Name<'Fugumannen'>
 
-    'Wiggler': ['Hanachan', Name<'Hanachan'>,]
-    'Angry Wiggler': NoImages
+    'Wiggler': Name<'Hanachan'>
 
-    'Piranha Plant': ['Pakkun', Name<'Pakkun'>,]
-    'Jumping Piranha Plant': ['Pakkun', Name<'Pakkun'>,]
-    'Fire Piranha Plant': ['Pakkun', Name<'Pakkun', 1>,]
-    'Fireball thrown by a Fire Piranha Plant': NoImages
-    'Muncher': ['BlackPakkun', Name<'BlackPakkun'>,]
-    'Piranha Creeper': ['PackunPipe', Name<'PackunPipe'>,]
+    'Piranha Plant': Name<'Pakkun'>
+    'Jumping Piranha Plant': Name<'Pakkun'>
+    'Fire Piranha Plant': Name<'Pakkun', 1>
+    'Muncher': Name<'BlackPakkun'>
+    'Piranha Creeper': Name<'PackunPipe'>
 
-    'Chain Chomp': NoImages
-    'Unchained Chomp': ['Wanwan', Name<'Wanwan'>,]
-    'Chain Chomp\'s Stump': NoImages
+    'Unchained Chomp': Name<'Wanwan'>
 
-    'Spike': ['Gabon', Name<'Gabon'>,]
-    'Spike Ball': NoImages
-    'Snowball': NoImages
+    'Spike': Name<'Gabon'>
 
-    'Lakitu': ['Jugem', Name<'Jugem'>,]
-    'Lakitu\'s Cloud': ['Jugem', Name<'Jugem', 1>,]
+    'Lakitu': Name<'Jugem'>
+    'Lakitu\'s Cloud': Name<'Jugem', 1>
 
-    'Boo': ['Teresa', Name<'Teresa'>,]
-    'Stretch': NoImages
-    'Boo Buddies': ['Teresa', Name<'Teresa', 1>,]
+    'Boo': Name<'Teresa'>
+    'Boo Buddies': Name<'Teresa', 1>
     'Peepa': this['Boo Buddies']
 
-    'Bob-omb': ['Bombhei', Name<'Bombhei'>,]
-    'Lit Bob-omb': NoImages
+    'Bob-omb': Name<'Bombhei'>
 
-    'Pokey': ['Sambo', Name<'Sambo'>,]
-    'Snow Pokey': NoImages
+    'Pokey': Name<'Sambo'>
 
-    'Thwomp': ['Dossun', Name<'Dossun'>,]
+    'Thwomp': Name<'Dossun'>
 
-    'Monty Mole': ['ChoroPoo', Name<'ChoroPoo'>,]
-    'Rocky Wrench': ['Poo', Name<'Poo'>,]
-    'Wrench thrown by a Rocky Wrench': NoImages
+    'Monty Mole': Name<'ChoroPoo'>
+    'Rocky Wrench': Name<'Poo'>
 
-    'Magikoopa': ['Kameck', Name<'Kameck'>,]
-    '(Magikoopa\'s projectile)': NoImages
+    'Magikoopa': Name<'Kameck'>
 
-    'Hammer Bro': ['Bros', Name<'Bros'>,]
-    'Sledge Bro': ['MegaBros', Name<'MegaBros'>,]
-    'Hammer thrown by a Hammer / Sledge Bro': NoImages
-    'Fire Bro': NoImages
-    'Heavy Fire Bro': NoImages
-    'Fireball thrown by a (Heavy) Fire Bro': NoImages
+    'Hammer Bro': Name<'Bros'>
+    'Sledge Bro': Name<'MegaBros'>
 
-    'Lava Bubble': ['Bubble', Name<'Bubble'>,]
+    'Lava Bubble': Name<'Bubble'>
 
-    'Mechakoopa': ['KoopaMecha', Name<'KoopaMecha'>,]
-    'Blasta Mechakoopa': NoImages
-    'Homing Missile thrown by a Blasta Mechakoopa': NoImages
-    'Zappa Mechakoopa': NoImages
-    'Electricity Beam thrown by a Zappa Mechakoopa': NoImages
+    'Mechakoopa': Name<'KoopaMecha'>
 
-    'Charvaargh': ['MagmaFish', Name<'MagmaFish'>,]
+    'Charvaargh': Name<'MagmaFish'>
 
-    'Bully': ['Donketsu', Name<'Donketsu'>,]
+    'Bully': Name<'Donketsu'>
 
-    //endregion -------------------- General enemies --------------------
-    //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
+    //endregion -------------------- General enemy --------------------
+    //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
-    'Bill Blaster': NoImages
-    'Bullet Bill': ['Killer', Name<'Killer'>,]
-    'Bull\'s-Eye Blaster': NoImages
-    'Bull\'s-Eye Bill': NoImages
-    'Cat Bullet Bill': NoImages
+    'Bullet Bill': Name<'Killer'>
 
-    'Banzai Bill': ['MagnumKiller', Name<'MagnumKiller'>,]
-    'Bull\'s-Eye Banzai': NoImages
-    'Cat Banzai Bill': NoImages
+    'Banzai Bill': Name<'MagnumKiller'>
 
-    'Cannon': NoImages
-    'Cannonball': NoImages
-    'Red Cannon': NoImages
-    'Red Cannonball': NoImages
-
-    'Burner': NoImages
-
-    'Fire Bar': NoImages
-
-    'Skewer': NoImages
-
-    'Koopa Clown Car': ['KoopaClown', Name<'KoopaClown'>,]
+    'Koopa Clown Car': Name<'KoopaClown'>
     'Junior Clown Car': this['Koopa Clown Car']
-    'Fire Koopa Clown Car': NoImages
-    'Fire Junior Clown Car': NoImages
-    'Fire thrown by a Fire [Koopa / Junior] Clown Car': NoImages
 
-    'Koopa Troopa Car': ['KoopaCar', Name<'KoopaCar'>,]
-    'Car': NoImages
+    'Koopa Troopa Car': Name<'KoopaCar'>
 
-    'Grinder': NoImages
+    'Angry Sun': Name<'SunMoon'>
 
-    'Angry Sun': ['SunMoon', Name<'SunMoon'>,]
-    'Moon': NoImages
+    //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
+    //region -------------------- Boss + projectile --------------------
 
-    //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
-    //region -------------------- Bosses + projectiles --------------------
-
-    'Bowser': ['Koopa', Name<'Koopa'>,]
+    'Bowser': Name<'Koopa'>
     'Meowser': this['Bowser']
-    'Fire thrown by a Bowser': NoImages
-    'Falling Fire thrown by a Bowser': NoImages
 
-    'Bowser Jr.': ['KoopaJr', Name<'KoopaJr'>,]
-    'Fire thrown by a Bowser Jr.': NoImages
+    'Bowser Jr.': Name<'KoopaJr'>
 
-    'Boom Boom': ['Bunbun', Name<'Bunbun'>,]
-    'Pom Pom': ['Bunbun', Name<'Bunbun', 1>,]
-    'Pom Pom\'s clone': NoImages
-    'Shuriken thrown by a Pom Pom': NoImages
+    'Boom Boom': Name<'Bunbun'>
+    'Pom Pom': Name<'Bunbun', 1>
 
-    'Larry': ['Larry', Name<'Larry'>,]
-    'Larry\'s Wand': NoImages
-    '(Larry\'s projectile)': NoImages
+    'Larry': Name<'Larry'>
 
-    'Iggy': ['Iggy', Name<'Iggy'>,]
-    'Iggy\'s Wand': NoImages
-    '(Iggy\'s projectile)': NoImages
+    'Iggy': Name<'Iggy'>
 
-    'Wendy': ['Wendy', Name<'Wendy'>,]
-    'Wendy\'s Wand': NoImages
-    'Candy Ring thrown by a Wendy': NoImages
-    '(Wendy\'s projectile)': NoImages
+    'Wendy': Name<'Wendy'>
 
-    'Lemmy': ['Lemmy', Name<'Lemmy'>,]
-    'Lemmy\'s Wand': NoImages
-    'Magic Ball thrown by a Lemmy': NoImages
-    '(Lemmy\'s projectile)': NoImages
+    'Lemmy': Name<'Lemmy'>
 
-    'Roy': ['Roy', Name<'Roy'>,]
-    'Roy\'s Wand': NoImages
-    '(Roy\'s projectile)': NoImages
+    'Roy': Name<'Roy'>
 
-    'Morton': ['Morton', Name<'Morton'>,]
-    'Morton\'s Wand': NoImages
-    '(Morton\'s Thrown projectile)': NoImages
-    '(Morton\'s Ground projectile)': NoImages
+    'Morton': Name<'Morton'>
 
-    'Ludwig': ['Ludwig', Name<'Ludwig'>,]
-    'Ludwig\'s Wand': NoImages
-    '(Ludwig\'s projectile)': NoImages
+    'Ludwig': Name<'Ludwig'>
 
-    //endregion -------------------- Bosses + projectiles --------------------
+    //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    'Bumper': NoImages
+    'Swinging Claw': Name<'BurankoCrane'>
 
-    'Swinging Claw': ['BurankoCrane', Name<'BurankoCrane'>,]
+    'Tree': Name<'BellTree'>
 
-    'Twister': NoImages
+    'Crate': Name<'WoodBox'>
 
-    'One-Way Wall': NoImages
+    'Trampoline': Name<'JumpStep'>
 
-    'Track': NoImages
-    'Track Block': NoImages
+    'POW Block': Name<'PowBlock'>
+    'Red POW Block': Name<'PowBlock', 1>
 
-    'Vine': NoImages
-    'Tree': ['BellTree', Name<'BellTree'>,]
+    'P Switch': Name<'PSwitch'>
 
-    'Starting Arrow': NoImages
-    'Arrow Sign': NoImages
-
-    'Checkpoint Flag': NoImages
-    'Goal Pole': NoImages
-    'Cards Roulette': NoImages
-    'Giant Gate': NoImages
-
-    'Castle': NoImages
-    'Ending Castle Door': NoImages
-    'Axe': NoImages
-
-    'Dash Block': NoImages
-
-    'Snake Block': NoImages
-    'Fast Snake Block': NoImages
-
-    'Conveyor Belt': NoImages
-    'Fast Conveyor Belt': NoImages
-
-    'Mushroom Trampoline': NoImages
-    'ON/OFF Trampoline': NoImages
-
-    'Lift': NoImages
-    'Flimsy Lift': NoImages
-    'Cloud Lift': NoImages
-
-    'Seesaw': NoImages
-
-    'Lava Lift': NoImages
-    'Fast Lava Lift': NoImages
-
-    'Crate': ['WoodBox', Name<'WoodBox'>,]
-
-    'Key': NoImages
-    'Cursed Key': NoImages
-    'Phanto': NoImages
-
-    'Trampoline': ['JumpStep', Name<'JumpStep'>,]
-    'Hop-Chops': NoImages
-
-    'POW Block': ['PowBlock', Name<'PowBlock'>,]
-    'Red POW Block': ['PowBlock', Name<'PowBlock', 1>,]
-
-    'P Switch': ['PSwitch', Name<'PSwitch'>,]
-
-    'Stone': ['Stone', Name<'Stone'>,]
-
-    'Warp Door': NoImages
-    'P Warp Door': NoImages
-    'Key Door': NoImages
-
-    'Warp Box': NoImages
-    'Warp Box (With Key)': NoImages
-
-    'Wing': NoImages
-    'Parachute': NoImages
-
-    'Toad': NoImages
-    'Caged Toadette': NoImages
-
-    'Bubble': NoImages
+    'Stone': Name<'Stone'>
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
 }
 
-type NoImages = readonly [null, null,]
+type Name<NAME extends string, NUMBER extends ImageNumber = 0, > = `${NAME}_0${NUMBER}`
 
-type Name<NAME extends SimpleImageName, NUMBER extends ImageNumber = 0, > = `${NAME}_0${NUMBER}`
-
-type SimpleImageName = NonNullable<ImageNameMap[PossibleEnglishName][0]>
 type ImageNumber = | 0 | 1 | 2
-export type ImageName_ClearCondition = NonNullable<ImageNameMap[PossibleEnglishName][1]>
+export type ImageName_ClearCondition = ImageNameMap[keyof ImageNameMap]
