@@ -233,7 +233,7 @@ export abstract class UnusedEntityImages
     public static readonly PINK_COIN =                                     new UnusedEntityImages.Null()
 
     //endregion -------------------- Block / Coin --------------------
-    //region -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
+    //region -------------------- Power-up / Yoshi / Shoe + projectile --------------------
 
     public static readonly SUPER_MUSHROOM =                                new UnusedEntityImages.Null()
 
@@ -306,8 +306,8 @@ export abstract class UnusedEntityImages
     public static readonly RED_YOSHI =                                     new UnusedEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new UnusedEntityImages.Null()
 
-    //endregion -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
-    //region -------------------- General enemies --------------------
+    //endregion -------------------- Power-up / Yoshi / Shoe + projectile --------------------
+    //region -------------------- General enemy --------------------
 
     public static readonly GOOMBA =                                        new class UnusedEntityImages_Goomba extends UnusedEntityImages.BigMushroom {
 
@@ -454,8 +454,8 @@ export abstract class UnusedEntityImages
 
     public static readonly BULLY =                                         new UnusedEntityImages.Null()
 
-    //endregion -------------------- General enemies --------------------
-    //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
+    //endregion -------------------- General enemy --------------------
+    //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
 
     public static readonly BILL_BLASTER =                                  new UnusedEntityImages.Null()
     public static readonly BULLET_BILL =                                   new UnusedEntityImages.Null()
@@ -532,8 +532,8 @@ export abstract class UnusedEntityImages
     public static readonly ANGRY_SUN =                                     new UnusedEntityImages.Null()
     public static readonly MOON =                                          new UnusedEntityImages.Null()
 
-    //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
-    //region -------------------- Bosses + projectiles --------------------
+    //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
+    //region -------------------- Boss + projectile --------------------
 
     public static readonly BOWSER =                                        new class UnusedEntityImages_Bowser extends UnusedEntityImages.BigMushroom {
 
@@ -623,7 +623,7 @@ export abstract class UnusedEntityImages
     public static readonly LUDWIG_WAND =                                   new UnusedEntityImages.Null()
     public static readonly LUDWIG_PROJECTILE =                             new UnusedEntityImages.Null()
 
-    //endregion -------------------- Bosses + projectiles --------------------
+    //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
 
     public static readonly BUMPER =                                        new UnusedEntityImages.Null()
