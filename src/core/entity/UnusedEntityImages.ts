@@ -3,163 +3,220 @@ import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
-import type {UnusedImage_BigMushroom}              from 'core/entity/images/unused/UnusedImage_BigMushroom'
+import type {UnusedImageFile}                      from 'core/entity/file/EntityImageFile.unused'
 import type {UnusedImage_Regular}                  from 'core/entity/images/unused/UnusedImage_Regular'
+import type {ClassWithImage}                       from 'util/ClassWithImage'
 
-import {Entities}                                             from 'core/entity/Entities'
-import {unusedBigMushroomImage, unusedImage}                  from 'core/entity/file/fileCreator'
-import {EmptyUnusedImage_BigMushroom}                         from 'core/entity/images/unused/EmptyUnusedImage_BigMushroom'
-import {EmptyUnusedImage_Regular}                             from 'core/entity/images/unused/EmptyUnusedImage_Regular'
-import {UnusedImage_BigMushroomContainer as BigMushroomImage} from 'core/entity/images/unused/UnusedImage_BigMushroom.container'
-import {UnusedImage_RegularContainer as RegularImage}         from 'core/entity/images/unused/UnusedImage_Regular.container'
-import {GameStyles}                                           from 'core/gameStyle/GameStyles'
+import {Entities}                     from 'core/entity/Entities'
+import {unusedImage}                  from 'core/entity/file/fileCreator'
+import {EmptyUnusedImage_Regular}     from 'core/entity/images/unused/EmptyUnusedImage_Regular'
+import {UnusedImage_RegularContainer} from 'core/entity/images/unused/UnusedImage_Regular.container'
+import {GameStyles}                   from 'core/gameStyle/GameStyles'
+import {join}                         from 'util/utilitiesMethods'
 
 /**
- * An {@link Entities} class made to hold both a {@link UnusedImage_Regular} and a {@link UnusedImage_BigMushroom}
+ * An {@link Entities} class made to hold a {@link UnusedImage_Regular}
  *
  * @recursiveReference<{@link Entities}>
  */
 export abstract class UnusedEntityImages
     extends EnumWithParent<Entities, Ordinals, Names>
-    implements ClassWithEnglishName<PossibleEnglishName> {
+    implements ClassWithEnglishName<PossibleEnglishName>,
+        ClassWithImage<UnusedImage_Regular> {
 
     //region -------------------- Sub class --------------------
 
     /**
-     * A subclass of an {@link UnusedEntityImages} to hold both
+     * A subclass of an {@link UnusedEntityImages} to hold
      * a non-existant {@link UnusedImage_Regular} ({@link EmptyUnusedImage_Regular})
-     * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
     private static readonly Null = class NullEditorEntityImages extends UnusedEntityImages {
 
         readonly #regularImage
-        readonly #bigMushroomImage
 
         public constructor() {
             super()
             this.#regularImage = EmptyUnusedImage_Regular.get
-            this.#bigMushroomImage = EmptyUnusedImage_BigMushroom.get
         }
 
-        public override get regularImage(): EmptyUnusedImage_Regular {
-            return this.#regularImage
+        public override get image(): EmptyUnusedImage_Regular { return this.#regularImage }
+
+    }
+
+    /**
+     * A subclass of an {@link UnusedEntityImages} to hold
+     * an existant {@link UnusedImage_Regular} in only 1 {@link GameStyles}
+     * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
+     */
+    private static readonly ExistantIn1GameStyle = class RegularUnusedEntityImages<const NAME extends PossibleEnglishName = PossibleEnglishName,
+        const FOLDER_NAME extends string = string,
+        const FILE_NAME extends string = string, >
+        extends UnusedEntityImages {
+
+        readonly #englishName
+        #image?: UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>>
+        readonly #gameStyle
+        readonly #folderName
+        readonly #fileNames
+
+        public constructor(englishName: NAME, gameStyle: GameStyles, folderName: FOLDER_NAME, ...fileNames: readonly FILE_NAME[]) {
+            super()
+            this.#englishName = englishName
+            this.#gameStyle = gameStyle
+            this.#folderName = folderName
+            this.#fileNames = fileNames
         }
 
-        public override get bigMushroomImage(): EmptyUnusedImage_BigMushroom {
-            return this.#bigMushroomImage
+        public override get englishName(): NAME { return this.#englishName }
+
+        public override get image(): UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const gameStyle = this.#gameStyle
+            const folderName = this.#folderName
+            return this.#image = new UnusedImage_RegularContainer(this.#fileNames.map(it => [gameStyle, unusedImage(this, folderName, it,),] as const,),)
         }
 
     }
 
     /**
      * A subclass of an {@link UnusedEntityImages} to hold
-     * an existant {@link UnusedImage_Regular}
+     * an existant {@link UnusedImage_Regular} in only 2 {@link GameStyles}
      * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly Regular = (() => {
-        abstract class RegularUnusedEntityImages extends UnusedEntityImages {
+    private static readonly ExistantIn2GameStyle = class RegularUnusedEntityImages<const NAME extends PossibleEnglishName = PossibleEnglishName,
+        const FOLDER_NAME_1 extends string = string,
+        const FILE_NAME_1 extends string = string,
+        const FOLDER_NAME_2 extends string = string,
+        const FILE_NAME_2 extends string = string, >
+        extends UnusedEntityImages {
 
-            #image?: UnusedImage_Regular
-            readonly #bigMushroomImage
+        readonly #englishName
+        #image?: UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>>
+        readonly #gameStyle1
+        readonly #folderName1
+        readonly #fileNames1
+        readonly #gameStyle2
+        readonly #folderName2
+        readonly #fileNames2
 
-            public constructor() {
-                super()
-                this.#bigMushroomImage = EmptyUnusedImage_BigMushroom.get
-            }
-
-            /**
-             * Create the <b>unused</b> regular image
-             *
-             * @onlyCalledOnce
-             * @onlyCalledBy<{@link regularImage}>
-             */
-            protected abstract _createImage(): UnusedImage_Regular
-
-            public override get regularImage(): UnusedImage_Regular {
-                return this.#image ??= this._createImage()
-            }
-
-            public override get bigMushroomImage(): EmptyUnusedImage_BigMushroom {
-                return this.#bigMushroomImage
-            }
-
+        public constructor(englishName: NAME,
+                           gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: readonly FILE_NAME_1[],
+                           gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: readonly FILE_NAME_2[],) {
+            super()
+            this.#englishName = englishName
+            this.#gameStyle1 = gameStyle1
+            this.#folderName1 = folderName1
+            this.#fileNames1 = fileNames1
+            this.#gameStyle2 = gameStyle2
+            this.#folderName2 = folderName2
+            this.#fileNames2 = fileNames2
         }
 
-        return RegularUnusedEntityImages
-    })()
+        public override get englishName(): NAME { return this.#englishName }
+
+        public override get image(): UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const gameStyle1 = this.#gameStyle1
+            const gameStyle2 = this.#gameStyle2
+            const folderName1 = this.#folderName1
+            const folderName2 = this.#folderName2
+
+            return this.#image = new UnusedImage_RegularContainer(join<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>,]>(
+                this.#fileNames1.map(it => [gameStyle1, unusedImage(this, folderName1, it,),] as const,),
+                this.#fileNames2.map(it => [gameStyle2, unusedImage(this, folderName2, it,),] as const,),
+            ),)
+        }
+
+    }
 
     /**
      * A subclass of an {@link UnusedEntityImages} to hold
-     * a non-existant {@link UnusedImage_Regular} ({@link EmptyUnusedImage_Regular})
-     * and an existant {@link UnusedImage_BigMushroom}
+     * an existant {@link UnusedImage_Regular} in only 3 {@link GameStyles}
+     * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly BigMushroom = (() => {
-        abstract class BigMushroomUnusedEntityImages extends UnusedEntityImages {
+    private static readonly ExistantIn3GameStyle = class RegularUnusedEntityImages<const NAME extends PossibleEnglishName = PossibleEnglishName,
+        const FOLDER_NAME_1 extends string = string,
+        const FILE_NAME_1 extends string = string,
+        const FOLDER_NAME_2 extends string = string,
+        const FILE_NAME_2 extends string = string,
+        const FOLDER_NAME_3 extends string = string,
+        const FILE_NAME_3 extends string = string, >
+        extends UnusedEntityImages {
 
-            readonly #regularImage
-            #image?: UnusedImage_BigMushroom
+        readonly #englishName
+        #image?: UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>>
+        readonly #gameStyle1
+        readonly #folderName1
+        readonly #fileNames1
+        readonly #gameStyle2
+        readonly #folderName2
+        readonly #fileNames2
+        readonly #gameStyle3
+        readonly #folderName3
+        readonly #fileNames3
 
-            public constructor() {
-                super()
-                this.#regularImage = EmptyUnusedImage_Regular.get
-            }
-
-            public override get regularImage(): EmptyUnusedImage_Regular {
-                return this.#regularImage
-            }
-
-            /**
-             * Create the <b>unused</b> Big Mushroom image
-             *
-             * @onlyCalledOnce
-             * @onlyCalledBy<{@link bigMushroomImage}>
-             */
-            protected abstract _createImage(): UnusedImage_BigMushroom
-
-            public override get bigMushroomImage(): UnusedImage_BigMushroom { return this.#image ??= this._createImage() }
-
+        public constructor(englishName: NAME,
+                           gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: readonly FILE_NAME_1[],
+                           gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: readonly FILE_NAME_2[],
+                           gameStyle3: GameStyles, folderName3: FOLDER_NAME_3, fileNames3: readonly FILE_NAME_3[],) {
+            super()
+            this.#englishName = englishName
+            this.#gameStyle1 = gameStyle1
+            this.#folderName1 = folderName1
+            this.#fileNames1 = fileNames1
+            this.#gameStyle2 = gameStyle2
+            this.#folderName2 = folderName2
+            this.#fileNames2 = fileNames2
+            this.#gameStyle3 = gameStyle3
+            this.#folderName3 = folderName3
+            this.#fileNames3 = fileNames3
         }
 
-        return BigMushroomUnusedEntityImages
-    })()
+        public override get englishName(): NAME { return this.#englishName }
 
-    /**
-     * A subclass of an {@link UnusedEntityImages} to hold
-     * an existant {@link UnusedImage_Regular}
-     * and an existant {@link UnusedImage_BigMushroom}
-     */
-    private static readonly Both = (() => {
-        abstract class BothUnusedEntityImages extends UnusedEntityImages {
+        public override get image(): UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
 
-            #regularImage?: UnusedImage_Regular
-            #bigMushroomImage?: UnusedImage_BigMushroom
+            const fileNames1 = this.#fileNames1
+            const fileNames2 = this.#fileNames2
+            const fileNames3 = this.#fileNames3
+            const size1 = fileNames1.length
+            const size2 = fileNames2.length
+            const size3 = fileNames3.length
+            const images = new Array<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>,]>(size1 + size2 + size3,)
 
-            public constructor() { super() }
+            let index = -1
 
-            /**
-             * Create the <b>unused</b> regular image
-             *
-             * @onlyCalledOnce
-             * @onlyCalledBy<{@link regularImage}>
-             */
-            protected abstract _createUnusedRegularImage(): UnusedImage_Regular
+            const gameStyle1 = this.#gameStyle1
+            const folderName1 = this.#folderName1
+            let index1 = size1
+            while (--index1 < 0)
+                images[++index] = [gameStyle1, unusedImage(this, folderName1, fileNames1[index1],),]
 
-            public override get regularImage(): UnusedImage_Regular { return this.#regularImage ??= this._createUnusedRegularImage() }
+            const gameStyle2 = this.#gameStyle2
+            const folderName2 = this.#folderName2
+            let index2 = size2
+            while(--index2 < 0)
+                images[++index] = [gameStyle2, unusedImage(this, folderName2, fileNames2[index2],),]
 
-            /**
-             * Create the <b>unused</b> Big Mushroom image
-             *
-             * @onlyCalledOnce
-             * @onlyCalledBy<{@link bigMushroomImage}>
-             */
-            protected abstract _createUnusedBigMushroomImage(): UnusedImage_BigMushroom
+            const folderName3 = this.#folderName3
+            const gameStyle3 = this.#gameStyle3
+            let index3 = size3
+            while(--index3 < 0)
+                images[++index] = [gameStyle3, unusedImage(this, folderName3, fileNames3[index3],),]
 
-            public override get bigMushroomImage(): UnusedImage_BigMushroom { return this.#bigMushroomImage ??= this._createUnusedBigMushroomImage() }
-
+            return new UnusedImage_RegularContainer(images,)
         }
 
-        return BothUnusedEntityImages
-    })()
+    }
 
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
@@ -309,20 +366,7 @@ export abstract class UnusedEntityImages
     //endregion -------------------- Power-up / Yoshi / Shoe + projectile --------------------
     //region -------------------- General enemy --------------------
 
-    public static readonly GOOMBA =                                        new class UnusedEntityImages_Goomba extends UnusedEntityImages.BigMushroom {
-
-        protected override _createImage() {
-            return new BigMushroomImage([
-                unusedBigMushroomImage(this, 'Kuribo D', 'damage.0',),
-                unusedBigMushroomImage(this, 'Kuribo D', 'swim.0',),
-                unusedBigMushroomImage(this, 'Kuribo D', 'swim.1',),
-                unusedBigMushroomImage(this, 'Kuribo D', 'walk.0',),
-                unusedBigMushroomImage(this, 'Kuribo D', 'walk.1',),
-                unusedBigMushroomImage(this, 'Kuribo D', 'kutsu',),
-            ],)
-        }
-
-    }()
+    public static readonly GOOMBA =                                        new UnusedEntityImages.Null()
     public static readonly GALOOMBA =                                      new UnusedEntityImages.Null()
     public static readonly GOOMBRAT =                                      new UnusedEntityImages.Null()
     public static readonly GOOMBUD =                                       new UnusedEntityImages.Null()
@@ -395,28 +439,7 @@ export abstract class UnusedEntityImages
     public static readonly LAKITU_CLOUD =                                  new UnusedEntityImages.Null()
 
     public static readonly BOO =                                           new UnusedEntityImages.Null()
-    public static readonly STRETCH =                                       new class UnusedEntityImages_Stretch extends UnusedEntityImages.Both {
-
-        protected override _createUnusedRegularImage() {
-            return new RegularImage([
-                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Necchi', 'wait.0',),],
-                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Necchi', 'out.4',),],
-                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Necchi', 'wait.0',),],
-                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Necchi', 'out.4',),],
-                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Necchi', 'wait.0',),],
-                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Necchi', 'out.4',),],
-            ],)
-        }
-
-        protected override _createUnusedBigMushroomImage() {
-            return new BigMushroomImage([
-                unusedBigMushroomImage(this, 'Necchi', 'wait.0',),
-                unusedBigMushroomImage(this, 'Necchi', 'wait.2',),
-                unusedBigMushroomImage(this, 'Necchi', 'out.4',),
-            ],)
-        }
-
-    }()
+    public static readonly STRETCH =                                       new UnusedEntityImages.ExistantIn3GameStyle('Stretch', GameStyles.SUPER_MARIO_BROS, 'M1 - Enemy - Necchi', ['wait.0', 'out.4',], GameStyles.SUPER_MARIO_BROS_3, 'M3 - Enemy - Necchi', ['wait.0', 'out.4',], GameStyles.SUPER_MARIO_WORLD, 'MW - Enemy - Necchi', ['wait.0', 'out.4',],)
     public static readonly BOO_BUDDIES =                                   new UnusedEntityImages.Null()
     public static readonly PEEPA =                                         new UnusedEntityImages.Null()
 
@@ -468,13 +491,7 @@ export abstract class UnusedEntityImages
     public static readonly CAT_BANZAI_BILL =                               new UnusedEntityImages.Null()
 
     public static readonly CANNON =                                        new UnusedEntityImages.Null()
-    public static readonly CANNONBALL =                                    new class UnusedEntityImages_Cannonball extends UnusedEntityImages.BigMushroom {
-
-        protected override _createImage() {
-            return new BigMushroomImage([unusedBigMushroomImage(this, 'SenkanHoudai D', 'senkan_houdai_ball',),],)
-        }
-
-    }()
+    public static readonly CANNONBALL =                                    new UnusedEntityImages.Null()
     public static readonly RED_CANNON =                                    new UnusedEntityImages.Null()
     public static readonly RED_CANNONBALL =                                new UnusedEntityImages.Null()
 
@@ -484,41 +501,7 @@ export abstract class UnusedEntityImages
 
     public static readonly SKEWER =                                        new UnusedEntityImages.Null()
 
-    public static readonly KOOPA_CLOWN_CAR =                               new class UnusedEntityImages_KoopaClownCar extends UnusedEntityImages.Both {
-
-        protected override _createUnusedRegularImage() {
-            return new RegularImage([
-                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.4',),],
-                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.5',),],
-                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.6',),],
-                [GameStyles.SUPER_MARIO_WORLD, unusedImage(this, 'MW - Enemy - KoopaClown', 'weep.7',),],
-            ],)
-        }
-
-        protected override _createUnusedBigMushroomImage() {
-            return new BigMushroomImage([
-                unusedBigMushroomImage(this, 'KoopaClown', 'wait.4',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'wait.5',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'wait.6',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'wait.7',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'anger.4',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'anger.5',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'anger.6',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'anger.7',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'blink.4',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'blink.5',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'blink.6',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'blink.7',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'weep.4',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'weep.5',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'weep.6',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'weep.7',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'iron_ball.1',),
-                unusedBigMushroomImage(this, 'KoopaClown', 'tear.1',),
-            ],)
-        }
-
-    }()
+    public static readonly KOOPA_CLOWN_CAR =                               new UnusedEntityImages.ExistantIn1GameStyle('Koopa Clown Car', GameStyles.SUPER_MARIO_WORLD, 'MW - Enemy - KoopaClown', 'weep.4', 'weep.5', 'weep.6', 'weep.7',)
     public static readonly JUNIOR_CLOWN_CAR =                              new UnusedEntityImages.Null()
     public static readonly FIRE_KOOPA_CLOWN_CAR =                          new UnusedEntityImages.Null()
     public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new UnusedEntityImages.Null()
@@ -535,24 +518,12 @@ export abstract class UnusedEntityImages
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemy --------------------
     //region -------------------- Boss + projectile --------------------
 
-    public static readonly BOWSER =                                        new class UnusedEntityImages_Bowser extends UnusedEntityImages.BigMushroom {
-
-        protected override _createImage() {
-            return new BigMushroomImage([unusedBigMushroomImage(this, 'Koopa', 'fire.1',),],)
-        }
-
-    }()
+    public static readonly BOWSER =                                        new UnusedEntityImages.Null()
     public static readonly MEOWSER =                                       new UnusedEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new UnusedEntityImages.Null()
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new UnusedEntityImages.Null()
 
-    public static readonly BOWSER_JR =                                     new class UnusedEntityImages_BowserJr extends UnusedEntityImages.BigMushroom {
-
-        protected override _createImage() {
-            return new BigMushroomImage([unusedBigMushroomImage(this, 'KoopaJr', 'fire.1',),],)
-        }
-
-    }()
+    public static readonly BOWSER_JR =                                     new UnusedEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new UnusedEntityImages.Null()
 
     public static readonly BOOM_BOOM =                                     new UnusedEntityImages.Null()
@@ -571,38 +542,12 @@ export abstract class UnusedEntityImages
     public static readonly WENDY =                                         new UnusedEntityImages.Null()
     public static readonly WENDY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new UnusedEntityImages.Null()
-    public static readonly WENDY_PROJECTILE =                              new class UnusedEntityImages_WendyProjectile extends UnusedEntityImages.Regular {
-
-        protected override _createImage() {
-            return new RegularImage([
-                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Wendy', 'effect.0',),],
-                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Wendy', 'effect.1',),],
-                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Enemy - Wendy', 'effect.2',),],
-                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Wendy', 'effect.0',),],
-                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Wendy', 'effect.1',),],
-                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Wendy', 'effect.2',),],
-                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Wendy', 'effect.0',),],
-                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Wendy', 'effect.1',),],
-                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Enemy - Wendy', 'effect.2',),],
-            ],)
-        }
-
-    }()
+    public static readonly WENDY_PROJECTILE =                              new UnusedEntityImages.ExistantIn3GameStyle('(Wendy\'s projectile)', GameStyles.SUPER_MARIO_BROS, 'M1 - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], GameStyles.SUPER_MARIO_BROS_3, 'M3 - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',], GameStyles.SUPER_MARIO_WORLD, 'MW - Enemy - Wendy', ['effect.0', 'effect.1', 'effect.2',],)
 
     public static readonly LEMMY =                                         new UnusedEntityImages.Null()
     public static readonly LEMMY_WAND =                                    new UnusedEntityImages.Null()
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new UnusedEntityImages.Null()
-    public static readonly LEMMY_PROJECTILE =                              new class UnusedEntityImages_LemmyProjectile extends UnusedEntityImages.Regular {
-
-        protected override _createImage() {
-            return new RegularImage([
-                [GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Enemy - Lemmy', 'effect.0',),],
-                [GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Enemy - Lemmy', 'effect.1',),],
-                [GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Enemy - Lemmy', 'effect.2',),],
-            ],)
-        }
-
-    }()
+    public static readonly LEMMY_PROJECTILE =                              new UnusedEntityImages.ExistantIn1GameStyle('(Lemmy\'s projectile)', GameStyles.SUPER_MARIO_BROS, 'M1 - Enemy - Lemmy', 'effect.1', 'effect.2',)
 
     public static readonly ROY =                                           new UnusedEntityImages.Null()
     public static readonly ROY_WAND =                                      new UnusedEntityImages.Null()
@@ -611,13 +556,7 @@ export abstract class UnusedEntityImages
     public static readonly MORTON =                                        new UnusedEntityImages.Null()
     public static readonly MORTON_WAND =                                   new UnusedEntityImages.Null()
     public static readonly MORTON_THROWN_PROJECTILE =                      new UnusedEntityImages.Null()
-    public static readonly MORTON_GROUND_PROJECTILE =                      new class UnusedEntityImages_GroundProjectile extends UnusedEntityImages.Regular {
-
-        protected override _createImage() {
-            return new RegularImage([[GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Enemy - Morton', 'fire.2',),],],)
-        }
-
-    }()
+    public static readonly MORTON_GROUND_PROJECTILE =                      new UnusedEntityImages.ExistantIn1GameStyle('(Morton\'s Ground projectile)', GameStyles.SUPER_MARIO_BROS_3, 'M3 - Enemy - Morton', 'fire.2',)
 
     public static readonly LUDWIG =                                        new UnusedEntityImages.Null()
     public static readonly LUDWIG_WAND =                                   new UnusedEntityImages.Null()
@@ -637,30 +576,14 @@ export abstract class UnusedEntityImages
     public static readonly TRACK =                                         new UnusedEntityImages.Null()
     public static readonly TRACK_BLOCK =                                   new UnusedEntityImages.Null()
 
-    public static readonly VINE =                                          new class UnusedEntityImages_Vine extends UnusedEntityImages.Regular {
-
-        protected override _createImage() {
-            return new RegularImage([
-                [GameStyles.SUPER_MARIO_BROS,   unusedImage(this, 'M1 - Object Block - Tuta', 'wait.1',),],
-                [GameStyles.SUPER_MARIO_BROS_3, unusedImage(this, 'M3 - Object Block - Tuta', 'wait.2',),],
-                [GameStyles.SUPER_MARIO_WORLD,  unusedImage(this, 'MW - Object Block - Tuta', 'wait.2',),],
-            ],)
-        }
-
-    }()
+    public static readonly VINE =                                          new UnusedEntityImages.ExistantIn3GameStyle('Vine', GameStyles.SUPER_MARIO_BROS, 'M1 - Object Block - Tuta', ['wait.1',], GameStyles.SUPER_MARIO_BROS_3,  'M3 - Object Block - Tuta', ['wait.2',], GameStyles.SUPER_MARIO_WORLD, 'MW - Object Block - Tuta', ['wait.2',],)
     public static readonly TREE =                                          new UnusedEntityImages.Null()
 
     public static readonly STARTING_ARROW =                                new UnusedEntityImages.Null()
     public static readonly ARROW_SIGN =                                    new UnusedEntityImages.Null()
 
     public static readonly CHECKPOINT_FLAG =                               new UnusedEntityImages.Null()
-    public static readonly GOAL_POLE =                                     new class UnusedEntityImages_GoalPole extends UnusedEntityImages.Regular {
-
-        protected override _createImage() {
-            return new RegularImage([[GameStyles.SUPER_MARIO_BROS, unusedImage(this, 'M1 - Object - Goalpole', 'goalpole.1',),],],)
-        }
-
-    }()
+    public static readonly GOAL_POLE =                                     new UnusedEntityImages.ExistantIn1GameStyle('Goal Pole', GameStyles.SUPER_MARIO_BROS, 'M1 - Object - Goalpole', 'goalpole.1',)
     public static readonly GOAL_WITH_CARDS =                               new UnusedEntityImages.Null()
     public static readonly GIANT_GATE =                                    new UnusedEntityImages.Null()
 
@@ -700,19 +623,7 @@ export abstract class UnusedEntityImages
     public static readonly POW_BLOCK =                                     new UnusedEntityImages.Null()
     public static readonly RED_POW_BLOCK =                                 new UnusedEntityImages.Null()
 
-    public static readonly P_SWITCH =                                      new class UnusedEntityImages_PSwitch extends UnusedEntityImages.Regular {
-
-        protected override _createImage() {
-            return new RegularImage([
-                [GameStyles.SUPER_MARIO_BROS,       unusedImage(this, 'M1 - Object - PSwitch', 'wait.0',),],
-                [GameStyles.SUPER_MARIO_BROS,       unusedImage(this, 'M1 - Object - PSwitch', 'wait.1',),],
-                [GameStyles.SUPER_MARIO_BROS,       unusedImage(this, 'M1 - Object - PSwitch', 'wait.2',),],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, unusedImage(this, 'WU - Object - PSwitch', 'down_switch_hatena_Alb.000',),],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, unusedImage(this, 'WU - Object - PSwitch', 'down_switch_hatena_Alb.004',),],
-            ],)
-        }
-
-    }()
+    public static readonly P_SWITCH =                                      new UnusedEntityImages.ExistantIn2GameStyle('P Switch', GameStyles.SUPER_MARIO_BROS, 'M1 - Object - PSwitch', ['wait.0', 'wait.1', 'wait.2',], GameStyles.NEW_SUPER_MARIO_BROS_U, 'WU - Object - PSwitch', ['down_switch_hatena_Alb.000', 'down_switch_hatena_Alb.004',],)
 
     public static readonly STONE =                                         new UnusedEntityImages.Null()
 
@@ -737,19 +648,19 @@ export abstract class UnusedEntityImages
     //region -------------------- Companion enum --------------------
 
     public static readonly CompanionEnum: CompanionEnumWithParentSingleton<UnusedEntityImages, typeof UnusedEntityImages, Entities, typeof Entities>
-        = class CompanionEnum_Entities
+        = class CompanionEnum_UnusedEntityImages
         extends CompanionEnumWithParent<UnusedEntityImages, typeof UnusedEntityImages, Entities, typeof Entities> {
 
         //region -------------------- Singleton usage --------------------
 
-        static #instance?: CompanionEnum_Entities
+        static #instance?: CompanionEnum_UnusedEntityImages
 
         private constructor() {
             super(UnusedEntityImages, Entities,)
         }
 
         public static get get() {
-            return this.#instance ??= new CompanionEnum_Entities()
+            return this.#instance ??= new CompanionEnum_UnusedEntityImages()
         }
 
         //endregion -------------------- Singleton usage --------------------
@@ -761,9 +672,6 @@ export abstract class UnusedEntityImages
 
     #englishName?: PossibleEnglishName
     #englishNameInHtml?: string
-
-    #regularImage?: UnusedImage_Regular
-    #bigMushroomImage?: UnusedImage_BigMushroom
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -777,9 +685,7 @@ export abstract class UnusedEntityImages
 
     public get englishNameInHtml(): string { return this.#englishNameInHtml ??= this.parent.englishNameInHtml }
 
-    public abstract get regularImage(): UnusedImage_Regular
-
-    public abstract get bigMushroomImage(): UnusedImage_BigMushroom
+    public abstract get image(): UnusedImage_Regular
 
     //endregion -------------------- Getter methods --------------------
 

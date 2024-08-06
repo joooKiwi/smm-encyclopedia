@@ -1,11 +1,24 @@
 import type {PossibleAcronym_InFile_SMM1 as PossibleAcronym_InFile_SMM1_GameStyle} from 'core/gameStyle/GameStyles.types'
 import type {ImageFile}                                                            from 'util/file/image/ImageFile'
+import type {PossibleEnglishName}                                                  from 'core/entity/Entities.types'
 
+export type UnusedImageFile<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
+    = ImageFile<`entity/unused/${FOLDER_NAME}`, FILE_NAME, 'tiff', `${NAME} (unused)`>
+
+/**
+ * An unused Big Mushroom ({@link Entities.BIG_MUSHROOM_CLASSIC classic} / {@link Entities.BIG_MUSHROOM_MODERN modern}) {@link ImageFile}
+ * in {@link GameStyles.SUPER_MARIO_BROS SMB} only for {@link Games.SUPER_MARIO_MAKER_1 SMM1}
+ */
+export type UnusedSmm1ImageFile_BigMushroom<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
+    = ImageFile<`entity/unused/M1 A - Enemy - ${FOLDER_NAME}`, FILE_NAME, 'tiff', `${NAME} (unused Big Mushroom)`>
+
+
+/**@deprecated Use the {@link ImageFile}, {@link UnusedImageFile} or {@link UnusedSmm1ImageFile_BigMushroom} instead */
 export type UnusedSMM1ImageFile = | UnusedSMM1RegularImageFile | UnusedSMM1BigMushroomImageFile
 
 //region -------------------- Unused (regular) --------------------
 
-export type UnusedSMM1RegularImageFile = ImageFile<`entity/unused/${PossibleAcronym_InFile_SMM1_GameStyle} - ${ImageName_Unused_SMM1}`, ImageName_UnusedSMM1Regular, 'tiff'>
+type UnusedSMM1RegularImageFile = ImageFile<`entity/unused/${PossibleAcronym_InFile_SMM1_GameStyle} - ${ImageName_Unused_SMM1}`, ImageName_UnusedSMM1Regular, 'tiff'>
 
 
 type ImageName_Unused_SMM1 = | 'Enemy - Necchi' | 'Enemy - Lemmy' | 'Enemy - Wendy' | 'Enemy - Morton' | 'Enemy - KoopaClown'
@@ -23,7 +36,7 @@ type ImageName_UnusedSMM1Regular = | `down_switch_hatena_Alb.00${| 0 | 4}`
 //endregion -------------------- Unused (regular) --------------------
 //region -------------------- Unused (big mushroom) --------------------
 
-export type UnusedSMM1BigMushroomImageFile = ImageFile<`entity/unused/M1 A - Enemy - ${SimpleImageName_BigMushroom_Unused_SMM1}`, ImageName_UnusedBigMushroom, 'tiff'>
+type UnusedSMM1BigMushroomImageFile = ImageFile<`entity/unused/M1 A - Enemy - ${SimpleImageName_BigMushroom_Unused_SMM1}`, ImageName_UnusedBigMushroom, 'tiff'>
 
 
 type SimpleImageName_BigMushroom_Unused_SMM1 = | 'KoopaClown' | 'Kuribo D' | 'Necchi' | `Koopa${| '' | 'Jr'}` | 'SenkanHoudai D'

@@ -1,27 +1,27 @@
-import type {UnusedSMM1RegularImageFile} from 'core/entity/file/EntityImageFile.unused'
-import type {UnusedImage_Regular}        from 'core/entity/images/unused/UnusedImage_Regular'
-import type {GameStyles}                 from 'core/gameStyle/GameStyles'
+import type {UnusedImageFile}     from 'core/entity/file/EntityImageFile.unused'
+import type {UnusedImage_Regular} from 'core/entity/images/unused/UnusedImage_Regular'
+import type {GameStyles}          from 'core/gameStyle/GameStyles'
 
-export class UnusedImage_RegularContainer
+export class UnusedImage_RegularContainer<const out T extends UnusedImageFile, >
     implements UnusedImage_Regular {
 
     readonly #images
-    #all?: ReadonlyMap<GameStyles, readonly (readonly [UnusedSMM1RegularImageFile,])[]>
+    #all?: ReadonlyMap<GameStyles, readonly (readonly [T,])[]>
 
-    public constructor(images: readonly (readonly [GameStyles, UnusedSMM1RegularImageFile,])[]) {
+    public constructor(images: readonly (readonly [GameStyles, T,])[]) {
         this.#images = images
     }
 
-    public get images(): readonly (readonly [GameStyles, UnusedSMM1RegularImageFile,])[] {
+    public get images(): readonly (readonly [GameStyles, T,])[] {
         return this.#images
     }
 
-    public get all(): ReadonlyMap<GameStyles, readonly (readonly [UnusedSMM1RegularImageFile,])[]> {
+    public get all(): ReadonlyMap<GameStyles, readonly (readonly [T,])[]> {
         const value = this.#all
         if (value != null)
             return value
 
-        const map = new Map<GameStyles, (readonly [UnusedSMM1RegularImageFile,])[]>()
+        const map = new Map<GameStyles, (readonly [T,])[]>()
         const images = this.images
         let index = images.length
         while (--index > 0) {

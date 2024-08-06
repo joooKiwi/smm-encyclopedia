@@ -1,14 +1,15 @@
-import type {ClearConditionEntityImages}                                                                                                                                                           from 'core/entity/ClearConditionEntityImages'
-import type {EditorEntityImages}                                                                                                                                                                   from 'core/entity/EditorEntityImages'
-import type {InGameEntityImages}                                                                                                                                                                   from 'core/entity/InGameEntityImages'
-import type {UnusedEntityImages}                                                                                                                                                                   from 'core/entity/UnusedEntityImages'
-import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                                                                                           from 'core/entity/file/EntityImageFile.editor'
-import type {ClearConditionImageFile, ImageName_ClearCondition}                                                                                                                                    from 'core/entity/file/EntityImageFile.clearCondition'
-import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1}                                                                      from 'core/entity/file/EntityImageFile.inGame'
-import type {GameStyles}                                                                                                                                                                           from 'core/gameStyle/GameStyles'
+import type {ClassWithEnglishName}                                                                                            from 'core/ClassWithEnglishName'
+import type {ClearConditionEntityImages}                                                                                      from 'core/entity/ClearConditionEntityImages'
+import type {EditorEntityImages}                                                                                              from 'core/entity/EditorEntityImages'
+import type {PossibleEnglishName}                                                                                             from 'core/entity/Entities.types'
+import type {InGameEntityImages}                                                                                              from 'core/entity/InGameEntityImages'
+import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                      from 'core/entity/file/EntityImageFile.editor'
+import type {ClearConditionImageFile, ImageName_ClearCondition}                                                               from 'core/entity/file/EntityImageFile.clearCondition'
+import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1} from 'core/entity/file/EntityImageFile.inGame'
+import type {UnusedImageFile, UnusedSmm1ImageFile_BigMushroom}                                                                from 'core/entity/file/EntityImageFile.unused'
+import type {GameStyles}                                                                                                      from 'core/gameStyle/GameStyles'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
-import {ImageFile}       from 'util/file/image/ImageFile'
 
 //region -------------------- Editor image --------------------
 
@@ -112,24 +113,24 @@ export function inGameImage(entity: InGameEntityImages, name: ImageName_SMM2, ga
 //region -------------------- Unused image --------------------
 
 /**
- * Create a {@link UnusedSMM1RegularImageFile} from the {@link name} provided
+ * Create a {@link UnusedImageFile} from the {@link name} provided
  *
  * @param entity The entity to retrieve its name
  * @param folderName The folder name
  * @param fileName The file name
  */
-export function unusedImage<const FOLDER_NAME extends string, const FILE_NAME extends string, >(entity: UnusedEntityImages, folderName: FOLDER_NAME, fileName: FILE_NAME,): ImageFile<`entity/unused/${FOLDER_NAME}`, FILE_NAME, 'tiff'> {
+export function unusedImage<const FOLDER_NAME extends string, const FILE_NAME extends string, const NAME extends PossibleEnglishName,>(entity: ClassWithEnglishName<NAME>, folderName: FOLDER_NAME, fileName: FILE_NAME,): UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME> {
     return new SimpleImageFile(`entity/unused/${folderName}`, fileName, 'tiff', `${entity.englishName} (unused)`,)
 }
 
 /**
- * Create a {@link UnusedSMM1BigMushroomImageFile} from the {@link name} provided
+ * Create a {@link UnusedSmm1ImageFile_BigMushroom} from the {@link name} provided
  *
  * @param entity The entity to retrieve its name
  * @param folderName The folder name
  * @param fileName The file name
  */
-export function unusedBigMushroomImage<const FOLDER_NAME extends string, const FILE_NAME extends string, >(entity: UnusedEntityImages, folderName: FOLDER_NAME, fileName: FILE_NAME,): ImageFile<`entity/unused/M1 A - Enemy - ${FOLDER_NAME}`, FILE_NAME, 'tiff'> {
+export function unusedBigMushroomImage<const FOLDER_NAME extends string, const FILE_NAME extends string, const NAME extends PossibleEnglishName, >(entity: ClassWithEnglishName<NAME>, folderName: FOLDER_NAME, fileName: FILE_NAME,): UnusedSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME> {
     return new SimpleImageFile(`entity/unused/M1 A - Enemy - ${folderName}`, fileName, 'tiff', `${entity.englishName} (unused Big Mushroom)`,)
 }
 

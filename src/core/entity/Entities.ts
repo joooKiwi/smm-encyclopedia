@@ -28,6 +28,7 @@ import {EmptyUniqueImage}                  from 'core/entity/images/unique/Empty
 import {StringContainer}                   from 'util/StringContainer'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
+import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
 
 /**
  * @recursiveReference<{@link ClearConditionEntityImages}>
@@ -1682,6 +1683,7 @@ export class Entities
     #clearConditionEntityImageReference?: ClearConditionEntityImages
     #inGameEntityImageReference?: InGameEntityImages
     #unusedEntityImageReference?: UnusedEntityImages
+    #unusedBigMushroomEntityImageReference?: UnusedBigMushroomEntityImages
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -1767,9 +1769,9 @@ export class Entities
 
     public get inGameImage(): InGameImage { return this.#inGameImage ??= this.inGameEntityImageReference.image }
 
-    public get unusedRegularImage(): UnusedImage_Regular { return this.#unusedRegularImage ??= this.unusedEntityImageReference.regularImage }
+    public get unusedImage(): UnusedImage_Regular { return this.#unusedRegularImage ??= this.unusedEntityImageReference.image }
 
-    public get unusedBigMushroomImage(): UnusedImage_BigMushroom { return this.#unusedBigMushroomImage ??= this.unusedEntityImageReference.bigMushroomImage }
+    public get unusedBigMushroomImage(): UnusedImage_BigMushroom { return this.#unusedBigMushroomImage ??= this.unusedBigMushroomEntityImageReference.image }
 
     //endregion -------------------- image --------------------
 
@@ -1814,6 +1816,8 @@ export class Entities
 
     public get unusedEntityImageReference(): UnusedEntityImages { return this.#unusedEntityImageReference ??= UnusedEntityImages[this.name] }
 
+    public get unusedBigMushroomEntityImageReference(): UnusedBigMushroomEntityImages { return this.#unusedBigMushroomEntityImageReference ??= UnusedBigMushroomEntityImages[this.name] }
+
     //endregion -------------------- Getter methods (linked reference) --------------------
 
     //endregion -------------------- Getter methods --------------------
@@ -1831,7 +1835,7 @@ export class Entities
 // Entities.values.filter(it => it.editorImage !== EmptyEditorImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, it.editorImage.all.map(it => it.name,),),)
 // Entities.values.filter(it => it.clearConditionImage !== EmptyClearConditionImage.get,).forEach(it => console.log(`${it.englishName}\n\t`, GameStyles.values.map(it2 => it.clearConditionImage.get(it2,),).toArray().flat().map(it => it.name,),),)
 // Entities.values.filter(it => it.inGameImage !== EmptyInGameImage.get,).map(it => console.log(`${it.englishName}\n\t`, it.inGameImage,),)
-// Entities.values.filter(it => it.unusedRegularImage.all.size !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, [...it.unusedRegularImage.all.entries(),].map(it => it[1]).flat(2),),)
+// Entities.values.filter(it => it.unusedImage.all.size !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, [...it.unusedImage.all.entries(),].map(it => it[1]).flat(2),),)
 // Entities.values.filter(it => it.unusedBigMushroomImage.all.length !== 0,).forEach(it => console.log(`${it.englishName}\n\t`, it.unusedBigMushroomImage.all.flat(),),)
 
 // TODO remove this test variable when the application will be complete
