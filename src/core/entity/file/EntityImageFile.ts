@@ -20,7 +20,7 @@ import type {ImageFile}                     from 'util/file/image/ImageFile'
  * @see UnusedImageFile
  * @see UnusedSmm1ImageFile_BigMushroom
  */
-export type EntityImageFile = | EditorImageFile | PossibleClearConditionImageFiles | InGameImageFile | PossibleUnusedEntityImageFiles|PossibleUnusedBigMushroomEntityImageFiles
+export type EntityImageFile = | EditorImageFile | PossibleClearConditionImageFiles | InGameImageFile | PossibleUnusedEntityImageFiles | PossibleUnusedBigMushroomEntityImageFiles
 
 //region -------------------- clear condition images --------------------
 

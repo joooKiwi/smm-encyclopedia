@@ -1,11 +1,11 @@
 import type {Entities}                                          from 'core/entity/Entities'
 import type {EntityImageFile, PossibleClearConditionImageFiles} from 'core/entity/file/EntityImageFile'
 import type {EditorImageFile}                                   from 'core/entity/file/EntityImageFile.editor'
-import type {InGameImageFile}         from 'core/entity/file/EntityImageFile.inGame'
-import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
-import type {EditorImage}             from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}             from 'core/entity/images/inGame/InGameImage'
-import type {UniqueImage}             from 'core/entity/images/unique/UniqueImage'
+import type {InGameImageFile}                                   from 'core/entity/file/EntityImageFile.inGame'
+import type {ClearConditionImage}                               from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}                                       from 'core/entity/images/editor/EditorImage'
+import type {InGameImage}                                       from 'core/entity/images/inGame/InGameImage'
+import type {UniqueImage}                                       from 'core/entity/images/unique/UniqueImage'
 
 import {EmptyUniqueImage}     from 'core/entity/images/unique/EmptyUniqueImage'
 import {UniqueImageContainer} from 'core/entity/images/unique/UniqueImage.container'
@@ -254,7 +254,7 @@ export function uniqueInSmbAndSmb3ImagesInClearCondition(entity: Entities,): Uni
     return new UniqueImageContainer(entity.editorImage, image, entity.inGameImage, new Map([
         [GameStyles.SUPER_MARIO_BROS, [image.get(GameStyles.SUPER_MARIO_BROS,),],],
         [GameStyles.SUPER_MARIO_BROS_3, [image.get(GameStyles.SUPER_MARIO_BROS_3,),],],
-    ],),)
+    ] as const,),)
 }
 
 //endregion -------------------- Unique images (clear condition) --------------------
