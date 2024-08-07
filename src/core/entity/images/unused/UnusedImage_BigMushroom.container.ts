@@ -1,4 +1,4 @@
-import type {UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile.unused'
+import type {UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
 import type {UnusedImage_BigMushroom}         from 'core/entity/images/unused/UnusedImage_BigMushroom'
 
 export class UnusedImage_BigMushroomContainer<const out T extends UnusedSmm1ImageFile_BigMushroom, >

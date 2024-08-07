@@ -1,4 +1,4 @@
-import type {UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile.unused'
+import type {UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
 import type {UnusedImage}                     from 'core/entity/images/unused/UnusedImage'
 
 /**

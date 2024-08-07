@@ -4,7 +4,7 @@ import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {ClassWithImage}                       from 'util/ClassWithImage'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
-import type {UnusedSmm1ImageFile_BigMushroom}      from 'core/entity/file/EntityImageFile.unused'
+import type {UnusedSmm1ImageFile_BigMushroom}      from 'core/entity/file/EntityImageFile'
 import type {UnusedImage_BigMushroom}              from 'core/entity/images/unused/UnusedImage_BigMushroom'
 
 import {Entities}                         from 'core/entity/Entities'
@@ -45,9 +45,9 @@ export abstract class UnusedBigMushroomEntityImages
      * A subclass of an {@link UnusedBigMushroomEntityImages} to hold
      * and an existant {@link UnusedImage_BigMushroom}
      */
-    private static readonly Existant = class ExistantUnusedBigMushroomEntityImages<const NAME extends PossibleEnglishName = PossibleEnglishName,
-        const FOLDER_NAME extends string = string,
-        const FILE_NAME extends string = string, >
+    private static readonly Existant = class ExistantUnusedBigMushroomEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string ,
+        const FILE_NAME extends string, >
         extends UnusedBigMushroomEntityImages {
 
         readonly #englishName

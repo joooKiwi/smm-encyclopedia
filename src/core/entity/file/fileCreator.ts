@@ -4,9 +4,8 @@ import type {EditorEntityImages}                                                
 import type {PossibleEnglishName}                                                                                             from 'core/entity/Entities.types'
 import type {InGameEntityImages}                                                                                              from 'core/entity/InGameEntityImages'
 import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                      from 'core/entity/file/EntityImageFile.editor'
-import type {ClearConditionImageFile, ImageName_ClearCondition}                                                               from 'core/entity/file/EntityImageFile.clearCondition'
+import type {ClearConditionImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMushroom}                                       from 'core/entity/file/EntityImageFile'
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1} from 'core/entity/file/EntityImageFile.inGame'
-import type {UnusedImageFile, UnusedSmm1ImageFile_BigMushroom}                                                                from 'core/entity/file/EntityImageFile.unused'
 import type {GameStyles}                                                                                                      from 'core/gameStyle/GameStyles'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
@@ -119,7 +118,7 @@ export function inGameImage(entity: InGameEntityImages, name: ImageName_SMM2, ga
  * @param folderName The folder name
  * @param fileName The file name
  */
-export function unusedImage<const FOLDER_NAME extends string, const FILE_NAME extends string, const NAME extends PossibleEnglishName,>(entity: ClassWithEnglishName<NAME>, folderName: FOLDER_NAME, fileName: FILE_NAME,): UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME> {
+export function unusedImage<const FOLDER_NAME extends string, const FILE_NAME extends string, const NAME extends PossibleEnglishName, >(entity: ClassWithEnglishName<NAME>, folderName: FOLDER_NAME, fileName: FILE_NAME,): UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME> {
     return new SimpleImageFile(`entity/unused/${folderName}`, fileName, 'tiff', `${entity.englishName} (unused)`,)
 }
 

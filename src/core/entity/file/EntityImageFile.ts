@@ -1,9 +1,10 @@
+import type {PossibleEnglishName}           from 'core/entity/Entities.types'
 import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
 import type {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
 import type {EditorImageFile}               from 'core/entity/file/EntityImageFile.editor'
-import type {ClearConditionImageFile}       from 'core/entity/file/EntityImageFile.clearCondition'
 import type {InGameImageFile}               from 'core/entity/file/EntityImageFile.inGame'
-import type {UnusedSMM1ImageFile}           from 'core/entity/file/EntityImageFile.unused'
+import type {PossibleAcronym_InFile}        from 'core/gameStyle/GameStyles.types'
+import type {ImageFile}                     from 'util/file/image/ImageFile'
 
 /**
  * An {@link ImageFile} made to be related to an {@link Entities}
@@ -18,11 +19,28 @@ import type {UnusedSMM1ImageFile}           from 'core/entity/file/EntityImageFi
  * @see UnusedImageFile
  * @see UnusedSmm1ImageFile_BigMushroom
  */
-export type EntityImageFile = | EditorImageFile | ClearConditionImageFile | InGameImageFile | UnusedSMM1ImageFile
+export type EntityImageFile = | EditorImageFile | PossibleClearConditionImageFiles | InGameImageFile | PossibleUnusedEntityImageFiles|PossibleUnusedBigMushroomEntityImageFiles
 
+//region -------------------- unused images --------------------
+
+export type UnusedImageFile<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
+    = ImageFile<`entity/unused/${FOLDER_NAME}`, FILE_NAME, 'tiff', `${NAME} (unused)`>
 
 /** The possible {@link ImageFile} that are unused */
-export type PossibleUnusedEntityImageFiles = NonNullable<ReturnType<typeof UnusedEntityImages[| 'STRETCH' | 'KOOPA_CLOWN_CAR' | 'WENDY_PROJECTILE' | 'LEMMY_PROJECTILE' | 'MORTON_GROUND_PROJECTILE' | 'VINE' | 'GOAL_POLE' | 'P_SWITCH']['image']['all']['get']>>[number][number]
+export type PossibleUnusedEntityImageFiles = NonNullable<ReturnType<typeof UnusedEntityImages[| 'STRETCH' | 'KOOPA_CLOWN_CAR' | 'WENDY_PROJECTILE'
+                                                                                              | 'LEMMY_PROJECTILE' | 'MORTON_GROUND_PROJECTILE' | 'VINE'
+                                                                                              | 'GOAL_POLE' | 'P_SWITCH']['image']['all']['get']>>[number][number]
+//endregion -------------------- unused images --------------------
+//region -------------------- unused Big Mushroom images --------------------
 
+/**
+ * An unused Big Mushroom ({@link Entities.BIG_MUSHROOM_CLASSIC classic} / {@link Entities.BIG_MUSHROOM_MODERN modern}) {@link ImageFile}
+ * in {@link GameStyles.SUPER_MARIO_BROS SMB} only for {@link Games.SUPER_MARIO_MAKER_1 SMM1}
+ */
+export type UnusedSmm1ImageFile_BigMushroom<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
+    = ImageFile<`entity/unused/M1 A - Enemy - ${FOLDER_NAME}`, FILE_NAME, 'tiff', `${NAME} (unused Big Mushroom)`>
 /** The possible {@link ImageFile} that are unused as a Big Mushroom ({@link Entities.BIG_MUSHROOM_MODERN modern} / {@link Entities.BIG_MUSHROOM_CLASSIC classic}) */
-export type PossibleUnusedBigMushroomEntityImageFiles = typeof UnusedBigMushroomEntityImages[| 'GOOMBA' | 'STRETCH' | 'CANNONBALL' | 'KOOPA_CLOWN_CAR' | 'BOWSER' | 'BOWSER_JR']['image']['all'][number]
+export type PossibleUnusedBigMushroomEntityImageFiles = typeof UnusedBigMushroomEntityImages[| 'GOOMBA' | 'STRETCH' | 'CANNONBALL'
+                                                                                             | 'KOOPA_CLOWN_CAR' | 'BOWSER' | 'BOWSER_JR']['image']['all'][number]
+
+//endregion -------------------- unused Big Mushroom images --------------------

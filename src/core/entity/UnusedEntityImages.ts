@@ -3,7 +3,7 @@ import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
-import type {UnusedImageFile}                      from 'core/entity/file/EntityImageFile.unused'
+import type {UnusedImageFile}                      from 'core/entity/file/EntityImageFile'
 import type {UnusedImage_Regular}                  from 'core/entity/images/unused/UnusedImage_Regular'
 import type {ClassWithImage}                       from 'util/ClassWithImage'
 
@@ -48,9 +48,9 @@ export abstract class UnusedEntityImages
      * an existant {@link UnusedImage_Regular} in only 1 {@link GameStyles}
      * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly ExistantIn1GameStyle = class RegularUnusedEntityImages<const NAME extends PossibleEnglishName = PossibleEnglishName,
-        const FOLDER_NAME extends string = string,
-        const FILE_NAME extends string = string, >
+    private static readonly ExistantIn1GameStyle = class ExistantIn1GameStyleUnusedEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
         extends UnusedEntityImages {
 
         readonly #englishName
@@ -86,11 +86,11 @@ export abstract class UnusedEntityImages
      * an existant {@link UnusedImage_Regular} in only 2 {@link GameStyles}
      * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly ExistantIn2GameStyle = class RegularUnusedEntityImages<const NAME extends PossibleEnglishName = PossibleEnglishName,
-        const FOLDER_NAME_1 extends string = string,
-        const FILE_NAME_1 extends string = string,
-        const FOLDER_NAME_2 extends string = string,
-        const FILE_NAME_2 extends string = string, >
+    private static readonly ExistantIn2GameStyle = class ExistantIn2GameStyleUnusedEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME_1 extends string,
+        const FILE_NAME_1 extends string,
+        const FOLDER_NAME_2 extends string,
+        const FILE_NAME_2 extends string, >
         extends UnusedEntityImages {
 
         readonly #englishName
@@ -140,13 +140,13 @@ export abstract class UnusedEntityImages
      * an existant {@link UnusedImage_Regular} in only 3 {@link GameStyles}
      * and a non-existant {@link UnusedImage_BigMushroom} ({@link EmptyUnusedImage_BigMushroom})
      */
-    private static readonly ExistantIn3GameStyle = class RegularUnusedEntityImages<const NAME extends PossibleEnglishName = PossibleEnglishName,
-        const FOLDER_NAME_1 extends string = string,
-        const FILE_NAME_1 extends string = string,
-        const FOLDER_NAME_2 extends string = string,
-        const FILE_NAME_2 extends string = string,
-        const FOLDER_NAME_3 extends string = string,
-        const FILE_NAME_3 extends string = string, >
+    private static readonly ExistantIn3GameStyle = class ExistantIn3GameStyleUnusedEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME_1 extends string,
+        const FILE_NAME_1 extends string,
+        const FOLDER_NAME_2 extends string,
+        const FILE_NAME_2 extends string,
+        const FOLDER_NAME_3 extends string,
+        const FILE_NAME_3 extends string, >
         extends UnusedEntityImages {
 
         readonly #englishName
