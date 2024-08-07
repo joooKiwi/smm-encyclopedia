@@ -1,7 +1,6 @@
-import type {Entities}                from 'core/entity/Entities'
-import type {EntityImageFile}         from 'core/entity/file/EntityImageFile'
-import type {EditorImageFile}         from 'core/entity/file/EntityImageFile.editor'
-import type {ClearConditionImageFile} from 'core/entity/file/EntityImageFile.clearCondition'
+import type {Entities}                                          from 'core/entity/Entities'
+import type {EntityImageFile, PossibleClearConditionImageFiles} from 'core/entity/file/EntityImageFile'
+import type {EditorImageFile}                                   from 'core/entity/file/EntityImageFile.editor'
 import type {InGameImageFile}         from 'core/entity/file/EntityImageFile.inGame'
 import type {ClearConditionImage}     from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {EditorImage}             from 'core/entity/images/editor/EditorImage'
@@ -65,7 +64,7 @@ export function uniqueImageFromEditor(entity: Entities, editorImage: EditorImage
  * @param inGameImage The {@link InGameImage} file for the {@link entity}
  * @note It can throw a warning if the images are empty
  */
-export function uniqueImageFromClearCondition(entity: Entities, editorImage: EditorImage, clearConditionImage: ClearConditionImage, inGameImage: InGameImage,): UniqueImage {
+export function uniqueImageFromClearCondition(entity: Entities, editorImage: EditorImage, clearConditionImage: ClearConditionImage, inGameImage: InGameImage,): UniqueImage<PossibleClearConditionImageFiles> {
     const images = clearConditionImage.map
 
     if (images.size !== 0)
@@ -249,7 +248,7 @@ export function uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(ent
 //endregion -------------------- Unique images (editor) --------------------
 //region -------------------- Unique images (clear condition) --------------------
 
-export function uniqueInSmbAndSmb3ImagesInClearCondition(entity: Entities,): UniqueImage<ClearConditionImageFile> {
+export function uniqueInSmbAndSmb3ImagesInClearCondition(entity: Entities,): UniqueImage<PossibleClearConditionImageFiles> {
     const image = entity.clearConditionImage
 
     return new UniqueImageContainer(entity.editorImage, image, entity.inGameImage, new Map([

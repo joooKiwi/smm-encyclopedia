@@ -1,5 +1,4 @@
 import type {ClassWithEnglishName}                                                                                            from 'core/ClassWithEnglishName'
-import type {ClearConditionEntityImages}                                                                                      from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}                                                                                              from 'core/entity/EditorEntityImages'
 import type {PossibleEnglishName}                                                                                             from 'core/entity/Entities.types'
 import type {InGameEntityImages}                                                                                              from 'core/entity/InGameEntityImages'
@@ -8,7 +7,8 @@ import type {ClearConditionImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMu
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1} from 'core/entity/file/EntityImageFile.inGame'
 import type {GameStyles}                                                                                                      from 'core/gameStyle/GameStyles'
 
-import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
+import {SimpleImageFile}        from 'util/file/image/SimpleImageFile'
+import {PossibleAcronym_InFile} from 'core/gameStyle/GameStyles.types'
 
 //region -------------------- Editor image --------------------
 
@@ -76,10 +76,10 @@ export function powerUpEditorImages(entity: EditorEntityImages, standaloneName: 
  *
  * @param entity The entity to retrieve its name
  * @param name The ending file name
- * @param gameStyle The image {@link GameStyles}
+ * @param gameStyleAcronym The image {@link GameStyles} acronym
  */
-export function clearConditionImage(entity: ClearConditionEntityImages, name: ImageName_ClearCondition, gameStyle: GameStyles,): ClearConditionImageFile {
-    return new SimpleImageFile(`entity/clear condition/`, `${gameStyle.acronymInFile}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (Clear condition)`,)
+export function clearConditionImage<const GAME_STYLE_ACRONYM extends PossibleAcronym_InFile = PossibleAcronym_InFile, const FILE_NAME extends string = string, const NAME extends PossibleEnglishName = PossibleEnglishName, >(entity: ClassWithEnglishName<NAME>, name: FILE_NAME, gameStyleAcronym: GAME_STYLE_ACRONYM,): ClearConditionImageFile<GAME_STYLE_ACRONYM, FILE_NAME, NAME> {
+    return new SimpleImageFile(`entity/clear condition/`, `${gameStyleAcronym}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (clear condition)`,)
 }
 
 //endregion -------------------- Clear condition image --------------------
