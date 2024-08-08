@@ -1,26 +1,31 @@
-import type {EntityBehaviours}                          from 'core/behaviour/EntityBehaviours'
-import type {CharacterNames}                            from 'core/characterName/CharacterNames'
-import type {CourseTags}                                from 'core/courseTag/CourseTags'
-import type {EntityCategories}                          from 'core/entityCategory/EntityCategories'
-import type {Entities}                                  from 'core/entity/Entities'
-import type {EntityLoader}                              from 'core/entity/Entity.loader'
-import type {GameReferences}                            from 'core/gameReference/GameReferences'
-import type {GameStyles}                                from 'core/gameStyle/GameStyles'
-import type {Instruments}                               from 'core/instrument/Instruments'
-import type {Limits}                                    from 'core/limit/Limits'
-import type {LimitTypes}                                from 'core/limit/LimitTypes'
-import type {MiiCostumeCategories}                      from 'core/miiCostumeCategory/MiiCostumeCategories'
-import type {MiiCostumes}                               from 'core/miiCostume/MiiCostumes'
-import type {Musics}                                    from 'core/music/Musics'
-import type {MysteryMushrooms}                          from 'core/mysteryMushroom/MysteryMushrooms'
-import type {NightEffects}                              from 'core/nightEffect/NightEffects'
-import type {OfficialNotifications}                     from 'core/officialNotification/OfficialNotifications'
-import type {PredefinedMessages}                        from 'core/predefinedMessage/PredefinedMessages'
-import type {SoundEffectCategories}                     from 'core/soundEffectCategory/SoundEffectCategories'
-import type {SoundEffects}                              from 'core/soundEffect/SoundEffects'
-import type {Themes}                                    from 'core/theme/Themes'
-import type {Times}                                     from 'core/time/Times'
-import type {Versions}                                  from 'core/version/Versions'
+import type {EntityBehaviours}              from 'core/behaviour/EntityBehaviours'
+import type {CharacterNames}                from 'core/characterName/CharacterNames'
+import type {CourseTags}                    from 'core/courseTag/CourseTags'
+import type {EntityCategories}              from 'core/entityCategory/EntityCategories'
+import type {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
+import type {EditorEntityImages}            from 'core/entity/EditorEntityImages'
+import type {Entities}                      from 'core/entity/Entities'
+import type {EntityLoader}                  from 'core/entity/Entity.loader'
+import type {InGameEntityImages}            from 'core/entity/InGameEntityImages'
+import type {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
+import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
+import type {GameReferences}                from 'core/gameReference/GameReferences'
+import type {GameStyles}                    from 'core/gameStyle/GameStyles'
+import type {Instruments}                   from 'core/instrument/Instruments'
+import type {Limits}                        from 'core/limit/Limits'
+import type {LimitTypes}                    from 'core/limit/LimitTypes'
+import type {MiiCostumeCategories}          from 'core/miiCostumeCategory/MiiCostumeCategories'
+import type {MiiCostumes}                   from 'core/miiCostume/MiiCostumes'
+import type {Musics}                        from 'core/music/Musics'
+import type {MysteryMushrooms}              from 'core/mysteryMushroom/MysteryMushrooms'
+import type {NightEffects}                  from 'core/nightEffect/NightEffects'
+import type {OfficialNotifications}         from 'core/officialNotification/OfficialNotifications'
+import type {PredefinedMessages}            from 'core/predefinedMessage/PredefinedMessages'
+import type {SoundEffectCategories}         from 'core/soundEffectCategory/SoundEffectCategories'
+import type {SoundEffects}                  from 'core/soundEffect/SoundEffects'
+import type {Themes}                        from 'core/theme/Themes'
+import type {Times}                         from 'core/time/Times'
+import type {Versions}                      from 'core/version/Versions'
 
 /**
  * <p>
@@ -59,6 +64,12 @@ export class DynamicImporter {
 
     #Entities?: typeof Entities
     #EntityLoader?: typeof EntityLoader
+
+    #EditorEntityImages?: typeof EditorEntityImages
+    #ClearConditionEntityImages?: typeof ClearConditionEntityImages
+    #InGameEntityImages?: typeof InGameEntityImages
+    #UnusedEntityImages?: typeof UnusedEntityImages
+    #UnusedBigMushroomEntityImages?: typeof UnusedBigMushroomEntityImages
 
     //endregion -------------------- Entity fields --------------------
     //region -------------------- "Limit" fields --------------------
@@ -168,6 +179,27 @@ export class DynamicImporter {
 
     public get EntityLoader(): typeof EntityLoader {
         return this.#EntityLoader ??= require('../core/entity/Entity.loader').EntityLoader
+    }
+
+
+    public get EditorEntityImages(): typeof EditorEntityImages {
+        return this.#EditorEntityImages ??= require('../core/entity/EditorEntityImages').EditorEntityImages
+    }
+
+    public get ClearConditionEntityImages(): typeof ClearConditionEntityImages {
+        return this.#ClearConditionEntityImages ??= require('../core/entity/ClearConditionEntityImages').ClearConditionEntityImages
+    }
+
+    public get InGameEntityImages(): typeof InGameEntityImages {
+        return this.#InGameEntityImages ??= require('../core/entity/InGameEntityImages').InGameEntityImages
+    }
+
+    public get UnusedEntityImages(): typeof UnusedEntityImages {
+        return this.#UnusedEntityImages ??= require('../core/entity/UnusedEntityImages').UnusedEntityImages
+    }
+
+    public get UnusedBigMushroomEntityImages(): typeof UnusedBigMushroomEntityImages {
+        return this.#UnusedBigMushroomEntityImages ??= require('../core/entity/UnusedBigMushroomEntityImages').UnusedBigMushroomEntityImages
     }
 
     //endregion -------------------- Entity getter methods --------------------
