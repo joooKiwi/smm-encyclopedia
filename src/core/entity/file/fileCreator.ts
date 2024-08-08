@@ -1,72 +1,25 @@
 import type {ClassWithEnglishName}                                                                                            from 'core/ClassWithEnglishName'
-import type {EditorEntityImages}                                                                                              from 'core/entity/EditorEntityImages'
 import type {PossibleEnglishName}                                                                                             from 'core/entity/Entities.types'
 import type {InGameEntityImages}                                                                                              from 'core/entity/InGameEntityImages'
-import type {GenericEditorImageFile, ImageName_Editor, ImageName_Editor_PowerUp, PowerUpEditorImageFile}                      from 'core/entity/file/EntityImageFile.editor'
-import type {ClearConditionImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMushroom}                                       from 'core/entity/file/EntityImageFile'
+import type {ClearConditionImageFile, EditorImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMushroom}                      from 'core/entity/file/EntityImageFile'
 import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1} from 'core/entity/file/EntityImageFile.inGame'
 import type {GameStyles}                                                                                                      from 'core/gameStyle/GameStyles'
+import type {PossibleAcronym_InFile}                                                                                          from 'core/gameStyle/GameStyles.types'
 
-import {SimpleImageFile}        from 'util/file/image/SimpleImageFile'
-import {PossibleAcronym_InFile} from 'core/gameStyle/GameStyles.types'
+import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 //region -------------------- Editor image --------------------
 
 /**
- * Create a simple {@link GenericEditorImageFile}
+ * Create a {@link EditorImageFile} from the {@link name} and {@link gameStyle} provided
  *
  * @param entity The entity to retrieve its name
  * @param name The image name
  * @param gameStyle The image {@link GameStyles}
  */
-export function editorImage(entity: EditorEntityImages, name: ImageName_Editor, gameStyle: GameStyles,): GenericEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym})`,)
+export function editorImage<const GAME_STYLE extends GameStyles, const FILE_NAME extends string, NAME extends PossibleEnglishName, >(entity: ClassWithEnglishName<NAME>, name: FILE_NAME, gameStyle: GAME_STYLE,): EditorImageFile<GAME_STYLE, FILE_NAME, NAME> {
+    return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (editor)`,)
 }
-
-//region -------------------- Editor image (power-up) --------------------
-
-/**
- * Create a simple {@link PowerUpEditorImageFile} from the values provided
- * labelled as "with mushroom"
- *
- * @param entity The entity to retrieve its name
- * @param name The image file name
- * @param gameStyle The image {@link GameStyles}
- */
-export function standalonePowerUpEditorImage(entity: EditorEntityImages, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} standalone)`,)
-}
-
-/**
- * Create a simple {@link PowerUpEditorImageFile} from the values provided
- * labelled as "standalone"
- *
- * @param entity The entity to retrieve its name
- * @param name The image file name
- * @param gameStyle The image {@link GameStyles}
- */
-export function withMushroomPowerUpEditorImage(entity: EditorEntityImages, name: ImageName_Editor_PowerUp, gameStyle: GameStyles,): PowerUpEditorImageFile {
-    return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (Editor ${gameStyle.acronym} with mushroom)`,)
-}
-
-/**
- * Get both standalone and "with mushroom" {@link PowerUpEditorImageFile} from the values provided
- *
- * @param entity The entity to retrieve its name
- * @param standaloneName The image name that is standalone
- * @param nameWithMushroom The image name that is with a {@link Entities.SUPER_MUSHROOM mushroom}
- * @param gameStyle The images {@link GameStyles}
- * @see standalonePowerUpEditorImage
- * @see withMushroomPowerUpEditorImage
- */
-export function powerUpEditorImages(entity: EditorEntityImages, standaloneName: ImageName_Editor_PowerUp, nameWithMushroom: ImageName_Editor_PowerUp, gameStyle: GameStyles,): readonly [PowerUpEditorImageFile, PowerUpEditorImageFile,] {
-    return [
-        standalonePowerUpEditorImage(entity, standaloneName, gameStyle,),
-        withMushroomPowerUpEditorImage(entity, nameWithMushroom, gameStyle,),
-    ]
-}
-
-//endregion -------------------- Editor image (power-up) --------------------
 
 //endregion -------------------- Editor image --------------------
 //region -------------------- Clear condition image --------------------

@@ -1,20 +1,25 @@
-import type {EditorImageFile} from 'core/entity/file/EntityImageFile.editor'
-import type {Image}           from 'core/entity/images/Image'
+import type {EditorImageFile} from 'core/entity/file/EntityImageFile'
 import type {GameStyles}      from 'core/gameStyle/GameStyles'
-import type {Themes}          from 'core/theme/Themes'
-import type {Times}           from 'core/time/Times'
+import type {Themes}           from 'core/theme/Themes'
+import type {Times}            from 'core/time/Times'
 
-/** The base of the editor image used for a {@link Entities} */
-export interface EditorImage<out T extends EditorImageFile = EditorImageFile, >
-    extends Image {
+export interface EditorImage<T extends EditorImageFile = EditorImageFile, > {
 
-    get all(): readonly T[]
+    /** Get all the images with no association */
+    readonly images: readonly T[]
+    /** Get all the images with their association {@link Times}, {@link GameStyles} and {@link Times} */
+    readonly imagesWithAssociation: readonly (readonly [Times, GameStyles, Themes, T,])[]
 
-    get map(): EditorMap<T>
-
+    /** Get the images from a possible {@link GameStyles}, {@link Themes} and {@link Times} */
     get(gameStyle?: Nullable<GameStyles>, theme?: Nullable<Themes>, time?: Nullable<Times>,): readonly T[]
 
-}
+    /** Get the images from a possible {@link Themes} */
+    getFromTheme(theme: Nullable<Themes>,): readonly T[]
 
-/** A simple type-alias of a {@link Map} of {@link Times} of {@link GameStyles} of {@link Themes} of {@link EditorImageFile} */
-export type EditorMap<T extends EditorImageFile,> = ReadonlyMap<Times, ReadonlyMap<GameStyles, ReadonlyMap<Themes, readonly T[]>>>
+    /** Get the images from a possible {@link GameStyles} */
+    getFromGameStyle(gameStyle: Nullable<GameStyles>,): readonly T[]
+
+    /** Get the images from a possible {@link Times} */
+    getFromTime(time: Nullable<Times>,): readonly T[]
+
+}

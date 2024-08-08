@@ -1,11 +1,12 @@
 import type {EditorImage}                                      from 'core/entity/images/editor/EditorImage'
 import type {ClassWithNullObjectPattern, EmptyEditorImageName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_ARRAY, EMPTY_MAP} from 'util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 /** @singleton */
 export class EmptyEditorImage
-    implements EditorImage<never>, ClassWithNullObjectPattern<EmptyEditorImageName> {
+    implements EditorImage<never>,
+        ClassWithNullObjectPattern<EmptyEditorImageName> {
 
     //region -------------------- Singleton usage --------------------
 
@@ -19,14 +20,14 @@ export class EmptyEditorImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly all = EMPTY_ARRAY
-    public readonly map = EMPTY_MAP
-    public get(): EmptyArray {
-        return EMPTY_ARRAY
-    }
+    public readonly images = EMPTY_ARRAY
+    public readonly imagesWithAssociation = EMPTY_ARRAY
 
-    public toString(): EmptyEditorImageName {
-        return 'Empty editor image'
-    }
+    public get(): EmptyArray { return EMPTY_ARRAY }
+    public getFromTheme(): EmptyArray { return EMPTY_ARRAY }
+    public getFromGameStyle(): EmptyArray { return EMPTY_ARRAY }
+    public getFromTime(): EmptyArray { return EMPTY_ARRAY }
+
+    public toString(): EmptyEditorImageName { return 'Empty editor image' }
 
 }
