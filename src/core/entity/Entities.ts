@@ -16,19 +16,20 @@ import type {CompanionEnumByNameWithValidationSingleton}  from 'util/enumerable/
 
 import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
 import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
-import {EditorEntityImages}                from 'core/entity/EditorEntityImages'
+import type {EditorEntityImages}           from 'core/entity/EditorEntityImages'
 import {EntityLoader}                      from 'core/entity/Entity.loader'
 import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
 import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
+import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
 import * as ImageCreator                   from 'core/entity/images/imageCreator'
 import {EmptyClearConditionImage}          from 'core/entity/images/clearCondition/EmptyClearConditionImage'
 import {EmptyEditorImage}                  from 'core/entity/images/editor/EmptyEditorImage'
 import {EmptyInGameImage}                  from 'core/entity/images/inGame/EmptyInGameImage'
 import {EmptyUniqueImage}                  from 'core/entity/images/unique/EmptyUniqueImage'
 import {StringContainer}                   from 'util/StringContainer'
+import {Import}                            from 'util/DynamicImporter'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
-import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
 
 /**
  * @recursiveReference<{@link ClearConditionEntityImages}>
@@ -36,6 +37,8 @@ import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEn
  * @recursiveReference<{@link EditorEntityImages}>
  * @recursiveReference<{@link EntityLoader}>
  * @recursiveReference<{@link InGameEntityImages}>
+ * @recursiveReference<{@link UnusedEntityImages}>
+ * @recursiveReference<{@link UnusedBigMushroomEntityImages}>
  */
 export class Entities
     extends Enum<Ordinals, Names>
@@ -1808,7 +1811,7 @@ export class Entities
         return this.#editorVoiceReference = null
     }
 
-    public get entityEditorImageReference(): EditorEntityImages { return this.#editorEntityImageReference ??= EditorEntityImages[this.name] }
+    public get entityEditorImageReference(): EditorEntityImages { return this.#editorEntityImageReference ??= Import.EditorEntityImages[this.name] }
 
     public get clearConditionEntityImageReference(): ClearConditionEntityImages { return this.#clearConditionEntityImageReference ??= ClearConditionEntityImages[this.name] }
 
