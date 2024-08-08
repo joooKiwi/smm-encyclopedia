@@ -1,11 +1,10 @@
-import type {Entities}                                          from 'core/entity/Entities'
-import type {EntityImageFile, PossibleClearConditionImageFiles} from 'core/entity/file/EntityImageFile'
-import type {EditorImageFile}                                   from 'core/entity/file/EntityImageFile.editor'
-import type {InGameImageFile}                                   from 'core/entity/file/EntityImageFile.inGame'
-import type {ClearConditionImage}                               from 'core/entity/images/clearCondition/ClearConditionImage'
-import type {EditorImage}                                       from 'core/entity/images/editor/EditorImage'
-import type {InGameImage}                                       from 'core/entity/images/inGame/InGameImage'
-import type {UniqueImage}                                       from 'core/entity/images/unique/UniqueImage'
+import type {Entities}                                                  from 'core/entity/Entities'
+import type {ClearConditionImageFile, EditorImageFile, EntityImageFile} from 'core/entity/file/EntityImageFile'
+import type {InGameImageFile}                                           from 'core/entity/file/EntityImageFile.inGame'
+import type {ClearConditionImage}                                       from 'core/entity/images/clearCondition/ClearConditionImage'
+import type {EditorImage}                                               from 'core/entity/images/editor/EditorImage'
+import type {InGameImage}                                               from 'core/entity/images/inGame/InGameImage'
+import type {UniqueImage}                                               from 'core/entity/images/unique/UniqueImage'
 
 import {EmptyUniqueImage}     from 'core/entity/images/unique/EmptyUniqueImage'
 import {UniqueImageContainer} from 'core/entity/images/unique/UniqueImage.container'
@@ -25,8 +24,8 @@ import {mapValue}             from 'util/utilitiesMethods'
  * @param inGameImage The {@link InGameImage} file for the {@link entity}
  * @note It can throw a warning if the images are empty
  */
-export function uniqueImageFromEditor(entity: Entities, editorImage: EditorImage, clearConditionImage: ClearConditionImage, inGameImage: InGameImage,): UniqueImage {
-    const images = new Map<GameStyles, readonly EntityImageFile[]>()
+export function uniqueImageFromEditor(entity: Entities, editorImage: EditorImage, clearConditionImage: ClearConditionImage, inGameImage: InGameImage,): UniqueImage<EditorImageFile> {
+    const images = new Map<GameStyles, readonly EditorImageFile[]>()
 
     const smbImages = editorImage.get(GameStyles.SUPER_MARIO_BROS,)
     if (smbImages.length !== 0)
@@ -64,7 +63,7 @@ export function uniqueImageFromEditor(entity: Entities, editorImage: EditorImage
  * @param inGameImage The {@link InGameImage} file for the {@link entity}
  * @note It can throw a warning if the images are empty
  */
-export function uniqueImageFromClearCondition(entity: Entities, editorImage: EditorImage, clearConditionImage: ClearConditionImage, inGameImage: InGameImage,): UniqueImage<PossibleClearConditionImageFiles> {
+export function uniqueImageFromClearCondition(entity: Entities, editorImage: EditorImage, clearConditionImage: ClearConditionImage, inGameImage: InGameImage,): UniqueImage<ClearConditionImageFile> {
     const images = clearConditionImage.map
 
     if (images.size !== 0)
@@ -119,12 +118,12 @@ export function uniqueImageFromInGame(entity: Entities, editorImage: EditorImage
 export function uniqueImagesInEditor(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
-        [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
-        [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
-        [GameStyles.SUPER_MARIO_WORLD, image.get(GameStyles.SUPER_MARIO_WORLD,),],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.get(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
-        [GameStyles.SUPER_MARIO_3D_WORLD, image.get(GameStyles.SUPER_MARIO_3D_WORLD,),],
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
+        [GameStyles.SUPER_MARIO_BROS, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS,),],
+        [GameStyles.SUPER_MARIO_BROS_3, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS_3,),],
+        [GameStyles.SUPER_MARIO_WORLD, image.getFromGameStyle(GameStyles.SUPER_MARIO_WORLD,),],
+        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.getFromGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
+        [GameStyles.SUPER_MARIO_3D_WORLD, image.getFromGameStyle(GameStyles.SUPER_MARIO_3D_WORLD,),],
     ],),)
 }
 
@@ -152,24 +151,24 @@ export function uniqueInNsmbuImagesInEditor(entity: Entities,): UniqueImage<Edit
 export function uniqueInSm3dwImagesInEditor(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, image.get(GameStyles.SUPER_MARIO_3D_WORLD,),],],),)
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([[GameStyles.SUPER_MARIO_3D_WORLD, image.getFromGameStyle(GameStyles.SUPER_MARIO_3D_WORLD,),],],),)
 }
 
 
 export function uniqueInSmbAndSmb3ImagesInEditor(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
-        [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
-        [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
+        [GameStyles.SUPER_MARIO_BROS, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS,),],
+        [GameStyles.SUPER_MARIO_BROS_3, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS_3,),],
     ],),)
 }
 export function uniqueInSmwAndNsmbuImagesInEditor(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
-        [GameStyles.SUPER_MARIO_WORLD, image.get(GameStyles.SUPER_MARIO_WORLD,),],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.get(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
+        [GameStyles.SUPER_MARIO_WORLD, image.getFromGameStyle(GameStyles.SUPER_MARIO_WORLD,),],
+        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.getFromGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
     ],),)
 }
 
@@ -177,21 +176,21 @@ export function uniqueInSmwAndNsmbuImagesInEditor(entity: Entities,): UniqueImag
 export function uniqueInNotSmwImagesInEditor(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
-        [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
-        [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.get(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
-        [GameStyles.SUPER_MARIO_3D_WORLD, image.get(GameStyles.SUPER_MARIO_3D_WORLD,),],
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
+        [GameStyles.SUPER_MARIO_BROS, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS,),],
+        [GameStyles.SUPER_MARIO_BROS_3, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS_3,),],
+        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.getFromGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
+        [GameStyles.SUPER_MARIO_3D_WORLD, image.getFromGameStyle(GameStyles.SUPER_MARIO_3D_WORLD,),],
     ],),)
 }
 export function uniqueInNotSm3dwImagesInEditor(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
-        [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
-        [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
-        [GameStyles.SUPER_MARIO_WORLD, image.get(GameStyles.SUPER_MARIO_WORLD,),],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.get(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
+        [GameStyles.SUPER_MARIO_BROS, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS,),],
+        [GameStyles.SUPER_MARIO_BROS_3, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS_3,),],
+        [GameStyles.SUPER_MARIO_WORLD, image.getFromGameStyle(GameStyles.SUPER_MARIO_WORLD,),],
+        [GameStyles.NEW_SUPER_MARIO_BROS_U, image.getFromGameStyle(GameStyles.NEW_SUPER_MARIO_BROS_U,),],
     ],),)
 }
 
@@ -199,10 +198,10 @@ export function uniqueInNotSm3dwImagesInEditor(entity: Entities,): UniqueImage<E
 export function uniqueInNotNsmbuAndSm3dwImagesInEditor(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
-        [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
-        [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
-        [GameStyles.SUPER_MARIO_WORLD, image.get(GameStyles.SUPER_MARIO_WORLD,),],
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
+        [GameStyles.SUPER_MARIO_BROS, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS,),],
+        [GameStyles.SUPER_MARIO_BROS_3, image.getFromGameStyle(GameStyles.SUPER_MARIO_BROS_3,),],
+        [GameStyles.SUPER_MARIO_WORLD, image.getFromGameStyle(GameStyles.SUPER_MARIO_WORLD,),],
     ],),)
 }
 
@@ -215,9 +214,9 @@ export function uniqueInNotNsmbuAndSm3dwImagesInEditor(entity: Entities,): Uniqu
  */
 export function uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
-    const images = image.all
+    const images = image.images
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[11], images[12],],],
         [GameStyles.SUPER_MARIO_WORLD, [images[22],],],
@@ -235,9 +234,9 @@ export function uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images(entity: Entit
  */
 export function uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(entity: Entities,): UniqueImage<EditorImageFile> {
     const image = entity.editorImage
-    const images = image.all
+    const images = image.images
 
-    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(image, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[11], images[12],],],
         [GameStyles.SUPER_MARIO_WORLD, [images[22],],],
@@ -248,13 +247,13 @@ export function uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(ent
 //endregion -------------------- Unique images (editor) --------------------
 //region -------------------- Unique images (clear condition) --------------------
 
-export function uniqueInSmbAndSmb3ImagesInClearCondition(entity: Entities,): UniqueImage<PossibleClearConditionImageFiles> {
+export function uniqueInSmbAndSmb3ImagesInClearCondition(entity: Entities,): UniqueImage<ClearConditionImageFile> {
     const image = entity.clearConditionImage
 
-    return new UniqueImageContainer(entity.editorImage, image, entity.inGameImage, new Map([
+    return new UniqueImageContainer(entity.editorImage, image, entity.inGameImage, new Map<GameStyles, readonly [ClearConditionImageFile,]>([
         [GameStyles.SUPER_MARIO_BROS, [image.get(GameStyles.SUPER_MARIO_BROS,),],],
         [GameStyles.SUPER_MARIO_BROS_3, [image.get(GameStyles.SUPER_MARIO_BROS_3,),],],
-    ] as const,),)
+    ],),)
 }
 
 //endregion -------------------- Unique images (clear condition) --------------------
@@ -263,7 +262,7 @@ export function uniqueInSmbAndSmb3ImagesInClearCondition(entity: Entities,): Uni
 export function uniqueInSmbAndSmb3ImagesInInGame(entity: Entities,): UniqueImage<InGameImageFile> {
     const image = entity.inGameImage
 
-    return new UniqueImageContainer(entity.editorImage, entity.clearConditionImage, image, new Map([
+    return new UniqueImageContainer(entity.editorImage, entity.clearConditionImage, image, new Map<GameStyles, readonly InGameImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
         [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
     ],),)
@@ -272,7 +271,7 @@ export function uniqueInSmbAndSmb3ImagesInInGame(entity: Entities,): UniqueImage
 export function uniqueInNotSm3dwImagesInInGame(entity: Entities,): UniqueImage<InGameImageFile> {
     const image = entity.inGameImage
 
-    return new UniqueImageContainer(entity.editorImage, entity.clearConditionImage, image, new Map([
+    return new UniqueImageContainer(entity.editorImage, entity.clearConditionImage, image, new Map<GameStyles, readonly InGameImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, image.get(GameStyles.SUPER_MARIO_BROS,),],
         [GameStyles.SUPER_MARIO_BROS_3, image.get(GameStyles.SUPER_MARIO_BROS_3,),],
         [GameStyles.SUPER_MARIO_WORLD, image.get(GameStyles.SUPER_MARIO_WORLD,),],
@@ -292,11 +291,11 @@ export function uniqueInNotSm3dwImagesInInGame(entity: Entities,): UniqueImage<I
  * @param entity The {@link Entities.BRIDGE} reference
  * @see editorBridgeImages
  */
-export function uniqueBridgeImages(entity: Entities,): UniqueImage {
+export function uniqueBridgeImages(entity: Entities,): UniqueImage<EditorImageFile> {
     const editorImage = entity.editorImage
-    const images = editorImage.all
+    const images = editorImage.images
 
-    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1], images[2], images[3], images[4],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[6], images[7], images[8],],],
         [GameStyles.SUPER_MARIO_WORLD, [images[9], images[10], images[11], images[12],],],
@@ -312,11 +311,11 @@ export function uniqueBridgeImages(entity: Entities,): UniqueImage {
  * @param entity The {@link Entities.BRICK_BLOCK} reference
  * @see editorBrickBlockImages
  */
-export function uniqueBrickBlockImages(entity: Entities,): UniqueImage {
+export function uniqueBrickBlockImages(entity: Entities,): UniqueImage<EditorImageFile> {
     const editorImage = entity.editorImage
-    const images = editorImage.all
+    const images = editorImage.images
 
-    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1], images[2], images[3], images[5],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[6], images[7],],],
         [GameStyles.NEW_SUPER_MARIO_BROS_U, [images[8],],],
@@ -332,11 +331,11 @@ export function uniqueBrickBlockImages(entity: Entities,): UniqueImage {
  * @param entity The {@link Entities.CRISTAL_BLOCK} reference
  * @see editorCristalBlockImages
  */
-export function uniqueCristalBlockImages(entity: Entities,): UniqueImage {
+export function uniqueCristalBlockImages(entity: Entities,): UniqueImage<EditorImageFile> {
     const editorImage = entity.editorImage
-    const images = editorImage.all
+    const images = editorImage.images
 
-    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_3D_WORLD, [images[0],],],
     ],),)
 }
@@ -355,11 +354,11 @@ export function uniqueCristalBlockImages(entity: Entities,): UniqueImage {
  * @param entity The {@link Entities.HARD_BLOCK} reference
  * @see editorHardBlockImages
  */
-export function uniqueHardBlockImages(entity: Entities,): UniqueImage {
+export function uniqueHardBlockImages(entity: Entities,): UniqueImage<EditorImageFile> {
     const editorImage = entity.editorImage
-    const images = editorImage.all
+    const images = editorImage.images
 
-    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1], images[3], images[4], images[5], images[7],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[9], images[11],],],
         [GameStyles.SUPER_MARIO_WORLD, [images[12], images[13],],],
@@ -375,11 +374,11 @@ export function uniqueHardBlockImages(entity: Entities,): UniqueImage {
  * @see editorSpikeBallImages
  * @see uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images
  */
-export function uniqueSpikeBallImages(entity: Entities,): UniqueImage {
+export function uniqueSpikeBallImages(entity: Entities,): UniqueImage<EditorImageFile> {
     const editorImage = entity.editorImage
-    const images = editorImage.all
+    const images = editorImage.images
 
-    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[10], images[11],],],
         [GameStyles.SUPER_MARIO_WORLD, [images[12],],],
@@ -396,11 +395,11 @@ export function uniqueSpikeBallImages(entity: Entities,): UniqueImage {
  * @param entity The {@link Entities.TREE} reference
  * @see editorTreeImages
  */
-export function uniqueTreeImages(entity: Entities,): UniqueImage {
+export function uniqueTreeImages(entity: Entities,): UniqueImage<EditorImageFile> {
     const editorImage = entity.editorImage
-    const images = editorImage.all
+    const images = editorImage.images
 
-    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map([
+    return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_3D_WORLD, [images[0], images[1], images[2], images[3], images[4],],],
     ],),)
 }
