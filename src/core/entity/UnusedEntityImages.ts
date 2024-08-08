@@ -43,6 +43,25 @@ export abstract class UnusedEntityImages
 
     }
 
+    /** An abstract subclass of an {@link UnusedEntityImages} to hold a specific {@link PossibleEnglishName} */
+    private static readonly Existant = (() => {
+        abstract class ExistantUnusedEntityImages<const NAME extends PossibleEnglishName, > extends UnusedEntityImages {
+
+            readonly #englishName
+
+            protected constructor(englishName: NAME,) {
+                super()
+                this.#englishName = englishName
+            }
+
+            public override get englishName(): NAME { return this.#englishName }
+
+        }
+
+        return ExistantUnusedEntityImages
+    })()
+
+
     /**
      * A subclass of an {@link UnusedEntityImages} to hold
      * an existant {@link UnusedImage_Regular} in only 1 {@link GameStyles}
@@ -51,23 +70,19 @@ export abstract class UnusedEntityImages
     private static readonly ExistantIn1GameStyle = class ExistantIn1GameStyleUnusedEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
-        extends UnusedEntityImages {
+        extends UnusedEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>>
         readonly #gameStyle
         readonly #folderName
         readonly #fileNames
 
         public constructor(englishName: NAME, gameStyle: GameStyles, folderName: FOLDER_NAME, ...fileNames: readonly FILE_NAME[]) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#gameStyle = gameStyle
             this.#folderName = folderName
             this.#fileNames = fileNames
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public override get image(): UnusedImage_Regular<UnusedImageFile<FOLDER_NAME, FILE_NAME, NAME>> {
             const value = this.#image
@@ -91,9 +106,8 @@ export abstract class UnusedEntityImages
         const FILE_NAME_1 extends string,
         const FOLDER_NAME_2 extends string,
         const FILE_NAME_2 extends string, >
-        extends UnusedEntityImages {
+        extends UnusedEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>>
         readonly #gameStyle1
         readonly #folderName1
@@ -105,8 +119,7 @@ export abstract class UnusedEntityImages
         public constructor(englishName: NAME,
                            gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: readonly FILE_NAME_1[],
                            gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: readonly FILE_NAME_2[],) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#gameStyle1 = gameStyle1
             this.#folderName1 = folderName1
             this.#fileNames1 = fileNames1
@@ -114,8 +127,6 @@ export abstract class UnusedEntityImages
             this.#folderName2 = folderName2
             this.#fileNames2 = fileNames2
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public override get image(): UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME>> {
             const value = this.#image
@@ -147,9 +158,8 @@ export abstract class UnusedEntityImages
         const FILE_NAME_2 extends string,
         const FOLDER_NAME_3 extends string,
         const FILE_NAME_3 extends string, >
-        extends UnusedEntityImages {
+        extends UnusedEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>>
         readonly #gameStyle1
         readonly #folderName1
@@ -165,8 +175,7 @@ export abstract class UnusedEntityImages
                            gameStyle1: GameStyles, folderName1: FOLDER_NAME_1, fileNames1: readonly FILE_NAME_1[],
                            gameStyle2: GameStyles, folderName2: FOLDER_NAME_2, fileNames2: readonly FILE_NAME_2[],
                            gameStyle3: GameStyles, folderName3: FOLDER_NAME_3, fileNames3: readonly FILE_NAME_3[],) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#gameStyle1 = gameStyle1
             this.#folderName1 = folderName1
             this.#fileNames1 = fileNames1
@@ -177,8 +186,6 @@ export abstract class UnusedEntityImages
             this.#folderName3 = folderName3
             this.#fileNames3 = fileNames3
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public override get image(): UnusedImage_Regular<| UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>> {
             const value = this.#image

@@ -40,46 +40,38 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} */
+    /** An abstract subclass of an {@link ClearConditionEntityImages} to hold a specific {@link PossibleEnglishName} */
     private static readonly Existant = (() => {
-        abstract class ExistantClearConditionEntityImages extends ClearConditionEntityImages {
+        abstract class ExistantClearConditionEntityImages<const NAME extends PossibleEnglishName, > extends ClearConditionEntityImages {
 
-            #image?: ClearConditionImage
+            readonly #englishName
 
-            public constructor() { super() }
+            public constructor(englishName: NAME,) {
+                super()
+                this.#englishName = englishName
+            }
 
-            /**
-             * Create the <b>clear condition</b> image
-             *
-             * @onlyCalledBy<{@link image}>
-             * @onlyCalledOnce
-             */
-            protected abstract _createImage(): ClearConditionImage
-
-            public override get image(): ClearConditionImage { return this.#image ??= this._createImage() }
+            public override get englishName(): NAME { return this.#englishName }
 
         }
 
         return ExistantClearConditionEntityImages
     })()
 
+    //region -------------------- Sub class (all game style) --------------------
 
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} */
     private static readonly ExistantOnAll = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<PossibleAcronym_InFile, FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<PossibleAcronym_InFile, FILE_NAME, NAME>> {
             const value = this.#image
@@ -98,23 +90,21 @@ export abstract class ClearConditionEntityImages
 
     }
 
+    //endregion -------------------- Sub class (all game style) --------------------
+    //region -------------------- Sub class (1 specific game style) --------------------
 
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_BROS SMB} */
     private static readonly ExistantOnOnlySmb = class ExistantOnOnlySmbClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<'M1', FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'M1', FILE_NAME, NAME>> {
             return this.#image ??= new ClearConditionImageContainer([[GameStyles.SUPER_MARIO_BROS, clearConditionImage(this, this.#fileName, 'M1',),],],)
@@ -125,19 +115,15 @@ export abstract class ClearConditionEntityImages
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
     private static readonly ExistantOnOnlySmb3 = class ExistantOnOnlySmb3ClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<'M3', FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'M3', FILE_NAME, NAME>> {
             return this.#image ??= new ClearConditionImageContainer([[GameStyles.SUPER_MARIO_BROS_3, clearConditionImage(this, this.#fileName, 'M3',),],],)
@@ -148,19 +134,15 @@ export abstract class ClearConditionEntityImages
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
     private static readonly ExistantOnOnlySmw = class ExistantOnOnlySmwClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<'MW', FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'MW', FILE_NAME, NAME>> {
             return this.#image ??= new ClearConditionImageContainer([[GameStyles.SUPER_MARIO_WORLD, clearConditionImage(this, this.#fileName, 'MW',),],],)
@@ -171,19 +153,15 @@ export abstract class ClearConditionEntityImages
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
     private static readonly ExistantOnOnlyNsmbu = class ExistantOnOnlyNsmbuClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<'WU', FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'WU', FILE_NAME, NAME>> {
             return this.#image ??= new ClearConditionImageContainer([[GameStyles.NEW_SUPER_MARIO_BROS_U, clearConditionImage(this, this.#fileName, 'WU',),],],)
@@ -194,19 +172,15 @@ export abstract class ClearConditionEntityImages
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
     private static readonly ExistantOnOnlySm3dw = class ExistantOnOnlySm3dwClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<'3W', FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<'3W', FILE_NAME, NAME>> {
             return this.#image ??= new ClearConditionImageContainer([[GameStyles.SUPER_MARIO_3D_WORLD, clearConditionImage(this, this.#fileName, '3W',),],],)
@@ -214,23 +188,21 @@ export abstract class ClearConditionEntityImages
 
     }
 
+    //endregion -------------------- Sub class (1 specific game style) --------------------
+    //region -------------------- Sub class (2 specific game style) --------------------
 
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
     private static readonly ExistantOnOnlySmbAndSmb3 = class ExistantOnOnlySmbAndSmb3ClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3', FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<| 'M1' | 'M3', FILE_NAME, NAME>> {
             const value = this.#image
@@ -249,19 +221,15 @@ export abstract class ClearConditionEntityImages
     /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
     private static readonly ExistantOnOnlySmwAndNsmbu = class ExistantOnOnlySmwAndNsmbuClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<| 'MW' | 'WU', FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<| 'MW' | 'WU', FILE_NAME, NAME>> {
             const value = this.#image
@@ -277,106 +245,8 @@ export abstract class ClearConditionEntityImages
 
     }
 
-
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_BROS SMB} */
-    private static readonly ExistantOnNotSmb = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
-
-        readonly #englishName
-        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>
-        readonly #fileName
-
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
-            this.#fileName = fileName
-        }
-
-        public override get englishName(): NAME { return this.#englishName }
-
-        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>([
-                [GameStyles.SUPER_MARIO_BROS_3, clearConditionImage(this, fileName, 'M3',),],
-                [GameStyles.SUPER_MARIO_WORLD, clearConditionImage(this, fileName, 'MW',),],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, clearConditionImage(this, fileName, 'WU',),],
-                [GameStyles.SUPER_MARIO_3D_WORLD, clearConditionImage(this, fileName, '3W',),],
-            ],)
-        }
-
-    }
-
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} */
-    private static readonly ExistantOnNotSmw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
-
-        readonly #englishName
-        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>
-        readonly #fileName
-
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
-            this.#fileName = fileName
-        }
-
-        public override get englishName(): NAME { return this.#englishName }
-
-        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>([
-                [GameStyles.SUPER_MARIO_BROS, clearConditionImage(this, fileName, 'M1',),],
-                [GameStyles.SUPER_MARIO_BROS_3, clearConditionImage(this, fileName, 'M3',),],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, clearConditionImage(this, fileName, 'WU',),],
-                [GameStyles.SUPER_MARIO_3D_WORLD, clearConditionImage(this, fileName, '3W',),],
-            ],)
-        }
-
-    }
-
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-    private static readonly ExistantOnNotSm3dw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
-
-        readonly #englishName
-        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>
-        readonly #fileName
-
-        public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
-            this.#fileName = fileName
-        }
-
-        public override get englishName(): NAME { return this.#englishName }
-
-        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
-            const fileName = this.#fileName
-            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>([
-                [GameStyles.SUPER_MARIO_BROS, clearConditionImage(this, fileName, 'M1',),],
-                [GameStyles.SUPER_MARIO_BROS_3, clearConditionImage(this, fileName, 'M3',),],
-                [GameStyles.SUPER_MARIO_WORLD, clearConditionImage(this, fileName, 'MW',),],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, clearConditionImage(this, fileName, 'WU',),],
-            ],)
-        }
-
-    }
-
+    //endregion -------------------- Sub class (2 specific game style) --------------------
+    //region -------------------- Sub class (3 specific game style) --------------------
 
     /**
      * A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles}
@@ -384,19 +254,15 @@ export abstract class ClearConditionEntityImages
      */
     private static readonly ExistantOnNotSmwAndNsmbu = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | 'WU'>, FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | 'WU'>, FILE_NAME, NAME>> {
             const value = this.#image
@@ -419,19 +285,15 @@ export abstract class ClearConditionEntityImages
      */
     private static readonly ExistantOnNotSmwAndSm3dw = class ExistantOnNotSmwAndSm3dwClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'MW' | '3W'>, FILE_NAME, NAME>> {
             const value = this.#image
@@ -454,19 +316,15 @@ export abstract class ClearConditionEntityImages
      */
     private static readonly ExistantOnNotNsmbuAndSm3dw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends ClearConditionEntityImages {
+        extends ClearConditionEntityImages.Existant<NAME> {
 
-        readonly #englishName
         #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>>
         readonly #fileName
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
-            super()
-            this.#englishName = englishName
+            super(englishName,)
             this.#fileName = fileName
         }
-
-        public override get englishName(): NAME { return this.#englishName }
 
         public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, | 'WU' | '3W'>, FILE_NAME, NAME>> {
             const value = this.#image
@@ -482,6 +340,98 @@ export abstract class ClearConditionEntityImages
         }
 
     }
+
+    //endregion -------------------- Sub class (3 specific game style) --------------------
+    //region -------------------- Sub class (4 specific game style) --------------------
+
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    private static readonly ExistantOnNotSmb = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
+        const FILE_NAME extends string, >
+        extends ClearConditionEntityImages.Existant<NAME> {
+
+        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>
+        readonly #fileName
+
+        public constructor(englishName: NAME, fileName: FILE_NAME,) {
+            super(englishName,)
+            this.#fileName = fileName
+        }
+
+        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const fileName = this.#fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'M1'>, FILE_NAME, NAME>>([
+                [GameStyles.SUPER_MARIO_BROS_3, clearConditionImage(this, fileName, 'M3',),],
+                [GameStyles.SUPER_MARIO_WORLD, clearConditionImage(this, fileName, 'MW',),],
+                [GameStyles.NEW_SUPER_MARIO_BROS_U, clearConditionImage(this, fileName, 'WU',),],
+                [GameStyles.SUPER_MARIO_3D_WORLD, clearConditionImage(this, fileName, '3W',),],
+            ],)
+        }
+
+    }
+
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    private static readonly ExistantOnNotSmw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
+        const FILE_NAME extends string, >
+        extends ClearConditionEntityImages.Existant<NAME> {
+
+        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>
+        readonly #fileName
+
+        public constructor(englishName: NAME, fileName: FILE_NAME,) {
+            super(englishName,)
+            this.#fileName = fileName
+        }
+
+        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const fileName = this.#fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, 'MW'>, FILE_NAME, NAME>>([
+                [GameStyles.SUPER_MARIO_BROS, clearConditionImage(this, fileName, 'M1',),],
+                [GameStyles.SUPER_MARIO_BROS_3, clearConditionImage(this, fileName, 'M3',),],
+                [GameStyles.NEW_SUPER_MARIO_BROS_U, clearConditionImage(this, fileName, 'WU',),],
+                [GameStyles.SUPER_MARIO_3D_WORLD, clearConditionImage(this, fileName, '3W',),],
+            ],)
+        }
+
+    }
+
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    private static readonly ExistantOnNotSm3dw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
+        const FILE_NAME extends string, >
+        extends ClearConditionEntityImages.Existant<NAME> {
+
+        #image?: ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>
+        readonly #fileName
+
+        public constructor(englishName: NAME, fileName: FILE_NAME,) {
+            super(englishName,)
+            this.#fileName = fileName
+        }
+
+        public get image(): ClearConditionImage<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>> {
+            const value = this.#image
+            if (value != null)
+                return value
+
+            const fileName = this.#fileName
+            return this.#image = new ClearConditionImageContainer<ClearConditionImageFile<Exclude<PossibleAcronym_InFile, '3W'>, FILE_NAME, NAME>>([
+                [GameStyles.SUPER_MARIO_BROS, clearConditionImage(this, fileName, 'M1',),],
+                [GameStyles.SUPER_MARIO_BROS_3, clearConditionImage(this, fileName, 'M3',),],
+                [GameStyles.SUPER_MARIO_WORLD, clearConditionImage(this, fileName, 'MW',),],
+                [GameStyles.NEW_SUPER_MARIO_BROS_U, clearConditionImage(this, fileName, 'WU',),],
+            ],)
+        }
+
+    }
+
+    //endregion -------------------- Sub class (4 specific game style) --------------------
 
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
