@@ -40,7 +40,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} */
     private static readonly Existant = (() => {
         abstract class ExistantClearConditionEntityImages extends ClearConditionEntityImages {
 
@@ -64,7 +64,7 @@ export abstract class ClearConditionEntityImages
     })()
 
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on all {@link GameStyles} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} */
     private static readonly ExistantOnAll = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -99,7 +99,7 @@ export abstract class ClearConditionEntityImages
     }
 
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_BROS SMB} */
     private static readonly ExistantOnOnlySmb = class ExistantOnOnlySmbClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -122,7 +122,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
     private static readonly ExistantOnOnlySmb3 = class ExistantOnOnlySmb3ClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -145,7 +145,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
     private static readonly ExistantOnOnlySmw = class ExistantOnOnlySmwClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -168,7 +168,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
     private static readonly ExistantOnOnlyNsmbu = class ExistantOnOnlyNsmbuClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -191,7 +191,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
     private static readonly ExistantOnOnlySm3dw = class ExistantOnOnlySm3dwClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -215,7 +215,7 @@ export abstract class ClearConditionEntityImages
     }
 
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
     private static readonly ExistantOnOnlySmbAndSmb3 = class ExistantOnOnlySmbAndSmb3ClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -246,7 +246,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on only {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on only {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
     private static readonly ExistantOnOnlySmwAndNsmbu = class ExistantOnOnlySmwAndNsmbuClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -278,7 +278,7 @@ export abstract class ClearConditionEntityImages
     }
 
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_BROS SMB} */
     private static readonly ExistantOnNotSmb = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -311,7 +311,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} */
     private static readonly ExistantOnNotSmw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -344,7 +344,7 @@ export abstract class ClearConditionEntityImages
 
     }
 
-    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
+    /** A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
     private static readonly ExistantOnNotSm3dw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
         extends ClearConditionEntityImages {
@@ -379,7 +379,7 @@ export abstract class ClearConditionEntityImages
 
 
     /**
-     * A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on all {@link GameStyles}
+     * A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles}
      * excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU}
      */
     private static readonly ExistantOnNotSmwAndNsmbu = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
@@ -414,7 +414,7 @@ export abstract class ClearConditionEntityImages
     }
 
     /**
-     * A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on all {@link GameStyles}
+     * A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles}
      * excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}
      */
     private static readonly ExistantOnNotSmwAndSm3dw = class ExistantOnNotSmwAndSm3dwClearConditionEntityImages<const NAME extends PossibleEnglishName,
@@ -449,7 +449,7 @@ export abstract class ClearConditionEntityImages
     }
 
     /**
-     * A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link EditorImage} on all {@link GameStyles}
+     * A subclass of an {@link ClearConditionEntityImages} to hold an existant {@link ClearConditionImage} on all {@link GameStyles}
      * excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU}
      */
     private static readonly ExistantOnNotNsmbuAndSm3dw = class ExistantOnAllClearConditionEntityImages<const NAME extends PossibleEnglishName,
