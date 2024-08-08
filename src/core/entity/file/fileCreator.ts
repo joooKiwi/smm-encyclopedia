@@ -25,7 +25,7 @@ export function editorImage<const GAME_STYLE extends GameStyles, const FILE_NAME
 //region -------------------- Clear condition image --------------------
 
 /**
- * Create a simple {@link ClearConditionImageFile} from the {@link name} and {@link number} provided
+ * Create a {@link ClearConditionImageFile}
  *
  * @param entity The entity to retrieve its name
  * @param name The ending file name

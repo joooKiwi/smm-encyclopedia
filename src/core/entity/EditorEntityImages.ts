@@ -41,6 +41,7 @@ export abstract class EditorEntityImages
 
     }
 
+    /** An abstract subclass of an {@link EditorEntityImages} to hold a specific {@link PossibleEnglishName} */
     private static readonly Existant = (() => {
         abstract class ExistantEditorEntityImages<const NAME extends PossibleEnglishName, >
             extends EditorEntityImages {
