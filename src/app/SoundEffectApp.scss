@@ -58,13 +58,19 @@
 }
 
 .playerSoundEffectTrigger-container {
-  i {
+  em {
 
     transform: translateY(var(--bs-spacer-sm));
     --image-width: .5cm;
 
-    &.big-mushroom-image, &.big-mushroom-classic-image, &.clown-car-image, {
+    &.big-mushroom-image,
+    &.big-mushroom-classic-image,
+    &.clown-car-image, {
       --image-width: .75cm;
+    }
+
+    &.stiletto-image {
+      --image-height: calc(var(--image-width) * 2);
     }
 
     &.mystery-mushroom-image::after {

@@ -80,10 +80,10 @@ export class PlayerSoundEffectTriggers
         protected override _addArgumentTo(key: string, keyMap: TranslationReplaceKeysMap,) {
             keyMap.mushroomImages = <em key={`${key} (mushroom images)`} className="mushroom-images-container">
                 <Image className="super-mushroom-image" variable="super-mushroom" isSquared/>
-                <UnfinishedText>Weird Mushroom</UnfinishedText>{/*<Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>,*/}
+                <Image className="weird-mushroom-image" variable="weird-mushroom" isSquared/>
                 <Image className="mystery-mushroom-image" variable="mystery-mushroom" isSquared/>
-                <UnfinishedText>Big Mushroom</UnfinishedText>{/*<Image className="big-mushroom-image" variable={'big-mushroom'} isSquared/>,*/}
-                <UnfinishedText>Big Mushroom (classic)</UnfinishedText>{/*<Image className="big-mushroom-classic-image" variable={'big-mushroom-classic'} isSquared/>,*/}
+                <Image className="big-mushroom-image" variable="big-mushroom" isSquared/>
+                <Image className="big-mushroom-classic-image" variable="big-mushroom-classic" isSquared/>
             </em>
             keyMap.fireFlowerImages = <em key={`${key} (fire flower images)`} className="fire-flower-images-container">
                 <Image className="fire-flower-image" variable="fire-flower" isSquared/>
@@ -130,7 +130,7 @@ export class PlayerSoundEffectTriggers
             keyMap.lakituCloudImage = <Image key={`${key} (Lakitu's Cloud image)`} className="lakitu-cloud-image" variable="lakitu-cloud" isSquared/>
             keyMap.shoeImages = <em key={`${key} (Shoe images)`} className="shoe-images-container">
                 <Image className="shoe-image" variable="shoe" isSquared/>
-                <UnfinishedText>Stiletto</UnfinishedText>{/*<Image className="stiletto-image" variable="stiletto" isSquared/>*/}
+                <Image className="stiletto-image" variable="stiletto"/>
             </em>
             keyMap.yoshiImages = <em key={`${key} (Yoshi images)`} className="yoshi-images-container smm2-only">
                 <UnfinishedText>Yoshi</UnfinishedText>{/*<Image className="yoshi-image" variable="yoshi" isSquared/>*/}

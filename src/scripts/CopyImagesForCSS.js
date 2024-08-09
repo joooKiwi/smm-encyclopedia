@@ -16,12 +16,13 @@ const logger = Logger.get;
     new ImageTemplate('entity/editor',                              '3W_Lyt_P_HatenaBlock_00',            'Question Block (SM3DW)',             'tiff',),
 
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_SuperKinoko_00',            'Super Mushroom',                     'tiff',),
-    //TODO add Weird Mushroom image
+    new ImageTemplate('entity/in game/M1 Item - KinokoFunny',       'kinokofunny.0',                      'Weird Mushroom',                     'tiff',),
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_FireFlower_00',             'Fire Flower',                        'tiff',),
     new ImageTemplate('entity/editor',                              'M1_Lyt_P_FireFlower_01',             'Superball Flower',                   'tiff',),
-    new ImageTemplate('entity/1 - SMB/In game/SMM1/Item - Kinoko2', 'wait.0',                             'Mystery Mushroom',                   'png',),//TODO change to tiff
+    new ImageTemplate('entity/in game/M1 Item - CharaKinoko',       'Add_kinoko',                         'Mystery Mushroom',                   'tiff',),
     new ImageTemplate('entity/editor',                              'M1_Lyt_P_SuperKinoko_01',            'Master Sword',                       'tiff',),
-    //TODO add Big Mushroom image
+    new ImageTemplate('entity/in game/M1 Item - MegaKinoko2',       'wait.0',                             'Big Mushroom',                       'tiff',),
+    new ImageTemplate('entity/in game/M1 Item - MegaKinoko',        'wait.0',                             'Big Mushroom (classic)',             'tiff',),
     new ImageTemplate('entity/editor',                              'M1_Lyt_P_KinokoUSA_00',              'SMB2 Mushroom',                      'tiff',),
     new ImageTemplate('entity/editor',                              'M3_Lyt_P_SuperKonoha_00',            'Super Leaf',                         'tiff',),
     new ImageTemplate('entity/editor',                              'M3_Lyt_P_FrogSuit_00',               'Frog Suit',                          'tiff',),
@@ -33,7 +34,7 @@ const logger = Logger.get;
     new ImageTemplate('entity/editor',                              '3W_Lyt_P_SuperHammer_00',            'Super Hammer',                       'tiff',),
     new ImageTemplate('entity/editor',                              '3W_Lyt_P_BoomerangFlower_00',        'Boomerang Flower',                   'tiff',),
     new ImageTemplate('entity/clear condition',                     'M3_Lyt_M_KutsuKuribo_00',            'Shoe',                               'tiff',),
-    //TODO add Stiletto image
+    new ImageTemplate('entity/in game/M3 Enemy - KutsuKuriboB',     'wait.0',                             'Stiletto',                           'tiff',),
     //TODO add Yoshi image
 
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_Karon_01',                  'Dry Bones Shell',                    'tiff',),
