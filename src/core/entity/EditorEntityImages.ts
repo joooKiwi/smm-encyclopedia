@@ -43,17 +43,23 @@ export abstract class EditorEntityImages
 
     /** An abstract subclass of an {@link EditorEntityImages} to hold a specific {@link PossibleEnglishName} */
     private static readonly Existant = (() => {
-        abstract class ExistantEditorEntityImages<const NAME extends PossibleEnglishName, >
+        abstract class ExistantEditorEntityImages<const NAME extends PossibleEnglishName,
+            const IMAGE_FILE extends EditorImageFile, >
             extends EditorEntityImages {
 
             readonly #englishName
+            #image?: EditorImage<IMAGE_FILE>
 
-            public constructor(englishName: NAME,) {
+            protected constructor(englishName: NAME,) {
                 super()
                 this.#englishName = englishName
             }
 
             public override get englishName(): NAME { return this.#englishName }
+
+            public override get image(): EditorImage<IMAGE_FILE> { return this.#image ??= new EditorImageContainer(this._createImageFiles(),) }
+
+            protected abstract _createImageFiles(): readonly (readonly [Times, GameStyles, Themes, IMAGE_FILE,])[]
 
         }
 
@@ -64,21 +70,17 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} for each {@link GameStyles} */
     private static readonly ExistantAsOneInAll = class ExistantAsOneInAllEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<GameStyles, FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<GameStyles, FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<GameStyles, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -87,13 +89,13 @@ export abstract class EditorEntityImages
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<GameStyles, FILE_NAME, NAME>>([
+            return [
                 [time, smb, theme, editorImage(this, fileName, smb,),],
                 [time, smb3, theme, editorImage(this, fileName, smb3,),],
                 [time, smw, theme, editorImage(this, fileName, smw,),],
                 [time, nsmbu, theme, editorImage(this, fileName, nsmbu,),],
                 [time, sm3dw, theme, editorImage(this, fileName, sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
@@ -103,21 +105,17 @@ export abstract class EditorEntityImages
      * for each {@link GameStyles} in the {@link Themes.SNOW snow theme}
      */
     private static readonly ExistantAsOneInOnlySnow = class ExistantAsOneInAllEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<GameStyles, FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<GameStyles, FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<GameStyles, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -126,13 +124,13 @@ export abstract class EditorEntityImages
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const theme = Themes.SNOW
-            return this.#image = new EditorImageContainer<EditorImageFile<GameStyles, FILE_NAME, NAME>>([
+            return [
                 [time, smb, theme, editorImage(this, fileName, smb,),],
                 [time, smb3, theme, editorImage(this, fileName, smb3,),],
                 [time, smw, theme, editorImage(this, fileName, smw,),],
                 [time, nsmbu, theme, editorImage(this, fileName, nsmbu,),],
                 [time, sm3dw, theme, editorImage(this, fileName, sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
@@ -143,12 +141,12 @@ export abstract class EditorEntityImages
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in 1 {@link GameStyles} */
     private static readonly ExistantAsOneIn1GameStyle = class ExistantAsOneIn1GameStyleEditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string,
-        const GAME_STYLE extends GameStyles, > extends EditorEntityImages.Existant<NAME> {
+        const GAME_STYLE extends GameStyles, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<GAME_STYLE, FILE_NAME, NAME>> {
 
         readonly #fileName
         readonly #gameStyle
         readonly #theme
-        #image?: EditorImage<EditorImageFile<GAME_STYLE, FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME, gameStyle: GAME_STYLE, theme: Themes,) {
             super(englishName,)
@@ -157,105 +155,85 @@ export abstract class EditorEntityImages
             this.#theme = theme
         }
 
-        public override get image(): EditorImage<EditorImageFile<GAME_STYLE, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const gameStyle = this.#gameStyle
-            return this.#image = new EditorImageContainer([[Times.DAY, gameStyle, this.#theme, editorImage(this, this.#fileName, gameStyle,),],],)
+            return [[Times.DAY, gameStyle, this.#theme, editorImage(this, this.#fileName, gameStyle,),],] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
     private static readonly ExistantAsOneInOnlySmb = class ExistantAsOneInOnlySmbEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const gameStyle = GameStyles.SUPER_MARIO_BROS
-            return this.#image = new EditorImageContainer([[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],],)
+            return [[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
     private static readonly ExistantAsOneInOnlySmw = class ExistantAsOneInOnlySmwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const gameStyle = GameStyles.SUPER_MARIO_WORLD
-            return this.#image = new EditorImageContainer([[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],],)
+            return [[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
     private static readonly ExistantAsOneInOnlyNsmbu = class ExistantAsOneInOnlyNsmbuEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const gameStyle = GameStyles.NEW_SUPER_MARIO_BROS_U
-            return this.#image = new EditorImageContainer([[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],],)
+            return [[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 1 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
     private static readonly ExistantAsOneInOnlySm3dw = class ExistantAsOneInOnlySm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const gameStyle = GameStyles.SUPER_MARIO_3D_WORLD
-            return this.#image = new EditorImageContainer([[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],],)
+            return [[Times.DAY, gameStyle, Themes.GROUND, editorImage(this, this.#fileName, gameStyle,),],] as const
         }
 
     }
@@ -268,30 +246,26 @@ export abstract class EditorEntityImages
      * in only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
      */
     private static readonly ExistantAsOneInOnlySmbAndSmb3 = class ExistantAsOneInOnlySmbAndSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
             const smb3 = GameStyles.SUPER_MARIO_BROS_3
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], FILE_NAME, NAME>>([
+            return [
                 [time, smb, theme, editorImage(this, fileName, smb,),],
                 [time, smb3, theme, editorImage(this, fileName, smb3,),],
-            ],)
+            ] as const
         }
 
     }
@@ -301,30 +275,26 @@ export abstract class EditorEntityImages
      * in only {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU}
      */
     private static readonly ExistantAsOneInOnlySmwAndNsmbu = class ExistantAsOneInOnlySmwAndNsmbuEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smw = GameStyles.SUPER_MARIO_WORLD
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>([
+            return [
                 [time, smw, theme, editorImage(this, fileName, smw,),],
                 [time, nsmbu, theme, editorImage(this, fileName, nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
@@ -337,32 +307,28 @@ export abstract class EditorEntityImages
      * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU}
      */
     private static readonly ExistantAsOneInNotSmwAndSm3dw = class ExistantAsOneInNotSmwAndSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<Exclude<GameStyles, typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'SUPER_MARIO_3D_WORLD']>, FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<Exclude<GameStyles, typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'SUPER_MARIO_3D_WORLD']>, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
             const smb3 = GameStyles.SUPER_MARIO_BROS_3
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<Exclude<GameStyles, typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'SUPER_MARIO_3D_WORLD']>, FILE_NAME, NAME>>([
+            return [
                 [time, smb, theme, editorImage(this, fileName, smb,),],
                 [time, smb3, theme, editorImage(this, fileName, smb3,),],
                 [time, nsmbu, theme, editorImage(this, fileName, nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
@@ -372,32 +338,28 @@ export abstract class EditorEntityImages
      * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
      */
     private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInNotNsmbuAndSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<Exclude<GameStyles, typeof GameStyles[| 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD']>, FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<Exclude<GameStyles, typeof GameStyles[| 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD']>, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
             const smb3 = GameStyles.SUPER_MARIO_BROS_3
             const smw = GameStyles.SUPER_MARIO_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<Exclude<GameStyles, typeof GameStyles[| 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD']>, FILE_NAME, NAME>>([
+            return [
                 [time, smb, theme, editorImage(this, fileName, smb,),],
                 [time, smb3, theme, editorImage(this, fileName, smb3,),],
                 [time, smw, theme, editorImage(this, fileName, smw,),],
-            ],)
+            ] as const
         }
 
     }
@@ -410,21 +372,17 @@ export abstract class EditorEntityImages
      * for each {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_WORLD SMW}
      */
     private static readonly ExistantAsOneInNotSmw = class ExistantAsOneInNotSmwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -432,12 +390,12 @@ export abstract class EditorEntityImages
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>>([
+            return [
                 [time, smb, theme, editorImage(this, fileName, smb,),],
                 [time, smb3, theme, editorImage(this, fileName, smb3,),],
                 [time, nsmbu, theme, editorImage(this, fileName, nsmbu,),],
                 [time, sm3dw, theme, editorImage(this, fileName, sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
@@ -447,21 +405,16 @@ export abstract class EditorEntityImages
      * for each {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}
      */
     private static readonly ExistantAsOneInNotSm3dw = class ExistantAsOneInNotSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -469,12 +422,12 @@ export abstract class EditorEntityImages
             const smw = GameStyles.SUPER_MARIO_WORLD
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>([
+            return [
                 [time, smb, theme, editorImage(this, fileName, smb,),],
                 [time, smb3, theme, editorImage(this, fileName, smb3,),],
                 [time, smw, theme, editorImage(this, fileName, smw,),],
                 [time, nsmbu, theme, editorImage(this, fileName, nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
@@ -491,11 +444,10 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmb3 = class ExistantAsOnePlusOneNightSnowInSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME> {
+        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmb3<FILE_NAME_1, FILE_NAME_2, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
-        #image?: EditorImage<EditorImageFileAsNightSnowInSmb3<FILE_NAME_1, FILE_NAME_2, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME_1, nightSnowFileName:FILE_NAME_2,) {
             super(englishName,)
@@ -503,13 +455,8 @@ export abstract class EditorEntityImages
             this.#nightSnowFileName = nightSnowFileName
         }
 
-        public override get image(): EditorImage<EditorImageFileAsNightSnowInSmb3<FILE_NAME_1, FILE_NAME_2, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
-            const nightSnowFileName = this.#nightSnowFileName
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -519,18 +466,14 @@ export abstract class EditorEntityImages
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const ground = Themes.GROUND
             const snow = Themes.SNOW
-            return this.#image = new EditorImageContainer<EditorImageFileAsNightSnowInSmb3<FILE_NAME_1, FILE_NAME_2, NAME>>([
+            return [
                 [day,   smb,   ground, editorImage(this, fileName, smb,),],
-
                 [day,   smb3,  ground, editorImage(this, fileName, smb3,),],
-                [night, smb3,  snow,   editorImage(this, nightSnowFileName, smb3,),],
-
+                [night, smb3,  snow,   editorImage(this, this.#nightSnowFileName, smb3,),],
                 [day,   smw,   ground, editorImage(this, fileName, smw,),],
-
                 [day,   nsmbu, ground, editorImage(this, fileName, nsmbu,),],
-
                 [day,   sm3dw, ground, editorImage(this, fileName, sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
@@ -544,11 +487,10 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmb3ButNotSm3dw = class ExistantAsOnePlusOneNightSnowInSmb3ButNotSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME> {
+        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
-        #image?: EditorImage<EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME_1, nightSnowFileName:FILE_NAME_2,) {
             super(englishName,)
@@ -556,31 +498,21 @@ export abstract class EditorEntityImages
             this.#nightSnowFileName = nightSnowFileName
         }
 
-        public override get image(): EditorImage<EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
-            const nightSnowFileName = this.#nightSnowFileName
             const day = Times.DAY
-            const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
             const smb3 = GameStyles.SUPER_MARIO_BROS_3
             const smw = GameStyles.SUPER_MARIO_WORLD
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const ground = Themes.GROUND
-            const snow = Themes.SNOW
-            return this.#image = new EditorImageContainer<EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>>([
-                [day,   smb,   ground, editorImage(this, fileName, smb,),],
-
-                [day,   smb3,  ground, editorImage(this, fileName, smb3,),],
-                [night, smb3,  snow,   editorImage(this, nightSnowFileName, smb3,),],
-
-                [day,   smw,   ground, editorImage(this, fileName, smw,),],
-
-                [day,   nsmbu, ground, editorImage(this, fileName, nsmbu,),],
-            ],)
+            return [
+                [day,         smb,   ground,      editorImage(this, fileName, smb,),],
+                [day,         smb3,  ground,      editorImage(this, fileName, smb3,),],
+                [Times.NIGHT, smb3,  Themes.SNOW, editorImage(this, this.#nightSnowFileName, smb3,),],
+                [day,         smw,   ground,      editorImage(this, fileName, smw,),],
+                [day,         nsmbu, ground,      editorImage(this, fileName, nsmbu,),],
+            ] as const
         }
 
     }
@@ -595,11 +527,10 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmbAndSmb3 = class ExistantAsOnePlusOneNightSnowInSmbAndSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME> {
+        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1, FILE_NAME_2, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
-        #image?: EditorImage<EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1, FILE_NAME_2, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME_1, nightSnowFileName:FILE_NAME_2,) {
             super(englishName,)
@@ -607,11 +538,7 @@ export abstract class EditorEntityImages
             this.#nightSnowFileName = nightSnowFileName
         }
 
-        public override get image(): EditorImage<EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1, FILE_NAME_2, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const nightSnowFileName = this.#nightSnowFileName
             const day = Times.DAY
@@ -623,19 +550,15 @@ export abstract class EditorEntityImages
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const ground = Themes.GROUND
             const snow = Themes.SNOW
-            return this.#image = new EditorImageContainer<EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1, FILE_NAME_2, NAME>>([
+            return [
                 [day,   smb,   ground, editorImage(this, fileName, smb,),],
                 [night, smb,   snow,   editorImage(this, nightSnowFileName, smb,),],
-
                 [day,   smb3,  ground, editorImage(this, fileName, smb3,),],
                 [night, smb3,  snow,   editorImage(this, nightSnowFileName, smb3,),],
-
                 [day,   smw,   ground, editorImage(this, fileName, smw,),],
-
                 [day,   nsmbu, ground, editorImage(this, fileName, nsmbu,),],
-
                 [day,   sm3dw, ground, editorImage(this, fileName, sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
@@ -649,11 +572,10 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsOnePlusOneNightSnowInSmbAndSmb3ButNotSm3dw = class ExistantAsOnePlusOneNightSnowInSmbAndSmb3ExcludingSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME_1 extends string,
         const FILE_NAME_2 extends string, >
-        extends EditorEntityImages.Existant<NAME> {
+        extends EditorEntityImages.Existant<NAME, EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>> {
 
         readonly #fileName
         readonly #nightSnowFileName
-        #image?: EditorImage<EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME_1, nightSnowFileName:FILE_NAME_2,) {
             super(englishName,)
@@ -661,11 +583,7 @@ export abstract class EditorEntityImages
             this.#nightSnowFileName = nightSnowFileName
         }
 
-        public override get image(): EditorImage<EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const nightSnowFileName = this.#nightSnowFileName
             const day = Times.DAY
@@ -676,17 +594,14 @@ export abstract class EditorEntityImages
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const ground = Themes.GROUND
             const snow = Themes.SNOW
-            return this.#image = new EditorImageContainer<EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1, FILE_NAME_2, NAME>>([
+            return [
                 [day,   smb,   ground, editorImage(this, fileName, smb,),],
                 [night, smb,   snow,   editorImage(this, nightSnowFileName, smb,),],
-
                 [day,   smb3,  ground, editorImage(this, fileName, smb3,),],
                 [night, smb3,  snow,   editorImage(this, nightSnowFileName, smb3,),],
-
                 [day,   smw,   ground, editorImage(this, fileName, smw,),],
-
                 [day,   nsmbu, ground, editorImage(this, fileName, nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
@@ -704,11 +619,10 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsBlueVariantInSmbAndSmb3 = class ExistantAsBlueVariantInSmbAndSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string,
         const NUMBER extends | 0 | 1, >
-        extends EditorEntityImages.Existant<NAME> {
+        extends EditorEntityImages.Existant<NAME, EditorImageFileAsBlueVariant<FILE_NAME, NUMBER, NAME>> {
 
         readonly #fileName
         readonly #number
-        #image?: EditorImage<EditorImageFileAsBlueVariant<FILE_NAME, NUMBER, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME, number: NUMBER,) {
             super(englishName,)
@@ -716,11 +630,7 @@ export abstract class EditorEntityImages
             this.#number = number
         }
 
-        public override get image(): EditorImage<EditorImageFileAsBlueVariant<FILE_NAME, NUMBER, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const number = this.#number
             const day = Times.DAY
@@ -740,7 +650,7 @@ export abstract class EditorEntityImages
             const ghostHouse = Themes.GHOST_HOUSE
             const airship = Themes.AIRSHIP
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsBlueVariant<FILE_NAME, NUMBER, NAME>>([
+            return [
                 [day,   smb,   ground,      editorImage(this, `${fileName}_0${number}`, smb,)],
                 [night, smb,   ground,      editorImage(this, `${fileName}_plain_night_0${number}`, smb,)],
                 [day,   smb,   underground, editorImage(this, `${fileName}_underground_0${number}`, smb,)],
@@ -770,7 +680,7 @@ export abstract class EditorEntityImages
                 [day,   nsmbu, ground,      editorImage(this, `${fileName}_0${number}`, nsmbu,)],
 
                 [day,   sm3dw, ground,      editorImage(this, `${fileName}_0${number}`, sm3dw,)],
-            ],)
+            ] as const
         }
 
     }
@@ -785,11 +695,10 @@ export abstract class EditorEntityImages
     private static readonly ExistantAsBlueVariantInSmbAndSmb3ButNotSm3dw = class ExistantAsBlueVariantInSmbAndSmb3EditorEntityImages<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string,
         const NUMBER extends | 0 | 1, >
-        extends EditorEntityImages.Existant<NAME> {
+        extends EditorEntityImages.Existant<NAME, EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME, NUMBER, NAME>> {
 
         readonly #fileName
         readonly #number
-        #image?: EditorImage<EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME, NUMBER, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME, number: NUMBER,) {
             super(englishName,)
@@ -797,11 +706,7 @@ export abstract class EditorEntityImages
             this.#number = number
         }
 
-        public override get image(): EditorImage<EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME, NUMBER, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const number = this.#number
             const day = Times.DAY
@@ -820,7 +725,7 @@ export abstract class EditorEntityImages
             const ghostHouse = Themes.GHOST_HOUSE
             const airship = Themes.AIRSHIP
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME, NUMBER, NAME>>([
+            return [
                 [day,   smb,   ground,      editorImage(this, `${fileName}_0${number}`, smb,)],
                 [night, smb,   ground,      editorImage(this, `${fileName}_plain_night_0${number}`, smb,)],
                 [day,   smb,   underground, editorImage(this, `${fileName}_underground_0${number}`, smb,)],
@@ -848,7 +753,7 @@ export abstract class EditorEntityImages
                 [day,   smw,   ground,      editorImage(this, `${fileName}_0${number}`, smw,)],
 
                 [day,   nsmbu, ground,      editorImage(this, `${fileName}_0${number}`, nsmbu,)],
-            ],)
+            ] as const
         }
 
     }
@@ -858,11 +763,11 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 2 {@link EditorImageFile} for each {@link GameStyles} */
     private static readonly ExistantAsTwoInAll = class ExistantAsTwoInAllEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<GameStyles, FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
-        #image?: EditorImage<EditorImageFile<GameStyles, FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
             super(englishName,)
@@ -870,11 +775,7 @@ export abstract class EditorEntityImages
             this.#fileName2 = fileName2
         }
 
-        public override get image(): EditorImage<EditorImageFile<GameStyles, FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName1 = this.#fileName1
             const fileName2 = this.#fileName2
             const time = Times.DAY
@@ -884,22 +785,18 @@ export abstract class EditorEntityImages
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<GameStyles, FILE_NAME, NAME>>([
-                [time, smb, theme, editorImage(this, fileName1, smb,),],
-                [time, smb, theme, editorImage(this, fileName2, smb,),],
-
-                [time, smb3, theme, editorImage(this, fileName1, smb3,),],
-                [time, smb3, theme, editorImage(this, fileName2, smb3,),],
-
-                [time, smw, theme, editorImage(this, fileName1, smw,),],
-                [time, smw, theme, editorImage(this, fileName2, smw,),],
-
+            return [
+                [time, smb,   theme, editorImage(this, fileName1, smb,),],
+                [time, smb,   theme, editorImage(this, fileName2, smb,),],
+                [time, smb3,  theme, editorImage(this, fileName1, smb3,),],
+                [time, smb3,  theme, editorImage(this, fileName2, smb3,),],
+                [time, smw,   theme, editorImage(this, fileName1, smw,),],
+                [time, smw,   theme, editorImage(this, fileName2, smw,),],
                 [time, nsmbu, theme, editorImage(this, fileName1, nsmbu,),],
                 [time, nsmbu, theme, editorImage(this, fileName2, nsmbu,),],
-
                 [time, sm3dw, theme, editorImage(this, fileName1, sm3dw,),],
                 [time, sm3dw, theme, editorImage(this, fileName2, sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
@@ -909,11 +806,11 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 2 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
     private static readonly ExistantAsTwoInOnlySmb = class ExistantAsTwoInOnlySmbEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
             super(englishName,)
@@ -921,29 +818,25 @@ export abstract class EditorEntityImages
             this.#fileName2 = fileName2
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.SUPER_MARIO_BROS
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], FILE_NAME, NAME>>([
+            return [
                 [time, gameStyle, theme, editorImage(this, this.#fileName1, gameStyle,),],
                 [time, gameStyle, theme, editorImage(this, this.#fileName2, gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 2 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
     private static readonly ExistantAsTwoInOnlySmb3 = class ExistantAsTwoInOnlySmb3EditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
             super(englishName,)
@@ -951,29 +844,25 @@ export abstract class EditorEntityImages
             this.#fileName2 = fileName2
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.SUPER_MARIO_BROS_3
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], FILE_NAME, NAME>>([
+            return [
                 [time, gameStyle, theme, editorImage(this, this.#fileName1, gameStyle,),],
                 [time, gameStyle, theme, editorImage(this, this.#fileName2, gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 2 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
     private static readonly ExistantAsTwoInOnlySmw = class ExistantAsTwoInOnlySmwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
             super(englishName,)
@@ -981,29 +870,25 @@ export abstract class EditorEntityImages
             this.#fileName2 = fileName2
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.SUPER_MARIO_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], FILE_NAME, NAME>>([
+            return [
                 [time, gameStyle, theme, editorImage(this, this.#fileName1, gameStyle,),],
                 [time, gameStyle, theme, editorImage(this, this.#fileName2, gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 2 {@link EditorImageFile} in only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
     private static readonly ExistantAsTwoInOnlyNsmbu = class ExistantAsTwoInOnlyNsmbuEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
             super(englishName,)
@@ -1011,29 +896,25 @@ export abstract class EditorEntityImages
             this.#fileName2 = fileName2
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.NEW_SUPER_MARIO_BROS_U
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>([
+            return [
                 [time, gameStyle, theme, editorImage(this, this.#fileName1, gameStyle,),],
                 [time, gameStyle, theme, editorImage(this, this.#fileName2, gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 2 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
     private static readonly ExistantAsTwoInOnlySm3dw = class ExistantAsTwoInOnlySm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
             super(englishName,)
@@ -1041,18 +922,14 @@ export abstract class EditorEntityImages
             this.#fileName2 = fileName2
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.SUPER_MARIO_3D_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>>([
+            return [
                 [time, gameStyle, theme, editorImage(this, this.#fileName1, gameStyle,),],
                 [time, gameStyle, theme, editorImage(this, this.#fileName2, gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
@@ -1065,11 +942,11 @@ export abstract class EditorEntityImages
      * for each {@link GameStyles} excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}
      */
     private static readonly ExistantAsTwoInNotSm3dw = class ExistantAsTwoInNotSm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
-        #image?: EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
             super(englishName,)
@@ -1077,11 +954,7 @@ export abstract class EditorEntityImages
             this.#fileName2 = fileName2
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName1 = this.#fileName1
             const fileName2 = this.#fileName2
             const time = Times.DAY
@@ -1090,34 +963,31 @@ export abstract class EditorEntityImages
             const smw = GameStyles.SUPER_MARIO_WORLD
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME, NAME>>([
-                [time, smb, theme, editorImage(this, fileName1, smb,),],
-                [time, smb, theme, editorImage(this, fileName2, smb,),],
-
-                [time, smb3, theme, editorImage(this, fileName1, smb3,),],
-                [time, smb3, theme, editorImage(this, fileName2, smb3,),],
-
-                [time, smw, theme, editorImage(this, fileName1, smw,),],
-                [time, smw, theme, editorImage(this, fileName2, smw,),],
-
+            return [
+                [time, smb,   theme, editorImage(this, fileName1, smb,),],
+                [time, smb,   theme, editorImage(this, fileName2, smb,),],
+                [time, smb3,  theme, editorImage(this, fileName1, smb3,),],
+                [time, smb3,  theme, editorImage(this, fileName2, smb3,),],
+                [time, smw,   theme, editorImage(this, fileName1, smw,),],
+                [time, smw,   theme, editorImage(this, fileName2, smw,),],
                 [time, nsmbu, theme, editorImage(this, fileName1, nsmbu,),],
                 [time, nsmbu, theme, editorImage(this, fileName2, nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
 
     //endregion -------------------- Sub class (two in 4 specific game style) --------------------
-    //region -------------------- Sub class (three) --------------------
+    //region -------------------- Sub class (three in 1 specific game style) --------------------
 
     /** A subclass of an {@link EditorEntityImages} to hold an existant {@link EditorImage} as 3 {@link EditorImageFile} in only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
     private static readonly ExistantAsThreeInOnlySm3dw = class ExistantAsThreeInOnlySm3dwEditorEntityImages<const NAME extends PossibleEnglishName,
-        const FILE_NAME extends string, > extends EditorEntityImages.Existant<NAME> {
+        const FILE_NAME extends string, >
+        extends EditorEntityImages.Existant<NAME, EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
 
         readonly #fileName1
         readonly #fileName2
         readonly #fileName3
-        #image?: EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME,) {
             super(englishName,)
@@ -1126,44 +996,35 @@ export abstract class EditorEntityImages
             this.#fileName3 = fileName3
         }
 
-        public override get image(): EditorImage<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.SUPER_MARIO_3D_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], FILE_NAME, NAME>>([
+            return [
                 [time, gameStyle, theme, editorImage(this, this.#fileName1, gameStyle,),],
                 [time, gameStyle, theme, editorImage(this, this.#fileName2, gameStyle,),],
                 [time, gameStyle, theme, editorImage(this, this.#fileName3, gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
 
-    //endregion -------------------- Sub class (three) --------------------
+    //endregion -------------------- Sub class (three in 1 specific game style) --------------------
     //region -------------------- Sub class (predefined) --------------------
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link GROUND}, {@link STEEP_SLOPE} and {@link GENTLE_SLOPE} */
     private static readonly ExistantAsGroundOrSlope = class ExistantAsGroundOrSlope<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends EditorEntityImages.Existant<NAME> {
+        extends EditorEntityImages.Existant<NAME, EditorImageFileAsGroundOrSlope<FILE_NAME, NAME>> {
 
         readonly #fileName
-        #image?: EditorImage<EditorImageFileAsGroundOrSlope<FILE_NAME, NAME>>
 
         public constructor(englishName: NAME, fileName: FILE_NAME,) {
             super(englishName,)
             this.#fileName = fileName
         }
 
-        public override get image(): EditorImage<EditorImageFileAsGroundOrSlope<FILE_NAME, NAME>> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const fileName = this.#fileName
             const day = Times.DAY
             const night = Times.NIGHT
@@ -1182,7 +1043,7 @@ export abstract class EditorEntityImages
             const ghostHouse = Themes.GHOST_HOUSE
             const airship = Themes.AIRSHIP
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsGroundOrSlope<FILE_NAME, NAME>>([
+            return [
                 [day,   smb,   ground,      editorImage(this, `${fileName}_00`, smb,),],
                 [day,   smb,   underground, editorImage(this, `${fileName}_underground_00`, smb,),],
                 [day,   smb,   underwater,  editorImage(this, `${fileName}_water_00`, smb,),],
@@ -1245,23 +1106,18 @@ export abstract class EditorEntityImages
                 [day,   sm3dw, ghostHouse,  editorImage(this, `${fileName}_hauntedhouse_00`, sm3dw,),],
                 [day,   sm3dw, airship,     editorImage(this, `${fileName}_airship_00`, sm3dw,),],
                 [day,   sm3dw, castle,      editorImage(this, `${fileName}_castle_00`, sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link PIPE} */
-    private static readonly ExistantAsPipe = class ExistantAsPipe extends EditorEntityImages.Existant<'Pipe'> {
-
-        #image?: EditorImage<EditorImageFileAsPipe>
+    private static readonly ExistantAsPipe = class ExistantAsPipe
+        extends EditorEntityImages.Existant<'Pipe', EditorImageFileAsPipe> {
 
         public constructor() { super('Pipe',) }
 
-        public override get image(): EditorImage<EditorImageFileAsPipe> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1271,7 +1127,7 @@ export abstract class EditorEntityImages
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const ground = Themes.GROUND
             const snow = Themes.SNOW
-            return this.#image = new EditorImageContainer<EditorImageFileAsPipe>([
+            return [
                 [day,   smb,   ground, editorImage(this, 'Dokan_00', smb,),],
                 [day,   smb,   ground, editorImage(this, 'Dokan_01', smb,),],
                 [day,   smb,   ground, editorImage(this, 'Dokan_02', smb,),],
@@ -1300,23 +1156,18 @@ export abstract class EditorEntityImages
                 [day,   sm3dw, ground, editorImage(this, 'Dokan_01', sm3dw,),],
                 [day,   sm3dw, ground, editorImage(this, 'Dokan_02', sm3dw,),],
                 [day,   sm3dw, ground, editorImage(this, 'Dokan_03', sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link MUSHROOM_PLATFORM} */
-    private static readonly ExistantAsMushroomPlatform = class ExistantAsMushroomPlatform extends EditorEntityImages.Existant<'Mushroom Platform'> {
-
-        #image?: EditorImage<EditorImageFileAsMushroomPlatform>
+    private static readonly ExistantAsMushroomPlatform = class ExistantAsMushroomPlatform
+        extends EditorEntityImages.Existant<'Mushroom Platform', EditorImageFileAsMushroomPlatform> {
 
         public constructor() { super('Mushroom Platform',) }
 
-        public override get image(): EditorImage<EditorImageFileAsMushroomPlatform> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1327,7 +1178,7 @@ export abstract class EditorEntityImages
             const underwater = Themes.UNDERWATER
             const snow = Themes.SNOW
             const airship = Themes.AIRSHIP
-            return this.#image = new EditorImageContainer<EditorImageFileAsMushroomPlatform>([
+            return [
                 [day,   smb,   ground,     editorImage(this, 'GroundMushroom_00', smb,),],
                 [day,   smb,   ground,     editorImage(this, 'GroundMushroom_01', smb,),],
                 [day,   smb,   ground,     editorImage(this, 'GroundMushroom_02', smb,),],
@@ -1391,23 +1242,18 @@ export abstract class EditorEntityImages
                 [day,   nsmbu, airship,    editorImage(this, 'GroundMushroom_airship_00', nsmbu,),],
                 [day,   nsmbu, airship,    editorImage(this, 'GroundMushroom_airship_01', nsmbu,),],
                 [day,   nsmbu, airship,    editorImage(this, 'GroundMushroom_airship_02', nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link SEMISOLID_PLATFORM} */
-    private static readonly ExistantAsSemisolidPlatform = class ExistantAsSemisolidPlatform extends EditorEntityImages.Existant<'Semisolid Platform'> {
-
-        #image?: EditorImage<EditorImageFileAsSemisolidPlatform>
+    private static readonly ExistantAsSemisolidPlatform = class ExistantAsSemisolidPlatform
+        extends EditorEntityImages.Existant<'Semisolid Platform', EditorImageFileAsSemisolidPlatform> {
 
         public constructor() { super('Semisolid Platform',) }
 
-        public override get image(): EditorImage<EditorImageFileAsSemisolidPlatform> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1425,7 +1271,7 @@ export abstract class EditorEntityImages
             const ghostHouse = Themes.GHOST_HOUSE
             const airship = Themes.AIRSHIP
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsSemisolidPlatform>([
+            return [
                 [day,   smb,   ground,      editorImage(this, 'GroundBox_00', smb,),],
                 [day,   smb,   ground,      editorImage(this, 'GroundBox_01', smb,),],
                 [day,   smb,   ground,      editorImage(this, 'GroundBox_02', smb,),],
@@ -1573,23 +1419,18 @@ export abstract class EditorEntityImages
                 [day,   sm3dw, ghostHouse,  editorImage(this, 'GroundBox_hauntedhouse_00', sm3dw,),],
                 [day,   sm3dw, airship,     editorImage(this, 'GroundBox_airship_00', sm3dw,),],
                 [day,   sm3dw, castle,      editorImage(this, 'GroundBox_castle_00', sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link BRIDGE} */
-    private static readonly ExistantAsBridge = class ExistantAsBridge extends EditorEntityImages.Existant<'Bridge'> {
-
-        #image?: EditorImage<EditorImageFileAsBridge>
+    private static readonly ExistantAsBridge = class ExistantAsBridge
+        extends EditorEntityImages.Existant<'Bridge', EditorImageFileAsBridge> {
 
         public constructor() { super('Bridge',) }
 
-        public override get image(): EditorImage<EditorImageFileAsBridge> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1606,7 +1447,7 @@ export abstract class EditorEntityImages
             const ghostHouse = Themes.GHOST_HOUSE
             const airship = Themes.AIRSHIP
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsBridge>([
+            return [
                 [day,   smb,   ground,      editorImage(this, 'Bridge_00', smb,),],
                 [day,   smb,   snow,        editorImage(this, 'Bridge_snow_00', smb,),],
                 [night, smb,   snow,        editorImage(this, 'Bridge_snow_night_00', smb,),],
@@ -1634,23 +1475,18 @@ export abstract class EditorEntityImages
                 [day,   nsmbu, ghostHouse,  editorImage(this, 'Bridge_hauntedhouse_00', nsmbu,),],
                 [day,   nsmbu, airship,     editorImage(this, 'Bridge_airship_00', nsmbu,),],
                 [day,   nsmbu, castle,      editorImage(this, 'Bridge_castle_00', nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link BRICK_BLOCK} */
-    private static readonly ExistantAsBrickBlock = class ExistantAsBrickBlock extends EditorEntityImages.Existant<'Brick Block'> {
-
-        #image?: EditorImage<EditorImageFileAsBrickBlock>
+    private static readonly ExistantAsBrickBlock = class ExistantAsBrickBlock
+        extends EditorEntityImages.Existant<'Brick Block', EditorImageFileAsBrickBlock> {
 
         public constructor() { super('Brick Block',) }
 
-        public override get image(): EditorImage<EditorImageFileAsBrickBlock> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1663,7 +1499,7 @@ export abstract class EditorEntityImages
             const snow = Themes.SNOW
             const ghostHouse = Themes.GHOST_HOUSE
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsBrickBlock>([
+            return [
                 [day,   smb,   ground,      editorImage(this, 'RengaBlock_00', smb,),],
                 [day,   smb,   underground, editorImage(this, 'RengaBlock_underground_00', smb,),],
                 [day,   smb,   snow,        editorImage(this, 'RengaBlock_snow_00', smb,),],
@@ -1679,45 +1515,35 @@ export abstract class EditorEntityImages
                 [day,   nsmbu, ground,      editorImage(this, 'RengaBlock_00', nsmbu,),],
 
                 [day,   sm3dw, ground,      editorImage(this, 'RengaBlock_00', sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link CRISTAL_BLOCK} */
-    private static readonly ExistantAsCristalBlock = class ExistantAsCristalBlock extends EditorEntityImages.Existant<'Cristal Block'> {
-
-        #image?: EditorImage<EditorImageFileAsCristalBlock>
+    private static readonly ExistantAsCristalBlock = class ExistantAsCristalBlock
+        extends EditorEntityImages.Existant<'Cristal Block', EditorImageFileAsCristalBlock> {
 
         public constructor() { super('Cristal Block',) }
 
-        public override get image(): EditorImage<EditorImageFileAsCristalBlock> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.SUPER_MARIO_3D_WORLD
-            return this.#image = new EditorImageContainer<EditorImageFileAsCristalBlock>([
+            return [
                 [time, gameStyle, Themes.UNDERGROUND, editorImage(this, 'RengaBlock_underground_00', gameStyle,),],
                 [time, gameStyle, Themes.FOREST,      editorImage(this, 'RengaBlock_woods_00', gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link HARD_BLOCK} */
-    private static readonly ExistantAsHardBlock = class ExistantAsHardBlock extends EditorEntityImages.Existant<'Hard Block'> {
-
-        #image?: EditorImage<EditorImageFileAsHardBlock>
+    private static readonly ExistantAsHardBlock = class ExistantAsHardBlock
+        extends EditorEntityImages.Existant<'Hard Block', EditorImageFileAsHardBlock> {
 
         public constructor() { super('Hard Block',) }
 
-        public override get image(): EditorImage<EditorImageFileAsHardBlock> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1733,7 +1559,7 @@ export abstract class EditorEntityImages
             const ghostHouse = Themes.GHOST_HOUSE
             const airship = Themes.AIRSHIP
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsHardBlock>([
+            return [
                 [day,   smb,   ground,      editorImage(this, 'HardBlock_00', smb,),],
                 [day,   smb,   underground, editorImage(this, 'HardBlock_underground_00', smb,),],
                 [night, smb,   underground, editorImage(this, 'HardBlock_underground_night_00', smb,),],
@@ -1760,23 +1586,18 @@ export abstract class EditorEntityImages
                 [day,   nsmbu, sky,         editorImage(this, 'HardBlock_athletic_00', nsmbu,),],
                 [day,   nsmbu, forest,      editorImage(this, 'HardBlock_woods_00', nsmbu,),],
                 [day,   nsmbu, castle,      editorImage(this, 'HardBlock_castle_00', nsmbu,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link CLOUD_BLOCK} */
-    private static readonly ExistantAsCloudBlock = class ExistantAsCloudBlock extends EditorEntityImages.Existant<'Cloud Block'> {
-
-        #image?: EditorImage<EditorImageFileAsCloudBlock>
+    private static readonly ExistantAsCloudBlock = class ExistantAsCloudBlock
+        extends EditorEntityImages.Existant<'Cloud Block', EditorImageFileAsCloudBlock> {
 
         public constructor() { super('Cloud Block',) }
 
-        public override get image(): EditorImage<EditorImageFileAsCloudBlock> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1787,7 +1608,7 @@ export abstract class EditorEntityImages
             const ground = Themes.GROUND
             const underwater = Themes.UNDERWATER
             const snow = Themes.SNOW
-            return this.#image = new EditorImageContainer<EditorImageFileAsCloudBlock>([
+            return [
                 [day,   smb,   ground,     editorImage(this, 'KumoBlock_00', smb,),],
                 [day,   smb,   underwater, editorImage(this, 'KumoBlock_water_00', smb,),],
                 [night, smb,   snow,       editorImage(this, 'KumoBlock_snow_night_00', smb,),],
@@ -1802,23 +1623,18 @@ export abstract class EditorEntityImages
                 [day,   nsmbu, ground,     editorImage(this, 'KumoBlock_00', nsmbu,),],
 
                 [day,   sm3dw, ground,     editorImage(this, 'KumoBlock_00', sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link CHEEP_CHEEP} */
-    private static readonly ExistantAsCheepCheep = class ExistantAsCheepCheep extends EditorEntityImages.Existant<'Cheep Cheep'> {
-
-        #image?: EditorImage<EditorImageFileAsCheepCheep>
+    private static readonly ExistantAsCheepCheep = class ExistantAsCheepCheep
+        extends EditorEntityImages.Existant<'Cheep Cheep', EditorImageFileAsCheepCheep> {
 
         public constructor() { super('Cheep Cheep',) }
 
-        public override get image(): EditorImage<EditorImageFileAsCheepCheep> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const smb = GameStyles.SUPER_MARIO_BROS
             const smb3 = GameStyles.SUPER_MARIO_BROS_3
@@ -1826,7 +1642,7 @@ export abstract class EditorEntityImages
             const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
             const theme = Themes.GROUND
-            return this.#image = new EditorImageContainer<EditorImageFileAsCheepCheep>([
+            return [
                 [time,   smb,   theme,      editorImage(this, 'Pukupuku_00', smb,),],
                 [time,   smb,   theme,      editorImage(this, 'Pukupuku_01', smb,),],
 
@@ -1839,23 +1655,18 @@ export abstract class EditorEntityImages
 
                 [time,   sm3dw, theme,      editorImage(this, 'Pukupuku_00', sm3dw,),],
                 [time,   sm3dw, theme,      editorImage(this, 'Pukupuku_01', sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link SPIKE_BALL} */
-    private static readonly ExistantAsSpikeBall = class ExistantAsSpikeBall extends EditorEntityImages.Existant<'Spike Ball'> {
-
-        #image?: EditorImage<EditorImageFileAsSpikeBall>
+    private static readonly ExistantAsSpikeBall = class ExistantAsSpikeBall
+        extends EditorEntityImages.Existant<'Spike Ball', EditorImageFileAsSpikeBall> {
 
         public constructor() { super('Spike Ball',) }
 
-        public override get image(): EditorImage<EditorImageFileAsSpikeBall> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const day = Times.DAY
             const night = Times.NIGHT
             const smb = GameStyles.SUPER_MARIO_BROS
@@ -1872,7 +1683,7 @@ export abstract class EditorEntityImages
             const ghostHouse = Themes.GHOST_HOUSE
             const airship = Themes.AIRSHIP
             const castle = Themes.CASTLE
-            return this.#image = new EditorImageContainer<EditorImageFileAsSpikeBall>([
+            return [
                 [day,   smb,   ground,      editorImage(this, 'Gabon_01', smb,),],
                 [night, smb,   ground,      editorImage(this, 'Gabon_plain_night_01', smb,),],
                 [day,   smb,   underground, editorImage(this, 'Gabon_underground_01', smb,),],
@@ -1900,33 +1711,28 @@ export abstract class EditorEntityImages
                 [day,   nsmbu, ground,      editorImage(this, 'Gabon_01', nsmbu,),],
 
                 [day,   sm3dw, ground,      editorImage(this, 'Gabon_01', sm3dw,),],
-            ],)
+            ] as const
         }
 
     }
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link TREE} */
-    private static readonly ExistantAsTree = class ExistantAsTree extends EditorEntityImages.Existant<'Tree'> {
-
-        #image?: EditorImage<EditorImageFileAsTree>
+    private static readonly ExistantAsTree = class ExistantAsTree
+        extends EditorEntityImages.Existant<'Tree', EditorImageFileAsTree> {
 
         public constructor() { super('Tree',) }
 
-        public override get image(): EditorImage<EditorImageFileAsTree> {
-            const value = this.#image
-            if (value != null)
-                return value
-
+        public override _createImageFiles() {
             const time = Times.DAY
             const gameStyle = GameStyles.SUPER_MARIO_3D_WORLD
-            return this.#image = new EditorImageContainer<EditorImageFileAsTree>([
+            return [
                 [time, gameStyle, Themes.GROUND,      editorImage(this, 'BellTree_00', gameStyle,),],
                 [time, gameStyle, Themes.UNDERGROUND, editorImage(this, 'BellTree_underground_00', gameStyle,),],
                 [time, gameStyle, Themes.UNDERWATER,  editorImage(this, 'BellTree_water_00', gameStyle,),],
                 [time, gameStyle, Themes.DESERT,      editorImage(this, 'BellTree_desert_00', gameStyle,),],
                 [time, gameStyle, Themes.SNOW,        editorImage(this, 'BellTree_snow_00', gameStyle,),],
                 [time, gameStyle, Themes.FOREST,      editorImage(this, 'BellTree_woods_00', gameStyle,),],
-            ],)
+            ] as const
         }
 
     }
