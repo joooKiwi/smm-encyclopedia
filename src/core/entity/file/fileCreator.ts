@@ -39,26 +39,14 @@ export function clearConditionImage<const GAME_STYLE_ACRONYM extends PossibleAcr
 //region -------------------- In game image --------------------
 
 /**
- * Create a simple {@link InGameSMM1ImageFile} from the {@link name} provided
+ * Create a {@link InGameImageFile} from the {@link folderName} and {@link fileName} provided
  *
  * @param entity The entity to retrieve its name
- * @param name The image folder name
- * @param gameStyle The image {@link GameStyles}
- */
-export function inGameSMM1Image(entity: InGameEntityImages, name: SimpleImageName_SMM1, gameStyle: GameStyles,): InGameSMM1ImageFile {
-    return new SimpleImageFile(`entity/${gameStyle.shortImagePath}/In game/SMM1/Item - ${name}/`, 'wait.0', 'png', `${entity.englishName} (In game - ${gameStyle.acronym} SMM1)`,)
-}
-
-/**
- * Create a simple {@link InGameSMM2ImageFile} from the {@link name} provided
- *
- * @param entity The entity to retrieve its name
- * @param name The image folder name
- * @param gameStyle The image {@link GameStyles}
+ * @param folderName The folder name
  * @param fileName The file name
  */
-export function inGameImage(entity: InGameEntityImages, name: ImageName_SMM2, gameStyle: GameStyles, fileName: PossibleInGameSMM2ImageFileName,): InGameSMM2ImageFile {
-    return new SimpleImageFile(`entity/in game/${gameStyle.acronymInFile} ${name}`, fileName, 'tiff', `${entity.englishName} (In game - ${gameStyle.acronym} SMM2)`,)
+export function inGameImage<const FOLDER_NAME extends string, const FILE_NAME extends string, const NAME extends PossibleEnglishName, >(entity: ClassWithEnglishName<NAME>, folderName: FOLDER_NAME, fileName: FILE_NAME,): InGameImageFile<FOLDER_NAME, FILE_NAME, NAME> {
+    return new SimpleImageFile(`entity/in game/${folderName}`, fileName, 'tiff', `${entity.englishName} (in game)`,)
 }
 
 //endregion -------------------- In game image --------------------

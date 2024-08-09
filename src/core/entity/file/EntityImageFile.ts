@@ -1,9 +1,9 @@
 import type {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}            from 'core/entity/EditorEntityImages'
 import type {PossibleEnglishName}           from 'core/entity/Entities.types'
+import type {InGameEntityImages}            from 'core/entity/InGameEntityImages'
 import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
 import type {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
-import type {InGameImageFile}               from 'core/entity/file/EntityImageFile.inGame'
 import type {GameStyles}                    from 'core/gameStyle/GameStyles'
 import type {PossibleAcronym_InFile}        from 'core/gameStyle/GameStyles.types'
 import type {ImageFile}                     from 'util/file/image/ImageFile'
@@ -14,8 +14,6 @@ import type {ImageFile}                     from 'util/file/image/ImageFile'
  * @see EditorImageFile
  * @see ClearConditionImageFile
  * @see InGameImageFile
- * @see InGameSMM1ImageFile
- * @see InGameSMM2ImageFile
  * @see UnusedImageFile
  * @see UnusedSmm1ImageFile_BigMushroom
  */

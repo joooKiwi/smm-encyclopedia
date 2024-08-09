@@ -1,17 +1,18 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
-import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
-import type {InGameImage}                          from 'core/entity/images/inGame/InGameImage'
-import type {InGameImage_SMM1}                     from 'core/entity/images/inGame/InGameImage_SMM1'
-import type {InGameImage_SMM2}                     from 'core/entity/images/inGame/InGameImage_SMM2'
-import type {ClassWithImage}                       from 'util/ClassWithImage'
+import type {ClassWithEnglishName}                                                                         from 'core/ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName}                                                         from 'core/entity/Entities.types'
+import type {InGameImageFile, InGameImageFileAsBubble, InGameImageFileAsMagicBall, InGameImageFileAsWater} from 'core/entity/file/EntityImageFile'
+import type {InGameImage}                                                                                  from 'core/entity/images/inGame/InGameImage'
+import type {PossibleAcronym_InFile_SMM1}                                                                  from 'core/gameStyle/GameStyles.types'
+import type {ClassWithImage}                                                                               from 'util/ClassWithImage'
 
-import {Entities}         from 'core/entity/Entities'
-import * as ImageCreator  from 'core/entity/images/inGameImageCreator'
-import {EmptyInGameImage} from 'core/entity/images/inGame/EmptyInGameImage'
-import {GameStyles}       from 'core/gameStyle/GameStyles'
+import {Entities}             from 'core/entity/Entities'
+import {inGameImage}          from 'core/entity/file/fileCreator'
+import {EmptyInGameImage}     from 'core/entity/images/inGame/EmptyInGameImage'
+import {InGameImageContainer} from 'core/entity/images/inGame/InGameImage.container'
+import {GameStyles}           from 'core/gameStyle/GameStyles'
 
 /**
  * An {@link InGameEntityImages} class made to hold an {@link InGameImage}
@@ -26,7 +27,7 @@ export abstract class InGameEntityImages
     //region -------------------- Sub class --------------------
 
     /** A subclass of an {@link InGameEntityImages} to hold a non-existant {@link InGameImage} ({@link EmptyInGameImage}) */
-    private static readonly Null = class NullEditorEntityImages extends InGameEntityImages {
+    private static readonly Null = class NullInGameEntityImages extends InGameEntityImages {
 
         readonly #image
 
@@ -39,28 +40,489 @@ export abstract class InGameEntityImages
 
     }
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} */
+    /** An abstract subclass of an {@link InGameEntityImages} to hold a specific {@link PossibleEnglishName} */
     private static readonly Existant = (() => {
-        abstract class ExistantEditorEntityImages extends InGameEntityImages {
+        abstract class ExistantInGameEntityImages<const NAME extends PossibleEnglishName,
+            const IMAGE_FILE extends InGameImageFile, >
+            extends InGameEntityImages {
 
-            #image?: InGameImage
+            readonly #englishName
+            #image?: InGameImage<IMAGE_FILE>
 
-            public constructor() { super() }
+            protected constructor(englishName: NAME,) {
+                super()
+                this.#englishName = englishName
+            }
 
-            /**
-             * Create the <b>in game</b> image
-             *
-             * @onlyCalledOnce
-             * @onlyCalledBy<{@link image}>
-             */
-            protected abstract _createImage(): InGameImage
+            public override get englishName(): NAME { return this.#englishName }
 
-            public override get image(): InGameImage { return this.#image ??= this._createImage() }
+            public override get image(): InGameImage<IMAGE_FILE> { return this.#image ??= new InGameImageContainer(this._createImageFiles(),) }
+
+            protected abstract _createImageFiles(): readonly (readonly [GameStyles, IMAGE_FILE,])[]
 
         }
 
-        return ExistantEditorEntityImages
+        return ExistantInGameEntityImages
     })()
+
+    //region -------------------- Sub class (one in 1 specific game style) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    private static readonly ExistantAsOneInOnlySmb = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        readonly #folderName
+        readonly #fileName
+
+        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName: FILE_NAME,) {
+            super(englishName,)
+            this.#folderName = folderName
+            this.#fileName = fileName
+        }
+
+        public override _createImageFiles() {
+            return [[GameStyles.SUPER_MARIO_BROS, inGameImage(this, this.#folderName, this.#fileName,),],] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (one in 1 specific game style) --------------------
+    //region -------------------- Sub class (one in 3 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
+     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     */
+    private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName: FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName = fileName
+        }
+
+        public override _createImageFiles() {
+            const fileName = this.#fileName
+            const endingFolderName = this.#endingFolderName
+            return [
+                [GameStyles.SUPER_MARIO_BROS, inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [GameStyles.SUPER_MARIO_BROS_3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [GameStyles.SUPER_MARIO_WORLD, inGameImage(this, `MW ${endingFolderName}`, fileName,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (one in 3 specific game style) --------------------
+    //region -------------------- Sub class (one in 4 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
+     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3},
+     * {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU}
+     */
+    private static readonly ExistantAsOneInNotSm3dw = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${PossibleAcronym_InFile_SMM1} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName: FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName = fileName
+        }
+
+        public override _createImageFiles() {
+            const fileName = this.#fileName
+            const endingFolderName = this.#endingFolderName
+            return [
+                [GameStyles.SUPER_MARIO_BROS, inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [GameStyles.SUPER_MARIO_BROS_3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [GameStyles.SUPER_MARIO_WORLD, inGameImage(this, `MW ${endingFolderName}`, fileName,),],
+                [GameStyles.NEW_SUPER_MARIO_BROS_U, inGameImage(this, `WU ${endingFolderName}`, fileName,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (one in 4 specific game style) --------------------
+    //region -------------------- Sub class (two in 1 specific game style) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    private static readonly ExistantAsTwoInOnlySmw = class ExistantAsTwoInOnlySmwInGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        readonly #folderName
+        readonly #fileName1
+        readonly #fileName2
+
+        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
+            super(englishName,)
+            this.#folderName = folderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+        }
+
+        public override _createImageFiles() {
+            const gameStyle = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [gameStyle, inGameImage(this, this.#folderName, this.#fileName1,),],
+                [gameStyle, inGameImage(this, this.#folderName, this.#fileName2,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (two in 1 specific game style) --------------------
+    //region -------------------- Sub class (two in 2 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
+     * in only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
+     */
+    private static readonly ExistantAsTwoInOnlySmbAndSmb3 = class ExistantAsTwoInOnlySmbAndSmb3InGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${| 'M1' | 'M3'} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName1
+        readonly #fileName2
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const folderNameSmb = `M1 ${endingFolderName}` as const
+            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            return [
+                [smb,  inGameImage(this, folderNameSmb, this.#fileName1,),],
+                [smb,  inGameImage(this, folderNameSmb, this.#fileName2,),],
+                [smb3, inGameImage(this, folderNameSmb3, this.#fileName1,),],
+                [smb3, inGameImage(this, folderNameSmb3, this.#fileName2,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (two in 2 specific game style) --------------------
+    //region -------------------- Sub class (two in 3 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
+     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     */
+    private static readonly ExistantAsTwoInNotNsmbuAndSm3dw = class ExistantAsTwoInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName1
+        readonly #fileName2
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const folderNameSmb = `M1 ${endingFolderName}` as const
+            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const folderNameSmw = `MW ${endingFolderName}` as const
+            const fileName1 = this.#fileName1
+            const fileName2 = this.#fileName2
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [smb,  inGameImage(this, folderNameSmb, fileName1,),],
+                [smb,  inGameImage(this, folderNameSmb, fileName2,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName1,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName2,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName1,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName2,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (two in 3 specific game style) --------------------
+    //region -------------------- Sub class (three in 1 specific game style) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    private static readonly ExistantAsThreeInOnlySmb = class ExistantAsThreeInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        readonly #folderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #fileName3
+
+        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME,) {
+            super(englishName,)
+            this.#folderName = folderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#fileName3 = fileName3
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.#folderName
+            const gameStyle = GameStyles.SUPER_MARIO_BROS
+            return [
+                [gameStyle, inGameImage(this, folderName, this.#fileName1,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName2,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName3,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (three in 1 specific game style) --------------------
+    //region -------------------- Sub class (three in 3 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile}
+     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     */
+    private static readonly ExistantAsThreeInNotNsmbuAndSm3dw = class ExistantAsThreeInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #fileName3
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#fileName3 = fileName3
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const folderNameSmb = `M1 ${endingFolderName}` as const
+            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const folderNameSmw = `MW ${endingFolderName}` as const
+            const fileName1 = this.#fileName1
+            const fileName2 = this.#fileName2
+            const fileName3 = this.#fileName3
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [smb,  inGameImage(this, folderNameSmb, fileName1,),],
+                [smb,  inGameImage(this, folderNameSmb, fileName2,),],
+                [smb,  inGameImage(this, folderNameSmb, fileName3,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName1,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName2,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName3,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName1,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName2,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName3,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (three in 3 specific game style) --------------------
+    //region -------------------- Sub class (four in 1 specific game style) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    private static readonly ExistantAsFourInOnlySmb = class ExistantAsFourInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        readonly #folderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #fileName3
+        readonly #fileName4
+
+        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME,) {
+            super(englishName,)
+            this.#folderName = folderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#fileName3 = fileName3
+            this.#fileName4 = fileName4
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.#folderName
+            const gameStyle = GameStyles.SUPER_MARIO_BROS
+            return [
+                [gameStyle, inGameImage(this, folderName, this.#fileName1,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName2,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName3,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName4,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (four in 1 specific game style) --------------------
+    //region -------------------- Sub class (four in 3 specific game style) --------------------
+
+    /**
+     * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile}
+     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     */
+    private static readonly ExistantAsFourInNotNsmbuAndSm3dw = class ExistantAsFourInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
+        const ENDING_FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<`${Exclude<PossibleAcronym_InFile_SMM1, 'WU'>} ${ENDING_FOLDER_NAME}`, FILE_NAME>> {
+
+        readonly #endingFolderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #fileName3
+        readonly #fileName4
+
+        public constructor(englishName: NAME, endingFolderName: ENDING_FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME,) {
+            super(englishName,)
+            this.#endingFolderName = endingFolderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#fileName3 = fileName3
+            this.#fileName4 = fileName4
+        }
+
+        public override _createImageFiles() {
+            const endingFolderName = this.#endingFolderName
+            const folderNameSmb = `M1 ${endingFolderName}` as const
+            const folderNameSmb3 = `M3 ${endingFolderName}` as const
+            const folderNameSmw = `MW ${endingFolderName}` as const
+            const fileName1 = this.#fileName1
+            const fileName2 = this.#fileName2
+            const fileName3 = this.#fileName3
+            const fileName4 = this.#fileName4
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [smb,  inGameImage(this, folderNameSmb, fileName1,),],
+                [smb,  inGameImage(this, folderNameSmb, fileName2,),],
+                [smb,  inGameImage(this, folderNameSmb, fileName3,),],
+                [smb,  inGameImage(this, folderNameSmb, fileName4,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName1,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName2,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName3,),],
+                [smb3, inGameImage(this, folderNameSmb3, fileName4,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName1,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName2,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName3,),],
+                [smw,  inGameImage(this, folderNameSmw, fileName4,),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (four in 3 specific game style) --------------------
+    //region -------------------- Sub class (predefined) --------------------
+
+    /** A subclass of an {@link InGameEntityImages} for only the {@link WATER} */
+    private static readonly ExistantAsWater = class ExistantAsWaterInGameEntityImages
+        extends InGameEntityImages.Existant<'Water', InGameImageFileAsWater> {
+
+        public constructor() { super('Water',) }
+
+        public override _createImageFiles() {
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.0',),],
+                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.1',),],
+                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.2',),],
+                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.3',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.0',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.1',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.2',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.3',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.0',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.1',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.2',),],
+                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.3',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.0',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.1',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.2',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.3',),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIC_BALL_THROWN_BY_A_LEMMY} */
+    private static readonly ExistantAsMagicBall = class ExistantAsMagicBallInGameEntityImages
+        extends InGameEntityImages.Existant<'Magic Ball thrown by a Lemmy', InGameImageFileAsMagicBall> {
+
+        public constructor() { super('Magic Ball thrown by a Lemmy',) }
+
+        public override _createImageFiles() {
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [GameStyles.SUPER_MARIO_BROS,   inGameImage(this, 'M1 Enemy - Lemmy', 'ball.0',),],
+                [GameStyles.SUPER_MARIO_BROS_3, inGameImage(this, 'M3 Enemy - Lemmy', 'ball.0',),],
+                [smw,                           inGameImage(this, 'MW Enemy - Lemmy', 'ball.0',),],
+                [smw,                           inGameImage(this, 'MW Enemy - Lemmy', 'ball_specular',),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} for only the {@link BUBBLE} */
+    private static readonly ExistantAsBubble = class ExistantAsBubbleInGameEntityImages
+        extends InGameEntityImages.Existant<'Bubble', InGameImageFileAsBubble> {
+
+        public constructor() { super('Bubble',) }
+
+        public override _createImageFiles() {
+            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
+            return [
+                [GameStyles.SUPER_MARIO_BROS,     inGameImage(this, 'M1 Object - Balloon', 'balloon.0',),],
+                [GameStyles.SUPER_MARIO_BROS_3,   inGameImage(this, 'M3 Object - Balloon', 'balloon.0',),],
+                [GameStyles.SUPER_MARIO_WORLD,    inGameImage(this, 'MW Object - Balloon', 'balloon.0',),],
+                [nsmbu,                           inGameImage(this, 'WU Object - Balloon', 'balloon.0',),],
+                [nsmbu,                           inGameImage(this, 'WU Object - Balloon', 'balloon2.0',),],
+                [GameStyles.SUPER_MARIO_3D_WORLD, inGameImage(this, '3W Object - Balloon', 'TractorBubble_Alb',),],
+            ] as const
+        }
+
+    }
+
+    //endregion -------------------- Sub class (predefined) --------------------
 
     //endregion -------------------- Sub class --------------------
     //region -------------------- Enum instances --------------------
@@ -74,36 +536,12 @@ export abstract class InGameEntityImages
     public static readonly STEEP_SLOPE =                                   new InGameEntityImages.Null()
     public static readonly GENTLE_SLOPE =                                  new InGameEntityImages.Null()
 
-    public static readonly START_BLOCK =                                   new class InGameEntityImages_StartBlock extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.startBlock(this,)
-        }
-
-    }()
+    public static readonly START_BLOCK =                                   new InGameEntityImages.ExistantAsOneInNotSm3dw('Start Block', 'Object - StartBlock', 'startblock',)
     public static readonly OCCLUDE_BLOCK =                                 new InGameEntityImages.Null()
 
-    public static readonly WATER =                                         new class InGameEntityImages_Water extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.water(this,)
-        }
-
-    }()
-    public static readonly LAVA =                                          new class InGameEntityImages_Lava extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.dangerousLiquid(this, 'Object - MagmaHalf',)
-        }
-
-    }()
-    public static readonly POISON =                                        new class InGameEntityImages_Poison extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.dangerousLiquid(this, 'Object - PoisonHalf',)
-        }
-
-    }()
+    public static readonly WATER =                                         new InGameEntityImages.ExistantAsWater()
+    public static readonly LAVA =                                          new InGameEntityImages.ExistantAsFourInNotNsmbuAndSm3dw('Lava', 'Object - MagmaHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly POISON =                                        new InGameEntityImages.ExistantAsFourInNotNsmbuAndSm3dw('Poison', 'Object - PoisonHalf', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly PIPE =                                          new InGameEntityImages.Null()
     public static readonly CLEAR_PIPE =                                    new InGameEntityImages.Null()
@@ -129,13 +567,7 @@ export abstract class InGameEntityImages
 
     public static readonly QUESTION_MARK_BLOCK =                           new InGameEntityImages.Null()
     public static readonly HIDDEN_BLOCK =                                  new InGameEntityImages.Null()
-    public static readonly EMPTY_BLOCK =                                   new class InGameEntityImages_EmptyBlock extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.only2DStyle(this, 'Object - BlockKara', 'wait.0',)
-        }
-
-    }()
+    public static readonly EMPTY_BLOCK =                                   new InGameEntityImages.ExistantAsOneInNotSm3dw('Empty Block', 'Object - BlockKara', 'wait.0',)
 
     public static readonly EXCLAMATION_MARK_BLOCK =                        new InGameEntityImages.Null()
 
@@ -172,60 +604,18 @@ export abstract class InGameEntityImages
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new InGameEntityImages.Null()
 
     public static readonly SUPERBALL_FLOWER =                              new InGameEntityImages.Null()
-    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new class InGameEntityImages_SuperballThrownByAPlayer extends InGameEntityImages.Existant {
+    public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new InGameEntityImages.ExistantAsOneInOnlySmb('Superball thrown by a player', 'M1 Object - Superball', 'superball',)
 
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.all(this, 'Object - Superball', GameStyles.SUPER_MARIO_BROS, 'superball',)
-        }
-
-    }()
-
-    public static readonly MYSTERY_MUSHROOM =                              new class InGameEntityImages_MysteryMushroom extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM1 {
-            return ImageCreator.smm1(this, 'Kinoko2', GameStyles.SUPER_MARIO_BROS,)
-        }
-
-    }()
-    public static readonly WEIRD_MUSHROOM =                                new class InGameEntityImages_WeirdMushroom extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM1 {
-            return ImageCreator.smm1(this, 'KinokoFunny', GameStyles.SUPER_MARIO_BROS,)
-        }
-
-    }()
+    public static readonly MYSTERY_MUSHROOM =                              new InGameEntityImages.ExistantAsOneInOnlySmb('Mystery Mushroom', 'M1 Item - CharaKinoko', 'Add_kinoko',)
+    public static readonly WEIRD_MUSHROOM =                                new InGameEntityImages.ExistantAsOneInOnlySmb('Weird Mushroom', 'M1 Item - KinokoFunny', 'kinokofunny.0',)
 
     public static readonly MASTER_SWORD =                                  new InGameEntityImages.Null()
-    public static readonly BOMB_THROWN_BY_A_LINK =                         new class InGameEntityImages_BombThrownByALink extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multiple(this, 'Enemy - LinkBomb', GameStyles.SUPER_MARIO_BROS, ['wait.0', 'walk.0', 'walk.1',],)
-        }
-
-    }()
-    public static readonly ARROW_THROWN_BY_A_LINK =                        new class InGameEntityImages_ArrowThrownByALink extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.all(this, 'Object - Arrow', GameStyles.SUPER_MARIO_BROS, 'arrow',)
-        }
-
-    }()
+    public static readonly BOMB_THROWN_BY_A_LINK =                         new InGameEntityImages.ExistantAsThreeInOnlySmb('Bomb thrown by a Link', 'M1 Enemy - LinkBomb', 'wait.0', 'walk.0', 'walk.1',)
+    public static readonly ARROW_THROWN_BY_A_LINK =                        new InGameEntityImages.ExistantAsOneInOnlySmb('Arrow thrown by a Link', 'M1 Object - Arrow', 'arrow',)
 
     public static readonly BIG_MUSHROOM =                                  new InGameEntityImages.Null()
-    public static readonly BIG_MUSHROOM_CLASSIC =                          new class InGameEntityImages_BigMushroom_Classic extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM1 {
-            return ImageCreator.allSmm1(this, 'MegaKinoko',)
-        }
-
-    }()
-    public static readonly BIG_MUSHROOM_MODERN =                           new class InGameEntityImages_BigMushroom_Modern extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM1 {
-            return ImageCreator.allSmm1(this, 'MegaKinoko2',)
-        }
-
-    }()
+    public static readonly BIG_MUSHROOM_CLASSIC =                          new InGameEntityImages.ExistantAsOneInNotSm3dw('Big Mushroom (classic)', 'Item - MegaKinoko', 'wait.0',)
+    public static readonly BIG_MUSHROOM_MODERN =                           new InGameEntityImages.ExistantAsOneInNotSm3dw('Big Mushroom (modern)', 'Item - MegaKinoko2', 'wait.0',)
 
     public static readonly SMB2_MUSHROOM =                                 new InGameEntityImages.Null()
 
@@ -266,53 +656,17 @@ export abstract class InGameEntityImages
     public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.Null()
 
     public static readonly SHOE_GOOMBA =                                   new InGameEntityImages.Null()
-    public static readonly SHOE =                                          new class InGameEntityImages_Shoe extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInMultiple(this, 'Enemy - KutsuKuriboA', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3,], ['wait.0', 'wait.1',],)
-        }
-
-    }()
+    public static readonly SHOE =                                          new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Shoe', 'Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)
     public static readonly STILETTO_GOOMBA =                               new InGameEntityImages.Null()
-    public static readonly STILETTO =                                      new class InGameEntityImages_Stiletto extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multipleInMultiple(this, 'Enemy - KutsuKuriboB', [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3,], ['wait.0', 'wait.1',],)
-        }
-
-    }()
-    public static readonly YOSHI_EGG =                                     new class InGameEntityImages_YoshiEgg extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multiple(this, 'Enemy - KutsuKuriboA', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU yoshi egg (if present)
-        }
-
-    }()
+    public static readonly STILETTO =                                      new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Stiletto', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)
+    public static readonly YOSHI_EGG =                                     new InGameEntityImages.ExistantAsTwoInOnlySmw('Yoshi\'s Egg', 'MW Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly YOSHI =                                         new InGameEntityImages.Null()
-    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new class InGameEntityImages_FireThrownByAYoshi extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multiple(this, 'Player - YoshiFire', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU "Yoshi fire thrown" if present
-        }
-
-    }()
-    public static readonly POISON_THROWN_BY_A_YOSHI =                      new class InGameEntityImages_PoisonThrownByAYoshi extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multiple(this, 'Player - YoshiPoison', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU "Yoshi poison thrown" if present
-        }
-
-    }()
+    public static readonly FIRE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.ExistantAsTwoInOnlySmw('Fire thrown by a Yoshi', 'MW Player - YoshiFire', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi fire thrown" (if present)
+    public static readonly POISON_THROWN_BY_A_YOSHI =                      new InGameEntityImages.ExistantAsTwoInOnlySmw('Poison thrown by a Yoshi', 'MW Player - YoshiPoison', 'wait.0', 'wait.1',)//TODO add NSMBU "Yoshi poison thrown" (if present)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.Null()
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
-    public static readonly RED_YOSHI_EGG =                                 new class InGameEntityImages_RedYoshiEgg extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multiple(this, 'Enemy - KutsuKuriboB', GameStyles.SUPER_MARIO_WORLD, ['wait.0', 'wait.1',],)//TODO add NSMBU yoshi egg (if present)
-        }
-
-    }()
+    public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAsTwoInOnlySmw('Red Yoshi\'s Egg', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly RED_YOSHI =                                     new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new InGameEntityImages.Null()
 
@@ -366,13 +720,7 @@ export abstract class InGameEntityImages
 
     public static readonly BLOOPER =                                       new InGameEntityImages.Null()
     public static readonly BLOOPER_NANNY =                                 new InGameEntityImages.Null()
-    public static readonly BABY_BLOOPER =                                  new class InGameEntityImages_BabyBlooper extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.babyBlooper(this, )
-        }
-
-    }()
+    public static readonly BABY_BLOOPER =                                  new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Baby Blooper', 'Enemy - GessoMini', 'wait.0', 'wait.1',)
 
     public static readonly PORCUPUFFER =                                   new InGameEntityImages.Null()
 
@@ -491,126 +839,35 @@ export abstract class InGameEntityImages
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new InGameEntityImages.Null()
 
     public static readonly LARRY =                                         new InGameEntityImages.Null()
-    public static readonly LARRY_WAND =                                    new class InGameEntityImages_LarryWand extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingWand(this, 'Enemy - Larry',)
-        }
-
-    }()
-    public static readonly LARRY_PROJECTILE =                              new class InGameEntityImages_LarryProjectile extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingProjectile(this, 'Enemy - Larry',)
-        }
-
-    }()
+    public static readonly LARRY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Larry\'s Wand', 'Enemy - Larry', 'wand',)
+    public static readonly LARRY_PROJECTILE =                              new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Larry\'s projectile)', 'Enemy - Larry', 'effect.0',)
 
     public static readonly IGGY =                                          new InGameEntityImages.Null()
-    public static readonly IGGY_WAND =                                     new class InGameEntityImages_IggyWand extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingWand(this, 'Enemy - Iggy',)
-        }
-
-    }()
-    public static readonly IGGY_PROJECTILE =                               new class InGameEntityImages_IggyProjectile extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingProjectile(this, 'Enemy - Iggy',)
-        }
-
-    }()
+    public static readonly IGGY_WAND =                                     new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Iggy\'s Wand', 'Enemy - Iggy', 'wand',)
+    public static readonly IGGY_PROJECTILE =                               new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Iggy\'s projectile)', 'Enemy - Iggy', 'effect.0',)
 
     public static readonly WENDY =                                         new InGameEntityImages.Null()
-    public static readonly WENDY_WAND =                                    new class InGameEntityImages_WendyWand extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingWand(this, 'Enemy - Wendy',)
-        }
-
-    }()
-    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new class InGameEntityImages_CandyRingThrownByAWendy extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.candyRing(this,)
-        }
-
-    }()
+    public static readonly WENDY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Wendy\'s Wand', 'Enemy - Wendy', 'wand',)
+    public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new InGameEntityImages.ExistantAsThreeInNotNsmbuAndSm3dw('Candy Ring thrown by a Wendy', 'Enemy - Wendy', 'ring.0', 'ring.1', 'ring.2',)
     public static readonly WENDY_PROJECTILE =                              new InGameEntityImages.Null()
 
     public static readonly LEMMY =                                         new InGameEntityImages.Null()
-    public static readonly LEMMY_WAND =                                    new class InGameEntityImages_LemmyWand extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingWand(this, 'Enemy - Lemmy',)
-        }
-
-    }()
-    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new class InGameEntityImages_MagicBallThrownByALemmy extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.magicBall(this,)
-        }
-
-    }()
+    public static readonly LEMMY_WAND =                                    new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Lemmy\'s Wand', 'Enemy - Lemmy', 'wand',)
+    public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new InGameEntityImages.ExistantAsMagicBall()
     public static readonly LEMMY_PROJECTILE =                              new InGameEntityImages.Null()
 
     public static readonly ROY =                                           new InGameEntityImages.Null()
-    public static readonly ROY_WAND =                                      new class InGameEntityImages_RoyWand extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingWand(this, 'Enemy - Roy',)
-        }
-
-    }()
-    public static readonly ROY_PROJECTILE =                                new class InGameEntityImages_RoyProjectile extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingProjectile(this, 'Enemy - Roy',)
-        }
-
-    }()
+    public static readonly ROY_WAND =                                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Roy\'s Wand', 'Enemy - Roy', 'wand',)
+    public static readonly ROY_PROJECTILE =                                new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Roy\'s projectile)', 'Enemy - Roy', 'effect.0',)
 
     public static readonly MORTON =                                        new InGameEntityImages.Null()
-    public static readonly MORTON_WAND =                                   new class InGameEntityImages_MortonWand extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingWand(this, 'Enemy - Morton',)
-        }
-
-    }()
-    public static readonly MORTON_THROWN_PROJECTILE =                      new class InGameEntityImages_MortonThrownProjectile extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingProjectile(this, 'Enemy - Morton',)
-        }
-
-    }()
-    public static readonly MORTON_GROUND_PROJECTILE =                      new class InGameEntityImages_MortonGroundProjectile extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.mortonGroundProjectile(this,)
-        }
-        //TODO add unused morton fire.2 in SMB3
-
-    }()
+    public static readonly MORTON_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Morton\'s Wand', 'Enemy - Morton', 'wand',)
+    public static readonly MORTON_THROWN_PROJECTILE =                      new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Morton\'s Thrown projectile)', 'Enemy - Morton', 'effect.0',)
+    public static readonly MORTON_GROUND_PROJECTILE =                      new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('(Morton\'s Ground projectile)', 'Enemy - Morton', 'fire.0', 'fire.1',)
 
     public static readonly LUDWIG =                                        new InGameEntityImages.Null()
-    public static readonly LUDWIG_WAND =                                   new class InGameEntityImages_LudwigWand extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingWand(this, 'Enemy - Ludwig',)
-        }
-
-    }()
-    public static readonly LUDWIG_PROJECTILE =                             new class InGameEntityImages_LudwigProjectile extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.koopalingProjectile(this, 'Enemy - Ludwig',)
-        }
-
-    }()
+    public static readonly LUDWIG_WAND =                                   new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Ludwig\'s Wand', 'Enemy - Ludwig', 'wand',)
+    public static readonly LUDWIG_PROJECTILE =                             new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Ludwig\'s projectile)', 'Enemy - Ludwig', 'effect.0',)
 
     //endregion -------------------- Boss + projectile --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
@@ -665,13 +922,7 @@ export abstract class InGameEntityImages
 
     public static readonly KEY =                                           new InGameEntityImages.Null()
     public static readonly CURSED_KEY =                                    new InGameEntityImages.Null()
-    public static readonly PHANTO =                                        new class InGameEntityImages_Phanto extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.multiple(this, 'Object - Phanto', GameStyles.SUPER_MARIO_BROS, ['wait.0', 'wait.1', 'wait.2', 'wait.3',],)
-        }
-
-    }()
+    public static readonly PHANTO =                                        new InGameEntityImages.ExistantAsFourInOnlySmb('Phanto', 'M1 Object Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly TRAMPOLINE =                                    new InGameEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new InGameEntityImages.Null()
@@ -696,13 +947,7 @@ export abstract class InGameEntityImages
     public static readonly TOAD =                                          new InGameEntityImages.Null()
     public static readonly CAGED_TOADETTE =                                new InGameEntityImages.Null()
 
-    public static readonly BUBBLE =                                        new class InGameEntityImages_Bubble extends InGameEntityImages.Existant {
-
-        protected override _createImage(): InGameImage_SMM2 {
-            return ImageCreator.bubble(this,)
-        }
-
-    }()
+    public static readonly BUBBLE =                                        new InGameEntityImages.ExistantAsBubble()
 
     //endregion -------------------- Passive gizmo / Key / Warp / Other --------------------
 
