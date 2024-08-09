@@ -271,8 +271,9 @@ export type PossibleInGameImageFile = typeof InGameEntityImages[| 'START_BLOCK' 
 
 /** An {@link InGameImageFile} template for the {@link InGameEntityImages.WATER} */
 export type InGameImageFileAsWater
-    = | InGameImageFile<`${| 'M1' | 'MW'} Object - WaterHalf`, `wait.${| 0 | 1 | 2 | 3}`, 'Water'>
+    = | InGameImageFile<'M1 Object - WaterHalf', `wait.${| 0 | 1 | 2 | 3}`, 'Water'>
       | InGameImageFile<'M3 Object - WaterHalf', `${| 'body' | 'top'}.${| 0 | 1 | 2 | 3}`, 'Water'>
+      | InGameImageFile<'MW Object - WaterHalf', `body.${| 0 | 1 | 2 | 3}`, 'Water'>
 
 /** An {@link InGameImageFile} template for the {@link InGameEntityImages.MAGIC_BALL_THROWN_BY_A_LEMMY} */
 export type InGameImageFileAsMagicBall

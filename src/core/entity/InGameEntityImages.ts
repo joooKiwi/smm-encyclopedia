@@ -475,10 +475,10 @@ export abstract class InGameEntityImages
                 [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.1',),],
                 [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.2',),],
                 [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.3',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.0',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.1',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.2',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'wait.3',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.0',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.1',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.2',),],
+                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.3',),],
             ] as const
         }
 
@@ -922,7 +922,7 @@ export abstract class InGameEntityImages
 
     public static readonly KEY =                                           new InGameEntityImages.Null()
     public static readonly CURSED_KEY =                                    new InGameEntityImages.Null()
-    public static readonly PHANTO =                                        new InGameEntityImages.ExistantAsFourInOnlySmb('Phanto', 'M1 Object Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
+    public static readonly PHANTO =                                        new InGameEntityImages.ExistantAsFourInOnlySmb('Phanto', 'M1 Object - Phanto', 'wait.0', 'wait.1', 'wait.2', 'wait.3',)
 
     public static readonly TRAMPOLINE =                                    new InGameEntityImages.Null()
     public static readonly HOP_CHOPS =                                     new InGameEntityImages.Null()

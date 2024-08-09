@@ -317,8 +317,8 @@ export function uniqueBrickBlockImages(entity: Entities,): UniqueImage<EditorIma
     return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1], images[2], images[3], images[5],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[6], images[7],],],
-        [GameStyles.NEW_SUPER_MARIO_BROS_U, [images[8],],],
-        [GameStyles.SUPER_MARIO_3D_WORLD, [images[9],],],
+        [GameStyles.NEW_SUPER_MARIO_BROS_U, [images[9],],],
+        [GameStyles.SUPER_MARIO_3D_WORLD, [images[10],],],
     ],),)
 }
 
