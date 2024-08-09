@@ -1,14 +1,10 @@
-import type {ClassWithEnglishName}                                                                                            from 'core/ClassWithEnglishName'
-import type {PossibleEnglishName}                                                                                             from 'core/entity/Entities.types'
-import type {InGameEntityImages}                                                                                              from 'core/entity/InGameEntityImages'
-import type {ClearConditionImageFile, EditorImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMushroom}                      from 'core/entity/file/EntityImageFile'
-import type {ImageName_SMM2, InGameSMM1ImageFile, InGameSMM2ImageFile, PossibleInGameSMM2ImageFileName, SimpleImageName_SMM1} from 'core/entity/file/EntityImageFile.inGame'
-import type {GameStyles}                                                                                                      from 'core/gameStyle/GameStyles'
-import type {PossibleAcronym_InFile}                                                                                          from 'core/gameStyle/GameStyles.types'
+import type {ClassWithEnglishName}                                                                                        from 'core/ClassWithEnglishName'
+import type {PossibleEnglishName}                                                                                         from 'core/entity/Entities.types'
+import type {ClearConditionImageFile, EditorImageFile, InGameImageFile, UnusedImageFile, UnusedSmm1ImageFile_BigMushroom} from 'core/entity/file/EntityImageFile'
+import type {GameStyles}                                                                                                  from 'core/gameStyle/GameStyles'
+import type {PossibleAcronym_InFile}                                                                                      from 'core/gameStyle/GameStyles.types'
 
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
-
-//region -------------------- Editor image --------------------
 
 /**
  * Create a {@link EditorImageFile} from the {@link name} and {@link gameStyle} provided
@@ -21,9 +17,6 @@ export function editorImage<const GAME_STYLE extends GameStyles, const FILE_NAME
     return new SimpleImageFile(`entity/editor`, `${gameStyle.acronymInFile}_Lyt_P_${name}`, 'tiff', `${entity.englishName} (editor)`,)
 }
 
-//endregion -------------------- Editor image --------------------
-//region -------------------- Clear condition image --------------------
-
 /**
  * Create a {@link ClearConditionImageFile}
  *
@@ -35,7 +28,6 @@ export function clearConditionImage<const GAME_STYLE_ACRONYM extends PossibleAcr
     return new SimpleImageFile(`entity/clear condition/`, `${gameStyleAcronym}_Lyt_M_${name}`, 'tiff', `${entity.englishName} (clear condition)`,)
 }
 
-//endregion -------------------- Clear condition image --------------------
 //region -------------------- In game image --------------------
 
 /**
@@ -50,10 +42,9 @@ export function inGameImage<const FOLDER_NAME extends string, const FILE_NAME ex
 }
 
 //endregion -------------------- In game image --------------------
-//region -------------------- Unused image --------------------
 
 /**
- * Create a {@link UnusedImageFile} from the {@link name} provided
+ * Create a {@link UnusedImageFile} from the {@link folderName} and {@link fileName} provided
  *
  * @param entity The entity to retrieve its name
  * @param folderName The folder name
@@ -64,7 +55,7 @@ export function unusedImage<const FOLDER_NAME extends string, const FILE_NAME ex
 }
 
 /**
- * Create a {@link UnusedSmm1ImageFile_BigMushroom} from the {@link name} provided
+ * Create a {@link UnusedSmm1ImageFile_BigMushroom} from the {@link folderName} and {@link fileName} provided
  *
  * @param entity The entity to retrieve its name
  * @param folderName The folder name
@@ -73,5 +64,3 @@ export function unusedImage<const FOLDER_NAME extends string, const FILE_NAME ex
 export function unusedBigMushroomImage<const FOLDER_NAME extends string, const FILE_NAME extends string, const NAME extends PossibleEnglishName, >(entity: ClassWithEnglishName<NAME>, folderName: FOLDER_NAME, fileName: FILE_NAME,): UnusedSmm1ImageFile_BigMushroom<FOLDER_NAME, FILE_NAME, NAME> {
     return new SimpleImageFile(`entity/unused/M1 A - Enemy - ${folderName}`, fileName, 'tiff', `${entity.englishName} (unused Big Mushroom)`,)
 }
-
-//endregion -------------------- Unused image --------------------

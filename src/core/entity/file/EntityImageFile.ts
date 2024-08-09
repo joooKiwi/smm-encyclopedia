@@ -24,6 +24,8 @@ export type EntityImageFile = | EditorImageFile | ClearConditionImageFile | InGa
 export type EditorImageFile<GAME_STYLE extends GameStyles = GameStyles, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
     = ImageFile<`entity/editor`, `${GAME_STYLE['acronymInFile']}_Lyt_P_${FILE_NAME}`, 'tiff', `${NAME} (editor)`>
 
+//region -------------------- possible editor images --------------------
+
 /** The possible {@link ImageFile} that are in the editor */
 export type PossibleEditorImageFile = typeof EditorEntityImages[| 'GROUND' | 'STEEP_SLOPE' | 'GENTLE_SLOPE'
                                                                 | 'PIPE' | 'CLEAR_PIPE' | 'SPIKE_TRAP'
@@ -89,6 +91,9 @@ export type PossibleEditorImageFile = typeof EditorEntityImages[| 'GROUND' | 'ST
                                                                 | 'RED_POW_BLOCK' | 'P_SWITCH' | 'WARP_DOOR'
                                                                 | 'P_WARP_DOOR' | 'KEY_DOOR' | 'WARP_BOX'
                                                                 | 'WARP_BOX_WITH_KEY' | 'WING' | 'PARACHUTE']['image']['images'][number]
+
+//endregion -------------------- possible editor images --------------------
+//region -------------------- predefined editor images --------------------
 
 /** An {@link EditorImageFile} template to tell that there is blue variants on other {@link Themes} and mostly the {@link Times.NIGHT night time} */
 export type EditorImageFileAsBlueVariant<FILE_NAME extends string, NUMBER extends | 0 | 1, NAME extends PossibleEnglishName, >
@@ -193,11 +198,15 @@ export type EditorImageFileAsSpikeBall
 export type EditorImageFileAsTree
     = EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `BellTree${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'woods'}`}_00`, 'Tree'>
 
+//endregion -------------------- predefined editor images --------------------
+
 //endregion -------------------- editor images --------------------
 //region -------------------- clear condition images --------------------
 
 export type ClearConditionImageFile<GAME_STYLE_ACRONYM extends PossibleAcronym_InFile = PossibleAcronym_InFile, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
     = ImageFile<`entity/clear condition/`, `${GAME_STYLE_ACRONYM}_Lyt_M_${FILE_NAME}`, 'tiff', `${NAME} (clear condition)`>
+
+//region -------------------- possible "clear condition" images --------------------
 
 /** The possible {@link ImageFile} that are in a clear condition */
 export type PossibleClearConditionImageFiles = ReturnType<typeof ClearConditionEntityImages[| 'COIN' | 'TEN_COIN' | 'THIRTY_COIN' | 'FIFTY_COIN'
@@ -234,7 +243,51 @@ export type PossibleClearConditionImageFiles = ReturnType<typeof ClearConditionE
                                                                                             | 'CRATE' | 'TRAMPOLINE' | 'POW_BLOCK'
                                                                                             | 'RED_POW_BLOCK' | 'P_SWITCH' | 'STONE']['image']['get']>
 
+//endregion -------------------- possible "clear condition" images --------------------
+
 //endregion -------------------- clear condition images --------------------
+//region -------------------- in game images --------------------
+
+export type InGameImageFile<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
+    = ImageFile<`entity/in game/${FOLDER_NAME}`, FILE_NAME, 'tiff', `${NAME} (in game)`>
+
+//region -------------------- possible "in game" images --------------------
+
+export type PossibleInGameImageFile = typeof InGameEntityImages[| 'START_BLOCK' | 'WATER' | 'LAVA'
+                                                                | 'POISON' | 'EMPTY_BLOCK' | 'SUPERBALL_THROWN_BY_A_PLAYER'
+                                                                | 'MYSTERY_MUSHROOM' | 'WEIRD_MUSHROOM' | 'BOMB_THROWN_BY_A_LINK'
+                                                                | 'ARROW_THROWN_BY_A_LINK' | 'BIG_MUSHROOM_CLASSIC' | 'BIG_MUSHROOM_MODERN'
+                                                                | 'SHOE' | 'STILETTO' | 'YOSHI_EGG'
+                                                                | 'FIRE_THROWN_BY_A_YOSHI' | 'POISON_THROWN_BY_A_YOSHI' | 'RED_YOSHI_EGG'
+                                                                | 'BABY_BLOOPER' | 'LARRY_WAND' | 'LARRY_PROJECTILE'
+                                                                | 'IGGY_WAND' | 'IGGY_PROJECTILE' | 'WENDY_WAND'
+                                                                | 'CANDY_RING_THROWN_BY_A_WENDY' | 'LEMMY_WAND' | 'MAGIC_BALL_THROWN_BY_A_LEMMY'
+                                                                | 'ROY_WAND' | 'ROY_PROJECTILE' | 'MORTON_WAND'
+                                                                | 'MORTON_THROWN_PROJECTILE' | 'MORTON_GROUND_PROJECTILE' | 'LUDWIG_WAND'
+                                                                | 'LUDWIG_PROJECTILE' | 'PHANTO' | 'BUBBLE']['image']['images'][number]
+
+//endregion -------------------- possible "in game" images --------------------
+//region -------------------- predefined "in game" images --------------------
+
+/** An {@link InGameImageFile} template for the {@link InGameEntityImages.WATER} */
+export type InGameImageFileAsWater
+    = | InGameImageFile<`${| 'M1' | 'MW'} Object - WaterHalf`, `wait.${| 0 | 1 | 2 | 3}`, 'Water'>
+      | InGameImageFile<'M3 Object - WaterHalf', `${| 'body' | 'top'}.${| 0 | 1 | 2 | 3}`, 'Water'>
+
+/** An {@link InGameImageFile} template for the {@link InGameEntityImages.MAGIC_BALL_THROWN_BY_A_LEMMY} */
+export type InGameImageFileAsMagicBall
+    = | InGameImageFile<`${| 'M1' | 'M3'} Enemy - Lemmy`, 'ball.0', 'Magic Ball thrown by a Lemmy'>
+      | InGameImageFile<'MW Enemy - Lemmy', `ball${| '.0' | '_specular'}`, 'Magic Ball thrown by a Lemmy'>
+
+/** An {@link InGameImageFile} template for the {@link InGameEntityImages.BUBBLE} */
+export type InGameImageFileAsBubble
+    = | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Balloon`, 'balloon.0', 'Bubble'>
+      | InGameImageFile<'WU Object - Balloon', `balloon${| '' | 2}.0`, 'Bubble'>
+      | InGameImageFile<'3W Object - Balloon', 'TractorBubble_Alb', 'Bubble'>
+
+//endregion -------------------- predefined "in game" images --------------------
+
+//endregion -------------------- in game images --------------------
 //region -------------------- unused images --------------------
 
 export type UnusedImageFile<FOLDER_NAME extends string = string, FILE_NAME extends string = string, NAME extends PossibleEnglishName = PossibleEnglishName, >
