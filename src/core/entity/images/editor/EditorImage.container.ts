@@ -79,6 +79,8 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
                 imagesFound.push(value[3],)
         }
 
+        if (imagesFound.length === 0)
+            return EMPTY_ARRAY
         return imagesFound.reverse()
     }
 
@@ -93,6 +95,9 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
         while (++index < size)
             if (images[index][1] === gameStyle)
                 imagesFound.push(images[index][3],)
+
+        if (imagesFound.length === 0)
+            return EMPTY_ARRAY
         return imagesFound
     }
 
@@ -107,6 +112,9 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
         while (++index < size)
             if (images[index][2] === theme)
                 imagesFound.push(images[index][3],)
+
+        if (imagesFound.length === 0)
+            return EMPTY_ARRAY
         return imagesFound
     }
 
@@ -121,6 +129,9 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
         while (++index < size)
             if (images[index][0] === time)
                 imagesFound.push(images[index][3],)
+
+        if (imagesFound.length === 0)
+            return EMPTY_ARRAY
         return imagesFound
     }
 
