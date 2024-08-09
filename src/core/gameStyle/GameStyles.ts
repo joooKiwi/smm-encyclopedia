@@ -2,19 +2,19 @@ import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
 import {Enum}                  from '@joookiwi/enumerable'
 
-import type {ClassWithAcronym}                                                                                                                                                                                                          from 'core/ClassWithAcronym'
-import type {ClassWithEnglishName}                                                                                                                                                                                                      from 'core/ClassWithEnglishName'
-import type {ClassWithReference}                                                                                                                                                                                                        from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                                                   from 'core/PropertyGetter'
-import type {CompanionEnumDeclaration_GameStyles}                                                                                                                                                                                       from 'core/gameStyle/GameStyles.companionEnumDeclaration'
-import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleShortImagePath, PossibleSimpleValue, PossibleUrlValue, GroupUrlValue, GroupUrlName} from 'core/gameStyle/GameStyles.types'
-import type {GameStyle}                                                                                                                                                                                                                 from 'core/gameStyle/GameStyle'
-import type {GameStyleImageFile}                                                                                                                                                                                                        from 'core/gameStyle/file/GameStyleImageFile'
-import type {PossibleOtherEntities}                                                                                                                                                                                                     from 'core/entity/Entity'
-import type {GameStyleProperty}                                                                                                                                                                                                         from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {GameStyleReferences}                                                                                                                                                                                                       from 'core/entity/properties/gameStyle/GameStyleReferences'
-import type {ClassUsedInRoute}                                                                                                                                                                                                          from 'route/ClassUsedInRoute'
-import type {ClassWithImageFile}                                                                                                                                                                                                        from 'util/file/image/ClassWithImageFile'
+import type {ClassWithAcronym}                                                                                                                                                                                  from 'core/ClassWithAcronym'
+import type {ClassWithEnglishName}                                                                                                                                                                              from 'core/ClassWithEnglishName'
+import type {ClassWithReference}                                                                                                                                                                                from 'core/ClassWithReference'
+import type {PropertyGetter, PropertyReferenceGetter}                                                                                                                                                           from 'core/PropertyGetter'
+import type {CompanionEnumDeclaration_GameStyles}                                                                                                                                                               from 'core/gameStyle/GameStyles.companionEnumDeclaration'
+import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleSimpleValue, PossibleUrlValue, GroupUrlValue, GroupUrlName} from 'core/gameStyle/GameStyles.types'
+import type {GameStyle}                                                                                                                                                                                         from 'core/gameStyle/GameStyle'
+import type {GameStyleImageFile}                                                                                                                                                                                from 'core/gameStyle/file/GameStyleImageFile'
+import type {PossibleOtherEntities}                                                                                                                                                                             from 'core/entity/Entity'
+import type {GameStyleProperty}                                                                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
+import type {GameStyleReferences}                                                                                                                                                                               from 'core/entity/properties/gameStyle/GameStyleReferences'
+import type {ClassUsedInRoute}                                                                                                                                                                                  from 'route/ClassUsedInRoute'
+import type {ClassWithImageFile}                                                                                                                                                                                from 'util/file/image/ClassWithImageFile'
 
 import {GameStyleLoader}                                                                             from 'core/gameStyle/GameStyle.loader'
 import {gameStyleImage}                                                                              from 'core/gameStyle/file/fileCreator'
@@ -725,7 +725,6 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
     readonly #englishName
     readonly #simpleValue
     #imageFile?: GameStyleImageFile
-    #shortImagePath?: PossibleShortImagePath
     readonly #urlValue
 
     //endregion -------------------- Fields --------------------
@@ -778,11 +777,6 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
 
     public get imageFile(): GameStyleImageFile {
         return this.#imageFile ??= gameStyleImage(this.acronymInFile, this.englishName,)
-    }
-
-    /** @deprecated It should be replaced with {@link GameStyles.acronymInFile} for a file path */
-    public get shortImagePath(): PossibleShortImagePath {
-        return this.#shortImagePath ??= `${this.ordinal + 1} - ${this.acronym}` as PossibleShortImagePath
     }
 
     public get urlValue(): PossibleUrlValue {

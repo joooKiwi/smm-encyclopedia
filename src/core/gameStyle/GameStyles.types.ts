@@ -21,8 +21,6 @@ export type PossibleAcronym = PossibleAcronym_GameStyle
 /** The possible <b>english name</b> for any given {@link GameStyles} */
 export type PossibleEnglishName = PossibleEnglishName_GameStyle
 
-/** @deprecated This type should no longer be used, the folder should use the {@link PossibleAcronym_InFile} */
-export type PossibleShortImagePath = | '1 - SMB' | '2 - SMB3' | '3 - SMW' | '4 - NSMBU' | '5 - SM3DW'
 /** The possible acronym that are used within the file system of the {@link Games Super Mario Maker games} */
 export type PossibleAcronym_InFile = | PossibleAcronym_InFile_SMM1 | '3W'
 /** The possible acronym that are used within the file system of the {@link Games.SUPER_MARIO_MAKER_1 Super Mario Maker 1 game} */
