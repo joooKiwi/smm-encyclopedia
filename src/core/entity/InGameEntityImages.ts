@@ -666,7 +666,7 @@ export abstract class InGameEntityImages
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new InGameEntityImages.Null()
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new InGameEntityImages.Null()
-    public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAsTwoInOnlySmw('Red Yoshi\'s Egg', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
+    public static readonly RED_YOSHI_EGG =                                 new InGameEntityImages.ExistantAsTwoInOnlySmw('Red Yoshi\'s Egg', 'MW Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly RED_YOSHI =                                     new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new InGameEntityImages.Null()
 

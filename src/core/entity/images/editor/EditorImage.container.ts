@@ -81,7 +81,7 @@ export class EditorImageContainer<const out T extends EditorImageFile, >
 
         if (imagesFound.length === 0)
             return EMPTY_ARRAY
-        return imagesFound.reverse()
+        return imagesFound
     }
 
     public getFromGameStyle(gameStyle: Nullable<GameStyles>,): readonly T[] {
