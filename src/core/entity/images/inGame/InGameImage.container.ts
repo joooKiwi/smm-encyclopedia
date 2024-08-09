@@ -28,10 +28,10 @@ export class InGameImageContainer<const out T extends InGameImageFile, >
         const imagesFound: T[] = []
         let index = -1
         while (++index < size)
-            if (images[index][0] == gameStyle)
+            if (images[index][0] === gameStyle)
                 imagesFound.push(images[index][1],)
 
-        if (imagesFound.length == 0)
+        if (imagesFound.length === 0)
             return EMPTY_ARRAY
         return imagesFound
     }
