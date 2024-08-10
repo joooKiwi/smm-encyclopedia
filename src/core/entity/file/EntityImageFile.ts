@@ -257,14 +257,19 @@ export type PossibleInGameImageFile = typeof InGameEntityImages[| 'START_BLOCK' 
                                                                 | 'POISON' | 'EMPTY_BLOCK' | 'SUPERBALL_THROWN_BY_A_PLAYER'
                                                                 | 'MYSTERY_MUSHROOM' | 'WEIRD_MUSHROOM' | 'BOMB_THROWN_BY_A_LINK'
                                                                 | 'ARROW_THROWN_BY_A_LINK' | 'BIG_MUSHROOM_CLASSIC' | 'BIG_MUSHROOM_MODERN'
-                                                                | 'SHOE' | 'STILETTO' | 'YOSHI_EGG'
-                                                                | 'FIRE_THROWN_BY_A_YOSHI' | 'POISON_THROWN_BY_A_YOSHI' | 'RED_YOSHI_EGG'
-                                                                | 'BABY_BLOOPER' | 'LARRY_WAND' | 'LARRY_PROJECTILE'
-                                                                | 'IGGY_WAND' | 'IGGY_PROJECTILE' | 'WENDY_WAND'
-                                                                | 'CANDY_RING_THROWN_BY_A_WENDY' | 'LEMMY_WAND' | 'MAGIC_BALL_THROWN_BY_A_LEMMY'
-                                                                | 'ROY_WAND' | 'ROY_PROJECTILE' | 'MORTON_WAND'
-                                                                | 'MORTON_THROWN_PROJECTILE' | 'MORTON_GROUND_PROJECTILE' | 'LUDWIG_WAND'
-                                                                | 'LUDWIG_PROJECTILE' | 'PHANTO' | 'BUBBLE']['image']['images'][number]
+                                                                | 'SHOE_GOOMBA' | 'SHOE' | 'STILETTO_GOOMBA'
+                                                                | 'STILETTO' | 'YOSHI_EGG' | 'FIRE_THROWN_BY_A_YOSHI'
+                                                                | 'POISON_THROWN_BY_A_YOSHI' | 'RED_YOSHI_EGG' | 'BONE_THROWN_BY_A_DRY_BONES'
+                                                                | 'WINGED_SPINY_PROJECTILE' | 'SPINY_EGG' | 'BABY_BLOOPER'
+                                                                | 'WRENCH_THROWN_BY_A_ROCKY_WRENCH' | 'MAGIKOOPA_PROJECTILE' | 'HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO'
+                                                                | 'HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA' | 'FIRE_BAR' | 'FIRE_THROWN_BY_A_BOWSER'
+                                                                | 'FALLING_FIRE_THROWN_BY_A_BOWSER' | 'LARRY_WAND'
+                                                                | 'LARRY_PROJECTILE' | 'IGGY_WAND' | 'IGGY_PROJECTILE'
+                                                                | 'WENDY_WAND' | 'CANDY_RING_THROWN_BY_A_WENDY' | 'LEMMY_WAND'
+                                                                | 'MAGIC_BALL_THROWN_BY_A_LEMMY' | 'ROY_WAND' | 'ROY_PROJECTILE'
+                                                                | 'MORTON_WAND' | 'MORTON_THROWN_PROJECTILE' | 'MORTON_GROUND_PROJECTILE'
+                                                                | 'LUDWIG_WAND' | 'LUDWIG_PROJECTILE' | 'PHANTO'
+                                                                | 'AXE' | 'BUBBLE']['image']['images'][number]
 
 //endregion -------------------- possible "in game" images --------------------
 //region -------------------- predefined "in game" images --------------------

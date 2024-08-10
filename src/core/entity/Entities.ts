@@ -533,21 +533,21 @@ export class Entities
     public static readonly SHOE_GOOMBA =                                   new class Entities_ShoeGoomba extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbAndSmb3ImagesInEditor(this,)
+            return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
         }
 
     }('Shoe Goomba',)
     public static readonly SHOE =                                          new class Entities_Shoe extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbAndSmb3ImagesInClearCondition(this,)
+            return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
         }
 
     }('Shoe',)
     public static readonly STILETTO_GOOMBA =                               new class Entities_StilettoGoomba extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbAndSmb3ImagesInEditor(this,)
+            return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
         }
 
     }('Stiletto Goomba',)
@@ -1126,7 +1126,7 @@ export class Entities
     public static readonly FIRE_BAR =                                      new class Entities_FireBar extends Entities {
 
         protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
+            return ImageCreator.uniqueInNotSm3dwImagesInInGame(this,)
         }
 
     }('Fire Bar',)

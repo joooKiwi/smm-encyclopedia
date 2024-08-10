@@ -392,6 +392,40 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    private static readonly ExistantAsFourInOnlySmw = class ExistantAsFourInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
+        const FOLDER_NAME extends string,
+        const FILE_NAME extends string, >
+        extends InGameEntityImages.Existant<NAME, InGameImageFile<FOLDER_NAME, FILE_NAME>> {
+
+        readonly #folderName
+        readonly #fileName1
+        readonly #fileName2
+        readonly #fileName3
+        readonly #fileName4
+
+        public constructor(englishName: NAME, folderName: FOLDER_NAME, fileName1: FILE_NAME, fileName2: FILE_NAME, fileName3: FILE_NAME, fileName4: FILE_NAME,) {
+            super(englishName,)
+            this.#folderName = folderName
+            this.#fileName1 = fileName1
+            this.#fileName2 = fileName2
+            this.#fileName3 = fileName3
+            this.#fileName4 = fileName4
+        }
+
+        public override _createImageFiles() {
+            const folderName = this.#folderName
+            const gameStyle = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [gameStyle, inGameImage(this, folderName, this.#fileName1,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName2,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName3,),],
+                [gameStyle, inGameImage(this, folderName, this.#fileName4,),],
+            ] as const
+        }
+
+    }
+
     //endregion -------------------- Sub class (four in 1 specific game style) --------------------
     //region -------------------- Sub class (four in 3 specific game style) --------------------
 
@@ -484,6 +518,72 @@ export abstract class InGameEntityImages
 
     }
 
+    /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIKOOPA_PROJECTILE} */
+    private static readonly ExistantAsMagikoopaProjectile = class ExistantAsMagicBallInGameEntityImages
+        extends InGameEntityImages.Existant<'(Magikoopa\'s projectile)', InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Enemy - Kameck`, | `effect.${| 0 | 1 | 2}` | `wing_wait.${| 0 | 1}`, '(Magikoopa\'s projectile)'>> {
+
+        public constructor() { super('(Magikoopa\'s projectile)',) }
+
+        public override _createImageFiles() {
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            return [
+                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.0',),],
+                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.1',),],
+                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.2',),],
+                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.0',),],
+                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.1',),],
+
+                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.0',),],
+                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.1',),],
+                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.2',),],
+                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.0',),],
+                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.1',),],
+
+                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'effect.0',),],
+                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'effect.1',),],
+                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'effect.2',),],
+                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.0',),],
+                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.1',),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} for only the {@link FIRE_BAR} */
+    private static readonly ExistantAsFireBar = class ExistantAsMagicBallInGameEntityImages
+        extends InGameEntityImages.Existant<'Fire Bar', | InGameImageFile<`${| 'M1' | 'M3'} Object - Firebar`, | 'block' | 'fire.0', 'Fire Bar'>
+                                                        | InGameImageFile<'MW Object - Firebar', | 'block' | `fire.${| 0 | 1 | 2}`, 'Fire Bar'>
+                                                        | InGameImageFile<'WU Object - Firebar', | 'center_firebar_Alb.000' | `firebar${| '' | '_core'}`, 'Fire Bar'>> {
+
+        public constructor() { super('Fire Bar',) }
+
+        public override _createImageFiles() {
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
+            return [
+                [smb,   inGameImage(this, 'M1 Object - Firebar', 'block',),],
+                [smb,   inGameImage(this, 'M1 Object - Firebar', 'fire.0',),],
+
+                [smb3,  inGameImage(this, 'M3 Object - Firebar', 'block',),],
+                [smb3,  inGameImage(this, 'M3 Object - Firebar', 'fire.0',),],
+
+                [smw,   inGameImage(this, 'MW Object - Firebar', 'block',),],
+                [smw,   inGameImage(this, 'MW Object - Firebar', 'fire.0',),],
+                [smw,   inGameImage(this, 'MW Object - Firebar', 'fire.1',),],
+                [smw,   inGameImage(this, 'MW Object - Firebar', 'fire.2',),],
+
+                [nsmbu, inGameImage(this, 'WU Object - Firebar', 'center_firebar_Alb.000',),],
+                [nsmbu, inGameImage(this, 'WU Object - Firebar', 'firebar',),],
+                [nsmbu, inGameImage(this, 'WU Object - Firebar', 'firebar_core',),],
+            ] as const
+        }
+
+    }
+
     /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIC_BALL_THROWN_BY_A_LEMMY} */
     private static readonly ExistantAsMagicBall = class ExistantAsMagicBallInGameEntityImages
         extends InGameEntityImages.Existant<'Magic Ball thrown by a Lemmy', InGameImageFileAsMagicBall> {
@@ -497,6 +597,51 @@ export abstract class InGameEntityImages
                 [GameStyles.SUPER_MARIO_BROS_3, inGameImage(this, 'M3 Enemy - Lemmy', 'ball.0',),],
                 [smw,                           inGameImage(this, 'MW Enemy - Lemmy', 'ball.0',),],
                 [smw,                           inGameImage(this, 'MW Enemy - Lemmy', 'ball_specular',),],
+            ] as const
+        }
+
+    }
+
+    /** A subclass of an {@link InGameEntityImages} for only the {@link AXE} */
+    private static readonly ExistantAsAxe = class ExistantAsMagicBallInGameEntityImages
+        extends InGameEntityImages.Existant<'Axe', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Ono`, | `wait.${| 0 | 1 | 2 | 3}` | 'ono_Xlu', 'Axe'>
+                                                   | InGameImageFile<'WU Object - Ono', | `ono_Alb.00${| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7}` | 'onoXlu_Alb.000', 'Axe'>> {
+
+        public constructor() { super('Axe',) }
+
+        public override _createImageFiles() {
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
+            return [
+                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.0',),],
+                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.1',),],
+                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.2',),],
+                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.3',),],
+                [smb,   inGameImage(this, 'M1 Object - Ono', 'ono_Xlu',),],
+
+                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.0',),],
+                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.1',),],
+                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.2',),],
+                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.3',),],
+                [smb3,  inGameImage(this, 'M3 Object - Ono', 'ono_Xlu',),],
+
+                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.0',),],
+                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.1',),],
+                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.2',),],
+                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.3',),],
+                [smw,   inGameImage(this, 'MW Object - Ono', 'ono_Xlu',),],
+
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.000',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.001',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.002',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.003',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.004',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.005',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.006',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.007',),],
+                [nsmbu, inGameImage(this, 'WU Object - Ono', 'onoXlu_Alb.000',),],
             ] as const
         }
 
@@ -655,9 +800,9 @@ export abstract class InGameEntityImages
     public static readonly ONE_UP_MUSHROOM =                               new InGameEntityImages.Null()
     public static readonly ROTTEN_MUSHROOM =                               new InGameEntityImages.Null()
 
-    public static readonly SHOE_GOOMBA =                                   new InGameEntityImages.Null()
+    public static readonly SHOE_GOOMBA =                                   new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Shoe Goomba', 'Enemy - KutsuKuriboA', 'edit_drag.0', 'edit_drag.1',)
     public static readonly SHOE =                                          new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Shoe', 'Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)
-    public static readonly STILETTO_GOOMBA =                               new InGameEntityImages.Null()
+    public static readonly STILETTO_GOOMBA =                               new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Stiletto Goomba', 'Enemy - KutsuKuriboB', 'edit_drag.0', 'edit_drag.1',)
     public static readonly STILETTO =                                      new InGameEntityImages.ExistantAsTwoInOnlySmbAndSmb3('Stiletto', 'Enemy - KutsuKuriboB', 'wait.0', 'wait.1',)
     public static readonly YOSHI_EGG =                                     new InGameEntityImages.ExistantAsTwoInOnlySmw('Yoshi\'s Egg', 'MW Enemy - KutsuKuriboA', 'wait.0', 'wait.1',)//TODO add NSMBU yoshi egg (if present)
     public static readonly YOSHI =                                         new InGameEntityImages.Null()
@@ -687,7 +832,7 @@ export abstract class InGameEntityImages
 
     public static readonly DRY_BONES =                                     new InGameEntityImages.Null()
     public static readonly PARABONES =                                     new InGameEntityImages.Null()
-    public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.Null()
+    public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new InGameEntityImages.ExistantAsFourInOnlySmw('Bone thrown by a Dry Bones', 'MW Enemy - Karon', 'bone.0', 'bone.1', 'bone.2', 'bone.3',)
     public static readonly DRY_BONES_SHELL =                               new InGameEntityImages.Null()
 
     public static readonly BUZZY_BEETLE =                                  new InGameEntityImages.Null()
@@ -696,8 +841,8 @@ export abstract class InGameEntityImages
 
     public static readonly SPINY =                                         new InGameEntityImages.Null()
     public static readonly WINGED_SPINY =                                  new InGameEntityImages.Null()
-    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.Null()
-    public static readonly SPINY_EGG =                                     new InGameEntityImages.Null()
+    public static readonly WINGED_SPINY_PROJECTILE =                       new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('(Winged Spiny\'s projectile)', 'Enemy - Togezo', 'toge.0',)
+    public static readonly SPINY_EGG =                                     new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Spiny Egg', 'Enemy - Paipo', 'wait.0', 'wait.1',)
     public static readonly SPINY_SHELL =                                   new InGameEntityImages.Null()
 
     public static readonly SPIKE_TOP =                                     new InGameEntityImages.Null()
@@ -760,14 +905,14 @@ export abstract class InGameEntityImages
 
     public static readonly MONTY_MOLE =                                    new InGameEntityImages.Null()
     public static readonly ROCKY_WRENCH =                                  new InGameEntityImages.Null()
-    public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.Null()
+    public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new InGameEntityImages.ExistantAsFourInNotNsmbuAndSm3dw('Wrench thrown by a Rocky Wrench', 'Enemy - Poo', 'hammer.0', 'hammer.1', 'hammer.2', 'hammer.3',)
 
     public static readonly MAGIKOOPA =                                     new InGameEntityImages.Null()
-    public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.Null()
+    public static readonly MAGIKOOPA_PROJECTILE =                          new InGameEntityImages.ExistantAsMagikoopaProjectile()
 
     public static readonly HAMMER_BRO =                                    new InGameEntityImages.Null()
     public static readonly SLEDGE_BRO =                                    new InGameEntityImages.Null()
-    public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new InGameEntityImages.Null()
+    public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new InGameEntityImages.ExistantAsOneInNotNsmbuAndSm3dw('Hammer thrown by a Hammer / Sledge Bro', 'Enemy - Bros', 'hammer.0',)
     public static readonly FIRE_BRO =                                      new InGameEntityImages.Null()
     public static readonly HEAVY_FIRE_BRO =                                new InGameEntityImages.Null()
     public static readonly FIREBALL_THROWN_BY_A_HEAVY_FIRE_BRO =           new InGameEntityImages.Null()
@@ -776,7 +921,7 @@ export abstract class InGameEntityImages
 
     public static readonly MECHAKOOPA =                                    new InGameEntityImages.Null()
     public static readonly BLASTA_MECHAKOOPA =                             new InGameEntityImages.Null()
-    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.Null()
+    public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Homing Missile thrown by a Blasta Mechakoopa', 'Enemy - KoopaMechaMissile', 'missile.0', 'missile.1',)
     public static readonly ZAPPA_MECHAKOOPA =                              new InGameEntityImages.Null()
     public static readonly ELECTRICITY_BEAM_THROWN_BY_A_ZAPPA_MECHAKOOPA = new InGameEntityImages.Null()
 
@@ -804,7 +949,7 @@ export abstract class InGameEntityImages
 
     public static readonly BURNER =                                        new InGameEntityImages.Null()
 
-    public static readonly FIRE_BAR =                                      new InGameEntityImages.Null()
+    public static readonly FIRE_BAR =                                      new InGameEntityImages.ExistantAsFireBar()
 
     public static readonly SKEWER =                                        new InGameEntityImages.Null()
 
@@ -827,8 +972,8 @@ export abstract class InGameEntityImages
 
     public static readonly BOWSER =                                        new InGameEntityImages.Null()
     public static readonly MEOWSER =                                       new InGameEntityImages.Null()
-    public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.Null()
-    public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.Null()
+    public static readonly FIRE_THROWN_BY_A_BOWSER =                       new InGameEntityImages.ExistantAsTwoInNotNsmbuAndSm3dw('Fire thrown by a Bowser', 'Enemy - Koopa', 'effect.0', 'effect.1',)
+    public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new InGameEntityImages.ExistantAsFourInOnlySmw('Falling Fire thrown by a Bowser', 'MW Enemy - Koopa', 'firewait.0', 'firewait.1', 'firewait.2', 'firewait.3',)
 
     public static readonly BOWSER_JR =                                     new InGameEntityImages.Null()
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new InGameEntityImages.Null()
@@ -896,7 +1041,7 @@ export abstract class InGameEntityImages
 
     public static readonly CASTLE =                                        new InGameEntityImages.Null()
     public static readonly ENDING_CASTLE_DOOR =                            new InGameEntityImages.Null()
-    public static readonly AXE =                                           new InGameEntityImages.Null()
+    public static readonly AXE =                                           new InGameEntityImages.ExistantAsAxe()
 
     public static readonly DASH_BLOCK =                                    new InGameEntityImages.Null()
 
