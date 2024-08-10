@@ -1,12 +1,12 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                         from 'core/ClassWithEnglishName'
-import type {Names, Ordinals, PossibleEnglishName}                                                         from 'core/entity/Entities.types'
-import type {InGameImageFile, InGameImageFileAsBubble, InGameImageFileAsMagicBall, InGameImageFileAsWater} from 'core/entity/file/EntityImageFile'
-import type {InGameImage}                                                                                  from 'core/entity/images/inGame/InGameImage'
-import type {PossibleAcronym_InFile_SMM1}                                                                  from 'core/gameStyle/GameStyles.types'
-import type {ClassWithImage}                                                                               from 'util/ClassWithImage'
+import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName} from 'core/entity/Entities.types'
+import type {InGameImageFile}                      from 'core/entity/file/EntityImageFile'
+import type {InGameImage}                          from 'core/entity/images/inGame/InGameImage'
+import type {PossibleAcronym_InFile_SMM1}          from 'core/gameStyle/GameStyles.types'
+import type {ClassWithImage}                       from 'util/ClassWithImage'
 
 import {Entities}             from 'core/entity/Entities'
 import {inGameImage}          from 'core/entity/file/fileCreator'
@@ -488,7 +488,9 @@ export abstract class InGameEntityImages
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link WATER} */
     private static readonly ExistantAsWater = class ExistantAsWaterInGameEntityImages
-        extends InGameEntityImages.Existant<'Water', InGameImageFileAsWater> {
+        extends InGameEntityImages.Existant<'Water', | InGameImageFile<'M1 Object - WaterHalf', `wait.${| 0 | 1 | 2 | 3}`, 'Water'>
+                                                     | InGameImageFile<'M3 Object - WaterHalf', `${| 'body' | 'top'}.${| 0 | 1 | 2 | 3}`, 'Water'>
+                                                     | InGameImageFile<'MW Object - WaterHalf', `body.${| 0 | 1 | 2 | 3}`, 'Water'>> {
 
         public constructor() { super('Water',) }
 
@@ -586,7 +588,8 @@ export abstract class InGameEntityImages
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link MAGIC_BALL_THROWN_BY_A_LEMMY} */
     private static readonly ExistantAsMagicBall = class ExistantAsMagicBallInGameEntityImages
-        extends InGameEntityImages.Existant<'Magic Ball thrown by a Lemmy', InGameImageFileAsMagicBall> {
+        extends InGameEntityImages.Existant<'Magic Ball thrown by a Lemmy', | InGameImageFile<`${| 'M1' | 'M3'} Enemy - Lemmy`, 'ball.0', 'Magic Ball thrown by a Lemmy'>
+                                                                            | InGameImageFile<'MW Enemy - Lemmy', `ball${| '.0' | '_specular'}`, 'Magic Ball thrown by a Lemmy'>> {
 
         public constructor() { super('Magic Ball thrown by a Lemmy',) }
 
@@ -649,7 +652,9 @@ export abstract class InGameEntityImages
 
     /** A subclass of an {@link InGameEntityImages} for only the {@link BUBBLE} */
     private static readonly ExistantAsBubble = class ExistantAsBubbleInGameEntityImages
-        extends InGameEntityImages.Existant<'Bubble', InGameImageFileAsBubble> {
+        extends InGameEntityImages.Existant<'Bubble', | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Balloon`, 'balloon.0', 'Bubble'>
+                                                      | InGameImageFile<'WU Object - Balloon', `balloon${| '' | 2}.0`, 'Bubble'>
+                                                      | InGameImageFile<'3W Object - Balloon', 'TractorBubble_Alb', 'Bubble'>> {
 
         public constructor() { super('Bubble',) }
 

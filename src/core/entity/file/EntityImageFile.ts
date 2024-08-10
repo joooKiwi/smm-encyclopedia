@@ -272,26 +272,6 @@ export type PossibleInGameImageFile = typeof InGameEntityImages[| 'START_BLOCK' 
                                                                 | 'AXE' | 'BUBBLE']['image']['images'][number]
 
 //endregion -------------------- possible "in game" images --------------------
-//region -------------------- predefined "in game" images --------------------
-
-/** An {@link InGameImageFile} template for the {@link InGameEntityImages.WATER} */
-export type InGameImageFileAsWater
-    = | InGameImageFile<'M1 Object - WaterHalf', `wait.${| 0 | 1 | 2 | 3}`, 'Water'>
-      | InGameImageFile<'M3 Object - WaterHalf', `${| 'body' | 'top'}.${| 0 | 1 | 2 | 3}`, 'Water'>
-      | InGameImageFile<'MW Object - WaterHalf', `body.${| 0 | 1 | 2 | 3}`, 'Water'>
-
-/** An {@link InGameImageFile} template for the {@link InGameEntityImages.MAGIC_BALL_THROWN_BY_A_LEMMY} */
-export type InGameImageFileAsMagicBall
-    = | InGameImageFile<`${| 'M1' | 'M3'} Enemy - Lemmy`, 'ball.0', 'Magic Ball thrown by a Lemmy'>
-      | InGameImageFile<'MW Enemy - Lemmy', `ball${| '.0' | '_specular'}`, 'Magic Ball thrown by a Lemmy'>
-
-/** An {@link InGameImageFile} template for the {@link InGameEntityImages.BUBBLE} */
-export type InGameImageFileAsBubble
-    = | InGameImageFile<`${| 'M1' | 'M3' | 'MW'} Object - Balloon`, 'balloon.0', 'Bubble'>
-      | InGameImageFile<'WU Object - Balloon', `balloon${| '' | 2}.0`, 'Bubble'>
-      | InGameImageFile<'3W Object - Balloon', 'TractorBubble_Alb', 'Bubble'>
-
-//endregion -------------------- predefined "in game" images --------------------
 
 //endregion -------------------- in game images --------------------
 //region -------------------- unused images --------------------
