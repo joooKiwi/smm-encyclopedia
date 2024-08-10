@@ -380,7 +380,7 @@ export function uniqueSpikeBallImages(entity: Entities,): UniqueImage<EditorImag
     return new UniqueImageContainer(editorImage, entity.clearConditionImage, entity.inGameImage, new Map<GameStyles, readonly EditorImageFile[]>([
         [GameStyles.SUPER_MARIO_BROS, [images[0], images[1],],],
         [GameStyles.SUPER_MARIO_BROS_3, [images[10], images[11],],],
-        [GameStyles.SUPER_MARIO_WORLD, [images[12],],],
+        [GameStyles.SUPER_MARIO_WORLD, [images[20],],],
         [GameStyles.NEW_SUPER_MARIO_BROS_U, [images[21],],],
         [GameStyles.SUPER_MARIO_3D_WORLD, [images[22],],],
     ],),)
