@@ -42,6 +42,16 @@ export class EmptyEntity
     public readonly canHaveWingsComment = null
 
     //endregion -------------------- Basic --------------------
+    //region -------------------- Directly affected --------------------
+
+    public readonly canContainOrSpawnAKey = false
+    public readonly canSpawnOutOfAPipe = false
+    public readonly canBePutInAClownCar = false
+    public readonly canBeFiredOutOfABulletLauncher = false
+    public readonly canBePutInABlock = false
+    public readonly canBePutInATree = false
+
+    //endregion -------------------- Directly affected --------------------
     //region -------------------- Game --------------------
 
     public readonly isInSuperMarioMaker1 = false

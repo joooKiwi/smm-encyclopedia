@@ -34,6 +34,13 @@ export class EntityContainer
     readonly #canHaveWings
     readonly #canHaveWingsComment
 
+    readonly #canContainOrSpawnAKey
+    readonly #canSpawnOutOfAPipe
+    readonly #canBePutInAClownCar
+    readonly #canBeFiredOutOfABulletLauncher
+    readonly #canBePutInABlock
+    readonly #canBePutInATree
+
 
     readonly #isInSuperMarioMaker1
     readonly #isInSuperMarioMakerFor3DS
@@ -128,7 +135,12 @@ export class EntityContainer
     public constructor(
         name: Name<string>, category: EntityCategory,
 
-        hasAMushroomVariant: BooleanOrNotApplicable, canBeInAParachute: BooleanOrNotApplicable, canBeInAParachuteComment: NullOr<LCL_Play>, canHaveWings: BooleanOrNotApplicable, canHaveWingsComment: NullOr<LCL_Play>,
+        hasAMushroomVariant: BooleanOrNotApplicable,
+        canBeInAParachute: BooleanOrNotApplicable, canBeInAParachuteComment: NullOr<LCL_Play>,
+        canHaveWings: BooleanOrNotApplicable, canHaveWingsComment: NullOr<LCL_Play>,
+
+        canContainOrSpawnAKey: boolean, canSpawnOutOfAPipe: boolean, canBePutInAClownCar: boolean,
+        canBeFiredOutOfABulletLauncher: boolean, canBePutInABlock: boolean, canBePutInATree: boolean,
 
         isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
         isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: BooleanOrNotApplicable,
@@ -157,6 +169,13 @@ export class EntityContainer
         this.#canBeInAParachuteComment = canBeInAParachuteComment
         this.#canHaveWings = canHaveWings
         this.#canHaveWingsComment = canHaveWingsComment
+
+        this.#canContainOrSpawnAKey = canContainOrSpawnAKey
+        this.#canSpawnOutOfAPipe = canSpawnOutOfAPipe
+        this.#canBePutInAClownCar = canBePutInAClownCar
+        this.#canBeFiredOutOfABulletLauncher = canBeFiredOutOfABulletLauncher
+        this.#canBePutInABlock = canBePutInABlock
+        this.#canBePutInATree = canBePutInATree
 
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
         this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS
@@ -251,6 +270,16 @@ export class EntityContainer
     public get canHaveWingsComment() {      return this.#canHaveWingsComment }
 
     //endregion -------------------- Basic --------------------
+    //region -------------------- Directly affected --------------------
+
+    public get canContainOrSpawnAKey() { return this.#canContainOrSpawnAKey }
+    public get canSpawnOutOfAPipe() { return this.#canSpawnOutOfAPipe }
+    public get canBePutInAClownCar() { return this.#canBePutInAClownCar }
+    public get canBeFiredOutOfABulletLauncher() { return this.#canBeFiredOutOfABulletLauncher }
+    public get canBePutInABlock() {               return this.#canBePutInABlock }
+    public get canBePutInATree() {                return this.#canBePutInATree }
+
+    //endregion -------------------- Directly affected --------------------
     //region -------------------- Game --------------------
 
     public get isInSuperMarioMaker1() {      return this.#isInSuperMarioMaker1 }

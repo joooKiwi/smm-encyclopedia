@@ -32,6 +32,21 @@ export interface Entity
     readonly canHaveWingsComment: NullOr<LCL_Play>
 
     //endregion -------------------- Basic properties --------------------
+    //endregion -------------------- Directly affected properties --------------------
+
+    readonly canContainOrSpawnAKey: boolean //TODO add Chain Chomp comment to tell that only the "Unchained" contain it. Only the head of the Pokey is affected
+    // is affected by ON/OFF state
+    // can be put on a Track (+ limit editor/in game)
+    readonly canSpawnOutOfAPipe: boolean//TODO add amount in a bunch + maximum amount
+    // can be put on a Swinging Claw
+    // can be thrown by a Lakitu
+    // can be put in a Lakitu's Cloud
+    readonly canBePutInAClownCar: boolean
+    readonly canBeFiredOutOfABulletLauncher: boolean//TODO add amount in a bunch + maximum amount
+    readonly canBePutInABlock: boolean//TODO add maximum amount
+    readonly canBePutInATree: boolean
+
+    //region -------------------- Directly affected properties --------------------
     //region -------------------- Limit properties --------------------
 
     readonly editorLimit_smm1And3ds: NullOr<| Limits | NotApplicable>

@@ -12,8 +12,15 @@ const logger = Logger.get;
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_parachute_00',              'Parachute',                          'tiff',),
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_Wing_00',                   'Wing',                               'tiff',),
 
+    new ImageTemplate('entity/editor',                              'MW_Lyt_P_Key_00',                    'Key',                                'tiff',),
+
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_OnpuBlock_01',              'Music Block',                        'tiff',),
-    new ImageTemplate('entity/editor',                              '3W_Lyt_P_HatenaBlock_00',            'Question Block (SM3DW)',             'tiff',),
+    new ImageTemplate('entity/editor',                              'MW_Lyt_P_HatenaBlock_00',            '？ Block',                           'tiff',),
+    new ImageTemplate('entity/editor',                              '3W_Lyt_P_HatenaBlock_00',            '？ Block (SM3DW)',                   'tiff',),
+
+    new ImageTemplate('entity/editor',                              'MW_Lyt_P_Dokan_00',                  'Pipe',                               'tiff',),
+    new ImageTemplate('entity/editor',                              'MW_Lyt_P_KillerHoudai_00',           'Bullet Launcher',                    'tiff',),
+    new ImageTemplate('entity/editor',                              '3W_Lyt_P_BellTree_00',               'Tree',                               'tiff',),
 
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_SuperKinoko_00',            'Super Mushroom',                     'tiff',),
     new ImageTemplate('entity/in game/M1 Item - KinokoFunny',       'kinokofunny.0',                      'Weird Mushroom',                     'tiff',),

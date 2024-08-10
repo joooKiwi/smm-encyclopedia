@@ -7,27 +7,16 @@ export type PossibleGroupName = string
 
 //region -------------------- Specific properties --------------------
 
-/** @temporaryLocation */export type CanContainOrSpawnAKey = NullOrBoolean
-
 /** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = | NullOrBooleanOrNotApplicable | 'Only some variants'
 
 /** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
-
-/** @temporaryLocation */export type CanSpawnOutOfAPipe = NullOrBoolean
 
 /** @temporaryLocation */export type CanBePutInASwingingClaw = NullOrBoolean
 
 /** @temporaryLocation */export type CanBeThrownByALakitu = NullOr<| boolean | UnknownCharacter>
 /** @temporaryLocation */export type CanBePutInALakituCloud = NullOr<| boolean | UnknownCharacter>
 
-/** @temporaryLocation */export type CanBePutInAClownCar = NullOrBoolean
-
-/** @temporaryLocation */export type CanBeFiredOutOfABulletLauncher = NullOrBoolean
-
-/** @temporaryLocation */export type CanBePutInABlock = NullOrBoolean
-
 /** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | '1 per segment (1 to 8)' | '2 (any height)' | UnknownCharacter>
-/** @temporaryLocation */export type CanBePutInATree = NullOrBoolean
 
 /** @temporaryLocation */export type HasALightSourceEmittedInSMB = NullOrBoolean
 

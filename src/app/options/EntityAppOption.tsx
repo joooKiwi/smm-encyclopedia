@@ -11,9 +11,14 @@ import {CommonOptions}                from 'app/options/CommonOptions'
 import Image                          from 'app/tools/images/Image'
 import {gameContentTranslation}       from 'lang/components/translationMethods'
 import EditorVoiceSoundComponent      from 'core/editorVoice/EditorVoiceSound.component'
+import CanBeFiredOutOfABulletLauncher from 'core/entity/properties/component/CanBeFiredOutOfABulletLauncher'
 import CanBeInAParachute              from 'core/entity/properties/component/CanBeInAParachute'
+import CanBePutInABlock               from 'core/entity/properties/component/CanBePutInABlock'
+import CanBePutInATree                from 'core/entity/properties/component/CanBePutInATree'
+import CanContainOrSpawnAKey          from 'core/entity/properties/component/CanContainOrSpawnAKey'
 import CanHaveWings                   from 'core/entity/properties/component/CanHaveWings'
 import CanMakeASoundOutOfAMusicBlock  from 'core/entity/properties/component/CanMakeASoundOutOfAMusicBlock'
+import CanSpawnOutOfAPipe             from 'core/entity/properties/component/CanSpawnOutOfAPipe'
 import HasAMushroomVariant            from 'core/entity/properties/component/HasAMushroomVariant'
 import {EntityCategories}             from 'core/entityCategory/EntityCategories'
 import GameComponent                  from 'core/game/Game.component'
@@ -155,6 +160,11 @@ export class EntityAppOption
                         <CanBeInAParachute value={enumeration}/>
                         <CanHaveWings value={enumeration}/>
                         <CanMakeASoundOutOfAMusicBlock value={enumeration}/>
+                        <CanContainOrSpawnAKey value={enumeration}/>
+                        <CanSpawnOutOfAPipe value={enumeration}/>
+                        <CanBeFiredOutOfABulletLauncher value={enumeration}/>
+                        <CanBePutInABlock value={enumeration}/>
+                        <CanBePutInATree value={enumeration}/>
                     </div>
                     {CommonOptions.get.getNameContent(enumeration)}
                 </div>

@@ -110,7 +110,7 @@ describe('Entity (file test)', () => {
                 },)
             },)
             describe('Specific properties', () => {
-                test('Can contain / spawn a key', () => expect(it.canContainOrSpawnAKey,).toBeBooleanOrNullOrNotApplicable(),)
+                test('Can contain / spawn a key', () => expect(it.canContainOrSpawnAKey,).toBeBoolean(),)
                 test('Is affected directly by an ON/OFF state', () => expect(it.isAffectedDirectlyByAnOnOrOffState,).toBeOneOf(possibleAffectedByOnOffState,),)
                 describe('Can be put on a Track', () => {
                     test('value', () => expect(it.canBePutOnATrack,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
@@ -118,14 +118,14 @@ describe('Entity (file test)', () => {
                     test('play limit', () => expect(it.whilePlaying_canBePutOnATrack,).toBeOneOf(everyPlayLimitsWithNullAndUnknown,),)
                     //TODO add coherence test
                 },)
-                test('Can spawn out of a Pipe', () => expect(it.canSpawnOutOfAPipe,).toBeBooleanOrNullOrNotApplicable(),)
+                test('Can spawn out of a Pipe', () => expect(it.canSpawnOutOfAPipe,).toBeBoolean(),)
                 test('Can be put in a Swinging Claw', () => expect(it.canBePutInASwingingClaw,).toBeBooleanOrNullOrNotApplicable(),)
                 test('Can be thrown by a Lakitu', () => expect(it.canBeThrownByALakitu,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
                 test('Can be put in a Lakitu\'s Cloud', () => expect(it.canBePutInALakituCloud,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
-                test('Can be put in a Clown Car', () => expect(it.canBePutInAClownCar,).toBeBooleanOrNullOrNotApplicable(),)
-                test('Can be thrown by a Bullet Launcher', () => expect(it.canBeFiredOutOfABulletLauncher,).toBeBooleanOrNullOrNotApplicable(),)
-                test('Can be put in a Block', () => expect(it.canBePutInABlock,).toBeBooleanOrNullOrNotApplicable(),)
-                test('Can be put in a Tree', () => expect(it.canBePutInATree,).toBeBooleanOrNull(),)
+                test('Can be put in a Clown Car', () => expect(it.canBePutInAClownCar,).toBeBoolean(),)
+                test('Can be thrown by a Bullet Launcher', () => expect(it.canBeFiredOutOfABulletLauncher,).toBeBoolean(),)
+                test('Can be put in a Block', () => expect(it.canBePutInABlock,).toBeBoolean(),)
+                test('Can be put in a Tree', () => expect(it.canBePutInATree,).toBeBoolean(),)
 
                 test('Weight', () => expect(it.weight,).toBeOneOf(everyWeight,),)
                 describe('Light source emitted', () => {
