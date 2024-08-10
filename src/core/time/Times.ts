@@ -1,10 +1,9 @@
 import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                          from 'core/ClassWithEnglishName'
-import type {PropertyGetter, PropertyReferenceGetter}                       from 'core/PropertyGetter'
-import type {PossibleOtherEntities}                                         from 'core/entity/Entity'
-import type {TimeProperty}                                                  from 'core/entity/properties/time/TimeProperty'
-import type {TimeReferences}                                                from 'core/entity/properties/time/TimeReferences'
+import type {PropertyGetter, PropertyReferenceGetter} from 'core/PropertyGetter'
+import type {Entity, PossibleOtherEntities}           from 'core/entity/Entity'
+import type {TimeProperty}                            from 'core/entity/properties/time/TimeProperty'
 import type {Names, Ordinals, PossibleEnglishName, PossibleSimpleImagePath} from 'core/time/Times.types'
 import type {TimeImageFile}                                                 from 'core/time/file/TimeImageFile'
 import type {ClassWithImageFile}                                            from 'util/file/image/ClassWithImageFile'
@@ -18,7 +17,7 @@ export abstract class Times
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithImageFile<TimeImageFile>,
-        PropertyReferenceGetter<TimeReferences, PossibleOtherEntities>,
+        PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<TimeProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -29,8 +28,8 @@ export abstract class Times
             return property.isInDayTheme
         }
 
-        public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInDayTheme'] {
-            return referenceProperty.referenceInDayTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInDayTheme
         }
 
     }('Day', 'Sun',)
@@ -40,8 +39,8 @@ export abstract class Times
             return property.isInNightTheme === true
         }
 
-        public override getReference(referenceProperty: TimeReferences,): TimeReferences['referenceInNightTheme'] {
-            return referenceProperty.referenceInNightTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInNightTheme
         }
 
     }('Night', 'Moon',)
@@ -104,7 +103,7 @@ export abstract class Times
 
     public abstract get(property: TimeProperty,): boolean
 
-    public abstract getReference(referenceProperty: TimeReferences,): PossibleOtherEntities
+    public abstract getReference(entity: Entity,): PossibleOtherEntities
 
     //endregion -------------------- Methods --------------------
 

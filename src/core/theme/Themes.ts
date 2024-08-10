@@ -2,10 +2,9 @@ import {Enum} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                 from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                   from 'core/ClassWithReference'
-import type {PropertyGetter, PropertyReferenceGetter}                              from 'core/PropertyGetter'
-import type {PossibleOtherEntities}                                                from 'core/entity/Entity'
-import type {ThemeProperty}                                                        from 'core/entity/properties/theme/ThemeProperty'
-import type {ThemeReferences}                                                      from 'core/entity/properties/theme/ThemeReferences'
+import type {PropertyGetter, PropertyReferenceGetter} from 'core/PropertyGetter'
+import type {Entity, PossibleOtherEntities}           from 'core/entity/Entity'
+import type {ThemeProperty}                           from 'core/entity/properties/theme/ThemeProperty'
 import type {CourseTheme}                                                          from 'core/theme/CourseTheme'
 import type {Names, Ordinals, PossibleEnglishName, PossibleName_InFile}            from 'core/theme/Themes.types'
 import type {CourseAndWorldTheme}                                                  from 'core/theme/CourseAndWorldTheme'
@@ -23,7 +22,7 @@ export abstract class Themes
     extends Enum<Ordinals, Names>
     implements ClassWithReference<CourseAndWorldTheme>,
         ClassWithEnglishName<PossibleEnglishName>,
-        PropertyReferenceGetter<ThemeReferences, PossibleOtherEntities>,
+        PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<ThemeProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -34,8 +33,8 @@ export abstract class Themes
             return property.isInGroundTheme
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGroundTheme'] {
-            return referenceProperty.referenceInGroundTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInGroundTheme
         }
 
     }('Ground', 'plain',)
@@ -45,8 +44,8 @@ export abstract class Themes
             return property.isInUndergroundTheme
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUndergroundTheme'] {
-            return referenceProperty.referenceInUndergroundTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInUndergroundTheme
         }
 
     }('Underground', 'underground',)
@@ -56,8 +55,8 @@ export abstract class Themes
             return property.isInUnderwaterTheme
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInUnderwaterTheme'] {
-            return referenceProperty.referenceInUnderwaterTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInUnderwaterTheme
         }
 
     }('Underwater', 'water',)
@@ -67,8 +66,8 @@ export abstract class Themes
             return property.isInDesertTheme === true
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInDesertTheme'] {
-            return referenceProperty.referenceInDesertTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInDesertTheme
         }
 
     }('Desert', 'desert',)
@@ -78,8 +77,8 @@ export abstract class Themes
             return property.isInSnowTheme === true
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSnowTheme'] {
-            return referenceProperty.referenceInSnowTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInSnowTheme
         }
 
     }('Snow', 'snow',)
@@ -89,8 +88,8 @@ export abstract class Themes
             return property.isInSkyTheme === true
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInSkyTheme'] {
-            return referenceProperty.referenceInSkyTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInSkyTheme
         }
 
     }('Sky', 'athletic',)
@@ -100,8 +99,8 @@ export abstract class Themes
             return property.isInForestTheme === true
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInForestTheme'] {
-            return referenceProperty.referenceInForestTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInForestTheme
         }
 
     }('Forest', 'woods',)
@@ -111,8 +110,8 @@ export abstract class Themes
             return property.isInGhostHouseTheme
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInGhostHouseTheme'] {
-            return referenceProperty.referenceInGhostHouseTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInGhostHouseTheme
         }
 
     }('Ghost House', 'hauntedhouse',)
@@ -122,8 +121,8 @@ export abstract class Themes
             return property.isInAirshipTheme
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInAirshipTheme'] {
-            return referenceProperty.referenceInAirshipTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInAirshipTheme
         }
 
     }('Airship', 'airship',)
@@ -133,8 +132,8 @@ export abstract class Themes
             return property.isInCastleTheme
         }
 
-        public override getReference(referenceProperty: ThemeReferences,): ThemeReferences['referenceInCastleTheme'] {
-            return referenceProperty.referenceInCastleTheme
+        public override getReference(entity: Entity,) {
+            return entity.referenceInCastleTheme
         }
 
     }('Castle', 'castle',)
@@ -262,7 +261,7 @@ export abstract class Themes
 
     public abstract get(property: ThemeProperty,): boolean
 
-    public getReference(referenceProperty: ThemeReferences,): PossibleOtherEntities {
+    public getReference(entity: Entity,): PossibleOtherEntities {
         return EMPTY_ARRAY
     }
 

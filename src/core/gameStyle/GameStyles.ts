@@ -1,6 +1,6 @@
 import type {CollectionHolder} from '@joookiwi/collection'
-import type {Singleton}        from '@joookiwi/enumerable'
-import {Enum}                  from '@joookiwi/enumerable'
+import type {Singleton} from '@joookiwi/enumerable'
+import {Enum}           from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                                                                  from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                                                                              from 'core/ClassWithEnglishName'
@@ -10,9 +10,8 @@ import type {CompanionEnumDeclaration_GameStyles}                               
 import type {GameStyles_ArrayInSMM1, GameStyles_ArrayInSMM2, Names, Ordinals, PossibleAcronym, PossibleEnglishName, PossibleAcronym_InFile, PossibleSimpleValue, PossibleUrlValue, GroupUrlValue, GroupUrlName} from 'core/gameStyle/GameStyles.types'
 import type {GameStyle}                                                                                                                                                                                         from 'core/gameStyle/GameStyle'
 import type {GameStyleImageFile}                                                                                                                                                                                from 'core/gameStyle/file/GameStyleImageFile'
-import type {PossibleOtherEntities}                                                                                                                                                                             from 'core/entity/Entity'
+import type {Entity, PossibleOtherEntities}                                                                                                                                                                     from 'core/entity/Entity'
 import type {GameStyleProperty}                                                                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
-import type {GameStyleReferences}                                                                                                                                                                               from 'core/entity/properties/gameStyle/GameStyleReferences'
 import type {ClassUsedInRoute}                                                                                                                                                                                  from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                                                                                                from 'util/file/image/ClassWithImageFile'
 
@@ -36,7 +35,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         ClassWithEnglishName<NAME>,
         ClassWithImageFile<GameStyleImageFile>,
         ClassUsedInRoute<PossibleUrlValue>,
-        PropertyReferenceGetter<GameStyleReferences, PossibleOtherEntities>,
+        PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<GameStyleProperty> {
 
     //region -------------------- Enum instances --------------------
@@ -47,8 +46,8 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
             return property.isInSuperMarioBrosStyle
         }
 
-        public override getReference(referenceProperty: GameStyleReferences,) {
-            return referenceProperty.referenceInSuperMarioBrosStyle
+        public override getReference(entity: Entity,) {
+            return entity.referenceInSuperMarioBrosStyle
         }
 
     }('SMB', 'M1', '1', '1', 'Super Mario Bros.',)
@@ -58,8 +57,8 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
             return property.isInSuperMarioBros3Style
         }
 
-        public override getReference(referenceProperty: GameStyleReferences,) {
-            return referenceProperty.referenceInSuperMarioBros3Style
+        public override getReference(entity: Entity,) {
+            return entity.referenceInSuperMarioBros3Style
         }
 
     }('SMB3', 'M3', '3', '3', 'Super Mario Bros. 3',)
@@ -69,8 +68,8 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
             return property.isInSuperMarioWorldStyle
         }
 
-        public override getReference(referenceProperty: GameStyleReferences,) {
-            return referenceProperty.referenceInSuperMarioWorldStyle
+        public override getReference(entity: Entity,) {
+            return entity.referenceInSuperMarioWorldStyle
         }
 
     }('SMW', 'MW', 'W', 'w', 'Super Mario World',)
@@ -80,8 +79,8 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
             return property.isInNewSuperMarioBrosUStyle
         }
 
-        public override getReference(referenceProperty: GameStyleReferences,) {
-            return referenceProperty.referenceInNewSuperMarioBrosUStyle
+        public override getReference(entity: Entity,) {
+            return entity.referenceInNewSuperMarioBrosUStyle
         }
 
     }('NSMBU', 'WU',  'U', 'u', 'New Super Mario Bros. U',)
@@ -91,8 +90,8 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
             return property.isInSuperMario3DWorldStyle === true
         }
 
-        public override getReference(referenceProperty: GameStyleReferences,) {
-            return referenceProperty.referenceInSuperMario3DWorldStyle
+        public override getReference(entity: Entity,) {
+            return entity.referenceInSuperMario3DWorldStyle
         }
 
     }('SM3DW', '3W', '3DW', '3dw', 'Super Mario 3D World',)
@@ -788,7 +787,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
 
     public abstract get(property: GameStyleProperty,): boolean
 
-    public abstract getReference(referenceProperty: GameStyleReferences,): PossibleOtherEntities
+    public abstract getReference(entity: Entity,): PossibleOtherEntities
 
 
     public static get gameStyles_smm1(): GameStyles_ArrayInSMM1 {
