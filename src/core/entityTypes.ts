@@ -7,8 +7,6 @@ export type PossibleGroupName = string
 
 //region -------------------- Specific properties --------------------
 
-/** @temporaryLocation */export type IsAffectedDirectlyByAnOnOrOffState = | NullOrBooleanOrNotApplicable | 'Only some variants'
-
 /** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
 
 /** @temporaryLocation */export type CanBePutInASwingingClaw = NullOrBoolean

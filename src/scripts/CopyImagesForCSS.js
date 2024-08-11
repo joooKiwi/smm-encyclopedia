@@ -17,6 +17,7 @@ const logger = Logger.get;
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_OnpuBlock_01',              'Music Block',                        'tiff',),
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_HatenaBlock_00',            '？ Block',                           'tiff',),
     new ImageTemplate('entity/editor',                              '3W_Lyt_P_HatenaBlock_00',            '？ Block (SM3DW)',                   'tiff',),
+    new ImageTemplate('entity/editor',                              'MW_Lyt_P_OnOffSwitch_00',            'ON／OFF Block',                      'tiff',),
 
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_Dokan_00',                  'Pipe',                               'tiff',),
     new ImageTemplate('entity/editor',                              'MW_Lyt_P_KillerHoudai_00',           'Bullet Launcher',                    'tiff',),

@@ -52,7 +52,8 @@
     "display all": "Display every {{entity}}",
 
     "property": {
-      "While playing → LCL": "While we play, it is in the {{acronym}} ({{limit}})"
+      "While playing → LCL": "While we play, it is in the {{acronym}} ({{limit}})",
+      "Only some variants":  "Only some variants of the {{entity}}"
     }
   },
   "entity category": {

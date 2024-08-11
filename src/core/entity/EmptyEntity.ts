@@ -35,16 +35,20 @@ export class EmptyEntity
 
     //region -------------------- Basic --------------------
 
-    public readonly hasAMushroomVariant = NOT_APPLICABLE
-    public readonly canBeInAParachute = NOT_APPLICABLE
+    public readonly hasAMushroomVariant = false
+    public readonly canBeInAParachute = false
     public readonly canBeInAParachuteComment = null
-    public readonly canHaveWings = NOT_APPLICABLE
+    public readonly canHaveWings = false
     public readonly canHaveWingsComment = null
 
     //endregion -------------------- Basic --------------------
     //region -------------------- Directly affected --------------------
 
     public readonly canContainOrSpawnAKey = false
+
+    public readonly isAffectDirectlyByAnOnOffState = false
+    public readonly isAffectDirectlyByAnOnOffStateComment = null
+
     public readonly canSpawnOutOfAPipe = false
     public readonly canBePutInAClownCar = false
     public readonly canBeFiredOutOfABulletLauncher = false

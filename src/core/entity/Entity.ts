@@ -1,4 +1,4 @@
-import type {LCL_Play}                                                                                                                                                          from 'core/entity/properties/basic/BasicProperty'
+import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {GameProperty}                                                                                                                                                      from 'core/entity/properties/game/GameProperty'
 import type {GameStyleProperty}                                                                                                                                                 from 'core/entity/properties/gameStyle/GameStyleProperty'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                     from 'core/entity/properties/instrument/loader.types'
@@ -35,7 +35,10 @@ export interface Entity
     //endregion -------------------- Directly affected properties --------------------
 
     readonly canContainOrSpawnAKey: boolean //TODO add Chain Chomp comment to tell that only the "Unchained" contain it. Only the head of the Pokey is affected
-    // is affected by ON/OFF state
+
+    readonly isAffectDirectlyByAnOnOffState: boolean
+    readonly isAffectDirectlyByAnOnOffStateComment: NullOr<OnlySomeVariants>
+
     // can be put on a Track (+ limit editor/in game)
     readonly canSpawnOutOfAPipe: boolean//TODO add amount in a bunch + maximum amount
     // can be put on a Swinging Claw

@@ -2,7 +2,7 @@ import type {Lazy} from '@joookiwi/lazy'
 import {lazyOf}    from '@joookiwi/lazy'
 
 import type {Entity, PossibleOtherEntities}                                                                                                                                     from 'core/entity/Entity'
-import type {LCL_Play}                                                                                                                                                          from 'core/entity/properties/basic/BasicProperty'
+import type {LCL_Play, OnlySomeVariants}                                                                                                                                        from 'core/entity/properties/loader.types'
 import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                     from 'core/entity/properties/instrument/loader.types'
 import type {PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment} from 'core/entity/properties/limit/loader.types'
 import type {EntityCategory}                                                                                                                                                    from 'core/entityCategory/EntityCategory'
@@ -35,6 +35,10 @@ export class EntityContainer
     readonly #canHaveWingsComment
 
     readonly #canContainOrSpawnAKey
+
+    readonly #isAffectDirectlyByAnOnOffState
+    readonly #isAffectDirectlyByAnOnOffStateComment
+
     readonly #canSpawnOutOfAPipe
     readonly #canBePutInAClownCar
     readonly #canBeFiredOutOfABulletLauncher
@@ -139,7 +143,9 @@ export class EntityContainer
         canBeInAParachute: BooleanOrNotApplicable, canBeInAParachuteComment: NullOr<LCL_Play>,
         canHaveWings: BooleanOrNotApplicable, canHaveWingsComment: NullOr<LCL_Play>,
 
-        canContainOrSpawnAKey: boolean, canSpawnOutOfAPipe: boolean, canBePutInAClownCar: boolean,
+        canContainOrSpawnAKey: boolean,
+        isAffectDirectlyByAnOnOffState: boolean, isAffectDirectlyByAnOnOffStateComment: NullOr<OnlySomeVariants>,
+        canSpawnOutOfAPipe: boolean, canBePutInAClownCar: boolean,
         canBeFiredOutOfABulletLauncher: boolean, canComeOutOfABlock: boolean, canBePutInATree: boolean,
 
         isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
@@ -165,17 +171,24 @@ export class EntityContainer
     ) {
         super(name, lazyOf(category,),)
         this.#hasAMushroomVariant = hasAMushroomVariant
+
         this.#canBeInAParachute = canBeInAParachute
         this.#canBeInAParachuteComment = canBeInAParachuteComment
+
         this.#canHaveWings = canHaveWings
         this.#canHaveWingsComment = canHaveWingsComment
 
         this.#canContainOrSpawnAKey = canContainOrSpawnAKey
+
+        this.#isAffectDirectlyByAnOnOffState = isAffectDirectlyByAnOnOffState
+        this.#isAffectDirectlyByAnOnOffStateComment = isAffectDirectlyByAnOnOffStateComment
+
         this.#canSpawnOutOfAPipe = canSpawnOutOfAPipe
         this.#canBePutInAClownCar = canBePutInAClownCar
         this.#canBeFiredOutOfABulletLauncher = canBeFiredOutOfABulletLauncher
         this.#canComeOutOfABlock = canComeOutOfABlock
         this.#canBePutInATree = canBePutInATree
+
 
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
         this.#isInSuperMarioMakerFor3DS = isInSuperMarioMakerFor3DS
@@ -272,12 +285,16 @@ export class EntityContainer
     //endregion -------------------- Basic --------------------
     //region -------------------- Directly affected --------------------
 
-    public get canContainOrSpawnAKey() {          return this.#canContainOrSpawnAKey }
-    public get canSpawnOutOfAPipe() {             return this.#canSpawnOutOfAPipe }
-    public get canBePutInAClownCar() {            return this.#canBePutInAClownCar }
-    public get canBeFiredOutOfABulletLauncher() { return this.#canBeFiredOutOfABulletLauncher }
-    public get canComeOutOfABlock() {             return this.#canComeOutOfABlock }
-    public get canBePutInATree() {                return this.#canBePutInATree }
+    public get canContainOrSpawnAKey() {                 return this.#canContainOrSpawnAKey }
+
+    public get isAffectDirectlyByAnOnOffState() {        return this.#isAffectDirectlyByAnOnOffState }
+    public get isAffectDirectlyByAnOnOffStateComment() { return this.#isAffectDirectlyByAnOnOffStateComment }
+
+    public get canSpawnOutOfAPipe() {                    return this.#canSpawnOutOfAPipe }
+    public get canBePutInAClownCar() {                   return this.#canBePutInAClownCar }
+    public get canBeFiredOutOfABulletLauncher() {        return this.#canBeFiredOutOfABulletLauncher }
+    public get canComeOutOfABlock() {                    return this.#canComeOutOfABlock }
+    public get canBePutInATree() {                       return this.#canBePutInATree }
 
     //endregion -------------------- Directly affected --------------------
     //region -------------------- Game --------------------

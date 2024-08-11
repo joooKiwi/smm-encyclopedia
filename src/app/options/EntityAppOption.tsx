@@ -32,6 +32,7 @@ import CourseThemeComponent           from 'core/theme/CourseTheme.component'
 import {Themes}                       from 'core/theme/Themes'
 import {Times}                        from 'core/time/Times'
 import TimeComponent                  from 'core/time/Time.component'
+import IsAffectedDirectlyByAnOnOffState from 'core/entity/properties/component/IsAffectedDirectlyByAnOnOffState'
 
 export class EntityAppOption
     extends Enum<Ordinals, Names>
@@ -161,6 +162,7 @@ export class EntityAppOption
                         <CanHaveWings value={enumeration}/>
                         <CanMakeASoundOutOfAMusicBlock value={enumeration}/>
                         <CanContainOrSpawnAKey value={enumeration}/>
+                        <IsAffectedDirectlyByAnOnOffState value={enumeration}/>
                         <CanSpawnOutOfAPipe value={enumeration}/>
                         <CanBeFiredOutOfABulletLauncher value={enumeration}/>
                         <CanBePutInABlock value={enumeration}/>
