@@ -48,7 +48,7 @@ export class EmptyEntity
     public readonly canSpawnOutOfAPipe = false
     public readonly canBePutInAClownCar = false
     public readonly canBeFiredOutOfABulletLauncher = false
-    public readonly canBePutInABlock = false
+    public readonly canComeOutOfABlock = false
     public readonly canBePutInATree = false
 
     //endregion -------------------- Directly affected --------------------

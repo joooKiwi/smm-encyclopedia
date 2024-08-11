@@ -23,12 +23,12 @@ export interface Entity
 
     //region -------------------- Basic properties --------------------
 
-    readonly hasAMushroomVariant: BooleanOrNotApplicable
+    readonly hasAMushroomVariant: boolean
 
-    readonly canBeInAParachute: BooleanOrNotApplicable
+    readonly canBeInAParachute: boolean
     readonly canBeInAParachuteComment: NullOr<LCL_Play>
 
-    readonly canHaveWings: BooleanOrNotApplicable
+    readonly canHaveWings: boolean
     readonly canHaveWingsComment: NullOr<LCL_Play>
 
     //endregion -------------------- Basic properties --------------------
@@ -43,7 +43,7 @@ export interface Entity
     // can be put in a Lakitu's Cloud
     readonly canBePutInAClownCar: boolean
     readonly canBeFiredOutOfABulletLauncher: boolean//TODO add amount in a bunch + maximum amount
-    readonly canBePutInABlock: boolean//TODO add maximum amount
+    readonly canComeOutOfABlock: boolean//TODO add maximum amount
     readonly canBePutInATree: boolean
 
     //region -------------------- Directly affected properties --------------------

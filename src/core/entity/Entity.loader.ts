@@ -178,7 +178,7 @@ interface Content
 
     readonly canBeFiredOutOfABulletLauncher: boolean
 
-    readonly canBePutInABlock: boolean
+    readonly canComeOutOfABlock: boolean
 
     readonly canBePutInATree: boolean
 
@@ -339,7 +339,7 @@ function createReference(content: Content, referenceLinks: ReferenceLinks, entit
         content.canHaveWings, content.canHaveWings_comment,
 
         content.canContainOrSpawnAKey, content.canSpawnOutOfAPipe, content.canBePutInAClownCar,
-        content.canBeFiredOutOfABulletLauncher, content.canBePutInABlock, content.canBePutInATree,
+        content.canBeFiredOutOfABulletLauncher, content.canComeOutOfABlock, content.canBePutInATree,
 
         content.isInSuperMarioMaker1, content.isInSuperMarioMakerFor3DS, content.isInSuperMarioMaker2,
         content.isInSMBGameStyle, content.isInSMB3GameStyle, content.isInSMWGameStyle, content.isInNSMBUGameStyle, content.isInSM3DWGameStyle,

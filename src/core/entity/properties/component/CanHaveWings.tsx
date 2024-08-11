@@ -10,11 +10,10 @@ import {Limits}                 from 'core/limit/Limits'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /** @reactComponent */
-export default function CanHaveWings({value: entity,}: EntityOnlyProperties,) {
+export default function CanHaveWings({value,}: EntityOnlyProperties,) {
     const htmlElement = useRef<HTMLElement>(null,)
-    const reference = entity.reference
-    const value = reference.canHaveWings
-    if (value !== true)
+    const reference = value.reference
+    if (!reference.canHaveWings)
         return null
 
     const comment = reference.canHaveWingsComment

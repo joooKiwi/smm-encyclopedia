@@ -10,12 +10,10 @@ import {Limits}                 from 'core/limit/Limits'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
 /** @reactComponent */
-export default function CanBeInAParachute({value: entity,}: EntityOnlyProperties,) {
+export default function CanBeInAParachute({value,}: EntityOnlyProperties,) {
     const htmlElement = useRef<HTMLElement>(null,)
-
-    const reference = entity.reference
-    const value = reference.canBeInAParachute
-    if (value !== true)
+    const reference = value.reference
+    if (!reference.canBeInAParachute)
         return null
 
     const comment = reference.canBeInAParachuteComment

@@ -38,7 +38,7 @@ export class EntityContainer
     readonly #canSpawnOutOfAPipe
     readonly #canBePutInAClownCar
     readonly #canBeFiredOutOfABulletLauncher
-    readonly #canBePutInABlock
+    readonly #canComeOutOfABlock
     readonly #canBePutInATree
 
 
@@ -140,7 +140,7 @@ export class EntityContainer
         canHaveWings: BooleanOrNotApplicable, canHaveWingsComment: NullOr<LCL_Play>,
 
         canContainOrSpawnAKey: boolean, canSpawnOutOfAPipe: boolean, canBePutInAClownCar: boolean,
-        canBeFiredOutOfABulletLauncher: boolean, canBePutInABlock: boolean, canBePutInATree: boolean,
+        canBeFiredOutOfABulletLauncher: boolean, canComeOutOfABlock: boolean, canBePutInATree: boolean,
 
         isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
         isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: BooleanOrNotApplicable,
@@ -174,7 +174,7 @@ export class EntityContainer
         this.#canSpawnOutOfAPipe = canSpawnOutOfAPipe
         this.#canBePutInAClownCar = canBePutInAClownCar
         this.#canBeFiredOutOfABulletLauncher = canBeFiredOutOfABulletLauncher
-        this.#canBePutInABlock = canBePutInABlock
+        this.#canComeOutOfABlock = canComeOutOfABlock
         this.#canBePutInATree = canBePutInATree
 
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
@@ -272,11 +272,11 @@ export class EntityContainer
     //endregion -------------------- Basic --------------------
     //region -------------------- Directly affected --------------------
 
-    public get canContainOrSpawnAKey() { return this.#canContainOrSpawnAKey }
-    public get canSpawnOutOfAPipe() { return this.#canSpawnOutOfAPipe }
-    public get canBePutInAClownCar() { return this.#canBePutInAClownCar }
+    public get canContainOrSpawnAKey() {          return this.#canContainOrSpawnAKey }
+    public get canSpawnOutOfAPipe() {             return this.#canSpawnOutOfAPipe }
+    public get canBePutInAClownCar() {            return this.#canBePutInAClownCar }
     public get canBeFiredOutOfABulletLauncher() { return this.#canBeFiredOutOfABulletLauncher }
-    public get canBePutInABlock() {               return this.#canBePutInABlock }
+    public get canComeOutOfABlock() {             return this.#canComeOutOfABlock }
     public get canBePutInATree() {                return this.#canBePutInATree }
 
     //endregion -------------------- Directly affected --------------------

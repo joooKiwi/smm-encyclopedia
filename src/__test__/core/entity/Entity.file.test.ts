@@ -97,14 +97,14 @@ describe('Entity (file test)', () => {
             describe('Basic properties', () => {
                 test('Category in the editor', () => expect(it.categoryInTheEditor,).toBeOneOf(everyPossibleCategory,),)
 
-                test('Has a mushroom variant', () => expect(it.hasAMushroomVariant,).toBeBooleanOrNotApplicable(),)
+                test('Has a mushroom variant', () => expect(it.hasAMushroomVariant,).toBeBoolean(),)
                 describe('Can be in a parachute', () => {
-                    test('value', () => expect(it.canBeInAParachute,).toBeBooleanOrNotApplicable(),)
+                    test('value', () => expect(it.canBeInAParachute,).toBeBoolean(),)
                     test('comment', () => expect(it.canBeInAParachute_comment,).toBeOneOf(possibleBasicPropertyComment,),)
                     //TODO add coherence test
                 },)
                 describe('Can have wings', () => {
-                    test('value', () => expect(it.canHaveWings,).toBeBooleanOrNotApplicable(),)
+                    test('value', () => expect(it.canHaveWings,).toBeBoolean(),)
                     test('comment', () => expect(it.canHaveWings_comment,).toBeOneOf(possibleBasicPropertyComment,),)
                     //TODO add coherence test
                 },)
@@ -124,7 +124,7 @@ describe('Entity (file test)', () => {
                 test('Can be put in a Lakitu\'s Cloud', () => expect(it.canBePutInALakituCloud,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
                 test('Can be put in a Clown Car', () => expect(it.canBePutInAClownCar,).toBeBoolean(),)
                 test('Can be thrown by a Bullet Launcher', () => expect(it.canBeFiredOutOfABulletLauncher,).toBeBoolean(),)
-                test('Can be put in a Block', () => expect(it.canBePutInABlock,).toBeBoolean(),)
+                test('Can come out of a Block', () => expect(it.canComeOutOfABlock,).toBeBoolean(),)
                 test('Can be put in a Tree', () => expect(it.canBePutInATree,).toBeBoolean(),)
 
                 test('Weight', () => expect(it.weight,).toBeOneOf(everyWeight,),)
