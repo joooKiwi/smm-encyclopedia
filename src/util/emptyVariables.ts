@@ -1,7 +1,7 @@
 import type {EmptyArray, EmptyMap, EmptyObject, EmptySet, EmptyString} from '@joookiwi/type'
 
 /** An empty string */
-export const EMPTY_STRING: EmptyString = Object.freeze('',) as EmptyString
+export const EMPTY_STRING: EmptyString = Object.freeze('' as const,)
 
 /**
  * An empty array with no values that is not modifiable.
