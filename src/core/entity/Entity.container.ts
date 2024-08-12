@@ -139,9 +139,9 @@ export class EntityContainer
     public constructor(
         name: Name<string>, category: EntityCategory,
 
-        hasAMushroomVariant: BooleanOrNotApplicable,
-        canBeInAParachute: BooleanOrNotApplicable, canBeInAParachuteComment: NullOr<LCL_Play>,
-        canHaveWings: BooleanOrNotApplicable, canHaveWingsComment: NullOr<LCL_Play>,
+        hasAMushroomVariant: boolean,
+        canBeInAParachute: boolean, canBeInAParachuteComment: NullOr<LCL_Play>,
+        canHaveWings: boolean, canHaveWingsComment: NullOr<LCL_Play>,
 
         canContainOrSpawnAKey: boolean,
         isAffectDirectlyByAnOnOffState: boolean, isAffectDirectlyByAnOnOffStateComment: NullOr<OnlySomeVariants>,

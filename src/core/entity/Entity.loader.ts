@@ -148,12 +148,12 @@ interface Content
 
     readonly categoryInTheEditor: NullOr<PossibleEnglishName_Category>
 
-    readonly hasAMushroomVariant: BooleanOrNotApplicable
+    readonly hasAMushroomVariant: boolean
 
-    readonly canBeInAParachute: BooleanOrNotApplicable
+    readonly canBeInAParachute: boolean
     readonly canBeInAParachute_comment: NullOr<LCL_Play>
 
-    readonly canHaveWings: BooleanOrNotApplicable
+    readonly canHaveWings: boolean
     readonly canHaveWings_comment: NullOr<LCL_Play>
 
     //endregion -------------------- Basic properties --------------------
