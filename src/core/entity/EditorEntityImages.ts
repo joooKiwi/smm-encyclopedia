@@ -1735,6 +1735,84 @@ export abstract class EditorEntityImages
 
     }
 
+    /** A subclass of an {@link EditorEntityImages} for only the {@link TRACK} */
+    private static readonly ExistantAsTrack = class ExistantAsTrack
+        extends EditorEntityImages.Existant<'Track', EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `Rail${| '' | 'U' | 'D' | `Branch${`${| 'U' | 'D'}${| 'L' | 'R'}` | `${| 'L' | 'R'}${| 'U' | 'D'}`}` | `Curve${| 'L' | 'R'}${| 'U' | 'D'}`}_00`, 'Track'>> {
+
+        public constructor() { super('Track',) }
+
+        public override _createImageFiles() {
+            const time = Times.DAY
+            const smb = GameStyles.SUPER_MARIO_BROS
+            const smb3 = GameStyles.SUPER_MARIO_BROS_3
+            const smw = GameStyles.SUPER_MARIO_WORLD
+            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
+            const theme = Themes.GROUND
+            return [
+                [time, smb, theme, editorImage(this, 'Rail_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailU_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailCurveLD_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailCurveLU_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailCurveRD_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailCurveRU_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchDL_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchDR_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchUL_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchUR_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchLD_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchLU_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchRD_00', smb,),],
+                [time, smb, theme, editorImage(this, 'RailBranchRU_00', smb,),],
+
+                [time, smb3, theme, editorImage(this, 'Rail_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailU_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailCurveLD_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailCurveLU_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailCurveRD_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailCurveRU_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchDL_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchDR_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchUL_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchUR_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchLD_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchLU_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchRD_00', smb3,),],
+                [time, smb3, theme, editorImage(this, 'RailBranchRU_00', smb3,),],
+
+                [time, smw, theme, editorImage(this, 'Rail_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailU_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailCurveLD_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailCurveLU_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailCurveRD_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailCurveRU_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchDL_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchDR_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchUL_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchUR_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchLD_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchLU_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchRD_00', smw,),],
+                [time, smw, theme, editorImage(this, 'RailBranchRU_00', smw,),],
+
+                [time, nsmbu, theme, editorImage(this, 'Rail_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailU_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailCurveLD_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailCurveLU_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailCurveRD_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailCurveRU_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchDL_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchDR_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchUL_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchUR_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchLD_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchLU_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchRD_00', nsmbu,),],
+                [time, nsmbu, theme, editorImage(this, 'RailBranchRU_00', nsmbu,),],
+            ] as const
+        }
+
+    }
+
     /** A subclass of an {@link EditorEntityImages} for only the {@link TREE} */
     private static readonly ExistantAsTree = class ExistantAsTree
         extends EditorEntityImages.Existant<'Tree', EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `BellTree${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'woods'}`}_00`, 'Tree'>> {
@@ -2114,7 +2192,7 @@ export abstract class EditorEntityImages
 
     public static readonly ONE_WAY_WALL =                                  new EditorEntityImages.ExistantAsOneInNotSm3dw('One-Way Wall', 'Hanatari_00',)
 
-    public static readonly TRACK =                                         new EditorEntityImages.ExistantAsOneInNotSm3dw('Track', 'Rail_00',)
+    public static readonly TRACK =                                         new EditorEntityImages.ExistantAsTrack()
     public static readonly TRACK_BLOCK =                                   new EditorEntityImages.ExistantAsTwoInOnlySm3dw('Track Block', 'OrbitBlock_00', 'OrbitBlock_01',)
 
     public static readonly VINE =                                          new EditorEntityImages.ExistantAsOneInNotSm3dw('Vine', 'TsutaBlock_00',)
