@@ -1,11 +1,11 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
-import type {ClassWithEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'core/ClassWithEnglishName'
-import type {Names, Ordinals, PossibleEnglishName}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  from 'core/entity/Entities.types'
-import type {EditorImageFile, EditorImageFileAsBlueVariant, EditorImageFileAsBlueVariantExcludingSm3dw, EditorImageFileAsBrickBlock, EditorImageFileAsBridge, EditorImageFileAsCheepCheep, EditorImageFileAsCloudBlock, EditorImageFileAsCristalBlock, EditorImageFileAsGroundOrSlope, EditorImageFileAsHardBlock, EditorImageFileAsMushroomPlatform, EditorImageFileAsNightSnowInSmb3, EditorImageFileAsNightSnowInSmb3ExcludingSm3dw, EditorImageFileAsNightSnowInSmbAndSmb3, EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw, EditorImageFileAsPipe, EditorImageFileAsSemisolidPlatform, EditorImageFileAsSpikeBall, EditorImageFileAsTree} from 'core/entity/file/EntityImageFile'
-import type {EditorImage}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           from 'core/entity/images/editor/EditorImage'
-import type {ClassWithImage}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        from 'util/ClassWithImage'
+import type {ClassWithEnglishName}                                                                                                                                                                                                                                                      from 'core/ClassWithEnglishName'
+import type {Names, Ordinals, PossibleEnglishName}                                                                                                                                                                                                                                      from 'core/entity/Entities.types'
+import type {EditorImageFile, EditorImageFileAsBlueVariant, EditorImageFileAsBlueVariantExcludingSm3dw, EditorImageFileAsNightSnowInSmb3, EditorImageFileAsNightSnowInSmb3ExcludingSm3dw, EditorImageFileAsNightSnowInSmbAndSmb3, EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw} from 'core/entity/file/EntityImageFile'
+import type {EditorImage}                                                                                                                                                                                                                                                               from 'core/entity/images/editor/EditorImage'
+import type {ClassWithImage}                                                                                                                                                                                                                                                            from 'util/ClassWithImage'
 
 import {Entities}             from 'core/entity/Entities'
 import {editorImage}          from 'core/entity/file/fileCreator'
@@ -1015,7 +1015,11 @@ export abstract class EditorEntityImages
     /** A subclass of an {@link EditorEntityImages} for only the {@link GROUND}, {@link STEEP_SLOPE} and {@link GENTLE_SLOPE} */
     private static readonly ExistantAsGroundOrSlope = class ExistantAsGroundOrSlope<const NAME extends PossibleEnglishName,
         const FILE_NAME extends string, >
-        extends EditorEntityImages.Existant<NAME, EditorImageFileAsGroundOrSlope<FILE_NAME, NAME>> {
+        extends EditorEntityImages.Existant<NAME, | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
+                                                  | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle' | 'castle_night'}`}_00`, NAME>
+                                                  | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'water_night' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>
+                                                  | EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
+                                                  | EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>> {
 
         readonly #fileName
 
@@ -1113,7 +1117,8 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link PIPE} */
     private static readonly ExistantAsPipe = class ExistantAsPipe
-        extends EditorEntityImages.Existant<'Pipe', EditorImageFileAsPipe> {
+        extends EditorEntityImages.Existant<'Pipe', | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], `Dokan_0${| 0 | 1 | 2 | 3}`, 'Pipe'>
+                                                    | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `Dokan${| '' | '_snow_night'}_0${| 0 | 1 | 2 | 3}`, 'Pipe'>> {
 
         public constructor() { super('Pipe',) }
 
@@ -1163,7 +1168,7 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link MUSHROOM_PLATFORM} */
     private static readonly ExistantAsMushroomPlatform = class ExistantAsMushroomPlatform
-        extends EditorEntityImages.Existant<'Mushroom Platform', EditorImageFileAsMushroomPlatform> {
+        extends EditorEntityImages.Existant<'Mushroom Platform', EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `GroundMushroom${| '' | `_${| 'water' | 'snow' | 'snow_night' | 'airship'}`}_0${| 0 | 1 | 2}`, 'Mushroom Platform'>> {
 
         public constructor() { super('Mushroom Platform',) }
 
@@ -1249,7 +1254,9 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link SEMISOLID_PLATFORM} */
     private static readonly ExistantAsSemisolidPlatform = class ExistantAsSemisolidPlatform
-        extends EditorEntityImages.Existant<'Semisolid Platform', EditorImageFileAsSemisolidPlatform> {
+        extends EditorEntityImages.Existant<'Semisolid Platform', | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}` | 'GroundBox_airship_night_01', 'Semisolid Platform'>
+                                                                  | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}`, 'Semisolid Platform'>
+                                                                  | EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Semisolid Platform'>> {
 
         public constructor() { super('Semisolid Platform',) }
 
@@ -1426,7 +1433,10 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link BRIDGE} */
     private static readonly ExistantAsBridge = class ExistantAsBridge
-        extends EditorEntityImages.Existant<'Bridge', EditorImageFileAsBridge> {
+        extends EditorEntityImages.Existant<'Bridge', | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `Bridge${| '' | `_${| 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>
+                                                      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `Bridge${| '' | `_${| 'snow' | 'snow_night'}`}_00`, 'Bridge'>
+                                                      | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `Bridge${| '' | `_${| 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods'}`}_00`, 'Bridge'>
+                                                      | EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], `Bridge${| '' | `_${| 'underground' | 'water' | 'snow' | 'snow_night' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>> {
 
         public constructor() { super('Bridge',) }
 
@@ -1482,7 +1492,9 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link BRICK_BLOCK} */
     private static readonly ExistantAsBrickBlock = class ExistantAsBrickBlock
-        extends EditorEntityImages.Existant<'Brick Block', EditorImageFileAsBrickBlock> {
+        extends EditorEntityImages.Existant<'Brick Block', | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `RengaBlock${| '' | `_${| 'underground' | 'snow' | 'snow_night' | 'hauntedhouse' | 'castle'}`}_00`, 'Brick Block'>
+                                                           | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `RengaBlock${| '' | '_snow_night'}_00`, 'Brick Block'>
+                                                           | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], `RengaBlock_00`, 'Brick Block'>> {
 
         public constructor() { super('Brick Block',) }
 
@@ -1522,7 +1534,7 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link CRISTAL_BLOCK} */
     private static readonly ExistantAsCristalBlock = class ExistantAsCristalBlock
-        extends EditorEntityImages.Existant<'Cristal Block', EditorImageFileAsCristalBlock> {
+        extends EditorEntityImages.Existant<'Cristal Block', EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `RengaBlock${`_${| 'underground' | 'woods'}`}_00`, 'Cristal Block'>> {
 
         public constructor() { super('Cristal Block',) }
 
@@ -1539,7 +1551,10 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link HARD_BLOCK} */
     private static readonly ExistantAsHardBlock = class ExistantAsHardBlock
-        extends EditorEntityImages.Existant<'Hard Block', EditorImageFileAsHardBlock> {
+        extends EditorEntityImages.Existant<'Hard Block', | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `HardBlock${| '' | `_${| 'underground' | 'underground_night' | 'water' | 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Hard Block'>
+                                                          | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `HardBlock${| '' | `_${| 'snow' | 'snow_night'}`}_00`, 'Hard Block'>
+                                                          | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `HardBlock${| '' | `_${| 'hauntedhouse' | 'airship' | 'airship_night'}`}_00`, 'Hard Block'>
+                                                          | EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], `HardBlock${| '' | `_${| 'underground' | 'water' | 'snow' | 'athletic' | 'woods' | 'castle'}`}_00`, 'Hard Block'>> {
 
         public constructor() { super('Hard Block',) }
 
@@ -1593,7 +1608,9 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link CLOUD_BLOCK} */
     private static readonly ExistantAsCloudBlock = class ExistantAsCloudBlock
-        extends EditorEntityImages.Existant<'Cloud Block', EditorImageFileAsCloudBlock> {
+        extends EditorEntityImages.Existant<'Cloud Block', | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], `KumoBlock${| '' | `_${| 'water' | 'snow_night'}`}_00`, 'Cloud Block'>
+                                                           | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `KumoBlock${| '' | '_water'}_00`, 'Cloud Block'>
+                                                           | EditorImageFile<typeof GameStyles[| 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], 'KumoBlock_00', 'Cloud Block'>> {
 
         public constructor() { super('Cloud Block',) }
 
@@ -1630,7 +1647,8 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link CHEEP_CHEEP} */
     private static readonly ExistantAsCheepCheep = class ExistantAsCheepCheep
-        extends EditorEntityImages.Existant<'Cheep Cheep', EditorImageFileAsCheepCheep> {
+        extends EditorEntityImages.Existant<'Cheep Cheep', | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_3D_WORLD'], `Pukupuku_0${| 0 | 1}`, 'Cheep Cheep'>
+                                                           | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `Pukupuku_01`, 'Cheep Cheep'>> {
 
         public constructor() { super('Cheep Cheep',) }
 
@@ -1662,7 +1680,8 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link SPIKE_BALL} */
     private static readonly ExistantAsSpikeBall = class ExistantAsSpikeBall
-        extends EditorEntityImages.Existant<'Spike Ball', EditorImageFileAsSpikeBall> {
+        extends EditorEntityImages.Existant<'Spike Ball', | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], `Gabon${| '' | `_${| 'plain_night' | 'underground' | 'water' | 'desert_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_01`, 'Spike Ball'>
+                                                          | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], 'Gabon_01', 'Spike Ball'>> {
 
         public constructor() { super('Spike Ball',) }
 
@@ -1718,7 +1737,7 @@ export abstract class EditorEntityImages
 
     /** A subclass of an {@link EditorEntityImages} for only the {@link TREE} */
     private static readonly ExistantAsTree = class ExistantAsTree
-        extends EditorEntityImages.Existant<'Tree', EditorImageFileAsTree> {
+        extends EditorEntityImages.Existant<'Tree', EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `BellTree${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'woods'}`}_00`, 'Tree'>> {
 
         public constructor() { super('Tree',) }
 

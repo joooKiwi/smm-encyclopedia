@@ -93,7 +93,7 @@ export type PossibleEditorImageFile = typeof EditorEntityImages[| 'GROUND' | 'ST
                                                                 | 'WARP_BOX_WITH_KEY' | 'WING' | 'PARACHUTE']['image']['images'][number]
 
 //endregion -------------------- possible editor images --------------------
-//region -------------------- predefined editor images --------------------
+//region -------------------- grouped editor images --------------------
 
 /** An {@link EditorImageFile} template to tell that there is blue variants on other {@link Themes} and mostly the {@link Times.NIGHT night time} */
 export type EditorImageFileAsBlueVariant<FILE_NAME extends string, NUMBER extends | 0 | 1, NAME extends PossibleEnglishName, >
@@ -142,63 +142,7 @@ export type EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1 ext
     = | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], | FILE_NAME_1 | FILE_NAME_2, NAME>
       | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME_1, NAME>
 
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.GROUND}, {@link EditorEntityImages.STEEP_SLOPE} and {@link EditorEntityImages.GENTLE_SLOPE} */
-export type EditorImageFileAsGroundOrSlope<FILE_NAME extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle' | 'castle_night'}`}_00`, NAME>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'water_night' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>
-      | EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'airship_night' | 'castle'}`}_00`, NAME>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `${FILE_NAME}${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, NAME>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.PIPE} */
-export type EditorImageFileAsPipe
-    = | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], `Dokan_0${| 0 | 1 | 2 | 3}`, 'Pipe'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `Dokan${| '' | '_snow_night'}_0${| 0 | 1 | 2 | 3}`, 'Pipe'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.MUSHROOM_PLATFORM} */
-export type EditorImageFileAsMushroomPlatform
-    = EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `GroundMushroom${| '' | `_${| 'water' | 'snow' | 'snow_night' | 'airship'}`}_0${| 0 | 1 | 2}`, 'Mushroom Platform'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.SEMISOLID_PLATFORM} */
-export type EditorImageFileAsSemisolidPlatform
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}` | 'GroundBox_airship_night_01', 'Semisolid Platform'>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_0${| 0 | 1 | 2}`, 'Semisolid Platform'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `GroundBox${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'athletic' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Semisolid Platform'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.BRIDGE} */
-export type EditorImageFileAsBridge
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `Bridge${| '' | `_${| 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `Bridge${| '' | `_${| 'snow' | 'snow_night'}`}_00`, 'Bridge'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `Bridge${| '' | `_${| 'desert' | 'snow' | 'snow_night' | 'athletic' | 'woods'}`}_00`, 'Bridge'>
-      | EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], `Bridge${| '' | `_${| 'underground' | 'water' | 'snow' | 'snow_night' | 'woods' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Bridge'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.BRICK_BLOCK} */
-export type EditorImageFileAsBrickBlock
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `RengaBlock${| '' | `_${| 'underground' | 'snow' | 'snow_night' | 'hauntedhouse' | 'castle'}`}_00`, 'Brick Block'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `RengaBlock${| '' | '_snow_night'}_00`, 'Brick Block'>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], `RengaBlock_00`, 'Brick Block'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.CRISTAL_BLOCK} */
-export type EditorImageFileAsCristalBlock
-    = EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `RengaBlock${`_${| 'underground' | 'woods'}`}_00`, 'Cristal Block'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.HARD_BLOCK} */
-export type EditorImageFileAsHardBlock
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `HardBlock${| '' | `_${| 'underground' | 'underground_night' | 'water' | 'snow' | 'snow_night' | 'hauntedhouse' | 'airship' | 'castle'}`}_00`, 'Hard Block'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `HardBlock${| '' | `_${| 'snow' | 'snow_night'}`}_00`, 'Hard Block'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `HardBlock${| '' | `_${| 'hauntedhouse' | 'airship' | 'airship_night'}`}_00`, 'Hard Block'>
-      | EditorImageFile<typeof GameStyles['NEW_SUPER_MARIO_BROS_U'], `HardBlock${| '' | `_${| 'underground' | 'water' | 'snow' | 'athletic' | 'woods' | 'castle'}`}_00`, 'Hard Block'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.CLOUD_BLOCK} */
-export type EditorImageFileAsCloudBlock
-    = | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], `KumoBlock${| '' | `_${| 'water' | 'snow_night'}`}_00`, 'Cloud Block'>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD'], `KumoBlock${| '' | '_water'}_00`, 'Cloud Block'>
-      | EditorImageFile<typeof GameStyles[| 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], 'KumoBlock_00', 'Cloud Block'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.CHEEP_CHEEP} */
-export type EditorImageFileAsCheepCheep
-    = | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3' | 'SUPER_MARIO_3D_WORLD'], `Pukupuku_0${| 0 | 1}`, 'Cheep Cheep'>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `Pukupuku_01`, 'Cheep Cheep'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.SPIKE_BALL} */
-export type EditorImageFileAsSpikeBall
-    = | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], `Gabon${| '' | `_${| 'plain_night' | 'underground' | 'water' | 'desert_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_01`, 'Spike Ball'>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], 'Gabon_01', 'Spike Ball'>
-/** An {@link EditorImageFile} template for the {@link EditorEntityImages.TREE} */
-export type EditorImageFileAsTree
-    = EditorImageFile<typeof GameStyles['SUPER_MARIO_3D_WORLD'], `BellTree${| '' | `_${| 'underground' | 'water' | 'desert' | 'snow' | 'woods'}`}_00`, 'Tree'>
-
-//endregion -------------------- predefined editor images --------------------
+//endregion -------------------- grouped editor images --------------------
 
 //endregion -------------------- editor images --------------------
 //region -------------------- clear condition images --------------------
