@@ -32,7 +32,7 @@ export interface Entity
     readonly canHaveWingsComment: NullOr<LCL_Play>
 
     //endregion -------------------- Basic properties --------------------
-    //endregion -------------------- Directly affected properties --------------------
+    //region -------------------- Directly affected properties --------------------
 
     readonly canContainOrSpawnAKey: boolean //TODO add Chain Chomp comment to tell that only the "Unchained" contain it. Only the head of the Pokey is affected
 
@@ -49,7 +49,7 @@ export interface Entity
     readonly canComeOutOfABlock: boolean//TODO add maximum amount
     readonly canBePutInATree: boolean
 
-    //region -------------------- Directly affected properties --------------------
+    //endregion -------------------- Directly affected properties --------------------
     //region -------------------- Limit properties --------------------
 
     readonly editorLimit_smm1And3ds: NullOr<| Limits | NotApplicable>
