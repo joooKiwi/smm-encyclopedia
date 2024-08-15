@@ -1,11 +1,11 @@
 import type {Singleton} from '@joookiwi/enumerable'
 import {Enum}           from '@joookiwi/enumerable'
 
-import type {CompanionEnumDeclaration_ViewDisplays}             from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
-import type {HTMLType, Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
-import type {ClassWithType}                                     from 'core/ClassWithType'
-import type {ClassUsedInRoute}                                  from 'route/ClassUsedInRoute'
-import type {ClassWithIsCurrent}                                from 'util/enumerable/ClassWithIsCurrent'
+import type {CompanionEnumDeclaration_ViewDisplays}   from 'app/withInterpreter/ViewDisplays.companionEnumDeclaration'
+import type {Names, Ordinals, PossibleUrlValue, Type} from 'app/withInterpreter/ViewDisplays.types'
+import type {ClassWithType}                           from 'core/ClassWithType'
+import type {ClassUsedInRoute}                        from 'route/ClassUsedInRoute'
+import type {ClassWithIsCurrent}                      from 'util/enumerable/ClassWithIsCurrent'
 
 import {assert, getValueInUrl}                      from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
@@ -81,7 +81,7 @@ export abstract class ViewDisplays
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(type: Type, urlValue: PossibleUrlValue, htmlType: HTMLType,) {
+    private constructor(type: Type, urlValue: PossibleUrlValue, htmlType: PossibleBootstrapIcon,) {
         super()
         this.#type = type
         this.#urlValue = urlValue
@@ -99,7 +99,7 @@ export abstract class ViewDisplays
         return this.#urlValue
     }
 
-    public get htmlType(): HTMLType {
+    public get htmlType(): PossibleBootstrapIcon {
         return this.#htmlType
     }
 
