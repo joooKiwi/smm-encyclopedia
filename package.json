@@ -60,8 +60,8 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@joookiwi/collection": "^1.9.2",
-    "@joookiwi/enumerable": "^3.6.2",
+    "@joookiwi/collection": "^1.9.3",
+    "@joookiwi/enumerable": "^3.6.3",
     "@joookiwi/lazy":       "^1.5.0",
     "@joookiwi/type":       "^1.0.0",
     "assert":               "^2.1.0",
@@ -100,7 +100,6 @@
     "@babel/plugin-proposal-numeric-separator":           "https://registry.npmjs.org/@babel/plugin-transform-numeric-separator/-/plugin-transform-numeric-separator-7.24.7.tgz",
     "@babel/plugin-proposal-optional-chaining":           "https://registry.npmjs.org/@babel/plugin-transform-optional-chaining/-/plugin-transform-optional-chaining-7.24.8.tgz",
     "@babel/plugin-proposal-private-methods":             "https://registry.npmjs.org/@babel/plugin-transform-private-methods/-/plugin-transform-private-methods-7.24.7.tgz",
-    "@babel/plugin-proposal-private-property-in-object":  "https://registry.npmjs.org/@babel/plugin-transform-private-property-in-object/-/plugin-transform-private-property-in-object-7.24.7.tgz",
     "@humanwhocodes/config-array":                        "https://registry.npmjs.org/@eslint/config-array/-/config-array-0.17.1.tgz",
     "@humanwhocodes/object-schema":                       "https://registry.npmjs.org/@eslint/object-schema/-/object-schema-2.1.4.tgz",
 
