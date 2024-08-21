@@ -20,8 +20,7 @@ interface SimpleListProperties<CONTENT extends Content, >
  *
  * @reactComponent
  */
-export default function SimpleList<const CONTENT extends Content, >({reactKey, interpreter, keyRetriever,}: SimpleListProperties<CONTENT>,) {
-    keyRetriever ??= enumerable => enumerable.englishName
+export default function SimpleList<const CONTENT extends Content, >({reactKey, interpreter, keyRetriever = it => it.englishName,}: SimpleListProperties<CONTENT>,) {
     const dimensions = createDimension(interpreter,)
     const content = interpreter.content
 
@@ -35,8 +34,8 @@ export default function SimpleList<const CONTENT extends Content, >({reactKey, i
         //TODO change the popover to be on the id instead of the name directly
         contentToDisplay[index] =
             <div key={`${uniqueKey} - main list container`} id={`${reactKey}-${enumerable.englishNameInHtml}-container`} className={`${reactKey}-container`}>
-                <span key={`${uniqueKey} - main list text-container`} className="listElement-container simpleListElement-container rounded-pill">
-                    <NameComponent key={`${uniqueKey} - text container`} id="name" name={enumerable.reference.nameContainer} popoverOrientation="left"/>
+                <span className="listElement-container simpleListElement-container rounded-pill">
+                    <NameComponent id="name" name={enumerable.reference.nameContainer} popoverOrientation="left"/>
                 </span>
             </div>
     }
