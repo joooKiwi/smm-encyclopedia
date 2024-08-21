@@ -3,7 +3,7 @@ import type {GameStyles}      from 'core/gameStyle/GameStyles'
 import type {Themes}           from 'core/theme/Themes'
 import type {Times}            from 'core/time/Times'
 
-export interface EditorImage<T extends EditorImageFile = EditorImageFile, > {
+export interface EditorImage<out T extends EditorImageFile = EditorImageFile, > {
 
     /** Get all the images with no association */
     readonly images: readonly T[]
