@@ -1,5 +1,5 @@
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}           from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, EnumWithNullableParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EntityGameStyles.types'
 import type {FullGroupUrlName}                   from 'core/game/Games.types'
@@ -8,7 +8,7 @@ import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 import {GameStyles}   from 'core/gameStyle/GameStyles'
 
 export class EntityGameStyles
-    extends EnumWithParent<GameStyles, Ordinals, Names> {
+    extends EnumWithNullableParent<GameStyles, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 

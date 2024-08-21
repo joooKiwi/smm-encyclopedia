@@ -1,5 +1,5 @@
-import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
-import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
+import type {CompanionEnumWithParentSingleton}           from '@joookiwi/enumerable'
+import {CompanionEnumWithParent, EnumWithNullableParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleRouteName} from 'app/property/EditorVoiceGames.types'
 
@@ -7,7 +7,7 @@ import {ViewDisplays} from 'app/withInterpreter/ViewDisplays'
 import {Games}        from 'core/game/Games'
 
 export class EditorVoiceGames
-    extends EnumWithParent<Games, Ordinals, Names> {
+    extends EnumWithNullableParent<Games, Ordinals, Names> {
 
     //region -------------------- Enum instances --------------------
 
