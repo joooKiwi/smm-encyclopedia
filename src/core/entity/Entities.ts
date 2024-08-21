@@ -6,35 +6,41 @@ import type {ClassWithNullableEditorVoiceSoundFileHolder} from 'core/editorVoice
 import type {EditorVoiceSound}                            from 'core/editorVoice/sound/EditorVoiceSound'
 import type {Names, Ordinals, PossibleEnglishName}        from 'core/entity/Entities.types'
 import type {Entity}                                      from 'core/entity/Entity'
+import type {EntityImage}                                 from 'core/entity/images/EntityImage'
 import type {ClearConditionImage}                         from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {EditorImage}                                 from 'core/entity/images/editor/EditorImage'
 import type {InGameImage}                                 from 'core/entity/images/inGame/InGameImage'
-import type {UniqueImage}                                 from 'core/entity/images/unique/UniqueImage'
 import type {UnusedImage_BigMushroom}                     from 'core/entity/images/unused/UnusedImage_BigMushroom'
 import type {UnusedImage_Regular}                         from 'core/entity/images/unused/UnusedImage_Regular'
+import type {ClassWithImage}                              from 'util/ClassWithImage'
 import type {CompanionEnumByNameWithValidationSingleton}  from 'util/enumerable/Singleton.types'
 
 import {EditorVoices}                      from 'core/editorVoice/EditorVoices'
 import {ClearConditionEntityImages}        from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}           from 'core/entity/EditorEntityImages'
+import type {EntityImages}                 from 'core/entity/EntityImages'
 import {EntityLoader}                      from 'core/entity/Entity.loader'
 import {InGameEntityImages}                from 'core/entity/InGameEntityImages'
 import {UnusedEntityImages}                from 'core/entity/UnusedEntityImages'
 import {UnusedBigMushroomEntityImages}     from 'core/entity/UnusedBigMushroomEntityImages'
-import * as ImageCreator                   from 'core/entity/images/imageCreator'
-import {EmptyClearConditionImage}          from 'core/entity/images/clearCondition/EmptyClearConditionImage'
-import {EmptyEditorImage}                  from 'core/entity/images/editor/EmptyEditorImage'
-import {EmptyInGameImage}                  from 'core/entity/images/inGame/EmptyInGameImage'
-import {EmptyUniqueImage}                  from 'core/entity/images/unique/EmptyUniqueImage'
 import {StringContainer}                   from 'util/StringContainer'
 import {Import}                            from 'util/DynamicImporter'
 import {getValueByEnglishName}             from 'util/utilitiesMethods'
 import {CompanionEnumByNameWithValidation} from 'util/enumerable/companion/CompanionEnumByNameWithValidation'
 
 /**
+ * A class encapsulating all the information associated to
+ * its name ({@link PossibleEnglishName}),
+ * image ({@link EntityImage}, {@link EditorImage editor},
+ * {@link ClearConditionImage clear condition}, {@link InGameImage in game}, {@link UnusedImage_Regular unused (regular form)}
+ * and {@link UnusedImage_BigMushroom unused (Big Mushroom form)}),
+ * sound ({@link EditorVoiceSound})
+ * and data ({@link Entity})
+ *
  * @recursiveReference<{@link ClearConditionEntityImages}>
  * @recursiveReference<{@link EditorVoices}>
  * @recursiveReference<{@link EditorEntityImages}>
+ * @recursiveReference<{@link EntityImages}>
  * @recursiveReference<{@link EntityLoader}>
  * @recursiveReference<{@link InGameEntityImages}>
  * @recursiveReference<{@link UnusedEntityImages}>
@@ -44,36 +50,19 @@ export class Entities
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
         ClassWithReference<Entity>,
+        ClassWithImage<EntityImage>,
         ClassWithNullableEditorVoiceSoundFileHolder {
 
     //region -------------------- Enum instances --------------------
 
     //region -------------------- Ground / Pipe / Spike / Platform --------------------
 
-    public static readonly GROUND =                                        new class Entities_Ground extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Ground',)
+    public static readonly GROUND =                                        new Entities('Ground',)
     public static readonly START_GROUND =                                  new Entities('Start Ground',)
     public static readonly GOAL_GROUND =                                   new Entities('Goal Ground',)
 
-    public static readonly STEEP_SLOPE =                                   new class Entities_SteepSlope extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Steep Slope',)
-    public static readonly GENTLE_SLOPE =                                  new class Entities_GentleSlope extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Gentle Slope',)
+    public static readonly STEEP_SLOPE =                                   new Entities('Steep Slope',)
+    public static readonly GENTLE_SLOPE =                                  new Entities('Gentle Slope',)
 
     public static readonly START_BLOCK =                                   new Entities('Start Block',)
     public static readonly OCCLUDE_BLOCK =                                 new Entities('Occlude Block',)
@@ -82,1325 +71,353 @@ export class Entities
     public static readonly LAVA =                                          new Entities('Lava',)
     public static readonly POISON =                                        new Entities('Poison',)
 
-    public static readonly PIPE =                                          new class Entities_Pipe extends Entities {
+    public static readonly PIPE =                                          new Entities('Pipe',)
+    public static readonly CLEAR_PIPE =                                    new Entities('Clear Pipe',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
+    public static readonly SPIKE_TRAP =                                    new Entities('Spike Trap',)
+    public static readonly JELECTRO =                                      new Entities('Jelectro',)
+    public static readonly SEA_URCHIN =                                    new Entities('Sea Urchin',)
+    public static readonly SPIKE_BLOCK =                                   new Entities('Spike Block',)
 
-    }('Pipe',)
-    public static readonly CLEAR_PIPE =                                    new class Entities_ClearPipe extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Clear Pipe',)
-
-    public static readonly SPIKE_TRAP =                                    new class Entities_SpikeTrap extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Spike Trap',)
-    public static readonly JELECTRO =                                      new class Entities_Jelectro extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmb3ImagesInEditor(this,)
-        }
-
-    }('Jelectro',)
-    public static readonly SEA_URCHIN =                                    new class Entities_SeaUrchin extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Sea Urchin',)
-    public static readonly SPIKE_BLOCK =                                   new class Entities_SpikeBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Spike Block',)
-
-    public static readonly MUSHROOM_PLATFORM =                             new class Entities_MushroomPlatform extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Mushroom Platform',)
-    public static readonly SEMISOLID_PLATFORM =                            new class Entities_SemisolidPlatform extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Semisolid Platform',)
-    public static readonly BRIDGE =                                        new class Entities_Bridge extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueBridgeImages(this,)
-        }
-
-    }('Bridge',)
+    public static readonly MUSHROOM_PLATFORM =                             new Entities('Mushroom Platform',)
+    public static readonly SEMISOLID_PLATFORM =                            new Entities('Semisolid Platform',)
+    public static readonly BRIDGE =                                        new Entities('Bridge',)
 
     //endregion -------------------- Ground / Pipe / Spike / Platform --------------------
     //region -------------------- Block / Coin --------------------
 
-    public static readonly BRICK_BLOCK =                                   new class Entities_BrickBlock extends Entities {
+    public static readonly BRICK_BLOCK =                                   new Entities('Brick Block',)
+    public static readonly CRISTAL_BLOCK =                                 new Entities('Cristal Block',)
+    public static readonly ROTATING_BLOCK =                                new Entities('Rotating Block',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueBrickBlockImages(this,)
-        }
+    public static readonly HARD_BLOCK =                                    new Entities('Hard Block',)
+    public static readonly ROCK_BLOCK =                                    new Entities('Rock Block',)
 
-    }('Brick Block',)
-    public static readonly CRISTAL_BLOCK =                                 new class Entities_CristalBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueCristalBlockImages(this,)
-        }
-
-    }('Cristal Block',)
-    public static readonly ROTATING_BLOCK =                                new class Entities_RotatingBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Rotating Block',)
-
-    public static readonly HARD_BLOCK =                                    new class Entities_HardBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueHardBlockImages(this,)
-        }
-
-    }('Hard Block',)
-    public static readonly ROCK_BLOCK =                                    new class Entities_RockBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Rock Block',)
-
-    public static readonly QUESTION_MARK_BLOCK =                           new class Entities_QuestionMarkBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('? Block',)
-    public static readonly HIDDEN_BLOCK =                                  new class Entities_HiddenBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Hidden Block',)
+    public static readonly QUESTION_MARK_BLOCK =                           new Entities('? Block',)
+    public static readonly HIDDEN_BLOCK =                                  new Entities('Hidden Block',)
     public static readonly EMPTY_BLOCK =                                   new Entities('Empty Block',)
 
-    public static readonly EXCLAMATION_MARK_BLOCK =                        new class Entities_ExclamationMarkBlock extends Entities {
+    public static readonly EXCLAMATION_MARK_BLOCK =                        new Entities('! Block',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
+    public static readonly NOTE_BLOCK =                                    new Entities('Note Block',)
+    public static readonly MUSIC_BLOCK =                                   new Entities('Music Block',)
 
-    }('! Block',)
+    public static readonly DONUT_BLOCK =                                   new Entities('Donut Block',)
 
-    public static readonly NOTE_BLOCK =                                    new class Entities_NoteBlock extends Entities {
+    public static readonly CLOUD_BLOCK =                                   new Entities('Cloud Block',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
+    public static readonly ON_OFF_SWITCH =                                 new Entities('ON/OFF Switch',)
+    public static readonly DOTTED_LINE_BLOCK =                             new Entities('Dotted-Line Block',)
 
-    }('Note Block',)
-    public static readonly MUSIC_BLOCK =                                   new class Entities_MusicBlock extends Entities {
+    public static readonly P_BLOCK =                                       new Entities('P Block',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
+    public static readonly BLINKING_BLOCK =                                new Entities('Blinking Block',)
 
-    }('Music Block',)
+    public static readonly ICE_BLOCK =                                     new Entities('Ice Block',)
+    public static readonly ICICLE =                                        new Entities('Icicle',)
 
-    public static readonly DONUT_BLOCK =                                   new class Entities_DonutBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Donut Block',)
-
-    public static readonly CLOUD_BLOCK =                                   new class Entities_CloudBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Cloud Block',)
-
-    public static readonly ON_OFF_SWITCH =                                 new class Entities_OnOffBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('ON/OFF Switch',)
-    public static readonly DOTTED_LINE_BLOCK =                             new class Entities_DottedLineBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Dotted-Line Block',)
-
-    public static readonly P_BLOCK =                                       new class Entities_PBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('P Block',)
-
-    public static readonly BLINKING_BLOCK =                                new class Entities_BlinkingBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Blinking Block',)
-
-    public static readonly ICE_BLOCK =                                     new class Entities_IceBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Ice Block',)
-    public static readonly ICICLE =                                        new class Entities_Icicle extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Icicle',)
-
-    public static readonly COIN =                                          new class Entities_Coin extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Coin',)
-    public static readonly FROZEN_COIN =                                   new class Entities_FrozenCoin extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Frozen Coin',)
-    public static readonly TEN_COIN =                                      new class Entities_TenCoin extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('10-Coin',)
-    public static readonly THIRTY_COIN =                                   new class Entities_ThirtyCoin extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('30-Coin',)
-    public static readonly FIFTY_COIN =                                    new class Entities_FiftyCoin extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('50-Coin',)
-    public static readonly PINK_COIN =                                     new class Entities_PinkCoin extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Pink Coin',)
+    public static readonly COIN =                                          new Entities('Coin',)
+    public static readonly FROZEN_COIN =                                   new Entities('Frozen Coin',)
+    public static readonly TEN_COIN =                                      new Entities('10-Coin',)
+    public static readonly THIRTY_COIN =                                   new Entities('30-Coin',)
+    public static readonly FIFTY_COIN =                                    new Entities('50-Coin',)
+    public static readonly PINK_COIN =                                     new Entities('Pink Coin',)
 
     //endregion -------------------- Block / Coin --------------------
     //region -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
 
-    public static readonly SUPER_MUSHROOM =                                new class Entities_SuperMushroom extends Entities {
+    public static readonly SUPER_MUSHROOM =                                new Entities('Super Mushroom',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Super Mushroom',)
-
-    public static readonly FIRE_FLOWER =                                   new class Entities_FireFlower extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Fire Flower',)
+    public static readonly FIRE_FLOWER =                                   new Entities('Fire Flower',)
     public static readonly FIREBALL_THROWN_BY_A_PLAYER =                   new Entities('Fireball thrown by a player',)
 
-    public static readonly SUPERBALL_FLOWER =                              new class Entities_SuperballFlower extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbImagesInEditor(this,)
-        }
-
-    }('Superball Flower',)
+    public static readonly SUPERBALL_FLOWER =                              new Entities('Superball Flower',)
     public static readonly SUPERBALL_THROWN_BY_A_PLAYER =                  new Entities('Superball thrown by a player',)
 
     public static readonly MYSTERY_MUSHROOM =                              new Entities('Mystery Mushroom',)
     public static readonly WEIRD_MUSHROOM =                                new Entities('Weird Mushroom',)
 
-    public static readonly MASTER_SWORD =                                  new class Entities_MasterSword extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbImagesInEditor(this,)
-        }
-
-    }('Master Sword',)
+    public static readonly MASTER_SWORD =                                  new Entities('Master Sword',)
     public static readonly BOMB_THROWN_BY_A_LINK =                         new Entities('Bomb thrown by a Link',)
     public static readonly ARROW_THROWN_BY_A_LINK =                        new Entities('Arrow thrown by a Link',)
 
-    public static readonly BIG_MUSHROOM =                                  new class Entities_BigMushroom extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbImagesInEditor(this,)
-        }
-
-    }('Big Mushroom',)
+    public static readonly BIG_MUSHROOM =                                  new Entities('Big Mushroom',)
     public static readonly BIG_MUSHROOM_CLASSIC =                          new Entities('Big Mushroom (classic)',)
     public static readonly BIG_MUSHROOM_MODERN =                           new Entities('Big Mushroom (modern)',)
 
-    public static readonly SMB2_MUSHROOM =                                 new class Entities_SMB2Mushroom extends Entities {
+    public static readonly SMB2_MUSHROOM =                                 new Entities('SMB2 Mushroom',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbImagesInEditor(this,)
-        }
+    public static readonly SUPER_LEAF =                                    new Entities('Super Leaf',)
 
-    }('SMB2 Mushroom',)
+    public static readonly FROG_SUIT =                                     new Entities('Frog Suit',)
 
-    public static readonly SUPER_LEAF =                                    new class Entities_SuperLeaf extends Entities {
+    public static readonly CAPE_FEATHER =                                  new Entities('Cape Feather',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmb3ImagesInEditor(this,)
-        }
+    public static readonly POWER_BALLOON =                                 new Entities('Power Balloon',)
 
-    }('Super Leaf',)
+    public static readonly PROPELLER_MUSHROOM =                            new Entities('Propeller Mushroom',)
 
-    public static readonly FROG_SUIT =                                     new class Entities_FrogSuit extends Entities {
+    public static readonly SUPER_ACORN =                                   new Entities('Super Acorn',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmb3ImagesInEditor(this,)
-        }
+    public static readonly SUPER_BELL =                                    new Entities('Super Bell',)
 
-    }('Frog Suit',)
-
-    public static readonly CAPE_FEATHER =                                  new class Entities_CapeFeather extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Cape Feather',)
-
-    public static readonly POWER_BALLOON =                                 new class Entities_PowerBalloon extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Power Balloon',)
-
-    public static readonly PROPELLER_MUSHROOM =                            new class Entities_PropellerMushroom extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-    }('Propeller Mushroom',)
-
-    public static readonly SUPER_ACORN =                                   new class Entities_SuperAcorn extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-    }('Super Acorn',)
-
-    public static readonly SUPER_BELL =                                    new class Entities_SuperBell extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Super Bell',)
-
-    public static readonly SUPER_HAMMER =                                  new class Entities_SuperHammer extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Super Hammer',)
+    public static readonly SUPER_HAMMER =                                  new Entities('Super Hammer',)
     public static readonly BUILDER_BOX_THROWN_BY_A_PLAYER =                new Entities('Builder Box thrown by a player',)
 
-    public static readonly BOOMERANG_FLOWER =                              new class Entities_BoomerangFlower extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Boomerang Flower',)
+    public static readonly BOOMERANG_FLOWER =                              new Entities('Boomerang Flower',)
     public static readonly BOOMERANG_THROWN_BY_A_PLAYER =                  new Entities('Boomerang thrown by a player',)
 
-    public static readonly CANNON_BOX =                                    new class Entities_CannonBox extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Cannon Box',)
+    public static readonly CANNON_BOX =                                    new Entities('Cannon Box',)
     public static readonly CANNONBALL_THROWN_BY_A_PLAYER =                 new Entities('Cannonball thrown by a player',)
 
-    public static readonly PROPELLER_BOX =                                 new class Entities_PropellerBox extends Entities {
+    public static readonly PROPELLER_BOX =                                 new Entities('Propeller Box',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
+    public static readonly GOOMBA_MASK =                                   new Entities('Goomba Mask',)
 
-    }('Propeller Box',)
+    public static readonly BULLET_BILL_MASK =                              new Entities('Bullet Bill Mask',)
 
-    public static readonly GOOMBA_MASK =                                   new class Entities_GoombaMask extends Entities {
+    public static readonly RED_POW_BOX =                                   new Entities('Red POW Box',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
+    public static readonly SUPER_STAR =                                    new Entities('Super Star',)
 
-    }('Goomba Mask',)
+    public static readonly ONE_UP_MUSHROOM =                               new Entities('1-Up Mushroom',)
+    public static readonly ROTTEN_MUSHROOM =                               new Entities('Rotten Mushroom',)
 
-    public static readonly BULLET_BILL_MASK =                              new class Entities_BulletBillMask extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Bullet Bill Mask',)
-
-    public static readonly RED_POW_BOX =                                   new class Entities_RedPowBox extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Red POW Box',)
-
-    public static readonly SUPER_STAR =                                    new class Entities_SuperStar extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Super Star',)
-
-    public static readonly ONE_UP_MUSHROOM =                               new class Entities_OneUpMushroom extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('1-Up Mushroom',)
-    public static readonly ROTTEN_MUSHROOM =                               new class Entities_RottenMushroom extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Rotten Mushroom',)
-
-    public static readonly SHOE_GOOMBA =                                   new class Entities_ShoeGoomba extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
-        }
-
-    }('Shoe Goomba',)
-    public static readonly SHOE =                                          new class Entities_Shoe extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
-        }
-
-    }('Shoe',)
-    public static readonly STILETTO_GOOMBA =                               new class Entities_StilettoGoomba extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
-        }
-
-    }('Stiletto Goomba',)
-    public static readonly STILETTO =                                      new class Entities_Stiletto extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbAndSmb3ImagesInInGame(this,)
-        }
-
-    }('Stiletto',)
-    public static readonly YOSHI_EGG =                                     new class Entities_YoshiEgg extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwAndNsmbuImagesInEditor(this,)
-        }
-
-    }('Yoshi\'s Egg',)
+    public static readonly SHOE_GOOMBA =                                   new Entities('Shoe Goomba',)
+    public static readonly SHOE =                                          new Entities('Shoe',)
+    public static readonly STILETTO_GOOMBA =                               new Entities('Stiletto Goomba',)
+    public static readonly STILETTO =                                      new Entities('Stiletto',)
+    public static readonly YOSHI_EGG =                                     new Entities('Yoshi\'s Egg',)
     public static readonly YOSHI =                                         new Entities('Yoshi',)
     public static readonly FIRE_THROWN_BY_A_YOSHI =                        new Entities('Fire thrown by a Yoshi',)
     public static readonly POISON_THROWN_BY_A_YOSHI =                      new Entities('Poison thrown by a Yoshi',)
     public static readonly BONE_THROWN_BY_A_YOSHI =                        new Entities('Bone thrown by a Yoshi',)
     public static readonly WRENCH_THROWN_BY_A_YOSHI =                      new Entities('Wrench thrown by a Yoshi',)
     public static readonly HAMMER_THROWN_BY_A_YOSHI =                      new Entities('Hammer thrown by a Yoshi',)
-    public static readonly RED_YOSHI_EGG =                                 new class Entities_RedYoshiEgg extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwAndNsmbuImagesInEditor(this,)
-        }
-
-    }('Red Yoshi\'s Egg',)
+    public static readonly RED_YOSHI_EGG =                                 new Entities('Red Yoshi\'s Egg',)
     public static readonly RED_YOSHI =                                     new Entities('Red Yoshi',)
     public static readonly FIRE_THROWN_BY_A_RED_YOSHI =                    new Entities('Fire thrown by a Red Yoshi',)
 
     //endregion -------------------- Power-up / Yoshi / Shoe + projectiles --------------------
     //region -------------------- General enemies --------------------
 
-    public static readonly GOOMBA =                                        new class Entities_Goomba extends Entities {
+    public static readonly GOOMBA =                                        new Entities('Goomba',)
+    public static readonly GALOOMBA =                                      new Entities('Galoomba',)
+    public static readonly GOOMBRAT =                                      new Entities('Goombrat',)
+    public static readonly GOOMBUD =                                       new Entities('Goombud',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Goomba',)
-    public static readonly GALOOMBA =                                      new class Entities_Galoomba extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Galoomba',)
-    public static readonly GOOMBRAT =                                      new class Entities_Goombrat extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Goombrat',)
-    public static readonly GOOMBUD =                                       new class Entities_Goombud extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Goombud',)
-
-    public static readonly GREEN_KOOPA_TROOPA =                            new class Entities_GreenKoopaTroopa extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Green Koopa Troopa',)
+    public static readonly GREEN_KOOPA_TROOPA =                            new Entities('Green Koopa Troopa',)
     public static readonly RED_KOOPA_TROOPA =                              new Entities('Red Koopa Troopa',)
     public static readonly GREEN_BEACH_KOOPA =                             new Entities('Green Beach Koopa',)
     public static readonly RED_BEACH_KOOPA =                               new Entities('Red Beach Koopa',)
     public static readonly GREEN_KOOPA_SHELL =                             new Entities('Green Koopa Shell',)
     public static readonly RED_KOOPA_SHELL =                               new Entities('Red Koopa Shell',)
 
-    public static readonly DRY_BONES =                                     new class Entities_DryBones extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Dry Bones',)
+    public static readonly DRY_BONES =                                     new Entities('Dry Bones',)
     public static readonly PARABONES =                                     new Entities('Parabones',)
     public static readonly BONE_THROWN_BY_A_DRY_BONES =                    new Entities('Bone thrown by a Dry Bones',)
-    public static readonly DRY_BONES_SHELL =                               new class Entities_DryBonesShell extends Entities {
+    public static readonly DRY_BONES_SHELL =                               new Entities('Dry Bones Shell',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Dry Bones Shell',)
-
-    public static readonly BUZZY_BEETLE =                                  new class Entities_BuzzyBeetle extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Buzzy Beetle',)
+    public static readonly BUZZY_BEETLE =                                  new Entities('Buzzy Beetle',)
     public static readonly PARA_BEETLE =                                   new Entities('Para-Beetle',)
-    public static readonly BUZZY_SHELL =                                   new class Entities_BuzzyShell extends Entities {
+    public static readonly BUZZY_SHELL =                                   new Entities('Buzzy Shell',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Buzzy Shell',)
-
-    public static readonly SPINY =                                         new class Entities_Spiny extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Spiny',)
+    public static readonly SPINY =                                         new Entities('Spiny',)
     public static readonly WINGED_SPINY =                                  new Entities('Winged Spiny',)
     public static readonly WINGED_SPINY_PROJECTILE =                       new Entities('(Winged Spiny\'s projectile)',)
     public static readonly SPINY_EGG =                                     new Entities('Spiny Egg',)
-    public static readonly SPINY_SHELL =                                   new class Entities_SpinyShell extends Entities {
+    public static readonly SPINY_SHELL =                                   new Entities('Spiny Shell',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Spiny Shell',)
-
-    public static readonly SPIKE_TOP =                                     new class Entities_SpikeTop extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Spike Top',)
+    public static readonly SPIKE_TOP =                                     new Entities('Spike Top',)
     public static readonly WINGED_SPIKE_TOP =                              new Entities('Winged Spike Top',)
-    public static readonly FAST_SPIKE_TOP =                                new class Entities_FastSpikeTop extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Fast Spike Top',)
+    public static readonly FAST_SPIKE_TOP =                                new Entities('Fast Spike Top',)
     public static readonly FAST_WINGED_SPIKE_TOP =                         new Entities('Fast Winged Spike Top',)
 
-    public static readonly SKIPSQUEAK =                                    new class Entities_Skipsqueak extends Entities {
+    public static readonly SKIPSQUEAK =                                    new Entities('Skipsqueak',)
+    public static readonly SPINY_SKIPSQUEAK =                              new Entities('Spiny Skipsqueak',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
+    public static readonly ANT_TROOPER =                                   new Entities('Ant Trooper',)
+    public static readonly HORNED_ANT_TROOPER =                            new Entities('Horned Ant Trooper',)
 
-    }('Skipsqueak',)
-    public static readonly SPINY_SKIPSQUEAK =                              new class Entities_SpinySkipsqueak extends Entities {
+    public static readonly STINGBY =                                       new Entities('Stingby',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
+    public static readonly CHEEP_CHEEP =                                   new Entities('Cheep Cheep',)
+    public static readonly BLURPS =                                        new Entities('Blurps',)
+    public static readonly DEEP_CHEEP =                                    new Entities('Deep Cheep',)
+    public static readonly FISH_BONE =                                     new Entities('Fish Bone',)
 
-    }('Spiny Skipsqueak',)
+    public static readonly BLOOPER =                                       new Entities('Blooper',)
+    public static readonly BLOOPER_NANNY =                                 new Entities('Blooper Nanny',)
+    public static readonly BABY_BLOOPER =                                  new Entities('Baby Blooper',)
 
-    public static readonly ANT_TROOPER =                                   new class Entities_AntTrooper extends Entities {
+    public static readonly PORCUPUFFER =                                   new Entities('Porcupuffer',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
+    public static readonly WIGGLER =                                       new Entities('Wiggler',)
+    public static readonly ANGRY_WIGGLER =                                 new Entities('Angry Wiggler',)
 
-    }('Ant Trooper',)
-    public static readonly HORNED_ANT_TROOPER =                            new class Entities_HornedAntTrooper extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Horned Ant Trooper',)
-
-    public static readonly STINGBY =                                       new class Entities_Stingby extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Stingby',)
-
-    public static readonly CHEEP_CHEEP =                                   new class Entities_CheepCheep extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Cheep Cheep',)
-    public static readonly BLURPS =                                        new class Entities_Blurps extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Blurps',)
-    public static readonly DEEP_CHEEP =                                    new class Entities_DeepCheep extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-    }('Deep Cheep',)
-    public static readonly FISH_BONE =                                     new class Entities_FishBone extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Fish Bone',)
-
-    public static readonly BLOOPER =                                       new class Entities_Blooper extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Blooper',)
-    public static readonly BLOOPER_NANNY =                                 new class Entities_BlooperNanny extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Blooper Nanny',)
-    public static readonly BABY_BLOOPER =                                  new class Entities_BabyBlooper extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInInGame(this,)
-        }
-
-    }('Baby Blooper',)
-
-    public static readonly PORCUPUFFER =                                   new class Entities_Porcupuffer extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Porcupuffer',)
-
-    public static readonly WIGGLER =                                       new class Entities_Wiggler extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Wiggler',)
-    public static readonly ANGRY_WIGGLER =                                 new class Entities_AngryWiggler extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Angry Wiggler',)
-
-    public static readonly PIRANHA_PLANT =                                 new class Entities_PiranhaPlant extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSmwImagesInEditor(this,)
-        }
-
-    }('Piranha Plant',)
-    public static readonly JUMPING_PIRANHA_PLANT =                         new class Entities_JumpingPiranhaPlant extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Jumping Piranha Plant',)
-    public static readonly FIRE_PIRANHA_PLANT =                            new class Entities_FirePiranhaPlant extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmwImagesInEditor(this,)
-        }
-
-    }('Fire Piranha Plant',)
+    public static readonly PIRANHA_PLANT =                                 new Entities('Piranha Plant',)
+    public static readonly JUMPING_PIRANHA_PLANT =                         new Entities('Jumping Piranha Plant',)
+    public static readonly FIRE_PIRANHA_PLANT =                            new Entities('Fire Piranha Plant',)
     public static readonly FIREBALL_THROWN_BY_A_FIRE_PIRANHA_PLANT =       new Entities('Fireball thrown by a Fire Piranha Plant',)
-    public static readonly MUNCHER =                                       new class Entities_Muncher extends Entities {
+    public static readonly MUNCHER =                                       new Entities('Muncher',)
+    public static readonly PIRANHA_CREEPER =                               new Entities('Piranha Creeper',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Muncher',)
-    public static readonly PIRANHA_CREEPER =                               new class Entities_PiranhaCreeper extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Piranha Creeper',)
-
-    public static readonly CHAIN_CHOMP =                                   new class Entities_ChainChomp extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Chain Chomp',)
-    public static readonly UNCHAINED_CHOMP =                               new class Entities_UnchainedChomp extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Unchained Chomp',)
+    public static readonly CHAIN_CHOMP =                                   new Entities('Chain Chomp',)
+    public static readonly UNCHAINED_CHOMP =                               new Entities('Unchained Chomp',)
     public static readonly CHAIN_CHOMP_STUMP =                             new Entities('Chain Chomp\'s Stump',)
 
-    public static readonly SPIKE =                                         new class Entities_Spike extends Entities {
+    public static readonly SPIKE =                                         new Entities('Spike',)
+    public static readonly SPIKE_BALL =                                    new Entities('Spike Ball',)
+    public static readonly SNOWBALL =                                      new Entities('Snowball',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
+    public static readonly LAKITU =                                        new Entities('Lakitu',)
+    public static readonly LAKITU_CLOUD =                                  new Entities('Lakitu\'s Cloud',)
 
-    }('Spike',)
-    public static readonly SPIKE_BALL =                                    new class Entities_SpikeBall extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueSpikeBallImages(this,)
-        }
-
-    }('Spike Ball',)
-    public static readonly SNOWBALL =                                      new class Entities_Snowball extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Snowball',)
-
-    public static readonly LAKITU =                                        new class Entities_Lakitu extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Lakitu',)
-    public static readonly LAKITU_CLOUD =                                  new class Entities_LakituCloud extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Lakitu\'s Cloud',)
-
-    public static readonly BOO =                                           new class Entities_Boo extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Boo',)
+    public static readonly BOO =                                           new Entities('Boo',)
     public static readonly STRETCH =                                       new Entities('Stretch',)
-    public static readonly BOO_BUDDIES =                                   new class Entities_BooBuddies extends Entities {
+    public static readonly BOO_BUDDIES =                                   new Entities('Boo Buddies',)
+    public static readonly PEEPA =                                         new Entities('Peepa',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
+    public static readonly BOB_OMB =                                       new Entities('Bob-omb',)
+    public static readonly LIT_BOB_OMB =                                   new Entities('Lit Bob-omb',)
 
-    }('Boo Buddies',)
-    public static readonly PEEPA =                                         new class Entities_Peepa extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Peepa',)
-
-    public static readonly BOB_OMB =                                       new class Entities_BobOmb extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Bob-omb',)
-    public static readonly LIT_BOB_OMB =                                   new class Entities_LitBobOmb extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Lit Bob-omb',)
-
-    public static readonly POKEY =                                         new class Entities_Pokey extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Pokey',)
+    public static readonly POKEY =                                         new Entities('Pokey',)
     public static readonly SNOW_POKEY =                                    new Entities('Snow Pokey',)
 
-    public static readonly THWOMP =                                        new class Entities_Thwomp extends Entities {
+    public static readonly THWOMP =                                        new Entities('Thwomp',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Thwomp',)
-
-    public static readonly MONTY_MOLE =                                    new class Entities_MontyMole extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Monty Mole',)
-    public static readonly ROCKY_WRENCH =                                  new class Entities_RockyWrench extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Rocky Wrench',)
+    public static readonly MONTY_MOLE =                                    new Entities('Monty Mole',)
+    public static readonly ROCKY_WRENCH =                                  new Entities('Rocky Wrench',)
     public static readonly WRENCH_THROWN_BY_A_ROCKY_WRENCH =               new Entities('Wrench thrown by a Rocky Wrench',)
 
-    public static readonly MAGIKOOPA =                                     new class Entities_Magikoopa extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Magikoopa',)
+    public static readonly MAGIKOOPA =                                     new Entities('Magikoopa',)
     public static readonly MAGIKOOPA_PROJECTILE =                          new Entities('(Magikoopa\'s projectile)',)
 
-    public static readonly HAMMER_BRO =                                    new class Entities_HammerBro extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Hammer Bro',)
-    public static readonly SLEDGE_BRO =                                    new class Entities_SledgeBro extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Sledge Bro',)
+    public static readonly HAMMER_BRO =                                    new Entities('Hammer Bro',)
+    public static readonly SLEDGE_BRO =                                    new Entities('Sledge Bro',)
     public static readonly HAMMER_THROWN_BY_A_HAMMER_SLEDGE_BRO =          new Entities('Hammer thrown by a Hammer / Sledge Bro',)
-    public static readonly FIRE_BRO =                                      new class Entities_FireBro extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Fire Bro',)
-    public static readonly HEAVY_FIRE_BRO =                                new class Entities_HeavyFireBro extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Heavy Fire Bro',)
+    public static readonly FIRE_BRO =                                      new Entities('Fire Bro',)
+    public static readonly HEAVY_FIRE_BRO =                                new Entities('Heavy Fire Bro',)
     public static readonly FIREBALL_THROWN_BY_A_HEAVY_FIRE_BRO =           new Entities('Fireball thrown by a (Heavy) Fire Bro',)
 
-    public static readonly LAVA_BUBBLE =                                   new class Entities_LavaBubble extends Entities {
+    public static readonly LAVA_BUBBLE =                                   new Entities('Lava Bubble',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Lava Bubble',)
-
-    public static readonly MECHAKOOPA =                                    new class Entities_Mechakoopa extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Mechakoopa',)
-    public static readonly BLASTA_MECHAKOOPA =                             new class Entities_BlastaMechakoopa extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Blasta Mechakoopa',)
+    public static readonly MECHAKOOPA =                                    new Entities('Mechakoopa',)
+    public static readonly BLASTA_MECHAKOOPA =                             new Entities('Blasta Mechakoopa',)
     public static readonly HOMING_MISSILE_THROWN_BY_A_BLASTA_MECHAKOOPA =  new Entities('Homing Missile thrown by a Blasta Mechakoopa',)
-    public static readonly ZAPPA_MECHAKOOPA =                              new class Entities_ZappaMechakoopa extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Zappa Mechakoopa',)
+    public static readonly ZAPPA_MECHAKOOPA =                              new Entities('Zappa Mechakoopa',)
     public static readonly ELECTRICITY_BEAM_THROWN_BY_A_ZAPPA_MECHAKOOPA = new Entities('Electricity Beam thrown by a Zappa Mechakoopa',)
 
-    public static readonly CHARVAARGH =                                    new class Entities_Charvaargh extends Entities {
+    public static readonly CHARVAARGH =                                    new Entities('Charvaargh',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Charvaargh',)
-
-    public static readonly BULLY =                                         new class Entities_Bully extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Bully',)
+    public static readonly BULLY =                                         new Entities('Bully',)
 
     //endregion -------------------- General enemies --------------------
     //region -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
 
-    public static readonly BILL_BLASTER =                                  new class Entities_BillBlaster extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Bill Blaster',)
+    public static readonly BILL_BLASTER =                                  new Entities('Bill Blaster',)
     public static readonly BULLET_BILL =                                   new Entities('Bullet Bill',)
-    public static readonly BULL_EYE_BLASTER =                              new class Entities_BullEyeBlaster extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Bull\'s-Eye Blaster',)
+    public static readonly BULL_EYE_BLASTER =                              new Entities('Bull\'s-Eye Blaster',)
     public static readonly BULL_EYE_BILL =                                 new Entities('Bull\'s-Eye Bill',)
     public static readonly CAT_BULLET_BILL =                               new Entities('Cat Bullet Bill',)
 
-    public static readonly BANZAI_BILL =                                   new class Entities_BanzaiBill extends Entities {
+    public static readonly BANZAI_BILL =                                   new Entities('Banzai Bill',)
+    public static readonly BULL_EYE_BANZAI =                               new Entities('Bull\'s-Eye Banzai',)
+    public static readonly CAT_BANZAI_BILL =                               new Entities('Cat Banzai Bill',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Banzai Bill',)
-    public static readonly BULL_EYE_BANZAI =                               new class Entities_BullEyeBanzai extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Bull\'s-Eye Banzai',)
-    public static readonly CAT_BANZAI_BILL =                               new class Entities_CatBanzaiBill extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Cat Banzai Bill',)
-
-    public static readonly CANNON =                                        new class Entities_Cannon extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Cannon',)
+    public static readonly CANNON =                                        new Entities('Cannon',)
     public static readonly CANNONBALL =                                    new Entities('Cannonball',)
-    public static readonly RED_CANNON =                                    new class Entities_RedCannon extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Red Cannon',)
+    public static readonly RED_CANNON =                                    new Entities('Red Cannon',)
     public static readonly RED_CANNONBALL =                                new Entities('Red Cannonball',)
 
-    public static readonly BURNER =                                        new class Entities_Burner extends Entities {
+    public static readonly BURNER =                                        new Entities('Burner',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
+    public static readonly FIRE_BAR =                                      new Entities('Fire Bar',)
 
-    }('Burner',)
+    public static readonly SKEWER =                                        new Entities('Skewer',)
 
-    public static readonly FIRE_BAR =                                      new class Entities_FireBar extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInInGame(this,)
-        }
-
-    }('Fire Bar',)
-
-    public static readonly SKEWER =                                        new class Entities_Skewer extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwWithNoBlueVariantDuplicateInSmbAndSmb3Images(this,)
-        }
-
-    }('Skewer',)
-
-    public static readonly KOOPA_CLOWN_CAR =                               new class Entities_KoopaClownCar extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotNsmbuAndSm3dwImagesInEditor(this,)
-        }
-
-    }('Koopa Clown Car',)
-    public static readonly JUNIOR_CLOWN_CAR =                              new class Entities_JuniorClownCar extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-    }('Junior Clown Car',)
-    public static readonly FIRE_KOOPA_CLOWN_CAR =                          new class Entities_FireKoopaClownCar extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotNsmbuAndSm3dwImagesInEditor(this,)
-        }
-
-    }('Fire Koopa Clown Car',)
-    public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new class Entities_FireJuniorClownCar extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNsmbuImagesInEditor(this,)
-        }
-
-    }('Fire Junior Clown Car',)
+    public static readonly KOOPA_CLOWN_CAR =                               new Entities('Koopa Clown Car',)
+    public static readonly JUNIOR_CLOWN_CAR =                              new Entities('Junior Clown Car',)
+    public static readonly FIRE_KOOPA_CLOWN_CAR =                          new Entities('Fire Koopa Clown Car',)
+    public static readonly FIRE_JUNIOR_CLOWN_CAR =                         new Entities('Fire Junior Clown Car',)
     public static readonly FIRE_THROWN_BY_A_FIRE_KOOPA_JUNIOR_CLOWN_CAR =  new Entities('Fire thrown by a Fire [Koopa / Junior] Clown Car',)
 
-    public static readonly KOOPA_TROOPA_CAR =                              new class Entities_KoopaTroopaCar extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Koopa Troopa Car',)
+    public static readonly KOOPA_TROOPA_CAR =                              new Entities('Koopa Troopa Car',)
     public static readonly CAR =                                           new Entities('Car',)
 
-    public static readonly GRINDER =                                       new class Entities_Grinder extends Entities {
+    public static readonly GRINDER =                                       new Entities('Grinder',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Grinder',)
-
-    public static readonly ANGRY_SUN =                                     new class Entities_AngrySun extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Angry Sun',)
-    public static readonly MOON =                                          new class Entities_Moon extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Moon',)
+    public static readonly ANGRY_SUN =                                     new Entities('Angry Sun',)
+    public static readonly MOON =                                          new Entities('Moon',)
 
     //endregion -------------------- Dangerous gizmo + enemy-related gizmo + other enemies --------------------
     //region -------------------- Bosses + projectiles --------------------
 
-    public static readonly BOWSER =                                        new class Entities_Bowser extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Bowser',)
-    public static readonly MEOWSER =                                       new class Entities_Meowser extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Meowser',)
+    public static readonly BOWSER =                                        new Entities('Bowser',)
+    public static readonly MEOWSER =                                       new Entities('Meowser',)
     public static readonly FIRE_THROWN_BY_A_BOWSER =                       new Entities('Fire thrown by a Bowser',)
     public static readonly FALLING_FIRE_THROWN_BY_A_BOWSER =               new Entities('Falling Fire thrown by a Bowser',)
 
-    public static readonly BOWSER_JR =                                     new class Entities_BowserJr extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Bowser Jr.',)
+    public static readonly BOWSER_JR =                                     new Entities('Bowser Jr.',)
     public static readonly FIRE_THROWN_BY_A_BOWSER_JR =                    new Entities('Fire thrown by a Bowser Jr.',)
 
-    public static readonly BOOM_BOOM =                                     new class Entities_BoomBoom extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Boom Boom',)
-    public static readonly POM_POM =                                       new class Entities_PomPom extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Pom Pom',)
+    public static readonly BOOM_BOOM =                                     new Entities('Boom Boom',)
+    public static readonly POM_POM =                                       new Entities('Pom Pom',)
     public static readonly POM_POM_CLONE =                                 new Entities('Pom Pom\'s clone',)
     public static readonly SHURIKEN_THROWN_BY_A_POM_POM =                  new Entities('Shuriken thrown by a Pom Pom',)
 
-    public static readonly LARRY =                                         new class Entities_Larry extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Larry',)
+    public static readonly LARRY =                                         new Entities('Larry',)
     public static readonly LARRY_WAND =                                    new Entities('Larry\'s Wand',)
     public static readonly LARRY_PROJECTILE =                              new Entities('(Larry\'s projectile)',)
 
-    public static readonly IGGY =                                          new class Entities_Iggy extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Iggy',)
+    public static readonly IGGY =                                          new Entities('Iggy',)
     public static readonly IGGY_WAND =                                     new Entities('Iggy\'s Wand',)
     public static readonly IGGY_PROJECTILE =                               new Entities('(Iggy\'s projectile)',)
 
-    public static readonly WENDY =                                         new class Entities_Wendy extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Wendy',)
+    public static readonly WENDY =                                         new Entities('Wendy',)
     public static readonly WENDY_WAND =                                    new Entities('Wendy\'s Wand',)
     public static readonly CANDY_RING_THROWN_BY_A_WENDY =                  new Entities('Candy Ring thrown by a Wendy',)
-    public static readonly WENDY_PROJECTILE =                              new Entities('(Wendy\'s projectile)',)// An only unused projectile //TODO add unused Wendy projectile (SMB, SMB3, SMW)
+    public static readonly WENDY_PROJECTILE =                              new Entities('(Wendy\'s projectile)',)
 
-    public static readonly LEMMY =                                         new class Entities_Lemmy extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Lemmy',)
+    public static readonly LEMMY =                                         new Entities('Lemmy',)
     public static readonly LEMMY_WAND =                                    new Entities('Lemmy\'s Wand',)
     public static readonly MAGIC_BALL_THROWN_BY_A_LEMMY =                  new Entities('Magic Ball thrown by a Lemmy',)
-    public static readonly LEMMY_PROJECTILE =                              new Entities('(Lemmy\'s projectile)',)// An only unused projectile //TODO add unused Lemmy projectile (SMB)
+    public static readonly LEMMY_PROJECTILE =                              new Entities('(Lemmy\'s projectile)',)
 
-    public static readonly ROY =                                           new class Entities_Roy extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Roy',)
+    public static readonly ROY =                                           new Entities('Roy',)
     public static readonly ROY_WAND =                                      new Entities('Roy\'s Wand',)
     public static readonly ROY_PROJECTILE =                                new Entities('(Roy\'s projectile)',)
 
-    public static readonly MORTON =                                        new class Entities_Morton extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Morton',)
+    public static readonly MORTON =                                        new Entities('Morton',)
     public static readonly MORTON_WAND =                                   new Entities('Morton\'s Wand',)
     public static readonly MORTON_THROWN_PROJECTILE =                      new Entities('(Morton\'s Thrown projectile)',)
     public static readonly MORTON_GROUND_PROJECTILE =                      new Entities('(Morton\'s Ground projectile)',)
 
-    public static readonly LUDWIG =                                        new class Entities_Ludwig extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Ludwig',)
+    public static readonly LUDWIG =                                        new Entities('Ludwig',)
     public static readonly LUDWIG_WAND =                                   new Entities('Ludwig\'s Wand',)
     public static readonly LUDWIG_PROJECTILE =                             new Entities('(Ludwig\'s projectile)',)
 
     //endregion -------------------- Bosses + projectiles --------------------
     //region -------------------- Passive gizmo / Key / Warp / Other --------------------
 
-    public static readonly BUMPER =                                        new class Entities_Bumper extends Entities {
+    public static readonly BUMPER =                                        new Entities('Bumper',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
+    public static readonly SWINGING_CLAW =                                 new Entities('Swinging Claw',)
 
-    }('Bumper',)
+    public static readonly TWISTER =                                       new Entities('Twister',)
 
-    public static readonly SWINGING_CLAW =                                 new class Entities_SwingingClaw extends Entities {
+    public static readonly ONE_WAY_WALL =                                  new Entities('One-Way Wall',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
+    public static readonly TRACK =                                         new Entities('Track',)
+    public static readonly TRACK_BLOCK =                                   new Entities('Track Block',)
 
-    }('Swinging Claw',)
-
-    public static readonly TWISTER =                                       new class Entities_Twister extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Twister',)
-
-    public static readonly ONE_WAY_WALL =                                  new class Entities_OneWayWall extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('One-Way Wall',)
-
-    public static readonly TRACK =                                         new class Entities_Track extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Track',)
-    public static readonly TRACK_BLOCK =                                   new class Entities_TrackBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Track Block',)
-
-    public static readonly VINE =                                          new class Entities_Vine extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Vine',)
-    public static readonly TREE =                                          new class Entities_Tree extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueTreeImages(this,)
-        }
-
-    }('Tree',)
+    public static readonly VINE =                                          new Entities('Vine',)
+    public static readonly TREE =                                          new Entities('Tree',)
 
     public static readonly STARTING_ARROW =                                new Entities('Starting Arrow',)//A background entity
-    public static readonly ARROW_SIGN =                                    new class Entities_ArrowSign extends Entities {
+    public static readonly ARROW_SIGN =                                    new Entities('Arrow Sign',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Arrow Sign',)
-
-    public static readonly CHECKPOINT_FLAG =                               new class Entities_CheckpointFlag extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Checkpoint Flag',)
+    public static readonly CHECKPOINT_FLAG =                               new Entities('Checkpoint Flag',)
     public static readonly GOAL_POLE =                                     new Entities('Goal Pole',)//An interactable partially solid & background entity
     public static readonly GOAL_WITH_CARDS =                               new Entities('Cards Roulette',)//An interactable background entity
     public static readonly GIANT_GATE =                                    new Entities('Giant Gate',)//An interactable background entity
@@ -1409,219 +426,51 @@ export class Entities
     public static readonly ENDING_CASTLE_DOOR =                            new Entities('Ending Castle Door',)//A background entity
     public static readonly AXE =                                           new Entities('Axe',)//An interactable partially solid & background entity
 
-    public static readonly DASH_BLOCK =                                    new class Entities_DashBlock extends Entities {
+    public static readonly DASH_BLOCK =                                    new Entities('Dash Block',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
+    public static readonly SNAKE_BLOCK =                                   new Entities('Snake Block',)
+    public static readonly FAST_SNAKE_BLOCK =                              new Entities('Fast Snake Block',)
 
-    }('Dash Block',)
+    public static readonly CONVEYOR_BELT =                                 new Entities('Conveyor Belt',)
+    public static readonly FAST_CONVEYOR_BELT =                            new Entities('Fast Conveyor Belt',)
 
-    public static readonly SNAKE_BLOCK =                                   new class Entities_SnakeBlock extends Entities {
+    public static readonly MUSHROOM_TRAMPOLINE =                           new Entities('Mushroom Trampoline',)
+    public static readonly ON_OFF_TRAMPOLINE =                             new Entities('ON/OFF Trampoline',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
+    public static readonly LIFT =                                          new Entities('Lift',)
+    public static readonly FLIMSY_LIFT =                                   new Entities('Flimsy Lift',)
+    public static readonly CLOUD_LIFT =                                    new Entities('Cloud Lift',)
 
-    }('Snake Block',)
-    public static readonly FAST_SNAKE_BLOCK =                              new class Entities_FastSnakeBlock extends Entities {
+    public static readonly SEESAW =                                        new Entities('Seesaw',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
+    public static readonly LAVA_LIFT =                                     new Entities('Lava Lift',)
+    public static readonly FAST_LAVA_LIFT =                                new Entities('Fast Lava Lift',)
 
-    }('Fast Snake Block',)
+    public static readonly CRATE =                                         new Entities('Crate',)
 
-    public static readonly CONVEYOR_BELT =                                 new class Entities_ConveyorBelt extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Conveyor Belt',)
-    public static readonly FAST_CONVEYOR_BELT =                            new class Entities_FastConveyorBelt extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Fast Conveyor Belt',)
-
-    public static readonly MUSHROOM_TRAMPOLINE =                           new class Entities_MushroomTrampoline extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Mushroom Trampoline',)
-    public static readonly ON_OFF_TRAMPOLINE =                             new class Entities_OnOffTrampoline extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('ON/OFF Trampoline',)
-
-    public static readonly LIFT =                                          new class Entities_List extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Lift',)
-    public static readonly FLIMSY_LIFT =                                   new class Entities_FlimsyLift extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Flimsy Lift',)
-    public static readonly CLOUD_LIFT =                                    new class Entities_CloudLift extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Cloud Lift',)
-
-    public static readonly SEESAW =                                        new class Entities_Seesaw extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Seesaw',)
-
-    public static readonly LAVA_LIFT =                                     new class Entities_LavaLift extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Lava Lift',)
-    public static readonly FAST_LAVA_LIFT =                                new class Entities_FastLavaLift extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInNotSm3dwImagesInEditor(this,)
-        }
-
-    }('Fast Lava Lift',)
-
-    public static readonly CRATE =                                         new class Entities_Crate extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Crate',)
-
-    public static readonly KEY =                                           new class Entities_Key extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Key',)
-    public static readonly CURSED_KEY =                                    new class Entities_CursedKey extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSmbImagesInEditor(this,)
-        }
-
-    }('Cursed Key',)
+    public static readonly KEY =                                           new Entities('Key',)
+    public static readonly CURSED_KEY =                                    new Entities('Cursed Key',)
     public static readonly PHANTO =                                        new Entities('Phanto',)
 
-    public static readonly TRAMPOLINE =                                    new class Entities_Trampoline extends Entities {
+    public static readonly TRAMPOLINE =                                    new Entities('Trampoline',)
+    public static readonly HOP_CHOPS =                                     new Entities('Hop-Chops',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
+    public static readonly POW_BLOCK =                                     new Entities('POW Block',)
+    public static readonly RED_POW_BLOCK =                                 new Entities('Red POW Block',)
 
-    }('Trampoline',)
-    public static readonly HOP_CHOPS =                                     new class Entities_HopChops extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Hop-Chops',)
-
-    public static readonly POW_BLOCK =                                     new class Entities_PowBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('POW Block',)
-    public static readonly RED_POW_BLOCK =                                 new class Entities_RedPowBlock extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Red POW Block',)
-
-    public static readonly P_SWITCH =                                      new class Entities_PSwitch extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('P Switch',)
+    public static readonly P_SWITCH =                                      new Entities('P Switch',)
 
     public static readonly STONE =                                         new Entities('Stone',)
 
-    public static readonly WARP_DOOR =                                     new class Entities_WarpDoor extends Entities {
+    public static readonly WARP_DOOR =                                     new Entities('Warp Door',)
+    public static readonly P_WARP_DOOR =                                   new Entities('P Warp Door',)
+    public static readonly KEY_DOOR =                                      new Entities('Key Door',)
 
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
+    public static readonly WARP_BOX =                                      new Entities('Warp Box',)
+    public static readonly WARP_BOX_WITH_KEY =                             new Entities('Warp Box (With Key)',)
 
-    }('Warp Door',)
-    public static readonly P_WARP_DOOR =                                   new class Entities_PWarpDoor extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('P Warp Door',)
-    public static readonly KEY_DOOR =                                      new class Entities_KeyDoor extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Key Door',)
-
-    public static readonly WARP_BOX =                                      new class Entities_WarpBox extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Warp Box',)
-    public static readonly WARP_BOX_WITH_KEY =                             new class Entities_WarpBoxWithKey extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueInSm3dwImagesInEditor(this,)
-        }
-
-    }('Warp Box (With Key)',)
-
-    public static readonly WING =                                          new class Entities_Wing extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Wing',)
-    public static readonly PARACHUTE =                                     new class Entities_Parachute extends Entities {
-
-        protected override _createUniqueImage(): UniqueImage {
-            return ImageCreator.uniqueImagesInEditor(this,)
-        }
-
-    }('Parachute',)
+    public static readonly WING =                                          new Entities('Wing',)
+    public static readonly PARACHUTE =                                     new Entities('Parachute',)
 
     public static readonly TOAD =                                          new Entities('Toad',)
     public static readonly CAGED_TOADETTE =                                new Entities('Caged Toadette',)//A background entity
@@ -1672,7 +521,7 @@ export class Entities
 
     #reference?: Entity
     readonly #englishNameContainer
-    #uniqueImage?: UniqueImage
+    #image?: EntityImage
     #editorImage?: EditorImage
     #clearConditionImage?: ClearConditionImage
     #inGameImage?: InGameImage
@@ -1682,6 +531,7 @@ export class Entities
     #editorVoiceSound?: NullOr<EditorVoiceSound>
 
     #editorVoiceReference?: NullOr<EditorVoices>
+    #entityImageReference?: EntityImages
     #editorEntityImageReference?: EditorEntityImages
     #clearConditionEntityImageReference?: ClearConditionEntityImages
     #inGameEntityImageReference?: InGameEntityImages
@@ -1727,44 +577,7 @@ export class Entities
     //endregion -------------------- Getter methods (english name) --------------------
     //region -------------------- Getter methods (image) --------------------
 
-    //region -------------------- unique image --------------------
-
-    protected _createUniqueImage(): NullOr<UniqueImage> {
-        return null
-    }
-
-    public get uniqueImage(): UniqueImage {
-        if (this.#uniqueImage != null)
-            return this.#uniqueImage
-
-        const value = this._createUniqueImage()
-        if (value != null)
-            return this.#uniqueImage = value
-
-        const editorImage = this.editorImage
-        const clearConditionImage = this.clearConditionImage
-        const inGameImage = this.inGameImage
-
-        const isEmptyEditor = editorImage instanceof EmptyEditorImage
-        const isEmptyClearCondition = clearConditionImage instanceof EmptyClearConditionImage
-        const isEmptyInGame = inGameImage instanceof EmptyInGameImage
-        if (isEmptyEditor && isEmptyClearCondition && isEmptyInGame)
-            return this.#uniqueImage = EmptyUniqueImage.get
-
-        if (!isEmptyEditor && isEmptyClearCondition && isEmptyInGame)
-            return this.#uniqueImage = ImageCreator.uniqueImageFromEditor(this, editorImage, clearConditionImage, inGameImage,)
-        if (isEmptyEditor && !isEmptyClearCondition && isEmptyInGame)
-            return this.#uniqueImage = ImageCreator.uniqueImageFromClearCondition(this, editorImage, clearConditionImage, inGameImage,)
-
-        if (isEmptyEditor && isEmptyClearCondition && !isEmptyInGame)
-            return this.#uniqueImage = ImageCreator.uniqueImageFromInGame(this, editorImage, clearConditionImage, inGameImage,)
-
-        console.error(`The unique image could not be determined for the "Entities.${this.name}". Please specify the type in the "Entities._createUniqueImage()".`,)
-        return this.#uniqueImage = EmptyUniqueImage.get
-    }
-
-    //endregion -------------------- unique image --------------------
-    //region -------------------- image --------------------
+    public get image(): EntityImage { return this.#image ??= this.entityImageReference.image }
 
     public get editorImage(): EditorImage { return this.#editorImage ??= this.entityEditorImageReference.image }
 
@@ -1775,8 +588,6 @@ export class Entities
     public get unusedImage(): UnusedImage_Regular { return this.#unusedRegularImage ??= this.unusedEntityImageReference.image }
 
     public get unusedBigMushroomImage(): UnusedImage_BigMushroom { return this.#unusedBigMushroomImage ??= this.unusedBigMushroomEntityImageReference.image }
-
-    //endregion -------------------- image --------------------
 
     //endregion -------------------- Getter methods (image) --------------------
     //region -------------------- Getter methods (sound) --------------------
@@ -1810,6 +621,8 @@ export class Entities
             return this.#editorVoiceReference = companion.getValueByEntity(this,)
         return this.#editorVoiceReference = null
     }
+
+    public get entityImageReference(): EntityImages { return this.#entityImageReference ??= Import.EntityImages[this.name] }
 
     public get entityEditorImageReference(): EditorEntityImages { return this.#editorEntityImageReference ??= Import.EditorEntityImages[this.name] }
 

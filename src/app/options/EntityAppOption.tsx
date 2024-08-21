@@ -42,8 +42,8 @@ export class EntityAppOption
 
     public static readonly IMAGE_IN_SMB = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_BROS,)
+        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
+            const imageFiles = image.get(GameStyles.SUPER_MARIO_BROS,)
             if (imageFiles == null)
                 return null
 
@@ -62,8 +62,8 @@ export class EntityAppOption
     }('smb-images',)
     public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_BROS_3,)
+        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
+            const imageFiles = image.get(GameStyles.SUPER_MARIO_BROS_3,)
             if (imageFiles == null)
                 return null
 
@@ -82,8 +82,8 @@ export class EntityAppOption
     }('smb3-images',)
     public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_WORLD,)
+        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
+            const imageFiles = image.get(GameStyles.SUPER_MARIO_WORLD,)
             if (imageFiles == null)
                 return null
 
@@ -102,8 +102,8 @@ export class EntityAppOption
     }('smw-images',)
     public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const imageFiles = uniqueImage.map.get(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
+            const imageFiles = image.get(GameStyles.NEW_SUPER_MARIO_BROS_U,)
             if (imageFiles == null)
                 return null
 
@@ -122,8 +122,8 @@ export class EntityAppOption
     }('nsmbu-images',)
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
 
-        protected override _createContentOption({englishName, englishNameInHtml, uniqueImage,}: Entities,) {
-            const imageFiles = uniqueImage.map.get(GameStyles.SUPER_MARIO_3D_WORLD,)
+        protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
+            const imageFiles = image.get(GameStyles.SUPER_MARIO_3D_WORLD,)
             if (imageFiles == null)
                 return null
 

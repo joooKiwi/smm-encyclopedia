@@ -5,6 +5,7 @@ import type {EntityCategories}              from 'core/entityCategory/EntityCate
 import type {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
 import type {EditorEntityImages}            from 'core/entity/EditorEntityImages'
 import type {Entities}                      from 'core/entity/Entities'
+import type {EntityImages}                  from 'core/entity/EntityImages'
 import type {EntityLoader}                  from 'core/entity/Entity.loader'
 import type {InGameEntityImages}            from 'core/entity/InGameEntityImages'
 import type {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
@@ -65,6 +66,7 @@ export class DynamicImporter {
     #Entities?: typeof Entities
     #EntityLoader?: typeof EntityLoader
 
+    #EntityImages?: typeof EntityImages
     #EditorEntityImages?: typeof EditorEntityImages
     #ClearConditionEntityImages?: typeof ClearConditionEntityImages
     #InGameEntityImages?: typeof InGameEntityImages
@@ -181,6 +183,10 @@ export class DynamicImporter {
         return this.#EntityLoader ??= require('../core/entity/Entity.loader').EntityLoader
     }
 
+
+    public get EntityImages(): typeof EntityImages {
+        return this.#EntityImages ??= require('../core/entity/EntityImages').EntityImages
+    }
 
     public get EditorEntityImages(): typeof EditorEntityImages {
         return this.#EditorEntityImages ??= require('../core/entity/EditorEntityImages').EditorEntityImages
