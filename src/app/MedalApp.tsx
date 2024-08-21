@@ -54,13 +54,15 @@ const appInterpreter = new MedalAppInterpreter()
 export default function MedalApp({viewDisplay,}: AppWithInterpreterProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The MedalApp only handle the "simple list" or "card list" as a possible view display.',)
 
-    const titleContent = gameContentTranslation('medal.all',)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="medal" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="medal" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="medal" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <CardList reactKey="medal" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="medal" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('medal.all',)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="medal" interpreter={appInterpreter}/>
+    return <CardList reactKey="medal" interpreter={appInterpreter}/>
 }

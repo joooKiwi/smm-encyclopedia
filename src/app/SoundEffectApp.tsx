@@ -131,23 +131,22 @@ const viewDisplayAndRouteName = [
 
 /** @reactComponent */
 export default function SoundEffectApp({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
-    const titleContent = gameContentTranslation('sound effect.all',)
+    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('sound effect.all',)}
+                             asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
+        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>
+    </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, games, gameStyles,}: SoundEffectProperties,) {
     const appInterpreter = new SoundEffectAppInterpreter(games, gameStyles,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
-            <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
-        </SubMainContainer>
+        return <SimpleList reactKey="soundEffect" interpreter={appInterpreter}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
-            <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="soundEffect" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<SoundEffectAsideContent viewDisplay={viewDisplay} games={games}/>}>
-        <Table id="soundEffect-table" interpreter={appInterpreter}/>
-    </SubMainContainer>
+        return <CardList reactKey="soundEffect" interpreter={appInterpreter}/>
+    return <Table id="soundEffect-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Aside content --------------------

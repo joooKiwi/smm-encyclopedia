@@ -151,8 +151,6 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
         [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
         [ViewDisplays.TABLE, `${routeName} (table)`,],
     ] as const satisfies readonly ViewAndRouteName[]
-    const titleContent = gameContentTranslation(`limit.${type.type}.all`,)
-    const appInterpreter = new LimitAppInterpreter(type, games,)
 
     const game = intersect(allGames, games,).length === 3
         ? LimitGames.ALL_GAMES
@@ -160,23 +158,23 @@ export default function LimitApp({viewDisplay, type, games,}: LimitAppProperties
             ? LimitGames.SUPER_MARIO_MAKER_2
             : LimitGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
-                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
-            <SimpleList reactKey="limit" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
-                                 asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
-            <CardList reactKey="limit" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+    return <SubMainContainer reactKey="limit" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation(`limit.${type.type}.all`,)}
                              description={<LimitDescription viewDisplay={viewDisplay} type={type} game={game}/>}
                              asideContent={<LimitAsideContent viewDisplay={viewDisplay} type={type} game={game}/>}>
-        <Table id="limit-table" interpreter={appInterpreter}/>
+        <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, type, games,}: LimitAppProperties,){
+    const appInterpreter = new LimitAppInterpreter(type, games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+           return <SimpleList reactKey="limit" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+            return<CardList reactKey="limit" interpreter={appInterpreter}/>
+    return<Table id="limit-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------

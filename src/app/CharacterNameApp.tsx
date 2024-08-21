@@ -1,5 +1,5 @@
-import './CharacterNameApp.scss'
 import 'app/_GameAsideContent.scss'
+import './CharacterNameApp.scss'
 
 import type {CharacterNameProperties}    from 'app/AppProperties.types'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
@@ -17,6 +17,7 @@ import {ViewDisplays}                               from 'app/withInterpreter/Vi
 import LinkButton                                   from 'app/tools/button/LinkButton'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
+import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import GameImage                                    from 'core/game/GameImage'
@@ -24,7 +25,6 @@ import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {assert, filterGame, intersect}              from 'util/utilitiesMethods'
-import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 
 class CharacterNameAppInterpreter
     implements AppInterpreterWithCardList<CharacterNames> {
@@ -89,9 +89,7 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The CharacterNameApp only handle the "simple list" or "card list" as a possible view display.',)
-    const titleContent = gameContentTranslation('character name.all',)
-    const appInterpreter = new CharacterNameAppInterpreter(games,)
-    const characterNameGame = intersect(allGames, games,).length === 3
+    const game = intersect(allGames, games,).length === 3
         ? CharacterNameGames.ALL_GAMES
         : games.hasSMM2
             ? CharacterNameGames.SUPER_MARIO_MAKER_2
@@ -99,17 +97,21 @@ export default function CharacterNameApp({viewDisplay, games,}: CharacterNamePro
                 ? CharacterNameGames.SUPER_MARIO_MAKER
                 : CharacterNameGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<CharacterNameDescription viewDisplay={viewDisplay} game={characterNameGame}/>}
-                                 asideContent={<CharacterNameAsideContent viewDisplay={viewDisplay} game={characterNameGame}/>}>
-            <SimpleList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             description={<CharacterNameDescription viewDisplay={viewDisplay} game={characterNameGame}/>}
-                             asideContent={<CharacterNameAsideContent viewDisplay={viewDisplay} game={characterNameGame}/>}>
-        <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    return <SubMainContainer reactKey="characterName" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('character name.all',)}
+                             description={<CharacterNameDescription viewDisplay={viewDisplay} game={game}/>}
+                             asideContent={<CharacterNameAsideContent viewDisplay={viewDisplay} game={game}/>}>
+        <SubContent viewDisplay={viewDisplay} games={games}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, games,}: CharacterNameProperties,){
+    const appInterpreter = new CharacterNameAppInterpreter(games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    return <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
 }
 
 //region -------------------- Description content --------------------

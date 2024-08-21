@@ -110,30 +110,27 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
 export default function GameStyleApp({viewDisplay, games,}: GameStyleProperties,) {
-    const titleContent = gameContentTranslation('game style.all',)
-    const appInterpreter = new GameStyleAppInterpreter(games,)
-
     const game = games.hasSMM2
         ? GameStyleGames.SUPER_MARIO_MAKER_2
         : GameStyleGames.SUPER_MARIO_MAKER_OR_SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
-                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} game={game}/>}>
-            <SimpleList reactKey="gameStyle" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
-                                 asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} game={game}/>}>
-            <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+    return <SubMainContainer reactKey="gameStyle" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('game style.all',)}
                              description={<GameStyleDescription viewDisplay={viewDisplay} game={game}/>}
                              asideContent={<GameStyleAsideContent viewDisplay={viewDisplay} game={game}/>}>
-        <Table id="gameStyle-table" interpreter={appInterpreter}/>
+        <SubContent viewDisplay={viewDisplay} games={games}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, games,}: GameStyleProperties,) {
+    const appInterpreter = new GameStyleAppInterpreter(games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="gameStyle" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="gameStyle" interpreter={appInterpreter}/>
+    return <Table id="gameStyle-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------

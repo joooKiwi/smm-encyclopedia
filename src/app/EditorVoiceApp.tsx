@@ -90,9 +90,6 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games,}: EditorVoiceProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The EditorVoiceApp only handle the "simple list" or "card list" as a possible view display.',)
-    const titleContent = gameContentTranslation('editor voice.all',)
-    const appInterpreter = new EditorVoiceAppInterpreter(games,)
-
     const game = intersect(allGames, games,).length === 3
         ? EditorVoiceGames.ALL_GAMES
         : games.hasSMM2
@@ -101,17 +98,21 @@ export default function EditorVoiceApp({viewDisplay, games,}: EditorVoicePropert
                 ? EditorVoiceGames.SUPER_MARIO_MAKER
                 : EditorVoiceGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>}
-                                 asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay} game={game}/>}>
-            <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+    return <SubMainContainer reactKey="editorVoice" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('editor voice.all',)}
                              description={<EditorVoiceDescription viewDisplay={viewDisplay} game={game}/>}
                              asideContent={<EditorVoiceAsideContent viewDisplay={viewDisplay} game={game}/>}>
-        <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
+        <SubContent viewDisplay={viewDisplay} games={games}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, games,}: EditorVoiceProperties,) {
+    const appInterpreter = new EditorVoiceAppInterpreter(games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>
+    return <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------

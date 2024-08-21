@@ -136,23 +136,23 @@ export default function ThemeApp({viewDisplay, type, games,}: ThemeAppProperties
         [ViewDisplays.CARD_LIST, `${routeName} (card)`,],
         [ViewDisplays.TABLE, `${routeName} (table)`,],
     ] as const satisfies readonly ViewAndRouteName[]
-    const titleContent = gameContentTranslation('theme.all.all',)
+
+    return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('theme.all.all',)}
+                             asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
+        <SubContent viewDisplay={viewDisplay} type={type} games={games}/>
+    </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, type, games,}: ThemeAppProperties,) {
     const appInterpreter = new ThemeAppInterpreter(type, games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
-            <SimpleList reactKey="theme" interpreter={appInterpreter}/>
-        </SubMainContainer>
+        return <SimpleList reactKey="theme" interpreter={appInterpreter}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
-            <CardList reactKey="theme" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="theme" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<ThemeAsideContent viewDisplay={viewDisplay} type={type} games={games}/>}>
-        <Table id="theme-table" interpreter={appInterpreter}/>
-    </SubMainContainer>
+        return <CardList reactKey="theme" interpreter={appInterpreter}/>
+    return <Table id="theme-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Aside content --------------------

@@ -88,27 +88,27 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The InstrumentApp only handle the "simple list" or "card list" as a possible view display.',)
-
-    const titleContent = gameContentTranslation('instrument.all',)
-    const appInterpreter = new InstrumentAppInterpreter(games,)
-
     const game = games.hasSMM2
         ? InstrumentGames.SUPER_MARIO_MAKER_2
         : games.hasSMM1
             ? InstrumentGames.SUPER_MARIO_MAKER
             : InstrumentGames.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
-                                 asideContent={<InstrumentAsideContent viewDisplay={viewDisplay} game={game}/>}>
-            <SimpleList reactKey="instrument" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+    return <SubMainContainer reactKey="instrument" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('instrument.all',)}
                              description={<InstrumentDescription viewDisplay={viewDisplay} game={game}/>}
                              asideContent={<InstrumentAsideContent viewDisplay={viewDisplay} game={game}/>}>
-        <CardList reactKey="instrument" interpreter={appInterpreter}/>
+        <SubContent viewDisplay={viewDisplay} games={games}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, games,}: InstrumentAppProperties,) {
+    const appInterpreter = new InstrumentAppInterpreter(games,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="instrument" interpreter={appInterpreter}/>
+    return <CardList reactKey="instrument" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------

@@ -87,27 +87,29 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
     const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
     const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
 
-    const titleContent = gameContentTranslation('course tag.all', {
-        course: course, courses: courses,
-        tag: tag, tags: tags,
-    },)
-    const appInterpreter = new CourseTagAppInterpreter(type,)
     const viewDisplayAndRouteName = [
         [ViewDisplays.SIMPLE_LIST, `${type.routeName} (list)`,],
         [ViewDisplays.CARD_LIST, `${type.routeName} (card)`,],
     ] as const satisfies readonly ViewAndRouteName[]
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="courseTag" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 description={<CourseTagDescription type={type} viewDisplay={viewDisplay}/>}
-                                 asideContent={<CourseTagAsideContent type={type} viewDisplay={viewDisplay}/>}>
-            <SimpleList reactKey="courseTag" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="courseTag" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
+    return <SubMainContainer reactKey="courseTag" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('course tag.all', {
+                                 course: course, courses: courses,
+                                 tag: tag, tags: tags,
+                             },)}
                              description={<CourseTagDescription type={type} viewDisplay={viewDisplay}/>}
-                             asideContent={<CourseTagAsideContent type={type} viewDisplay={viewDisplay}/>}>
-        <CardList reactKey="courseTag" interpreter={appInterpreter}/>
+                             asideContent={<CourseTagAsideContent viewDisplay={viewDisplay} type={type}/>}>
+        <SubContent viewDisplay={viewDisplay} type={type}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, type,}:CourseTagAppProperties,) {
+    const appInterpreter = new CourseTagAppInterpreter(type,)
+
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="courseTag" interpreter={appInterpreter}/>
+    return <CardList reactKey="courseTag" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------

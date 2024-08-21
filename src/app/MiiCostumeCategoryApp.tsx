@@ -58,14 +58,15 @@ export default function MiiCostumeCategoryApp({viewDisplay,}: AppWithInterpreter
     const miiCostume = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
     const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
 
-
-    const titleContent = gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="miiCostumeCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="miiCostumeCategory" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="miiCostumeCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <CardList reactKey="miiCostumeCategory" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="miiCostumeCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('mii costume category.all', {singularName: miiCostume, pluralName: miiCostumes,},)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="miiCostumeCategory" interpreter={appInterpreter}/>
+    return <CardList reactKey="miiCostumeCategory" interpreter={appInterpreter}/>
 }

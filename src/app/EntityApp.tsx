@@ -159,23 +159,24 @@ export default function EntityApp({viewDisplay, games, gameStyles,}: EntityPrope
     const entities = OtherWordInTheGames.ENTITY.pluralNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.pluralEnglishName,)
     const entitiesAsLowerCase = OtherWordInTheGames.ENTITY.pluralLowerCaseNameOnReferenceOrNull ?? entities.toLowerCase()
 
-    const titleContent = gameContentTranslation('entity.all', {Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,},)
+    return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('entity.all', {
+                                 Entity: entity, Entities: entities, entity: entityAsLowerCase, entities: entitiesAsLowerCase,
+                             },)}
+                             asideContent={<EntityAsideContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>}>
+        <SubContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>
+    </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay, games, gameStyles,}: EntityProperties,) {
     const appInterpreter = new EntityAppInterpreter(games, gameStyles,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<EntityAsideContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>}>
-            <SimpleList reactKey="entity" interpreter={appInterpreter}/>
-        </SubMainContainer>
+       return <SimpleList reactKey="entity" interpreter={appInterpreter}/>
     if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                                 asideContent={<EntityAsideContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>}>
-            <CardList reactKey="entity" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="entity" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}
-                             asideContent={<EntityAsideContent viewDisplay={viewDisplay} games={games} gameStyles={gameStyles}/>}>
-        <Table id="entity-table" interpreter={appInterpreter}/>
-    </SubMainContainer>
+        return <CardList reactKey="entity" interpreter={appInterpreter}/>
+    return <Table id="entity-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Aside content --------------------

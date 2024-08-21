@@ -105,17 +105,17 @@ export default function OfficialCourseApp({viewDisplay,}: AppWithInterpreterProp
     const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName.toLowerCase(),)
     const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName.toLowerCase(),)
 
-    const titleContent = gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="officialCourse" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <CardList reactKey="officialCourse" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <Table id="officialCourse-table" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="officialCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('official course.all', {singularName: course, pluralName: courses,},)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="officialCourse" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="officialCourse" interpreter={appInterpreter}/>
+    return <Table id="officialCourse-table" interpreter={appInterpreter}/>
 }

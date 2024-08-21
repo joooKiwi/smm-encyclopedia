@@ -41,12 +41,16 @@ const appInterpreter = new PredefinedMessageAppInterpreter()
 export default function PredefinedMessageApp({viewDisplay,}: AppWithInterpreterProperties,) {
     assert(viewDisplay === ViewDisplays.SIMPLE_LIST, 'The PredefinedMessageApp only handle the "simple list" as a possible view display.',)
 
-    const titleContent = gameContentTranslation('predefined message.all', {
-        singularName: <UnfinishedText key="predefined message (singular name)">predefined message</UnfinishedText>,//TODO add predefined reference (singular form)
-        pluralName: <UnfinishedText key="predefined message (plural name)">predefined messages</UnfinishedText>,//TODO add predefined reference (plural form)
-    },)
-
-    return <SubMainContainer reactKey="predefinedMessage" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <SimpleList reactKey="predefinedMessage" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="predefinedMessage" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('predefined message.all', {
+                                 singularName: <UnfinishedText key="predefined message (singular name)">predefined message</UnfinishedText>,//TODO add predefined reference (singular form)
+                                 pluralName: <UnfinishedText key="predefined message (plural name)">predefined messages</UnfinishedText>,//TODO add predefined reference (plural form)
+                             },)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    return <SimpleList reactKey="predefinedMessage" interpreter={appInterpreter}/>
 }

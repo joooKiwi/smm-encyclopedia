@@ -63,11 +63,14 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
 
     const titleContent = gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},)
 
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="entityCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="entityCategory" interpreter={appInterpreter}/>
-        </SubMainContainer>
     return <SubMainContainer reactKey="entityCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <CardList reactKey="entityCategory" interpreter={appInterpreter}/>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="entityCategory" interpreter={appInterpreter}/>
+    return <CardList reactKey="entityCategory" interpreter={appInterpreter}/>
 }

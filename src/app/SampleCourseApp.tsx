@@ -87,17 +87,17 @@ export default function SampleCourseApp({viewDisplay,}: AppWithInterpreterProper
     const course = OtherWordInTheGames.COURSE.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,)
     const courseAsLowerCase = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? course.toLowerCase()
 
-    const titleContent = gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="sampleCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="sampleCourse" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="sampleCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <CardList reactKey="sampleCourse" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="sampleCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <Table id="sampleCourse-table" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="sampleCourse" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('sample course.all', {SingularName: course, singularName: courseAsLowerCase,},)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="sampleCourse" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="sampleCourse" interpreter={appInterpreter}/>
+    return <Table id="sampleCourse-table" interpreter={appInterpreter}/>
 }

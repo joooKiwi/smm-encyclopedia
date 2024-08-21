@@ -129,17 +129,17 @@ export default function MysteryMushroomApp({viewDisplay,}: AppWithInterpreterPro
     const mysteryMushroom = OtherWordInTheGames.MYSTERY_MUSHROOM.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.singularEnglishName.toLowerCase(),)
     const mysteryMushrooms = OtherWordInTheGames.MYSTERY_MUSHROOM.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MYSTERY_MUSHROOM.pluralEnglishName.toLowerCase(),)
 
-    const titleContent = gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <CardList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <Table id="mysteryMushroom-table" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="mysteryMushroom" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('mystery mushroom.all', {singularName: mysteryMushroom, pluralName: mysteryMushrooms,},)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="mysteryMushroom" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    return <Table id="mysteryMushroom-table" interpreter={appInterpreter}/>
 }

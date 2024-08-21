@@ -57,13 +57,15 @@ const appInterpreter = new SoundEffectCategoryAppInterpreter()
 export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
     assert(viewDisplay !== ViewDisplays.TABLE, 'The SoundEffectCategoryApp only handle the "simple list" or "card list" as a possible view display.',)
 
-    const titleContent = gameContentTranslation('sound effect category.all',)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('sound effect category.all',)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
+    return <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
 }

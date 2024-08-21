@@ -96,17 +96,17 @@ export default function MiiCostumeApp({viewDisplay,}: AppWithInterpreterProperti
     const miiCostume = OtherWordInTheGames.MII_COSTUME.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.singularEnglishName,)
     const miiCostumes = OtherWordInTheGames.MII_COSTUME.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.MII_COSTUME.pluralEnglishName,)
 
-    const titleContent = gameContentTranslation('mii costume.all', {singularName: miiCostume, pluralName: miiCostumes,},)
-
-    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
-        return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <SimpleList reactKey="miiCostume" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    if (viewDisplay === ViewDisplays.CARD_LIST)
-        return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-            <CardList reactKey="miiCostume" interpreter={appInterpreter}/>
-        </SubMainContainer>
-    return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay} titleContent={titleContent}>
-        <Table id="miiCostume-table" interpreter={appInterpreter}/>
+    return <SubMainContainer reactKey="miiCostume" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
+                             titleContent={gameContentTranslation('mii costume.all', {singularName: miiCostume, pluralName: miiCostumes,},)}>
+        <SubContent viewDisplay={viewDisplay}/>
     </SubMainContainer>
+}
+
+/** @reactComponent */
+function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
+    if (viewDisplay === ViewDisplays.SIMPLE_LIST)
+        return <SimpleList reactKey="miiCostume" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="miiCostume" interpreter={appInterpreter}/>
+    return <Table id="miiCostume-table" interpreter={appInterpreter}/>
 }
