@@ -5,7 +5,8 @@ import type {GameStyles}               from 'core/gameStyle/GameStyles'
 export interface ClearConditionImage<out T extends ClearConditionImageFile = ClearConditionImageFile, >
     extends Image {
 
-    get map(): ReadonlyMap<GameStyles, T>
+    readonly images: readonly T[]
+    readonly imagesWithAssociation: readonly (readonly [GameStyles, T,])[]
 
     get(gameStyle: GameStyles,): T
 

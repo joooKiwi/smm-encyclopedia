@@ -1,7 +1,7 @@
 import type {ClearConditionImage}                                      from 'core/entity/images/clearCondition/ClearConditionImage'
 import type {ClassWithNullObjectPattern, EmptyClearConditionImageName} from 'util/ClassWithNullObjectPattern'
 
-import {EMPTY_MAP} from 'util/emptyVariables'
+import {EMPTY_ARRAY} from 'util/emptyVariables'
 
 export class EmptyClearConditionImage
     implements ClearConditionImage, ClassWithNullObjectPattern<EmptyClearConditionImageName> {
@@ -18,7 +18,9 @@ export class EmptyClearConditionImage
 
     //endregion -------------------- Singleton usage --------------------
 
-    public readonly map = EMPTY_MAP
+    public readonly images = EMPTY_ARRAY
+    public readonly imagesWithAssociation = EMPTY_ARRAY
+
     public get(): never { throw new ReferenceError(`No game style exist on an empty clear condition image.`,) }
 
     public toString(): EmptyClearConditionImageName {
