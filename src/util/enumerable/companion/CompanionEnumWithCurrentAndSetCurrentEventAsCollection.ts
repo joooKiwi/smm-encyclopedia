@@ -57,8 +57,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEventAsCollection<const ENUM e
         this.#current = value
     }
 
-    protected _onSetCurrent(value: CollectionHolder<ENUM>,): void {
-    }
+    protected _onSetCurrent(value: CollectionHolder<ENUM>,): void {}
 
     //region -------------------- Current --------------------
     //region -------------------- Event --------------------

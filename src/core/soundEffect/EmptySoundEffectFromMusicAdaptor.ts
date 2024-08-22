@@ -9,8 +9,7 @@ export class EmptySoundEffectFromMusicAdaptor
 
     static #instance?: EmptySoundEffectFromMusicAdaptor
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new EmptySoundEffectFromMusicAdaptor()

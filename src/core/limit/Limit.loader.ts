@@ -29,8 +29,7 @@ export class LimitLoader
 
     static #instance?: LimitLoader
 
-    private constructor() {
-    }
+    private constructor() {}
 
     public static get get() {
         return this.#instance ??= new this()

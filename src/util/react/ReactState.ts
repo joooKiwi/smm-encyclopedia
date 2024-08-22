@@ -1,3 +1,1 @@
-export interface ReactState {
-
-}
+export interface ReactState {}

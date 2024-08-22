@@ -49,8 +49,7 @@ export class CompanionEnumWithCurrentAndSetCurrentEvent<const ENUM extends Enume
         this.#current = selectedValue
     }
 
-    protected _onSetCurrent(value: ENUM,): void {
-    }
+    protected _onSetCurrent(value: ENUM,): void {}
 
     //region -------------------- Current --------------------
     //region -------------------- Event --------------------
