@@ -6,12 +6,12 @@ import type {Names, Ordinals, PossibleTranslationKey} from 'core/soundEffect/pro
 import type {PlayerSoundEffectTriggerProperty}        from 'core/soundEffect/property/PlayerSoundEffectTrigger.property'
 import type {CompanionEnumByTranslationKeySingleton}  from 'util/enumerable/Singleton.types'
 
-import UnfinishedText, {unfinishedText} from 'app/tools/text/UnfinishedText'
-import Image                            from 'app/tools/images/Image'
-import TextComponent                    from 'app/tools/text/TextComponent'
-import {OtherWordInTheGames}            from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation}         from 'lang/components/translationMethods'
-import {CompanionEnumByTranslationKey}  from 'util/enumerable/companion/CompanionEnumByTranslationKey'
+import {unfinishedText}                from 'app/tools/text/UnfinishedText'
+import Image                           from 'app/tools/images/Image'
+import TextComponent                   from 'app/tools/text/TextComponent'
+import {OtherWordInTheGames}           from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {gameContentTranslation}        from 'lang/components/translationMethods'
+import {CompanionEnumByTranslationKey} from 'util/enumerable/companion/CompanionEnumByTranslationKey'
 
 //region -------------------- Import from deconstruction --------------------
 
