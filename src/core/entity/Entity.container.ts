@@ -40,10 +40,18 @@ export class EntityContainer
     readonly #isAffectDirectlyByAnOnOffStateComment
 
     readonly #canSpawnOutOfAPipe
+    readonly #canBePutOnASwingingClaw
+    readonly #canBeThrownByALakitu
+    readonly #canBePutInALakituCloud
     readonly #canBePutInAClownCar
     readonly #canBeFiredOutOfABulletLauncher
     readonly #canComeOutOfABlock
     readonly #canBePutInATree
+
+    readonly #canBeStacked
+
+    readonly #isGlobalGroundOrGlobal
+    readonly #isGlobalGroundOrGlobalInSm3dw
 
 
     readonly #isInSuperMarioMaker1
@@ -145,8 +153,15 @@ export class EntityContainer
 
         canContainOrSpawnAKey: boolean,
         isAffectDirectlyByAnOnOffState: boolean, isAffectDirectlyByAnOnOffStateComment: NullOr<OnlySomeVariants>,
-        canSpawnOutOfAPipe: boolean, canBePutInAClownCar: boolean,
+        canSpawnOutOfAPipe: boolean,
+        canBePutOnASwingingClaw: boolean,
+        canBeThrownByALakitu: BooleanOrUnknownCharacter,
+        canBePutInALakituCloud: BooleanOrUnknownCharacter,
+        canBePutInAClownCar: boolean,
         canBeFiredOutOfABulletLauncher: boolean, canComeOutOfABlock: boolean, canBePutInATree: boolean,
+
+        canBeStacked: boolean,
+        isGlobalGroundOrGlobal: boolean, isGlobalGroundOrGlobalInSm3dw: boolean,
 
         isInSuperMarioMaker1: boolean, isInSuperMarioMakerFor3DS: boolean, isInSuperMarioMaker2: boolean,
         isInSuperMarioBrosStyle: boolean, isInSuperMarioBros3Style: boolean, isInSuperMarioWorldStyle: boolean, isInNewSuperMarioBrosUStyle: boolean, isInSuperMario3DWorldStyle: BooleanOrNotApplicable,
@@ -184,10 +199,18 @@ export class EntityContainer
         this.#isAffectDirectlyByAnOnOffStateComment = isAffectDirectlyByAnOnOffStateComment
 
         this.#canSpawnOutOfAPipe = canSpawnOutOfAPipe
+        this.#canBePutOnASwingingClaw = canBePutOnASwingingClaw
+        this.#canBeThrownByALakitu = canBeThrownByALakitu
+        this.#canBePutInALakituCloud = canBePutInALakituCloud
         this.#canBePutInAClownCar = canBePutInAClownCar
         this.#canBeFiredOutOfABulletLauncher = canBeFiredOutOfABulletLauncher
         this.#canComeOutOfABlock = canComeOutOfABlock
         this.#canBePutInATree = canBePutInATree
+
+        this.#canBeStacked = canBeStacked
+
+        this.#isGlobalGroundOrGlobal = isGlobalGroundOrGlobal
+        this.#isGlobalGroundOrGlobalInSm3dw = isGlobalGroundOrGlobalInSm3dw
 
 
         this.#isInSuperMarioMaker1 = isInSuperMarioMaker1
@@ -291,12 +314,23 @@ export class EntityContainer
     public get isAffectDirectlyByAnOnOffStateComment() { return this.#isAffectDirectlyByAnOnOffStateComment }
 
     public get canSpawnOutOfAPipe() {                    return this.#canSpawnOutOfAPipe }
+    public get canBePutOnASwingingClaw() {               return this.#canBePutOnASwingingClaw }
+    public get canBeThrownByALakitu() {                  return this.#canBeThrownByALakitu }
+    public get canBePutInALakituCloud() {                return this.#canBePutInALakituCloud }
     public get canBePutInAClownCar() {                   return this.#canBePutInAClownCar }
     public get canBeFiredOutOfABulletLauncher() {        return this.#canBeFiredOutOfABulletLauncher }
     public get canComeOutOfABlock() {                    return this.#canComeOutOfABlock }
     public get canBePutInATree() {                       return this.#canBePutInATree }
 
     //endregion -------------------- Directly affected --------------------
+    //region -------------------- Indirect --------------------
+
+    public get canBeStacked() {                  return this.#canBeStacked }
+
+    public get isGlobalGroundOrGlobal() {        return this.#isGlobalGroundOrGlobal }
+    public get isGlobalGroundOrGlobalInSm3dw() { return this.#isGlobalGroundOrGlobalInSm3dw }
+
+    //endregion -------------------- Indirect --------------------
     //region -------------------- Game --------------------
 
     public get isInSuperMarioMaker1() {      return this.#isInSuperMarioMaker1 }

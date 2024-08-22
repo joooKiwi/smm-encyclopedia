@@ -1,14 +1,14 @@
 import file from 'resources/compiled/Entity.json'
 
-import type {PossibleExcludedLanguages}                                                                                                                                                                                                                                                                                                                                                                                from '__test__/helperMethods.types'
-import type {CanRespawnType}                                                                                                                                                                                                                                                                                                                                                                                           from 'core/behaviour/loader.types'
-import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasAReferenceInMarioMaker, IsGlobalGroundOrGlobal, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleWeight} from 'core/entityTypes'
-import type {LCL_Play, OnlySomeVariants}                                                                                                                                                                                                                                                                                                                                                                               from 'core/entity/properties/loader.types'
-import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                                                                            from 'core/entity/properties/instrument/loader.types'
-import type {LimitAmountType, OffscreenSpawningAndDespawningReferencePoint, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                                                                                                         from 'core/entity/properties/limit/loader.types'
-import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                                                      from 'core/entityCategory/EntityCategories.types'
-import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                                         from 'core/limit/Limits.types'
-import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                                                                                                                                                                     from 'core/version/Versions.types'
+import type {PossibleExcludedLanguages}                                                                                                                                                                                                                                                                                                                                                        from '__test__/helperMethods.types'
+import type {CanRespawnType}                                                                                                                                                                                                                                                                                                                                                                   from 'core/behaviour/loader.types'
+import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasAReferenceInMarioMaker, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleWeight} from 'core/entityTypes'
+import type {LCL_Play, OnlySomeVariants}                                                                                                                                                                                                                                                                                                                                                       from 'core/entity/properties/loader.types'
+import type {PossibleCanMakeASoundOutOfAMusicBlock_Comment}                                                                                                                                                                                                                                                                                                                                    from 'core/entity/properties/instrument/loader.types'
+import type {LimitAmountType, OffscreenSpawningAndDespawningReferencePoint, PossibleGeneralGlobalLimitComment, PossibleGeneralLimitComment, PossibleOtherLimitComment, PossibleProjectileLimitComment, PossibleRenderedObjectLimitTypeComment}                                                                                                                                                 from 'core/entity/properties/limit/loader.types'
+import type {PossibleEnglishName as PossibleEnglishName_Category}                                                                                                                                                                                                                                                                                                                              from 'core/entityCategory/EntityCategories.types'
+import type {PossibleEnglishName as PossibleEnglishName_Limit}                                                                                                                                                                                                                                                                                                                                 from 'core/limit/Limits.types'
+import type {PossibleName as PossibleName_Version}                                                                                                                                                                                                                                                                                                                                             from 'core/version/Versions.types'
 
 import {EveryTypes}                                  from '__test__/EveryTypes'
 import {getEnglishName, testEnglish, testLanguages}  from '__test__/helperMethods'
@@ -37,7 +37,6 @@ describe('Entity (file test)', () => {
     const possibleCanBeBrokenOrKilledByBobOmb = [true, false, 'Koopa Troopa', 'Unchained Chomp', 'Standing on top of block that get destroyed',]                         as const satisfies readonly CanBeBrokenOrKilledByABobOmb[]
     const possibleAffectedByTwister = [null, NOT_APPLICABLE, true, false, 'When falling', 'Parachute',]                                                                  as const satisfies readonly CanBeAffectedByATwister[]
     const possibleCanGoThroughWallsInSM3DW = [null, true, false, 'on down curve',]                                                                                       as const satisfies readonly CanGoThroughWallsInSM3DW[]
-    const possibleIsGlobalGroundOrGlobal = [null, NOT_APPLICABLE, true, false, 'SM3DW',]                                                                                 as const satisfies readonly IsGlobalGroundOrGlobal[]
     const everyInstruments = [null, ...types.everyPossibleName_instrument, ...types.everyPossibleMixedName_instrument,]                                                  as const
     const possibleCanMakeASoundOutOfMusicBlockComment = [null, 'Excluding the top 3 notes',]                                                                             as const satisfies readonly NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>[]
     const possibleCanBeThrownByBowserInClownCar = [null, true, false, 'Bob-omb clear condition',]                                                                        as const satisfies readonly CanBeThrownByBowserInClownCar[]
@@ -123,9 +122,9 @@ describe('Entity (file test)', () => {
                     //TODO add coherence test
                 },)
                 test('Can spawn out of a Pipe', () => expect(it.canSpawnOutOfAPipe,).toBeBoolean(),)
-                test('Can be put in a Swinging Claw', () => expect(it.canBePutInASwingingClaw,).toBeBooleanOrNullOrNotApplicable(),)
-                test('Can be thrown by a Lakitu', () => expect(it.canBeThrownByALakitu,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
-                test('Can be put in a Lakitu\'s Cloud', () => expect(it.canBePutInALakituCloud,).toBeBooleanOrNullOrNotApplicableOrUnknown(),)
+                test('Can be put in a Swinging Claw', () => expect(it.canBePutInASwingingClaw,).toBeBoolean(),)
+                test('Can be thrown by a Lakitu', () => expect(it.canBeThrownByALakitu,).toBeBooleanOrUnknown(),)
+                test('Can be put in a Lakitu\'s Cloud', () => expect(it.canBePutInALakituCloud,).toBeBooleanOrUnknown(),)
                 test('Can be put in a Clown Car', () => expect(it.canBePutInAClownCar,).toBeBoolean(),)
                 test('Can be thrown by a Bullet Launcher', () => expect(it.canBeFiredOutOfABulletLauncher,).toBeBoolean(),)
                 test('Can come out of a Block', () => expect(it.canComeOutOfABlock,).toBeBoolean(),)
@@ -147,12 +146,15 @@ describe('Entity (file test)', () => {
                     test('in SM3DW', () => expect(it.canGoThroughWalls_SM3DW,).toBeOneOf(possibleCanGoThroughWallsInSM3DW,),)
                     //TODO add coherence test
                 },)
-                test('Can be stacked', () => expect(it.canBeStacked,).toBeBooleanOrNullOrNotApplicable(),)
-                test('Is a global ground or global', () => expect(it.isGlobalGroundOrGlobal,).toBeOneOf(possibleIsGlobalGroundOrGlobal,),)
+                test('Can be stacked', () => expect(it.canBeStacked,).toBeBoolean(),)
+                describe('Is a global ground or global', () => {
+                    test('value', () => expect(it.isGlobalGroundOrGlobal,).toBeBoolean(),)
+                    test('in SM3DW', () => expect(it.isGlobalGroundOrGlobal_SM3DW,).toBeBoolean(),)
+                },)
 
                 test('Instrument', () => expect(it.instrument,).toBeOneOf(everyInstruments,),)
                 describe('Can make a sound out of a Music Block', () => {
-                    test('value', () => expect(it.canMakeASoundOutOfAMusicBlock,).toBeBooleanOrNotApplicable(),)
+                    test('value', () => expect(it.canMakeASoundOutOfAMusicBlock,).toBeBoolean(),)
                     test('comment', () => expect(it.canMakeASoundOutOfAMusicBlock_comment,).toBeOneOf(possibleCanMakeASoundOutOfMusicBlockComment,),)
                     //TODO add coherence test
                 },)

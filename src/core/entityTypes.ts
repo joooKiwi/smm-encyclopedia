@@ -9,11 +9,6 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type CanBePutOnATrack = NullOr<| boolean | UnknownCharacter>
 
-/** @temporaryLocation */export type CanBePutInASwingingClaw = NullOrBoolean
-
-/** @temporaryLocation */export type CanBeThrownByALakitu = NullOr<| boolean | UnknownCharacter>
-/** @temporaryLocation */export type CanBePutInALakituCloud = NullOr<| boolean | UnknownCharacter>
-
 /** @temporaryLocation */export type PossibleWeight = NullOr<| 0 | 1 | '½' | 2 | '1 per segment (1 to 8)' | '2 (any height)' | UnknownCharacter>
 
 /** @temporaryLocation */export type HasALightSourceEmittedInSMB = NullOrBoolean
@@ -27,10 +22,6 @@ export type PossibleGroupName = string
 
 /** @temporaryLocation */export type CanGoThroughWalls = NullOrBoolean
 /** @temporaryLocation */export type CanGoThroughWallsInSM3DW = NullOr<| boolean | 'on down curve'>
-
-/** @temporaryLocation */export type CanBeStacked = NullOrBoolean
-
-/** @temporaryLocation */export type IsGlobalGroundOrGlobal = NullOr<| boolean | NotApplicable | 'SM3DW'>
 
 /** @temporaryLocation */export type PossibleLightSource = NullOr<| `${'Dim' | 'Full'} light`
                                                                   | `Full light when ${| 'falling' | 'collected' | 'shooting'}`

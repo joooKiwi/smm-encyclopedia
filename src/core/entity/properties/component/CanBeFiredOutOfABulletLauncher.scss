@@ -1,6 +1,6 @@
 .bullet-launcher-image-property {
   background-image: var(--bullet-launcher-image);
   background-size: 100%;
-  width: .5cm;
-  height: .5cm;
+  width: var(--bs-font-size-base);
+  height: var(--bs-font-size-base);
 }

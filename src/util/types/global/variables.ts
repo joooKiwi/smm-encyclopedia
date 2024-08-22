@@ -11,7 +11,9 @@ declare global {
     type Space = typeof SPACE
     type CommaSpace = typeof COMMA_SPACE
 
-    type UnknownCharacter = typeof UNKNOWN_CHARACTER
+    type UnknownCharacter =                      typeof UNKNOWN_CHARACTER
+    type BooleanOrUnknownCharacter = | boolean | typeof UNKNOWN_CHARACTER
+
     type UnknownReference = typeof UNKNOWN_REFERENCE
 
     type NotApplicable =                                   typeof NOT_APPLICABLE

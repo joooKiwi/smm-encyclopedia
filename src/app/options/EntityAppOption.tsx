@@ -7,32 +7,37 @@ import type {Names, Ordinals}     from 'app/options/EntityAppOption.types'
 import type {SingleHeaderContent} from 'app/tools/table/SimpleHeader'
 import type {Entities}            from 'core/entity/Entities'
 
-import {CommonOptions}                from 'app/options/CommonOptions'
-import Image                          from 'app/tools/images/Image'
-import {gameContentTranslation}       from 'lang/components/translationMethods'
-import EditorVoiceSoundComponent      from 'core/editorVoice/EditorVoiceSound.component'
-import CanBeFiredOutOfABulletLauncher from 'core/entity/properties/component/CanBeFiredOutOfABulletLauncher'
-import CanBeInAParachute              from 'core/entity/properties/component/CanBeInAParachute'
-import CanBePutInABlock               from 'core/entity/properties/component/CanBePutInABlock'
-import CanBePutInATree                from 'core/entity/properties/component/CanBePutInATree'
-import CanContainOrSpawnAKey          from 'core/entity/properties/component/CanContainOrSpawnAKey'
-import CanHaveWings                   from 'core/entity/properties/component/CanHaveWings'
-import CanMakeASoundOutOfAMusicBlock  from 'core/entity/properties/component/CanMakeASoundOutOfAMusicBlock'
-import CanSpawnOutOfAPipe             from 'core/entity/properties/component/CanSpawnOutOfAPipe'
-import HasAMushroomVariant            from 'core/entity/properties/component/HasAMushroomVariant'
-import {EntityCategories}             from 'core/entityCategory/EntityCategories'
-import GameComponent                  from 'core/game/Game.component'
-import {GameStyles}                   from 'core/gameStyle/GameStyles'
-import GameStyleImage                 from 'core/gameStyle/GameStyleImage'
-import GameStyleComponent             from 'core/gameStyle/GameStyle.component'
-import PlayLimitComponent             from 'core/limit/PlayLimit.component'
-import SMM1And3DSEditorLimitComponent from 'core/limit/SMM1And3DSEditorLimit.component'
-import SMM2EditorLimitComponent       from 'core/limit/SMM2EditorLimit.component'
-import CourseThemeComponent           from 'core/theme/CourseTheme.component'
-import {Themes}                       from 'core/theme/Themes'
-import {Times}                        from 'core/time/Times'
-import TimeComponent                  from 'core/time/Time.component'
+import {CommonOptions}                  from 'app/options/CommonOptions'
+import Image                            from 'app/tools/images/Image'
+import {gameContentTranslation}         from 'lang/components/translationMethods'
+import EditorVoiceSoundComponent        from 'core/editorVoice/EditorVoiceSound.component'
+import CanBeFiredOutOfABulletLauncher   from 'core/entity/properties/component/CanBeFiredOutOfABulletLauncher'
+import CanBeInAParachute                from 'core/entity/properties/component/CanBeInAParachute'
+import CanBePutInABlock                 from 'core/entity/properties/component/CanBePutInABlock'
+import CanBePutInAClownCar              from 'core/entity/properties/component/CanBePutInAClownCar'
+import CanBePutInALakituCloud           from 'core/entity/properties/component/CanBePutInALakituCloud'
+import CanBePutInATree                  from 'core/entity/properties/component/CanBePutInATree'
+import CanBePutOnASwingingClaw          from 'core/entity/properties/component/CanBePutOnASwingingClaw'
+import CanBeStacked                     from 'core/entity/properties/component/CanBeStacked'
+import CanBeThrownByALakitu             from 'core/entity/properties/component/CanBeThrownByALakitu'
+import CanContainOrSpawnAKey            from 'core/entity/properties/component/CanContainOrSpawnAKey'
+import CanHaveWings                     from 'core/entity/properties/component/CanHaveWings'
+import CanMakeASoundOutOfAMusicBlock    from 'core/entity/properties/component/CanMakeASoundOutOfAMusicBlock'
+import CanSpawnOutOfAPipe               from 'core/entity/properties/component/CanSpawnOutOfAPipe'
+import HasAMushroomVariant              from 'core/entity/properties/component/HasAMushroomVariant'
 import IsAffectedDirectlyByAnOnOffState from 'core/entity/properties/component/IsAffectedDirectlyByAnOnOffState'
+import {EntityCategories}               from 'core/entityCategory/EntityCategories'
+import GameComponent                    from 'core/game/Game.component'
+import {GameStyles}                     from 'core/gameStyle/GameStyles'
+import GameStyleImage                   from 'core/gameStyle/GameStyleImage'
+import GameStyleComponent               from 'core/gameStyle/GameStyle.component'
+import PlayLimitComponent               from 'core/limit/PlayLimit.component'
+import SMM1And3DSEditorLimitComponent   from 'core/limit/SMM1And3DSEditorLimit.component'
+import SMM2EditorLimitComponent         from 'core/limit/SMM2EditorLimit.component'
+import CourseThemeComponent             from 'core/theme/CourseTheme.component'
+import {Themes}                         from 'core/theme/Themes'
+import {Times}                          from 'core/time/Times'
+import TimeComponent                    from 'core/time/Time.component'
 
 export class EntityAppOption
     extends Enum<Ordinals, Names>
@@ -164,11 +169,16 @@ export class EntityAppOption
                         <CanContainOrSpawnAKey value={enumeration}/>
                         <IsAffectedDirectlyByAnOnOffState value={enumeration}/>
                         <CanSpawnOutOfAPipe value={enumeration}/>
+                        <CanBePutOnASwingingClaw value={enumeration}/>
+                        <CanBeThrownByALakitu value={enumeration}/>
+                        <CanBePutInALakituCloud value={enumeration}/>
+                        <CanBePutInAClownCar value={enumeration}/>
                         <CanBeFiredOutOfABulletLauncher value={enumeration}/>
                         <CanBePutInABlock value={enumeration}/>
                         <CanBePutInATree value={enumeration}/>
+                        <CanBeStacked value={enumeration}/>
                     </div>
-                    {CommonOptions.get.getNameContent(enumeration)}
+                    {CommonOptions.get.getNameContent(enumeration,)}
                 </div>
                 <EditorVoiceSoundComponent editorVoiceSound={enumeration.editorVoiceSoundFileHolder} name={enumeration.englishName}/>
             </div>

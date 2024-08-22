@@ -8,11 +8,10 @@ import type {EntityOnlyProperties} from 'core/entity/properties/EntityOnlyProper
 import Tooltip                  from 'bootstrap/tooltip/Tooltip'
 import {gameContentTranslation} from 'lang/components/translationMethods'
 
-export default function CanMakeASoundOutOfAMusicBlock({value: entity,}: EntityOnlyProperties,) {
+export default function CanMakeASoundOutOfAMusicBlock({value,}: EntityOnlyProperties,) {
     const htmlElement = useRef<HTMLElement>(null,)
-    const reference = entity.reference
-    const value = reference.canMakeASoundOutOfAMusicBlock
-    if (value !== true)
+    const reference = value.reference
+    if (!reference.canMakeASoundOutOfAMusicBlock)
         return null
 
     const comment = reference.canMakeASoundOutOfAMusicBlockComment

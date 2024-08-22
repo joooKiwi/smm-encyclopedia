@@ -41,15 +41,36 @@ export interface Entity
 
     // can be put on a Track (+ limit editor/in game)
     readonly canSpawnOutOfAPipe: boolean//TODO add amount in a bunch + maximum amount
-    // can be put on a Swinging Claw
-    // can be thrown by a Lakitu
-    // can be put in a Lakitu's Cloud
+    readonly canBePutOnASwingingClaw: boolean//TODO add when it has wing
+    readonly canBeThrownByALakitu: BooleanOrUnknownCharacter
+    readonly canBePutInALakituCloud: BooleanOrUnknownCharacter
     readonly canBePutInAClownCar: boolean
     readonly canBeFiredOutOfABulletLauncher: boolean//TODO add amount in a bunch + maximum amount
     readonly canComeOutOfABlock: boolean//TODO add maximum amount
     readonly canBePutInATree: boolean
 
     //endregion -------------------- Directly affected properties --------------------
+    //region -------------------- Indirect properties --------------------
+
+    // weight
+
+    // light source emitted
+    // light source emitted (in SMB)
+
+    // can survive in the lava or poison
+    // can ignite a Bob-omb
+    // can be broken or killed by a Bob-omb
+    // can be affected by a Twister
+
+    // can go through walls
+    // can go through walls (in SM3DW)
+
+    readonly canBeStacked: boolean
+
+    readonly isGlobalGroundOrGlobal: boolean
+    readonly isGlobalGroundOrGlobalInSm3dw: boolean
+
+    //endregion -------------------- Indirect properties --------------------
     //region -------------------- Limit properties --------------------
 
     readonly editorLimit_smm1And3ds: NullOr<| Limits | NotApplicable>
@@ -81,7 +102,7 @@ export interface Entity
 
     readonly instruments: readonly Instrument[]
 
-    readonly canMakeASoundOutOfAMusicBlock: BooleanOrNotApplicable
+    readonly canMakeASoundOutOfAMusicBlock: boolean
     readonly canMakeASoundOutOfAMusicBlockComment: NullOr<PossibleCanMakeASoundOutOfAMusicBlock_Comment>
 
     //endregion -------------------- Instrument properties --------------------

@@ -50,12 +50,23 @@ export class EmptyEntity
     public readonly isAffectDirectlyByAnOnOffStateComment = null
 
     public readonly canSpawnOutOfAPipe = false
+    public readonly canBePutOnASwingingClaw = false
+    public readonly canBeThrownByALakitu = false
+    public readonly canBePutInALakituCloud = false
     public readonly canBePutInAClownCar = false
     public readonly canBeFiredOutOfABulletLauncher = false
     public readonly canComeOutOfABlock = false
     public readonly canBePutInATree = false
 
     //endregion -------------------- Directly affected --------------------
+    //region -------------------- Indirect --------------------
+
+    public readonly canBeStacked = false
+
+    public readonly isGlobalGroundOrGlobal = false
+    public readonly isGlobalGroundOrGlobalInSm3dw = false
+
+    //endregion -------------------- Indirect --------------------
     //region -------------------- Game --------------------
 
     public readonly isInSuperMarioMaker1 = false
