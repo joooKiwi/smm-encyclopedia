@@ -133,11 +133,11 @@ export class PlayerSoundEffectTriggers
                 <Image className="stiletto-image" variable="stiletto"/>
             </em>
             keyMap.yoshiImages = <em key={`${key} (Yoshi images)`} className="yoshi-images-container smm2-only">
-                <UnfinishedText>Yoshi</UnfinishedText>{/*<Image className="yoshi-image" variable="yoshi" isSquared/>*/}
-                <UnfinishedText>Red Yoshi</UnfinishedText>{/*<Image className="red-yoshi-image" variable="red-yoshi" isSquared/>*/}
+                <Image className="yoshi-image" variable="yoshi" isSquared/>
+                <Image className="red-yoshi-image" variable="red-yoshi" isSquared/>
             </em>
             keyMap.dryBonesShellImage = <Image key={`${key} (Dry Bones Shell image)`} className="dry-bones-shell-image smm2-only" variable="dry-bones-shell" isSquared/>
-            keyMap.swingingClawImage = <UnfinishedText key={`${key} (Swinging Claw image)`}>Swinging Claw</UnfinishedText>//<Image key={`${key} (Swinging Claw image)`} className="swinging-claw-image smm2-only" variable="swinging-claw"/>
+            keyMap.swingingClawImage = <Image key={`${key} (Swinging Claw image)`} className="swinging-claw-image smm2-only" variable="swinging-claw" isSquared/>
             return this._addPlayerLink(key, keyMap,)
         }
 

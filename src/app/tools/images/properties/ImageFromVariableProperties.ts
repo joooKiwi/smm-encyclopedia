@@ -22,7 +22,7 @@ export type PossibleVariableImage =
     | 'cape-feather' | 'power-balloon'
     | `super-${| 'acorn' | 'bell' | 'hammer'}`
     | 'shoe' | 'stiletto'
-    | 'yoshi'
+    | `${| '' | 'red-'}yoshi`
     | `${| 'dry-bones' | 'buzzy' | 'spiny'}-shell`
     | 'lakitu-cloud' | 'clown-car'
     | 'swinging-claw'
