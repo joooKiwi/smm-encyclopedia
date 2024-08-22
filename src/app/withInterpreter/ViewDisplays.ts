@@ -26,13 +26,20 @@ export abstract class ViewDisplays
         }
 
     }('table', 'table', 'table',)
+    // public static readonly NAME_LIST =   new class ViewDisplays_SimpleList extends ViewDisplays {
+    //
+    //     protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
+    //         return `${path} (name)` as const
+    //     }
+    //
+    // }('name-list', 'name', 'list-nested',)
     public static readonly SIMPLE_LIST = new class ViewDisplays_SimpleList extends ViewDisplays {
 
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
             return `${path} (list)` as const
         }
 
-    }('simple-list', 'list', 'list',)
+    }('simple-list', 'list', 'list-ul',)
     public static readonly CARD_LIST =   new class ViewDisplays_CardList extends ViewDisplays {
 
         protected override _getRoutePath<const PATH extends string, >(path: PATH,) {
@@ -140,4 +147,6 @@ export abstract class ViewDisplays
 }
 
 type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
+// type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'name' | 'list' | 'card' | 'table'})`//TODO add the name list
+
 type PossibleListRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card'})`
