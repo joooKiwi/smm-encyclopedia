@@ -2426,7 +2426,7 @@ function AnyGameSection({partialId, name, route,}: FilledSectionProperties<| 'EV
         <SectionTitle name={name} target={linkPaths} route={route}/>
         <div id={linkPaths} className="row row-cols-auto justify-content-center collapse">
             <div>
-                <PathFromDefault         path={simpleName} name="Default"/><Separator/>
+                <PathFromDefault      path={simpleName} name="Default"/><Separator/>
                 <PathFromViewDisplay  path={`${simpleName} (list)`} name="List"/><Separator/>
                 <PathFromViewDisplay  path={`${simpleName} (card)`} name="Card"/><Separator/>
                 <PathFromViewDisplay  path={`${simpleName} (table)`} name="Table"/><Separator/>
@@ -2484,7 +2484,7 @@ function OnlySmm1Section({partialId, name, route,}: FilledSectionProperties<| 'E
     return <div id={`${partialId}-paths`} className="container-lg text-center bg-dark-subtle rounded pt-1 pb-3 mb-3">
         <SectionTitle name={name} target={linkPaths} route={route}/>
         <div id={linkPaths} className="collapse">
-            <PathFromDefault         path={simpleName} name="Default"/><Separator/>
+            <PathFromDefault      path={simpleName} name="Default"/><Separator/>
             <PathFromViewDisplay  path={`${simpleName} (list)`} name="List"/><Separator/>
             <PathFromViewDisplay  path={`${simpleName} (card)`} name="Card"/><Separator/>
             <PathFromViewDisplay  path={`${simpleName} (table)`} name="Table"/><Separator/>
@@ -2503,7 +2503,7 @@ function OnlySmm2Section({partialId, name, route,}: FilledSectionProperties<|'EV
     return <div id={`${partialId}-paths`} className="container-lg text-center bg-dark-subtle rounded pt-1 pb-3 mb-3">
         <SectionTitle name={name} target={linkPaths} route={route}/>
         <div id={linkPaths} className="collapse">
-            <PathFromDefault         path={simpleName} name="Default"/><Separator/>
+            <PathFromDefault      path={simpleName} name="Default"/><Separator/>
             <PathFromViewDisplay  path={`${simpleName} (list)`} name="List"/><Separator/>
             <PathFromViewDisplay  path={`${simpleName} (card)`} name="Card"/><Separator/>
             <PathFromViewDisplay  path={`${simpleName} (table)`} name="Table"/><Separator/>
@@ -2523,13 +2523,13 @@ function AllGamesSection({partialId, name, route,}: FilledSectionProperties<'EVE
         <SectionTitle name={name} target={linkPaths} route={route}/>
         <div id={linkPaths} className="collapse">
             <PathFromDefault path={simpleName} name="Default"/><Separator/>
-            <RealPath     path={`${simpleName} (Game=all)`} name="All game"/><Separator/>
-            <RealPath     path={`${simpleName} (Game=1)`} name={<SMM1/>}/><Separator/>
-            <RealPath     path={`${simpleName} (Game=3DS)`} name={<SMM3DS/>}/><Separator/>
-            <RealPath     path={`${simpleName} (Game=2)`} name={<SMM2/>}/><Separator/>
-            <RealPath     path={`${simpleName} (Game=1&3DS)`} name={<SMM1And3DS/>}/><Separator/>
-            <RealPath     path={`${simpleName} (Game=1&2)`} name={<SMM1And2/>}/><Separator/>
-            <RealPath     path={`${simpleName} (Game=3DS&2)`} name={<SMM1And3DS/>}/><Separator/>
+            <RealPath        path={`${simpleName} (Game=all)`} name="All game"/><Separator/>
+            <RealPath        path={`${simpleName} (Game=1)`} name={<SMM1/>}/><Separator/>
+            <RealPath        path={`${simpleName} (Game=3DS)`} name={<SMM3DS/>}/><Separator/>
+            <RealPath        path={`${simpleName} (Game=2)`} name={<SMM2/>}/><Separator/>
+            <RealPath        path={`${simpleName} (Game=1&3DS)`} name={<SMM1And3DS/>}/><Separator/>
+            <RealPath        path={`${simpleName} (Game=1&2)`} name={<SMM1And2/>}/><Separator/>
+            <RealPath        path={`${simpleName} (Game=3DS&2)`} name={<SMM1And3DS/>}/><Separator/>
         </div>
     </div>
 }

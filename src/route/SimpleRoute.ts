@@ -12,7 +12,8 @@ import type {RouteCallback} from 'route/EveryRoutes.types'
  *
  * @see EveryRoutes
  */
-export class SimpleRoute {
+export class SimpleRoute<const NAME extends string = string,
+    const PATH extends string = string, > {
 
     //region -------------------- Fields --------------------
 
@@ -26,7 +27,7 @@ export class SimpleRoute {
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    public constructor(name: string, path: string, games: NullOr<readonly Games[]>, gameStyles: NullOr<readonly GameStyles[]>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
+    public constructor(name: NAME, path: PATH, games: NullOr<readonly Games[]>, gameStyles: NullOr<readonly GameStyles[]>, viewDisplay: NullOr<ViewDisplays>, renderCallback: RouteCallback,) {
         this.#name = name
         this.#path = path
         this.#viewDisplay = viewDisplay
@@ -38,11 +39,11 @@ export class SimpleRoute {
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get name(): string {
+    public get name(): NAME {
         return this.#name
     }
 
-    public get path(): string {
+    public get path(): PATH {
         return this.#path
     }
 

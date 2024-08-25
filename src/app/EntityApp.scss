@@ -6,21 +6,10 @@
 }
 
 .cardListName-content-container, .simpleListName-content-container {
-  &.entityCategory-Terrain {
-    background-color: var(--entityCategory-terrain-bg-color);
-  }
-
-  &.entityCategory-Item {
-    background-color: var(--entityCategory-item-bg-color);
-  }
-
-  &.entityCategory-Enemy {
-    background-color: var(--entityCategory-ennemy-bg-color);
-  }
-
-  &.entityCategory-Gizmo {
-    background-color: var(--entityCategory-gizmo-bg-color);
-  }
+  &.entityCategory-Terrain { background-color: var(--entityCategory-terrain-bg-color) }
+  &.entityCategory-Item    { background-color: var(--entityCategory-item-bg-color) }
+  &.entityCategory-Enemy   { background-color: var(--entityCategory-ennemy-bg-color) }
+  &.entityCategory-Gizmo   { background-color: var(--entityCategory-gizmo-bg-color) }
 }
 
 #entity-table {
@@ -92,21 +81,10 @@
       min-height: .5cm;
     }
 
-    &[alt="Terrain"] {
-      filter: var(--filter-white-to-cyan);
-    }
-
-    &[alt="Item"] {
-      filter: var(--filter-white-to-pink);
-    }
-
-    &[alt="Enemy"] {
-      filter: var(--filter-white-to-green);
-    }
-
-    &[alt="Gizmo"] {
-      filter: var(--filter-white-to-yellow);
-    }
+    &[alt="Terrain"] { filter: var(--filter-white-to-cyan) }
+    &[alt="Item"]    { filter: var(--filter-white-to-pink) }
+    &[alt="Enemy"]   { filter: var(--filter-white-to-green) }
+    &[alt="Gizmo"]   { filter: var(--filter-white-to-yellow) }
 
   }
 
