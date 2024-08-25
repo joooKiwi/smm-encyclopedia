@@ -35,6 +35,8 @@ export class CommonOptions {
     //region -------------------- Fields --------------------
 
     #nameHeader?: SimpleReactHeader
+    #iconHeader?: SimpleReactHeader
+    #soundHeader?: SimpleReactHeader
     #smm1And3DSGameHeader?: SimpleImageHeader
     #smm2GameHeader?: SimpleImageHeader
     #gameHeader?: SimpleReactHeader
@@ -54,6 +56,15 @@ export class CommonOptions {
 
     public getNameContent(enumeration: EnumerationWithReference,): ReactElement {
         return <NameComponent id="name" name={enumeration.reference} popoverOrientation="left"/>
+    }
+
+
+    public get iconHeader(): SimpleReactHeader {
+        return this.#iconHeader ??= {key: 'icon', element: contentTranslation('Icon',),}
+    }
+
+    public get soundHeader(): SimpleReactHeader {
+        return this.#soundHeader ??= {key: 'sound', element: contentTranslation('Sound',),}
     }
 
 

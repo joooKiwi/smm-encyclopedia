@@ -4,6 +4,16 @@
     position: initial;
   }
 
-  .description-container .game-image { height: var(--bs-font-size-lg) }
+  .description-container .game-image {
+    height: var(--bs-font-size-lg)
+  }
 
+}
+
+#characterName-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell { &.name {} }
 }

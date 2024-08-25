@@ -8,3 +8,14 @@
   .description-container .theme-image, { height: var(--bs-font-size-lg) }
 
 }
+
+#editorVoice-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.name {}
+    &.editor-voice {}
+  }
+}

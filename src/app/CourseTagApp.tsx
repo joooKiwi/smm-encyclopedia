@@ -2,32 +2,33 @@ import './CourseTagApp.scss'
 
 import {Link} from 'react-router-dom'
 
-import type {CourseTagAppProperties}     from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {ClassWithType}              from 'core/ClassWithType'
-import type {CourseTags}                 from 'core/courseTag/CourseTags'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
-import type {ReactProperties}            from 'util/react/ReactProperties'
+import type {CourseTagAppProperties}  from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {ClassWithType}           from 'core/ClassWithType'
+import type {CourseTags}              from 'core/courseTag/CourseTags'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
+import {CourseTagAppOption}                         from 'app/options/CourseTagAppOption'
+import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
 import LinkButton                                   from 'app/tools/button/LinkButton'
-import {CourseTagTypes}                             from 'app/property/CourseTagTypes'
+import Table                                        from 'app/tools/table/Table'
+import LinkText                                     from 'app/tools/text/LinkText'
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
-import LinkText                                     from 'app/tools/text/LinkText'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {MAKER_CENTRAL_LEVEL_LINK}                   from 'external/MakerCentralLinks'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {assert}                                     from 'util/utilitiesMethods'
 
 class CourseTagAppInterpreter
-    implements AppInterpreterWithCardList<CourseTags>,
+    implements AppInterpreterWithTable<CourseTags>,
         ClassWithType<CourseTagTypes> {
 
     //region -------------------- Fields --------------------
@@ -69,19 +70,51 @@ class CourseTagAppInterpreter
         return this.createListDimension()
     }
 
-    public createCardListContent({reference: courseTag, englishName: name,}: CourseTags,) {
-        return courseTag.firstAppearance == null ? null : <sub key={`${name} - first appearance`}>{courseTag.firstAppearance.simpleName}</sub>
+    public createCardListContent({reference, englishName: name,}: CourseTags,) {
+        return reference.firstAppearance == null ? null : <sub key={`${name} - first appearance`}>{reference.firstAppearance.simpleName}</sub>
         //TODO add Maker Central name
     }
 
     //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+
+    public get tableCaption() {
+        const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
+        const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
+        const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
+        const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
+
+        return gameContentTranslation('course tag.all', {
+            course: course, courses: courses,
+            tag: tag, tags: tags,
+        },) satisfies ReactElementOrString
+    }
+
+    public get tableOptions(): readonly CourseTagAppOption[] {
+        return [CourseTagAppOption.NAME, CourseTagAppOption.FIRST_APPEARANCE,]
+    }
+
+
+    public getAdditionalClass(option: CourseTagAppOption,) {
+        return option.additionalClasses
+    }
+
+    public createTableContent(content: CourseTags, option: CourseTagAppOption,) {
+        return option.renderContent(content,)
+    }
+
+    public createTableHeader(option: CourseTagAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table interpreter --------------------
 
 }
 
 /** @reactComponent */
 export default function CourseTagApp({viewDisplay, type,}: CourseTagAppProperties,) {
-    assert(viewDisplay !== ViewDisplays.TABLE, 'The CourseTagApp only handle the "simple list" or "card list" as a possible view display.',)
-
     const course = OtherWordInTheGames.COURSE.singularLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.singularEnglishName,).toLowerCase()
     const courses = OtherWordInTheGames.COURSE.pluralLowerCaseNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.COURSE.pluralEnglishName,).toLowerCase()
     const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
@@ -90,6 +123,7 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
     const viewDisplayAndRouteName = [
         [ViewDisplays.SIMPLE_LIST, `${type.routeName} (list)`,],
         [ViewDisplays.CARD_LIST, `${type.routeName} (card)`,],
+        [ViewDisplays.TABLE, `${type.routeName} (table)`,],
     ] as const satisfies readonly ViewAndRouteName[]
 
     return <SubMainContainer reactKey="courseTag" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
@@ -104,12 +138,14 @@ export default function CourseTagApp({viewDisplay, type,}: CourseTagAppPropertie
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, type,}:CourseTagAppProperties,) {
+function SubContent({viewDisplay, type,}: CourseTagAppProperties,) {
     const appInterpreter = new CourseTagAppInterpreter(type,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="courseTag" interpreter={appInterpreter}/>
-    return <CardList reactKey="courseTag" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="courseTag" interpreter={appInterpreter}/>
+    return <Table id="courseTag-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------
@@ -130,13 +166,14 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
     const tag = OtherWordInTheGames.TAG.singularLowerCaseNameOnReference
     const tags = OtherWordInTheGames.TAG.pluralLowerCaseNameOnReference
 
-    const officialLink = type === CourseTagTypes.OFFICIAL ? null : viewDisplay.getRoutePathAsListOnly(type.officialRouteName,)
-    const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : viewDisplay.getRoutePathAsListOnly(type.unofficialRouteName,)
-    const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName,)
+    const officialLink = type === CourseTagTypes.OFFICIAL ? null : viewDisplay.getRoutePath(type.officialRouteName,)
+    const unofficialLink = type === CourseTagTypes.UNOFFICIAL ? null : viewDisplay.getRoutePath(type.unofficialRouteName,)
+    const makerCentralLink = type === CourseTagTypes.MAKER_CENTRAL ? null : viewDisplay.getRoutePath(type.makerCentralRouteName,)
 
     const routeName = type.routeName
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : `${routeName} (list)` satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : `${routeName} (card)` satisfies PossibleRouteName
+    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : `${routeName} (table)` satisfies PossibleRouteName
 
     return <>
         <p>
@@ -148,7 +185,7 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
                 MakerCentralLink: <Link key="Maker Central link" to={MAKER_CENTRAL_LEVEL_LINK} id="makerCentralLink" className="link-primary fw-bold">Maker Central</Link>,
                 course: course, courses: courses,
                 tag: tag, tags: tags,
-                smm2Image: <GameImage reference={Games.SUPER_MARIO_MAKER_2}/>,
+                smm2Image: <GameImage key="smm2 image" reference={Games.SUPER_MARIO_MAKER_2}/>,
             },)}
             {gameContentTranslation('course tag.description.intro references', {
                 course: course, courses: courses,
@@ -163,6 +200,7 @@ function CourseTagDescription({viewDisplay, type,}: CourseTagDescriptionProperti
             listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
             cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
             cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
         },)}</p>
     </>
 }
@@ -182,12 +220,12 @@ interface CourseTagAsideContentProperties
 /** @reactComponent */
 function CourseTagAsideContent({viewDisplay, type,}: CourseTagAsideContentProperties,) {
     return <div id="courseTag-linkButtons-container" className="btn-group-vertical btn-group-sm">
-        <LinkButton partialId="everyCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
+        <LinkButton partialId="everyCourseTag" routeName={viewDisplay.getRoutePath(type.allRouteName,)} color={type.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="courseTag-linkButton-officialAndUnofficial-container" className="btn-group btn-group-sm">
-            <LinkButton partialId="officialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.officialRouteName,)} color={type.officialColor}>{contentTranslation('Official.singular',)}</LinkButton>
-            <LinkButton partialId="unofficialCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.unofficialRouteName,)} color={type.unofficialColor}>{contentTranslation('Unofficial.singular',)}</LinkButton>
+            <LinkButton partialId="officialCourseTag" routeName={viewDisplay.getRoutePath(type.officialRouteName,)} color={type.officialColor}>{contentTranslation('Official.singular',)}</LinkButton>
+            <LinkButton partialId="unofficialCourseTag" routeName={viewDisplay.getRoutePath(type.unofficialRouteName,)} color={type.unofficialColor}>{contentTranslation('Unofficial.singular',)}</LinkButton>
         </div>
-        <LinkButton partialId="makerCentralCourseTag" routeName={viewDisplay.getRoutePathAsListOnly(type.makerCentralRouteName,)} color={type.makerCentralColor}>Maker Central</LinkButton>
+        <LinkButton partialId="makerCentralCourseTag" routeName={viewDisplay.getRoutePath(type.makerCentralRouteName,)} color={type.makerCentralColor}>Maker Central</LinkButton>
     </div>
 }
 

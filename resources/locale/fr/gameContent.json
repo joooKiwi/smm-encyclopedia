@@ -27,7 +27,7 @@
 
 
 
-      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
     }
   },
   "editor voice": {
@@ -44,7 +44,7 @@
       "intro characters" : "Il y en a d'autres qui ne sont qu'applicable au personnages. ",
       "intro variants":    "Il y a au travers de ces derniers des variant d'une même {{entityLink}} dans l'{{underwaterLink}} ou en tant qu'un {{europeanVariantLink}}.",
 
-      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}} ou des {{cardsLink}}."
+      "viewable": "Le contenu peut être vu en tant qu'une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
     }
   },
   "entity": {
@@ -117,7 +117,7 @@
       "intro page":     "Sur cette page, tous les instruments sont présent dans les jeux ({{smm1Link}}, {{smm3dsLink}} ou {{smm2Link}}). ",
       "intro variants": "Et quelques instruments dans {{smm2Link}} sont les mêmes que dans {{smm1Link}} / {{smm3dsLink}}.",
 
-      "viewable": "Le contenu peut être vu comme une {{listLink}} ou des {{cardsLink}}."
+      "viewable": "Le contenu peut être vu comme une {{listLink}}, des {{cardsLink}} ou un {{tableLink}}."
     }
   },
   "limit": {
@@ -185,9 +185,6 @@
     "display all": "Afficher toutes les catégories de {{singularName}}"
   },
   "music": {
-    "singular": "Musique",
-    "plural":   "Musiques",
-
     "all":         "Toutes les musiques",
     "display all": "Afficher toutes les musiques"
   },

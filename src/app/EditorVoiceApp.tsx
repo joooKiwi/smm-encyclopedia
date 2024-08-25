@@ -1,16 +1,17 @@
 import 'app/_GameAsideContent.scss'
 import './EditorVoiceApp.scss'
 
-import type {EditorVoiceProperties}      from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {GameCollection}             from 'util/collection/GameCollection'
-import type {ReactProperties}            from 'util/react/ReactProperties'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
+import type {EditorVoiceProperties}   from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {GameCollection}          from 'util/collection/GameCollection'
+import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {EditorVoiceGames}                           from 'app/property/EditorVoiceGames'
+import Table                                        from 'app/tools/table/Table'
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
@@ -23,13 +24,14 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import ThemeImage                                   from 'core/theme/ThemeImage'
 import {Themes}                                     from 'core/theme/Themes'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {assert, filterGame, intersect}              from 'util/utilitiesMethods'
+import {filterGame, intersect}                      from 'util/utilitiesMethods'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import {EditorVoiceAppOption}                       from 'app/options/EditorVoiceAppOption'
 
 class EditorVoiceAppInterpreter
-    implements AppInterpreterWithCardList<EditorVoices> {
+    implements AppInterpreterWithTable<EditorVoices, EditorVoiceAppOption> {
 
     //region -------------------- Fields --------------------
 
@@ -73,12 +75,36 @@ class EditorVoiceAppInterpreter
     }
 
     //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('editor voice.all',) satisfies ReactElementOrString
+
+    public get tableOptions(): readonly EditorVoiceAppOption[] {
+        return [EditorVoiceAppOption.NAME, EditorVoiceAppOption.EDITOR_VOICE,]
+    }
+
+
+    public getAdditionalClass(option: EditorVoiceAppOption,) {
+        return option.additionalClasses
+    }
+
+    public createTableContent(content: EditorVoices, option: EditorVoiceAppOption,) {
+        return option.renderContent(content,)
+    }
+
+    public createTableHeader(option: EditorVoiceAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table interpreter --------------------
 
 }
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEditorVoice (list)',],
     [ViewDisplays.CARD_LIST, 'everyEditorVoice (card)',],
+    [ViewDisplays.TABLE, 'everyEditorVoice (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
 
 const GamePossibilities = Games.Possibilities.get
@@ -89,7 +115,6 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
 export default function EditorVoiceApp({viewDisplay, games,}: EditorVoiceProperties,) {
-    assert(viewDisplay !== ViewDisplays.TABLE, 'The EditorVoiceApp only handle the "simple list" or "card list" as a possible view display.',)
     const game = intersect(allGames, games,).length === 3
         ? EditorVoiceGames.ALL_GAMES
         : games.hasSMM2
@@ -112,7 +137,9 @@ function SubContent({viewDisplay, games,}: EditorVoiceProperties,) {
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="editorVoice" interpreter={appInterpreter}/>
-    return <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="editorVoice" interpreter={appInterpreter}/>
+    return <Table id="editorVoice-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------
@@ -136,6 +163,7 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyEditorVoice (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyEditorVoice (card)' satisfies PossibleRouteName
+    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyEditorVoice (table)' satisfies PossibleRouteName
 
     return <>
         <p>
@@ -154,7 +182,8 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
                 //TODO change the underwater link to a different link
                 //TODO change the european link to a different link
                 entityLink: <LinkText key="entityLink" partialId="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
-                underwaterLink: <LinkText key="underwaterLink" partialId="underwaterEntityLink" routeName="everyEntity" color="primary"><ThemeImage reference={Themes.UNDERWATER} isSmallPath/></LinkText>,
+                underwaterLink: <LinkText key="underwaterLink" partialId="underwaterEntityLink" routeName="everyEntity" color="primary"><ThemeImage reference={Themes.UNDERWATER}
+                                                                                                                                                    isSmallPath/></LinkText>,
                 europeanVariantLink: <LinkText key="europeanVariantLink" partialId="europeanEntityLink" routeName="everyEntity" color="primary">{contentTranslation('variant.European',)}</LinkText>,
             },)}
         </p>
@@ -162,6 +191,7 @@ function EditorVoiceDescription({viewDisplay, game,}: EditorVoiceDescriptionProp
             listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
             cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
             cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
         },)}</p>
     </>
 }

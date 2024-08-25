@@ -22,3 +22,20 @@
     background-color: var(--entityCategory-gizmo-bg-color);
   }
 }
+
+#entityCategory-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.icon img {
+      &[alt="Terrain"] { filter: var(--filter-white-to-cyan) }
+      &[alt="Item"]    { filter: var(--filter-white-to-pink) }
+      &[alt="Enemy"]   { filter: var(--filter-white-to-green) }
+      &[alt="Gizmo"]   { filter: var(--filter-white-to-yellow) }
+    }
+
+    &.name {}
+  }
+}

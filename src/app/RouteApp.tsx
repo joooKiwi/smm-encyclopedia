@@ -18,26 +18,28 @@ export default function RouteApp() {
         <UniqueSection id="about-paths" target="about-linkPaths" name="About" path="about"/>
         <UniqueSection id="sources-paths" target="sources-linkPaths" name="Sources" path="sources"/>
 
+        <UniqueSection id="musics-paths" target="musics-linkPaths" name="Musics" path="everyMusic"/>
+
         <ListCardTableAllGameAllGameStyleSection partialId="entity" name="Entity" route={EveryRoutes.EVERY_ENTITY}/>
 
-        <ListCardSection partialId="characterName" name="Character name" route={EveryRoutes.EVERY_CHARACTER_NAME}/>
+        <AnyGameSection partialId="characterName" name="Character name" route={EveryRoutes.EVERY_CHARACTER_NAME}/>
         <EmptySection id="clearCondition-paths" name="Clear condition"/>
         <EmptySection id="clearConditionCategory-paths" name="Clear condition category"/>
         <ListCardTableAllGameSection partialId="limit" name="Limit" names={['Play', 'Editor',]} routes={[EveryRoutes.EVERY_LIMIT, EveryRoutes.EVERY_EDITOR_LIMIT, EveryRoutes.EVERY_PLAY_LIMIT,]}/>
         <EmptySection id="projectile-paths" name="Projectile"/>
         <EmptySection id="object-paths" name="Object"/>
-        <SimpleListCardSMM2Section partialId="entityCategory" name="Entity category" route={EveryRoutes.EVERY_ENTITY_CATEGORY}/>
+        <OnlySmm2Section partialId="entityCategory" name="Entity category" route={EveryRoutes.EVERY_ENTITY_CATEGORY}/>
         <EmptySection id="entityGroup-paths" name="Entity group"/>
 
         <ListCardTableAllGameSection partialId="theme" name="Theme" names={['Course', 'World',]} routes={[EveryRoutes.EVERY_THEME, EveryRoutes.EVERY_COURSE_THEME, EveryRoutes.EVERY_WORLD_THEME,]}/>
         <EmptySection id="time-paths" name="Time"/>
 
-        <SimpleAllGamesSection partialId="gameReference" name="Game reference" route={EveryRoutes.EVERY_GAME_REFERENCE}/>
-        <ListCardTableSection partialId="gameStyle" name="Game style" route={EveryRoutes.EVERY_GAME_STYLE}/>
+        <AllGamesSection partialId="gameReference" name="Game reference" route={EveryRoutes.EVERY_GAME_REFERENCE}/>
+        <AnyGameSection partialId="gameStyle" name="Game style" route={EveryRoutes.EVERY_GAME_STYLE}/>
         <EmptySection id="entityBehaviour-paths" name="Entity behaviour"/>
 
         <ListCardTableAllGameAllGameStyleSection partialId="soundEffect" name="Sound effect" route={EveryRoutes.EVERY_SOUND_EFFECT}/>
-        <SimpleListCardSMM2Section partialId="soundEffectCategory" name="Sound effect category" route={EveryRoutes.EVERY_SOUND_EFFECT_CATEGORY}/>
+        <OnlySmm2Section partialId="soundEffectCategory" name="Sound effect category" route={EveryRoutes.EVERY_SOUND_EFFECT_CATEGORY}/>
 
         <div id="courseTag-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
             <SectionTitle name="Course tag" target="courseTag-linkPaths" route={EveryRoutes.EVERY_COURSE_TAG} multiplyBy={4}/>
@@ -92,21 +94,21 @@ export default function RouteApp() {
                 </div>
             </div>
         </div>
-        <SimpleListSMM2Section partialId="predefinedMessage" name="Predefined message" route={EveryRoutes.EVERY_PREDEFINED_MESSAGE}/>
-        <SimpleListCardTableSMM1Section partialId="sampleCourse" name="Sample course" route={EveryRoutes.EVERY_SAMPLE_COURSE}/>
-        <SimpleListCardSMM1Section partialId="medal" name="Medal" route={EveryRoutes.EVERY_MEDAL}/>
+        <OnlySmm2Section partialId="predefinedMessage" name="Predefined message" route={EveryRoutes.EVERY_PREDEFINED_MESSAGE}/>
+        <OnlySmm1Section partialId="sampleCourse" name="Sample course" route={EveryRoutes.EVERY_SAMPLE_COURSE}/>
+        <OnlySmm1Section partialId="medal" name="Medal" route={EveryRoutes.EVERY_MEDAL}/>
         <EmptySection id="superMarioChallengeLevel-paths" name="Super Mario Challenges level"/>
         <EmptySection id="job-paths" name="Job"/>
         <EmptySection id="officialNotification-paths" name="Official notification"/>
         <EmptySection id="ninjiSpeedrun-paths" name="Ninji speedrun"/>
 
-        <SimpleListCardTableSMM1Section partialId="mysteryMushroom" name="Mystery mushroom" route={EveryRoutes.EVERY_MYSTERY_MUSHROOM}/>
-        <SimpleListCardTableSMM1Section partialId="officialCourse" name="Official course" route={EveryRoutes.EVERY_OFFICIAL_COURSE}/>
-        <SimpleListCardTableSMM2Section partialId="miiCostume" name="Mii costume" route={EveryRoutes.EVERY_MII_COSTUME}/>
-        <SimpleListCardSMM2Section partialId="miiCostumeCategory" name="Mii costume category" route={EveryRoutes.EVERY_MII_COSTUME_CATEGORY}/>
+        <OnlySmm1Section partialId="mysteryMushroom" name="Mystery mushroom" route={EveryRoutes.EVERY_MYSTERY_MUSHROOM}/>
+        <AnyGameSection partialId="officialCourse" name="Official course" route={EveryRoutes.EVERY_OFFICIAL_COURSE}/>
+        <OnlySmm2Section partialId="miiCostume" name="Mii costume" route={EveryRoutes.EVERY_MII_COSTUME}/>
+        <OnlySmm2Section partialId="miiCostumeCategory" name="Mii costume category" route={EveryRoutes.EVERY_MII_COSTUME_CATEGORY}/>
 
-        <ListCardSection partialId="editorVoice" name="Editor voice" route={EveryRoutes.EVERY_EDITOR_VOICE}/>
-        <ListCardSection partialId="instrument" name="Instrument" route={EveryRoutes.EVERY_INSTRUMENT}/>
+        <AnyGameSection partialId="editorVoice" name="Editor voice" route={EveryRoutes.EVERY_EDITOR_VOICE}/>
+        <AnyGameSection partialId="instrument" name="Instrument" route={EveryRoutes.EVERY_INSTRUMENT}/>
         <div id="powerUpRideHatPriority-paths" className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
             <SectionTitle name="Power-up/ride/hat priority" target="powerUpRideHatPriority-linkPaths" route={EveryRoutes.EVERY_POWER_UP_RIDE_AND_HAT_PRIORITY} multiplyBy={8}/>
             <div id="powerUpRideHatPriority-linkPaths" className="row row-cols-auto justify-content-center collapse">
@@ -2416,53 +2418,7 @@ interface FilledSectionProperties<out ROUTE extends Names, >
 }
 
 
-function ListCardSection({partialId, name, route,}: FilledSectionProperties<| 'EVERY_CHARACTER_NAME' | 'EVERY_EDITOR_VOICE' | 'EVERY_INSTRUMENT'>,) {
-    const simpleName = route.simpleName
-    const linkPaths = `${partialId}-linkPaths`
-
-    return <div id={`${partialId}-paths`} className="container-lg bg-dark-subtle rounded pt-1 pb-3 mb-3">
-        <SectionTitle name={name} target={linkPaths} route={route}/>
-        <div id={linkPaths} className="row row-cols-auto justify-content-center collapse">
-            <div>
-                <PathFromDefault         path={simpleName} name="Default"/><Separator/>
-                <PathFromViewDisplay  path={`${simpleName} (list)`} name="List"/><Separator/>
-                <PathFromViewDisplay  path={`${simpleName} (card)`} name="Card"/><Separator/>
-                <PathFromGame         path={`${simpleName} (Game=all)`} name="All game"/><Separator/>
-                <PathFromGame         path={`${simpleName} (Game=1)`} name={<SMM1/>}/><Separator/>
-                <PathFromGame         path={`${simpleName} (Game=3DS)`} name={<SMM3DS/>}/><Separator/>
-                <PathFromGame         path={`${simpleName} (Game=2)`} name={<SMM2/>}/><Separator/>
-                <PathFromGame         path={`${simpleName} (Game=1&3DS)`} name={<SMM1And3DS/>}/><Separator/>
-                <PathFromGame         path={`${simpleName} (Game=1&2)`} name={<SMM1And2/>}/><Separator/>
-                <PathFromGame         path={`${simpleName} (Game=3DS&2)`} name={<SMM3DSAnd2/>}/>
-            </div>
-            <div className="w-100"/>
-
-            <div>
-                <span>List: </span>
-                <RealPath path={`${simpleName} (list Game=all)`} name="All game"/><Separator/>
-                <RealPath path={`${simpleName} (list Game=1)`} name={<SMM1/>}/><Separator/>
-                <RealPath path={`${simpleName} (list Game=3DS)`} name={<SMM3DS/>}/><Separator/>
-                <RealPath path={`${simpleName} (list Game=2)`} name={<SMM2/>}/><Separator/>
-                <RealPath path={`${simpleName} (list Game=1&3DS)`} name={<SMM1And3DS/>}/><Separator/>
-                <RealPath path={`${simpleName} (list Game=1&2)`} name={<SMM1And2/>}/><Separator/>
-                <RealPath path={`${simpleName} (list Game=3DS&2)`} name={<SMM3DSAnd2/>}/>
-            </div>
-            <div className="w-100"/>
-            <div>
-                <span>Card: </span>
-                <RealPath path={`${simpleName} (card Game=all)`} name="All game"/><Separator/>
-                <RealPath path={`${simpleName} (card Game=1)`} name={<SMM1/>}/><Separator/>
-                <RealPath path={`${simpleName} (card Game=3DS)`} name={<SMM3DS/>}/><Separator/>
-                <RealPath path={`${simpleName} (card Game=2)`} name={<SMM2/>}/><Separator/>
-                <RealPath path={`${simpleName} (card Game=1&3DS)`} name={<SMM1And3DS/>}/><Separator/>
-                <RealPath path={`${simpleName} (card Game=1&2)`} name={<SMM1And2/>}/><Separator/>
-                <RealPath path={`${simpleName} (card Game=3DS&2)`} name={<SMM3DSAnd2/>}/>
-            </div>
-        </div>
-    </div>
-}
-
-function ListCardTableSection({partialId, name, route,}: FilledSectionProperties<'EVERY_GAME_STYLE'>,) {
+function AnyGameSection({partialId, name, route,}: FilledSectionProperties<| 'EVERY_CHARACTER_NAME' | 'EVERY_GAME_STYLE' | 'EVERY_OFFICIAL_COURSE' | 'EVERY_INSTRUMENT' | 'EVERY_EDITOR_VOICE'>,) {
     const simpleName = route.simpleName
     const linkPaths = `${partialId}-linkPaths`
 
@@ -2521,56 +2477,7 @@ function ListCardTableSection({partialId, name, route,}: FilledSectionProperties
 }
 
 
-function SimpleListSMM2Section({partialId, name, route,}: FilledSectionProperties<'EVERY_PREDEFINED_MESSAGE'>,) {
-    const simpleName = route.simpleName
-    const linkPaths = `${partialId}-linkPaths`
-
-    return <div id={`${partialId}-paths`} className="container-lg text-center bg-dark-subtle rounded pt-1 pb-3 mb-3">
-        <SectionTitle name={name} target={linkPaths} route={route}/>
-        <div id={linkPaths} className="collapse">
-            <PathFromDefault         path={simpleName} name="Default"/><Separator/>
-            <PathFromViewDisplay  path={`${simpleName} (list)`} name="List"/><Separator/>
-            <PathFromGame         path={`${simpleName} (Game=2)`} name={<SMM2/>}/><Separator/>
-            <RealPath             path={`${simpleName} (list Game=2)`} name={<>List + <SMM2/></>}/>
-        </div>
-    </div>
-}
-
-function SimpleListCardSMM1Section({partialId, name, route,}: FilledSectionProperties<'EVERY_MEDAL'>,) {
-    const simpleName = route.simpleName
-    const linkPaths = `${partialId}-linkPaths`
-
-    return <div id={`${partialId}-paths`} className="container-lg text-center bg-dark-subtle rounded pt-1 pb-3 mb-3">
-        <SectionTitle name={name} target={linkPaths} route={route}/>
-        <div id={linkPaths} className="collapse">
-            <PathFromDefault         path={simpleName} name="Default"/><Separator/>
-            <PathFromViewDisplay  path={`${simpleName} (list)`} name="List"/><Separator/>
-            <PathFromViewDisplay  path={`${simpleName} (card)`} name="Card"/><Separator/>
-            <PathFromGame         path={`${simpleName} (Game=1)`} name={<SMM1/>}/><Separator/>
-            <RealPath             path={`${simpleName} (list Game=1)`} name={<>List + <SMM1/></>}/><Separator/>
-            <RealPath             path={`${simpleName} (card Game=1)`} name={<>Card + <SMM1/></>}/>
-        </div>
-    </div>
-}
-
-function SimpleListCardSMM2Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_ENTITY_CATEGORY' | 'EVERY_SOUND_EFFECT_CATEGORY' | 'EVERY_MII_COSTUME_CATEGORY'>,) {
-    const simpleName = route.simpleName
-    const linkPaths = `${partialId}-linkPaths`
-
-    return <div id={`${partialId}-paths`} className="container-lg text-center bg-dark-subtle rounded pt-1 pb-3 mb-3">
-        <SectionTitle name={name} target={linkPaths} route={route}/>
-        <div id={linkPaths} className="collapse">
-            <PathFromDefault         path={simpleName} name="Default"/><Separator/>
-            <PathFromViewDisplay  path={`${simpleName} (list)`} name="List"/><Separator/>
-            <PathFromViewDisplay  path={`${simpleName} (card)`} name="Card"/><Separator/>
-            <PathFromGame         path={`${simpleName} (Game=2)`} name={<SMM2/>}/><Separator/>
-            <RealPath             path={`${simpleName} (list Game=2)`} name={<>List + <SMM2/></>}/><Separator/>
-            <RealPath             path={`${simpleName} (card Game=2)`} name={<>Card + <SMM2/></>}/>
-        </div>
-    </div>
-}
-
-function SimpleListCardTableSMM1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM' | 'EVERY_OFFICIAL_COURSE'>,) {
+function OnlySmm1Section({partialId, name, route,}: FilledSectionProperties<| 'EVERY_SAMPLE_COURSE' | 'EVERY_MYSTERY_MUSHROOM' | 'EVERY_MEDAL'>,) {
     const simpleName = route.simpleName
     const linkPaths = `${partialId}-linkPaths`
 
@@ -2589,7 +2496,7 @@ function SimpleListCardTableSMM1Section({partialId, name, route,}: FilledSection
     </div>
 }
 
-function SimpleListCardTableSMM2Section({partialId, name, route,}: FilledSectionProperties<'EVERY_MII_COSTUME'>,) {
+function OnlySmm2Section({partialId, name, route,}: FilledSectionProperties<|'EVERY_ENTITY_CATEGORY' | 'EVERY_SOUND_EFFECT_CATEGORY' | 'EVERY_MII_COSTUME' | 'EVERY_MII_COSTUME_CATEGORY' | 'EVERY_PREDEFINED_MESSAGE'>,) {
     const simpleName = route.simpleName
     const linkPaths = `${partialId}-linkPaths`
 
@@ -2608,7 +2515,7 @@ function SimpleListCardTableSMM2Section({partialId, name, route,}: FilledSection
     </div>
 }
 
-function SimpleAllGamesSection({partialId, name, route,}: FilledSectionProperties<'EVERY_GAME_REFERENCE'>,) {
+function AllGamesSection({partialId, name, route,}: FilledSectionProperties<'EVERY_GAME_REFERENCE'>,) {
     const simpleName = route.simpleName
     const linkPaths = `${partialId}-linkPaths`
 

@@ -1,21 +1,22 @@
 import './SoundEffectCategoryApp.scss'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
+import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 
-import SubMainContainer         from 'app/_SubMainContainer'
-import Image                    from 'app/tools/images/Image'
-import CardList                 from 'app/withInterpreter/CardList'
-import SimpleList               from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
-import {SoundEffectCategories}  from 'core/soundEffectCategory/SoundEffectCategories'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-import {assert}                 from 'util/utilitiesMethods'
+import SubMainContainer               from 'app/_SubMainContainer'
+import {SoundEffectCategoryAppOption} from 'app/options/SoundEffectCategoryAppOption'
+import Image                          from 'app/tools/images/Image'
+import CardList                       from 'app/withInterpreter/CardList'
+import SimpleList                     from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}                 from 'app/withInterpreter/ViewDisplays'
+import Table                          from 'app/tools/table/Table'
+import {SoundEffectCategories}        from 'core/soundEffectCategory/SoundEffectCategories'
+import {gameContentTranslation}       from 'lang/components/translationMethods'
 
 class SoundEffectCategoryAppInterpreter
-    implements AppInterpreterWithCardList<SoundEffectCategories> {
+    implements AppInterpreterWithTable<SoundEffectCategories, SoundEffectCategoryAppOption> {
 
     public get content() {
         return SoundEffectCategories.CompanionEnum.get.values.toArray()
@@ -44,19 +45,41 @@ class SoundEffectCategoryAppInterpreter
     }
 
     //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('sound effect category.all',) satisfies ReactElementOrString
+
+    public get tableOptions(): readonly SoundEffectCategoryAppOption[] {
+        return [SoundEffectCategoryAppOption.ICON, SoundEffectCategoryAppOption.NAME,]
+    }
+
+
+    public getAdditionalClass(option: SoundEffectCategoryAppOption,) {
+        return option.additionalClasses
+    }
+
+    public createTableContent(content: SoundEffectCategories, option: SoundEffectCategoryAppOption,) {
+        return option.renderContent(content,)
+    }
+
+    public createTableHeader(option: SoundEffectCategoryAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table interpreter --------------------
 
 }
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everySoundEffectCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everySoundEffectCategory (card)',],
+    [ViewDisplays.TABLE, 'everySoundEffectCategory (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
 const appInterpreter = new SoundEffectCategoryAppInterpreter()
 
 /** @reactComponent */
 export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    assert(viewDisplay !== ViewDisplays.TABLE, 'The SoundEffectCategoryApp only handle the "simple list" or "card list" as a possible view display.',)
-
     return <SubMainContainer reactKey="soundEffectCategory" viewDisplayAndRouteName={viewDisplayAndRouteName} viewDisplay={viewDisplay}
                              titleContent={gameContentTranslation('sound effect category.all',)}>
         <SubContent viewDisplay={viewDisplay}/>
@@ -67,5 +90,7 @@ export default function SoundEffectCategoryApp({viewDisplay,}: AppWithInterprete
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
-    return <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="soundEffectCategory" interpreter={appInterpreter}/>
+    return <Table id="soundEffectCategory-table" interpreter={appInterpreter}/>
 }

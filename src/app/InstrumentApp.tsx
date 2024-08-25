@@ -1,16 +1,18 @@
 import 'app/_GameAsideContent.scss'
 import './InstrumentApp.scss'
 
-import type {InstrumentAppProperties}    from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {GameCollection}             from 'util/collection/GameCollection'
-import type {ReactProperties}            from 'util/react/ReactProperties'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
+import type {InstrumentAppProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {GameCollection}          from 'util/collection/GameCollection'
+import type {ReactProperties}         from 'util/react/ReactProperties'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
 import {InstrumentGames}                            from 'app/property/InstrumentGames'
+import Table                                        from 'app/tools/table/Table'
+import {InstrumentAppOption}                        from 'app/options/InstrumentAppOption'
 import CardList                                     from 'app/withInterpreter/CardList'
 import SimpleList                                   from 'app/withInterpreter/SimpleList'
 import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
@@ -20,12 +22,12 @@ import TextOrLink                                   from 'app/tools/text/TextOrL
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {Instruments}                                from 'core/instrument/Instruments'
+import InstrumentSound                              from 'core/instrument/component/InstrumentSound'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import SimpleSoundComponent                         from 'util/file/sound/component/SimpleSound.component'
-import {assert, filterGame}                         from 'util/utilitiesMethods'
+import {filterGame}                                 from 'util/utilitiesMethods'
 
 class InstrumentAppInterpreter
-    implements AppInterpreterWithCardList<Instruments> {
+    implements AppInterpreterWithTable<Instruments, InstrumentAppOption> {
 
     //region -------------------- Fields --------------------
 
@@ -64,21 +66,42 @@ class InstrumentAppInterpreter
     }
 
     public createCardListContent(enumerable: Instruments,) {
-        const name = enumerable.name
-        const englishName = enumerable.englishName
-
-        return <div className="instrument-sounds">{enumerable.sounds.map((sound, index,) =>
-            <SimpleSoundComponent key={`instrument sounds #${index} (${englishName})`} file={sound} title={`${name} (instrument #${index})`}/>
-        )}</div>
+        return <div className="instrument-sounds">
+            <InstrumentSound value={enumerable}/>
+        </div>
     }
 
     //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('instrument.all',) satisfies ReactElementOrString
+
+    public get tableOptions(): readonly InstrumentAppOption[] {
+        return [InstrumentAppOption.NAME, InstrumentAppOption.SOUND,]
+    }
+
+
+    public getAdditionalClass(option: InstrumentAppOption,) {
+        return option.additionalClasses
+    }
+
+    public createTableContent(content: Instruments, option: InstrumentAppOption,) {
+        return option.renderContent(content,)
+    }
+
+    public createTableHeader(option: InstrumentAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table interpreter --------------------
 
 }
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyInstrument (list)',],
     [ViewDisplays.CARD_LIST, 'everyInstrument (card)',],
+    [ViewDisplays.TABLE, 'everyInstrument (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
 
 const smm1 = Games.SUPER_MARIO_MAKER_1
@@ -87,7 +110,6 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
 export default function InstrumentApp({viewDisplay, games,}: InstrumentAppProperties,) {
-    assert(viewDisplay !== ViewDisplays.TABLE, 'The InstrumentApp only handle the "simple list" or "card list" as a possible view display.',)
     const game = games.hasSMM2
         ? InstrumentGames.SUPER_MARIO_MAKER_2
         : games.hasSMM1
@@ -108,7 +130,9 @@ function SubContent({viewDisplay, games,}: InstrumentAppProperties,) {
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="instrument" interpreter={appInterpreter}/>
-    return <CardList reactKey="instrument" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="instrument" interpreter={appInterpreter}/>
+    return <Table id="instrument-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------
@@ -130,6 +154,7 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
 
     const listLink = viewDisplay === ViewDisplays.SIMPLE_LIST ? null : 'everyInstrument (list)' satisfies PossibleRouteName
     const cardLink = viewDisplay === ViewDisplays.CARD_LIST ? null : 'everyInstrument (card)' satisfies PossibleRouteName
+    const tableLink = viewDisplay === ViewDisplays.TABLE ? null : 'everyInstrument (table)' satisfies PossibleRouteName
 
     return <>
         <p>
@@ -148,6 +173,7 @@ function InstrumentDescription({viewDisplay, game,}: InstrumentDescriptionProper
             listLink: <LinkText key="listLink" partialId="listLink" routeName={listLink} color="primary">{contentTranslation('view type.list.singular',).toLowerCase()}</LinkText>,
             cardLink: <LinkText key="cardLink" partialId="cardLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.singular',).toLowerCase()}</LinkText>,
             cardsLink: <LinkText key="cardsLink" partialId="cardsLink" routeName={cardLink} color="primary">{contentTranslation('view type.card.plural',).toLowerCase()}</LinkText>,
+            tableLink: <LinkText key="tableLink" partialId="tableLink" routeName={tableLink} color="primary">{contentTranslation('view type.table.singular',).toLowerCase()}</LinkText>,
         },)}</p>
     </>
 }

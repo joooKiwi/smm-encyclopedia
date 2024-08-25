@@ -1,23 +1,24 @@
 import './EntityCategoryApp.scss'
 
 import type {AppWithInterpreterProperties} from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList}   from 'app/interpreter/AppInterpreterWithCardList'
+import type {AppInterpreterWithTable}      from 'app/interpreter/AppInterpreterWithTable'
 import type {DimensionOnList}              from 'app/interpreter/DimensionOnList'
 import type {ViewAndRouteName}             from 'app/withInterpreter/DisplayButtonGroup.properties'
 
-import SubMainContainer         from 'app/_SubMainContainer'
-import Image                    from 'app/tools/images/Image'
-import {unfinishedText}         from 'app/tools/text/UnfinishedText'
-import CardList                 from 'app/withInterpreter/CardList'
-import SimpleList               from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}           from 'app/withInterpreter/ViewDisplays'
-import {EntityCategories}       from 'core/entityCategory/EntityCategories'
-import {OtherWordInTheGames}    from 'core/otherWordInTheGame/OtherWordInTheGames'
-import {gameContentTranslation} from 'lang/components/translationMethods'
-import {assert}                 from 'util/utilitiesMethods'
+import SubMainContainer          from 'app/_SubMainContainer'
+import {EntityCategoryAppOption} from 'app/options/EntityCategoryAppOption'
+import Image                     from 'app/tools/images/Image'
+import Table                     from 'app/tools/table/Table'
+import {unfinishedText}          from 'app/tools/text/UnfinishedText'
+import CardList                  from 'app/withInterpreter/CardList'
+import SimpleList                from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}            from 'app/withInterpreter/ViewDisplays'
+import {EntityCategories}        from 'core/entityCategory/EntityCategories'
+import {OtherWordInTheGames}     from 'core/otherWordInTheGame/OtherWordInTheGames'
+import {gameContentTranslation}  from 'lang/components/translationMethods'
 
 class EntityCategoryAppInterpreter
-    implements AppInterpreterWithCardList<EntityCategories> {
+    implements AppInterpreterWithTable<EntityCategories, EntityCategoryAppOption> {
 
     public get content() {
         return EntityCategories.CompanionEnum.get.values.toArray()
@@ -45,19 +46,47 @@ class EntityCategoryAppInterpreter
     }
 
     //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+
+    public get tableCaption() {
+        const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
+        const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
+
+        return gameContentTranslation('entity category.all', {Entity: entity, entity: entityAsLowerCase,},) satisfies ReactElementOrString
+    }
+
+    public get tableOptions(): readonly EntityCategoryAppOption[] {
+        return [EntityCategoryAppOption.ICON, EntityCategoryAppOption.NAME,]
+    }
+
+
+    public getAdditionalClass(option: EntityCategoryAppOption,) {
+        return option.additionalClasses
+    }
+
+    public createTableContent(content: EntityCategories, option: EntityCategoryAppOption,) {
+        return option.renderContent(content,)
+    }
+
+    public createTableHeader(option: EntityCategoryAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table interpreter --------------------
 
 }
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyEntityCategory (list)',],
     [ViewDisplays.CARD_LIST, 'everyEntityCategory (card)',],
+    [ViewDisplays.TABLE, 'everyEntityCategory (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
 const appInterpreter = new EntityCategoryAppInterpreter()
 
 /** @reactComponent */
 export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProperties,) {
-    assert(viewDisplay !== ViewDisplays.TABLE, 'The EntityCategoryApp only handle the "simple list" or "card list" as a possible view display.',)
-
     const entity = OtherWordInTheGames.ENTITY.singularNameOnReferenceOrNull ?? unfinishedText(OtherWordInTheGames.ENTITY.singularEnglishName,)
     const entityAsLowerCase = OtherWordInTheGames.ENTITY.singularLowerCaseNameOnReferenceOrNull ?? entity.toLowerCase()
 
@@ -72,5 +101,7 @@ export default function EntityCategoryApp({viewDisplay,}: AppWithInterpreterProp
 function SubContent({viewDisplay,}: AppWithInterpreterProperties,) {
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="entityCategory" interpreter={appInterpreter}/>
-    return <CardList reactKey="entityCategory" interpreter={appInterpreter}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="entityCategory" interpreter={appInterpreter}/>
+    return <Table id="entityCategory-table" interpreter={appInterpreter}/>
 }

@@ -32,7 +32,7 @@ export abstract class ThemeAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'icon', element: unfinishedText('Icon'),}
+            return CommonOptions.get.iconHeader
         }
 
     }()

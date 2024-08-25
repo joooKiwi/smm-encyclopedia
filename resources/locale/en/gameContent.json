@@ -27,7 +27,7 @@
       "intro page (makerCentral)": "On this page, all of the {{MakerCentralLink}} {{course}} {{tags}} are only used in {{smm2Image}}. ",
       "intro references":          "These are used to represent {{courses}} that are {{officialLink}}, {{unofficialLink}} or in {{MakerCentralLink}}.",
 
-      "viewable": "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
+      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
     }
   },
   "editor voice": {
@@ -44,7 +44,7 @@
       "intro characters" : "Some that are only applicable to the characters. ",
       "intro variants":    "There might be variant of a same {{entityLink}} in the {{underwaterLink}} or as an {{europeanVariantLink}}.",
 
-      "viewable": "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
+      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
     }
   },
   "entity": {
@@ -117,7 +117,7 @@
       "intro page":     "On this page, all of the instruments are present in the games ({{smm1Link}}, {{smm3dsLink}} or {{smm2Link}}). ",
       "intro variants": "And some instruments in {{smm2Link}} are the same as in {{smm1Link}} / {{smm3dsLink}}.",
 
-      "viewable": "The content can be viewed as either a {{listLink}} or a {{cardLink}}."
+      "viewable": "The content can be viewed as either a {{listLink}}, a {{cardLink}} or a {{tableLink}}."
     }
   },
   "limit": {
@@ -185,9 +185,6 @@
     "display all": "Display every {{singularName}} category"
   },
   "music": {
-    "singular": "Music",
-    "plural":   "Musics",
-
     "all":         "Every music",
     "display all": "Display every music"
   },

@@ -10,3 +10,14 @@
   .cardListName-content-container { color: rgba(var(--bs-dark-rgb), 50%,) }
 
 }
+
+#courseTag-table {
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  .tcell {
+    &.name {}
+    &.first-appearance {}
+  }
+}

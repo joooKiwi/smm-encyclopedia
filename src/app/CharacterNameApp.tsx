@@ -1,33 +1,35 @@
 import 'app/_GameAsideContent.scss'
 import './CharacterNameApp.scss'
 
-import type {CharacterNameProperties}    from 'app/AppProperties.types'
-import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
-import type {DimensionOnList}            from 'app/interpreter/DimensionOnList'
-import type {ViewAndRouteName}           from 'app/withInterpreter/DisplayButtonGroup.properties'
-import type {PossibleRouteName}          from 'route/EveryRoutes.types'
-import type {GameCollection}             from 'util/collection/GameCollection'
-import type {ReactProperties}            from 'util/react/ReactProperties'
+import type {CharacterNameProperties} from 'app/AppProperties.types'
+import type {AppInterpreterWithTable} from 'app/interpreter/AppInterpreterWithTable'
+import type {DimensionOnList}         from 'app/interpreter/DimensionOnList'
+import type {ViewAndRouteName}        from 'app/withInterpreter/DisplayButtonGroup.properties'
+import type {PossibleRouteName}       from 'route/EveryRoutes.types'
+import type {GameCollection}          from 'util/collection/GameCollection'
+import type {ReactProperties}         from 'util/react/ReactProperties'
 
 import SubMainContainer                             from 'app/_SubMainContainer'
+import {CharacterNameAppOption}                     from 'app/options/CharacterNameAppOption'
 import {CharacterNameGames}                         from 'app/property/CharacterNameGames'
-import CardList                                     from 'app/withInterpreter/CardList'
-import SimpleList                                   from 'app/withInterpreter/SimpleList'
-import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import LinkButton                                   from 'app/tools/button/LinkButton'
+import Table                                        from 'app/tools/table/Table'
 import LinkText                                     from 'app/tools/text/LinkText'
 import TextOrLink                                   from 'app/tools/text/TextOrLink'
 import {unfinishedText}                             from 'app/tools/text/UnfinishedText'
+import CardList                                     from 'app/withInterpreter/CardList'
+import SimpleList                                   from 'app/withInterpreter/SimpleList'
+import {ViewDisplays}                               from 'app/withInterpreter/ViewDisplays'
 import {CharacterNames}                             from 'core/characterName/CharacterNames'
 import EditorVoiceSoundComponent                    from 'core/editorVoice/EditorVoiceSound.component'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
-import {assert, filterGame, intersect}              from 'util/utilitiesMethods'
+import {filterGame, intersect}                      from 'util/utilitiesMethods'
 
 class CharacterNameAppInterpreter
-    implements AppInterpreterWithCardList<CharacterNames> {
+    implements AppInterpreterWithTable<CharacterNames, CharacterNameAppOption> {
 
     //region -------------------- Fields --------------------
 
@@ -71,12 +73,36 @@ class CharacterNameAppInterpreter
     }
 
     //endregion -------------------- Card list interpreter --------------------
+    //region -------------------- Table interpreter --------------------
+
+    public readonly tableHeadersColor = 'info' satisfies BootstrapThemeColor
+    public readonly tableCaption = gameContentTranslation('character name.all',) satisfies ReactElementOrString
+
+    public get tableOptions(): readonly CharacterNameAppOption[] {
+        return [CharacterNameAppOption.NAME,]
+    }
+
+
+    public getAdditionalClass(option: CharacterNameAppOption,) {
+        return option.additionalClasses
+    }
+
+    public createTableContent(content: CharacterNames, option: CharacterNameAppOption,) {
+        return option.renderContent(content,)
+    }
+
+    public createTableHeader(option: CharacterNameAppOption,) {
+        return option.renderTableHeader()
+    }
+
+    //endregion -------------------- Table interpreter --------------------
 
 }
 
 const viewDisplayAndRouteName = [
     [ViewDisplays.SIMPLE_LIST, 'everyCharacterName (list)',],
     [ViewDisplays.CARD_LIST, 'everyCharacterName (card)',],
+    [ViewDisplays.TABLE, 'everyCharacterName (table)',],
 ] as const satisfies readonly ViewAndRouteName[]
 const keyRetriever: (characterName: CharacterNames,) => string = it => it.uniqueEnglishName
 
@@ -88,7 +114,6 @@ const smm2 = Games.SUPER_MARIO_MAKER_2
 
 /** @reactComponent */
 export default function CharacterNameApp({viewDisplay, games,}: CharacterNameProperties,) {
-    assert(viewDisplay !== ViewDisplays.TABLE, 'The CharacterNameApp only handle the "simple list" or "card list" as a possible view display.',)
     const game = intersect(allGames, games,).length === 3
         ? CharacterNameGames.ALL_GAMES
         : games.hasSMM2
@@ -106,12 +131,14 @@ export default function CharacterNameApp({viewDisplay, games,}: CharacterNamePro
 }
 
 /** @reactComponent */
-function SubContent({viewDisplay, games,}: CharacterNameProperties,){
+function SubContent({viewDisplay, games,}: CharacterNameProperties,) {
     const appInterpreter = new CharacterNameAppInterpreter(games,)
 
     if (viewDisplay === ViewDisplays.SIMPLE_LIST)
         return <SimpleList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
-    return <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    if (viewDisplay === ViewDisplays.CARD_LIST)
+        return <CardList reactKey="characterName" interpreter={appInterpreter} keyRetriever={keyRetriever}/>
+    return <Table id="characterName-table" interpreter={appInterpreter}/>
 }
 
 //region -------------------- Description content --------------------

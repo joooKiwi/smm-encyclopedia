@@ -7,7 +7,7 @@ import type {ClassWithType}                           from 'core/ClassWithType'
 import type {ClassUsedInRoute}                        from 'route/ClassUsedInRoute'
 import type {ClassWithIsCurrent}                      from 'util/enumerable/ClassWithIsCurrent'
 
-import {assert, getValueInUrl}                      from 'util/utilitiesMethods'
+import {getValueInUrl}                              from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEvent} from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEvent'
 
 /** @usedByTheRouting */
@@ -124,20 +124,7 @@ export abstract class ViewDisplays
      * @param path The nullable path to get its types
      */
     public getRoutePath<const PATH extends string, >(path: NullableString<PATH>,): NullOrString<PossibleRoutePath<PATH>> {
-        return path == null ? null : this._getRoutePath(path)
-    }
-
-    /**
-     * Get a route path with only the {@link ViewDisplays.SIMPLE_LIST} & {@link ViewDisplays.CARD_LIST}.
-     *
-     * @param path The nullable path to get its types
-     * @throws {AssertionError} (only in development) It is the {@link ViewDisplays.TABLE} calling it
-     */
-    public getRoutePathAsListOnly<const PATH extends string, >(path: NullableString<PATH>,): NullOr<PossibleListRoutePath<PATH>>
-    public getRoutePathAsListOnly(path: NullableString,) {
-        // @ts-ignore
-        assert(this !== ViewDisplays.TABLE, 'The view display cannot be retrieved for a list only (simple & card) display',)
-        return this.getRoutePath(path,)
+        return path == null ? null : this._getRoutePath(path,)
     }
 
     protected abstract _getRoutePath<const PATH extends string, >(path: PATH,): PossibleRoutePath<PATH>
@@ -148,5 +135,3 @@ export abstract class ViewDisplays
 
 type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card' | 'table'})`
 // type PossibleRoutePath<PATH extends string, > = `${PATH} (${| 'name' | 'list' | 'card' | 'table'})`//TODO add the name list
-
-type PossibleListRoutePath<PATH extends string, > = `${PATH} (${| 'list' | 'card'})`

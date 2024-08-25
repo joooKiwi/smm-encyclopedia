@@ -30,7 +30,7 @@ export abstract class GameStyleAppOption
         }
 
         protected override _createTableHeaderOption(): SingleHeaderContent {
-            return {key: 'icon', element: unfinishedText('Icon'),}
+            return CommonOptions.get.iconHeader
         }
 
     }()
