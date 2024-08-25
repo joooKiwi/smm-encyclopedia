@@ -56,7 +56,8 @@ export default function HomeApp() {
             <PageProgress progress="data in progress"                                                 exclusiveGame="SMM2"   content={unfinishedText('Clear condition',)}/>
             <PageProgress progress="data done"                                                        exclusiveGame="SMM2"   content={unfinishedText('Clear condition category',)}/>
             <PageProgress progress="completed"                   link="everyLimit"                                           content={gameContentTranslation('limit.singular',)}/>
-            <PageProgress progress="data in progress"                                                                        content={unfinishedText('Projectile',)}/>
+            <PageProgress progress="data done"                                                                               content={unfinishedText('Projectile',)}/>
+            <PageProgress progress="data done"                                                                               content={unfinishedText('Playable character',)}/>
             <PageProgress progress="data in progress"                                                                        content={unfinishedText('Object',)}/>
             <PageProgress progress="completed"                   link="everyEntityCategory"                                  content={gameContentTranslation('entity category.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
             <PageProgress progress="data in progress"                                                                        content={gameContentTranslation('entity group.singular', {Entity: entity, entity: entityAsLowerCase,},)}/>
