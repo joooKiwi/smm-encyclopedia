@@ -56,7 +56,7 @@ function TableHeader({children: [additionalClasses, headers,],}: SimpleReactProp
     const columns = new Array<ReactJSXElement>(size,)
     let index = size
     while (index-- > 0) {
-        const it = headers[index]
+        const it = headers[index]!
         const elementId = `${getHeaderKey(it,)}-header`
         columns[index] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[index]}`}>
             <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
@@ -71,7 +71,7 @@ function TableContent({children: [additionalClasses, contents,],}: SimpleReactPr
     const tableContent = new Array<ReactJSXElement>(size1,)
     let index1 = size1
     while (index1-- > 0) {
-        const content = contents[index1]
+        const content = contents[index1]!
         const rowContentKey = content[0]
         const size2 = content.length
         const rowContent = new Array<ReactJSXElement>(size2 - 1,)
@@ -95,7 +95,7 @@ function TableFooter({children: [additionalClasses, headers,],}: SimpleReactProp
     const columns = new Array<ReactJSXElement>(size,)
     let index = size
     while (index-- > 0) {
-        const it = headers[index]
+        const it = headers[index]!
         const elementId = `${getHeaderKey(it,)}-footer`
         columns[index] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[index]}`}>
             <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
@@ -163,7 +163,7 @@ function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTabl
     const additionalClasses = new Array<string>(size1,)
     let index1 = size1
     while (index1-- > 0) {
-        const additionalClass = getAdditionalClass(options[index1],)
+        const additionalClass = getAdditionalClass(options[index1]!,)
         if (additionalClass.length === 0) {
             additionalClasses[index1] = EMPTY_STRING
             continue
@@ -192,12 +192,12 @@ function retrieveContent({content, createTableContent,}: AppInterpreterWithTable
     const tableContents = new Array<SingleTableContent>(size1,)
     let index1 = size1
     while (index1-- > 0) {
-        const contentValue = content[index1]
+        const contentValue = content[index1]!
 
         const tableContent: SingleTableContent = [contentValue.englishName,]
         let index2 = -1
         while (++index2 < size2) {
-            const tableContentCreated = createTableContent(contentValue, options[index2],)
+            const tableContentCreated = createTableContent(contentValue, options[index2]!,)
             const size3 = tableContentCreated.length
             let index3 = -1
             while (++index3 < size3)
@@ -221,7 +221,7 @@ function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: 
     const size = options.length
     let index = -1
     while (++index < size) {
-        const tableHeader = createTableHeader(options[index],)
+        const tableHeader = createTableHeader(options[index]!,)
         if (tableHeader == null)
             continue
         headerContent.push(tableHeader,)

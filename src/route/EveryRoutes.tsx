@@ -289,7 +289,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
                 let index_gamePossibility = -1
                 while (++index_gamePossibility < 7) {
-                    const gamePossibility = gamePossibilities[index_gamePossibility]
+                    const gamePossibility = gamePossibilities[index_gamePossibility]!
                     const games = gamePossibility[0]
                     const gamesName = gamePossibility[1]
                     const gamesPath = gamePossibility[2]
@@ -298,7 +298,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
                     let index_gameStylePossibility = -1
                     while (++index_gameStylePossibility < gameStylePossibilitiesAmount) {
-                        const gameStylePossibility = gameStylePossibilities[index_gameStylePossibility]
+                        const gameStylePossibility = gameStylePossibilities[index_gameStylePossibility]!
                         const gameStyleName = gameStylePossibility[1]
                         const gameStylePath = gameStylePossibility[2]
                         routes[++index] = new SimpleRoute(`${simpleName} (${urlValue} ${gamesName} ${gameStyleName})`, `/${gamesPath}/${gameStylePath}/${urlValue}${simplePath}`, games, gameStylePossibility[0], viewDisplay, routeCallback,)
@@ -505,13 +505,13 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
             if (this.#everyRoute != null)
                 return this.#everyRoute
 
-            const routes = [] as SimpleRoute[]
+            const routes: SimpleRoute[] = []
             this.values.forEach(it => {
                 const valuesToAdd = it.everyRoute
                 const size = valuesToAdd.length
                 let index = -1
                 while (++index < size)
-                    routes.push(valuesToAdd[index],)
+                    routes.push(valuesToAdd[index]!,)
             },)
             return this.#everyRoute = routes
         }
@@ -545,7 +545,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                     const size2 = everyRoute.length
                     let index2 = -1
                     while (++index2 < size2) {
-                        const route = everyRoute[index2]
+                        const route = everyRoute[index2]!
                         if (route.name === name)
                             return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
                     }
@@ -557,7 +557,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
                     let index3 = -1
                     while (++index3 < size2) {
-                        const route = everyRoute[index3]
+                        const route = everyRoute[index3]!
                         if (route.path === pathToFind)
                             return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
                     }
@@ -578,7 +578,7 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
                     const size2 = everyRoute.length
                     let index2 = -1
                     while (++index2 < size2) {
-                        const route = everyRoute[index2]
+                        const route = everyRoute[index2]!
                         if (route.path === pathToFind)
                             return value.getPath(language, route.games, route.gameStyles, route.viewDisplay,)
                     }

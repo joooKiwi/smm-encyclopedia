@@ -193,7 +193,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
 
             //region -------------------- Possibilities from 1 to 5 arguments --------------------
 
-            const valuesFound = lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,)[0]
+            const valuesFound = lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,)[0]!
             const separatedValuesFound = valuesFound.split(this.NAME_ARGUMENT_SEPARATOR,)
             const amountOfValues = separatedValuesFound.length
 
