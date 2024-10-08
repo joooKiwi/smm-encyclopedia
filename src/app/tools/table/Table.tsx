@@ -1,6 +1,7 @@
 import './Table.scss'
 
 import type {Enumerable} from '@joookiwi/enumerable'
+import {filterNotNull}   from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}                                                         from 'app/interpreter/AppInterpreterWithTable'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
@@ -11,7 +12,7 @@ import Image             from 'app/tools/images/Image'
 import Tooltip           from 'bootstrap/tooltip/Tooltip'
 import {EMPTY_STRING}    from 'util/emptyVariables'
 import {StringContainer} from 'util/StringContainer'
-import {assert, nonNull} from 'util/utilitiesMethods'
+import {assert}          from 'util/utilitiesMethods'
 
 interface TableProperties
     extends ReactProperties {
@@ -34,7 +35,7 @@ interface TableProperties
  * @reactComponent
  */
 export default function Table({id, interpreter,}: TableProperties,) {
-    const options = nonNull(interpreter.tableOptions,)
+    const options = filterNotNull(interpreter.tableOptions,).toArray()
     const color = interpreter.tableColor
     const headersColor = interpreter.tableHeadersColor
     const caption = interpreter.tableCaption

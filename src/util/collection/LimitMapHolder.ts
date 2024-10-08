@@ -1,7 +1,8 @@
+import {filterNotNull} from '@joookiwi/collection'
+
 import type {Entity} from 'core/entity/Entity'
 
 import {Limits}  from 'core/limit/Limits'
-import {nonNull} from 'util/utilitiesMethods'
 
 export class LimitMapHolder<const out REFERENCE extends Entity, > {
 
@@ -33,8 +34,8 @@ export class LimitMapHolder<const out REFERENCE extends Entity, > {
      * @param values the values (null are ignored)
      */
     #newMap(...values: readonly Nullable<Limits>[]): ReadonlyMap<Limits, boolean> {
-        const newValues = nonNull(values,)
-        return new Map(Limits.CompanionEnum.get.values.map(limit => [limit, newValues.includes(limit,),],),)
+        const newValues = filterNotNull(values,)
+        return new Map(Limits.CompanionEnum.get.values.map(limit => [limit, newValues.has(limit,),],),)
     }
 
     public toLimitMap(): ReadonlyMap<Limits, boolean> {

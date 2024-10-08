@@ -1,5 +1,6 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
+import {has}                   from '@joookiwi/collection'
 import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                          from 'core/ClassWithAcronym'
@@ -12,11 +13,11 @@ import type {GameImageFile}                                                     
 import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import {gameImage}                                                                                   from 'core/game/file/fileCreator'
-import {StringContainer}                                                                             from 'util/StringContainer'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, has, intersect, isArrayEquals} from 'util/utilitiesMethods'
-import {EMPTY_ARRAY}                                                                                 from 'util/emptyVariables'
-import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                      from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {gameImage}                                                                              from 'core/game/file/fileCreator'
+import {StringContainer}                                                                        from 'util/StringContainer'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
+import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                 from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
 
 /** @usedByTheRouting */
 export abstract class Games

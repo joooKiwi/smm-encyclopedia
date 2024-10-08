@@ -1,3 +1,5 @@
+import {filterNotNull} from '@joookiwi/collection'
+
 import type {CanSurviveInTheLavaOrThePoison, PossibleLightSource, PossibleWeight}                                                                                                                                                                from 'core/entityTypes'
 import type {PossibleAcronym as PossibleAcronym_EntityBehaviour, PossibleTranslationKeys as PossibleTranslationKey_EntityBehaviour}                                                                                                              from 'core/behaviour/EntityBehaviours.types'
 import type {PossibleEnglishName as PossibleEnglishName_CharacterName, PossibleUniqueEnglishName as PossibleUniqueEnglishName_CharacterName}                                                                                                     from 'core/characterName/CharacterNames.types'
@@ -56,7 +58,6 @@ import {Themes}                from 'core/theme/Themes'
 import {Versions}              from 'core/version/Versions'
 import {CourseTags}            from 'core/courseTag/CourseTags'
 import {INFINITY}              from 'util/commonVariables'
-import {nonNull}               from 'util/utilitiesMethods'
 
 /**
  * @singleton
@@ -574,7 +575,7 @@ export class EveryTypes {
     //region -------------------- Other word in the game --------------------
 
     public get everyPossibleName_otherWordInTheGame() {
-        return this.#everyPossibleName_otherWordInTheGame ??= nonNull(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),)
+        return this.#everyPossibleName_otherWordInTheGame ??= filterNotNull(OtherWordInTheGames.CompanionEnum.get.values.map(it => [it.singularEnglishName, it.pluralEnglishName,],).toArray().flat(),).toArray()
     }
 
     public get everyPossibleSingularName_otherWordInTheGame() {
