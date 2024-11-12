@@ -9,7 +9,8 @@ import type {PowerUpPriorityTypes}                                              
 import type {ClassWithType}                                                                                                                                                            from 'core/ClassWithType'
 import type {ReactComponent}                                                                                                                                                           from 'util/react/ReactComponent'
 
-import {AbstractPowerUpPriority}                    from 'app/powerUp/priority/AbstractPowerUpPriority'
+import {GameStyleGroup}                             from 'app/powerUp/priority/GameStyleGroup'
+import {ImageCallbacks}                             from 'app/powerUp/priority/ImageCallbacks'
 import {AllGamesPowerUpPriority}                    from 'app/powerUp/priority/AllGamesPowerUpPriority'
 import {SMM1PowerUpPriority}                        from 'app/powerUp/priority/SMM1PowerUpPriority'
 import {SMM2PowerUpPriority}                        from 'app/powerUp/priority/SMM2PowerUpPriority'
@@ -28,9 +29,18 @@ import {GameStyles}                                 from 'core/gameStyle/GameSty
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 
+import SMB_AND_SMB3 =           GameStyleGroup.SMB_AND_SMB3
+import SMW_AND_NSMBU =          GameStyleGroup.SMW_AND_NSMBU
+import SMB_SMB3_AND_SMW =       GameStyleGroup.SMB_SMB3_AND_SMW
+import SMB_SMB3_SMW_AND_NSMBU = GameStyleGroup.SMB_SMB3_SMW_AND_NSMBU
+import EDITOR_IMAGE_CALLBACK =                                     ImageCallbacks.EDITOR_IMAGE_CALLBACK
+import FIRST_EDITOR_IMAGE_CALLBACK =                               ImageCallbacks.FIRST_EDITOR_IMAGE_CALLBACK
+import FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK = ImageCallbacks.FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK
+import FIRST_IN_GAME_IMAGE_CALLBACK =                              ImageCallbacks.FIRST_IN_GAME_IMAGE_CALLBACK
+import IN_GAME_IMAGE_CALLBACK =                                    ImageCallbacks.IN_GAME_IMAGE_CALLBACK
+
 //region -------------------- Import from deconstruction --------------------
 
-const {SMB_AND_SMB3, SMW_AND_NSMBU, SMB_SMB3_AND_SMW, SMB_SMB3_SMW_AND_NSMBU, EDITOR_IMAGE_CALLBACK, FIRST_EDITOR_IMAGE_CALLBACK, IN_GAME_IMAGE_CALLBACK, FIRST_IN_GAME_IMAGE_CALLBACK, FIRST_EDITOR_IN_NSMBU_AND_IN_GAME_IN_OTHER_IMAGE_CALLBACK,} = AbstractPowerUpPriority
 const {
     SUPER_MUSHROOM, FIRE_FLOWER, SUPERBALL_FLOWER,
     MYSTERY_MUSHROOM, WEIRD_MUSHROOM,
