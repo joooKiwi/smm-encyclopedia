@@ -163,17 +163,17 @@ export abstract class EntityImages
             const smwImageIndex = findFirstIndexByArray(images, it => it[1] === SMW,)
             if (size === smwImageIndex + 2) //without sm3dw
                 return new EditorImageContainer([
-                    images[0], images[1],
-                    images[smb3ImageIndex], images[smb3ImageIndex + 1],
-                    images[smwImageIndex],
-                    images[smwImageIndex + 1],//nsmbu
+                    images[0]!, images[1]!,
+                    images[smb3ImageIndex]!, images[smb3ImageIndex + 1]!,
+                    images[smwImageIndex]!,
+                    images[smwImageIndex + 1]!,//nsmbu
                 ],)
             return new EditorImageContainer([
-                images[0], images[1],
-                images[smb3ImageIndex], images[smb3ImageIndex + 1],
-                images[smwImageIndex],
-                images[smwImageIndex + 1],//nsmbu
-                images[smwImageIndex + 2],//sm3dw
+                images[0]!, images[1]!,
+                images[smb3ImageIndex]!, images[smb3ImageIndex + 1]!,
+                images[smwImageIndex]!,
+                images[smwImageIndex + 1]!,//nsmbu
+                images[smwImageIndex + 2]!,//sm3dw
             ],)
         }
 
@@ -189,10 +189,10 @@ export abstract class EntityImages
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['BRIDGE']['image']['images'][number]>,) {
             const images = image.imagesWithAssociation
             return new EditorImageContainer([
-                images[0], images[1], images[2], images[3], images[4],//smb
-                images[6], images[7], images[8],//smb3
-                images[9], images[10], images[11], images[12],//smw
-                images[15], images[16], images[17], images[18], images[19], images[20], images[21], images[22], images[23],//nsmbu
+                images[0]!, images[1]!, images[2]!, images[3]!, images[4]!,//smb
+                images[6]!, images[7]!, images[8]!,//smb3
+                images[9]!, images[10]!, images[11]!, images[12]!,//smw
+                images[15]!, images[16]!, images[17]!, images[18]!, images[19]!, images[20]!, images[21]!, images[22]!, images[23]!,//nsmbu
             ],)
         }
 
@@ -207,10 +207,10 @@ export abstract class EntityImages
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['BRICK_BLOCK']['image']['images'][number]>,) {
             const images = image.imagesWithAssociation
             return new EditorImageContainer([
-                images[0], images[1], images[2], images[3], images[5],//smb
-                images[6], images[7],//smb3
-                images[9],//smw
-                images[10],//nsmbu
+                images[0]!, images[1]!, images[2]!, images[3]!, images[5]!,//smb
+                images[6]!, images[7]!,//smb3
+                images[9]!,//smw
+                images[10]!,//nsmbu
             ],)
         }
 
@@ -223,7 +223,7 @@ export abstract class EntityImages
         public constructor() { super('Cristal Block', EditorEntityImages.CRISTAL_BLOCK,) }
 
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['CRISTAL_BLOCK']['image']['images'][number]>,) {
-            return new EditorImageContainer([image.imagesWithAssociation[0],],)
+            return new EditorImageContainer([image.imagesWithAssociation[0]!,],)
         }
 
     }
@@ -237,10 +237,10 @@ export abstract class EntityImages
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['HARD_BLOCK']['image']['images'][number]>,) {
             const images = image.imagesWithAssociation
             return new EditorImageContainer([
-                images[0], images[1], images[3], images[4], images[5], images[7],//smb
-                images[9], images[11],//smb3
-                images[12], images[13],//smw
-                images[16], images[17],//nsmbu
+                images[0]!, images[1]!, images[3]!, images[4]!, images[5]!, images[7]!,//smb
+                images[9]!, images[11]!,//smb3
+                images[12]!, images[13]!,//smw
+                images[16]!, images[17]!,//nsmbu
             ],)
         }
 
@@ -254,7 +254,7 @@ export abstract class EntityImages
 
         protected override _createImage(image: EditorImage<typeof EditorEntityImages['TREE']['image']['images'][number]>,) {
             const images = image.imagesWithAssociation
-            return new EditorImageContainer([images[0], images[1], images[2], images[3], images[4],],)
+            return new EditorImageContainer([images[0]!, images[1]!, images[2]!, images[3]!, images[4]!,],)
         }
 
     }
