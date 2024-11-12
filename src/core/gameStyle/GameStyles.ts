@@ -1,7 +1,7 @@
-import type {CollectionHolder} from '@joookiwi/collection'
-import {getFirstByArray, has}  from '@joookiwi/collection'
-import type {Singleton}        from '@joookiwi/enumerable'
-import {Enum}                  from '@joookiwi/enumerable'
+import type {CollectionHolder}                from '@joookiwi/collection'
+import type {Singleton}                       from '@joookiwi/enumerable'
+import {getFirstByArray, hasByArray, isArray} from '@joookiwi/collection'
+import {Enum}                                 from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                                                                                                  from 'core/ClassWithAcronym'
 import type {ClassWithEnglishName}                                                                                                                                                                              from 'core/ClassWithEnglishName'
@@ -16,15 +16,49 @@ import type {GameStyleProperty}                                                 
 import type {ClassUsedInRoute}                                                                                                                                                                                  from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                                                                                                from 'util/file/image/ClassWithImageFile'
 
-import {GameStyleLoader}                                                                        from 'core/gameStyle/GameStyle.loader'
-import {gameStyleImage}                                                                         from 'core/gameStyle/file/fileCreator'
-import {StringContainer}                                                                        from 'util/StringContainer'
-import {EMPTY_ARRAY}                                                                            from 'util/emptyVariables'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue, intersect, isArrayEquals} from 'util/utilitiesMethods'
-import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}                                 from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+import {GameStyleLoader}                                              from 'core/gameStyle/GameStyle.loader'
+import {GameStylePossibility}                                         from 'core/gameStyle/GameStyle.possibility'
+import {gameStyleImage}                                               from 'core/gameStyle/file/fileCreator'
+import {StringContainer}                                              from 'util/StringContainer'
+import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
+import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
+
+import ALL_GAME_STYLES =                   GameStylePossibility.ALL_GAME_STYLES
+import NOT_NSMBU =                         GameStylePossibility.NOT_NSMBU
+import NOT_SMB =                           GameStylePossibility.NOT_SMB
+import NOT_SMB3 =                          GameStylePossibility.NOT_SMB3
+import NOT_SMW =                           GameStylePossibility.NOT_SMW
+import NOT_SM3DW =                         GameStylePossibility.NOT_SM3DW
+import NSMBU_AND_SM3DW =                   GameStylePossibility.NSMBU_AND_SM3DW
+import NSMBU_ONLY =                        GameStylePossibility.NSMBU_ONLY
+import SMB_AND_NSMBU =                     GameStylePossibility.SMB_AND_NSMBU
+import SMB_AND_NSMBU_AND_SM3DW =           GameStylePossibility.SMB_AND_NSMBU_AND_SM3DW
+import SMB_AND_SMB3 =                      GameStylePossibility.SMB_AND_SMB3
+import SMB_AND_SMB3_AND_NSMBU =            GameStylePossibility.SMB_AND_SMB3_AND_NSMBU
+import SMB_AND_SMB3_AND_SMW =              GameStylePossibility.SMB_AND_SMB3_AND_SMW
+import SMB_AND_SMB3_AND_SM3DW =            GameStylePossibility.SMB_AND_SMB3_AND_SM3DW
+import SMB_AND_SMW =                       GameStylePossibility.SMB_AND_SMW
+import SMB_AND_SMW_AND_NSMBU =             GameStylePossibility.SMB_AND_SMW_AND_NSMBU
+import SMB_AND_SMW_AND_SM3DW =             GameStylePossibility.SMB_AND_SMW_AND_SM3DW
+import SMB_AND_SM3DW =                     GameStylePossibility.SMB_AND_SM3DW
+import SMB_ONLY =                          GameStylePossibility.SMB_ONLY
+import SMB3_AND_NSMBU =                    GameStylePossibility.SMB3_AND_NSMBU
+import SMB3_AND_NSMBU_AND_SM3DW =          GameStylePossibility.SMB3_AND_NSMBU_AND_SM3DW
+import SMB3_AND_SMW =                      GameStylePossibility.SMB3_AND_SMW
+import SMB3_AND_SMW_AND_NSMBU =            GameStylePossibility.SMB3_AND_SMW_AND_NSMBU
+import SMB3_AND_SMW_AND_SM3DW =            GameStylePossibility.SMB3_AND_SMW_AND_SM3DW
+import SMB3_AND_SM3DW =                    GameStylePossibility.SMB3_AND_SM3DW
+import SMB3_ONLY =                         GameStylePossibility.SMB3_ONLY
+import SMW_AND_NSMBU =                     GameStylePossibility.SMW_AND_NSMBU
+import SMW_AND_NSMBU_AND_SM3DW =           GameStylePossibility.SMW_AND_NSMBU_AND_SM3DW
+import SMW_AND_SM3DW =                     GameStylePossibility.SMW_AND_SM3DW
+import SMW_ONLY =                          GameStylePossibility.SMW_ONLY
+import SM3DW_ONLY =                        GameStylePossibility.SM3DW_ONLY
 
 /**
  * @recursiveReference<{@link GameStyleLoader}>
+ * @recursiveReference<{@link GameStylePossibility}>
  * @usedByTheRouting
  */
 export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = PossibleAcronym,
@@ -119,29 +153,6 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         //endregion -------------------- Singleton usage --------------------
         //region -------------------- Fields --------------------
 
-        public readonly ALL = GameStyles.Possibilities.get.ALL_GAME_STYLES
-
-        public get singleFields() {
-            return GameStyles.Possibilities.get.everySingleGameFields
-        }
-
-        public get doubleFields() {
-            return GameStyles.Possibilities.get.everyDoubleGameFields
-        }
-
-        public get tripleFields() {
-            return GameStyles.Possibilities.get.everyTripleGameFields
-        }
-
-        public get quadrupleFields() {
-            return GameStyles.Possibilities.get.everyQuadrupleGameFields
-        }
-
-        public get fields() {
-            return GameStyles.Possibilities.get.everyFields
-        }
-
-
         public readonly URL_NAME_SEPARATOR = '/'
         public readonly NAME_ARGUMENT_SEPARATOR = ','
 
@@ -178,208 +189,109 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
 
 
         public getValueInUrl(url: string,): readonly GameStyles[] {
-            //region -------------------- "all" possibility --------------------
-
             const lowerCasedUrl = url.toLowerCase()
-
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
-                return this.ALL
-
-            //endregion -------------------- "all" possibility --------------------
+                return ALL_GAME_STYLES
 
             const prefix = this.PREFIX
             if (!lowerCasedUrl.includes(prefix,))
                 return EMPTY_ARRAY
 
-            //region -------------------- Possibilities from 1 to 5 arguments --------------------
-
+            /** All the possible {@link GameStyles.urlValue} that could be found in the url */
             const valuesFound = getFirstByArray(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),)
-            const separatedValuesFound = valuesFound.split(this.NAME_ARGUMENT_SEPARATOR,)
-            const amountOfValues = separatedValuesFound.length
+            const withSmb = valuesFound.includes('smb',)
+            const withSmb3 = valuesFound.includes('smb3',)
+            const withSmw = valuesFound.includes('smw',)
+            const withNsmbu = valuesFound.includes('nsmbu',)
+            const withSm3dw = valuesFound.includes('sm3dw',)
 
-            if (amountOfValues === 1) {
-                if (valuesFound === 'smb')
-                    return GameStyles.Possibilities.get.SMB_ONLY
-                if (valuesFound === 'smb3')
-                    return GameStyles.Possibilities.get.SMB3_ONLY
-                if (valuesFound === 'smw')
-                    return GameStyles.Possibilities.get.SMW_ONLY
-                if (valuesFound === 'nsmbu')
-                    return GameStyles.Possibilities.get.NSMBU_ONLY
-                if (valuesFound === 'sm3dw')
-                    return GameStyles.Possibilities.get.SM3DW_ONLY
-
-                return EMPTY_ARRAY
+            if (withSmb) {
+                if (withSmb3) {
+                    if (withSmw) {
+                        if (withNsmbu) {
+                            if (withSm3dw)
+                                return ALL_GAME_STYLES
+                            return NOT_SM3DW
+                        }
+                        if (withSm3dw)
+                            return NOT_NSMBU
+                        return SMB_AND_SMB3_AND_SMW
+                    }
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return NOT_SMW
+                        return SMB_AND_SMB3_AND_NSMBU
+                    }
+                    if (withSm3dw)
+                        return SMB_AND_SMB3_AND_SM3DW
+                    return SMB_AND_SMB3
+                }
+                if (withSmw) {
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return NOT_SMB3
+                        return SMB_AND_SMW_AND_NSMBU
+                    }
+                    if (withSm3dw)
+                        return SMB_AND_SMW_AND_SM3DW
+                    return SMB_AND_SMW
+                }
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return SMB_AND_NSMBU_AND_SM3DW
+                    return SMB_AND_NSMBU
+                }
+                if (withSm3dw)
+                    return SMB_AND_SM3DW
+                return SMB_ONLY
             }
-
-            if (amountOfValues === 2) {
-                if (valuesFound === 'smb,smb')
-                    return GameStyles.Possibilities.get.SMB_ONLY
-                if (valuesFound === 'smb3,smb3')
-                    return GameStyles.Possibilities.get.SMB3_ONLY
-                if (valuesFound === 'smw,smw')
-                    return GameStyles.Possibilities.get.SMW_ONLY
-                if (valuesFound === 'nsmbu,nsmbu')
-                    return GameStyles.Possibilities.get.NSMBU_ONLY
-                if (valuesFound === 'sm3dw,sm3dw')
-                    return GameStyles.Possibilities.get.SM3DW_ONLY
-
-                if (valuesFound === 'smb,smb3' || valuesFound === 'smb3,smb')
-                    return GameStyles.Possibilities.get.SMB_AND_SMB3
-                if (valuesFound === 'smb,smw' || valuesFound === 'smw,smb')
-                    return GameStyles.Possibilities.get.SMB_AND_SMW
-                if (valuesFound === 'smb,nsmbu' || valuesFound === 'nsmbu,smb')
-                    return GameStyles.Possibilities.get.SMB_AND_NSMBU
-                if (valuesFound === 'smb,sm3dw' || valuesFound === 'sm3dw,smb')
-                    return GameStyles.Possibilities.get.SMB_AND_SM3DW
-                if (valuesFound === 'smb3,smw' || valuesFound === 'smw,smb3')
-                    return GameStyles.Possibilities.get.SMB3_AND_SMW
-                if (valuesFound === 'smb3,nsmbu' || valuesFound === 'nsmbu,smb3')
-                    return GameStyles.Possibilities.get.SMB3_AND_NSMBU
-                if (valuesFound === 'smb3,sm3dw' || valuesFound === 'sm3dw,smb3')
-                    return GameStyles.Possibilities.get.SMB3_AND_SM3DW
-                if (valuesFound === 'smw,nsmbu' || valuesFound === 'nsmbu,smw')
-                    return GameStyles.Possibilities.get.SMW_AND_NSMBU
-                if (valuesFound === 'smw,sm3dw' || valuesFound === 'sm3dw,smw')
-                    return GameStyles.Possibilities.get.SMW_AND_SM3DW
-                if (valuesFound === 'nsmbu,sm3dw' || valuesFound === 'sm3dw,nsmbu')
-                    return GameStyles.Possibilities.get.NSMBU_AND_SM3DW
-
-                return EMPTY_ARRAY
+            if (withSmb3) {
+                if (withSmw) {
+                    if (withNsmbu) {
+                        if (withSm3dw)
+                            return NOT_SMB
+                        return SMB3_AND_SMW_AND_NSMBU
+                    }
+                    if (withSm3dw)
+                        return SMB3_AND_SMW_AND_SM3DW
+                    return SMB3_AND_SMW
+                }
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return SMB3_AND_NSMBU_AND_SM3DW
+                    return SMB3_AND_NSMBU
+                }
+                if (withSm3dw)
+                    return SMB3_AND_SM3DW
+                return SMB3_ONLY
             }
-
-            if (amountOfValues === 3) {
-                if (valuesFound === 'smb,smb,smb')
-                    return GameStyles.Possibilities.get.SMB_ONLY
-                if (valuesFound === 'smb3,smb3,smb3')
-                    return GameStyles.Possibilities.get.SMB3_ONLY
-                if (valuesFound === 'smw,smw,smw')
-                    return GameStyles.Possibilities.get.SMW_ONLY
-                if (valuesFound === 'nsmbu,nsmbu,nsmbu')
-                    return GameStyles.Possibilities.get.NSMBU_ONLY
-                if (valuesFound === 'sm3dw,sm3dw,sm3dw')
-                    return GameStyles.Possibilities.get.SM3DW_ONLY
-
-                const tripleValuesFound = this.tripleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,)
-                    && separatedValuesFound.includes(it[2].urlValue,),)
-                if (tripleValuesFound != null)
-                    return tripleValuesFound
-
-                const doubleValuesFound = this.doubleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,),)
-                if (doubleValuesFound != null)
-                    return doubleValuesFound
-
-                return EMPTY_ARRAY
+            if (withSmw) {
+                if (withNsmbu) {
+                    if (withSm3dw)
+                        return SMW_AND_NSMBU_AND_SM3DW
+                    return SMW_AND_NSMBU
+                }
+                if (withSm3dw)
+                    return SMW_AND_SM3DW
+                return SMW_ONLY
             }
-
-            if (amountOfValues === 4) {
-                if (valuesFound === 'smb,smb,smb,smb')
-                    return GameStyles.Possibilities.get.SMB_ONLY
-                if (valuesFound === 'smb3,smb3,smb3,smb3')
-                    return GameStyles.Possibilities.get.SMB3_ONLY
-                if (valuesFound === 'smw,smw,smw,smw')
-                    return GameStyles.Possibilities.get.SMW_ONLY
-                if (valuesFound === 'nsmbu,nsmbu,nsmbu,nsmbu')
-                    return GameStyles.Possibilities.get.NSMBU_ONLY
-                if (valuesFound === 'sm3dw,sm3dw,sm3dw,sm3dw')
-                    return GameStyles.Possibilities.get.SM3DW_ONLY
-
-                const quadrupleValuesFound = this.quadrupleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,)
-                    && separatedValuesFound.includes(it[2].urlValue,)
-                    && separatedValuesFound.includes(it[3].urlValue,),)
-                if (quadrupleValuesFound != null)
-                    return quadrupleValuesFound
-
-                const tripleValuesFound = this.tripleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,)
-                    && separatedValuesFound.includes(it[2].urlValue,),)
-                if (tripleValuesFound != null)
-                    return tripleValuesFound
-
-                const doubleValuesFound = this.doubleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,),)
-                if (doubleValuesFound != null)
-                    return doubleValuesFound
-
-                return EMPTY_ARRAY
+            if (withNsmbu) {
+                if (withSm3dw)
+                    return NSMBU_AND_SM3DW
+                return NSMBU_ONLY
             }
-
-            if (amountOfValues === 5) {
-                const all = this.ALL
-                if (separatedValuesFound.includes(all[0].urlValue,)
-                    && separatedValuesFound.includes(all[1].urlValue,)
-                    && separatedValuesFound.includes(all[2].urlValue,)
-                    && separatedValuesFound.includes(all[3].urlValue,)
-                    && separatedValuesFound.includes(all[4].urlValue,))
-                    return all
-
-                if (valuesFound === 'smb,smb,smb,smb,smb')
-                    return GameStyles.Possibilities.get.SMB_ONLY
-                if (valuesFound === 'smb3,smb3,smb3,smb3,smb3')
-                    return GameStyles.Possibilities.get.SMB3_ONLY
-                if (valuesFound === 'smw,smw,smw,smw,smw')
-                    return GameStyles.Possibilities.get.SMW_ONLY
-                if (valuesFound === 'nsmbu,nsmbu,nsmbu,nsmbu,nsmbu')
-                    return GameStyles.Possibilities.get.NSMBU_ONLY
-                if (valuesFound === 'sm3dw,sm3dw,sm3dw,sm3dw,sm3dw')
-                    return GameStyles.Possibilities.get.SM3DW_ONLY
-
-                const quadrupleValuesFound = this.quadrupleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,)
-                    && separatedValuesFound.includes(it[2].urlValue,)
-                    && separatedValuesFound.includes(it[3].urlValue,),)
-                if (quadrupleValuesFound != null)
-                    return quadrupleValuesFound
-
-                const tripleValuesFound = this.tripleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,)
-                    && separatedValuesFound.includes(it[2].urlValue,),)
-                if (tripleValuesFound != null)
-                    return tripleValuesFound
-
-                const doubleValuesFound = this.doubleFields.find(it =>
-                    separatedValuesFound.includes(it[0].urlValue,)
-                    && separatedValuesFound.includes(it[1].urlValue,),)
-                if (doubleValuesFound != null)
-                    return doubleValuesFound
-
-                return EMPTY_ARRAY
-            }
-
-            //endregion -------------------- Possibilities from 1 to 5 arguments --------------------
-
-            if (!this.URL_REGEX.test(url,))
-                return EMPTY_ARRAY
-
-            //region -------------------- Valid possibilities from unknown amount of arguments --------------------
-
-            const valuesFoundAsGameStyle = new Array<GameStyles>(amountOfValues,)
-            let index = amountOfValues
-            while (index-- > 0)
-                valuesFoundAsGameStyle[index] = this.getValueByUrlValue(separatedValuesFound[index],)
-
-            const uniqueValuesFound = intersect(this.values, valuesFoundAsGameStyle,)
-            return this.fields.find(it => isArrayEquals(it, uniqueValuesFound,),)!
-
-            //endregion -------------------- Valid possibilities from unknown amount of arguments --------------------
+            if (withSm3dw)
+                return SM3DW_ONLY
+            return EMPTY_ARRAY
         }
 
         public getGroupUrlValue(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlValue {
-            const withSmb = has(gameStyles, GameStyles.SUPER_MARIO_BROS,)
-            const withSmb3 = has(gameStyles, GameStyles.SUPER_MARIO_BROS_3,)
-            const withSmw = has(gameStyles, GameStyles.SUPER_MARIO_WORLD,)
-            const withNsmbu = has(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,)
-            const withSm3dw = has(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,)
+            const isGameStylesArray = isArray(gameStyles,)
+            const withSmb = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS_3,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = isGameStylesArray ? hasByArray(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,) : gameStyles.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {
@@ -462,11 +374,12 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         }
 
         public getGroupUrlName(gameStyles: | readonly GameStyles[] | CollectionHolder<GameStyles>,): GroupUrlName {
-            const withSmb = has(gameStyles, GameStyles.SUPER_MARIO_BROS,)
-            const withSmb3 = has(gameStyles, GameStyles.SUPER_MARIO_BROS_3,)
-            const withSmw = has(gameStyles, GameStyles.SUPER_MARIO_WORLD,)
-            const withNsmbu = has(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,)
-            const withSm3dw = has(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,)
+            const isGameStylesArray = isArray(gameStyles,)
+            const withSmb = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS,)
+            const withSmb3 = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_BROS_3,) : gameStyles.has(GameStyles.SUPER_MARIO_BROS_3,)
+            const withSmw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_WORLD,)
+            const withNsmbu = isGameStylesArray ? hasByArray(gameStyles, GameStyles.NEW_SUPER_MARIO_BROS_U,) : gameStyles.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const withSm3dw = isGameStylesArray ? hasByArray(gameStyles, GameStyles.SUPER_MARIO_3D_WORLD,) : gameStyles.has(GameStyles.SUPER_MARIO_3D_WORLD,)
 
             if (withSmb) {
                 if (withSmb3) {
@@ -551,168 +464,6 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
     }
 
     //endregion -------------------- Companion enum --------------------
-    //region -------------------- Companion --------------------
-
-    public static readonly Possibilities = class Companion_Possibilities {
-
-        //region -------------------- Singleton usage --------------------
-
-        static #instance?: Companion_Possibilities
-
-        private constructor() {}
-
-        public static get get() {
-            return Companion_Possibilities.#instance ??= new Companion_Possibilities()
-        }
-
-        //endregion -------------------- Singleton usage --------------------
-        //region -------------------- Fields --------------------
-
-        #everySingleFields?: readonly (readonly [GameStyles,])[]
-        #everyDoubleFields?: readonly (readonly [GameStyles, GameStyles,])[]
-        #everyTripleFields?: readonly (readonly [GameStyles, GameStyles, GameStyles,])[]
-        #everyQuadrupleFields?: readonly (readonly [GameStyles, GameStyles, GameStyles, GameStyles,])[]
-        #everyFields?: readonly (readonly GameStyles[])[]
-
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} */
-        public readonly SMB_ONLY = [GameStyles.SUPER_MARIO_BROS,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
-        public readonly SMB3_ONLY = [GameStyles.SUPER_MARIO_BROS_3,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
-        public readonly SMW_ONLY = [GameStyles.SUPER_MARIO_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly NSMBU_ONLY = [GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SM3DW_ONLY = [GameStyles.SUPER_MARIO_3D_WORLD,] as const
-
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
-        public readonly SMB_AND_SMB3 = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.SUPER_MARIO_WORLD SMW} */
-        public readonly SMB_AND_SMW = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly SMB_AND_NSMBU = [GameStyles.SUPER_MARIO_BROS, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMB_AND_SM3DW = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_WORLD SMW} */
-        public readonly SMB3_AND_SMW = [GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly SMB3_AND_NSMBU = [GameStyles.SUPER_MARIO_BROS_3, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMB3_AND_SM3DW = [GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly SMW_AND_NSMBU = [GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMW_AND_SM3DW = [GameStyles.SUPER_MARIO_WORLD, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly NSMBU_AND_SM3DW = [GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_WORLD SMW} */
-        public readonly SMB_AND_SMB3_AND_SMW = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly SMB_AND_SMB3_AND_NSMBU = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMB_AND_SMB3_AND_SM3DW = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly SMB_AND_SMW_AND_NSMBU = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMB_AND_SMW_AND_SM3DW = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_WORLD, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMB_AND_NSMBU_AND_SM3DW = [GameStyles.SUPER_MARIO_BROS, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly SMB3_AND_SMW_AND_NSMBU = [GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}, {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMB3_AND_SMW_AND_SM3DW = [GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMB3_AND_NSMBU_AND_SM3DW = [GameStyles.SUPER_MARIO_BROS_3, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles with only {@link GameStyles.SUPER_MARIO_WORLD SMW}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly SMW_AND_NSMBU_AND_SM3DW = [GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-
-        /** An array representing the game styles excluding {@link GameStyles.SUPER_MARIO_BROS SMB} */
-        public readonly NOT_SMB = [GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles excluding {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
-        public readonly NOT_SMB3 = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles excluding {@link GameStyles.SUPER_MARIO_WORLD SMW} */
-        public readonly NOT_SMW = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles excluding {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} */
-        public readonly NOT_NSMBU = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-        /** An array representing the game styles excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} */
-        public readonly NOT_SM3DW = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,] as const
-
-        /**
-         * An array representing every game style
-         * ({@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3},
-         * {@link GameStyles.SUPER_MARIO_WORLD SMW}, {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} &
-         * {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW})
-         */
-        public readonly ALL_GAME_STYLES = [GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,] as const
-
-        //endregion -------------------- Fields --------------------
-        //region -------------------- Getter methods --------------------
-
-        /** Every single (1x) {@link Games} fields in the {@link Companion_Possibilities current instance} */
-        public get everySingleGameFields(): readonly (readonly [GameStyles,])[] {
-            return this.#everySingleFields ??= [this.SMB_ONLY, this.SMB3_ONLY, this.SMW_ONLY, this.NSMBU_ONLY, this.SM3DW_ONLY,]
-        }
-
-        /** Every double (2x) {@link Games} fields in the {@link Companion_Possibilities current instance} */
-        public get everyDoubleGameFields(): readonly (readonly [GameStyles, GameStyles,])[] {
-            return this.#everyDoubleFields ??= [
-                this.SMB_AND_SMB3, this.SMB_AND_SMW, this.SMB_AND_NSMBU, this.SMB_AND_SM3DW,
-                this.SMB3_AND_SMW, this.SMB3_AND_NSMBU, this.SMB3_AND_SM3DW,
-                this.SMW_AND_NSMBU, this.SMW_AND_SM3DW,
-                this.NSMBU_AND_SM3DW,
-            ]
-        }
-
-        /** Every triple (3x) {@link Games} fields in the {@link Companion_Possibilities current instance} */
-        public get everyTripleGameFields(): readonly (readonly [GameStyles, GameStyles, GameStyles,])[] {
-            return this.#everyTripleFields ??= [
-                this.SMB_AND_SMB3_AND_SMW, this.SMB_AND_SMB3_AND_NSMBU, this.SMB_AND_SMB3_AND_SM3DW,
-                this.SMB_AND_SMW_AND_NSMBU, this.SMB_AND_SMW_AND_SM3DW,
-                this.SMB_AND_NSMBU_AND_SM3DW,
-
-                this.SMB3_AND_SMW_AND_NSMBU, this.SMB3_AND_SMW_AND_SM3DW,
-                this.SMB3_AND_NSMBU_AND_SM3DW,
-
-                this.SMW_AND_NSMBU_AND_SM3DW,
-            ]
-        }
-
-        /** Every quadruple (4x) {@link Games} fields in the {@link Companion_Possibilities current instance} */
-        public get everyQuadrupleGameFields(): readonly (readonly [GameStyles, GameStyles, GameStyles, GameStyles,])[] {
-            return this.#everyQuadrupleFields ??= [this.NOT_SM3DW, this.NOT_NSMBU, this.NOT_SMW, this.NOT_SMB3, this.NOT_SMB,]
-        }
-
-        public get everyFields(): readonly (readonly GameStyles[])[] {
-            return this.#everyFields ??= [
-                this.ALL_GAME_STYLES,
-
-                this.SMB_ONLY, this.SMB3_ONLY, this.SMW_ONLY, this.NSMBU_ONLY, this.SM3DW_ONLY,
-
-                this.SMB_AND_SMB3, this.SMB_AND_SMW, this.SMB_AND_NSMBU, this.SMB_AND_SM3DW,
-                this.SMB3_AND_SMW, this.SMB3_AND_NSMBU, this.SMB3_AND_SM3DW,
-                this.SMW_AND_NSMBU, this.SMW_AND_SM3DW,
-                this.NSMBU_AND_SM3DW,
-
-
-                this.SMB_AND_SMB3_AND_SMW, this.SMB_AND_SMB3_AND_NSMBU, this.SMB_AND_SMB3_AND_SM3DW,
-                this.SMB_AND_SMW_AND_NSMBU, this.SMB_AND_SMW_AND_SM3DW,
-                this.SMB_AND_NSMBU_AND_SM3DW,
-
-                this.SMB3_AND_SMW_AND_NSMBU, this.SMB3_AND_SMW_AND_SM3DW,
-                this.SMB3_AND_NSMBU_AND_SM3DW,
-
-                this.SMW_AND_NSMBU_AND_SM3DW,
-
-                this.NOT_SM3DW, this.NOT_NSMBU, this.NOT_SMW, this.NOT_SMB3, this.NOT_SMB,
-            ]
-        }
-
-        //endregion -------------------- Getter methods --------------------
-
-    }
-
-    //endregion -------------------- Companion --------------------
     //region -------------------- Fields --------------------
 
     static #REFERENCE_MAP?: ReadonlyMap<PossibleEnglishName, GameStyle>

@@ -13,6 +13,7 @@ import {PowerUpPriorityTypes}      from 'app/property/PowerUpPriorityTypes'
 import {ThemeTypes}                from 'app/property/ThemeTypes'
 import {ViewDisplays}              from 'app/withInterpreter/ViewDisplays'
 import {Games}                     from 'core/game/Games'
+import {GameStylePossibility}      from 'core/gameStyle/GameStyle.possibility'
 import {GameStyles}                from 'core/gameStyle/GameStyles'
 import {ProjectLanguages}          from 'lang/ProjectLanguages'
 import {SimpleRoute}               from 'route/SimpleRoute'
@@ -20,6 +21,38 @@ import {EMPTY_ARRAY, EMPTY_STRING} from 'util/emptyVariables'
 import {GameCollection}            from 'util/collection/GameCollection'
 import {GameStyleCollection}       from 'util/collection/GameStyleCollection'
 import {ViewDisplayCollection}     from 'util/collection/ViewDisplayCollection'
+
+import ALL_GAME_STYLES =                   GameStylePossibility.ALL_GAME_STYLES
+import NOT_NSMBU =                         GameStylePossibility.NOT_NSMBU
+import NOT_SMB =                           GameStylePossibility.NOT_SMB
+import NOT_SMB3 =                          GameStylePossibility.NOT_SMB3
+import NOT_SMW =                           GameStylePossibility.NOT_SMW
+import NOT_SM3DW =                         GameStylePossibility.NOT_SM3DW
+import NSMBU_AND_SM3DW =                   GameStylePossibility.NSMBU_AND_SM3DW
+import NSMBU_ONLY =                        GameStylePossibility.NSMBU_ONLY
+import SMB_AND_NSMBU =                     GameStylePossibility.SMB_AND_NSMBU
+import SMB_AND_NSMBU_AND_SM3DW =           GameStylePossibility.SMB_AND_NSMBU_AND_SM3DW
+import SMB_AND_SMB3 =                      GameStylePossibility.SMB_AND_SMB3
+import SMB_AND_SMB3_AND_NSMBU =            GameStylePossibility.SMB_AND_SMB3_AND_NSMBU
+import SMB_AND_SMB3_AND_SMW =              GameStylePossibility.SMB_AND_SMB3_AND_SMW
+import SMB_AND_SMB3_AND_SM3DW =            GameStylePossibility.SMB_AND_SMB3_AND_SM3DW
+import SMB_AND_SMW =                       GameStylePossibility.SMB_AND_SMW
+import SMB_AND_SMW_AND_NSMBU =             GameStylePossibility.SMB_AND_SMW_AND_NSMBU
+import SMB_AND_SMW_AND_SM3DW =             GameStylePossibility.SMB_AND_SMW_AND_SM3DW
+import SMB_AND_SM3DW =                     GameStylePossibility.SMB_AND_SM3DW
+import SMB_ONLY =                          GameStylePossibility.SMB_ONLY
+import SMB3_AND_NSMBU =                    GameStylePossibility.SMB3_AND_NSMBU
+import SMB3_AND_NSMBU_AND_SM3DW =          GameStylePossibility.SMB3_AND_NSMBU_AND_SM3DW
+import SMB3_AND_SMW =                      GameStylePossibility.SMB3_AND_SMW
+import SMB3_AND_SMW_AND_NSMBU =            GameStylePossibility.SMB3_AND_SMW_AND_NSMBU
+import SMB3_AND_SMW_AND_SM3DW =            GameStylePossibility.SMB3_AND_SMW_AND_SM3DW
+import SMB3_AND_SM3DW =                    GameStylePossibility.SMB3_AND_SM3DW
+import SMB3_ONLY =                         GameStylePossibility.SMB3_ONLY
+import SMW_AND_NSMBU =                     GameStylePossibility.SMW_AND_NSMBU
+import SMW_AND_NSMBU_AND_SM3DW =           GameStylePossibility.SMW_AND_NSMBU_AND_SM3DW
+import SMW_AND_SM3DW =                     GameStylePossibility.SMW_AND_SM3DW
+import SMW_ONLY =                          GameStylePossibility.SMW_ONLY
+import SM3DW_ONLY =                        GameStylePossibility.SM3DW_ONLY
 
 //region -------------------- Dynamic imports --------------------
 
@@ -73,101 +106,66 @@ const SMM1_GAMES_COLLECTION = new GameCollection(SMM1_GAMES_ARRAY,)
 const SMM2_GAMES_COLLECTION = new GameCollection(SMM2_GAMES_ARRAY,)
 const ALL_GAMES_COLLECTION = new GameCollection(ALL_GAMES_ARRAY,)
 
-
-const GameStylePossibilities = GameStyles.Possibilities.get
-
-const SMB = GameStylePossibilities.SMB_ONLY
-const SMB_SMB3 = GameStylePossibilities.SMB_AND_SMB3
-const SMB_SMB3_SMW = GameStylePossibilities.SMB_AND_SMB3_AND_SMW
-const SMB_SMB3_SMW_NSMBU = GameStylePossibilities.NOT_SM3DW
-const SMB_SMB3_SMW_SM3DW = GameStylePossibilities.NOT_NSMBU
-const SMB_SMB3_NSMBU = GameStylePossibilities.SMB_AND_SMB3_AND_NSMBU
-const SMB_SMB3_NSMBU_SM3DW = GameStylePossibilities.NOT_SMW
-const SMB_SMB3_SM3DW = GameStylePossibilities.SMB_AND_SMB3_AND_SM3DW
-const SMB_SMW = GameStylePossibilities.SMB_AND_SMW
-const SMB_SMW_NSMBU = GameStylePossibilities.SMB_AND_SMW_AND_NSMBU
-const SMB_SMW_NSMBU_SM3DW = GameStylePossibilities.NOT_SMB3
-const SMB_SMW_SM3DW = GameStylePossibilities.SMB_AND_SMW_AND_SM3DW
-const SMB_NSMBU = GameStylePossibilities.SMB_AND_NSMBU
-const SMB_NSMBU_SM3DW = GameStylePossibilities.SMB_AND_NSMBU_AND_SM3DW
-const SMB_SM3DW = GameStylePossibilities.SMB_AND_SM3DW
-const SMB3 = GameStylePossibilities.SMB3_ONLY
-const SMB3_SMW = GameStylePossibilities.SMB3_AND_SMW
-const SMB3_SMW_NSMBU = GameStylePossibilities.SMB3_AND_SMW_AND_NSMBU
-const SMB3_SMW_NSMBU_SM3DW = GameStylePossibilities.NOT_SMB
-const SMB3_SMW_SM3DW = GameStylePossibilities.SMB3_AND_SMW_AND_SM3DW
-const SMB3_NSMBU = GameStylePossibilities.SMB3_AND_NSMBU
-const SMB3_NSMBU_SM3DW = GameStylePossibilities.SMB3_AND_NSMBU_AND_SM3DW
-const SMB3_SM3DW = GameStylePossibilities.SMB3_AND_SM3DW
-const SMW = GameStylePossibilities.SMW_ONLY
-const SMW_NSMBU = GameStylePossibilities.SMW_AND_NSMBU
-const SMW_NSMBU_SM3DW = GameStylePossibilities.SMW_AND_NSMBU_AND_SM3DW
-const SMW_SM3DW = GameStylePossibilities.SMW_AND_SM3DW
-const NSMBU = GameStylePossibilities.NSMBU_ONLY
-const NSMBU_SM3DW = GameStylePossibilities.NSMBU_AND_SM3DW
-const SM3DW = GameStylePossibilities.SM3DW_ONLY
-const ALL_GAME_STYLES = GameStylePossibilities.ALL_GAME_STYLES
-
 const NO_GAME_STYLES_COLLECTION = new GameStyleCollection(EMPTY_ARRAY,)
 const ALL_GAME_STYLES_COLLECTION = new GameStyleCollection(ALL_GAME_STYLES,)
 
 //region -------------------- Possibility group constants --------------------
 
-/** Every {@link GameStyles.Possibilities} applicable to the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game group */
+/** Every {@link GameStylePossibility} applicable to the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game group */
 const gameStylePossibilitiesWithSmm2 = [
-    [ALL_GAME_STYLES,      'GameStyle=all',       'game-style-all',],
-    [SMB,                  'GameStyle=1',         'game-style-1',],
-    [SMB3,                 'GameStyle=3',         'game-style-3',],
-    [SMW,                  'GameStyle=W',         'game-style-w',],
-    [NSMBU,                'GameStyle=U',         'game-style-u',],
-    [SM3DW,                'GameStyle=3DW',       'game-style-3dw',],
-    [SMB_SMB3,             'GameStyle=1&3',       'game-style-1,3',],
-    [SMB_SMW,              'GameStyle=1&W',       'game-style-1,w',],
-    [SMB_NSMBU,            'GameStyle=1&U',       'game-style-1,u',],
-    [SMB_SM3DW,            'GameStyle=1&3DW',     'game-style-1,3dw',],
-    [SMB3_SMW,             'GameStyle=3&W',       'game-style-3,w',],
-    [SMB3_NSMBU,           'GameStyle=3&U',       'game-style-3,u',],
-    [SMB3_SM3DW,           'GameStyle=3&3DW',     'game-style-3,3dw',],
-    [SMW_NSMBU,            'GameStyle=W&U',       'game-style-w,u',],
-    [SMW_SM3DW,            'GameStyle=W&3DW',     'game-style-w,3dw',],
-    [NSMBU_SM3DW,          'GameStyle=U&3DW',     'game-style-u,3dw',],
-    [SMB_SMB3_SMW,         'GameStyle=1&3&W',     'game-style-1,3,w',],
-    [SMB_SMB3_NSMBU,       'GameStyle=1&3&U',     'game-style-1,3,u',],
-    [SMB_SMB3_SM3DW,       'GameStyle=1&3&3DW',   'game-style-1,3,3dw',],
-    [SMB_SMW_NSMBU,        'GameStyle=1&W&U',     'game-style-1,w,u',],
-    [SMB_SMW_SM3DW,        'GameStyle=1&W&3DW',   'game-style-1,w,3dw',],
-    [SMB_NSMBU_SM3DW,      'GameStyle=1&U&3DW',   'game-style-1,u,3dw',],
-    [SMB3_SMW_NSMBU,       'GameStyle=3&W&U',     'game-style-3,w,u',],
-    [SMB3_SMW_SM3DW,       'GameStyle=3&W&3DW',   'game-style-3,w,3dw',],
-    [SMB3_NSMBU_SM3DW,     'GameStyle=3&U&3DW',   'game-style-3,u,3dw',],
-    [SMW_NSMBU_SM3DW,      'GameStyle=W&U&3DW',   'game-style-w,u,3dw',],
-    [SMB_SMB3_SMW_NSMBU,   'GameStyle=1&3&W&U',   'game-style-1,3,w,u',],
-    [SMB_SMB3_SMW_SM3DW,   'GameStyle=1&3&W&3DW', 'game-style-1,3,w,3dw',],
-    [SMB_SMB3_NSMBU_SM3DW, 'GameStyle=1&3&U&3DW', 'game-style-1,3,u,3dw',],
-    [SMB_SMW_NSMBU_SM3DW,  'GameStyle=1&W&U&3DW', 'game-style-1,w,u,3dw',],
-    [SMB3_SMW_NSMBU_SM3DW, 'GameStyle=3&W&U&3DW', 'game-style-3,w,u,3dw',],
+    [ALL_GAME_STYLES,          'GameStyle=all',       'game-style-all',],
+    [SMB_ONLY,                 'GameStyle=1',         'game-style-1',],
+    [SMB3_ONLY,                'GameStyle=3',         'game-style-3',],
+    [SMW_ONLY,                 'GameStyle=W',         'game-style-w',],
+    [NSMBU_ONLY,               'GameStyle=U',         'game-style-u',],
+    [SM3DW_ONLY,               'GameStyle=3DW',       'game-style-3dw',],
+    [SMB_AND_SMB3,             'GameStyle=1&3',       'game-style-1,3',],
+    [SMB_AND_SMW,              'GameStyle=1&W',       'game-style-1,w',],
+    [SMB_AND_NSMBU,            'GameStyle=1&U',       'game-style-1,u',],
+    [SMB_AND_SM3DW,            'GameStyle=1&3DW',     'game-style-1,3dw',],
+    [SMB3_AND_SMW,             'GameStyle=3&W',       'game-style-3,w',],
+    [SMB3_AND_NSMBU,           'GameStyle=3&U',       'game-style-3,u',],
+    [SMB3_AND_SM3DW,           'GameStyle=3&3DW',     'game-style-3,3dw',],
+    [SMW_AND_NSMBU,            'GameStyle=W&U',       'game-style-w,u',],
+    [SMW_AND_SM3DW,            'GameStyle=W&3DW',     'game-style-w,3dw',],
+    [NSMBU_AND_SM3DW,          'GameStyle=U&3DW',     'game-style-u,3dw',],
+    [SMB_AND_SMB3_AND_SMW,     'GameStyle=1&3&W',     'game-style-1,3,w',],
+    [SMB_AND_SMB3_AND_NSMBU,   'GameStyle=1&3&U',     'game-style-1,3,u',],
+    [SMB_AND_SMB3_AND_SM3DW,   'GameStyle=1&3&3DW',   'game-style-1,3,3dw',],
+    [SMB_AND_SMW_AND_NSMBU,    'GameStyle=1&W&U',     'game-style-1,w,u',],
+    [SMB_AND_SMW_AND_SM3DW,    'GameStyle=1&W&3DW',   'game-style-1,w,3dw',],
+    [SMB_AND_NSMBU_AND_SM3DW,  'GameStyle=1&U&3DW',   'game-style-1,u,3dw',],
+    [SMB3_AND_SMW_AND_NSMBU,   'GameStyle=3&W&U',     'game-style-3,w,u',],
+    [SMB3_AND_SMW_AND_SM3DW,   'GameStyle=3&W&3DW',   'game-style-3,w,3dw',],
+    [SMB3_AND_NSMBU_AND_SM3DW, 'GameStyle=3&U&3DW',   'game-style-3,u,3dw',],
+    [SMW_AND_NSMBU_AND_SM3DW,  'GameStyle=W&U&3DW',   'game-style-w,u,3dw',],
+    [NOT_SM3DW,                'GameStyle=1&3&W&U',   'game-style-1,3,w,u',],
+    [NOT_NSMBU,                'GameStyle=1&3&W&3DW', 'game-style-1,3,w,3dw',],
+    [NOT_SMW,                  'GameStyle=1&3&U&3DW', 'game-style-1,3,u,3dw',],
+    [NOT_SMB3,                 'GameStyle=1&W&U&3DW', 'game-style-1,w,u,3dw',],
+    [NOT_SMB,                  'GameStyle=3&W&U&3DW', 'game-style-3,w,u,3dw',],
 ] as const
 /**
- * Every {@link GameStyles.Possibilities} applicable not related to the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game group.
+ * Every {@link GameStylePossibility} applicable not related to the {@link Games.SUPER_MARIO_MAKER_2 SMM2} game group.
  * Meaning, it does not contain the {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} game style.
  */
 const gameStylePossibilitiesWithNotSmm2 = [
-    [ALL_GAME_STYLES,      'GameStyle=all',       'game-style-all',],
-    [SMB,                  'GameStyle=1',         'game-style-1',],
-    [SMB3,                 'GameStyle=3',         'game-style-3',],
-    [SMW,                  'GameStyle=W',         'game-style-w',],
-    [NSMBU,                'GameStyle=U',         'game-style-u',],
-    [SMB_SMB3,             'GameStyle=1&3',       'game-style-1,3',],
-    [SMB_SMW,              'GameStyle=1&W',       'game-style-1,w',],
-    [SMB_NSMBU,            'GameStyle=1&U',       'game-style-1,u',],
-    [SMB3_SMW,             'GameStyle=3&W',       'game-style-3,w',],
-    [SMB3_NSMBU,           'GameStyle=3&U',       'game-style-3,u',],
-    [SMW_NSMBU,            'GameStyle=W&U',       'game-style-w,u',],
-    [SMB_SMB3_SMW,         'GameStyle=1&3&W',     'game-style-1,3,w',],
-    [SMB_SMB3_NSMBU,       'GameStyle=1&3&U',     'game-style-1,3,u',],
-    [SMB_SMW_NSMBU,        'GameStyle=1&W&U',     'game-style-1,w,u',],
-    [SMB3_SMW_NSMBU,       'GameStyle=3&W&U',     'game-style-3,w,u',],
-    [SMB_SMB3_SMW_NSMBU,   'GameStyle=1&3&W&U',   'game-style-1,3,w,u',],
+    [ALL_GAME_STYLES,        'GameStyle=all',     'game-style-all',],
+    [SMB_ONLY,               'GameStyle=1',       'game-style-1',],
+    [SMB3_ONLY,              'GameStyle=3',       'game-style-3',],
+    [SMW_ONLY,               'GameStyle=W',       'game-style-w',],
+    [NSMBU_ONLY,             'GameStyle=U',       'game-style-u',],
+    [SMB_AND_SMB3,           'GameStyle=1&3',     'game-style-1,3',],
+    [SMB_AND_SMW,            'GameStyle=1&W',     'game-style-1,w',],
+    [SMB_AND_NSMBU,          'GameStyle=1&U',     'game-style-1,u',],
+    [SMB3_AND_SMW,           'GameStyle=3&W',     'game-style-3,w',],
+    [SMB3_AND_NSMBU,         'GameStyle=3&U',     'game-style-3,u',],
+    [SMW_AND_NSMBU,          'GameStyle=W&U',     'game-style-w,u',],
+    [SMB_AND_SMB3_AND_SMW,   'GameStyle=1&3&W',   'game-style-1,3,w',],
+    [SMB_AND_SMB3_AND_NSMBU, 'GameStyle=1&3&U',   'game-style-1,3,u',],
+    [SMB_AND_SMW_AND_NSMBU,  'GameStyle=1&W&U',   'game-style-1,w,u',],
+    [SMB3_AND_SMW_AND_NSMBU, 'GameStyle=3&W&U',   'game-style-3,w,u',],
+    [NOT_SM3DW,              'GameStyle=1&3&W&U', 'game-style-1,3,w,u',],
 ] as const
 
 /** Every {@link Games.Possibilities} */
@@ -608,71 +606,71 @@ export abstract class EveryRoutes<const out SIMPLE_NAME extends string = string,
 
             const nameFromGameStyle = name.substring(startingIndex + 10,)
             if (nameFromGameStyle === 'all)' || nameFromGameStyle.startsWith('all ',))
-                return GameStyles.Possibilities.get.ALL_GAME_STYLES
+                return ALL_GAME_STYLES
 
             if (nameFromGameStyle === '1)' || nameFromGameStyle.startsWith('1 ',))
-                return GameStyles.Possibilities.get.SMB_ONLY
+                return SMB_ONLY
             if (nameFromGameStyle === '3)' || nameFromGameStyle.startsWith('3 ',))
-                return GameStyles.Possibilities.get.SMB3_ONLY
+                return SMB3_ONLY
             if (nameFromGameStyle === 'W)' || nameFromGameStyle.startsWith('W ',))
-                return GameStyles.Possibilities.get.SMW_ONLY
+                return SMW_ONLY
             if (nameFromGameStyle === 'U)' || nameFromGameStyle.startsWith('U ',))
-                return GameStyles.Possibilities.get.NSMBU_ONLY
+                return NSMBU_ONLY
             if (nameFromGameStyle === '3DW)' || nameFromGameStyle.startsWith('3DW ',))
-                return GameStyles.Possibilities.get.SM3DW_ONLY
+                return SM3DW_ONLY
 
             if (nameFromGameStyle === '1&3)' || nameFromGameStyle.startsWith('1&3 ',))
-                return GameStyles.Possibilities.get.SMB_AND_SMB3
+                return SMB_AND_SMB3
             if (nameFromGameStyle === '1&W)' || nameFromGameStyle.startsWith('1&W ',))
-                return GameStyles.Possibilities.get.SMB_AND_SMW
+                return SMB_AND_SMW
             if (nameFromGameStyle === '1&U)' || nameFromGameStyle.startsWith('1&U ',))
-                return GameStyles.Possibilities.get.SMB_AND_NSMBU
+                return SMB_AND_NSMBU
             if (nameFromGameStyle === '1&3DW)' || nameFromGameStyle.startsWith('1&3DW ',))
-                return GameStyles.Possibilities.get.SMB_AND_SM3DW
+                return SMB_AND_SM3DW
             if (nameFromGameStyle === '3&W)' || nameFromGameStyle.startsWith('3&W ',))
-                return GameStyles.Possibilities.get.SMB3_AND_SMW
+                return SMB3_AND_SMW
             if (nameFromGameStyle === '3&U)' || nameFromGameStyle.startsWith('3&U ',))
-                return GameStyles.Possibilities.get.SMB3_AND_NSMBU
+                return SMB3_AND_NSMBU
             if (nameFromGameStyle === '3&3DW)' || nameFromGameStyle.startsWith('3&3DW ',))
-                return GameStyles.Possibilities.get.SMB3_AND_SM3DW
+                return SMB3_AND_SM3DW
             if (nameFromGameStyle === 'W&U)' || nameFromGameStyle.startsWith('W&U ',))
-                return GameStyles.Possibilities.get.SMW_AND_NSMBU
+                return SMW_AND_NSMBU
             if (nameFromGameStyle === 'W&3DW)' || nameFromGameStyle.startsWith('W&3DW ',))
-                return GameStyles.Possibilities.get.SMW_AND_SM3DW
+                return SMW_AND_SM3DW
             if (nameFromGameStyle === 'U&3DW)' || nameFromGameStyle.startsWith('U&3DW ',))
-                return GameStyles.Possibilities.get.NSMBU_AND_SM3DW
+                return NSMBU_AND_SM3DW
 
             if (nameFromGameStyle === '1&3&W)' || nameFromGameStyle.startsWith('1&3&W ',))
-                return GameStyles.Possibilities.get.SMB_AND_SMB3_AND_SMW
+                return SMB_AND_SMB3_AND_SMW
             if (nameFromGameStyle === '1&3&U)' || nameFromGameStyle.startsWith('1&3&U ',))
-                return GameStyles.Possibilities.get.SMB_AND_SMB3_AND_NSMBU
+                return SMB_AND_SMB3_AND_NSMBU
             if (nameFromGameStyle === '1&3&3DW)' || nameFromGameStyle.startsWith('1&3&3DW ',))
-                return GameStyles.Possibilities.get.SMB_AND_SMB3_AND_SM3DW
+                return SMB_AND_SMB3_AND_SM3DW
             if (nameFromGameStyle === '1&W&U)' || nameFromGameStyle.startsWith('1&W&U ',))
-                return GameStyles.Possibilities.get.SMB_AND_SMW_AND_NSMBU
+                return SMB_AND_SMW_AND_NSMBU
             if (nameFromGameStyle === '1&W&3DW)' || nameFromGameStyle.startsWith('1&W&3DW ',))
-                return GameStyles.Possibilities.get.SMB_AND_SMW_AND_SM3DW
+                return SMB_AND_SMW_AND_SM3DW
             if (nameFromGameStyle === '1&U&3DW)' || nameFromGameStyle.startsWith('1&U&3DW ',))
-                return GameStyles.Possibilities.get.SMB_AND_NSMBU_AND_SM3DW
+                return SMB_AND_NSMBU_AND_SM3DW
             if (nameFromGameStyle === '3&W&U)' || nameFromGameStyle.startsWith('3&W&U ',))
-                return GameStyles.Possibilities.get.SMB3_AND_SMW_AND_NSMBU
+                return SMB3_AND_SMW_AND_NSMBU
             if (nameFromGameStyle === '3&W&3DW)' || nameFromGameStyle.startsWith('3&W&3DW ',))
-                return GameStyles.Possibilities.get.SMB3_AND_SMW_AND_SM3DW
+                return SMB3_AND_SMW_AND_SM3DW
             if (nameFromGameStyle === '3&U&3DW)' || nameFromGameStyle.startsWith('3&U&3DW ',))
-                return GameStyles.Possibilities.get.SMB3_AND_NSMBU_AND_SM3DW
+                return SMB3_AND_NSMBU_AND_SM3DW
             if (nameFromGameStyle === 'W&U&3DW)' || nameFromGameStyle.startsWith('W&U&3DW ',))
-                return GameStyles.Possibilities.get.SMW_AND_NSMBU_AND_SM3DW
+                return SMW_AND_NSMBU_AND_SM3DW
 
             if (nameFromGameStyle === '1&3&W&U)' || nameFromGameStyle.startsWith('1&3&W&U ',))
-                return GameStyles.Possibilities.get.NOT_SM3DW
+                return NOT_SM3DW
             if (nameFromGameStyle === '1&3&W&3DW)' || nameFromGameStyle.startsWith('1&3&W&3DW ',))
-                return GameStyles.Possibilities.get.NOT_NSMBU
+                return NOT_NSMBU
             if (nameFromGameStyle === '1&3&U&3DW)' || nameFromGameStyle.startsWith('1&3&U&3DW ',))
-                return GameStyles.Possibilities.get.NOT_SMW
+                return NOT_SMW
             if (nameFromGameStyle === '1&W&U&3DW)' || nameFromGameStyle.startsWith('1&W&U&3DW ',))
-                return GameStyles.Possibilities.get.NOT_SMB3
+                return NOT_SMB3
             if (nameFromGameStyle === '3&W&U&3DW)' || nameFromGameStyle.startsWith('3&W&U&3DW ',))
-                return GameStyles.Possibilities.get.NOT_SMB
+                return NOT_SMB
 
             throw new ReferenceError(`No game styles have a name associated to the name "${name}".`,)
         }

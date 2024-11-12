@@ -27,11 +27,14 @@ import EditorVoiceSoundComponent                    from 'core/editorVoice/Edito
 import {Entities}                                   from 'core/entity/Entities'
 import GameImage                                    from 'core/game/GameImage'
 import {Games}                                      from 'core/game/Games'
+import {GameStylePossibility}                       from 'core/gameStyle/GameStyle.possibility'
 import GameStyleImage                               from 'core/gameStyle/GameStyleImage'
 import {GameStyles}                                 from 'core/gameStyle/GameStyles'
 import {OtherWordInTheGames}                        from 'core/otherWordInTheGame/OtherWordInTheGames'
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, filterGameStyle, intersect}     from 'util/utilitiesMethods'
+
+import ALL_GAME_STYLES = GameStylePossibility.ALL_GAME_STYLES
 
 class EntityAppInterpreter
     implements AppInterpreterWithTable<Entities, EntityAppOption> {
@@ -248,8 +251,6 @@ function GameAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentP
     </div>
 }
 
-const GameStylePossibilities = GameStyles.Possibilities.get
-const allGameStyles = GameStylePossibilities.ALL_GAME_STYLES
 const smb = GameStyles.SUPER_MARIO_BROS
 const smb3 = GameStyles.SUPER_MARIO_BROS_3
 const smw = GameStyles.SUPER_MARIO_WORLD
@@ -259,7 +260,7 @@ const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
 /** @reactComponent */
 function GameStyleAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentProperties,) {
     const gameName = `Game=${GameCompanion.getGroupUrlName(games,)}` satisfies FullGroupUrlName_Game
-    const amountOfSelectedGameStyles = intersect(allGameStyles, gameStyles,).length
+    const amountOfSelectedGameStyles = intersect(ALL_GAME_STYLES, gameStyles,).length
     const isSmbSelected = gameStyles.hasSMB
     const isSmb3Selected = gameStyles.hasSMB3
     const isSmwSelected = gameStyles.hasSMW
