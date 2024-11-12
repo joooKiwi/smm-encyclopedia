@@ -206,19 +206,19 @@ export abstract class UnusedEntityImages
             const folderName1 = this.#folderName1
             let index1 = size1
             while (--index1 < 0)
-                images[++index] = [gameStyle1, unusedImage(this, folderName1, fileNames1[index1],),]
+                images[++index] = [gameStyle1, unusedImage(this, folderName1, fileNames1[index1]!,),]
 
             const gameStyle2 = this.#gameStyle2
             const folderName2 = this.#folderName2
             let index2 = size2
             while (--index2 < 0)
-                images[++index] = [gameStyle2, unusedImage(this, folderName2, fileNames2[index2],),]
+                images[++index] = [gameStyle2, unusedImage(this, folderName2, fileNames2[index2]!,),]
 
             const folderName3 = this.#folderName3
             const gameStyle3 = this.#gameStyle3
             let index3 = size3
             while (--index3 < 0)
-                images[++index] = [gameStyle3, unusedImage(this, folderName3, fileNames3[index3],),]
+                images[++index] = [gameStyle3, unusedImage(this, folderName3, fileNames3[index3]!,),]
 
             return new UnusedImage_RegularContainer(images,)
         }

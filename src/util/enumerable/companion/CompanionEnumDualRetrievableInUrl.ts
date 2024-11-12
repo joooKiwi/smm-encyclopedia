@@ -43,8 +43,8 @@ export abstract class CompanionEnumDualRetrievableInUrl<const ENUM extends Enume
         }
 
         const values = this.values
-        for (let enumerable1 of values)
-            for (let enumerable2 of values)
+        for (const enumerable1 of values)
+            for (const enumerable2 of values)
                 if (lowerCasedUrl.includes(`/${prefix}${enumerable1.urlValue.toLowerCase()},${enumerable2.urlValue.toLowerCase()}`,))
                     return [enumerable1, enumerable2,]
 

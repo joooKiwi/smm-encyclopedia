@@ -21,7 +21,7 @@ export const EMPTY_SET: EmptySet = Object.freeze(new Set<never>(),)
  *
  * @note It use "any" as a type to enable every values
  */
-export const EMPTY_MAP: EmptyMap = Object.freeze(new Map<any, never>(),)
+export const EMPTY_MAP: EmptyMap<never> = Object.freeze(new Map<never, never>(),)
 
 /** An empty object with nothing (and not modifiable) */
 export const EMPTY_OBJECT: EmptyObject = Object.freeze({},)
