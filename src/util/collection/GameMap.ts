@@ -49,19 +49,19 @@ export class GameMap<const out T extends boolean = boolean, const out REFERENCE 
     }
 
 
-    public entries(): IterableIterator<[Games, T,]> {
+    public entries(): MapIterator<[Games, T,]> {
         return this.#internalStructure.entries()
     }
 
-    public keys(): IterableIterator<Games> {
+    public keys(): MapIterator<Games> {
         return this.#internalStructure.keys()
     }
 
-    public values(): IterableIterator<T> {
+    public values(): MapIterator<T> {
         return this.#internalStructure.values()
     }
 
-    public [Symbol.iterator](): IterableIterator<[Games, T,]> {
+    public [Symbol.iterator](): MapIterator<[Games, T,]> {
         return this.#internalStructure[Symbol.iterator]()
     }
 

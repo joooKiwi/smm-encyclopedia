@@ -47,19 +47,19 @@ export class TimeMap<const out REFERENCE extends TimeProperty = TimeProperty, >
     }
 
 
-    public entries(): IterableIterator<[Times, boolean,]> {
+    public entries(): MapIterator<[Times, boolean,]> {
         return this.#internalStructure.entries()
     }
 
-    public keys(): IterableIterator<Times> {
+    public keys(): MapIterator<Times> {
         return this.#internalStructure.keys()
     }
 
-    public values(): IterableIterator<boolean> {
+    public values(): MapIterator<boolean> {
         return this.#internalStructure.values()
     }
 
-    public [Symbol.iterator](): IterableIterator<[Times, boolean,]> {
+    public [Symbol.iterator](): MapIterator<[Times, boolean,]> {
         return this.#internalStructure[Symbol.iterator]()
     }
 

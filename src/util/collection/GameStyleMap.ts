@@ -47,19 +47,19 @@ export class GameStyleMap<const out REFERENCE extends GameStyleProperty = GameSt
     }
 
 
-    public entries(): IterableIterator<[GameStyles, boolean,]> {
+    public entries(): MapIterator<[GameStyles, boolean,]> {
         return this.#internalStructure.entries()
     }
 
-    public keys(): IterableIterator<GameStyles> {
+    public keys(): MapIterator<GameStyles> {
         return this.#internalStructure.keys()
     }
 
-    public values(): IterableIterator<boolean> {
+    public values(): MapIterator<boolean> {
         return this.#internalStructure.values()
     }
 
-    public [Symbol.iterator](): IterableIterator<[GameStyles, boolean,]> {
+    public [Symbol.iterator](): MapIterator<[GameStyles, boolean,]> {
         return this.#internalStructure[Symbol.iterator]()
     }
 
