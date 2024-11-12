@@ -1,7 +1,7 @@
 import './Table.scss'
 
-import type {Enumerable} from '@joookiwi/enumerable'
-import {filterNotNull}   from '@joookiwi/collection'
+import type {Enumerable}                                    from '@joookiwi/enumerable'
+import {filterNotNull, forEachByArray, joinToStringByArray} from '@joookiwi/collection'
 
 import type {AppInterpreterWithTable}                                                         from 'app/interpreter/AppInterpreterWithTable'
 import type {SingleHeaderContent}                                                             from 'app/tools/table/SimpleHeader'
@@ -13,6 +13,7 @@ import Tooltip           from 'bootstrap/tooltip/Tooltip'
 import {EMPTY_STRING}    from 'util/emptyVariables'
 import {StringContainer} from 'util/StringContainer'
 import {assert}          from 'util/utilitiesMethods'
+import {SPACE}           from 'util/commonVariables'
 
 interface TableProperties
     extends ReactProperties {
@@ -52,56 +53,44 @@ export default function Table({id, interpreter,}: TableProperties,) {
 }
 
 function TableHeader({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleHeaderContent[],]>,) {
-    const size = headers.length
-    const columns = new Array<ReactJSXElement>(size,)
-    let index = size
-    while (index-- > 0) {
-        const it = headers[index]!
+    const columns = new Array<ReactJSXElement>(headers.length,)
+    forEachByArray(headers, (it, i,) => {
         const elementId = `${getHeaderKey(it,)}-header`
-        columns[index] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[index]}`}>
+        columns[i] = <div id={elementId} key={`table header (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[i]}`}>
             <HeaderTooltip elementId={elementId}>{it}</HeaderTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
-    }
+    },)
     return <div className="theader">{columns}</div>
 }
 
 function TableContent({children: [additionalClasses, contents,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleTableContent[]]>,) {
-    const size1 = contents.length
-    const tableContent = new Array<ReactJSXElement>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const content = contents[index1]!
+    const tableContent = new Array<ReactJSXElement>(contents.length,)
+    forEachByArray(contents, (content, i,) => {
         const rowContentKey = content[0]
-        const size2 = content.length
-        const rowContent = new Array<ReactJSXElement>(size2 - 1,)
-        let index2 = size2
-        while (index2-- > 1) {
-            const rowColumnContent = content[index2] as ReactElement//FIXME: Make the cast not present
+        const rowContent = new Array<ReactJSXElement>(content.length - 1,)
+        forEachByArray(content, (rowColumnContent, j,) => {
             if (rowColumnContent == null)
-                rowContent[index2] = <div key={`table content (empty ${rowContentKey} ${index1 + 1}-${index2 + 1})`} className="tcell empty-table-rowColumn-content-container"/>
+                rowContent[j] = <div key={`table content (empty ${rowContentKey} ${i + 1}-${j + 1})`} className="tcell empty-table-rowColumn-content-container"/>
             else
-                rowContent[index2] = <div key={`table content (${rowContentKey} ${index1 + 1}-${index2 + 1})`} className={`tcell${additionalClasses[index2 - 1]}`}>{rowColumnContent}</div>
-        }
+                rowContent[j] = <div key={`table content (${rowContentKey} ${i + 1}-${j + 1})`} className={`tcell${additionalClasses[j - 1]}`}>{rowColumnContent}</div>
+        },)
 
-        tableContent[index1] =
-            <div key={`table row content (${rowContentKey} ${index1 + 1})`} className={`trow table-row-${StringContainer.getInHtml(rowContentKey,)}`}>{rowContent}</div>
-    }
+        tableContent[i] =
+            <div key={`table row content (${rowContentKey} ${i + 1})`} className={`trow table-row-${StringContainer.getInHtml(rowContentKey,)}`}>{rowContent}</div>
+    },)
     return <div className="tcontent">{tableContent}</div>
 }
 
 function TableFooter({children: [additionalClasses, headers,],}: SimpleReactPropertiesWithChildren<readonly [readonly string[], readonly SingleHeaderContent[],]>,) {
-    const size = headers.length
-    const columns = new Array<ReactJSXElement>(size,)
-    let index = size
-    while (index-- > 0) {
-        const it = headers[index]!
+    const columns = new Array<ReactJSXElement>(headers.length,)
+    forEachByArray(headers, (it, i,) => {
         const elementId = `${getHeaderKey(it,)}-footer`
-        columns[index] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[index]}`}>
+        columns[i] = <div id={elementId} key={`table footer (${getHeaderKey(it,)})`} className={`tcell${additionalClasses[i]}`}>
             <FooterTooltip elementId={elementId}>{it}</FooterTooltip>
             <HeaderOrFooterContent>{it}</HeaderOrFooterContent>
         </div>
-    }
+    },)
 
     return <div className="tfooter mb-2">{columns}</div>
 }
@@ -159,23 +148,8 @@ function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTabl
     if (getAdditionalClass == null)
         return Array.from({length: options.length,}, () => EMPTY_STRING,)
 
-    const size1 = options.length
-    const additionalClasses = new Array<string>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const additionalClass = getAdditionalClass(options[index1]!,)
-        if (additionalClass.length === 0) {
-            additionalClasses[index1] = EMPTY_STRING
-            continue
-        }
-
-        let classesJoined = ''
-        const size2 = additionalClass.length
-        let index2 = -1
-        while (++index2 < size2)
-            classesJoined += ` ${additionalClass[index2]}`
-        additionalClasses[index1] = classesJoined
-    }
+    const additionalClasses = new Array<string>(options.length,)
+    forEachByArray(options, (it, i,) => additionalClasses[i] = joinToStringByArray(getAdditionalClass(it,), SPACE, EMPTY_STRING, EMPTY_STRING,),)
     return additionalClasses
 }
 
@@ -187,24 +161,13 @@ function retrieveAdditionalClasses({getAdditionalClass,}: AppInterpreterWithTabl
  * @private
  */
 function retrieveContent({content, createTableContent,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleTableContent[] {
-    const size2 = options.length
-    const size1 = content.length
-    const tableContents = new Array<SingleTableContent>(size1,)
-    let index1 = size1
-    while (index1-- > 0) {
-        const contentValue = content[index1]!
-
+    const tableContents = new Array<SingleTableContent>(content.length,)
+    forEachByArray(content, (contentValue, i,) => {
         const tableContent: SingleTableContent = [contentValue.englishName,]
-        let index2 = -1
-        while (++index2 < size2) {
-            const tableContentCreated = createTableContent(contentValue, options[index2]!,)
-            const size3 = tableContentCreated.length
-            let index3 = -1
-            while (++index3 < size3)
-                tableContent.push(tableContentCreated[index3],)
-        }
-        tableContents[index1] = tableContent
-    }
+        forEachByArray(options, option =>
+            forEachByArray(createTableContent(contentValue, option,), it => tableContent.push(it,),),)
+        tableContents[i] = tableContent
+    },)
     return tableContents
 }
 
@@ -217,14 +180,12 @@ function retrieveContent({content, createTableContent,}: AppInterpreterWithTable
  * @private
  */
 function retrieveHeader({createTableHeader,}: AppInterpreterWithTable, options: readonly Enumerable[],): readonly SingleHeaderContent[] {
-    const headerContent = [] as SingleHeaderContent[]
-    const size = options.length
-    let index = -1
-    while (++index < size) {
-        const tableHeader = createTableHeader(options[index]!,)
+    const headerContent: SingleHeaderContent[] = []
+    forEachByArray(options, it => {
+        const tableHeader = createTableHeader(it,)
         if (tableHeader == null)
-            continue
+            return
         headerContent.push(tableHeader,)
-    }
+    },)
     return headerContent
 }
