@@ -1,3 +1,5 @@
+import {getFirstByArray} from '@joookiwi/collection'
+
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {ThemeProperty}            from 'core/entity/properties/theme/ThemeProperty'
 
@@ -35,7 +37,7 @@ export default function CourseThemeComponent({reference, name, displayAllAsText,
             enumInstances.push(enumInstance)
     })
     if (enumInstances.length === 1)
-        return <ThemeImage reference={enumInstances[0]}/>
+        return <ThemeImage reference={getFirstByArray(enumInstances,)}/>
     return <div key={`${name.english} - group`}>{enumInstances.map(enumInstance =>
         <ThemeImage reference={enumInstance}/>,)}</div>
 }

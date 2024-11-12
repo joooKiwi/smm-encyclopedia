@@ -1,4 +1,5 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {getFirstByArray}             from '@joookiwi/collection'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 
@@ -190,7 +191,7 @@ export abstract class MysteryMushroomAppOption
         protected override _createImageContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {
             return (enumeration.jumpImages[0]?.length ?? 0) > 1
                 ? this._createAnimatedImages(enumeration, enumeration.jumpImages, renderDiv,)
-                : this._createImage(enumeration, enumeration.jumpImages.map(images => images[0]!), renderDiv,)
+                : this._createImage(enumeration, enumeration.jumpImages.map(images => getFirstByArray(images,),), renderDiv,)
         }
 
         protected override _createSoundContent(enumeration: MysteryMushrooms, renderDiv: boolean,) {

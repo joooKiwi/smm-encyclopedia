@@ -1,3 +1,5 @@
+import {getFirstByArray} from '@joookiwi/collection'
+
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 import type {GameStyleProperty}        from 'core/entity/properties/gameStyle/GameStyleProperty'
 
@@ -28,6 +30,6 @@ export default function GameStyleComponent({reference, name, displayAllAsText,}:
             gameStyles.push(gameStyle,)
     },)
     if (gameStyles.length === 1)
-        return <GameStyleImage reference={gameStyles[0]}/>
+        return <GameStyleImage reference={getFirstByArray(gameStyles,)}/>
     return <div key={`${name.english} - group`}>{gameStyles.map(it => <GameStyleImage reference={it}/>)}</div>
 }

@@ -1,6 +1,6 @@
 import type {CollectionHolder} from '@joookiwi/collection'
 import type {Singleton}        from '@joookiwi/enumerable'
-import {has}                   from '@joookiwi/collection'
+import {getFirstByArray, has}  from '@joookiwi/collection'
 import {Enum}                  from '@joookiwi/enumerable'
 
 import type {ClassWithAcronym}                                                                                                          from 'core/ClassWithAcronym'
@@ -142,7 +142,7 @@ export abstract class Games
 
             //region -------------------- Possibilities from 1 to 3 arguments --------------------
 
-            const valuesFound = lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,)[0]!
+            const valuesFound = getFirstByArray(lowerCasedUrl.substring(lowerCasedUrl.indexOf(prefix,) + prefix.length,).split(this.URL_NAME_SEPARATOR, 1,),)
             const separatedValuesFound = valuesFound.split(this.NAME_ARGUMENT_SEPARATOR,)
             const amountOfValues = separatedValuesFound.length
 

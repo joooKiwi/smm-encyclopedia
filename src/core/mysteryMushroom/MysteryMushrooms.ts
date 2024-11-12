@@ -1,4 +1,5 @@
-import {Enum} from '@joookiwi/enumerable'
+import {getFirstByArray} from '@joookiwi/collection'
+import {Enum}            from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                           from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                                                                                             from 'core/ClassWithReference'
@@ -811,7 +812,7 @@ export class MysteryMushrooms
     }
 
     get #soundFileName(): PossibleFileName {
-        return this.__fileName.soundFileName[0]!
+        return getFirstByArray(this.__fileName.soundFileName,)
     }
 
     get imageFileNames(): PossibleImageFileNames {
