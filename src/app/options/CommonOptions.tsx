@@ -68,7 +68,7 @@ export class CommonOptions {
     }
 
     public get soundHeader(): SimpleReactHeader {
-        return this.#soundHeader ??= {key: 'sound', element: contentTranslation('Sound',),}
+        return this.#soundHeader ??= {key: 'sound', element: contentTranslation('Sound.singular',),}
     }
 
 
