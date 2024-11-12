@@ -1,12 +1,12 @@
-import type {ClearConditionEntityImages}    from 'core/entity/ClearConditionEntityImages'
-import type {EditorEntityImages}            from 'core/entity/EditorEntityImages'
-import type {PossibleEnglishName}           from 'core/entity/Entities.types'
-import type {InGameEntityImages}            from 'core/entity/InGameEntityImages'
-import type {UnusedBigMushroomEntityImages} from 'core/entity/UnusedBigMushroomEntityImages'
-import type {UnusedEntityImages}            from 'core/entity/UnusedEntityImages'
-import type {GameStyles}                    from 'core/gameStyle/GameStyles'
-import type {PossibleAcronym_InFile}        from 'core/gameStyle/GameStyles.types'
-import type {ImageFile}                     from 'util/file/image/ImageFile'
+import type {ClearConditionEntityImages}                                                                                  from 'core/entity/ClearConditionEntityImages'
+import type {EditorEntityImages}                                                                                          from 'core/entity/EditorEntityImages'
+import type {PossibleEnglishName}                                                                                         from 'core/entity/Entities.types'
+import type {InGameEntityImages}                                                                                          from 'core/entity/InGameEntityImages'
+import type {UnusedBigMushroomEntityImages}                                                                               from 'core/entity/UnusedBigMushroomEntityImages'
+import type {UnusedEntityImages}                                                                                          from 'core/entity/UnusedEntityImages'
+import type {GameStyles}                                                                                                  from 'core/gameStyle/GameStyles'
+import type {GameStyles_NSMBU, GameStyles_SM3DW, GameStyles_SMB, GameStyles_SMB3, GameStyles_SMW, PossibleAcronym_InFile} from 'core/gameStyle/GameStyles.types'
+import type {ImageFile}                                                                                                   from 'util/file/image/ImageFile'
 
 /**
  * An {@link ImageFile} made to be related to an {@link Entities}
@@ -97,17 +97,17 @@ export type PossibleEditorImageFile = typeof EditorEntityImages[| 'GROUND' | 'ST
 
 /** An {@link EditorImageFile} template to tell that there is blue variants on other {@link Themes} and mostly the {@link Times.NIGHT night time} */
 export type EditorImageFileAsBlueVariant<FILE_NAME extends string, NUMBER extends | 0 | 1, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], `${FILE_NAME}_0${NUMBER}`, NAME>
+    = | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+      | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, `${FILE_NAME}_0${NUMBER}`, NAME>
 /**
  * An {@link EditorImageFile} template to tell that there is blue variants on other {@link Themes} and mostly the {@link Times.NIGHT night time},
  * but not in {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}
  */
 export type EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME extends string, NUMBER extends | 0 | 1, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS'], `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
-      | EditorImageFile<typeof GameStyles['SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], `${FILE_NAME}_0${NUMBER}`, NAME>
+    = | EditorImageFile<GameStyles_SMB, `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water_night' | 'desert_night' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+      | EditorImageFile<GameStyles_SMB3, `${FILE_NAME}${| '' | `_${| 'plain_night' | 'underground' | 'water' | 'desert' | 'snow_night' | 'athletic_night' | 'woods_night' | 'hauntedhouse' | 'airship_night' | 'castle'}`}_0${NUMBER}`, NAME>
+      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, `${FILE_NAME}_0${NUMBER}`, NAME>
 
 /**
  * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
@@ -115,32 +115,32 @@ export type EditorImageFileAsBlueVariantExcludingSm3dw<FILE_NAME extends string,
  * The others are only in the {@link Themes.GROUND ground theme}
  */
 export type EditorImageFileAsNightSnowInSmb3<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], FILE_NAME_1, NAME>
+    = | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+      | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>
 /**
  * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
  * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
  * The others (excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}) are only in the {@link Themes.GROUND ground theme}
  */
 export type EditorImageFileAsNightSnowInSmb3ExcludingSm3dw<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<typeof GameStyles['SUPER_MARIO_BROS_3'], | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME_1, NAME>
+    = | EditorImageFile<GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+      | EditorImageFile<| GameStyles_SMB | GameStyles_SMW | GameStyles_NSMBU, FILE_NAME_1, NAME>
 /**
  * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
  * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
  * The others are only in the {@link Themes.GROUND ground theme}
  */
 export type EditorImageFileAsNightSnowInSmbAndSmb3<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U' | 'SUPER_MARIO_3D_WORLD'], FILE_NAME_1, NAME>
+    = | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU | GameStyles_SM3DW, FILE_NAME_1, NAME>
 /**
  * An {@link EditorImageFile} template for 2 images in only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
  * in the {@link Themes.GROUND ground} and {@link Times.NIGHT night} {@link Themes.SNOW snow}.
  * The others (excluding {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW}) are only in the {@link Themes.GROUND ground theme}
  */
 export type EditorImageFileAsNightSnowInSmbAndSmb3ExcludingSm3dw<FILE_NAME_1 extends string, FILE_NAME_2 extends string, NAME extends PossibleEnglishName, >
-    = | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_BROS' | 'SUPER_MARIO_BROS_3'], | FILE_NAME_1 | FILE_NAME_2, NAME>
-      | EditorImageFile<typeof GameStyles[| 'SUPER_MARIO_WORLD' | 'NEW_SUPER_MARIO_BROS_U'], FILE_NAME_1, NAME>
+    = | EditorImageFile<| GameStyles_SMB | GameStyles_SMB3, | FILE_NAME_1 | FILE_NAME_2, NAME>
+      | EditorImageFile<| GameStyles_SMW | GameStyles_NSMBU, FILE_NAME_1, NAME>
 
 //endregion -------------------- grouped editor images --------------------
 
