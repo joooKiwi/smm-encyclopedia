@@ -4,7 +4,7 @@ import type {TimeImageFile}                                from 'core/time/file/
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /**
- * Create a simple {@link TimeImageFile} by a {@link PossibleSimpleImagePath} provided
+ * Create a {@link TimeImageFile} by a {@link PossibleSimpleImagePath} provided
  *
  * @param name The image name
  * @param englishName The fallback name

@@ -1160,7 +1160,7 @@ export abstract class SoundEffects
     //region -------------------- Getter methods (SMM1 sound) --------------------
 
     /**
-     * Create a simple {@link SMM1StandaloneSoundEffectSound} in that order:
+     * Create a {@link SMM1StandaloneSoundEffectSound} in that order:
      *  - 1 image is from {@link smm2}
      *  - 1 image are from {@link smm1}
      *
@@ -1177,7 +1177,7 @@ export abstract class SoundEffects
     }
 
     /**
-     * Create a simple {@link SMM1StandaloneSoundEffectSound} in that order:
+     * Create a {@link SMM1StandaloneSoundEffectSound} in that order:
      *  - 1 image is from {@link smm2}
      *  - 2 images are from {@link smm1}
      *
@@ -1196,7 +1196,7 @@ export abstract class SoundEffects
     /** Create an exclusive {@link SMM1ExclusiveSoundEffectSound} from either:
      *  - a <b>null</b>
      *  - a {@link SMM1ExclusiveSoundEffectSound} directly
-     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a simple {@link SMM1ExclusiveSoundEffectSound} after-end)
+     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a {@link SMM1ExclusiveSoundEffectSound} after-end)
      *
      * @onlyCalledOnce
      * @onlyCalledBy soundsContainer_exclusiveSmm1
@@ -1287,7 +1287,7 @@ export abstract class SoundEffects
     /** Create an exclusive {@link SMM2SoundEffectSound} from either:
      *  - a <b>null</b>
      *  - a {@link SMM2SoundEffectSound} directly
-     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a simple {@link SMM2SoundEffectSound} after-end)
+     *  - an array of {@link SMM1SoundEffectSoundFile} (to create a {@link SMM2SoundEffectSound} after-end)
      *  - a {@link Musics} reference
      *
      * @onlyCalledOnce

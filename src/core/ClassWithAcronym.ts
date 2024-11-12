@@ -1,4 +1,4 @@
-/** A simple class with an "acronym" on the getter method */
+/** A class with an "acronym" on the getter method */
 export interface ClassWithAcronym<out ACRONYM extends string, >
     extends ClassWithNullableAcronym<ACRONYM> {
 
@@ -6,7 +6,7 @@ export interface ClassWithAcronym<out ACRONYM extends string, >
 
 }
 
-/** A simple class with a {@link NullOr nullable} "acronym" on the getter method */
+/** A class with a {@link NullOr nullable} "acronym" on the getter method */
 export interface ClassWithNullableAcronym<out ACRONYM extends string, > {
 
     get acronym(): NullOr<ACRONYM>

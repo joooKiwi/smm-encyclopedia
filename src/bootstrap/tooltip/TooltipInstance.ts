@@ -8,7 +8,7 @@ import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEven
 import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
 
 /**
- * A simple instance holder for a {@link bootstrap.Tooltip Tooltip}
+ * An instance holder for a {@link bootstrap.Tooltip Tooltip}
  *
  * @see https://getbootstrap.com/docs/5.2/components/tooltips
  */

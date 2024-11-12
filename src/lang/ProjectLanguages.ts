@@ -373,7 +373,7 @@ export class ProjectLanguages
 
 
     /**
-     * A simple intermediate to the {@link ProjectLanguages.CompanionEnum} "current" value
+     * An  intermediate to the {@link ProjectLanguages.CompanionEnum} "current" value
      *
      * @throws ReferenceError The current {@link ProjectLanguages language} has not been initialized yet
      * @see EveryLanguages.CompanionEnum.current

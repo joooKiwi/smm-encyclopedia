@@ -6,7 +6,7 @@ import {SimpleSoundPlayer}   from 'util/file/sound/player/SimpleSoundPlayer'
 export class SoundPlayerFactory {
 
     /**
-     * Create a simple sound player
+     * Create a sound player
      *
      * @param source The source of the audio element
      * @param title The title displayed for the audio element

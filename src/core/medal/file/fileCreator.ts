@@ -4,7 +4,7 @@ import type {MedalImageFile}                         from 'core/medal/file/Medal
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /**
- * Create a simple {@link MedalImageFile} from a {@link name} prpvided
+ * Create a {@link MedalImageFile} from a {@link name} provided
  *
  * @param name The file name
  * @param commonName The fallback name

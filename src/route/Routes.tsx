@@ -34,7 +34,7 @@ const everyRoute = EveryRouteCompanion.everyRoute
 /**
  * Every route encapsulated in a hash router (for GitHub).
  *
- * It utilizes at first the {@link ProjectLanguages} {@link ProjectLanguages.acronym acronym} in the path.
+ * It uses at first the {@link ProjectLanguages} {@link ProjectLanguages.acronym acronym} in the path.
  *
  * If there is no {@link ProjectLanguages.acronym acronym} at first,
  * it should automatically detect the language on the device <i>(to be added)</i>.

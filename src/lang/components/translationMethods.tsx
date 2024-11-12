@@ -16,7 +16,7 @@ function translateFromAny<const N extends Namespace, const V extends SingleTrans
 }
 
 /**
- * Get a simple translation of a language content.
+ * Get a translation of a language content.
  * Those translation don't have a lot of values since they are only related to languages & regions.
  *
  * @param value The translation key
@@ -29,7 +29,7 @@ export function languageTranslation<const V extends LanguageTranslationKey, cons
 
 
 /**
- * Get a simple translation of a content.
+ * Get a translation of a content.
  * Those translations are for general purpose.
  *
  * @param value The translation key (that should not have any "{{}}" in them)
@@ -42,7 +42,7 @@ export function contentTranslation<const V extends ContentTranslationKey, const 
 }
 
 /**
- * Get a simple translation of a game content.
+ * Get a translation of a game content.
  * Those translations are related to the video game specifically.
  *
  * @param value The translation key (that should not have any "{{}}" in them)
@@ -55,7 +55,7 @@ export function gameContentTranslation<V extends GameContentTranslationKey, REPL
 }
 
 /**
- * Get a simple translation of a game content.
+ * Get a translation of a game content.
  * Those translations are related to the Super Mario Maker games specifically
  * ({@link Games.SUPER_MARIO_MAKER_1 SMM1}, {@link Games.SUPER_MARIO_MAKER_FOR_NINTENDO_3DS SMM3DS} & {@link Games.SUPER_MARIO_MAKER_2 SMM2}).
  *

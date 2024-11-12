@@ -4,7 +4,7 @@ import type {PossibleEnglishName, PossibleImageName} from 'core/soundEffectCateg
 import {SimpleImageFile} from 'util/file/image/SimpleImageFile'
 
 /**
- * Create a simple {@link SoundEffectCategoryImageFile} from a {@link name} provided
+ * Create a {@link SoundEffectCategoryImageFile} from a {@link name} provided
  *
  * @param name The file name
  * @param englishName The fallback name

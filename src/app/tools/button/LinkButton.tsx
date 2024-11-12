@@ -17,7 +17,7 @@ interface LinkButtonsProperties
 }
 
 /**
- * Create a {@link Link} button or a simple disabled button (if the {@link LinkButtonsProperties.routeName route name} is <b>null</b>)
+ * Create a {@link Link} button or a disabled button (if the {@link LinkButtonsProperties.routeName route name} is <b>null</b>)
  *
  * @reactComponent
  */

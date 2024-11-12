@@ -171,13 +171,13 @@ type ItemWithPlayer_NotMario<START extends string, ITEM extends string = never, 
 //endregion -------------------- Starting name --------------------
 
 /**
- * A simple string type {@link EditorVoices} sound file path with "voice" before its name
+ * A {@link String} type {@link EditorVoices} sound file path with "voice" before its name
  *
  * @see PossibleFileName
  */
 export type PossibleFileName_WithVoiceBefore<T extends PossibleStartingName_WithVoiceBefore = PossibleStartingName_WithVoiceBefore, > = `voice_${T}`
 /**
- * A simple string type {@link EditorVoices} sound file with "signing part" before its name
+ * A {@link String} type {@link EditorVoices} sound file with "signing part" before its name
  *
  * @see PossibleFileName
  */

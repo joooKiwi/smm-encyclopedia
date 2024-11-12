@@ -33,7 +33,7 @@ export abstract class EditorVoices
 
     //region -------------------- Sub class --------------------
 
-    /** A simple child class of an {@link EditorVoices}, but specialized for the {@link Entities} */
+    /** A child class of an {@link EditorVoices}, but specialized for the {@link Entities} */
     private static readonly EntityEditorVoices = class EntityEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {
@@ -49,7 +49,7 @@ export abstract class EditorVoices
         }
 
     }
-    /** A simple child class of an {@link EditorVoices}, but specialized for the {@link CharacterNames} */
+    /** A child class of an {@link EditorVoices}, but specialized for the {@link CharacterNames} */
     private static readonly CharacterNameEditorVoices = class CharacterNameEditorVoices extends EditorVoices {
 
         protected override _retrieveReferences() {

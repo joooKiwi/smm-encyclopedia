@@ -20,7 +20,7 @@ interface DateTimeFormatFromDateProperties
 }
 
 /**
- * A simple date component that return a date
+ * A date component that returns a date
  * from the {@link DateDayLanguages.current current language}.
  *
  * @reactComponent

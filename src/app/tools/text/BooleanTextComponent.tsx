@@ -3,8 +3,8 @@ import type {BooleanTextProperties} from 'app/tools/text/properties/BooleanTextP
 import TextComponent from 'app/tools/text/TextComponent'
 
 /**
- * Create a simple {@link TextComponent}
- * with a variable value based on a simple boolean.
+ * Create a {@link TextComponent}
+ * with a variable value based on a {@link Boolean}.
  * @reactComponent
  */
 export default function BooleanTextComponent({boolean, true: _true, false: _false, ...otherProperties}: BooleanTextProperties,) {

@@ -9,7 +9,7 @@ import {BootstrapWithBasicEventsInstance} from 'bootstrap/BootstrapWithBasicEven
 import {PassiveEventHolder}               from 'bootstrap/event/PassiveEventHolder'
 
 /**
- * A simple instance holder for a {@link bootstrap.Offcanvas Offcanvas}
+ * An instance holder for a {@link bootstrap.Offcanvas Offcanvas}
  *
  * @see https://getbootstrap.com/docs/5.2/components/offcanvas
  */

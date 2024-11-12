@@ -17,7 +17,7 @@ interface LinkTextProperties
 }
 
 /**
- * Create a {@link Link} text or a simple underlined text if the {@link LinkTextProperties.routeName route name} is <b>null</b>
+ * Create a {@link Link} text or an underlined text if the {@link LinkTextProperties.routeName route name} is <b>null</b>
  *
  * @reactComponent
  */

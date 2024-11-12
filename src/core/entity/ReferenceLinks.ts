@@ -20,8 +20,8 @@ interface ReferenceHolder {
 }
 
 /**
- * A simple class made to be handled by the {@link EntityLoader}
- * only in order to encapsulate the references that are a link
+ * A class made to be handled by the {@link EntityLoader}
+ * only to encapsulate the references that are a link
  */
 export class ReferenceLinks {
 

@@ -7,7 +7,7 @@ import {SimpleImageFile}                         from 'util/file/image/SimpleIma
 import {NonRepeatableInternalSoundFileContainer} from 'util/file/sound/NonRepeatableInternalSoundFile.container'
 
 /**
- * Create a simple {@link ReadonlyArray array} of {@link SMM1SoundEffectImageFile} from the {@link imageNumbers} provided
+ * Create an {@link ReadonlyArray array} of {@link SMM1SoundEffectImageFile} from the {@link imageNumbers} provided
  *
  * @param englishName The {@link SoundEffects} {@link SoundEffects.englishName english name}
  * @param imageNumbers The {@link Games.SUPER_MARIO_MAKER_1 SMM1} image numbers
@@ -19,7 +19,7 @@ export function smm1ImageFiles(englishName: PossibleEnglishName, imageNumbers: |
 }
 
 /**
- * Create a simple {@link SMM2SoundEffectImageFile} from the {@link imageName} provided
+ * Create a {@link SMM2SoundEffectImageFile} from the {@link imageName} provided
  *
  * @param englishName The {@link SoundEffects} {@link SoundEffects.englishName english name}
  * @param imageName The {@link Games.SUPER_MARIO_MAKER_2 SMM2} image numbers
@@ -30,7 +30,7 @@ export function smm2ImageFile(englishName: PossibleEnglishName, imageName: Sound
 
 
 /**
- * Create a simple {@link SMM1SoundEffectSoundFile} from a {@link name} provided
+ * Create a {@link SMM1SoundEffectSoundFile} from a {@link name} provided
  *
  * @param name The name of the sound file
  */
@@ -99,7 +99,7 @@ export function smm1SoundFiles(...names: PossibleSoundEffectSoundName_SMM1[]): r
 }
 
 /**
- * Create a simple {@link SMM2SoundEffectSoundFile} from a {@link name} provided
+ * Create a {@link SMM2SoundEffectSoundFile} from a {@link name} provided
  *
  * @param name The name of the sound file
  */

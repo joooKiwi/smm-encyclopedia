@@ -8,7 +8,7 @@ import {StringContainer}    from 'util/StringContainer'
 
 /**
  * A name component used to render the current language in text format
- * and the other languages (excluding the current one) in a simple list format.
+ * and the other languages (excluding the current one) in a list format.
  *
  * @param properties
  * @reactComponent

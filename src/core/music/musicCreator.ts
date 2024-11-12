@@ -14,7 +14,7 @@ import {SingleSoundEffectMusicContainer}                                   from 
 import {SoundEffectMusicWithDifferentEditorContainer}                      from 'core/music/soundEffect/SoundEffectMusicWithDifferentEditor.container'
 
 /**
- * Create a simple {@link NonChangeableSoundEffectBackgroundMusic} from a {@link music} and a {@link fastMusic fast music}
+ * Create a {@link NonChangeableSoundEffectBackgroundMusic} from a {@link music} and a {@link fastMusic fast music}
  *
  * @param music The normal-speed music
  * @param fastMusic The fast-speed music
@@ -25,7 +25,7 @@ export function nonChangeableBackgroundMusic<const MUSIC extends MusicSoundFile<
 }
 
 /**
- * Create a simple {@link SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from a {@link linkMusic link} and a {@link smb2Music SMB2} music
+ * Create a {@link SoundEffectBackgroundMusicInSuperMarioBrosForSoundEffect} from a {@link linkMusic link} and a {@link smb2Music SMB2} music
  *
  * @param linkMusic The link-theme music
  * @param smb2Music The SMB2-theme music
@@ -37,8 +37,8 @@ export function linkAndSmb2BackgroundMusic<const LINK_MUSIC extends MusicSoundFi
 
 
 /**
- * Create a simple {@link BackgroundMusic} with every possible track than can be played in order:
- *  - {@link GameStyles.SUPER_MARIO_BROS SMB} (editor, normal & fast)
+ * Create an {@link BackgroundMusic} with every possible track than can be played in order:
+ *  - {@link SMB} (editor, normal & fast)
  *  - "Link" (normal & fast)
  *  - {@link GameReferences.SUPER_MARIO_BROS_2 SMB2} (normal & fast)
  *  - {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} (editor, normal & fast)
@@ -103,7 +103,7 @@ export function backgroundMusic<const SMB_EDITOR_MUSIC extends PossibleSMB_Edito
 
 
 /**
- * Create a simple {@link SoundEffectMusicWithDifferentEditor} with {@link NonRepeatableSoundFile} {@link editorName editor} and {@link name regular} name
+ * Create a {@link SoundEffectMusicWithDifferentEditor} with {@link NonRepeatableSoundFile} {@link editorName editor} and {@link name regular} name
  *
  * @param name The music when playing
  * @param editorName The editor sound effect
@@ -114,7 +114,7 @@ export function separatedSoundEffectMusic<const NAME extends PossibleSoundEffect
 }
 
 /**
- * Create a simple {@link SingleSoundEffectMusic} with {@link NonRepeatableSoundFile} from the {@link name} provided
+ * Create a {@link SingleSoundEffectMusic} with {@link NonRepeatableSoundFile} from the {@link name} provided
  *
  * @param name The editor sound effect and music when playing
  * @deprecated The use of a more simplistic {@link IndividualMusics} is used and better

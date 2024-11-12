@@ -10,15 +10,13 @@ export const BASE_PATH = 'smm-encyclopedia'
 
 /**
  * A basic representation of the base path.
- * It is a simple alias for the name to use instead of <b>typeof BASE_PATH</b>.
+ * It is a type-alias for the name to use instead of <b>typeof BASE_PATH</b>.
  *
  * @see BASE_PATH
  */
 export type BasePath = typeof BASE_PATH
 
-/**
- * Define if the application is in production.
- */
+/** Define if the application is in production */
 export const isInProduction = process.env.NODE_ENV === 'production'
 
 /** The resource path from GitHub. The folder aliased is in the local project "resources" folder */
