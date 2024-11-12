@@ -103,17 +103,14 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
         const regularMusic = this.regularMusic
         const regularMusics = regularMusic.all
         const editorMusics = this.editorMusic.all
-        const size1 = editorMusics.length
-        let index1 = -1
-        while (++index1 < size1) {
-            const value = editorMusics[index1]
-            if (value == null)
+        for (const it of editorMusics) {
+            if (it == null)
                 continue
-            if (regularMusics.includes(value as never,))
+            if (regularMusics.includes(it as never,))
                 continue
-            if (all.includes(value,))
+            if (all.includes(it,))
                 continue
-            all.push(value,)
+            all.push(it,)
         }
 
         //endregion -------------------- Add every music then the editor music (without duplication) --------------------

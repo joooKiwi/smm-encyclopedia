@@ -41,8 +41,8 @@ export class TranslationUtility {
         }
 
         let containsOnlyStringOrNumeric = true
-        for (let i = 0; i < argumentsFound.length; i++) {
-            const value = keyMap[argumentsFound[i]!]
+        for (const it of argumentsFound) {
+            const value = keyMap[it]
             if (value == null) {
                 containsOnlyStringOrNumeric = false
                 break
