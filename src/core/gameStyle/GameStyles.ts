@@ -29,21 +29,22 @@ import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util
  * @recursiveReference<{@link GameStylePossibility}>
  * @usedByTheRouting
  */
-export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = PossibleAcronym,
-    const out ACRONYM_IN_FILE extends PossibleAcronym_InFile = PossibleAcronym_InFile,
-    const out NAME extends PossibleEnglishName = PossibleEnglishName, >
+export abstract class GameStyles<const ACRONYM extends PossibleAcronym = PossibleAcronym,
+    const ACRONYM_IN_FILE extends PossibleAcronym_InFile = PossibleAcronym_InFile,
+    const URL_VALUE extends PossibleUrlValue = PossibleUrlValue,
+    const NAME extends PossibleEnglishName = PossibleEnglishName, >
     extends Enum<Ordinals, Names>
     implements ClassWithReference<GameStyle>,
         ClassWithAcronym<ACRONYM>,
         ClassWithEnglishName<NAME>,
         ClassWithImageFile<GameStyleImageFile>,
-        ClassUsedInRoute<PossibleUrlValue>,
+        ClassUsedInRoute<URL_VALUE>,
         PropertyReferenceGetter<Entity, PossibleOtherEntities>,
         PropertyGetter<GameStyleProperty> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles<'SMB', 'M1', 'Super Mario Bros.'> {
+    public static readonly SUPER_MARIO_BROS =       new class GameStyles_SuperMarioBros extends GameStyles<'SMB', 'M1', '1', 'Super Mario Bros.'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMarioBrosStyle
@@ -54,7 +55,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         }
 
     }('SMB', 'M1', '1', '1', 'Super Mario Bros.',)
-    public static readonly SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles<'SMB3', 'M3', 'Super Mario Bros. 3'> {
+    public static readonly SUPER_MARIO_BROS_3 =     new class GameStyles_SuperMarioBros3 extends GameStyles<'SMB3', 'M3', '3', 'Super Mario Bros. 3'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMarioBros3Style
@@ -65,7 +66,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         }
 
     }('SMB3', 'M3', '3', '3', 'Super Mario Bros. 3',)
-    public static readonly SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles<'SMW', 'MW', 'Super Mario World'> {
+    public static readonly SUPER_MARIO_WORLD =      new class GameStyles_SuperMarioWorld extends GameStyles<'SMW', 'MW', 'w', 'Super Mario World'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMarioWorldStyle
@@ -76,7 +77,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         }
 
     }('SMW', 'MW', 'W', 'w', 'Super Mario World',)
-    public static readonly NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles<'NSMBU', 'WU', 'New Super Mario Bros. U'> {
+    public static readonly NEW_SUPER_MARIO_BROS_U = new class GameStyles_NewSuperMarioBrosU extends GameStyles<'NSMBU', 'WU', 'u', 'New Super Mario Bros. U'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInNewSuperMarioBrosUStyle
@@ -87,7 +88,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         }
 
     }('NSMBU', 'WU',  'U', 'u', 'New Super Mario Bros. U',)
-    public static readonly SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles<'SM3DW', '3W', 'Super Mario 3D World'> {
+    public static readonly SUPER_MARIO_3D_WORLD =   new class GameStyles_SuperMario3DWorld extends GameStyles<'SM3DW', '3W', '3dw', 'Super Mario 3D World'> {
 
         public override get(property: GameStyleProperty,) {
             return property.isInSuperMario3DWorldStyle === true
@@ -449,7 +450,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: ACRONYM, acronymInFile: ACRONYM_IN_FILE, simpleValue: PossibleSimpleValue, urlValue: PossibleUrlValue, englishName: NAME,) {
+    private constructor(acronym: ACRONYM, acronymInFile: ACRONYM_IN_FILE, simpleValue: PossibleSimpleValue, urlValue: URL_VALUE, englishName: NAME,) {
         super()
         this.#acronym = acronym
         this.#acronymInFile = acronymInFile
@@ -498,7 +499,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         return this.#imageFile ??= gameStyleImage(this.acronymInFile, this.englishName,)
     }
 
-    public get urlValue(): PossibleUrlValue {
+    public get urlValue(): URL_VALUE {
         return this.#urlValue
     }
 

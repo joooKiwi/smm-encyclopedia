@@ -24,31 +24,33 @@ import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util
  * @recursiveReference<{@link GamePossibility}>
  * @usedByTheRouting
  */
-export abstract class Games
+export abstract class Games<const ACRONYM extends PossibleAcronym = PossibleAcronym,
+    const URL_VALUE extends PossibleUrlValue = PossibleUrlValue,
+    const NAME extends PossibleEnglishName = PossibleEnglishName,>
     extends Enum<Ordinals, Names>
     implements ClassWithEnglishName<PossibleEnglishName>,
-        ClassWithAcronym<PossibleAcronym>,
+        ClassWithAcronym<ACRONYM>,
         ClassWithImageFile<GameImageFile>,
         ClassUsedInRoute<PossibleUrlValue>,
         PropertyGetter<GameProperty> {
 
     //region -------------------- Enum instances --------------------
 
-    public static readonly SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games {
+    public static readonly SUPER_MARIO_MAKER_1 =                new class Games_SuperMarioMaker1 extends Games<'SMM', '1', 'Super Mario Maker'> {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMaker1
         }
 
     }('SMM', '1', '1', 'Super Mario Maker',)
-    public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games {
+    public static readonly SUPER_MARIO_MAKER_FOR_NINTENDO_3DS = new class Games_SuperMarioMakerForNintendo3DS extends Games<'SMM3DS', '3ds', 'Super Mario Maker for Nintendo 3DS'> {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMakerFor3DS
         }
 
     }('SMM3DS', '3DS', '3ds', 'Super Mario Maker for Nintendo 3DS',)
-    public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games {
+    public static readonly SUPER_MARIO_MAKER_2 =                new class Games_SuperMarioMaker2 extends Games<'SMM2', '2', 'Super Mario Maker 2'> {
 
         public override get(property: GameProperty,) {
             return property.isInSuperMarioMaker2
@@ -216,7 +218,7 @@ export abstract class Games
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
 
-    private constructor(acronym: PossibleAcronym, simpleValue: PossibleSimpleValue, urlValue: PossibleUrlValue, englishName: PossibleEnglishName,) {
+    private constructor(acronym: ACRONYM, simpleValue: PossibleSimpleValue, urlValue: URL_VALUE, englishName: NAME,) {
         super()
         this.#acronym = acronym
         this.#englishName = new StringContainer(englishName,)
@@ -227,11 +229,11 @@ export abstract class Games
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter & setter methods --------------------
 
-    public get acronym(): PossibleAcronym {
+    public get acronym(): ACRONYM {
         return this.#acronym
     }
 
-    public get englishName(): PossibleEnglishName {
+    public get englishName(): NAME {
         return this.#englishName.get
     }
 
@@ -247,7 +249,7 @@ export abstract class Games
         return this.#imageFile ??= gameImage(this.englishName,)
     }
 
-    public get urlValue(): PossibleUrlValue {
+    public get urlValue(): URL_VALUE {
         return this.#urlValue
     }
 
