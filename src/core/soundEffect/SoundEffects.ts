@@ -109,7 +109,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm2Sounds[1], smm1Sounds[1], smm2Sounds[2], smm1Sounds[2], smm2Sounds[3], smm1Sounds[3],], smm2.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm2Sounds[1]!, smm1Sounds[1]!, smm2Sounds[2]!, smm1Sounds[2]!, smm2Sounds[3]!, smm1Sounds[3]!,], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -354,7 +354,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm2Sounds[1], smm1Sounds[0], smm1Sounds[1],], smm2.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm2Sounds[1]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -381,7 +381,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm1Sounds[1], smm1Sounds[2],], smm1.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm1Sounds[1]!, smm1Sounds[2]!,], smm1.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -747,7 +747,7 @@ export abstract class SoundEffects
                 FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Long_R_pxsps_r_ear',),
                 FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_L_pxsps_l_ear',),
                 FileCreator.smm1SoundFile('yr_SToy_11_TEL_3D_L_Short_R_pxsps_r_ear',),
-            ]
+            ] as const
 
             return new SMM1ExclusiveSound(sounds, sounds[1],)
         }
@@ -893,7 +893,7 @@ export abstract class SoundEffects
             const smm1Sounds = smm1.sounds
             const smm2Sounds = smm2.sounds
 
-            return new SMM1StandaloneSound([smm2Sounds[0], smm2Sounds[1], smm2Sounds[2], smm1Sounds[0], smm1Sounds[1],], smm2.editorSound, smm1, smm2,)
+            return new SMM1StandaloneSound([smm2Sounds[0]!, smm2Sounds[1]!, smm2Sounds[2]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2.editorSound, smm1, smm2,)
         }
 
         protected override _createSMM2Sounds() {
@@ -1175,7 +1175,7 @@ export abstract class SoundEffects
         const smm2Sounds = smm2.sounds
         const smm2EditorSound = smm2.editorSound
 
-        return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0],], smm2EditorSound, smm1, smm2,)
+        return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!,], smm2EditorSound, smm1, smm2,)
     }
 
     /**
@@ -1192,7 +1192,7 @@ export abstract class SoundEffects
         const smm2Sounds = smm2.sounds
         const smm2EditorSound = smm2.editorSound
 
-        return new SMM1StandaloneSound([smm2Sounds[0], smm1Sounds[0], smm1Sounds[1],], smm2EditorSound, smm1, smm2,)
+        return new SMM1StandaloneSound([smm2Sounds[0]!, smm1Sounds[0]!, smm1Sounds[1]!,], smm2EditorSound, smm1, smm2,)
     }
 
     /** Create an exclusive {@link SMM1ExclusiveSoundEffectSound} from either:
