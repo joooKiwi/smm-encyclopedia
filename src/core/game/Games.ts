@@ -13,20 +13,12 @@ import type {GameImageFile}                                                     
 import type {ClassUsedInRoute}                                                                                                          from 'route/ClassUsedInRoute'
 import type {ClassWithImageFile}                                                                                                        from 'util/file/image/ClassWithImageFile'
 
-import {GamePossibility}                                              from 'core/game/Game.possibility'
 import {gameImage}                                                    from 'core/game/file/fileCreator'
 import {StringContainer}                                              from 'util/StringContainer'
-import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
+import {Import}                                                       from 'util/DynamicImporter'
 import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
+import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
-
-import ALL_GAMES =    GamePossibility.ALL_GAMES
-import SMM1_AND_2 =   GamePossibility.SMM1_AND_2
-import SMM1_AND_3DS = GamePossibility.SMM1_AND_3DS
-import SMM1_ONLY =    GamePossibility.SMM1_ONLY
-import SMM2_ONLY =    GamePossibility.SMM2_ONLY
-import SMM3DS_AND_2 = GamePossibility.SMM3DS_AND_2
-import SMM3DS_ONLY =  GamePossibility.SMM3DS_ONLY
 
 /**
  * @recursiveReference<{@link GamePossibility}>
@@ -126,7 +118,7 @@ export abstract class Games
         public getValueInUrl(url: string,): readonly Games[] {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
-                return ALL_GAMES
+                return Import.GamePossibility.ALL_GAMES
 
             const prefix = this.PREFIX
             if (!lowerCasedUrl.includes(prefix,))
@@ -141,20 +133,20 @@ export abstract class Games
             if (withSmm1) {
                 if (withSmm3ds) {
                     if (withSmm2)
-                        return ALL_GAMES
-                    return SMM1_AND_3DS
+                        return Import.GamePossibility.ALL_GAMES
+                    return Import.GamePossibility.SMM1_AND_3DS
                 }
                 if (withSmm2)
-                    return SMM1_AND_2
-                return SMM1_ONLY
+                    return Import.GamePossibility.SMM1_AND_2
+                return Import.GamePossibility.SMM1_ONLY
             }
             if (withSmm3ds) {
                 if (withSmm2)
-                    return SMM3DS_AND_2
-                return SMM3DS_ONLY
+                    return Import.GamePossibility.SMM3DS_AND_2
+                return Import.GamePossibility.SMM3DS_ONLY
             }
             if (withSmm2)
-                return SMM2_ONLY
+                return Import.GamePossibility.SMM2_ONLY
             return EMPTY_ARRAY
         }
 
