@@ -17,44 +17,12 @@ import type {ClassUsedInRoute}                                                  
 import type {ClassWithImageFile}                                                                                                                                                                                from 'util/file/image/ClassWithImageFile'
 
 import {GameStyleLoader}                                              from 'core/gameStyle/GameStyle.loader'
-import {GameStylePossibility}                                         from 'core/gameStyle/GameStyle.possibility'
 import {gameStyleImage}                                               from 'core/gameStyle/file/fileCreator'
 import {StringContainer}                                              from 'util/StringContainer'
+import {Import}                                                       from 'util/DynamicImporter'
 import {EMPTY_ARRAY}                                                  from 'util/emptyVariables'
 import {getValueByAcronym, getValueByEnglishName, getValueByUrlValue} from 'util/utilitiesMethods'
 import {CompanionEnumWithCurrentAndSetCurrentEventAsCollection}       from 'util/enumerable/companion/CompanionEnumWithCurrentAndSetCurrentEventAsCollection'
-
-import ALL_GAME_STYLES =                   GameStylePossibility.ALL_GAME_STYLES
-import NOT_NSMBU =                         GameStylePossibility.NOT_NSMBU
-import NOT_SMB =                           GameStylePossibility.NOT_SMB
-import NOT_SMB3 =                          GameStylePossibility.NOT_SMB3
-import NOT_SMW =                           GameStylePossibility.NOT_SMW
-import NOT_SM3DW =                         GameStylePossibility.NOT_SM3DW
-import NSMBU_AND_SM3DW =                   GameStylePossibility.NSMBU_AND_SM3DW
-import NSMBU_ONLY =                        GameStylePossibility.NSMBU_ONLY
-import SMB_AND_NSMBU =                     GameStylePossibility.SMB_AND_NSMBU
-import SMB_AND_NSMBU_AND_SM3DW =           GameStylePossibility.SMB_AND_NSMBU_AND_SM3DW
-import SMB_AND_SMB3 =                      GameStylePossibility.SMB_AND_SMB3
-import SMB_AND_SMB3_AND_NSMBU =            GameStylePossibility.SMB_AND_SMB3_AND_NSMBU
-import SMB_AND_SMB3_AND_SMW =              GameStylePossibility.SMB_AND_SMB3_AND_SMW
-import SMB_AND_SMB3_AND_SM3DW =            GameStylePossibility.SMB_AND_SMB3_AND_SM3DW
-import SMB_AND_SMW =                       GameStylePossibility.SMB_AND_SMW
-import SMB_AND_SMW_AND_NSMBU =             GameStylePossibility.SMB_AND_SMW_AND_NSMBU
-import SMB_AND_SMW_AND_SM3DW =             GameStylePossibility.SMB_AND_SMW_AND_SM3DW
-import SMB_AND_SM3DW =                     GameStylePossibility.SMB_AND_SM3DW
-import SMB_ONLY =                          GameStylePossibility.SMB_ONLY
-import SMB3_AND_NSMBU =                    GameStylePossibility.SMB3_AND_NSMBU
-import SMB3_AND_NSMBU_AND_SM3DW =          GameStylePossibility.SMB3_AND_NSMBU_AND_SM3DW
-import SMB3_AND_SMW =                      GameStylePossibility.SMB3_AND_SMW
-import SMB3_AND_SMW_AND_NSMBU =            GameStylePossibility.SMB3_AND_SMW_AND_NSMBU
-import SMB3_AND_SMW_AND_SM3DW =            GameStylePossibility.SMB3_AND_SMW_AND_SM3DW
-import SMB3_AND_SM3DW =                    GameStylePossibility.SMB3_AND_SM3DW
-import SMB3_ONLY =                         GameStylePossibility.SMB3_ONLY
-import SMW_AND_NSMBU =                     GameStylePossibility.SMW_AND_NSMBU
-import SMW_AND_NSMBU_AND_SM3DW =           GameStylePossibility.SMW_AND_NSMBU_AND_SM3DW
-import SMW_AND_SM3DW =                     GameStylePossibility.SMW_AND_SM3DW
-import SMW_ONLY =                          GameStylePossibility.SMW_ONLY
-import SM3DW_ONLY =                        GameStylePossibility.SM3DW_ONLY
 
 /**
  * @recursiveReference<{@link GameStyleLoader}>
@@ -191,7 +159,7 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
         public getValueInUrl(url: string,): readonly GameStyles[] {
             const lowerCasedUrl = url.toLowerCase()
             if (lowerCasedUrl.includes(this.ALL_PREFIX_GROUP,))
-                return ALL_GAME_STYLES
+                return Import.GameStylePossibility.ALL_GAME_STYLES
 
             const prefix = this.PREFIX
             if (!lowerCasedUrl.includes(prefix,))
@@ -210,78 +178,78 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
                     if (withSmw) {
                         if (withNsmbu) {
                             if (withSm3dw)
-                                return ALL_GAME_STYLES
-                            return NOT_SM3DW
+                                return Import.GameStylePossibility.ALL_GAME_STYLES
+                            return Import.GameStylePossibility.NOT_SM3DW
                         }
                         if (withSm3dw)
-                            return NOT_NSMBU
-                        return SMB_AND_SMB3_AND_SMW
+                            return Import.GameStylePossibility.NOT_NSMBU
+                        return Import.GameStylePossibility.SMB_AND_SMB3_AND_SMW
                     }
                     if (withNsmbu) {
                         if (withSm3dw)
-                            return NOT_SMW
-                        return SMB_AND_SMB3_AND_NSMBU
+                            return Import.GameStylePossibility.NOT_SMW
+                        return Import.GameStylePossibility.SMB_AND_SMB3_AND_NSMBU
                     }
                     if (withSm3dw)
-                        return SMB_AND_SMB3_AND_SM3DW
-                    return SMB_AND_SMB3
+                        return Import.GameStylePossibility.SMB_AND_SMB3_AND_SM3DW
+                    return Import.GameStylePossibility.SMB_AND_SMB3
                 }
                 if (withSmw) {
                     if (withNsmbu) {
                         if (withSm3dw)
-                            return NOT_SMB3
-                        return SMB_AND_SMW_AND_NSMBU
+                            return Import.GameStylePossibility.NOT_SMB3
+                        return Import.GameStylePossibility.SMB_AND_SMW_AND_NSMBU
                     }
                     if (withSm3dw)
-                        return SMB_AND_SMW_AND_SM3DW
-                    return SMB_AND_SMW
+                        return Import.GameStylePossibility.SMB_AND_SMW_AND_SM3DW
+                    return Import.GameStylePossibility.SMB_AND_SMW
                 }
                 if (withNsmbu) {
                     if (withSm3dw)
-                        return SMB_AND_NSMBU_AND_SM3DW
-                    return SMB_AND_NSMBU
+                        return Import.GameStylePossibility.SMB_AND_NSMBU_AND_SM3DW
+                    return Import.GameStylePossibility.SMB_AND_NSMBU
                 }
                 if (withSm3dw)
-                    return SMB_AND_SM3DW
-                return SMB_ONLY
+                    return Import.GameStylePossibility.SMB_AND_SM3DW
+                return Import.GameStylePossibility.SMB_ONLY
             }
             if (withSmb3) {
                 if (withSmw) {
                     if (withNsmbu) {
                         if (withSm3dw)
-                            return NOT_SMB
-                        return SMB3_AND_SMW_AND_NSMBU
+                            return Import.GameStylePossibility.NOT_SMB
+                        return Import.GameStylePossibility.SMB3_AND_SMW_AND_NSMBU
                     }
                     if (withSm3dw)
-                        return SMB3_AND_SMW_AND_SM3DW
-                    return SMB3_AND_SMW
+                        return Import.GameStylePossibility.SMB3_AND_SMW_AND_SM3DW
+                    return Import.GameStylePossibility.SMB3_AND_SMW
                 }
                 if (withNsmbu) {
                     if (withSm3dw)
-                        return SMB3_AND_NSMBU_AND_SM3DW
-                    return SMB3_AND_NSMBU
+                        return Import.GameStylePossibility.SMB3_AND_NSMBU_AND_SM3DW
+                    return Import.GameStylePossibility.SMB3_AND_NSMBU
                 }
                 if (withSm3dw)
-                    return SMB3_AND_SM3DW
-                return SMB3_ONLY
+                    return Import.GameStylePossibility.SMB3_AND_SM3DW
+                return Import.GameStylePossibility.SMB3_ONLY
             }
             if (withSmw) {
                 if (withNsmbu) {
                     if (withSm3dw)
-                        return SMW_AND_NSMBU_AND_SM3DW
-                    return SMW_AND_NSMBU
+                        return Import.GameStylePossibility.SMW_AND_NSMBU_AND_SM3DW
+                    return Import.GameStylePossibility.SMW_AND_NSMBU
                 }
                 if (withSm3dw)
-                    return SMW_AND_SM3DW
-                return SMW_ONLY
+                    return Import.GameStylePossibility.SMW_AND_SM3DW
+                return Import.GameStylePossibility.SMW_ONLY
             }
             if (withNsmbu) {
                 if (withSm3dw)
-                    return NSMBU_AND_SM3DW
-                return NSMBU_ONLY
+                    return Import.GameStylePossibility.NSMBU_AND_SM3DW
+                return Import.GameStylePossibility.NSMBU_ONLY
             }
             if (withSm3dw)
-                return SM3DW_ONLY
+                return Import.GameStylePossibility.SM3DW_ONLY
             return EMPTY_ARRAY
         }
 
