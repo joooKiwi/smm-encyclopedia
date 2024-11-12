@@ -35,11 +35,16 @@ import {OtherWordInTheGames}                        from 'core/otherWordInTheGam
 import {contentTranslation, gameContentTranslation} from 'lang/components/translationMethods'
 import {filterGame, filterGameStyle, intersect}     from 'util/utilitiesMethods'
 
-import ALL_GAME_STYLES = GameStylePossibility.ALL_GAME_STYLES
 import ALL_GAMES =       GamePossibility.ALL_GAMES
 import SMM1 =            Games.SMM1
 import SMM2 =            Games.SMM2
 import SMM3DS =          Games.SMM3DS
+import ALL_GAME_STYLES = GameStylePossibility.ALL_GAME_STYLES
+import NSMBU =           GameStyles.NSMBU
+import SMB =             GameStyles.SMB
+import SMB3 =            GameStyles.SMB3
+import SMW =             GameStyles.SMW
+import SM3DW =           GameStyles.SM3DW
 
 class EntityAppInterpreter
     implements AppInterpreterWithTable<Entities, EntityAppOption> {
@@ -250,12 +255,6 @@ function GameAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentP
     </div>
 }
 
-const smb = GameStyles.SUPER_MARIO_BROS
-const smb3 = GameStyles.SUPER_MARIO_BROS_3
-const smw = GameStyles.SUPER_MARIO_WORLD
-const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
-const sm3dw = GameStyles.SUPER_MARIO_3D_WORLD
-
 /** @reactComponent */
 function GameStyleAsideContent({viewDisplay, games, gameStyles,}: EntityAsideContentProperties,) {
     const gameName = `Game=${GameCompanion.getGroupUrlName(games,)}` satisfies FullGroupUrlName_Game
@@ -285,21 +284,21 @@ function GameStyleAsideContent({viewDisplay, games, gameStyles,}: EntityAsideCon
             <LinkButton partialId="allGameStyleLimit" routeName={entityGameStyle.getAllRouteName(viewDisplay, gameName,)} color={entityGameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
             <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
                 <LinkButton partialId="smbGameStyleLimit" routeName={entityGameStyle.getSmbRouteName(viewDisplay, gameName,)} color={entityGameStyle.smbColor(isSmbSelected,)}>
-                    <GameStyleImage reference={smb}/>
+                    <GameStyleImage reference={SMB}/>
                 </LinkButton>
                 <LinkButton partialId="smb3GameStyleLimit" routeName={entityGameStyle.getSmb3RouteName(viewDisplay, gameName,)} color={entityGameStyle.smb3Color(isSmb3Selected,)}>
-                    <GameStyleImage reference={smb3}/>
+                    <GameStyleImage reference={SMB3}/>
                 </LinkButton>
                 <LinkButton partialId="smwGameStyleLimit" routeName={entityGameStyle.getSmwRouteName(viewDisplay, gameName,)} color={entityGameStyle.smwColor(isSmwSelected,)}>
-                    <GameStyleImage reference={smw}/>
+                    <GameStyleImage reference={SMW}/>
                 </LinkButton>
             </div>
             <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
                 <LinkButton partialId="nsmbuGameStyleLimit" routeName={entityGameStyle.getNsmbuRouteName(viewDisplay, gameName,)} color={entityGameStyle.nsmbuColor(isNsmbuSelected,)}>
-                    <GameStyleImage reference={nsmbu}/>
+                    <GameStyleImage reference={NSMBU}/>
                 </LinkButton>
                 <LinkButton partialId="sm3dwGameStyleLimit" routeName={entityGameStyle.getSm3dwRouteName(viewDisplay, gameName,)} color={entityGameStyle.sm3dwColor(isSm3dwSelected,)}>
-                    <GameStyleImage reference={sm3dw}/>
+                    <GameStyleImage reference={SM3DW}/>
                 </LinkButton>
             </div>
         </div>
@@ -321,18 +320,18 @@ function GameStyleAsideContent({viewDisplay, games, gameStyles,}: EntityAsideCon
         <LinkButton partialId="allGameStyleLimit" routeName={entityGameStyle.getAllRouteName(viewDisplay, gameName,)} color={entityGameStyle.allColor}>{contentTranslation('All',)}</LinkButton>
         <div id="entity-gameStylesButton-singularGameStyle-top-container" className="btn-group btn-group-sm">
             <LinkButton partialId="smbGameStyleLimit" routeName={entityGameStyle.getSmbRouteName(viewDisplay, gameName,)} color={entityGameStyle.smbColor(isSmbSelected,)}>
-                <GameStyleImage reference={smb}/>
+                <GameStyleImage reference={SMB}/>
             </LinkButton>
             <LinkButton partialId="smb3GameStyleLimit" routeName={entityGameStyle.getSmb3RouteName(viewDisplay, gameName,)} color={entityGameStyle.smb3Color(isSmb3Selected,)}>
-                <GameStyleImage reference={smb3}/>
+                <GameStyleImage reference={SMB3}/>
             </LinkButton>
         </div>
         <div id="entity-gameStylesButton-singularGameStyle-bottom-container" className="btn-group btn-group-sm">
             <LinkButton partialId="smwGameStyleLimit" routeName={entityGameStyle.getSmwRouteName(viewDisplay, gameName,)} color={entityGameStyle.smwColor(isSmwSelected,)}>
-                <GameStyleImage reference={smw}/>
+                <GameStyleImage reference={SMW}/>
             </LinkButton>
             <LinkButton partialId="nsmbuGameStyleLimit" routeName={entityGameStyle.getNsmbuRouteName(viewDisplay, gameName,)} color={entityGameStyle.nsmbuColor(isNsmbuSelected,)}>
-                <GameStyleImage reference={nsmbu}/>
+                <GameStyleImage reference={NSMBU}/>
             </LinkButton>
         </div>
     </div>

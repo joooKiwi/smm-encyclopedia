@@ -9,11 +9,7 @@ import type {ClassInAnySuperMarioMakerGame}                                     
 import {AbstractPowerUpBySMM1GameStylesPriority} from 'app/powerUp/priority/AbstractPowerUpBySMM1GameStylesPriority'
 import {GameStyles}                              from 'core/gameStyle/GameStyles'
 
-//region -------------------- Import from deconstruction --------------------
-
-const {SUPER_MARIO_3D_WORLD,} = GameStyles
-
-//endregion -------------------- Import from deconstruction --------------------
+import SM3DW = GameStyles.SM3DW
 
 export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
     extends AbstractPowerUpBySMM1GameStylesPriority
@@ -31,7 +27,7 @@ export abstract class AbstractPowerUpByAllPossibleGameStylesPriority
                           callback: ImagesRetrieverCallback,
                           isIn: ClassInAnySuperMarioMakerGame,) {
         super(entity, gameStylesDisplayed, callback, isIn,)
-        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? lazy(() => callback(entity, SUPER_MARIO_3D_WORLD)) : CommonLazy.EMPTY_ARRAY
+        this.#sm3dwImagesHolder = entity.reference.isInSuperMario3DWorldStyle ? lazy(() => callback(entity, SM3DW)) : CommonLazy.EMPTY_ARRAY
     }
 
     //endregion -------------------- Constructor --------------------

@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import {findFirstIndexByArray}                   from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {Names, Ordinals, PossibleEnglishName}                      from 'core/entity/Entities.types'
@@ -23,6 +24,9 @@ import {InGameEntityImageContainer}         from 'core/entity/images/InGameEntit
 import {EditorImageContainer}               from 'core/entity/images/editor/EditorImage.container'
 import {GameStyles}                         from 'core/gameStyle/GameStyles'
 import {ClearConditionImage}                from 'core/entity/images/clearCondition/ClearConditionImage'
+
+import SMB3 = GameStyles.SMB3
+import SMW =  GameStyles.SMW
 
 /**
  * The images used in the main page of {@link EntityApp}
@@ -146,7 +150,7 @@ export abstract class EntityImages
 
     /**
      * A subclass of an {@link EntityImages} to hold an existant {@link EditorEntityImage}
-     * without the blue variant images that are in {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
+     * without the blue variant images that are in {@link SMB} and {@link SMB3}
      */
     private static readonly EditorWithNoBlueVariantDuplicate = class EditorWithNoBlueVariantDuplicateEntityImages<const NAME extends PossibleEnglishName,
         const IMAGE extends EditorImageFile, >
@@ -155,8 +159,8 @@ export abstract class EntityImages
         protected override _createImage(image: EditorImage<IMAGE>) {
             const images = image.imagesWithAssociation
             const size = images.length
-            const smb3ImageIndex = images.findIndex(it => it[1] === GameStyles.SUPER_MARIO_BROS_3,)
-            const smwImageIndex = images.findIndex(it => it[1] === GameStyles.SUPER_MARIO_WORLD,)
+            const smb3ImageIndex = findFirstIndexByArray(images, it => it[1] === SMB3,)
+            const smwImageIndex = findFirstIndexByArray(images, it => it[1] === SMW,)
             if (size === smwImageIndex + 2) //without sm3dw
                 return new EditorImageContainer([
                     images[0], images[1],

@@ -31,6 +31,11 @@ import {filterGame}                                 from 'util/utilitiesMethods'
 import SMM1 =   Games.SMM1
 import SMM2 =   Games.SMM2
 import SMM3DS = Games.SMM3DS
+import NSMBU =  GameStyles.NSMBU
+import SMB =    GameStyles.SMB
+import SMB3 =   GameStyles.SMB3
+import SMW =    GameStyles.SMW
+import SM3DW =  GameStyles.SM3DW
 
 class GameStyleAppInterpreter
     implements AppInterpreterWithTable<GameStyles, GameStyleAppOption> {
@@ -165,17 +170,17 @@ function GameStyleDescription({viewDisplay, game,}: GameStyleDescriptionProperti
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro sm3dw', {
-                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/></LinkText>,
+                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
                 smm2Link: <TextOrLink key="smm2Link" id="smm2Game-sm3dw-description" routeName={smm2Link}><GameImage reference={SMM2}/></TextOrLink>,
             },)}
             {gameContentTranslation('game style.description.intro entity', {
                 entityLink: <LinkText key="entityLink"  partialId="entityLink" routeName="everyEntity" color="primary">{entity}</LinkText>,
                 entitiesLink: <LinkText key="entitiesLink" partialId="entityLink" routeName="everyEntity" color="primary">{entities}</LinkText>,
-                smbLink: <LinkText key="smbLink" partialId="smbLink" routeName="everyEntity (card GameStyle=1)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/></LinkText>,
-                smb3Link: <LinkText key="smb3Link" partialId="smb3Link" routeName="everyEntity (card GameStyle=3)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/></LinkText>,
-                smwLink: <LinkText key="smwLink" partialId="smwLink" routeName="everyEntity (card GameStyle=W)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/></LinkText>,
-                nsmbuLink: <LinkText key="nsmbuLink" partialId="nsmbuLink" routeName="everyEntity (card GameStyle=U)" color="primary"><GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/></LinkText>,
-                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/></LinkText>,
+                smbLink: <LinkText key="smbLink" partialId="smbLink" routeName="everyEntity (card GameStyle=1)" color="primary"><GameStyleImage reference={SMB}/></LinkText>,
+                smb3Link: <LinkText key="smb3Link" partialId="smb3Link" routeName="everyEntity (card GameStyle=3)" color="primary"><GameStyleImage reference={SMB3}/></LinkText>,
+                smwLink: <LinkText key="smwLink" partialId="smwLink" routeName="everyEntity (card GameStyle=W)" color="primary"><GameStyleImage reference={SMW}/></LinkText>,
+                nsmbuLink: <LinkText key="nsmbuLink" partialId="nsmbuLink" routeName="everyEntity (card GameStyle=U)" color="primary"><GameStyleImage reference={NSMBU}/></LinkText>,
+                sm3dwLink: <LinkText key="sm3dwLink" partialId="sm3dwLink" routeName="everyEntity (card GameStyle=3DW)" color="primary"><GameStyleImage reference={SM3DW}/></LinkText>,
             },)}
         </p>
         <p>{gameContentTranslation('game style.description.viewable', {

@@ -14,6 +14,12 @@ import {EmptyInGameImage}     from 'core/entity/images/inGame/EmptyInGameImage'
 import {InGameImageContainer} from 'core/entity/images/inGame/InGameImage.container'
 import {GameStyles}           from 'core/gameStyle/GameStyles'
 
+import NSMBU = GameStyles.NSMBU
+import SMB =   GameStyles.SMB
+import SMB3 =  GameStyles.SMB3
+import SMW =   GameStyles.SMW
+import SM3DW = GameStyles.SM3DW
+
 /**
  * An {@link InGameEntityImages} class made to hold an {@link InGameImage}
  *
@@ -67,7 +73,7 @@ export abstract class InGameEntityImages
 
     //region -------------------- Sub class (one in 1 specific game style) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile} in only {@link SMB} */
     private static readonly ExistantAsOneInOnlySmb = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
@@ -83,7 +89,7 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            return [[GameStyles.SUPER_MARIO_BROS, inGameImage(this, this.#folderName, this.#fileName,),],] as const
+            return [[SMB, inGameImage(this, this.#folderName, this.#fileName,),],] as const
         }
 
     }
@@ -93,7 +99,7 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
-     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
     private static readonly ExistantAsOneInNotNsmbuAndSm3dw = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
@@ -113,9 +119,9 @@ export abstract class InGameEntityImages
             const fileName = this.#fileName
             const endingFolderName = this.#endingFolderName
             return [
-                [GameStyles.SUPER_MARIO_BROS, inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
-                [GameStyles.SUPER_MARIO_BROS_3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
-                [GameStyles.SUPER_MARIO_WORLD, inGameImage(this, `MW ${endingFolderName}`, fileName,),],
+                [SMB,  inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [SMB3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [SMW,  inGameImage(this, `MW ${endingFolderName}`, fileName,),],
             ] as const
         }
 
@@ -126,8 +132,7 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 1 {@link InGameImageFile}
-     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3},
-     * {@link GameStyles.SUPER_MARIO_WORLD SMW} and {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU}
+     * in only {@link SMB}, {@link SMB3}, {@link SMW} and {@link NSMBU}
      */
     private static readonly ExistantAsOneInNotSm3dw = class ExistantAsOneInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
@@ -147,10 +152,10 @@ export abstract class InGameEntityImages
             const fileName = this.#fileName
             const endingFolderName = this.#endingFolderName
             return [
-                [GameStyles.SUPER_MARIO_BROS, inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
-                [GameStyles.SUPER_MARIO_BROS_3, inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
-                [GameStyles.SUPER_MARIO_WORLD, inGameImage(this, `MW ${endingFolderName}`, fileName,),],
-                [GameStyles.NEW_SUPER_MARIO_BROS_U, inGameImage(this, `WU ${endingFolderName}`, fileName,),],
+                [SMB,   inGameImage(this, `M1 ${endingFolderName}`, fileName,),],
+                [SMB3,  inGameImage(this, `M3 ${endingFolderName}`, fileName,),],
+                [SMW,   inGameImage(this, `MW ${endingFolderName}`, fileName,),],
+                [NSMBU, inGameImage(this, `WU ${endingFolderName}`, fileName,),],
             ] as const
         }
 
@@ -159,7 +164,7 @@ export abstract class InGameEntityImages
     //endregion -------------------- Sub class (one in 4 specific game style) --------------------
     //region -------------------- Sub class (two in 1 specific game style) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile} in only {@link SMW} */
     private static readonly ExistantAsTwoInOnlySmw = class ExistantAsTwoInOnlySmwInGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
@@ -177,10 +182,9 @@ export abstract class InGameEntityImages
         }
 
         public override _createImageFiles() {
-            const gameStyle = GameStyles.SUPER_MARIO_WORLD
             return [
-                [gameStyle, inGameImage(this, this.#folderName, this.#fileName1,),],
-                [gameStyle, inGameImage(this, this.#folderName, this.#fileName2,),],
+                [SMW, inGameImage(this, this.#folderName, this.#fileName1,),],
+                [SMW, inGameImage(this, this.#folderName, this.#fileName2,),],
             ] as const
         }
 
@@ -191,7 +195,7 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
-     * in only {@link GameStyles.SUPER_MARIO_BROS SMB} and {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}
+     * in only {@link SMB} and {@link SMB3}
      */
     private static readonly ExistantAsTwoInOnlySmbAndSmb3 = class ExistantAsTwoInOnlySmbAndSmb3InGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
@@ -213,13 +217,11 @@ export abstract class InGameEntityImages
             const endingFolderName = this.#endingFolderName
             const folderNameSmb = `M1 ${endingFolderName}` as const
             const folderNameSmb3 = `M3 ${endingFolderName}` as const
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
             return [
-                [smb,  inGameImage(this, folderNameSmb, this.#fileName1,),],
-                [smb,  inGameImage(this, folderNameSmb, this.#fileName2,),],
-                [smb3, inGameImage(this, folderNameSmb3, this.#fileName1,),],
-                [smb3, inGameImage(this, folderNameSmb3, this.#fileName2,),],
+                [SMB,  inGameImage(this, folderNameSmb, this.#fileName1,),],
+                [SMB,  inGameImage(this, folderNameSmb, this.#fileName2,),],
+                [SMB3, inGameImage(this, folderNameSmb3, this.#fileName1,),],
+                [SMB3, inGameImage(this, folderNameSmb3, this.#fileName2,),],
             ] as const
         }
 
@@ -230,7 +232,7 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 2 {@link InGameImageFile}
-     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
     private static readonly ExistantAsTwoInNotNsmbuAndSm3dw = class ExistantAsTwoInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
@@ -255,16 +257,13 @@ export abstract class InGameEntityImages
             const folderNameSmw = `MW ${endingFolderName}` as const
             const fileName1 = this.#fileName1
             const fileName2 = this.#fileName2
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            const smw = GameStyles.SUPER_MARIO_WORLD
             return [
-                [smb,  inGameImage(this, folderNameSmb, fileName1,),],
-                [smb,  inGameImage(this, folderNameSmb, fileName2,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName1,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName2,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName1,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName2,),],
+                [SMB,  inGameImage(this, folderNameSmb, fileName1,),],
+                [SMB,  inGameImage(this, folderNameSmb, fileName2,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName1,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName2,),],
+                [SMW,  inGameImage(this, folderNameSmw, fileName1,),],
+                [SMW,  inGameImage(this, folderNameSmw, fileName2,),],
             ] as const
         }
 
@@ -273,7 +272,7 @@ export abstract class InGameEntityImages
     //endregion -------------------- Sub class (two in 3 specific game style) --------------------
     //region -------------------- Sub class (three in 1 specific game style) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile} in only {@link SMB} */
     private static readonly ExistantAsThreeInOnlySmb = class ExistantAsThreeInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
@@ -294,11 +293,10 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.#folderName
-            const gameStyle = GameStyles.SUPER_MARIO_BROS
             return [
-                [gameStyle, inGameImage(this, folderName, this.#fileName1,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName2,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName3,),],
+                [SMB, inGameImage(this, folderName, this.#fileName1,),],
+                [SMB, inGameImage(this, folderName, this.#fileName2,),],
+                [SMB, inGameImage(this, folderName, this.#fileName3,),],
             ] as const
         }
 
@@ -309,7 +307,7 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 3 {@link InGameImageFile}
-     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
     private static readonly ExistantAsThreeInNotNsmbuAndSm3dw = class ExistantAsThreeInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
@@ -337,19 +335,16 @@ export abstract class InGameEntityImages
             const fileName1 = this.#fileName1
             const fileName2 = this.#fileName2
             const fileName3 = this.#fileName3
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            const smw = GameStyles.SUPER_MARIO_WORLD
             return [
-                [smb,  inGameImage(this, folderNameSmb, fileName1,),],
-                [smb,  inGameImage(this, folderNameSmb, fileName2,),],
-                [smb,  inGameImage(this, folderNameSmb, fileName3,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName1,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName2,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName3,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName1,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName2,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName3,),],
+                [SMB,  inGameImage(this, folderNameSmb,  fileName1,),],
+                [SMB,  inGameImage(this, folderNameSmb,  fileName2,),],
+                [SMB,  inGameImage(this, folderNameSmb,  fileName3,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName1,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName2,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName3,),],
+                [SMW,  inGameImage(this, folderNameSmw,  fileName1,),],
+                [SMW,  inGameImage(this, folderNameSmw,  fileName2,),],
+                [SMW,  inGameImage(this, folderNameSmw,  fileName3,),],
             ] as const
         }
 
@@ -358,7 +353,7 @@ export abstract class InGameEntityImages
     //endregion -------------------- Sub class (three in 3 specific game style) --------------------
     //region -------------------- Sub class (four in 1 specific game style) --------------------
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_BROS SMB} */
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link SMB} */
     private static readonly ExistantAsFourInOnlySmb = class ExistantAsFourInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
@@ -381,18 +376,17 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.#folderName
-            const gameStyle = GameStyles.SUPER_MARIO_BROS
             return [
-                [gameStyle, inGameImage(this, folderName, this.#fileName1,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName2,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName3,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName4,),],
+                [SMB, inGameImage(this, folderName, this.#fileName1,),],
+                [SMB, inGameImage(this, folderName, this.#fileName2,),],
+                [SMB, inGameImage(this, folderName, this.#fileName3,),],
+                [SMB, inGameImage(this, folderName, this.#fileName4,),],
             ] as const
         }
 
     }
 
-    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link GameStyles.SUPER_MARIO_WORLD SMW} */
+    /** A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile} in only {@link SMW} */
     private static readonly ExistantAsFourInOnlySmw = class ExistantAsFourInOnlySmbInGameEntityImages<const NAME extends PossibleEnglishName,
         const FOLDER_NAME extends string,
         const FILE_NAME extends string, >
@@ -415,12 +409,11 @@ export abstract class InGameEntityImages
 
         public override _createImageFiles() {
             const folderName = this.#folderName
-            const gameStyle = GameStyles.SUPER_MARIO_WORLD
             return [
-                [gameStyle, inGameImage(this, folderName, this.#fileName1,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName2,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName3,),],
-                [gameStyle, inGameImage(this, folderName, this.#fileName4,),],
+                [SMW, inGameImage(this, folderName, this.#fileName1,),],
+                [SMW, inGameImage(this, folderName, this.#fileName2,),],
+                [SMW, inGameImage(this, folderName, this.#fileName3,),],
+                [SMW, inGameImage(this, folderName, this.#fileName4,),],
             ] as const
         }
 
@@ -431,7 +424,7 @@ export abstract class InGameEntityImages
 
     /**
      * A subclass of an {@link InGameEntityImages} to hold an existant {@link InGameImage} as 4 {@link InGameImageFile}
-     * in only {@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} and {@link GameStyles.SUPER_MARIO_WORLD SMW}
+     * in only {@link SMB}, {@link SMB3} and {@link SMW}
      */
     private static readonly ExistantAsFourInNotNsmbuAndSm3dw = class ExistantAsFourInNotNsmbuAndSm3dwInGameEntityImages<const NAME extends PossibleEnglishName,
         const ENDING_FOLDER_NAME extends string,
@@ -462,22 +455,19 @@ export abstract class InGameEntityImages
             const fileName2 = this.#fileName2
             const fileName3 = this.#fileName3
             const fileName4 = this.#fileName4
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            const smw = GameStyles.SUPER_MARIO_WORLD
             return [
-                [smb,  inGameImage(this, folderNameSmb, fileName1,),],
-                [smb,  inGameImage(this, folderNameSmb, fileName2,),],
-                [smb,  inGameImage(this, folderNameSmb, fileName3,),],
-                [smb,  inGameImage(this, folderNameSmb, fileName4,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName1,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName2,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName3,),],
-                [smb3, inGameImage(this, folderNameSmb3, fileName4,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName1,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName2,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName3,),],
-                [smw,  inGameImage(this, folderNameSmw, fileName4,),],
+                [SMB,  inGameImage(this, folderNameSmb,  fileName1,),],
+                [SMB,  inGameImage(this, folderNameSmb,  fileName2,),],
+                [SMB,  inGameImage(this, folderNameSmb,  fileName3,),],
+                [SMB,  inGameImage(this, folderNameSmb,  fileName4,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName1,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName2,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName3,),],
+                [SMB3, inGameImage(this, folderNameSmb3, fileName4,),],
+                [SMW,  inGameImage(this, folderNameSmw,  fileName1,),],
+                [SMW,  inGameImage(this, folderNameSmw,  fileName2,),],
+                [SMW,  inGameImage(this, folderNameSmw,  fileName3,),],
+                [SMW,  inGameImage(this, folderNameSmw,  fileName4,),],
             ] as const
         }
 
@@ -495,26 +485,23 @@ export abstract class InGameEntityImages
         public constructor() { super('Water',) }
 
         public override _createImageFiles() {
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            const smw = GameStyles.SUPER_MARIO_WORLD
             return [
-                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.0',),],
-                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.1',),],
-                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.2',),],
-                [smb,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.3',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.0',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.1',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.2',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'body.3',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.0',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.1',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.2',),],
-                [smb3, inGameImage(this, 'M3 Object - WaterHalf', 'top.3',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.0',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.1',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.2',),],
-                [smw,  inGameImage(this, 'MW Object - WaterHalf', 'body.3',),],
+                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.0',),],
+                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.1',),],
+                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.2',),],
+                [SMB,  inGameImage(this, 'M1 Object - WaterHalf', 'wait.3',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.0',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.1',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.2',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'body.3',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.0',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.1',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.2',),],
+                [SMB3, inGameImage(this, 'M3 Object - WaterHalf', 'top.3',),],
+                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.0',),],
+                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.1',),],
+                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.2',),],
+                [SMW,  inGameImage(this, 'MW Object - WaterHalf', 'body.3',),],
             ] as const
         }
 
@@ -527,27 +514,24 @@ export abstract class InGameEntityImages
         public constructor() { super('(Magikoopa\'s projectile)',) }
 
         public override _createImageFiles() {
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            const smw = GameStyles.SUPER_MARIO_WORLD
             return [
-                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.0',),],
-                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.1',),],
-                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.2',),],
-                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.0',),],
-                [smb,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.1',),],
+                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.0',),],
+                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.1',),],
+                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'effect.2',),],
+                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.0',),],
+                [SMB,  inGameImage(this, 'M1 Enemy - Kameck', 'wing_wait.1',),],
 
-                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.0',),],
-                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.1',),],
-                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.2',),],
-                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.0',),],
-                [smb3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.1',),],
+                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.0',),],
+                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.1',),],
+                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'effect.2',),],
+                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.0',),],
+                [SMB3, inGameImage(this, 'M3 Enemy - Kameck', 'wing_wait.1',),],
 
-                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'effect.0',),],
-                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'effect.1',),],
-                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'effect.2',),],
-                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.0',),],
-                [smw,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.1',),],
+                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'effect.0',),],
+                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'effect.1',),],
+                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'effect.2',),],
+                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.0',),],
+                [SMW,  inGameImage(this, 'MW Enemy - Kameck', 'wing_wait.1',),],
             ] as const
         }
 
@@ -562,25 +546,21 @@ export abstract class InGameEntityImages
         public constructor() { super('Fire Bar',) }
 
         public override _createImageFiles() {
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            const smw = GameStyles.SUPER_MARIO_WORLD
-            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             return [
-                [smb,   inGameImage(this, 'M1 Object - Firebar', 'block',),],
-                [smb,   inGameImage(this, 'M1 Object - Firebar', 'fire.0',),],
+                [SMB,   inGameImage(this, 'M1 Object - Firebar', 'block',),],
+                [SMB,   inGameImage(this, 'M1 Object - Firebar', 'fire.0',),],
 
-                [smb3,  inGameImage(this, 'M3 Object - Firebar', 'block',),],
-                [smb3,  inGameImage(this, 'M3 Object - Firebar', 'fire.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Firebar', 'block',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Firebar', 'fire.0',),],
 
-                [smw,   inGameImage(this, 'MW Object - Firebar', 'block',),],
-                [smw,   inGameImage(this, 'MW Object - Firebar', 'fire.0',),],
-                [smw,   inGameImage(this, 'MW Object - Firebar', 'fire.1',),],
-                [smw,   inGameImage(this, 'MW Object - Firebar', 'fire.2',),],
+                [SMW,   inGameImage(this, 'MW Object - Firebar', 'block',),],
+                [SMW,   inGameImage(this, 'MW Object - Firebar', 'fire.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Firebar', 'fire.1',),],
+                [SMW,   inGameImage(this, 'MW Object - Firebar', 'fire.2',),],
 
-                [nsmbu, inGameImage(this, 'WU Object - Firebar', 'center_firebar_Alb.000',),],
-                [nsmbu, inGameImage(this, 'WU Object - Firebar', 'firebar',),],
-                [nsmbu, inGameImage(this, 'WU Object - Firebar', 'firebar_core',),],
+                [NSMBU, inGameImage(this, 'WU Object - Firebar', 'center_firebar_Alb.000',),],
+                [NSMBU, inGameImage(this, 'WU Object - Firebar', 'firebar',),],
+                [NSMBU, inGameImage(this, 'WU Object - Firebar', 'firebar_core',),],
             ] as const
         }
 
@@ -594,12 +574,11 @@ export abstract class InGameEntityImages
         public constructor() { super('Magic Ball thrown by a Lemmy',) }
 
         public override _createImageFiles() {
-            const smw = GameStyles.SUPER_MARIO_WORLD
             return [
-                [GameStyles.SUPER_MARIO_BROS,   inGameImage(this, 'M1 Enemy - Lemmy', 'ball.0',),],
-                [GameStyles.SUPER_MARIO_BROS_3, inGameImage(this, 'M3 Enemy - Lemmy', 'ball.0',),],
-                [smw,                           inGameImage(this, 'MW Enemy - Lemmy', 'ball.0',),],
-                [smw,                           inGameImage(this, 'MW Enemy - Lemmy', 'ball_specular',),],
+                [SMB,  inGameImage(this, 'M1 Enemy - Lemmy', 'ball.0',),],
+                [SMB3, inGameImage(this, 'M3 Enemy - Lemmy', 'ball.0',),],
+                [SMW,  inGameImage(this, 'MW Enemy - Lemmy', 'ball.0',),],
+                [SMW,  inGameImage(this, 'MW Enemy - Lemmy', 'ball_specular',),],
             ] as const
         }
 
@@ -613,38 +592,34 @@ export abstract class InGameEntityImages
         public constructor() { super('Axe',) }
 
         public override _createImageFiles() {
-            const smb = GameStyles.SUPER_MARIO_BROS
-            const smb3 = GameStyles.SUPER_MARIO_BROS_3
-            const smw = GameStyles.SUPER_MARIO_WORLD
-            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             return [
-                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.0',),],
-                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.1',),],
-                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.2',),],
-                [smb,   inGameImage(this, 'M1 Object - Ono', 'wait.3',),],
-                [smb,   inGameImage(this, 'M1 Object - Ono', 'ono_Xlu',),],
+                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.0',),],
+                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.1',),],
+                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.2',),],
+                [SMB,   inGameImage(this, 'M1 Object - Ono', 'wait.3',),],
+                [SMB,   inGameImage(this, 'M1 Object - Ono', 'ono_Xlu',),],
 
-                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.0',),],
-                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.1',),],
-                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.2',),],
-                [smb3,  inGameImage(this, 'M3 Object - Ono', 'wait.3',),],
-                [smb3,  inGameImage(this, 'M3 Object - Ono', 'ono_Xlu',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.1',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.2',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'wait.3',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Ono', 'ono_Xlu',),],
 
-                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.0',),],
-                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.1',),],
-                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.2',),],
-                [smw,   inGameImage(this, 'MW Object - Ono', 'wait.3',),],
-                [smw,   inGameImage(this, 'MW Object - Ono', 'ono_Xlu',),],
+                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.1',),],
+                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.2',),],
+                [SMW,   inGameImage(this, 'MW Object - Ono', 'wait.3',),],
+                [SMW,   inGameImage(this, 'MW Object - Ono', 'ono_Xlu',),],
 
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.000',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.001',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.002',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.003',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.004',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.005',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.006',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'ono_Alb.007',),],
-                [nsmbu, inGameImage(this, 'WU Object - Ono', 'onoXlu_Alb.000',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.000',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.001',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.002',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.003',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.004',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.005',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.006',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'ono_Alb.007',),],
+                [NSMBU, inGameImage(this, 'WU Object - Ono', 'onoXlu_Alb.000',),],
             ] as const
         }
 
@@ -659,14 +634,13 @@ export abstract class InGameEntityImages
         public constructor() { super('Bubble',) }
 
         public override _createImageFiles() {
-            const nsmbu = GameStyles.NEW_SUPER_MARIO_BROS_U
             return [
-                [GameStyles.SUPER_MARIO_BROS,     inGameImage(this, 'M1 Object - Balloon', 'balloon.0',),],
-                [GameStyles.SUPER_MARIO_BROS_3,   inGameImage(this, 'M3 Object - Balloon', 'balloon.0',),],
-                [GameStyles.SUPER_MARIO_WORLD,    inGameImage(this, 'MW Object - Balloon', 'balloon.0',),],
-                [nsmbu,                           inGameImage(this, 'WU Object - Balloon', 'balloon.0',),],
-                [nsmbu,                           inGameImage(this, 'WU Object - Balloon', 'balloon2.0',),],
-                [GameStyles.SUPER_MARIO_3D_WORLD, inGameImage(this, '3W Object - Balloon', 'TractorBubble_Alb',),],
+                [SMB,   inGameImage(this, 'M1 Object - Balloon', 'balloon.0',),],
+                [SMB3,  inGameImage(this, 'M3 Object - Balloon', 'balloon.0',),],
+                [SMW,   inGameImage(this, 'MW Object - Balloon', 'balloon.0',),],
+                [NSMBU, inGameImage(this, 'WU Object - Balloon', 'balloon.0',),],
+                [NSMBU, inGameImage(this, 'WU Object - Balloon', 'balloon2.0',),],
+                [SM3DW, inGameImage(this, '3W Object - Balloon', 'TractorBubble_Alb',),],
             ] as const
         }
 

@@ -39,6 +39,12 @@ import {Themes}                         from 'core/theme/Themes'
 import {Times}                          from 'core/time/Times'
 import TimeComponent                    from 'core/time/Time.component'
 
+import NSMBU = GameStyles.NSMBU
+import SMB =   GameStyles.SMB
+import SMB3 =  GameStyles.SMB3
+import SMW =   GameStyles.SMW
+import SM3DW = GameStyles.SM3DW
+
 export class EntityAppOption
     extends Enum<Ordinals, Names>
     implements AppOption<Entities> {
@@ -48,7 +54,7 @@ export class EntityAppOption
     public static readonly IMAGE_IN_SMB = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(GameStyles.SUPER_MARIO_BROS,)
+            const imageFiles = image.get(SMB,)
             if (imageFiles == null)
                 return null
 
@@ -61,14 +67,14 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smb`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/>,} satisfies SingleHeaderContent
+            return {key: `image-smb`, element: <GameStyleImage reference={SMB}/>,} satisfies SingleHeaderContent
         }
 
     }('smb-images',)
     public static readonly IMAGE_IN_SMB3 = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(GameStyles.SUPER_MARIO_BROS_3,)
+            const imageFiles = image.get(SMB3,)
             if (imageFiles == null)
                 return null
 
@@ -81,14 +87,14 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smb3`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/>,} satisfies SingleHeaderContent
+            return {key: `image-smb3`, element: <GameStyleImage reference={SMB3}/>,} satisfies SingleHeaderContent
         }
 
     }('smb3-images',)
     public static readonly IMAGE_IN_SMW = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(GameStyles.SUPER_MARIO_WORLD,)
+            const imageFiles = image.get(SMW,)
             if (imageFiles == null)
                 return null
 
@@ -101,14 +107,14 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-smw`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/>,} satisfies SingleHeaderContent
+            return {key: `image-smw`, element: <GameStyleImage reference={SMW}/>,} satisfies SingleHeaderContent
         }
 
     }('smw-images',)
     public static readonly IMAGE_IN_NSMBU = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+            const imageFiles = image.get(NSMBU,)
             if (imageFiles == null)
                 return null
 
@@ -121,14 +127,14 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-nsmbu`, element: <GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/>,} satisfies SingleHeaderContent
+            return {key: `image-nsmbu`, element: <GameStyleImage reference={NSMBU}/>,} satisfies SingleHeaderContent
         }
 
     }('nsmbu-images',)
     public static readonly IMAGE_IN_SM3DW = new class EntityAppOption_Images extends EntityAppOption {
 
         protected override _createContentOption({englishName, englishNameInHtml, image,}: Entities,) {
-            const imageFiles = image.get(GameStyles.SUPER_MARIO_3D_WORLD,)
+            const imageFiles = image.get(SM3DW,)
             if (imageFiles == null)
                 return null
 
@@ -141,7 +147,7 @@ export class EntityAppOption
         }
 
         protected override _createTableHeaderOption() {
-            return {key: `image-sm3dw`, element: <GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/>,} satisfies SingleHeaderContent
+            return {key: `image-sm3dw`, element: <GameStyleImage reference={SM3DW}/>,} satisfies SingleHeaderContent
         }
 
     }('sm3dw-images',)
@@ -374,7 +380,7 @@ export class EntityAppOption
     }
 
     protected static get _gameStyles_unusedImages(): | readonly [GameStyles,] | EmptyArray {
-        return this.#gameStyles_unusedImages ??= [GameStyles.SUPER_MARIO_BROS,]
+        return this.#gameStyles_unusedImages ??= [SMB,]
     }
 
     protected static get times(): readonly Times[] {

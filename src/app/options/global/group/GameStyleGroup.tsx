@@ -15,7 +15,12 @@ import {useCurrentGames}          from 'core/game/gamesHook'
 import {ProjectLanguages}         from 'lang/ProjectLanguages'
 import {PARAMETER_MODAL_ID}       from 'navigation/button/modalIds'
 
-import SMM2 = Games.SMM2
+import SMM2 =  Games.SMM2
+import NSMBU = GameStyles.NSMBU
+import SMB =   GameStyles.SMB
+import SMB3 =  GameStyles.SMB3
+import SMW =   GameStyles.SMW
+import SM3DW = GameStyles.SM3DW
 
 /** @reactComponent */
 export default function GameStyleGroup() {
@@ -30,21 +35,21 @@ export default function GameStyleGroup() {
     return <div key="option container (Game styles)" id="gameStyles-option-container">
         <div className="btn-group-vertical d-lg-none">
             <div className="btn-group" role="group">
-                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS} selected={gameStyles}/>
-                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS_3} selected={gameStyles}/>
-                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_WORLD} selected={gameStyles}/>
+                <GameStyleLink gameStyle={SMB} selected={gameStyles}/>
+                <GameStyleLink gameStyle={SMB3} selected={gameStyles}/>
+                <GameStyleLink gameStyle={SMW} selected={gameStyles}/>
             </div>
             <div className="btn-group" role="group">
-                <GameStyleLink gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U} selected={gameStyles}/>
-                <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_3D_WORLD} selected={gameStyles} disabled={!isSmm2Selected}/>
+                <GameStyleLink gameStyle={NSMBU} selected={gameStyles}/>
+                <GameStyleLink gameStyle={SM3DW} selected={gameStyles} disabled={!isSmm2Selected}/>
             </div>
         </div>
         <div className="btn-group d-none d-lg-inline-flex" role="group">
-            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS} selected={gameStyles}/>
-            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_BROS_3} selected={gameStyles}/>
-            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_WORLD} selected={gameStyles}/>
-            <GameStyleLink gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U} selected={gameStyles}/>
-            <GameStyleLink gameStyle={GameStyles.SUPER_MARIO_3D_WORLD} selected={gameStyles} disabled={!isSmm2Selected}/>
+            <GameStyleLink gameStyle={SMB} selected={gameStyles}/>
+            <GameStyleLink gameStyle={SMB3} selected={gameStyles}/>
+            <GameStyleLink gameStyle={SMW} selected={gameStyles}/>
+            <GameStyleLink gameStyle={NSMBU} selected={gameStyles}/>
+            <GameStyleLink gameStyle={SM3DW} selected={gameStyles} disabled={!isSmm2Selected}/>
         </div>
     </div>
 }

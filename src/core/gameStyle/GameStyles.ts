@@ -522,6 +522,21 @@ export abstract class GameStyles<const out ACRONYM extends PossibleAcronym = Pos
 
 }
 
+export namespace GameStyles {
+
+    /** An alias of {@link GameStyles.SUPER_MARIO_BROS} */
+    export const SMB = GameStyles.SUPER_MARIO_BROS
+    /** An alias of {@link GameStyles.SUPER_MARIO_BROS_3} */
+    export const SMB3 = GameStyles.SUPER_MARIO_BROS_3
+    /** An alias of {@link GameStyles.SUPER_MARIO_WORLD} */
+    export const SMW = GameStyles.SUPER_MARIO_WORLD
+    /** An alias of {@link GameStyles.NEW_SUPER_MARIO_BROS_U} */
+    export const NSMBU = GameStyles.NEW_SUPER_MARIO_BROS_U
+    /** An alias of {@link GameStyles.SUPER_MARIO_3D_WORLD} */
+    export const SM3DW = GameStyles.SUPER_MARIO_3D_WORLD
+
+}
+
 // TODO remove this test variable when the application will be complete
 // @ts-ignore
 (window.test ??= {}).GameStyles = GameStyles

@@ -19,8 +19,14 @@ import {IndividualMusics}                                from 'core/music/Indivi
 import IndividualMusicSound                              from 'core/music/IndividualMusicSound'
 import SoundEffectImage                                  from 'core/soundEffect/SoundEffectImage'
 import {SoundEffects}                                    from 'core/soundEffect/SoundEffects'
-import {routeFromName}                           from 'route/route'
-import {DONT_VIEW_TRACE_IMAGE, VIEW_TRACE_IMAGE} from 'core/editor/viewTraceImages'
+import {routeFromName}                                   from 'route/route'
+import {DONT_VIEW_TRACE_IMAGE, VIEW_TRACE_IMAGE}         from 'core/editor/viewTraceImages'
+
+import NSMBU = GameStyles.NSMBU
+import SMB =   GameStyles.SMB
+import SMB3 =  GameStyles.SMB3
+import SMW =   GameStyles.SMW
+import SM3DW = GameStyles.SM3DW
 
 export default function MusicApp() {
     return <div id="music-app-container">
@@ -40,13 +46,13 @@ export default function MusicApp() {
         {/*<div id="selector-container">
             <div id="gameStyle-selector-buttonGroup" className="btn-group-vertical">
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/></button>
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/></button>
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={SMB}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={SMB3}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={SMW}/></button>
                 </div>
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/></button>
-                    <button className="btn btn-outline-primary"><GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={NSMBU}/></button>
+                    <button className="btn btn-outline-primary"><GameStyleImage reference={SM3DW}/></button>
                 </div>
             </div>
             <div id="courseTheme-selector-buttonGroup" className="btn-group-vertical">
@@ -81,13 +87,13 @@ export default function MusicApp() {
             </div>
             <div id="powerUp-selector-buttonGroup" className="btn-group-vertical">
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><Image file={Entities.MASTER_SWORD.editorImage.get(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Times.DAY,)[0]}/></button>
-                    <button className="btn btn-outline-primary"><Image file={Entities.SMB2_MUSHROOM.editorImage.get(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Times.DAY,)[0]}/></button>
-                    <button className="btn btn-outline-primary"><Image file={Entities.SUPERBALL_FLOWER.editorImage.get(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.MASTER_SWORD.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.SMB2_MUSHROOM.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.SUPERBALL_FLOWER.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]}/></button>
                 </div>
                 <div className="btn-group btn-group-sm">
-                    <button className="btn btn-outline-primary"><Image file={Entities.YOSHI_EGG.editorImage.get(GameStyles.SUPER_MARIO_WORLD, Themes.GROUND, Times.DAY,)[0]}/></button>
-                    <button className="btn btn-outline-primary"><Image file={Entities.SUPER_STAR.editorImage.get(GameStyles.SUPER_MARIO_WORLD, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.YOSHI_EGG.editorImage.get(SMW, Themes.GROUND, Times.DAY,)[0]}/></button>
+                    <button className="btn btn-outline-primary"><Image file={Entities.SUPER_STAR.editorImage.get(SMW, Themes.GROUND, Times.DAY,)[0]}/></button>
                 </div>
             </div>
             <div id="soundEffect-selector-buttonGroup" className="btn-group-vertical">
@@ -107,7 +113,7 @@ export default function MusicApp() {
         </div>*/}
 
         <div id="smb-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/>
+            <GameStyleImage reference={SMB}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_GROUND_EDITORS}/>
@@ -156,7 +162,7 @@ export default function MusicApp() {
             <FinalBossMusicsContainer files={IndividualMusics.SMB_FINAL_BOSSES} asSmb3/>
         </div>
         <div id="smb3-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/>
+            <GameStyleImage reference={SMB3}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_GROUND_EDITORS}/>
@@ -202,7 +208,7 @@ export default function MusicApp() {
             <BonusBossAndFinalBossMusicsContainer files={IndividualMusics.SMB3_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
         </div>
         <div id="smw-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/>
+            <GameStyleImage reference={SMW}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_GROUND_EDITORS}/>
@@ -248,7 +254,7 @@ export default function MusicApp() {
             <BonusBossAndFinalBossMusicsContainer files={IndividualMusics.SMW_BONUSES_BOSSES_AND_FINAL_BOSSES}/>
         </div>
         <div id="nsmbu-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/>
+            <GameStyleImage reference={NSMBU}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_GROUND_EDITORS}/>
@@ -305,7 +311,7 @@ export default function MusicApp() {
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU_FAST}/>
 
-                <Image file={getYoshiImage(GameStyles.NEW_SUPER_MARIO_BROS_U,)} className="yoshi-image"/>
+                <Image file={getYoshiImage(NSMBU,)} className="yoshi-image"/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU_YOSHI}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU_YOSHI_FAST}/>
 
@@ -319,7 +325,7 @@ export default function MusicApp() {
             </div>
         </div>
         <div id="sm3dw-musics-container" className="gameStyle-musics-container musics-container">
-            <GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/>
+            <GameStyleImage reference={SM3DW}/>
             <div className="w-100"/>
             <ThemeGroupedMusicsContainer theme={Themes.GROUND}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_GROUND_EDITORS}/>
@@ -368,24 +374,24 @@ export default function MusicApp() {
         {/*<div id="ground-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.GROUND}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_GROUND_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_GROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_GROUND_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_GROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_GROUND_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_GROUND_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_GROUND_EDITORS}/>
                 <LessonEditorMusicsContainer files={IndividualMusics.GROUND_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_GROUND_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_GROUND_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_GROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -396,23 +402,23 @@ export default function MusicApp() {
         <div id="underground-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.UNDERGROUND}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_UNDERGROUND_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_UNDERGROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_UNDERGROUND_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_UNDERGROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_UNDERGROUND_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_UNDERGROUND_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_UNDERGROUND_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_UNDERGROUND_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_UNDERGROUND_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_UNDERGROUND_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -423,24 +429,24 @@ export default function MusicApp() {
         <div id="underwater-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.UNDERWATER}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_UNDERWATER_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_UNDERWATER_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_UNDERWATER_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_UNDERWATER_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_UNDERWATER_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_UNDERWATER_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_UNDERWATER_EDITORS}/>
                 <LessonEditorMusicsContainer files={IndividualMusics.UNDERWATER_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_UNDERGROUND_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_UNDERWATER_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_UNDERWATER_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -448,23 +454,23 @@ export default function MusicApp() {
         <div id="desert-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.DESERT}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_DESERT_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_DESERT_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_DESERT_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_GROUND_TIMES}><ThemeImage reference={Themes.GROUND} isSmallPath/></TimeMusicsContainer>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_DESERT_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_DESERT_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_DESERT_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_DESERT_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_DESERT_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_DESERT_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -472,23 +478,23 @@ export default function MusicApp() {
         <div id="snow-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.SNOW}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_SNOW_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_SNOW_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_SNOW_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_SNOW_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_SNOW_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_SNOW_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_SNOW_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_SNOW_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_SNOW_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_SNOW_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -496,23 +502,23 @@ export default function MusicApp() {
         <div id="sky-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.SKY}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_SKY_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_SKY_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_SKY_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_SKY_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_SKY_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_SKY_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_SKY_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_SKY_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_SKY_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_SKY_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -520,24 +526,24 @@ export default function MusicApp() {
         <div id="forest-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.FOREST}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_FOREST_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_FOREST_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_FOREST_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_GROUND_TIMES}><ThemeImage reference={Themes.GROUND} isSmallPath/></TimeMusicsContainer>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_FOREST_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_FOREST_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_FOREST_EDITORS}/>
                 <LessonEditorMusicsContainer files={IndividualMusics.FOREST_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_FOREST_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_FOREST_EDITORS}/>
                 <TimeWithUnderwaterMusicsContainer files={IndividualMusics.SM3DW_FOREST_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -545,24 +551,24 @@ export default function MusicApp() {
         <div id="ghostHouse-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.GHOST_HOUSE}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_GHOST_HOUSE_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_GHOST_HOUSE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_GHOST_HOUSE_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_GHOST_HOUSE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_GHOST_HOUSE_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_GHOST_HOUSE_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_GHOST_HOUSE_EDITORS}/>
                 <LessonEditorMusicsContainer files={IndividualMusics.GHOST_HOUSE_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_GHOST_HOUSE_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_GHOST_HOUSE_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_GHOST_HOUSE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -570,23 +576,23 @@ export default function MusicApp() {
         <div id="airship-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.AIRSHIP}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_AIRSHIP_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_AIRSHIP_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_AIRSHIP_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_AIRSHIP_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_AIRSHIP_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_AIRSHIP_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_AIRSHIP_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_AIRSHIP_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_AIRSHIP_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_AIRSHIP_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -594,24 +600,24 @@ export default function MusicApp() {
         <div id="castle-musics-container" className="theme-musics-container musics-container">
             <div><ThemeImage reference={Themes.CASTLE}/></div>
             <div className="w-100"/>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB}>
                 <EditorMusicsContainer files={IndividualMusics.SMB_CASTLE_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB_CASTLE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_BROS_3}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMB3}>
                 <EditorMusicsContainer files={IndividualMusics.SMB3_CASTLE_EDITORS}/>
                 <TimeMusicsContainer files={IndividualMusics.SMB3_CASTLE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SMW}>
                 <EditorMusicsContainer files={IndividualMusics.SMW_CASTLE_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.SMW_CASTLE_TIMES} gameStyle="SMW"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.NEW_SUPER_MARIO_BROS_U}>
+            <GameStyleGroupedMusicsContainer gameStyle={NSMBU}>
                 <EditorMusicsContainer files={IndividualMusics.NSMBU_CASTLE_EDITORS}/>
                 <LessonEditorMusicsContainer files={IndividualMusics.CASTLE_LESSON_EDITORS}/>
                 <TimeWithYoshiMusicsContainer files={IndividualMusics.NSMBU_CASTLE_TIMES} gameStyle="NSMBU"/>
             </GameStyleGroupedMusicsContainer>
-            <GameStyleGroupedMusicsContainer gameStyle={GameStyles.SUPER_MARIO_3D_WORLD}>
+            <GameStyleGroupedMusicsContainer gameStyle={SM3DW}>
                 <EditorMusicsContainer files={IndividualMusics.SM3DW_CASTLE_EDITORS}/>
                 <DayMusicsContainer files={IndividualMusics.SM3DW_CASTLE_TIMES}/>
             </GameStyleGroupedMusicsContainer>
@@ -751,27 +757,27 @@ export default function MusicApp() {
                 <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
                 <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/>
+                <GameStyleImage reference={SMB}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SMB}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SMB_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/>
+                <GameStyleImage reference={SMB3}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SMB3}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SMB3_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/>
+                <GameStyleImage reference={SMW}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SMW}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SMW_FAST}/>
 
-                <GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/>
+                <GameStyleImage reference={NSMBU}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU_FAST}/>
 
-                <Image file={getYoshiImage(GameStyles.NEW_SUPER_MARIO_BROS_U,)} className="yoshi-image"/>
+                <Image file={getYoshiImage(NSMBU,)} className="yoshi-image"/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU_YOSHI}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_NSMBU_YOSHI_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/>
+                <GameStyleImage reference={SM3DW}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SM3DW}/>
                 <IndividualMusicSound value={IndividualMusics.BONUS_SM3DW_FAST}/>
 
@@ -792,23 +798,23 @@ export default function MusicApp() {
                 <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
                 <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/>
+                <GameStyleImage reference={SMB}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SMB}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SMB_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/>
+                <GameStyleImage reference={SMB3}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SMB3}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SMB3_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/>
+                <GameStyleImage reference={SMW}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SMW}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SMW_FAST}/>
 
-                <GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/>
+                <GameStyleImage reference={NSMBU}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_NSMBU}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_NSMBU_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/>
+                <GameStyleImage reference={SM3DW}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SM3DW}/>
                 <IndividualMusicSound value={IndividualMusics.BOSS_SM3DW_FAST}/>
 
@@ -829,23 +835,23 @@ export default function MusicApp() {
                 <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
                 <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS}/>
+                <GameStyleImage reference={SMB}/>
                 <div/>
                 <div/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/>
+                <GameStyleImage reference={SMB3}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_SMB3}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_SMB3_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_WORLD}/>
+                <GameStyleImage reference={SMW}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_SMW}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_SMW_FAST}/>
 
-                <GameStyleImage reference={GameStyles.NEW_SUPER_MARIO_BROS_U}/>
+                <GameStyleImage reference={NSMBU}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_NSMBU}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_NSMBU_FAST}/>
 
-                <GameStyleImage reference={GameStyles.SUPER_MARIO_3D_WORLD}/>
+                <GameStyleImage reference={SM3DW}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_SM3DW}/>
                 <IndividualMusicSound value={IndividualMusics.FINAL_BOSS_SM3DW_FAST}/>
 
@@ -887,17 +893,17 @@ export default function MusicApp() {
 //region -------------------- Get image --------------------
 
 function getLinkImage() {
-    return Entities.MASTER_SWORD.editorImage.get(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Times.DAY,)[0]
+    return Entities.MASTER_SWORD.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]
 }
 
 function getSmb2Image() {
-    return Entities.SMB2_MUSHROOM.editorImage.get(GameStyles.SUPER_MARIO_BROS, Themes.GROUND, Times.DAY,)[0]
+    return Entities.SMB2_MUSHROOM.editorImage.get(SMB, Themes.GROUND, Times.DAY,)[0]
 }
 
 function getYoshiImage(gameStyle: GameStyles,) {
-    if (gameStyle === GameStyles.SUPER_MARIO_WORLD)
+    if (gameStyle === SMW)
         return Entities.YOSHI_EGG.editorImage.get(gameStyle, Themes.GROUND, Times.DAY,)[0]
-    if (gameStyle === GameStyles.NEW_SUPER_MARIO_BROS_U)
+    if (gameStyle === NSMBU)
         return Entities.YOSHI_EGG.clearConditionImage.get(gameStyle,)
     throw new TypeError(`The game style ${gameStyle.acronym} was not expected for a Yoshi.`,)
 }
@@ -1142,7 +1148,7 @@ function BonusBossAndFinalBossMusicsContainer({files,}: BonusBossAndFinalBossMus
 //         <IndividualMusicSound value={files[0]}/>
 //         <IndividualMusicSound value={files[1]}/>
 //
-//         <Image file={getYoshiImage(GameStyles.NEW_SUPER_MARIO_BROS_U,)} className="yoshi-image"/>
+//         <Image file={getYoshiImage(NSMBU,)} className="yoshi-image"/>
 //         <IndividualMusicSound value={files[2]}/>
 //         <IndividualMusicSound value={files[3]}/>
 //
@@ -1236,7 +1242,7 @@ function BossMusicsContainer({files,}: BossMusicsProperties,) {
 interface FinalBossMusicsProperties
     extends MusicsProperties<ArrayOf6<IndividualMusics>> {
 
-    /** Tell that the first 2 images are in {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} */
+    /** Tell that the first 2 images are in {@link SMB3} */
     readonly asSmb3?: boolean
 
 }
@@ -1249,7 +1255,7 @@ function FinalBossMusicsContainer({files, asSmb3 = false,}: FinalBossMusicsPrope
             <Image file={DONT_VIEW_TRACE_IMAGE} className="dontView-trace-image viewable-trace-image"/>
             <Image file={VIEW_TRACE_IMAGE} className="view-trace-image viewable-trace-image"/>
 
-            {asSmb3 ? <div><GameStyleImage reference={GameStyles.SUPER_MARIO_BROS_3}/></div> : <div/>}
+            {asSmb3 ? <div><GameStyleImage reference={SMB3}/></div> : <div/>}
             <IndividualMusicSound value={files[0]}/>
             <IndividualMusicSound value={files[1]}/>
 
@@ -1337,7 +1343,7 @@ function TimeWithYoshiMusicsContainer({files, gameStyle,}: TimeWithYoshiMusicsPr
         <IndividualMusicSound value={files[2]}/>
         <IndividualMusicSound value={files[3]}/>
 
-        <Image file={getYoshiImage(gameStyle === 'SMW' ? GameStyles.SUPER_MARIO_WORLD : GameStyles.NEW_SUPER_MARIO_BROS_U,)} className="yoshi-image"/>
+        <Image file={getYoshiImage(gameStyle === 'SMW' ? SMW : NSMBU,)} className="yoshi-image"/>
         <IndividualMusicSound value={files[4]}/>
         <IndividualMusicSound value={files[5]}/>
     </div>
