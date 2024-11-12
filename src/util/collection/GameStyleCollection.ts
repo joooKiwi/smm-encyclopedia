@@ -3,6 +3,12 @@ import {GenericCollectionHolder}                                                
 
 import {GameStyles} from 'core/gameStyle/GameStyles'
 
+import NSMBU = GameStyles.NSMBU
+import SMB =   GameStyles.SMB
+import SMB3 =  GameStyles.SMB3
+import SMW =   GameStyles.SMW
+import SM3DW = GameStyles.SM3DW
+
 export class GameStyleCollection<const T extends GameStyles = GameStyles,
     const REFERENCE extends PossibleIterableOrCollection<T> = PossibleIterableArraySetOrCollectionHolder<T>>
     extends GenericCollectionHolder<T, REFERENCE> {
@@ -21,49 +27,47 @@ export class GameStyleCollection<const T extends GameStyles = GameStyles,
     //region -------------------- Getter methods --------------------
 
     /**
-     * The collection has all {@link GameStyles} ({@link GameStyles.SUPER_MARIO_BROS SMB},
-     * {@link GameStyles.SUPER_MARIO_BROS_3 SMB3}, {@link GameStyles.SUPER_MARIO_WORLD SMW},
-     * {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} & {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW})
+     * The collection has all {@link GameStyles}
+     * ({@link SMB}, {@link SMB3}, {@link SMW}, {@link NSMBU} & {@link SM3DW})
      * types in its values
      */
     public get hasAllGameStyles(): boolean {
-        return this.#hasAllGameStyles ??= this.hasAll([GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U, GameStyles.SUPER_MARIO_3D_WORLD,],)
+        return this.#hasAllGameStyles ??= this.hasAll([SMB as T, SMB3 as T, SMW as T, NSMBU as T, SM3DW as T,],)
     }
 
 
     /**
-     * The collection has all {@link GameStyles} in {@link Games.SUPER_MARIO_MAKER_1 SMM1}
-     * ({@link GameStyles.SUPER_MARIO_BROS SMB}, {@link GameStyles.SUPER_MARIO_BROS_3 SMB3},
-     * {@link GameStyles.SUPER_MARIO_WORLD SMW} & {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU})
+     * The collection has all {@link GameStyles} in {@link SMM1}
+     * ({@link SMB}, {@link SMB3}, {@link SMW} & {@link NSMBU})
      * types in its values
      */
     public get hasAllGameStylesInSMM1(): boolean {
-        return this.#hasAllGameStylesInSMM1 ??= this.hasAll([GameStyles.SUPER_MARIO_BROS, GameStyles.SUPER_MARIO_BROS_3, GameStyles.SUPER_MARIO_WORLD, GameStyles.NEW_SUPER_MARIO_BROS_U,],)
+        return this.#hasAllGameStylesInSMM1 ??= this.hasAll([SMB as T, SMB3 as T, SMW as T, NSMBU as T,],)
     }
 
-    /** The collection has the {@link GameStyles.SUPER_MARIO_BROS SMB} type in its values */
+    /** The collection has the {@link SMB} type in its values */
     public get hasSMB(): boolean {
-        return this.#hasSMB ??= this.has(GameStyles.SUPER_MARIO_BROS,)
+        return this.#hasSMB ??= this.has(SMB as T,)
     }
 
-    /** The collection has the {@link GameStyles.SUPER_MARIO_BROS_3 SMB3} type in its values */
+    /** The collection has the {@link SMB3} type in its values */
     public get hasSMB3(): boolean {
-        return this.#hasSMB3 ??= this.has(GameStyles.SUPER_MARIO_BROS_3,)
+        return this.#hasSMB3 ??= this.has(SMB3 as T,)
     }
 
-    /** The collection has the {@link GameStyles.SUPER_MARIO_WORLD SMW} type in its values */
+    /** The collection has the {@link SMW} type in its values */
     public get hasSMW(): boolean {
-        return this.#hasSMW ??= this.has(GameStyles.SUPER_MARIO_WORLD,)
+        return this.#hasSMW ??= this.has(SMW as T,)
     }
 
-    /** The collection has the {@link GameStyles.NEW_SUPER_MARIO_BROS_U NSMBU} type in its values */
+    /** The collection has the {@link NSMBU} type in its values */
     public get hasNSMBU(): boolean {
-        return this.#hasNSMBU ??= this.has(GameStyles.NEW_SUPER_MARIO_BROS_U,)
+        return this.#hasNSMBU ??= this.has(NSMBU as T,)
     }
 
-    /** The collection has the {@link GameStyles.SUPER_MARIO_3D_WORLD SM3DW} type in its values */
+    /** The collection has the {@link SM3DW} type in its values */
     public get hasSM3DW(): boolean {
-        return this.#hasSM3DW ??= this.has(GameStyles.SUPER_MARIO_3D_WORLD,)
+        return this.#hasSM3DW ??= this.has(SM3DW as T,)
     }
 
     //endregion -------------------- Getter methods --------------------
