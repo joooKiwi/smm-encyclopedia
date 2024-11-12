@@ -1,4 +1,6 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array}      from '@joookiwi/type'
+import {getFirstByArray} from '@joookiwi/collection'
+import {Enum}            from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                   from 'core/ClassWithEnglishName'
 import type {ClassWithReference}                                                                                                                     from 'core/ClassWithReference'
@@ -1201,7 +1203,7 @@ export abstract class SoundEffects
      * @onlyCalledOnce
      * @onlyCalledBy soundsContainer_exclusiveSmm1
      */
-    protected _createExclusiveSMM1Sounds(): NullOr<| SMM1ExclusiveSoundEffectSound | readonly SMM1SoundEffectSoundFile[]> {
+    protected _createExclusiveSMM1Sounds(): NullOr<| SMM1ExclusiveSoundEffectSound | Array<SMM1SoundEffectSoundFile>> {
         return null
     }
 
@@ -1225,7 +1227,7 @@ export abstract class SoundEffects
         if (value == null)
             return this.#sounds_exclusiveSmm1 = EmptySound.get
         if (value instanceof Array)
-            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, value[0],)
+            return this.#sounds_exclusiveSmm1 = new SMM1ExclusiveSound(value, getFirstByArray(value,),)
         return this.#sounds_exclusiveSmm1 = value
     }
 
@@ -1249,12 +1251,12 @@ export abstract class SoundEffects
     }
 
     /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS} exclusively */
-    public get sounds_exclusiveSmm1(): readonly SMM1SoundEffectSoundFile[] {
+    public get sounds_exclusiveSmm1(): Array<SMM1SoundEffectSoundFile> {
         return this.soundsContainer_exclusiveSmm1.sounds
     }
 
     /** Every "sound effect" sound for {@link SMM1}/{@link SMM3DS}, but using some {@link SMM2} sounds */
-    public get sounds_standaloneSmm1(): readonly SoundEffectSoundFile[] {
+    public get sounds_standaloneSmm1(): Array<SoundEffectSoundFile> {
         return this.soundsContainer_standaloneSMM1.sounds
     }
 
@@ -1290,7 +1292,7 @@ export abstract class SoundEffects
      * @onlyCalledOnce
      * @onlyCalledBy soundsContainer_smm2
      */
-    protected _createSMM2Sounds(): NullOr<| SMM2SoundEffectSound | readonly SMM2SoundEffectSoundFile[] | Musics> {
+    protected _createSMM2Sounds(): NullOr<| SMM2SoundEffectSound | Array<SMM2SoundEffectSoundFile> | Musics> {
         return null
     }
 
@@ -1303,7 +1305,7 @@ export abstract class SoundEffects
         if (value == null)
             return this.#sounds_smm2 = EmptySound.get
         if (value instanceof Array)
-            return this.#sounds_smm2 = new SMM2Sound(value, value[0], EMPTY_ARRAY, EMPTY_ARRAY,)
+            return this.#sounds_smm2 = new SMM2Sound(value, getFirstByArray(value,), EMPTY_ARRAY, EMPTY_ARRAY,)
         if (value instanceof Import.Musics)
             return this.#sounds_smm2 = new SoundEffectFromMusicAdaptorContainer(value,)
         return this.#sounds_smm2 = value
@@ -1344,7 +1346,7 @@ export abstract class SoundEffects
 
 }
 
-type PossibleSMM2SoundEffect = readonly (| SMM2SoundEffectSoundFile | MusicSoundFile)[]
+type PossibleSMM2SoundEffect = Array<| SMM2SoundEffectSoundFile | MusicSoundFile>
 
 //region -------------------- SMM2 sound file --------------------
 

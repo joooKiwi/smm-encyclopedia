@@ -1,3 +1,6 @@
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {PossibleEnglishName} from 'core/entity/Entities.types'
 import type {EntityLink}          from 'core/entity/loader.types'
 
@@ -6,16 +9,16 @@ import {EMPTY_ARRAY} from 'util/emptyVariables'
 interface ReferenceHolder {
 
     /** The unique reference links associated to a {@link GameStyles} */
-    readonly gameStyleLinks: readonly PossibleEnglishName[]
+    readonly gameStyleLinks: Array<PossibleEnglishName>
 
     /** The unique reference links associated to a {@link Themes} */
-    readonly themeLinks: readonly PossibleEnglishName[]
+    readonly themeLinks: Array<PossibleEnglishName>
 
     /** The unique reference links associated to a {@link Times} */
-    readonly timeLinks: readonly PossibleEnglishName[]
+    readonly timeLinks: Array<PossibleEnglishName>
 
     /** Every unique reference that is a link */
-    readonly allLinks: readonly PossibleEnglishName[]
+    readonly allLinks: Array<PossibleEnglishName>
 
 }
 
@@ -128,16 +131,12 @@ export class ReferenceLinks {
             return
         }
 
-        const separatedContent = content.split(' / ',) as readonly (| PossibleEnglishName | 'this')[]
-        const size = separatedContent.length
-        let index = -1
-        while (++index < size) {
-            const value = separatedContent[index]
+        forEachByArray(content.split(' / ',) as Array<| PossibleEnglishName | 'this'>, value => {
             if (value === 'this')
-                continue
+                return
             allLinks.add(value,)
             links.add(value,)
-        }
+        },)
     }
 
 
@@ -145,28 +144,28 @@ export class ReferenceLinks {
         return this._references.has(englishName,)
     }
 
-    public getGameStyleReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getGameStyleReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY
         return value.gameStyleLinks
     }
 
-    public getThemeReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getThemeReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY
         return value.themeLinks
     }
 
-    public getTimeReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getTimeReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY
         return value.timeLinks
     }
 
-    public getEveryReferenceLinks(englishName: PossibleEnglishName,): readonly PossibleEnglishName[] {
+    public getEveryReferenceLinks(englishName: PossibleEnglishName,): Array<PossibleEnglishName> {
         const value = this._references.get(englishName,)
         if (value == null)
             return EMPTY_ARRAY
