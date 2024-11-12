@@ -1,7 +1,7 @@
-import type {
-    BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer
-}                                   from 'core/music/backgroundMusic/BackgroundMusic'
-import type {SingleBackgroundMusic} from 'core/music/backgroundMusic/SingleBackgroundMusic'
+import {forEachByArray} from '@joookiwi/collection'
+
+import type {BackgroundMusic, PossibleLink_FastMusic_GroupContainer, PossibleLink_RegularMusic_GroupContainer, PossibleNSMBU_EditorMusic_GroupContainer, PossibleNSMBU_FastMusic_GroupContainer, PossibleNSMBU_FastYoshiSound_GroupContainer, PossibleNSMBU_RegularMusic_GroupContainer, PossibleNSMBU_RegularYoshiSound_GroupContainer, PossibleSM3DW_EditorMusic_GroupContainer, PossibleSM3DW_FastMusic_GroupContainer, PossibleSM3DW_FastUnderwaterMusic_GroupContainer, PossibleSM3DW_RegularMusic_GroupContainer, PossibleSM3DW_UnderwaterMusic_GroupContainer, PossibleSMB2_FastMusic_GroupContainer, PossibleSMB2_RegularMusic_GroupContainer, PossibleSMB3_EditorMusic_GroupContainer, PossibleSMB3_FastMusic_GroupContainer, PossibleSMB3_RegularMusic_GroupContainer, PossibleSMB_EditorMusic_GroupContainer, PossibleSMB_FastMusic_GroupContainer, PossibleSMB_RegularMusic_GroupContainer, PossibleSMW_EditorMusic_GroupContainer, PossibleSMW_FastMusic_GroupContainer, PossibleSMW_FastYoshiSound_GroupContainer, PossibleSMW_RegularMusic_GroupContainer, PossibleSMW_RegularYoshiSound_GroupContainer} from 'core/music/backgroundMusic/BackgroundMusic'
+import type {SingleBackgroundMusic}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     from 'core/music/backgroundMusic/SingleBackgroundMusic'
 
 import {SingleBackgroundMusicFactory} from 'core/music/backgroundMusic/SingleBackgroundMusic.factory'
 
@@ -100,18 +100,16 @@ export class BackgroundMusicContainer<const out SMB_EDITOR_MUSIC extends Possibl
 
         //region -------------------- Add every music then the editor music (without duplication) --------------------
 
-        const regularMusic = this.regularMusic
-        const regularMusics = regularMusic.all
-        const editorMusics = this.editorMusic.all
-        for (const it of editorMusics) {
+        const regularMusics = this.regularMusic.all
+        forEachByArray(this.editorMusic.all, it => {
             if (it == null)
-                continue
+                return
             if (regularMusics.includes(it as never,))
-                continue
+                return
             if (all.includes(it,))
-                continue
+                return
             all.push(it,)
-        }
+        },)
 
         //endregion -------------------- Add every music then the editor music (without duplication) --------------------
         //region -------------------- Add every other music (without duplication) --------------------

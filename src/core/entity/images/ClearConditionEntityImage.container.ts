@@ -1,3 +1,6 @@
+import type {Array}             from '@joookiwi/type'
+import {findFirstOrNullByArray} from '@joookiwi/collection'
+
 import type {ClearConditionImageFile}   from 'core/entity/file/EntityImageFile'
 import type {ClearConditionEntityImage} from 'core/entity/images/ClearConditionEntityImage'
 import type {ClearConditionImage}       from 'core/entity/images/clearCondition/ClearConditionImage'
@@ -19,29 +22,25 @@ export class ClearConditionEntityImageContainer<const out T extends ClearConditi
         this.#reference = reference
     }
 
-
     //endregion -------------------- Constructor --------------------
     //region -------------------- Getter methods --------------------
 
-    public get images(): readonly T[] {
+    public get images(): Array<T> {
         return this.#reference.images
     }
 
-    public get imagesWithAssociation(): readonly (readonly [GameStyles, T,])[] {
+    public get imagesWithAssociation(): Array<readonly [GameStyles, T,]> {
         return this.#reference.imagesWithAssociation
     }
 
     //endregion -------------------- Getter methods --------------------
     //region -------------------- Methods --------------------
 
-    public get(gameStyle: GameStyles,): readonly T[] {
-        const images = this.imagesWithAssociation
-        const size = images.length
-        let index = -1
-        while (++index < size)
-            if (images[index][0] === gameStyle)
-                return [images[index][1],]
-        return EMPTY_ARRAY
+    public get(gameStyle: GameStyles,): Array<T> {
+        const value = findFirstOrNullByArray(this.imagesWithAssociation, it => it[0] === gameStyle,)
+        if (value == null)
+            return EMPTY_ARRAY
+        return [value[1],]
     }
 
     //endregion -------------------- Methods --------------------

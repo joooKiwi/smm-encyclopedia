@@ -1,4 +1,6 @@
-import {Enum} from '@joookiwi/enumerable'
+import type {Array} from '@joookiwi/type'
+import {mapByArray} from '@joookiwi/collection'
+import {Enum}       from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                                                                                                                                                                                                     from 'core/ClassWithEnglishName'
 import type {Names, Ordinals, PossibleEnglishName, PossibleFileName, PossibleFileName_Array, PossibleFileName_GlissandoBass, PossibleFileName_ReverbCowbell, PossibleFileName_ReversePiano, PossibleFileName_Single, PossibleFileName_SpecificChordCM} from 'core/instrument/Instruments.types'
@@ -134,7 +136,7 @@ export class Instruments
     #reference?: Instrument
     readonly #englishName
     readonly #fileNames
-    #sounds?: readonly InstrumentSoundFile[]
+    #sounds?: Array<InstrumentSoundFile>
 
     //endregion -------------------- Fields --------------------
     //region -------------------- Constructor --------------------
@@ -174,22 +176,12 @@ export class Instruments
         return this.#englishName.getInHtml
     }
 
-    public get fileNames(): readonly PossibleFileName[] {
+    public get fileNames(): Array<PossibleFileName> {
         return this.#fileNames
     }
 
-    public get sounds(): readonly InstrumentSoundFile[] {
-        if (this.#sounds != null)
-            return this.#sounds
-
-        const fileNames = this.fileNames
-        const size = fileNames.length
-        const sounds = new Array<InstrumentSoundFile>(size,)
-        let index = size
-        while (index-- > 0)
-            sounds[index] = instrumentSound(fileNames[index],)
-
-        return this.#sounds = sounds
+    public get sounds(): Array<InstrumentSoundFile> {
+        return this.#sounds ??= mapByArray(this.fileNames, it => instrumentSound(it,),).toArray()
     }
 
     //endregion -------------------- Getter methods --------------------

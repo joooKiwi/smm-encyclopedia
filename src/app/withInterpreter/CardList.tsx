@@ -1,3 +1,5 @@
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {Content}                    from 'app/interpreter/AppInterpreter'
 import type {AppInterpreterWithCardList} from 'app/interpreter/AppInterpreterWithCardList'
 import type {ReactProperties}            from 'util/react/ReactProperties'
@@ -26,22 +28,19 @@ export default function CardList<const CONTENT extends Content, >({reactKey, int
     const dimensions = createDimension(interpreter,)
     const content = interpreter.content
 
-    const size = content.length
-    const contentToDisplay = new Array<ReactElement>(size,)
-    let index = size
-    while (index-- > 0) {
-        const enumerable = content[index]
+    const contentToDisplay = new Array<NonNullReactElement>(content.length,)
+    forEachByArray(content, (enumerable, i,) => {
         const uniqueKey = keyRetriever(enumerable,)
 
         //TODO change the popover to be on the id instead of the name directly
-        contentToDisplay[index] =
+        contentToDisplay[i] =
             <div key={`${uniqueKey} - main card list container`} id={`${reactKey}-${enumerable.englishNameInHtml}-container`} className={`${reactKey}-container`}>
                 <div key={`${uniqueKey} - main card list sub-container`} className="listElement-container cardListElement-container rounded-pill">
                     <NameComponent key={`${uniqueKey} - text container`} id="name" name={enumerable.reference.nameContainer} popoverOrientation="left"/>
                     <div key={`${uniqueKey} - card content container`} className="cardListName-content-container">{interpreter.createCardListContent(enumerable)}</div>
                 </div>
             </div>
-    }
+    },)
     return <div className={`row ${dimensions} align-items-center flex-grow-1 gx-0`}>{contentToDisplay}</div>
 }
 

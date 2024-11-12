@@ -1,4 +1,5 @@
 import type {PossibleEnumerableValueBy, Singleton} from '@joookiwi/enumerable'
+import {getFirstByArray, hasByArray}               from '@joookiwi/collection'
 import {Enum}                                      from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                                    from 'core/ClassWithEnglishName'
@@ -41,7 +42,7 @@ export abstract class EditorVoices
         }
 
         protected override _retrieveReference() {
-            return this.entityReferences[0].reference
+            return getFirstByArray(this.entityReferences,).reference
         }
 
         public override get characterNameReferences() {
@@ -57,7 +58,7 @@ export abstract class EditorVoices
         }
 
         protected override _retrieveReference() {
-            return this.characterNameReferences[0].reference
+            return getFirstByArray(this.characterNameReferences,).reference
         }
 
         public override get entityReferences() {
@@ -558,31 +559,11 @@ export abstract class EditorVoices
         }
 
         #findByEntity(value: Entities,): NullOr<EditorVoices> {
-            return this.values.find(it => {
-                const references = it.entityReferences
-                const size = references.length
-                if (size === 0)
-                    return false
-                let index = -1
-                while (++index < size)
-                    if (references[index] === value)
-                        return true
-                return false
-            },)
+            return this.values.find(it => hasByArray(it.entityReferences, value,),)
         }
 
         #findByCharacterName(value: CharacterNames,): NullOr<EditorVoices> {
-            return this.values.find(it => {
-                const references = it.characterNameReferences
-                const size = references.length
-                if (size === 0)
-                    return false
-                let index = -1
-                while (++index < size)
-                    if (references[index] === value)
-                        return true
-                return false
-            },)
+            return this.values.find(it => hasByArray(it.characterNameReferences, value,),)
         }
 
     }

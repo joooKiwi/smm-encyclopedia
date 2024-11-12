@@ -1,4 +1,5 @@
 import type {CompanionEnumSingleton} from '@joookiwi/enumerable'
+import {forEachByArray}              from '@joookiwi/collection'
 import {CompanionEnum, Enum}         from '@joookiwi/enumerable'
 import {Fragment}                    from 'react'
 
@@ -58,11 +59,9 @@ export class EntityAppOption
             if (imageFiles == null)
                 return null
 
-            const size = imageFiles.length
-            const images = new Array<ReactJSXElement>(size,)
-            let index = size
-            while (index-- > 0)
-                images[index] = <Image key={`Entity image (${englishName} - SMB - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            const images = new Array<ReactJSXElement>(imageFiles.length,)
+            forEachByArray(imageFiles, (it, i,) =>
+                images[i] = <Image key={`Entity image (${englishName} - SMB - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -78,11 +77,9 @@ export class EntityAppOption
             if (imageFiles == null)
                 return null
 
-            const size = imageFiles.length
-            const images = new Array<ReactJSXElement>(size,)
-            let index = size
-            while (index-- > 0)
-                images[index] = <Image key={`Entity image (${englishName} - SMB3 - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            const images = new Array<ReactJSXElement>(imageFiles.length,)
+            forEachByArray(imageFiles, (it, i,) =>
+                images[i] = <Image key={`Entity image (${englishName} - SMB3 - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -98,11 +95,9 @@ export class EntityAppOption
             if (imageFiles == null)
                 return null
 
-            const size = imageFiles.length
-            const images = new Array<ReactJSXElement>(size,)
-            let index = size
-            while (index-- > 0)
-                images[index] = <Image key={`Entity image (${englishName} - SMW - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            const images = new Array<ReactJSXElement>(imageFiles.length,)
+            forEachByArray(imageFiles, (it, i,) =>
+                images[i] = <Image key={`Entity image (${englishName} - SMW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -118,11 +113,9 @@ export class EntityAppOption
             if (imageFiles == null)
                 return null
 
-            const size = imageFiles.length
-            const images = new Array<ReactJSXElement>(size,)
-            let index = size
-            while (index-- > 0)
-                images[index] = <Image key={`Entity image (${englishName} - NSMBU - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            const images = new Array<ReactJSXElement>(imageFiles.length,)
+            forEachByArray(imageFiles, (it, i,) =>
+                    images[i] = <Image key={`Entity image (${englishName} - NSMBU - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 
@@ -138,11 +131,9 @@ export class EntityAppOption
             if (imageFiles == null)
                 return null
 
-            const size = imageFiles.length
-            const images = new Array<ReactJSXElement>(size,)
-            let index = size
-            while (index-- > 0)
-                images[index] = <Image key={`Entity image (${englishName} - SM3DW - image #${index + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={imageFiles[index]}/>
+            const images = new Array<ReactJSXElement>(imageFiles.length,)
+            forEachByArray(imageFiles, (it, i,) =>
+                    images[i] = <Image key={`Entity image (${englishName} - SM3DW - image #${i + 1})`} className={`entity-image ${englishNameInHtml}-image`} file={it}/>,)
             return <Fragment key={`unique image (${englishName})`}>{images}</Fragment>
         }
 

@@ -1,3 +1,5 @@
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {ReactProperties}              from 'util/react/ReactProperties'
 import type {AppInterpreterWithSimpleList} from 'app/interpreter/AppInterpreterWithSimpleList'
 import type {Content}                      from 'app/interpreter/AppInterpreter'
@@ -24,21 +26,18 @@ export default function SimpleList<const CONTENT extends Content, >({reactKey, i
     const dimensions = createDimension(interpreter,)
     const content = interpreter.content
 
-    const size = content.length
-    const contentToDisplay = new Array<ReactElement>(size,)
-    let index = size
-    while (index-- > 0) {
-        const enumerable = content[index]
+    const contentToDisplay = new Array<NonNullReactElement>(content.length,)
+    forEachByArray(content, (enumerable, i,) => {
         const uniqueKey = keyRetriever(enumerable,)
 
         //TODO change the popover to be on the id instead of the name directly
-        contentToDisplay[index] =
+        contentToDisplay[i] =
             <div key={`${uniqueKey} - main list container`} id={`${reactKey}-${enumerable.englishNameInHtml}-container`} className={`${reactKey}-container`}>
                 <span className="listElement-container simpleListElement-container rounded-pill">
                     <NameComponent id="name" name={enumerable.reference.nameContainer} popoverOrientation="left"/>
                 </span>
             </div>
-    }
+    },)
     return <div className={`row ${dimensions} align-items-center flex-grow-1 gx-0`}>{contentToDisplay}</div>
 }
 

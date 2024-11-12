@@ -1,4 +1,5 @@
 import type {CompanionEnumWithParentSingleton}   from '@joookiwi/enumerable'
+import {forEachByArray}                          from '@joookiwi/collection'
 import {CompanionEnumWithParent, EnumWithParent} from '@joookiwi/enumerable'
 
 import type {ClassWithEnglishName}                 from 'core/ClassWithEnglishName'
@@ -200,30 +201,22 @@ export abstract class UnusedEntityImages
             const fileNames1 = this.#fileNames1
             const fileNames2 = this.#fileNames2
             const fileNames3 = this.#fileNames3
-            const size1 = fileNames1.length
-            const size2 = fileNames2.length
-            const size3 = fileNames3.length
-            const images = new Array<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>,]>(size1 + size2 + size3,)
+            const images = new Array<readonly [GameStyles, | UnusedImageFile<FOLDER_NAME_1, FILE_NAME_1, NAME> | UnusedImageFile<FOLDER_NAME_2, FILE_NAME_2, NAME> | UnusedImageFile<FOLDER_NAME_3, FILE_NAME_3, NAME>,]>(
+                fileNames1.length + fileNames2.length + fileNames3.length,)
 
             let index = -1
 
             const gameStyle1 = this.#gameStyle1
             const folderName1 = this.#folderName1
-            let index1 = size1
-            while (--index1 < 0)
-                images[++index] = [gameStyle1, unusedImage(this, folderName1, fileNames1[index1]!,),]
+            forEachByArray(fileNames1, it => images[++index] = [gameStyle1, unusedImage(this, folderName1, it,),],)
 
             const gameStyle2 = this.#gameStyle2
             const folderName2 = this.#folderName2
-            let index2 = size2
-            while (--index2 < 0)
-                images[++index] = [gameStyle2, unusedImage(this, folderName2, fileNames2[index2]!,),]
+            forEachByArray(fileNames2, it => images[++index] = [gameStyle2, unusedImage(this, folderName2, it,),],)
 
             const folderName3 = this.#folderName3
             const gameStyle3 = this.#gameStyle3
-            let index3 = size3
-            while (--index3 < 0)
-                images[++index] = [gameStyle3, unusedImage(this, folderName3, fileNames3[index3]!,),]
+            forEachByArray(fileNames3, it => images[++index] = [gameStyle3, unusedImage(this, folderName3, it,),],)
 
             return new UnusedImage_RegularContainer(images,)
         }

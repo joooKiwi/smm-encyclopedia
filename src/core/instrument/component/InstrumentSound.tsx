@@ -1,3 +1,5 @@
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {Instruments}     from 'core/instrument/Instruments'
 import type {ReactProperties} from 'util/react/ReactProperties'
 
@@ -15,11 +17,8 @@ export default function InstrumentSound({value,}: InstrumentSoundProperties,) {
     const englishName = value.englishName
 
     const sounds = value.sounds
-    const size = sounds.length
-    const elements = new Array<ReactJSXElement>(size,)
-    let index = size
-    while (index-- > 0)
-        elements[index] = <SimpleSoundComponent key={`instrument sounds #${index} (${englishName})`} file={sounds[index]} title={`${name} (instrument #${index})`}/>
-
+    const elements = new Array<ReactJSXElement>(sounds.length,)
+    forEachByArray(sounds, (it, i,) =>
+            elements[i] = <SimpleSoundComponent key={`instrument sounds #${i} (${englishName})`} file={it} title={`${name} (instrument #${i})`}/>,)
     return <>{elements}</>
 }
