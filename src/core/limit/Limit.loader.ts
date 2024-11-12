@@ -1,6 +1,8 @@
 import file from 'resources/compiled/Entity limit.json'
 
-import {lazy} from '@joookiwi/lazy'
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+import {lazy}           from '@joookiwi/lazy'
 
 import type {LanguageContent}                                                                                     from 'core/_template/LanguageContent'
 import type {AlternativeLimit, Limit}                                                                             from 'core/limit/Limit'
@@ -46,18 +48,16 @@ export class LimitLoader
         const references = new Map<PossibleEnglishName, Limit>()
         const regularReferences = new Map<PossibleEnglishName, Limit>()
         const alternativeReferences = new Map<PossibleAlternativeEnglishName, AlternativeLimit>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
+        forEachByArray(file as Array<Content>, content => {
             const englishName = (content.english ?? content.americanEnglish)!
-            if (content.type == null) {
+            if (content.type == null)
                 alternativeReferences.set(englishName as PossibleAlternativeEnglishName, createAlternativeReference(content, regularReferences,),)
-                continue
+            else {
+                const reference = createReference(content, alternativeReferences,)
+                references.set(englishName, reference,)
+                regularReferences.set(englishName, reference,)
             }
-            const reference = createReference(content, alternativeReferences,)
-            references.set(englishName, reference,)
-            regularReferences.set(englishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

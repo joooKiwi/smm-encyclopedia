@@ -1,6 +1,8 @@
 import file from 'resources/compiled/Predefined message (SMM2).json'
 
-import type {LanguageContent}     from 'core/_template/LanguageContent'
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {PredefinedMessage}   from 'core/predefinedMessage/PredefinedMessage'
 import type {PossibleEnglishName} from 'core/predefinedMessage/PredefinedMessages.types'
 import type {Loader}              from 'util/loader/Loader'
@@ -8,6 +10,7 @@ import type {Loader}              from 'util/loader/Loader'
 import {isInProduction}             from 'variables'
 import {PredefinedMessageContainer} from 'core/predefinedMessage/PredefinedMessage.container'
 import {createNameFromContent}      from 'lang/name/createNameFromContent'
+import {LanguageContent}            from 'core/_template/LanguageContent'
 
 /** @singleton */
 export class PredefinedMessageLoader
@@ -32,11 +35,10 @@ export class PredefinedMessageLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, PredefinedMessage>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

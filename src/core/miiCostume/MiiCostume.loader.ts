@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Mii Costume (SMM2).json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {MiiCostume}                                                                    from 'core/miiCostume/MiiCostume'
 import type {PossibleEnglishName}                                                           from 'core/miiCostume/MiiCostumes.types'
@@ -49,11 +52,10 @@ export class MiiCostumeLoader
         const miiCostumeCategoryMap = MiiCostumeCategoryLoader.get.load()
         const officialNotificationCompanion = OfficialNotifications.CompanionEnum.get
         const references = new Map<PossibleEnglishName, MiiCostume>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content, versionCompanion, miiCostumeCategoryMap, officialNotificationCompanion,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content, versionCompanion, miiCostumeCategoryMap, officialNotificationCompanion,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

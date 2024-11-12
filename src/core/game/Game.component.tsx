@@ -1,3 +1,5 @@
+import {getFirstByArray} from '@joookiwi/collection'
+
 import type {GameProperty}             from 'core/entity/properties/game/GameProperty'
 import type {EntityPropertyProperties} from 'core/_component/EntityPropertyProperties'
 
@@ -18,12 +20,12 @@ export default function GameComponent({reference, name, displayAllAsText,}: Enti
             <GameImage reference={it}/>,)}</div>
     }
 
-    const games = [] as Games[]
+    const games: Games[] = []
     reference.toGameMap().forEach((isSelected, game,) => {
         if (isSelected)
             games.push(game,)
     },)
     if (games.length === 1)
-        return <GameImage reference={games[0]}/>
+        return <GameImage reference={getFirstByArray(games,)}/>
     return <div key={`${name.english} - group`}>{games.map(it => <GameImage reference={it}/>)}</div>
 }

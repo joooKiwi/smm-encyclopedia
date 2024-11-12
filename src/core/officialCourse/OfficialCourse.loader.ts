@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Official course (SMM).json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}                                                                from 'core/_template/LanguageContent'
 import type {DescriptionLanguageContent}                                                     from 'core/_template/DescriptionLanguageContent'
 import type {PossibleAcronym_GameStyle_SMM1}                                                 from 'core/gameReference/GameReferences.types'
@@ -48,11 +51,8 @@ export class OfficialCourseLoader
         const ThemeCompanion = Themes.CompanionEnum.get
         const MysteryMushroomCompanion = MysteryMushrooms.CompanionEnum.get
         const references = new Map<PossibleEnglishName, OfficialCourse>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
-            references.set(content.english, createReference(content, GameStyleCompanion, ThemeCompanion, MysteryMushroomCompanion,),)
-        }
+        forEachByArray(file as Array<Content>, content =>
+                references.set(content.english, createReference(content, GameStyleCompanion, ThemeCompanion, MysteryMushroomCompanion,),),)
 
         if (!isInProduction)
             console.info(

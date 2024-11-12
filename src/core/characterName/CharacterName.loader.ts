@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Character name.json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {Loader}                    from 'util/loader/Loader'
 import type {CharacterName}             from 'core/characterName/CharacterName'
 import type {LanguageContent}           from 'core/_template/LanguageContent'
@@ -33,11 +36,8 @@ export class CharacterNameLoader
             return this.#map
 
         const references = new Map<PossibleUniqueEnglishName, CharacterName>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
-            references.set(content.uniqueName as PossibleUniqueEnglishName, createReference(content,),)
-        }
+        forEachByArray(file as Array<Content>, content =>
+            references.set(content.uniqueName as PossibleUniqueEnglishName, createReference(content,),),)
 
         if (!isInProduction)
             console.info(

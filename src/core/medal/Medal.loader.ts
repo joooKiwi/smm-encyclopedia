@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Medals (SMM).json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {PossibleAmountOfStarReceivedToUnlockIt, PossibleMaximumAmountAllowedToUploadALevel} from 'core/medal/loader.types'
 import type {Medal}                                                                              from 'core/medal/Medal'
 import type {PossibleEnglishName}                                                                from 'core/medal/Medals.types'
@@ -42,11 +45,8 @@ export class MedalLoader
 
         const medalCompanion = Medals.CompanionEnum.get
         const references = new Map<PossibleEnglishName, Medal>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
-            references.set(content.image, createReference(content, medalCompanion,),)
-        }
+        forEachByArray(file as Array<Content>, content =>
+            references.set(content.image, createReference(content, medalCompanion,),),)
 
         if (!isInProduction)
             console.info(

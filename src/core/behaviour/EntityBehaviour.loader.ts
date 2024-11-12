@@ -1,5 +1,7 @@
 import file from 'resources/compiled/Entity behaviour.json'
 
+import type {Array}       from '@joookiwi/type'
+import {forEachByArray}   from '@joookiwi/collection'
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {EntityBehaviour}                          from 'core/behaviour/EntityBehaviour'
@@ -38,11 +40,10 @@ export class EntityBehaviourLoader
             return this.#map
 
         const references = new Map<PossibleTranslationKeys, EntityBehaviour>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.translationKey, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

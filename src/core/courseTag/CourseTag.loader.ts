@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Course tag (SMM2).json'
 
+import type {Array}     from "@joookiwi/type"
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}                               from 'core/_template/LanguageContent'
 import type {CourseTag}                                     from 'core/courseTag/CourseTag'
 import type {PossibleEnglishName, PossibleMakerCentralName} from 'core/courseTag/CourseTags.types'
@@ -39,11 +42,10 @@ export class CourseTagLoader
 
         const versionCompanion = Versions.CompanionEnum.get
         const references = new Map<PossibleEnglishName, CourseTag>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content, versionCompanion,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content, versionCompanion,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

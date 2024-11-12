@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Instrument.json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}                                   from 'core/_template/LanguageContent'
 import type {Entity}                                            from 'core/entity/Entity'
 import type {PossibleEnglishName as PossibleEnglishName_Entity} from 'core/entity/Entities.types'
@@ -38,11 +41,10 @@ export class InstrumentLoader
 
         const entityMap = EntityLoader.get.load()
         const references = new Map<PossibleEnglishName, Instrument>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content, entityMap,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content, entityMap,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

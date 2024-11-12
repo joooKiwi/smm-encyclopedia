@@ -1,6 +1,8 @@
 import file from 'resources/compiled/Entity.json'
 
 import type {Lazy}        from '@joookiwi/lazy'
+import type {Array}       from '@joookiwi/type'
+import {forEachByArray}   from '@joookiwi/collection'
 import {CommonLazy, lazy} from '@joookiwi/lazy'
 
 import type {CanBeAffectedByATwister, CanBeBrokenOrKilledByABobOmb, CanBePutOnATrack, CanBeSpawnedByMagikoopa, CanBeSpawnedByWingedMagikoopa, CanBeThrownByBowserInClownCar, CanBeThrownByBowserJr, CanBeThrownByBowserJrInClownCar, CanBeTransformedByMagikoopa, CanGoThroughWalls, CanGoThroughWallsInSM3DW, CanIgniteABobOmb, CanSurviveInTheLavaOrThePoison, HasALightSourceEmittedInSMB, HasAReferenceInMarioMaker, PossibleDimension, PossibleDimensionDifferentInSM3DW, PossibleEntityType, PossibleFirstAppearanceInMarioMaker, PossibleLightSource, PossibleMaximumDimension, PossibleMaximumDimensionDifferentInSM3DW, PossibleWeight} from 'core/entityTypes'
@@ -68,9 +70,7 @@ export class EntityLoader
         const limitCompanion = Limits.CompanionEnum.get
         const references = new Map<PossibleEnglishName, Entity>()
         const referenceLinks = new ReferenceLinks()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
+        forEachByArray(file as Array<Content>, content => {
             const englishName = (content.english ?? content.americanEnglish) as PossibleEnglishName
 
             referenceLinks.addSubReference(
@@ -94,7 +94,7 @@ export class EntityLoader
                 content.inCastleTheme,
             )
             references.set(englishName, createReference(content, referenceLinks, entityCategoryMap, limitCompanion,),)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

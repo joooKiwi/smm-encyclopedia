@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Mystery Mushroom (SMM).json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}                                                                                                                                                                                                                                                                       from 'core/_template/LanguageContent'
 import type {UniqueNameContent}                                                                                                                                                                                                                                                                     from 'core/_template/UniqueNameContent'
 import type {PossibleAcronym as PossibleAcronym_GameReference}                                                                                                                                                                                                                                      from 'core/gameReference/GameReferences.types'
@@ -43,11 +46,8 @@ export class MysteryMushroomLoader
 
         const GameReferenceCompanion = GameReferences.CompanionEnum.get
         const references = new Map<PossibleUniqueEnglishName, MysteryMushroom>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
-            references.set(content.uniqueName, createReference(content, GameReferenceCompanion,),)
-        }
+        forEachByArray(file as Array<Content>, content =>
+            references.set(content.uniqueName, createReference(content, GameReferenceCompanion,),),)
 
         if (!isInProduction)
             console.info(

@@ -1,6 +1,8 @@
 import file from 'resources/compiled/Theme.json'
 
-import {lazy} from '@joookiwi/lazy'
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+import {lazy}           from '@joookiwi/lazy'
 
 import type {LanguageContent}                 from 'core/_template/LanguageContent'
 import type {GameContentFrom1And2}            from 'core/game/Loader.types'
@@ -50,11 +52,10 @@ export class ThemeLoader
             return this.#map
 
         const references = new Map<PossibleEnglishName, CourseAndWorldTheme>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

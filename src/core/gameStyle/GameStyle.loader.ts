@@ -1,6 +1,8 @@
 import file from 'resources/compiled/Game style.json'
 
-import {lazy} from '@joookiwi/lazy'
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+import {lazy}           from '@joookiwi/lazy'
 
 import type {GameContentFrom1And2}                                               from 'core/game/Loader.types'
 import type {GameStyle, PossibleNightDesertWindTranslationKey}                   from 'core/gameStyle/GameStyle'
@@ -46,11 +48,10 @@ export class GameStyleLoader
 
         const gameReferenceCompanion = GameReferences.CompanionEnum.get
         const references = new Map<PossibleEnglishName, GameStyle>()
-        let index = file.length
-        while (index-- > 0) {
-            const reference = createReference(file[index] as Content, gameReferenceCompanion,)
+        forEachByArray(file as Array<Content>, content => {
+            const reference = createReference(content, gameReferenceCompanion,)
             references.set(reference.english as PossibleEnglishName, reference,)
-        }
+        },)
 
         if (!isInProduction)
             console.info(

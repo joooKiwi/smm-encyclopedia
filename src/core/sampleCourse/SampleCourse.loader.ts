@@ -1,5 +1,8 @@
 import file from 'resources/compiled/Sample course (SMM).json'
 
+import type {Array}     from '@joookiwi/type'
+import {forEachByArray} from '@joookiwi/collection'
+
 import type {LanguageContent}                                                                        from 'core/_template/LanguageContent'
 import type {PossibleAcronym_GameStyle_SMM1}                                                         from 'core/gameReference/GameReferences.types'
 import type {CompanionEnumDeclaration_GameStyles}                                                    from 'core/gameStyle/GameStyles.companionEnumDeclaration'
@@ -45,11 +48,8 @@ export class SampleCourseLoader
         const gameStyleCompanion = GameStyles.CompanionEnum.get
         const themeCompanion = Themes.CompanionEnum.get
         const references = new Map<PossibleEnglishName, SampleCourse>()
-        let index = file.length
-        while (index-- > 0) {
-            const content = file[index] as Content
-            references.set(`Level ${content.worldNumber}`, createReference(content, gameStyleCompanion, themeCompanion,),)
-        }
+        forEachByArray(file as Array<Content>, content =>
+            references.set(`Level ${content.worldNumber}`, createReference(content, gameStyleCompanion, themeCompanion,),),)
 
         if (!isInProduction)
             console.info(
