@@ -1,7 +1,7 @@
 import file from 'resources/compiled/Other word in the game.json'
 
-import type {Array}     from '@joookiwi/type'
-import {forEachByArray} from '@joookiwi/collection'
+import type {Array}        from '@joookiwi/type'
+import {toReversedByArray} from '@joookiwi/collection'
 
 import type {LanguageContent}                                                               from 'core/_template/LanguageContent'
 import type {GameContentFromAllGames}                                                       from 'core/game/Loader.types'
@@ -41,12 +41,13 @@ export class OtherWordInTheGameLoader
 
         const references = new Map<PossibleEnglishName_Singular, OtherSingularWordInTheGame>()
         const pluralReferences = new Map<PossibleEnglishName_Plural, OtherPluralWordInTheGame>()
-        forEachByArray(file as Array<Content>, content => {
+        toReversedByArray(file as Array<Content>,).forEach(content => {
             const englishName = (content.english ?? content.americanEnglish)!
-            if (content.isPlural)
+            if (content.isPlural) {
                 pluralReferences.set(englishName as PossibleEnglishName_Plural, createPluralContent(content,),)
-            else
-                references.set(englishName as PossibleEnglishName_Singular, createSingularContent(content, pluralReferences,),)
+                return
+            }
+            references.set(englishName as PossibleEnglishName_Singular, createSingularContent(content, pluralReferences,),)
         },)
 
         if (!isInProduction)
